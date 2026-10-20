@@ -1,0 +1,798 @@
+# knowledge paper framing prep
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 15
+- **Recorded user turns:** 0
+- **Tool calls:** 3
+- **Original source:** `logs/workers/worker_knowledge_paper_framing_prep_20260515T184035.log`
+- **Structured JSON:** [`d80aa918f86c83ea0a24.json`](../../sessions/d8/d80aa918f86c83ea0a24.json)
+
+## Before a recorded user message
+
+15 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "session_id": "bd654b3e-49ce-42fa-88a1-1d3ece2bc5d9",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "bf41b10b-f332-4873-a4e3-e8d7a758a9f4",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778886600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "84da3b3f-d2e2-4354-9ecf-cd61365cffe0",
+  "session_id": "bd654b3e-49ce-42fa-88a1-1d3ece2bc5d9"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Let me read the current paper_framing.md first.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd654b3e-49ce-42fa-88a1-1d3ece2bc5d9",
+  "uuid": "bd7e08df-51e8-4e02-a767-d5f93c0b032e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014xup7PqncCWzgtcjwNLx1S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11563,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11563
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01N6AHpH6gZ94kgPsXKrPiaQ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd654b3e-49ce-42fa-88a1-1d3ece2bc5d9",
+  "uuid": "4de734c3-d254-4be0-a9f1-53f8c9da42c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014xup7PqncCWzgtcjwNLx1S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11563,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11563
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T18:40:45.833Z_
+
+<details><summary>↩ Tool result · `toolu_01N6AHpH6gZ94kgPsXKrPiaQ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd654b3e-49ce-42fa-88a1-1d3ece2bc5d9",
+  "uuid": "9767f651-074e-4252-aacb-ab98a0d96814",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the current paper_framing.md file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd654b3e-49ce-42fa-88a1-1d3ece2bc5d9",
+  "uuid": "003afc25-6231-412c-b485-fa57d71b8f48",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Csxw9bNSe2aUQVRweDUxUE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 712,
+      "cache_read_input_tokens": 23404,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 712
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01CfxAFUgLwnery2BL66Edcs`</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd654b3e-49ce-42fa-88a1-1d3ece2bc5d9",
+  "uuid": "a9014ae4-01e7-4279-bf84-6d84d61b4ecd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Csxw9bNSe2aUQVRweDUxUE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 712,
+      "cache_read_input_tokens": 23404,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 712
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T18:40:48.911Z_
+
+<details><summary>↩ Tool result · `toolu_01CfxAFUgLwnery2BL66Edcs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/paper_framing.md\", \"content\": \"# Paper Framing — trace-verdict-study\\n\\n> v2.2 — 更新 seed robustness 结果 + irreducible samples + DeepSeek full_trace v2 状态。\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR submission)\\n- Fallback: EMNLP 2026 Findings\\n- Deadline: ARR May 25, 2026\\n\\n## Core Insight\\n\\nVerdict prediction (pass/fail) is fundamentally a **fault detection** task. The minimal sufficient signal is the **exception event** — a compact, structured diagnostic moment that achieves near-perfect accuracy (Qwen 99.83%, DeepSeek 99.33%, cross-model gap = 0.50pp) regardless of model architecture. In contrast, richer trace representations that require deeper execution reasoning show model-dependent effectiveness: VOTA gap = 14.96pp, no_trace gap = 1.77pp. Information density — not training signal distribution — is the primary bottleneck: even oracle loss masking (label-only) cannot close the 13pp gap between full traces and targeted extraction. The design principle: **extract the highest-specificity diagnostic signal; discard everything else.**\\n\\n## Core Claims (3)\\n\\n### Claim 1: Exception-based fault detection is model-agnostic\\n\\nException summaries alone achieve near-perfect verdict prediction across architecturally distinct models: Qwen-2.5-Coder-7B (99.83%) and DeepSeek-Coder-6.7B (99.33%), cross-model gap = 0.50pp (at best checkpoint, gap = 0pp). This contrasts with VOTA (gap = 14.96pp) and no_trace (gap = 1.77pp). Exception events are structurally simple (`[ERROR] type: ... message: ...`) and do not require deep trace reasoning — making them universally extractable.\\n\\n**Supporting evidence:**\\n- `vota_exception_only_seed42_v2`: Qwen 99.83%\\n- `deepseek_exception_only_seed42`: DeepSeek 99.33% (epoch3) / 99.83% (epoch1 best)\\n- `deepseek_vota_seed42`: DeepSeek VOTA 84.45% (gap = 14.96pp)\\n- `deepseek_no_trace_seed42`: DeepSeek no_trace 73.36% (gap = 1.77pp)\\n- `vota_no_ae_seed42`: 99.41% — actual/expected removal 不降，非 trivial string comparison\\n\\n**Seed robustness** ✅: Qwen exception_only 99.83% ± 0.00 across seeds 42/123/456. 每 seed 恰好 2/1190 errors, 3 seeds 错误 100% 重叠（id=901, 905, 均为 `check_dict_case` 函数, label=pass → pred=fail）。**Irreducible samples**: 模型已达数据集理论上限。\\n\\n**DeepSeek cross-model seed robustness**: deepseek_exception_only_seed123 运行中（~20:15 UTC 完成）。\\n\\n### Claim 2: Information density, not gradient dilution, drives trace compression benefit\\n\\nFull traces help verdict prediction (81.8%, +6.6pp over baseline), but VOTA achieves 99.41% (+24.3pp) — a +17.6pp advantage. Label-only loss ablation (plan_002) quantifies the causal decomposition: **gradient dilution contributes ~26% of the gap** (4.5pp; label-only full_trace = 86.2%), **information overload contributes ~74%** (13.0pp; only trace compression resolves this). Even with oracle loss masking that eliminates gradient dilution, full traces still underperform VOTA by 13pp.\\n\\nCross-model evidence reinforces this: VOTA gap (14.96pp) tracks base model execution reasoning capability (Qwen CRUXEval-I 56.5% vs DeepSeek 39.0%, Δ=17.5pp), suggesting trace utilization effectiveness is bounded by pretraining-derived inductive biases. Exception signal bypasses this bottleneck entirely (gap = 0.50pp).\\n\\n**Supporting evidence:**\\n- `full_trace_label_only_seed42`: 86.2% (gradient dilution fix, +4.5pp over standard full_trace)\\n- `full_trace_seed42_v5`: 81.8% (standard full_trace)\\n- `vota_seed42_v5`: 99.41%\\n- `deepseek_vota_seed42`: 84.45% (VOTA model-dependent)\\n- CRUXEval literature data (Wang et al.)\\n\\n### Claim 3: Two-tier diagnostic hierarchy for verdict prediction\\n\\nComponent ablation reveals verdict-relevant trace information has a strict two-tier hierarchy:\\n- **Tier 1 — diagnostic moment signals**: exception summaries (99.83%) and assertion-point information (99.92%) are individually near-perfect and sufficient for verdict prediction. These signals are structurally simple and model-agnostic (exception cross-model gap = 0.50pp).\\n- **Tier 2 — behavioral patterns**: loop compression (85.6%) carries substantial signal but is model-dependent and fully subsumed by Tier 1.\\n\\nCombining tiers introduces noise rather than helping: exception_only (99.83%) > VOTA full (99.41%), p=0.01. Loop_only ≈ full_trace_label_only (85.6% vs 86.2%) confirms VOTA's loop compression precisely extracts the useful behavioral signal from full traces.\\n\\n**Supporting evidence:**\\n- `vota_exception_only_seed42_v2`: 99.83% (Tier 1 exception)\\n- `vota_ae_only_seed42`: 99.92% (Tier 1 assertion-point, 与 exception 统计等价 p=0.80)\\n- `vota_loop_only_seed42`: 85.6% (Tier 2 behavioral)\\n- `full_trace_label_only_seed42`: 86.2% (≈ loop_only, confirming extraction equivalence)\\n- `deepseek_exception_only_seed42`: 99.33% (Tier 1 cross-model validation)\\n- `deepseek_vota_seed42`: 84.45% (Tier 1+2 cross-model: Tier 2 introduces model-dependent degradation)\\n- Calibration: exception_only ECE=0.0027, VOTA ECE=0.0054 (Tier 1 better calibrated)\\n\\n**Design principle**: verdict-optimized traces should extract highest-specificity diagnostic signals; lower-specificity signals are redundant and may introduce noise.\\n\\n## Story Spine\\n\\n- **Problem**: Existing trace SFT studies (DCSH, TracePile) evaluate only generative tasks and find limited, model-dependent benefit. No prior work has tested trace SFT on verdict tasks (binary pass/fail), nor identified what trace components drive classification performance.\\n\\n- **Existing approaches & gaps**: DCSH (EMNLP Findings 2025) tested 5 trace formats on generation tasks, finding that \\\"no single trace representation consistently outperforms others.\\\" TracePile (NeurIPS 2025) scaled to 2.6M samples but only evaluated generation. TRACED (ICSE 2024) showed traces help encoder-based classification. All existing trace formats are designed for execution simulation, not fault detection.\\n\\n- **Our framing**: We reframe verdict prediction as **fault detection** and ask: what is the minimal sufficient diagnostic signal? Through systematic component ablation across two architecturally distinct models, we discover that exception events — compact, structured error summaries — are both necessary and sufficient, achieving near-perfect accuracy (99.5%+ avg) with near-zero cross-model gap. Richer trace representations work only when the base model has sufficient execution reasoning capability, making them unreliable for general deployment.\\n\\n- **Headline result**: \\\"Exception-based trace SFT achieves 99.83% verdict accuracy on Qwen and 99.33% on DeepSeek (gap = 0.50pp), while the same models show a 14.96pp gap on VOTA traces — demonstrating that fault detection, not trace reasoning, is the robust mechanism for verdict prediction.\\\"\\n\\n## Story Arc\\n\\n1. **Setup**: Trace SFT for code tasks — promising but inconsistent in prior work (DCSH, TracePile). Unknown whether traces help verdict tasks and what trace design matters.\\n\\n2. **First result — traces help, compression helps more** (single model): no_trace 75.1% → full_trace 81.8% → VOTA 99.41%. Label-only loss ablation decomposes the gap: 26% gradient dilution, 74% information overload. Compression improves accuracy through higher information density, not just cost savings.\\n\\n3. **Twist — what component actually drives VOTA?** Component ablation reveals exception_only (99.83%) ≥ full VOTA (99.41%). The \\\"trace reasoning\\\" narrative is wrong — verdict prediction is fault detection. Tier 1 (exceptions + assertion-point) subsumes Tier 2 (loops). Actual/expected removal doesn't hurt (99.41%).\\n\\n4. **Cross-model stress test — the universal vs the contingent**: Exception_only transfers with near-zero gap (0.50pp), but VOTA degrades by 14.96pp on DeepSeek. The model-agnostic component is precisely the one that doesn't require trace reasoning. CRUXEval reasoning gap (17.5pp) parallels VOTA gap — trace utilization is bounded by pretraining.\\n\\n5. **Design principle**: For verdict tasks, identify the highest-specificity diagnostic signal (exception events) and discard everything else. Simpler signals are more robust; complexity tolerance depends on model capability.\\n\\n## DeepSeek full_trace 处理\\n\\n**现状**: v1 坍塌（28.5%, 100% 预测 fail, 根因: 训练端 label 截断）。v2 重训启动但被 kill（Loop #6 ops worker 腾 GPU 给 vota_seed456）。\\n\\n**处理方案**: 下一个 GPU 空闲（deepseek_exception_only_seed123 完成后 ~20:15 UTC）立即重启 deepseek_full_trace_v3。\\n\\n**对论文叙事的影响**: 无. 三个有效条件 (exception_only, VOTA, no_trace) 已足够支撑全部 claims. DeepSeek full_trace 结果是 bonus, 非必需. 若 v3 在投稿前完成, 纳入跨模型对比表 (4/4 conditions). 否则报告为 N/A 并在 Limitations 中透明披露根因.\\n\\n## Venue Fit Risks\\n\\n| Risk | Assessment | Mitigation |\\n|------|-----------|------------|\\n| 单任务 | 仍然只在 test verdict prediction 上验证 | 跨模型验证部分弥补; Discussion 中讨论 generalization |\\n| 单数据集 | CRUXEval 是唯一 benchmark | 定位为 empirical study, 深度优于广度 |\\n| \\\"只是 feature engineering\\\" | exception extraction 不复杂 | simplicity 本身是 contribution — 最简信号最 robust |\\n| Negative result 味道 | VOTA 跨模型不 robust | Reframe: 识别 robust vs non-robust 组件边界是 positive |\\n| Seed robustness | ✅ 已解决: 99.83% ± 0.00 (3 seeds), irreducible samples 确认 | — |\\n\\n## Anticipated Reviewer Concerns\\n\\n| Concern | Planned Response |\\n|---------|-----------------|\\n| \\\"exception_only 99.83% 是不是 trivial pattern matching [ERROR] 有无？\\\" | full_trace 也包含 [ERROR] 但仅 81.8%——模型需要从 trace context 中 extract 和 utilize exception signal, 不是简单 keyword detection. no_trace 无 exception, 75.1%. |\\n| \\\"为什么 exception_only > VOTA? adding info 反而降?\\\" | 非 exception 组件 (loop/ae tokens) 稀释 attention 对 exception 信号的聚焦. Calibration: exception_only ECE=0.0027 vs VOTA ECE=0.0054. 部分样本 loop 正常但有 exception, 引入矛盾信号. |\\n| \\\"CRUXEval gap 与 VOTA gap 的相关性可能是 coincidence\\\" | 明确标注为 hypothesis. 列出 alternatives (tokenizer efficiency, pretraining scale 2.75x, chat template). 不 overclaim. |\\n| \\\"只有 2 个模型\\\" | 同意是 limitation. 两模型在 architecture, pretraining data (5.5T vs 2T), execution reasoning (CRUXEval 17.5pp gap) 上有充分差异, 不是 trivial replication. |\\n| \\\"99.83% 可能 saturated, 看不出 exception 到底学了什么\\\" | Calibration: exception_only ECE=0.0027, ae_only ECE=0.0004. Irreducible samples (id=901,905) 分析说明模型已达数据上限. |\\n| \\\"只用了 1 个 seed\\\" | ✅ 已解决: 3 seeds 结果完全一致, irreducible samples 100% 重叠. |\\n| \\\"eval_loss 上升但 accuracy 提升——checkpoint selection 有问题?\\\" | Discussion: token-level loss 与 binary verdict accuracy 解耦. 推荐 verdict-specific metric. Methodological contribution. |\\n| \\\"DeepSeek full_trace 坍塌是 bug 不是 finding\\\" | 诚实披露根因 (训练端 label 截断). 其他 3 条件不受影响. 修复版本如就绪则补入. |\\n\\n## Discussion 要点\\n\\n### D1: eval_loss vs verdict accuracy 解耦\\nDeepSeek VOTA: eval_loss epoch1→3 从 0.068 升至 0.112 (+65%), 但 accuracy 从 78.15% 升至 84.45% (+6.3pp). Token-level calibration 与 binary classification accuracy 方向相反. **Implication**: verdict tasks 应用 task-specific metric (accuracy/F1) 做 checkpoint selection, 非 eval_loss.\\n\\n### D2: CRUXEval gap 假说\\nVOTA 跨模型 gap (14.96pp) 与 CRUXEval execution reasoning gap (15-17.5pp) 数值吻合. 假说: trace utilization effectiveness 受 base model \\\"execution reasoning readiness\\\" 约束. **标注**: hypothesis, N=2, 列出 alternatives. 不 overclaim.\\n\\n### D3: Simplicity as robustness\\nException signal 跨模型 robust 恰因其 structurally simple. 暗示 **trace design 应匹配 deployment model 的能力下界**, 而非上界.\\n\\n### D4: Checkpoint selection 与 gap 报告\\n正文 exception_only 跨模型 gap 用 final-to-final = 0.50pp (一致 criterion). 补充: at best checkpoint (DeepSeek epoch1), gap = 0pp. DeepSeek epoch1→3 退化 0.50pp 与 D1 eval_loss 解耦现象一致.\\n\\n### D5: Irreducible samples\\n3 seeds 的 2/1190 errors 完全相同（id=901, 905, `check_dict_case`），方向一致（pass→fail false negatives）。模型已达数据集理论上限。这些样本可能存在 labeling noise 或 edge-case 行为（exception trace 中缺少足够的 fault signal）。\\n\\n## Contingency Framing (已解决, 留存档)\\n\\n### Claim 1 — RESOLVED (D008 → D010 → D019)\\nvota_no_ae 99.41% 否定 trivial comparison. exception_only 99.83% 揭示核心机制. 跨模型 0.50pp gap 确认 universality.\\n\\n### Claim 2 — RESOLVED (D006 + D009)\\nv5 full_trace 81.8%. plan_002 label-only 86.2%, gradient dilution = minor (26%). 跨模型 VOTA gap 补充证据.\\n\\n## 与 v1 Framing 的关键差异\\n\\n| 维度 | v1 | v2.2 |\\n|------|----|----|\\n| Headline | VOTA compression 优于 full trace | Exception-based fault detection is model-agnostic |\\n| Primary claim | VOTA +24pp through fault indicator preservation | Exception signal transfers across models (gap = 0.50pp) |\\n| Claim 2 | Compression > full trace (只有 gradient dilution) | Information density primary + gradient dilution quantification + cross-model reinforcement |\\n| Claim 3 Tier 1 | exception_only only | exception + assertion-point (co-Tier 1, D020) |\\n| Model scope | 单模型 (Qwen) | 双模型, 跨模型对比是核心贡献 |\\n| VOTA 定位 | 核心方法 | Model-dependent richer representation |\\n| DeepSeek full_trace | N/A | v2 killed, v3 re-run pending |\\n| Seed robustness | 未验证 | ✅ 99.83% ± 0.00 (3 seeds), irreducible samples 确认 |\\n\", \"total_chars\": 12492, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd654b3e-49ce-42fa-88a1-1d3ece2bc5d9",
+  "uuid": "5b6ac8f8-0626-463f-bf65-bd063d2ec319",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — trace-verdict-study\\\\n\\\\n> v2.2 — 更新 seed robustness 结果 + irreducible samples + DeepSeek full_trace v2 状态。\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR submission)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Insight\\\\n\\\\nVerdict prediction (pass/fail) is fundamentally a **fault detection** task. The minimal sufficient signal is the **exception event** — a compact, structured diagnostic moment that achieves near-perfect accuracy (Qwen 99.83%, DeepSeek 99.33%, cross-model gap = 0.50pp) regardless of model architecture. In contrast, richer trace representations that require deeper execution reasoning show model-dependent effectiveness: VOTA gap = 14.96pp, no_trace gap = 1.77pp. Information density — not training signal distribution — is the primary bottleneck: even oracle loss masking (label-only) cannot close the 13pp gap between full traces and targeted extraction. The design principle: **extract the highest-specificity diagnostic signal; discard everything else.**\\\\n\\\\n## Core Claims (3)\\\\n\\\\n### Claim 1: Exception-based fault detection is model-agnostic\\\\n\\\\nException summaries alone achieve near-perfect verdict prediction across architecturally distinct models: Qwen-2.5-Coder-7B (99.83%) and DeepSeek-Coder-6.7B (99.33%), cross-model gap = 0.50pp (at best checkpoint, gap = 0pp). This contrasts with VOTA (gap = 14.96pp) and no_trace (gap = 1.77pp). Exception events are structurally simple (`[ERROR] type: ... message: ...`) and do not require deep trace reasoning — making them universally extractable.\\\\n\\\\n**Supporting evidence:**\\\\n- `vota_exception_only_seed42_v2`: Qwen 99.83%\\\\n- `deepseek_exception_only_seed42`: DeepSeek 99.33% (epoch3) / 99.83% (epoch1 best)\\\\n- `deepseek_vota_seed42`: DeepSeek VOTA 84.45% (gap = 14.96pp)\\\\n- `deepseek_no_trace_seed42`: DeepSeek no_trace 73.36% (gap = 1.77pp)\\\\n- `vota_no_ae_seed42`: 99.41% — actual/expected removal 不降，非 trivial string comparison\\\\n\\\\n**Seed robustness** ✅: Qwen exception_only 99.83% ± 0.00 across seeds 42/123/456. 每 seed 恰好 2/1190 errors, 3 seeds 错误 100% 重叠（id=901, 905, 均为 `check_dict_case` 函数, label=pass → pred=fail）。**Irreducible samples**: 模型已达数据集理论上限。\\\\n\\\\n**DeepSeek cross-model seed robustness**: deepseek_exception_only_seed123 运行中（~20:15 UTC 完成）。\\\\n\\\\n### Claim 2: Information density, not gradient dilution, drives trace compression benefit\\\\n\\\\nFull traces help verdict prediction (81.8%, +6.6pp over baseline), but VOTA achieves 99.41% (+24.3pp) — a +17.6pp advantage. Label-only loss ablation (plan_002) quantifies the causal decomposition: **gradient dilution contributes ~26% of the gap** (4.5pp; label-only full_trace = 86.2%), **information overload contributes ~74%** (13.0pp; only trace compression resolves this). Even with oracle loss masking that eliminates gradient dilution, full traces still underperform VOTA by 13pp.\\\\n\\\\nCross-model evidence reinforces this: VOTA gap (14.96pp) tracks base model execution reasoning capability (Qwen CRUXEval-I 56.5% vs DeepSeek 39.0%, Δ=17.5pp), suggesting trace utilization effectiveness is bounded by pretraining-derived inductive biases. Exception signal bypasses this bottleneck entirely (gap = 0.50pp).\\\\n\\\\n**Supporting evidence:**\\\\n- `full_trace_label_only_seed42`: 86.2% (gradient dilution fix, +4.5pp over standard full_trace)\\\\n- `full_trace_seed42_v5`: 81.8% (standard full_trace)\\\\n- `vota_seed42_v5`: 99.41%\\\\n- `deepseek_vota_seed42`: 84.45% (VOTA model-dependent)\\\\n- CRUXEval literature data (Wang et al.)\\\\n\\\\n### Claim 3: Two-tier diagnostic hierarchy for verdict prediction\\\\n\\\\nComponent ablation reveals verdict-relevant trace information has a strict two-tier hierarchy:\\\\n- **Tier 1 — diagnostic moment signals**: exception summaries (99.83%) and assertion-point information (99.92%) are individually near-perfect and sufficient for verdict prediction. These signals are structurally simple and model-agnostic (exception cross-model gap = 0.50pp).\\\\n- **Tier 2 — behavioral patterns**: loop compression (85.6%) carries substantial signal but is model-dependent and fully subsumed by Tier 1.\\\\n\\\\nCombining tiers introduces noise rather than helping: exception_only (99.83%) > VOTA full (99.41%), p=0.01. Loop_only ≈ full_trace_label_only (85.6% vs 86.2%) confirms VOTA's loop compression precisely extracts the useful behavioral signal from full traces.\\\\n\\\\n**Supporting evidence:**\\\\n- `vota_exception_only_seed42_v2`: 99.83% (Tier 1 exception)\\\\n- `vota_ae_only_seed42`: 99.92% (Tier 1 assertion-point, 与 exception 统计等价 p=0.80)\\\\n- `vota_loop_only_seed42`: 85.6% (Tier 2 behavioral)\\\\n- `full_trace_label_only_seed42`: 86.2% (≈ loop_only, confirming extraction equivalence)\\\\n- `deepseek_exception_only_seed42`: 99.33% (Tier 1 cross-model validation)\\\\n- `deepseek_vota_seed42`: 84.45% (Tier 1+2 cross-model: Tier 2 introduces model-dependent degradation)\\\\n- Calibration: exception_only ECE=0.0027, VOTA ECE=0.0054 (Tier 1 better calibrated)\\\\n\\\\n**Design principle**: verdict-optimized traces should extract highest-specificity diagnostic signals; lower-specificity signals are redundant and may introduce noise.\\\\n\\\\n## Story Spine\\\\n\\\\n- **Problem**: Existing trace SFT studies (DCSH, TracePile) evaluate only generative tasks and find limited, model-dependent benefit. No prior work has tested trace SFT on verdict tasks (binary pass/fail), nor identified what trace components drive classification performance.\\\\n\\\\n- **Existing approaches & gaps**: DCSH (EMNLP Findings 2025) tested 5 trace formats on generation tasks, finding that \\\\\\\"no single trace representation consistently outperforms others.\\\\\\\" TracePile (NeurIPS 2025) scaled to 2.6M samples but only evaluated generation. TRACED (ICSE 2024) showed traces help encoder-based classification. All existing trace formats are designed for execution simulation, not fault detection.\\\\n\\\\n- **Our framing**: We reframe verdict prediction as **fault detection** and ask: what is the minimal sufficient diagnostic signal? Through systematic component ablation across two architecturally distinct models, we discover that exception events — compact, structured error summaries — are both necessary and sufficient, achieving near-perfect accuracy (99.5%+ avg) with near-zero cross-model gap. Richer trace representations work only when the base model has sufficient execution reasoning capability, making them unreliable for general deployment.\\\\n\\\\n- **Headline result**: \\\\\\\"Exception-based trace SFT achieves 99.83% verdict accuracy on Qwen and 99.33% on DeepSeek (gap = 0.50pp), while the same models show a 14.96pp gap on VOTA traces — demonstrating that fault detection, not trace reasoning, is the robust mechanism for verdict prediction.\\\\\\\"\\\\n\\\\n## Story Arc\\\\n\\\\n1. **Setup**: Trace SFT for code tasks — promising but inconsistent in prior work (DCSH, TracePile). Unknown whether traces help verdict tasks and what trace design matters.\\\\n\\\\n2. **First result — traces help, compression helps more** (single model): no_trace 75.1% → full_trace 81.8% → VOTA 99.41%. Label-only loss ablation decomposes the gap: 26% gradient dilution, 74% information overload. Compression improves accuracy through higher information density, not just cost savings.\\\\n\\\\n3. **Twist — what component actually drives VOTA?** Component ablation reveals exception_only (99.83%) ≥ full VOTA (99.41%). The \\\\\\\"trace reasoning\\\\\\\" narrative is wrong — verdict prediction is fault detection. Tier 1 (exceptions + assertion-point) subsumes Tier 2 (loops). Actual/expected removal doesn't hurt (99.41%).\\\\n\\\\n4. **Cross-model stress test — the universal vs the contingent**: Exception_only transfers with near-zero gap (0.50pp), but VOTA degrades by 14.96pp on DeepSeek. The model-agnostic component is precisely the one that doesn't require trace reasoning. CRUXEval reasoning gap (17.5pp) parallels VOTA gap — trace utilization is bounded by pretraining.\\\\n\\\\n5. **Design principle**: For verdict tasks, identify the highest-specificity diagnostic signal (exception events) and discard everything else. Simpler signals are more robust; complexity tolerance depends on model capability.\\\\n\\\\n## DeepSeek full_trace 处理\\\\n\\\\n**现状**: v1 坍塌（28.5%, 100% 预测 fail, 根因: 训练端 label 截断）。v2 重训启动但被 kill（Loop #6 ops worker 腾 GPU 给 vota_seed456）。\\\\n\\\\n**处理方案**: 下一个 GPU 空闲（deepseek_exception_only_seed123 完成后 ~20:15 UTC）立即重启 deepseek_full_trace_v3。\\\\n\\\\n**对论文叙事的影响**: 无. 三个有效条件 (exception_only, VOTA, no_trace) 已足够支撑全部 claims. DeepSeek full_trace 结果是 bonus, 非必需. 若 v3 在投稿前完成, 纳入跨模型对比表 (4/4 conditions). 否则报告为 N/A 并在 Limitations 中透明披露根因.\\\\n\\\\n## Venue Fit Risks\\\\n\\\\n| Risk | Assessment | Mitigation |\\\\n|------|-----------|------------|\\\\n| 单任务 | 仍然只在 test verdict prediction 上验证 | 跨模型验证部分弥补; Discussion 中讨论 generalization |\\\\n| 单数据集 | CRUXEval 是唯一 benchmark | 定位为 empirical study, 深度优于广度 |\\\\n| \\\\\\\"只是 feature engineering\\\\\\\" | exception extraction 不复杂 | simplicity 本身是 contribution — 最简信号最 robust |\\\\n| Negative result 味道 | VOTA 跨模型不 robust | Reframe: 识别 robust vs non-robust 组件边界是 positive |\\\\n| Seed robustness | ✅ 已解决: 99.83% ± 0.00 (3 seeds), irreducible samples 确认 | — |\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n| Concern | Planned Response |\\\\n|---------|-----------------|\\\\n| \\\\\\\"exception_only 99.83% 是不是 trivial pattern matching [ERROR] 有无？\\\\\\\" | full_trace 也包含 [ERROR] 但仅 81.8%——模型需要从 trace context 中 extract 和 utilize exception signal, 不是简单 keyword detection. no_trace 无 exception, 75.1%. |\\\\n| \\\\\\\"为什么 exception_only > VOTA? adding info 反而降?\\\\\\\" | 非 exception 组件 (loop/ae tokens) 稀释 attention 对 exception 信号的聚焦. Calibration: exception_only ECE=0.0027 vs VOTA ECE=0.0054. 部分样本 loop 正常但有 exception, 引入矛盾信号. |\\\\n| \\\\\\\"CRUXEval gap 与 VOTA gap 的相关性可能是 coincidence\\\\\\\" | 明确标注为 hypothesis. 列出 alternatives (tokenizer efficiency, pretraining scale 2.75x, chat template). 不 overclaim. |\\\\n| \\\\\\\"只有 2 个模型\\\\\\\" | 同意是 limitation. 两模型在 architecture, pretraining data (5.5T vs 2T), execution reasoning (CRUXEval 17.5pp gap) 上有充分差异, 不是 trivial replication. |\\\\n| \\\\\\\"99.83% 可能 saturated, 看不出 exception 到底学了什么\\\\\\\" | Calibration: exception_only ECE=0.0027, ae_only ECE=0.0004. Irreducible samples (id=901,905) 分析说明模型已达数据上限. |\\\\n| \\\\\\\"只用了 1 个 seed\\\\\\\" | ✅ 已解决: 3 seeds 结果完全一致, irreducible samples 100% 重叠. |\\\\n| \\\\\\\"eval_loss 上升但 accuracy 提升——checkpoint selection 有问题?\\\\\\\" | Discussion: token-level loss 与 binary verdict accuracy 解耦. 推荐 verdict-specific metric. Methodological contribution. |\\\\n| \\\\\\\"DeepSeek full_trace 坍塌是 bug 不是 finding\\\\\\\" | 诚实披露根因 (训练端 label 截断). 其他 3 条件不受影响. 修复版本如就绪则补入. |\\\\n\\\\n## Discussion 要点\\\\n\\\\n### D1: eval_loss vs verdict accuracy 解耦\\\\nDeepSeek VOTA: eval_loss epoch1→3 从 0.068 升至 0.112 (+65%), 但 accuracy 从 78.15% 升至 84.45% (+6.3pp). Token-level calibration 与 binary classification accuracy 方向相反. **Implication**: verdict tasks 应用 task-specific metric (accuracy/F1) 做 checkpoint selection, 非 eval_loss.\\\\n\\\\n### D2: CRUXEval gap 假说\\\\nVOTA 跨模型 gap (14.96pp) 与 CRUXEval execution reasoning gap (15-17.5pp) 数值吻合. 假说: trace utilization effectiveness 受 base model \\\\\\\"execution reasoning readiness\\\\\\\" 约束. **标注**: hypothesis, N=2, 列出 alternatives. 不 overclaim.\\\\n\\\\n### D3: Simplicity as robustness\\\\nException signal 跨模型 robust 恰因其 structurally simple. 暗示 **trace design 应匹配 deployment model 的能力下界**, 而非上界.\\\\n\\\\n### D4: Checkpoint selection 与 gap 报告\\\\n正文 exception_only 跨模型 gap 用 final-to-final = 0.50pp (一致 criterion). 补充: at best checkpoint (DeepSeek epoch1), gap = 0pp. DeepSeek epoch1→3 退化 0.50pp 与 D1 eval_loss 解耦现象一致.\\\\n\\\\n### D5: Irreducible samples\\\\n3 seeds 的 2/1190 errors 完全相同（id=901, 905, `check_dict_case`），方向一致（pass→fail false negatives）。模型已达数据集理论上限。这些样本可能存在 labeling noise 或 edge-case 行为（exception trace 中缺少足够的 fault signal）。\\\\n\\\\n## Contingency Framing (已解决, 留存档)\\\\n\\\\n### Claim 1 — RESOLVED (D008 → D010 → D019)\\\\nvota_no_ae 99.41% 否定 trivial comparison. exception_only 99.83% 揭示核心机制. 跨模型 0.50pp gap 确认 universality.\\\\n\\\\n### Claim 2 — RESOLVED (D006 + D009)\\\\nv5 full_trace 81.8%. plan_002 label-only 86.2%, gradient dilution = minor (26%). 跨模型 VOTA gap 补充证据.\\\\n\\\\n## 与 v1 Framing 的关键差异\\\\n\\\\n| 维度 | v1 | v2.2 |\\\\n|------|----|----|\\\\n| Headline | VOTA compression 优于 full trace | Exception-based fault detection is model-agnostic |\\\\n| Primary claim | VOTA +24pp through fault indicator preservation | Exception signal transfers across models (gap = 0.50pp) |\\\\n| Claim 2 | Compression > full trace (只有 gradient dilution) | Information density primary + gradient dilution quantification + cross-model reinforcement |\\\\n| Claim 3 Tier 1 | exception_only only | exception + assertion-point (co-Tier 1, D020) |\\\\n| Model scope | 单模型 (Qwen) | 双模型, 跨模型对比是核心贡献 |\\\\n| VOTA 定位 | 核心方法 | Model-dependent richer representation |\\\\n| DeepSeek full_trace | N/A | v2 killed, v3 re-run pending |\\\\n| Seed robustness | 未验证 | ✅ 99.83% ± 0.00 (3 seeds), irreducible samples 确认 |\\\\n\\\", \\\"total_chars\\\": 12492, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/paper_framing.md\", \"content\": \"# Paper Framing — trace-verdict-study\\n\\n> v2.2 — 更新 seed robustness 结果 + irreducible samples + DeepSeek full_trace v2 状态。\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR submission)\\n- Fallback: EMNLP 2026 Findings\\n- Deadline: ARR May 25, 2026\\n\\n## Core Insight\\n\\nVerdict prediction (pass/fail) is fundamentally a **fault detection** task. The minimal sufficient signal is the **exception event** — a compact, structured diagnostic moment that achieves near-perfect accuracy (Qwen 99.83%, DeepSeek 99.33%, cross-model gap = 0.50pp) regardless of model architecture. In contrast, richer trace representations that require deeper execution reasoning show model-dependent effectiveness: VOTA gap = 14.96pp, no_trace gap = 1.77pp. Information density — not training signal distribution — is the primary bottleneck: even oracle loss masking (label-only) cannot close the 13pp gap between full traces and targeted extraction. The design principle: **extract the highest-specificity diagnostic signal; discard everything else.**\\n\\n## Core Claims (3)\\n\\n### Claim 1: Exception-based fault detection is model-agnostic\\n\\nException summaries alone achieve near-perfect verdict prediction across architecturally distinct models: Qwen-2.5-Coder-7B (99.83%) and DeepSeek-Coder-6.7B (99.33%), cross-model gap = 0.50pp (at best checkpoint, gap = 0pp). This contrasts with VOTA (gap = 14.96pp) and no_trace (gap = 1.77pp). Exception events are structurally simple (`[ERROR] type: ... message: ...`) and do not require deep trace reasoning — making them universally extractable.\\n\\n**Supporting evidence:**\\n- `vota_exception_only_seed42_v2`: Qwen 99.83%\\n- `deepseek_exception_only_seed42`: DeepSeek 99.33% (epoch3) / 99.83% (epoch1 best)\\n- `deepseek_vota_seed42`: DeepSeek VOTA 84.45% (gap = 14.96pp)\\n- `deepseek_no_trace_seed42`: DeepSeek no_trace 73.36% (gap = 1.77pp)\\n- `vota_no_ae_seed42`: 99.41% — actual/expected removal 不降，非 trivial string comparison\\n\\n**Seed robustness** ✅: Qwen exception_only 99.83% ± 0.00 across seeds 42/123/456. 每 seed 恰好 2/1190 errors, 3 seeds 错误 100% 重叠（id=901, 905, 均为 `check_dict_case` 函数, label=pass → pred=fail）。**Irreducible samples**: 模型已达数据集理论上限。\\n\\n**DeepSeek cross-model seed robustness**: deepseek_exception_only_seed123 运行中（~20:15 UTC 完成）。\\n\\n### Claim 2: Information density, not gradient dilution, drives trace compression benefit\\n\\nFull traces help verdict prediction (81.8%, +6.6pp over baseline), but VOTA achieves 99.41% (+24.3pp) — a +17.6pp advantage. Label-only loss ablation (plan_002) quantifies the causal decomposition: **gradient dilution contributes ~26% of the gap** (4.5pp; label-only full_trace = 86.2%), **information overload contributes ~74%** (13.0pp; only trace compression resolves this). Even with oracle loss masking that eliminates gradient dilution, full traces still underperform VOTA by 13pp.\\n\\nCross-model evidence reinforces this: VOTA gap (14.96pp) tracks base model execution reasoning capability (Qwen CRUXEval-I 56.5% vs DeepSeek 39.0%, Δ=17.5pp), suggesting trace utilization effectiveness is bounded by pretraining-derived inductive biases. Exception signal bypasses this bottleneck entirely (gap = 0.50pp).\\n\\n**Supporting evidence:**\\n- `full_trace_label_only_seed42`: 86.2% (gradient dilution fix, +4.5pp over standard full_trace)\\n- `full_trace_seed42_v5`: 81.8% (standard full_trace)\\n- `vota_seed42_v5`: 99.41%\\n- `deepseek_vota_seed42`: 84.45% (VOTA model-dependent)\\n- CRUXEval literature data (Wang et al.)\\n\\n### Claim 3: Two-tier diagnostic hierarchy for verdict prediction\\n\\nComponent ablation reveals verdict-relevant trace information has a strict two-tier hierarchy:\\n- **Tier 1 — diagnostic moment signals**: exception summaries (99.83%) and assertion-point information (99.92%) are individually near-perfect and sufficient for verdict prediction. These signals are structurally simple and model-agnostic (exception cross-model gap = 0.50pp).\\n- **Tier 2 — behavioral patterns**: loop compression (85.6%) carries substantial signal but is model-dependent and fully subsumed by Tier 1.\\n\\nCombining tiers introduces noise rather than helping: exception_only (99.83%) > VOTA full (99.41%), p=0.01. Loop_only ≈ full_trace_label_only (85.6% vs 86.2%) confirms VOTA's loop compression precisely extracts the useful behavioral signal from full traces.\\n\\n**Supporting evidence:**\\n- `vota_exception_only_seed42_v2`: 99.83% (Tier 1 exception)\\n- `vota_ae_only_seed42`: 99.92% (Tier 1 assertion-point, 与 exception 统计等价 p=0.80)\\n- `vota_loop_only_seed42`: 85.6% (Tier 2 behavioral)\\n- `full_trace_label_only_seed42`: 86.2% (≈ loop_only, confirming extraction equivalence)\\n- `deepseek_exception_only_seed42`: 99.33% (Tier 1 cross-model validation)\\n- `deepseek_vota_seed42`: 84.45% (Tier 1+2 cross-model: Tier 2 introduces model-dependent degradation)\\n- Calibration: exception_only ECE=0.0027, VOTA ECE=0.0054 (Tier 1 better calibrated)\\n\\n**Design principle**: verdict-optimized traces should extract highest-specificity diagnostic signals; lower-specificity signals are redundant and may introduce noise.\\n\\n## Story Spine\\n\\n- **Problem**: Existing trace SFT studies (DCSH, TracePile) evaluate only generative tasks and find limited, model-dependent benefit. No prior work has tested trace SFT on verdict tasks (binary pass/fail), nor identified what trace components drive classification performance.\\n\\n- **Existing approaches & gaps**: DCSH (EMNLP Findings 2025) tested 5 trace formats on generation tasks, finding that \\\"no single trace representation consistently outperforms others.\\\" TracePile (NeurIPS 2025) scaled to 2.6M samples but only evaluated generation. TRACED (ICSE 2024) showed traces help encoder-based classification. All existing trace formats are designed for execution simulation, not fault detection.\\n\\n- **Our framing**: We reframe verdict prediction as **fault detection** and ask: what is the minimal sufficient diagnostic signal? Through systematic component ablation across two architecturally distinct models, we discover that exception events — compact, structured error summaries — are both necessary and sufficient, achieving near-perfect accuracy (99.5%+ avg) with near-zero cross-model gap. Richer trace representations work only when the base model has sufficient execution reasoning capability, making them unreliable for general deployment.\\n\\n- **Headline result**: \\\"Exception-based trace SFT achieves 99.83% verdict accuracy on Qwen and 99.33% on DeepSeek (gap = 0.50pp), while the same models show a 14.96pp gap on VOTA traces — demonstrating that fault detection, not trace reasoning, is the robust mechanism for verdict prediction.\\\"\\n\\n## Story Arc\\n\\n1. **Setup**: Trace SFT for code tasks — promising but inconsistent in prior work (DCSH, TracePile). Unknown whether traces help verdict tasks and what trace design matters.\\n\\n2. **First result — traces help, compression helps more** (single model): no_trace 75.1% → full_trace 81.8% → VOTA 99.41%. Label-only loss ablation decomposes the gap: 26% gradient dilution, 74% information overload. Compression improves accuracy through higher information density, not just cost savings.\\n\\n3. **Twist — what component actually drives VOTA?** Component ablation reveals exception_only (99.83%) ≥ full VOTA (99.41%). The \\\"trace reasoning\\\" narrative is wrong — verdict prediction is fault detection. Tier 1 (exceptions + assertion-point) subsumes Tier 2 (loops). Actual/expected removal doesn't hurt (99.41%).\\n\\n4. **Cross-model stress test — the universal vs the contingent**: Exception_only transfers with near-zero gap (0.50pp), but VOTA degrades by 14.96pp on DeepSeek. The model-agnostic component is precisely the one that doesn't require trace reasoning. CRUXEval reasoning gap (17.5pp) parallels VOTA gap — trace utilization is bounded by pretraining.\\n\\n5. **Design principle**: For verdict tasks, identify the highest-specificity diagnostic signal (exception events) and discard everything else. Simpler signals are more robust; complexity tolerance depends on model capability.\\n\\n## DeepSeek full_trace 处理\\n\\n**现状**: v1 坍塌（28.5%, 100% 预测 fail, 根因: 训练端 label 截断）。v2 重训启动但被 kill（Loop #6 ops worker 腾 GPU 给 vota_seed456）。\\n\\n**处理方案**: 下一个 GPU 空闲（deepseek_exception_only_seed123 完成后 ~20:15 UTC）立即重启 deepseek_full_trace_v3。\\n\\n**对论文叙事的影响**: 无. 三个有效条件 (exception_only, VOTA, no_trace) 已足够支撑全部 claims. DeepSeek full_trace 结果是 bonus, 非必需. 若 v3 在投稿前完成, 纳入跨模型对比表 (4/4 conditions). 否则报告为 N/A 并在 Limitations 中透明披露根因.\\n\\n## Venue Fit Risks\\n\\n| Risk | Assessment | Mitigation |\\n|------|-----------|------------|\\n| 单任务 | 仍然只在 test verdict prediction 上验证 | 跨模型验证部分弥补; Discussion 中讨论 generalization |\\n| 单数据集 | CRUXEval 是唯一 benchmark | 定位为 empirical study, 深度优于广度 |\\n| \\\"只是 feature engineering\\\" | exception extraction 不复杂 | simplicity 本身是 contribution — 最简信号最 robust |\\n| Negative result 味道 | VOTA 跨模型不 robust | Reframe: 识别 robust vs non-robust 组件边界是 positive |\\n| Seed robustness | ✅ 已解决: 99.83% ± 0.00 (3 seeds), irreducible samples 确认 | — |\\n\\n## Anticipated Reviewer Concerns\\n\\n| Concern | Planned Response |\\n|---------|-----------------|\\n| \\\"exception_only 99.83% 是不是 trivial pattern matching [ERROR] 有无？\\\" | full_trace 也包含 [ERROR] 但仅 81.8%——模型需要从 trace context 中 extract 和 utilize exception signal, 不是简单 keyword detection. no_trace 无 exception, 75.1%. |\\n| \\\"为什么 exception_only > VOTA? adding info 反而降?\\\" | 非 exception 组件 (loop/ae tokens) 稀释 attention 对 exception 信号的聚焦. Calibration: exception_only ECE=0.0027 vs VOTA ECE=0.0054. 部分样本 loop 正常但有 exception, 引入矛盾信号. |\\n| \\\"CRUXEval gap 与 VOTA gap 的相关性可能是 coincidence\\\" | 明确标注为 hypothesis. 列出 alternatives (tokenizer efficiency, pretraining scale 2.75x, chat template). 不 overclaim. |\\n| \\\"只有 2 个模型\\\" | 同意是 limitation. 两模型在 architecture, pretraining data (5.5T vs 2T), execution reasoning (CRUXEval 17.5pp gap) 上有充分差异, 不是 trivial replication. |\\n| \\\"99.83% 可能 saturated, 看不出 exception 到底学了什么\\\" | Calibration: exception_only ECE=0.0027, ae_only ECE=0.0004. Irreducible samples (id=901,905) 分析说明模型已达数据上限. |\\n| \\\"只用了 1 个 seed\\\" | ✅ 已解决: 3 seeds 结果完全一致, irreducible samples 100% 重叠. |\\n| \\\"eval_loss 上升但 accuracy 提升——checkpoint selection 有问题?\\\" | Discussion: token-level loss 与 binary verdict accuracy 解耦. 推荐 verdict-specific metric. Methodological contribution. |\\n| \\\"DeepSeek full_trace 坍塌是 bug 不是 finding\\\" | 诚实披露根因 (训练端 label 截断). 其他 3 条件不受影响. 修复版本如就绪则补入. |\\n\\n## Discussion 要点\\n\\n### D1: eval_loss vs verdict accuracy 解耦\\nDeepSeek VOTA: eval_loss epoch1→3 从 0.068 升至 0.112 (+65%), 但 accuracy 从 78.15% 升至 84.45% (+6.3pp). Token-level calibration 与 binary classification accuracy 方向相反. **Implication**: verdict tasks 应用 task-specific metric (accuracy/F1) 做 checkpoint selection, 非 eval_loss.\\n\\n### D2: CRUXEval gap 假说\\nVOTA 跨模型 gap (14.96pp) 与 CRUXEval execution reasoning gap (15-17.5pp) 数值吻合. 假说: trace utilization effectiveness 受 base model \\\"execution reasoning readiness\\\" 约束. **标注**: hypothesis, N=2, 列出 alternatives. 不 overclaim.\\n\\n### D3: Simplicity as robustness\\nException signal 跨模型 robust 恰因其 structurally simple. 暗示 **trace design 应匹配 deployment model 的能力下界**, 而非上界.\\n\\n### D4: Checkpoint selection 与 gap 报告\\n正文 exception_only 跨模型 gap 用 final-to-final = 0.50pp (一致 criterion). 补充: at best checkpoint (DeepSeek epoch1), gap = 0pp. DeepSeek epoch1→3 退化 0.50pp 与 D1 eval_loss 解耦现象一致.\\n\\n### D5: Irreducible samples\\n3 seeds 的 2/1190 errors 完全相同（id=901, 905, `check_dict_case`），方向一致（pass→fail false negatives）。模型已达数据集理论上限。这些样本可能存在 labeling noise 或 edge-case 行为（exception trace 中缺少足够的 fault signal）。\\n\\n## Contingency Framing (已解决, 留存档)\\n\\n### Claim 1 — RESOLVED (D008 → D010 → D019)\\nvota_no_ae 99.41% 否定 trivial comparison. exception_only 99.83% 揭示核心机制. 跨模型 0.50pp gap 确认 universality.\\n\\n### Claim 2 — RESOLVED (D006 + D009)\\nv5 full_trace 81.8%. plan_002 label-only 86.2%, gradient dilution = minor (26%). 跨模型 VOTA gap 补充证据.\\n\\n## 与 v1 Framing 的关键差异\\n\\n| 维度 | v1 | v2.2 |\\n|------|----|----|\\n| Headline | VOTA compression 优于 full trace | Exception-based fault detection is model-agnostic |\\n| Primary claim | VOTA +24pp through fault indicator preservation | Exception signal transfers across models (gap = 0.50pp) |\\n| Claim 2 | Compression > full trace (只有 gradient dilution) | Information density primary + gradient dilution quantification + cross-model reinforcement |\\n| Claim 3 Tier 1 | exception_only only | exception + assertion-point (co-Tier 1, D020) |\\n| Model scope | 单模型 (Qwen) | 双模型, 跨模型对比是核心贡献 |\\n| VOTA 定位 | 核心方法 | Model-dependent richer representation |\\n| DeepSeek full_trace | N/A | v2 killed, v3 re-run pending |\\n| Seed robustness | 未验证 | ✅ 99.83% ± 0.00 (3 seeds), irreducible samples 确认 |\\n\", \"total_chars\": 12492, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I've read the current paper_framing.md. It's already at v2.2 and includes quite a bit of the seed robustness information. Let me compare what's already there vs what the task asks me to add:
+
+**Already present:**
+- Seed robustness in Claim 1: "Qwen exception_only 99.83% ± 0.00 across seeds 42/123/456. 每 seed 恰好 2/1190 errors, 3 seeds 错误 100% 重叠" ✅
+- DeepSeek exception_only: "99.33% (epoch3) / 99.83% (epoch1 best)" ✅
+
+
+- Calibration in Claim 3: "exception_only ECE=0.0027, VOTA ECE=0.0054" ✅
+- Venue Fit Risks: seed robustness marked as resolved ✅
+
+**What needs updating based on the task:**
+The calibration results need to be expanded to include the full set of metrics. I need to add the ae_only and no_trace variants with their ECE and Brier scores to give a more complete picture of model calibration across different configurations. Looking at what's actually missing from the current doc, the main gaps are the Brier scores for VOTA and no_trace calibration metrics—those are significant additions that show the full calibration picture. The DeepSeek seed robustness for seeds beyond 42 appears incomplete based on the task header, and I should verify whether that's still pending or if I'm working with partial data. The calibration section needs to be expanded to include these missing scores to give a complete view of model confidence. I need to bump the version to v2.3 and add the complete calibration metrics—particularly the Brier scores and no_trace baseline data that really highlight how much better the exception_only approach performs. The key addition is showing that no_trace calibration yields ECE=0.171 versus exception_only's ECE=0.003, which is a dramatic difference. I'll also update the DeepSeek seed status and add timestamp markers to show when these changes were made. Now I'm planning the surgical edits to keep the existing structure intact while adding the calibration evidence. I need to bump the version to v2.3, strengthen the seed robustness section slightly, insert the full calibration table with Brier scores into Claim 3's supporting evidence, and update the DeepSeek seed status since only Qwen results are currently listed. Let me construct these targeted changes section by section through the document. I'm adding the calibration metrics table to show that the exception_only approach significantly outperforms alternatives—the no_trace baseline has an ECE that's 57 times worse and a Brier score that's 197 times worse, confirming Tier 1 signal superiority across calibration measures as well. I'm noticing the ECE values have slight precision differences—0.0027 rounds to 0.003, and 0.0054 to 0.005—so I'll standardize them using the task's rounded numbers as the official values in the table while keeping existing references consistent. Now I'll write out the full updated content with the calibration metrics expanded to include Brier scores and the no_trace contrast.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd654b3e-49ce-42fa-88a1-1d3ece2bc5d9",
+  "uuid": "0d9cd17e-8a3e-4922-91c5-76369c5df19a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LxPC5aPq2t2h8i1LTP3ZzH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4983,
+      "cache_read_input_tokens": 24116,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4983
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+当前文档已是 v2.2，大部分 seed robustness 数据已整合。主要缺口是：完整 calibration 表（缺 Brier scores 和 no_trace baseline）。我来做增量更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd654b3e-49ce-42fa-88a1-1d3ece2bc5d9",
+  "uuid": "9e3f9dcf-65c7-4605-b66b-198bfdc719dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LxPC5aPq2t2h8i1LTP3ZzH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4983,
+      "cache_read_input_tokens": 24116,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4983
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_01QDKT1w9jbNN2ZJiB2wTZVC`</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "file": "paper_framing.md",
+  "content": "# Paper Framing — trace-verdict-study\n\n> v2.3 — [UPDATED 2026-05-15] 加入完整 calibration 数据 (Brier scores + no_trace baseline) + seed robustness 证据最终整合。\n\n## Target Venue\n- Primary: EMNLP 2026 Main (ARR submission)\n- Fallback: EMNLP 2026 Findings\n- Deadline: ARR May 25, 2026\n\n## Core Insight\n\nVerdict prediction (pass/fail) is fundamentally a **fault detection** task. The minimal sufficient signal is the **exception event** — a compact, structured diagnostic moment that achieves near-perfect accuracy (Qwen 99.83%, DeepSeek 99.33%, cross-model gap = 0.50pp) regardless of model architecture. In contrast, richer trace representations that require deeper execution reasoning show model-dependent effectiveness: VOTA gap = 14.96pp, no_trace gap = 1.77pp. Information density — not training signal distribution — is the primary bottleneck: even oracle loss masking (label-only) cannot close the 13pp gap between full traces and targeted extraction. The design principle: **extract the highest-specificity diagnostic signal; discard everything else.**\n\n## Core Claims (3)\n\n### Claim 1: Exception-based fault detection is model-agnostic\n\nException summaries alone achieve near-perfect verdict prediction across architecturally distinct models: Qwen-2.5-Coder-7B (99.83%) and DeepSeek-Coder-6.7B (99.33%), cross-model gap = 0.50pp (at best checkpoint, gap = 0pp). This contrasts with VOTA (gap = 14.96pp) and no_trace (gap = 1.77pp). Exception events are structurally simple (`[ERROR] type: ... message: ...`) and do not require deep trace reasoning — making them universally extractable.\n\n**Supporting evidence:**\n- `vota_exception_only_seed42_v2`: Qwen 99.83%\n- `deepseek_exception_only_seed42`: DeepSeek 99.33% (epoch3) / 99.83% (epoch1 best)\n- `deepseek_vota_seed42`: DeepSeek VOTA 84.45% (gap = 14.96pp)\n- `deepseek_no_trace_seed42`: DeepSeek no_trace 73.36% (gap = 1.77pp)\n- `vota_no_ae_seed42`: 99.41% — actual/expected removal 不降，非 trivial string comparison\n\n**Seed robustness** [UPDATED 2026-05-15] ✅: Qwen exception_only 3-seed 完全一致，构成本文最强 robustness 证据：\n\n| Seed | Accuracy | 95% CI | Errors |\n|------|----------|--------|--------|\n| 42 | 99.83% | [99.58, 100] | 2/1190 |\n| 123 | 99.83% | [99.58, 100] | 2/1190 |\n| 456 | 99.83% | [99.58, 100] | 2/1190 |\n\n3 seeds 错误样本 100% 重叠（id=901, 905, 均为 `check_dict_case` 函数, label=pass → pred=fail）。**Irreducible samples**: 模型已达数据集理论上限，variance = 0。\n\n**DeepSeek cross-model**: epoch1 best checkpoint 99.83% 与 Qwen 完全一致（gap = 0pp），进一步确认 exception signal 的 universality。\n\n### Claim 2: Information density, not gradient dilution, drives trace compression benefit\n\nFull traces help verdict prediction (81.8%, +6.6pp over baseline), but VOTA achieves 99.41% (+24.3pp) — a +17.6pp advantage. Label-only loss ablation (plan_002) quantifies the causal decomposition: **gradient dilution contributes ~26% of the gap** (4.5pp; label-only full_trace = 86.2%), **information overload contributes ~74%** (13.0pp; only trace compression resolves this). Even with oracle loss masking that eliminates gradient dilution, full traces still underperform VOTA by 13pp.\n\nCross-model evidence reinforces this: VOTA gap (14.96pp) tracks base model execution reasoning capability (Qwen CRUXEval-I 56.5% vs DeepSeek 39.0%, Δ=17.5pp), suggesting trace utilization effectiveness is bounded by pretraining-derived inductive biases. Exception signal bypasses this bottleneck entirely (gap = 0.50pp).\n\n**Supporting evidence:**\n- `full_trace_label_only_seed42`: 86.2% (gradient dilution fix, +4.5pp over standard full_trace)\n- `full_trace_seed42_v5`: 81.8% (standard full_trace)\n- `vota_seed42_v5`: 99.41%\n- `deepseek_vota_seed42`: 84.45% (VOTA model-dependent)\n- CRUXEval literature data (Wang et al.)\n\n### Claim 3: Two-tier diagnostic hierarchy for verdict prediction\n\nComponent ablation reveals verdict-relevant trace information has a strict two-tier hierarchy:\n- **Tier 1 — diagnostic moment signals**: exception summaries (99.83%) and assertion-point information (99.92%) are individually near-perfect and sufficient for verdict prediction. These signals are structurally simple and model-agnostic (exception cross-model gap = 0.50pp).\n- **Tier 2 — behavioral patterns**: loop compression (85.6%) carries substantial signal but is model-dependent and fully subsumed by Tier 1.\n\nCombining tiers introduces noise rather than helping: exception_only (99.83%) > VOTA full (99.41%), p=0.01. Loop_only ≈ full_trace_label_only (85.6% vs 86.2%) confirms VOTA's loop compression precisely extracts the useful behavioral signal from full traces.\n\n**Supporting evidence:**\n- `vota_exception_only_seed42_v2`: 99.83% (Tier 1 exception)\n- `vota_ae_only_seed42`: 99.92% (Tier 1 assertion-point, 与 exception 统计等价 p=0.80)\n- `vota_loop_only_seed42`: 85.6% (Tier 2 behavioral)\n- `full_trace_label_only_seed42`: 86.2% (≈ loop_only, confirming extraction equivalence)\n- `deepseek_exception_only_seed42`: 99.33% (Tier 1 cross-model validation)\n- `deepseek_vota_seed42`: 84.45% (Tier 1+2 cross-model: Tier 2 introduces model-dependent degradation)\n\n**Calibration** [UPDATED 2026-05-15]: 完整 calibration 数据确认 Tier 1 信号不仅 accuracy 近完美，置信度校准也近完美：\n\n| Condition | ECE | Brier | 解读 |\n|-----------|-----|-------|------|\n| ae_only | 0.0004 | 0.0008 | 近乎完美校准 |\n| exception_only | 0.003 | 0.001 | 近乎完美校准 |\n| VOTA | 0.005 | 0.005 | 优秀，但 Tier 2 引入轻微 noise |\n| no_trace | 0.171 | 0.197 | 严重 miscalibrated |\n\nno_trace ECE 是 exception_only 的 **57x**，Brier 是 **197x**。Trace signal（尤其 Tier 1）不仅提升 accuracy，更从根本上改善模型 calibration。no_trace 的高 Brier score (0.197) 表明模型在无 trace 时不仅 accuracy 低，且对错误预测过度自信。\n\n**Design principle**: verdict-optimized traces should extract highest-specificity diagnostic signals; lower-specificity signals are redundant and may introduce noise.\n\n## Story Spine\n\n- **Problem**: Existing trace SFT studies (DCSH, TracePile) evaluate only generative tasks and find limited, model-dependent benefit. No prior work has tested trace SFT on verdict tasks (binary pass/fail), nor identified what trace components drive classification performance.\n\n- **Existing approaches & gaps**: DCSH (EMNLP Findings 2025) tested 5 trace formats on generation tasks, finding that \"no single trace representation consistently outperforms others.\" TracePile (NeurIPS 2025) scaled to 2.6M samples but only evaluated generation. TRACED (ICSE 2024) showed traces help encoder-based classification. All existing trace formats are designed for execution simulation, not fault detection.\n\n- **Our framing**: We reframe verdict prediction as **fault detection** and ask: what is the minimal sufficient diagnostic signal? Through systematic component ablation across two architecturally distinct models, we discover that exception events — compact, structured error summaries — are both necessary and sufficient, achieving near-perfect accuracy (99.5%+ avg) with near-zero cross-model gap. Richer trace representations work only when the base model has sufficient execution reasoning capability, making them unreliable for general deployment.\n\n- **Headline result**: \"Exception-based trace SFT achieves 99.83% verdict accuracy on Qwen and 99.33% on DeepSeek (gap = 0.50pp), while the same models show a 14.96pp gap on VOTA traces — demonstrating that fault detection, not trace reasoning, is the robust mechanism for verdict prediction.\"\n\n## Story Arc\n\n1. **Setup**: Trace SFT for code tasks — promising but inconsistent in prior work (DCSH, TracePile). Unknown whether traces help verdict tasks and what trace design matters.\n\n2. **First result — traces help, compression helps more** (single model): no_trace 75.1% → full_trace 81.8% → VOTA 99.41%. Label-only loss ablation decomposes the gap: 26% gradient dilution, 74% information overload. Compression improves accuracy through higher information density, not just cost savings.\n\n3. **Twist — what component actually drives VOTA?** Component ablation reveals exception_only (99.83%) ≥ full VOTA (99.41%). The \"trace reasoning\" narrative is wrong — verdict prediction is fault detection. Tier 1 (exceptions + assertion-point) subsumes Tier 2 (loops). Actual/expected removal doesn't hurt (99.41%).\n\n4. **Cross-model stress test — the universal vs the contingent**: Exception_only transfers with near-zero gap (0.50pp), but VOTA degrades by 14.96pp on DeepSeek. The model-agnostic component is precisely the one that doesn't require trace reasoning. CRUXEval reasoning gap (17.5pp) parallels VOTA gap — trace utilization is bounded by pretraining. [UPDATED 2026-05-15] Seed robustness (3-seed variance = 0) + calibration (ECE=0.003) 双重确认 exception signal 的 reliability。\n\n5. **Design principle**: For verdict tasks, identify the highest-specificity diagnostic signal (exception events) and discard everything else. Simpler signals are more robust; complexity tolerance depends on model capability.\n\n## DeepSeek full_trace 处理\n\n**现状**: v1 坍塌（28.5%, 100% 预测 fail, 根因: 训练端 label 截断）。v2 重训启动但被 kill（Loop #6 ops worker 腾 GPU 给 vota_seed456）。\n\n**处理方案**: 下一个 GPU 空闲（deepseek_exception_only_seed123 完成后 ~20:15 UTC）立即重启 deepseek_full_trace_v3。\n\n**对论文叙事的影响**: 无. 三个有效条件 (exception_only, VOTA, no_trace) 已足够支撑全部 claims. DeepSeek full_trace 结果是 bonus, 非必需. 若 v3 在投稿前完成, 纳入跨模型对比表 (4/4 conditions). 否则报告为 N/A 并在 Limitations 中透明披露根因.\n\n## Venue Fit Risks\n\n| Risk | Assessment | Mitigation |\n|------|-----------|------------|\n| 单任务 | 仍然只在 test verdict prediction 上验证 | 跨模型验证部分弥补; Discussion 中讨论 generalization |\n| 单数据集 | CRUXEval 是唯一 benchmark | 定位为 empirical study, 深度优于广度 |\n| \"只是 feature engineering\" | exception extraction 不复杂 | simplicity 本身是 contribution — 最简信号最 robust |\n| Negative result 味道 | VOTA 跨模型不 robust | Reframe: 识别 robust vs non-robust 组件边界是 positive |\n| Seed robustness | ✅ 已解决: 99.83% ± 0.00 (3 seeds), irreducible samples 确认 | — |\n| Calibration | [UPDATED 2026-05-15] ✅ 完整数据: Tier 1 ECE≤0.003, no_trace ECE=0.171 (57x gap) | Brier scores 进一步确认 |\n\n## Anticipated Reviewer Concerns\n\n| Concern | Planned Response |\n|---------|-----------------|\n| \"exception_only 99.83% 是不是 trivial pattern matching [ERROR] 有无？\" | full_trace 也包含 [ERROR] 但仅 81.8%——模型需要从 trace context 中 extract 和 utilize exception signal, 不是简单 keyword detection. no_trace 无 exception, 75.1%. |\n| \"为什么 exception_only > VOTA? adding info 反而降?\" | 非 exception 组件 (loop/ae tokens) 稀释 attention 对 exception 信号的聚焦. Calibration: exception_only ECE=0.003 vs VOTA ECE=0.005. 部分样本 loop 正常但有 exception, 引入矛盾信号. |\n| \"CRUXEval gap 与 VOTA gap 的相关性可能是 coincidence\" | 明确标注为 hypothesis. 列出 alternatives (tokenizer efficiency, pretraining scale 2.75x, chat template). 不 overclaim. |\n| \"只有 2 个模型\" | 同意是 limitation. 两模型在 architecture, pretraining data (5.5T vs 2T), execution reasoning (CRUXEval 17.5pp gap) 上有充分差异, 不是 trivial replication. |\n| \"99.83% 可能 saturated, 看不出 exception 到底学了什么\" | [UPDATED 2026-05-15] Calibration 双指标: exception_only ECE=0.003, Brier=0.001 (近完美校准). 对比 no_trace ECE=0.171, Brier=0.197 (57x/197x gap). Irreducible samples (id=901,905) 分析说明模型已达数据上限. |\n| \"只用了 1 个 seed\" | ✅ 已解决: 3 seeds 结果完全一致 (99.83% ± 0.00), irreducible samples 100% 重叠, 95% CI 均为 [99.58, 100]. |\n| \"eval_loss 上升但 accuracy 提升——checkpoint selection 有问题?\" | Discussion: token-level loss 与 binary verdict accuracy 解耦. 推荐 verdict-specific metric. Methodological contribution. |\n| \"DeepSeek full_trace 坍塌是 bug 不是 finding\" | 诚实披露根因 (训练端 label 截断). 其他 3 条件不受影响. 修复版本如就绪则补入. |\n| \"calibration 数据只有 1 个 seed\" | [UPDATED 2026-05-15] Seed robustness 已证明 accuracy variance=0 (3 seeds), calibration 在 accuracy 完全一致的前提下 expected 也一致. ECE/Brier 的极小值 (0.003/0.001) 留有极小 variance 空间. |\n\n## Discussion 要点\n\n### D1: eval_loss vs verdict accuracy 解耦\nDeepSeek VOTA: eval_loss epoch1→3 从 0.068 升至 0.112 (+65%), 但 accuracy 从 78.15% 升至 84.45% (+6.3pp). Token-level calibration 与 binary classification accuracy 方向相反. **Implication**: verdict tasks 应用 task-specific metric (accuracy/F1) 做 checkpoint selection, 非 eval_loss.\n\n### D2: CRUXEval gap 假说\nVOTA 跨模型 gap (14.96pp) 与 CRUXEval execution reasoning gap (15-17.5pp) 数值吻合. 假说: trace utilization effectiveness 受 base model \"execution reasoning readiness\" 约束. **标注**: hypothesis, N=2, 列出 alternatives. 不 overclaim.\n\n### D3: Simplicity as robustness\nException signal 跨模型 robust 恰因其 structurally simple. 暗示 **trace design 应匹配 deployment model 的能力下界**, 而非上界.\n\n### D4: Checkpoint selection 与 gap 报告\n正文 exception_only 跨模型 gap 用 final-to-final = 0.50pp (一致 criterion). 补充: at best checkpoint (DeepSeek epoch1), gap = 0pp. DeepSeek epoch1→3 退化 0.50pp 与 D1 eval_loss 解耦现象一致.\n\n### D5: Irreducible samples\n3 seeds 的 2/1190 errors 完全相同（id=901, 905, `check_dict_case`），方向一致（pass→fail false negatives）。模型已达数据集理论上限。这些样本可能存在 labeling noise 或 edge-case 行为（exception trace 中缺少足够的 fault signal）。\n\n### D6: Calibration as secondary evidence [UPDATED 2026-05-15]\nCalibration 数据提供独立于 accuracy 的 evidence dimension。no_trace Brier=0.197 说明模型无 trace 时不仅预测错，且对错误预测过度自信。exception_only Brier=0.001 说明模型在有 exception signal 时几乎完美区分确定性和不确定性。这支持 Claim 1 的 \"sufficient signal\" 论点——exception 不仅让模型预测对，还让模型 \"知道自己对\"。\n\n## Contingency Framing (已解决, 留存档)\n\n### Claim 1 — RESOLVED (D008 → D010 → D019)\nvota_no_ae 99.41% 否定 trivial comparison. exception_only 99.83% 揭示核心机制. 跨模型 0.50pp gap 确认 universality.\n\n### Claim 2 — RESOLVED (D006 + D009)\nv5 full_trace 81.8%. plan_002 label-only 86.2%, gradient dilution = minor (26%). 跨模型 VOTA gap 补充证据.\n\n## 与 v1 Framing 的关键差异\n\n| 维度 | v1 | v2.3 |\n|------|----|----|\n| Headline | VOTA compression 优于 full trace | Exception-based fault detection is model-agnostic |\n| Primary claim | VOTA +24pp through fault indicator preservation | Exception signal transfers across models (gap = 0.50pp) |\n| Claim 2 | Compression > full trace (只有 gradient dilution) | Information density primary + gradient dilution quantification + cross-model reinforcement |\n| Claim 3 Tier 1 | exception_only only | exception + assertion-point (co-Tier 1, D020) |\n| Model scope | 单模型 (Qwen) | 双模型, 跨模型对比是核心贡献 |\n| VOTA 定位 | 核心方法 | Model-dependent richer representation |\n| DeepSeek full_trace | N/A | v2 killed, v3 re-run pending |\n| Seed robustness | 未验证 | ✅ 99.83% ± 0.00 (3 seeds), irreducible samples 确认 |\n| Calibration | 未验证 | [UPDATED 2026-05-15] ✅ 完整 ECE+Brier 数据, no_trace 对比确认 trace 的 calibration 价值 |\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd654b3e-49ce-42fa-88a1-1d3ece2bc5d9",
+  "uuid": "5d60e5a3-fc92-412b-9491-0412b5e95eb9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LxPC5aPq2t2h8i1LTP3ZzH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4983,
+      "cache_read_input_tokens": 24116,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4983
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T18:42:52.004Z_
+
+<details><summary>↩ Tool result · `toolu_01QDKT1w9jbNN2ZJiB2wTZVC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/paper_framing.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd654b3e-49ce-42fa-88a1-1d3ece2bc5d9",
+  "uuid": "2dde2b31-ee8d-44a5-b865-bf7a01c5e565",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/paper_framing.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/paper_framing.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+更新完成。v2.2 → v2.3，以下是具体变更：
+
+**[UPDATED 2026-05-15] 标记的变更点：**
+
+1. **Claim 1 - Seed robustness**: 将原有文字描述替换为完整的 3-seed 表格（含 95% CI [99.58, 100]），更直观。新增 DeepSeek epoch1=99.83% 与 Qwen 完全一致的独立段落。
+
+2. **Claim 3 - Calibration 完整表格**: 新增 4-condition calibration 表（ECE + Brier），关键对比：
+   - exception_only: ECE=0.003, Brier=0.001
+   - no_trace: ECE=0.171, Brier=0.197（57x / 197x gap）
+   - 新增解读：no_trace 不仅 accuracy 低，且对错误预测过度自信
+
+3. **Story Arc step 4**: 加入 seed robustness + calibration 双重确认。
+
+4. **Venue Fit Risks**: 新增 Calibration 行。
+
+5. **Reviewer Concerns**: 更新 "saturated" 回应（加入 Brier 数据和 no_trace 对比），新增 "calibration 只有 1 seed" 的预防性回应。
+
+6. **Discussion D6 (新增)**: Calibration as secondary evidence — Brier score 提供独立于 accuracy 的 evidence dimension。
+
+7. **v1 对比表**: 新增 Calibration 行。
+
+Story arc 无需调整，seed robustness 和 calibration 都是 strengthening evidence，不改变核心 narrative。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd654b3e-49ce-42fa-88a1-1d3ece2bc5d9",
+  "uuid": "b4def822-c9f3-43f9-bbf0-07b00a52312a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uv6H7vGBuEgucgoSkymYYH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8099,
+      "cache_read_input_tokens": 29099,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8099
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 15_
+
+更新完成。v2.2 → v2.3，以下是具体变更：
+
+**[UPDATED 2026-05-15] 标记的变更点：**
+
+1. **Claim 1 - Seed robustness**: 将原有文字描述替换为完整的 3-seed 表格（含 95% CI [99.58, 100]），更直观。新增 DeepSeek epoch1=99.83% 与 Qwen 完全一致的独立段落。
+
+2. **Claim 3 - Calibration 完整表格**: 新增 4-condition calibration 表（ECE + Brier），关键对比：
+   - exception_only: ECE=0.003, Brier=0.001
+   - no_trace: ECE=0.171, Brier=0.197（57x / 197x gap）
+   - 新增解读：no_trace 不仅 accuracy 低，且对错误预测过度自信
+
+3. **Story Arc step 4**: 加入 seed robustness + calibration 双重确认。
+
+4. **Venue Fit Risks**: 新增 Calibration 行。
+
+5. **Reviewer Concerns**: 更新 "saturated" 回应（加入 Brier 数据和 no_trace 对比），新增 "calibration 只有 1 seed" 的预防性回应。
+
+6. **Discussion D6 (新增)**: Calibration as secondary evidence — Brier score 提供独立于 accuracy 的 evidence dimension。
+
+7. **v1 对比表**: 新增 Calibration 行。
+
+Story arc 无需调整，seed robustness 和 calibration 都是 strengthening evidence，不改变核心 narrative。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 141969,
+  "duration_api_ms": 142897,
+  "num_turns": 4,
+  "stop_reason": "end_turn",
+  "session_id": "bd654b3e-49ce-42fa-88a1-1d3ece2bc5d9",
+  "total_cost_usd": 0.42269825,
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 25357,
+    "cache_read_input_tokens": 88460,
+    "output_tokens": 8737,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 25357,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 463,
+        "cache_read_input_tokens": 29099,
+        "cache_creation_input_tokens": 8099,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 8099
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1432,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001527,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 7,
+      "outputTokens": 8737,
+      "cacheReadInputTokens": 88460,
+      "cacheCreationInputTokens": 25357,
+      "webSearchRequests": 0,
+      "costUSD": 0.42117125000000005,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "0d15df00-3299-4b8c-8845-946a11a153ee"
+}
+```
+
+</details>
+
+---

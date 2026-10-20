@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7a98513438f34206a31",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "code env setup deploy",
+  "task_key": "worker_code_env-setup-deploy_20260512T105955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_env-setup-deploy_20260512T105955_result.json",
+    "occurrence": 1,
+    "bytes": 1897,
+    "sha256": "60c82811d3a7715f804b16c4cae7b732eb1cd6949a66f7eb6cb3b42e3e14df49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "环境搭建全部完成。汇总：\n\n---\n\n### 完成状态\n\n**1. 环境信息**\n- Python: 3.12.3 (conda base, `/root/miniconda3`)\n- torch: 2.10.0+cu128\n- CUDA: 12.8 (driver 595.58.03)\n- GPU: 2× NVIDIA RTX PRO 6000 Blackwell Server Edition, 96GB 显存\n- 所有依赖已预装（transformers 4.57.6, datasets 4.8.4, sentence-transformers 5.4.1, sklearn 1.8.0, scipy 1.17.1, accelerate 1.13.0, wandb 0.26.0 等）\n\n**2. 代码同步**\n- 8 个文件全部创建成功：`requirements.txt`, `data_prep.py`, `generate.py`, `representation_monitor.py`, `diversity_selection.py`, `train_student.py`, `evaluate.py`, `run_mvp.py`\n- 路径: `/root/div_cal_verify/`\n- 额外创建 `env.sh` 供后续使用\n\n**3. 数据准备**\n- train_chunks: 242,666 chunks (350MB)\n- ref_chunks: 512 chunks (validation set 较小，仅产出 512 个 512-token chunk)\n- test_chunks: 583 chunks\n- ref_rare_labels: 512 positives\n- 路径: `/root/div_cal_verify/data/`\n\n**4. 模型下载**\n- Qwen3-1.7B: `/root/models/Qwen/Qwen3-1.7B` (1,721M params)\n- Qwen3-4B: `/root/models/Qwen/Qwen3-4B` (4,022M params)\n- Contriever: HF cache (已验证可加载)\n- Qwen 模型通过 ModelScope 直连下载（~10-18MB/s），Contriever 通过 hf-mirror 代理下载\n\n**5. 问题及解决方案**\n- HuggingFace 直连不可达（需要代理），`network_turbo` 代理速度极慢（~400kB/s）\n- **解决**: Qwen 模型改用 ModelScope 直连（不走代理，~10-18MB/s，快 25 倍），HF 请求通过 hf-mirror.com 镜像\n- `SSL_CERT_FILE` 和 `REQUESTS_CA_BUNDLE` 环境变量需设置以避免 SSL 错误\n\n**6. 运行实验的命令**\n```bash\nsource /root/div_cal_verify/env.sh\ncd /root/div_cal_verify\npython run_mvp.py --method rgds --num_generations 4 --gpu_ids 0,1 \\\n  --student_model /root/models/Qwen/Qwen3-1.7B \\\n  --generator_model /root/models/Qwen/Qwen3-4B\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-env-setup-deploy.md"
+}

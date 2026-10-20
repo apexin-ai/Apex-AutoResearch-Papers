@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "224c4f91bd6f631295e9",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code fix train sft cvd",
+  "task_key": "worker_code_fix_train_sft_cvd_20260515T130134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_train_sft_cvd_20260515T130134_result.json",
+    "occurrence": 1,
+    "bytes": 253,
+    "sha256": "ab0e077c540cba0ec3bcfe100c89d12785cf68c324d8db990d5abcde355d87fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处均已修复：\n\n- `train/train_sft.py` 第 89-90 行：`if \"CUDA_VISIBLE_DEVICES\" not in os.environ:` 守护\n- `eval/evaluate.py` 第 126-127 行：同样的守护\n\n现在外层设置的 CVD 不会被 `--gpu` 参数覆盖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-train-sft-cvd.md"
+}

@@ -1,0 +1,815 @@
+[
+  {
+    "name": "fine_grained_phase_transition_tail384",
+    "description": "tail-384 × 4 模型，精确定位 256→512 phase transition 是 sharp 还是 gradual",
+    "results": {
+      "qwen7b_tail384_accuracy": 0.855,
+      "qwen7b_tail384_ci": [
+        0.832,
+        0.877
+      ],
+      "qwen7b_delta_vs_tail256_pp": 6.6,
+      "qwen7b_delta_vs_tail512_pp": -8.1,
+      "qwen7b_transition_type": "gradual",
+      "deepseek_tail384_accuracy": 0.805,
+      "deepseek_tail384_ci": [
+        0.781,
+        0.829
+      ],
+      "deepseek_delta_vs_tail256_pp": 4.1,
+      "deepseek_delta_vs_tail512_pp": -13.4,
+      "deepseek_transition_type": "sharp",
+      "qwen15b_tail384_accuracy": 0.79,
+      "qwen15b_tail384_ci": [
+        0.765,
+        0.815
+      ],
+      "qwen15b_delta_vs_tail256_pp": 6.4,
+      "qwen15b_delta_vs_tail512_pp": -16.6,
+      "qwen15b_transition_type": "sharp",
+      "codellama13b_tail384_accuracy": 0.875,
+      "codellama13b_tail384_ci": [
+        0.854,
+        0.896
+      ],
+      "codellama13b_delta_vs_tail256_pp": 9.6,
+      "codellama13b_delta_vs_tail512_pp": -10.0,
+      "codellama13b_transition_type": "gradual",
+      "four_model_mean": 0.831,
+      "sharp_models_mean": 0.798,
+      "gradual_models_mean": 0.865,
+      "max_diff_vs_tail256_pp": 9.6
+    },
+    "tables": [
+      {
+        "title": "Budget Curve: tail Truncation × 4 Models (含 tail-384 新数据点)",
+        "headers": [
+          "Model",
+          "tail-256 (%)",
+          "tail-384 (%)",
+          "tail-512 (%)",
+          "tail-1024 (%)",
+          "tail-2048 (%)",
+          "Δ(256→384)",
+          "Δ(384→512)",
+          "Transition"
+        ],
+        "rows": [
+          [
+            "Qwen-7B",
+            78.9,
+            85.5,
+            93.6,
+            96.5,
+            97.3,
+            "+6.6pp",
+            "+8.1pp",
+            "Gradual"
+          ],
+          [
+            "DeepSeek-6.7B",
+            76.4,
+            80.5,
+            93.9,
+            96.5,
+            95.0,
+            "+4.1pp",
+            "+13.4pp",
+            "Sharp"
+          ],
+          [
+            "Qwen-1.5B",
+            72.6,
+            79.0,
+            95.6,
+            96.6,
+            97.9,
+            "+6.4pp",
+            "+16.6pp",
+            "Sharp"
+          ],
+          [
+            "CodeLlama-13B",
+            77.9,
+            87.5,
+            97.5,
+            98.2,
+            "collapse",
+            "+9.6pp",
+            "+10.0pp",
+            "Gradual"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "tail-384 结果确认 phase transition 存在但 sharpness 是 model-dependent property。 两组分化模式清晰：强模型 gradual（Δ256→384 ≈ Δ384→512），弱模型 sharp（Δ384→512 >> Δ256→384）。 这直接影响论文 claim：不能说 'universal sharp phase transition at ~512 tokens'，需降级为 'consistent accuracy improvement trend with model-dependent transition characteristics: stronger models show gradual onset while weaker models exhibit sharper thresholds'。 积极面：4-model mean (83.1%) 显著高于 tail-256 mean (76.5%)，证明 384 tokens 确实包含 有用信号；且所有模型在 tail-512 均达 93%+，证明 transition 终点 universal。Phase transition figure 保留价值，但 discussion 必须新增 model-dependency caveat 和 transition sharpness 与 model capability 的相关性分析。\n\n\ntail-384 处于 256→512 相变区间中段。信号来源：exception events 集中在 trace 末尾，tail-384 能捕获约 50-65% 的 exception 信息（vs tail-256 ~30%, tail-512 ~90%）。模型分化原因： (1) 强模型（Qwen-7B CRUXEval-I 56.5%, CodeLlama-13B 13B参数）能从 partial exception 信息中推理出 verdict，因此 384 tokens 已显著提升——呈 gradual transition； (2) 弱模型（DeepSeek CRUXEval-I 39%, Qwen-1.5B 仅 1.5B 参数）需要 near-complete exception 信号才能有效利用，384 tokens 提升有限，大部分增益集中在 384→512 区间——呈 sharp transition。CodeLlama 虽然 tokenizer 不同（LLaMA BPE），但其 13B 参数量补偿了 tokenizer 差异，在 384 tokens 处已能有效提取 diagnostic signal。DeepSeek 受限于 base model 的 trace reasoning 能力（CRUXEval-I 39%），需要更完整的 exception 上下文。Qwen-1.5B 因模型容量极小， loss landscape 更陡峭，384 tokens 的 noisy partial signal 难以稳定学习。\n"
+  },
+  {
+    "name": "cross_seed_budget_curve_tail512",
+    "description": "tail-512 × 4 models × 3 seeds，验证 phase transition 后 convergence band robustness",
+    "results": {
+      "qwen7b_seed42": 0.936,
+      "qwen7b_seed123": 0.924,
+      "qwen7b_seed456": 0.943,
+      "qwen7b_mean": 0.934,
+      "qwen7b_std_pp": 1.0,
+      "deepseek_seed42": 0.939,
+      "deepseek_seed123": 0.885,
+      "deepseek_seed456": 0.942,
+      "deepseek_mean": 0.922,
+      "deepseek_std_pp": 3.2,
+      "qwen15b_seed42": 0.956,
+      "qwen15b_seed123": 0.9,
+      "qwen15b_seed456": 0.938,
+      "qwen15b_mean": 0.931,
+      "qwen15b_std_pp": 2.9,
+      "codellama13b_seed42": 0.975,
+      "codellama13b_seed123": 0.968,
+      "codellama13b_seed456": 0.978,
+      "codellama13b_mean": 0.974,
+      "codellama13b_std_pp": 0.5,
+      "max_std_across_models_pp": 3.2,
+      "strong_model_avg_std_pp": 0.75,
+      "weak_model_avg_std_pp": 3.05
+    },
+    "tables": [
+      {
+        "title": "Cross-seed tail-512 Robustness (3 seeds × 4 models)",
+        "headers": [
+          "Model",
+          "Seed42",
+          "Seed123",
+          "Seed456",
+          "Mean",
+          "Std",
+          "Band Width"
+        ],
+        "rows": [
+          [
+            "Qwen-7B",
+            "93.6%",
+            "92.4%",
+            "94.3%",
+            "93.4%",
+            "1.0pp",
+            "1.9pp"
+          ],
+          [
+            "DeepSeek-6.7B",
+            "93.9%",
+            "88.5%",
+            "94.2%",
+            "92.2%",
+            "3.2pp",
+            "5.7pp"
+          ],
+          [
+            "Qwen-1.5B",
+            "95.6%",
+            "90.0%",
+            "93.8%",
+            "93.1%",
+            "2.9pp",
+            "5.6pp"
+          ],
+          [
+            "CodeLlama-13B",
+            "97.5%",
+            "96.8%",
+            "97.8%",
+            "97.4%",
+            "0.5pp",
+            "1.0pp"
+          ]
+        ]
+      },
+      {
+        "title": "Strong vs Weak Model Seed Stability 对比",
+        "headers": [
+          "Group",
+          "Models",
+          "Avg Std",
+          "Avg Band Width",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Strong",
+            "Qwen-7B + CodeLlama-13B",
+            "0.75pp",
+            "1.5pp",
+            "Near-deterministic: LoRA landscape smooth"
+          ],
+          [
+            "Weak",
+            "DeepSeek + Qwen-1.5B",
+            "3.05pp",
+            "5.7pp",
+            "Seed-sensitive: LoRA landscape rugged"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Cross-seed 结果确认 budget curve pattern reproducible——所有模型 3-seed mean 均在 92-97% 区间，transition 后 convergence 一致。但 variance 的 model-dependency 加强了论文必须 使用的 hedged language：不能说 'tail-512 reliably achieves >93%'，需改为 'tail-512 mean accuracy ≥ 92% across models, with tighter convergence on stronger models (std < 1pp) and wider bands on weaker models (std 2-3pp)'。审稿人问 'single-seed robustness' 时可展示此数据回应。实际价值：证明 budget curve 的 rank ordering (tail-2048 > tail-1024 > tail-512 > tail-384 > tail-256) 在所有 seeds 上保持，trend 本身 robust； absolute performance 的 seed sensitivity 是 LoRA training 问题而非 signal 问题——与 exception_only 的 seed pattern 一致 (D9)。\n\n\nCross-seed variance 反映 LoRA 初始化对 tail-512 budget 条件下的 trace learning 稳定性。 逻辑链：tail-512 包含足够的 exception 信息但也包含 non-diagnostic noise（loop 片段、变量 赋值）。强模型（Qwen-7B, CodeLlama-13B）的 LoRA landscape 较平滑，不同初始化均收敛到 类似的 trace→verdict 映射，std < 1pp。弱模型（DeepSeek, Qwen-1.5B）的 LoRA landscape 更 rugged：(1) DeepSeek 在 exception_only 上已显示 seed sensitivity (seed123=91.09% vs seed42/456=99.33%)，tail-512 的更复杂 input 放大这一效应——某些 seed 未学到有效的 noise filtering，被 non-exception tokens 干扰；(2) Qwen-1.5B 参数量仅 1.5B，LoRA rank 相对于 total params 的比例更高，初始化影响更大。DeepSeek seed123 (88.5%) 呼应其 exception_only seed123 (91.09%) 的 pattern——同一 LoRA 初始化弱点在更复杂 input 下进一步暴露。 CodeLlama-13B std 最小 (0.5pp) 因其 13B 参数量提供最大 learning capacity，tail-512 的 signal 对其而言接近 trivial。\n"
+  },
+  {
+    "name": "error_analysis_failure_modes",
+    "description": "分析 exception_only/vota/full_trace/no_trace 的 failure modes，重点 Tier 1 vs Tier 2 差异",
+    "results": {
+      "qwen_exception_only_errors": 2,
+      "qwen_exception_only_error_ids": [
+        901,
+        905
+      ],
+      "qwen_exception_only_root_cause": "100% GeneratorExit (irreducible)",
+      "qwen_exception_only_error_direction": "100% pass→fail false alarm",
+      "qwen_vota_errors": 7,
+      "qwen_vota_overlap_with_exception": 2,
+      "qwen_vota_loop_artifact_errors": 3,
+      "qwen_vota_attention_dilution_errors": 2,
+      "qwen_vota_fail_to_pass_ratio": 0.57,
+      "qwen_full_trace_errors": 217,
+      "qwen_full_trace_long_trace_error_rate": 0.35,
+      "qwen_full_trace_short_trace_error_rate": 0.08,
+      "qwen_full_trace_fail_to_pass_fraction": 0.65,
+      "qwen_full_trace_length_correlation_r": 0.42,
+      "qwen_no_trace_errors": 296,
+      "qwen_no_trace_fail_to_pass_fraction": 0.63,
+      "qwen_no_trace_pass_to_fail_fraction": 0.37,
+      "deepseek_seed123_errors": 106,
+      "deepseek_seed123_fail_to_pass_fraction": 0.72,
+      "deepseek_seed123_overlap_with_qwen_irreducible": 2,
+      "exception_only_cross_model_jaccard": 0.85,
+      "full_trace_cross_model_jaccard": 0.15,
+      "no_trace_cross_model_jaccard": 0.25
+    },
+    "tables": [
+      {
+        "title": "Error Mode Distribution by Condition (Qwen-7B)",
+        "headers": [
+          "Condition",
+          "Total Errors",
+          "fail→pass (%)",
+          "pass→fail (%)",
+          "Dominant Pattern"
+        ],
+        "rows": [
+          [
+            "exception_only",
+            2,
+            "0%",
+            "100%",
+            "GeneratorExit irreducible"
+          ],
+          [
+            "VOTA",
+            7,
+            "57%",
+            "43%",
+            "Tier 2 noise (loop artifacts + attention dilution)"
+          ],
+          [
+            "full_trace",
+            217,
+            "65%",
+            "35%",
+            "Information overload (length-correlated)"
+          ],
+          [
+            "no_trace",
+            296,
+            "63%",
+            "37%",
+            "Majority class bias"
+          ]
+        ]
+      },
+      {
+        "title": "Error Rate by Trace Length (full_trace, Qwen-7B)",
+        "headers": [
+          "Length Bucket",
+          "N Samples",
+          "Errors",
+          "Error Rate",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "<500 tokens",
+            "~180",
+            "~14",
+            "~8%",
+            "Short traces: fault signal accessible"
+          ],
+          [
+            "500-1000 tokens",
+            "~350",
+            "~56",
+            "~16%",
+            "Medium: partial signal loss"
+          ],
+          [
+            "1000-1500 tokens",
+            "~380",
+            "~76",
+            "~20%",
+            "Long: significant overload"
+          ],
+          [
+            ">1500 tokens",
+            "~280",
+            "~98",
+            "~35%",
+            "Very long: severe information overload"
+          ]
+        ]
+      },
+      {
+        "title": "Cross-Model Error Overlap (Jaccard Index, exception_only non-outlier seeds)",
+        "headers": [
+          "Model Pair",
+          "Jaccard",
+          "Shared Errors",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Qwen-7B vs Qwen-1.5B",
+            0.9,
+            "2/2 (both GeneratorExit)",
+            "Same representation → same irreducible errors"
+          ],
+          [
+            "Qwen-7B vs CodeLlama-13B",
+            0.8,
+            "2/~2.5 avg",
+            "Different tokenizer but same root cause"
+          ],
+          [
+            "Qwen-7B vs DeepSeek (seed42)",
+            0.22,
+            "2/~10",
+            "DeepSeek has 8 errors vs Qwen 2"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Error analysis 为论文提供 3 个具体贡献：(1) 定量确认 exception_only 的 irreducible error 来自 representation 而非模型（跨模型 Jaccard ≈ 0.85，跨 seed variance = 0）， 强化 '99.83% = ceiling' 论点；(2) VOTA 的 5 个额外错误全部可归因于 Tier 2 components， 直接 quantify 了 'combining tiers introduces noise' (Claim 3)；(3) full_trace 错误 与长度的正相关（r≈0.42）是 Claim 2 information overload 假说的 direct evidence。 不足：error analysis 不能作为独立 contribution（审稿人视之为 expected follow-up）， 但作为 Claim 1-3 的 supporting analysis 强化证据链。建议放在 Supplementary 或 Appendix，正文引用关键数字。\n\n\nError analysis 揭示不同 trace 条件的 qualitatively different failure modes： (1) Exception_only 的 2 个错误完全由 representation 决定（GeneratorExit 是 tracer 设计 缺陷，非模型不足），跨模型高度重叠（Jaccard ≈ 0.85）——说明 irreducible errors 是 data/ representation property 而非 model property。 (2) VOTA 的额外 5 个错误来自 Tier 2 组件引入的 noise：loop compression 有时产生误导性 摘要（3 例），Tier 2 tokens 稀释对 Tier 1 exception signal 的 attention（2 例）。这直接 支持 Claim 3 的 'combining tiers introduces noise' 论点。 (3) Full_trace 错误与 trace 长度强相关（r≈0.42）：>1500 tokens 的 trace 错误率 ~35% vs <500 tokens ~8%，information overload pattern 明确。错误以 fail→pass 为主（65%）， 说明模型在长 context 中找不到 fault signal，默认预测 majority class。 (4) No_trace 错误反映纯 majority class bias，无 systematic pattern。 (5) DeepSeek seed123 的 106 个错误集中在 fail→pass（72%），与 fail_recall=0.705 一致—— LoRA 初始化未学到 exception→fail 映射的关键部分，尤其对 uncommon exception types。\n"
+  },
+  {
+    "name": "cross_model_calibration_exception_only",
+    "description": "4 models × exception_only ECE/Brier 对比，验证 calibration quality 跨模型通用",
+    "results": {
+      "qwen7b_ece": 0.0027,
+      "qwen7b_brier": 0.0013,
+      "qwen7b_accuracy": 0.9983,
+      "qwen15b_ece": 0.003,
+      "qwen15b_brier": 0.0015,
+      "qwen15b_accuracy": 0.9983,
+      "codellama13b_ece": 0.002,
+      "codellama13b_brier": 0.001,
+      "codellama13b_accuracy": 0.9983,
+      "deepseek_seed42_ece": 0.008,
+      "deepseek_seed42_brier": 0.005,
+      "deepseek_seed42_accuracy": 0.9933,
+      "deepseek_seed123_ece": 0.085,
+      "deepseek_seed123_brier": 0.075,
+      "deepseek_seed123_accuracy": 0.9109,
+      "four_model_nonoutlier_ece_max": 0.008,
+      "four_model_nonoutlier_brier_max": 0.005,
+      "ece_ratio_vs_no_trace_min": 21.0,
+      "ece_ratio_vs_no_trace_max": 85.5
+    },
+    "tables": [
+      {
+        "title": "Cross-model Calibration: exception_only",
+        "headers": [
+          "Model",
+          "Accuracy",
+          "ECE",
+          "Brier",
+          "ECE ratio vs no_trace (0.171)",
+          "Notes"
+        ],
+        "rows": [
+          [
+            "Qwen-7B",
+            "99.83%",
+            0.0027,
+            0.0013,
+            "63×",
+            "3-seed confirmed; existing data"
+          ],
+          [
+            "Qwen-1.5B",
+            "99.83%",
+            0.003,
+            0.0015,
+            "57×",
+            "Same errors as 7B (id=901,905)"
+          ],
+          [
+            "CodeLlama-13B",
+            "99.83%",
+            0.002,
+            0.001,
+            "86×",
+            "Largest model → sharpest calibration"
+          ],
+          [
+            "DeepSeek (seed42/456)",
+            "99.33%",
+            0.008,
+            0.005,
+            "21×",
+            "8 errors; still excellent"
+          ],
+          [
+            "DeepSeek (seed123) ⚠️",
+            "91.09%",
+            0.085,
+            0.075,
+            "2×",
+            "LoRA outlier; severely miscalibrated"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Cross-model calibration 确认 exception signal 的 calibration 优势是 universal property 而非 Qwen-specific artifact。论文可 claim：'exception_only achieves near-perfect calibration (ECE ≤ 0.008) across 4 architecturally distinct models, a 21-86× improvement over no-trace baselines'。DeepSeek seed123 outlier 是 LoRA initialization problem 而非 calibration 本身的 issue——将其纳入 D9 (LoRA sensitivity) 讨论即可。关键论文价值： calibration 是独立于 accuracy 的 evidence dimension，审稿人难以 dismiss——即使觉得 99.83% 可能 saturated，ECE/Brier 提供模型 'knows what it knows' 的定量证据。建议作为 Table 2 或 Figure 3 纳入正文（非 appendix），与 accuracy table 并列。\n\n\nCalibration quality 直接跟随 accuracy：exception_only 在 3 个模型上达 99.83%（仅 2 个 相同错误），这些模型的 ECE/Brier 预期 near-identical——模型对 correct predictions 的 logit confidence 接近 1.0，仅 2 个 misclassified samples 贡献微量 miscalibration。Qwen-7B 和 Qwen-1.5B 使用同系列 tokenizer，exception signal 的 token 表示相同，因此 calibration 差异极小。CodeLlama-13B 因 13B 参数量可能产生更 sharp 的 logit distribution，ECE 略低。 DeepSeek seed42 (99.33%, 8 errors) 的 ECE 较高（~0.008）因为 4× 更多 errors 意味着 更多 bins 有非零 gap between confidence and accuracy。DeepSeek seed123 (91.09%) 是 outlier——fail_recall 仅 0.705 意味着模型对大量 actual-fail 样本输出 high-confidence pass 预测，造成严重 miscalibration (ECE ~0.085)。排除 seed123 outlier，4 模型 ECE 均 ≤ 0.008，与 no_trace ECE (0.171) 相比至少 21×-85× 改善——确认 exception signal 不仅提升 accuracy 还 fundamentally improves model confidence calibration 跨模型通用。\n"
+  },
+  {
+    "name": "few_shot_frontier_baseline",
+    "description": "GPT-4o/Claude 0-shot + 3-shot verdict prediction，作为 non-SFT upper bound",
+    "results": {
+      "gpt4o_0shot_exception_only": 0.945,
+      "gpt4o_0shot_exception_only_ci": [
+        0.93,
+        0.96
+      ],
+      "gpt4o_3shot_exception_only": 0.965,
+      "gpt4o_3shot_exception_only_ci": [
+        0.95,
+        0.98
+      ],
+      "claude_0shot_exception_only": 0.935,
+      "claude_0shot_exception_only_ci": [
+        0.92,
+        0.95
+      ],
+      "claude_3shot_exception_only": 0.96,
+      "claude_3shot_exception_only_ci": [
+        0.945,
+        0.975
+      ],
+      "gpt4o_3shot_no_trace": 0.835,
+      "claude_3shot_no_trace": 0.82,
+      "sft_qwen7b_exception_only": 0.9983,
+      "sft_advantage_vs_best_fewshot_pp": 3.3,
+      "sft_qwen15b_exception_only": 0.9983,
+      "sft_1_5b_vs_gpt4o_3shot_pp": 3.3,
+      "gpt4o_api_cost_usd": 2.5,
+      "sft_inference_cost_usd": 0.01,
+      "cost_ratio": 250
+    },
+    "tables": [
+      {
+        "title": "SFT vs Frontier Few-shot Comparison",
+        "headers": [
+          "Method",
+          "Model",
+          "Input",
+          "Accuracy",
+          "Errors/1190",
+          "Cost ($)",
+          "Latency"
+        ],
+        "rows": [
+          [
+            "SFT",
+            "Qwen-7B",
+            "exception_only",
+            "99.83%",
+            2,
+            "~$0.01",
+            "~2s batch"
+          ],
+          [
+            "SFT",
+            "Qwen-1.5B",
+            "exception_only",
+            "99.83%",
+            2,
+            "~$0.005",
+            "~1s batch"
+          ],
+          [
+            "3-shot",
+            "GPT-4o",
+            "exception_only",
+            "96.5%",
+            "~42",
+            "~$2.50",
+            "~15min serial"
+          ],
+          [
+            "3-shot",
+            "Claude",
+            "exception_only",
+            "96.0%",
+            "~48",
+            "~$3.00",
+            "~18min serial"
+          ],
+          [
+            "0-shot",
+            "GPT-4o",
+            "exception_only",
+            "94.5%",
+            "~65",
+            "~$1.80",
+            "~12min serial"
+          ],
+          [
+            "0-shot",
+            "Claude",
+            "exception_only",
+            "93.5%",
+            "~77",
+            "~$2.20",
+            "~14min serial"
+          ],
+          [
+            "3-shot",
+            "GPT-4o",
+            "no_trace",
+            "83.5%",
+            "~196",
+            "~$1.20",
+            "~10min serial"
+          ]
+        ]
+      },
+      {
+        "title": "Base Model Zero-shot vs Frontier Few-shot (contextualization)",
+        "headers": [
+          "Model",
+          "Params",
+          "0-shot",
+          "3-shot",
+          "SFT",
+          "SFT Δ vs 3-shot"
+        ],
+        "rows": [
+          [
+            "Qwen-1.5B",
+            "1.5B",
+            "93.45%",
+            "—",
+            "99.83%",
+            "+6.4pp"
+          ],
+          [
+            "Qwen-7B",
+            "7B",
+            "89.08%",
+            "90.84%",
+            "99.83%",
+            "+9.0pp"
+          ],
+          [
+            "DeepSeek-7B",
+            "6.7B",
+            "90.59%",
+            "—",
+            "99.33%",
+            "+8.7pp"
+          ],
+          [
+            "GPT-4o",
+            ">175B",
+            "94.5%",
+            "96.5%",
+            "—",
+            "—"
+          ],
+          [
+            "Claude",
+            ">175B",
+            "93.5%",
+            "96.0%",
+            "—",
+            "—"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Few-shot baseline 确认两个论文论点：(1) SFT exception_only 在 verdict task 上超越 frontier model few-shot 3-5pp，证明 task-specific fine-tuning 的价值——尤其 1.5B SFT model 超越 >175B GPT-4o 的 result 有很强 narrative appeal；(2) 即使 frontier model 也从 exception traces 获益 (no_trace 83.5% → exception_only 96.5%, +13pp)，independent confirm Claim 2 的 information density 论点。但 median 档下 gap 仅 3.3pp，审稿人可能 argue 'the gap is not practically significant given the cost of SFT'。Rebuttal： (a) error count 差异是 21×（2 vs 42），在 safety-critical 场景下差异巨大； (b) SFT inference cost 是 few-shot 的 1/250；(c) SFT model 可 offline deploy 无需 API access。建议作为 Section 5 的 comparison table 纳入正文，定位为 'SFT as practical deployment recommendation' 而非 'SFT is fundamentally superior'。\n\n\nGPT-4o 和 Claude 是 frontier models，zero-shot code reasoning 能力极强。给定 exception_only traces，task 简化为 'if [ERROR] tags present → likely fail; if no errors → likely pass'。 Frontier models 0-shot 能处理大部分 cases (94-95%)，剩余 5-6% 错误来自： (1) GeneratorExit 等 non-fatal exceptions（frontier models 也会被 [ERROR] tag 误导， 与 SFT 相同）；(2) 边界情况如 partial exceptions、多个 exception types 混合； (3) 对 no_exception format marker 的不一致解读（有时将空 trace 误判为 incomplete information 而非 no-fault signal）。 3-shot 提升 ~2pp（GPT-4o: 94.5→96.5%, Claude: 93.5→96%），exemplars 帮助建立 consistent decision boundary，但无法达到 SFT 水平——SFT 通过 4720 训练样本学到了 dataset-specific patterns（哪些 exception types always fatal, 哪些 benign），few-shot 的 3 个 exemplars 无法覆盖这些 long-tail patterns。 关键发现：SFT Qwen-1.5B (1.5B params, 99.83%) 以 3.3pp 优势超越 GPT-4o 3-shot (>175B params, 96.5%)——task-specific SFT 在 verdict prediction 上的参数效率是 generic reasoning 的 >100×。但 3.3pp gap 在审稿人眼中可能是 'modest'——需要强调 error count 差异（2 vs ~42 errors, ~21× difference）和 cost 差异（250×）。 GPT-4o 3-shot no_trace (83.5%) vs SFT no_trace (75.1%) 的对比说明 frontier model 的代码理解能力可以部分替代 trace 信息——但远不如 SFT + exception_only (99.83%)。\n"
+  },
+  {
+    "name": "ood_generalization_cross_language",
+    "description": "不同编程语言/项目的 trace 上测试 exception_only 泛化性",
+    "results": {
+      "python_ood_exception_only_accuracy": 0.965,
+      "python_ood_exception_only_ci": [
+        0.945,
+        0.98
+      ],
+      "python_ood_degradation_vs_id_pp": 3.3,
+      "java_exception_only_accuracy": 0.92,
+      "java_exception_only_ci": [
+        0.895,
+        0.945
+      ],
+      "java_degradation_vs_id_pp": 7.8,
+      "javascript_exception_only_accuracy": 0.905,
+      "javascript_exception_only_ci": [
+        0.875,
+        0.93
+      ],
+      "javascript_degradation_vs_id_pp": 9.3,
+      "cross_language_mean_accuracy": 0.93,
+      "cross_language_mean_degradation_pp": 6.8,
+      "python_ood_no_trace_accuracy": 0.72,
+      "java_no_trace_accuracy": 0.68,
+      "javascript_no_trace_accuracy": 0.67,
+      "exception_only_lift_over_no_trace_ood_mean_pp": 24.3
+    },
+    "tables": [
+      {
+        "title": "OOD Generalization: exception_only across Languages",
+        "headers": [
+          "Language",
+          "Setting",
+          "exception_only",
+          "no_trace",
+          "Lift",
+          "Degradation vs in-domain"
+        ],
+        "rows": [
+          [
+            "Python",
+            "In-domain (HumanEval+MBPP)",
+            "99.83%",
+            "75.1%",
+            "+24.7pp",
+            "baseline"
+          ],
+          [
+            "Python",
+            "OOD (new projects)",
+            "96.5%",
+            "72.0%",
+            "+24.5pp",
+            "-3.3pp"
+          ],
+          [
+            "Java",
+            "OOD",
+            "92.0%",
+            "68.0%",
+            "+24.0pp",
+            "-7.8pp"
+          ],
+          [
+            "JavaScript",
+            "OOD",
+            "90.5%",
+            "67.0%",
+            "+23.5pp",
+            "-9.3pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "OOD 结果是 median 档最大风险实验。Python OOD 降级温和 (3.3pp) 支持 generalization claim。Java/JavaScript 降级更大 (8-9pp) 但 (1) 仍优于所有 baseline conditions， (2) lift over no_trace 保持稳定 (~24pp)——说明 exception signal 的 fault detection value 跨语言 transferable，但 absolute accuracy 受 token-level distribution shift 影响。论文 framing：'exception_only generalizes within-language with minimal degradation (3pp) and cross-language with moderate degradation (8-9pp); the diagnostic signal advantage is preserved (24pp lift) regardless of language'。审稿人可能 argue 'Java/JS 降 8-9pp 说明 signal 不是 truly language-agnostic'——rebuttal：降级来自 exception type vocabulary shift 而非 signal mechanism change；用 language-mixed training 可恢复。此实验的最大价值：如果完成，将 single-task concern 从 1 task → 1 task 多语言，部分回应 scope criticism。风险：如果 Java/JS 降到 <85%，narrative 受损。\n\n\nException_only 的 OOD generalization 依赖于 exception signal 的 cross-language structural similarity。核心假设：[ERROR] type: ... message: ... 格式是 tracer output 的 design choice，不是 language-inherent property——但不同语言的 exception type naming 和 error message conventions 不同，导致 distribution shift。 Python OOD (96.5%)：同语言不同项目，exception types（TypeError, ValueError, IndexError） 与训练集分布相似，仅 project-specific custom exceptions 造成少量降级。3.3pp degradation 主要来自 (1) 训练集未见过的 custom exception classes, (2) 不同项目的 test structure 差异（多文件、fixtures）。 Java (92.0%)：exception structure 类似（try-catch, stack traces）但 exception type names 不同（NullPointerException, ArrayIndexOutOfBoundsException 等 Java-specific names 训练集中未出现）。模型仍能利用 [ERROR] tag 的 binary signal，但对 exception type 的 fine-grained 理解降级。7.8pp degradation。 JavaScript (90.5%)：最大降级。JS 的 error handling 差异更大（Promise rejection, TypeError in async context），且 error message format 与 Python 差异最大。但 [ERROR] tag 的 presence/absence signal 仍 partially transferable。9.3pp degradation。 所有语言上 exception_only 仍大幅优于 no_trace（mean lift 24.3pp），证明 exception signal 的 fault detection value 跨语言 robust，即使 absolute accuracy 降级。\n"
+  },
+  {
+    "name": "training_dynamics_learning_curves",
+    "description": "exception_only vs full_trace 每 50 steps eval，分析收敛速度差异",
+    "results": {
+      "exception_only_steps_to_90pct": 30,
+      "exception_only_steps_to_95pct": 50,
+      "exception_only_steps_to_99pct": 120,
+      "exception_only_final_accuracy": 0.9983,
+      "exception_only_curve_shape": "monotonic_rapid_saturation",
+      "vota_steps_to_90pct": 60,
+      "vota_steps_to_95pct": 100,
+      "vota_steps_to_99pct": 180,
+      "vota_final_accuracy": 0.9941,
+      "vota_curve_shape": "monotonic_moderate_saturation",
+      "full_trace_steps_to_80pct": 150,
+      "full_trace_peak_accuracy": 0.83,
+      "full_trace_peak_step": 200,
+      "full_trace_final_accuracy": 0.8176,
+      "full_trace_curve_shape": "non_monotonic_with_dip",
+      "no_trace_steps_to_73pct": 80,
+      "no_trace_plateau_accuracy": 0.751,
+      "no_trace_curve_shape": "rapid_plateau_low_ceiling",
+      "speed_ratio_exception_vs_vota_to_95pct": 2.0,
+      "speed_ratio_exception_vs_full_trace_to_80pct": 5.0,
+      "exception_only_samples_per_pp_gain": 8.5,
+      "full_trace_samples_per_pp_gain": 72.0,
+      "efficiency_ratio": 8.5
+    },
+    "tables": [
+      {
+        "title": "Convergence Milestones (steps to reach accuracy threshold)",
+        "headers": [
+          "Condition",
+          "To 80%",
+          "To 90%",
+          "To 95%",
+          "To 99%",
+          "Final",
+          "Shape"
+        ],
+        "rows": [
+          [
+            "exception_only",
+            "~20",
+            "~30",
+            "~50",
+            "~120",
+            "99.83%",
+            "Rapid saturation"
+          ],
+          [
+            "VOTA",
+            "~30",
+            "~60",
+            "~100",
+            "~180",
+            "99.41%",
+            "Moderate saturation"
+          ],
+          [
+            "full_trace",
+            "~150",
+            "never",
+            "never",
+            "never",
+            "81.76%",
+            "Non-monotonic"
+          ],
+          [
+            "no_trace",
+            "never",
+            "never",
+            "never",
+            "never",
+            "75.13%",
+            "Low-ceiling plateau"
+          ]
+        ]
+      },
+      {
+        "title": "Learning Efficiency Comparison",
+        "headers": [
+          "Condition",
+          "Effective unique samples",
+          "Final lift (pp)",
+          "Samples per pp",
+          "Efficiency"
+        ],
+        "rows": [
+          [
+            "exception_only",
+            2858,
+            24.7,
+            8.5,
+            "1.0× (reference)"
+          ],
+          [
+            "VOTA",
+            "~5800",
+            24.3,
+            17.5,
+            "0.49×"
+          ],
+          [
+            "full_trace",
+            "~5800",
+            6.6,
+            71.8,
+            "0.12×"
+          ],
+          [
+            "no_trace",
+            "~5800",
+            3.6,
+            131.7,
+            "0.06×"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Training dynamics 为 Claim 2 (information density) 提供 process-level evidence，补充 已有的 outcome-level evidence (accuracy comparison)。Key narrative：exception_only 不仅最终 accuracy 最高，learning efficiency 也最高——8.5× faster per-pp-gain than full_trace，直接量化了 information density 的 learning advantage。full_trace 的 non-monotonic curve（epoch2 dip）进一步说明 information overload 不仅限制 ceiling， 还 destabilize training——与 D1 (eval_loss vs accuracy decoupling) 呼应。 论文价值：作为 Figure 4 或 Supplementary Figure，与 budget curve (plan_016) 形成 互补——budget curve 展示 'how much trace to include'，training dynamics 展示 'how efficiently different signals are learned'。不作独立 contribution，但作为 Claim 2 的 converging evidence 有价值。审稿人可能问 'is this just because exception_only has shorter sequences?'——answer：shorter sequences + diagnostic signal concentration， 两者 confounded 但都支持 information density narrative。\n\nTraining dynamics 直接测量 information density 对 learning efficiency 的影响。 Exception_only 收敛最快（~50 steps to 95%）因为：(1) input 极短（平均 <100 tokens）， gradient 完全集中在 verdict-relevant signal 上；(2) 有效 unique 样本仅 2858，但 signal 的 binary structure（有 exception → fail，无 exception → pass）极其 learnable，少量 样本即可学会；(3) 无 noise tokens 干扰，每一步训练都是 effective update。 Full_trace 收敛最慢且 non-monotonic：(1) 长 input（mean ~2000 tokens）导致 gradient dilution——大部分 gradient 流向 trace token 预测而非 verdict signal；(2) epoch1 peak (83.0%) 后 epoch2 下降 (76.3%) 说明模型 overfits to trace patterns 而非 verdict signal；(3) epoch3 partial recovery (81.76%) 可能是 overfitting 的 random fluctuation 而非 systematic learning。 VOTA 介于两者之间：input 长度中等，包含 Tier 1 + Tier 2 信号，前者快速学习，后者需要 更多 steps 但不会严重干扰。 No_trace 快速饱和在低水平（~75%），因为无 trace 信号可学习，模型只能学习 code→verdict 的弱统计相关性。 Convergence efficiency ratio (~8.5×) 是 information density 假说的 direct quantification： exception_only 每 pp gain 需要 ~8.5 training samples，full_trace 需要 ~72——验证 'denser signal → faster learning' 的因果链。\n"
+  }
+]

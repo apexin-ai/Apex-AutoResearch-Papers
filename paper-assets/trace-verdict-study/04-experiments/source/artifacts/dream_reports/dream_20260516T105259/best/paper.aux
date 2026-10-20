@@ -1,0 +1,92 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{ni2024dcsh,jain2025tracepile}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{ni2024dcsh}
+\citation{jain2025tracepile}
+\citation{traced2024}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Trace-Augmented Code LLMs.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Verdict Prediction.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task and Dataset}{2}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:dataset}{{3.1}{2}{Task and Dataset}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Trace Representations}{2}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:traces}{{3.2}{2}{Trace Representations}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{No-trace baseline.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Full trace.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{VOTA (Verdict-Optimized Trace Abstraction).}{2}{section*.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Main results across three models ($n$=1{,}190). Exception-only achieves the highest accuracy on every model. $\Delta _{\text  {exc}}$: lift from no-trace to exception-only. Cross-model std quantifies model-dependence of each representation.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:main}{{1}{3}{Main results across three models ($n$=1{,}190). Exception-only achieves the highest accuracy on every model. $\Delta _{\text {exc}}$: lift from no-trace to exception-only. Cross-model std quantifies model-dependence of each representation}{table.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Component isolates.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Training Setup}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:training}{{3.3}{3}{Training Setup}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Label-Only Loss Ablation}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:label_only}{{3.4}{3}{Label-Only Loss Ablation}{subsection.3.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Main Results: Cross-Model Exception Dominance}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:main_results}{{4.1}{3}{Main Results: Cross-Model Exception Dominance}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Information density decomposition (Qwen-7B). Label-only training eliminates gradient dilution but retains information overload. The 13.0\,\text  {pp}{} residual gap (label-only $\rightarrow $ VOTA) can only be closed by trace compression.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:density}{{2}{4}{Information density decomposition (Qwen-7B). Label-only training eliminates gradient dilution but retains information overload. The 13.0\pp {} residual gap (label-only $\rightarrow $ VOTA) can only be closed by trace compression}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Exception dominance is universal.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Weaker models benefit most from exception signal.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{VOTA gap tracks model capability.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Information Density Decomposition}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:info_density}{{4.2}{4}{Information Density Decomposition}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Two-Tier Diagnostic Hierarchy}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:hierarchy}{{4.3}{4}{Two-Tier Diagnostic Hierarchy}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Qwen-1.5B trace representation gradient. The full-trace to VOTA gap (17.7\,\text  {pp}) closely matches the 7B result (17.6\,\text  {pp}), suggesting scale-invariant compression benefit.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:density_15b}{{3}{5}{Qwen-1.5B trace representation gradient. The full-trace to VOTA gap (17.7\pp ) closely matches the 7B result (17.6\pp ), suggesting scale-invariant compression benefit}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Component ablation (Qwen-7B). Tier~1 signals (exception, assertion-point) are individually near-perfect. Tier~2 (loop) carries substantial signal but is fully subsumed. Combining tiers (VOTA) introduces noise rather than helping.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:tiers}{{4}{5}{Component ablation (Qwen-7B). Tier~1 signals (exception, assertion-point) are individually near-perfect. Tier~2 (loop) carries substantial signal but is fully subsumed. Combining tiers (VOTA) introduces noise rather than helping}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Marker Ablation: \texttt  {[ERROR]} as Learned Fault Anchor}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:marker}{{4.4}{5}{Marker Ablation: \texttt {[ERROR]} as Learned Fault Anchor}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{The marker is a learned fault anchor, not trivial formatting.}{5}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The marker also stabilizes training.}{5}{section*.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Marker ablation (Qwen-7B). Removing \texttt  {[ERROR]} consistently drops accuracy by ${\sim }$3\,\text  {pp}{} across seeds, confirming the marker serves as a learned fault indicator anchor. Nomarker models still substantially outperform the regex baseline (93.6\%).}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:marker}{{5}{6}{Marker ablation (Qwen-7B). Removing \texttt {[ERROR]} consistently drops accuracy by ${\sim }$3\pp {} across seeds, confirming the marker serves as a learned fault indicator anchor. Nomarker models still substantially outperform the regex baseline (93.6\%)}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Seed robustness comparison. Tier~1 (exception) is perfectly stable on Qwen-7B and highly stable on Qwen-1.5B. Tier~2 (loop) shows small but nonzero variance. DeepSeek exception-only exhibits seed-dependent performance due to LoRA initialization sensitivity.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:seed}{{6}{6}{Seed robustness comparison. Tier~1 (exception) is perfectly stable on Qwen-7B and highly stable on Qwen-1.5B. Tier~2 (loop) shows small but nonzero variance. DeepSeek exception-only exhibits seed-dependent performance due to LoRA initialization sensitivity}{table.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Exception content carries independent semantic signal.}{6}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Seed Robustness}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:seed}{{4.5}{6}{Seed Robustness}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Tier~1 vs.\ Tier~2 stability.}{6}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-model LoRA sensitivity.}{6}{section*.14}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Loop-only seed robustness (Qwen-7B). All seeds within ${\sim }$1.5\,\text  {pp}{} range, confirming stable but imperfect Tier~2 learning.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:loop_seeds}{{7}{7}{Loop-only seed robustness (Qwen-7B). All seeds within ${\sim }$1.5\pp {} range, confirming stable but imperfect Tier~2 learning}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces CodeLlama-13B-Instruct results. Exception dominance holds on a third architecture family, with exception-only achieving 99.7\%.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:codellama}{{8}{7}{CodeLlama-13B-Instruct results. Exception dominance holds on a third architecture family, with exception-only achieving 99.7\%}{table.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Loop-only 3-seed detail.}{7}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Extended Model Validation: CodeLlama-13B}{7}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:codellama}{{4.6}{7}{Extended Model Validation: CodeLlama-13B}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Cross-Scale Exception Dominance}{7}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:cross_scale}{{4.7}{7}{Cross-Scale Exception Dominance}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Cross-scale analysis: exception-only lift and VOTA gap. As base model capability decreases (lower no-trace accuracy), exception-only lift increases and the VOTA--exception gap widens.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:cross_scale_detail}{{9}{8}{Cross-scale analysis: exception-only lift and VOTA gap. As base model capability decreases (lower no-trace accuracy), exception-only lift increases and the VOTA--exception gap widens}{table.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{8}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{8}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Irreducible Error Analysis}{8}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:irreducible}{{5.1}{8}{Irreducible Error Analysis}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Training-Time Truncation Confound}{8}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:truncation}{{5.2}{8}{Training-Time Truncation Confound}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Token-Level Loss vs.\ Verdict Accuracy}{8}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:loss_decoupling}{{5.3}{8}{Token-Level Loss vs.\ Verdict Accuracy}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}LoRA Initialization Sensitivity}{9}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:lora_sensitivity}{{5.4}{9}{LoRA Initialization Sensitivity}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}VOTA as Fault Indicator Isolation}{9}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:vota_reposition}{{5.5}{9}{VOTA as Fault Indicator Isolation}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Data Duplication as Representation Signature}{9}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:duplication}{{5.6}{9}{Data Duplication as Representation Signature}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{9}{Conclusion}{section.6}{}}
+\bibcite{ni2024dcsh}{{1}{2024}{{Ni et~al.}}{{}}}
+\bibcite{jain2025tracepile}{{2}{2025}{{Jain et~al.}}{{}}}
+\bibcite{traced2024}{{3}{2024}{{Chen et~al.}}{{}}}
+\bibcite{wang2024cruxeval}{{4}{2024}{{Gu et~al.}}{{}}}
+\gdef \@abspage@last{10}

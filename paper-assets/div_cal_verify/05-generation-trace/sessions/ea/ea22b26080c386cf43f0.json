@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea22b26080c386cf43f0",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "analysis 355m rgds ppl diagnostic",
+  "task_key": "worker_analysis_355m_rgds_ppl_diagnostic_20260514T125537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_355m_rgds_ppl_diagnostic_20260514T125537_result.json",
+    "occurrence": 1,
+    "bytes": 1207,
+    "sha256": "2e042571f83a1b09383e5cf10694810927db4e92d107dabab502627eeb523989"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行完成。结果：\n\n```\n=== 355M RGDS Selected vs Rejected PPL (Gen-0 model) ===\n\nGen 4:\n  Selected  (N=488): mean PPL=1.85, median=1.51, P90=2.61\n  Rejected  (N=489): mean PPL=1.74, median=1.70, P90=2.11\n  差异: selected - rejected = +0.11\n  t-test: t=1.45, p=0.1474\n  Cohen's d: 0.09\n\nGen 7:\n  Selected  (N=488): mean PPL=1.80, median=1.58, P90=2.77\n  Rejected  (N=489): mean PPL=1.80, median=1.73, P90=2.27\n  差异: selected - rejected = +0.01\n  t-test: t=0.16, p=0.8747\n  Cohen's d: 0.01\n```\n\n**结论：355M 下 RGDS 没有系统性选择低 PPL 样本。** 两代的 Cohen's d 都接近 0（0.09 和 0.01），t-test 均不显著（p=0.15, p=0.87）。Selected 和 rejected 的 PPL 分布几乎无差异，selected 甚至略高于 rejected。\n\n**与 125M 对比：效应方向不一致。** 125M 下 RGDS 强烈偏好低 PPL 样本（Cohen's d=-1.11），但 355M 下该效应消失（d≈0）。这说明 RGDS 的 diversity selection 在 355M 上不再表现出对模板化样本的系统性偏好，可能因为 gpt2-medium 生成的样本本身 PPL 分布更窄（mean≈1.8，远低于 125M 的水平），diversity score 不再与 PPL 高度相关。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-355m-rgds-ppl-diagnostic.md"
+}

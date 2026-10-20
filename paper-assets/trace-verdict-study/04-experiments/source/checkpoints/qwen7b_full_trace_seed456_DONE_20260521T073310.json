@@ -1,0 +1,48 @@
+{
+  "exp_id": "qwen7b_full_trace_seed456",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:29:51.585Z",
+    "updated_at": "2026-05-21T07:33:09.328Z",
+    "hypothesis": "Qwen-7B full_trace seed456 应在 ~81% 附近（与 seed42=81.76% 一致），为 MF-3 multi-seed 要求补齐 full_trace 方差估计。3-seed mean 将替换 Table 2 中的单 seed 值。",
+    "parent": "full_trace_seed42_v5",
+    "server": "westd-11235",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-11235",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-21T07:30:20.277Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed456 --wandb_project trace-verdict-study --wandb_run_name qwen7b_full_trace_seed456 && python eval/evaluate.py --condition full_trace --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed456/final --gpu 0 --save_predictions\"",
+      "code_commit": "e404237ccc765768e267d4d6fd3c89549dcf41a4",
+      "finished_at": "2026-05-21T07:33:03.046Z",
+      "training_hours": 0.05
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed456 --wandb_project trace-verdict-study --wandb_run_name qwen7b_full_trace_seed456 && python eval/evaluate.py --condition full_trace --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed456/final --gpu 0 --save_predictions\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "681930",
+      "log_path": "~/runs/trace-verdict-study/qwen7b_full_trace_seed456.log",
+      "submitted_at": "2026-05-21T07:30:22.433Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 165.7,
+      "gpu_hours": 0.05
+    },
+    "pid": "681930",
+    "log_path": "~/runs/trace-verdict-study/qwen7b_full_trace_seed456.log",
+    "failure_reason": "CUDA OOM: CUDA out of memory. Tried to allocate 4.64 GiB. GPU 0 has a total capacity of 94.97 GiB of which 225.56 MiB is free. Including non-PyTorch memory, this process has 94.74 GiB memory in use. Of the allocated memory 87.18 GiB is allocated by PyTorch, an",
+    "conclusion": "failed",
+    "completed_at": "2026-05-21T07:33:08.094Z"
+  },
+  "timestamp": "2026-05-21T07:33:10.049720+00:00",
+  "trigger": "update_registry"
+}

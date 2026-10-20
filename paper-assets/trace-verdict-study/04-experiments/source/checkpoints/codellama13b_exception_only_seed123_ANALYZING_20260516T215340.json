@@ -1,0 +1,34 @@
+{
+  "exp_id": "codellama13b_exception_only_seed123",
+  "project": "trace-verdict-study",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T19:10:52.335Z",
+    "updated_at": "2026-05-16T21:53:40.521Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123 --wandb_project trace-verdict-study --wandb_run_name codellama13b_exception_only_seed123 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123/final/eval_results.json --save_predictions\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "299731",
+      "log_path": "~/runs/trace-verdict-study/codellama13b_exception_only_seed123.log",
+      "submitted_at": "2026-05-16T19:10:52.141Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/exception_only_train.jsonl",
+      "data_count": 4720,
+      "model_name": "CodeLlama-13b-Instruct-hf",
+      "seed": 123
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T21:53:40.177Z"
+    }
+  },
+  "timestamp": "2026-05-16T21:53:40.739150+00:00",
+  "trigger": "update_registry"
+}

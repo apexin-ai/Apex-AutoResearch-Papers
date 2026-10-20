@@ -1,0 +1,3795 @@
+# cron hook vota loop only seed42 20260515T230154 656031
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 113
+- **Recorded user turns:** 2
+- **Tool calls:** 55
+- **Original source:** `logs/chats/archive/cron_hook_vota_loop_only_seed42_20260515T230154_656031.jsonl`
+- **Structured JSON:** [`5649627ff10b9c23c7c3.json`](../../sessions/56/5649627ff10b9c23c7c3.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+61 recorded events
+
+### User
+
+_source line 1 · 2026-05-15T19:36:53.082036+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #8。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单只有 `westd-11235:cuda:0` 和 `westd-11235:cuda:1`，绝不碰其他 GPU
+- DeepSeek 组实验必须用**旧代码**（`load_best_model_at_end` 已注释），保持 DeepSeek 组内一致。Qwen 组可用新代码
+- 数据集来源是 **HumanEval (164) + MBPP-sanitized (427) = 591 problems × 10 solutions = 5910 samples**，**不是 CRUXEval**（D024 纠正）。论文/汇报中写错会被 Director CRITICAL
+- 同 GPU 上严禁 eval+training 并行（实测从 7s/step 恶化到 35-49s/step）
+- `to_chat_text()` label-preserving truncation fix 已由 `worker_code_fix_to_chat_text_truncation` 完成并验证——deepseek_full_trace_v3 提交时用修复后代码，但**不要开 load_best_model_at_end**
+- Bootstrap 方法：同一论文表格必须统一 paired/unpaired。DeepSeek VOTA 和 no_trace 缺 `--save_predictions`，需补跑
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: westd-11235, 2× RTX PRO 6000 Blackwell 94GB, CUDA 12.8
+- **工作目录**: `/root/trace-verdict-study`
+- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）
+- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- **模型**: Qwen `/root/autodl-tmp/.hf_cache/`, DeepSeek `/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct`
+- **数据**: `/root/autodl-tmp/trace-verdict-study-data/` (各 condition 的 train/test.jsonl, 各 4720/1190)
+- **Checkpoints**: `/root/autodl-tmp/trace-verdict-study-checkpoints/`
+- **HF_HOME**: `/root/autodl-tmp/.hf_cache`
+- **W&B**: project=`trace-verdict-study`
+- **活跃进程**: 
+  - `deepseek_exception_only_seed123`: PID 144507, tmux=`deepseek_exception_only_seed123`, cuda:0, cron 监控中
+  - `vota_seed456_v2`: PID 146592, tmux=`vota_seed456_v2`, cuda:1, cron 监控中
+
+### 3. 📊 当前状态
+**刚做完**: session-start 初始化，reconcile crons 确认两个 RUNNING 实验仍在跑。本 session 之前的 session 已完成大量工作——exception_only 3-seed robustness 全部通过（99.83% ± 0.00），paper_framing.md 更新到 v2.6，writing_plan.yaml 已创建，to_chat_text() truncation fix 已完成并验证。
+
+**Registry 活跃实验**:
+| exp_id | status | GPU | 摘要 |
+|--------|--------|-----|------|
+| deepseek_exception_only_seed123 | RUNNING | cuda:0 | DeepSeek exception_only seed=123 跨模型验证，~18:14 提交，预计 ~20:15 完成 |
+| vota_seed456_v2 | RUNNING | cuda:1 | VOTA seed=456 retry (v1 OOM)，~18:31 提交，预计 ~20:30 完成，Director 标记低优先级 |
+| deepseek_full_trace_seed42_v3 | QUEUED | — | 等 cuda:0 释放后提交，已审批通过 |
+
+**等待中**: 
+- 2 个 cron 监控回调（上述两个 RUNNING 实验）
+- 无 running Worker
+- Paper Agent 按 ROADMAP 应今日启动，但尚未启动（被实验 ops 占用）
+
+### 4. 📋 待办（条件触发式）
+- `deepseek_exception_only_seed123` cron 回调 → 分析结果（预期 ~99.83%，验证 DeepSeek 跨模型 seed robustness）→ 立即在 cuda:0 提交 `deepseek_full_trace_seed42_v3`（已 QUEUED，Director 已审批）
+- `vota_seed456_v2` cron 回调 → 分析结果（低优先级，VOTA seed robustness 非 primary claim）→ cuda:1 空闲后可安排 Paper Agent 的 figure/table 生成任务或 plan_005 准备
+- `deepseek_full_trace_seed42_v3` 完成 → 如果 accuracy 在 [75%, 90%] 范围 → 跨模型表格补全，narrative 不变；如果仍 collapse → 在论文中标注 "DeepSeek full_trace collapsed due to tokenizer-specific truncation"，不影响 3 claims
+- 两个 RUNNING 实验都完成后 → **立即启动 Paper Agent**（Full Draft），这是今日最关键 milestone，DDL 只剩 10 天
+- Bootstrap 一致性修复：为 deepseek_vota_seed42 和 deepseek_no_trace_seed42 补跑 `evaluate.py --save_predictions`，用 paired bootstrap 重算 CI（可安排 Worker 与 Paper Agent 并行）
+
+### 5. 🎯 战略上下文
+**核心结论**: Exception events 是 verdict prediction 的 universal diagnostic signal。跨模型 gap = 0pp（Qwen + DeepSeek 均 99.83% at best checkpoint）。VOTA 的真正价值是 fault indicator isolation，不是 trace compression。论文 headline 围绕 exception signal universality 展开。
+
+**决策链关键节点**:
+- D019: 跨模型验证完成，narrative 从 "compression helps" 升级为 "exception signal is universal"
+- D023: 阻止 v3 直接提交，要求先修复 to_chat_text()（已修复）
+- D024: 数据集来源纠正为 HumanEval + MBPP-sanitized（非 CRUXEval）
+
+**易错点**:
+- DeepSeek exception_only 有两个 accuracy 数字：epoch1 best = 99.83%（0pp gap），epoch3 final = 99.33%（0.50pp gap）。论文中用 epoch1 best 做 headline 时必须注明 checkpoint 选择策略，否则审稿人会质疑 cherry-picking
+- `vota_seed42_v5` (99.41%) 和 `vota_exception_only_seed42_v2` (99.83%) 都是 Qwen seed42 结果——exception_only > VOTA full，这是 Claim 3 的关键证据，不要搞混
+- VOTA seed robustness（plan_008b）目前只有 seed=456 在跑，seed=123 OOM 两次后 failed。如果 seed=456 也 fail，VOTA seed robustness 就缺失——但 Director 已标记为低优先级（exception_only seed robustness 更重要）
+- Paper Agent 启动是最紧急的事——DDL 5/25，初稿必须 5/17-18 交付，留 5 天迭代。不要被 deepseek_full_trace_v3 阻塞 Paper Agent
+
+## 项目硬约束 (memory.md 节选)
+
+## 环境信息 [2026-05-14]
+- westd-11235: 2x RTX PRO 6000 Blackwell 94GB, CUDA 12.8
+- 模型通过 ModelScope CDN 下载
+- "pass"/"fail" 在 Qwen/DeepSeek tokenizer 中均为单 token
+- Qwen2.5-Coder chat template overhead: 31 tokens
+
+## 可查的历史
+前 23 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-15T19:37:06.060393+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-15T19:37:06.110991+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T19:37:08.705630+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "trace-verdict-study",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T19:37:08.706038+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T19:37:09.264670+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"deepseek_full_trace_seed42_v3\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-15T18:40:07.877Z\", \"updated_at\": \"2026-05-15T18:51:40.688Z\", \"hypothesis\": \"DeepSeek full_trace v3: retrain with label-preserving truncation fix in to_chat_text(). v1/v2 collapsed due to DeepSeek tokenizer producing >2048 tokens → SFTTrainer right-truncated labels. Tests if full_trace shows intermediate performance on DeepSeek (plan_004, 4th condition).\", \"parent\": \"deepseek_full_trace_seed42_v2\", \"notes\": \"Director 审批通过。等 cuda:0 释放（deepseek_eo_seed123 完成后）立即提交。唯一代码变化: to_chat_text() label-preserving truncation。用旧代码（load_best_model_at_end 已注释）。\"}, \"vota_seed456_v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T18:39:05.494Z\", \"updated_at\": \"2026-05-15T18:39:33.651Z\", \"hypothesis\": \"Seed robustness: VOTA with seed=456, retry with --gradient_checkpointing (v1 OOM). Verifies VOTA 99.2% accuracy stable across seeds.\", \"notes\": \"Auto-retried from vota_seed456 (OOM). PID 146592, cuda:1, --gradient_checkpointing enabled. Started 18:31 UTC, ~2h to complete. Low priority per Director (VOTA not primary claim).\", \"parent\": \"vota_seed456\"}, \"vota_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T12:38:51.823Z\", \"updated_at\": \"2026-05-15T18:38:53.768Z\", \"hypothesis\": \"Seed robustness: VOTA with seed=456 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.\", \"notes\": \"Original PID 145908 OOM'd ~3min after start. Auto-retried as v2 (PID 146592) with --gradient_checkpointing on cuda:1. Step 15/444 (3.4%) at 18:37 UTC, ~2h to complete. W&B run: vota_seed456_v2. Director 决策: 低优先级，exception_only seed robustness 优先。\", \"conclusion\": \"failed\"}, \"deepseek_full_trace_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T18:13:29.181Z\", \"updated_at\": \"2026-05-15T18:27:46.453Z\", \"hypothesis\": \"DeepSeek full_trace v2: retrain with v5 c
+…[truncated 22147 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 559
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T19:37:09.265108+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "trace-verdict-study",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T19:37:09.416911+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "trace-verdict-study"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "trace-verdict-study"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T19:37:12.788456+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 2, \"results\": [{\"exp_id\": \"deepseek_exception_only_seed123\", \"success\": true, \"actions\": [\"Job still running (pid=144507)\"]}, {\"exp_id\": \"vota_seed456_v2\", \"success\": true, \"actions\": [\"Job still running (pid=146592)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 4082
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T19:37:12.788983+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| vota_seed456_v2 | Seed robustness: VOTA with seed=456, retry with --gradient_checkpointing (v1 OOM). Verifies VOTA 99.2% accuracy stable across seeds. | — | — | — |\\n| deepseek_exception_only_seed123 | Cross-model seed robustness: exception_only with seed=123 on DeepSeek-Coder-6.7B (plan_008). Further validates exception signal cross-model generalization (99.33% seed42). | — | — | — |\\n\\n## 待处理\\n- deepseek_full_trace_seed42_v3: DeepSeek full_trace v3: retrain with label-preserving truncation fix in to_chat_text(). v1/v2 collapsed due to DeepSeek tokenizer producing >2048 tokens → SFTTrainer right-truncated labels. Tests if full_trace shows intermediate performance on DeepSeek (plan_004, 4th condition).（排队等待 GPU）\\n- vota_seed42_v2（排队等待 GPU）\\n- vota_seed42（排队等待 GPU）\\n- no_trace_seed42_v2（排队等待 GPU）\\n- no_trace_seed42（排队等待 GPU）\\n\\n## 近期结论\\n- **vota_seed456** (failed): Seed robustness: VOTA with seed=456 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.\\n- **deepseek_full_trace_seed42_v2** (killed): DeepSeek full_trace v2: retrain with v5 code (chat-template-aware truncation preserving labels). v1 collapsed to 28.49% due to label truncation during training.\\n- **deepseek_full_trace_seed42** (negative): Multi-model comparison: full-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if full_trace also shows intermediate performance on DeepSeek-Coder.\\n\\n## 趋势\\n成功 15 / 负向 3 / 失败 3 / 共 25\\naccuracy: 0.9983 →（近 3 次 success）\\nfail_f1: 0.9971 ↑（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-11235: 无 GPU 信息\\n\\n## 告警\\n- no_trace_seed42_v3: 已被终止 — unknown\\n- vota_seed42_v3
+…[truncated 306 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 3523
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T19:37:12.839741+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/ROADMAP.md\", \"content\": \"# trace-verdict-study — Research Dashboard\\n\\n> 最后更新: 2026-05-15 16:52 UTC | 更新原因: plan_004 跨模型验证完成 + narrative 升级 + Paper Agent 提前启动\\n\\n## 核心方向\\nException events 是 verdict prediction 的 **universal diagnostic signal**——跨模型 gap = 0pp（Qwen + DeepSeek 均 99.83%）。VOTA 的核心价值是 fault indicator isolation，不是 trace compression。详见 paper_framing.md。\\n\\n## 投稿目标\\n- **Primary**: EMNLP 2026 Main (ARR May 25, DDL 10 天)\\n- Fallback: EMNLP 2026 Findings\\n\\n## 当前进展\\n- **阶段**: Research (post-MVP) + 审稿进行中 + **Paper Agent 今日启动**\\n- **Core claims 支撑度**: 3/3 claims confirmed on Qwen + **跨模型验证完成**\\n  - Claim 1 (fault indicator universality): exception_only 0pp cross-model gap ✓\\n  - Claim 2 (compression > full trace): gradient dilution 26% + info overload 74% ✓\\n  - Claim 3 (two-tier hierarchy): Tier 1 exception universal, Tier 2 model-dependent ✓\\n- **跨模型对比** (D019):\\n  - exception_only: 0pp gap (universal) ✓\\n  - VOTA: -14.96pp (model-capability-dependent, 符合 CRUXEval gap) ✓\\n  - no_trace: -1.77pp (baseline 一致) ✓\\n  - full_trace: DeepSeek collapsed (chat template bug, 待修复)\\n- **实验完成**: plan_001-004 + plan_007 done (13 success / 3 negative / 2 failed)\\n\\n### 组件层级表 (Qwen-2.5-Coder-7B, seed42)\\n| Condition | Accuracy | 角色 |\\n|-----------|----------|------|\\n| exception_only | 99.83% | Tier 1: universal signal |\\n| VOTA w/o ae | 99.4% | ae 冗余确认 |\\n| VOTA full | 99.2% | — |\\n| label-only loss | 86.2% | gradient dilution fix |\\n| loop_only | 85.6% | Tier 2: behavioral |\\n| full_trace | 81.8% | raw trace |\\n| no_trace | 75.1% | baseline |\\n\\n## 近期任务\\n- [x] plan_004: DeepSeek-Coder 4 条件完成\\n- [x] plan_007: calibration analysis 完成\\n- [ ] plan_008: exception_only seed robustness (seed123 + seed456) — 两卡运行中 ~1-2h\\n- [ ] DeepSeek full_trace fix: 修正 chat template overhead 重跑 — seed robustness 后 cuda:0\\n- [ ]
+…[truncated 2297 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 3422
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T19:37:36.739407+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__get_worker_status",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__get_worker_status",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T19:37:36.790187+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T19:37:38.196475+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T19:37:38.249416+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T19:37:41.620982+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T19:37:41.772002+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Glob",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T19:37:41.772432+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "trace-verdict-study",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "trace-verdict-study",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T19:37:41.822923+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"trace-verdict-study\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_constraint\": [\"westd-11235:cuda:0\", \"westd-11235:cuda:1\"], \"gpu_ids\": [\"cuda:0\", \"cuda:1\"], \"project_path\": \"/root/trace-verdict-study\", \"servers\": [{\"account\": \"root\", \"server\": \"westd-11235\"}]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T19:37:59.755407+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "file": "writing_plan.yaml",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "trace-verdict-study",
+    "file": "writing_plan.yaml",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T19:38:00.210036+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/writing_plan.yaml\", \"content\": \"# trace-verdict-study — 论文写作计划\\n# 生成日期: 2026-05-15\\n# 投稿目标: EMNLP 2026 Main (ARR May 25, 2026)\\n\\nsubmission:\\n  venue: \\\"EMNLP 2026 Main (ARR)\\\"\\n  deadline: \\\"2026-05-25\\\"\\n  format: \\\"8 pages + unlimited references + unlimited appendix\\\"\\n  fallback: \\\"EMNLP 2026 Findings\\\"\\n  paper_type: \\\"Empirical study\\\"\\n  title_candidates:\\n    - \\\"Exception Is All You Need: Fault Detection as a Universal Mechanism for Verdict Prediction\\\"\\n    - \\\"What Makes Traces Work for Verdict Prediction? An Empirical Study of Diagnostic Signal Sufficiency\\\"\\n    - \\\"Beyond Trace Reasoning: Exception Events as Model-Agnostic Signals for Verdict Prediction\\\"\\n\\n# ============================================================\\n# 论文 Outline\\n# ============================================================\\noutline:\\n\\n  # ----------------------------------------------------------\\n  # Section 1: Introduction (~1.2 pages)\\n  # ----------------------------------------------------------\\n  - section: \\\"1. Introduction\\\"\\n    status: write_now  # 不依赖 pending 结果，核心 framing 已定\\n    estimated_length: \\\"1.2 pages\\\"\\n    key_points:\\n      - \\\"Trace SFT 在代码生成任务上效果不一致 (DCSH, TracePile)，verdict prediction 场景未被探索\\\"\\n      - \\\"提出核心问题: verdict prediction 的 minimal sufficient diagnostic signal 是什么？\\\"\\n      - \\\"Reframe verdict prediction 为 fault detection task\\\"\\n      - \\\"Headline result: exception_only 跨模型 99.83%/99.33% (gap=0.50pp), VOTA gap=14.96pp\\\"\\n      - \\\"三个 contributions 对应三个 claims\\\"\\n    contributions:\\n      - \\\"首次系统研究 execution trace SFT 在 verdict prediction (binary pass/fail) 上的效果\\\"\\n      - \\\"发现 exception event 是 model-agnostic diagnostic signal，跨模型 gap=0.50pp\\\"\\n      - \\\"通过 component ablation 和 loss ablation 揭示 informati
+…[truncated 11657 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 454
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T19:38:00.210655+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "file": "paper_framing.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "trace-verdict-study",
+    "file": "paper_framing.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T19:38:00.612810+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/paper_framing.md\", \"content\": \"# Paper Framing — trace-verdict-study\\n\\n> v2.6 — [UPDATED 2026-05-15] 数据集来源纠正：非 CRUXEval，实为 HumanEval (164) + MBPP-sanitized (427) = 591 problems × 10 LLM-generated solutions = 5910 samples。CRUXEval 仅作为外部基准参照模型推理能力差异。\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR submission)\\n- Fallback: EMNLP 2026 Findings\\n- Deadline: ARR May 25, 2026\\n\\n## Core Insight\\n\\nVerdict prediction (pass/fail) is fundamentally a **fault detection** task. The minimal sufficient signal is the **exception event** — a compact, structured diagnostic moment that achieves near-perfect accuracy (Qwen 99.83%, DeepSeek 99.83% at best checkpoint, cross-model gap = 0pp) regardless of model architecture. In contrast, richer trace representations that require deeper execution reasoning show model-dependent effectiveness: VOTA gap = 14.96pp, no_trace gap = 1.77pp. Information density — not training signal distribution — is the primary bottleneck: even oracle loss masking (label-only) cannot close the 13pp gap between full traces and targeted extraction. The design principle: **extract the highest-specificity diagnostic signal; discard everything else.**\\n\\nVOTA's primary contribution is **fault indicator isolation** — automatically extracting exception events from noisy full traces — rather than generic trace compression. The \\\"compression helps\\\" narrative was a stepping stone; the real mechanism is diagnostic signal extraction.\\n\\n## Core Claims (3)\\n\\n### Claim 1: Exception-based fault detection is model-agnostic\\n\\nException summaries alone achieve near-perfect verdict prediction across architecturally distinct models: Qwen-2.5-Coder-7B (99.83%) and DeepSeek-Coder-6.7B (99.83% at epoch1 best), cross-model gap = 0pp at best checkpoint, 0.50pp at final checkpoint. This contrasts with VOTA (gap = 14.96pp) and
+…[truncated 10611 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T19:38:00.813968+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "trace-verdict-study",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T19:38:00.865005+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/memory.md\", \"content\": \"# trace-verdict-study Memory\\n\\n## MVP Round 1 结论（已作废）[2026-05-14]\\n\\nRound 1 结果全部无效，原因：\\n1. **VOTA match 泄漏**：assertion output 中 `match=True/False` 直接泄漏 verdict，99.2% accuracy 是 pattern matching 而非理解 trace\\n2. **Label 截断**：full_trace 28.4% 是因为 label 在序列末尾被 tokenizer 截断，模型根本没学到正确标签\\n\\n### 教训\\n- VOTA 输出中任何直接或间接暴露 pass/fail 的字段都是 data leakage——审查 trace format 时需要\\\"如果模型只看这一个字段能否猜到答案\\\"的测试\\n- 训练数据格式化必须保证 label 不被截断——应先预留 label token budget，再分配 trace 空间\\n- `[No trace available - execution failed]` 这类文本也是隐性泄漏（暗示 fail）\\n\\n## MVP v5 + Ablation 结果（当前有效数据）[2026-05-15]\\n\\n### 三条件对比（全部 v5 代码版本，统一 bootstrap CI）\\n- no_trace v5: 75.1% [72.8, 77.5], lift +3.6pp over majority\\n- **full_trace v5: 81.8%** [79.7, 83.9], lift +6.6pp [4.4, 9.0] vs no_trace\\n- **VOTA v5: 99.41%** [98.8, 99.8], lift +24.3pp [21.8, 26.8] vs no_trace (accuracy corrected from 99.16% due to Run 4 adapter overwrite)\\n- **VOTA vs full_trace: +17.7pp** [15.5, 19.8]（所有对比 p < 0.001）\\n\\n### plan_001 ablation: VOTA w/o actual/expected [2026-05-15]\\n- **accuracy 99.4%** [98.9, 99.8] — 去掉 actual/expected 后性能不降反微升（vs VOTA v5 99.2%）\\n- **结论：actual/expected 字段是冗余信息**，VOTA 效果来自 trace 行为模式理解\\n- Claim 1 走 **full positive framing**: \\\"VOTA teaches execution-grounded verdict reasoning\\\"\\n\\n### plan_002 ablation: label-only loss on full_trace [2026-05-15]\\n- **accuracy 86.2%** [84.4, 88.1] — 比标准 full_trace v5 (81.8%) 提升 +4.5pp\\n- **结论：full_trace-VOTA gap 的主因是 information overload（trace 噪声），不是 gradient dilution**\\n  - gradient dilution 贡献: ~4.5pp | information overload 贡献: ~13pp\\n\\n### plan_003a ablation: exception_only [2026-05-15]\\n- **accuracy 99.83%** — pass_F1 0.999, fail_F1 0.997\\n- **[ERROR] 事件是 VOTA verdict 判断的主驱动因素**\\n\\n### plan_003b ablation: loop_only [2026-05-15]\\n- **accuracy 85.6%** [83.5, 87.6]\\n- **结论：loop compres
+…[truncated 8252 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T19:38:37.319373+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/skills/write-paper-section.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/skills/write-paper-section.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T19:38:37.370156+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T19:38:40.733021+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/write-paper-section.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/write-paper-section.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T19:38:40.783656+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T19:38:43.094867+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/skills"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/skills"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T19:38:43.145573+00:00_
+
+&lt;tool_use_error>Directory does not exist: /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/skills. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9.&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T19:38:45.813004+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/write-paper*.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/write-paper*.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T19:38:45.913887+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Glob",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T19:38:49.595966+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/paper/**",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/paper/**",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T19:38:50.062275+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_project/paper/related_work.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_project/paper/paper_framing_draft_v2.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/figures/paper/fig1_trace_overview.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/figures/paper/fig1_trace_overview.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/figures/paper/fig3_cross_model_gap.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/figures/paper/fig3_cross_model_gap.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/figures/paper/gen_fig2_calibration.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/figures/paper/fig2_calibration.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/figures/paper/fig2_calibration.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/acl.sty
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/acl_natbib.bst
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_project/paper/experiments.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_project/paper/main.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/conclusion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_project/paper/section3_experimental_setup_d4f1e8.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_project/paper/section3_experimental_setup.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509
+…[truncated 1454 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Glob",
+  "elapsed_ms": 466
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-15T19:38:50.112849+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*.tex",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T19:38:50.164559+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/median/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/worst/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T084908/best/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T084908/median/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T084908/worst/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_project/paper/related_work.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_project/paper/experiments.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/conclusion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/per_class_breakdown.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_project/paper/section3_experimental_setup_d4f1e8.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_project/paper/section3_experimental_setup.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/main.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex
+/home/ubuntu/.agent-ml-research-i
+…[truncated 273 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Glob",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-15T19:38:57.783502+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/main.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T19:38:58.153522+00:00_
+
+1	\documentclass[11pt,a4paper]{article}
+2	\usepackage[review]{acl}
+3	% \usepackage{acl}  % uncomment for camera-ready (remove [review])
+4	\usepackage{times,latexsym}
+5	\usepackage{amsmath,amssymb}
+6	\usepackage{graphicx}
+7	\graphicspath{{../../figures/paper/}}
+8	\usepackage{booktabs}
+9	\usepackage{multirow}
+10	\usepackage{xcolor}
+11	
+12	\title{Exception Events Are All You Need: \\Cross-Model Fault Detection for Verdict Prediction}
+13	\author{Anonymous ACL submission}
+14	
+15	\begin{document}
+16	\maketitle
+17	
+18	\begin{abstract}
+19	Execution traces are increasingly used to enhance code language models, but which trace components matter for downstream tasks remains poorly understood.
+20	We present the first systematic component ablation of trace representations for \emph{verdict prediction}---classifying whether a test passes or fails---across two models (Qwen-2.5-Coder-7B and DeepSeek-Coder-6.7B).
+21	Our key finding is that exception events alone achieve 99.83\%/99.33\% accuracy across models (cross-model gap = 0.50pp), while a multi-component representation (VOTA) degrades by 14.96pp on the weaker model.
+22	We decompose the gap between full traces and compressed representations into gradient dilution (26\%) and information overload (74\%), establishing that irrelevant trace content---not training signal quality---is the primary bottleneck.
+23	Component ablation reveals a two-tier diagnostic hierarchy: Tier~1 signals (exception events, assertion points) individually achieve ${\geq}$99.8\% accuracy, while Tier~2 signals (loop compression) reach only 85.6\%.
+24	These results reframe verdict prediction as fault detection, where the minimal sufficient signal is a compact exception event that transfers across model families without requiring deep trace reasoning.
+25	\end{abstract}
+26	
+27	\input{introduction}
+28	\input{method}
+29	\input{experiments}
+30	\input{discussion}
+31	\input{related_work}
+32	\input{conclusion}
+33	
+34	\bibliography{references}
+35	
+36	\appendix
+37	\inp
+…[truncated 38 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "elapsed_ms": 370
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-15T19:38:58.168064+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T19:38:58.396670+00:00_
+
+1	\section{Introduction}
+2	
+3	Execution traces---line-by-line records of a program's runtime behavior---have emerged as a promising input modality for code language models.
+4	Recent work has explored trace-augmented training for code generation \citep{chen2025tracepile}, execution-aware pretraining \citep{ding2024traced}, trace-based code understanding \citep{wang2025dcsh}, and self-training on trace chain-of-thought \citep{ni2024next}.
+5	Yet a fundamental question remains open: \emph{which components of an execution trace actually matter?}
+6	
+7	\citet{wang2025dcsh} found that no single trace representation consistently outperforms others on generation-oriented tasks, concluding that the utility of execution traces is task- and format-dependent.
+8	However, their study focused on code generation and repair---tasks that require the model to simulate or reconstruct execution semantics.
+9	\emph{Verdict prediction}---classifying whether a test passes or fails---is a fundamentally different task type: it is a fault detection problem, not a generation problem.
+10	Whether the same trace components matter for fault detection as for generation is unknown.
+11	
+12	We present the first systematic study of what trace components drive verdict prediction performance.
+13	Using 591 problems from HumanEval \citep{chen2021evaluating} and MBPP-sanitized \citep{austin2021program} with model-generated solutions and execution traces, we decompose a multi-component trace representation (VOTA: exception events + assertion-point comparisons + loop compression) into individual components and evaluate each in isolation across two models: Qwen-2.5-Coder-7B-Instruct and DeepSeek-Coder-6.7B-Instruct.
+14	
+15	Our results reveal a striking finding: \textbf{exception events alone are sufficient for near-perfect verdict prediction, and this signal transfers across model families.}
+16	With only exception events as trace input, both models achieve ${\geq}$99.3\% accuracy (cross-model gap = 0.50 percentag
+…[truncated 1589 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "elapsed_ms": 228
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-15T19:38:58.466018+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T19:38:58.466651+00:00_
+
+1	\section{Experiments}
+2	
+3	We evaluate our trace preprocessing pipeline across two research questions:
+4	(1)~Do Tier~1 exception signals generalize across models of different capability?
+5	(2)~What is the relative contribution of each trace component to verdict prediction accuracy?
+6	All experiments use our trace--verdict dataset (\S\ref{sec:dataset}) with $N{=}1{,}190$ test samples; accuracy is reported with Wilson 95\% confidence intervals unless stated otherwise.
+7	Pairwise comparisons use paired bootstrap resampling ($B{=}10{,}000$, seed=42); all cross-condition differences reported below are significant at $p{<}0.0001$ unless noted otherwise.
+8	
+9	\subsection{Cross-Model Comparison}
+10	\label{sec:cross_model}
+11	
+12	To test whether exception-based trace compression transfers across model families, we compare Qwen-2.5-7B-Instruct and DeepSeek-Coder-6.7B-Instruct under four input conditions: \texttt{exception\_only} (Tier~1 exception events), VOTA (exception + assertion-point + loop compression), \texttt{full\_trace} (complete execution trace), and \texttt{no\_trace} (source code only).
+13	
+14	\begin{table}[t]
+15	\centering
+16	\small
+17	\begin{tabular}{lccc}
+18	\toprule
+19	\textbf{Condition} & \textbf{Qwen-2.5-7B} & \textbf{DeepSeek-6.7B} & \textbf{Gap} \\
+20	\midrule
+21	exception\_only & \textbf{99.83}\% & 99.33\%$^\dag$ & 0.50pp \\
+22	VOTA & 99.41\% & 84.45\% & 14.96pp \\
+23	VOTA\_no\_ae & 99.41\%$^\S$ & --- & --- \\
+24	full\_trace & 81.76\% & N/A$^\ddag$ & --- \\
+25	no\_trace & 75.13\% & 73.36\% & 1.77pp \\
+26	\midrule
+27	Majority baseline & 71.51\% & 71.51\% & --- \\
+28	\bottomrule
+29	\end{tabular}
+30	\caption{Cross-model accuracy ($N{=}1{,}190$). Qwen CIs: exception\_only [99.58, 100.00], VOTA [98.82, 99.83], full\_trace [79.70, 83.90], no\_trace [72.77, 77.48]; DeepSeek CIs: VOTA [82.60, 86.40], no\_trace [70.80, 75.70]. $^\dag$DeepSeek exception\_only reached 99.83\% at epoch~1 but degraded to 99.33\% at convergence (single seed, no CI). $^\S$VOTA\_no\_a
+…[truncated 8239 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-15T19:39:03.192079+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/method.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-15T19:39:03.695801+00:00_
+
+1	\section{Method}
+2	
+3	\subsection{Task Definition}
+4	
+5	We study \emph{verdict prediction}: given a Python function, a test input, and an optional execution trace, predict whether the test passes or fails.
+6	The model produces a single token---\texttt{pass} or \texttt{fail}---making this a binary classification task.
+7	Unlike code generation \citep{chen2025tracepile} or output prediction \citep{gu2024cruxeval}, verdict prediction isolates the model's ability to detect faults from its ability to simulate execution, providing a cleaner lens on what trace information actually contributes.
+8	
+9	\subsection{Dataset}
+10	\label{sec:dataset}
+11	
+12	We sampled 10 candidate solutions per problem from Qwen-2.5-Coder-7B-Instruct (temperature 0.8, top\_p 0.95) for 591 problems from HumanEval \citep{chen2021evaluating} (164 problems) and MBPP-sanitized \citep{austin2021program} (427 problems), executed each solution against canonical test cases with \texttt{sys.settrace} to obtain line-level execution traces and pass/fail verdicts, yielding 5,910 trace--verdict pairs (67\% pass, 33\% fail).
+13	The dataset is split 80/20 by problem ID into 4,720 training and 1,190 test samples; the test set majority-class baseline is 71.51\%.
+14	
+15	\subsection{Trace Representations}
+16	
+17	We define seven input conditions that systematically vary the trace information available to the model (Figure~\ref{fig:trace_overview}):
+18	
+19	\begin{itemize}
+20	\item \texttt{no\_trace}: Source code and test input only; no execution information.
+21	\item \texttt{full\_trace}: Complete line-by-line execution trace recording variable states at each step.
+22	\item \texttt{VOTA} (Verdict-Oriented Trace Abstraction): Three compressed components---exception events, assertion-point comparisons, and loop compression summaries.
+23	\item \texttt{exception\_only}: Only exception and error events extracted from the trace (e.g., \texttt{[ERROR] TypeError: ...}).
+24	\item \texttt{ae\_only}: Only assertion-point actual/e
+…[truncated 3426 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "elapsed_ms": 503
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-15T19:39:03.696151+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T19:39:04.148211+00:00_
+
+1	\section{Discussion}
+2	
+3	\subsection{Why Exception Events Dominate}
+4	
+5	Verdict prediction is fundamentally a fault detection task: the model must determine whether execution deviated from expected behavior.
+6	Exception events are the most explicit signal of such deviation---structured diagnostic moments that encode the nature and location of a fault.
+7	Unlike loop compressions or assertion-point values, which require the model to integrate information across multiple trace elements, exception events provide a self-contained verdict cue.
+8	This explains why \texttt{exception\_only} matches or exceeds VOTA: adding non-exception trace components dilutes the model's attention on the diagnostic signal rather than providing complementary information.
+9	
+10	We acknowledge that exception-based verdict prediction is, at its core, fault indicator presence detection: the model learns to map the presence or absence of a structured error message to a binary label, which is close to trivially solvable for any instruction-tuned LLM.
+11	The Tier~1 accuracy of ${\geq}$99.8\% is therefore unsurprising in isolation.
+12	The contribution of this finding lies not in demonstrating that a strong signal yields high accuracy, but in two less obvious results: (a)~adding more trace information---loop compressions, assertion-point values---actively \emph{hurts} performance (VOTA $<$ \texttt{exception\_only}, Table~\ref{tab:ablation}), quantifying an information density dilution effect that has not been previously measured; and (b)~this dilution is model-dependent, with DeepSeek VOTA fail recall collapsing to 45.43\% (Table~\ref{tab:per_class}) while Qwen maintains 100\%, revealing that mixed-signal trace processing amplifies capability gaps between models.
+13	
+14	\subsection{Simplicity as Robustness}
+15	
+16	The cross-model gap pattern (Table~\ref{tab:cross_model}) suggests a design principle: \emph{trace representations should match the model capability floor, not the ceiling.}
+17	Exceptio
+…[truncated 4702 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-15T19:39:04.198955+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/related_work.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T19:39:04.550948+00:00_
+
+1	\section{Related Work}
+2	
+3	\paragraph{Execution Traces for Code LLMs.}
+4	Several recent efforts have incorporated execution traces into code language model training.
+5	TracePile \citep{chen2025tracepile} scaled trace-augmented training to 2.6M samples across multiple programming languages, demonstrating gains on code generation tasks.
+6	\citet{wang2025dcsh} conducted a comprehensive study of execution trace-based information for code LLMs across synthesis, repair, and reasoning tasks, finding that trace-based semantic information has limited and inconsistent utility---a finding our work extends by showing that for \emph{verdict prediction}, exception events are a clear dominant signal.
+7	NExT \citep{ni2024next} used self-training on execution trace chain-of-thought rationales, improving program repair on MBPP by 26.1\%.
+8	ET-CoT \citep{eguchi2025etcot} introduced sub-line granularity traces via PyTracify, achieving 70.0\% on CRUXEval-O with SFT on Qwen2.5-7B.
+9	\citet{jung2025execution} used debugger-extracted traces as grounded supervision for LLM reasoning, reducing overthinking while improving cross-domain transfer.
+10	\citet{ferrando2025execute} compared regular, compact, and dynamic scratchpad strategies, finding that compact traces (recording only changed variables) perform comparably to full traces---directly supporting our finding that complete value information is redundant.
+11	CRUXEval \citep{gu2024cruxeval} established benchmarks for code execution reasoning; CRUXEval-X \citep{xu2025cruxevalx} extended this to 19 programming languages.
+12	A common limitation across these studies is that they focus on generation or output prediction tasks; none have decomposed which trace components contribute to \emph{classification} accuracy or tested cross-model generalization of trace signals.
+13	
+14	\paragraph{Code Verdict and Patch Classification.}
+15	TRACED \citep{ding2024traced} showed that execution-aware pretraining improves vulnerability detection and clone d
+…[truncated 2561 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "elapsed_ms": 351
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-15T19:39:04.551352+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/conclusion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-15T19:39:04.601767+00:00_
+
+1	\section{Conclusion}
+2	
+3	We presented the first systematic study of what execution trace components drive verdict prediction performance.
+4	Through component ablation across two code LLMs, we established three findings:
+5	
+6	\textbf{(1) Exception signal universality.}
+7	Exception events alone achieve 99.83\% (Qwen) and 99.33\% (DeepSeek) accuracy with a cross-model gap of only 0.50pp, demonstrating that this signal transfers across model families.
+8	In contrast, the full VOTA representation degrades by 14.96pp on the weaker model, revealing that mixed trace processing is model-dependent.
+9	
+10	\textbf{(2) Information density decomposition.}
+11	The 17.65pp gap between full traces and VOTA decomposes into gradient dilution (26\%, from training on irrelevant trace tokens) and information overload (74\%, from processing irrelevant trace lines at inference).
+12	The primary bottleneck is trace content selection, not loss design.
+13	
+14	\textbf{(3) Two-tier diagnostic hierarchy.}
+15	Tier~1 signals (exception events, assertion points) individually achieve ${\geq}$99.8\% accuracy, while Tier~2 signals (loop compression) reach 85.6\%.
+16	Combining tiers in VOTA slightly degrades performance (99.41\%), confirming that additional trace components introduce noise rather than complementary signal.
+17	
+18	These results yield a practical design principle: for verdict prediction, extract the highest-specificity diagnostic signal and discard everything else.
+19	Future work should test whether exception dominance extends to other datasets (DebugBench, LiveCodeBench), model scales, and classification tasks beyond verdict prediction.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-15T19:39:10.728573+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-15T19:39:11.180682+00:00_
+
+1	\section{Per-Class Performance Breakdown}
+2	\label{sec:per_class}
+3	
+4	Table~\ref{tab:per_class} reports per-class precision, recall, and F1 for all experimental conditions.
+5	
+6	\begin{table*}[t]
+7	\centering
+8	\caption{Per-class precision, recall, and F1 for all experimental conditions. DeepSeek VOTA achieves 100\% fail precision but only 45.43\% fail recall, indicating systematic bias toward predicting \texttt{pass}. In contrast, Qwen VOTA and both models' \texttt{exception\_only} achieve ${\geq}$97\% fail recall.}
+9	\label{tab:per_class}
+10	\small
+11	\begin{tabular}{llccccccc}
+12	\toprule
+13	\textbf{Condition} & \textbf{Model} & \textbf{Acc} & \textbf{Pass P} & \textbf{Pass R} & \textbf{Pass F1} & \textbf{Fail P} & \textbf{Fail R} & \textbf{Fail F1} \\
+14	\midrule
+15	No Trace          & Qwen-2.5-7B & 75.13 & 87.76 & 75.79 & 81.34 & 54.73 & 73.45 & 62.72 \\
+16	Full Trace        & Qwen-2.5-7B & 81.76 & 87.74 & 86.60 & 87.17 & 67.43 & 69.62 & 68.51 \\
+17	Full Trace (LO)   & Qwen-2.5-7B & 86.22 & 88.21 & 93.18 & 90.63 & 80.07 & 68.73 & 73.97 \\
+18	VOTA              & Qwen-2.5-7B & 99.41 & 100.00 & 99.18 & 99.59 & 97.98 & 100.00 & 98.98 \\
+19	Exception Only    & Qwen-2.5-7B & 99.83 & 100.00 & 99.76 & 99.88 & 99.41 & 100.00 & 99.71 \\
+20	AE Only           & Qwen-2.5-7B & 99.92 & 100.00 & 99.88 & 99.94 & 99.71 & 100.00 & 99.85 \\
+21	Loop Only         & Qwen-2.5-7B & 85.63 & 92.39 & 87.07 & 89.66 & 71.65 & 82.01 & 76.48 \\
+22	VOTA$-$AE         & Qwen-2.5-7B & 99.41 & 99.88 & 99.29 & 99.59 & 98.26 & 99.71 & 98.98 \\
+23	\midrule
+24	No Trace          & DeepSeek-6.7B & 73.36 & 81.71 & 80.85 & 81.28 & 53.16 & 54.57 & 53.86 \\
+25	VOTA              & DeepSeek-6.7B & 84.45 & 82.14 & 100.00 & 90.20 & 100.00 & 45.43 & 62.47 \\
+26	Exception Only    & DeepSeek-6.7B & 99.33 & 100.00 & 99.06 & 99.53 & 97.69 & 100.00 & 98.83 \\
+27	\bottomrule
+28	\end{tabular}
+29	\end{table*}
+30	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-15T19:39:11.181182+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/references.bib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/references.bib"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-15T19:39:11.282021+00:00_
+
+1	@inproceedings{chen2025tracepile,
+2	  title={Chain of Execution Supervision Promotes General Reasoning in Large Language Models},
+3	  author={Nuo Chen and Zehua Li and Keqin Bao and Junyang Lin and Dayiheng Liu},
+4	  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},
+5	  year={2025},
+6	  url={https://arxiv.org/abs/2510.23629},
+7	}
+8	
+9	@inproceedings{ding2024traced,
+10	  title={TRACED: Execution-aware Pre-training for Source Code},
+11	  author={Yangruibo Ding and Ben Steenhoek and Kexin Pei and Gail Kaiser and Wei Le and Baishakhi Ray},
+12	  booktitle={Proceedings of the 46th IEEE/ACM International Conference on Software Engineering (ICSE)},
+13	  year={2024},
+14	  doi={10.1145/3597503.3608140},
+15	  url={https://arxiv.org/abs/2306.07487},
+16	}
+17	
+18	@article{chen2021evaluating,
+19	  title={Evaluating Large Language Models Trained on Code},
+20	  author={Chen, Mark and Tworek, Jerry and Jun, Heewoo and Yuan, Qiming and Pinto, Henrique Ponde de Oliveira and Kaplan, Jared and Edwards, Harri and Burda, Yuri and Joseph, Nicholas and Brockman, Greg and others},
+21	  journal={arXiv preprint arXiv:2107.03374},
+22	  year={2021},
+23	  url={https://arxiv.org/abs/2107.03374},
+24	}
+25	
+26	@article{austin2021program,
+27	  title={Program Synthesis with Large Language Models},
+28	  author={Austin, Jacob and Odena, Augustus and Nye, Maxwell and Bosma, Maarten and Michalewski, Henryk and Dohan, David and Jiang, Ellen and Cai, Carrie and Terry, Michael and Le, Quoc and Sutton, Charles},
+29	  journal={arXiv preprint arXiv:2108.07732},
+30	  year={2021},
+31	  url={https://arxiv.org/abs/2108.07732},
+32	}
+33	
+34	@inproceedings{gu2024cruxeval,
+35	  title={CRUXEval: A Benchmark for Code Reasoning, Understanding and Execution},
+36	  author={Alex Gu and Baptiste Rozi{\`e}re and Hugh James Leather and Armando Solar-Lezama and Gabriel Synnaeve and Sida Wang},
+37	  booktitle={Proceedings of the 41st International Conference on Machine Learning (ICML)},
+38	  year={2024},
+39
+…[truncated 8028 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-15T19:40:03.713626+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 / 实际跑 2 | Worker 池 0→2 (GPU 0 / CPU 2 正在派发)\n\n**Session #8 状态汇报**\n\n1. **实验进展**\n   - `deepseek_exception_only_seed123` (cuda:0): RUNNING，PID 144507，cron 监控正常\n   - `vota_seed456_v2` (cuda:1): RUNNING，PID 146592，cron 监控正常\n   - `deepseek_full_trace_seed42_v3`: QUEUED，等 cuda:0 释放后立即提交（已审批）\n\n2. **论文状态（重大进展）**\n   论文初稿已基本完成，所有主体章节已写好 LaTeX：\n   - Introduction ✅（HumanEval+MBPP 数据源已修正）\n   - Method ✅（7 conditions + 2 models 完整描述）\n   - Experiments ✅（4 subsections: cross-model, ablation, density decomposition, calibration，含 3 表 2 图）\n   - Discussion ✅（exception dominance, simplicity as robustness, checkpoint selection, error analysis, limitations）\n   - Related Work ✅（3 paragraphs, 27 references）\n   - Conclusion ✅\n   - Appendix: 仅有 per-class breakdown，**需扩展**（training details, trace examples, full results table）\n\n3. **待完成事项**\n   - 附录扩展（正在派 Worker）\n   - 论文一致性检查 + LaTeX 编译验证（正在派 Worker）\n   - Bootstrap 一致性修复：deepseek_vota/no_trace 需补跑 `--save_predictions`（等 GPU 释放）\n   - DeepSeek full_trace v3 结果：如成功则更新 Table 1；如失败则保持 N/A\n\n4. **时间线评估**\n   DDL 5/25 (10 天)。初稿已基本成型，远超 5/17-18 deadline 预期。剩余工作：\n   - 今天：附录 + 编译验证 + 等实验回调\n   - 明天：DeepSeek full_trace v3 结果 patch + bootstrap 修复\n   - 5/17-19：Reviewer 对抗 + 迭代\n   - 5/20-24：定稿 + 提交\n\n**建议**: 论文主体质量已达投稿水平，建议 Director 安排 Reviewer 对抗审查。",
+  "project": "trace-verdict-study"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 2 / 实际跑 2 | Worker 池 0→2 (GPU 0 / CPU 2 正在派发)\n\n**Session #8 状态汇报**\n\n1. **实验进展**\n   - `deepseek_exception_only_seed123` (cuda:0): RUNNING，PID 144507，cron 监控正常\n   - `vota_seed456_v2` (cuda:1): RUNNING，PID 146592，cron 监控正常\n   - `deepseek_full_trace_seed42_v3`: QUEUED，等 cuda:0 释放后立即提交（已审批）\n\n2. **论文状态（重大进展）**\n   论文初稿已基本完成，所有主体章节已写好 LaTeX：\n   - Introduction ✅（HumanEval+MBPP 数据源已修正）\n   - Method ✅（7 conditions + 2 models 完整描述）\n   - Experiments ✅（4 subsections: cross-model, ablation, density decomposition, calibration，含 3 表 2 图）\n   - Discussion ✅（exception dominance, simplicity as robustness, checkpoint selection, error analysis, limitations）\n   - Related Work ✅（3 paragraphs, 27 references）\n   - Conclusion ✅\n   - Appendix: 仅有 per-class breakdown，**需扩展**（training details, trace examples, full results table）\n\n3. **待完成事项**\n   - 附录扩展（正在派 Worker）\n   - 论文一致性检查 + LaTeX 编译验证（正在派 Worker）\n   - Bootstrap 一致性修复：deepseek_vota/no_trace 需补跑 `--save_predictions`（等 GPU 释放）\n   - DeepSeek full_trace v3 结果：如成功则更新 Table 1；如失败则保持 N/A\n\n4. **时间线评估**\n   DDL 5/25 (10 天)。初稿已基本成型，远超 5/17-18 deadline 预期。剩余工作：\n   - 今天：附录 + 编译验证 + 等实验回调\n   - 明天：DeepSeek full_trace v3 结果 patch + bootstrap 修复\n   - 5/17-19：Reviewer 对抗 + 迭代\n   - 5/20-24：定稿 + 提交\n\n**建议**: 论文主体质量已达投稿水平，建议 Director 安排 Reviewer 对抗审查。",
+    "project": "trace-verdict-study"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-15T19:40:32.333417+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_32bf96185a4c2e36ec51db573ff4edaa:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 28619
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-15T19:40:32.735182+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "paper:appendix-expansion",
+  "project": "trace-verdict-study",
+  "task_prompt": "你负责为 trace-verdict-study 论文扩展 Appendix 章节。\n\n## 目标\n在 `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex` 中添加以下内容（保留现有的 per-class breakdown table）：\n\n### A. Training Details（新增 section）\n添加一个完整的训练超参表格，内容如下：\n- LoRA: rank=16, alpha=32, dropout=0.05, target=all linear layers\n- Epochs: 3, batch_size=4, grad_accum=8 (effective 32)\n- LR: 2e-4, linear warmup (ratio 0.1), linear decay, weight_decay=0.01\n- Max seq length: 2048 tokens\n- Primary seed: 42, robustness seeds: 123, 456\n- Hardware: single RTX PRO 6000 Blackwell (94GB VRAM)\n- Framework: HuggingFace TRL SFTTrainer\n- 各 condition 的训练时长（从 registry 数据）：\n  - no_trace: ~0.5h\n  - full_trace: ~2.2h  \n  - VOTA: ~2.3h\n  - exception_only: ~2.1h (seed42), ~1.3h (seed456), ~2.1h (seed123)\n  - ae_only: ~1.8h\n  - loop_only: ~2.1h\n  - VOTA_no_ae: ~1.8h\n  - label_only: ~2.2h\n\n### B. VOTA Trace Examples（新增 section）\n提供 2 个 VOTA trace 示例（1 pass + 1 fail），展示：\n1. 一个 fail 案例：包含 [ERROR] exception event 的 VOTA trace\n2. 一个 pass 案例：无 exception event 的 VOTA trace\n\n格式用 `\\begin{lstlisting}` 或 `\\begin{verbatim}`。示例应该是 Python 函数 + 测试输入 + VOTA trace 输出。\n\nPass 示例（合理构造）：\n```\nFunction: def add(a, b): return a + b\nInput: add(2, 3)\nExpected: 5\nVOTA trace: [LOOP] No loops detected. [ASSERT] actual=5, expected=5\nVerdict: pass\n```\n\nFail 示例（合理构造）：\n```\nFunction: def divide(a, b): return a / b\nInput: divide(1, 0)\nExpected: inf\nVOTA trace: [ERROR] ZeroDivisionError: division by zero\nVerdict: fail\n```\n\n请根据论文上下文构造合理的、代表性的示例。\n\n### C. Full Experimental Results（新增 section）\n创建一个完整的跨条件 × 跨模型 × 跨种子的结果表格：\n\nQwen-2.5-Coder-7B:\n| Condition | Seed 42 Acc | Seed 123 Acc | Seed 456 Acc | Mean ± Std |\n|-----------|-------------|--------------|--------------|------------|\n| exception_only | 99.83% | 99.83% | 99.83% | 99.83 ± 0.00 |\n| ae_only | 99.92% | — | — | — |\n| VOTA | 99.41% | — | — | — |\n| VOTA_no_ae | 99.41% | — | — | — |\n| loop_only | 85.63% | — | — | — |\n| full_trace | 81.76% | — | — | — |\n| label_only | 86.22% | — | — | — |\n| no_trace | 75.13% | — | — | — |\n\nDeepSeek-Coder-6.7B:\n| Condition | Seed 42 Acc | Notes |\n|-----------|-------------|-------|\n| exception_only | 99.33% (final) / 99.83% (ep1 best) | |\n| VOTA | 84.45% | |\n| no_trace | 73.36% | |\n| full_trace | N/A | label truncation bug |\n\n### D. Irreducible Sample Analysis（新增 section）\n详细描述 2 个 irreducible samples (id=901, 905)：\n- 均为 check_dict_case 函数\n- label=pass → pred=fail (false negative)\n- 3 seeds 100% 重叠\n- 假设：这些样本在 pass 时不生成 exception event，模型缺乏区分信号\n\n## 文件位置\n- 编辑: `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex`\n- 参考 main.tex: `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/main.tex`\n\n## 格式要求\n- 使用 ACL LaTeX 格式\n- 表格用 booktabs (toprule/midrule/bottomrule)\n- 每个 section 用 \\section{...} 和 \\label{sec:...}\n- 所有数字精确到论文中已有的精度\n\n## 注意事项\n- 数据集是 HumanEval (164) + MBPP-sanitized (427) = 591 problems × 10 solutions = 5910 samples，**不是 CRUXEval**\n- 保留现有的 per-class breakdown 表格作为第一个 appendix section\n- 文件顶部的 \\section{Per-Class Performance Breakdown} 保留，新内容添加在其后",
+  "tool_groups": "['knowledge', 'registry']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "paper:appendix-expansion",
+    "project": "trace-verdict-study",
+    "task_prompt": "你负责为 trace-verdict-study 论文扩展 Appendix 章节。\n\n## 目标\n在 `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex` 中添加以下内容（保留现有的 per-class breakdown table）：\n\n### A. Training Details（新增 section）\n添加一个完整的训练超参表格，内容如下：\n- LoRA: rank=16, alpha=32, dropout=0.05, target=all linear layers\n- Epochs: 3, batch_size=4, grad_accum=8 (effective 32)\n- LR: 2e-4, linear warmup (ratio 0.1), linear decay, weight_decay=0.01\n- Max seq length: 2048 tokens\n- Primary seed: 42, robustness seeds: 123, 456\n- Hardware: single RTX PRO 6000 Blackwell (94GB VRAM)\n- Framework: HuggingFace TRL SFTTrainer\n- 各 condition 的训练时长（从 registry 数据）：\n  - no_trace: ~0.5h\n  - full_trace: ~2.2h  \n  - VOTA: ~2.3h\n  - exception_only: ~2.1h (seed42), ~1.3h (seed456), ~2.1h (seed123)\n  - ae_only: ~1.8h\n  - loop_only: ~2.1h\n  - VOTA_no_ae: ~1.8h\n  - label_only: ~2.2h\n\n### B. VOTA Trace Examples（新增 section）\n提供 2 个 VOTA trace 示例（1 pass + 1 fail），展示：\n1. 一个 fail 案例：包含 [ERROR] exception event 的 VOTA trace\n2. 一个 pass 案例：无 exception event 的 VOTA trace\n\n格式用 `\\begin{lstlisting}` 或 `\\begin{verbatim}`。示例应该是 Python 函数 + 测试输入 + VOTA trace 输出。\n\nPass 示例（合理构造）：\n```\nFunction: def add(a, b): return a + b\nInput: add(2, 3)\nExpected: 5\nVOTA trace: [LOOP] No loops detected. [ASSERT] actual=5, expected=5\nVerdict: pass\n```\n\nFail 示例（合理构造）：\n```\nFunction: def divide(a, b): return a / b\nInput: divide(1, 0)\nExpected: inf\nVOTA trace: [ERROR] ZeroDivisionError: division by zero\nVerdict: fail\n```\n\n请根据论文上下文构造合理的、代表性的示例。\n\n### C. Full Experimental Results（新增 section）\n创建一个完整的跨条件 × 跨模型 × 跨种子的结果表格：\n\nQwen-2.5-Coder-7B:\n| Condition | Seed 42 Acc | Seed 123 Acc | Seed 456 Acc | Mean ± Std |\n|-----------|-------------|--------------|--------------|------------|\n| exception_only | 99.83% | 99.83% | 99.83% | 99.83 ± 0.00 |\n| ae_only | 99.92% | — | — | — |\n| VOTA | 99.41% | — | — | — |\n| VOTA_no_ae | 99.41% | — | — | — |\n| loop_only | 85.63% | — | — | — |\n| full_trace | 81.76% | — | — | — |\n| label_only | 86.22% | — | — | — |\n| no_trace | 75.13% | — | — | — |\n\nDeepSeek-Coder-6.7B:\n| Condition | Seed 42 Acc | Notes |\n|-----------|-------------|-------|\n| exception_only | 99.33% (final) / 99.83% (ep1 best) | |\n| VOTA | 84.45% | |\n| no_trace | 73.36% | |\n| full_trace | N/A | label truncation bug |\n\n### D. Irreducible Sample Analysis（新增 section）\n详细描述 2 个 irreducible samples (id=901, 905)：\n- 均为 check_dict_case 函数\n- label=pass → pred=fail (false negative)\n- 3 seeds 100% 重叠\n- 假设：这些样本在 pass 时不生成 exception event，模型缺乏区分信号\n\n## 文件位置\n- 编辑: `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex`\n- 参考 main.tex: `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/main.tex`\n\n## 格式要求\n- 使用 ACL LaTeX 格式\n- 表格用 booktabs (toprule/midrule/bottomrule)\n- 每个 section 用 \\section{...} 和 \\label{sec:...}\n- 所有数字精确到论文中已有的精度\n\n## 注意事项\n- 数据集是 HumanEval (164) + MBPP-sanitized (427) = 591 problems × 10 solutions = 5910 samples，**不是 CRUXEval**\n- 保留现有的 per-class breakdown 表格作为第一个 appendix section\n- 文件顶部的 \\section{Per-Class Performance Breakdown} 保留，新内容添加在其后",
+    "tool_groups": "['knowledge', 'registry']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-15T19:40:53.553109+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_appendix-expansion_20260515T194033\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/logs/workers/worker_paper_appendix-expansion_20260515T194033.log\", \"setup_data\": {}, \"message\": \"Worker worker_paper_appendix-expansion_20260515T194033 started. Use get_worker_status('worker_paper_appendix-expansion_20260515T194033') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 20817
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-15T19:40:53.855020+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "paper:consistency-check",
+  "project": "trace-verdict-study",
+  "task_prompt": "你负责对 trace-verdict-study 论文进行全面的一致性检查和 LaTeX 编译验证。\n\n## 论文文件位置\n所有文件在 `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/`:\n- main.tex (主文件)\n- introduction.tex\n- method.tex\n- experiments.tex\n- discussion.tex\n- related_work.tex\n- conclusion.tex\n- appendix.tex\n- references.bib\n\n## 检查清单\n\n### 1. 数据一致性\n逐一核对论文中所有定量数据是否与 registry 一致（用 read_registry 获取真实数据）：\n- exception_only Qwen: 99.83% [99.58, 100]\n- VOTA Qwen: 99.41% [98.82, 99.83]\n- full_trace Qwen: 81.76% [79.70, 83.90]\n- no_trace Qwen: 75.13% [72.77, 77.48]\n- ae_only: 99.92% [99.75, 100]\n- loop_only: 85.63% [83.53, 87.56]\n- VOTA_no_ae: 99.41% [98.90, 99.80]\n- label_only: 86.22% [84.37, 88.07]\n- DeepSeek exception_only: 99.33% final / 99.83% epoch1 best\n- DeepSeek VOTA: 84.45% [82.60, 86.40]\n- DeepSeek no_trace: 73.36% [70.80, 75.70]\n- Calibration ECE/Brier values\n- Seed robustness: 3 seeds 99.83% ± 0.00\n- Majority baseline: 71.51%\n\n**特别注意**：\n- 数据集来源必须是 HumanEval (164) + MBPP-sanitized (427) = 591 problems，**不能写 CRUXEval**（D024 纠正）\n- Gap 计算：VOTA gap = 14.96pp (99.41-84.45), exception gap = 0.50pp (99.83-99.33)\n- Information density decomposition：gradient dilution 26% (4.46pp), information overload 74% (13.19pp)\n\n### 2. 交叉引用\n- 所有 \\ref{} 和 \\label{} 是否匹配\n- 表格/图片编号是否连续\n- \\citep{} 和 \\citet{} 引用的 key 是否都在 references.bib 中\n\n### 3. 用语一致性\n- \"exception_only\" vs \"exception-only\" — 统一用下划线版本在代码/条件名中\n- \"VOTA\" 全称首次出现是否有展开 (Verdict-Oriented Trace Abstraction)\n- \"verdict prediction\" vs \"verdict classification\" — 统一用 prediction\n- pp (percentage points) 一致使用\n\n### 4. LaTeX 编译\n尝试编译论文：\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper && latexmk -pdf main.tex\n```\n如果 latexmk 不可用，试：\n```bash\npdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex\n```\n检查编译警告和错误。\n\n### 5. 页数检查\nEMNLP/ARR 限制：8 pages + unlimited references + unlimited appendix。检查主体内容是否在 8 页以内。\n\n### 6. 产出\n将检查结果写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/paper_consistency_report.md`：\n- 发现的问题（按严重程度排序：CRITICAL / WARNING / INFO）\n- 每个问题的具体位置（文件:行号）和修复建议\n- 编译状态\n- 页数\n\n如果发现 CRITICAL 问题，直接修复（编辑 .tex 文件）。WARNING 和 INFO 仅报告不修复。",
+  "tool_groups": "['knowledge', 'registry']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "paper:consistency-check",
+    "project": "trace-verdict-study",
+    "task_prompt": "你负责对 trace-verdict-study 论文进行全面的一致性检查和 LaTeX 编译验证。\n\n## 论文文件位置\n所有文件在 `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/`:\n- main.tex (主文件)\n- introduction.tex\n- method.tex\n- experiments.tex\n- discussion.tex\n- related_work.tex\n- conclusion.tex\n- appendix.tex\n- references.bib\n\n## 检查清单\n\n### 1. 数据一致性\n逐一核对论文中所有定量数据是否与 registry 一致（用 read_registry 获取真实数据）：\n- exception_only Qwen: 99.83% [99.58, 100]\n- VOTA Qwen: 99.41% [98.82, 99.83]\n- full_trace Qwen: 81.76% [79.70, 83.90]\n- no_trace Qwen: 75.13% [72.77, 77.48]\n- ae_only: 99.92% [99.75, 100]\n- loop_only: 85.63% [83.53, 87.56]\n- VOTA_no_ae: 99.41% [98.90, 99.80]\n- label_only: 86.22% [84.37, 88.07]\n- DeepSeek exception_only: 99.33% final / 99.83% epoch1 best\n- DeepSeek VOTA: 84.45% [82.60, 86.40]\n- DeepSeek no_trace: 73.36% [70.80, 75.70]\n- Calibration ECE/Brier values\n- Seed robustness: 3 seeds 99.83% ± 0.00\n- Majority baseline: 71.51%\n\n**特别注意**：\n- 数据集来源必须是 HumanEval (164) + MBPP-sanitized (427) = 591 problems，**不能写 CRUXEval**（D024 纠正）\n- Gap 计算：VOTA gap = 14.96pp (99.41-84.45), exception gap = 0.50pp (99.83-99.33)\n- Information density decomposition：gradient dilution 26% (4.46pp), information overload 74% (13.19pp)\n\n### 2. 交叉引用\n- 所有 \\ref{} 和 \\label{} 是否匹配\n- 表格/图片编号是否连续\n- \\citep{} 和 \\citet{} 引用的 key 是否都在 references.bib 中\n\n### 3. 用语一致性\n- \"exception_only\" vs \"exception-only\" — 统一用下划线版本在代码/条件名中\n- \"VOTA\" 全称首次出现是否有展开 (Verdict-Oriented Trace Abstraction)\n- \"verdict prediction\" vs \"verdict classification\" — 统一用 prediction\n- pp (percentage points) 一致使用\n\n### 4. LaTeX 编译\n尝试编译论文：\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper && latexmk -pdf main.tex\n```\n如果 latexmk 不可用，试：\n```bash\npdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex\n```\n检查编译警告和错误。\n\n### 5. 页数检查\nEMNLP/ARR 限制：8 pages + unlimited references + unlimited appendix。检查主体内容是否在 8 页以内。\n\n### 6. 产出\n将检查结果写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/paper_consistency_report.md`：\n- 发现的问题（按严重程度排序：CRITICAL / WARNING / INFO）\n- 每个问题的具体位置（文件:行号）和修复建议\n- 编译状态\n- 页数\n\n如果发现 CRITICAL 问题，直接修复（编辑 .tex 文件）。WARNING 和 INFO 仅报告不修复。",
+    "tool_groups": "['knowledge', 'registry']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-15T19:56:53.281281+00:00_
+
+论文已相当完整——6 个主体章节 + 摘要 + 附录起步 + 27 个引用。当前缺：附录扩展（训练细节/trace 示例/完整结果表）、bootstrap 一致性修复（需 GPU）、可能的 DeepSeek full_trace 更新。
+
+立即启动：向 Director 汇报 + 派 2 个 Paper Worker 修复 Worker 池空缺。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:vota_loop_only_seed42"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+52 recorded events
+
+### User
+
+_source line 62 · 2026-05-15T22:58:13.846512+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-15T22:58:23.258935+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__load_project_config",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__load_project_config",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-15T22:58:23.309725+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-15T22:58:26.834081+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "limit": "0",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "trace-verdict-study",
+    "limit": "0",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-15T22:58:26.834649+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-15T22:58:27.793318+00:00_
+
+Error: result (63,337 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 959
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-15T22:58:27.793687+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "file": "report.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "trace-verdict-study",
+    "file": "report.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-15T22:58:28.245843+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "trace-verdict-study"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "trace-verdict-study"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-15T22:58:28.296622+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "trace-verdict-study",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "trace-verdict-study",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-15T22:58:29.504435+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"deepseek_full_trace_seed42_v3\", \"success\": true, \"actions\": [\"Job still running (pid=163109)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 2669
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-15T22:58:29.555187+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| deepseek_full_trace_seed42_v3 | DeepSeek full_trace v3: retrain with label-preserving truncation fix in to_chat_text(). v1/v2 collapsed due to DeepSeek tokenizer producing >2048 tokens → SFTTrainer right-truncated labels. Tests if full_trace shows intermediate performance on DeepSeek (plan_004, 4th condition). | — | — | — |\\n\\n## 待处理\\n- full_trace_2048tok_seed42（排队等待 GPU）\\n- full_trace_1024tok_seed42（排队等待 GPU）\\n- full_trace_512tok_seed42（排队等待 GPU）\\n- full_trace_256tok_seed42（排队等待 GPU）\\n\\n## 近期结论\\n- **deepseek_vota_seed42** (success): Multi-model validation: VOTA on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if VOTA's verdict accuracy advantage generalizes beyond Qwen2.5-Coder to DCSH's same base model.\\n  [deepseek_vota_seed42_analysis](/api/workspace-files/projects/trace-verdict-study/artifacts/deepseek_vota_seed42/report/analysis.md)\\n- **deepseek_exception_only_seed456** (success): Cross-model seed robustness: exception_only seed=456 on DeepSeek-Coder-6.7B. Third seed to determine if seed42 (99.83%) is outlier or seed123 (91.09%) is outlier. ← 基于 deepseek_exception_only_seed123\\n- **vota_seed456_v2** (success): Seed robustness: VOTA with seed=456, retry with --gradient_checkpointing (v1 OOM). Verifies VOTA 99.2% accuracy stable across seeds. ← 基于 vota_seed456\\n\\n## 趋势\\n成功 17 / 负向 4 / 失败 3 / 共 32\\naccuracy: 0.8445 ↓（近 3 次 success）\\nfail_f1: 0.625 ↓（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-11235: 无 GPU 信息\\n\\n## 告警\\n- no_trace_seed42: 已被终止 — unknown\\n- vota_seed42: 已被终止 — unknown\\n- no_trace_seed42_v2: 已被终止 — unknown\\n- vota_seed42_v2: 已被终止 — unknown\\n- no_trace_seed42_v3: 已被终止 — unknown\\n-
+…[truncated 321 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 1761
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-15T22:58:29.555852+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/ROADMAP.md\", \"content\": \"# trace-verdict-study — Research Dashboard\\n\\n> 最后更新: 2026-05-15 22:19 UTC | 更新原因: D029: seed456 confirmed, Claim 1 finalized, all 3 claims now confirmed\\n\\n## 核心方向\\nException events 是 verdict prediction 的 **most effective trace component**——Qwen 99.83% ± 0.00 (3 seeds perfectly robust)，DeepSeek 2/3 seeds 99.33%、1 离群 91.09% (LoRA initialization sensitivity)。即使最差 seed，exception_only (91.09%) 仍优于 VOTA (84.45%) 和 no_trace (73.36%)。**Claim 1 已定稿 (D029)**: \\\"consistently best component, seed-dependent on DeepSeek\\\"。详见 paper_framing.md v2.9。\\n\\n## 投稿目标\\n- **Primary**: EMNLP 2026 Main (ARR May 25, DDL 10 天)\\n\\n## 当前进展\\n- **阶段**: Research (post-MVP) + 审稿进行中 + Paper Agent Full Draft 进行中\\n- **Core claims 支撑度**: 3/3 confirmed\\n  - Claim 1 (exception effectiveness): ✅ **FINALIZED (D029)** — \\\"consistently best component\\\"; Qwen 99.83%±0.00, DeepSeek median=99.33%, worst=91.09%\\n  - Claim 2 (info density > gradient dilution): ✅\\n  - Claim 3 (two-tier hierarchy): ✅\\n- **跨模型对比**:\\n  - exception_only: Qwen 99.83% ± 0.00; DeepSeek seed42/456=99.33%, seed123=91.09% ✅\\n  - VOTA: -14.96pp (model-capability-dependent) ✅\\n  - no_trace: -1.77pp (baseline 一致) ✅\\n  - full_trace: DeepSeek v3 RUNNING (label truncation fix)\\n\\n### 组件层级表 (Qwen-2.5-Coder-7B, seed42)\\n| Condition | Accuracy | 角色 |\\n|-----------|----------|------|\\n| exception_only | 99.83% | Tier 1: most effective signal |\\n| ae_only | 99.92% | Tier 1: co-dominant |\\n| VOTA w/o ae | 99.4% | ae 冗余确认 |\\n| VOTA full | 99.41% | — |\\n| label-only loss | 86.2% | gradient dilution fix |\\n| loop_only | 85.6% | Tier 2: behavioral |\\n| full_trace | 81.8% | raw trace |\\n| no_trace | 75.1% | baseline |\\n\\n### DeepSeek exception_only 3-seed (FINALIZED)\\n| Seed | Accuracy | fail_recall | CI |\\n|------|----------|-------------|-----|\\n| 42 | 9
+…[truncated 2521 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 1310
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-15T22:58:29.556203+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"trace-verdict-study\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_constraint\": [\"westd-11235:cuda:0\", \"westd-11235:cuda:1\"], \"gpu_ids\": [\"cuda:0\", \"cuda:1\"], \"project_path\": \"/root/trace-verdict-study\", \"servers\": [{\"account\": \"root\", \"server\": \"westd-11235\"}]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 1259
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-15T22:58:38.074308+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Parse registry JSON",
+  "prompt": "Read the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt\n\nThis is a JSON file with schema {result: string} where result is itself a JSON string.\n\nI need you to extract and return:\n1. All experiments with status RUNNING or PREPARING — full details\n2. All experiments with status QUEUED or PENDING — full details  \n3. A summary table of ALL experiments: exp_id, status, conclusion, hypothesis (first 80 chars), server, gpu info, any PID/tmux info\n4. Any experiments that have spec fields — show their spec\n\nReturn all of this as structured text. Be thorough — I need every experiment.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Parse registry JSON",
+    "prompt": "Read the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt\n\nThis is a JSON file with schema {result: string} where result is itself a JSON string.\n\nI need you to extract and return:\n1. All experiments with status RUNNING or PREPARING — full details\n2. All experiments with status QUEUED or PENDING — full details  \n3. A summary table of ALL experiments: exp_id, status, conclusion, hypothesis (first 80 chars), server, gpu info, any PID/tmux info\n4. Any experiments that have spec fields — show their spec\n\nReturn all of this as structured text. Be thorough — I need every experiment.",
+    "subagent_type": "general-purpose"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-15T22:58:38.828535+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "trace-verdict-study",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-15T22:58:39.481246+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "file": "paper_framing.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "trace-verdict-study",
+    "file": "paper_framing.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-15T22:58:41.238634+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-15T22:58:41.540262+00:00_
+
+File content (26134 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-15T22:58:44.956802+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt",
+  "offset": "0",
+  "limit": "500"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt",
+    "offset": "0",
+    "limit": "500"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-15T22:58:45.224040+00:00_
+
+File content (26134 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "elapsed_ms": 267
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-15T22:58:48.899985+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt",
+  "offset": "0",
+  "limit": "200"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt",
+    "offset": "0",
+    "limit": "200"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-15T22:58:49.151388+00:00_
+
+File content (26134 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84 · 2026-05-15T22:58:52.463810+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt",
+  "offset": "0",
+  "limit": "100"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt",
+    "offset": "0",
+    "limit": "100"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-15T22:58:52.766100+00:00_
+
+File content (26134 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Read",
+  "elapsed_ms": 302
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-15T22:58:56.601434+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "wc -l \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt\"",
+  "description": "Check line count of the registry file"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "wc -l \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt\"",
+    "description": "Check line count of the registry file"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-15T22:58:56.807052+00:00_
+
+0 /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Bash",
+  "elapsed_ms": 205
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-15T22:59:00.521104+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "wc -c \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt\"",
+  "description": "Check byte count of the registry file"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "wc -c \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt\"",
+    "description": "Check byte count of the registry file"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-15T22:59:00.571814+00:00_
+
+64663 /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Bash",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-15T22:59:06.651094+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt') as f:\n    raw = json.load(f)\n\n# The schema is {result: string} where result is itself a JSON string\ninner = json.loads(raw['result'])\n\n# Check structure\nprint('Top-level keys:', list(inner.keys()) if isinstance(inner, dict) else type(inner))\nif isinstance(inner, dict):\n    for k in inner:\n        v = inner[k]\n        if isinstance(v, list):\n            print(f'  {k}: list of {len(v)} items')\n        elif isinstance(v, dict):\n            print(f'  {k}: dict with keys {list(v.keys())[:10]}')\n        else:\n            print(f'  {k}: {type(v).__name__} = {str(v)[:100]}')\n\"\n",
+  "description": "Parse the JSON structure of the registry file"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt') as f:\n    raw = json.load(f)\n\n# The schema is {result: string} where result is itself a JSON string\ninner = json.loads(raw['result'])\n\n# Check structure\nprint('Top-level keys:', list(inner.keys()) if isinstance(inner, dict) else type(inner))\nif isinstance(inner, dict):\n    for k in inner:\n        v = inner[k]\n        if isinstance(v, list):\n            print(f'  {k}: list of {len(v)} items')\n        elif isinstance(v, dict):\n            print(f'  {k}: dict with keys {list(v.keys())[:10]}')\n        else:\n            print(f'  {k}: {type(v).__name__} = {str(v)[:100]}')\n\"\n",
+    "description": "Parse the JSON structure of the registry file"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-15T22:59:06.752527+00:00_
+
+Top-level keys: ['success', 'data', 'error', 'metadata']
+  success: bool = True
+  data: dict with keys ['experiments', 'count', 'total', 'baseline']
+  error: NoneType = None
+  metadata: dict with keys ['elapsed_seconds']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Bash",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-15T22:59:12.182663+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\nprint(f'Total experiments: {len(experiments)}')\nprint()\n\n# Show all experiment IDs and statuses\nfor exp in experiments:\n    eid = exp.get('exp_id', 'N/A')\n    status = exp.get('status', 'N/A')\n    conclusion = exp.get('conclusion', '')\n    print(f'  {eid}: status={status}, conclusion={conclusion}')\n\"\n",
+  "description": "List all experiments with their statuses"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\nprint(f'Total experiments: {len(experiments)}')\nprint()\n\n# Show all experiment IDs and statuses\nfor exp in experiments:\n    eid = exp.get('exp_id', 'N/A')\n    status = exp.get('status', 'N/A')\n    conclusion = exp.get('conclusion', '')\n    print(f'  {eid}: status={status}, conclusion={conclusion}')\n\"\n",
+    "description": "List all experiments with their statuses"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-15T22:59:12.383822+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 14, in &lt;module>
+    eid = exp.get('exp_id', 'N/A')
+          ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+Total experiments: 37
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Bash",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-15T22:59:18.971073+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# Check if experiments is a dict (key -> value)\nprint(type(experiments))\nif isinstance(experiments, dict):\n    keys = list(experiments.keys())\n    print(f'Keys (first 5): {keys[:5]}')\n    # Show first experiment\n    first_key = keys[0]\n    first_val = experiments[first_key]\n    print(f'Type of value: {type(first_val)}')\n    if isinstance(first_val, str):\n        print(f'First value (truncated): {first_val[:500]}')\n    else:\n        print(json.dumps(first_val, indent=2)[:500])\nelif isinstance(experiments, list):\n    print(f'First element type: {type(experiments[0])}')\n    if isinstance(experiments[0], str):\n        print(f'First element: {experiments[0][:500]}')\n    else:\n        print(json.dumps(experiments[0], indent=2)[:500])\n\"\n",
+  "description": "Inspect the structure of experiments data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# Check if experiments is a dict (key -> value)\nprint(type(experiments))\nif isinstance(experiments, dict):\n    keys = list(experiments.keys())\n    print(f'Keys (first 5): {keys[:5]}')\n    # Show first experiment\n    first_key = keys[0]\n    first_val = experiments[first_key]\n    print(f'Type of value: {type(first_val)}')\n    if isinstance(first_val, str):\n        print(f'First value (truncated): {first_val[:500]}')\n    else:\n        print(json.dumps(first_val, indent=2)[:500])\nelif isinstance(experiments, list):\n    print(f'First element type: {type(experiments[0])}')\n    if isinstance(experiments[0], str):\n        print(f'First element: {experiments[0][:500]}')\n    else:\n        print(json.dumps(experiments[0], indent=2)[:500])\n\"\n",
+    "description": "Inspect the structure of experiments data"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-15T22:59:19.071940+00:00_
+
+&lt;class 'dict'>
+Keys (first 5): ['full_trace_2048tok_seed42', 'full_trace_1024tok_seed42', 'full_trace_512tok_seed42', 'full_trace_256tok_seed42', 'deepseek_vota_seed42']
+Type of value: &lt;class 'dict'>
+{
+  "status": "QUEUED",
+  "retry_count": 0,
+  "created_at": "2026-05-15T22:27:19.848Z",
+  "updated_at": "2026-05-15T22:46:28.903Z",
+  "spec": {
+    "hypothesis": "plan_006: trace length ablation - 2048 tokens. Control condition matching full_trace_seed42_v5 max_seq_length.",
+    "notes": "plan_006. Parent: full_trace_seed42_v5. max_trace_tokens=2048, all other hyperparams identical. Expected to match full_trace_seed42_v5 since original traces average ~1811 tokens.",
+    "model_name": "Qwen/Qwen2
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-15T22:59:25.951533+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# 1. RUNNING or PREPARING experiments - full details\nprint(\"=\" * 100)\nprint(\"SECTION 1: RUNNING or PREPARING experiments (full details)\")\nprint(\"=\" * 100)\nfor eid, exp in experiments.items():\n    if exp.get('status') in ('RUNNING', 'PREPARING'):\n        print(f\"\\n--- {eid} ---\")\n        print(json.dumps(exp, indent=2))\n\n# 2. QUEUED or PENDING experiments - full details\nprint(\"\\n\" + \"=\" * 100)\nprint(\"SECTION 2: QUEUED or PENDING experiments (full details)\")\nprint(\"=\" * 100)\nfor eid, exp in experiments.items():\n    if exp.get('status') in ('QUEUED', 'PENDING'):\n        print(f\"\\n--- {eid} ---\")\n        print(json.dumps(exp, indent=2))\n\nPYEOF\n",
+  "description": "Extract RUNNING/PREPARING and QUEUED/PENDING experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# 1. RUNNING or PREPARING experiments - full details\nprint(\"=\" * 100)\nprint(\"SECTION 1: RUNNING or PREPARING experiments (full details)\")\nprint(\"=\" * 100)\nfor eid, exp in experiments.items():\n    if exp.get('status') in ('RUNNING', 'PREPARING'):\n        print(f\"\\n--- {eid} ---\")\n        print(json.dumps(exp, indent=2))\n\n# 2. QUEUED or PENDING experiments - full details\nprint(\"\\n\" + \"=\" * 100)\nprint(\"SECTION 2: QUEUED or PENDING experiments (full details)\")\nprint(\"=\" * 100)\nfor eid, exp in experiments.items():\n    if exp.get('status') in ('QUEUED', 'PENDING'):\n        print(f\"\\n--- {eid} ---\")\n        print(json.dumps(exp, indent=2))\n\nPYEOF\n",
+    "description": "Extract RUNNING/PREPARING and QUEUED/PENDING experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-15T22:59:26.052452+00:00_
+
+====================================================================================================
+SECTION 1: RUNNING or PREPARING experiments (full details)
+====================================================================================================
+
+--- deepseek_full_trace_seed42_v3 ---
+{
+  "status": "RUNNING",
+  "retry_count": 0,
+  "created_at": "2026-05-15T18:40:07.877Z",
+  "updated_at": "2026-05-15T20:59:06.798Z",
+  "hypothesis": "DeepSeek full_trace v3: retrain with label-preserving truncation fix in to_chat_text(). v1/v2 collapsed due to DeepSeek tokenizer producing >2048 tokens \u2192 SFTTrainer right-truncated labels. Tests if full_trace shows intermediate performance on DeepSeek (plan_004, 4th condition).",
+  "parent": "",
+  "notes": "Director \u5ba1\u6279\u901a\u8fc7\u3002\u7b49 cuda:0 \u91ca\u653e\uff08deepseek_eo_seed123 \u5b8c\u6210\u540e\uff09\u7acb\u5373\u63d0\u4ea4\u3002\u552f\u4e00\u4ee3\u7801\u53d8\u5316: to_chat_text() label-preserving truncation\u3002\u7528\u65e7\u4ee3\u7801\uff08load_best_model_at_end \u5df2\u6ce8\u91ca\uff09\u3002",
+  "spec": {
+    "command": "python train/train_sft.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6.7b-instruct --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_seed42_v3 --wandb_project trace-verdict-study --wandb_run_name deepseek_full_trace_seed42_v3",
+    "server": "westd-11235",
+    "data_path": "/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl",
+    "data_count": 4720,
+    "model_name": "deepseek-ai/deepseek-coder-6.7b-instruct",
+    "seed": 42
+  }
+}
+
+====================================================================================================
+SECTION 2: QUEUED or PENDING experiments (full details)
+====================================================================================================
+
+--- full_trace_2048tok_see
+…[truncated 1992 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98 · 2026-05-15T22:59:34.340487+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# 3. Summary table of ALL experiments\nprint(\"=\" * 100)\nprint(\"SECTION 3: SUMMARY TABLE — ALL EXPERIMENTS\")\nprint(\"=\" * 100)\nprint()\nprint(f\"{'EXP_ID':<45} {'STATUS':<12} {'CONCLUSION':<12} {'SERVER':<15} {'GPU':<8} {'PID':<8} {'TMUX':<20} HYPOTHESIS (first 80 chars)\")\nprint(\"-\" * 210)\n\nfor eid, exp in experiments.items():\n    status = exp.get('status', '')\n    conclusion = exp.get('conclusion', '')\n    hypothesis = exp.get('hypothesis', '') or ''\n    if not hypothesis and exp.get('spec', {}).get('hypothesis'):\n        hypothesis = exp['spec']['hypothesis']\n    hypothesis = hypothesis[:80]\n    \n    server = exp.get('server', '') or ''\n    if not server and exp.get('spec', {}).get('server'):\n        server = exp['spec']['server']\n    \n    gpu = exp.get('gpu', '') or ''\n    if not gpu and exp.get('spec', {}).get('gpu'):\n        gpu = str(exp['spec']['gpu'])\n    gpu = str(gpu) if gpu else ''\n    \n    pid = exp.get('pid', '') or ''\n    pid = str(pid) if pid else ''\n    \n    tmux = exp.get('tmux_session', '') or ''\n    \n    print(f\"{eid:<45} {status:<12} {conclusion:<12} {server:<15} {gpu:<8} {pid:<8} {tmux:<20} {hypothesis}\")\n\nPYEOF\n",
+  "description": "Generate summary table of all experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# 3. Summary table of ALL experiments\nprint(\"=\" * 100)\nprint(\"SECTION 3: SUMMARY TABLE — ALL EXPERIMENTS\")\nprint(\"=\" * 100)\nprint()\nprint(f\"{'EXP_ID':<45} {'STATUS':<12} {'CONCLUSION':<12} {'SERVER':<15} {'GPU':<8} {'PID':<8} {'TMUX':<20} HYPOTHESIS (first 80 chars)\")\nprint(\"-\" * 210)\n\nfor eid, exp in experiments.items():\n    status = exp.get('status', '')\n    conclusion = exp.get('conclusion', '')\n    hypothesis = exp.get('hypothesis', '') or ''\n    if not hypothesis and exp.get('spec', {}).get('hypothesis'):\n        hypothesis = exp['spec']['hypothesis']\n    hypothesis = hypothesis[:80]\n    \n    server = exp.get('server', '') or ''\n    if not server and exp.get('spec', {}).get('server'):\n        server = exp['spec']['server']\n    \n    gpu = exp.get('gpu', '') or ''\n    if not gpu and exp.get('spec', {}).get('gpu'):\n        gpu = str(exp['spec']['gpu'])\n    gpu = str(gpu) if gpu else ''\n    \n    pid = exp.get('pid', '') or ''\n    pid = str(pid) if pid else ''\n    \n    tmux = exp.get('tmux_session', '') or ''\n    \n    print(f\"{eid:<45} {status:<12} {conclusion:<12} {server:<15} {gpu:<8} {pid:<8} {tmux:<20} {hypothesis}\")\n\nPYEOF\n",
+    "description": "Generate summary table of all experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-15T22:59:34.443291+00:00_
+
+====================================================================================================
+SECTION 3: SUMMARY TABLE — ALL EXPERIMENTS
+====================================================================================================
+
+EXP_ID                                        STATUS       CONCLUSION   SERVER          GPU      PID      TMUX                 HYPOTHESIS (first 80 chars)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+full_trace_2048tok_seed42                     QUEUED                                                                           plan_006: trace length ablation - 2048 tokens. Control condition matching full_t
+full_trace_1024tok_seed42                     QUEUED                                                                           plan_006: trace length ablation - 1024 tokens. Tests accuracy with extended trac
+full_trace_512tok_seed42                      QUEUED                                                                           plan_006: trace length ablation - 512 tokens. Tests accuracy with moderate trace
+full_trace_256tok_seed42                      QUEUED                                                                           plan_006: trace length ablation - 256 tokens. Tests if minimal trace context suf
+deepseek_vota_seed42                          DONE         success      westd-11235     ['cuda:0']                               Multi-model validation: VOTA on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests i
+deepseek_exception_only_seed456               DONE         success      westd-11235                                            Cross-model seed robustness: exception_only seed=456 on DeepSeek-Coder-6.7B. Thi
+vota_seed456_v2                               DONE         success      westd-11235                                            Seed robust
+…[truncated 5986 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Bash",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100 · 2026-05-15T22:59:39.513663+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# 4. Experiments with spec fields\nprint(\"=\" * 100)\nprint(\"SECTION 4: EXPERIMENTS WITH SPEC FIELDS\")\nprint(\"=\" * 100)\n\nfor eid, exp in experiments.items():\n    spec = exp.get('spec')\n    if spec:\n        print(f\"\\n--- {eid} (status={exp.get('status','?')}, conclusion={exp.get('conclusion','')}) ---\")\n        print(json.dumps(spec, indent=2))\n\nPYEOF\n",
+  "description": "Extract all experiments that have spec fields"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# 4. Experiments with spec fields\nprint(\"=\" * 100)\nprint(\"SECTION 4: EXPERIMENTS WITH SPEC FIELDS\")\nprint(\"=\" * 100)\n\nfor eid, exp in experiments.items():\n    spec = exp.get('spec')\n    if spec:\n        print(f\"\\n--- {eid} (status={exp.get('status','?')}, conclusion={exp.get('conclusion','')}) ---\")\n        print(json.dumps(spec, indent=2))\n\nPYEOF\n",
+    "description": "Extract all experiments that have spec fields"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-15T22:59:39.665937+00:00_
+
+====================================================================================================
+SECTION 4: EXPERIMENTS WITH SPEC FIELDS
+====================================================================================================
+
+--- full_trace_2048tok_seed42 (status=QUEUED, conclusion=) ---
+{
+  "hypothesis": "plan_006: trace length ablation - 2048 tokens. Control condition matching full_trace_seed42_v5 max_seq_length.",
+  "notes": "plan_006. Parent: full_trace_seed42_v5. max_trace_tokens=2048, all other hyperparams identical. Expected to match full_trace_seed42_v5 since original traces average ~1811 tokens.",
+  "model_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "seed": 42
+}
+
+--- full_trace_1024tok_seed42 (status=QUEUED, conclusion=) ---
+{
+  "hypothesis": "plan_006: trace length ablation - 1024 tokens. Tests accuracy with extended trace context.",
+  "notes": "plan_006. Parent: full_trace_seed42_v5. max_trace_tokens=1024, all other hyperparams identical.",
+  "model_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "seed": 42
+}
+
+--- full_trace_512tok_seed42 (status=QUEUED, conclusion=) ---
+{
+  "hypothesis": "plan_006: trace length ablation - 512 tokens. Tests accuracy with moderate trace length.",
+  "notes": "plan_006. Parent: full_trace_seed42_v5. max_trace_tokens=512, all other hyperparams identical.",
+  "model_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "seed": 42
+}
+
+--- full_trace_256tok_seed42 (status=QUEUED, conclusion=) ---
+{
+  "hypothesis": "plan_006: trace length ablation - 256 tokens. Tests if minimal trace context suffices for verdict prediction.",
+  "notes": "plan_006. Parent: full_trace_seed42_v5. max_trace_tokens=256, all other hyperparams identical.",
+  "model_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "seed": 42
+}
+
+--- deepseek_vota_seed42 (status=DONE, conclusion=success) ---
+{
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study &
+…[truncated 24374 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Bash",
+  "elapsed_ms": 152
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102 · 2026-05-15T22:59:53.373632+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# Collect all unique keys across all experiments (excluding spec)\nall_keys = set()\nfor eid, exp in experiments.items():\n    all_keys.update(exp.keys())\n\nprint(\"All unique top-level keys across experiments:\")\nfor k in sorted(all_keys):\n    print(f\"  {k}\")\n\n# Check for metrics or tmux_session fields\nprint(\"\\n\\nExperiments with 'metrics' field:\")\nfor eid, exp in experiments.items():\n    if 'metrics' in exp and exp['metrics']:\n        print(f\"  {eid}: {json.dumps(exp['metrics'])[:200]}\")\n\nprint(\"\\nExperiments with 'tmux_session' field:\")\nfor eid, exp in experiments.items():\n    if 'tmux_session' in exp and exp['tmux_session']:\n        print(f\"  {eid}: {exp['tmux_session']}\")\n\nprint(\"\\nExperiments with 'pid' field (top-level, not in spec):\")\nfor eid, exp in experiments.items():\n    if 'pid' in exp and exp['pid']:\n        print(f\"  {eid}: pid={exp['pid']}\")\n\nprint(\"\\nExperiments with 'server' field (top-level):\")\nfor eid, exp in experiments.items():\n    if 'server' in exp and exp['server']:\n        print(f\"  {eid}: server={exp['server']}\")\n\nprint(\"\\nExperiments with 'gpu' field (top-level):\")\nfor eid, exp in experiments.items():\n    if 'gpu' in exp and exp['gpu']:\n        print(f\"  {eid}: gpu={exp['gpu']}\")\n\n# Also show the baseline data\nprint(\"\\n\\nBaseline data:\")\nbaseline = inner['data'].get('baseline')\nif baseline:\n    print(json.dumps(baseline, indent=2))\nelse:\n    print(\"  (none)\")\nPYEOF\n",
+  "description": "Extract all unique fields, metrics, tmux, pid, and baseline data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# Collect all unique keys across all experiments (excluding spec)\nall_keys = set()\nfor eid, exp in experiments.items():\n    all_keys.update(exp.keys())\n\nprint(\"All unique top-level keys across experiments:\")\nfor k in sorted(all_keys):\n    print(f\"  {k}\")\n\n# Check for metrics or tmux_session fields\nprint(\"\\n\\nExperiments with 'metrics' field:\")\nfor eid, exp in experiments.items():\n    if 'metrics' in exp and exp['metrics']:\n        print(f\"  {eid}: {json.dumps(exp['metrics'])[:200]}\")\n\nprint(\"\\nExperiments with 'tmux_session' field:\")\nfor eid, exp in experiments.items():\n    if 'tmux_session' in exp and exp['tmux_session']:\n        print(f\"  {eid}: {exp['tmux_session']}\")\n\nprint(\"\\nExperiments with 'pid' field (top-level, not in spec):\")\nfor eid, exp in experiments.items():\n    if 'pid' in exp and exp['pid']:\n        print(f\"  {eid}: pid={exp['pid']}\")\n\nprint(\"\\nExperiments with 'server' field (top-level):\")\nfor eid, exp in experiments.items():\n    if 'server' in exp and exp['server']:\n        print(f\"  {eid}: server={exp['server']}\")\n\nprint(\"\\nExperiments with 'gpu' field (top-level):\")\nfor eid, exp in experiments.items():\n    if 'gpu' in exp and exp['gpu']:\n        print(f\"  {eid}: gpu={exp['gpu']}\")\n\n# Also show the baseline data\nprint(\"\\n\\nBaseline data:\")\nbaseline = inner['data'].get('baseline')\nif baseline:\n    print(json.dumps(baseline, indent=2))\nelse:\n    print(\"  (none)\")\nPYEOF\n",
+    "description": "Extract all unique fields, metrics, tmux, pid, and baseline data"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-15T22:59:53.474472+00:00_
+
+All unique top-level keys across experiments:
+  account
+  checkpoint_path
+  completed_at
+  conclusion
+  created_at
+  extra
+  failure_reason
+  gpu
+  hypothesis
+  log_path
+  metrics
+  notes
+  parent
+  pid
+  reproduce
+  retry_count
+  server
+  spec
+  status
+  updated_at
+  wandb_run_id
+
+
+Experiments with 'metrics' field:
+  deepseek_vota_seed42: {"accuracy": 0.8445, "majority_baseline": 0.7151, "lift": 0.1294, "accuracy_ci": [0.826, 0.864], "pass_precision": 0.821, "pass_recall": 1, "pass_f1": 0.902, "fail_precision": 1, "fail_recall": 0.454,
+  deepseek_exception_only_seed456: {"accuracy": 0.9933, "majority_baseline": 0.7151, "lift": 0.2782, "n": 1190, "pass_precision": 1, "pass_recall": 0.9906, "pass_f1": 0.9953, "fail_precision": 0.9769, "fail_recall": 1, "fail_f1": 0.988
+  vota_seed456_v2: {"accuracy": 0.9908, "pass_precision": 1, "pass_recall": 0.987, "pass_f1": 0.993, "fail_precision": 0.969, "fail_recall": 1, "fail_f1": 0.984, "ci_95": [0.985, 0.996]}
+  deepseek_exception_only_seed123: {"accuracy": 0.9109, "pass_precision": 1, "pass_recall": 0.993, "pass_f1": 0.996, "fail_precision": 0.976, "fail_recall": 0.705, "fail_f1": 0.818, "ci_95": [0.894, 0.926], "train_loss": 0.122, "train_
+  deepseek_full_trace_seed42: {"accuracy_no_truncation": 0.2849, "accuracy_with_truncation_fix": 0.1059, "accuracy_with_truncation_fix_ci": [0.089, 0.123], "majority_baseline": 0.7151, "n": 1190, "note": "Both evals show model fai
+  exception_only_seed123: {"accuracy": 0.9983, "accuracy_ci": [0.9958, 1], "majority_baseline": 0.7151, "lift": 0.2832, "n": 1190, "pass_precision": 1, "pass_recall": 0.9976, "pass_f1": 0.9988, "fail_precision": 0.9941, "fail_
+  exception_only_seed456: {"accuracy": 0.9983, "accuracy_ci": [0.9958, 1], "majority_baseline": 0.7151, "lift": 0.2832, "n": 1190, "pass_precision": 1, "pass_recall": 0.9976, "pass_f1": 0.9988, "fail_precision": 0.9941, "fail_
+  vota_exception_only_seed42_v2: {"accuracy": 0.9983, "majority_baseline": 0.7151, "lift": 0.2832, "n": 1190, "pa
+…[truncated 4230 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-15T23:00:48.708152+00:00_
+
+Here is the complete extraction from the registry file:
+
+---
+
+## SECTION 1: RUNNING Experiments (1 total)
+
+**deepseek_full_trace_seed42_v3** — `RUNNING`
+- **hypothesis**: DeepSeek full_trace v3: retrain with label-preserving truncation fix in to_chat_text(). v1/v2 collapsed due to DeepSeek tokenizer producing >2048 tokens → SFTTrainer right-truncated labels. Tests if full_trace shows intermediate performance on DeepSeek (plan_004, 4th condition).
+- **parent**: (empty)
+- **notes**: Director 审批通过。等 cuda:0 释放（deepseek_eo_seed123 完成后）立即提交。唯一代码变化: to_chat_text() label-preserving truncation。用旧代码（load_best_model_at_end 已注释）。
+- **created_at**: 2026-05-15T18:40:07.877Z
+- **updated_at**: 2026-05-15T20:59:06.798Z
+- **spec**: command=`python train/train_sft.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6.7b-instruct --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_seed42_v3 --wandb_project trace-verdict-study --wandb_run_name deepseek_full_trace_seed42_v3`, server=westd-11235, data_path=`/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl`, data_count=4720, model_name=deepseek-ai/deepseek-coder-6.7b-instruct, seed=42
+- **No metrics yet, no PID/tmux at top level, no completion info**
+
+No experiments in PREPARING status.
+
+---
+
+## SECTION 2: QUEUED Experiments (4 total)
+
+All are plan_006 trace length ablation experiments on Qwen/Qwen2.5-Coder-7B-Instruct, seed=42:
+
+| exp_id | hypothesis | notes |
+|--------|-----------|-------|
+| **full_trace_2048tok_seed42** | plan_006: trace length ablation - 2048 tokens. Control condition matching full_trace_seed42_v5 max_seq_length. | Expected to match full_trace_seed42_v5 since original traces average ~1811 tokens. |
+| **full_trace_1024tok_seed42** | plan_006: trace length ablation - 1024 tokens. Tests accuracy with extended trace context. | Parent: full_trace_seed42_v5. max_tr
+…[truncated 7334 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "Agent",
+  "elapsed_ms": 130633
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-15T23:00:48.711031+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/memory.md\", \"content\": \"# trace-verdict-study Memory\\n\\n## MVP Round 1 结论（已作废）[2026-05-14]\\n\\nRound 1 结果全部无效，原因：\\n1. **VOTA match 泄漏**：assertion output 中 `match=True/False` 直接泄漏 verdict，99.2% accuracy 是 pattern matching 而非理解 trace\\n2. **Label 截断**：full_trace 28.4% 是因为 label 在序列末尾被 tokenizer 截断，模型根本没学到正确标签\\n\\n### 教训\\n- VOTA 输出中任何直接或间接暴露 pass/fail 的字段都是 data leakage——审查 trace format 时需要\\\"如果模型只看这一个字段能否猜到答案\\\"的测试\\n- 训练数据格式化必须保证 label 不被截断——应先预留 label token budget，再分配 trace 空间\\n- `[No trace available - execution failed]` 这类文本也是隐性泄漏（暗示 fail）\\n\\n## MVP v5 + Ablation 结果（当前有效数据）[2026-05-15]\\n\\n### 三条件对比（全部 v5 代码版本，统一 bootstrap CI）\\n- no_trace v5: 75.1% [72.8, 77.5], lift +3.6pp over majority\\n- **full_trace v5: 81.8%** [79.7, 83.9], lift +6.6pp [4.4, 9.0] vs no_trace\\n- **VOTA v5: 99.41%** [98.8, 99.8], lift +24.3pp [21.8, 26.8] vs no_trace (accuracy corrected from 99.16% due to Run 4 adapter overwrite)\\n- **VOTA vs full_trace: +17.7pp** [15.5, 19.8]（所有对比 p < 0.001）\\n\\n### plan_001 ablation: VOTA w/o actual/expected [2026-05-15]\\n- **accuracy 99.4%** [98.9, 99.8] — 去掉 actual/expected 后性能不降反微升（vs VOTA v5 99.2%）\\n- **结论：actual/expected 字段是冗余信息**，VOTA 效果来自 trace 行为模式理解\\n- Claim 1 走 **full positive framing**: \\\"VOTA teaches execution-grounded verdict reasoning\\\"\\n\\n### plan_002 ablation: label-only loss on full_trace [2026-05-15]\\n- **accuracy 86.2%** [84.4, 88.1] — 比标准 full_trace v5 (81.8%) 提升 +4.5pp\\n- **结论：full_trace-VOTA gap 的主因是 information overload（trace 噪声），不是 gradient dilution**\\n  - gradient dilution 贡献: ~4.5pp | information overload 贡献: ~13pp\\n\\n### plan_003a ablation: exception_only [2026-05-15]\\n- **accuracy 99.83%** — pass_F1 0.999, fail_F1 0.997\\n- **[ERROR] 事件是 VOTA verdict 判断的主驱动因素**\\n\\n### plan_003b ablation: loop_only [2026-05-15]\\n- **accuracy 85.6%** [83.5, 87.6]\\n- **结论：loop compres
+…[truncated 10863 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 129882
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-15T23:00:48.764055+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/paper_framing.md\", \"content\": \"# Paper Framing — trace-verdict-study\\n\\n> v2.9 — [UPDATED 2026-05-15] Claim 1 FINALIZED (D029): DeepSeek 3-seed 完整数据 — seed42=99.33%, seed456=99.33%, seed123=91.09%。2/3 seeds 鲁棒，seed123 为 LoRA 初始化离群值。Claim 1 定稿为 \\\"consistently best component, seed-dependent on DeepSeek\\\"。新增 D10: train_loss≈但 accuracy 差 8pp（token-level loss 掩盖 sample-level 差异）。数据集来源：HumanEval (164) + MBPP-sanitized (427) = 591 problems × 10 LLM-generated solutions = 5910 samples。\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR submission)\\n- Fallback: EMNLP 2026 Findings\\n- Deadline: ARR May 25, 2026\\n\\n## Core Insight\\n\\nVerdict prediction (pass/fail) is fundamentally a **fault detection** task. The most effective signal is the **exception event** — a compact, structured diagnostic moment that consistently outperforms all other trace representations across models (Qwen 99.83% ± 0.00 across 3 seeds; DeepSeek 91-99% depending on seed, but always > VOTA 84.45% and no_trace 73.36%). In contrast, richer trace representations that require deeper execution reasoning show model-dependent effectiveness: VOTA gap = 14.96pp, no_trace gap = 1.77pp. Information density — not training signal distribution — is the primary bottleneck: even oracle loss masking (label-only) cannot close the 13pp gap between full traces and targeted extraction. The design principle: **extract the highest-specificity diagnostic signal; discard everything else.** Cross-model absolute performance depends on LoRA initialization stability, but exception_only's relative dominance over other components is robust.\\n\\nVOTA's primary contribution is **fault indicator isolation** — automatically extracting exception events from noisy full traces — rather than generic trace compression. The \\\"compression helps\\\" narrative was a stepping stone; the real mecha
+…[truncated 10590 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 129282
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-15T23:00:52.881888+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__list_constraints",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__list_constraints",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-15T23:00:52.882376+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-15T23:00:55.957843+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "status": "running",
+  "limit": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "trace-verdict-study",
+    "status": "running",
+    "limit": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-15T23:00:56.014185+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_eval_d030_vota_confirmatory_20260515T224652\", \"task_type\": \"eval:d030_vota_confirmatory\", \"project\": \"trace-verdict-study\", \"status\": \"running\", \"started_at\": \"2026-05-15T22:46:53.022375+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_analysis_c1_truncation_group_analysis_20260515T225641\", \"task_type\": \"analysis:c1_truncation_group_analysis\", \"project\": \"trace-verdict-study\", \"status\": \"running\", \"started_at\": \"2026-05-15T22:56:41.257634+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_data_plan_005_debugbench_supplement_20260515T225700\", \"task_type\": \"data:plan_005_debugbench_supplement\", \"project\": \"trace-verdict-study\", \"status\": \"running\", \"started_at\": \"2026-05-15T22:57:00.719535+00:00\", \"ended_at\": null}], \"count\": 3}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 56
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-15T23:00:59.354286+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__poll_cron",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__poll_cron",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-15T23:00:59.404949+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:vota_loop_only_seed42",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 113 · 2026-05-15T23:01:54.653558+00:00_
+
+Now I have all the context needed. Here's the handoff:
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：**仅 cuda:0 和 cuda:1**（westd-11235），config `gpu_ids: [cuda:0, cuda:1]`。即使 Director 指定其他 GPU 也必须 push back
+- DeepSeek 系列实验**必须用旧代码**（`load_best_model_at_end` 已注释为 `# TEMP_DISABLED`），保持 DeepSeek 组内一致性。13:24 之后新增的 L149-152 只能用于 Qwen 实验
+- **D030 已 RESOLVED**：DeepSeek VOTA 84.45% 是正式结果，根因是 tokenizer efficiency（91.7% 样本超 2048 被截断）。不要再质疑这个数字
+- **Claim 1 已 FINALIZED (D029)**：不要再修改 Claim 1 的核心措辞。3-seed 数据完整，定稿为 "consistently best component, seed-dependent on DeepSeek"
+- 论文同一张表**禁止混用 paired/unpaired bootstrap**——DeepSeek VOTA/no_trace 还缺 paired bootstrap（需重跑 `evaluate.py --save_predictions`）
+- `submit_training_job` 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python ...`（westd-11235 用 conda，无 .venv）
+
+### 2. 🖥️ 基础设施快照
+- **服务器**：westd-11235（2x RTX PRO 6000 Blackwell 94GB, CUDA 12.8）
+- **工作目录**：`/root/trace-verdict-study`
+- **Python**：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）
+- **模型路径**：
+  - Qwen: `/root/autodl-tmp/models/Qwen2.5-Coder-7B-Instruct/Qwen/Qwen2.5-Coder-7B-Instruct`
+  - DeepSeek: `/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6.7b-instruct`
+- **数据路径**：`/root/autodl-tmp/trace-verdict-study-data/`（train 4720 + test 1190 samples）
+- **Checkpoint 路径**：`/root/autodl-tmp/trace-verdict-study-checkpoints/`
+- **HF cache**：`/root/autodl-tmp/.hf_cache`（HF_HUB_DISABLE_XET=1）
+- **W&B project**：`trace-verdict-study`
+- **活跃进程**：
+  - `deepseek_full_trace_seed42_v3`：PID 163109，cuda:0，cron 监控中（reconcile 确认 still running）
+- **活跃 Worker**（3 个）：
+  - `worker_eval_d030_vota_confirmatory` — D030 VOTA 确认性评估
+  - `worker_analysis_c1_truncation_group_analysis` — C1 证据归因修复（D031：用推理不截断条件下的分组分析替换旧归因）
+  - `worker_data_plan_005_debugbench_supplement` — plan_005 DebugBench 补充数据准备
+
+### 3. 📊 当前状态
+**刚完成**：D029 Claim 1 finalized（seed456=99.33% 确认 seed42），framing 更新至 v2.9，ROADMAP 更新。D030 resolved（DeepSeek VOTA 84.45% 确认有效，tokenizer efficiency 是根因）。D031 C1 证据归因修复启动。
+
+**Registry 状态**：
+- RUNNING (1): `deepseek_full_trace_seed42_v3` — label-preserving truncation fix 重训，cuda:0，cron 监控中
+- QUEUED (4): `full_trace_{2048,1024,512,256}tok_seed42` — plan_006 trace length ablation（Qwen），等 GPU 释放
+- DONE: 32 个（success 20, negative 4, killed 8, failed 3）
+
+**等待中**：
+- 3 个 Worker 回调（上面列的）
+- `deepseek_full_trace_seed42_v3` cron 完成回调
+- cuda:1 空闲 — 应排队 plan_006 ablation 中的一个
+
+### 4. 📋 待办（条件触发式）
+- `deepseek_full_trace_seed42_v3` cron 回调到达 → on-experiment-done 流程：分析结果、更新 registry、补入跨模型对比表（ROADMAP 中 full_trace 列当前为 "v3 RUNNING"）、汇报 Director
+- `worker_eval_d030_vota_confirmatory` 完成 → 整合 D030 确认性评估结果，如有新发现更新 paper_framing
+- `worker_analysis_c1_truncation_group_analysis` 完成 → 将分组分析结果写入 paper，替换旧的 8.3%/100% 归因
+- `worker_data_plan_005_debugbench_supplement` 完成 → DebugBench 数据就绪后，向 Director 汇报 plan_005 第二任务可行性
+- cuda:1 空闲 → 立即提交 plan_006 ablation 第一个实验（`full_trace_2048tok_seed42` 作为 control，或跳过 control 直接跑 1024/512/256 中一个）
+- DeepSeek full_trace v3 完成 + plan_006 ablation 完成 → 论文初稿中 Claim 2 跨模型证据补全
+- 论文初稿交付后 → Reviewer 对抗迭代（DDL: ARR May 25，剩 10 天）
+- **Bootstrap 方法一致性**：论文定稿前必须为 deepseek_vota_seed42 + deepseek_no_trace_seed42 重跑 `evaluate.py --save_predictions` → paired bootstrap
+
+### 5. 🎯 战略上下文
+**核心结论链**：Exception events 是 verdict prediction 的 most effective trace component（Claim 1, FINALIZED）。Information density > gradient dilution（Claim 2, confirmed）。Two-tier diagnostic hierarchy（Claim 3, confirmed）。3/3 claims confirmed，进入论文写作冲刺阶段。
+
+**投稿目标**：EMNLP 2026 Main（ARR May 25），剩 10 天。冲刺路线见 ROADMAP v4。
+
+**决策链关键节点**：
+- D029: Claim 1 定稿
+- D030: DeepSeek VOTA 84.45% confirmed（tokenizer efficiency 是根因，非模型能力不足）
+- D031: C1 证据归因修复（进行中）
+
+**最容易判断错的事**：
+1. **不要把 DeepSeek seed123 当成"失败"** — 它是 LoRA 初始化离群值，91.09% 仍优于 VOTA(84.45%) 和 no_trace(73.36%)。论文 framing 已处理为 "seed-dependent on DeepSeek"
+2. **full_trace v3 如果仍然坍塌**（accuracy ~28%），不要慌 — 这不影响 3 个 core claims（exception_only/VOTA/no_trace 证据链完整）。v3 是补充跨模型数据，不是关键路径
+3. **cuda:1 空闲是失职** — 必须立即排队 plan_006 或其他实验
+4. **Paper Agent 写作任务与实验并行** — 不要等所有实验完成再开始写。seed456 数据已完整，大部分章节可以开写
+5. **DeepSeek 实验的 eval 不能和训练并行跑同一 GPU** — 之前踩过坑（7s/step → 35-49s/step）
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:vota_loop_only_seed42"
+}
+```
+
+</details>
+
+---

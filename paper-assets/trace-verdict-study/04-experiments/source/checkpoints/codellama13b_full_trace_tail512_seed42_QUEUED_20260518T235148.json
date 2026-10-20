@@ -1,0 +1,47 @@
+{
+  "exp_id": "codellama13b_full_trace_tail512_seed42",
+  "project": "trace-verdict-study",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-17T23:20:23.098Z",
+    "updated_at": "2026-05-18T23:51:47.804Z",
+    "hypothesis": "CodeLlama-13B tail-512 应在 93-96% 范围，与其他 3 模型 tail-512 收敛带一致，确认 phase transition 阈值跨 4 模型 universal",
+    "parent": "codellama13b_exception_only_seed42",
+    "reproduce": {
+      "finished_at": "2026-05-18T01:13:45.920Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T01:13:49.911715+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "accuracy": 97.5,
+          "accuracy_ci_low": 96.6,
+          "accuracy_ci_high": 98.4,
+          "majority_baseline": 71.5,
+          "lift_over_majority": 26,
+          "pass_precision": 0.98,
+          "pass_recall": 0.99,
+          "pass_f1": 0.98,
+          "fail_precision": 0.97,
+          "fail_recall": 0.94,
+          "fail_f1": 0.95,
+          "train_loss": 0.124,
+          "eval_loss": 0.249
+        }
+      }
+    },
+    "completed_at": "2026-05-18T01:35:11.577Z"
+  },
+  "timestamp": "2026-05-18T23:51:48.044804+00:00",
+  "trigger": "update_registry"
+}

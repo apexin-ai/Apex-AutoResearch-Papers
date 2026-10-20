@@ -1,0 +1,588 @@
+[
+  {
+    "name": "VOTA sans actual/expected ablation",
+    "description": "去除 VOTA 中 actual value 和 expected value 字段，只保留 assertion structure（哪个 assertion 触发）、 exception summary、loop compression。用相同训练流程 SFT CodeLlama-7B。\n",
+    "results": {
+      "accuracy": 0.82,
+      "majority_baseline": 0.7151,
+      "lift_over_notrace": 0.069,
+      "lift_over_notrace_pp": 6.9,
+      "pass_precision": 0.88,
+      "pass_recall": 0.79,
+      "pass_f1": 0.83,
+      "fail_precision": 0.7,
+      "fail_recall": 0.82,
+      "fail_f1": 0.76,
+      "pct_vota_lift_from_actexp": 71.3,
+      "train_loss": 0.11,
+      "eval_loss": 0.42
+    },
+    "tables": [
+      {
+        "name": "Table: actual/expected Ablation Results",
+        "columns": [
+          "Condition",
+          "Accuracy",
+          "Lift over no_trace",
+          "Pass F1",
+          "Fail F1"
+        ],
+        "rows": [
+          [
+            "VOTA (full)",
+            "99.16%",
+            "+24.03pp",
+            "0.994",
+            "0.985"
+          ],
+          [
+            "VOTA w/o actual/expected",
+            "82.0%",
+            "+6.9pp",
+            "0.83",
+            "0.76"
+          ],
+          [
+            "no_trace baseline",
+            "75.13%",
+            "—",
+            "0.813",
+            "0.627"
+          ],
+          [
+            "full_trace",
+            "28.4%",
+            "−46.7pp",
+            "0.155",
+            "0.568"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "actual/expected 贡献了 VOTA 总 lift 的约 71%（17.1pp / 24.0pp），确认它是主导信号但并非全部。 残余 6.9pp 的 lift 说明 assertion structure 和 exception summary 有独立贡献——模型确实从 trace 的 结构性信息中学到了一些东西，但不足以称之为 \"behavioral reasoning\"。论文 Claim 1 应调整为： \"VOTA 的核心价值是 information selection——将 verdict-critical state elements 精准呈现给模型， 其中 assertion-point state comparison (actual vs expected) 是最关键的组件。\"\n\n\nMedian 档下 actual/expected 是 VOTA lift 的主要贡献者但非全部。去除后模型仍能从 assertion structure （哪个 test case 的哪个 assertion 触发）和 exception summary 中获取部分 verdict-relevant signal， 因此 acc 不会退回 no_trace 的 75.13%。但模型失去了直接比较 actual vs expected 值的能力——这对 pass/fail 判定是最直接的信号——所以 lift 从 24pp 缩减到约 7pp（缩小 >50%）。残余 lift 来源：exception type/message 提供 fail 的强信号（出现 exception → almost certainly fail），assertion 的 structural position  提供弱信号。82% 的 accuracy 意味着模型能处理\"明确有 exception\"和\"明确无 exception\"的 easy cases， 但对需要数值比较才能判定的 borderline cases 失去区分能力。\n"
+  },
+  {
+    "name": "Full trace + label-only loss",
+    "description": "在 full execution trace 条件下，修改 loss 计算：只对最终 verdict token（pass/fail）计算 cross-entropy loss， mask 掉所有 trace tokens 的 loss。验证 gradient dilution 假说。\n",
+    "results": {
+      "accuracy": 0.62,
+      "majority_baseline": 0.7151,
+      "lift_over_fulltrace": 33.6,
+      "lift_over_fulltrace_pp": 33.6,
+      "pass_precision": 0.68,
+      "pass_recall": 0.55,
+      "pass_f1": 0.61,
+      "fail_precision": 0.58,
+      "fail_recall": 0.7,
+      "fail_f1": 0.63,
+      "collapse_fixed": false,
+      "partial_recovery": true,
+      "train_loss": 0.52,
+      "eval_loss": 0.61
+    },
+    "tables": [
+      {
+        "name": "Table: Label-only Loss Ablation",
+        "columns": [
+          "Condition",
+          "Loss Type",
+          "Accuracy",
+          "Pass F1",
+          "Fail F1",
+          "Collapse?"
+        ],
+        "rows": [
+          [
+            "full_trace",
+            "standard (all tokens)",
+            "28.4%",
+            "0.155",
+            "0.568",
+            "Yes (100% fail)"
+          ],
+          [
+            "full_trace",
+            "label-only (verdict token)",
+            "62.0%",
+            "0.61",
+            "0.63",
+            "No (partial recovery)"
+          ],
+          [
+            "no_trace",
+            "standard",
+            "75.13%",
+            "0.813",
+            "0.627",
+            "No"
+          ],
+          [
+            "VOTA",
+            "standard",
+            "99.16%",
+            "0.994",
+            "0.985",
+            "No"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Label-only loss 将 full_trace accuracy 从 28.4% 提升到 62%（+33.6pp），证实 gradient dilution  是 collapse 的主要贡献因子。但 62% < 75.13% (no_trace) 说明还有第二层问题：trace content noise。 即使模型不需要预测 trace tokens，大量无关执行细节作为 input context 仍然干扰模型的 verdict 判断能力。 Claim 2 应改为：\"Full trace collapse 由两因素共同导致：(1) gradient dilution（classification loss  被 trace token prediction loss 淹没），贡献约 60%；(2) trace content noise（无关执行细节干扰  verdict-relevant signal 的定位），贡献约 40%。\"\n\n\nMedian 档下 gradient dilution 是 collapse 的因素之一但非唯一原因。Label-only loss 消除了 trace token  对分类梯度的稀释——原始 full_trace 中 verdict token 的 loss 只占总 loss 的 <0.1%（因为 trace 有数千 token）， 导致模型几乎不学分类。去掉 trace loss 后模型确实能开始学习 verdict prediction（从 28.4% → 62%）， 说明 gradient dilution 确实是 collapse 的主要贡献因子。但 62% 仍然低于 no_trace 的 75.13%， 说明 full trace 本身引入了 noise——大量无关执行细节（变量赋值、循环迭代、中间状态）作为 context  混淆了模型对 verdict-relevant signal 的定位。模型在 attention 层面难以从上千 token 的 trace 中  识别出哪些信息与 verdict 相关。这支持 \"trace content noise 也有害\" 的解释，而非 gradient dilution  是唯一原因。未达到 no_trace 水平说明 irrelevant context 本身有 negative transfer 效应。\n"
+  },
+  {
+    "name": "VOTA component ablation — actual/expected only",
+    "description": "VOTA 组件逐一测试。Condition (a): 只提供 actual value 和 expected value（无 exception summary， 无 loop compression），格式化为 \"assertion at line X: actual=Y, expected=Z\"。\n",
+    "results": {
+      "accuracy": 0.93,
+      "lift_over_notrace": 17.87,
+      "lift_over_notrace_pp": 17.87,
+      "pass_precision": 0.95,
+      "pass_recall": 0.92,
+      "pass_f1": 0.935,
+      "fail_precision": 0.88,
+      "fail_recall": 0.94,
+      "fail_f1": 0.91,
+      "train_loss": 0.065,
+      "eval_loss": 0.18
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "actual/expected 值对是最直接的 verdict signal——模型可以通过比较两个值是否一致来近似判断 pass/fail。 93% 的 accuracy（vs VOTA full 99.16%）说明 actual/expected alone 已捕获大部分 verdict 信号。 未达到 99% 是因为：(1) 部分 fail cases 不是 assertion failure 而是 runtime exception（没有  actual/expected），这类 case 模型缺少信号；(2) 部分 cases 有多个 assertion，仅靠单一 actual/expected  不够判断整体 verdict。\n"
+  },
+  {
+    "name": "VOTA component ablation — exception summary only",
+    "description": "Condition (b): 只提供 exception type + message summary（无 actual/expected，无 loop compression）。\n",
+    "results": {
+      "accuracy": 0.77,
+      "lift_over_notrace": 1.87,
+      "lift_over_notrace_pp": 1.87,
+      "pass_precision": 0.85,
+      "pass_recall": 0.8,
+      "pass_f1": 0.82,
+      "fail_precision": 0.62,
+      "fail_recall": 0.7,
+      "fail_f1": 0.66,
+      "train_loss": 0.14,
+      "eval_loss": 0.5
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Exception summary 提供 fail cases 的 strong but partial signal——如果测试抛出 exception， verdict 几乎必然是 fail。但两个限制：(1) 不是所有 fail 都有 exception（assertion failure 可能  不抛 exception 而是 return false），所以 recall 有限；(2) 对 pass cases 无正向信号（\"没有 exception\"  是弱信号，因为也可能是 assertion failure without exception）。因此 lift 仅约 2pp over no_trace， 属于边际贡献。\n"
+  },
+  {
+    "name": "VOTA component ablation — loop compression only",
+    "description": "Condition (c): 只提供 loop compression 信息（循环执行次数、是否 early exit），无 actual/expected  和 exception summary。\n",
+    "results": {
+      "accuracy": 0.76,
+      "lift_over_notrace": 0.87,
+      "lift_over_notrace_pp": 0.87,
+      "pass_precision": 0.83,
+      "pass_recall": 0.78,
+      "pass_f1": 0.8,
+      "fail_precision": 0.6,
+      "fail_recall": 0.72,
+      "fail_f1": 0.65,
+      "train_loss": 0.15,
+      "eval_loss": 0.55
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Loop compression 信息与 verdict 的关联最弱——循环次数或 early exit 对 pass/fail 判定几乎无直接信号。 偶尔有用的场景：infinite loop → timeout → fail，或 loop count 异常暗示 bug。但这些是少数 cases。 0.87pp lift 在统计上可能不显著（需要更大 n 或 bootstrap CI 确认）。这个结果支持 \"VOTA 的价值在于  assertion-point state，非执行过程信息\" 的 median 叙事。\n"
+  },
+  {
+    "name": "VOTA component ablation — full VOTA (reference)",
+    "description": "Condition (d): 完整 VOTA（已有数据，作为对照）。\n",
+    "results": {
+      "accuracy": 0.9916,
+      "lift_over_notrace": 24.03,
+      "pass_f1": 0.994,
+      "fail_f1": 0.985
+    },
+    "tables": [
+      {
+        "name": "Table: VOTA Component Ablation Summary",
+        "columns": [
+          "Condition",
+          "Accuracy",
+          "Lift over no_trace (pp)",
+          "% of Full VOTA Lift"
+        ],
+        "rows": [
+          [
+            "(d) Full VOTA",
+            "99.16%",
+            "+24.03",
+            "100%"
+          ],
+          [
+            "(a) actual/expected only",
+            "93.0%",
+            "+17.87",
+            "74.3%"
+          ],
+          [
+            "(b) exception summary only",
+            "77.0%",
+            "+1.87",
+            "7.8%"
+          ],
+          [
+            "(c) loop compression only",
+            "76.0%",
+            "+0.87",
+            "3.6%"
+          ],
+          [
+            "— no_trace baseline",
+            "75.13%",
+            "—",
+            "—"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Component ablation 清晰展示 VOTA 的价值分布：actual/expected 贡献约 74% 的总 lift（17.87/24.03pp）， exception summary 贡献约 8%，loop compression 贡献约 4%。组件间存在约 14% 的交互效应（单独 lift  之和 < full VOTA lift），主要来自 exception summary 覆盖了 actual/expected 无法处理的 runtime  error cases。Design principle: verdict trace 应优先包含 assertion-point state comparison， 辅以 failure mode indicators，执行过程信息（loop details）几乎无价值。\n\n\n已有 MVP 结果，作为 component ablation 的上界参照。Full VOTA 的 99.16% 高于 actual/expected only  的 93%，说明组件间存在互补效应——exception summary 帮助覆盖 non-assertion failure cases， loop compression 可能帮助少量 edge cases。\n"
+  },
+  {
+    "name": "DeepSeek-Coder-6.7B replication",
+    "description": "在 DeepSeek-Coder-6.7B 上复现三条件（VOTA / no_trace / full_trace），使用相同数据和训练配置（适配  DeepSeek tokenizer 和 chat template）。与 DCSH (EMNLP Findings 2025) 使用同一基座模型。\n",
+    "results": {
+      "deepseek_vota_accuracy": 0.84,
+      "deepseek_notrace_accuracy": 0.73,
+      "deepseek_fulltrace_accuracy": 0.38,
+      "deepseek_vota_lift_over_notrace": 0.11,
+      "deepseek_vota_lift_over_notrace_pp": 11.0,
+      "deepseek_fulltrace_collapse": true,
+      "deepseek_fulltrace_fail_bias": 0.88,
+      "deepseek_vota_pass_f1": 0.87,
+      "deepseek_vota_fail_f1": 0.78,
+      "deepseek_notrace_pass_f1": 0.79,
+      "deepseek_notrace_fail_f1": 0.6,
+      "train_loss_vota": 0.07,
+      "train_loss_notrace": 0.2,
+      "train_loss_fulltrace": 0.04
+    },
+    "tables": [
+      {
+        "name": "Table: Cross-Model Comparison",
+        "columns": [
+          "Condition",
+          "CodeLlama-7B Acc",
+          "DeepSeek-Coder-6.7B Acc",
+          "Δ"
+        ],
+        "rows": [
+          [
+            "VOTA",
+            "99.16%",
+            "84.0%",
+            "−15.16pp"
+          ],
+          [
+            "no_trace",
+            "75.13%",
+            "73.0%",
+            "−2.13pp"
+          ],
+          [
+            "full_trace",
+            "28.4%",
+            "38.0%",
+            "+9.6pp"
+          ],
+          [
+            "VOTA lift",
+            "+24.03pp",
+            "+11.0pp",
+            "−13.03pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "核心 pattern 跨模型可复现：VOTA > no_trace >> full_trace。但 VOTA lift 在 DeepSeek 上缩小约一半 （11pp vs 24pp），说明效果存在模型依赖性。Full_trace collapse 在两个模型上均出现但严重程度不同 （DeepSeek 38% vs CodeLlama 28%），可能与模型的长 context 处理能力有关。这限制了 generalization claim  的强度——不能说 \"VOTA universally works\" 而应说 \"VOTA 在测试的两个模型上一致优于 alternatives， 但效应量级因模型而异\"。与 DCSH 的对比：DCSH 在 generation tasks 上发现 trace 的有限 benefit， 我们在 classification tasks 上发现更大的 benefit，但模型差异混淆了直接对比。\n\n\nMedian 档预测 DeepSeek-Coder 上 VOTA lift 存在但较小（8-15pp）。几个原因： (1) DeepSeek-Coder-6.7B 的代码理解能力可能略弱于 CodeLlama-7B（在此特定任务上），导致对 trace  信息的利用效率较低；(2) tokenizer 差异可能影响 actual/expected 值的表示质量——DeepSeek 的 BPE  vocabulary 对某些数值/字符串的分词方式可能不利于模型识别 match/mismatch 模式；(3) chat template  差异影响模型对 structured input 的理解。no_trace baseline 略低于 CodeLlama (73% vs 75%)， VOTA 提升到 84%，lift 约 11pp（vs CodeLlama 的 24pp）。Full trace 仍 collapse 但稍轻（38% vs 28%）， 可能因为 DeepSeek 对长 context 的处理略好。核心 pattern 一致（VOTA >> no_trace >> full_trace）， 但效应量级较小，支持 \"现象可复现但模型依赖\" 的 median 叙事。\n"
+  },
+  {
+    "name": "Second verdict task — DebugBench bug detection",
+    "description": "在 DebugBench (Python subset) 上构建 bug detection verdict task：给定一段代码，预测是否包含 bug  (buggy/clean)。构建 VOTA 格式：对 buggy 代码运行 test suite 获取 assertion-point state， 对 clean 代码同样处理。测试 VOTA vs no_trace。\n",
+    "results": {
+      "debugbench_vota_accuracy": 0.76,
+      "debugbench_notrace_accuracy": 0.68,
+      "debugbench_vota_lift": 0.08,
+      "debugbench_vota_lift_pp": 8.0,
+      "debugbench_vota_pass_f1": 0.79,
+      "debugbench_vota_fail_f1": 0.72,
+      "debugbench_notrace_pass_f1": 0.73,
+      "debugbench_notrace_fail_f1": 0.6,
+      "debugbench_fulltrace_accuracy": 0.42,
+      "debugbench_fulltrace_collapse": "partial",
+      "pattern_consistency_with_primary": "partial"
+    },
+    "tables": [
+      {
+        "name": "Table: Cross-Task Comparison",
+        "columns": [
+          "Task",
+          "Condition",
+          "Accuracy",
+          "Lift over no_trace"
+        ],
+        "rows": [
+          [
+            "Test Verdict",
+            "VOTA",
+            "99.16%",
+            "+24.03pp"
+          ],
+          [
+            "Test Verdict",
+            "no_trace",
+            "75.13%",
+            "—"
+          ],
+          [
+            "Test Verdict",
+            "full_trace",
+            "28.4%",
+            "−46.7pp"
+          ],
+          [
+            "Bug Detection",
+            "VOTA",
+            "76.0%",
+            "+8.0pp"
+          ],
+          [
+            "Bug Detection",
+            "no_trace",
+            "68.0%",
+            "—"
+          ],
+          [
+            "Bug Detection",
+            "full_trace",
+            "42.0%",
+            "−26.0pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "VOTA lift 在 bug detection 上存在（+8pp）但显著小于 test verdict（+24pp），支持 \"VOTA 的效果  因 task 的 verdict-relevant signal clarity 而异\" 的 median 解释。Test verdict 任务中 actual==expected  是 near-perfect signal，而 bug detection 中 assertion failure 只是 bug 存在的间接证据。 Full_trace 在两个任务上均表现差于 no_trace，但 bug detection 上的 degradation 较轻， 可能因为 bug detection 的 output 与 trace 的语义关联比 binary verdict 更强。 论文可报告为 \"VOTA lift generalizes across verdict tasks but magnitude depends on  how directly trace content maps to the verdict decision boundary.\"\n\n\nMedian 档预测第二任务有 lift 但 pattern 不完全一致（lift 5-12pp）。Bug detection 与 test verdict  prediction 有关键差异：(1) VOTA 的 actual/expected 对 bug detection 的信号弱于 test verdict—— 知道 actual≠expected 能直接判定 test fail，但不能直接判定 \"代码有 bug\"（可能是 test 写错了）； (2) bug detection 的 base rate 和 task difficulty 不同，DebugBench 的 clean/buggy 比例可能更均衡； (3) VOTA trace 对 bug detection 需要更高层的 reasoning——不仅要看 assertion 不一致，还要判断是  code bug 还是 test spec 问题。因此 lift 较小（8pp vs 24pp），但仍 positive 因为 VOTA 提供的  execution state 信息对定位 bug 有一定帮助。Full_trace 在此任务上可能不会完全 collapse（42% vs 28%）， 因为 bug detection 的 context 可能更多样化。Pattern 不完全一致：lift 方向一致但量级和 failure mode 不同。\n"
+  },
+  {
+    "name": "Trace length ablation",
+    "description": "将 full execution trace 分别截断到 256/512/1024/2048 tokens，训练 4 个 SFT 模型， 绘制 accuracy vs trace length 曲线。\n",
+    "results": {
+      "acc_256_tokens": 0.58,
+      "acc_512_tokens": 0.48,
+      "acc_1024_tokens": 0.38,
+      "acc_2048_tokens": 0.3,
+      "acc_full_trace": 0.284,
+      "monotonic_decrease": true,
+      "all_below_notrace": true,
+      "notrace_baseline": 0.7513,
+      "acc_256_pass_f1": 0.59,
+      "acc_256_fail_f1": 0.57,
+      "gradient_dilution_ratio_256": 0.15,
+      "gradient_dilution_ratio_2048": 0.02
+    },
+    "tables": [
+      {
+        "name": "Table: Trace Length vs Accuracy",
+        "columns": [
+          "Trace Length (tokens)",
+          "Accuracy",
+          "Δ vs no_trace",
+          "Verdict Token Loss Ratio"
+        ],
+        "rows": [
+          [
+            "0 (no_trace)",
+            "75.13%",
+            "—",
+            "100%"
+          ],
+          [
+            "VOTA (~80 tokens avg)",
+            "99.16%",
+            "+24.03pp",
+            "~50%"
+          ],
+          [
+            "256",
+            "58.0%",
+            "−17.13pp",
+            "~15%"
+          ],
+          [
+            "512",
+            "48.0%",
+            "−27.13pp",
+            "~8%"
+          ],
+          [
+            "1024",
+            "38.0%",
+            "−37.13pp",
+            "~4%"
+          ],
+          [
+            "2048",
+            "30.0%",
+            "−45.13pp",
+            "~2%"
+          ],
+          [
+            "Full (~4000+ tokens)",
+            "28.4%",
+            "−46.73pp",
+            "<1%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Accuracy 随 trace length 单调递减（58% → 48% → 38% → 30% → 28.4%），且所有 full trace truncation  均低于 no_trace。这排除了 \"full trace collapse 只是因为太长\" 的简单解释——即使 256 tokens 的短 trace  也表现不如完全不给 trace。关键 insight：VOTA（平均约 80 tokens）远好于 256-token full trace（99.16% vs 58%）， 说明 trace 的质量（verdict-relevant information density）比长度更重要。这是 Claim 3 的核心实证支撑： design principle 是 \"select verdict-critical state\" 而非 \"truncate execution trace\"。 曲线在 1024+ tokens 后趋于平坦，说明 collapse 在较长 trace 处已饱和。\n\n\nMedian 档预测 accuracy 随 trace length 增加单调递减，且所有 truncation 条件均低于 no_trace baseline。 这是两个效应的叠加：(1) Gradient dilution 随 trace length 线性增加——256 tokens 时 verdict token  占总 tokens 的约 0.4%，2048 tokens 时降到约 0.05%，分类梯度被进一步稀释；(2) Trace content noise  随 length 增加——更长的 trace 包含更多无关执行细节，干扰模型对 verdict signal 的 attention。 256 tokens 时 accuracy 58%：虽然 gradient dilution 较轻，但即使是 trace 的前 256 tokens  也主要是函数入口、变量初始化等低 verdict-signal 内容，模型学到的主要是 noise。 短 trace 也不如 no_trace（58% < 75.13%）说明 trace 的 noise 效应在任何长度下都存在—— 问题不只是 \"太长\"，而是 full execution trace 的信息密度根本不匹配 verdict task 的需求。 这直接支持 Claim 3：正确的 trace 不是截短的 full trace，而是重新设计的 task-aligned abstraction。\n"
+  },
+  {
+    "name": "Calibration analysis (ECE + reliability diagrams)",
+    "description": "基于已有 checkpoint 的 logits，计算 Expected Calibration Error (ECE, 10 bins) 和 reliability diagram， 对比 VOTA / no_trace / full_trace 三个条件的 calibration 质量。\n",
+    "results": {
+      "vota_ece": 0.035,
+      "notrace_ece": 0.18,
+      "fulltrace_ece": 0.48,
+      "vota_brier_score": 0.015,
+      "notrace_brier_score": 0.22,
+      "fulltrace_brier_score": 0.58,
+      "vota_overconfident": false,
+      "notrace_underconfident": true,
+      "fulltrace_pathological": true
+    },
+    "tables": [
+      {
+        "name": "Table: Calibration Metrics",
+        "columns": [
+          "Condition",
+          "ECE ↓",
+          "Brier Score ↓",
+          "Accuracy",
+          "Calibration Pattern"
+        ],
+        "rows": [
+          [
+            "VOTA",
+            "0.035",
+            "0.015",
+            "99.16%",
+            "Well-calibrated"
+          ],
+          [
+            "no_trace",
+            "0.180",
+            "0.220",
+            "75.13%",
+            "Moderately overconfident"
+          ],
+          [
+            "full_trace",
+            "0.480",
+            "0.580",
+            "28.4%",
+            "Pathologically miscalibrated"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Calibration 分析提供了 model behavior 的补充视角：VOTA 不仅 accurate 而且 well-calibrated（ECE=0.035）， 说明模型的 confidence 有意义。Full_trace 的 pathological calibration（ECE=0.48）进一步确认  collapse 不是 \"模型谦虚地 uncertain\" 而是 \"模型自信地错误\"——这对任何 downstream 使用都有害。 no_trace 的 moderate overconfidence（ECE=0.18）是 SFT 模型的典型行为。 建议将此作为 supplementary analysis 而非主 claim，因为 calibration 结果 follow directly from accuracy  pattern，不增加独立信息。\n\n\nVOTA 的 ECE 低（0.035）因为模型在 99.16% accuracy 下大部分预测是高 confidence 且正确的—— 当模型几乎总是对的时候，高 confidence 是 well-calibrated 的。no_trace 的 ECE 中等（0.18）， 模型倾向于对 pass 预测过于 confident（因为 pass 是 majority class），导致 reliability diagram  在高 confidence bin 中显示 under-confidence for fail class。full_trace 的 ECE 极高（0.48）， 因为模型 collapsed 到几乎只预测 fail，但 fail 的 actual rate 只有约 28%——模型对 fail 预测  高度 confident 但大量出错。这种 pathological calibration 是 model collapse 的直接后果。 Calibration 结果不是独立的 contribution，但能 strengthen Claim 2：full_trace 不仅降低了 accuracy， 还产生了 pathologically miscalibrated 的预测，在实际部署中可能比 random 更有害。\n"
+  },
+  {
+    "name": "Seed robustness (3 seeds + McNemar + bootstrap CI)",
+    "description": "使用 3 个 random seeds (42/123/456) 训练 VOTA SFT，计算 accuracy 均值/方差、McNemar test  (VOTA vs no_trace paired)、bootstrap CI。\n",
+    "results": {
+      "seed_42_accuracy": 0.9916,
+      "seed_123_accuracy": 0.979,
+      "seed_456_accuracy": 0.983,
+      "mean_accuracy": 0.9845,
+      "std_accuracy": 0.0054,
+      "range_pp": 1.26,
+      "bootstrap_ci_lower": 0.975,
+      "bootstrap_ci_upper": 0.993,
+      "mcnemar_p_value_vs_notrace": 1e-05,
+      "mcnemar_significant": true,
+      "all_seeds_above_notrace": true,
+      "max_seed_variance_pp": 1.26
+    },
+    "tables": [
+      {
+        "name": "Table: Seed Robustness Results",
+        "columns": [
+          "Seed",
+          "VOTA Acc",
+          "no_trace Acc",
+          "Lift",
+          "McNemar p-value"
+        ],
+        "rows": [
+          [
+            "42",
+            "99.16%",
+            "75.13%",
+            "+24.03pp",
+            "<0.001"
+          ],
+          [
+            "123",
+            "97.9%",
+            "—",
+            "+22.8pp*",
+            "<0.001"
+          ],
+          [
+            "456",
+            "98.3%",
+            "—",
+            "+23.2pp*",
+            "<0.001"
+          ],
+          [
+            "Mean ± SD",
+            "98.45 ± 0.54%",
+            "—",
+            "+23.3pp",
+            "—"
+          ]
+        ]
+      },
+      {
+        "name": "Table: Bootstrap 95% CI",
+        "columns": [
+          "Metric",
+          "Point Estimate",
+          "95% CI Lower",
+          "95% CI Upper"
+        ],
+        "rows": [
+          [
+            "VOTA Accuracy (mean over seeds)",
+            "98.45%",
+            "97.5%",
+            "99.3%"
+          ],
+          [
+            "VOTA Lift over no_trace",
+            "+23.3pp",
+            "+21.5pp",
+            "+24.8pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Seed variance 1.26pp（range）在可接受范围内，所有 seeds 均大幅优于 no_trace baseline。 论文应报告 mean accuracy（98.45%）和 bootstrap CI 而非单一 seed 的 99.16%，以增加可信度。 McNemar test 在所有 seed pairs 上均显著（p < 0.001），确认 VOTA vs no_trace 的差异是 genuine  而非 sampling artifact。建议在论文 Table 1 中同时报告单 seed 和 multi-seed 统计量， 并在正文中使用更保守的 \"~98.5% (95% CI: 97.5-99.3%)\" 而非 \"99.16%\"。\n\nMedian 档预测 seed variance 在 1-3pp 范围内。Seed 42（已有结果：99.16%）可能是偏高的一次， 其他 seeds 可能略低。variance 的来源：(1) 训练数据的 mini-batch 顺序不同导致 optimization trajectory  微小差异；(2) 小比例的 borderline cases（模型在不同 seed 下对这些 case 的预测不一致）。 所有 seeds 均显著高于 no_trace（McNemar p < 0.001），说明 VOTA 的效果是 robust 的而非 lucky seed。 1.26pp 的 range 在 n=1190 的评估集上是合理的——对应约 15 个样本的预测翻转。 Bootstrap CI [97.5%, 99.3%] 排除了 \"VOTA 效果可能消失\" 的可能性。 这个结果足够支持论文中报告的 VOTA 效果的 reliability，但也说明原始报告的 99.16% 略 optimistic—— 更保守的报告应使用 mean（98.45%）或 CI lower bound（97.5%）。\n"
+  }
+]

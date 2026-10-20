@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "178723713b083e66ea48",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "monitor post reboot check",
+  "task_key": "worker_monitor_post_reboot_check_20260515T060209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_post_reboot_check_20260515T060209_result.json",
+    "occurrence": 1,
+    "bytes": 1324,
+    "sha256": "a53ea53118b1483ecdf8784b315c93cb4f44a3e80dd20e78ce9b66a81ee15034"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 进程状态\n- vota_no_ae_seed42 (pid 953133): **存活** — 已运行 1h41m\n- full_trace_label_only_seed42 (pid 955296): **存活** — 已运行 1h14m\n\n## 训练进度\n\n| 实验 | 进度 | Epoch | Loss | Token Acc | 速度 | 剩余时间 |\n|------|------|-------|------|-----------|------|----------|\n| vota_no_ae_seed42 | 425/444 (96%) | 1.96 | 0.0355 | 0.9889 | ~14s/it | **~4-5 min** |\n| full_trace_label_only_seed42 | 228/444 (51%) | ~1.03 | 0.0969 (epoch 0.95) | 0.9688 | ~18.7s/it | **~1h07m** |\n\n**vota_no_ae** 细节：\n- Eval@epoch1.0: eval_loss=0.1744, eval_token_acc=0.9590\n- 训练 loss 从 epoch1 的 0.0702 持续下降到 0.0355，收敛良好\n\n**full_trace_label_only** 细节：\n- label_only_loss=True, gradient_checkpointing 已开启\n- Loss 从 6.78 快速降到 0.0969，仍在第一轮末尾/第二轮初期\n\n## GPU\n\n| GPU | 型号 | 利用率 | 显存 | 温度 |\n|-----|------|--------|------|------|\n| 0 | RTX PRO 6000 Blackwell | 100% | 90355/97887 MiB (92%) | 76°C |\n| 1 | RTX PRO 6000 Blackwell | 98% | 52779/97887 MiB (54%) | 71°C |\n\n## 磁盘\nautodl-tmp: 54G / 250G used (22%)\n\n---\n\nvota_no_ae_seed42 即将完成（~5分钟内）。full_trace_label_only_seed42 预计还需约1小时。两个进程均正常运行，GPU 满载，无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-post-reboot-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d7fe6842c284bce6f85",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper final table1 sync compile",
+  "task_key": "worker_paper_final_table1_sync_compile_20260520T173015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_final_table1_sync_compile_20260520T173015_result.json",
+    "occurrence": 1,
+    "bytes": 428,
+    "sha256": "148aca960f348cefa71ff9102130ec39ac1ac65b6d0e58404855060a668fcff7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 steps complete:\n\n| Step | Status | Details |\n|------|--------|---------|\n| 1. Sync 3 files to remote | Done | introduction.tex (30L), experiments.tex (184L), appendix.tex (772L) |\n| 2. Remote LaTeX compile | Done | 3-pass pdflatex + bibtex, 0 errors |\n| 3. Pull PDF to local | Done | `artifacts/_project/paper/main.pdf` |\n| 4. Verify | Done | 21 pages, 440,553 bytes (430KB > 400KB), valid PDF v1.5 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-final-table1-sync-compile.md"
+}

@@ -1,0 +1,40 @@
+{
+  "exp_id": "vota_seed123",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:38:48.954Z",
+    "updated_at": "2026-05-15T12:42:01.260Z",
+    "spec": {
+      "plan_id": "plan_008",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123 --wandb_project trace-verdict-study --wandb_run_name vota_seed123 && python eval/evaluate.py --condition vota --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123/final/eval_results.json\"",
+      "server": "westd-11235",
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/vota_train.jsonl",
+      "data_count": 4720,
+      "model_name": "Qwen2.5-Coder-7B-Instruct",
+      "seed": 123
+    },
+    "hypothesis": "Seed robustness: VOTA with seed=123 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.",
+    "server": "westd-11235",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-11235",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T12:39:38.117Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123 --wandb_project trace-verdict-study --wandb_run_name vota_seed123 && python eval/evaluate.py --condition vota --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123/final/eval_results.json\"",
+      "finished_at": "2026-05-15T12:42:00.404Z",
+      "training_hours": 0.04
+    },
+    "pid": "103055",
+    "log_path": "~/runs/trace-verdict-study/vota_seed123.log",
+    "failure_reason": "CUDA OOM: CUDA out of memory. Tried to allocate 4.64 GiB. GPU 0 has a total capacity of 94.97 GiB of which 614.25 MiB is free. Process 93494 has 21.86 GiB memory in use. Including non-PyTorch memory, this process has 24.48 GiB memory in use. Of the allocated m",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T12:42:01.260Z"
+  },
+  "timestamp": "2026-05-15T12:42:01.305075+00:00",
+  "trigger": "update_registry"
+}

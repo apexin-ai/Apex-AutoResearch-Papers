@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01bc002ba65f234fca4c",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code plan 008 seed prep",
+  "task_key": "worker_code_plan_008_seed_prep_20260515T120629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_008_seed_prep_20260515T120629_result.json",
+    "occurrence": 1,
+    "bytes": 1468,
+    "sha256": "46732b879d3db5c86cf987cfbadc7308808d600a0409708c131766053cb9a0b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**产出**\n| 文件 | 位置 |\n|------|------|\n| 批量训练脚本 | `/root/trace-verdict-study/scripts/run_seed_robustness.sh` |\n| 聚合分析脚本 | `/root/trace-verdict-study/scripts/aggregate_seeds.py` |\n\n**dry-run 结果**\n- `run_seed_robustness.sh --help` ✅ 正常输出用法\n- `aggregate_seeds.py --help` ✅ 正常输出用法\n\n**参数确认**\n- `train_sft.py` 支持 `--seed`（默认42）、`--gradient_checkpointing` ✅\n- `evaluate.py` 支持 `--output`、`--checkpoint_dir` ✅\n- 脚本内已设 `CUDA_VISIBLE_DEVICES` 和 `--gradient_checkpointing`\n\n**运行方式**\n```bash\n# 默认跑 seed 123, 456\nbash scripts/run_seed_robustness.sh --gpu 0\n\n# 聚合所有3个seed（含已跑完的seed42）\npython scripts/aggregate_seeds.py --paths \\\n  /root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/eval_results.json \\\n  /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123/final/eval_results.json \\\n  /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456/final/eval_results.json\n```\n\n**预计时间**: 每个 seed ~2.5h（训练2h + 评估15min + 模型加载等），两个 seed 串行共 ~5h。\n\n**注意**: seed 42 结果目录是 `vota/`（无 seed 后缀），新的是 `vota_seed{123,456}/`，聚合时需要用 `--paths` 显式指定三个路径。McNemar 检验需要 per-sample predictions（当前 evaluate.py 不保存），aggregate 脚本中已注明。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-008-seed-prep.md"
+}

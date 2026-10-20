@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08ec935817750b5bab75",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper figure status check",
+  "task_key": "worker_paper_figure_status_check_20260516T044419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_status_check_20260516T044419_result.json",
+    "occurrence": 1,
+    "bytes": 673,
+    "sha256": "06c5301599821a36a965ff169574aadcadbd226925cdfdf913fcf5de002a8163"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：所有 4 个论文图表均已完成，无需补全。**\n\n服务器 `westd-11235` 上 `/root/trace-verdict-study/figures/paper/` 目录：\n\n| 图表 | 状态 | 文件大小 |\n|------|------|---------|\n| fig1_trace_overview | ✅ | 37 KB PDF |\n| fig2_calibration | ✅ | 18 KB PDF |\n| fig3_cross_model_gap | ✅ | 33 KB PDF |\n| fig4_trace_length (ablation) | ✅ | 17 KB PDF |\n\ntrace_length_ablation 的 6 个数据点（256tok/512tok/1024tok/no_limit/exception_only/no_trace）与 bootstrap JSON 完全一致。fig1_trace_overview 也已生成（非缺失）。\n\n状态报告已写入 artifacts 并注册（`art_20260516_1f38dd`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-status-check.md"
+}

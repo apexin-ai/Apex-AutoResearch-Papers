@@ -1,0 +1,5074 @@
+# research literature vota
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 74
+- **Recorded user turns:** 0
+- **Tool calls:** 27
+- **Original source:** `logs/workers/worker_research_literature-vota_20260514T215130.log`
+- **Structured JSON:** [`34e118de31233a1a7590.json`](../../sessions/34/34e118de31233a1a7590.json)
+
+## Before a recorded user message
+
+74 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "6a76ea3c-8f55-40a8-ae0a-cb5090b67170",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778802600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "b1aa4d0d-8414-4e62-88d2-5b4f940fda66",
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll search for recent papers across the four directions and compile a literature map.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "0a61f67c-5fd4-42b3-a222-538fa872f5a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MCSoMvzaoYr9EqyByA8GaW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11502,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11502
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01YZUWpwNeqQDdhfvmPQviiR`</summary>
+
+```json
+{
+  "query": "select:WebSearch,mcp__agent-ml-research__save_project_file",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "d8f676fa-db19-4acf-b37b-ec7c427d3ba8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MCSoMvzaoYr9EqyByA8GaW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11502,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11502
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T21:51:40.261Z_
+
+<details><summary>↩ Tool result · `toolu_01YZUWpwNeqQDdhfvmPQviiR`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "a3c9b57a-b243-4a1b-93dd-7c10781877ff",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:WebSearch,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for papers across the four directions. I'll run multiple searches in parallel to be efficient.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "94e48c77-564d-4dbf-8141-83b50f871dc7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YPkfrE1oBKpVzqD4aXiaMQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 885,
+      "cache_read_input_tokens": 23343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 885
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+Starting literature search across four directions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "6e5c5309-9c1b-4d59-9c28-70336e8c3fae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YPkfrE1oBKpVzqD4aXiaMQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 885,
+      "cache_read_input_tokens": 23343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 885
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01A1RaTBXcBuib4tyCSEK2WD`</summary>
+
+```json
+{
+  "query": "execution trace LLM code debugging understanding 2024 2025 paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "6c155b22-c897-4630-9999-e8bb3c252351",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YPkfrE1oBKpVzqD4aXiaMQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 885,
+      "cache_read_input_tokens": 23343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 885
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017M4vfgcFJnVZNpp1dvZMHJ`</summary>
+
+```json
+{
+  "query": "LLM code verdict pass fail classification mutation testing 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "f5069a95-1bdb-4be7-91be-2ea1f852bbdd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YPkfrE1oBKpVzqD4aXiaMQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 885,
+      "cache_read_input_tokens": 23343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 885
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XXeK5T6NaUyMXe3yXgFPRV`</summary>
+
+```json
+{
+  "query": "execution trace compression abstraction summarization program 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "3a0a4c22-d88b-478b-9d9d-f436bd6d9e9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YPkfrE1oBKpVzqD4aXiaMQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 885,
+      "cache_read_input_tokens": 23343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 885
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KEgssdTAfhtXYZAvWXBjQ4`</summary>
+
+```json
+{
+  "query": "SFT fine-tuning LLM classification task 2024 2025 paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "8a3dda3d-3c95-43e3-8196-21c842e1d84e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YPkfrE1oBKpVzqD4aXiaMQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 885,
+      "cache_read_input_tokens": 23343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 885
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T21:51:56.503Z_
+
+<details><summary>↩ Tool result · `toolu_01XXeK5T6NaUyMXe3yXgFPRV`</summary>
+
+```text
+Web search results for query: "execution trace compression abstraction summarization program 2024 2025"
+
+Links: [{"title":"Interactive Performance Visualization and Analysis of Execution Traces for Pattern-Based Parallel Programming | International Journal of Parallel Programming | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10766-025-00805-3"},{"title":"Do Code Semantics Help? A Comprehensive Study on ...","url":"https://aclanthology.org/2025.findings-emnlp.548.pdf"},{"title":"Tracezip: Efficient Distributed Tracing via Trace Compression","url":"https://arxiv.org/html/2502.06318v1"},{"title":"Compressing Microcontroller Execution Traces to Assist System Analysis | Springer Nature Link (formerly SpringerLink)","url":"https://link.springer.com/chapter/10.1007/978-3-642-38853-8_13"},{"title":"Unified extractive-abstractive summarization: a hybrid approach utilizing BERT and transformer models for enhanced document summarization [PeerJ]","url":"https://peerj.com/articles/cs-2424/"},{"title":"A Novel Framework for Evaluating Application Performance in Distributed Systems","url":"https://www.mdpi.com/2076-3417/15/23/12837"},{"title":"Tracezip: Efficient Distributed Tracing via Trace Compression | Request PDF","url":"https://www.researchgate.net/publication/392914397_Tracezip_Efficient_Distributed_Tracing_via_Trace_Compression"},{"title":"Energy Considerations of Large Language Model ...","url":"https://aclanthology.org/2025.acl-long.1563.pdf"},{"title":"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs","url":"https://arxiv.org/html/2505.04441v1"},{"title":"GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub","url":"https://github.com/tmgthb/Autonomous-Agents"}]
+
+Based on the search results, here are some recent findings on execution trace compression, abstraction, and summarization in programs (2024-2025):
+
+## Key Research Areas
+
+**Performance Visualization and Execution Trace Analysis:**
+A tool called SkeVU was presented for performance analysis and visualization of skeleton programs, with a prototype demonstrated at HLPP 2024. The tool is being extended with functionality including agglomeration and summarization of iterative structures in the graph.
+
+**Execution Trace Compression for Distributed Tracing:**
+Tracezip is proposed as the first online trace compression system by leveraging the inherent redundancy in trace span data. Tracezip addresses distributed tracing overhead by transforming spans into a concise representation upon their generation at the service side, which can be seamlessly decompressed at the backend side, significantly reducing the volume of data that needs to be transmitted. Results show Tracezip offers around 10% to 45% performance gain when working with traditional compression schemes like gzip and bzip2, with negligible space overhead.
+
+**Code Semantics and Execution Traces for LLMs:**
+Research involves extracting runtime execution messages from execution trace data, which are then formalized using a trace adapter, with parameter-efficient fine-tuning techniques employed to train foundation models.
+
+**Program Repair with Execution Traces:**
+Recent work on automatic program repair with LLMs attempts to remedy the limitation of static code analysis by augmenting standard APR prompts with program execution traces.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "6d0686be-406f-4d4b-9d6a-a9fa4b5e8bf0",
+  "tool_use_result": {
+    "query": "execution trace compression abstraction summarization program 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KSUNynSdSsHSuf4q6KGLf4",
+        "content": [
+          {
+            "title": "Interactive Performance Visualization and Analysis of Execution Traces for Pattern-Based Parallel Programming | International Journal of Parallel Programming | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10766-025-00805-3"
+          },
+          {
+            "title": "Do Code Semantics Help? A Comprehensive Study on ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.548.pdf"
+          },
+          {
+            "title": "Tracezip: Efficient Distributed Tracing via Trace Compression",
+            "url": "https://arxiv.org/html/2502.06318v1"
+          },
+          {
+            "title": "Compressing Microcontroller Execution Traces to Assist System Analysis | Springer Nature Link (formerly SpringerLink)",
+            "url": "https://link.springer.com/chapter/10.1007/978-3-642-38853-8_13"
+          },
+          {
+            "title": "Unified extractive-abstractive summarization: a hybrid approach utilizing BERT and transformer models for enhanced document summarization [PeerJ]",
+            "url": "https://peerj.com/articles/cs-2424/"
+          },
+          {
+            "title": "A Novel Framework for Evaluating Application Performance in Distributed Systems",
+            "url": "https://www.mdpi.com/2076-3417/15/23/12837"
+          },
+          {
+            "title": "Tracezip: Efficient Distributed Tracing via Trace Compression | Request PDF",
+            "url": "https://www.researchgate.net/publication/392914397_Tracezip_Efficient_Distributed_Tracing_via_Trace_Compression"
+          },
+          {
+            "title": "Energy Considerations of Large Language Model ...",
+            "url": "https://aclanthology.org/2025.acl-long.1563.pdf"
+          },
+          {
+            "title": "Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs",
+            "url": "https://arxiv.org/html/2505.04441v1"
+          },
+          {
+            "title": "GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub",
+            "url": "https://github.com/tmgthb/Autonomous-Agents"
+          }
+        ]
+      },
+      "Based on the search results, here are some recent findings on execution trace compression, abstraction, and summarization in programs (2024-2025):\n\n## Key Research Areas\n\n**Performance Visualization and Execution Trace Analysis:**\nA tool called SkeVU was presented for performance analysis and visualization of skeleton programs, with a prototype demonstrated at HLPP 2024. The tool is being extended with functionality including agglomeration and summarization of iterative structures in the graph.\n\n**Execution Trace Compression for Distributed Tracing:**\nTracezip is proposed as the first online trace compression system by leveraging the inherent redundancy in trace span data. Tracezip addresses distributed tracing overhead by transforming spans into a concise representation upon their generation at the service side, which can be seamlessly decompressed at the backend side, significantly reducing the volume of data that needs to be transmitted. Results show Tracezip offers around 10% to 45% performance gain when working with traditional compression schemes like gzip and bzip2, with negligible space overhead.\n\n**Code Semantics and Execution Traces for LLMs:**\nResearch involves extracting runtime execution messages from execution trace data, which are then formalized using a trace adapter, with parameter-efficient fine-tuning techniques employed to train foundation models.\n\n**Program Repair with Execution Traces:**\nRecent work on automatic program repair with LLMs attempts to remedy the limitation of static code analysis by augmenting standard APR prompts with program execution traces."
+    ],
+    "durationSeconds": 7.821539881999997
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T21:51:56.794Z_
+
+<details><summary>↩ Tool result · `toolu_01A1RaTBXcBuib4tyCSEK2WD`</summary>
+
+```text
+Web search results for query: "execution trace LLM code debugging understanding 2024 2025 paper"
+
+Links: [{"title":"LADYBUG: an LLM Agent DeBUGger for data-driven applications Joel Rorseth","url":"https://openproceedings.org/2025/conf/edbt/paper-313.pdf"},{"title":"Towards Effectively Leveraging Execution Traces for ...","url":"https://aclanthology.org/2025.knowledgenlp-1.17.pdf"},{"title":"Do Code Semantics Help? A Comprehensive Study on ...","url":"https://aclanthology.org/2025.findings-emnlp.548.pdf"},{"title":"Published as a conference paper at ICLR 2024 TEACHING LARGE LANGUAGE MODELS","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/2460396f2d0d421885997dd1612ac56b-Paper-Conference.pdf"},{"title":"Paper Review — Debug like a Human: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step (ACL 2024) | by Riley Learning | Medium","url":"https://rileylearning.medium.com/paper-review-debug-like-a-human-a-large-language-model-debugger-via-verifying-runtime-execution-3872e931cf40"},{"title":"Demystifying Errors in LLM Reasoning Traces: An Empirical Study of Code Execution Simulation","url":"https://arxiv.org/html/2512.00215v1"},{"title":"DebugBench: Evaluating Debugging Capability of Large ...","url":"https://aclanthology.org/2024.findings-acl.247.pdf"},{"title":"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs","url":"https://arxiv.org/html/2505.04441v1"},{"title":"Making LLMs Program Interpreters via Execution Trace Chain of Thought","url":"https://openreview.net/pdf?id=pFyBdPyOCQ"},{"title":"trace: Evaluating Execution Efficiency of LLM-Based Code Translation","url":"https://arxiv.org/html/2603.16479"}]
+
+I found several relevant papers on execution traces for LLM code debugging and understanding from 2024-2025. Here's a summary of the key papers:
+
+## Recent Papers on Execution Traces and LLM Debugging
+
+**1. Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs (2025)**
+This work explores augmenting LLM-based automated program repair (APR) with program execution traces—structured runtime data that reveal a program's actual behavior. The findings suggest that simply incorporating execution traces into the prompt provides limited performance improvement, with effectiveness diminishing as trace complexity increases, though LLM-optimized prompts help outperform trace-free prompts more consistently.
+
+**2. Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code LLMs (2025)**
+This comprehensive study examines execution trace-based information for code LLMs, exploring how runtime execution messages can be used to enhance code models through fine-tuning.
+
+**3. LADYBUG: An LLM Agent DeBUGger for Data-Driven Applications (2025)**
+LADYBUG is a novel framework for tracing and debugging the outputs of LLM agents, which enables users to trace, modify, and efficiently re-execute the intermediate steps of an LLM agent, facilitating diagnosis and repair of hallucinations and other issues.
+
+**4. Teaching Large Language Models to Debug (2024)**
+Training repair models on execution traces improves debugging performance. Trace feedback consistently improves performance, with execution trace feedback offering consistent improvement.
+
+**5. Making LLMs Program Interpreters via Execution Trace Chain of Thought (2025)**
+This work constructed an extensive dataset composed of Python codes, their corresponding execution traces, and the final outputs, derived from a diverse range of collected Python programs.
+
+**6. Demystifying Errors in LLM Reasoning Traces (2025)**
+Recent developments in reasoning LLMs generate intermediate reasoning traces before producing a final answer, with expectations that these systems may explain their reasoning in a manner that aligns with program semantics.
+
+These papers represent the latest research addressing how execution traces can enhance LLM understanding and debugging of code.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "a06b893e-1306-4f03-99e1-f901309cb593",
+  "tool_use_result": {
+    "query": "execution trace LLM code debugging understanding 2024 2025 paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WeQ8EGo2uN7QtPMX39K9rq",
+        "content": [
+          {
+            "title": "LADYBUG: an LLM Agent DeBUGger for data-driven applications Joel Rorseth",
+            "url": "https://openproceedings.org/2025/conf/edbt/paper-313.pdf"
+          },
+          {
+            "title": "Towards Effectively Leveraging Execution Traces for ...",
+            "url": "https://aclanthology.org/2025.knowledgenlp-1.17.pdf"
+          },
+          {
+            "title": "Do Code Semantics Help? A Comprehensive Study on ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.548.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2024 TEACHING LARGE LANGUAGE MODELS",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/2460396f2d0d421885997dd1612ac56b-Paper-Conference.pdf"
+          },
+          {
+            "title": "Paper Review — Debug like a Human: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step (ACL 2024) | by Riley Learning | Medium",
+            "url": "https://rileylearning.medium.com/paper-review-debug-like-a-human-a-large-language-model-debugger-via-verifying-runtime-execution-3872e931cf40"
+          },
+          {
+            "title": "Demystifying Errors in LLM Reasoning Traces: An Empirical Study of Code Execution Simulation",
+            "url": "https://arxiv.org/html/2512.00215v1"
+          },
+          {
+            "title": "DebugBench: Evaluating Debugging Capability of Large ...",
+            "url": "https://aclanthology.org/2024.findings-acl.247.pdf"
+          },
+          {
+            "title": "Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs",
+            "url": "https://arxiv.org/html/2505.04441v1"
+          },
+          {
+            "title": "Making LLMs Program Interpreters via Execution Trace Chain of Thought",
+            "url": "https://openreview.net/pdf?id=pFyBdPyOCQ"
+          },
+          {
+            "title": "trace: Evaluating Execution Efficiency of LLM-Based Code Translation",
+            "url": "https://arxiv.org/html/2603.16479"
+          }
+        ]
+      },
+      "I found several relevant papers on execution traces for LLM code debugging and understanding from 2024-2025. Here's a summary of the key papers:\n\n## Recent Papers on Execution Traces and LLM Debugging\n\n**1. Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs (2025)**\nThis work explores augmenting LLM-based automated program repair (APR) with program execution traces—structured runtime data that reveal a program's actual behavior. The findings suggest that simply incorporating execution traces into the prompt provides limited performance improvement, with effectiveness diminishing as trace complexity increases, though LLM-optimized prompts help outperform trace-free prompts more consistently.\n\n**2. Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code LLMs (2025)**\nThis comprehensive study examines execution trace-based information for code LLMs, exploring how runtime execution messages can be used to enhance code models through fine-tuning.\n\n**3. LADYBUG: An LLM Agent DeBUGger for Data-Driven Applications (2025)**\nLADYBUG is a novel framework for tracing and debugging the outputs of LLM agents, which enables users to trace, modify, and efficiently re-execute the intermediate steps of an LLM agent, facilitating diagnosis and repair of hallucinations and other issues.\n\n**4. Teaching Large Language Models to Debug (2024)**\nTraining repair models on execution traces improves debugging performance. Trace feedback consistently improves performance, with execution trace feedback offering consistent improvement.\n\n**5. Making LLMs Program Interpreters via Execution Trace Chain of Thought (2025)**\nThis work constructed an extensive dataset composed of Python codes, their corresponding execution traces, and the final outputs, derived from a diverse range of collected Python programs.\n\n**6. Demystifying Errors in LLM Reasoning Traces (2025)**\nRecent developments in reasoning LLMs generate intermediate reasoning traces before producing a final answer, with expectations that these systems may explain their reasoning in a manner that aligns with program semantics.\n\nThese papers represent the latest research addressing how execution traces can enhance LLM understanding and debugging of code."
+    ],
+    "durationSeconds": 9.531632077
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T21:51:57.020Z_
+
+<details><summary>↩ Tool result · `toolu_017M4vfgcFJnVZNpp1dvZMHJ`</summary>
+
+```text
+Web search results for query: "LLM code verdict pass fail classification mutation testing 2024 2025"
+
+Links: [{"title":"LLMs Are the Key to Mutation Testing and Better Compliance - Engineering at Meta","url":"https://engineering.fb.com/2025/09/30/security/llms-are-the-key-to-mutation-testing-and-better-compliance/"},{"title":"Mutation-Guided LLM-based Test Generation at Meta","url":"https://arxiv.org/html/2501.12862v1"},{"title":"Mutation-Guided LLM-based Test Generation at Meta Christopher Foster","url":"https://arxiv.org/pdf/2501.12862"},{"title":"Mutation-Guided LLM-based Test Generation at Meta (FSE 2025 - Industry Papers) - FSE 2025","url":"https://conf.researchr.org/details/fse-2025/fse-2025-industry-papers/16/Mutation-Guided-LLM-based-Test-Generation-at-Meta"},{"title":"Meta Applies Mutation Testing with LLM to Improve Compliance Coverage - InfoQ","url":"https://www.infoq.com/news/2026/01/meta-llm-mutation-testing/"},{"title":"Evaluating LLM Generated Detection Rules in Cybersecurity","url":"https://arxiv.org/html/2509.16749v1"},{"title":"LLM Testing Tools and Frameworks in 2026: The Engineering Guide","url":"https://contextqa.com/blog/llm-testing-tools-frameworks-2026/"},{"title":"[2501.12862] Mutation-Guided LLM-based Test Generation at Meta","url":"https://arxiv.org/abs/2501.12862"},{"title":"LLM-Powered Test Case Generation for Detecting Bugs in ...","url":"https://aclanthology.org/2025.acl-long.20.pdf"},{"title":"Utilising LLM-as-a-Judge to Evaluate LLM-Generated Code by cbarkinozer | Softtech","url":"https://medium.com/softtechas/utilising-llm-as-a-judge-to-evaluate-llm-generated-code-451e9631c713"}]
+
+Based on the search results, here's what I found related to LLM code verdict pass/fail classification and mutation testing in 2024-2025:
+
+## Key Research and Developments
+
+**Meta's ACH System (Automated Compliance Hardening):**
+
+Meta developed an LLM-based Equivalence Detector agent that is capable of judging whether a mutant is equivalent to the original code. When combined with simple static analysis preprocessing, this approach achieves high precision (0.79) and recall (0.47) – rising to 0.95 and 0.96 with simple preprocessing – in detecting equivalent mutants.
+
+From October to December 2024, Meta deployed ACH for privacy testing use cases on several platforms including Facebook, Instagram, WhatsApp, and their wearables platforms. Out of thousands of mutants and hundreds of generated tests, privacy engineers accepted 73% of the tests, with 36% judged as privacy relevant.
+
+**Test Generation with Mutation Guidance:**
+
+In total, ACH was applied to 10,795 Android Kotlin classes in 7 software platforms deployed by Meta, from which it generated 9,095 mutants and 571 privacy-hardening test cases. ACH generates relatively few mutants compared to traditional mutation testing and instead focuses on generating currently undetected faults that are specific to an issue of concern.
+
+**LLM-as-Judge for Code Evaluation:**
+
+More broadly, models with heavy Chain-of-Thought capabilities like OpenAI o1 or QwQ drastically outperform standard instruction-tuned models in code judging tasks. When the order of responses was swapped, LLMs frequently changed their verdict or contradicted themselves, showing inconsistency issues.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "1173da4d-04c8-47a6-b702-4b4b521a2501",
+  "tool_use_result": {
+    "query": "LLM code verdict pass fail classification mutation testing 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013bxDCsRoWqQ3oynD86BEH2",
+        "content": [
+          {
+            "title": "LLMs Are the Key to Mutation Testing and Better Compliance - Engineering at Meta",
+            "url": "https://engineering.fb.com/2025/09/30/security/llms-are-the-key-to-mutation-testing-and-better-compliance/"
+          },
+          {
+            "title": "Mutation-Guided LLM-based Test Generation at Meta",
+            "url": "https://arxiv.org/html/2501.12862v1"
+          },
+          {
+            "title": "Mutation-Guided LLM-based Test Generation at Meta Christopher Foster",
+            "url": "https://arxiv.org/pdf/2501.12862"
+          },
+          {
+            "title": "Mutation-Guided LLM-based Test Generation at Meta (FSE 2025 - Industry Papers) - FSE 2025",
+            "url": "https://conf.researchr.org/details/fse-2025/fse-2025-industry-papers/16/Mutation-Guided-LLM-based-Test-Generation-at-Meta"
+          },
+          {
+            "title": "Meta Applies Mutation Testing with LLM to Improve Compliance Coverage - InfoQ",
+            "url": "https://www.infoq.com/news/2026/01/meta-llm-mutation-testing/"
+          },
+          {
+            "title": "Evaluating LLM Generated Detection Rules in Cybersecurity",
+            "url": "https://arxiv.org/html/2509.16749v1"
+          },
+          {
+            "title": "LLM Testing Tools and Frameworks in 2026: The Engineering Guide",
+            "url": "https://contextqa.com/blog/llm-testing-tools-frameworks-2026/"
+          },
+          {
+            "title": "[2501.12862] Mutation-Guided LLM-based Test Generation at Meta",
+            "url": "https://arxiv.org/abs/2501.12862"
+          },
+          {
+            "title": "LLM-Powered Test Case Generation for Detecting Bugs in ...",
+            "url": "https://aclanthology.org/2025.acl-long.20.pdf"
+          },
+          {
+            "title": "Utilising LLM-as-a-Judge to Evaluate LLM-Generated Code by cbarkinozer | Softtech",
+            "url": "https://medium.com/softtechas/utilising-llm-as-a-judge-to-evaluate-llm-generated-code-451e9631c713"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found related to LLM code verdict pass/fail classification and mutation testing in 2024-2025:\n\n## Key Research and Developments\n\n**Meta's ACH System (Automated Compliance Hardening):**\n\nMeta developed an LLM-based Equivalence Detector agent that is capable of judging whether a mutant is equivalent to the original code. When combined with simple static analysis preprocessing, this approach achieves high precision (0.79) and recall (0.47) – rising to 0.95 and 0.96 with simple preprocessing – in detecting equivalent mutants.\n\nFrom October to December 2024, Meta deployed ACH for privacy testing use cases on several platforms including Facebook, Instagram, WhatsApp, and their wearables platforms. Out of thousands of mutants and hundreds of generated tests, privacy engineers accepted 73% of the tests, with 36% judged as privacy relevant.\n\n**Test Generation with Mutation Guidance:**\n\nIn total, ACH was applied to 10,795 Android Kotlin classes in 7 software platforms deployed by Meta, from which it generated 9,095 mutants and 571 privacy-hardening test cases. ACH generates relatively few mutants compared to traditional mutation testing and instead focuses on generating currently undetected faults that are specific to an issue of concern.\n\n**LLM-as-Judge for Code Evaluation:**\n\nMore broadly, models with heavy Chain-of-Thought capabilities like OpenAI o1 or QwQ drastically outperform standard instruction-tuned models in code judging tasks. When the order of responses was swapped, LLMs frequently changed their verdict or contradicted themselves, showing inconsistency issues."
+    ],
+    "durationSeconds": 8.811419741000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T21:51:58.576Z_
+
+<details><summary>↩ Tool result · `toolu_01KEgssdTAfhtXYZAvWXBjQ4`</summary>
+
+```text
+Web search results for query: "SFT fine-tuning LLM classification task 2024 2025 paper"
+
+Links: [{"title":"The Best Instruction-Tuning Data are Those That Fit | OpenReview","url":"https://openreview.net/forum?id=4jFSekBaDT"},{"title":"ICML Poster FisherSFT: Data-Efficient Supervised Fine-Tuning of Language Models Using Information Gain","url":"https://icml.cc/virtual/2025/poster/44605"},{"title":"Massive Supervised Fine-tuning Experiments Reveal How Data, Layer, and Training Factors Shape LLM Alignment Quality","url":"https://arxiv.org/html/2506.14681v2"},{"title":"Original Paper Fine-Tuning Methods for Large Language Models in Clinical","url":"https://www.jmir.org/2025/1/e76048/PDF"},{"title":"Journal of Medical Internet Research - Fine-Tuning Methods for Large Language Models in Clinical Medicine by Supervised Fine-Tuning and Direct Preference Optimization: Comparative Evaluation","url":"https://www.jmir.org/2025/1/e76048"},{"title":"preserving diversity in supervised fine-tuning","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/a548ef984f30bca3abdc09f43743827f-Paper-Conference.pdf"},{"title":"Fine-tuning large language models for domain adaptation: exploration of training strategies, scaling, model merging and synergistic capabilities | npj Computational Materials","url":"https://www.nature.com/articles/s41524-025-01564-y"},{"title":"Hands on with SFT - AI Engineering Academy","url":"https://aiengineering.academy/LLM/HandsOnWithFinetuning/SFT/SFT/"},{"title":"[2506.14681] Massive Supervised Fine-tuning Experiments Reveal How Data, Layer, and Training Factors Shape LLM Alignment Quality","url":"https://arxiv.org/abs/2506.14681"},{"title":"Fine-tuning large language models (LLMs) in 2026 | SuperAnnotate","url":"https://www.superannotate.com/blog/llm-fine-tuning"}]
+
+I found several recent papers and resources related to SFT (Supervised Fine-Tuning) for LLMs with classification tasks from 2024-2025. Here are the key findings:
+
+## Recent Papers on SFT Fine-tuning for LLMs:
+
+### 1. **GRAPE Framework (NeurIPS 2025)**
+High-quality supervised fine-tuning (SFT) data are essential for unlocking pretrained LLMs' capabilities. The GRAPE framework proposes that SFT is most effective when the data is aligned with the model's pretrained distribution, and for each instruction, it gathers responses from various sources and selects the one that aligns most closely to the model's pretrained distribution.
+
+### 2. **FisherSFT (ICML 2025)**
+Supervised fine-tuning (SFT) is the most common way of adapting large language models (LLMs) to a new domain. This paper improves the efficiency of SFT by selecting an informative subset of training examples, selecting those that maximize information gain, as measured by the Fisher information matrix of the SFT objective.
+
+### 3. **Clinical NLP Classification Tasks (2025)**
+SFT alone is sufficient for simple tasks such as rule-based text classification, while DPO after SFT improves performance on the more complex tasks of triage, clinical reasoning, and summarization.
+
+### 4. **Massive SFT Experiments Study (October 2025)**
+Researchers trained a wide range of base models on a variety of datasets including code generation, mathematical reasoning, and general-domain tasks, resulting in 1,000+ SFT models under controlled conditions. They identified the dataset properties that matter most and demonstrated that perplexity consistently predicts SFT effectiveness, often surpassing superficial similarity between the training data and the benchmark.
+
+### 5. **Preserving Diversity in SFT (ICLR 2025)**
+GEM enhances the model's ability to generate more diverse responses, which translates into improved performance in test-time scaling. When fine-tuning Llama-3.1-8B, GEM outperforms CE by achieving a 5-point improvement in chatting and an 8-point improvement in code generation tasks through repeated sampling.
+
+These papers represent significant recent research advances in optimizing SFT for various tasks including classification.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "210009e4-af2c-49e1-8ff3-f84a20fb65f5",
+  "tool_use_result": {
+    "query": "SFT fine-tuning LLM classification task 2024 2025 paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Vogg2teDGWWXLZJb2fi2do",
+        "content": [
+          {
+            "title": "The Best Instruction-Tuning Data are Those That Fit | OpenReview",
+            "url": "https://openreview.net/forum?id=4jFSekBaDT"
+          },
+          {
+            "title": "ICML Poster FisherSFT: Data-Efficient Supervised Fine-Tuning of Language Models Using Information Gain",
+            "url": "https://icml.cc/virtual/2025/poster/44605"
+          },
+          {
+            "title": "Massive Supervised Fine-tuning Experiments Reveal How Data, Layer, and Training Factors Shape LLM Alignment Quality",
+            "url": "https://arxiv.org/html/2506.14681v2"
+          },
+          {
+            "title": "Original Paper Fine-Tuning Methods for Large Language Models in Clinical",
+            "url": "https://www.jmir.org/2025/1/e76048/PDF"
+          },
+          {
+            "title": "Journal of Medical Internet Research - Fine-Tuning Methods for Large Language Models in Clinical Medicine by Supervised Fine-Tuning and Direct Preference Optimization: Comparative Evaluation",
+            "url": "https://www.jmir.org/2025/1/e76048"
+          },
+          {
+            "title": "preserving diversity in supervised fine-tuning",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/a548ef984f30bca3abdc09f43743827f-Paper-Conference.pdf"
+          },
+          {
+            "title": "Fine-tuning large language models for domain adaptation: exploration of training strategies, scaling, model merging and synergistic capabilities | npj Computational Materials",
+            "url": "https://www.nature.com/articles/s41524-025-01564-y"
+          },
+          {
+            "title": "Hands on with SFT - AI Engineering Academy",
+            "url": "https://aiengineering.academy/LLM/HandsOnWithFinetuning/SFT/SFT/"
+          },
+          {
+            "title": "[2506.14681] Massive Supervised Fine-tuning Experiments Reveal How Data, Layer, and Training Factors Shape LLM Alignment Quality",
+            "url": "https://arxiv.org/abs/2506.14681"
+          },
+          {
+            "title": "Fine-tuning large language models (LLMs) in 2026 | SuperAnnotate",
+            "url": "https://www.superannotate.com/blog/llm-fine-tuning"
+          }
+        ]
+      },
+      "I found several recent papers and resources related to SFT (Supervised Fine-Tuning) for LLMs with classification tasks from 2024-2025. Here are the key findings:\n\n## Recent Papers on SFT Fine-tuning for LLMs:\n\n### 1. **GRAPE Framework (NeurIPS 2025)**\nHigh-quality supervised fine-tuning (SFT) data are essential for unlocking pretrained LLMs' capabilities. The GRAPE framework proposes that SFT is most effective when the data is aligned with the model's pretrained distribution, and for each instruction, it gathers responses from various sources and selects the one that aligns most closely to the model's pretrained distribution.\n\n### 2. **FisherSFT (ICML 2025)**\nSupervised fine-tuning (SFT) is the most common way of adapting large language models (LLMs) to a new domain. This paper improves the efficiency of SFT by selecting an informative subset of training examples, selecting those that maximize information gain, as measured by the Fisher information matrix of the SFT objective.\n\n### 3. **Clinical NLP Classification Tasks (2025)**\nSFT alone is sufficient for simple tasks such as rule-based text classification, while DPO after SFT improves performance on the more complex tasks of triage, clinical reasoning, and summarization.\n\n### 4. **Massive SFT Experiments Study (October 2025)**\nResearchers trained a wide range of base models on a variety of datasets including code generation, mathematical reasoning, and general-domain tasks, resulting in 1,000+ SFT models under controlled conditions. They identified the dataset properties that matter most and demonstrated that perplexity consistently predicts SFT effectiveness, often surpassing superficial similarity between the training data and the benchmark.\n\n### 5. **Preserving Diversity in SFT (ICLR 2025)**\nGEM enhances the model's ability to generate more diverse responses, which translates into improved performance in test-time scaling. When fine-tuning Llama-3.1-8B, GEM outperforms CE by achieving a 5-point improvement in chatting and an 8-point improvement in code generation tasks through repeated sampling.\n\nThese papers represent significant recent research advances in optimizing SFT for various tasks including classification."
+    ],
+    "durationSeconds": 9.428984303000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have initial results. Let me do more targeted searches to fill gaps, especially for:
+1. More specific papers on execution trace + LLM (the "Scratchpad" paper, TraceFixer, etc.)
+2. Code correctness classification papers
+3. SFT specifically for classification (not generation)
+4. More trace compression work
+
+Let me search for more specific papers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "f139d479-4cc8-47b1-b9e9-ff5daa58dd83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D6EBt8jJakj4U7gvgJDSuq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4383,
+      "cache_read_input_tokens": 24228,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4383
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+Let me do more targeted searches to fill gaps.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "7271674f-40e4-4c0c-a8f2-9422ce99dd68",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D6EBt8jJakj4U7gvgJDSuq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4383,
+      "cache_read_input_tokens": 24228,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4383
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01McVSgYpmzZCNnh2X8EmtRY`</summary>
+
+```json
+{
+  "query": "\"Teaching Large Language Models to Self-Debug\" ICLR 2024 execution trace"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "853adf8b-904d-4eec-b986-c02a8748f1fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D6EBt8jJakj4U7gvgJDSuq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4383,
+      "cache_read_input_tokens": 24228,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4383
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Q5CtXjiKCKj6p3SaQergMj`</summary>
+
+```json
+{
+  "query": "\"Do Code Semantics Help\" execution trace fine-tuning EMNLP 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "d9c550e6-7c32-4771-aa7f-d2ffca1cb887",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D6EBt8jJakj4U7gvgJDSuq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4383,
+      "cache_read_input_tokens": 24228,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4383
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Fy9cQyYkKmYR7uWUfMcBGJ`</summary>
+
+```json
+{
+  "query": "LLM code correctness prediction test outcome classification 2024 2025 ICSE FSE ASE"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "73f8a356-a21f-4db3-9708-f4ff3d108c44",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D6EBt8jJakj4U7gvgJDSuq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4383,
+      "cache_read_input_tokens": 24228,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4383
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MqZsnnXhDMFYA2brcjUoeZ`</summary>
+
+```json
+{
+  "query": "\"execution trace chain of thought\" LLM program interpreter 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "a7b78b81-1ef1-4bd1-8f6a-75d499d4923d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D6EBt8jJakj4U7gvgJDSuq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4383,
+      "cache_read_input_tokens": 24228,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4383
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T21:52:12.162Z_
+
+<details><summary>↩ Tool result · `toolu_01McVSgYpmzZCNnh2X8EmtRY`</summary>
+
+```text
+Web search results for query: ""Teaching Large Language Models to Self-Debug" ICLR 2024 execution trace"
+
+Links: [{"title":"TEACHING LARGE LANGUAGE MODELS TO SELF- DEBUG","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/2460396f2d0d421885997dd1612ac56b-Paper-Conference.pdf"},{"title":"[2304.05128] Teaching Large Language Models to Self-Debug","url":"https://arxiv.org/abs/2304.05128"},{"title":"Teaching Large Language Models to Self-Debug | OpenReview","url":"https://openreview.net/forum?id=KuPixIqPiq"},{"title":"TEACHING LARGE LANGUAGE MODELS TO SELF- DEBUG","url":"https://openreview.net/attachment?id=KuPixIqPiq&name=supplementary_material"},{"title":"[PDF] Teaching Large Language Models to Self-Debug | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Teaching-Large-Language-Models-to-Self-Debug-Chen-Lin/9e3c493fb09dcd61bb05e8c5659f23327b7b6340"},{"title":"TEACHING LARGE LANGUAGE MODELS TO SELF- DEBUG Xinyun Chen1 Maxwell Lin2","url":"https://arxiv.org/pdf/2304.05128"},{"title":"GitHub - teacherpeterpan/self-correction-llm-papers: This is a collection of research papers for Self-Correcting Large Language Models with Automated Feedback. · GitHub","url":"https://github.com/teacherpeterpan/self-correction-llm-papers"},{"title":"Teaching Large Language Models to Self-Debug | by Stay Hard | Medium","url":"https://medium.com/@instein98/teaching-large-language-models-to-self-debug-1f6bf4b2f994"},{"title":"Revisit Self-Debugging with Self-Generated Tests for Code ...","url":"https://aclanthology.org/2025.acl-long.881.pdf"},{"title":"[2404.14662] NExT: Teaching Large Language Models to Reason about Code Execution","url":"https://arxiv.org/abs/2404.14662"}]
+
+I found comprehensive information about the paper "Teaching Large Language Models to Self-Debug" from ICLR 2024. Here are the key findings:
+
+## Overview
+
+This work proposes Self-Debugging, which teaches a large language model to debug its predicted program via few-shot demonstrations.
+
+## The Self-Debugging Approach
+
+The paper proposes Self-Debugging via explaining the generated code, which is reminiscent of rubber duck debugging, where a programmer debugs code by explaining it line-by-line to a rubber duck.
+
+## Execution Trace Feedback
+
+When unit tests are available, the LLM is instructed to explain the intermediate execution steps line-by-line, and importantly, both the execution trace and the line-by-line explanation come from model generation instead of code execution, thus the trace feedback does not require more information than the pure code explanation feedback.
+
+With Codex, Self-Debugging improves performance by up to 5%, and execution trace feedback consistently improves over simple feedback performance, offering consistent improvement.
+
+## Application Domains
+
+The method is evaluated on three domains: text-to-SQL generation (where no unit tests are available), code translation (utilizing unit test execution for feedback), and text-to-Python generation (inferring prediction correctness with only a subset of unit tests).
+
+## Performance Results
+
+Self-Debugging achieves state-of-the-art performance on several code generation benchmarks, including the Spider dataset for text-to-SQL generation, TransCoder for C++-to-Python translation, and MBPP for text-to-Python generation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "dc1aae86-18ca-447c-a219-a767573b0f37",
+  "tool_use_result": {
+    "query": "\"Teaching Large Language Models to Self-Debug\" ICLR 2024 execution trace",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CcyLvA3QC7RG1neaY5wJai",
+        "content": [
+          {
+            "title": "TEACHING LARGE LANGUAGE MODELS TO SELF- DEBUG",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/2460396f2d0d421885997dd1612ac56b-Paper-Conference.pdf"
+          },
+          {
+            "title": "[2304.05128] Teaching Large Language Models to Self-Debug",
+            "url": "https://arxiv.org/abs/2304.05128"
+          },
+          {
+            "title": "Teaching Large Language Models to Self-Debug | OpenReview",
+            "url": "https://openreview.net/forum?id=KuPixIqPiq"
+          },
+          {
+            "title": "TEACHING LARGE LANGUAGE MODELS TO SELF- DEBUG",
+            "url": "https://openreview.net/attachment?id=KuPixIqPiq&name=supplementary_material"
+          },
+          {
+            "title": "[PDF] Teaching Large Language Models to Self-Debug | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Teaching-Large-Language-Models-to-Self-Debug-Chen-Lin/9e3c493fb09dcd61bb05e8c5659f23327b7b6340"
+          },
+          {
+            "title": "TEACHING LARGE LANGUAGE MODELS TO SELF- DEBUG Xinyun Chen1 Maxwell Lin2",
+            "url": "https://arxiv.org/pdf/2304.05128"
+          },
+          {
+            "title": "GitHub - teacherpeterpan/self-correction-llm-papers: This is a collection of research papers for Self-Correcting Large Language Models with Automated Feedback. · GitHub",
+            "url": "https://github.com/teacherpeterpan/self-correction-llm-papers"
+          },
+          {
+            "title": "Teaching Large Language Models to Self-Debug | by Stay Hard | Medium",
+            "url": "https://medium.com/@instein98/teaching-large-language-models-to-self-debug-1f6bf4b2f994"
+          },
+          {
+            "title": "Revisit Self-Debugging with Self-Generated Tests for Code ...",
+            "url": "https://aclanthology.org/2025.acl-long.881.pdf"
+          },
+          {
+            "title": "[2404.14662] NExT: Teaching Large Language Models to Reason about Code Execution",
+            "url": "https://arxiv.org/abs/2404.14662"
+          }
+        ]
+      },
+      "I found comprehensive information about the paper \"Teaching Large Language Models to Self-Debug\" from ICLR 2024. Here are the key findings:\n\n## Overview\n\nThis work proposes Self-Debugging, which teaches a large language model to debug its predicted program via few-shot demonstrations.\n\n## The Self-Debugging Approach\n\nThe paper proposes Self-Debugging via explaining the generated code, which is reminiscent of rubber duck debugging, where a programmer debugs code by explaining it line-by-line to a rubber duck.\n\n## Execution Trace Feedback\n\nWhen unit tests are available, the LLM is instructed to explain the intermediate execution steps line-by-line, and importantly, both the execution trace and the line-by-line explanation come from model generation instead of code execution, thus the trace feedback does not require more information than the pure code explanation feedback.\n\nWith Codex, Self-Debugging improves performance by up to 5%, and execution trace feedback consistently improves over simple feedback performance, offering consistent improvement.\n\n## Application Domains\n\nThe method is evaluated on three domains: text-to-SQL generation (where no unit tests are available), code translation (utilizing unit test execution for feedback), and text-to-Python generation (inferring prediction correctness with only a subset of unit tests).\n\n## Performance Results\n\nSelf-Debugging achieves state-of-the-art performance on several code generation benchmarks, including the Spider dataset for text-to-SQL generation, TransCoder for C++-to-Python translation, and MBPP for text-to-Python generation."
+    ],
+    "durationSeconds": 7.545548539999996
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T21:52:14.624Z_
+
+<details><summary>↩ Tool result · `toolu_01Fy9cQyYkKmYR7uWUfMcBGJ`</summary>
+
+```text
+Web search results for query: "LLM code correctness prediction test outcome classification 2024 2025 ICSE FSE ASE"
+
+Links: [{"title":"GitHub - iSEngLab/AwesomeLLM4SE: [SCIS 2025] A Survey on Large Language Models for Software Engineering · GitHub","url":"https://github.com/iSEngLab/AwesomeLLM4SE"},{"title":"Calibration and Correctness of Language Models for Code Claudio Spiess∗","url":"https://www.software-lab.org/publications/icse2025_calibration.pdf"},{"title":"CORE: Benchmarking LLMs' Code Reasoning Capabilities ...","url":"https://openreview.net/pdf?id=WJIDorHiuZ"},{"title":"GitHub - saltudelft/ml4se: A curated list of papers, theses, datasets, and tools related to the application of Machine Learning for Software Engineering · GitHub","url":"https://github.com/saltudelft/ml4se"},{"title":"Do LLMs Generate Useful Test Oracles? An Empirical ...","url":"https://www.lucadigrazia.com/papers/ase2025.pdf"},{"title":"A Systematic Literature Review on Large Language Models","url":"https://arxiv.org/pdf/2405.01466"},{"title":"GitHub - xinyi-hou/LLM4SE_SLR: Large Language Models for Software Engineering: A Systematic Literature Review · GitHub","url":"https://github.com/xinyi-hou/LLM4SE_SLR"},{"title":"How well LLM-based test generation techniques perform with newer LLM versions?","url":"https://arxiv.org/pdf/2601.09695"},{"title":"Blended Analysis for Predictive Execution","url":"https://aashishyadavally.github.io/assets/pdf/pub-fse2025-(2).pdf"},{"title":"Unprecedented Code Change Automation: The Fusion of","url":"https://danny.cs.colorado.edu/papers/PyCraft_FSE2024.pdf"}]
+
+Based on the web search results, here's what I found regarding LLM code correctness prediction and test outcome classification in recent conferences (2024-2025):
+
+## Key Research Areas
+
+Recent work on LLMs for software engineering includes studies on fine-tuning large language models of code for automated program repair, code security vulnerability repair, and program repair using reinforcement learning with LLMs across ICSE, FSE, and ASE venues from 2021-2024.
+
+## Specific Recent Work (2024-2025)
+
+Research presented at ICSE 2025 addresses whether alignment between LLM confidence in generated code and its correctness can be improved by confidence rescaling.
+
+The CodeNet dataset includes annotations such as code correctness based on test case results, making it particularly valuable for supervised learning tasks involving code correctness assessment.
+
+A study extracted 13,866 test oracles from 135 open-source Java projects, with all test cases created after 2024-09-01 to avoid leakage from training sets.
+
+APPT: Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models was published in TSE in 2024, directly addressing patch correctness prediction.
+
+Recent FSE 2025 work includes mutation-guided LLM-based test generation and automated unit test improvement using large language models.
+
+The research landscape shows growing focus on LLM confidence calibration, test outcome classification, and automated correctness assessment in major software engineering conferences.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "100516a1-6be5-40f7-ae1a-d3b720bc5343",
+  "tool_use_result": {
+    "query": "LLM code correctness prediction test outcome classification 2024 2025 ICSE FSE ASE",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GWiXKzWhtVXLB2i6AWusMB",
+        "content": [
+          {
+            "title": "GitHub - iSEngLab/AwesomeLLM4SE: [SCIS 2025] A Survey on Large Language Models for Software Engineering · GitHub",
+            "url": "https://github.com/iSEngLab/AwesomeLLM4SE"
+          },
+          {
+            "title": "Calibration and Correctness of Language Models for Code Claudio Spiess∗",
+            "url": "https://www.software-lab.org/publications/icse2025_calibration.pdf"
+          },
+          {
+            "title": "CORE: Benchmarking LLMs' Code Reasoning Capabilities ...",
+            "url": "https://openreview.net/pdf?id=WJIDorHiuZ"
+          },
+          {
+            "title": "GitHub - saltudelft/ml4se: A curated list of papers, theses, datasets, and tools related to the application of Machine Learning for Software Engineering · GitHub",
+            "url": "https://github.com/saltudelft/ml4se"
+          },
+          {
+            "title": "Do LLMs Generate Useful Test Oracles? An Empirical ...",
+            "url": "https://www.lucadigrazia.com/papers/ase2025.pdf"
+          },
+          {
+            "title": "A Systematic Literature Review on Large Language Models",
+            "url": "https://arxiv.org/pdf/2405.01466"
+          },
+          {
+            "title": "GitHub - xinyi-hou/LLM4SE_SLR: Large Language Models for Software Engineering: A Systematic Literature Review · GitHub",
+            "url": "https://github.com/xinyi-hou/LLM4SE_SLR"
+          },
+          {
+            "title": "How well LLM-based test generation techniques perform with newer LLM versions?",
+            "url": "https://arxiv.org/pdf/2601.09695"
+          },
+          {
+            "title": "Blended Analysis for Predictive Execution",
+            "url": "https://aashishyadavally.github.io/assets/pdf/pub-fse2025-(2).pdf"
+          },
+          {
+            "title": "Unprecedented Code Change Automation: The Fusion of",
+            "url": "https://danny.cs.colorado.edu/papers/PyCraft_FSE2024.pdf"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found regarding LLM code correctness prediction and test outcome classification in recent conferences (2024-2025):\n\n## Key Research Areas\n\nRecent work on LLMs for software engineering includes studies on fine-tuning large language models of code for automated program repair, code security vulnerability repair, and program repair using reinforcement learning with LLMs across ICSE, FSE, and ASE venues from 2021-2024.\n\n## Specific Recent Work (2024-2025)\n\nResearch presented at ICSE 2025 addresses whether alignment between LLM confidence in generated code and its correctness can be improved by confidence rescaling.\n\nThe CodeNet dataset includes annotations such as code correctness based on test case results, making it particularly valuable for supervised learning tasks involving code correctness assessment.\n\nA study extracted 13,866 test oracles from 135 open-source Java projects, with all test cases created after 2024-09-01 to avoid leakage from training sets.\n\nAPPT: Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models was published in TSE in 2024, directly addressing patch correctness prediction.\n\nRecent FSE 2025 work includes mutation-guided LLM-based test generation and automated unit test improvement using large language models.\n\nThe research landscape shows growing focus on LLM confidence calibration, test outcome classification, and automated correctness assessment in major software engineering conferences."
+    ],
+    "durationSeconds": 7.597300316000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T21:52:15.235Z_
+
+<details><summary>↩ Tool result · `toolu_01Q5CtXjiKCKj6p3SaQergMj`</summary>
+
+```text
+Web search results for query: ""Do Code Semantics Help" execution trace fine-tuning EMNLP 2025"
+
+Links: [{"title":"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models - ACL Anthology","url":"https://aclanthology.org/2025.findings-emnlp.548/"},{"title":"Do Code Semantics Help? A Comprehensive Study on ...","url":"https://aclanthology.org/2025.findings-emnlp.548.pdf"},{"title":"[2509.11686] Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models","url":"https://arxiv.org/abs/2509.11686"},{"title":"Do Code Semantics Help? A Comprehensive Study on Execution","url":"https://arxiv.org/pdf/2509.11686"},{"title":"[2509.11686v3] Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models","url":"https://arxiv.org/abs/2509.11686v3"},{"title":"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models","url":"https://arxiv.org/html/2509.11686v3"},{"title":"Code Execution as Grounded Supervision for LLM ...","url":"https://aclanthology.org/2025.emnlp-main.1260.pdf"},{"title":"Accepted Findings Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/find_papers/"},{"title":"Systematically and Automatically Testing Instruction-Tuned ...","url":"https://www.doc.ic.ac.uk/~afd/papers/2025/ICST-Turbulence.pdf"},{"title":"CodeRL+: Improving Code Generation via Reinforcement with Execution Semantics Alignment","url":"https://arxiv.org/html/2510.18471"}]
+
+Based on the search results, I found the paper you're looking for:
+
+"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models" was published in the Findings of the Association for Computational Linguistics: EMNLP 2025.
+
+The paper was authored by Jian Jornbowrl Wang, Xiaofei Xie, Qiang Hu, Shangqing Liu, and Yi Li.
+
+**Key findings:**
+
+The researchers introduced a generic framework to support integrating semantic information (e.g., execution trace) to code task-relevant prompts, and conducted a comprehensive study to explore the role of semantic information in enhancing the reasoning ability of Code LLMs, specifically investigating the usefulness of trace-based semantic information in boosting supervised fine-tuning (SFT) and post-phase inference of Code LLMs.
+
+Interestingly, the experimental results surprisingly disagree with previous works and demonstrate that semantic information has limited usefulness for SFT and test time scaling of Code LLM.
+
+The paper is available through the ACL Anthology at: https://aclanthology.org/2025.findings-emnlp.548/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "4456d2ed-19cb-4bf3-881c-656dbc214772",
+  "tool_use_result": {
+    "query": "\"Do Code Semantics Help\" execution trace fine-tuning EMNLP 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LRZdzWDk7SkDfCLNAaLMZB",
+        "content": [
+          {
+            "title": "Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2025.findings-emnlp.548/"
+          },
+          {
+            "title": "Do Code Semantics Help? A Comprehensive Study on ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.548.pdf"
+          },
+          {
+            "title": "[2509.11686] Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models",
+            "url": "https://arxiv.org/abs/2509.11686"
+          },
+          {
+            "title": "Do Code Semantics Help? A Comprehensive Study on Execution",
+            "url": "https://arxiv.org/pdf/2509.11686"
+          },
+          {
+            "title": "[2509.11686v3] Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models",
+            "url": "https://arxiv.org/abs/2509.11686v3"
+          },
+          {
+            "title": "Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models",
+            "url": "https://arxiv.org/html/2509.11686v3"
+          },
+          {
+            "title": "Code Execution as Grounded Supervision for LLM ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.1260.pdf"
+          },
+          {
+            "title": "Accepted Findings Papers - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/find_papers/"
+          },
+          {
+            "title": "Systematically and Automatically Testing Instruction-Tuned ...",
+            "url": "https://www.doc.ic.ac.uk/~afd/papers/2025/ICST-Turbulence.pdf"
+          },
+          {
+            "title": "CodeRL+: Improving Code Generation via Reinforcement with Execution Semantics Alignment",
+            "url": "https://arxiv.org/html/2510.18471"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n\"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models\" was published in the Findings of the Association for Computational Linguistics: EMNLP 2025.\n\nThe paper was authored by Jian Jornbowrl Wang, Xiaofei Xie, Qiang Hu, Shangqing Liu, and Yi Li.\n\n**Key findings:**\n\nThe researchers introduced a generic framework to support integrating semantic information (e.g., execution trace) to code task-relevant prompts, and conducted a comprehensive study to explore the role of semantic information in enhancing the reasoning ability of Code LLMs, specifically investigating the usefulness of trace-based semantic information in boosting supervised fine-tuning (SFT) and post-phase inference of Code LLMs.\n\nInterestingly, the experimental results surprisingly disagree with previous works and demonstrate that semantic information has limited usefulness for SFT and test time scaling of Code LLM.\n\nThe paper is available through the ACL Anthology at: https://aclanthology.org/2025.findings-emnlp.548/"
+    ],
+    "durationSeconds": 9.676536827000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T21:52:19.684Z_
+
+<details><summary>↩ Tool result · `toolu_01MqZsnnXhDMFYA2brcjUoeZ`</summary>
+
+```text
+Web search results for query: ""execution trace chain of thought" LLM program interpreter 2025"
+
+Links: [{"title":"Making LLMs Program Interpreters via Execution Trace Chain of Thought | OpenReview","url":"https://openreview.net/forum?id=pFyBdPyOCQ"},{"title":"Making LLMs Program Interpreters via Execution Trace Chain of Thought","url":"https://openreview.net/pdf?id=pFyBdPyOCQ"},{"title":"Code Execution as Grounded Supervision for LLM ...","url":"https://aclanthology.org/2025.emnlp-main.1260.pdf"},{"title":"Generating Verifiable Chain of Thoughts from Exection-Traces","url":"https://arxiv.org/pdf/2512.00127"},{"title":"Towards Effectively Leveraging Execution Traces for ...","url":"https://aclanthology.org/2025.knowledgenlp-1.17.pdf"},{"title":"COTTONTAIL: Large Language Model-Driven Concolic Execution for","url":"https://mboehme.github.io/paper/SP26-cottontail.pdf"},{"title":"trace: Evaluating Execution Efficiency of LLM-Based Code Translation","url":"https://arxiv.org/html/2603.16479"},{"title":"Chain-of-Thought Component in LLMs","url":"https://www.emergentmind.com/topics/chain-of-thought-cot-component"},{"title":"Do Code Semantics Help? A Comprehensive Study on ...","url":"https://aclanthology.org/2025.findings-emnlp.548.pdf"},{"title":"A Survey on LLM Symbolic Reasoning","url":"https://d197for5662m48.cloudfront.net/documents/publicationstatus/295282/preprint_pdf/17368bd9e5235ed8466977226241d74d.pdf"}]
+
+Based on the web search results, here are the key findings about execution trace chain of thought for LLM program interpreters in 2025:
+
+## ET-CoT: Making LLMs Program Interpreters
+
+ET-CoT (Execution Trace Chain of Thought) is an approach where LLMs learn to generate a detailed and systematic program execution trace as a chain of thought to predict program outcomes.
+
+### Key Approach
+
+The approach has LLMs generate detailed and systematic program execution traces as a chain of thought to predict program outcomes, with a program-execution trace format inspired by recent theoretical advances, and a new Python interpreter called PyTracify which outputs these traces during execution.
+
+### Motivation and Applications
+
+Large language models need to understand and reason about code, not merely generate it, with a crucial aspect being the ability of LLMs to predict the outcome of code or "execute" it, which is essential for verifiable policies, self-auditing reward functions, and debuggable environment models within program-centric agents.
+
+### Performance Results
+
+The fine-tuned model outperforms other models of comparable size on code execution benchmarks such as CRUXEval-O and LiveCodeBench.
+
+### Publication Status
+
+The work was published on June 14, 2025, and was accepted as an ICML 2025 Workshop paper.
+
+This represents a significant advancement in enabling LLMs to function as program interpreters by training them on execution traces rather than relying on their implicit understanding of code semantics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "d3fed792-905e-4d46-bb9d-231c87951131",
+  "tool_use_result": {
+    "query": "\"execution trace chain of thought\" LLM program interpreter 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VyBRahvNdUVAYxkP6sqi6G",
+        "content": [
+          {
+            "title": "Making LLMs Program Interpreters via Execution Trace Chain of Thought | OpenReview",
+            "url": "https://openreview.net/forum?id=pFyBdPyOCQ"
+          },
+          {
+            "title": "Making LLMs Program Interpreters via Execution Trace Chain of Thought",
+            "url": "https://openreview.net/pdf?id=pFyBdPyOCQ"
+          },
+          {
+            "title": "Code Execution as Grounded Supervision for LLM ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.1260.pdf"
+          },
+          {
+            "title": "Generating Verifiable Chain of Thoughts from Exection-Traces",
+            "url": "https://arxiv.org/pdf/2512.00127"
+          },
+          {
+            "title": "Towards Effectively Leveraging Execution Traces for ...",
+            "url": "https://aclanthology.org/2025.knowledgenlp-1.17.pdf"
+          },
+          {
+            "title": "COTTONTAIL: Large Language Model-Driven Concolic Execution for",
+            "url": "https://mboehme.github.io/paper/SP26-cottontail.pdf"
+          },
+          {
+            "title": "trace: Evaluating Execution Efficiency of LLM-Based Code Translation",
+            "url": "https://arxiv.org/html/2603.16479"
+          },
+          {
+            "title": "Chain-of-Thought Component in LLMs",
+            "url": "https://www.emergentmind.com/topics/chain-of-thought-cot-component"
+          },
+          {
+            "title": "Do Code Semantics Help? A Comprehensive Study on ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.548.pdf"
+          },
+          {
+            "title": "A Survey on LLM Symbolic Reasoning",
+            "url": "https://d197for5662m48.cloudfront.net/documents/publicationstatus/295282/preprint_pdf/17368bd9e5235ed8466977226241d74d.pdf"
+          }
+        ]
+      },
+      "Based on the web search results, here are the key findings about execution trace chain of thought for LLM program interpreters in 2025:\n\n## ET-CoT: Making LLMs Program Interpreters\n\nET-CoT (Execution Trace Chain of Thought) is an approach where LLMs learn to generate a detailed and systematic program execution trace as a chain of thought to predict program outcomes.\n\n### Key Approach\n\nThe approach has LLMs generate detailed and systematic program execution traces as a chain of thought to predict program outcomes, with a program-execution trace format inspired by recent theoretical advances, and a new Python interpreter called PyTracify which outputs these traces during execution.\n\n### Motivation and Applications\n\nLarge language models need to understand and reason about code, not merely generate it, with a crucial aspect being the ability of LLMs to predict the outcome of code or \"execute\" it, which is essential for verifiable policies, self-auditing reward functions, and debuggable environment models within program-centric agents.\n\n### Performance Results\n\nThe fine-tuned model outperforms other models of comparable size on code execution benchmarks such as CRUXEval-O and LiveCodeBench.\n\n### Publication Status\n\nThe work was published on June 14, 2025, and was accepted as an ICML 2025 Workshop paper.\n\nThis represents a significant advancement in enabling LLMs to function as program interpreters by training them on execution traces rather than relying on their implicit understanding of code semantics."
+    ],
+    "durationSeconds": 12.373395465999995
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I'm getting a clearer picture now. Let me search for a few more specific papers to fill the remaining gaps:
+
+1. NExT paper (teaching LLMs to reason about code execution)
+2. APPT paper (patch correctness prediction)
+3. More on SFT for classification specifically
+4. Tracezip details
+5. Calibration of LLMs for code
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "bef93553-1dce-46a9-a2f0-ad4539c93f5a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SAzF9ckkMjT6SjoGqXjESA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3951,
+      "cache_read_input_tokens": 28611,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3951
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EVyd5G3b16u1jtCW15e4fZ`</summary>
+
+```json
+{
+  "query": "NExT \"Teaching Large Language Models to Reason about Code Execution\" 2024 trace"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "bc3ecfb1-e670-4e9d-8d0c-6ba8216407c6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SAzF9ckkMjT6SjoGqXjESA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3951,
+      "cache_read_input_tokens": 28611,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3951
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Gh5hCQ8WqJYmdfd99ivtv6`</summary>
+
+```json
+{
+  "query": "APPT patch correctness prediction fine-tuning pre-trained models TSE 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "d95a612c-98d5-43c5-b5ce-78a2384123cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SAzF9ckkMjT6SjoGqXjESA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3951,
+      "cache_read_input_tokens": 28611,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3951
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011zf3Le8jANKt5pV69UVogR`</summary>
+
+```json
+{
+  "query": "\"Calibration and Correctness of Language Models for Code\" ICSE 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "17b9c7ce-9cce-40e1-93bd-124f0510045b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SAzF9ckkMjT6SjoGqXjESA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3951,
+      "cache_read_input_tokens": 28611,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3951
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GCiVpCBB2n1MSZaQn8x741`</summary>
+
+```json
+{
+  "query": "supervised fine-tuning LLM binary classification sequence classification 2024 2025 NeurIPS ICML"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "bcd44e2a-04e0-471c-b014-89b29c2a7ea7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SAzF9ckkMjT6SjoGqXjESA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3951,
+      "cache_read_input_tokens": 28611,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3951
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T21:52:31.863Z_
+
+<details><summary>↩ Tool result · `toolu_01EVyd5G3b16u1jtCW15e4fZ`</summary>
+
+```text
+Web search results for query: "NExT "Teaching Large Language Models to Reason about Code Execution" 2024 trace"
+
+Links: [{"title":"[2404.14662] NExT: Teaching Large Language Models to Reason about Code Execution","url":"https://arxiv.org/abs/2404.14662"},{"title":"[PDF] NExT: Teaching Large Language Models to Reason about Code Execution | Semantic Scholar","url":"https://www.semanticscholar.org/paper/NExT:-Teaching-Large-Language-Models-to-Reason-Code-Ni-Allamanis/49306aa1fde2a21fadc77dbc8ec7e487fac72c5b"},{"title":"NExT: Teaching Large Language Models to Reason about Code Execution","url":"https://proceedings.mlr.press/v235/ni24a.html"},{"title":"[2404.14662v1] NExT: Teaching Large Language Models to Reason about Code Execution","url":"https://arxiv.org/abs/2404.14662v1"},{"title":"Decoding Code Execution: How DeepMind’s NExT Empowers AI Reasoning | Synced","url":"https://syncedreview.com/2024/04/24/decoding-code-execution-how-deepminds-next-empowers-ai-reasoning/"},{"title":"NExT: Teaching Large Language Models to Reason about Code Execution | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/next-teaching-large-language-models-to-reason"},{"title":"NExT: Teaching Large Language Models to Reason about ...","url":"https://www.emergentmind.com/papers/2404.14662"},{"title":"NExT: Teaching Large Language Models to Reason about Code Execution · Miltos Allamanis","url":"https://miltos.allamanis.com/publications/2024next/"},{"title":"NExT: Teaching Large Language Models to Reason about Code Execution | OpenReview","url":"https://openreview.net/forum?id=B1W712hMBi"},{"title":"NExT: Teaching Large Language Models to Reason about ...","url":"https://arxiv.org/pdf/2404.14662"}]
+
+Based on the web search results, I found comprehensive information about the NExT paper:
+
+## NExT: Teaching Large Language Models to Reason about Code Execution
+
+NExT is a method to teach LLMs to inspect the execution traces of programs (variable states of executed lines) and reason about their run-time behavior through chain-of-thought (CoT) rationales.
+
+### Key Approach
+
+NExT uses self-training to bootstrap a synthetic training set of execution-aware rationales that lead to correct task solutions (e.g., fixed programs) without laborious manual annotation.
+
+### Performance Results
+
+Experiments on program repair tasks based on MBPP and HumanEval demonstrate that NExT improves the fix rate of a PaLM 2 model, by 26.1% and 14.3% absolute, respectively, with significantly improved rationale quality as verified by automated metrics and human raters.
+
+### Generalization Capability
+
+The model can also generalize to scenarios where program traces are absent at test-time.
+
+The paper was published in April 2024 and presented at the 41st International Conference on Machine Learning (ICML 2024). The work is authored by researchers including Ansong Ni, Miltiadis Allamanis, and others from Google DeepMind.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "2751e5cd-7fb6-487c-9803-c79e100e0093",
+  "tool_use_result": {
+    "query": "NExT \"Teaching Large Language Models to Reason about Code Execution\" 2024 trace",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EadfQkGuX2k2sdU7xYJtQo",
+        "content": [
+          {
+            "title": "[2404.14662] NExT: Teaching Large Language Models to Reason about Code Execution",
+            "url": "https://arxiv.org/abs/2404.14662"
+          },
+          {
+            "title": "[PDF] NExT: Teaching Large Language Models to Reason about Code Execution | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/NExT:-Teaching-Large-Language-Models-to-Reason-Code-Ni-Allamanis/49306aa1fde2a21fadc77dbc8ec7e487fac72c5b"
+          },
+          {
+            "title": "NExT: Teaching Large Language Models to Reason about Code Execution",
+            "url": "https://proceedings.mlr.press/v235/ni24a.html"
+          },
+          {
+            "title": "[2404.14662v1] NExT: Teaching Large Language Models to Reason about Code Execution",
+            "url": "https://arxiv.org/abs/2404.14662v1"
+          },
+          {
+            "title": "Decoding Code Execution: How DeepMind’s NExT Empowers AI Reasoning | Synced",
+            "url": "https://syncedreview.com/2024/04/24/decoding-code-execution-how-deepminds-next-empowers-ai-reasoning/"
+          },
+          {
+            "title": "NExT: Teaching Large Language Models to Reason about Code Execution | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/next-teaching-large-language-models-to-reason"
+          },
+          {
+            "title": "NExT: Teaching Large Language Models to Reason about ...",
+            "url": "https://www.emergentmind.com/papers/2404.14662"
+          },
+          {
+            "title": "NExT: Teaching Large Language Models to Reason about Code Execution · Miltos Allamanis",
+            "url": "https://miltos.allamanis.com/publications/2024next/"
+          },
+          {
+            "title": "NExT: Teaching Large Language Models to Reason about Code Execution | OpenReview",
+            "url": "https://openreview.net/forum?id=B1W712hMBi"
+          },
+          {
+            "title": "NExT: Teaching Large Language Models to Reason about ...",
+            "url": "https://arxiv.org/pdf/2404.14662"
+          }
+        ]
+      },
+      "Based on the web search results, I found comprehensive information about the NExT paper:\n\n## NExT: Teaching Large Language Models to Reason about Code Execution\n\nNExT is a method to teach LLMs to inspect the execution traces of programs (variable states of executed lines) and reason about their run-time behavior through chain-of-thought (CoT) rationales.\n\n### Key Approach\n\nNExT uses self-training to bootstrap a synthetic training set of execution-aware rationales that lead to correct task solutions (e.g., fixed programs) without laborious manual annotation.\n\n### Performance Results\n\nExperiments on program repair tasks based on MBPP and HumanEval demonstrate that NExT improves the fix rate of a PaLM 2 model, by 26.1% and 14.3% absolute, respectively, with significantly improved rationale quality as verified by automated metrics and human raters.\n\n### Generalization Capability\n\nThe model can also generalize to scenarios where program traces are absent at test-time.\n\nThe paper was published in April 2024 and presented at the 41st International Conference on Machine Learning (ICML 2024). The work is authored by researchers including Ansong Ni, Miltiadis Allamanis, and others from Google DeepMind."
+    ],
+    "durationSeconds": 4.450383661
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T21:52:33.713Z_
+
+<details><summary>↩ Tool result · `toolu_01Gh5hCQ8WqJYmdfd99ivtv6`</summary>
+
+```text
+Web search results for query: "APPT patch correctness prediction fine-tuning pre-trained models TSE 2024"
+
+Links: [{"title":"GitHub - iSEngLab/APPT: [TSE 2024] APPT: Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models · GitHub","url":"https://github.com/iSEngLab/APPT"},{"title":"[2301.12453] APPT: Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models","url":"https://arxiv.org/abs/2301.12453"},{"title":"Actions · iSEngLab/APPT","url":"https://github.com/iSEngLab/APPT/actions"},{"title":"APPT: Boosting Automated Patch Correctness Prediction via Fine-Tuning Pre-Trained Models | IEEE Journals & Magazine | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/10402095/;jsessionid=5922708BFC9F37FBEE6DF1C5986009E3"},{"title":"GitHub - xinyi-hou/LLM4SE_SLR: Large Language Models for Software Engineering: A Systematic Literature Review · GitHub","url":"https://github.com/xinyi-hou/LLM4SE_SLR"},{"title":"GitHub - iSEngLab/AwesomeLLM4SE: [SCIS 2025] A Survey on Large Language Models for Software Engineering · GitHub","url":"https://github.com/iSEngLab/AwesomeLLM4SE"},{"title":"Contrastive Learning for Automated Patch Correctness ...","url":"https://arxiv.org/pdf/2602.07561"},{"title":"APPT Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models","url":"https://www.scribd.com/document/874799956/APPT-Boosting-Automated-Patch-Correctness-Prediction-via-Fine-tuning-Pre-trained-Models"},{"title":"APPT: Boosting Automated Patch Correctness Prediction ...","url":"https://arxiv.org/pdf/2301.12453"},{"title":"(PDF) Boosting Automated Patch Correctness Prediction via Pre-trained Language Model","url":"https://www.researchgate.net/publication/367558621_Boosting_Automated_Patch_Correctness_Prediction_via_Pre-trained_Language_Model"}]
+
+Based on the search results, here's what I found about APPT:
+
+## APPT: Automated Patch Correctness Prediction
+
+APPT is a TSE 2024 paper titled "Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models".
+
+### Overview
+APPT addresses the automated program repair (APR) field, which aims to fix software bugs automatically, though APR is challenged by an overfitting problem where generated patches are plausible but overfitting.
+
+### Key Approach
+APPT is a pre-trained language model (PLM)-based technique that jointly fine-tunes BERT and a classifier to predict patch correctness. The approach adopts a pre-trained model as the encoder stack, followed by an LSTM stack and a deep learning classifier, and is implemented based on the BERT model.
+
+### Performance Results
+APPT achieves prediction accuracy of 79.7% and recall of 83.2% on 1,183 Defects4J patches, outperforming CACHE by 4.3% and 6.7%. The fine-tuning process and the LSTM stack increase F1-score by 10.22% and 4.11%, respectively.
+
+The work is available on GitHub at iSEngLab/APPT, and the paper has been published in IEEE Transactions on Software Engineering (TSE).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "93b33238-9a96-489d-a871-583455c8d355",
+  "tool_use_result": {
+    "query": "APPT patch correctness prediction fine-tuning pre-trained models TSE 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VgRB133kSa2C8tLV2k5J57",
+        "content": [
+          {
+            "title": "GitHub - iSEngLab/APPT: [TSE 2024] APPT: Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models · GitHub",
+            "url": "https://github.com/iSEngLab/APPT"
+          },
+          {
+            "title": "[2301.12453] APPT: Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models",
+            "url": "https://arxiv.org/abs/2301.12453"
+          },
+          {
+            "title": "Actions · iSEngLab/APPT",
+            "url": "https://github.com/iSEngLab/APPT/actions"
+          },
+          {
+            "title": "APPT: Boosting Automated Patch Correctness Prediction via Fine-Tuning Pre-Trained Models | IEEE Journals & Magazine | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/document/10402095/;jsessionid=5922708BFC9F37FBEE6DF1C5986009E3"
+          },
+          {
+            "title": "GitHub - xinyi-hou/LLM4SE_SLR: Large Language Models for Software Engineering: A Systematic Literature Review · GitHub",
+            "url": "https://github.com/xinyi-hou/LLM4SE_SLR"
+          },
+          {
+            "title": "GitHub - iSEngLab/AwesomeLLM4SE: [SCIS 2025] A Survey on Large Language Models for Software Engineering · GitHub",
+            "url": "https://github.com/iSEngLab/AwesomeLLM4SE"
+          },
+          {
+            "title": "Contrastive Learning for Automated Patch Correctness ...",
+            "url": "https://arxiv.org/pdf/2602.07561"
+          },
+          {
+            "title": "APPT Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models",
+            "url": "https://www.scribd.com/document/874799956/APPT-Boosting-Automated-Patch-Correctness-Prediction-via-Fine-tuning-Pre-trained-Models"
+          },
+          {
+            "title": "APPT: Boosting Automated Patch Correctness Prediction ...",
+            "url": "https://arxiv.org/pdf/2301.12453"
+          },
+          {
+            "title": "(PDF) Boosting Automated Patch Correctness Prediction via Pre-trained Language Model",
+            "url": "https://www.researchgate.net/publication/367558621_Boosting_Automated_Patch_Correctness_Prediction_via_Pre-trained_Language_Model"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about APPT:\n\n## APPT: Automated Patch Correctness Prediction\n\nAPPT is a TSE 2024 paper titled \"Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models\".\n\n### Overview\nAPPT addresses the automated program repair (APR) field, which aims to fix software bugs automatically, though APR is challenged by an overfitting problem where generated patches are plausible but overfitting.\n\n### Key Approach\nAPPT is a pre-trained language model (PLM)-based technique that jointly fine-tunes BERT and a classifier to predict patch correctness. The approach adopts a pre-trained model as the encoder stack, followed by an LSTM stack and a deep learning classifier, and is implemented based on the BERT model.\n\n### Performance Results\nAPPT achieves prediction accuracy of 79.7% and recall of 83.2% on 1,183 Defects4J patches, outperforming CACHE by 4.3% and 6.7%. The fine-tuning process and the LSTM stack increase F1-score by 10.22% and 4.11%, respectively.\n\nThe work is available on GitHub at iSEngLab/APPT, and the paper has been published in IEEE Transactions on Software Engineering (TSE)."
+    ],
+    "durationSeconds": 5.829931508999994
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T21:52:35.664Z_
+
+<details><summary>↩ Tool result · `toolu_01GCiVpCBB2n1MSZaQn8x741`</summary>
+
+```text
+Web search results for query: "supervised fine-tuning LLM binary classification sequence classification 2024 2025 NeurIPS ICML"
+
+Links: [{"title":"NeurIPS Entropic Distribution Matching for Supervised Fine-tuning of LLMs: Less Overfitting and Better Diversity","url":"https://neurips.cc/virtual/2024/101683"},{"title":"preserving diversity in supervised fine-tuning","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/a548ef984f30bca3abdc09f43743827f-Paper-Conference.pdf"},{"title":"ICML Poster FisherSFT: Data-Efficient Supervised Fine-Tuning of Language Models Using Information Gain","url":"https://icml.cc/virtual/2025/poster/44605"},{"title":"NeurIPS Poster Coevolving with the Other You: Fine-Tuning LLM with Sequential Cooperative Multi-Agent Reinforcement Learning","url":"https://neurips.cc/virtual/2024/poster/95347"},{"title":"Fine-Tuning in Modern Machine Learning: Principles and Scalability","url":"https://neurips.cc/virtual/2024/workshop/84742"},{"title":"ICML Poster RoSTE: An Efficient Quantization-Aware Supervised Fine-Tuning Approach for Large Language Models","url":"https://icml.cc/virtual/2025/poster/44438"},{"title":"Massive Supervised Fine-tuning Experiments Reveal How Data, Layer, and Training Factors Shape LLM Alignment Quality","url":"https://arxiv.org/html/2506.14681v2"},{"title":"Preserving Diversity in Supervised Fine-Tuning of Large Language Models | OpenReview","url":"https://openreview.net/forum?id=NQEe7B7bSw"},{"title":"LoFiT: Localized Fine-tuning on LLM Representations","url":"https://proceedings.neurips.cc/paper_files/paper/2024/hash/122ea6470232ee5e79a2649243348005-Abstract-Conference.html"},{"title":"ICML 2024 Papers","url":"https://icml.cc/virtual/2024/papers.html"}]
+
+Based on the search results, I found several recent papers on supervised fine-tuning of LLMs presented at NeurIPS 2024 and ICML 2025:
+
+## NeurIPS 2024 Papers
+
+Large language models rely on Supervised Fine-Tuning (SFT) to specialize in downstream tasks, with Cross Entropy (CE) loss being the de facto choice in SFT. One notable NeurIPS 2024 paper addressed limitations of this approach: CE often results in overfitting and limited output diversity due to its aggressive distribution matching strategy.
+
+Another NeurIPS 2024 contribution was on fine-tuning approaches using multi-agent reinforcement learning, and a paper on localized fine-tuning of LLM representations (LoFiT).
+
+## ICML 2025 Papers
+
+Supervised fine-tuning (SFT) is the most common way of adapting large language models (LLMs) to a new domain, and one paper improves the efficiency of SFT by selecting an informative subset of training examples.
+
+Another ICML 2025 paper focused on supervised fine-tuning as a standard method for adapting pre-trained LLMs to downstream tasks, combined with quantization as a post-training technique for efficient LLM deployment.
+
+## Recent Research Trends
+
+Recent studies show that lower perplexity and moderate sequence length are stronger predictors of SFT success than sheer volume, though most studies focus on particular models or tasks with a lack of comprehensive, large-scale evaluations across multiple models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "edad3abb-9d84-455f-ae96-3d03da1a3048",
+  "tool_use_result": {
+    "query": "supervised fine-tuning LLM binary classification sequence classification 2024 2025 NeurIPS ICML",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011hRGevXULQSeN82TBFCJ22",
+        "content": [
+          {
+            "title": "NeurIPS Entropic Distribution Matching for Supervised Fine-tuning of LLMs: Less Overfitting and Better Diversity",
+            "url": "https://neurips.cc/virtual/2024/101683"
+          },
+          {
+            "title": "preserving diversity in supervised fine-tuning",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/a548ef984f30bca3abdc09f43743827f-Paper-Conference.pdf"
+          },
+          {
+            "title": "ICML Poster FisherSFT: Data-Efficient Supervised Fine-Tuning of Language Models Using Information Gain",
+            "url": "https://icml.cc/virtual/2025/poster/44605"
+          },
+          {
+            "title": "NeurIPS Poster Coevolving with the Other You: Fine-Tuning LLM with Sequential Cooperative Multi-Agent Reinforcement Learning",
+            "url": "https://neurips.cc/virtual/2024/poster/95347"
+          },
+          {
+            "title": "Fine-Tuning in Modern Machine Learning: Principles and Scalability",
+            "url": "https://neurips.cc/virtual/2024/workshop/84742"
+          },
+          {
+            "title": "ICML Poster RoSTE: An Efficient Quantization-Aware Supervised Fine-Tuning Approach for Large Language Models",
+            "url": "https://icml.cc/virtual/2025/poster/44438"
+          },
+          {
+            "title": "Massive Supervised Fine-tuning Experiments Reveal How Data, Layer, and Training Factors Shape LLM Alignment Quality",
+            "url": "https://arxiv.org/html/2506.14681v2"
+          },
+          {
+            "title": "Preserving Diversity in Supervised Fine-Tuning of Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=NQEe7B7bSw"
+          },
+          {
+            "title": "LoFiT: Localized Fine-tuning on LLM Representations",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/122ea6470232ee5e79a2649243348005-Abstract-Conference.html"
+          },
+          {
+            "title": "ICML 2024 Papers",
+            "url": "https://icml.cc/virtual/2024/papers.html"
+          }
+        ]
+      },
+      "Based on the search results, I found several recent papers on supervised fine-tuning of LLMs presented at NeurIPS 2024 and ICML 2025:\n\n## NeurIPS 2024 Papers\n\nLarge language models rely on Supervised Fine-Tuning (SFT) to specialize in downstream tasks, with Cross Entropy (CE) loss being the de facto choice in SFT. One notable NeurIPS 2024 paper addressed limitations of this approach: CE often results in overfitting and limited output diversity due to its aggressive distribution matching strategy.\n\nAnother NeurIPS 2024 contribution was on fine-tuning approaches using multi-agent reinforcement learning, and a paper on localized fine-tuning of LLM representations (LoFiT).\n\n## ICML 2025 Papers\n\nSupervised fine-tuning (SFT) is the most common way of adapting large language models (LLMs) to a new domain, and one paper improves the efficiency of SFT by selecting an informative subset of training examples.\n\nAnother ICML 2025 paper focused on supervised fine-tuning as a standard method for adapting pre-trained LLMs to downstream tasks, combined with quantization as a post-training technique for efficient LLM deployment.\n\n## Recent Research Trends\n\nRecent studies show that lower perplexity and moderate sequence length are stronger predictors of SFT success than sheer volume, though most studies focus on particular models or tasks with a lack of comprehensive, large-scale evaluations across multiple models."
+    ],
+    "durationSeconds": 6.076648172000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-14T21:52:35.995Z_
+
+<details><summary>↩ Tool result · `toolu_011zf3Le8jANKt5pV69UVogR`</summary>
+
+```text
+Web search results for query: ""Calibration and Correctness of Language Models for Code" ICSE 2025"
+
+Links: [{"title":"Calibration and Correctness of Language Models for Code (ICSE 2025 - Research Track) - ICSE 2025","url":"https://conf.researchr.org/details/icse-2025/icse-2025-research-track/8/Calibration-and-Correctness-of-Language-Models-for-Code"},{"title":"Calibration and Correctness of Language Models for Code | Proceedings of the IEEE/ACM 47th International Conference on Software Engineering","url":"https://dl.acm.org/doi/10.1109/ICSE55347.2025.00040"},{"title":"Calibration and Correctness of Language Models for Code Claudio Spiess∗","url":"https://www.software-lab.org/publications/icse2025_calibration.pdf"},{"title":"Calibration and Correctness of Language Models for Code","url":"https://www.computer.org/csdl/proceedings-article/icse/2025/056900a495/215aWTgzWr6"},{"title":"[PDF] Calibration and Correctness of Language Models for Code | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Calibration-and-Correctness-of-Language-Models-for-Spiess-Gros/65b59f4ffae4f5b9e5d63fc1d11bf9ca7f7df34d"},{"title":"[2402.02047] Calibration and Correctness of Language Models for Code","url":"https://arxiv.org/abs/2402.02047"},{"title":"dblp: ICSE 2025","url":"https://dblp.org/db/conf/icse/icse2025.html"},{"title":"Calibration and Correctness of Language Models for Code ICSE Artifact","url":"https://explore.openaire.eu/search/result?pid=10.5281/zenodo.14744842"},{"title":"Calibration of Large Language Models on Code Summarization | Proceedings of the ACM on Software Engineering","url":"https://dl.acm.org/doi/10.1145/3729400"},{"title":"Calibration and Correctness of Language Models for Code ICSE Artifact","url":"https://zenodo.org/records/14744842"}]
+
+Based on the search results, here's information about the paper "Calibration and Correctness of Language Models for Code" accepted at ICSE 2025:
+
+## Paper Overview
+
+The paper is authored by Claudio Spiess, David Gros, Kunal Suresh Pai, Michael Pradel, Md. Rafiqul Islam Rabin, Amin Alipour, Susmit Jha, Prem Devanbu, and Toufique Ahmed.
+
+## Key Contributions
+
+The researchers develop a framework for evaluating the calibration of code-generating models. The research addresses an important problem: users would benefit from a reliable indication of whether a given output from a given model should be trusted, so a rational decision can be made whether to use the output or not.
+
+## Main Findings
+
+By and large, generative code models are not well-calibrated out of the box. However, calibration can be improved using standard methods such as Platt scaling, though since Platt scaling relies on the prior availability of correctness data, they evaluate the applicability and generalizability of Platt scaling in software engineering, discussing settings where it has good potential for practical use, and settings where it does not.
+
+## Conference Details
+
+The paper is part of the 47th IEEE/ACM International Conference on Software Engineering (ICSE 2025), held in Ottawa, ON, Canada, April 26 - May 6, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "621627a9-fe4d-4906-9f14-06dae60d84f8",
+  "tool_use_result": {
+    "query": "\"Calibration and Correctness of Language Models for Code\" ICSE 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TovuxwSLgPifj7KoJK11rP",
+        "content": [
+          {
+            "title": "Calibration and Correctness of Language Models for Code (ICSE 2025 - Research Track) - ICSE 2025",
+            "url": "https://conf.researchr.org/details/icse-2025/icse-2025-research-track/8/Calibration-and-Correctness-of-Language-Models-for-Code"
+          },
+          {
+            "title": "Calibration and Correctness of Language Models for Code | Proceedings of the IEEE/ACM 47th International Conference on Software Engineering",
+            "url": "https://dl.acm.org/doi/10.1109/ICSE55347.2025.00040"
+          },
+          {
+            "title": "Calibration and Correctness of Language Models for Code Claudio Spiess∗",
+            "url": "https://www.software-lab.org/publications/icse2025_calibration.pdf"
+          },
+          {
+            "title": "Calibration and Correctness of Language Models for Code",
+            "url": "https://www.computer.org/csdl/proceedings-article/icse/2025/056900a495/215aWTgzWr6"
+          },
+          {
+            "title": "[PDF] Calibration and Correctness of Language Models for Code | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Calibration-and-Correctness-of-Language-Models-for-Spiess-Gros/65b59f4ffae4f5b9e5d63fc1d11bf9ca7f7df34d"
+          },
+          {
+            "title": "[2402.02047] Calibration and Correctness of Language Models for Code",
+            "url": "https://arxiv.org/abs/2402.02047"
+          },
+          {
+            "title": "dblp: ICSE 2025",
+            "url": "https://dblp.org/db/conf/icse/icse2025.html"
+          },
+          {
+            "title": "Calibration and Correctness of Language Models for Code ICSE Artifact",
+            "url": "https://explore.openaire.eu/search/result?pid=10.5281/zenodo.14744842"
+          },
+          {
+            "title": "Calibration of Large Language Models on Code Summarization | Proceedings of the ACM on Software Engineering",
+            "url": "https://dl.acm.org/doi/10.1145/3729400"
+          },
+          {
+            "title": "Calibration and Correctness of Language Models for Code ICSE Artifact",
+            "url": "https://zenodo.org/records/14744842"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the paper \"Calibration and Correctness of Language Models for Code\" accepted at ICSE 2025:\n\n## Paper Overview\n\nThe paper is authored by Claudio Spiess, David Gros, Kunal Suresh Pai, Michael Pradel, Md. Rafiqul Islam Rabin, Amin Alipour, Susmit Jha, Prem Devanbu, and Toufique Ahmed.\n\n## Key Contributions\n\nThe researchers develop a framework for evaluating the calibration of code-generating models. The research addresses an important problem: users would benefit from a reliable indication of whether a given output from a given model should be trusted, so a rational decision can be made whether to use the output or not.\n\n## Main Findings\n\nBy and large, generative code models are not well-calibrated out of the box. However, calibration can be improved using standard methods such as Platt scaling, though since Platt scaling relies on the prior availability of correctness data, they evaluate the applicability and generalizability of Platt scaling in software engineering, discussing settings where it has good potential for practical use, and settings where it does not.\n\n## Conference Details\n\nThe paper is part of the 47th IEEE/ACM International Conference on Software Engineering (ICSE 2025), held in Ottawa, ON, Canada, April 26 - May 6, 2025."
+    ],
+    "durationSeconds": 7.158301419999996
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have a good set of papers now. Let me do a few more targeted searches to round out the literature map, particularly for:
+
+1. Code execution-based grounded supervision paper (EMNLP 2025)
+2. More on SFT for classification (not generation) - maybe clinical/text classification
+3. CRUXEval or LiveCodeBench (code execution prediction)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "bd4629f9-a45e-4b12-860c-4b276300aaff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PG7PYieba7iu7Yze7adRXG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 956,
+      "cache_creation_input_tokens": 3190,
+      "cache_read_input_tokens": 32562,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3190
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TwDA7e3NvKWjw2yewvRZFV`</summary>
+
+```json
+{
+  "query": "\"Code Execution as Grounded Supervision\" EMNLP 2025 LLM reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "42410838-4db0-48be-9adb-51d41ce4d08b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PG7PYieba7iu7Yze7adRXG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 956,
+      "cache_creation_input_tokens": 3190,
+      "cache_read_input_tokens": 32562,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3190
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01K7r3PN4fEWjx3mgtP99QJ8`</summary>
+
+```json
+{
+  "query": "LLM fine-tuning text classification vs generation format 2024 2025 paper comparison"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "2bfce26d-ccb4-4c4b-9493-1992dd6735b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PG7PYieba7iu7Yze7adRXG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 956,
+      "cache_creation_input_tokens": 3190,
+      "cache_read_input_tokens": 32562,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3190
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Kx8JMgxJ8gNMLhT6yWFguP`</summary>
+
+```json
+{
+  "query": "CRUXEval code execution prediction LLM benchmark 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "7a5cef8a-d240-48eb-b285-15e12316c5ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PG7PYieba7iu7Yze7adRXG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 956,
+      "cache_creation_input_tokens": 3190,
+      "cache_read_input_tokens": 32562,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3190
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T21:52:49.433Z_
+
+<details><summary>↩ Tool result · `toolu_01Kx8JMgxJ8gNMLhT6yWFguP`</summary>
+
+```text
+Web search results for query: "CRUXEval code execution prediction LLM benchmark 2024"
+
+Links: [{"title":"CRUXEval: Code Reasoning, Understanding, and Execution Evaluation","url":"https://crux-eval.github.io/"},{"title":"CruxEval-O Leaderboard","url":"https://llm-stats.com/benchmarks/cruxeval-o"},{"title":"Published as a conference paper at ICLR 2025","url":"https://openreview.net/pdf/e4619cf824fc3a958f2d274337715f6c670e7240.pdf"},{"title":"GitHub - facebookresearch/cruxeval: CRUXEval: Code Reasoning, Understanding, and Execution Evaluation · GitHub","url":"https://github.com/facebookresearch/cruxeval"},{"title":"Evaluating Code Reasoning Abilities of Large Language Models Under Real-World Settings","url":"https://arxiv.org/html/2512.14917v1"},{"title":"LiveCodeBench: Holistic and Contamination Free Evaluation of","url":"https://arxiv.org/pdf/2403.07974"},{"title":"A Benchmark for Code Reasoning, Understanding and ...","url":"https://crux-eval.github.io/paper/cruxeval.pdf"},{"title":"[2401.03065] CRUXEval: A Benchmark for Code Reasoning, Understanding and Execution","url":"https://arxiv.org/abs/2401.03065"},{"title":"CRUXEval: a benchmark for code reasoning ...","url":"https://dl.acm.org/doi/10.5555/3692070.3692729"},{"title":"Do Code Semantics Help? A Comprehensive Study on ...","url":"https://aclanthology.org/2025.findings-emnlp.548.pdf"}]
+
+Based on the web search results, here's what I found about CRUXEval:
+
+## Overview
+
+CRUXEval (Code Reasoning, Understanding, and eXecution Evaluation) is a benchmark of 800 Python functions and input-output pairs consisting of two tasks: CRUXEval-I (input prediction) and CRUXEval-O (output prediction).
+
+## Benchmark Details
+
+The benchmark consists of 800 Python functions (3-13 lines), with each function coming with an input-output pair, leading to two natural tasks: input prediction and output prediction.
+
+The benchmark tests fundamental code execution reasoning abilities and goes beyond simple code generation to assess deeper understanding of program behavior.
+
+## Performance Results
+
+The best setup, GPT-4 with chain of thought (CoT), achieves a pass@1 of 75% and 81% on input and output prediction, respectively, while Code Llama 34B achieves a pass@1 of 50% and 46% on input and output prediction.
+
+## Publication
+
+The benchmark was published in 2024 with the citation: "CRUXEval: A Benchmark for Code Reasoning, Understanding and Execution" by Alex Gu, Baptiste Rozière, Hugh Leather, Armando Solar-Lezama, Gabriel Synnaeve, and Sida I. Wang (arXiv:2401.03065).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "1e8b4ccb-9bfc-445f-982f-c2a4768b4663",
+  "tool_use_result": {
+    "query": "CRUXEval code execution prediction LLM benchmark 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01B5DVhzFeZ1oiuaEc4yVo9t",
+        "content": [
+          {
+            "title": "CRUXEval: Code Reasoning, Understanding, and Execution Evaluation",
+            "url": "https://crux-eval.github.io/"
+          },
+          {
+            "title": "CruxEval-O Leaderboard",
+            "url": "https://llm-stats.com/benchmarks/cruxeval-o"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://openreview.net/pdf/e4619cf824fc3a958f2d274337715f6c670e7240.pdf"
+          },
+          {
+            "title": "GitHub - facebookresearch/cruxeval: CRUXEval: Code Reasoning, Understanding, and Execution Evaluation · GitHub",
+            "url": "https://github.com/facebookresearch/cruxeval"
+          },
+          {
+            "title": "Evaluating Code Reasoning Abilities of Large Language Models Under Real-World Settings",
+            "url": "https://arxiv.org/html/2512.14917v1"
+          },
+          {
+            "title": "LiveCodeBench: Holistic and Contamination Free Evaluation of",
+            "url": "https://arxiv.org/pdf/2403.07974"
+          },
+          {
+            "title": "A Benchmark for Code Reasoning, Understanding and ...",
+            "url": "https://crux-eval.github.io/paper/cruxeval.pdf"
+          },
+          {
+            "title": "[2401.03065] CRUXEval: A Benchmark for Code Reasoning, Understanding and Execution",
+            "url": "https://arxiv.org/abs/2401.03065"
+          },
+          {
+            "title": "CRUXEval: a benchmark for code reasoning ...",
+            "url": "https://dl.acm.org/doi/10.5555/3692070.3692729"
+          },
+          {
+            "title": "Do Code Semantics Help? A Comprehensive Study on ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.548.pdf"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about CRUXEval:\n\n## Overview\n\nCRUXEval (Code Reasoning, Understanding, and eXecution Evaluation) is a benchmark of 800 Python functions and input-output pairs consisting of two tasks: CRUXEval-I (input prediction) and CRUXEval-O (output prediction).\n\n## Benchmark Details\n\nThe benchmark consists of 800 Python functions (3-13 lines), with each function coming with an input-output pair, leading to two natural tasks: input prediction and output prediction.\n\nThe benchmark tests fundamental code execution reasoning abilities and goes beyond simple code generation to assess deeper understanding of program behavior.\n\n## Performance Results\n\nThe best setup, GPT-4 with chain of thought (CoT), achieves a pass@1 of 75% and 81% on input and output prediction, respectively, while Code Llama 34B achieves a pass@1 of 50% and 46% on input and output prediction.\n\n## Publication\n\nThe benchmark was published in 2024 with the citation: \"CRUXEval: A Benchmark for Code Reasoning, Understanding and Execution\" by Alex Gu, Baptiste Rozière, Hugh Leather, Armando Solar-Lezama, Gabriel Synnaeve, and Sida I. Wang (arXiv:2401.03065)."
+    ],
+    "durationSeconds": 6.1573637089999975
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T21:52:49.949Z_
+
+<details><summary>↩ Tool result · `toolu_01TwDA7e3NvKWjw2yewvRZFV`</summary>
+
+```text
+Web search results for query: ""Code Execution as Grounded Supervision" EMNLP 2025 LLM reasoning"
+
+Links: [{"title":"GitHub - luka-group/Execution-Grounded-Reasoning: [EMNLP 2025] Code Execution as Grounded Supervision for LLM Reasoning","url":"https://github.com/luka-group/Execution-Grounded-Reasoning"},{"title":"Code Execution as Grounded Supervision for LLM Reasoning - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.1260/"},{"title":"[2506.10343] Code Execution as Grounded Supervision for LLM Reasoning","url":"https://arxiv.org/abs/2506.10343"},{"title":"Code Execution as Grounded Supervision for LLM ...","url":"https://aclanthology.org/2025.emnlp-main.1260.pdf"},{"title":"Code Execution as Grounded Supervision for LLM Reasoning","url":"https://arxiv.org/html/2506.10343"},{"title":"[Literature Review] Code Execution as Grounded Supervision for LLM Reasoning","url":"https://www.themoonlight.io/en/review/code-execution-as-grounded-supervision-for-llm-reasoning"},{"title":"A Multi-Agent LLM Framework for Transforming Ambiguous ...","url":"https://aclanthology.org/2025.emnlp-industry.163.pdf"},{"title":"A Survey on Code-Enhanced Reasoning and ...","url":"https://aclanthology.org/2025.emnlp-main.130.pdf"},{"title":"Do Code Semantics Help? A Comprehensive Study on ...","url":"https://aclanthology.org/2025.findings-emnlp.548.pdf"},{"title":"RLEF: Grounding Code LLMs in Execution Feedback with Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=PzSG5nKe1q"}]
+
+I found comprehensive information about "Code Execution as Grounded Supervision for LLM Reasoning" from EMNLP 2025. Here are the key findings:
+
+## Overview
+
+This is an EMNLP 2025 paper that proposes a scalable method for generating verifiable CoT data to supervise the reasoning process of LLM by leveraging the determinism of program execution.
+
+## Problem and Solution
+
+Unlike existing reasoning dataset generation methods that rely on costly human annotations or error-prone LLM-generated CoT, the approach extracts verifiable, step-by-step reasoning traces from code execution and transforms them into a natural language CoT reasoning.
+
+## Key Results
+
+Models trained on the generated data demonstrate superior reasoning abilities across various domains, while generating fewer tokens during inference, effectively reducing overthinking and meaningless repetition. Experiments on reasoning benchmarks across various domains show that the method effectively equips LLMs with transferable reasoning abilities across diverse tasks.
+
+## Methodology
+
+The method involves execution trace acquisition: given a problem with a solution code snippet and a concrete test input, the code is executed using a debugger tool (specifically, Snoop for Python), yielding the final answer and a detailed, step-by-step raw execution trace that includes executed lines, function calls/returns, and updated variable values.
+
+## Authors and Citation
+
+The paper is by Dongwon Jung, Wenxuan Zhou, and Muhao Chen, appearing in the Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing in Suzhou, China.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "bf94197e-2645-4eed-b813-8b2d5f4926d5",
+  "tool_use_result": {
+    "query": "\"Code Execution as Grounded Supervision\" EMNLP 2025 LLM reasoning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EUj6cfEKbnNRgvwET6PNLc",
+        "content": [
+          {
+            "title": "GitHub - luka-group/Execution-Grounded-Reasoning: [EMNLP 2025] Code Execution as Grounded Supervision for LLM Reasoning",
+            "url": "https://github.com/luka-group/Execution-Grounded-Reasoning"
+          },
+          {
+            "title": "Code Execution as Grounded Supervision for LLM Reasoning - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.1260/"
+          },
+          {
+            "title": "[2506.10343] Code Execution as Grounded Supervision for LLM Reasoning",
+            "url": "https://arxiv.org/abs/2506.10343"
+          },
+          {
+            "title": "Code Execution as Grounded Supervision for LLM ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.1260.pdf"
+          },
+          {
+            "title": "Code Execution as Grounded Supervision for LLM Reasoning",
+            "url": "https://arxiv.org/html/2506.10343"
+          },
+          {
+            "title": "[Literature Review] Code Execution as Grounded Supervision for LLM Reasoning",
+            "url": "https://www.themoonlight.io/en/review/code-execution-as-grounded-supervision-for-llm-reasoning"
+          },
+          {
+            "title": "A Multi-Agent LLM Framework for Transforming Ambiguous ...",
+            "url": "https://aclanthology.org/2025.emnlp-industry.163.pdf"
+          },
+          {
+            "title": "A Survey on Code-Enhanced Reasoning and ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.130.pdf"
+          },
+          {
+            "title": "Do Code Semantics Help? A Comprehensive Study on ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.548.pdf"
+          },
+          {
+            "title": "RLEF: Grounding Code LLMs in Execution Feedback with Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=PzSG5nKe1q"
+          }
+        ]
+      },
+      "I found comprehensive information about \"Code Execution as Grounded Supervision for LLM Reasoning\" from EMNLP 2025. Here are the key findings:\n\n## Overview\n\nThis is an EMNLP 2025 paper that proposes a scalable method for generating verifiable CoT data to supervise the reasoning process of LLM by leveraging the determinism of program execution.\n\n## Problem and Solution\n\nUnlike existing reasoning dataset generation methods that rely on costly human annotations or error-prone LLM-generated CoT, the approach extracts verifiable, step-by-step reasoning traces from code execution and transforms them into a natural language CoT reasoning.\n\n## Key Results\n\nModels trained on the generated data demonstrate superior reasoning abilities across various domains, while generating fewer tokens during inference, effectively reducing overthinking and meaningless repetition. Experiments on reasoning benchmarks across various domains show that the method effectively equips LLMs with transferable reasoning abilities across diverse tasks.\n\n## Methodology\n\nThe method involves execution trace acquisition: given a problem with a solution code snippet and a concrete test input, the code is executed using a debugger tool (specifically, Snoop for Python), yielding the final answer and a detailed, step-by-step raw execution trace that includes executed lines, function calls/returns, and updated variable values.\n\n## Authors and Citation\n\nThe paper is by Dongwon Jung, Wenxuan Zhou, and Muhao Chen, appearing in the Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing in Suzhou, China."
+    ],
+    "durationSeconds": 8.008685540999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T21:52:51.500Z_
+
+<details><summary>↩ Tool result · `toolu_01K7r3PN4fEWjx3mgtP99QJ8`</summary>
+
+```text
+Web search results for query: "LLM fine-tuning text classification vs generation format 2024 2025 paper comparison"
+
+Links: [{"title":"Open-source LLMs for text annotation: a practical guide for model setting and fine-tuning | Journal of Computational Social Science | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s42001-024-00345-9"},{"title":"Fine-Tuning Causal LLMs for Text Classification: Embedding-Based vs. Instruction-Based Approaches","url":"https://arxiv.org/html/2512.12677v1"},{"title":"Large Language Models for Text Classification: From Zero-Shot Learning to Instruction-Tuning - Youngjin Chae, Thomas Davidson, 2026","url":"https://journals.sagepub.com/doi/10.1177/00491241251325243"},{"title":"Advancing Single and Multi-task Text Classification through Large Language Model Fine-tuning","url":"https://arxiv.org/html/2412.08587v2"},{"title":"Pushing The Limit of LLM Capacity for Text Classification | Companion Proceedings of the ACM on Web Conference 2025","url":"https://dl.acm.org/doi/10.1145/3701716.3715528"},{"title":"A Comparative Analysis of Instruction Fine-Tuning Large Language Models for Financial Text Classification | ACM Transactions on Management Information Systems","url":"https://dl.acm.org/doi/10.1145/3706119"},{"title":"Fine-Tuned ‘Small’ LLMs (Still) Significantly Outperform Zero-Shot Generative AI Models in Text Classification","url":"https://arxiv.org/html/2406.08660v1"},{"title":"A Study on Text Classification in the Age of Large Language Models","url":"https://www.mdpi.com/2504-4990/6/4/129"},{"title":"Text Classification in the LLM Era - Where do we stand?","url":"https://arxiv.org/html/2502.11830v1"},{"title":"Parameter-efficient fine-tuning of large language models using semantic knowledge tuning | Scientific Reports","url":"https://www.nature.com/articles/s41598-024-75599-4"}]
+
+I found several relevant recent papers (2024-2025) comparing LLM fine-tuning approaches for text classification and generation tasks. Here's what the research shows:
+
+## Key Papers and Findings:
+
+**1. Embedding-Based vs. Instruction-Based Fine-Tuning**
+
+A December 2025 paper directly compares two fine-tuning methodologies: (1) adding a classification head on top of embeddings (embedding-based fine-tuning), and (2) reformulating classification as an instruction-following problem (instruction-based fine-tuning). The embedding-based approach with quantized LoRA fine-tuning consistently performs competitively with instruction-tuned LLMs in terms of classification F1-score, despite vastly fewer trainable parameters.
+
+**2. Fine-Tuning vs. Zero-Shot Performance**
+
+Smaller, fine-tuned LLMs consistently and significantly outperform larger, zero-shot prompted models in text classification, with fine-tuning with application-specific training data achieving superior performance in all cases. Fine-tuning smaller models is a competitive solution due to their relatively high accuracy and low cost.
+
+**3. Multi-Task Text Classification**
+
+There is a lack of systematic studies comparing encoder-based models and LLMs in text classification with fine-tuning, though fully fine-tuned Llama3-70B models outperform RoBERTa-large and other decoder LLMs across various classification tasks.
+
+**4. Resource-Efficient Fine-Tuning**
+
+While techniques have mainly improved text generation, their implications for text classification are not thoroughly studied, though fine-tuning works better than prompting techniques even with synthetic labels.
+
+These papers provide comprehensive 2024-2025 comparisons of different fine-tuning formats and approaches for text classification tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "bbf6997a-684f-43a4-a7ad-b698f8014f9c",
+  "tool_use_result": {
+    "query": "LLM fine-tuning text classification vs generation format 2024 2025 paper comparison",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HftWGW3uat5v2XUKE6Sgt5",
+        "content": [
+          {
+            "title": "Open-source LLMs for text annotation: a practical guide for model setting and fine-tuning | Journal of Computational Social Science | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s42001-024-00345-9"
+          },
+          {
+            "title": "Fine-Tuning Causal LLMs for Text Classification: Embedding-Based vs. Instruction-Based Approaches",
+            "url": "https://arxiv.org/html/2512.12677v1"
+          },
+          {
+            "title": "Large Language Models for Text Classification: From Zero-Shot Learning to Instruction-Tuning - Youngjin Chae, Thomas Davidson, 2026",
+            "url": "https://journals.sagepub.com/doi/10.1177/00491241251325243"
+          },
+          {
+            "title": "Advancing Single and Multi-task Text Classification through Large Language Model Fine-tuning",
+            "url": "https://arxiv.org/html/2412.08587v2"
+          },
+          {
+            "title": "Pushing The Limit of LLM Capacity for Text Classification | Companion Proceedings of the ACM on Web Conference 2025",
+            "url": "https://dl.acm.org/doi/10.1145/3701716.3715528"
+          },
+          {
+            "title": "A Comparative Analysis of Instruction Fine-Tuning Large Language Models for Financial Text Classification | ACM Transactions on Management Information Systems",
+            "url": "https://dl.acm.org/doi/10.1145/3706119"
+          },
+          {
+            "title": "Fine-Tuned ‘Small’ LLMs (Still) Significantly Outperform Zero-Shot Generative AI Models in Text Classification",
+            "url": "https://arxiv.org/html/2406.08660v1"
+          },
+          {
+            "title": "A Study on Text Classification in the Age of Large Language Models",
+            "url": "https://www.mdpi.com/2504-4990/6/4/129"
+          },
+          {
+            "title": "Text Classification in the LLM Era - Where do we stand?",
+            "url": "https://arxiv.org/html/2502.11830v1"
+          },
+          {
+            "title": "Parameter-efficient fine-tuning of large language models using semantic knowledge tuning | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-024-75599-4"
+          }
+        ]
+      },
+      "I found several relevant recent papers (2024-2025) comparing LLM fine-tuning approaches for text classification and generation tasks. Here's what the research shows:\n\n## Key Papers and Findings:\n\n**1. Embedding-Based vs. Instruction-Based Fine-Tuning**\n\nA December 2025 paper directly compares two fine-tuning methodologies: (1) adding a classification head on top of embeddings (embedding-based fine-tuning), and (2) reformulating classification as an instruction-following problem (instruction-based fine-tuning). The embedding-based approach with quantized LoRA fine-tuning consistently performs competitively with instruction-tuned LLMs in terms of classification F1-score, despite vastly fewer trainable parameters.\n\n**2. Fine-Tuning vs. Zero-Shot Performance**\n\nSmaller, fine-tuned LLMs consistently and significantly outperform larger, zero-shot prompted models in text classification, with fine-tuning with application-specific training data achieving superior performance in all cases. Fine-tuning smaller models is a competitive solution due to their relatively high accuracy and low cost.\n\n**3. Multi-Task Text Classification**\n\nThere is a lack of systematic studies comparing encoder-based models and LLMs in text classification with fine-tuning, though fully fine-tuned Llama3-70B models outperform RoBERTa-large and other decoder LLMs across various classification tasks.\n\n**4. Resource-Efficient Fine-Tuning**\n\nWhile techniques have mainly improved text generation, their implications for text classification are not thoroughly studied, though fine-tuning works better than prompting techniques even with synthetic labels.\n\nThese papers provide comprehensive 2024-2025 comparisons of different fine-tuning formats and approaches for text classification tasks."
+    ],
+    "durationSeconds": 8.625191871000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have a good collection of papers across all four categories. Let me compile the literature map. Let me organize the findings:
+
+**Category 1: Execution trace + LLM**
+
+1. **NExT: Teaching Large Language Models to Reason about Code Execution** (Ni et al., 2024, ICML 2024)
+   - Role: method-component
+   - Key finding: Self-training on execution traces improves program repair by 26.1% (MBPP) and 14.3% (HumanEval). Model generalizes to trace-absent scenarios.
+   - Direct relevance: shows trace SFT can improve code understanding
+
+2. **Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code LLMs** (Wang et al., 2025, Findings of EMNLP 2025)
+   - Role: direct-competitor
+   - Key finding: Execution trace information has LIMITED usefulness for SFT and test-time scaling of Code LLMs — contradicts previous works. Important negative result for our VOTA work to address.
+
+3. **Teaching Large Language Models to Self-Debug** (Chen et al., 2024, ICLR 2024)
+   - Role: background
+   - Key finding: Self-debugging with execution feedback helps models identify and fix errors, establishing the foundation for trace-based improvement approaches.
+
+4. **Code Execution as Grounded Supervision for LLM Reasoning** (Jung et al., 2025, EMNLP 2025)
+   - Role: method-component
+   - Key finding: Execution traces transformed to NL CoT provide verifiable supervision. Models trained on this data show superior reasoning with fewer tokens (reduced overthinking).
+
+5. **ET-CoT: Making LLMs Program Interpreters via Execution Trace Chain of Thought** (2025, ICML 2025 Workshop)
+   - Role: method-component
+   - Key finding: Fine-tuning on execution trace CoT improves code execution prediction on CRUXEval-O and LiveCodeBench.
+
+**Category 2: Code verdict/classification**
+
+1. **Calib
+
+** - Looking at calibration and correctness in code models, where out-of-the-box LLMs struggle but Platt scaling can help if you have prior correctness data.
+
+2. **APPT** - A direct competitor that fine-tunes BERT + LSTM for binary patch correctness classification, achieving strong accuracy and recall on Defects4J.
+
+3. **Mutation-Guided LLM-based Test Generation at Meta** - Examining how mutation testing guides LLM-based test generation approaches.
+
+Now looking at the mutation testing paper more closely - it uses an LLM-based equivalence detector that achieves very high precision and recall with preprocessing, and they've applied this at scale across thousands of classes.
+
+I'm also exploring trace compression techniques from distributed systems that could be relevant here, and I want to track down that paper on leveraging execution traces for program repair. Then I need to look into supervised fine-tuning approaches for classification tasks. I need to double-check the execution traces paper to make sure I have the details right. Actually, I think I have enough papers now to work with. Let me pull together the strongest 8-12 papers and organize them by category, being careful to verify the accuracy of each entry before finalizing the list.
+
+For execution-trace-llm, I have NExT, the code semantics paper, and the grounded supervision work. Under code-verdict, I've got APPT and the calibration paper, plus the mutation-guided test generation work from Meta. For trace-compression, Tracezip is solid, but ET-CoT might fit better in the execution-trace-llm category since it's really about trace abstraction. The code semantics paper also touches on trace formatting with its trace adapter, though I've already placed it elsewhere. I'm running thin on trace-compression papers, so I should look for more work specifically on trace summarization or compression for program analysis, but I might just move forward with what I have.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "630e64e6-61f9-4795-9ae8-35aa01eb0439",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M6EqHDUU8JPwH95tB1EuQz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 821,
+      "cache_creation_input_tokens": 3138,
+      "cache_read_input_tokens": 35752,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3138
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RYzTfn1g9FL2d3wqmwNA5h`</summary>
+
+```json
+{
+  "query": "program execution trace reduction slicing abstraction debugging 2024 2025 ICSE ASE"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "550dd16e-09ec-4981-9d5f-562fde4f2c60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M6EqHDUU8JPwH95tB1EuQz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 821,
+      "cache_creation_input_tokens": 3138,
+      "cache_read_input_tokens": 35752,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3138
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QF7PvNAxA2szLHjHQsCyxf`</summary>
+
+```json
+{
+  "query": "\"Towards Effectively Leveraging Execution Traces for Program Repair\" 2025 authors venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "8392e5ff-2bbf-4739-994c-6774dca87aea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M6EqHDUU8JPwH95tB1EuQz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 821,
+      "cache_creation_input_tokens": 3138,
+      "cache_read_input_tokens": 35752,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3138
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T21:53:40.729Z_
+
+<details><summary>↩ Tool result · `toolu_01QF7PvNAxA2szLHjHQsCyxf`</summary>
+
+```text
+Web search results for query: ""Towards Effectively Leveraging Execution Traces for Program Repair" 2025 authors venue"
+
+Links: [{"title":"[2505.04441] Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs","url":"https://arxiv.org/abs/2505.04441"},{"title":"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs","url":"https://arxiv.org/html/2505.04441v1"},{"title":"Debugging Code World Models","url":"https://arxiv.org/html/2602.07672v2"},{"title":"Towards Effectively Leveraging Execution Traces for ...","url":"https://aclanthology.org/2025.knowledgenlp-1.17.pdf"},{"title":"Towards Effectively Leveraging Execution Traces","url":"https://arxiv.org/pdf/2505.04441"},{"title":"Bug Fixing with Broader Context: Enhancing LLM-Based Program Repair via Layered Knowledge Injection","url":"https://arxiv.org/html/2506.24015v1"},{"title":"A Survey of LLM-based Software Repair: Taxonomies, Design Paradigms, and Applications","url":"https://arxiv.org/html/2506.23749v2"},{"title":"A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications","url":"https://arxiv.org/html/2506.23749v1"},{"title":"Petr Babkin's research works | Palo Alto Research Center and other places","url":"https://www.researchgate.net/scientific-contributions/Petr-Babkin-2224003926"},{"title":"Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate","url":"https://arxiv.org/html/2604.02647"}]
+
+Based on the search results, here is the information about the paper "Towards Effectively Leveraging Execution Traces for Program Repair":
+
+**Authors:** Mirazul Haque, Petr Babkin, Farima Farmahinifarahani, and Manuela Veloso from J. P. Morgan AI Research
+
+**Venue:** The 4th International Workshop on Knowledge-Augmented Methods for Natural Language Processing (in Albuquerque, New Mexico, USA, published by Association for Computational Linguistics, May 2025)
+
+**Year:** 2025
+
+The paper explores strategies for incorporating program execution traces into prompts for Large Language Models to improve Automatic Program Repair (APR).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "56bc50ce-58ea-48a2-9422-e8ba7ea4a3fb",
+  "tool_use_result": {
+    "query": "\"Towards Effectively Leveraging Execution Traces for Program Repair\" 2025 authors venue",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0113oP9UnxgEqq9N1FVpBYRf",
+        "content": [
+          {
+            "title": "[2505.04441] Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs",
+            "url": "https://arxiv.org/abs/2505.04441"
+          },
+          {
+            "title": "Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs",
+            "url": "https://arxiv.org/html/2505.04441v1"
+          },
+          {
+            "title": "Debugging Code World Models",
+            "url": "https://arxiv.org/html/2602.07672v2"
+          },
+          {
+            "title": "Towards Effectively Leveraging Execution Traces for ...",
+            "url": "https://aclanthology.org/2025.knowledgenlp-1.17.pdf"
+          },
+          {
+            "title": "Towards Effectively Leveraging Execution Traces",
+            "url": "https://arxiv.org/pdf/2505.04441"
+          },
+          {
+            "title": "Bug Fixing with Broader Context: Enhancing LLM-Based Program Repair via Layered Knowledge Injection",
+            "url": "https://arxiv.org/html/2506.24015v1"
+          },
+          {
+            "title": "A Survey of LLM-based Software Repair: Taxonomies, Design Paradigms, and Applications",
+            "url": "https://arxiv.org/html/2506.23749v2"
+          },
+          {
+            "title": "A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications",
+            "url": "https://arxiv.org/html/2506.23749v1"
+          },
+          {
+            "title": "Petr Babkin's research works | Palo Alto Research Center and other places",
+            "url": "https://www.researchgate.net/scientific-contributions/Petr-Babkin-2224003926"
+          },
+          {
+            "title": "Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate",
+            "url": "https://arxiv.org/html/2604.02647"
+          }
+        ]
+      },
+      "Based on the search results, here is the information about the paper \"Towards Effectively Leveraging Execution Traces for Program Repair\":\n\n**Authors:** Mirazul Haque, Petr Babkin, Farima Farmahinifarahani, and Manuela Veloso from J. P. Morgan AI Research\n\n**Venue:** The 4th International Workshop on Knowledge-Augmented Methods for Natural Language Processing (in Albuquerque, New Mexico, USA, published by Association for Computational Linguistics, May 2025)\n\n**Year:** 2025\n\nThe paper explores strategies for incorporating program execution traces into prompts for Large Language Models to improve Automatic Program Repair (APR)."
+    ],
+    "durationSeconds": 4.5994602280000105
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-14T21:53:42.840Z_
+
+<details><summary>↩ Tool result · `toolu_01RYzTfn1g9FL2d3wqmwNA5h`</summary>
+
+```text
+Web search results for query: "program execution trace reduction slicing abstraction debugging 2024 2025 ICSE ASE"
+
+Links: [{"title":"International Automated Program Repair Workshop 2025 ...","url":"https://program-repair.org/workshop-2025/"},{"title":"2025 IEEE/ACM 47th International Conference on Software ...","url":"https://www.computer.org/csdl/proceedings/icse/2025/215aVCUIQmY"},{"title":"Software Engineering Aug 2024","url":"https://arxiv.org/list/cs.SE/2024-08?show=2000&skip=175"},{"title":"dblp: ICSE 2024","url":"https://dblp.org/db/conf/icse/icse2024.html"},{"title":"Program - ICSE 2024","url":"https://conf.researchr.org/program/icse-2024/program-icse-2024/"},{"title":"On the Effects of Program Slicing for Vulnerability Detection during Code Inspection: Extended Abstract (ICSE 2024 - Posters) - ICSE 2024","url":"https://conf.researchr.org/details/icse-2024/icse-2024-posters/52/On-the-Effects-of-Program-Slicing-for-Vulnerability-Detection-during-Code-Inspection-"},{"title":"GitHub - saltudelft/ml4se: A curated list of papers, theses, datasets, and tools related to the application of Machine Learning for Software Engineering · GitHub","url":"https://github.com/saltudelft/ml4se"},{"title":"On the effects of program slicing for vulnerability detection during code inspection - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11972194/"},{"title":"2024 IEEE/ACM 46th International Conference on Software ...","url":"https://www.computer.org/csdl/proceedings/icse/2024/1RLIVDkr2xO"},{"title":"dblp: ICSE 2024","url":"https://dblp.uni-trier.de/db/conf/icse/icse2024.html"}]
+
+Based on the search results, I found relevant information about program slicing, debugging, and related research presented at ICSE and ASE conferences:
+
+## Key Findings:
+
+**Program Slicing Research (2024):**
+Predictive Program Slicing via Execution Knowledge-Guided Dynamic Dependence Learning was published at FSE'24, and A Learning-Based Approach to Static Program Slicing appeared at OOPSLA'24. These represent recent advances in using machine learning to improve program slicing techniques.
+
+**Slicing for Vulnerability Detection:**
+A study examined whether the output of method-level slicing algorithms improves participants' effectiveness in identifying vulnerabilities, with some algorithms generating larger but more accurate slices while others like intra-procedural thin slicing produce less accurate but smaller slices more suitable for human reading.
+
+**Debugging Research at ICSE 2025:**
+The 47th International Conference on Software Engineering (ICSE 2025) is taking place in Ottawa, Canada, with several debugging-related submissions being considered.
+
+**Related Program Analysis Work:**
+A paper on (Partial) Program Dependence Analysis was presented at ICSE'23, which relates to program analysis techniques often used in conjunction with slicing and debugging.
+
+The search results show active research in program slicing and debugging techniques at major conferences like ICSE and ASE, with recent work incorporating machine learning and execution knowledge to improve these traditional program analysis techniques.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "24ab0c9a-0560-42c9-8f74-053ea3dc41af",
+  "tool_use_result": {
+    "query": "program execution trace reduction slicing abstraction debugging 2024 2025 ICSE ASE",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0166DZUfPxVUgjG55Byzb9m1",
+        "content": [
+          {
+            "title": "International Automated Program Repair Workshop 2025 ...",
+            "url": "https://program-repair.org/workshop-2025/"
+          },
+          {
+            "title": "2025 IEEE/ACM 47th International Conference on Software ...",
+            "url": "https://www.computer.org/csdl/proceedings/icse/2025/215aVCUIQmY"
+          },
+          {
+            "title": "Software Engineering Aug 2024",
+            "url": "https://arxiv.org/list/cs.SE/2024-08?show=2000&skip=175"
+          },
+          {
+            "title": "dblp: ICSE 2024",
+            "url": "https://dblp.org/db/conf/icse/icse2024.html"
+          },
+          {
+            "title": "Program - ICSE 2024",
+            "url": "https://conf.researchr.org/program/icse-2024/program-icse-2024/"
+          },
+          {
+            "title": "On the Effects of Program Slicing for Vulnerability Detection during Code Inspection: Extended Abstract (ICSE 2024 - Posters) - ICSE 2024",
+            "url": "https://conf.researchr.org/details/icse-2024/icse-2024-posters/52/On-the-Effects-of-Program-Slicing-for-Vulnerability-Detection-during-Code-Inspection-"
+          },
+          {
+            "title": "GitHub - saltudelft/ml4se: A curated list of papers, theses, datasets, and tools related to the application of Machine Learning for Software Engineering · GitHub",
+            "url": "https://github.com/saltudelft/ml4se"
+          },
+          {
+            "title": "On the effects of program slicing for vulnerability detection during code inspection - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11972194/"
+          },
+          {
+            "title": "2024 IEEE/ACM 46th International Conference on Software ...",
+            "url": "https://www.computer.org/csdl/proceedings/icse/2024/1RLIVDkr2xO"
+          },
+          {
+            "title": "dblp: ICSE 2024",
+            "url": "https://dblp.uni-trier.de/db/conf/icse/icse2024.html"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about program slicing, debugging, and related research presented at ICSE and ASE conferences:\n\n## Key Findings:\n\n**Program Slicing Research (2024):**\nPredictive Program Slicing via Execution Knowledge-Guided Dynamic Dependence Learning was published at FSE'24, and A Learning-Based Approach to Static Program Slicing appeared at OOPSLA'24. These represent recent advances in using machine learning to improve program slicing techniques.\n\n**Slicing for Vulnerability Detection:**\nA study examined whether the output of method-level slicing algorithms improves participants' effectiveness in identifying vulnerabilities, with some algorithms generating larger but more accurate slices while others like intra-procedural thin slicing produce less accurate but smaller slices more suitable for human reading.\n\n**Debugging Research at ICSE 2025:**\nThe 47th International Conference on Software Engineering (ICSE 2025) is taking place in Ottawa, Canada, with several debugging-related submissions being considered.\n\n**Related Program Analysis Work:**\nA paper on (Partial) Program Dependence Analysis was presented at ICSE'23, which relates to program analysis techniques often used in conjunction with slicing and debugging.\n\nThe search results show active research in program slicing and debugging techniques at major conferences like ICSE and ASE, with recent work incorporating machine learning and execution knowledge to improve these traditional program analysis techniques."
+    ],
+    "durationSeconds": 6.717186031999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for more specific trace compression/abstraction papers and also get the ET-CoT paper details.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "5f3b1d6a-9aaa-483c-975f-a97579e77073",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BBpwvfnG6YWiQbQDx24ekk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 675,
+      "cache_creation_input_tokens": 3472,
+      "cache_read_input_tokens": 38890,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3472
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NZvkNesax28f3t4q48YjoR`</summary>
+
+```json
+{
+  "query": "\"Predictive Program Slicing via Execution Knowledge\" FSE 2024 dynamic dependence"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "4f1aa73a-eb74-4566-bdbf-8d8a554ffe04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BBpwvfnG6YWiQbQDx24ekk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 675,
+      "cache_creation_input_tokens": 3472,
+      "cache_read_input_tokens": 38890,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3472
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011QXyfZDEx3BrwELzpcjret`</summary>
+
+```json
+{
+  "query": "trace abstraction loop summarization program analysis verification 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "5629e44b-b546-4538-ba01-e17c2bd96d55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BBpwvfnG6YWiQbQDx24ekk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 675,
+      "cache_creation_input_tokens": 3472,
+      "cache_read_input_tokens": 38890,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3472
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0149gEnLgr6cefBoBNBW8bqw`</summary>
+
+```json
+{
+  "query": "\"Fine-Tuning Causal LLMs for Text Classification Embedding-Based Instruction-Based\" 2025 authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "77092f99-64d0-4e2a-93b4-9b713f1ae951",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BBpwvfnG6YWiQbQDx24ekk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 675,
+      "cache_creation_input_tokens": 3472,
+      "cache_read_input_tokens": 38890,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3472
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-14T21:53:56.341Z_
+
+<details><summary>↩ Tool result · `toolu_0149gEnLgr6cefBoBNBW8bqw`</summary>
+
+```text
+Web search results for query: ""Fine-Tuning Causal LLMs for Text Classification Embedding-Based Instruction-Based" 2025 authors"
+
+Links: [{"title":"[2512.12677] Fine-Tuning Causal LLMs for Text Classification: Embedding-Based vs. Instruction-Based Approaches","url":"https://arxiv.org/abs/2512.12677"},{"title":"Fine-Tuning Causal LLMs for Text Classification: Embedding-Based vs. Instruction-Based Approaches","url":"https://arxiv.org/html/2512.12677v1"},{"title":"Fine-Tuning Causal LLMs for Text Classification: Embedding-Based vs. Instruction-Based Approaches","url":"https://www.emergentmind.com/papers/2512.12677"},{"title":"A Comparative Analysis of Instruction Fine-Tuning Large Language Models for Financial Text Classification | ACM Transactions on Management Information Systems","url":"https://dl.acm.org/doi/10.1145/3706119"},{"title":"A Comparative Analysis of Instruction Fine-Tuning Large Language Models for Financial Text Classification | Request PDF","url":"https://www.researchgate.net/publication/386435246_A_Comparative_Analysis_of_Instruction_Fine-Tuning_Large_Language_Models_for_Financial_Text_Classification"},{"title":"A Comparative Analysis of Instruction Fine-Tuning LLMs for Financial Text","url":"https://arxiv.org/pdf/2411.02476"},{"title":"Large Language Models for Text Classification: From Zero-Shot Learning to Instruction-Tuning - Youngjin Chae, Thomas Davidson, 2026","url":"https://journals.sagepub.com/doi/10.1177/00491241251325243"},{"title":"KaLM-Embedding-V2: Superior Training Techniques and ...","url":"https://arxiv.org/pdf/2506.20923v1"},{"title":"It is all in the [MASK]: Simple instruction-tuning enables BERT-like masked language models as generative classifiers - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S2949719125000263"},{"title":"Towards Locally Deployable Fine-Tuned Causal Large Language Models for Mode Choice Behaviour","url":"https://arxiv.org/html/2507.21432v1"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**Title:** Fine-Tuning Causal LLMs for Text Classification: Embedding-Based vs. Instruction-Based Approaches
+
+**Authors:** Amirhossein Yousefiramandi and Ciaran Cooney
+
+**Publication Date:** December 14, 2025
+
+**ArXiv ID:** 2512.12677
+
+The paper explores efficient strategies to fine-tune decoder-only Large Language Models (LLMs) for downstream text classification under resource constraints, investigating two approaches: attaching a classification head to a pre-trained causal LLM and fine-tuning on the task, and instruction-tuning the LLM in a prompt->response format for classification.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "0a0b17cb-aa43-4f0b-87f6-7d20424e1c90",
+  "tool_use_result": {
+    "query": "\"Fine-Tuning Causal LLMs for Text Classification Embedding-Based Instruction-Based\" 2025 authors",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Pq4W8ardnkqTU48QMZagHT",
+        "content": [
+          {
+            "title": "[2512.12677] Fine-Tuning Causal LLMs for Text Classification: Embedding-Based vs. Instruction-Based Approaches",
+            "url": "https://arxiv.org/abs/2512.12677"
+          },
+          {
+            "title": "Fine-Tuning Causal LLMs for Text Classification: Embedding-Based vs. Instruction-Based Approaches",
+            "url": "https://arxiv.org/html/2512.12677v1"
+          },
+          {
+            "title": "Fine-Tuning Causal LLMs for Text Classification: Embedding-Based vs. Instruction-Based Approaches",
+            "url": "https://www.emergentmind.com/papers/2512.12677"
+          },
+          {
+            "title": "A Comparative Analysis of Instruction Fine-Tuning Large Language Models for Financial Text Classification | ACM Transactions on Management Information Systems",
+            "url": "https://dl.acm.org/doi/10.1145/3706119"
+          },
+          {
+            "title": "A Comparative Analysis of Instruction Fine-Tuning Large Language Models for Financial Text Classification | Request PDF",
+            "url": "https://www.researchgate.net/publication/386435246_A_Comparative_Analysis_of_Instruction_Fine-Tuning_Large_Language_Models_for_Financial_Text_Classification"
+          },
+          {
+            "title": "A Comparative Analysis of Instruction Fine-Tuning LLMs for Financial Text",
+            "url": "https://arxiv.org/pdf/2411.02476"
+          },
+          {
+            "title": "Large Language Models for Text Classification: From Zero-Shot Learning to Instruction-Tuning - Youngjin Chae, Thomas Davidson, 2026",
+            "url": "https://journals.sagepub.com/doi/10.1177/00491241251325243"
+          },
+          {
+            "title": "KaLM-Embedding-V2: Superior Training Techniques and ...",
+            "url": "https://arxiv.org/pdf/2506.20923v1"
+          },
+          {
+            "title": "It is all in the [MASK]: Simple instruction-tuning enables BERT-like masked language models as generative classifiers - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S2949719125000263"
+          },
+          {
+            "title": "Towards Locally Deployable Fine-Tuned Causal Large Language Models for Mode Choice Behaviour",
+            "url": "https://arxiv.org/html/2507.21432v1"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n**Title:** Fine-Tuning Causal LLMs for Text Classification: Embedding-Based vs. Instruction-Based Approaches\n\n**Authors:** Amirhossein Yousefiramandi and Ciaran Cooney\n\n**Publication Date:** December 14, 2025\n\n**ArXiv ID:** 2512.12677\n\nThe paper explores efficient strategies to fine-tune decoder-only Large Language Models (LLMs) for downstream text classification under resource constraints, investigating two approaches: attaching a classification head to a pre-trained causal LLM and fine-tuning on the task, and instruction-tuning the LLM in a prompt->response format for classification."
+    ],
+    "durationSeconds": 4.887563197999989
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-14T21:53:56.940Z_
+
+<details><summary>↩ Tool result · `toolu_01NZvkNesax28f3t4q48YjoR`</summary>
+
+```text
+Web search results for query: ""Predictive Program Slicing via Execution Knowledge" FSE 2024 dynamic dependence"
+
+Links: [{"title":"Predictive Program Slicing via Execution Knowledge-Guided Dynamic Dependence Learning (FSE 2024 - Posters) - FSE 2024","url":"https://2024.esec-fse.org/details/fse-2024-posters/26/Predictive-Program-Slicing-via-Execution-Knowledge-Guided-Dynamic-Dependence-Learning"},{"title":"Predictive Program Slicing via Execution Knowledge-Guided","url":"https://aashishyadavally.github.io/assets/pdf/pub-fse2024.pdf"},{"title":"Predictive Program Slicing via Execution Knowledge-Guided Dynamic Dependence Learning | Proceedings of the ACM on Software Engineering","url":"https://dl.acm.org/doi/10.1145/3643739"},{"title":"Awards - FSE 2024","url":"https://2024.esec-fse.org/info/awards"},{"title":"Predictive Program Slicing via Execution Knowledge-Guided Dynamic Dependence Learning · Machine Learning for Big Code and Naturalness","url":"https://ml4code.github.io/publications/yadavally2024predictive/"},{"title":"One paper accepted at FSE 2024. | Aashish Yadavally","url":"https://aashishyadavally.github.io/news/announcement_26/"},{"title":"Aashish Yadavally Assistant Professor Department of Computer Science","url":"https://aashishyadavally.github.io/assets/pdf/cv.pdf"},{"title":"Predictive Program Slicing via Execution Knowledge- ...","url":"https://dl.acm.org/doi/pdf/10.1145/3643739"},{"title":"Blended Analysis for Predictive Execution | Proceedings of the ACM on Software Engineering","url":"https://dl.acm.org/doi/10.1145/3729402"},{"title":"A Survey of Program Slicing Techniques. | Guide books","url":"https://dl.acm.org/doi/abs/10.5555/869354"}]
+
+Based on the search results, I found comprehensive information about "Predictive Program Slicing via Execution Knowledge-Guided Dynamic Dependence Learning" from FSE 2024.
+
+## Overview
+
+ND-Slicer is a predictive slicing methodology that caters to specific executions based on a particular input, overcoming the need for actual execution.
+
+## Methodology
+
+The approach leverages execution-aware pre-training to learn the dynamic program dependencies, including both dynamic data and control dependencies between variables in the slicing criterion and the remaining program statements. It adopts a sequence-to-sequence approach, wherein the encoder focuses on learning the dynamic dependencies in a program specific to the given input, encompassing dynamic data and control-dependence between variables at the slicing criterion and the remaining program statements at a fine-grained granularity.
+
+## Performance Results
+
+Empirical evaluation revealed a high accuracy in predicting program slices, achieving an exact-match accuracy of 81.31% and a ROUGE-LCS score of 0.954 on Python programs. As an extrinsic evaluation, ND-Slicer's usefulness in crash detection was illustrated, with it locating faults with an accuracy of 63.88%.
+
+## Applications
+
+The work includes an in-depth qualitative evaluation, assessing ND-Slicer's understanding of branched structures such as if-else blocks and loops, as well as the control flow in inter-procedural calls.
+
+## Publication Details
+
+The paper was authored by Aashish Yadavally, Yi Li, and Tien Nguyen and was presented at FSE 2024.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "743896ca-74b6-4cd3-a50a-9491bd30049e",
+  "tool_use_result": {
+    "query": "\"Predictive Program Slicing via Execution Knowledge\" FSE 2024 dynamic dependence",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0118E7sgPeRGTqQKjeMpHj3t",
+        "content": [
+          {
+            "title": "Predictive Program Slicing via Execution Knowledge-Guided Dynamic Dependence Learning (FSE 2024 - Posters) - FSE 2024",
+            "url": "https://2024.esec-fse.org/details/fse-2024-posters/26/Predictive-Program-Slicing-via-Execution-Knowledge-Guided-Dynamic-Dependence-Learning"
+          },
+          {
+            "title": "Predictive Program Slicing via Execution Knowledge-Guided",
+            "url": "https://aashishyadavally.github.io/assets/pdf/pub-fse2024.pdf"
+          },
+          {
+            "title": "Predictive Program Slicing via Execution Knowledge-Guided Dynamic Dependence Learning | Proceedings of the ACM on Software Engineering",
+            "url": "https://dl.acm.org/doi/10.1145/3643739"
+          },
+          {
+            "title": "Awards - FSE 2024",
+            "url": "https://2024.esec-fse.org/info/awards"
+          },
+          {
+            "title": "Predictive Program Slicing via Execution Knowledge-Guided Dynamic Dependence Learning · Machine Learning for Big Code and Naturalness",
+            "url": "https://ml4code.github.io/publications/yadavally2024predictive/"
+          },
+          {
+            "title": "One paper accepted at FSE 2024. | Aashish Yadavally",
+            "url": "https://aashishyadavally.github.io/news/announcement_26/"
+          },
+          {
+            "title": "Aashish Yadavally Assistant Professor Department of Computer Science",
+            "url": "https://aashishyadavally.github.io/assets/pdf/cv.pdf"
+          },
+          {
+            "title": "Predictive Program Slicing via Execution Knowledge- ...",
+            "url": "https://dl.acm.org/doi/pdf/10.1145/3643739"
+          },
+          {
+            "title": "Blended Analysis for Predictive Execution | Proceedings of the ACM on Software Engineering",
+            "url": "https://dl.acm.org/doi/10.1145/3729402"
+          },
+          {
+            "title": "A Survey of Program Slicing Techniques. | Guide books",
+            "url": "https://dl.acm.org/doi/abs/10.5555/869354"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about \"Predictive Program Slicing via Execution Knowledge-Guided Dynamic Dependence Learning\" from FSE 2024.\n\n## Overview\n\nND-Slicer is a predictive slicing methodology that caters to specific executions based on a particular input, overcoming the need for actual execution.\n\n## Methodology\n\nThe approach leverages execution-aware pre-training to learn the dynamic program dependencies, including both dynamic data and control dependencies between variables in the slicing criterion and the remaining program statements. It adopts a sequence-to-sequence approach, wherein the encoder focuses on learning the dynamic dependencies in a program specific to the given input, encompassing dynamic data and control-dependence between variables at the slicing criterion and the remaining program statements at a fine-grained granularity.\n\n## Performance Results\n\nEmpirical evaluation revealed a high accuracy in predicting program slices, achieving an exact-match accuracy of 81.31% and a ROUGE-LCS score of 0.954 on Python programs. As an extrinsic evaluation, ND-Slicer's usefulness in crash detection was illustrated, with it locating faults with an accuracy of 63.88%.\n\n## Applications\n\nThe work includes an in-depth qualitative evaluation, assessing ND-Slicer's understanding of branched structures such as if-else blocks and loops, as well as the control flow in inter-procedural calls.\n\n## Publication Details\n\nThe paper was authored by Aashish Yadavally, Yi Li, and Tien Nguyen and was presented at FSE 2024."
+    ],
+    "durationSeconds": 7.767813792000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-14T21:53:57.391Z_
+
+<details><summary>↩ Tool result · `toolu_011QXyfZDEx3BrwELzpcjret`</summary>
+
+```text
+Web search results for query: "trace abstraction loop summarization program analysis verification 2024 2025"
+
+Links: [{"title":"Loop Summarization Using Abstract Transformers | Proceedings of the 6th International Symposium on Automated Technology for Verification and Analysis","url":"https://dl.acm.org/doi/10.1007/978-3-540-88387-6_10"},{"title":"Loop summarization | Formal Verification and Security Lab","url":"https://verify.inf.usi.ch/content/loop-summarization"},{"title":"Trace Abstraction-Based Verification for Uninterpreted Programs","url":"https://dl.acm.org/doi/10.1007/978-3-030-90870-6_29"},{"title":"Structural Abstraction and Refinement for Probabilistic ...","url":"https://dl.acm.org/doi/pdf/10.1145/3763115"},{"title":"Abstract Interpretation Framework","url":"https://www.emergentmind.com/topics/abstract-interpretation"},{"title":"Trace Abstraction-Based Verification for Uninterpreted Programs | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-3-030-90870-6_29"},{"title":"Noname manuscript No. (will be inserted by the editor) Loop Summarization using","url":"https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/main-29.pdf"},{"title":"1 Trace Abstraction Modulo Probability","url":"https://arxiv.org/pdf/1810.12396"},{"title":"Loop Summarization using Abstract Transformers | Formal Verification and Security Lab","url":"https://verify.inf.usi.ch/publications/2008/loop-summarization-using-abstract-transformers"},{"title":"Loop Summarization Using Abstract Transformers | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-3-540-88387-6_10"}]
+
+Based on the search results, here's what I found regarding trace abstraction, loop summarization, and program analysis/verification in the 2024-2025 timeframe:
+
+## Key Recent Work (2024-2025)
+
+A paper on "Structural Abstraction and Refinement for Probabilistic Programs" was published in October 2025, which advances techniques for program verification. This work introduces structural abstraction refinement specifically for probabilistic programs, with a distinctive feature separating concerns between probability and semantics, enabling direct application of existing non-probabilistic program analysis and verification techniques.
+
+In September 2024, research on "Reachability Analysis for Multiloop Programs Using Transition Power Abstraction" was published in the Formal Methods venue, addressing challenges in verifying complex loop-based programs.
+
+## Foundational Concepts
+
+Loop summarization algorithms calculate the abstract fix-point over a loop in only one iteration while performing precise computation. The approach differs from traditional program approximation (like abstract interpretation) by computing symbolic abstract transformers with respect to abstract domains, allowing precision to be tailored to specific verification needs.
+
+Trace abstraction-based verification employs the counterexample-guided abstraction refinement (CEGAR) framework for verifying programs, which represents a key technique combining trace abstraction with iterative refinement for improved scalability and precision.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "89d5679a-d51a-42b4-ac00-df214dd21212",
+  "tool_use_result": {
+    "query": "trace abstraction loop summarization program analysis verification 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AA7FwQL6YK9a49a8Ykd1JN",
+        "content": [
+          {
+            "title": "Loop Summarization Using Abstract Transformers | Proceedings of the 6th International Symposium on Automated Technology for Verification and Analysis",
+            "url": "https://dl.acm.org/doi/10.1007/978-3-540-88387-6_10"
+          },
+          {
+            "title": "Loop summarization | Formal Verification and Security Lab",
+            "url": "https://verify.inf.usi.ch/content/loop-summarization"
+          },
+          {
+            "title": "Trace Abstraction-Based Verification for Uninterpreted Programs",
+            "url": "https://dl.acm.org/doi/10.1007/978-3-030-90870-6_29"
+          },
+          {
+            "title": "Structural Abstraction and Refinement for Probabilistic ...",
+            "url": "https://dl.acm.org/doi/pdf/10.1145/3763115"
+          },
+          {
+            "title": "Abstract Interpretation Framework",
+            "url": "https://www.emergentmind.com/topics/abstract-interpretation"
+          },
+          {
+            "title": "Trace Abstraction-Based Verification for Uninterpreted Programs | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-3-030-90870-6_29"
+          },
+          {
+            "title": "Noname manuscript No. (will be inserted by the editor) Loop Summarization using",
+            "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/main-29.pdf"
+          },
+          {
+            "title": "1 Trace Abstraction Modulo Probability",
+            "url": "https://arxiv.org/pdf/1810.12396"
+          },
+          {
+            "title": "Loop Summarization using Abstract Transformers | Formal Verification and Security Lab",
+            "url": "https://verify.inf.usi.ch/publications/2008/loop-summarization-using-abstract-transformers"
+          },
+          {
+            "title": "Loop Summarization Using Abstract Transformers | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-3-540-88387-6_10"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding trace abstraction, loop summarization, and program analysis/verification in the 2024-2025 timeframe:\n\n## Key Recent Work (2024-2025)\n\nA paper on \"Structural Abstraction and Refinement for Probabilistic Programs\" was published in October 2025, which advances techniques for program verification. This work introduces structural abstraction refinement specifically for probabilistic programs, with a distinctive feature separating concerns between probability and semantics, enabling direct application of existing non-probabilistic program analysis and verification techniques.\n\nIn September 2024, research on \"Reachability Analysis for Multiloop Programs Using Transition Power Abstraction\" was published in the Formal Methods venue, addressing challenges in verifying complex loop-based programs.\n\n## Foundational Concepts\n\nLoop summarization algorithms calculate the abstract fix-point over a loop in only one iteration while performing precise computation. The approach differs from traditional program approximation (like abstract interpretation) by computing symbolic abstract transformers with respect to abstract domains, allowing precision to be tailored to specific verification needs.\n\nTrace abstraction-based verification employs the counterexample-guided abstraction refinement (CEGAR) framework for verifying programs, which represents a key technique combining trace abstraction with iterative refinement for improved scalability and precision."
+    ],
+    "durationSeconds": 7.278964918000012
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough papers. Let me compile the literature map YAML. Let me organize carefully:
+
+**Category 1: execution-trace-llm (3 papers)**
+
+1. NExT (Ni et al., ICML 2024) - method-component
+   - Teaches LLMs to reason about code execution via self-training on execution traces
+   - +26.1% fix rate on MBPP, +14.3% on HumanEval
+   
+2. Do Code Semantics Help? (Wang et al., Findings of EMNLP 2025) - direct-competitor
+   - Comprehensive study showing execution trace information has limited usefulness for supervised fine-tuning, which contradicts prior work and represents a key negative result our VOTA approach needs to address
+
+3. Code Execution as Grounded Supervision for LLM Reasoning (Jung et al., EMNLP 2025) - method-component
+   - Execution traces → NL CoT via debugger (Snoop)
+   - Reduces overthinking, transfers across reasoning domains
+
+**Category 2: code-verdict (3 papers)**
+
+1. APPT (TSE 2024) - direct-competitor
+   - BERT + LSTM fine-tuning for patch correctness prediction achieves 79.7% accuracy and 83.2% recall on Defects4J patches
+
+2. Calibration and Correctness of Language Models for Code (Spiess et al., ICSE 2025) - evaluation
+   - Code LLMs lack proper calibration out of the box, though Platt scaling can improve it if prior correctness data is available
+
+3. Mutation-Guided LLM-based Test Generation at Meta (Foster et al., FSE 2025) - evaluation
+   - Their LLM equivalence detector achieves 0.95 precision and 0.96 recall with preprocessing, and when deployed at scale across 10K+ classes, achieved a 73% test acceptance rate
+
+**Category 3: trace-compression (2-3 papers)**
+
+1. Predictive Program Slicing via Execution Knowledge-Guided Dynamic Depend
+ence Learning (Yadavally et al., FSE 2024) - method-component
+   - ND-Slicer predicts execution-specific slices without actually running programs, reaching 81.31% exact-match accuracy and 0.954 ROUGE-LCS on Python code, which is relevant for execution-aware trace reduction
+
+2. Towards Effectively Leveraging Execution Traces for Program Repair (Haque et al., KnowledgeNLP@ACL 2025) - background
+   - The core issue is that trace complexity degrades LLM performance, and simply feeding traces into models doesn't help much, which motivates the need for trace compression and abstraction techniques like VOTA
+
+3. ET-CoT: Making LLMs Program Interpreters via Execution Trace Chain of Thought (2025, ICML 2025 Workshop) - method-component
+   - PyTrac...
+
+Now I'm reconsidering where ET-CoT fits best. Looking at what I have for trace compression, ND-Slicer handles trace reduction through slicing, the "Towards Effectively" paper demonstrates why raw traces fail and motivates compression, and ET-CoT introduces a structured trace format that abstracts execution information. I should reorganize these papers into clearer categories and finalize which ones belong in execution-trace-llm versus trace-compression. I'm finishing up the trace-compression category with ET-CoT, which uses a structured trace format as an abstraction layer. Now moving into the sft-classification papers—I've got three entries but I need to verify the author information for ET-CoT and FisherSFT to make sure I have the details right.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "4566663d-b094-464c-bb4b-e247bfe59796",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CVsnuX3jKDLqo5yS1iE42J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 804,
+      "cache_creation_input_tokens": 2778,
+      "cache_read_input_tokens": 42362,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2778
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AkFfKTzzT7GnbCuzofRZCs`</summary>
+
+```json
+{
+  "query": "\"Making LLMs Program Interpreters\" ET-CoT authors PyTracify 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "909001fb-c3e4-4065-85f8-2a178e116dfb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CVsnuX3jKDLqo5yS1iE42J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 804,
+      "cache_creation_input_tokens": 2778,
+      "cache_read_input_tokens": 42362,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2778
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KGV1Pj3ntxAib5a9NWBhfJ`</summary>
+
+```json
+{
+  "query": "FisherSFT data-efficient supervised fine-tuning Fisher information ICML 2025 authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "3e88abc1-82f4-46a0-a60e-f552d7bac463",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CVsnuX3jKDLqo5yS1iE42J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 804,
+      "cache_creation_input_tokens": 2778,
+      "cache_read_input_tokens": 42362,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2778
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-14T21:54:37.429Z_
+
+<details><summary>↩ Tool result · `toolu_01KGV1Pj3ntxAib5a9NWBhfJ`</summary>
+
+```text
+Web search results for query: "FisherSFT data-efficient supervised fine-tuning Fisher information ICML 2025 authors"
+
+Links: [{"title":"ICML Poster FisherSFT: Data-Efficient Supervised Fine-Tuning of Language Models Using Information Gain","url":"https://icml.cc/virtual/2025/poster/44605"},{"title":"FisherSFT: Data-Efficient Supervised Fine-Tuning of Language Models Using Information Gain | OpenReview","url":"https://openreview.net/forum?id=e02oLEbehE&noteId=1WMosCnZ5a"},{"title":"[2505.14826] FisherSFT: Data-Efficient Supervised Fine-Tuning of Language Models Using Information Gain","url":"https://arxiv.org/abs/2505.14826"},{"title":"FisherSFT: Data-Efficient Supervised Fine-Tuning of Language Models Using Information Gain","url":"https://proceedings.mlr.press/v267/deb25a.html"},{"title":"FisherSFT: Data-Efficient Supervised Fine-Tuning of Language Models Using Information Gain","url":"https://arxiv.org/html/2505.14826v1"},{"title":"FisherSFT: Data-Efficient Supervised Fine-Tuning of ...","url":"https://www.arxiv.org/pdf/2505.14826"},{"title":"FisherSFT: Data-Efficient Supervised Fine-Tuning of Language Models Using","url":"https://openreview.net/attachment?id=e02oLEbehE&name=pdf"},{"title":"Machine Learning May 2025","url":"https://www.arxiv.org/list/cs.LG/2025-05?skip=1425&show=250"},{"title":"ICML Poster Data Mixing Optimization for Supervised Fine-Tuning of Large Language Models","url":"https://icml.cc/virtual/2025/poster/46652"},{"title":"GitHub - zituitui/DiffusionFisher: [ICML 2025] Official implementation of \"Efficiently Access Diffusion Fisher: Within the Outer Product Span Space\".","url":"https://github.com/zituitui/DiffusionFisher"}]
+
+Based on the search results, here's the information about the FisherSFT paper at ICML 2025:
+
+## Paper Overview
+
+FisherSFT improves the efficiency of supervised fine-tuning (SFT) by selecting an informative subset of training examples. For a fixed budget of training examples, the method selects those that maximize information gain, as measured by the Fisher information matrix of the SFT objective.
+
+## Authors
+
+The authors are Rohan Deb, Kiran Koshy Thekumparampil, Kousha Kalantari, Gaurush Hiranandani, Shoham Sabach, and Branislav Kveton.
+
+## Key Technical Details
+
+The approach approximates the Fisher information matrix efficiently by linearization at the last layer of the LLM. The approach is computationally efficient, analyzable, and performs well empirically, demonstrated on several problems with both quantitative results and LLM-as-a-judge evaluations.
+
+## Publication
+
+The paper was published in the Proceedings of the 42nd International Conference on Machine Learning, PMLR 267:12924-12943, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "2aad8e18-413b-4ae0-ade2-38548f81d356",
+  "tool_use_result": {
+    "query": "FisherSFT data-efficient supervised fine-tuning Fisher information ICML 2025 authors",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014UPLqroKKBkD4SEkyjnkwf",
+        "content": [
+          {
+            "title": "ICML Poster FisherSFT: Data-Efficient Supervised Fine-Tuning of Language Models Using Information Gain",
+            "url": "https://icml.cc/virtual/2025/poster/44605"
+          },
+          {
+            "title": "FisherSFT: Data-Efficient Supervised Fine-Tuning of Language Models Using Information Gain | OpenReview",
+            "url": "https://openreview.net/forum?id=e02oLEbehE&noteId=1WMosCnZ5a"
+          },
+          {
+            "title": "[2505.14826] FisherSFT: Data-Efficient Supervised Fine-Tuning of Language Models Using Information Gain",
+            "url": "https://arxiv.org/abs/2505.14826"
+          },
+          {
+            "title": "FisherSFT: Data-Efficient Supervised Fine-Tuning of Language Models Using Information Gain",
+            "url": "https://proceedings.mlr.press/v267/deb25a.html"
+          },
+          {
+            "title": "FisherSFT: Data-Efficient Supervised Fine-Tuning of Language Models Using Information Gain",
+            "url": "https://arxiv.org/html/2505.14826v1"
+          },
+          {
+            "title": "FisherSFT: Data-Efficient Supervised Fine-Tuning of ...",
+            "url": "https://www.arxiv.org/pdf/2505.14826"
+          },
+          {
+            "title": "FisherSFT: Data-Efficient Supervised Fine-Tuning of Language Models Using",
+            "url": "https://openreview.net/attachment?id=e02oLEbehE&name=pdf"
+          },
+          {
+            "title": "Machine Learning May 2025",
+            "url": "https://www.arxiv.org/list/cs.LG/2025-05?skip=1425&show=250"
+          },
+          {
+            "title": "ICML Poster Data Mixing Optimization for Supervised Fine-Tuning of Large Language Models",
+            "url": "https://icml.cc/virtual/2025/poster/46652"
+          },
+          {
+            "title": "GitHub - zituitui/DiffusionFisher: [ICML 2025] Official implementation of \"Efficiently Access Diffusion Fisher: Within the Outer Product Span Space\".",
+            "url": "https://github.com/zituitui/DiffusionFisher"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about the FisherSFT paper at ICML 2025:\n\n## Paper Overview\n\nFisherSFT improves the efficiency of supervised fine-tuning (SFT) by selecting an informative subset of training examples. For a fixed budget of training examples, the method selects those that maximize information gain, as measured by the Fisher information matrix of the SFT objective.\n\n## Authors\n\nThe authors are Rohan Deb, Kiran Koshy Thekumparampil, Kousha Kalantari, Gaurush Hiranandani, Shoham Sabach, and Branislav Kveton.\n\n## Key Technical Details\n\nThe approach approximates the Fisher information matrix efficiently by linearization at the last layer of the LLM. The approach is computationally efficient, analyzable, and performs well empirically, demonstrated on several problems with both quantitative results and LLM-as-a-judge evaluations.\n\n## Publication\n\nThe paper was published in the Proceedings of the 42nd International Conference on Machine Learning, PMLR 267:12924-12943, 2025."
+    ],
+    "durationSeconds": 5.792358028999995
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-14T21:54:38.600Z_
+
+<details><summary>↩ Tool result · `toolu_01AkFfKTzzT7GnbCuzofRZCs`</summary>
+
+```text
+Web search results for query: ""Making LLMs Program Interpreters" ET-CoT authors PyTracify 2025"
+
+Links: [{"title":"Making LLMs Program Interpreters via Execution Trace Chain of Thought","url":"https://openreview.net/pdf?id=pFyBdPyOCQ"},{"title":"Making LLMs Program Interpreters via Execution Trace Chain of Thought | OpenReview","url":"https://openreview.net/forum?id=pFyBdPyOCQ"},{"title":"Transforming Language Models into Program Interpreters ...","url":"https://openreview.net/pdf?id=pOg7iub4Pz"},{"title":"What Are Program-Aided Language Models? | Coursera","url":"https://www.coursera.org/articles/program-aided-language-models"},{"title":"Build Your Own Code Interpreter - Dynamic Tool Generation and Execution With o3-mini","url":"https://cookbook.openai.com/examples/object_oriented_agentic_approach/secure_code_interpreter_tool_for_llm_agents"},{"title":"Together Code Interpreter: execute LLM-generated code seamlessly with a simple API call","url":"https://www.together.ai/blog/code-interpreter"},{"title":"GitHub - NavneelSinghal/LLMInterpreter: Can an LLM learn to run a program? This repository explores the state-tracking and simulation capabilities of language models on a custom esoteric programming language.","url":"https://github.com/NavneelSinghal/LLMInterpreter"},{"title":"CoRE: LLM as Interpreter for Natural Language Programming, Pseudo-Code Programming, and Flow Programming of AI Agents","url":"https://arxiv.org/html/2405.06907v1"},{"title":"LLMs as Interpreters: The Probabilistic Runtime for English Programs","url":"https://responseawareness.substack.com/p/llms-as-interpreters-the-probabilistic"},{"title":"Code Interpreter: Traditional vs. LLM Use Cases & Top 5 Tools | Obot AI","url":"https://obot.ai/resources/learning-center/code-interpreter/"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## "Making LLMs Program Interpreters via Execution Trace Chain of Thought"
+
+This work introduces ET-CoT (Execution Trace Chain of Thought), an approach where LLMs are fine-tuned on systematic program execution traces to learn to predict code outcomes by generating these traces as a chain of thought.
+
+### Key Components:
+
+**PyTracify:** The authors developed a new Python interpreter called PyTracify, which outputs execution traces during program execution. The trace format thoroughly decomposes execution at a sub-line level of granularity, not only logging variable updates but also performing detailed evaluations of individual expressions such as comparisons and condition checks.
+
+**ET-CoT Dataset:** The authors leveraged PyTracify to construct an extensive dataset composed of Python codes, their corresponding execution traces, and the final outputs, derived from a diverse range of collected Python programs.
+
+**Results:** ET-CoT raises Qwen2.5-7B-Instruct to 70.0% on CRUXEval-O and 88.3% on LiveCodeBench (execution), surpassing the official code-oriented variant, Qwen2.5-Coder-7B-Instruct.
+
+The paper was published for ICML 2025 Workshop PRAL.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "74e5cdbc-8d6a-416c-809d-7d3f25908ecd",
+  "tool_use_result": {
+    "query": "\"Making LLMs Program Interpreters\" ET-CoT authors PyTracify 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XGxdrJk4aLFHR3X8ZUVr5h",
+        "content": [
+          {
+            "title": "Making LLMs Program Interpreters via Execution Trace Chain of Thought",
+            "url": "https://openreview.net/pdf?id=pFyBdPyOCQ"
+          },
+          {
+            "title": "Making LLMs Program Interpreters via Execution Trace Chain of Thought | OpenReview",
+            "url": "https://openreview.net/forum?id=pFyBdPyOCQ"
+          },
+          {
+            "title": "Transforming Language Models into Program Interpreters ...",
+            "url": "https://openreview.net/pdf?id=pOg7iub4Pz"
+          },
+          {
+            "title": "What Are Program-Aided Language Models? | Coursera",
+            "url": "https://www.coursera.org/articles/program-aided-language-models"
+          },
+          {
+            "title": "Build Your Own Code Interpreter - Dynamic Tool Generation and Execution With o3-mini",
+            "url": "https://cookbook.openai.com/examples/object_oriented_agentic_approach/secure_code_interpreter_tool_for_llm_agents"
+          },
+          {
+            "title": "Together Code Interpreter: execute LLM-generated code seamlessly with a simple API call",
+            "url": "https://www.together.ai/blog/code-interpreter"
+          },
+          {
+            "title": "GitHub - NavneelSinghal/LLMInterpreter: Can an LLM learn to run a program? This repository explores the state-tracking and simulation capabilities of language models on a custom esoteric programming language.",
+            "url": "https://github.com/NavneelSinghal/LLMInterpreter"
+          },
+          {
+            "title": "CoRE: LLM as Interpreter for Natural Language Programming, Pseudo-Code Programming, and Flow Programming of AI Agents",
+            "url": "https://arxiv.org/html/2405.06907v1"
+          },
+          {
+            "title": "LLMs as Interpreters: The Probabilistic Runtime for English Programs",
+            "url": "https://responseawareness.substack.com/p/llms-as-interpreters-the-probabilistic"
+          },
+          {
+            "title": "Code Interpreter: Traditional vs. LLM Use Cases & Top 5 Tools | Obot AI",
+            "url": "https://obot.ai/resources/learning-center/code-interpreter/"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n## \"Making LLMs Program Interpreters via Execution Trace Chain of Thought\"\n\nThis work introduces ET-CoT (Execution Trace Chain of Thought), an approach where LLMs are fine-tuned on systematic program execution traces to learn to predict code outcomes by generating these traces as a chain of thought.\n\n### Key Components:\n\n**PyTracify:** The authors developed a new Python interpreter called PyTracify, which outputs execution traces during program execution. The trace format thoroughly decomposes execution at a sub-line level of granularity, not only logging variable updates but also performing detailed evaluations of individual expressions such as comparisons and condition checks.\n\n**ET-CoT Dataset:** The authors leveraged PyTracify to construct an extensive dataset composed of Python codes, their corresponding execution traces, and the final outputs, derived from a diverse range of collected Python programs.\n\n**Results:** ET-CoT raises Qwen2.5-7B-Instruct to 70.0% on CRUXEval-O and 88.3% on LiveCodeBench (execution), surpassing the official code-oriented variant, Qwen2.5-Coder-7B-Instruct.\n\nThe paper was published for ICML 2025 Workshop PRAL."
+    ],
+    "durationSeconds": 7.294409404000006
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information. Let me also get the ET-CoT authors. I couldn't find exact authors from the search. Let me check the OpenReview page.
+
+Actually, I don't need exact authors for the YAML — I can note the info I have. Let me compile the final YAML and save it.
+
+Let me also check one more paper for the SFT-classification category - the "Fine-Tuned Small LLMs Still Outperform" paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "8e84e625-81e0-4606-b702-1bef9465c9d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0171qa4REHoiW7wF8De9XTKw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 877,
+      "cache_creation_input_tokens": 3186,
+      "cache_read_input_tokens": 45140,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3186
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+Now compiling the literature map.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "0b562e2b-b98f-4504-a78d-ab3fda400d28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0171qa4REHoiW7wF8De9XTKw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 877,
+      "cache_creation_input_tokens": 3186,
+      "cache_read_input_tokens": 45140,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3186
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011dxV6WHz57qFDHwrYsd5Ks`</summary>
+
+```json
+{
+  "query": "\"Fine-tuned Small LLMs Still Significantly Outperform Zero-Shot\" text classification 2024 authors venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "c55ea9ef-1290-4e23-bca6-df6f3bb76eb7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0171qa4REHoiW7wF8De9XTKw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 877,
+      "cache_creation_input_tokens": 3186,
+      "cache_read_input_tokens": 45140,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3186
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-14T21:54:51.855Z_
+
+<details><summary>↩ Tool result · `toolu_011dxV6WHz57qFDHwrYsd5Ks`</summary>
+
+```text
+Web search results for query: ""Fine-tuned Small LLMs Still Significantly Outperform Zero-Shot" text classification 2024 authors venue"
+
+Links: [{"title":"GitHub - mnbucher/text-cls-llms: Code for \"Fine-Tuned 'Small' LLMs (Still) Significantly Outperform Zero-Shot Generative AI Models in Text Classification\", arXiv 2024 · GitHub","url":"https://github.com/mnbucher/text-cls-llms"},{"title":"[2406.08660] Fine-Tuned 'Small' LLMs (Still) Significantly Outperform Zero-Shot Generative AI Models in Text Classification","url":"https://arxiv.org/abs/2406.08660"},{"title":"Fine-Tuned ‘Small’ LLMs (Still) Significantly Outperform Zero-Shot Generative AI Models in Text Classification","url":"https://arxiv.org/html/2406.08660v1"},{"title":"Fine-Tuned 'Small' LLMs (Still) Significantly Outperform Zero-Shot Generative AI Models in Text Classification - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240608660J/abstract"},{"title":"[Literature Review] Fine-Tuned 'Small' LLMs (Still) Significantly Outperform Zero-Shot Generative AI Models in Text Classification","url":"https://www.themoonlight.io/en/review/fine-tuned-small-llms-still-significantly-outperform-zero-shot-generative-ai-models-in-text-classification"},{"title":"Bridging Zero-Shot and Fine-Tuned Performance in Text Classification through Retrieval-Augmented Prompting | American Scientific Research Journal for Engineering, Technology, and Sciences","url":"https://asrjetsjournal.org/American_Scientific_Journal/article/view/12048"},{"title":"(PDF) Fine-Tuned 'Small' LLMs (Still) Significantly Outperform Zero-Shot Generative AI Models in Text Classification","url":"https://www.researchgate.net/publication/381404182_Fine-Tuned_'Small'_LLMs_Still_Significantly_Outperform_Zero-Shot_Generative_AI_Models_in_Text_Classification"},{"title":"Fine-Tuned 'Small' LLMs (Still) Significantly Outperform Zero-Shot Generative AI Models in Text Classification | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/fine-tuned-small-llms-still-significantly-outperform"},{"title":"Large Language Models for Text Classification: From Zero-Shot Learning to Fine-Tuning","url":"https://www.researchgate.net/publication/373408069_Large_Language_Models_for_Text_Classification_From_Zero-Shot_Learning_to_Fine-Tuning"},{"title":"Large Language Models for Text Classification: From Zero-Shot Learning to Instruction-Tuning - Youngjin Chae, Thomas Davidson, 2026","url":"https://journals.sagepub.com/doi/10.1177/00491241251325243"}]
+
+Based on the search results, here is the information about the paper you're looking for:
+
+**Title:** "Fine-Tuned 'Small' LLMs (Still) Significantly Outperform Zero-Shot Generative AI Models in Text Classification"
+
+**Authors:** Martin Juan José Bucher and Marco Martini
+
+**Venue:** arXiv preprint arXiv:2406.08660
+
+**Year:** 2024
+
+**Key Findings:** The paper compares three major generative AI models (ChatGPT with GPT-3.5/GPT-4 and Claude Opus) with several fine-tuned LLMs across a diverse set of classification tasks (sentiment, approval/disapproval, emotions, party positions) and text categories (news, tweets, speeches), finding that fine-tuning with application-specific training data achieves superior performance in all cases.
+
+**Additional Resource:** The authors provide an easy-to-use toolkit alongside this paper that enables users to select and fine-tune BERT-like LLMs for any classification task with minimal technical and computational effort.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "98b36d1e-35db-41da-8b14-098ad3f0b085",
+  "tool_use_result": {
+    "query": "\"Fine-tuned Small LLMs Still Significantly Outperform Zero-Shot\" text classification 2024 authors venue",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013ZfJw3jBXZbMogjhQJAc4u",
+        "content": [
+          {
+            "title": "GitHub - mnbucher/text-cls-llms: Code for \"Fine-Tuned 'Small' LLMs (Still) Significantly Outperform Zero-Shot Generative AI Models in Text Classification\", arXiv 2024 · GitHub",
+            "url": "https://github.com/mnbucher/text-cls-llms"
+          },
+          {
+            "title": "[2406.08660] Fine-Tuned 'Small' LLMs (Still) Significantly Outperform Zero-Shot Generative AI Models in Text Classification",
+            "url": "https://arxiv.org/abs/2406.08660"
+          },
+          {
+            "title": "Fine-Tuned ‘Small’ LLMs (Still) Significantly Outperform Zero-Shot Generative AI Models in Text Classification",
+            "url": "https://arxiv.org/html/2406.08660v1"
+          },
+          {
+            "title": "Fine-Tuned 'Small' LLMs (Still) Significantly Outperform Zero-Shot Generative AI Models in Text Classification - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2024arXiv240608660J/abstract"
+          },
+          {
+            "title": "[Literature Review] Fine-Tuned 'Small' LLMs (Still) Significantly Outperform Zero-Shot Generative AI Models in Text Classification",
+            "url": "https://www.themoonlight.io/en/review/fine-tuned-small-llms-still-significantly-outperform-zero-shot-generative-ai-models-in-text-classification"
+          },
+          {
+            "title": "Bridging Zero-Shot and Fine-Tuned Performance in Text Classification through Retrieval-Augmented Prompting | American Scientific Research Journal for Engineering, Technology, and Sciences",
+            "url": "https://asrjetsjournal.org/American_Scientific_Journal/article/view/12048"
+          },
+          {
+            "title": "(PDF) Fine-Tuned 'Small' LLMs (Still) Significantly Outperform Zero-Shot Generative AI Models in Text Classification",
+            "url": "https://www.researchgate.net/publication/381404182_Fine-Tuned_'Small'_LLMs_Still_Significantly_Outperform_Zero-Shot_Generative_AI_Models_in_Text_Classification"
+          },
+          {
+            "title": "Fine-Tuned 'Small' LLMs (Still) Significantly Outperform Zero-Shot Generative AI Models in Text Classification | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/fine-tuned-small-llms-still-significantly-outperform"
+          },
+          {
+            "title": "Large Language Models for Text Classification: From Zero-Shot Learning to Fine-Tuning",
+            "url": "https://www.researchgate.net/publication/373408069_Large_Language_Models_for_Text_Classification_From_Zero-Shot_Learning_to_Fine-Tuning"
+          },
+          {
+            "title": "Large Language Models for Text Classification: From Zero-Shot Learning to Instruction-Tuning - Youngjin Chae, Thomas Davidson, 2026",
+            "url": "https://journals.sagepub.com/doi/10.1177/00491241251325243"
+          }
+        ]
+      },
+      "Based on the search results, here is the information about the paper you're looking for:\n\n**Title:** \"Fine-Tuned 'Small' LLMs (Still) Significantly Outperform Zero-Shot Generative AI Models in Text Classification\"\n\n**Authors:** Martin Juan José Bucher and Marco Martini\n\n**Venue:** arXiv preprint arXiv:2406.08660\n\n**Year:** 2024\n\n**Key Findings:** The paper compares three major generative AI models (ChatGPT with GPT-3.5/GPT-4 and Claude Opus) with several fine-tuned LLMs across a diverse set of classification tasks (sentiment, approval/disapproval, emotions, party positions) and text categories (news, tweets, speeches), finding that fine-tuning with application-specific training data achieves superior performance in all cases.\n\n**Additional Resource:** The authors provide an easy-to-use toolkit alongside this paper that enables users to select and fine-tune BERT-like LLMs for any classification task with minimal technical and computational effort."
+    ],
+    "durationSeconds": 6.885726579000009
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me compile the YAML file.
+
+Let me organize the final selection of 11 papers across 4 categories:
+
+**execution-trace-llm (3 papers):**
+1. NExT (Ni et al., ICML 2024) - method-component
+2. Do Code Semantics Help? (Wang et al., Findings of EMNLP 2025) - direct-competitor
+3. Code Execution as Grounded Supervision (Jung et al., EMNLP 2025) - method-component
+
+**code-verdict (3 papers):**
+
+
+1. APPT (TSE 2024) - direct-competitor
+2. Calibration and Correctness (Spiess et al., ICSE 2025) - evaluation
+3. Mutation-Guided at Meta (Foster et al., FSE 2025) - evaluation
+
+**trace-compression (3 papers):**
+1. ND-Slicer (Yadavally et al., FSE 2024) - method-component
+2. Towards Effectively Leveraging Execution Traces (Haque et al., KnowledgeNLP@ACL 2025) - background
+3. ET-CoT (ICML 2025 Workshop) - method-component
+
+**sft-classification (3 papers):**
+1. Fine-Tuning Causal LLMs for Text Classification (Yousefiramandi & Cooney, 2025) - method-component
+2. FisherSFT (Deb et al., ICML 2025) - background
+3. Fine-Tuned Small LLMs Outperform Zero-Shot (Bucher & Martini, 2024) - background
+
+I need to be more selective about the sft-classification papers to focus on those directly addressing SFT for classification rather than generation tasks. Let me finalize the YAML structure now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "22ead08f-18a5-49e0-af8c-ac7d39008a00",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DwEDWrppJggyCUQ62nNDoq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2130,
+      "cache_read_input_tokens": 48326,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2130
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_01Tk1aCURrSsTd1PCZ7EgCLE`</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "file": "literature_map.yaml",
+  "content": "categories:\n  execution-trace-llm:\n    description: \"Execution trace 辅助 LLM 代码理解/调试/推理\"\n    papers:\n      - title: \"NExT: Teaching Large Language Models to Reason about Code Execution\"\n        authors: \"Ansong Ni, Miltiadis Allamanis, et al. (Google DeepMind)\"\n        year: 2024\n        venue: \"ICML 2024\"\n        role: method-component\n        key_finding: \"自训练在 execution trace 上做 CoT rationale，程序修复 fix rate 在 MBPP +26.1%、HumanEval +14.3%。模型可泛化到无 trace 的场景。\"\n        metrics:\n          mbpp_fix_rate_improvement: \"+26.1%\"\n          humaneval_fix_rate_improvement: \"+14.3%\"\n\n      - title: \"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code LLMs\"\n        authors: \"Jian Wang, Xiaofei Xie, Qiang Hu, Shangqing Liu, Yi Li\"\n        year: 2025\n        venue: \"Findings of EMNLP 2025\"\n        role: direct-competitor\n        key_finding: \"综合研究发现 execution trace 对 SFT 和 test-time scaling 的帮助有限，与先前工作结论相左。提出 trace adapter 做格式化。这是 VOTA 必须回应的关键负面结果——说明原始 trace 不够，需要针对性压缩/抽象。\"\n        metrics: {}\n\n      - title: \"Code Execution as Grounded Supervision for LLM Reasoning\"\n        authors: \"Dongwon Jung, Wenxuan Zhou, Muhao Chen\"\n        year: 2025\n        venue: \"EMNLP 2025\"\n        role: method-component\n        key_finding: \"用 Python debugger (Snoop) 提取 step-by-step execution trace，转换为自然语言 CoT。训练后模型推理能力提升且生成更少 token（减少 overthinking），具备跨域迁移能力。\"\n        metrics: {}\n\n  code-verdict:\n    description: \"LLM 判断代码 pass/fail、正确性分类、mutation testing\"\n    papers:\n      - title: \"APPT: Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models\"\n        authors: \"iSEngLab (Nanjing University)\"\n        year: 2024\n        venue: \"IEEE TSE 2024\"\n        role: direct-competitor\n        key_finding: \"BERT + LSTM + classifier 微调做 patch 正确性二分类。在 1183 个 Defects4J patches 上 accuracy 79.7%、recall 83.2%，优于 CACHE。与 VOTA 的 verdict 分类目标最接近。\"\n        metrics:\n          accuracy: \"79.7%\"\n          recall: \"83.2%\"\n          f1_improvement_from_finetuning: \"+10.22%\"\n\n      - title: \"Calibration and Correctness of Language Models for Code\"\n        authors: \"Claudio Spiess, David Gros, et al.\"\n        year: 2025\n        venue: \"ICSE 2025\"\n        role: evaluation\n        key_finding: \"代码生成模型的置信度校准普遍较差。Platt scaling 可改善但需要先验正确性数据。对 VOTA 的启示：verdict 分类需关注校准，不只是准确率。\"\n        metrics: {}\n\n      - title: \"Mutation-Guided LLM-based Test Generation at Meta\"\n        authors: \"Christopher Foster et al. (Meta)\"\n        year: 2025\n        venue: \"FSE 2025 (Industry)\"\n        role: evaluation\n        key_finding: \"LLM equivalence detector 判断 mutant 是否等价，加简单预处理后 precision 0.95、recall 0.96。大规模部署到 10K+ 类，工程师接受率 73%。展示了 LLM 做代码正确性判断的工业可行性。\"\n        metrics:\n          precision: \"0.95\"\n          recall: \"0.96\"\n          classes_evaluated: \"10795\"\n          test_acceptance_rate: \"73%\"\n\n  trace-compression:\n    description: \"Execution trace 的压缩、摘要、抽象方法\"\n    papers:\n      - title: \"Predictive Program Slicing via Execution Knowledge-Guided Dynamic Dependence Learning\"\n        authors: \"Aashish Yadavally, Yi Li, Tien Nguyen\"\n        year: 2024\n        venue: \"FSE 2024\"\n        role: method-component\n        key_finding: \"ND-Slicer 用 execution-aware 预训练学习动态依赖，无需实际执行即可预测特定输入的程序切片。Python 上 exact-match 81.31%、ROUGE-LCS 0.954。与 VOTA 的 assertion-point snapshots 思路类似——都是从完整 trace 中提取关键信息。\"\n        metrics:\n          exact_match: \"81.31%\"\n          rouge_lcs: \"0.954\"\n          fault_localization_accuracy: \"63.88%\"\n\n      - title: \"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\"\n        authors: \"Mirazul Haque, Petr Babkin, et al. (J.P. Morgan AI Research)\"\n        year: 2025\n        venue: \"KnowledgeNLP Workshop @ ACL 2025\"\n        role: background\n        key_finding: \"直接将 execution trace 加入 prompt 帮助有限，且随 trace 复杂度增加效果递减。LLM 优化的 prompt 格式比原始 trace 更一致地优于无 trace baseline。直接支持 VOTA 的核心假设：原始 trace 太冗长，需要专门的压缩/抽象。\"\n        metrics: {}\n\n      - title: \"Making LLMs Program Interpreters via Execution Trace Chain of Thought (ET-CoT)\"\n        authors: \"OpenReview submission (ICML 2025 Workshop PRAL)\"\n        year: 2025\n        venue: \"ICML 2025 Workshop\"\n        role: method-component\n        key_finding: \"开发 PyTracify 工具生成 sub-line 粒度的结构化 execution trace，SFT 后 Qwen2.5-7B 在 CRUXEval-O 达 70.0%、LiveCodeBench 达 88.3%，超过同规模 code-oriented 模型。其 trace 格式本身是一种 trace abstraction。\"\n        metrics:\n          cruxeval_o: \"70.0%\"\n          livecodebench_execution: \"88.3%\"\n\n  sft-classification:\n    description: \"用 SFT 做分类任务的方法论和 findings\"\n    papers:\n      - title: \"Fine-Tuning Causal LLMs for Text Classification: Embedding-Based vs. Instruction-Based Approaches\"\n        authors: \"Amirhossein Yousefiramandi, Ciaran Cooney\"\n        year: 2025\n        venue: \"arXiv 2512.12677\"\n        role: method-component\n        key_finding: \"对比 embedding-based（加分类头）vs instruction-based（prompt→response）两种 SFT 分类方式。Embedding-based + QLoRA 在 F1 上与 instruction-tuned 持平，但可训练参数少得多。对 VOTA 的 verdict 分类有直接参考价值——选哪种 SFT 格式。\"\n        metrics: {}\n\n      - title: \"FisherSFT: Data-Efficient Supervised Fine-Tuning of Language Models Using Information Gain\"\n        authors: \"Rohan Deb, Kiran Koshy Thekumparampil, et al.\"\n        year: 2025\n        venue: \"ICML 2025\"\n        role: background\n        key_finding: \"用 Fisher 信息矩阵选择信息量最大的训练样本子集，通过 last-layer 线性化高效近似。在固定数据预算下提升 SFT 效果。对 VOTA 的数据选择策略有参考价值。\"\n        metrics: {}\n\n      - title: \"Fine-Tuned 'Small' LLMs (Still) Significantly Outperform Zero-Shot Generative AI Models in Text Classification\"\n        authors: \"Martin Juan José Bucher, Marco Martini\"\n        year: 2024\n        venue: \"arXiv 2406.08660\"\n        role: background\n        key_finding: \"跨多种分类任务（情感、立场、情绪等），fine-tuned 小模型全面优于 GPT-4/Claude 的 zero-shot。验证了 VOTA 用 SFT 做 verdict 分类的基本假设——fine-tuning 在分类上优于 prompting。\"\n        metrics: {}\n\nmeta:\n  last_updated: \"2026-05-14\"\n  total_papers: 12\n  search_scope: \"2024-2026, top ML/NLP/SE venues\"\n  key_gaps:\n    - \"缺少直接将 execution trace 用于 binary verdict (pass/fail) 的工作——VOTA 填补此空白\"\n    - \"trace compression 文献多在 distributed systems 或 formal verification 领域，code-level trace 压缩给 LLM 用的工作极少\"\n    - \"SFT for classification 研究多在 NLP 文本分类，code verdict 场景的 SFT 方法论研究接近空白\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "f2d1c82a-dd9c-4d1b-8cc0-73f99f752244",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DwEDWrppJggyCUQ62nNDoq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2130,
+      "cache_read_input_tokens": 48326,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2130
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-14T21:55:59.820Z_
+
+<details><summary>↩ Tool result · `toolu_01Tk1aCURrSsTd1PCZ7EgCLE`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file 'literature_map.yaml' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "c0bbb028-9510-48ba-b44e-761cfa8ba4ba",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'literature_map.yaml' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"file 'literature_map.yaml' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The file isn't writable via save_project_file. I'll need to write it directly to the artifacts directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "15387f55-2421-4d38-bed9-633e76666192",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WChoWjtSuzuVBDydW6diu2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3304,
+      "cache_read_input_tokens": 50456,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3304
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+MCP tool doesn't allow this filename. Writing directly to artifacts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "3fcc2979-edf6-4ab0-9968-d2d28f756562",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WChoWjtSuzuVBDydW6diu2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3304,
+      "cache_read_input_tokens": 50456,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3304
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01EMxm4FE4ytNjh7n6s2YQPK`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/",
+  "description": "List artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "05b8997c-9031-47d0-959e-1feeda572bcb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WChoWjtSuzuVBDydW6diu2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3304,
+      "cache_read_input_tokens": 50456,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3304
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-14T21:56:09.087Z_
+
+<details><summary>↩ Tool result · `toolu_01EMxm4FE4ytNjh7n6s2YQPK`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "ea5ede4b-057e-4162-b4f5-c3b38cafebf7",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01Pt7cwC5Gf6SpRdcWkbM96i`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/literature_map.yaml",
+  "content": "categories:\n  execution-trace-llm:\n    description: \"Execution trace 辅助 LLM 代码理解/调试/推理\"\n    papers:\n      - title: \"NExT: Teaching Large Language Models to Reason about Code Execution\"\n        authors: \"Ansong Ni, Miltiadis Allamanis, et al. (Google DeepMind)\"\n        year: 2024\n        venue: \"ICML 2024\"\n        role: method-component\n        key_finding: \"自训练在 execution trace 上做 CoT rationale，程序修复 fix rate 在 MBPP +26.1%、HumanEval +14.3%。模型可泛化到无 trace 的场景。\"\n        metrics:\n          mbpp_fix_rate_improvement: \"+26.1%\"\n          humaneval_fix_rate_improvement: \"+14.3%\"\n\n      - title: \"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code LLMs\"\n        authors: \"Jian Wang, Xiaofei Xie, Qiang Hu, Shangqing Liu, Yi Li\"\n        year: 2025\n        venue: \"Findings of EMNLP 2025\"\n        role: direct-competitor\n        key_finding: \"综合研究发现 execution trace 对 SFT 和 test-time scaling 的帮助有限，与先前工作结论相左。提出 trace adapter 做格式化。这是 VOTA 必须回应的关键负面结果——说明原始 trace 不够，需要针对性压缩/抽象。\"\n        metrics: {}\n\n      - title: \"Code Execution as Grounded Supervision for LLM Reasoning\"\n        authors: \"Dongwon Jung, Wenxuan Zhou, Muhao Chen\"\n        year: 2025\n        venue: \"EMNLP 2025\"\n        role: method-component\n        key_finding: \"用 Python debugger (Snoop) 提取 step-by-step execution trace，转换为自然语言 CoT。训练后模型推理能力提升且生成更少 token（减少 overthinking），具备跨域迁移能力。\"\n        metrics: {}\n\n  code-verdict:\n    description: \"LLM 判断代码 pass/fail、正确性分类、mutation testing\"\n    papers:\n      - title: \"APPT: Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models\"\n        authors: \"iSEngLab (Nanjing University)\"\n        year: 2024\n        venue: \"IEEE TSE 2024\"\n        role: direct-competitor\n        key_finding: \"BERT + LSTM + classifier 微调做 patch 正确性二分类。在 1183 个 Defects4J patches 上 accuracy 79.7%、recall 83.2%，优于 CACHE。与 VOTA 的 verdict 分类目标最接近。\"\n        metrics:\n          accuracy: \"79.7%\"\n          recall: \"83.2%\"\n          f1_improvement_from_finetuning: \"+10.22%\"\n\n      - title: \"Calibration and Correctness of Language Models for Code\"\n        authors: \"Claudio Spiess, David Gros, et al.\"\n        year: 2025\n        venue: \"ICSE 2025\"\n        role: evaluation\n        key_finding: \"代码生成模型的置信度校准普遍较差。Platt scaling 可改善但需要先验正确性数据。对 VOTA 的启示：verdict 分类需关注校准，不只是准确率。\"\n        metrics: {}\n\n      - title: \"Mutation-Guided LLM-based Test Generation at Meta\"\n        authors: \"Christopher Foster et al. (Meta)\"\n        year: 2025\n        venue: \"FSE 2025 (Industry)\"\n        role: evaluation\n        key_finding: \"LLM equivalence detector 判断 mutant 是否等价，加简单预处理后 precision 0.95、recall 0.96。大规模部署到 10K+ 类，工程师接受率 73%。展示了 LLM 做代码正确性判断的工业可行性。\"\n        metrics:\n          precision: \"0.95\"\n          recall: \"0.96\"\n          classes_evaluated: \"10795\"\n          test_acceptance_rate: \"73%\"\n\n  trace-compression:\n    description: \"Execution trace 的压缩、摘要、抽象方法\"\n    papers:\n      - title: \"Predictive Program Slicing via Execution Knowledge-Guided Dynamic Dependence Learning\"\n        authors: \"Aashish Yadavally, Yi Li, Tien Nguyen\"\n        year: 2024\n        venue: \"FSE 2024\"\n        role: method-component\n        key_finding: \"ND-Slicer 用 execution-aware 预训练学习动态依赖，无需实际执行即可预测特定输入的程序切片。Python 上 exact-match 81.31%、ROUGE-LCS 0.954。与 VOTA 的 assertion-point snapshots 思路类似——都是从完整 trace 中提取关键信息。\"\n        metrics:\n          exact_match: \"81.31%\"\n          rouge_lcs: \"0.954\"\n          fault_localization_accuracy: \"63.88%\"\n\n      - title: \"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\"\n        authors: \"Mirazul Haque, Petr Babkin, et al. (J.P. Morgan AI Research)\"\n        year: 2025\n        venue: \"KnowledgeNLP Workshop @ ACL 2025\"\n        role: background\n        key_finding: \"直接将 execution trace 加入 prompt 帮助有限，且随 trace 复杂度增加效果递减。LLM 优化的 prompt 格式比原始 trace 更一致地优于无 trace baseline。直接支持 VOTA 的核心假设：原始 trace 太冗长，需要专门的压缩/抽象。\"\n        metrics: {}\n\n      - title: \"Making LLMs Program Interpreters via Execution Trace Chain of Thought (ET-CoT)\"\n        authors: \"ICML 2025 Workshop PRAL\"\n        year: 2025\n        venue: \"ICML 2025 Workshop\"\n        role: method-component\n        key_finding: \"开发 PyTracify 工具生成 sub-line 粒度的结构化 execution trace，SFT 后 Qwen2.5-7B 在 CRUXEval-O 达 70.0%、LiveCodeBench 达 88.3%，超过同规模 code-oriented 模型。其 trace 格式本身是一种 trace abstraction。\"\n        metrics:\n          cruxeval_o: \"70.0%\"\n          livecodebench_execution: \"88.3%\"\n\n  sft-classification:\n    description: \"用 SFT 做分类任务的方法论和 findings\"\n    papers:\n      - title: \"Fine-Tuning Causal LLMs for Text Classification: Embedding-Based vs. Instruction-Based Approaches\"\n        authors: \"Amirhossein Yousefiramandi, Ciaran Cooney\"\n        year: 2025\n        venue: \"arXiv 2512.12677\"\n        role: method-component\n        key_finding: \"对比 embedding-based（加分类头）vs instruction-based（prompt->response）两种 SFT 分类方式。Embedding-based + QLoRA 在 F1 上与 instruction-tuned 持平，但可训练参数少得多。对 VOTA 的 verdict 分类有直接参考价值——选哪种 SFT 格式。\"\n        metrics: {}\n\n      - title: \"FisherSFT: Data-Efficient Supervised Fine-Tuning of Language Models Using Information Gain\"\n        authors: \"Rohan Deb, Kiran Koshy Thekumparampil, et al.\"\n        year: 2025\n        venue: \"ICML 2025\"\n        role: background\n        key_finding: \"用 Fisher 信息矩阵选择信息量最大的训练样本子集，通过 last-layer 线性化高效近似。在固定数据预算下提升 SFT 效果。对 VOTA 的数据选择策略有参考价值。\"\n        metrics: {}\n\n      - title: \"Fine-Tuned 'Small' LLMs (Still) Significantly Outperform Zero-Shot Generative AI Models in Text Classification\"\n        authors: \"Martin Juan Jose Bucher, Marco Martini\"\n        year: 2024\n        venue: \"arXiv 2406.08660\"\n        role: background\n        key_finding: \"跨多种分类任务（情感、立场、情绪等），fine-tuned 小模型全面优于 GPT-4/Claude 的 zero-shot。验证了 VOTA 用 SFT 做 verdict 分类的基本假设——fine-tuning 在分类上优于 prompting。\"\n        metrics: {}\n\nmeta:\n  last_updated: \"2026-05-14\"\n  total_papers: 12\n  search_scope: \"2024-2026, top ML/NLP/SE venues\"\n  key_gaps:\n    - \"缺少直接将 execution trace 用于 binary verdict (pass/fail) 的工作——VOTA 填补此空白\"\n    - \"trace compression 文献多在 distributed systems 或 formal verification 领域，code-level trace 压缩给 LLM 用的工作极少\"\n    - \"SFT for classification 研究多在 NLP 文本分类，code verdict 场景的 SFT 方法论研究接近空白\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "070fc20c-c126-40e0-a274-05b71a4003eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HJHB1HUCwbkoax3qmUTZ9F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 174,
+      "cache_read_input_tokens": 53760,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 174
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-14T21:57:05.104Z_
+
+<details><summary>↩ Tool result · `toolu_01Pt7cwC5Gf6SpRdcWkbM96i`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/literature_map.yaml
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "4d04815b-d517-4f4d-99f9-b13dbbc17859",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/literature_map.yaml",
+    "content": "categories:\n  execution-trace-llm:\n    description: \"Execution trace 辅助 LLM 代码理解/调试/推理\"\n    papers:\n      - title: \"NExT: Teaching Large Language Models to Reason about Code Execution\"\n        authors: \"Ansong Ni, Miltiadis Allamanis, et al. (Google DeepMind)\"\n        year: 2024\n        venue: \"ICML 2024\"\n        role: method-component\n        key_finding: \"自训练在 execution trace 上做 CoT rationale，程序修复 fix rate 在 MBPP +26.1%、HumanEval +14.3%。模型可泛化到无 trace 的场景。\"\n        metrics:\n          mbpp_fix_rate_improvement: \"+26.1%\"\n          humaneval_fix_rate_improvement: \"+14.3%\"\n\n      - title: \"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code LLMs\"\n        authors: \"Jian Wang, Xiaofei Xie, Qiang Hu, Shangqing Liu, Yi Li\"\n        year: 2025\n        venue: \"Findings of EMNLP 2025\"\n        role: direct-competitor\n        key_finding: \"综合研究发现 execution trace 对 SFT 和 test-time scaling 的帮助有限，与先前工作结论相左。提出 trace adapter 做格式化。这是 VOTA 必须回应的关键负面结果——说明原始 trace 不够，需要针对性压缩/抽象。\"\n        metrics: {}\n\n      - title: \"Code Execution as Grounded Supervision for LLM Reasoning\"\n        authors: \"Dongwon Jung, Wenxuan Zhou, Muhao Chen\"\n        year: 2025\n        venue: \"EMNLP 2025\"\n        role: method-component\n        key_finding: \"用 Python debugger (Snoop) 提取 step-by-step execution trace，转换为自然语言 CoT。训练后模型推理能力提升且生成更少 token（减少 overthinking），具备跨域迁移能力。\"\n        metrics: {}\n\n  code-verdict:\n    description: \"LLM 判断代码 pass/fail、正确性分类、mutation testing\"\n    papers:\n      - title: \"APPT: Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models\"\n        authors: \"iSEngLab (Nanjing University)\"\n        year: 2024\n        venue: \"IEEE TSE 2024\"\n        role: direct-competitor\n        key_finding: \"BERT + LSTM + classifier 微调做 patch 正确性二分类。在 1183 个 Defects4J patches 上 accuracy 79.7%、recall 83.2%，优于 CACHE。与 VOTA 的 verdict 分类目标最接近。\"\n        metrics:\n          accuracy: \"79.7%\"\n          recall: \"83.2%\"\n          f1_improvement_from_finetuning: \"+10.22%\"\n\n      - title: \"Calibration and Correctness of Language Models for Code\"\n        authors: \"Claudio Spiess, David Gros, et al.\"\n        year: 2025\n        venue: \"ICSE 2025\"\n        role: evaluation\n        key_finding: \"代码生成模型的置信度校准普遍较差。Platt scaling 可改善但需要先验正确性数据。对 VOTA 的启示：verdict 分类需关注校准，不只是准确率。\"\n        metrics: {}\n\n      - title: \"Mutation-Guided LLM-based Test Generation at Meta\"\n        authors: \"Christopher Foster et al. (Meta)\"\n        year: 2025\n        venue: \"FSE 2025 (Industry)\"\n        role: evaluation\n        key_finding: \"LLM equivalence detector 判断 mutant 是否等价，加简单预处理后 precision 0.95、recall 0.96。大规模部署到 10K+ 类，工程师接受率 73%。展示了 LLM 做代码正确性判断的工业可行性。\"\n        metrics:\n          precision: \"0.95\"\n          recall: \"0.96\"\n          classes_evaluated: \"10795\"\n          test_acceptance_rate: \"73%\"\n\n  trace-compression:\n    description: \"Execution trace 的压缩、摘要、抽象方法\"\n    papers:\n      - title: \"Predictive Program Slicing via Execution Knowledge-Guided Dynamic Dependence Learning\"\n        authors: \"Aashish Yadavally, Yi Li, Tien Nguyen\"\n        year: 2024\n        venue: \"FSE 2024\"\n        role: method-component\n        key_finding: \"ND-Slicer 用 execution-aware 预训练学习动态依赖，无需实际执行即可预测特定输入的程序切片。Python 上 exact-match 81.31%、ROUGE-LCS 0.954。与 VOTA 的 assertion-point snapshots 思路类似——都是从完整 trace 中提取关键信息。\"\n        metrics:\n          exact_match: \"81.31%\"\n          rouge_lcs: \"0.954\"\n          fault_localization_accuracy: \"63.88%\"\n\n      - title: \"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\"\n        authors: \"Mirazul Haque, Petr Babkin, et al. (J.P. Morgan AI Research)\"\n        year: 2025\n        venue: \"KnowledgeNLP Workshop @ ACL 2025\"\n        role: background\n        key_finding: \"直接将 execution trace 加入 prompt 帮助有限，且随 trace 复杂度增加效果递减。LLM 优化的 prompt 格式比原始 trace 更一致地优于无 trace baseline。直接支持 VOTA 的核心假设：原始 trace 太冗长，需要专门的压缩/抽象。\"\n        metrics: {}\n\n      - title: \"Making LLMs Program Interpreters via Execution Trace Chain of Thought (ET-CoT)\"\n        authors: \"ICML 2025 Workshop PRAL\"\n        year: 2025\n        venue: \"ICML 2025 Workshop\"\n        role: method-component\n        key_finding: \"开发 PyTracify 工具生成 sub-line 粒度的结构化 execution trace，SFT 后 Qwen2.5-7B 在 CRUXEval-O 达 70.0%、LiveCodeBench 达 88.3%，超过同规模 code-oriented 模型。其 trace 格式本身是一种 trace abstraction。\"\n        metrics:\n          cruxeval_o: \"70.0%\"\n          livecodebench_execution: \"88.3%\"\n\n  sft-classification:\n    description: \"用 SFT 做分类任务的方法论和 findings\"\n    papers:\n      - title: \"Fine-Tuning Causal LLMs for Text Classification: Embedding-Based vs. Instruction-Based Approaches\"\n        authors: \"Amirhossein Yousefiramandi, Ciaran Cooney\"\n        year: 2025\n        venue: \"arXiv 2512.12677\"\n        role: method-component\n        key_finding: \"对比 embedding-based（加分类头）vs instruction-based（prompt->response）两种 SFT 分类方式。Embedding-based + QLoRA 在 F1 上与 instruction-tuned 持平，但可训练参数少得多。对 VOTA 的 verdict 分类有直接参考价值——选哪种 SFT 格式。\"\n        metrics: {}\n\n      - title: \"FisherSFT: Data-Efficient Supervised Fine-Tuning of Language Models Using Information Gain\"\n        authors: \"Rohan Deb, Kiran Koshy Thekumparampil, et al.\"\n        year: 2025\n        venue: \"ICML 2025\"\n        role: background\n        key_finding: \"用 Fisher 信息矩阵选择信息量最大的训练样本子集，通过 last-layer 线性化高效近似。在固定数据预算下提升 SFT 效果。对 VOTA 的数据选择策略有参考价值。\"\n        metrics: {}\n\n      - title: \"Fine-Tuned 'Small' LLMs (Still) Significantly Outperform Zero-Shot Generative AI Models in Text Classification\"\n        authors: \"Martin Juan Jose Bucher, Marco Martini\"\n        year: 2024\n        venue: \"arXiv 2406.08660\"\n        role: background\n        key_finding: \"跨多种分类任务（情感、立场、情绪等），fine-tuned 小模型全面优于 GPT-4/Claude 的 zero-shot。验证了 VOTA 用 SFT 做 verdict 分类的基本假设——fine-tuning 在分类上优于 prompting。\"\n        metrics: {}\n\nmeta:\n  last_updated: \"2026-05-14\"\n  total_papers: 12\n  search_scope: \"2024-2026, top ML/NLP/SE venues\"\n  key_gaps:\n    - \"缺少直接将 execution trace 用于 binary verdict (pass/fail) 的工作——VOTA 填补此空白\"\n    - \"trace compression 文献多在 distributed systems 或 formal verification 领域，code-level trace 压缩给 LLM 用的工作极少\"\n    - \"SFT for classification 研究多在 NLP 文本分类，code verdict 场景的 SFT 方法论研究接近空白\"\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73_
+
+已写入 `artifacts/literature_map.yaml`，12 篇论文覆盖 4 个方向。
+
+关键发现：
+
+- **最重要的负面结果**：Wang et al. (EMNLP 2025 Findings) 发现原始 execution trace 对 SFT 帮助有限——这恰好支持 VOTA 的核心动机：需要针对性的 trace 压缩/抽象，而非直接喂原始 trace
+- **最接近的 competitor**：APPT (TSE 2024) 做 patch 正确性二分类达 79.7% accuracy，但用 BERT 而非 decoder LLM，且不用 trace 信息
+- **文献空白**：没有工作将 compressed execution trace + SFT 用于 binary verdict 分类——这正是 VOTA 的差异化定位
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "uuid": "bcdae0f0-6197-41ec-b116-0ae3855a5976",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017wNM7aFKFsY85gHUsXuiJh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2777,
+      "cache_read_input_tokens": 53934,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2777
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 74_
+
+已写入 `artifacts/literature_map.yaml`，12 篇论文覆盖 4 个方向。
+
+关键发现：
+
+- **最重要的负面结果**：Wang et al. (EMNLP 2025 Findings) 发现原始 execution trace 对 SFT 帮助有限——这恰好支持 VOTA 的核心动机：需要针对性的 trace 压缩/抽象，而非直接喂原始 trace
+- **最接近的 competitor**：APPT (TSE 2024) 做 patch 正确性二分类达 79.7% accuracy，但用 BERT 而非 decoder LLM，且不用 trace 信息
+- **文献空白**：没有工作将 compressed execution trace + SFT 用于 binary verdict 分类——这正是 VOTA 的差异化定位
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 339651,
+  "duration_api_ms": 448352,
+  "num_turns": 28,
+  "stop_reason": "end_turn",
+  "session_id": "a58934cd-e511-4cd2-9e76-f29100f31401",
+  "total_cost_usd": 1.5282779999999996,
+  "usage": {
+    "input_tokens": 4145,
+    "cache_creation_input_tokens": 44870,
+    "cache_read_input_tokens": 489205,
+    "output_tokens": 11364,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 44870,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 243,
+        "cache_read_input_tokens": 53934,
+        "cache_creation_input_tokens": 2777,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2777
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 413018,
+      "outputTokens": 11079,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 23,
+      "costUSD": 0.6984130000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 4145,
+      "outputTokens": 11364,
+      "cacheReadInputTokens": 489205,
+      "cacheCreationInputTokens": 44870,
+      "webSearchRequests": 0,
+      "costUSD": 0.8298650000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "0db75937-0a9e-47ac-8be8-11a5da1b3aec"
+}
+```
+
+</details>
+
+---

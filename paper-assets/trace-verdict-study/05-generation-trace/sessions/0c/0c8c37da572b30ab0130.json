@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c8c37da572b30ab0130",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis debugbench exception only seed42",
+  "task_key": "worker_analysis_debugbench_exception_only_seed42_20260516T012932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_debugbench_exception_only_seed42_20260516T012932_result.json",
+    "occurrence": 1,
+    "bytes": 1574,
+    "sha256": "696ce18c78a2162291a53370b05398b72943aedd0c2d2df3e70dc39ff115e0dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## debugbench_exception_only_seed42 实验结果\n\n### 核心指标\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **100.0%** (95% CI: [100.0%, 100.0%]) |\n| n | 426 |\n| Majority baseline | 51.4% (always predict 'pass') |\n| Lift over majority | +48.6pp |\n| pass P/R/F1 | 1.00 / 1.00 / 1.00 |\n| fail P/R/F1 | 1.00 / 1.00 / 1.00 |\n| train_loss | 0.2435 |\n| eval_loss | 0.4157 |\n| 训练时长 | 836.97s (~14 min), 3 epochs |\n| predictions.jsonl | 存在 (27KB, 426条) |\n| Checkpoint | `/root/autodl-tmp/trace-verdict-study-checkpoints/debugbench_exception_only/final/` |\n\n### 与基准对比\n\n| Condition | Dataset | Accuracy | n |\n|-----------|---------|----------|---|\n| **debugbench_exception_only** (本次) | DebugBench | **100.0%** | 426 |\n| debugbench_vota_seed42 | DebugBench | 99.77% | 426 |\n| debugbench_no_trace_seed42 | DebugBench | 96.71% | 426 |\n| exception_only (HE+MBPP, Qwen) | HumanEval+MBPP | 99.83% | 1190 |\n| exception_only (HE+MBPP, DS seed42) | HumanEval+MBPP | 99.33% | 1190 |\n\n### 分析\n\n- **零错误**：426 个样本全部预测正确，无需错误样本分析。\n- **exception_only 在 DebugBench 上达到 100%**，超过 VOTA (99.77%) 和 no_trace (96.71%)。这表明 exception trace 信息在 DebugBench 这类真实 bug 场景下极为有效——模型仅凭异常信息就能完美区分 pass/fail。\n- 相比 no_trace 的 +3.29pp 提升，再次确认 trace 信息的核心价值。\n- eval_loss (0.4157) 高于 train_loss (0.2435)，存在一定过拟合，但不影响分类准确率。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-debugbench-exception-only-seed42.md"
+}

@@ -1,0 +1,24 @@
+\begin{table*}[t]
+\centering
+\caption{Per-class precision, recall, and F1 for all experimental conditions.}
+\label{tab:per-class}
+\small
+\begin{tabular}{llccccccc}
+\toprule
+\textbf{Condition} & \textbf{Model} & \textbf{Acc} & \textbf{Pass P} & \textbf{Pass R} & \textbf{Pass F1} & \textbf{Fail P} & \textbf{Fail R} & \textbf{Fail F1} \\
+\midrule
+No Trace          & Qwen2.5-7B & 75.13 & 87.76 & 75.79 & 81.34 & 54.73 & 73.45 & 62.72 \\
+Full Trace        & Qwen2.5-7B & 81.76 & 87.74 & 86.60 & 87.17 & 67.43 & 69.62 & 68.51 \\
+Full Trace (LO)   & Qwen2.5-7B & 86.22 & 88.21 & 93.18 & 90.63 & 80.07 & 68.73 & 73.97 \\
+VoTA              & Qwen2.5-7B & 99.41 & 100.00 & 99.18 & 99.59 & 97.98 & 100.00 & 98.98 \\
+Exception Only    & Qwen2.5-7B & 99.83 & 100.00 & 99.76 & 99.88 & 99.41 & 100.00 & 99.71 \\
+AE Only           & Qwen2.5-7B & 99.92 & 100.00 & 99.88 & 99.94 & 99.71 & 100.00 & 99.85 \\
+Loop Only         & Qwen2.5-7B & 85.63 & 92.39 & 87.07 & 89.66 & 71.65 & 82.01 & 76.48 \\
+VoTA$-$AE         & Qwen2.5-7B & 99.41 & 99.88 & 99.29 & 99.59 & 98.26 & 99.71 & 98.98 \\
+\midrule
+No Trace          & DeepSeek-7B & 73.36 & 81.71 & 80.85 & 81.28 & 53.16 & 54.57 & 53.86 \\
+VoTA              & DeepSeek-7B & 84.45 & 82.14 & 100.00 & 90.20 & 100.00 & 45.43 & 62.47 \\
+Exception Only    & DeepSeek-7B & 99.33 & 100.00 & 99.06 & 99.53 & 97.69 & 100.00 & 98.83 \\
+\bottomrule
+\end{tabular}
+\end{table*}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59c21eb6aaf1b00aadac",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "code enhance 355m stat script",
+  "task_key": "worker_code_enhance_355m_stat_script_20260514T095906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_enhance_355m_stat_script_20260514T095906_result.json",
+    "occurrence": 1,
+    "bytes": 1084,
+    "sha256": "9a82654b8528d50bf334807b3b16c72c3060093969a6b2974efd311a8a0f9f73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果摘要：\n\n**Bootstrap CI (10000 resamples, gen7 PPL)**\n| 比较 | 差异 | 95% CI | 排除零 |\n|------|------|--------|--------|\n| RGDS vs Random-50 | +15.15 | [12.60, 17.70] | Yes |\n| RGDS vs External | +7.90 | [5.10, 10.70] | Yes |\n| RGDS vs Uncurated | -2.81 | [-8.82, 3.20] | No |\n\n**不对称 Gap 模式（125M → 355M）**\n| 比较 | 125M gap | 355M gap | 变化率 | CI |\n|------|----------|----------|--------|-----|\n| RGDS vs Random-50 | +35.85 | +15.15 | -57.7% | [-60.5%, -55.6%] |\n| RGDS vs Uncurated | +30.11 | -2.81 | -109.3% | [-135.6%, -91.0%] |\n| RGDS vs External | +30.74 | +7.90 | -74.3% | [-82.7%, -66.5%] |\n\nRGDS 的 PPL gap 在 355M 规模下大幅收窄（甚至反转），说明 RGDS 对 model collapse 的加速效应随模型增大显著减弱。\n\nLaTeX 表格已写入 `artifacts/355m_3seed_latex.tex`。当前用 2-seed 数据运行（seed=456 训练尚未完成），t-test 显示 PARTIAL（因只有 1 common seed 的对比无法做配对检验），3-seed 到齐后所有检验将自动启用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-enhance-355m-stat-script.md"
+}

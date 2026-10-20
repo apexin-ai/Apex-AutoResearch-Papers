@@ -1,0 +1,42 @@
+{
+  "exp_id": "qwen15b_exception_only_seed123",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T20:35:25.949Z",
+    "updated_at": "2026-05-18T21:42:33.970Z",
+    "hypothesis": "Qwen-1.5B exception_only seed123 应达 ~99.83%（与 seed42 一致），为 W3 reviewer concern 提供 1.5B scale 的方差估计",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/trace-verdict-study && /root/miniconda3/bin/python train/train_sft.py --condition exception_only --model_path /root/trace-verdict-study/models/Qwen2.5-Coder-1.5B-Instruct --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_exception_only_seed123/ --wandb_project trace-verdict-study --wandb_run_name qwen15b_exception_only_seed123 && /root/miniconda3/bin/python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_exception_only_seed123/final --model_path /root/trace-verdict-study/models/Qwen2.5-Coder-1.5B-Instruct --save_predictions\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "466249",
+      "log_path": "~/runs/trace-verdict-study/qwen15b_exception_only_seed123.log",
+      "submitted_at": "2026-05-18T20:55:20.040Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "N/A - OOM at step 3/444",
+      "wall_clock_seconds": 2713.7,
+      "gpu_hours": 0.75
+    },
+    "conclusion": "failed",
+    "metrics": {
+      "error": "CUDA OOM at step 3/444",
+      "exit_code": 1,
+      "cause": "GPU 0 had 45.15 GiB PyTorch allocated (likely concurrent model loading with codellama13b), only 1.80 GiB free when trying to allocate 4.64 GiB",
+      "seed_comparison": {
+        "seed42_accuracy": 0.9983,
+        "seed123_accuracy": "N/A - OOM crash"
+      }
+    },
+    "completed_at": "2026-05-18T21:40:33.694Z"
+  },
+  "timestamp": "2026-05-18T21:42:34.214297+00:00",
+  "trigger": "update_registry"
+}

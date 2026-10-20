@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99b5dacf82e667c27aa0",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "check gpu status urgent",
+  "task_key": "worker_check_gpu_status_urgent_20260514T045137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu_status_urgent_20260514T045137_result.json",
+    "occurrence": 1,
+    "bytes": 1232,
+    "sha256": "7c60fe1b565c27edafee8ac2829cebc587324f370c6f6ba66bf1280ba46f763b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态报告\n\n### 两张卡都在满负荷运行，无空闲\n\n| GPU | 温度 | 功耗 | 显存 | 利用率 | PID | 实验 |\n|-----|------|------|------|--------|-----|------|\n| cuda:0 | 76°C | 568W/600W | 77.9G/97.9G | **100%** | 415007 | **rgds** Gen 1/7，正在 Step 3 训练 student |\n| cuda:1 | 53°C | 489W/600W | 28.7G/97.9G | **99%** | 405067 | **external_only** seed123 |\n\n### 详细状态\n\n**cuda:0 — chain_cuda0_s123 session**\n- 在跑 `rgds` 方法（已从 uncurated chain 切换到 rgds chain），Gen 1/7\n- 当前阶段：`[3/5] Training student (lr=5e-05, epochs=3)`\n- PID 415007，运行约 2.8 小时，显存 77.9G\n\n**cuda:1 — medium_external_seed123 session**\n- 在跑 `external_only` 方法，seed123\n- PID 405067，运行约 1.7 小时，显存 28.7G\n- tmux 面板只显示了 `network_turbo` 设置信息，实际训练输出可能被刷掉了\n- 另有子进程 PID 428498/428499（刚启动的新 generation worker）\n\n### 结论\n\n**不存在空闲卡。** 两张卡都在 99-100% 利用率。之前健康度报告的\"空闲 5min+\"可能是 chain 切换间隙（cuda:0 刚从 uncurated 切到 rgds 启动阶段），当前已恢复满载。无需操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-status-urgent.md"
+}

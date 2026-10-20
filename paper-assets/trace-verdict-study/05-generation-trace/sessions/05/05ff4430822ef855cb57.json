@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05ff4430822ef855cb57",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis deepseek paired comparison",
+  "task_key": "worker_analysis_deepseek_paired_comparison_20260516T024634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek_paired_comparison_20260516T024634_result.json",
+    "occurrence": 1,
+    "bytes": 1056,
+    "sha256": "1011797724a8d3baad94252f8c6d81b21c63c92c2585335e00827f7653990d60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已生成并保存。确认 exception_only 是 seed42 版本 (99.33%)，VOTA 是 max_length=16384 版本 (84.45%)。\n\n## DeepSeek Paired Comparisons (n=1190, seed42)\n\n| Pair (A vs B) | Acc_A | Acc_B | Δ(A-B) | 95% CI | McNemar p | sig |\n|---|---|---|---|---|---|---|\n| VOTA vs exception_only | 84.45% | 99.33% | -14.87% | [-17.06, -12.77] | 6.86e-45 | *** |\n| VOTA vs full_trace | 84.45% | 79.16% | +5.29% | [+2.35, +8.15] | 4.03e-04 | *** |\n| VOTA vs no_trace | 84.45% | 73.36% | +11.09% | [+8.07, +14.20] | 2.50e-12 | *** |\n| exception_only vs full_trace | 99.33% | 79.16% | +20.17% | [+17.82, +22.61] | 8.85e-64 | *** |\n| exception_only vs no_trace | 99.33% | 73.36% | +25.97% | [+23.36, +28.66] | 8.49e-83 | *** |\n| full_trace vs no_trace | 79.16% | 73.36% | +5.80% | [+3.61, +7.98] | 3.67e-07 | *** |\n\n所有 6 对比较均高度显著 (p < 0.001)。文件已保存至：\n- `/root/trace-verdict-study/analysis/deepseek_paired_comparisons.json`\n- `/root/trace-verdict-study/analysis/deepseek_paired_comparisons.txt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-paired-comparison.md"
+}

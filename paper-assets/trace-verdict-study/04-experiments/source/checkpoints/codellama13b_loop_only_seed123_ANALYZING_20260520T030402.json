@@ -1,0 +1,65 @@
+{
+  "exp_id": "codellama13b_loop_only_seed123",
+  "project": "trace-verdict-study",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T23:10:32.075Z",
+    "updated_at": "2026-05-20T03:04:02.134Z",
+    "hypothesis": "CodeLlama-13B loop_only seed123 应在 74-80% 范围（与 seed42=77.06% 接近），验证 Tier 2 collapse（≈no_trace）是否 seed-robust，CodeLlama 是唯一 Tier 2 failed 的模型",
+    "parent": "codellama13b_loop_only_seed42",
+    "server": "westd-11235",
+    "gpu": "cuda:1",
+    "account": "root",
+    "spec": {
+      "command": "bash -c \"...codellama13b_loop_only_seed123...\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "543506",
+      "log_path": "~/runs/trace-verdict-study/codellama13b_loop_only_seed123.log",
+      "submitted_at": "2026-05-19T23:10:51.377Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/loop_only_train.jsonl",
+      "data_count": 4720,
+      "model_name": "codellama/CodeLlama-13b-Instruct-hf",
+      "seed": 123,
+      "checkpoint_source": "self-trained",
+      "eval_data": "/root/autodl-tmp/trace-verdict-study-data/loop_only_test.jsonl"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T03:02:44.274Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T03:02:51.934438+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 0.7605,
+      "accuracy_ci_lower": 0.7387,
+      "accuracy_ci_upper": 0.7857,
+      "pass_precision": 0.9478,
+      "pass_recall": 0.7039,
+      "pass_f1": 0.8078,
+      "fail_precision": 0.5484,
+      "fail_recall": 0.9027,
+      "fail_f1": 0.6823,
+      "majority_baseline": 0.7151,
+      "lift": 0.0454,
+      "n": 1190
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T03:04:02.476751+00:00",
+  "trigger": "update_registry"
+}

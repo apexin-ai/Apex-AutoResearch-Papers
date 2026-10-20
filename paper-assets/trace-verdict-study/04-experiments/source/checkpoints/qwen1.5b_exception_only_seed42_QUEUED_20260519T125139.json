@@ -1,0 +1,27 @@
+{
+  "exp_id": "qwen1.5b_exception_only_seed42",
+  "project": "trace-verdict-study",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T07:27:34.741Z",
+    "updated_at": "2026-05-19T12:51:38.800Z",
+    "spec": {
+      "hypothesis": "Multi-scale validation: exception_only on Qwen-2.5-Coder-1.5B. Tests if exception dominance holds at smaller scale.",
+      "model_name": "Qwen2.5-Coder-1.5B-Instruct",
+      "seed": 42,
+      "condition": "exception_only",
+      "server": "westd-11235",
+      "gpu": "cuda:0",
+      "account": "root"
+    },
+    "conclusion": "killed",
+    "failure_reason": "replaced by qwen15b_* entries (dot in exp_id incompatible with submit_on_allocated)",
+    "hypothesis": "Qwen-1.5B exception_only 应达 ≥99% accuracy，确认 minimal sufficient signal 在 1.5B scale 有效，signal quality 主导 model capacity",
+    "notes": "重复条目，已在 qwen15b_exception_only_seed42 (99.83%) 完成。命名差异：qwen1.5b_ → qwen15b_"
+  },
+  "timestamp": "2026-05-19T12:51:39.128983+00:00",
+  "trigger": "update_registry"
+}

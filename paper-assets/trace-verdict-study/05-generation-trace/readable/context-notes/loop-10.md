@@ -1,0 +1,68 @@
+# director / loop_10.md
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/director/loop_10.md`
+- **Structured JSON:** [`02136fe96fb9ccb7b012.json`](../../sessions/02/02136fe96fb9ccb7b012.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 10
+reason: max_messages
+updated: '2026-05-21T14:48:52+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：只能用 westd-11235 的 cuda:0 和 cuda:1，绝不跨项目抢卡
+- cuda:0 当前有 49GB 孤儿显存（无进程持有，需容器重启清除），剩余 ~48GB 可用，大模型实验有 OOM 风险
+- GPU 隔离必须用 `export CUDA_VISIBLE_DEVICES=X` 在 tmux session 内先 export 再起 python，不要同一行内联（M012/M013 教训：并行实验互相挤爆 + 重复进程写同一 checkpoint）
+- 提交训练前必须 nvidia-smi 确认目标 GPU 无其他进程
+- 论文 C2 措辞已锁定 "consistently observe"（基于 3-seed σ=1.13pp），不可降级为 "observe" 也不可升级为 "find that"
+- EMNLP 2026 ARR DDL: 2026-05-25，主文 8 页限制
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-11235，SSH `ssh -p 11235 root@connect.westd.seetacloud.com` 密码 `I9Viw/1sI4GS`
+- 工作目录：`/root/trace-verdict-study`，论文在 `/root/trace-verdict-study/docs/paper/`
+- Checkpoint 输出到 `/root/autodl-tmp/trace-verdict-study-checkpoints/`（避免根分区）
+- 本地 artifacts：`/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/`
+- 最新 PDF：`main_v15.pdf` MD5=`fb3d488961497cc9c8171cfb05d89597`，已复制到 `docs/paper/main.pdf`
+- 活跃进程：无。两卡空闲。刚派 Agent 去跑 QUEUED 实验（codellama/qwen1.5b exception_only 等）
+
+### 3. 📊 当前状态
+- D111 Action Matrix 全部完成（MF-1/2/3 + SF-1~9 + 数值修正）
+- full_trace 3-seed 结果：seed42=81.76%, seed123=80.17%, seed456=82.35%, mean=81.43%±1.13pp
+- Round 12 审稿已提交（`apr_20260521T124514_ary9`），等待用户选择 continue/fresh 模式
+- review_issues.yaml 已更新：R1-N3, R8-N4, R2-N3, R8-N1 标记 resolved (round 12)
+- 刚派 Agent 跑 QUEUED 实验利用空闲 GPU（codellama_exception_only_seed42 等 rebuttal 储备）
+- 无 RUNNING 实验，6 个 QUEUED，3 个 PREPARING
+
+### 4. 📋 待办
+- 用户批准 Round 12 审稿模式 → Review Director 开始审稿，等报告回来后走 review-report-action skill
+- Round 12 审稿报告回来 → Holistic Pass + Action Matrix，派 Agent 执行修改
+- QUEUED 实验完成（codellama/qwen1.5b exception_only 等）→ 更新 registry，确认跨模型 C1 claim 数据覆盖
+- DDL 5/24 晚 → 最终编译 + 提交
+
+### 5. 🎯 战略上下文
+- 核心发现：exception_only 格式在 4 模型 3 架构上 ≥99.33%，完整 trace 反而降到 ~81%（"less is more"）
+- 当前论文评分 3.0 (Findings)，目标 3.5+ (Borderline Conference)
+- C3 decomposition 已降级为 preliminary analysis (Qwen-family only)，C4 two-tier 已降级为 observation
+- 最大审稿攻击面：(1) near-tautology concern（regex B_marker=99.33% vs SFT 99.83%，已加 McNemar p=0.014 + caught exception 分析）(2) 单数据集限制 (3) C3 单模型
+- 易踩坑：stale Worker 可能在已验证修改之后覆盖 tex 文件（本轮发生过，需检查 Worker 完成时间 vs 最后验证时间）
+- DeepSeek VOTA seed42=84.45% 是 outlier（tokenizer truncation），论文用 2-seed mean 99.25%，脚注披露了全部 3 seed
+
+
+---

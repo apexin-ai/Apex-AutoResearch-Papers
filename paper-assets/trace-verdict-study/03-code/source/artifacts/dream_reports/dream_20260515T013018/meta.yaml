@@ -1,0 +1,2688 @@
+dream_id: dream_20260515T013018
+project: trace-verdict-study
+venue: ''
+focus: 'Key risk: VOTA 95.63% may be trivial actual==expected string comparison. Ablation
+  removing actual/expected is the make-or-break experiment. Also: full_trace collapse
+  mechanism and whether label-only loss can fix it. Paper needs to work regardless
+  of ablation outcome (contingency framing prepared).'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: VOTA 效果来自 genuine behavioral understanding，非 trivial string matching；full_trace
+        collapse 机制被完整解释
+      key_assumptions:
+      - 去除 actual/expected 后 VOTA 仍显著优于 no_trace baseline（acc >85%），证明模型学到了 execution
+        state reasoning
+      - full_trace + label-only loss 大幅修复 collapse（acc >70%），确认 gradient dilution
+        假说
+      - VOTA 各组件（exception summary, loop compression）均有独立贡献，非单一因素驱动
+      - DeepSeek-Coder 复现 VOTA lift >15pp，排除模型特异性
+      - 第二 verdict task 复现相似 lift pattern，支持 task-class generalization
+      number_ranges:
+        vota_no_actexp_acc:
+        - 0.85
+        - 0.93
+        vota_no_actexp_lift_over_notrace:
+        - 0.1
+        - 0.18
+        fulltrace_labelonly_acc:
+        - 0.7
+        - 0.82
+        component_ablation_min_individual_lift:
+        - 0.03
+        - 0.08
+        deepseek_vota_lift:
+        - 0.15
+        - 0.25
+        second_task_vota_lift:
+        - 0.12
+        - 0.22
+        seed_variance_pp:
+        - 0.0
+        - 1.5
+      narrative_direction: '原始 framing 完全成立。Claim 1 升级为 "VOTA teaches execution-grounded
+        verdict reasoning, not mere string comparison"（ablation 直接支撑）。Claim 2 机制解释闭环（gradient
+        dilution confirmed）。 Claim 3 提供完整的 trace design principle taxonomy。多模型+多任务结果支撑
+        generalization claim。 直接冲 EMNLP Main，reviewer concerns 全部有数据回应。
+
+        '
+    median:
+      tier: median
+      meaning: actual/expected 是 VOTA 的主要但非唯一贡献者；collapse 机制部分验证；泛化性有限
+      key_assumptions:
+      - 去除 actual/expected 后 acc 降至 78-85%，仍优于 no_trace 但 lift 缩小过半——actual/expected
+        贡献 >50% 的 VOTA lift
+      - full_trace + label-only loss 部分修复（acc 50-70%），gradient dilution 是因素之一但非唯一原因
+      - VOTA 组件 ablation 显示 actual/expected 贡献主导，其余组件 lift 边际
+      - DeepSeek-Coder lift 存在但较小（8-15pp），或 full_trace collapse 程度不同
+      - 第二 verdict task 有 lift 但 pattern 不完全一致
+      number_ranges:
+        vota_no_actexp_acc:
+        - 0.78
+        - 0.85
+        vota_no_actexp_lift_over_notrace:
+        - 0.03
+        - 0.1
+        fulltrace_labelonly_acc:
+        - 0.5
+        - 0.7
+        component_ablation_min_individual_lift:
+        - 0.0
+        - 0.03
+        deepseek_vota_lift:
+        - 0.08
+        - 0.15
+        second_task_vota_lift:
+        - 0.05
+        - 0.12
+        seed_variance_pp:
+        - 1.0
+        - 3.0
+      narrative_direction: '调整 Claim 1 强度：从 "behavioral reasoning" 降为 "VOTA 的核心价值是将
+        decision-relevant state (including assertion-point comparisons) 精准呈现给模型"。不再
+        claim reasoning，而是 claim information selection——VOTA 是一种 task-aware feature
+        engineering，其价值在于识别 verdict-critical state elements。Claim 2 改为 "gradient dilution
+        is a contributing factor"（加 trace noise 讨论）。 Claim 3 的 design principle 从
+        "teach reasoning" 调整为 "minimize irrelevant state, maximize decision-relevant
+        signal density"。仍投 EMNLP Main，但 contribution 定位从 method 转向 empirical analysis
+        + design guidelines。Findings 是更安全的目标。
+
+        '
+    worst:
+      tier: worst
+      meaning: VOTA 效果几乎完全来自 actual==expected 字符串比对；collapse 机制解释不通；泛化失败
+      key_assumptions:
+      - 去除 actual/expected 后 acc 降至 73-78%（≈no_trace baseline），证明 VOTA 的 lift 本质是将
+        answer 暴露给模型
+      - full_trace + label-only loss 仍 collapse（acc <50%），gradient dilution 假说不充分，可能是
+        trace content 本身有害
+      - 组件 ablation 确认：只有 actual/expected 有贡献，exception summary 和 loop compression
+        无显著 lift
+      - DeepSeek-Coder 上 VOTA lift <8pp 或 pattern 不一致
+      - 第二 verdict task 上 VOTA 无显著 lift
+      number_ranges:
+        vota_no_actexp_acc:
+        - 0.73
+        - 0.78
+        vota_no_actexp_lift_over_notrace:
+        - -0.02
+        - 0.03
+        fulltrace_labelonly_acc:
+        - 0.28
+        - 0.5
+        component_ablation_min_individual_lift:
+        - -0.02
+        - 0.01
+        deepseek_vota_lift:
+        - 0.0
+        - 0.08
+        second_task_vota_lift:
+        - 0.0
+        - 0.05
+        seed_variance_pp:
+        - 2.0
+        - 5.0
+      narrative_direction: 完全 reframe。放弃 "trace teaches reasoning" 叙事。新 angle："What
+        Makes Verdict Prediction Trivial? A Trace Ablation Study" —— 核心发现变成一个 negative
+        + diagnostic result：(1) verdict tasks 本质上只需要 assertion-point comparison data，不需要任何
+        reasoning trace；(2) full execution trace 不仅无用而且有害，且 label-only loss 无法修复，说明问题不只是
+        gradient dilution 而是 trace content 引入的 distributional shift；(3) VOTA 的成功恰好证明了
+        verdict tasks 的信息需求 极度 sparse。Contribution 重新定位为 "systematic negative result
+        + task complexity analysis"： 我们提供了第一个 evidence 证明 trace SFT 对 classification
+        tasks 的效果完全取决于是否包含 task-critical data points，而非 reasoning chain。仍冲 EMNLP（negative/analytical
+        results 有 venue precedent），但 Findings 更现实。
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/best/paper.pdf
+  imagined_experiments:
+  - name: VOTA without actual/expected ablation
+    plan_id: plan_001
+    description: '从 VOTA trace 中移除所有 actual value 和 expected value 字段，只保留 assertion
+      structure (assertion name, line number, assertion type)、exception summary、loop
+      compression info。 使用与 vota_seed42_v4 相同的训练配置（CodeLlama-7B, 3 epochs, lr=2e-5）。
+
+      '
+    expected_results:
+      accuracy: 0.891
+      majority_baseline: 0.7151
+      lift_over_notrace: 0.1397
+      lift_over_notrace_pp: 13.97
+      drop_from_full_vota_pp: 10.06
+      pass_precision: 0.932
+      pass_recall: 0.879
+      pass_f1: 0.905
+      fail_precision: 0.821
+      fail_recall: 0.919
+      fail_f1: 0.867
+      accuracy_ci_lower: 0.871
+      accuracy_ci_upper: 0.909
+      train_loss: 0.072
+      eval_loss: 0.298
+      mcnemar_vs_notrace_p: 1.0e-05
+    result_rationale: '去除 actual/expected 后 accuracy 从 99.16% 降至 ~89%，说明 actual/expected
+      值确实提供了 直接的 verdict signal（约贡献 10pp）。但关键发现是：剩余 89% accuracy 仍大幅超越 no_trace 的
+      75.13% （+14pp, p<0.001），证明模型从 assertion structure + exception info + loop patterns
+      中 学到了 genuine execution state reasoning。具体机制：(1) exception summary 提供了 "哪个 assertion
+      点抛出了什么类型的异常" 的信息，这本身就是强 verdict signal——在测试中， exception 几乎必然意味着 fail，且 exception
+      type/message 携带 root cause 信息； (2) loop compression 中的迭代次数异常（early termination,
+      infinite loop detection） 是 behavioral anomaly 的直接证据；(3) assertion structure
+      本身（哪些 assertion 被执行、 执行顺序）编码了 control flow path 信息。模型 jointly reason over 这些
+      signals， 而非简单的 string matching。train_loss 从 0.046 升至 0.072 反映了 task 难度增加 （没有
+      actual/expected 的 "shortcut"），eval_loss 从 0.084 升至 0.298 说明 uncertainty 增大但仍在
+      reasonable range。
+
+      '
+    tables:
+    - name: 'Table 3: Actual/Expected Ablation Results'
+      columns:
+      - Condition
+      - Accuracy
+      - Δ vs No-Trace
+      - 95% CI
+      - Pass F1
+      - Fail F1
+      rows:
+      - - Full VOTA
+        - 99.16%
+        - +24.03pp
+        - '[98.57, 99.66]'
+        - '0.994'
+        - '0.985'
+      - - VOTA w/o actual/expected
+        - 89.1%
+        - +13.97pp
+        - '[87.1, 90.9]'
+        - '0.905'
+        - '0.867'
+      - - No-trace baseline
+        - 75.13%
+        - —
+        - '[72.5, 77.6]'
+        - '0.813'
+        - '0.627'
+      - - Full trace
+        - 28.49%
+        - −46.64pp
+        - '[25.9, 31.1]'
+        - '0.155'
+        - '0.568'
+    figures_description:
+    - 'Bar chart: accuracy across 4 conditions with 95% CI error bars, horizontal
+      dashed line at majority baseline (71.51%). Highlights the gap between VOTA w/o
+      actual/expected and no-trace as the ''genuine reasoning lift'' zone.'
+    analysis: '89.1% accuracy without actual/expected is the single most important
+      result for paper framing. 它将 VOTA 的 24pp lift 分解为两部分：~10pp 来自 actual/expected
+      值的 direct comparison signal， ~14pp 来自 execution state reasoning（assertion structure
+      + exception + loop patterns）。 后者才是 VOTA 的 core contribution——它证明 trace SFT 不是在教模型做字符串比对，而是在教模型
+      理解 execution behavior 的 anomaly patterns。这直接回应了 Reviewer Concern #1。 论文 Claim
+      1 可以升级为强表述。
+
+      '
+  - name: Full trace with label-only loss
+    plan_id: plan_002
+    description: '使用完整 execution trace 但修改 loss computation：只对最终 verdict token（pass/fail）计算
+      cross-entropy loss，mask 掉所有 trace token 的 loss。验证 collapse 根因是 gradient dilution
+      （trace tokens 占 >95% loss weight 导致 classification gradient 被淹没）而非 trace content
+      本身有害。
+
+      '
+    expected_results:
+      accuracy: 0.762
+      majority_baseline: 0.7151
+      lift_over_notrace: 0.0107
+      lift_over_standard_fulltrace: 0.478
+      pass_precision: 0.847
+      pass_recall: 0.738
+      pass_f1: 0.789
+      fail_precision: 0.621
+      fail_recall: 0.823
+      fail_f1: 0.708
+      train_loss: 0.34
+      eval_loss: 0.52
+      collapse_fixed: true
+      predict_fail_ratio: 0.437
+    result_rationale: 'label-only loss 将 accuracy 从 28.49%（全 collapse）修复至 76.2%，接近
+      no_trace baseline（75.13%）。 这直接确认了 gradient dilution 假说：在标准 SFT loss 下，full trace
+      的 ~2000+ trace tokens 贡献了 >97% 的 total loss，classification token（1 token）的 gradient
+      被 overwhelm。 模型被迫优化 "next token prediction on trace text" 而非 "verdict classification"，
+      最终 collapse 到 majority class prediction。label-only loss 消除了 trace token 的 gradient
+      干扰后，模型至少能正常分类。但 76.2% 仅略高于 no_trace，说明 full execution trace 即使作为 pure context（不参与
+      loss）也几乎没有帮助——trace 太长太密，模型的 attention 无法从中提取 decision-relevant signal。这解释了为什么
+      VOTA（compact, decision-relevant abstraction） 远优于 full_trace + label-only（verbose,
+      attention-diluting context）。predict_fail_ratio 从 100%（collapse）恢复到 43.7%（接近真实
+      28.49% fail rate），说明 class balance 恢复正常。
+
+      '
+    tables:
+    - name: 'Table 4: Loss Strategy Ablation on Full Trace'
+      columns:
+      - Condition
+      - Loss Type
+      - Accuracy
+      - '% Predict Fail'
+      - Collapse?
+      rows:
+      - - Full trace
+        - Standard SFT
+        - 28.49%
+        - 100%
+        - 'Yes'
+      - - Full trace
+        - Label-only
+        - 76.2%
+        - 43.7%
+        - 'No'
+      - - No trace
+        - Standard SFT
+        - 75.13%
+        - 42.1%
+        - 'No'
+      - - VOTA
+        - Standard SFT
+        - 99.16%
+        - 29.8%
+        - 'No'
+    figures_description:
+    - '2x2 schematic: (x-axis: trace granularity [none, VOTA, full], y-axis: accuracy).
+      Two lines — standard loss vs label-only loss. Standard loss shows collapse at
+      full trace; label-only loss rescues it to baseline level but doesn''t reach
+      VOTA. Annotated with ''gradient dilution zone'' shading.'
+    analysis: '76.2% 完美支撑 gradient dilution 叙事：(1) label-only 修复 collapse → 确认 collapse
+      原因是 loss distribution mismatch 而非 trace data corruption；(2) 修复后仅达 no_trace 水平
+      → full trace 作为 context 无信息增益，因为 attention 在 2000+ tokens 中无法聚焦 verdict-relevant
+      states；(3) VOTA 在标准 loss 下就达 99.16% → 紧凑的 trace abstraction 同时解决了 gradient dilution
+      和 attention dilution。这为 Claim 2 提供了完整的机制解释闭环。
+
+      '
+  - name: VOTA component ablation
+    plan_id: plan_003
+    description: '4 个训练条件：(a) 只有 actual/expected 值对（无 assertion structure/exception/loop
+      info）， (b) 只有 exception summary，(c) 只有 loop compression info，(d) 全量 VOTA（已有结果）。
+      量化每个 VOTA 组件的独立贡献和交互效应。
+
+      '
+    expected_results:
+      actexp_only_accuracy: 0.912
+      actexp_only_lift: 0.1607
+      exception_only_accuracy: 0.827
+      exception_only_lift: 0.0757
+      loop_only_accuracy: 0.791
+      loop_only_lift: 0.0397
+      full_vota_accuracy: 0.9916
+      full_vota_lift: 0.2403
+      sum_individual_lifts: 0.2761
+      superadditivity_ratio: 1.15
+      min_individual_lift: 0.0397
+      max_individual_lift: 0.1607
+    result_rationale: '三个组件均有显著独立贡献： (a) actual/expected only (91.2%): 最强单组件。actual/expected
+      值直接编码了 "程序实际输出 vs 预期输出" 的比较信息，对 verdict prediction 最直接相关。但缺少 exception 和 loop
+      信息时， 模型无法处理 exception-driven failures（exception 时 actual 可能为空）和 loop-related
+      bugs （如 infinite loop timeout），导致部分样本错误。 (b) exception summary only (82.7%):
+      exception type + message + stack trace summary 是 fail 的强信号（几乎所有 exception 都对应
+      fail），但 exception 只覆盖 ~40% 的 fail cases （其他是 assertion failure without exception），对
+      pass cases 几乎无信号，导致 precision/recall 不对称。 (c) loop compression only (79.1%):
+      最弱但仍显著（+4pp over no_trace, p<0.01）。 loop iteration counts 和 early termination
+      patterns 编码了 behavioral anomaly 信号， 但信号较弱且只与 loop-related bugs 相关。 三组件组合的 VOTA
+      (99.16%) 显著超过个体之和（superadditivity ratio 1.15），说明组件间 存在 complementary reasoning：exception
+      summary 覆盖 actual/expected 缺失的 crash cases， loop info 捕捉 actual/expected 和 exception
+      都无法检测的 behavioral anomalies。 模型在联合训练时学到了 cross-component reasoning patterns。
+
+      '
+    tables:
+    - name: 'Table 5: VOTA Component Ablation'
+      columns:
+      - Component(s)
+      - Accuracy
+      - Δ vs No-Trace
+      - 95% CI
+      - Pass F1
+      - Fail F1
+      rows:
+      - - No trace (baseline)
+        - 75.13%
+        - —
+        - '[72.5, 77.6]'
+        - '0.813'
+        - '0.627'
+      - - Loop compression only
+        - 79.1%
+        - +3.97pp
+        - '[76.7, 81.3]'
+        - '0.838'
+        - '0.698'
+      - - Exception summary only
+        - 82.7%
+        - +7.57pp
+        - '[80.5, 84.8]'
+        - '0.869'
+        - '0.742'
+      - - Actual/expected only
+        - 91.2%
+        - +16.07pp
+        - '[89.5, 92.7]'
+        - '0.938'
+        - '0.862'
+      - - Full VOTA (all three)
+        - 99.16%
+        - +24.03pp
+        - '[98.6, 99.7]'
+        - '0.994'
+        - '0.985'
+    - name: 'Table 6: Component Interaction Analysis'
+      columns:
+      - Metric
+      - Value
+      rows:
+      - - Sum of individual lifts
+        - 27.61pp
+      - - Combined lift (full VOTA)
+        - 24.03pp
+      - - Superadditivity ratio
+        - 1.15×
+      - - Min individual contribution
+        - 3.97pp (loop)
+      - - Max individual contribution
+        - 16.07pp (actual/expected)
+    figures_description:
+    - Stacked bar chart decomposing VOTA's 24pp lift into component contributions,
+      with a 'synergy' segment showing superadditive interaction. Horizontal dashed
+      line at no_trace baseline.
+    - 'Venn diagram showing overlap and unique coverage of fail cases detected by
+      each component: actual/expected covers ~85% of fails, exception covers ~40%,
+      loop covers ~15%, with partial overlaps.'
+    analysis: 'plan_001 已证明 actual/expected 不是唯一贡献者；plan_003 进一步量化了完整 contribution
+      landscape。 关键 takeaway：(1) 所有三个组件都 independently significant（最弱的 loop compression
+      仍 +4pp, p<0.01）， 驳斥 "VOTA 效果被单一组件驱动" 的担忧；(2) superadditivity 说明 trace design
+      不是简单的 feature selection 而是 complementary signal composition；(3) 为 trace design
+      principles 提供了 quantitative guidance：verdict-relevant state snapshots > exception
+      diagnostics > behavioral pattern summaries, 按此优先级配置 trace budget。
+
+      '
+  - name: DeepSeek-Coder-6.7B replication
+    plan_id: plan_004
+    description: '在 DeepSeek-Coder-6.7B-Instruct 上复现三条件实验（VOTA / no_trace / full_trace），
+      使用与 DCSH 相同的 base model 进行直接对比。同训练配置但调整 batch size 以适应模型大小。
+
+      '
+    expected_results:
+      deepseek_vota_accuracy: 0.934
+      deepseek_notrace_accuracy: 0.731
+      deepseek_fulltrace_accuracy: 0.307
+      deepseek_vota_lift: 0.203
+      deepseek_fulltrace_collapse: true
+      deepseek_vota_pass_f1: 0.954
+      deepseek_vota_fail_f1: 0.896
+      deepseek_notrace_pass_f1: 0.801
+      deepseek_notrace_fail_f1: 0.598
+      codellama_vs_deepseek_vota_diff_pp: 5.76
+      pattern_preserved: true
+    result_rationale: 'DeepSeek-Coder-6.7B 复现 VOTA lift +20.3pp（vs CodeLlama 的 +24.0pp），三条件间的
+      相对 pattern（VOTA >> no_trace >> full_trace collapse）完全保持。 DeepSeek VOTA 绝对 accuracy
+      (93.4%) 略低于 CodeLlama (99.16%)，原因：(1) DeepSeek-Coder 的 tokenizer 和 pre-training
+      corpus 不同，对 Python test code 的 prior 略弱； (2) 6.7B vs 7B 参数量差异微小但 architecture
+      差异（DeepSeek 使用 MHA 而非 GQA） 可能影响 fine-grained state reasoning capacity。 DeepSeek
+      no_trace (73.1%) 略低于 CodeLlama (75.13%)，反映 base model 差异。 DeepSeek full_trace
+      (30.7%) 同样 collapse，确认 gradient dilution 不是 CodeLlama-specific artifact。 +20.3pp
+      lift 落在 [15pp, 25pp] target range 中心，强力支撑 model-generality claim。 与 DCSH 论文的直接对比：DCSH
+      在 DeepSeek-Coder 上 generation tasks 的 trace SFT lift 为 +2-5pp，而 verdict task
+      + VOTA 获得 +20pp，quantitative 证明了 "trace-task granularity matching" 效应。
+
+      '
+    tables:
+    - name: 'Table 7: Cross-Model Replication'
+      columns:
+      - Model
+      - Condition
+      - Accuracy
+      - Δ vs No-Trace
+      - Collapse?
+      rows:
+      - - CodeLlama-7B
+        - VOTA
+        - 99.16%
+        - +24.03pp
+        - 'No'
+      - - CodeLlama-7B
+        - No trace
+        - 75.13%
+        - —
+        - 'No'
+      - - CodeLlama-7B
+        - Full trace
+        - 28.49%
+        - −46.64pp
+        - 'Yes'
+      - - DeepSeek-Coder-6.7B
+        - VOTA
+        - 93.4%
+        - +20.3pp
+        - 'No'
+      - - DeepSeek-Coder-6.7B
+        - No trace
+        - 73.1%
+        - —
+        - 'No'
+      - - DeepSeek-Coder-6.7B
+        - Full trace
+        - 30.7%
+        - −42.4pp
+        - 'Yes'
+    figures_description:
+    - 'Grouped bar chart: 3 conditions × 2 models, with 95% CI. Emphasizes that the
+      relative pattern (VOTA >> no_trace >> full_trace) is preserved across models.
+      Annotated with DCSH generation-task lift range for contrast.'
+    analysis: 'DeepSeek 复现是 reviewer concern #3 的直接回应。+20.3pp lift 消除了 "CodeLlama-specific
+      artifact" 的可能。与 DCSH 在同模型上的 generation task 对比（+2-5pp vs +20pp）提供了 强有力的 "trace-task
+      matching" 叙事支撑。CodeLlama vs DeepSeek 的 ~6pp 绝对差异 属于 model capability difference，不影响
+      relative pattern 和 core findings。
+
+      '
+  - name: 'Second task: DebugBench bug detection'
+    plan_id: plan_005
+    description: '在 DebugBench (Python subset) 上构建 bug detection verdict task：给定含
+      bug 的代码 + test， 预测 test 是否会暴露 bug（pass = bug not triggered, fail = bug triggered）。
+      使用 VOTA 格式生成 trace，同配置训练 CodeLlama-7B。
+
+      '
+    expected_results:
+      debugbench_vota_accuracy: 0.849
+      debugbench_notrace_accuracy: 0.672
+      debugbench_fulltrace_accuracy: 0.341
+      debugbench_vota_lift: 0.177
+      debugbench_fulltrace_collapse: true
+      debugbench_vota_pass_f1: 0.881
+      debugbench_vota_fail_f1: 0.803
+      debugbench_n: 850
+      pattern_preserved: true
+    result_rationale: 'DebugBench bug detection 复现了 VOTA lift pattern (+17.7pp)，但绝对
+      accuracy 低于 test verdict task（84.9% vs 99.16%）。差异来源： (1) Bug detection 在语义上更难——test
+      verdict prediction 中模型可以推断 "这段代码的 execution flow 是否会到达 assertion point 并满足 assertion"，而
+      bug detection 需要 理解 "这个 bug 是否会被这个 test case 触发"，涉及 bug-test interaction reasoning。
+      (2) DebugBench 的 bug 类型多样（value bugs, logic bugs, reference bugs）， VOTA trace
+      对 value bugs 最有效（actual/expected 直接暴露），对 logic bugs 效果次之 （需要 loop/control flow
+      patterns），对 reference bugs 最弱。 (3) 数据量较小（~850 vs ~1190）也贡献了部分 accuracy 差异。 no_trace
+      baseline 67.2% 低于 test verdict 的 75.13%，反映 bug detection 的 intrinsic difficulty
+      更高。full_trace 仍 collapse (34.1%)，确认 gradient dilution 在不同 verdict tasks 上一致发生。+17.7pp
+      lift 落在 [12pp, 22pp] target range 内，支撑 task-class generalization claim。
+
+      '
+    tables:
+    - name: 'Table 8: Cross-Task Generalization'
+      columns:
+      - Task
+      - Condition
+      - Accuracy
+      - Δ vs No-Trace
+      - N
+      rows:
+      - - Test verdict (main)
+        - VOTA
+        - 99.16%
+        - +24.03pp
+        - '1190'
+      - - Test verdict (main)
+        - No trace
+        - 75.13%
+        - —
+        - '1190'
+      - - Test verdict (main)
+        - Full trace
+        - 28.49%
+        - −46.64pp
+        - '1190'
+      - - Bug detection (DebugBench)
+        - VOTA
+        - 84.9%
+        - +17.7pp
+        - '850'
+      - - Bug detection (DebugBench)
+        - No trace
+        - 67.2%
+        - —
+        - '850'
+      - - Bug detection (DebugBench)
+        - Full trace
+        - 34.1%
+        - −33.1pp
+        - '850'
+    figures_description:
+    - Side-by-side grouped bar charts for two tasks, showing consistent VOTA >> no_trace
+      >> full_trace pattern. Annotated with lift magnitudes to emphasize consistency
+      of the pattern across tasks.
+    analysis: 'DebugBench 复现回应 reviewer concern #2（单任务风险）。两个 verdict tasks 上一致的 "VOTA
+      helps, full_trace collapses" pattern 支撑了 task-class level generalization： 这不是
+      test verdict prediction 的 artifact，而是 verdict task class 的 systematic 现象。 Absolute
+      accuracy 差异（99% vs 85%）可解释为 task difficulty difference，不影响 core claim。
+
+      '
+  - name: Trace length ablation
+    plan_id: plan_006
+    description: '在 full execution trace 上测试 4 个截断长度 (256/512/1024/2048 tokens)，使用标准
+      SFT loss。 绘制 accuracy vs trace length 曲线，验证 gradient dilution 与 trace length
+      的关系。
+
+      '
+    expected_results:
+      length_256_accuracy: 0.683
+      length_512_accuracy: 0.548
+      length_1024_accuracy: 0.389
+      length_2048_accuracy: 0.301
+      full_trace_accuracy: 0.2849
+      notrace_accuracy: 0.7513
+      monotonic_decline: true
+      pearson_r_acc_vs_length: -0.97
+      all_below_notrace: true
+    result_rationale: "Accuracy 随 trace length 单调下降，且所有截断长度都低于 no_trace baseline。\
+      \ 机制解释：标准 SFT loss 下，trace tokens 数量 N_trace 与 classification token 数量 (1) 的比例决定了\
+      \ gradient 中 classification signal 的占比 ≈ 1/(N_trace+1)。 - 256 tokens: classification\
+      \ gradient 占比 ~0.4% → 仍有少量 classification learning，\n  accuracy 68.3%，但已低于 no_trace\
+      \ (75.13%)，因为即使微弱的 trace loss 也 distort\n  了模型的 representation space。\n- 512\
+      \ tokens: gradient 占比 ~0.2% → 54.8%，classification learning 进一步受抑。 - 1024 tokens:\
+      \ gradient 占比 ~0.1% → 38.9%，接近 random-like behavior。 - 2048 tokens: gradient\
+      \ 占比 ~0.05% → 30.1%，接近 full collapse。 - Full trace (~3000+ tokens): 28.49%，complete\
+      \ collapse。 关键发现是 ALL truncated conditions 都 worse than no_trace——即使 256 tokens\
+      \ 的 short trace 在标准 loss 下也有害。这 eliminates \"trace content is harmful\" 假说（如果\
+      \ trace content 本身有害，label-only loss 也不应该 fix it），definitively 指向 gradient dilution。\
+      \ Pearson r = -0.97 表明近乎完美的线性 log-length vs accuracy 关系。\n"
+    tables:
+    - name: 'Table 9: Trace Length vs. Accuracy'
+      columns:
+      - Trace Length (tokens)
+      - Accuracy
+      - Δ vs No-Trace
+      - '% Predict Fail'
+      rows:
+      - - 0 (no trace)
+        - 75.13%
+        - —
+        - 42.1%
+      - - '256'
+        - 68.3%
+        - −6.8pp
+        - 48.2%
+      - - '512'
+        - 54.8%
+        - −20.3pp
+        - 61.7%
+      - - '1024'
+        - 38.9%
+        - −36.2pp
+        - 78.4%
+      - - '2048'
+        - 30.1%
+        - −45.0pp
+        - 93.8%
+      - - Full (~3200)
+        - 28.49%
+        - −46.6pp
+        - 100%
+    figures_description:
+    - 'Line plot: x-axis = trace token count (log scale), y-axis = accuracy. Horizontal
+      dashed line at no_trace baseline (75.13%). Shows smooth monotonic decline with
+      shaded ''gradient dilution zone''. Second y-axis shows % predicting fail (monotonic
+      increase toward 100%). This is a key figure for the paper — visually demonstrates
+      the dilution mechanism.'
+    analysis: 'trace length curve 是 gradient dilution 叙事的 "smoking gun" figure。单调下降
+      + 所有点低于 no_trace baseline + predict_fail 单调上升至 100% = 完整的 dilution progression。
+      Combined with plan_002 (label-only fix)，形成闭环：trace length 决定 dilution 程度， label-only
+      loss 完全消除 dilution，VOTA 通过 compress trace 从另一个方向解决问题。 建议将此 figure 作为 paper Figure
+      2 或 Figure 3，visual impact 强。
+
+      '
+  - name: Calibration analysis
+    plan_id: plan_007
+    description: '对 VOTA / no_trace / full_trace 三个已有 checkpoint 的 eval set logits
+      计算 ECE (Expected Calibration Error)，绘制 reliability diagrams。纯 evaluation，无额外训练。
+
+      '
+    expected_results:
+      vota_ece: 0.018
+      notrace_ece: 0.187
+      fulltrace_ece: 0.438
+      vota_brier_score: 0.009
+      notrace_brier_score: 0.221
+      fulltrace_brier_score: 0.687
+      vota_calibration_quality: well-calibrated
+      notrace_calibration_quality: overconfident-on-pass
+      fulltrace_calibration_quality: degenerate
+    result_rationale: 'VOTA ECE 0.018（近乎完美 calibration）：99.16% accuracy 意味着 predicted
+      probabilities 与 actual outcomes 高度一致。模型对 pass/fail 的 confidence 与真实频率几乎完全匹配，
+      说明 VOTA trace 让模型形成了 well-grounded decision boundary。 No_trace ECE 0.187（moderate
+      miscalibration）：模型倾向于对 pass 过度自信 （predicted P(pass) > actual pass rate），因为训练集中
+      pass 占多数 (71.5%)， 模型学到了 base rate bias 但 discrimination 不足。 Full_trace ECE 0.438（严重
+      miscalibration）：model collapse 导致几乎所有样本被 high-confidence predict 为 fail，但实际
+      fail rate 仅 28.5%，producing extreme calibration error。reliability diagram 呈现
+      degenerate pattern——所有 predictions 集中在 P(fail)>0.95 区间。 Calibration 分析为 VOTA
+      的 quality 提供了超越 accuracy 的维度：不仅判断对，而且 confidence 可信——这对 downstream automation（如自动
+      test triage）有实际应用价值。
+
+      '
+    tables:
+    - name: 'Table 10: Calibration Metrics'
+      columns:
+      - Condition
+      - ECE ↓
+      - Brier Score ↓
+      - Accuracy
+      - Quality
+      rows:
+      - - VOTA
+        - '0.018'
+        - '0.009'
+        - 99.16%
+        - Well-calibrated
+      - - No trace
+        - '0.187'
+        - '0.221'
+        - 75.13%
+        - Overconfident
+      - - Full trace
+        - '0.438'
+        - '0.687'
+        - 28.49%
+        - Degenerate
+    figures_description:
+    - '3-panel reliability diagram (one per condition): x-axis = predicted probability,
+      y-axis = observed frequency, diagonal = perfect calibration. VOTA panel shows
+      points tightly along diagonal; no_trace shows systematic bias above diagonal
+      for high-confidence predictions; full_trace shows degenerate single-point cluster
+      at P(fail)≈1.0.'
+    analysis: 'Calibration 是 paper 的 supporting analysis，不构成独立 claim 但加强 VOTA 叙事的深度。
+      ECE 数据可放在 appendix 或 Section 5 (Analysis) 中。reliability diagram 是 visually compelling
+      的补充 figure。VOTA 的近完美 calibration 支撑 "genuine behavioral understanding" claim——如果模型只是
+      string matching，calibration 不会这么好（会对 边界 cases 过度自信）。
+
+      '
+  - name: Seed robustness
+    plan_id: plan_008
+    description: '使用 3 random seeds (42/123/456) 训练 VOTA 模型，验证结果稳定性。 报告 mean ± std
+      accuracy，McNemar test for pairwise comparisons， bootstrap 95% CI for VOTA vs
+      no_trace lift。
+
+      '
+    expected_results:
+      seed_42_accuracy: 0.9916
+      seed_123_accuracy: 0.9891
+      seed_456_accuracy: 0.9908
+      mean_accuracy: 0.9905
+      std_accuracy: 0.0013
+      max_diff_pp: 0.25
+      mcnemar_42_vs_notrace_p: 1.0e-05
+      mcnemar_123_vs_notrace_p: 1.0e-05
+      mcnemar_456_vs_notrace_p: 1.0e-05
+      bootstrap_lift_ci_lower: 0.219
+      bootstrap_lift_ci_upper: 0.261
+      bootstrap_lift_excludes_zero: true
+    result_rationale: '三个 seed 的 VOTA accuracy 为 99.16% / 98.91% / 99.08%（mean 99.05%,
+      std 0.13pp）， max pairwise difference 仅 0.25pp。极低 variance 原因：(1) VOTA trace
+      提供了 nearly sufficient statistics for verdict prediction，模型在任何 reasonable initialization
+      下 都能 converge 到相同的 decision boundary；(2) 数据量 (n=1190) 足够大，单样本翻转对 accuracy 的影响仅
+      ~0.08pp；(3) 训练已充分 converge（3 epochs, train loss ~0.046）。 McNemar test 所有 seed
+      都 p<0.001 vs no_trace，bootstrap 95% CI for lift [21.9pp, 26.1pp] 不含零。这排除了 "VOTA
+      99% 是 lucky seed" 的可能，结果高度 robust。 0.13pp std 远低于 1.5pp threshold，属于 publication-quality
+      stability。
+
+      '
+    tables:
+    - name: 'Table 11: Seed Robustness'
+      columns:
+      - Seed
+      - Accuracy
+      - Δ vs No-Trace
+      - McNemar p
+      rows:
+      - - '42'
+        - 99.16%
+        - +24.03pp
+        - <0.001
+      - - '123'
+        - 98.91%
+        - +23.78pp
+        - <0.001
+      - - '456'
+        - 99.08%
+        - +23.95pp
+        - <0.001
+      - - Mean ± Std
+        - 99.05 ± 0.13%
+        - +23.92 ± 0.13pp
+        - —
+    - name: Bootstrap 95% CI for VOTA Lift
+      columns:
+      - Metric
+      - Value
+      rows:
+      - - Bootstrap lift mean
+        - 23.92pp
+      - - 95% CI lower
+        - 21.9pp
+      - - 95% CI upper
+        - 26.1pp
+      - - Contains zero?
+        - 'No'
+    figures_description:
+    - 'Strip plot: 3 seed points for VOTA accuracy with mean ± std band, compared
+      to no_trace baseline with its own seed variation. Emphasizes the narrow spread
+      and large, stable gap between conditions.'
+    analysis: Seed robustness 是 standard due diligence，放在 appendix 即可。0.13pp std 和
+      [21.9, 26.1]pp CI 为所有 VOTA claims 提供了 statistical foundation。建议在 main text 中简述
+      "results stable across seeds (std < 0.2pp, details in Appendix X)"。
+  review_report: "---\ndream_id: dream_20260515T013018\ntier: best\noverall_score:\
+    \ weak reject\ntimestamp: 2026-05-15T02:00:17.585361+00:00\n---\n\n# Dream Review\
+    \ Report: VOTA (Verdict-Optimized Trace Abstraction)\n\n**Paper:** VOTA: Verdict-Optimized\
+    \ Trace Abstraction for Execution-Grounded Test Outcome Prediction\n**Dream ID:**\
+    \ 20260515T013018\n**Review Mode:** Full (2 Reviewers + Roundtable)\n**Date:**\
+    \ 2026-05-15\n\n---\n\n## Roundtable Summary\n\n| | R1 (Methods+Experiments) |\
+    \ R2 (Novelty+Related Work) | Consensus |\n|---|---|---|---|\n| **Score** | 4\
+    \ (Weak Accept) | 3 (Weak Reject) | 3 (Weak Reject) |\n| **Confidence** | High\
+    \ | High | High |\n\n**Consensus rationale:** Both reviewers agree the research\
+    \ direction is well-motivated and the ablation *design* is thorough. However,\
+    \ two critical integrity issues — (1) the headline 99.16% accuracy likely originates\
+    \ from a leakage-contaminated run, and (2) the majority of ablation results are\
+    \ dream-simulated rather than experimentally validated — prevent acceptance in\
+    \ current form. The core finding that trace granularity determines SFT value for\
+    \ classification would likely survive correction, but the paper cannot be evaluated\
+    \ on simulated numbers. Consensus leans toward R2's score given the severity of\
+    \ the data integrity concerns and thin related work.\n\n---\n\n## Step 1: Independent\
+    \ Reviews\n\n### Reviewer 1 — Methods & Experimental Rigor\n\n**Summary:** The\
+    \ paper proposes VOTA, a compact trace abstraction for verdict tasks, and presents\
+    \ a comprehensive set of ablations showing that trace granularity, not presence,\
+    \ determines SFT effectiveness for classification. The experimental design is\
+    \ thorough and the gradient dilution analysis is genuinely informative. However,\
+    \ critical discrepancies between the paper's reported numbers and the project's\
+    \ experimental registry undermine confidence in the results.\n\n**Strengths:**\n\
+    - **Thorough ablation design.** The 8-experiment suite (actual/expected removal,\
+    \ label-only loss, component ablation, trace length curve, cross-model, cross-task,\
+    \ calibration, seed robustness) systematically addresses every anticipated reviewer\
+    \ concern. The experiments are well-chosen and collectively build a convincing\
+    \ narrative arc.\n- **Gradient dilution analysis is the paper's strongest contribution.**\
+    \ The combination of label-only loss repair (28.5%→76.2%) and the trace-length\
+    \ monotonic decline (r=−0.97) creates a closed-loop mechanistic explanation. This\
+    \ is useful beyond this specific paper — any SFT setup with long auxiliary context\
+    \ and short target output faces this risk.\n- **Statistical rigor.** McNemar's\
+    \ tests, bootstrap CIs (B=10,000), 3-seed replication, calibration metrics (ECE,\
+    \ Brier). This exceeds what most empirical papers provide.\n- **Clear writing\
+    \ and logical narrative.** The story flows naturally: full trace collapses → why\
+    \ → how VOTA fixes it → what each component contributes → generalization.\n\n\
+    **Weaknesses:**\n\n- **(Major — W1) Accuracy figure integrity.** The paper reports\
+    \ VOTA accuracy as 99.16%. Project records indicate this comes from v3, which\
+    \ contained `match=True/False` data leakage in the VOTA trace. The validated post-fix\
+    \ run (v4) shows 95.63%. If this is correct, all downstream numbers derived from\
+    \ the 99.16% baseline are invalid and must be re-derived from actual experiments.\n\
+    \n- **(Major — W2) Simulated vs. actual experiments.** Of the 8 experiments presented,\
+    \ only 3 (the MVP trio: VOTA, no-trace, full-trace) appear to have been actually\
+    \ executed. The remaining 5 ablations (actual/expected removal, label-only loss,\
+    \ component ablation, cross-model, cross-task, trace length, calibration, seed\
+    \ robustness) exist as dream-simulated projections with fabricated numerical results.\
+    \ If presented as actual experimental outcomes, this constitutes a fundamental\
+    \ integrity violation.\n\n- **(Major — W3) Super-additivity arithmetic error.**\
+    \ Table 6 reports a \"super-additivity ratio of 1.15×\" with sum of individual\
+    \ lifts = 27.61pp and combined lift = 24.03pp. Since 24.03 < 27.61, the combined\
+    \ effect is *less* than the sum of parts. This is **sub-additive** (redundancy),\
+    \ not super-additive (synergy). The ratio 27.61/24.03 ≈ 1.15 measures how much\
+    \ the parts exceed the whole. The claim in Contribution 3 that components show\
+    \ \"super-additive interaction\" is directly contradicted by the numbers.\n\n\
+    - **(Moderate — W4) Model identity discrepancy.** The paper states CodeLlama-7B\
+    \ as the primary model, but the experiment registry indicates Qwen2.5-Coder-7B-Instruct\
+    \ was actually used. These are different models with different tokenizers, pretraining\
+    \ data, and architectural details. This must be corrected.\n\n- **(Moderate —\
+    \ W5) No error analysis by difficulty.** 99.16% (or 95.63%) accuracy on a binary\
+    \ task with 71.5% class imbalance raises the question: how much of this is trivially\
+    \ solved by simple heuristics within the trace? E.g., \"exception present → fail\"\
+    \ may account for a large fraction. A difficulty-stratified analysis (easy/medium/hard\
+    \ cases) would strengthen the contribution.\n\n- **(Minor — W6) Dataset construction\
+    \ not detailed.** How were the 1,190 samples selected? What repositories? What\
+    \ is the distribution of code complexity, test complexity, and failure modes?\
+    \ Selection bias could inflate results if the dataset over-represents cases where\
+    \ VOTA components provide obvious signals.\n\n**Questions for Authors:**\n1. Which\
+    \ VOTA accuracy is the ground truth — 99.16% (v3) or 95.63% (v4)? Please provide\
+    \ the exact experiment configuration that produced the reported number.\n2. For\
+    \ each of the 8 experiments, please confirm: was this actually run, or is it a\
+    \ simulated projection?\n3. How do you reconcile the super-additivity claim with\
+    \ the arithmetic showing sub-additivity?\n4. What model was actually used — CodeLlama-7B\
+    \ or Qwen2.5-Coder-7B-Instruct?\n\n**R1 Score: 4 (Weak Accept) | Confidence: High**\n\
+    *The research direction is sound and the ablation design is exemplary. If the\
+    \ integrity issues are resolved and actual experiments confirm the patterns, this\
+    \ would be a solid contribution. The score reflects the quality of the research\
+    \ program, not the current paper artifact.*\n\n---\n\n### Reviewer 2 — Novelty,\
+    \ Significance & Related Work\n\n**Summary:** The paper addresses a genuine gap\
+    \ — trace-augmented SFT has been studied only for generative tasks, not classification\
+    \ — and the full-trace collapse finding is informative. However, the novelty is\
+    \ limited (gradient dilution in long-context SFT is a known phenomenon; VOTA is\
+    \ task-specific feature engineering), the related work coverage is inadequate\
+    \ for a top venue, and critical data integrity concerns undermine the reported\
+    \ results.\n\n**Strengths:**\n- **The full-trace collapse finding is genuinely\
+    \ useful.** The demonstration that full execution traces are actively harmful\
+    \ under standard SFT loss, combined with the mechanistic explanation (gradient\
+    \ dilution + attention dilution), is the paper's most transferable insight. This\
+    \ generalizes beyond traces to any SFT scenario with long auxiliary context and\
+    \ short target.\n- **The actual/expected removal experiment (89.1%) is well-conceived**\
+    \ and would be the key result for establishing execution reasoning beyond string\
+    \ comparison — if it were based on actual experiments.\n- **Clean writing and\
+    \ well-structured ablation narrative.** The paper efficiently covers a lot of\
+    \ ground in 8 pages.\n- **Calibration and seed robustness analyses** show attention\
+    \ to statistical rigor beyond the minimum.\n\n**Weaknesses:**\n\n- **(Major —\
+    \ W7) Data integrity: 99.16% vs. 95.63%.** Same as R1-W1. The headline number\
+    \ appears contaminated by leakage. This is the single most critical issue.\n\n\
+    - **(Major — W8) Simulated results presented as experiments.** Same as R1-W2.\
+    \ The dream-simulated ablations cannot be evaluated as experimental evidence.\n\
+    \n- **(Major — W9) Insufficient related work.** Only 6 references for a paper\
+    \ claiming a novel position in the trace-SFT landscape. Missing key references:\n\
+    \  - **NExT (ICML 2024):** Self-training on execution traces for program repair\
+    \ — directly relevant as it demonstrates traces can teach execution reasoning.\n\
+    \  - **ET-CoT / structured execution trace work:** Alternative trace abstraction\
+    \ approaches that would contextualize VOTA's design choices.\n  - **SFT-for-classification\
+    \ literature:** The decoder-based SFT for binary classification approach needs\
+    \ justification vs. encoder-based alternatives or prompt-based methods.\n  - **Program\
+    \ slicing / execution-aware analysis:** Conceptually related to VOTA's selective\
+    \ trace extraction.\n  - The thin reference list signals incomplete scholarship\
+    \ and would draw reviewer criticism at any top venue.\n\n- **(Moderate — W10)\
+    \ Gradient dilution framing overstates novelty.** The mechanism — that when a\
+    \ 1-token label competes with 2000+ auxiliary tokens in standard causal LM loss,\
+    \ the classification gradient is overwhelmed — is a straightforward consequence\
+    \ of the loss formulation. The SFT-for-classification literature discusses this.\
+    \ The paper's contribution is empirical demonstration in the trace domain, not\
+    \ discovery of the mechanism. The framing should be adjusted accordingly.\n\n\
+    - **(Moderate — W11) VOTA is task-specific feature engineering.** The three components\
+    \ (assertion snapshots, exception summaries, loop compression) are hand-designed\
+    \ for Python unit test execution. The paper does not discuss how VOTA would generalize\
+    \ to other languages, trace types (distributed system traces, performance profiling,\
+    \ security logs), or even other Python analysis tasks. This limits the method's\
+    \ significance relative to the generality implied by the \"design principles\"\
+    \ framing.\n\n- **(Moderate — W12) Small dataset, single validated model.** n=1,190\
+    \ with 71.5/28.5 class split. The no-trace baseline at 75.13% (barely above majority\
+    \ at 71.5%) suggests the task has low discriminative signal without traces. Cross-model\
+    \ replication (DeepSeek) and cross-task (DebugBench) are dream-simulated only,\
+    \ so generalization claims rest on a single model on a single small dataset.\n\
+    \n- **(Minor — W13) VOTA token count not reported.** The paper argues VOTA works\
+    \ because it is compact, but never reports the average VOTA trace length. The\
+    \ compression ratio (VOTA tokens / full trace tokens) is a key number for the\
+    \ \"gradient dilution avoidance\" argument.\n\n- **(Minor — W14) Class imbalance\
+    \ not addressed.** No stratified evaluation, no analysis of whether VOTA's accuracy\
+    \ is driven by easy-to-classify pass cases vs. difficult fail cases. The fail\
+    \ class (28.5%) is the interesting one — how does VOTA perform specifically on\
+    \ hard fail cases?\n\n**Questions for Authors:**\n1. Same as R1-Q1 through R1-Q4.\n\
+    2. What is the average VOTA trace token count? What is the compression ratio vs.\
+    \ full traces?\n3. How would VOTA be adapted for a non-Python language or a non-unit-test\
+    \ verdict task?\n4. What are the v5 results (with chat-template fix) for full_trace?\
+    \ If full_trace no longer collapses after the fix, the gradient dilution narrative\
+    \ needs revision.\n5. Have you considered encoder-based classification (e.g.,\
+    \ fine-tuning CodeBERT with trace features) as a baseline? This would contextualize\
+    \ the choice of decoder SFT for a binary classification task.\n\n**R2 Score: 3\
+    \ (Weak Reject) | Confidence: High**\n*The research question is well-motivated\
+    \ and the ablation design is strong, but the paper as written has critical integrity\
+    \ issues (inflated accuracy, simulated results), insufficient related work, and\
+    \ limited novelty in the mechanism (gradient dilution is known). Even with corrections,\
+    \ the contribution is primarily empirical confirmation on a small dataset with\
+    \ task-specific feature engineering, which is a better fit for Findings than Main.*\n\
+    \n---\n\n## Step 2: Cross-Sharing — Points of Agreement and Divergence\n\n###\
+    \ Both Reviewers Agree:\n1. **Critical:** The 99.16% headline accuracy is likely\
+    \ from a leakage-contaminated run (v3). True validated accuracy ≈ 95.63% (v4).\
+    \ All downstream numbers must be re-derived.\n2. **Critical:** Most ablation results\
+    \ are dream-simulated, not experimentally validated. The paper cannot be evaluated\
+    \ on projected numbers.\n3. **Positive:** The research direction (trace granularity\
+    \ for classification SFT) is well-motivated and addresses a genuine gap.\n4. **Positive:**\
+    \ The ablation *design* is thorough and well-structured — if executed, it would\
+    \ comprehensively support the claims.\n5. **Positive:** The gradient dilution\
+    \ analysis (label-only loss + trace length curve) is the strongest and most transferable\
+    \ contribution.\n6. **Positive:** Writing quality is high; the narrative arc is\
+    \ clear and logical.\n\n### Divergence:\n- **R1** weights the quality of the research\
+    \ program more heavily, giving credit for the ablation design even though most\
+    \ are simulated → Weak Accept (4).\n- **R2** weights current paper artifact quality,\
+    \ related work completeness, and novelty more heavily → Weak Reject (3).\n- **R2**\
+    \ raises the super-additivity arithmetic error, thin related work, and VOTA-as-feature-engineering\
+    \ concerns that R1 does not emphasize as strongly.\n- **R1** is more optimistic\
+    \ about the path to revision; **R2** questions whether the contribution is sufficient\
+    \ even with corrections (Findings vs. Main).\n\n---\n\n## Step 3: Convergence\
+    \ Discussion\n\nAfter cross-sharing, the reviewers converge on the following assessment:\n\
+    \n### Must-Fix Issues (Blocking)\n1. **Resolve accuracy figure.** Determine the\
+    \ true VOTA accuracy from a leakage-free experiment. If 95.63%, all claims and\
+    \ narrative must be recalibrated. A +20pp lift (95.63% vs. 75.13%) is still significant\
+    \ but changes the \"near-perfect\" framing substantially.\n2. **Run all ablations\
+    \ as actual experiments.** The 5 simulated ablations must be executed and reported\
+    \ with real numbers. The paper cannot go to submission with dream-projected results.\n\
+    3. **Fix the super-additivity error.** Either correct the arithmetic (combined\
+    \ 24.03 < sum 27.61 = sub-additive) or reframe the finding as \"complementary\
+    \ with partial overlap\" rather than \"super-additive synergy.\"\n4. **Correct\
+    \ model identity.** Clarify whether CodeLlama-7B or Qwen2.5-Coder-7B-Instruct\
+    \ was used.\n\n### Should-Fix Issues (Strongly Recommended)\n5. **Expand related\
+    \ work** to ≥15 references. Add NExT, ET-CoT, SFT-for-classification, program\
+    \ slicing, and relevant SE/NLP references.\n6. **Report VOTA token count** and\
+    \ compression ratio.\n7. **Add difficulty-stratified analysis** — break down accuracy\
+    \ by failure mode (exception-driven, assertion failure, loop anomaly).\n8. **Temper\
+    \ gradient dilution novelty claim** — position as empirical confirmation in a\
+    \ new domain, not mechanism discovery.\n9. **Clarify v5 full-trace status** —\
+    \ if the chat-template fix resolves collapse, the gradient dilution narrative\
+    \ collapses too.\n\n### Positive Signals (Preserved After Correction)\n- The core\
+    \ insight (trace granularity > trace presence for classification SFT) survives\
+    \ at 95.63%.\n- The gradient dilution demonstration (label-only fix + length curve)\
+    \ is mechanistically informative regardless of the exact VOTA number.\n- The ablation\
+    \ design is sound — when executed, it would comprehensively address reviewer concerns.\n\
+    - The writing is publication-quality.\n\n---\n\n## Step 4: Consolidated Assessment\n\
+    \n### Overall Score: 3 (Weak Reject)\n\n### Verdict: Not ready for submission;\
+    \ clear path to revision\n\n### Summary Assessment\n\nThis paper investigates\
+    \ an important and under-explored question: how should execution traces be designed\
+    \ for classification (verdict) tasks in trace-augmented SFT? The finding that\
+    \ full traces collapse model performance while a compact, decision-relevant abstraction\
+    \ (VOTA) yields large gains is well-motivated and the ablation design is exemplary.\
+    \ The gradient dilution analysis is the most transferable contribution.\n\nHowever,\
+    \ the paper in its current form has fundamental issues that prevent acceptance:\n\
+    \n1. **Data integrity (Critical):** The headline VOTA accuracy (99.16%) appears\
+    \ to come from a leakage-contaminated experiment. The validated number (~95.63%)\
+    \ still supports the claims but at a lower magnitude, and all derived numbers\
+    \ must be recalculated.\n\n2. **Experimental completeness (Critical):** Only 3\
+    \ of 8 reported experiments have been actually run. The remaining 5 ablations\
+    \ are dream-simulated projections. Submitting projected numbers as experimental\
+    \ results is unacceptable.\n\n3. **Analytical error (Moderate):** The super-additivity\
+    \ claim is arithmetically inverted — the data shows sub-additivity (redundancy),\
+    \ not super-additivity (synergy). This affects Claim 3.\n\n4. **Insufficient scholarship\
+    \ (Moderate):** 6 references is far below the bar for any top ML/NLP venue. Key\
+    \ related work on execution traces, SFT for classification, and program analysis\
+    \ is missing.\n\n5. **Limited novelty (Moderate):** VOTA is task-specific feature\
+    \ engineering for Python test execution. The gradient dilution mechanism is known\
+    \ in the SFT-for-classification literature; the contribution here is empirical\
+    \ demonstration in a new domain.\n\n### Recommendation\n\n**Do not submit in current\
+    \ form.** Execute remaining experiments, correct the accuracy figure, fix the\
+    \ super-additivity error, expand related work, and add difficulty-stratified analysis.\
+    \ If ablation results materially confirm the projected patterns and the full-trace\
+    \ collapse persists after the v5 pipeline fix, this is a solid **Findings** submission.\
+    \ Upgrading to **Main** would require (a) demonstrating VOTA's design principles\
+    \ generalize beyond Python test execution, (b) scaling evidence (more models,\
+    \ larger datasets), and (c) positioning the gradient dilution finding as the primary\
+    \ contribution with novel analytical depth.\n\n### Experiment Coverage vs. Plan\n\
+    \n| Experiment | Planned | In Paper | Actually Run? | Status |\n|---|---|---|---|---|\n\
+    | Main 3-condition (VOTA/no-trace/full-trace) | plan_001-base | ✓ | ✓ (but v3\
+    \ leakage) | Needs v4/v5 numbers |\n| Actual/expected removal ablation | plan_001\
+    \ | ✓ | ✗ (simulated) | Must run |\n| Label-only loss | plan_002 | ✓ | ✗ (simulated)\
+    \ | Must run |\n| Component ablation | plan_003 | ✓ | ✗ (simulated) | Must run\
+    \ |\n| DeepSeek-Coder replication | plan_004 | ✓ | ✗ (simulated) | Must run |\n\
+    | DebugBench cross-task | plan_005 | ✓ | ✗ (simulated) | Must run |\n| Trace length\
+    \ ablation | plan_006 | ✓ | ✗ (simulated) | Must run |\n| Calibration analysis\
+    \ | plan_007 | ✓ | ✗ (simulated) | Must run |\n| Seed robustness | plan_008 |\
+    \ ✓ | ✗ (simulated) | Must run |\n\n**Coverage: 8/8 experiments planned and presented,\
+    \ but only 1/8 (the base 3-condition comparison) actually executed (with caveats).**\n\
+    \n### Key Risks for Revision\n1. If v5 full-trace fix eliminates collapse → Claim\
+    \ 2 (gradient dilution) must be substantially revised\n2. If actual ablation results\
+    \ diverge significantly from projections → Claims 1 and 3 may not hold\n3. If\
+    \ the true VOTA accuracy (~95.63%) changes the component ablation dynamics → the\
+    \ \"design principles\" framing may need adjustment\n\n---\n\n*Review conducted\
+    \ by 2 independent reviewers (R1: methods+experiments, R2: novelty+related work)\
+    \ with full roundtable protocol (independent → cross-share → converge → synthesize).*"
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/median/paper.pdf
+  imagined_experiments:
+  - name: VOTA sans actual/expected ablation
+    plan_id: plan_001
+    description: '去除 VOTA 中 actual value 和 expected value 字段，只保留 assertion structure（哪个
+      assertion 触发）、 exception summary、loop compression。用相同训练流程 SFT CodeLlama-7B。
+
+      '
+    expected_results:
+      accuracy: 0.82
+      majority_baseline: 0.7151
+      lift_over_notrace: 0.069
+      lift_over_notrace_pp: 6.9
+      pass_precision: 0.88
+      pass_recall: 0.79
+      pass_f1: 0.83
+      fail_precision: 0.7
+      fail_recall: 0.82
+      fail_f1: 0.76
+      pct_vota_lift_from_actexp: 71.3
+      train_loss: 0.11
+      eval_loss: 0.42
+    result_rationale: 'Median 档下 actual/expected 是 VOTA lift 的主要贡献者但非全部。去除后模型仍能从 assertion
+      structure （哪个 test case 的哪个 assertion 触发）和 exception summary 中获取部分 verdict-relevant
+      signal， 因此 acc 不会退回 no_trace 的 75.13%。但模型失去了直接比较 actual vs expected 值的能力——这对
+      pass/fail 判定是最直接的信号——所以 lift 从 24pp 缩减到约 7pp（缩小 >50%）。残余 lift 来源：exception type/message
+      提供 fail 的强信号（出现 exception → almost certainly fail），assertion 的 structural position  提供弱信号。82%
+      的 accuracy 意味着模型能处理"明确有 exception"和"明确无 exception"的 easy cases， 但对需要数值比较才能判定的
+      borderline cases 失去区分能力。
+
+      '
+    tables:
+    - name: 'Table: actual/expected Ablation Results'
+      columns:
+      - Condition
+      - Accuracy
+      - Lift over no_trace
+      - Pass F1
+      - Fail F1
+      rows:
+      - - VOTA (full)
+        - 99.16%
+        - +24.03pp
+        - '0.994'
+        - '0.985'
+      - - VOTA w/o actual/expected
+        - 82.0%
+        - +6.9pp
+        - '0.83'
+        - '0.76'
+      - - no_trace baseline
+        - 75.13%
+        - —
+        - '0.813'
+        - '0.627'
+      - - full_trace
+        - 28.4%
+        - −46.7pp
+        - '0.155'
+        - '0.568'
+    figures_description:
+    - 'Bar chart: 4 conditions 的 accuracy 对比，highlight VOTA full vs VOTA w/o act/exp
+      的 gap (17pp)，注释 ''actual/expected 贡献约 71% of total VOTA lift'''
+    analysis: 'actual/expected 贡献了 VOTA 总 lift 的约 71%（17.1pp / 24.0pp），确认它是主导信号但并非全部。
+      残余 6.9pp 的 lift 说明 assertion structure 和 exception summary 有独立贡献——模型确实从 trace
+      的 结构性信息中学到了一些东西，但不足以称之为 "behavioral reasoning"。论文 Claim 1 应调整为： "VOTA 的核心价值是
+      information selection——将 verdict-critical state elements 精准呈现给模型， 其中 assertion-point
+      state comparison (actual vs expected) 是最关键的组件。"
+
+      '
+  - name: Full trace + label-only loss
+    plan_id: plan_002
+    description: '在 full execution trace 条件下，修改 loss 计算：只对最终 verdict token（pass/fail）计算
+      cross-entropy loss， mask 掉所有 trace tokens 的 loss。验证 gradient dilution 假说。
+
+      '
+    expected_results:
+      accuracy: 0.62
+      majority_baseline: 0.7151
+      lift_over_fulltrace: 33.6
+      lift_over_fulltrace_pp: 33.6
+      pass_precision: 0.68
+      pass_recall: 0.55
+      pass_f1: 0.61
+      fail_precision: 0.58
+      fail_recall: 0.7
+      fail_f1: 0.63
+      collapse_fixed: false
+      partial_recovery: true
+      train_loss: 0.52
+      eval_loss: 0.61
+    result_rationale: 'Median 档下 gradient dilution 是 collapse 的因素之一但非唯一原因。Label-only
+      loss 消除了 trace token  对分类梯度的稀释——原始 full_trace 中 verdict token 的 loss 只占总 loss
+      的 <0.1%（因为 trace 有数千 token）， 导致模型几乎不学分类。去掉 trace loss 后模型确实能开始学习 verdict prediction（从
+      28.4% → 62%）， 说明 gradient dilution 确实是 collapse 的主要贡献因子。但 62% 仍然低于 no_trace
+      的 75.13%， 说明 full trace 本身引入了 noise——大量无关执行细节（变量赋值、循环迭代、中间状态）作为 context  混淆了模型对
+      verdict-relevant signal 的定位。模型在 attention 层面难以从上千 token 的 trace 中  识别出哪些信息与
+      verdict 相关。这支持 "trace content noise 也有害" 的解释，而非 gradient dilution  是唯一原因。未达到
+      no_trace 水平说明 irrelevant context 本身有 negative transfer 效应。
+
+      '
+    tables:
+    - name: 'Table: Label-only Loss Ablation'
+      columns:
+      - Condition
+      - Loss Type
+      - Accuracy
+      - Pass F1
+      - Fail F1
+      - Collapse?
+      rows:
+      - - full_trace
+        - standard (all tokens)
+        - 28.4%
+        - '0.155'
+        - '0.568'
+        - Yes (100% fail)
+      - - full_trace
+        - label-only (verdict token)
+        - 62.0%
+        - '0.61'
+        - '0.63'
+        - No (partial recovery)
+      - - no_trace
+        - standard
+        - 75.13%
+        - '0.813'
+        - '0.627'
+        - 'No'
+      - - VOTA
+        - standard
+        - 99.16%
+        - '0.994'
+        - '0.985'
+        - 'No'
+    figures_description:
+    - 'Bar chart: full_trace 标准 loss vs label-only loss vs no_trace vs VOTA，标注 ''gradient
+      dilution 贡献约 60% of collapse，trace noise 贡献约 40%'''
+    - 'Confusion matrices (2×2) side by side: full_trace standard vs full_trace label-only，展示
+      collapse 的部分修复'
+    analysis: 'Label-only loss 将 full_trace accuracy 从 28.4% 提升到 62%（+33.6pp），证实 gradient
+      dilution  是 collapse 的主要贡献因子。但 62% < 75.13% (no_trace) 说明还有第二层问题：trace content
+      noise。 即使模型不需要预测 trace tokens，大量无关执行细节作为 input context 仍然干扰模型的 verdict 判断能力。
+      Claim 2 应改为："Full trace collapse 由两因素共同导致：(1) gradient dilution（classification
+      loss  被 trace token prediction loss 淹没），贡献约 60%；(2) trace content noise（无关执行细节干扰  verdict-relevant
+      signal 的定位），贡献约 40%。"
+
+      '
+  - name: VOTA component ablation — actual/expected only
+    plan_id: plan_003
+    description: 'VOTA 组件逐一测试。Condition (a): 只提供 actual value 和 expected value（无 exception
+      summary， 无 loop compression），格式化为 "assertion at line X: actual=Y, expected=Z"。
+
+      '
+    expected_results:
+      accuracy: 0.93
+      lift_over_notrace: 17.87
+      lift_over_notrace_pp: 17.87
+      pass_precision: 0.95
+      pass_recall: 0.92
+      pass_f1: 0.935
+      fail_precision: 0.88
+      fail_recall: 0.94
+      fail_f1: 0.91
+      train_loss: 0.065
+      eval_loss: 0.18
+    result_rationale: 'actual/expected 值对是最直接的 verdict signal——模型可以通过比较两个值是否一致来近似判断
+      pass/fail。 93% 的 accuracy（vs VOTA full 99.16%）说明 actual/expected alone 已捕获大部分
+      verdict 信号。 未达到 99% 是因为：(1) 部分 fail cases 不是 assertion failure 而是 runtime exception（没有  actual/expected），这类
+      case 模型缺少信号；(2) 部分 cases 有多个 assertion，仅靠单一 actual/expected  不够判断整体 verdict。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: ''
+  - name: VOTA component ablation — exception summary only
+    plan_id: plan_003
+    description: 'Condition (b): 只提供 exception type + message summary（无 actual/expected，无
+      loop compression）。
+
+      '
+    expected_results:
+      accuracy: 0.77
+      lift_over_notrace: 1.87
+      lift_over_notrace_pp: 1.87
+      pass_precision: 0.85
+      pass_recall: 0.8
+      pass_f1: 0.82
+      fail_precision: 0.62
+      fail_recall: 0.7
+      fail_f1: 0.66
+      train_loss: 0.14
+      eval_loss: 0.5
+    result_rationale: 'Exception summary 提供 fail cases 的 strong but partial signal——如果测试抛出
+      exception， verdict 几乎必然是 fail。但两个限制：(1) 不是所有 fail 都有 exception（assertion failure
+      可能  不抛 exception 而是 return false），所以 recall 有限；(2) 对 pass cases 无正向信号（"没有 exception"  是弱信号，因为也可能是
+      assertion failure without exception）。因此 lift 仅约 2pp over no_trace， 属于边际贡献。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: ''
+  - name: VOTA component ablation — loop compression only
+    plan_id: plan_003
+    description: 'Condition (c): 只提供 loop compression 信息（循环执行次数、是否 early exit），无 actual/expected  和
+      exception summary。
+
+      '
+    expected_results:
+      accuracy: 0.76
+      lift_over_notrace: 0.87
+      lift_over_notrace_pp: 0.87
+      pass_precision: 0.83
+      pass_recall: 0.78
+      pass_f1: 0.8
+      fail_precision: 0.6
+      fail_recall: 0.72
+      fail_f1: 0.65
+      train_loss: 0.15
+      eval_loss: 0.55
+    result_rationale: 'Loop compression 信息与 verdict 的关联最弱——循环次数或 early exit 对 pass/fail
+      判定几乎无直接信号。 偶尔有用的场景：infinite loop → timeout → fail，或 loop count 异常暗示 bug。但这些是少数
+      cases。 0.87pp lift 在统计上可能不显著（需要更大 n 或 bootstrap CI 确认）。这个结果支持 "VOTA 的价值在于  assertion-point
+      state，非执行过程信息" 的 median 叙事。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: ''
+  - name: VOTA component ablation — full VOTA (reference)
+    plan_id: plan_003
+    description: 'Condition (d): 完整 VOTA（已有数据，作为对照）。
+
+      '
+    expected_results:
+      accuracy: 0.9916
+      lift_over_notrace: 24.03
+      pass_f1: 0.994
+      fail_f1: 0.985
+    result_rationale: '已有 MVP 结果，作为 component ablation 的上界参照。Full VOTA 的 99.16% 高于
+      actual/expected only  的 93%，说明组件间存在互补效应——exception summary 帮助覆盖 non-assertion
+      failure cases， loop compression 可能帮助少量 edge cases。
+
+      '
+    tables:
+    - name: 'Table: VOTA Component Ablation Summary'
+      columns:
+      - Condition
+      - Accuracy
+      - Lift over no_trace (pp)
+      - '% of Full VOTA Lift'
+      rows:
+      - - (d) Full VOTA
+        - 99.16%
+        - '+24.03'
+        - 100%
+      - - (a) actual/expected only
+        - 93.0%
+        - '+17.87'
+        - 74.3%
+      - - (b) exception summary only
+        - 77.0%
+        - '+1.87'
+        - 7.8%
+      - - (c) loop compression only
+        - 76.0%
+        - '+0.87'
+        - 3.6%
+      - - — no_trace baseline
+        - 75.13%
+        - —
+        - —
+    figures_description:
+    - 'Stacked bar / waterfall chart: 从 no_trace baseline 开始，依次叠加各组件的 marginal lift，展示
+      actual/expected 是主导贡献者'
+    - 'Radar chart (optional): 4 conditions 在 pass_precision, pass_recall, fail_precision,
+      fail_recall 四维上的对比'
+    analysis: 'Component ablation 清晰展示 VOTA 的价值分布：actual/expected 贡献约 74% 的总 lift（17.87/24.03pp），
+      exception summary 贡献约 8%，loop compression 贡献约 4%。组件间存在约 14% 的交互效应（单独 lift  之和
+      < full VOTA lift），主要来自 exception summary 覆盖了 actual/expected 无法处理的 runtime  error
+      cases。Design principle: verdict trace 应优先包含 assertion-point state comparison，
+      辅以 failure mode indicators，执行过程信息（loop details）几乎无价值。
+
+      '
+  - name: DeepSeek-Coder-6.7B replication
+    plan_id: plan_004
+    description: '在 DeepSeek-Coder-6.7B 上复现三条件（VOTA / no_trace / full_trace），使用相同数据和训练配置（适配  DeepSeek
+      tokenizer 和 chat template）。与 DCSH (EMNLP Findings 2025) 使用同一基座模型。
+
+      '
+    expected_results:
+      deepseek_vota_accuracy: 0.84
+      deepseek_notrace_accuracy: 0.73
+      deepseek_fulltrace_accuracy: 0.38
+      deepseek_vota_lift_over_notrace: 0.11
+      deepseek_vota_lift_over_notrace_pp: 11.0
+      deepseek_fulltrace_collapse: true
+      deepseek_fulltrace_fail_bias: 0.88
+      deepseek_vota_pass_f1: 0.87
+      deepseek_vota_fail_f1: 0.78
+      deepseek_notrace_pass_f1: 0.79
+      deepseek_notrace_fail_f1: 0.6
+      train_loss_vota: 0.07
+      train_loss_notrace: 0.2
+      train_loss_fulltrace: 0.04
+    result_rationale: 'Median 档预测 DeepSeek-Coder 上 VOTA lift 存在但较小（8-15pp）。几个原因： (1)
+      DeepSeek-Coder-6.7B 的代码理解能力可能略弱于 CodeLlama-7B（在此特定任务上），导致对 trace  信息的利用效率较低；(2)
+      tokenizer 差异可能影响 actual/expected 值的表示质量——DeepSeek 的 BPE  vocabulary 对某些数值/字符串的分词方式可能不利于模型识别
+      match/mismatch 模式；(3) chat template  差异影响模型对 structured input 的理解。no_trace baseline
+      略低于 CodeLlama (73% vs 75%)， VOTA 提升到 84%，lift 约 11pp（vs CodeLlama 的 24pp）。Full
+      trace 仍 collapse 但稍轻（38% vs 28%）， 可能因为 DeepSeek 对长 context 的处理略好。核心 pattern
+      一致（VOTA >> no_trace >> full_trace）， 但效应量级较小，支持 "现象可复现但模型依赖" 的 median 叙事。
+
+      '
+    tables:
+    - name: 'Table: Cross-Model Comparison'
+      columns:
+      - Condition
+      - CodeLlama-7B Acc
+      - DeepSeek-Coder-6.7B Acc
+      - Δ
+      rows:
+      - - VOTA
+        - 99.16%
+        - 84.0%
+        - −15.16pp
+      - - no_trace
+        - 75.13%
+        - 73.0%
+        - −2.13pp
+      - - full_trace
+        - 28.4%
+        - 38.0%
+        - +9.6pp
+      - - VOTA lift
+        - +24.03pp
+        - +11.0pp
+        - −13.03pp
+    figures_description:
+    - 'Grouped bar chart: CodeLlama vs DeepSeek-Coder 在三个条件上的 accuracy 对比，双 y 轴或并排展示'
+    - 'Heatmap: 两个模型 × 三个条件的 confusion matrices (2×2)，展示 collapse pattern 的异同'
+    analysis: '核心 pattern 跨模型可复现：VOTA > no_trace >> full_trace。但 VOTA lift 在 DeepSeek
+      上缩小约一半 （11pp vs 24pp），说明效果存在模型依赖性。Full_trace collapse 在两个模型上均出现但严重程度不同 （DeepSeek
+      38% vs CodeLlama 28%），可能与模型的长 context 处理能力有关。这限制了 generalization claim  的强度——不能说
+      "VOTA universally works" 而应说 "VOTA 在测试的两个模型上一致优于 alternatives， 但效应量级因模型而异"。与
+      DCSH 的对比：DCSH 在 generation tasks 上发现 trace 的有限 benefit， 我们在 classification tasks
+      上发现更大的 benefit，但模型差异混淆了直接对比。
+
+      '
+  - name: Second verdict task — DebugBench bug detection
+    plan_id: plan_005
+    description: '在 DebugBench (Python subset) 上构建 bug detection verdict task：给定一段代码，预测是否包含
+      bug  (buggy/clean)。构建 VOTA 格式：对 buggy 代码运行 test suite 获取 assertion-point state，
+      对 clean 代码同样处理。测试 VOTA vs no_trace。
+
+      '
+    expected_results:
+      debugbench_vota_accuracy: 0.76
+      debugbench_notrace_accuracy: 0.68
+      debugbench_vota_lift: 0.08
+      debugbench_vota_lift_pp: 8.0
+      debugbench_vota_pass_f1: 0.79
+      debugbench_vota_fail_f1: 0.72
+      debugbench_notrace_pass_f1: 0.73
+      debugbench_notrace_fail_f1: 0.6
+      debugbench_fulltrace_accuracy: 0.42
+      debugbench_fulltrace_collapse: partial
+      pattern_consistency_with_primary: partial
+    result_rationale: 'Median 档预测第二任务有 lift 但 pattern 不完全一致（lift 5-12pp）。Bug detection
+      与 test verdict  prediction 有关键差异：(1) VOTA 的 actual/expected 对 bug detection
+      的信号弱于 test verdict—— 知道 actual≠expected 能直接判定 test fail，但不能直接判定 "代码有 bug"（可能是
+      test 写错了）； (2) bug detection 的 base rate 和 task difficulty 不同，DebugBench 的 clean/buggy
+      比例可能更均衡； (3) VOTA trace 对 bug detection 需要更高层的 reasoning——不仅要看 assertion 不一致，还要判断是  code
+      bug 还是 test spec 问题。因此 lift 较小（8pp vs 24pp），但仍 positive 因为 VOTA 提供的  execution
+      state 信息对定位 bug 有一定帮助。Full_trace 在此任务上可能不会完全 collapse（42% vs 28%）， 因为 bug detection
+      的 context 可能更多样化。Pattern 不完全一致：lift 方向一致但量级和 failure mode 不同。
+
+      '
+    tables:
+    - name: 'Table: Cross-Task Comparison'
+      columns:
+      - Task
+      - Condition
+      - Accuracy
+      - Lift over no_trace
+      rows:
+      - - Test Verdict
+        - VOTA
+        - 99.16%
+        - +24.03pp
+      - - Test Verdict
+        - no_trace
+        - 75.13%
+        - —
+      - - Test Verdict
+        - full_trace
+        - 28.4%
+        - −46.7pp
+      - - Bug Detection
+        - VOTA
+        - 76.0%
+        - +8.0pp
+      - - Bug Detection
+        - no_trace
+        - 68.0%
+        - —
+      - - Bug Detection
+        - full_trace
+        - 42.0%
+        - −26.0pp
+    figures_description:
+    - 'Paired bar chart: 两个 task × 三个 conditions 的 accuracy，展示 pattern 一致性和量级差异'
+    analysis: 'VOTA lift 在 bug detection 上存在（+8pp）但显著小于 test verdict（+24pp），支持 "VOTA
+      的效果  因 task 的 verdict-relevant signal clarity 而异" 的 median 解释。Test verdict 任务中
+      actual==expected  是 near-perfect signal，而 bug detection 中 assertion failure
+      只是 bug 存在的间接证据。 Full_trace 在两个任务上均表现差于 no_trace，但 bug detection 上的 degradation
+      较轻， 可能因为 bug detection 的 output 与 trace 的语义关联比 binary verdict 更强。 论文可报告为 "VOTA
+      lift generalizes across verdict tasks but magnitude depends on  how directly
+      trace content maps to the verdict decision boundary."
+
+      '
+  - name: Trace length ablation
+    plan_id: plan_006
+    description: '将 full execution trace 分别截断到 256/512/1024/2048 tokens，训练 4 个 SFT
+      模型， 绘制 accuracy vs trace length 曲线。
+
+      '
+    expected_results:
+      acc_256_tokens: 0.58
+      acc_512_tokens: 0.48
+      acc_1024_tokens: 0.38
+      acc_2048_tokens: 0.3
+      acc_full_trace: 0.284
+      monotonic_decrease: true
+      all_below_notrace: true
+      notrace_baseline: 0.7513
+      acc_256_pass_f1: 0.59
+      acc_256_fail_f1: 0.57
+      gradient_dilution_ratio_256: 0.15
+      gradient_dilution_ratio_2048: 0.02
+    result_rationale: 'Median 档预测 accuracy 随 trace length 增加单调递减，且所有 truncation 条件均低于
+      no_trace baseline。 这是两个效应的叠加：(1) Gradient dilution 随 trace length 线性增加——256
+      tokens 时 verdict token  占总 tokens 的约 0.4%，2048 tokens 时降到约 0.05%，分类梯度被进一步稀释；(2)
+      Trace content noise  随 length 增加——更长的 trace 包含更多无关执行细节，干扰模型对 verdict signal
+      的 attention。 256 tokens 时 accuracy 58%：虽然 gradient dilution 较轻，但即使是 trace 的前
+      256 tokens  也主要是函数入口、变量初始化等低 verdict-signal 内容，模型学到的主要是 noise。 短 trace 也不如 no_trace（58%
+      < 75.13%）说明 trace 的 noise 效应在任何长度下都存在—— 问题不只是 "太长"，而是 full execution trace 的信息密度根本不匹配
+      verdict task 的需求。 这直接支持 Claim 3：正确的 trace 不是截短的 full trace，而是重新设计的 task-aligned
+      abstraction。
+
+      '
+    tables:
+    - name: 'Table: Trace Length vs Accuracy'
+      columns:
+      - Trace Length (tokens)
+      - Accuracy
+      - Δ vs no_trace
+      - Verdict Token Loss Ratio
+      rows:
+      - - 0 (no_trace)
+        - 75.13%
+        - —
+        - 100%
+      - - VOTA (~80 tokens avg)
+        - 99.16%
+        - +24.03pp
+        - ~50%
+      - - '256'
+        - 58.0%
+        - −17.13pp
+        - ~15%
+      - - '512'
+        - 48.0%
+        - −27.13pp
+        - ~8%
+      - - '1024'
+        - 38.0%
+        - −37.13pp
+        - ~4%
+      - - '2048'
+        - 30.0%
+        - −45.13pp
+        - ~2%
+      - - Full (~4000+ tokens)
+        - 28.4%
+        - −46.73pp
+        - <1%
+    figures_description:
+    - 'Line plot: x-axis = trace length (log scale), y-axis = accuracy. 水平虚线标注 no_trace
+      baseline (75.13%) 和 VOTA (99.16%)。展示 monotonic decline 和 ''all full_trace variants
+      below no_trace'' 的关键发现'
+    - 'Secondary y-axis or inset: verdict token 的 loss contribution ratio vs trace
+      length，展示 gradient dilution 机制'
+    analysis: 'Accuracy 随 trace length 单调递减（58% → 48% → 38% → 30% → 28.4%），且所有 full
+      trace truncation  均低于 no_trace。这排除了 "full trace collapse 只是因为太长" 的简单解释——即使 256
+      tokens 的短 trace  也表现不如完全不给 trace。关键 insight：VOTA（平均约 80 tokens）远好于 256-token
+      full trace（99.16% vs 58%）， 说明 trace 的质量（verdict-relevant information density）比长度更重要。这是
+      Claim 3 的核心实证支撑： design principle 是 "select verdict-critical state" 而非 "truncate
+      execution trace"。 曲线在 1024+ tokens 后趋于平坦，说明 collapse 在较长 trace 处已饱和。
+
+      '
+  - name: Calibration analysis (ECE + reliability diagrams)
+    plan_id: plan_007
+    description: '基于已有 checkpoint 的 logits，计算 Expected Calibration Error (ECE, 10
+      bins) 和 reliability diagram， 对比 VOTA / no_trace / full_trace 三个条件的 calibration
+      质量。
+
+      '
+    expected_results:
+      vota_ece: 0.035
+      notrace_ece: 0.18
+      fulltrace_ece: 0.48
+      vota_brier_score: 0.015
+      notrace_brier_score: 0.22
+      fulltrace_brier_score: 0.58
+      vota_overconfident: false
+      notrace_underconfident: true
+      fulltrace_pathological: true
+    result_rationale: 'VOTA 的 ECE 低（0.035）因为模型在 99.16% accuracy 下大部分预测是高 confidence
+      且正确的—— 当模型几乎总是对的时候，高 confidence 是 well-calibrated 的。no_trace 的 ECE 中等（0.18），
+      模型倾向于对 pass 预测过于 confident（因为 pass 是 majority class），导致 reliability diagram  在高
+      confidence bin 中显示 under-confidence for fail class。full_trace 的 ECE 极高（0.48），
+      因为模型 collapsed 到几乎只预测 fail，但 fail 的 actual rate 只有约 28%——模型对 fail 预测  高度 confident
+      但大量出错。这种 pathological calibration 是 model collapse 的直接后果。 Calibration 结果不是独立的
+      contribution，但能 strengthen Claim 2：full_trace 不仅降低了 accuracy， 还产生了 pathologically
+      miscalibrated 的预测，在实际部署中可能比 random 更有害。
+
+      '
+    tables:
+    - name: 'Table: Calibration Metrics'
+      columns:
+      - Condition
+      - ECE ↓
+      - Brier Score ↓
+      - Accuracy
+      - Calibration Pattern
+      rows:
+      - - VOTA
+        - '0.035'
+        - '0.015'
+        - 99.16%
+        - Well-calibrated
+      - - no_trace
+        - '0.180'
+        - '0.220'
+        - 75.13%
+        - Moderately overconfident
+      - - full_trace
+        - '0.480'
+        - '0.580'
+        - 28.4%
+        - Pathologically miscalibrated
+    figures_description:
+    - 'Reliability diagram (3 panels or overlaid): x-axis = predicted probability,
+      y-axis = actual frequency, 45° perfect calibration line. VOTA 紧贴对角线，no_trace
+      偏离中等，full_trace 严重偏离'
+    - 'Confidence histogram: 三个条件的 predicted probability 分布，展示 full_trace 的 peaked-at-fail
+      pattern'
+    analysis: 'Calibration 分析提供了 model behavior 的补充视角：VOTA 不仅 accurate 而且 well-calibrated（ECE=0.035），
+      说明模型的 confidence 有意义。Full_trace 的 pathological calibration（ECE=0.48）进一步确认  collapse
+      不是 "模型谦虚地 uncertain" 而是 "模型自信地错误"——这对任何 downstream 使用都有害。 no_trace 的 moderate
+      overconfidence（ECE=0.18）是 SFT 模型的典型行为。 建议将此作为 supplementary analysis 而非主 claim，因为
+      calibration 结果 follow directly from accuracy  pattern，不增加独立信息。
+
+      '
+  - name: Seed robustness (3 seeds + McNemar + bootstrap CI)
+    plan_id: plan_008
+    description: '使用 3 个 random seeds (42/123/456) 训练 VOTA SFT，计算 accuracy 均值/方差、McNemar
+      test  (VOTA vs no_trace paired)、bootstrap CI。
+
+      '
+    expected_results:
+      seed_42_accuracy: 0.9916
+      seed_123_accuracy: 0.979
+      seed_456_accuracy: 0.983
+      mean_accuracy: 0.9845
+      std_accuracy: 0.0054
+      range_pp: 1.26
+      bootstrap_ci_lower: 0.975
+      bootstrap_ci_upper: 0.993
+      mcnemar_p_value_vs_notrace: 1.0e-05
+      mcnemar_significant: true
+      all_seeds_above_notrace: true
+      max_seed_variance_pp: 1.26
+    result_rationale: 'Median 档预测 seed variance 在 1-3pp 范围内。Seed 42（已有结果：99.16%）可能是偏高的一次，
+      其他 seeds 可能略低。variance 的来源：(1) 训练数据的 mini-batch 顺序不同导致 optimization trajectory  微小差异；(2)
+      小比例的 borderline cases（模型在不同 seed 下对这些 case 的预测不一致）。 所有 seeds 均显著高于 no_trace（McNemar
+      p < 0.001），说明 VOTA 的效果是 robust 的而非 lucky seed。 1.26pp 的 range 在 n=1190 的评估集上是合理的——对应约
+      15 个样本的预测翻转。 Bootstrap CI [97.5%, 99.3%] 排除了 "VOTA 效果可能消失" 的可能性。 这个结果足够支持论文中报告的
+      VOTA 效果的 reliability，但也说明原始报告的 99.16% 略 optimistic—— 更保守的报告应使用 mean（98.45%）或
+      CI lower bound（97.5%）。
+
+      '
+    tables:
+    - name: 'Table: Seed Robustness Results'
+      columns:
+      - Seed
+      - VOTA Acc
+      - no_trace Acc
+      - Lift
+      - McNemar p-value
+      rows:
+      - - '42'
+        - 99.16%
+        - 75.13%
+        - +24.03pp
+        - <0.001
+      - - '123'
+        - 97.9%
+        - —
+        - +22.8pp*
+        - <0.001
+      - - '456'
+        - 98.3%
+        - —
+        - +23.2pp*
+        - <0.001
+      - - Mean ± SD
+        - 98.45 ± 0.54%
+        - —
+        - +23.3pp
+        - —
+    - name: 'Table: Bootstrap 95% CI'
+      columns:
+      - Metric
+      - Point Estimate
+      - 95% CI Lower
+      - 95% CI Upper
+      rows:
+      - - VOTA Accuracy (mean over seeds)
+        - 98.45%
+        - 97.5%
+        - 99.3%
+      - - VOTA Lift over no_trace
+        - +23.3pp
+        - +21.5pp
+        - +24.8pp
+    figures_description:
+    - 'Dot plot with error bars: 3 seeds 的 accuracy，横线标注 mean，error band 标注 bootstrap
+      95% CI'
+    analysis: 'Seed variance 1.26pp（range）在可接受范围内，所有 seeds 均大幅优于 no_trace baseline。
+      论文应报告 mean accuracy（98.45%）和 bootstrap CI 而非单一 seed 的 99.16%，以增加可信度。 McNemar
+      test 在所有 seed pairs 上均显著（p < 0.001），确认 VOTA vs no_trace 的差异是 genuine  而非 sampling
+      artifact。建议在论文 Table 1 中同时报告单 seed 和 multi-seed 统计量， 并在正文中使用更保守的 "~98.5% (95%
+      CI: 97.5-99.3%)" 而非 "99.16%"。'
+  review_report: "---\ndream_id: dream_20260515T013018\ntier: median\noverall_score:\
+    \ weak reject\ntimestamp: 2026-05-15T02:06:37.458791+00:00\n---\n\n# Dream Review\
+    \ Report: Verdict-Optimized Trace Abstraction for Code Behavior Classification\n\
+    \n**Dream ID:** 20260515T013018\n**Review Mode:** full (2 Reviewers + 4-step Roundtable)\n\
+    **Date:** 2026-05-15\n\n---\n\n## Reviewer Assignments\n- **R1:** Methods + Experiments\n\
+    - **R2:** Novelty + Related Work\n\n---\n\n## Step 1: Independent Reviews\n\n\
+    ### Reviewer 1 (R1): Methods + Experiments\n\n**Score: 3 (Weak Reject)**\n\n####\
+    \ Summary\nThe paper investigates trace-augmented SFT for binary verdict tasks\
+    \ and proposes VOTA, a compact ~80-token trace capturing assertion-point snapshots,\
+    \ exception summaries, and loop compression. The main finding is that VOTA substantially\
+    \ improves verdict accuracy over no-trace on CodeLlama-7B, while full execution\
+    \ traces cause model collapse. Ablations decompose VOTA's contribution and attribute\
+    \ full-trace collapse to gradient dilution + content noise.\n\n#### Strengths\n\
+    - **Comprehensive ablation design.** 8 experiments systematically probe different\
+    \ aspects: component ablation, label-only loss, trace length, cross-model, cross-task,\
+    \ calibration, and seed robustness. Thorough for an empirical study.\n- **Gradient\
+    \ dilution diagnosis is well-designed.** Label-only loss recovery (28.4%→62%)\
+    \ combined with trace-length monotonic decline provides a convincing two-factor\
+    \ explanation.\n- **Appropriate statistical methodology.** McNemar's test for\
+    \ paired comparison, bootstrap CIs, multi-seed validation are correct choices\
+    \ for binary outcomes on this sample size.\n- **Component ablation reveals interpretable\
+    \ structure.** Showing each VOTA component's independent contribution and super-additive\
+    \ combination provides actionable design guidance.\n- **Useful negative result.**\
+    \ Full-trace collapse finding with quantitative decomposition is genuinely informative.\n\
+    \n#### Weaknesses\n- **Dataset description is insufficient.** No discussion of:\
+    \ (a) how repositories were selected, (b) whether train/test split is repository-level\
+    \ (to avoid data leakage from related code), (c) overlap with base model pretraining\
+    \ data, (d) distribution of code complexity, (e) whether the 71.5/28.5 pass/fail\
+    \ ratio is natural or artificial.\n- **The 60/40 gradient dilution vs. content\
+    \ noise decomposition assumes separability.** The two effects interact: label-only\
+    \ loss changes the entire optimization landscape, not just one factor. The decomposition\
+    \ is a useful narrative but not a rigorous causal decomposition. The paper should\
+    \ acknowledge this limitation.\n- **Generalizability is genuinely limited.** Only\
+    \ two models of similar size (6.7B and 7B), two verdict tasks. VOTA lift ranges\
+    \ from +8pp (bug detection) to +24pp (test verdict on CodeLlama) — a 3x variation.\
+    \ The \"design guideline\" claims are not well-supported by such variable results.\n\
+    - **No pairwise component ablation.** The paper tests single-component and full-VOTA\
+    \ conditions but not two-component combinations (e.g., actual/expected + exception).\
+    \ Without these, interaction effects cannot be properly quantified.\n- **Missing\
+    \ oracle baseline.** Simply providing actual==expected as a single boolean feature\
+    \ would establish an upper bound for the \"string matching\" hypothesis and clarify\
+    \ VOTA's contribution beyond trivial value comparison.\n- **No error analysis.**\
+    \ What do VOTA's ~1.5% errors look like? Systematic patterns in failures would\
+    \ strengthen the mechanistic understanding.\n- **Only 7B models tested.** Whether\
+    \ larger models can extract signal from full traces without collapse (e.g., by\
+    \ better attention over long contexts) is important for the gradient dilution\
+    \ narrative.\n- **LoRA hyperparameters.** Rank 16 with α=32 gives effective scaling\
+    \ 2.0, which is aggressive. Was this tuned, and on what data?\n- **Label-only\
+    \ loss is a known technique** (standard in instruction tuning), but presented\
+    \ without proper contextualization in the loss masking literature.\n\n#### Questions\
+    \ for Authors\n1. Is the train/test split repository-level or random? What prevents\
+    \ code from the same repository appearing in both splits?\n2. For label-only loss:\
+    \ was the no-trace baseline also retrained with label-only loss for a fair comparison,\
+    \ or is 75.13% from standard loss?\n3. What is the actual VOTA token count distribution\
+    \ (mean, std, min, max)?\n4. Were LoRA hyperparameters tuned, and if so, on what\
+    \ split?\n5. What happens with VOTA + label-only loss? This would help disentangle\
+    \ compression vs. content quality.\n\n#### Missing Experiments\n- Pairwise component\
+    \ ablation (2-component combinations)\n- Learning curve / data scaling analysis\n\
+    - Error analysis on VOTA failure cases\n- Larger model evaluation (13B+)\n- Oracle\
+    \ boolean baseline (actual==expected as single feature)\n- VOTA with label-only\
+    \ loss\n\n---\n\n### Reviewer 2 (R2): Novelty + Related Work\n\n**Score: 3 (Weak\
+    \ Reject)**\n\n#### Summary\nThe paper studies execution trace granularity for\
+    \ SFT on binary code verdict tasks, proposing VOTA as a compact trace abstraction.\
+    \ The core finding is that task-aligned trace compression vastly outperforms both\
+    \ no-trace and full-trace SFT. Component ablation reveals actual/expected value\
+    \ pairs are the dominant signal, and label-only loss experiments decompose full-trace\
+    \ collapse into gradient dilution and content noise.\n\n#### Strengths\n- **Useful\
+    \ negative result on full-trace SFT.** The collapse finding with quantitative\
+    \ decomposition via label-only loss is genuinely informative, complementing DCSH's\
+    \ findings for generation tasks.\n- **Clean experimental decomposition.** The\
+    \ label-only loss ablation that separates gradient dilution from content noise\
+    \ is a well-designed experiment with a clear interpretation.\n- **Correct positioning\
+    \ as empirical study.** The title and framing appropriately set expectations for\
+    \ an empirical analysis rather than a method contribution.\n- **Fills a genuine\
+    \ gap.** DCSH (generation), TracePile (pretraining), and TRACED (encoder classification)\
+    \ did not study decoder SFT for classification. This paper addresses that gap.\n\
+    \n#### Weaknesses\n- **VOTA is feature engineering, not a method contribution.**\
+    \ The 74.3% lift from actual/expected values means VOTA is essentially providing\
+    \ the model with the two values it needs to compare for the verdict. For pass/fail\
+    \ prediction, knowing actual vs. expected is nearly sufficient to determine the\
+    \ answer. Framing this as \"trace abstraction\" overstates the conceptual contribution\
+    \ when \"provide actual vs. expected values as input features\" is more accurate.\n\
+    - **Design guideline (Claim 3) is truistic.** \"Minimize irrelevant state, maximize\
+    \ decision-relevant signal density\" is a restatement of the feature relevance\
+    \ principle understood since Guyon & Elisseeff (JMLR 2003). The paper provides\
+    \ no mechanism for identifying \"decision-relevant\" elements beyond manual domain\
+    \ knowledge.\n- **Related work is severely inadequate — only 6 references.** Critical\
+    \ missing areas:\n  - **Loss masking in SFT:** Selective loss masking is well-studied\
+    \ in multi-task learning and instruction tuning. The label-only loss experiment\
+    \ reinvents a known technique without acknowledgment.\n  - **Feature selection:**\
+    \ VOTA is an input feature selection exercise with no connection to the extensive\
+    \ feature selection literature.\n  - **Trace-as-CoT approaches:** NExT (Ni et\
+    \ al., ICML 2024), Code Execution as Grounded Supervision (Jung et al., EMNLP\
+    \ 2025), and ET-CoT/PyTracify are directly relevant but uncited.\n  - **Prompt\
+    \ engineering / structured input formatting:** VOTA is a structured input design\
+    \ choice; this literature is unacknowledged.\n  - **Verdict prediction in SE:**\
+    \ APPT (TSE 2024) for patch correctness, mutation-guided verdict approaches.\n\
+    \  - **Calibration of code LLMs:** Relevant if calibration analysis is included.\n\
+    - **Information bottleneck connection is superficial.** Tishby (2000) is invoked\
+    \ but no information-theoretic analysis is provided — no I(trace; verdict), no\
+    \ rate-distortion analysis, no formal IB connection. This is name-dropping.\n\
+    - **Insufficient differentiation from TRACED.** TRACED showed traces help encoder-based\
+    \ classification. Why is the decoder SFT distinction conceptually important, beyond\
+    \ an incremental \"it also works here\" finding?\n- **Missing baseline: structured\
+    \ features without trace framing.** Comparing VOTA to flat key-value features\
+    \ (actual=X, expected=Y, exception=Z) without any trace abstraction framing is\
+    \ essential. If they perform comparably, the \"trace abstraction\" framing adds\
+    \ no value.\n- **VOTA acronym presupposes conclusion.** \"Verdict-Optimized\"\
+    \ embeds the conclusion in the name, inappropriate for an empirical study claiming\
+    \ to investigate trace design.\n\n#### Questions for Authors\n1. Have you compared\
+    \ VOTA to providing actual/expected as flat structured features without any trace/assertion-point\
+    \ framing?\n2. Why use instruction-format SFT (next-token prediction on \"pass\"\
+    /\"fail\") instead of a classification head? How does this architecture choice\
+    \ affect gradient dilution?\n3. Can you provide I(VOTA; verdict) vs. I(full_trace;\
+    \ verdict) to substantiate the information bottleneck framing?\n4. How much of\
+    \ VOTA's accuracy comes from trivially matchable actual==expected cases vs. cases\
+    \ requiring non-trivial comparison?\n\n#### Missing Related Work (Priority Order)\n\
+    1. Loss masking / multi-task loss weighting (Kendall et al. 2018; instruction\
+    \ tuning loss strategies)\n2. NExT (Ni et al., ICML 2024) — trace as CoT rationale\n\
+    3. Code Execution as Grounded Supervision (Jung et al., EMNLP 2025)\n4. ET-CoT\
+    \ / PyTracify (ICML 2025 Workshop)\n5. APPT (TSE 2024) — patch correctness verdict\n\
+    6. Feature selection literature (Guyon & Elisseeff, JMLR 2003)\n7. Program slicing\
+    \ / trace compression (ND-Slicer, FSE 2024)\n8. Calibration of code LLMs (Spiess\
+    \ et al., ICSE 2025)\n\n---\n\n## Step 2: Cross-Sharing\n\n### R1 response to\
+    \ R2's review:\n**Agreement:** R2's observation that VOTA is essentially feature\
+    \ engineering (providing actual/expected = providing the answer) is the most important\
+    \ conceptual critique. This reframes the paper's contribution: VOTA's 98.45% accuracy\
+    \ is less impressive when you realize it's mostly pattern-matching actual vs.\
+    \ expected values. The missing \"flat features\" baseline is critical — if actual=X,\
+    \ expected=Y works as well without trace framing, the trace abstraction contribution\
+    \ is nil.\n\n**Partial disagreement:** R2 rates the collapse diagnosis higher\
+    \ than I do. While the label-only loss experiment is well-designed, the 60/40\
+    \ decomposition is presented as more precise than the methodology supports. The\
+    \ two effects are coupled, not separable.\n\n**New concern raised:** R2's point\
+    \ about classification head vs. instruction-format SFT is important. The gradient\
+    \ dilution problem is partially an artifact of using next-token prediction for\
+    \ classification. A classification head would eliminate dilution by construction.\n\
+    \n### R2 response to R1's review:\n**Agreement:** R1's concerns about dataset\
+    \ description and repository-level splits are well-taken. Data leakage between\
+    \ train/test from the same repository would inflate all results. The missing error\
+    \ analysis and oracle boolean baseline are important gaps.\n\n**Partial disagreement:**\
+    \ R1's missing experiment suggestions (pairwise ablation, larger models, data\
+    \ scaling) are all valid but represent a higher experimental bar than is typical.\
+    \ The paper's 8 experiments are already above average in quantity.\n\n**Refinement:**\
+    \ R1's point about LoRA α=32 being aggressive is worth noting but unlikely to\
+    \ change the qualitative conclusions. The more fundamental issue is whether the\
+    \ task is too easy with VOTA (actual/expected essentially gives the answer).\n\
+    \n---\n\n## Step 3: Convergence\n\n### Points of Agreement (Both Reviewers)\n\
+    1. **The full-trace collapse diagnosis is the paper's strongest contribution.**\
+    \ The label-only loss experiment providing a quantitative (if approximate) decomposition\
+    \ into gradient dilution and content noise is genuinely informative.\n2. **VOTA's\
+    \ core mechanism is providing the answer, not trace abstraction.** The 74.3% contribution\
+    \ of actual/expected values means VOTA is essentially task-specific feature engineering.\
+    \ The \"trace abstraction\" framing overstates the conceptual contribution.\n\
+    3. **Generalizability is a significant limitation.** Effect sizes vary 3x across\
+    \ conditions (+8pp to +24pp). Only two 7B-class models and two tasks tested.\n\
+    4. **Related work coverage is critically inadequate.** 6 references for an empirical\
+    \ study is far below venue standards. Major relevant areas (loss masking in SFT,\
+    \ trace-as-CoT, feature selection) are entirely absent.\n5. **Dataset description\
+    \ is insufficient.** Repository-level splits, overlap with pretraining data, and\
+    \ code complexity distribution are unaddressed.\n6. **The design guideline contribution\
+    \ is truistic.** \"Use relevant features\" is not a novel insight.\n7. **Missing\
+    \ key baselines.** Flat structured features (without trace framing) and oracle\
+    \ boolean (actual==expected) would clarify VOTA's actual contribution.\n\n###\
+    \ Points of Disagreement\n1. **Severity of assessment.** R1 leans toward stronger\
+    \ rejection due to methodological gaps; R2 gives slightly more credit for the\
+    \ collapse mechanism finding.\n2. **60/40 decomposition rigor.** R1 views it as\
+    \ fundamentally flawed (non-separable effects); R2 views it as approximate but\
+    \ directionally useful.\n\n### Consensus Score: 3 (Weak Reject)\nBoth reviewers\
+    \ converge on Weak Reject after cross-sharing. The full-trace collapse diagnosis\
+    \ has value, but the core VOTA contribution lacks novelty (feature engineering,\
+    \ not method), related work is severely inadequate, generalizability is limited,\
+    \ and key baselines are missing.\n\n---\n\n## Step 4: Consolidated Assessment\n\
+    \n### Overall Score: 3 — Weak Reject\n\n### Meta-Review Summary\n\nThis paper\
+    \ investigates an interesting question: how should execution traces be designed\
+    \ for trace-augmented SFT on binary verdict tasks? The experimental program is\
+    \ comprehensive (8 experiments) and the presentation is generally clear. However,\
+    \ several fundamental issues prevent acceptance at a top ML venue.\n\n### Key\
+    \ Strengths\n1. **Full-trace collapse diagnosis.** The finding that full execution\
+    \ traces collapse SFT to below-majority-baseline accuracy, decomposed via label-only\
+    \ loss into gradient dilution (~60%) and content noise (~40%), is genuinely informative\
+    \ for the trace-augmented LLM community. This complements DCSH's findings for\
+    \ generation tasks.\n2. **Systematic ablation design.** The component ablation,\
+    \ trace length ablation, and cross-condition experiments form a well-structured\
+    \ empirical investigation.\n3. **Appropriate positioning.** The paper correctly\
+    \ frames itself as an empirical study rather than a method contribution, which\
+    \ is the right positioning.\n4. **Statistical methodology.** Multi-seed validation,\
+    \ McNemar tests, and bootstrap CIs are appropriate choices.\n\n### Key Weaknesses\n\
+    1. **VOTA is feature engineering, not a generalizable insight.** The component\
+    \ ablation reveals that 74.3% of VOTA's lift comes from actual/expected value\
+    \ pairs — i.e., providing the model with the two values it needs to compare for\
+    \ the verdict. This is task-specific feature selection, not a trace abstraction\
+    \ method. The missing comparison to flat structured features (actual=X, expected=Y\
+    \ without trace framing) is a critical gap: if flat features perform comparably,\
+    \ the \"trace abstraction\" contribution is nil.\n2. **Related work is severely\
+    \ inadequate.** 6 references is unacceptable for any venue. Major missing areas\
+    \ include: loss masking in SFT (the label-only loss experiment reinvents a known\
+    \ technique), trace-as-CoT approaches (NExT, Code Execution as Grounded Supervision),\
+    \ feature selection literature, and calibration of code LLMs. The information\
+    \ bottleneck invocation is superficial (no information-theoretic measurements).\n\
+    3. **Limited generalizability undermines claims.** VOTA lift varies from +8pp\
+    \ (bug detection) to +24pp (test verdict on CodeLlama), a 3x range. Only two 7B-class\
+    \ models tested. The design guideline cannot be claimed as general from such limited\
+    \ evidence.\n4. **Dataset details insufficient.** Whether train/test splits are\
+    \ repository-level (critical for avoiding leakage), overlap with pretraining data,\
+    \ and code complexity distribution are all unaddressed.\n5. **60/40 decomposition\
+    \ lacks rigor.** Gradient dilution and content noise are coupled effects; label-only\
+    \ loss changes the optimization landscape, not just one factor. The decomposition\
+    \ is directionally useful but presented as more precise than the methodology supports.\n\
+    6. **Design guideline is truistic.** \"Minimize irrelevant state, maximize decision-relevant\
+    \ signal density\" is a restatement of feature relevance principles known since\
+    \ the 1990s. No mechanism for identifying \"decision-relevant\" elements beyond\
+    \ manual domain engineering is provided.\n\n### Missing Critical Elements\n- **Flat\
+    \ feature baseline:** actual=X, expected=Y as structured input without trace abstraction\
+    \ framing\n- **Oracle boolean baseline:** single actual==expected flag\n- **Pairwise\
+    \ component ablation:** two-component combinations for interaction analysis\n\
+    - **Error analysis:** systematic characterization of VOTA failure cases\n- **Larger\
+    \ model evaluation:** whether gradient dilution persists at 13B+\n- **Related\
+    \ work expansion:** at minimum 15-20 references engaging with loss masking, trace-as-CoT,\
+    \ feature selection, and verdict prediction literature\n\n### Recommendation\n\
+    The paper's strongest finding — full-trace collapse diagnosis with two-factor\
+    \ decomposition — would make a solid workshop paper or short paper (4-page Findings).\
+    \ For a full main conference paper, the following would be needed: (a) add the\
+    \ flat feature baseline and oracle boolean to clarify VOTA's actual contribution,\
+    \ (b) expand related work to engage with loss masking, trace-as-CoT, and feature\
+    \ selection literatures, (c) address dataset details (repository-level splits,\
+    \ pretraining overlap), (d) test on larger models and more tasks, and (e) temper\
+    \ the design guideline claim or provide a mechanism for automated identification\
+    \ of decision-relevant trace elements.\n\n### Scores Summary\n| Reviewer | Focus\
+    \ | Score |\n|----------|-------|-------|\n| R1 | Methods + Experiments | 3 (Weak\
+    \ Reject) |\n| R2 | Novelty + Related Work | 3 (Weak Reject) |\n| **Consensus**\
+    \ | | **3 (Weak Reject)** |\n\n### Confidence: 4/5\nBoth reviewers have high confidence\
+    \ in their assessments. The methodological and novelty concerns are clear and\
+    \ specific. The main uncertainty is whether the flat feature baseline would confirm\
+    \ or refute the \"VOTA is just feature engineering\" hypothesis — if VOTA's trace\
+    \ framing adds substantial value beyond flat features, the paper's contribution\
+    \ would be stronger than currently assessed.\n"
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/dream_reports/dream_20260515T013018/worst/paper.pdf
+  imagined_experiments:
+  - name: VOTA minus actual/expected ablation
+    plan_id: plan_001
+    description: '去除 VOTA 中 actual/expected 值对，只保留 assertion structure（函数名、断言类型、变量名）
+      + exception summary + loop compression。验证 VOTA 效果是否为 trivial string comparison。
+
+      '
+    expected_results:
+      accuracy: 0.755
+      majority_baseline: 0.7151
+      lift_over_notrace: 0.004
+      pass_precision: 0.86
+      pass_recall: 0.78
+      pass_f1: 0.82
+      fail_precision: 0.56
+      fail_recall: 0.7
+      fail_f1: 0.62
+      train_loss: 0.16
+      eval_loss: 0.58
+      accuracy_ci_lower: 0.728
+      accuracy_ci_upper: 0.782
+    result_rationale: '在 worst 档下，VOTA 的 ~27pp lift 几乎全部来自 actual/expected 值对的暴露。模型在训练中学到的
+      不是 "从 trace 推理出 pass/fail"，而是 "如果 actual 字段和 expected 字段的字符串内容一致则 pass， 否则 fail"。去除这两个字段后，剩余的
+      assertion structure（assertEqual、assertTrue 等函数名）、 exception summary、loop compression
+      都不包含足以判定 verdict 的信息——assertion 函数名只说明 "检查了什么类型的条件"，不说明 "条件是否满足"。因此 acc 回落到
+      75.5%，与 no_trace baseline (75.13%) 统计不可区分（lift 仅 0.4pp，远在噪声范围内）。这直接证明 VOTA 本质是一个精心包装的
+      answer leakage 机制：actual/expected 就是 verdict 的充分统计量。
+
+      '
+    tables:
+    - name: 'Table: VOTA vs VOTA-no-act/exp vs no_trace'
+      rows:
+      - condition: VOTA (full)
+        accuracy: 0.9916
+        lift: +27.65pp
+        ci_95: '[0.986, 0.997]'
+      - condition: VOTA (no actual/expected)
+        accuracy: 0.755
+        lift: +0.4pp
+        ci_95: '[0.728, 0.782]'
+      - condition: no_trace baseline
+        accuracy: 0.7513
+        lift: —
+        ci_95: '[0.724, 0.779]'
+    figures_description:
+    - 'Bar chart: 三条件 accuracy 对比，error bars 为 95% bootstrap CI。VOTA-no-act/exp 的
+      CI 与 no_trace 完全重叠，视觉上一目了然。'
+    analysis: '这是论文的 make-or-break 实验。worst 结果彻底否定 "VOTA teaches behavioral reasoning"
+      叙事。 但这本身是一个有价值的 negative result：它证明 verdict task 的信息瓶颈极度 sparse——整个 execution
+      trace 中唯一有用的信息就是 assertion point 处 actual 和 expected 的具体值。这对 trace SFT 研究 社区是重要的
+      calibration：不要假设 trace 中包含的 "reasoning" 就是模型学到的东西。
+
+      '
+  - name: Full trace + label-only loss
+    plan_id: plan_002
+    description: '在 full execution trace 条件下，只对最终 verdict token 计算 loss，mask 所有 trace
+      tokens。 验证 collapse 根因是 gradient dilution 还是 trace content 本身有害。
+
+      '
+    expected_results:
+      accuracy: 0.42
+      majority_baseline: 0.7151
+      lift_over_notrace: -0.331
+      pass_precision: 0.74
+      pass_recall: 0.38
+      pass_f1: 0.5
+      fail_precision: 0.33
+      fail_recall: 0.5
+      fail_f1: 0.4
+      train_loss: 0.65
+      eval_loss: 0.72
+      pct_predict_fail: 0.62
+      collapse_severity: partial
+    result_rationale: '在 worst 档下，label-only loss 部分缓解了 collapse（从 28.5% 提到 42%），但远未修复到可用水平。
+      这说明 gradient dilution 确实是 collapse 的一个因素（去掉 trace loss 后有改善），但不是唯一因素。 更深层的问题是
+      trace content 本身在 inference 时引入的 distributional shift：模型在生成 verdict 前必须先 attend
+      to 数千个 trace tokens，这些 tokens 的 distribution 与模型 pretraining 分布严重 不匹配（执行 trace
+      的格式是模型从未见过的），导致 hidden state 在到达 verdict position 时已经 偏离了正常的 classification
+      representation space。label-only loss 只解决了训练侧的 gradient competition，但无法解决 inference
+      侧的 context pollution。模型不再 100% 预测 fail，但预测仍然 高度不可靠（62% 预测 fail vs 真实 28.5% fail
+      rate），说明 trace context 系统性地 bias 模型 toward negative prediction。这个结果比单纯的 gradient
+      dilution 故事更有趣：它揭示了一个 "trace as harmful context" 的现象，即 trace 内容在 attention 机制中作为
+      noise source 干扰分类。
+
+      '
+    tables:
+    - name: 'Table: Full trace loss variants'
+      rows:
+      - condition: full_trace (standard loss)
+        accuracy: 0.2849
+        pct_fail_pred: 100%
+        status: complete collapse
+      - condition: full_trace (label-only loss)
+        accuracy: 0.42
+        pct_fail_pred: 62%
+        status: partial collapse
+      - condition: no_trace (standard loss)
+        accuracy: 0.7513
+        pct_fail_pred: ~45%
+        status: normal
+      - condition: VOTA (standard loss)
+        accuracy: 0.9916
+        pct_fail_pred: ~28%
+        status: normal
+    figures_description:
+    - 'Stacked bar chart: 四条件下 pass/fail 预测分布 vs 真实分布，展示 collapse 的 bias 方向和程度。'
+    - 'Loss curve comparison: standard loss vs label-only loss 的 training dynamics，展示
+      label-only loss 收敛更慢但 verdict loss 更低。'
+    analysis: '这个结果对论文 framing 至关重要。它否定了简单的 "gradient dilution → just mask trace loss"
+      修复方案， 说明 full trace 的问题是根本性的：trace content 在 context window 中的存在本身就有害。这支持 论文的核心论点——verdict
+      task 需要的不是 "更多信息" 而是 "更少但更精准的信息"。可以引入 "context pollution" 这个概念：当 trace 的 token
+      数远超 verdict 所需信息量时，多余的 tokens 不是中性的 padding，而是 active noise sources that corrupt
+      the classification signal。
+
+      '
+  - name: VOTA component ablation (4 sub-conditions)
+    plan_id: plan_003
+    description: '分别测试四个 VOTA 子集：(a) 只有 actual/expected 值对，(b) 只有 exception summary，
+      (c) 只有 loop compression，(d) 全量 VOTA。量化每个组件独立贡献。
+
+      '
+    expected_results:
+      condition_a_actexp_only:
+        accuracy: 0.987
+        lift_over_notrace: 0.236
+        pass_f1: 0.99
+        fail_f1: 0.978
+      condition_b_exception_only:
+        accuracy: 0.762
+        lift_over_notrace: 0.011
+        pass_f1: 0.825
+        fail_f1: 0.635
+      condition_c_loop_only:
+        accuracy: 0.748
+        lift_over_notrace: -0.003
+        pass_f1: 0.81
+        fail_f1: 0.615
+      condition_d_full_vota:
+        accuracy: 0.9916
+        lift_over_notrace: 0.2765
+        pass_f1: 0.994
+        fail_f1: 0.985
+      component_ablation_min_individual_lift_non_actexp: -0.003
+      component_ablation_max_individual_lift_non_actexp: 0.011
+    result_rationale: '在 worst 档下，component ablation 产生一个极度 skewed 的贡献分布：actual/expected
+      单独贡献了 VOTA 几乎全部的 lift（23.6pp out of 27.65pp），而 exception summary 和 loop compression
+      各自的独立贡献在统计噪声范围内（+1.1pp 和 -0.3pp）。
+
+      (a) actual/expected only (98.7%)：仅比 full VOTA 低 0.5pp，几乎完全恢复了 VOTA 的效果。这确认了
+      actual/expected 是 VOTA 的充分统计量。微小的 gap 可能来自少数 exception-based failure cases （如
+      RuntimeError），这些 case 没有 actual/expected 值但有 exception info。
+
+      (b) exception summary only (76.2%)：比 no_trace 仅高 1.1pp。exception summary 只覆盖
+      抛出异常的 fail cases（大约占 fail cases 的 30-40%），对 pass cases 完全无信息。即使对于 exception
+      fail cases，exception type + message 也不总是足以判断 test verdict（可能是 expected exception）。因此
+      lift 极其有限。
+
+      (c) loop compression only (74.8%)：甚至略低于 no_trace baseline（在噪声范围内）。loop compression
+      记录的是循环执行模式（迭代次数、收敛行为），这些信息与 assertion 结果几乎完全 正交。模型无法从 "这个循环跑了 5 次" 推断出 test
+      是 pass 还是 fail。微小的负 lift 可能是 因为 loop info 作为额外 context 引入了轻微的 noise。
+
+      (d) full VOTA (99.16%)：比 actual/expected only 高 0.5pp，说明 exception summary 在
+      与 actual/expected 组合时有边际贡献（覆盖了 actual/expected 缺失的 exception-only cases）。
+
+      '
+    tables:
+    - name: 'Table: VOTA Component Ablation'
+      rows:
+      - condition: actual/expected only
+        accuracy: 0.987
+        lift: +23.6pp
+        delta_vs_full_vota: -0.5pp
+      - condition: exception summary only
+        accuracy: 0.762
+        lift: +1.1pp
+        delta_vs_full_vota: -23.0pp
+      - condition: loop compression only
+        accuracy: 0.748
+        lift: -0.3pp
+        delta_vs_full_vota: -24.4pp
+      - condition: full VOTA
+        accuracy: 0.9916
+        lift: +27.65pp
+        delta_vs_full_vota: —
+      - condition: no_trace baseline
+        accuracy: 0.7513
+        lift: —
+        delta_vs_full_vota: -24.0pp
+    figures_description:
+    - 'Waterfall chart: 从 no_trace baseline 出发，叠加各 component 的 marginal lift。actual/expected
+      是唯一显著的 bar，其余两个 component 的 bar 几乎不可见。'
+    - 'Heatmap: component presence (行) × metric (列)，cell 颜色 = lift magnitude。视觉上 actual/expected
+      行全亮，其余行全暗。'
+    analysis: '这是 worst 档下最具诊断价值的实验。它将 VOTA 的 "trace abstraction" 故事还原为一个更简单的事实： verdict
+      prediction 所需的全部信息就是 assertion point 处的 actual 和 expected 值。这不是 "trace teaches
+      reasoning"——这是 "trace provides the answer key"。论文可以将此 reframe 为一个关于 task information
+      structure 的发现：verdict tasks 的信息需求是 O(1) 的（只需要 2 个值的比较）， 任何超出此范围的信息都是 noise。VOTA
+      的成功不是因为它是好的 trace abstraction，而是因为它 恰好包含了这两个关键值。
+
+      '
+  - name: DeepSeek-Coder-6.7B cross-model validation
+    plan_id: plan_004
+    description: '在 DeepSeek-Coder-6.7B 上复现 VOTA vs no_trace vs full_trace 三条件， 与
+      DCSH 同模型进行直接对比。
+
+      '
+    expected_results:
+      deepseek_vota:
+        accuracy: 0.815
+        lift_over_notrace: 0.065
+        pass_f1: 0.87
+        fail_f1: 0.7
+      deepseek_notrace:
+        accuracy: 0.75
+        lift_over_notrace: 0.0
+        pass_f1: 0.82
+        fail_f1: 0.61
+      deepseek_fulltrace:
+        accuracy: 0.355
+        lift_over_notrace: -0.395
+        pass_f1: 0.28
+        fail_f1: 0.52
+      deepseek_vota_lift: 0.065
+      pattern_consistency: inconsistent
+    result_rationale: '在 worst 档下，DeepSeek-Coder 上 VOTA lift 仅 6.5pp（vs CodeLlama
+      上 27.65pp），pattern 严重不一致。原因分析：
+
+      (1) DeepSeek-Coder 的 pretraining 数据可能包含更多 test-related code，使得 no_trace baseline
+      更高或对 trace format 的 sensitivity 不同。
+
+      (2) 更关键的是，如果 VOTA 的 lift 主要来自 actual/expected 字符串比对，那么不同模型对这种 "shortcut" 的利用效率会不同。CodeLlama
+      可能恰好在 string comparison pattern 上更强（或者 其 tokenizer 对 actual/expected 值的 encoding
+      更有利于比较），而 DeepSeek-Coder 可能需要 更多样本才能学会同样的 shortcut。
+
+      (3) full_trace 在 DeepSeek-Coder 上也 collapse，但程度略轻（35.5% vs 28.5%），可能因为 DeepSeek-Coder
+      的 context handling 稍好，但根本问题（trace content pollution）仍然存在。
+
+      (4) 6.5pp 的 lift 虽然不为零，但考虑到 seed variance 可能在 2-5pp，这个 lift 的统计显著性 很弱（bootstrap
+      CI 可能包含零）。这使得 "VOTA helps across models" 的 claim 无法成立。
+
+      '
+    tables:
+    - name: 'Table: Cross-model comparison'
+      rows:
+      - model: CodeLlama-7B
+        vota_acc: 0.9916
+        notrace_acc: 0.7513
+        fulltrace_acc: 0.2849
+        vota_lift: +27.65pp
+      - model: DeepSeek-Coder-6.7B
+        vota_acc: 0.815
+        notrace_acc: 0.75
+        fulltrace_acc: 0.355
+        vota_lift: +6.5pp
+    figures_description:
+    - 'Grouped bar chart: 两个模型 × 三条件的 accuracy 对比。CodeLlama 上 VOTA 的巨大 lift bar 与
+      DeepSeek 上的微小 lift bar 形成鲜明对比。'
+    analysis: 'cross-model inconsistency 是 worst 档最致命的结果之一。它说明 VOTA 的效果高度 model-specific，
+      不能 generalize 为一个 robust 的 trace design principle。在 reframed narrative 下，这反而支持
+      "VOTA 效果来自 string comparison shortcut" 的论点：不同模型利用 shortcut 的能力不同，导致 lift 不一致。论文可以讨论
+      "model-specific shortcut exploitation" 作为 trace SFT 评估的一个 pitfall。
+
+      '
+  - name: Second verdict task (DebugBench bug detection)
+    plan_id: plan_005
+    description: '在 DebugBench (Python subset) 上测试 VOTA，任务为 bug detection（给定代码判断是否有
+      bug）。 验证 verdict task 泛化性。
+
+      '
+    expected_results:
+      debugbench_vota:
+        accuracy: 0.685
+        lift_over_notrace: 0.035
+        pass_f1: 0.72
+        fail_f1: 0.63
+      debugbench_notrace:
+        accuracy: 0.65
+        lift_over_notrace: 0.0
+        pass_f1: 0.7
+        fail_f1: 0.57
+      debugbench_fulltrace:
+        accuracy: 0.415
+        lift_over_notrace: -0.235
+      second_task_vota_lift: 0.035
+      statistically_significant: false
+    result_rationale: '在 worst 档下，VOTA 在第二个 verdict task 上几乎无效（lift 仅 3.5pp，p > 0.05）。核心原因：
+
+      (1) Bug detection 任务的信息结构与 test verdict prediction 根本不同。test verdict 有明确的 assertion
+      point（actual vs expected），而 bug detection 没有这样的 "answer key"——没有一个 single comparison
+      point 能直接判定代码是否有 bug。VOTA 的 actual/expected 提取逻辑在 bug detection 场景下没有等价物。
+
+      (2) 即使为 bug detection 设计了类似的 trace abstraction（例如提取 variable state at suspicious
+      locations），这些 locations 的选择本身就需要 bug understanding，形成鸡生蛋问题。
+
+      (3) bug detection 的 base rate 通常更接近 50/50（DebugBench 设计为 balanced），使得 majority
+      baseline 更低，但 VOTA 缺乏可利用的 shortcut 来产生大的 lift。
+
+      (4) full_trace 在 bug detection 上同样有害（41.5%），但 collapse 不如 test verdict 严重， 可能因为
+      bug detection 的训练信号稍强于 test verdict（fail cases 的 trace 差异更大）。
+
+      这个结果证明 VOTA 的 test verdict prediction 成功是 task-specific 的 shortcut exploitation，
+      而非 generalizable trace design principle。
+
+      '
+    tables:
+    - name: 'Table: Cross-task comparison'
+      rows:
+      - task: Test verdict prediction
+        vota_acc: 0.9916
+        notrace_acc: 0.7513
+        vota_lift: +27.65pp
+        significant: 'yes'
+      - task: Bug detection (DebugBench)
+        vota_acc: 0.685
+        notrace_acc: 0.65
+        vota_lift: +3.5pp
+        significant: 'no'
+    figures_description:
+    - 'Side-by-side bar charts: 两个 task 上 VOTA lift 的对比，配合 error bars 展示第二 task 上
+      CI 包含零。'
+    analysis: '泛化失败是 worst 档 narrative 的关键支柱。它将论文的 contribution 从 "VOTA is a good
+      trace design" 彻底转向 "verdict tasks have heterogeneous information structures,
+      and trace SFT only helps when the trace happens to contain a task-specific shortcut"。这是一个更有趣的
+      negative finding：它暗示不存在 universal trace design for verdict tasks。
+
+      '
+  - name: Trace length ablation (full trace truncation)
+    plan_id: plan_006
+    description: '测试不同截断长度 (256/512/1024/2048 tokens) 对 full_trace accuracy 的影响， 绘制
+      accuracy vs trace length 曲线。
+
+      '
+    expected_results:
+      length_256:
+        accuracy: 0.58
+        pct_predict_fail: 0.52
+      length_512:
+        accuracy: 0.46
+        pct_predict_fail: 0.61
+      length_1024:
+        accuracy: 0.35
+        pct_predict_fail: 0.78
+      length_2048:
+        accuracy: 0.29
+        pct_predict_fail: 0.95
+      full_untruncated:
+        accuracy: 0.2849
+        pct_predict_fail: 1.0
+      monotonic_decrease: true
+      shortest_still_collapses: true
+    result_rationale: '在 worst 档下，accuracy 随 trace length 单调下降，且即使最短的 256 tokens 也只达到
+      58%—— 远低于 no_trace baseline (75.13%)。这说明：
+
+      (1) trace content 从第一个 token 开始就是有害的，不存在 "sweet spot" 的截断长度能让 full trace 变得有用。这否定了
+      "full trace 只是太长了" 的简单解释。
+
+      (2) 256 tokens 的 full trace 通常只包含前几行代码的执行状态（变量初始化、import 等），这些 信息对 verdict 完全无关但占据了
+      context 并 bias attention。
+
+      (3) 单调下降趋势支持 "context pollution" 假说：每增加一个 trace token 都增加一点 noise， 累积效应导致 collapse。在
+      256 tokens 时 noise 不足以完全淹没信号（58%），但在 2048+ tokens 时 noise 完全主导（29%）。
+
+      (4) 对比 VOTA 的 ~50-100 tokens（只有 actual/expected 等关键值），full trace 的信噪比从根本上 就是错误的。这进一步证明
+      verdict task 需要的是 extreme information compression，不是 more execution detail。
+
+      '
+    tables:
+    - name: 'Table: Accuracy vs trace truncation length'
+      rows:
+      - length: 0 (no_trace)
+        accuracy: 0.7513
+        delta_vs_notrace: —
+      - length: VOTA (~80 tokens avg)
+        accuracy: 0.9916
+        delta_vs_notrace: +27.65pp
+      - length: 256
+        accuracy: 0.58
+        delta_vs_notrace: -17.1pp
+      - length: 512
+        accuracy: 0.46
+        delta_vs_notrace: -29.1pp
+      - length: 1024
+        accuracy: 0.35
+        delta_vs_notrace: -40.1pp
+      - length: 2048
+        accuracy: 0.29
+        delta_vs_notrace: -46.1pp
+      - length: full (~4000 avg)
+        accuracy: 0.2849
+        delta_vs_notrace: -46.6pp
+    figures_description:
+    - 'Line plot: x = trace length (log scale, 0/VOTA/256/512/1024/2048/full), y =
+      accuracy。no_trace 和 VOTA 作为 horizontal reference lines。曲线从 256 开始单调下降，始终在 no_trace
+      baseline 以下。标题强调 ''Any amount of full trace hurts''。'
+    analysis: '这个实验产生了一个视觉上非常 compelling 的图：VOTA（~80 tokens）在最上方，no_trace 在中间作为 baseline，而
+      full trace 的所有截断长度都在 baseline 以下且单调下降。这完美支持 "information density, not information
+      volume" 的论点。在 reframed narrative 中，这张图可以作为 Figure 1 或 key result figure。
+
+      '
+  - name: Calibration analysis (ECE + reliability diagrams)
+    plan_id: plan_007
+    description: '用已有 checkpoint 的 logits 计算 ECE + reliability diagrams，对比 VOTA/no_trace/full_trace
+      的 calibration 质量。
+
+      '
+    expected_results:
+      vota_ece: 0.065
+      notrace_ece: 0.12
+      fulltrace_ece: 0.58
+      vota_overconfident: true
+      vota_avg_confidence: 0.97
+      vota_avg_accuracy: 0.9916
+      notrace_underconfident_on_pass: true
+      fulltrace_miscalibrated: true
+    result_rationale: '在 worst 档下，calibration 分析揭示一个微妙但重要的问题：
+
+      (1) VOTA 的 ECE 看起来尚可（0.065），但这是因为模型在绝大多数样本上都给出 >95% confidence 且确实正确——本质上是 "trivially
+      calibrated by being trivially correct"。模型学会了 "actual == expected → 99% pass"的简单规则，confidence
+      自然很高且准确。这不是 genuine calibration improvement，而是 task trivialization 的副产品。
+
+      (2) no_trace 的 ECE 更高（0.12），主要因为模型在 fail cases 上 underconfident——它缺乏 判断 fail
+      的信息，所以经常给出 50-60% 的 ambiguous predictions。
+
+      (3) full_trace 的 ECE 极差（0.58），因为 collapsed model 对所有样本都高 confidence 预测 fail，
+      但 71.5% 的样本实际是 pass。这是 catastrophic miscalibration。
+
+      (4) 值得注意的是，VOTA 在少数 error cases 上也极度 overconfident（>95% confidence 但错误）， 说明模型没有学到
+      uncertainty awareness，只是学了一个几乎总是对的 shortcut rule。
+
+      '
+    tables:
+    - name: 'Table: Calibration metrics'
+      rows:
+      - condition: VOTA
+        ece: 0.065
+        avg_confidence: 0.97
+        avg_accuracy: 0.9916
+        interpretation: trivially calibrated
+      - condition: no_trace
+        ece: 0.12
+        avg_confidence: 0.72
+        avg_accuracy: 0.7513
+        interpretation: underconfident on fail
+      - condition: full_trace
+        ece: 0.58
+        avg_confidence: 0.88
+        avg_accuracy: 0.2849
+        interpretation: catastrophic miscalibration
+    figures_description:
+    - 'Reliability diagram (3-panel): 每个条件一个 panel，x = predicted confidence bin, y
+      = actual accuracy in bin。VOTA 的点集中在右上角；no_trace 的点偏离对角线（underconfident region）；full_trace
+      的点在右下角（high confidence, low accuracy）。'
+    analysis: 'Calibration 分析在 worst 档下更多是 supporting evidence 而非 headline result。它说明
+      VOTA 的 高 accuracy 伴随的是 "confident because trivial" 的 calibration pattern，而非
+      "well-calibrated because well-understood"。在论文中可以用一小段讨论这个 distinction：good calibration
+      不等于 good understanding。
+
+      '
+  - name: Seed robustness (3 seeds × VOTA)
+    plan_id: plan_008
+    description: '3 random seeds (42/123/456) 验证 VOTA 结果稳定性。McNemar test + bootstrap
+      CI。
+
+      '
+    expected_results:
+      seed_42:
+        accuracy: 0.9916
+      seed_123:
+        accuracy: 0.965
+      seed_456:
+        accuracy: 0.978
+      mean_accuracy: 0.978
+      std_accuracy: 0.013
+      max_min_spread_pp: 2.66
+      seed_variance_pp: 2.66
+      mcnemar_42_vs_123_p: 0.002
+      mcnemar_42_vs_456_p: 0.08
+      bootstrap_ci_mean:
+      - 0.96
+      - 0.992
+    result_rationale: '在 worst 档下，seed variance 在 2-5pp 范围的低端（2.66pp spread），但 pattern
+      是 revealing 的：
+
+      (1) Seed 42（原始结果）恰好是最高的（99.16%），这引入了 "cherry-picking" 风险——我们报告的 headline number
+      是 3 seeds 中的最佳值。Mean across seeds 是 97.8%，仍然很高，但 narrative impact 不同："97.8%
+      ± 1.3%" 比 "99.16%" 听起来略弱。
+
+      (2) 2.66pp 的 spread 在绝对值上不大，但考虑到 VOTA 的 error rate 本来就很低（~1-4%），这意味着 不同 seeds
+      之间的 error rate 差异可以达到 3x（0.84% vs 3.5%）。这说明模型学到的 shortcut rule 在边界 cases 上不稳定。
+
+      (3) Seed 123 的 96.5% 较低，可能因为该 seed 的 train/eval split 或 optimization trajectory
+      使得模型在某些 edge cases（如 assertion 格式不标准、actual/expected 值非常长需要截断的 cases） 上学得不好。
+
+      (4) McNemar test 显示 seed 42 vs 123 有 significant difference (p=0.002)，进一步说明
+      individual seed results 不应被 over-interpreted。
+
+      '
+    tables:
+    - name: 'Table: Seed robustness'
+      rows:
+      - seed: 42
+        accuracy: 0.9916
+        error_rate: 0.84%
+      - seed: 123
+        accuracy: 0.965
+        error_rate: 3.50%
+      - seed: 456
+        accuracy: 0.978
+        error_rate: 2.20%
+      - seed: mean ± std
+        accuracy: 0.978 ± 0.013
+        error_rate: 2.18% ± 1.33%
+    figures_description:
+    - 'Strip plot: 3 seeds 的 accuracy 点 + mean with error bar。标注 seed 42 是原始报告值。'
+    analysis: seed robustness 结果在 worst 档下是 "adequate but not inspiring"。2.66pp spread
+      不会 invalidate 主要结论（VOTA >> no_trace 在所有 seeds 上都成立），但会弱化 headline number。 论文应报告
+      mean ± std 而非 single seed。在 reframed narrative 下，这个 variance 可以 解释为 "shortcut
+      learning 的 inherent instability"——不同 seeds 在 shortcut boundary cases 上的行为不同。
+  review_report: '---
+
+    dream_id: dream_20260515T013018
+
+    tier: worst
+
+    overall_score: reject
+
+    timestamp: 2026-05-15T02:10:05.948732+00:00
+
+    ---
+
+
+    # Dream Review Report: "What Makes Verdict Prediction Trivial? A Trace Ablation
+    Study"
+
+
+    ## Meta
+
+    - **Review mode**: full (2 Reviewers, 4-step roundtable)
+
+    - **Venue standard**: Top ML venue, ~25% acceptance, 6-point scale
+
+    - **Experiment coverage**: 8/8 imagined experiments are present in the paper (component
+    ablation, VOTA-minus-act/exp, label-only loss, trace length ablation, cross-model,
+    cross-task, calibration, seed robustness). Full coverage.
+
+
+    ---
+
+
+    ## Reviewer 1 (R1): Methods + Experiments
+
+
+    ### Strengths
+
+
+    **S1. Well-structured ablation hierarchy.** The 7 experiments form a logically
+    coherent diagnostic chain: component isolation (Exp 1) → removal confirmation
+    (Exp 2) → mechanism separation (Exp 3, label-only loss) → scaling behavior (Exp
+    4, trace length) → cross-model (Exp 5) → cross-task (Exp 6) → robustness (Exp
+    7). Each experiment answers a specific question and the sequence is well-motivated.
+
+
+    **S2. Context pollution diagnosis is well-evidenced.** The label-only loss experiment
+    (Table 3) cleanly separates gradient dilution from inference-time context corruption:
+    partial recovery (28.5% → 42%) but still far below baseline (75.1%). The trace
+    length ablation (Table 4) showing monotonic decline from the very first 256 tokens
+    further strengthens this. Together these go beyond the naive "traces are too long"
+    explanation.
+
+
+    **S3. Honest self-critical reporting.** The paper acknowledges seed 42 was the
+    best of 3 seeds (99.16% vs. mean 97.8%), reports cross-model inconsistency forthrightly,
+    and uses mean ± std in the abstract.
+
+
+    ### Weaknesses
+
+
+    **W1. Dataset description is essentially absent (major).** No information about
+    dataset size (train/eval/test split counts), source (which repositories? synthetic
+    or real-world?), collection procedure, or filtering criteria. The only stated
+    property is 71.51% pass rate. For a paper whose conclusions depend entirely on
+    experimental results, this is unacceptable. We cannot assess data quality, potential
+    leakage, or representativeness.
+
+
+    **W2. Most comparisons lack statistical tests (major).** Bootstrap CIs appear
+    for Experiments 1–2, but Tables 3, 4, 5, and 6 report only point estimates. The
+    "no sweet spot" claim (Table 4) and the DeepSeek +6.5pp lift both need CIs to
+    be interpretable.
+
+
+    **W3. Asymmetric multi-seed reporting (moderate).** CodeLlama uses 3-seed means;
+    DeepSeek-Coder reports a single seed. Given CodeLlama''s ±1.3pp variance, the
+    claimed 4× cross-model gap is undermined.
+
+
+    **W4. Missing controls for the context pollution mechanism (moderate).** No experiment
+    tests distributional shift directly (e.g., random tokens of equal length replacing
+    trace content, or attention masking on trace tokens at inference only). "Context
+    pollution" remains a plausible hypothesis rather than an established mechanism.
+
+
+    **W5. No per-class metrics (moderate).** For 71.5/28.5 class imbalance, accuracy
+    alone is insufficient. The no-trace baseline (75.13%) is suspiciously close to
+    majority-class rate (71.51%), raising the question of whether it is essentially
+    a majority predictor. Per-class precision/recall/F1 are critical but never reported.
+
+
+    **W6. Calibration analysis lacks depth (minor).** Only ECE and average confidence
+    are reported (Table 8). Reliability diagrams are absent. Per-bin breakdowns would
+    substantiate the "trivially calibrated" interpretation.
+
+
+    **W7. Training details incomplete (minor).** Batch size, warmup schedule, sequence
+    length limits, and hardware are unspecified. LoRA configuration is not justified.
+
+
+    **R1 Score: 3/6 (Reject)**
+
+
+    ---
+
+
+    ## Reviewer 2 (R2): Novelty + Related Work
+
+
+    ### Strengths
+
+
+    **S1. Actionable diagnostic methodology.** The three recommendations in §5.3 (ablate
+    before claiming reasoning; test cross-model/cross-task transfer; characterize
+    task information structure) are concrete and directly useful for the trace SFT
+    community.
+
+
+    **S2. Context pollution as a conceptual contribution.** Distinguishing gradient
+    dilution (training-side) from context pollution (inference-side) is a genuine
+    clarification. While irrelevant context effects in LLMs are known in the broader
+    literature, applying this specifically to trace SFT with targeted diagnostics
+    is novel.
+
+
+    **S3. Elegant O(1)-information framing.** The idea of classifying tasks by information-theoretic
+    complexity as a lens for trace SFT applicability is promising, even though under-developed.
+
+
+    ### Weaknesses
+
+
+    **W1. The core finding borders on tautological (major).** That actual/expected
+    value comparison is the sufficient statistic for test pass/fail is the *definition*
+    of assertion-based testing: `assertEqual(actual, expected)` passes iff `actual
+    == expected`. Framing this as a research discovery overstates its non-obviousness.
+    More critically, VOTA is introduced and debunked in the *same paper* — if VOTA
+    were a prior published method being scrutinized, the contribution would be far
+    stronger. As written, the narrative reads: "we designed a method that includes
+    the answer, showed it works, then showed it works because it includes the answer."
+
+
+    **W2. Related work is critically thin (major).** Only 5 references. Major missing
+    connections:
+
+    - Shortcut learning / spurious correlations (Geirhos et al., 2020; McCoy et al.,
+    2019) — directly relevant to the VOTA-as-shortcut finding
+
+    - Irrelevant context effects in LLMs (Shi et al., 2023) — directly relevant to
+    context pollution
+
+    - Information bottleneck theory (Tishby et al.) — the O(1) framing begs for this
+    connection
+
+    - Chain-of-thought distillation literature — faces identical "reasoning vs. shortcut"
+    questions
+
+    - Broader test result prediction / mutation testing — only 2 references for an
+    entire subfield
+
+
+    **W3. Self-referential design weakens both contributions (major).** Introducing
+    VOTA and exposing it as a shortcut in the same paper creates a problematic narrative.
+    Either the design process should have caught this (why include raw actual/expected
+    values if testing reasoning?), or VOTA should be positioned as a deliberate probe
+    — neither framing appears.
+
+
+    **W4. O(1)-information framework is metaphorical, not formal (moderate).** The
+    paper uses O(1) notation without formalization. What exactly is O(1) — number
+    of comparisons? Bits? For tests with k assertions, the information is O(k), not
+    O(1). The framework is evocative but imprecise, and claiming a structural characterization
+    of "verdict tasks" on this basis is overreach.
+
+
+    **W5. No constructive contribution (moderate).** The paper is entirely negative.
+    A simple non-LM baseline (e.g., regex matching on actual vs. expected strings,
+    or a small classifier on extracted features) would demonstrate the constructive
+    alternative and strengthen the "trace SFT is wrong paradigm" argument.
+
+
+    **W6. Limited incremental novelty over DCSH [1] (moderate).** DCSH found "modest
+    and inconsistent improvements" from trace SFT. This paper adds the verdict prediction
+    angle and the context pollution mechanism, but the high-level message — traces
+    don''t automatically teach reasoning — overlaps considerably.
+
+
+    **R2 Score: 3/6 (Reject)**
+
+
+    ---
+
+
+    ## Roundtable Convergence
+
+
+    ### Points of agreement
+
+    1. **The diagnostic methodology (ablation hierarchy + mechanism separation) is
+    the paper''s strongest contribution** and would be valuable if applied with more
+    rigor.
+
+    2. **The context pollution finding is genuinely non-obvious** — monotonic degradation
+    from the first 256 tokens and label-only loss''s failure to repair are real empirical
+    contributions.
+
+    3. **The missing dataset description is disqualifying** for the current submission.
+
+    4. **The related work is far too thin** for a paper making community-level recommendations.
+
+    5. **The self-referential VOTA introduction/debunking weakens the narrative**
+    — revision should reposition VOTA as a deliberate diagnostic probe or separate
+    the contributions.
+
+    6. **Generality claims are unsupported** — characterizing "verdict tasks" as O(1)-information
+    based on one dataset is overreach.
+
+
+    ### Critical revisions needed
+
+    1. Full dataset description (size, source, collection, splits)
+
+    2. Statistical tests (CIs + significance) for all 8 tables
+
+    3. Multi-seed for DeepSeek-Coder
+
+    4. Per-class F1 metrics throughout
+
+    5. Related work expanded 3–4× with shortcut learning, irrelevant context, and
+    information theory connections
+
+    6. At least one constructive baseline (non-LM feature extraction)
+
+    7. Controls for context pollution (random token replacement, inference-only masking)
+
+    8. Reposition VOTA narrative — deliberate probe, not accidental discovery
+
+
+    ---
+
+
+    ## Overall Assessment
+
+
+    **Overall Score: 3/6 (Reject)**
+
+
+    **Confidence: 4/5**
+
+
+    **Summary justification**: The paper presents a well-structured ablation study
+    with some genuine diagnostic insights, particularly the context pollution mechanism
+    and the trace length degradation curve. However, it is undermined by (1) a near-tautological
+    core finding presented as novel, (2) a critically absent dataset description,
+    (3) an extremely thin related work section, (4) sweeping generality claims from
+    a narrow empirical base, (5) a self-referential narrative that introduces and
+    debunks its own method, and (6) no constructive contribution. The diagnostic *methodology*
+    (ablation → mechanism separation → cross-validation) is the transferable contribution,
+    but the current execution is insufficient for a top venue. With substantial revision
+    — particularly dataset documentation, expanded related work, stronger statistical
+    rigor, and narrative repositioning — this could become a useful Findings-level
+    paper.
+
+    '
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-15T02:10:19+00:00'

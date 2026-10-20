@@ -1,0 +1,615 @@
+tier: worst
+narrative_guidance: '原始 ''fault semantics'' 叙事不成立。nomarker 实验暴露 exception_only 99.83%
+  中约 10pp 来自格式标记 [No exception data in trace] 的 shortcut 学习。SFT 模型（99.83%）仅比 regex
+  B5（99.33%）高 0.50pp； 移除标记后 SFT 降至 ~89.6%，反而低于 regex。论文贡献 reframe 为：**trace formatting
+  as implicit task specification** —— SFT 中 format/structure choices 对 downstream
+  classification 具有 outsized impact。 核心 decomposition：总 trace lift 24.7pp = content
+  signal ~14.9pp (60%) + format marker ~9.8pp (40%)。 format marker 贡献（~10pp）单独即超过
+  full_trace 全部 lift（6.6pp），揭示 SFT shortcut learning 的严重性。 Claim 1 重写为 ''structured
+  format markers dominate verdict prediction in exception traces''。 Claim 3 重写为 ''format
+  engineering > content richness for SFT verdict tasks''。 与 shortcut learning 文献（NLI
+  artifacts, annotation artifacts, Gururangan et al. 2018）对话。 仍冲 EMNLP Main —— angle
+  从 positive finding 变为 cautionary finding + practical design principle。
+
+  '
+imagined_experiments:
+- name: no_trace baseline
+  plan_id: plan_mvp_notrace
+  description: 无 trace 基线。模型仅凭 code + test input 预测 verdict。
+  expected_results:
+    accuracy: 0.7513
+    pass_recall: 0.7579
+    fail_recall: 0.7345
+    ECE: 0.1715
+    Brier: 0.1972
+  result_rationale: '（实际数据）无 trace 时模型只能依赖代码表面特征和训练集 prior (71.51% pass)。 75.13% 仅比
+    majority baseline 高 3.6pp，calibration 严重失调（ECE=0.17）。 在 worst tier 下，这个数字建立了 content-free
+    的下界：任何高于此的增益 都需要 decompose 为 content signal vs. format shortcut。
+
+    '
+  tables:
+  - 'Table 1: Main results — no_trace 行作为 floor'
+  figures_description:
+  - Figure 1 bar chart 的最左柱，标注 'code-only baseline'
+  analysis: '75.13% 是所有 trace 条件的 anchor。worst tier 的核心论点是： exception_only 的 24.7pp
+    lift 中，~40% (10pp) 来自 format marker shortcut， ~60% (14.9pp) 来自 content signal。no_trace
+    确认 content signal 的起点。
+
+    '
+- name: VOTA baseline
+  plan_id: plan_mvp_vota
+  description: VOTA trace SFT MVP。完整 VOTA 表征（loop + exception + ae）。
+  expected_results:
+    accuracy: 0.9941
+    pass_recall: 0.9882
+    fail_recall: 1.0
+    ECE: 0.0054
+  result_rationale: '（实际数据, v5 结果）VOTA 99.41% 包含所有格式标记。在 worst tier 下， VOTA 的高 accuracy
+    部分归因于 [No exception data in trace] 和 [ERROR] 等 format markers 提供的 shortcut。VOTA
+    略低于 exception_only (99.83%) 不是因为 添加信息有害，而是 loop/ae tokens 稀释了 format marker 的注意力聚焦。
+
+    '
+  tables:
+  - 'Table 1: Main results — VOTA 行'
+  - 'Table 3: Format dependency decomposition'
+  figures_description:
+  - Figure 1 bar chart 中间柱
+  analysis: 'VOTA 99.41% 在 worst tier 下需重新解读：这不是 ''trace reasoning'' 的证据， 而是 format
+    marker 被保留后 shortcut 仍然有效的结果。CodeLlama-13B 上 VOTA=99.92% 甚至优于 exception_only，说明更大模型能更好利用
+    VOTA 的 额外 format cues，进一步支持 format engineering > content hypothesis。
+
+    '
+- name: full_trace baseline
+  plan_id: plan_mvp_fulltrace
+  description: 完整执行 trace SFT。包含所有 trace 行（含格式标记，但被海量 trace tokens 淹没）。
+  expected_results:
+    accuracy: 0.8176
+    pass_recall: 0.866
+    fail_recall: 0.6962
+    ECE: 0.0958
+  result_rationale: '（实际数据, v5 结果）full_trace 81.76% 远低于 exception_only 99.83%。 full_trace
+    也包含 [No exception data in trace] 和 [ERROR] 标记，但被 数千 token 的 trace noise 包围。在 worst
+    tier 下，这证明 format marker 的有效性取决于 signal-to-noise ratio：marker 存在但被稀释时效果大幅下降。 gradient
+    dilution (D1) 和 information overload 共同使模型难以从 full trace 中提取 format shortcut。
+
+    '
+  tables:
+  - 'Table 1: Main results — full_trace 行'
+  - 'Table 4: Information density vs. format accessibility'
+  figures_description:
+  - Figure 1 bar chart — full_trace 柱显著低于 exception_only/VOTA
+  analysis: 'full_trace 的 81.76% 确认：format markers 需要在 compact 表征中才能被 有效利用。这与 shortcut
+    learning 文献一致——shortcut 的有效性取决于其 accessibility（Geirhos et al. 2020）。exception_only
+    将 marker 置于最 prominent 位置，最大化 shortcut 的可利用性。
+
+    '
+- name: VOTA minus actual/expected
+  plan_id: plan_001
+  description: 移除 VOTA 中 actual/expected 值对，保留 exception + loop。验证是否为 trivial string
+    comparison。
+  expected_results:
+    accuracy: 0.9941
+    pass_f1: 0.996
+    fail_f1: 0.989
+  result_rationale: '（实际数据）99.41% = 完整 VOTA，移除 ae 无影响。在 worst tier 下， 这不是 ''exception
+    content 自身 sufficient'' 的证据，而是 format marker [No exception data in trace] 独立于
+    ae 存在——marker 未被移除，shortcut 仍完整可用。真正的 sufficiency test 是 nomarker 实验。
+
+    '
+  tables:
+  - 'Table 2: Component ablation — vota_no_ae 行'
+  figures_description: []
+  analysis: 'vota_no_ae = VOTA 的事实在 worst tier 下有新解读：ae 组件不影响 accuracy 因为分类不依赖 ae
+    content，而是依赖 format marker。ae 的移除没有碰到 真正的 active ingredient（format marker），所以没有效果。
+
+    '
+- name: full_trace label-only loss
+  plan_id: plan_002
+  description: full_trace + 仅对 verdict token 计算 loss，mask trace tokens。量化 gradient
+    dilution。
+  expected_results:
+    accuracy: 0.8622
+    lift_vs_standard_fulltrace: 0.0445
+    pass_recall: 0.9318
+    fail_recall: 0.6873
+  result_rationale: '（实际数据）label-only 86.22% 比 standard full_trace 81.76% 高 4.5pp（gradient
+    dilution 贡献）， 但仍远低于 exception_only 99.83%。在 worst tier 下重新解读： label-only 修复了 gradient
+    dilution，但 full trace 中 format markers 仍被海量 tokens 淹没——模型在 2048 tokens 中寻找 [No
+    exception data in trace] 的效率远低于在 exception_only 的 compact 表征中。86.22% ≈ loop_only
+    85.63%， 说明 label-only full_trace 实质上退化为 loop-level 的行为模式学习。
+
+    '
+  tables:
+  - 'Table 1: Main results — label_only 行'
+  - 'Table 4: Gradient dilution decomposition（26% vs 74%）'
+  figures_description:
+  - 'Figure 2: Waterfall chart — 75.13 → 81.76 (full) → 86.22 (label-only) → 99.83
+    (exception_only)'
+  analysis: 'label-only 实验在 worst tier 下保留原有解读（gradient dilution = 26%）， 但 74% 的 information
+    overload 部分现在重新理解为：format marker 的 accessibility bottleneck——不是 trace 内容太多导致模型''迷路''，而是
+    shortcut pattern 被噪声稀释导致模型无法高效利用。
+
+    '
+- name: VOTA component ablation (loop/exception/ae)
+  plan_id: plan_003
+  description: 分别测试 loop_only, exception_only, ae_only。量化每个组件贡献。
+  expected_results:
+    exception_only_accuracy: 0.9983
+    ae_only_accuracy: 0.9992
+    loop_only_accuracy: 0.8563
+    vota_full_accuracy: 0.9941
+  result_rationale: '（实际数据）exception_only 99.83%, ae_only 99.92%, loop_only 85.63%。
+    在 worst tier 下，Tier 1 组件（exception + ae）的近完美 accuracy 需重新解读： 两者都包含强 format markers
+    —— exception_only 有 [No exception data in trace] / [ERROR]， ae_only 有 assertion
+    结果的结构化标记。它们的高 accuracy 不是 ''diagnostic moment'' 的 语义价值，而是 format marker 的 shortcut
+    效应。loop_only 85.63% 没有这些强标记， 反映的是 content-level 学习的真实水平——这才是 ''fault semantics''
+    的近似上限。
+
+    '
+  tables:
+  - 'Table 2: Component ablation（reframed as format marker analysis）'
+  - 'Table 5: Format marker presence vs. component accuracy'
+  figures_description:
+  - 'Figure 3: Component accuracy vs. format marker strength scatter plot'
+  analysis: 'worst tier 下 Tier hierarchy 被重新理解为 **format marker strength hierarchy**：
+    Tier 1 (exception/ae) 有强 explicit markers → 99%+； Tier 2 (loop) 无 explicit markers
+    → 85%； format marker contribution ≈ 14pp (99.83 - 85.63)。 这与 nomarker 实验的 ~10pp
+    drop 量级一致，交叉验证了 format shortcut 假说。 loop_only ≈ label_only (85.63 vs 86.22) 进一步确认：无
+    format marker 时， 不同表征的 content-level 学习效果相似。
+
+    '
+- name: DeepSeek-Coder-6.7B 四条件验证
+  plan_id: plan_004
+  description: DeepSeek 上复现 VOTA/no_trace/full_trace/exception_only。跨模型验证 exception
+    dominance。
+  expected_results:
+    exception_only_seed42: 0.9933
+    exception_only_seed456: 0.9933
+    exception_only_seed123: 0.9109
+    vota: 0.8445
+    no_trace: 0.7336
+    full_trace_v3: 0.7916
+  result_rationale: '（实际数据）DeepSeek exception_only 2/3 seeds=99.33%，1 outlier=91.09%。
+    在 worst tier 下：(1) seed42/456=99.33% 与 regex B5=99.33% 完全一致， 进一步暗示 SFT 学到的就是 regex
+    级别的 format matching； (2) seed123=91.09% 可能更接近 ''without format shortcut'' 的真实水平——
+    该 seed 的 LoRA 初始化恰好未充分学到 format marker → pass 映射 (fail_recall=0.705 说明 [ERROR]
+    marker 的学习也不完整)； (3) VOTA 84.45% 受 truncation 影响，但 format markers 在 VOTA 中 的位置和
+    accessibility 不如 exception_only compact。
+
+    '
+  tables:
+  - 'Table 1: Cross-model results'
+  - 'Table 6: DeepSeek seed analysis — LoRA init vs format learning'
+  figures_description:
+  - 'Figure 4: Cross-model accuracy comparison (grouped bar chart)'
+  analysis: 'DeepSeek 数据在 worst tier 下提供额外证据：seed42/456 精确匹配 regex B5 (99.33%) 是巧合但
+    suggestive——两个 seed 的 SFT 模型和一个简单 regex 达到了完全相同的 accuracy，暗示它们可能在做同一件事。seed123
+    outlier 的存在说明 format shortcut 的学习也非 guaranteed——LoRA 初始化不佳时 模型可能只学到部分 shortcut。
+
+    '
+- name: DebugBench 跨任务验证
+  plan_id: plan_005
+  description: DebugBench subset 上测试 exception_only/VOTA/no_trace。验证泛化性。
+  expected_results:
+    exception_only: 1.0
+    vota: 0.9977
+    no_trace: 0.9671
+  result_rationale: '（实际数据）DebugBench 上 exception_only=100%, no_trace=96.71%。 在 worst
+    tier 下：DebugBench 天花板过高（no_trace 已 96.71%）， trace lift 仅 3.29pp，无法区分 format shortcut
+    vs. content learning。 100% 的 exception_only 不是 ''fault semantics 跨数据集 robust''
+    的证据， 而可能只是 DebugBench 的 bug 结构恰好与 format markers 完美对齐。 此数据集在 worst tier 论文中仅作
+    secondary generalization validation， 不承担 mechanism 论证的任何权重。
+
+    '
+  tables:
+  - 'Table 7: DebugBench generalization (secondary evidence)'
+  figures_description: []
+  analysis: 'DebugBench 在 worst tier 下的定位不变：泛化性验证，非 mechanism 证据。 但 worst tier 论文会增加一句
+    caveat：DebugBench 的近完美 no_trace baseline 说明 verdict task 的难度 spectrum 很宽，format
+    shortcut 在 easy benchmarks 上可能被 ceiling 效应掩盖。
+
+    '
+- name: trace length ablation (256/512/1024/full)
+  plan_id: plan_006
+  description: 不同截断长度对 full_trace 准确率的影响。
+  expected_results:
+    256tok: 0.7882
+    512tok: 0.8042
+    1024tok: 0.7723
+    full_2048: 0.8176
+  result_rationale: '（实际数据）256→512→1024→2048 = 78.82→80.42→77.23→81.76%。 非单调，收益递减，全部远低于
+    exception_only 99.83%。 在 worst tier 下：更多 trace tokens 不帮助 accuracy 是因为 format
+    markers 在 full trace 中被淹没——增加 tokens 不增加 format marker 的 accessibility， 反而增加 noise。这与
+    shortcut learning 的 accessibility 理论一致。 真正有效的不是 trace 内容量，而是 format marker 的相对
+    prominence。
+
+    '
+  tables:
+  - 'Table 4: Trace length ablation — format accessibility vs. trace volume'
+  figures_description:
+  - 'Figure 5: Trace length vs accuracy curve (flat, all << exception_only)'
+  analysis: 'trace length 数据在 worst tier 下支持 ''format accessibility'' 论点： 无论 trace
+    多长或多短，只要 format marker 不在 compact isolated 位置， 模型就无法有效利用 shortcut。exception_only
+    的优势不是 content richness， 而是 format marker isolation。
+
+    '
+- name: Calibration analysis (ECE + Brier)
+  plan_id: plan_007
+  description: ECE + reliability diagrams 对比各条件 calibration。
+  expected_results:
+    exception_only_ECE: 0.0027
+    exception_only_Brier: 0.0013
+    no_trace_ECE: 0.1715
+    no_trace_Brier: 0.1972
+    loop_only_ECE: 0.0831
+    full_trace_ECE: 0.0958
+  result_rationale: '（实际数据）exception_only ECE=0.0027（近完美校准）。 在 worst tier 下重新解读：极低
+    ECE 不是 ''model understands fault semantics'' 的证据， 而是 format shortcut 提供了几乎 deterministic
+    的映射——marker 在 → 高置信度 pass， marker 不在 → 高置信度 fail。一个完美的 shortcut 自然产生完美的 calibration。
+    相比之下，loop_only ECE=0.083 反映的是 content-level 学习的 calibration—— 不完美但非 trivial，这才是
+    genuine semantic understanding 的 calibration profile。
+
+    '
+  tables:
+  - 'Table 8: Calibration comparison (reframed: shortcut confidence vs. content confidence)'
+  figures_description:
+  - 'Figure 6: Reliability diagram — exception_only 的 perfect diagonal 重新标注为 ''shortcut-induced
+    calibration'''
+  analysis: 'worst tier 下 calibration 数据的叙事反转：从 ''exception signal 使模型 know what it
+    knows'' 变为 ''format shortcut 使模型过度自信于一个 brittle rule''。nomarker 实验将验证 这一解读——如果去标记后
+    calibration 显著恶化（ECE 升至 loop_only 水平）， 则确认 calibration 是 shortcut 的副产物而非 semantic
+    understanding 的证据。
+
+    '
+- name: Seed robustness (3 seeds × exception_only + VOTA)
+  plan_id: plan_008
+  description: 3 random seeds 验证 exception_only / VOTA 结果稳定性。
+  expected_results:
+    qwen_exception_only_3seed:
+    - 0.9983
+    - 0.9983
+    - 0.9983
+    qwen_exception_only_std: 0.0
+    qwen_vota_seed42: 0.9941
+    qwen_vota_seed456: 0.9908
+    deepseek_exception_only:
+    - 0.9933
+    - 0.9933
+    - 0.9109
+  result_rationale: '（实际数据）Qwen exception_only 3 seeds 完美一致，std=0。 在 worst tier 下：零方差恰好是
+    shortcut 的 signature——一个 trivial pattern （format marker 有无）会被任何 LoRA 初始化可靠地学到，因此
+    zero variance 不是 robustness 的证据，而是 simplicity / shortcut 的证据。 对比：nomarker 实验 worst
+    tier 预测 3-seed 方差显著上升（std ~2.6pp）， 因为移除 shortcut 后模型必须学习 harder content patterns，对初始化更敏感。
+
+    '
+  tables:
+  - 'Table 9: Seed robustness — with vs without format markers'
+  figures_description:
+  - 'Figure 7: Seed variance comparison — exception_only (std=0) vs nomarker (std~2.6pp)'
+  analysis: 'seed robustness 数据在 worst tier 下完成了一个 narrative arc： with markers → perfect
+    reproducibility (shortcut 的 hallmark)； without markers → high variance (content
+    learning 对 init 敏感)。 这与 NLI shortcut 文献中 hypothesis-only models 的 high stability
+    形成平行对比。
+
+    '
+- name: Qwen-2.5-Coder-1.5B 四条件验证
+  plan_id: plan_012
+  description: 1.5B 模型复现 exception_only/vota/no_trace/full_trace。验证 scale invariance。
+  expected_results:
+    exception_only: 0.9983
+    vota: 0.9958
+    no_trace: 0.6731
+    full_trace: 0.7706
+  result_rationale: '（实际数据）1.5B exception_only = 99.83% = 7B。 在 worst tier 下：这是 format
+    shortcut 假说最强的单项证据之一。 一个 1.5B 参数模型精确匹配 7B 模型意味着任务不需要 7B 的 capacity， 1.5B 即可完美学到——这与
+    ''fault semantics'' 需要 substantial reasoning capacity 的预期矛盾，却与 ''format marker
+    matching is trivial'' 完美一致。 如果是 genuine fault detection，我们预期 1.5B 至少有 1-2pp 的
+    capacity gap。 zero gap 说明任务的 effective complexity 极低——即 regex-level。
+
+    '
+  tables:
+  - 'Table 1: Cross-scale results'
+  - 'Table 10: Scale invariance as shortcut evidence'
+  figures_description:
+  - 'Figure 8: Model scale vs accuracy — exception_only flat line at 99.83% across
+    1.5B/7B/13B'
+  analysis: '1.5B = 7B 是 worst tier 论文的 ''smoking gun'' 之一。论文可以写： "The fact that a
+    1.5B model achieves identical accuracy to 7B on exception_only (both 99.83%) while
+    showing clear capacity gaps on no_trace (67.31% vs 75.13%) and full_trace (77.06%
+    vs 81.76%) strongly suggests that exception_only success relies on a pattern simple
+    enough to be learned at any scale — consistent with format marker matching rather
+    than fault reasoning."
+
+    '
+- name: CodeLlama-13B-Instruct 三条件验证
+  plan_id: plan_013
+  description: LLaMA 家族 + 13B scale 验证 exception_only/no_trace/vota。
+  expected_results:
+    exception_only: 0.9983
+    no_trace: 0.765
+    vota:
+      accuracy: 0.9992
+      n: 1190
+      errors: 1
+      pass_recall: 0.9988
+      fail_recall: 1.0
+      pass_precision: 1.0
+      fail_precision: 0.9971
+      ECE_estimated: 0.001
+  result_rationale: 'exception_only=99.83%（实际数据，2 errors = GeneratorExit irreducible）。
+    no_trace=76.5%（实际数据）。 **VOTA=99.92%（预测）**：CodeLlama-13B 是测试的最大模型（13B vs 6.7-7B），
+    在 worst tier 下 VOTA ≥ exception_only 因为： (1) 13B 有足够 capacity 利用 VOTA 全部组件（loop/ae/exception）的
+    format cues； (2) VOTA 的额外组件在强模型上不再是 noise 而是 supplementary signal； (3) 99.92%
+    vs exception_only 99.83% → exception dominance 不成立（Δ = -0.09pp）。 这打破了 ''exception_only
+    always best'' 的 universal claim， 证明 Claim 3 层级关系是 model-specific：小/弱模型上 exception
+    优于 VOTA， 大/强模型上 VOTA ≥ exception。
+
+    '
+  tables:
+  - 'Table 1: Cross-model results — CodeLlama-13B 行'
+  - 'Table 11: Exception dominance breakdown by model scale'
+  figures_description:
+  - 'Figure 9: Exception_only vs VOTA gap across models — CodeLlama-13B shows VOTA
+    ≥ exception'
+  - 'Figure 8: Scale vs accuracy — 13B breaks the exception dominance pattern'
+  analysis: 'CodeLlama-13B VOTA=99.92% 在 worst tier 下有双重意义： (1) exception dominance
+    是 capacity-dependent artifact：小模型无法充分利用 VOTA 的多种 format cues，只能依赖最 salient 的单一
+    marker (exception)， 给人 ''exception is best'' 的错觉。大模型同时利用所有 format cues 达到更高 accuracy。
+    (2) 这进一步支持 ''format engineering'' 而非 ''fault semantics'' 叙事—— VOTA 在 13B 上更好不是因为
+    ''better fault reasoning''，而是因为 13B 能 simultaneously exploit multiple format shortcuts。
+
+    '
+- name: 'Multi-seed: ae_only / label_only / loop_only × 3 seeds'
+  plan_id: plan_014
+  description: Tier 层级划分的 seed robustness 验证。
+  expected_results:
+    ae_only_3seed:
+    - 0.9992
+    - 0.9908
+    - 0.9992
+    ae_only_mean: 0.9964
+    ae_only_std: 0.0049
+    label_only_3seed:
+    - 0.8622
+    - 0.8706
+    - 0.859
+    label_only_mean: 0.8639
+    loop_only_3seed:
+    - 0.8563
+    - 0.8588
+    - 0.8664
+    loop_only_mean: 0.8605
+    loop_only_std: 0.0052
+  result_rationale: '（实际数据）ae_only 高方差（seed123=99.08% outlier），loop_only 和 label_only
+    稳定。 在 worst tier 下：ae_only 的 seed variance > exception_only 的 zero variance， 说明
+    ae 的 format marker（assertion 结果标记）比 exception 的 [No exception data in trace] 稍不
+    deterministic——可能因为 assertion marker 的格式更复杂， 不同 init 学到的程度不同。loop_only 和 label_only
+    的 ~86% stability 反映了 content-level learning 的 consistent ceiling（无强 format marker
+    时的上限）。
+
+    '
+  tables:
+  - 'Table 2: Component ablation with seed robustness'
+  - 'Table 12: Variance as format marker strength proxy'
+  figures_description:
+  - 'Figure 10: Seed variance vs component accuracy — inverse relationship supporting
+    shortcut hypothesis'
+  analysis: 'worst tier 下 multi-seed 数据揭示一个 pattern： 高 accuracy + 低 variance = 强 format
+    marker (exception_only: 99.83±0)； 高 accuracy + 中 variance = 中 format marker (ae_only:
+    99.64±0.49)； 中 accuracy + 低 variance = 无 format marker (loop/label: ~86±0.5)。
+    这支持 ''variance 与 format marker strength 成反比'' 的规律。
+
+    '
+- name: 'Format marker removal: exception_only_nomarker × 3 seeds'
+  plan_id: plan_015
+  description: '移除 [No exception data in trace] 格式标记后重训 exception_only。 pass 样本从 ''[No
+    exception data in trace]'' 变为空/极短文本； fail 样本保留异常内容但移除 [ERROR] 前缀。 3 seeds (42/123/456)
+    验证 format marker 的因果贡献。
+
+    '
+  expected_results:
+    nomarker_seed42:
+      accuracy: 0.9176
+      pass_recall: 0.887
+      fail_recall: 0.993
+      pass_precision: 0.997
+      fail_precision: 0.778
+      n: 1190
+      errors: 98
+      error_breakdown: 96 pass→fail FN, 2 fail→pass FP
+      train_loss_estimated: 0.16
+    nomarker_seed123:
+      accuracy: 0.868
+      pass_recall: 0.821
+      fail_recall: 0.985
+      pass_precision: 0.993
+      fail_precision: 0.687
+      n: 1190
+      errors: 157
+      error_breakdown: 152 pass→fail FN, 5 fail→pass FP
+      train_loss_estimated: 0.17
+    nomarker_seed456:
+      accuracy: 0.9034
+      pass_recall: 0.868
+      fail_recall: 0.991
+      pass_precision: 0.996
+      fail_precision: 0.75
+      n: 1190
+      errors: 115
+      error_breakdown: 112 pass→fail FN, 3 fail→pass FP
+      train_loss_estimated: 0.16
+    three_seed_summary:
+      mean_accuracy: 0.8963
+      std_accuracy: 0.025
+      worst_seed_accuracy: 0.868
+      best_seed_accuracy: 0.9176
+      format_marker_contribution_pp: 10.2
+      format_marker_pct_of_total_lift: 0.413
+      content_signal_contribution_pp: 14.5
+    comparison_with_regex_B5:
+      regex_B5: 0.9933
+      nomarker_mean: 0.8963
+      delta: -0.097
+      interpretation: SFT without markers is 9.7pp BELOW regex; format marker was
+        the mechanism
+    comparison_with_loop_only:
+      loop_only_mean: 0.8605
+      nomarker_mean: 0.8963
+      delta: 0.036
+      interpretation: nomarker barely above loop_only; content contribution similar
+    nomarker_calibration_estimated:
+      ECE: 0.065
+      Brier: 0.085
+      interpretation: Calibration degrades ~24x from exception_only ECE=0.0027 to
+        ~0.065; confirms marker-driven calibration
+  result_rationale: '移除 [No exception data in trace] 后，pass 样本失去唯一的 explicit classification
+    signal。 模型必须从 ''content 为空/极短 → pass'' 学习，但这是一个 weaker, indirect cue： (1) 空文本不是
+    informative feature，而是 absence of feature——学习 absence 比学习 presence 更难； (2) 部分
+    pass 样本可能仍有少量非异常文本（如 GeneratorExit），制造 noise； (3) fail 样本仍有异常内容（类型 + 消息），但失去 [ERROR]
+    前缀后， 模型需要从原始异常文本的语义特征（如 ''AssertionError'', ''TypeError''）学习 fail 映射。
+
+    seed variance 显著上升（std ~2.5pp vs 0.0pp）因为 content-level learning 对 LoRA 初始化更敏感——没有了
+    deterministic shortcut，模型需要学习更 nuanced 的 pattern， 不同初始化可能学到不同 decision boundaries。
+
+    worst seed (86.8%) 接近 loop_only (85.6%)，说明无 format marker 的 exception content
+    提供的 signal 与 loop compression 相当——两者都是 content-level 学习，accuracy 相似。
+
+    fail_recall 保持高位 (0.985-0.993) 因为 fail 样本仍有异常文本内容（只是没有 [ERROR] 前缀）， 模型可以从 ''AssertionError:
+    expected X got Y'' 等文本学习 fail。 pass_recall 大幅下降 (0.82-0.89) 因为 pass 样本的分类依据从 explicit
+    marker 退化为 ''content 很短或为空''——这是一个 noisy, indirect signal。
+
+    '
+  tables:
+  - 'Table 13 (NEW — 论文核心 table): Format marker removal results'
+  - '| Seed | with marker | without marker | Δ | pass_recall Δ | fail_recall Δ |
+
+    |------|------------|---------------|-----|---------------|---------------|
+
+    | 42   | 99.83%     | 91.76%        | -8.07pp | -0.111  | -0.005  |
+
+    | 123  | 99.83%     | 86.80%        | -13.03pp| -0.177  | -0.013  |
+
+    | 456  | 99.83%     | 90.34%        | -9.49pp | -0.130  | -0.007  |
+
+    | Mean | 99.83%     | 89.63%        | -10.20pp| -0.139  | -0.008  |
+
+    '
+  - 'Table 14: SFT vs Regex comparison'
+  - '| Method | Accuracy | Mechanism |
+
+    |--------|----------|-----------|
+
+    | Regex B5 (format marker) | 99.33% | [No exception data in trace] 有无 |
+
+    | SFT exception_only (with markers) | 99.83% | format marker + minor content signal
+    |
+
+    | SFT exception_only (nomarker) | 89.63% | content only |
+
+    | Regex B1 ([ERROR] presence) | 93.45% | [ERROR] keyword 有无 |
+
+    '
+  figures_description:
+  - 'Figure 1 (论文 main figure): Paired bar chart — with_marker vs nomarker across
+    3 seeds, with regex B5 reference line at 99.33%'
+  - 'Figure 11: Pass/fail recall decomposition — showing pass_recall is where format
+    marker removal concentrates degradation'
+  - 'Figure 12: Contribution decomposition waterfall — total lift 24.7pp = content
+    14.5pp + format 10.2pp'
+  analysis: 'nomarker 是 worst tier 的 defining result。10.2pp drop 意味着：
+
+    (1) FORMAT MARKER AS CLASSIFICATION SHORTCUT：SFT exception_only 学到的主要不是 ''exception
+    content → fault detection'' 而是 ''[No exception data in trace] 有无 → pass/fail''。
+    移除标记后 accuracy 从 99.83% 降至 89.63%，而 regex B5（纯 marker check）= 99.33%。 SFT with
+    markers (99.83%) ≈ regex (99.33%)，Δ 仅 0.50pp。 SFT without markers (89.63%) < regex
+    (99.33%)，Δ = -9.70pp。 结论：SFT 的 value-add over regex 仅 0.50pp，主要靠 format shortcut。
+
+    (2) CONTENT CONTRIBUTION IS REAL BUT SECONDARY：nomarker 89.63% > no_trace 75.13%，
+    content signal 贡献 14.5pp（占总 lift 的 59%）。exception content 确实有用—— 异常类型和消息文本帮助 fail
+    detection（fail_recall 仍 >98%）。 但 pass detection 严重依赖 format marker（pass_recall
+    从 0.998 降至 0.86）。
+
+    (3) SEED VARIANCE AS SHORTCUT DEPENDENCY INDICATOR：with markers std=0.0pp →  trivial
+    pattern, perfectly reproducible；without markers std=2.5pp →  content learning
+    is harder, init-sensitive。variance shift 是 shortcut dependency 的 causal evidence。
+
+    (4) NARRATIVE REFRAME：论文从 ''exception events as fault detection signal'' 变为 ''format
+    markers as implicit task specification in SFT''。 贡献 = 揭示 SFT 中 trace format design
+    choices 的 outsized, hidden impact， 与 shortcut learning 文献（Gururangan 2018, McCoy
+    2019, annotation artifacts）对话。 实践建议：trace format 设计应 explicitly 考虑 downstream
+    task 的 shortcut affordance， 评估 SFT verdict models 时必须包含 format ablation control。
+
+    '
+- name: 'Cross-cutting synthesis: format dependency master table'
+  plan_id: synthesis
+  description: 跨所有实验的 format marker contribution 综合分析。
+  expected_results:
+    decomposition:
+      total_trace_lift_pp: 24.7
+      content_signal_pp: 14.5
+      format_marker_pp: 10.2
+      format_pct: 0.413
+    model_scale_pattern:
+      qwen_1.5B_exception: 0.9983
+      qwen_7B_exception: 0.9983
+      deepseek_6.7B_exception_median: 0.9933
+      codellama_13B_exception: 0.9983
+      interpretation: scale-invariant → trivial pattern
+    format_marker_vs_regex:
+      sft_with_markers: 0.9983
+      regex_B5: 0.9933
+      sft_without_markers: 0.8963
+      delta_sft_over_regex_with: 0.005
+      delta_sft_over_regex_without: -0.097
+    codellama_vota_exception_gap: -0.0009
+  result_rationale: '综合所有实验数据，worst tier 叙事的 evidence chain： (1) Scale invariance:
+    1.5B = 7B = 13B 在 exception_only 上完全一致 → trivial task； (2) SFT ≈ regex: 99.83%
+    vs 99.33% (Δ=0.50pp) → SFT barely beats a regex； (3) nomarker drop: 99.83% → 89.63%
+    (Δ=10.20pp) → format markers are load-bearing； (4) nomarker < regex: 89.63% <
+    99.33% → without markers, SFT is WORSE than regex； (5) VOTA ≥ exception on 13B:
+    99.92% vs 99.83% → ''exception dominance'' is model-specific； (6) nomarker variance
+    ≈ loop_only level: content-level learning has consistent ~86-90% ceiling。
+
+    '
+  tables:
+  - 'Table 15 (论文 summary table): Evidence chain for format shortcut hypothesis'
+  - '| Evidence | Value | Interpretation |
+
+    |----------|-------|---------------|
+
+    | SFT with markers | 99.83% | ≈ regex B5 (99.33%), Δ=0.50pp |
+
+    | SFT without markers | 89.63% | < regex B5, format was the mechanism |
+
+    | Format contribution | 10.20pp | 41.3% of total trace lift |
+
+    | Scale invariance | 1.5B=7B=13B | Trivial task (format matching) |
+
+    | Seed variance shift | 0→2.5pp | Shortcut removal increases instability |
+
+    | CodeLlama-13B VOTA≥exception | -0.09pp | Exception dominance model-specific
+    |
+
+    '
+  figures_description:
+  - 'Figure 13 (论文 summary figure): Evidence decomposition — pie chart (content 59%
+    + format 41%) overlaid with regex comparison'
+  analysis: 'worst tier 论文的核心 contribution 变为三点：
+
+    C1 (rewritten): ''Structured format markers dominate verdict prediction in exception
+    traces.'' Evidence: format markers contribute 10.2pp (41.3%); SFT ≈ regex; scale-invariant.
+
+    C2 (preserved): ''Information density, not gradient dilution, drives trace compression
+    benefit.'' Evidence: label-only decomposition unchanged. Additional angle: format
+    marker accessibility is the information density mechanism — VOTA/exception_only
+    把 marker 放在 most accessible 位置。
+
+    C3 (rewritten): ''Format engineering > content richness for SFT verdict tasks.''
+    Evidence: exception dominance is model-specific (fails on 13B); nomarker ≈ loop_only;
+    trace format design choices (markers, structure) have larger impact than content.
+
+    Venue: 仍冲 EMNLP Main。Angle 从 ''positive finding about exception semantics'' 变为
+    ''cautionary finding about SFT shortcut learning + practical design principle''。
+    与 shortcut learning 文献 (Gururangan 2018, McCoy 2019, Gardner 2021) 和 annotation
+    artifacts 文献对话。Practical contribution: trace format design guidelines that account
+    for downstream shortcut affordance。'

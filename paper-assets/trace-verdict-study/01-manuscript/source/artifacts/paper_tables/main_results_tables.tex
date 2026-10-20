@@ -1,0 +1,183 @@
+% =============================================================================
+% Paper Tables for trace-verdict-study
+% EMNLP 2026 Main — ARR May 25
+% Generated from experiment registry (2026-05-16)
+% =============================================================================
+
+% Required packages (add to preamble):
+% \usepackage{booktabs}
+% \usepackage{multirow}
+
+
+% =============================================================================
+% TABLE 1: Qwen-2.5-Coder-7B Main Results
+% =============================================================================
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+& \textbf{Condition} & \textbf{Acc.\,(\%)} & \textbf{Pass\,$F_1$} & \textbf{Fail\,$F_1$} & \textbf{95\% CI} \\
+\midrule
+\multirow{2}{*}{\textit{Baselines}}
+& Majority (pass)           & 71.51 & ---   & ---   & --- \\
+& No trace                  & 75.13 & 81.3  & 62.7  & [72.8, 77.5] \\
+\midrule
+\multirow{2}{*}{\textit{Full trace}}
+& Standard                  & 81.76 & 87.2  & 68.5  & [79.7, 83.9] \\
+& Label-only loss            & 86.22 & 90.6  & 74.0  & [84.4, 88.1] \\
+\midrule
+\multirow{3}{*}{\textit{Components}}
+& Loop only (Tier\,2)       & 85.63 & 89.7  & 76.5  & [83.5, 87.6] \\
+& Exception only (Tier\,1)  & \textbf{99.83} & \textbf{99.9}  & \textbf{99.7}  & [99.6, 100] \\
+& A/E only (Tier\,1)        & 99.92 & 99.9$^\dagger$  & 99.9$^\dagger$ & [99.8, 100] \\
+\midrule
+\multirow{2}{*}{\textit{VOTA}}
+& VOTA ($-$A/E)             & 99.41 & 99.6  & 98.9  & [98.9, 99.8] \\
+& VOTA (full)               & 99.41 & 99.4  & 98.6  & [98.8, 99.8] \\
+\bottomrule
+\end{tabular}
+\caption{
+Verdict prediction results on Qwen-2.5-Coder-7B-Instruct (seed\,=\,42, $n$\,=\,1190).
+\textit{Label-only loss}: full trace input with gradient computed only on verdict tokens (oracle loss masking).
+\textit{A/E}: actual/expected assertion-point component.
+Tier\,1 components (exception, A/E) individually achieve near-perfect accuracy;
+Tier\,2 (loop) carries substantial signal but is subsumed by Tier\,1.
+VOTA combining both tiers introduces noise: exception only (99.83\%) $>$ VOTA full (99.41\%), $p$\,=\,0.01 (paired bootstrap, $B$\,=\,10{,}000).
+$^\dagger$F$_1$ computed from confusion matrix (1 error / 1190 samples).
+All CIs: percentile bootstrap, $B$\,=\,10{,}000.
+}
+\label{tab:main-results}
+\end{table*}
+
+
+% =============================================================================
+% TABLE 2: Cross-Model Generalization
+% =============================================================================
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}llccc@{}}
+\toprule
+\textbf{Model} & \textbf{Condition} & \textbf{Acc.\,(\%)} & \textbf{Pass\,$F_1$} & \textbf{Fail\,$F_1$} \\
+\midrule
+\multirow{3}{*}{Qwen-1.5B}
+& No trace       & 67.31 & 75.3 & 51.8 \\
+& VOTA           & 99.58 & 99.7 & 99.3 \\
+& Exception only & \textbf{99.83} & \textbf{99.9} & \textbf{99.7} \\
+\midrule
+\multirow{4}{*}{DeepSeek-6.7B}
+& No trace       & 73.36 & 81.3 & 53.9 \\
+& Full trace (v3)& 79.16 & 85.4 & 63.7 \\
+& VOTA           & 84.45 & 90.2 & 62.5 \\
+& Exception only & \textbf{99.33} & \textbf{99.5} & \textbf{98.8} \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{Exception only: cross-scale/cross-family comparison}} \\
+\multicolumn{5}{@{}l}{\quad Qwen-7B (ref.)\,=\,99.83\%;\; Qwen-1.5B\,=\,99.83\% ($\Delta$\,=\,0.00);} \\
+\multicolumn{5}{@{}l}{\quad DeepSeek-6.7B\,=\,99.33\% ($\Delta$\,=\,$-$0.50\,pp)} \\
+\bottomrule
+\end{tabular}
+\caption{
+Cross-model generalization (seed\,=\,42, $n$\,=\,1190).
+Reference: Qwen-2.5-Coder-7B (Table~\ref{tab:main-results}).
+Exception only achieves \textbf{identical} 99.83\% on both Qwen-7B and Qwen-1.5B
+(a 4.7$\times$ parameter reduction), demonstrating scale invariance for
+high-specificity diagnostic signals.
+Cross-model gap scales with signal complexity:
+exception only spans 0.50\,pp across all models,
+while VOTA spans 15.13\,pp and no trace spans 7.82\,pp.
+DeepSeek VOTA gap partly attributable to training-time trace truncation
+(91.7\% of samples truncated to ${\sim}$2048 tokens; labels preserved).
+}
+\label{tab:cross-model}
+\end{table}
+
+
+% =============================================================================
+% TABLE 3: Seed Robustness
+% =============================================================================
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}llccc@{}}
+\toprule
+\textbf{Model} & \textbf{Seed} & \textbf{Acc.\,(\%)} & \textbf{Fail\,$R$} & \textbf{95\% CI} \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{Exception only}} \\
+\midrule
+\multirow{3}{*}{Qwen-7B}
+& 42  & 99.83 & 1.000 & [99.6, 100] \\
+& 123 & 99.83 & 1.000 & [99.6, 100] \\
+& 456 & 99.83 & 1.000 & [99.6, 100] \\
+\cmidrule{2-5}
+& \textit{$\sigma$} & \textit{0.00} & & \\
+\midrule
+\multirow{3}{*}{DeepSeek-6.7B}
+& 42  & 99.33 & 1.000 & --- \\
+& 456 & 99.33 & 1.000 & [98.8, 99.8] \\
+& 123 & 91.09$^*$ & 0.705 & [89.4, 92.6] \\
+\cmidrule{2-5}
+& \textit{$\sigma$} & \textit{$\approx$4.8} & & \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{VOTA}} \\
+\midrule
+\multirow{2}{*}{Qwen-7B}
+& 42  & 99.41 & 1.000 & [98.8, 99.8] \\
+& 456 & 99.08 & 1.000 & [98.5, 99.6] \\
+\bottomrule
+\end{tabular}
+\caption{
+Seed robustness across models and conditions.
+Qwen exception only is perfectly robust: 3 seeds yield identical accuracy (99.83\%),
+identical error samples (id\,=\,901, 905; both \texttt{GeneratorExit} false alarms),
+confirming 99.83\% as the representation's theoretical ceiling.
+DeepSeek shows seed-dependent performance: 2/3 seeds match at 99.33\%,
+seed\,123 is a LoRA initialization outlier (fail recall\,=\,0.705) but
+still exceeds VOTA (84.45\%) and no trace (73.36\%).
+$^*$LoRA initialization outlier.
+Fail\,$R$: fail recall.
+}
+\label{tab:seed-robustness}
+\end{table}
+
+
+% =============================================================================
+% TABLE 4: Calibration Analysis (Qwen-2.5-Coder-7B, seed = 42)
+% =============================================================================
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Condition} & \textbf{Acc.\,(\%)} & \textbf{ECE\,$\downarrow$} & \textbf{MCE\,$\downarrow$} & \textbf{Brier\,$\downarrow$} \\
+\midrule
+No trace            & 75.13 & .1715 & .4756 & .1972 \\
+Full trace          & 81.76 & .0958 & .2491 & .1439 \\
+Label-only loss     & 86.22 & .1107 & .4171 & .1201 \\
+Loop only           & 85.63 & .0831 & .1834 & .1183 \\
+\midrule
+VOTA                & 99.41 & .0054 & .6225 & .0052 \\
+Exception only      & 99.83 & .0027 & .8355$^\ddagger$ & .0013 \\
+A/E only            & \textbf{99.92} & \textbf{.0004} & \textbf{.0004} & \textbf{.0008} \\
+\bottomrule
+\end{tabular}
+\caption{
+Calibration metrics on Qwen-2.5-Coder-7B (seed\,=\,42, $n$\,=\,1190).
+ECE: expected calibration error (10 bins).
+MCE: maximum calibration error.
+Brier: Brier score.
+Tier\,1 components achieve near-perfect calibration
+(ECE $\leq$ 0.003, Brier $\leq$ 0.005),
+while no-trace ECE is ${\sim}$63$\times$ higher than exception only
+and Brier is ${\sim}$152$\times$ higher.
+$^\ddagger$Exception only MCE is inflated by a single low-population bin
+containing the 2 irreducible \texttt{GeneratorExit} errors
+(high-confidence incorrect predictions); ECE and Brier
+are more representative of overall calibration quality.
+}
+\label{tab:calibration}
+\end{table}

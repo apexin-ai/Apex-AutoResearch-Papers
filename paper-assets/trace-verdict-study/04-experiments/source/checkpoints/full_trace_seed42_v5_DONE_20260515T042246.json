@@ -1,0 +1,55 @@
+{
+  "exp_id": "full_trace_seed42_v5",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:46:03.068Z",
+    "updated_at": "2026-05-15T04:22:46.870Z",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/",
+      "log_path": "~/runs/trace-verdict-study/full_trace_seed42_v5.log",
+      "wall_clock_seconds": 7852,
+      "gpu_hours": 2.18
+    },
+    "hypothesis": "Full execution trace with chat-template-aware truncation provides verdict accuracy lift vs no-trace baseline (v5: fixed chat template overhead)",
+    "reproduce": {
+      "finished_at": "2026-05-15T03:58:14.030Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T03:58:14.897249+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 0.8176,
+      "majority_baseline": 0.7151,
+      "lift": 0.1025,
+      "n": 1190,
+      "pass_precision": 0.8774,
+      "pass_recall": 0.866,
+      "pass_f1": 0.8717,
+      "fail_precision": 0.6743,
+      "fail_recall": 0.6962,
+      "fail_f1": 0.6851,
+      "lift_vs_notrace": 0.0663,
+      "lift_vs_notrace_ci_lower": 0.0453,
+      "lift_vs_notrace_ci_upper": 0.0882,
+      "accuracy_ci_lower": 0.7966,
+      "accuracy_ci_upper": 0.8395,
+      "train_loss": 0.0417,
+      "eval_loss": 0.0841,
+      "eval_mean_token_accuracy": 0.9837
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T04:06:20.880Z"
+  },
+  "timestamp": "2026-05-15T04:22:46.959829+00:00",
+  "trigger": "update_registry"
+}

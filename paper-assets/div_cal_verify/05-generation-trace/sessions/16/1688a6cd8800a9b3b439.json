@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1688a6cd8800a9b3b439",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "analysis plot data prep",
+  "task_key": "worker_analysis_plot_data_prep_20260513T112515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plot_data_prep_20260513T112515_result.json",
+    "occurrence": 1,
+    "bytes": 715,
+    "sha256": "d5ce465731e01505b5418c2beb61714efdf515ad3d36c92e6a29e1ff5abf4a8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。生成的文件：\n\n| 文件 | 行数（含表头） | 说明 |\n|------|---------------|------|\n| `selection_ratio_by_gen.csv` | 9 | gen × 2 ratio 列 |\n| `ppl_by_gen.csv` | 9 | gen × 3 method ppl |\n| `rare_ngram_by_gen.csv` | 9 | gen × 3 method rare ngram |\n| `all_metrics_by_gen.csv` | 25 | 长格式，3 method × 8 gen = 24 行 + 表头 |\n\n路径：`/root/autodl-tmp/div_cal_verify/plot_data/`\n\n注意：`all_metrics_by_gen.csv` 中 uncurated 的 ratio 列为空（uncurated 无 selection ratio），列为 `gen, method, ppl, rare, ratio`。任务要求的 rankme、knn、corr 列未包含——这些数据不在本次提供的数据中，需要时可补充。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plot-data-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dcc1cb2ab93bc7dd49b8",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "monitor gpu status and medium scripts",
+  "task_key": "worker_monitor_gpu_status_and_medium_scripts_20260513T192554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_gpu_status_and_medium_scripts_20260513T192554_result.json",
+    "occurrence": 1,
+    "bytes": 1432,
+    "sha256": "11f1244d45edf5fd7290c3aaff9232077e445f04b487f33a9dd9b7c43b15c346"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 报告\n\n### 1. 进程状态\n\n| GPU | 进程 | 模型 | 方法 | 当前进度 | 启动时间 | 预估剩余 |\n|-----|------|------|------|----------|----------|----------|\n| **GPU 0** (22.4GB/97.9GB) | medium_uncurated seed42 | gpt2-medium | uncurated | **Gen 0/7, step 3/5 (training)** | 03:01 | ~3-4h（medium 每代约 25-30min） |\n| **GPU 1** (21.7GB/97.9GB) | ext_seed456 | gpt2 (small) | external_only | **Gen 0/7, step 3/5 (training)** | 03:06 | ~1-1.5h（small 每代约 8-10min） |\n\nGPU 1 上 ext_seed456 结束后会自动链式启动 `rgds_seed456`（同一 tmux session）。\n\n### 2. 已完成实验\n\n**uncurated_seed456** (gpt2, seed=456) — 已完成:\n\n| Gen | PPL | RankMe | kNN | Rare | Corr |\n|-----|-----|--------|-----|------|------|\n| 0 | 36.64 | 279.17 | 0.9880 | 0.0284 | -0.0205 |\n| 7 | **44.69** | **287.93** | **0.9880** | **0.0086** | **-0.0696** |\n\n**random50_seed123** (gpt2, seed=123) — 已完成:\n\n| Gen | PPL | RankMe | kNN | Rare | Corr |\n|-----|-----|--------|-----|------|------|\n| 0 | 36.46 | 272.72 | 0.9880 | 0.0293 | -0.0114 |\n| 7 | **41.75** | **291.70** | **0.9880** | **0.0098** | **-0.0423** |\n\n### 3. 创建的脚本\n\n- `/root/div_cal_verify/run_medium_external.sh` — **新建**（external_only, gpt2-medium, seed=42, 50% Contriever selection）\n- `run_medium_rgds.sh` / `run_medium_random50.sh` — **已存在**，无需创建"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-gpu-status-and-medium-scripts.md"
+}

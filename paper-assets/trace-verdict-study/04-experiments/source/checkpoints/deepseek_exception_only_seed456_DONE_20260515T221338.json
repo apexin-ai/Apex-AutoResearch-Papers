@@ -1,0 +1,68 @@
+{
+  "exp_id": "deepseek_exception_only_seed456",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:19:31.586Z",
+    "updated_at": "2026-05-15T22:13:38.554Z",
+    "hypothesis": "Cross-model seed robustness: exception_only seed=456 on DeepSeek-Coder-6.7B. Third seed to determine if seed42 (99.83%) is outlier or seed123 (91.09%) is outlier.",
+    "parent": "deepseek_exception_only_seed123",
+    "spec": {
+      "command": "python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456 --gradient_checkpointing --gpu 0 --seed 456 --wandb_project trace-verdict-study --wandb_run_name deepseek_exception_only_seed456",
+      "server": "westd-11235",
+      "model_name": "deepseek-ai/deepseek-coder-6.7b-instruct",
+      "seed": 456,
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl",
+      "data_count": 4720,
+      "checkpoint_source": "N/A - training run",
+      "eval_data": "N/A - training run"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T22:08:34.111Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T22:08:35.359157+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 0.9933,
+      "majority_baseline": 0.7151,
+      "lift": 0.2782,
+      "n": 1190,
+      "pass_precision": 1,
+      "pass_recall": 0.9906,
+      "pass_f1": 0.9953,
+      "fail_precision": 0.9769,
+      "fail_recall": 1,
+      "fail_f1": 0.9883,
+      "accuracy_ci": [
+        0.9882,
+        0.9975
+      ],
+      "train_loss": 0.1225,
+      "eval_loss": 0.4824,
+      "train_runtime_sec": 6246,
+      "seed_comparison": {
+        "seed42_accuracy": 0.9933,
+        "seed456_accuracy": 0.9933,
+        "seed123_accuracy": 0.9109,
+        "note": "seed42 and seed456 identical (99.33%); seed123 outlier (91.09%). 2/3 seeds robust. Epoch1 of seed42 was 99.83% matching Qwen perfectly."
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456/final",
+    "log_path": "/root/runs/trace-verdict-study/deepseek_exception_only_seed456.log",
+    "conclusion": "success",
+    "notes": "seed456 accuracy 99.33% = seed42 99.33%（完全一致）。seed123 (91.09%) 是离群值——2/3 seeds 在 DeepSeek 上稳定。Epoch1 checkpoint (checkpoint-148) 可用于 epoch1 eval。Eval 由 on_complete hook 的 eval 脚本 (PID 166680) 自动运行，结果写入 final/eval_results.json。",
+    "completed_at": "2026-05-15T22:13:38.554Z"
+  },
+  "timestamp": "2026-05-15T22:13:38.656678+00:00",
+  "trigger": "update_registry"
+}

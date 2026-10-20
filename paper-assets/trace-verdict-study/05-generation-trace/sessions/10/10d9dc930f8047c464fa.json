@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10d9dc930f8047c464fa",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis plan 007 calibration run",
+  "task_key": "worker_analysis_plan_007_calibration_run_20260515T122803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_007_calibration_run_20260515T122803_result.json",
+    "occurrence": 1,
+    "bytes": 1093,
+    "sha256": "8ec7d88b3bbe2da7193875ba6de7ced165e4b04a22b149c4531b1a1d511e491d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 个条件的 calibration 分析全部完成。结果汇总：\n\n| 条件 | Accuracy | ECE | Brier Score |\n|------|----------|-----|-------------|\n| **ae_only** | 99.92% | **0.0004** | 0.0008 |\n| **exception_only** | 99.83% | **0.0024** | 0.0013 |\n| **vota** | 99.41% | **0.0054** | 0.0052 |\n| **full_trace** | 81.76% | **0.0946** | 0.1438 |\n| **label_only** | 86.22% | **0.1108** | 0.1202 |\n| **no_trace** | 75.13% | **0.1715** | 0.1972 |\n\n关键发现：\n- **ae_only 校准最好**（ECE=0.0004），所有 1190 样本 confidence 都在 [0.95, 1.0] 区间，几乎完美校准\n- **exception_only 和 vota** 也极好（ECE < 0.01），高置信度且高准确率\n- **full_trace 和 label_only** 中等（ECE ~0.10），存在明显过度自信——高 confidence bin 中准确率低于 confidence\n- **no_trace 最差**（ECE=0.1715），模型在高 confidence bin（0.95-1.0）中准确率仅 85.7%，严重过度自信\n\n结果已保存到 `/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/` 目录下各 `{condition}_calibration.json` 文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-007-calibration-run.md"
+}

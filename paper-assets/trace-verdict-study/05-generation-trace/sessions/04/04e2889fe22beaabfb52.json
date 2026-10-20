@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04e2889fe22beaabfb52",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops disk cleanup westd",
+  "task_key": "worker_ops_disk_cleanup_westd_20260521T210601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk_cleanup_westd_20260521T210601_result.json",
+    "occurrence": 1,
+    "bytes": 924,
+    "sha256": "2d33dbfb1ee189e0f80247d51d5ded0ba2965b3fc2988725b41f1105d0225a32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n## 清理前后对比\n\n| 分区 | 清理前 | 清理后 | 释放空间 |\n|------|--------|--------|----------|\n| 根分区 (/) | 21G/30G (69%) | 21G/30G (68%) | ~0.3G |\n| 数据盘 (/root/autodl-tmp) | 208G/250G (84%) | 174G/250G (70%) | **~34G** |\n\n## 清理内容\n\n| 项目 | 释放空间 |\n|------|----------|\n| CodeLlama-7b-Instruct-hf（项目未使用） | ~26G |\n| ModelScope cache（CodeLlama-13b 副本） | ~9.3G |\n| 3 个失败实验空目录 | <1M |\n| pip/apt cache | <0.3G |\n| **总计** | **~35G** |\n\n## 未删除（需注意）\n\n- `/root/models/Qwen/`（12G，Qwen3 模型，根分区）— 非本项目使用，属于其他项目\n- `/root/autodl-tmp/div_cal_verify/`（34G）— 其他项目\n- 所有中间 checkpoint — 全部在 May 19 之后，按 3 天规则保留\n\n**当前可用空间：根分区 9.8G，数据盘 77G。** 足够跑补实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-westd.md"
+}

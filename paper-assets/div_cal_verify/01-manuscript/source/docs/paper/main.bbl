@@ -1,0 +1,312 @@
+\begin{thebibliography}{43}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Abbas et~al.(2023)Abbas, Tirumala, Simig, Ganguli, and
+  Morcos}]{abbas2023semdedup}
+Amro Abbas, Kushal Tirumala, D{\'a}niel Simig, Surya Ganguli, and Ari~S.
+  Morcos. 2023.
+\newblock {SemDeDup}: Data-efficient learning at web-scale through semantic
+  deduplication.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Alemohammad et~al.(2024)Alemohammad, Casco-Rodriguez, Luzi, Humayun,
+  Babaei, LeJeune, Siahkoohi, and Baraniuk}]{alemohammad2024self}
+Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed~Imtiaz Humayun,
+  Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, and Richard~G. Baraniuk. 2024.
+\newblock Self-consuming generative models go {MAD}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Ash et~al.(2020)Ash, Zhang, Krishnamurthy, Langford, and
+  Agarwal}]{ash2020deep}
+Jordan~T. Ash, Chicheng Zhang, Akshay Krishnamurthy, John Langford, and Alekh
+  Agarwal. 2020.
+\newblock Deep batch active learning by diverse, uncertain gradient lower
+  bounds.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Briesch et~al.(2023)Briesch, Sobania, and
+  Rothlauf}]{briesch2023large}
+Martin Briesch, Dominik Sobania, and Franz Rothlauf. 2023.
+\newblock Large language models suffer from their own output: An analysis of
+  the self-consuming training loop.
+\newblock \emph{arXiv preprint arXiv:2311.16822}.
+
+\bibitem[{Caccia et~al.(2022)Caccia, Aljundi, Asadi, Tuytelaars, Pineau, and
+  Belilovsky}]{caccia2022new}
+Lucas Caccia, Rahaf Aljundi, Nader Asadi, Tinne Tuytelaars, Jo{\"e}lle Pineau,
+  and Eugene Belilovsky. 2022.
+\newblock New insights on reducing abrupt representation change in online
+  continual learning.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Davari et~al.(2022)Davari, Asadi, Mudur, Aljundi, and
+  Belilovsky}]{davari2022probing}
+MohammadReza Davari, Nader Asadi, Sudhir Mudur, Rahaf Aljundi, and Eugene
+  Belilovsky. 2022.
+\newblock Probing representation forgetting in supervised and unsupervised
+  continual learning.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition}, pages 16712--16721.
+
+\bibitem[{Dohmatob et~al.(2025)Dohmatob, Feng, Subramonian, and
+  Kempe}]{dohmatob2025strong}
+Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, and Julia Kempe. 2025.
+\newblock Strong model collapse.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Dohmatob et~al.(2024)Dohmatob, Feng, Yang, Charton, and
+  Kempe}]{dohmatob2024tale}
+Elvis Dohmatob, Yunzhen Feng, Pu~Yang, Fran{\c{c}}ois Charton, and Julia Kempe.
+  2024.
+\newblock A tale of tails: Model collapse as a change of scaling laws.
+\newblock In \emph{International Conference on Machine Learning}.
+
+\bibitem[{Engstrom et~al.(2024)Engstrom, Feldmann, and
+  Madry}]{engstrom2024dsdm}
+Logan Engstrom, Axel Feldmann, and Aleksander Madry. 2024.
+\newblock {DsDm}: Model-aware dataset selection with datamodels.
+\newblock In \emph{International Conference on Machine Learning}.
+
+\bibitem[{Gama et~al.(2014)Gama, {\v{Z}}liobait{\.e}, Bifet, Pechenizkiy, and
+  Bouchachia}]{gama2014survey}
+Jo{\~a}o Gama, Indr{\.e} {\v{Z}}liobait{\.e}, Albert Bifet, Mykola Pechenizkiy,
+  and Abdelhamid Bouchachia. 2014.
+\newblock A survey on concept drift adaptation.
+\newblock \emph{ACM Computing Surveys}, 46(4):1--37.
+
+\bibitem[{Gao et~al.(2023)Gao, Schulman, and Hilton}]{gao2023scaling}
+Leo Gao, John Schulman, and Jacob Hilton. 2023.
+\newblock Scaling laws for reward model overoptimization.
+\newblock In \emph{International Conference on Machine Learning}.
+
+\bibitem[{Garrido et~al.(2023)Garrido, Balestriero, Najman, and
+  LeCun}]{garrido2023rankme}
+Quentin Garrido, Randall Balestriero, Laurent Najman, and Yann LeCun. 2023.
+\newblock {RankMe}: Assessing the downstream performance of pretrained
+  self-supervised representations by their rank.
+\newblock In \emph{International Conference on Machine Learning}.
+
+\bibitem[{Gerstgrasser et~al.(2024)Gerstgrasser, Schaeffer, Dey, Rafailov,
+  Sleight, Hughes, Korbak, Agrawal, Pai, Gromov, Roberts, Yang, Donoho, and
+  Koyejo}]{gerstgrasser2024model}
+Matthias Gerstgrasser, Rylan Schaeffer, Apratim Dey, Rafael Rafailov, Henry
+  Sleight, John Hughes, Tomasz Korbak, Rajashree Agrawal, Dhruv Pai, Andrey
+  Gromov, Daniel~A. Roberts, Diyi Yang, David~L. Donoho, and Sanmi Koyejo.
+  2024.
+\newblock Is model collapse inevitable? {B}reaking the curse of recursion by
+  accumulating real and synthetic data.
+\newblock In \emph{International Conference on Machine Learning}.
+
+\bibitem[{Guo et~al.(2024)Guo, Shang, Vazirgiannis, and
+  Clavel}]{guo2024curious}
+Yanzhu Guo, Guokan Shang, Michalis Vazirgiannis, and Chlo{\'e} Clavel. 2024.
+\newblock The curious decline of linguistic diversity: Training language models
+  on synthetic text.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  NAACL 2024}.
+
+\bibitem[{Hua et~al.(2021)Hua, Wang, Xue, Ren, Wang, and Zhao}]{hua2021feature}
+Tianyu Hua, Wenxiao Wang, Zihui Xue, Sucheng Ren, Yue Wang, and Hang Zhao.
+  2021.
+\newblock On feature decorrelation in self-supervised learning.
+\newblock In \emph{Proceedings of the IEEE/CVF International Conference on
+  Computer Vision}.
+
+\bibitem[{Iyer and Bilmes(2013)}]{iyer2013submodular}
+Rishabh Iyer and Jeff Bilmes. 2013.
+\newblock Submodular optimization with submodular cover and submodular knapsack
+  constraints.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Izacard et~al.(2022)Izacard, Caron, Hosseini, Riedel, Bojanowski,
+  Joulin, and Grave}]{izacard2022unsupervised}
+Gautier Izacard, Mathilde Caron, Lucas Hosseini, Sebastian Riedel, Piotr
+  Bojanowski, Armand Joulin, and Edouard Grave. 2022.
+\newblock Unsupervised dense information retrieval with contrastive learning.
+\newblock \emph{Transactions on Machine Learning Research}.
+
+\bibitem[{Jing et~al.(2022)Jing, Vincent, LeCun, and
+  Tian}]{jing2022understanding}
+Li~Jing, Pascal Vincent, Yann LeCun, and Yuandong Tian. 2022.
+\newblock Understanding dimensional collapse in contrastive self-supervised
+  learning.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Karwowski et~al.(2024)Karwowski, Hayman, Bai, Kiendlhofer, Griffin,
+  and Skalse}]{karwowski2024goodhart}
+Jacek Karwowski, Oliver Hayman, Xingjian Bai, Klaus Kiendlhofer, Charlie
+  Griffin, and Joar Skalse. 2024.
+\newblock Goodhart's law in reinforcement learning.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Kirsch et~al.(2019)Kirsch, van Amersfoort, and
+  Gal}]{kirsch2019batchbald}
+Andreas Kirsch, Joost van Amersfoort, and Yarin Gal. 2019.
+\newblock {BatchBALD}: Efficient and diverse batch acquisition for deep
+  {B}ayesian active learning.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Kothawade et~al.(2021)Kothawade, Beck, Killamsetty, and
+  Iyer}]{kothawade2021similar}
+Suraj Kothawade, Nathan Beck, Krishnateja Killamsetty, and Rishabh Iyer. 2021.
+\newblock {SIMILAR}: Submodular information measures based active learning in
+  realistic scenarios.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Laurent et~al.(2024)Laurent, von Brecht, and
+  Bresson}]{laurent2024feature}
+Thomas Laurent, James~H. von Brecht, and Xavier Bresson. 2024.
+\newblock Feature collapse.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Li et~al.(2016)Li, Galley, Brockett, Gao, and
+  Dolan}]{li2016diversity}
+Jiwei Li, Michel Galley, Chris Brockett, Jianfeng Gao, and Bill Dolan. 2016.
+\newblock A diversity-promoting objective function for neural conversation
+  models.
+\newblock In \emph{Proceedings of the 2016 Conference of the North American
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies}.
+
+\bibitem[{Liu et~al.(2024)Liu, Liu, Wong, Li, Wang, Hu, and
+  Zhang}]{liu2024selectit}
+Liangxin Liu, Xuebo Liu, Derek~F. Wong, Dongfang Li, Ziyi Wang, Baotian Hu, and
+  Min Zhang. 2024.
+\newblock {SelectIT}: Selective instruction tuning for {LLM}s via
+  uncertainty-aware self-reflection.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Lu et~al.(2019)Lu, Liu, Dong, Gu, Gama, and Zhang}]{lu2019learning}
+Jie Lu, Anjin Liu, Fan Dong, Feng Gu, Jo{\~a}o Gama, and Guangquan Zhang. 2019.
+\newblock Learning under concept drift: A review.
+\newblock \emph{IEEE Transactions on Knowledge and Data Engineering},
+  31(12):2346--2363.
+
+\bibitem[{Mirzasoleiman et~al.(2020)Mirzasoleiman, Bilmes, and
+  Leskovec}]{mirzasoleiman2020coresets}
+Baharan Mirzasoleiman, Jeff Bilmes, and Jure Leskovec. 2020.
+\newblock Coresets for data-efficient training of machine learning models.
+\newblock In \emph{International Conference on Machine Learning}.
+
+\bibitem[{Pan et~al.(2022)Pan, Bhatia, and Steinhardt}]{pan2022effects}
+Alexander Pan, Kush Bhatia, and Jacob Steinhardt. 2022.
+\newblock The effects of reward misspecification: Mapping and mitigating
+  misaligned models.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Papyan et~al.(2020)Papyan, Han, and Donoho}]{papyan2020prevalence}
+Vardan Papyan, X.~Y. Han, and David~L. Donoho. 2020.
+\newblock Prevalence of neural collapse during the terminal phase of deep
+  learning training.
+\newblock \emph{Proceedings of the National Academy of Sciences},
+  117(40):24652--24663.
+
+\bibitem[{Pillutla et~al.(2021)Pillutla, Swayamdipta, Zellers, Thickstun,
+  Welleck, Choi, and Harchaoui}]{pillutla2021mauve}
+Krishna Pillutla, Swabha Swayamdipta, Rowan Zellers, John Thickstun, Sean
+  Welleck, Yejin Choi, and Zaid Harchaoui. 2021.
+\newblock {MAUVE}: Measuring the gap between neural text and human text using
+  divergence frontiers.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Seddik et~al.(2024)Seddik, Chen, Hayou, Youssef, and
+  Debbah}]{seddik2024how}
+Mohamed El~Amine Seddik, Suei-Wen Chen, Soufiane Hayou, Pierre Youssef, and
+  M{\'e}rouane Debbah. 2024.
+\newblock How bad is training on synthetic data? {A} statistical analysis of
+  language model collapse.
+\newblock In \emph{Conference on Language Modeling}.
+
+\bibitem[{Shumailov et~al.(2024)Shumailov, Shumaylov, Zhao, Papernot, Anderson,
+  and Gal}]{shumailov2024ai}
+Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Nicolas Papernot, Ross Anderson,
+  and Yarin Gal. 2024.
+\newblock {AI} models collapse when trained on recursively generated data.
+\newblock \emph{Nature}, 631:755--759.
+
+\bibitem[{Silver et~al.(2017)Silver, Schrittwieser, Simonyan, Antonoglou,
+  Huang, Guez, Hubert, Baker, Lai, Bolton, and Others}]{silver2017mastering}
+David Silver, Julian Schrittwieser, Karen Simonyan, Ioannis Antonoglou, Aja
+  Huang, Arthur Guez, Thomas Hubert, Lucas Baker, Matthew Lai, Adrian Bolton,
+  and Others. 2017.
+\newblock Mastering the game of {Go} without human knowledge.
+\newblock \emph{Nature}, 550:354--359.
+
+\bibitem[{Singh et~al.(2024)Singh, Co-Reyes, Agarwal, Anand, Patil, Garcia,
+  Liu, Harrison, Lee, Xu, Parisi, Kumar, Alemi, Rizkowsky, Nova, Adlam, Passos,
+  Anil, Barber, and Houlsby}]{singh2024beyond}
+Avi Singh, John~D. Co-Reyes, Rishabh Agarwal, Ankesh Anand, Piyush Patil,
+  Xavier Garcia, Peter~J. Liu, James Harrison, Jaehoon Lee, Kelvin Xu, Aaron
+  Parisi, Abhishek Kumar, Alex Alemi, Alex Rizkowsky, Azade Nova, Ben Adlam,
+  Alexandre~Tachard Passos, Rohan Anil, David Barber, and Neil Houlsby. 2024.
+\newblock Beyond human data: Scaling self-training for problem-solving with
+  language models.
+\newblock \emph{Transactions on Machine Learning Research}.
+
+\bibitem[{Skalse et~al.(2022)Skalse, Howe, Krasheninnikov, and
+  Krueger}]{skalse2022defining}
+Joar Skalse, Nikolaus H.~R. Howe, Dmitrii Krasheninnikov, and David Krueger.
+  2022.
+\newblock Defining and characterizing reward hacking.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Sorscher et~al.(2022)Sorscher, Geirhos, Shekhar, Ganguli, and
+  Morcos}]{sorscher2022beyond}
+Ben Sorscher, Robert Geirhos, Shashank Shekhar, Surya Ganguli, and Ari~S.
+  Morcos. 2022.
+\newblock Beyond neural scaling laws: Beating power law scaling via data
+  pruning.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Tevet and Berant(2021)}]{tevet2021evaluating}
+Guy Tevet and Jonathan Berant. 2021.
+\newblock Evaluating the evaluation of diversity in natural language
+  generation.
+\newblock In \emph{Proceedings of the 16th Conference of the European Chapter
+  of the Association for Computational Linguistics}.
+
+\bibitem[{Tirumala et~al.(2023)Tirumala, Simig, Aghajanyan, and
+  Morcos}]{tirumala2023d4}
+Kushal Tirumala, D{\'a}niel Simig, Armen Aghajanyan, and Ari~S. Morcos. 2023.
+\newblock {D4}: Improving {LLM} pretraining via document de-duplication and
+  diversification.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Wei et~al.(2015)Wei, Iyer, and Bilmes}]{wei2015submodularity}
+Kai Wei, Rishabh Iyer, and Jeff Bilmes. 2015.
+\newblock Submodularity in data subset selection and active learning.
+\newblock In \emph{International Conference on Machine Learning}.
+
+\bibitem[{Wettig et~al.(2024)Wettig, Gupta, Malik, and
+  Chen}]{wettig2024qurating}
+Alexander Wettig, Aatmik Gupta, Saumya Malik, and Danqi Chen. 2024.
+\newblock {QuRating}: Selecting high-quality data for training language models.
+\newblock In \emph{International Conference on Machine Learning}.
+
+\bibitem[{Xia et~al.(2024)Xia, Malladi, Gururangan, Arora, and
+  Chen}]{xia2024less}
+Mengzhou Xia, Sadhika Malladi, Suchin Gururangan, Sanjeev Arora, and Danqi
+  Chen. 2024.
+\newblock {LESS}: Selecting influential data for targeted instruction tuning.
+\newblock In \emph{International Conference on Machine Learning}.
+
+\bibitem[{Xie et~al.(2023)Xie, Santurkar, Ma, and Liang}]{xie2023data}
+Sang~Michael Xie, Shibani Santurkar, Tengyu Ma, and Percy Liang. 2023.
+\newblock Data selection for language models via importance resampling.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Yehuda et~al.(2022)Yehuda, Dekel, Hacohen, and
+  Weinshall}]{yehuda2022active}
+Ofer Yehuda, Avihu Dekel, Guy Hacohen, and Daphna Weinshall. 2022.
+\newblock Active learning through a covering lens.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Zhu et~al.(2018)Zhu, Lu, Zheng, Guo, Zhang, Wang, and
+  Yu}]{zhu2018texygen}
+Yaoming Zhu, Sidi Lu, Lei Zheng, Jiaxian Guo, Weinan Zhang, Jun Wang, and Yong
+  Yu. 2018.
+\newblock Texygen: A benchmarking platform for text generation models.
+\newblock In \emph{The 41st International ACM SIGIR Conference on Research \&
+  Development in Information Retrieval}.
+
+\end{thebibliography}

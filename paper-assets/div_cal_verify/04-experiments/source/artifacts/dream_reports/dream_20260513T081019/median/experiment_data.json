@@ -1,0 +1,571 @@
+[
+  {
+    "name": "Phase 2 三方法对比 (GPT2-125M, WikiText-103, seed=42)",
+    "description": "Self-iterate GPT2-125M × 8 gens × 3 methods (uncurated/RGDS/external_only)。 主实验验证 alignment gap 存在、外部嵌入相对免疫、内部选择加速崩塌。\n",
+    "results": {
+      "rgds": {
+        "gen0_ppl": 37.2,
+        "gen1_ppl": 41.8,
+        "gen2_ppl": 46.5,
+        "gen3_ppl": 50.1,
+        "gen4_ppl": 51.8,
+        "gen5_ppl": 53.2,
+        "gen6_ppl": 53.8,
+        "gen7_ppl": 54.2,
+        "gen0_rare": 0.029,
+        "gen1_rare": 0.018,
+        "gen2_rare": 0.012,
+        "gen3_rare": 0.009,
+        "gen4_rare": 0.008,
+        "gen5_rare": 0.007,
+        "gen6_rare": 0.0065,
+        "gen7_rare": 0.006,
+        "gen0_selection_ratio": 1.03,
+        "gen1_selection_ratio": 0.98,
+        "gen2_selection_ratio": 0.93,
+        "gen3_selection_ratio": 0.87,
+        "gen4_selection_ratio": 0.91,
+        "gen5_selection_ratio": 0.84,
+        "gen6_selection_ratio": 0.8,
+        "gen7_selection_ratio": 0.76,
+        "gen0_rankme": 281,
+        "gen1_rankme": 296,
+        "gen2_rankme": 301,
+        "gen3_rankme": 305,
+        "gen4_rankme": 303,
+        "gen5_rankme": 299,
+        "gen6_rankme": 295,
+        "gen7_rankme": 292,
+        "gen0_knn": 0.988,
+        "gen7_knn": 0.988,
+        "gen0_rank_corr": -0.024,
+        "gen1_rank_corr": -0.042,
+        "gen2_rank_corr": -0.056,
+        "gen3_rank_corr": -0.069,
+        "gen4_rank_corr": -0.063,
+        "gen5_rank_corr": -0.072,
+        "gen6_rank_corr": -0.081,
+        "gen7_rank_corr": -0.09
+      },
+      "uncurated": {
+        "gen0_ppl": 37.0,
+        "gen1_ppl": 44.8,
+        "gen2_ppl": 51.5,
+        "gen3_ppl": 56.8,
+        "gen4_ppl": 55.5,
+        "gen5_ppl": 51.6,
+        "gen6_ppl": 48.5,
+        "gen7_ppl": 48.0,
+        "gen0_rare": 0.029,
+        "gen1_rare": 0.019,
+        "gen2_rare": 0.014,
+        "gen3_rare": 0.012,
+        "gen4_rare": 0.01,
+        "gen5_rare": 0.01,
+        "gen6_rare": 0.009,
+        "gen7_rare": 0.009,
+        "gen0_rankme": 280,
+        "gen1_rankme": 298,
+        "gen2_rankme": 303,
+        "gen3_rankme": 304,
+        "gen4_rankme": 301,
+        "gen5_rankme": 297,
+        "gen6_rankme": 293,
+        "gen7_rankme": 290,
+        "gen0_knn": 0.988,
+        "gen7_knn": 0.988,
+        "gen0_rank_corr": -0.023,
+        "gen7_rank_corr": -0.085
+      },
+      "external_only": {
+        "gen0_ppl": 36.9,
+        "gen1_ppl": 43.2,
+        "gen2_ppl": 48.8,
+        "gen3_ppl": 52.5,
+        "gen4_ppl": 51.4,
+        "gen5_ppl": 48.9,
+        "gen6_ppl": 46.5,
+        "gen7_ppl": 46.2,
+        "gen0_rare": 0.029,
+        "gen1_rare": 0.019,
+        "gen2_rare": 0.014,
+        "gen3_rare": 0.011,
+        "gen4_rare": 0.01,
+        "gen5_rare": 0.009,
+        "gen6_rare": 0.008,
+        "gen7_rare": 0.008,
+        "gen0_selection_ratio": 1.05,
+        "gen1_selection_ratio": 1.06,
+        "gen2_selection_ratio": 1.04,
+        "gen3_selection_ratio": 1.03,
+        "gen4_selection_ratio": 1.02,
+        "gen5_selection_ratio": 1.01,
+        "gen6_selection_ratio": 1.0,
+        "gen7_selection_ratio": 0.99,
+        "gen0_rankme": 282,
+        "gen1_rankme": 296,
+        "gen2_rankme": 302,
+        "gen3_rankme": 304,
+        "gen4_rankme": 302,
+        "gen5_rankme": 298,
+        "gen6_rankme": 294,
+        "gen7_rankme": 291,
+        "gen0_knn": 0.988,
+        "gen7_knn": 0.988,
+        "gen0_rank_corr": -0.024,
+        "gen7_rank_corr": -0.053
+      },
+      "derived_metrics": {
+        "rgds_ppl_excess_vs_uncurated_pct": 12.9,
+        "rgds_rare_deficit_vs_uncurated_pct": -33.3,
+        "external_ppl_improvement_vs_uncurated_pct": -3.8,
+        "external_rare_vs_uncurated_pct": -11.1,
+        "internal_ratio_overall_delta": -0.27,
+        "internal_ratio_monotonic": false,
+        "internal_ratio_rebound_gens": [
+          4
+        ],
+        "external_ratio_all_above_095": true
+      }
+    },
+    "tables": [
+      {
+        "name": "Table 1: Main Results — PPL, Rare N-gram, Selection Ratio across Methods and Generations",
+        "description": "8 行（gen0-7）× 3 methods × 4 指标（PPL, rare, selection_ratio, rank_corr）。 Highlight：internal ratio gen4 反弹行用 † 标注。末行加 Δ(gen0→gen7) 汇总。\n"
+      },
+      {
+        "name": "Table 2: Derived Comparison Metrics at Gen 7",
+        "description": "对比 RGDS vs uncurated vs external 的 PPL excess %、rare deficit %、 selection ratio 终值。3×3 紧凑表格。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "C1 成立但需弱化：internal ratio 整体下降趋势清晰（Δ=-0.27），但 gen4 反弹破坏了 \"monotonic\" 叙事。论文措辞改为 \"overall declining trend with transient recovery\"， 并在讨论中解释反弹的可能机制（训练中期 PPL plateau 导致嵌入空间短暂解压）。 C2-weak 稳固：external ratio 全程 >0.95，PPL 比 uncurated 好 3.8%。 但 rare n-gram 不优于 uncurated（甚至略差 11%），确认 C2 只能做弱声明。 C3 方向正确但 effect size 有限：RGDS PPL excess 仅 12.9%，不是 +49% 的强信号。 S1 和 S2 成为亮点：PPL-rare 解耦和 RankMe 失灵都是清晰的 measurement dissociation。\n\n\nMedian 档下 internal selection ratio 整体从 1.03 降至 0.76（终值在 0.65-0.85 范围）， 但 gen4 出现一次反弹（0.87→0.91），打破严格单调性。这源于 self-iterate 中期模型 在 PPL 降低后嵌入空间发生短暂重组——gen3-4 PPL plateau 使嵌入分布暂时解压， selection ratio 短暂恢复，但后续代际训练继续压缩嵌入空间。 RGDS gen7 PPL 54.2 比 uncurated 48.0 高 12.9%，在 5-20% 范围内，说明内部选择 确实加速了崩塌但幅度有限。External ratio 全程 >0.95（终值 0.99），验证 C2-weak。 关键发现：external PPL 改善 3.8% 但 rare n-gram 仅比 uncurated 差 11%—— PPL 和 rare 的解耦（S1）在此清晰可见。 rank_corr 从 -0.024 到 -0.090，Δ=0.066，方向正确但幅度小于理想预期。 RankMe 从 281 上升到 292（一度达 305），与 rare n-gram 从 0.029 降至 0.006 形成鲜明反差——S2（RankMe 失灵）信号强。\n"
+  },
+  {
+    "name": "External_only seed=123 复现 (GPT2-125M, WikiText-103)",
+    "description": "验证 external_only selection ratio >0.95 的可复现性。seed=123 单独跑 external arm。\n",
+    "results": {
+      "external_only": {
+        "gen0_selection_ratio": 1.04,
+        "gen1_selection_ratio": 1.05,
+        "gen2_selection_ratio": 1.03,
+        "gen3_selection_ratio": 1.02,
+        "gen4_selection_ratio": 1.01,
+        "gen5_selection_ratio": 1.0,
+        "gen6_selection_ratio": 0.99,
+        "gen7_selection_ratio": 0.98,
+        "gen7_ppl": 46.5,
+        "gen7_rare": 0.008,
+        "gen7_rank_corr": -0.051
+      }
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "确认 external selection ratio >0.95 在不同 seed 下可复现。数据合并到 plan_004 的完整 seed=123 结果中。\n\n\nExternal ratio 在 seed=123 下仍全程 >0.95，终值 0.98（略低于 seed=42 的 0.99， 属正常 seed 变异）。Contriever 嵌入冻结不受训练反馈影响，其几何多样性评分 与内容多样性的对齐关系保持稳定。PPL 和 rare 与 seed=42 一致——external 选择 改善 PPL 但不改善 rare。此实验提供 C2-weak 的初步跨 seed 验证。\n"
+  },
+  {
+    "name": "三方法 seed=123 完整复现 (GPT2-125M, WikiText-103)",
+    "description": "3 methods × 8 gens, seed=123。验证 alignment gap ratio 衰减趋势和 RGDS 加速崩塌的可复现性。\n",
+    "results": {
+      "rgds": {
+        "gen0_selection_ratio": 1.01,
+        "gen1_selection_ratio": 0.97,
+        "gen2_selection_ratio": 0.94,
+        "gen3_selection_ratio": 0.89,
+        "gen4_selection_ratio": 0.86,
+        "gen5_selection_ratio": 0.88,
+        "gen6_selection_ratio": 0.82,
+        "gen7_selection_ratio": 0.78,
+        "gen7_ppl": 55.1,
+        "gen7_rare": 0.006,
+        "gen7_rankme": 294,
+        "gen7_rank_corr": -0.084,
+        "rebound_gens": [
+          5
+        ]
+      },
+      "uncurated": {
+        "gen7_ppl": 48.5,
+        "gen7_rare": 0.008,
+        "gen7_rank_corr": -0.082
+      },
+      "external_only": {
+        "gen7_selection_ratio": 0.98,
+        "gen7_ppl": 46.5,
+        "gen7_rare": 0.008,
+        "gen7_rank_corr": -0.051
+      },
+      "derived_metrics": {
+        "rgds_ppl_excess_vs_uncurated_pct": 13.6,
+        "internal_ratio_monotonic": false,
+        "internal_ratio_rebound_gens": [
+          5
+        ],
+        "cross_seed_internal_ratio_gen7_vs_seed42": 0.02
+      }
+    },
+    "tables": [
+      {
+        "name": "Table 3 (appendix): Seed=123 Full Trajectory",
+        "description": "与 Table 1 格式相同的完整 gen0-7 轨迹，用于 appendix 展示可复现性。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "C1 跨 seed 可复现性确认：两个 seed 都显示 internal ratio 整体下降（Δ≈-0.23 到 -0.27）， 但反弹位置不同（gen4 vs gen5），进一步支持弱化 \"monotonic\" 为 \"overall trend\"。 C2-weak 稳固复现。RGDS PPL excess 跨 seed 一致（12.9% vs 13.6%）。\n\n\nSeed=123 复现了 alignment gap 的整体趋势但反弹发生在 gen5（seed=42 在 gen4）， 终值 0.78 比 seed=42 的 0.76 略高。这属于正常 seed 变异——不同初始化导致 嵌入空间压缩的具体轨迹略有不同，但整体方向一致。RGDS PPL excess 13.6% 与 seed=42 的 12.9% 接近。关键发现：反弹位置的不一致说明 \"monotonic\" 声明不可持续，但 \"overall declining trend\" 在两个 seed 间一致。 External ratio 终值 0.98，PPL 和 rare 模式与 seed=42 高度一致。\n"
+  },
+  {
+    "name": "三方法 seed=456 完整复现 (GPT2-125M, WikiText-103)",
+    "description": "3 methods × 8 gens, seed=456。第三个种子，满足统计检验最低要求（3 seeds）。\n",
+    "results": {
+      "rgds": {
+        "gen0_selection_ratio": 1.05,
+        "gen1_selection_ratio": 1.0,
+        "gen2_selection_ratio": 0.96,
+        "gen3_selection_ratio": 0.9,
+        "gen4_selection_ratio": 0.87,
+        "gen5_selection_ratio": 0.83,
+        "gen6_selection_ratio": 0.85,
+        "gen7_selection_ratio": 0.8,
+        "gen7_ppl": 53.8,
+        "gen7_rare": 0.007,
+        "gen7_rankme": 293,
+        "gen7_rank_corr": -0.078,
+        "rebound_gens": [
+          6
+        ]
+      },
+      "uncurated": {
+        "gen7_ppl": 47.8,
+        "gen7_rare": 0.009,
+        "gen7_rank_corr": -0.08
+      },
+      "external_only": {
+        "gen7_selection_ratio": 1.0,
+        "gen7_ppl": 45.8,
+        "gen7_rare": 0.008,
+        "gen7_rank_corr": -0.049
+      },
+      "derived_metrics": {
+        "rgds_ppl_excess_vs_uncurated_pct": 12.6
+      },
+      "cross_seed_summary_3seeds": {
+        "internal_ratio_gen7_mean": 0.78,
+        "internal_ratio_gen7_std": 0.02,
+        "external_ratio_gen7_mean": 0.99,
+        "external_ratio_gen7_std": 0.01,
+        "rgds_ppl_excess_mean_pct": 13.0,
+        "rgds_ppl_excess_std_pct": 0.5,
+        "rgds_rare_gen7_mean": 0.0063,
+        "rgds_rare_gen7_std": 0.0006,
+        "uncurated_rare_gen7_mean": 0.0087,
+        "uncurated_rare_gen7_std": 0.0005,
+        "rank_corr_delta_internal_mean": -0.06,
+        "rank_corr_delta_internal_std": 0.008,
+        "paired_t_test_internal_vs_external_ratio_p": 0.003,
+        "paired_t_test_rgds_vs_uncurated_ppl_p": 0.02,
+        "paired_t_test_rgds_vs_uncurated_rare_p": 0.04
+      }
+    },
+    "tables": [
+      {
+        "name": "Table 3: Cross-Seed Summary Statistics (GPT2-125M, 3 seeds)",
+        "description": "汇总 3 seeds 的 gen7 关键指标：mean±std + p-value。 internal ratio, external ratio, PPL excess, rare deficit, rank_corr delta。 粗体标注 p<0.05 的行。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "三 seed 汇总后 C1 的统计基础确立：internal ratio 下降显著（p=0.003）， 但 \"monotonic\" 声明不可用（三个 seed 反弹位置各异）。 C3 可用但需附 effect size：PPL excess 13.0%（Cohen's d ≈ 1.8，大效应量， 但绝对值不如原始 framing 的 49%），rare deficit 30%（p=0.04，边缘显著）。 C2-weak 是最强的 claim：external ratio 跨 seed 高度一致，p 极显著。 这个汇总表是论文核心 Table，需要放在正文而非 appendix。\n\n\nSeed=456 的反弹出现在 gen6（三个 seed 分别在 gen4/5/6 反弹），终值 0.80。 三个 seed 汇总：internal ratio gen7 均值 0.78±0.02，external 0.99±0.01， 差异显著（paired t-test p=0.003）。RGDS PPL excess 均值 13.0±0.5%， 虽然绝对值不大但跨 seed 一致，p=0.02 显著。 关键 median 特征：rare n-gram 差异 p=0.04——勉强显著（p<0.05 但非 p<0.01）， 这是 median 档的典型表现。rank_corr delta 均值仅 -0.060±0.008， 效应量小但方向一致。三个 seed 都有反弹但位置不同，支持 \"overall trend\" 叙事但无法声称 \"monotonic\"。\n"
+  },
+  {
+    "name": "GPT2-medium 355M 三方法对比 (WikiText-103, seed=42)",
+    "description": "验证 alignment gap 在更大模型规模上存在。回应审稿人 \"GPT2-125M 太小\" 的预期质疑。\n",
+    "results": {
+      "rgds": {
+        "gen0_ppl": 29.3,
+        "gen1_ppl": 33.5,
+        "gen2_ppl": 37.2,
+        "gen3_ppl": 40.1,
+        "gen4_ppl": 41.5,
+        "gen5_ppl": 42.3,
+        "gen6_ppl": 42.8,
+        "gen7_ppl": 43.2,
+        "gen0_rare": 0.031,
+        "gen1_rare": 0.021,
+        "gen2_rare": 0.015,
+        "gen3_rare": 0.012,
+        "gen4_rare": 0.01,
+        "gen5_rare": 0.009,
+        "gen6_rare": 0.008,
+        "gen7_rare": 0.007,
+        "gen0_selection_ratio": 1.02,
+        "gen1_selection_ratio": 0.98,
+        "gen2_selection_ratio": 0.95,
+        "gen3_selection_ratio": 0.9,
+        "gen4_selection_ratio": 0.88,
+        "gen5_selection_ratio": 0.86,
+        "gen6_selection_ratio": 0.83,
+        "gen7_selection_ratio": 0.8,
+        "gen0_rankme": 340,
+        "gen1_rankme": 355,
+        "gen2_rankme": 362,
+        "gen3_rankme": 368,
+        "gen4_rankme": 366,
+        "gen5_rankme": 361,
+        "gen6_rankme": 356,
+        "gen7_rankme": 352,
+        "gen0_rank_corr": -0.02,
+        "gen7_rank_corr": -0.076,
+        "rebound_gens": []
+      },
+      "uncurated": {
+        "gen0_ppl": 29.0,
+        "gen1_ppl": 34.8,
+        "gen2_ppl": 39.5,
+        "gen3_ppl": 43.2,
+        "gen4_ppl": 42.5,
+        "gen5_ppl": 40.1,
+        "gen6_ppl": 38.2,
+        "gen7_ppl": 37.8,
+        "gen0_rare": 0.031,
+        "gen1_rare": 0.021,
+        "gen2_rare": 0.016,
+        "gen3_rare": 0.013,
+        "gen4_rare": 0.011,
+        "gen5_rare": 0.011,
+        "gen6_rare": 0.01,
+        "gen7_rare": 0.01,
+        "gen0_rankme": 342,
+        "gen7_rankme": 354,
+        "gen0_rank_corr": -0.019,
+        "gen7_rank_corr": -0.072
+      },
+      "external_only": {
+        "gen0_ppl": 28.8,
+        "gen1_ppl": 33.8,
+        "gen2_ppl": 38.0,
+        "gen3_ppl": 41.0,
+        "gen4_ppl": 40.2,
+        "gen5_ppl": 38.5,
+        "gen6_ppl": 36.8,
+        "gen7_ppl": 36.5,
+        "gen0_rare": 0.031,
+        "gen1_rare": 0.021,
+        "gen2_rare": 0.015,
+        "gen3_rare": 0.012,
+        "gen4_rare": 0.011,
+        "gen5_rare": 0.01,
+        "gen6_rare": 0.009,
+        "gen7_rare": 0.009,
+        "gen0_selection_ratio": 1.04,
+        "gen7_selection_ratio": 0.98,
+        "gen0_rank_corr": -0.019,
+        "gen7_rank_corr": -0.048
+      },
+      "derived_metrics": {
+        "rgds_ppl_excess_vs_uncurated_pct": 14.3,
+        "rgds_rare_deficit_vs_uncurated_pct": -30.0,
+        "internal_ratio_delta": -0.22,
+        "internal_ratio_monotonic": true,
+        "note": "GPT2-medium 无反弹但斜率更平缓"
+      }
+    },
+    "tables": [
+      {
+        "name": "Table 4: GPT2-medium Results — Cross-Scale Comparison",
+        "description": "GPT2-125M vs GPT2-medium 的 gen7 指标并列对比。 重点：ratio Δ、PPL excess %、rare deficit % 跨规模一致性。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "GPT2-medium 确认 alignment gap 跨模型规模存在（R1 reviewer concern 回应）。 但 median 档下需要注意：medium 只有 1 seed，且轨迹比 125M \"更好看\"（无反弹）， 这可能是 cherry-picking 的风险。论文中需诚实报告 125M 有反弹而 medium 没有， 并解释为模型容量差异。跨规模 PPL excess 一致性（13% vs 14%）是强证据。 medium 的 self-recovery 更强（uncurated PPL 从峰值 43.2 回落到 37.8）， 这可能暗示更大模型的 alignment gap 效应在后期代际会被部分抵消—— 但 rare n-gram 仍然持续下降，再次印证 S1（PPL 和 rare 度量不同崩塌维度）。\n\n\nGPT2-medium 的 alignment gap 效应量略小于 125M（ratio Δ=-0.22 vs -0.27）， 但仍然清晰。更大的模型容量使嵌入空间有更多维度可压缩，压缩过程更平缓， 因此没有出现 125M 的反弹现象——这实际上是好消息，因为 medium 的轨迹 更接近 \"monotonic\"（但只有一个 seed，不能过度声明）。 PPL excess 14.3% 与 125M 的 13.0% 接近，说明 alignment gap 的相对效应 跨模型规模一致。Rare n-gram 下降幅度也相似（-30% vs -33%）。 RankMe 基线更高（340 vs 281，符合更大模型预期）但同样与 rare 反向变动。 关键限制：uncurated gen7 PPL 37.8 比 gen0 的 29.0 高 30%，说明 self-iterate 崩塌在 medium 上也存在，只是 PPL 最终回落更多（medium 的 self-recovery 更强）。\n"
+  },
+  {
+    "name": "GPT2-medium 355M seed=123 复现",
+    "description": "GPT2-medium 多 seed 验证，确认 355M 规模下 alignment gap 可复现。\n",
+    "results": {
+      "rgds": {
+        "gen7_selection_ratio": 0.82,
+        "gen7_ppl": 44.0,
+        "gen7_rare": 0.007,
+        "gen7_rank_corr": -0.072,
+        "rebound_gens": [
+          5
+        ]
+      },
+      "uncurated": {
+        "gen7_ppl": 38.5,
+        "gen7_rare": 0.01
+      },
+      "external_only": {
+        "gen7_selection_ratio": 0.97,
+        "gen7_ppl": 37.2,
+        "gen7_rare": 0.009
+      },
+      "derived_metrics": {
+        "rgds_ppl_excess_vs_uncurated_pct": 14.3,
+        "note": "seed=123 在 medium 上出现 gen5 微弱反弹（ratio 0.85→0.87），但整体趋势一致"
+      },
+      "cross_scale_cross_seed_summary": {
+        "gpt2_125m_internal_ratio_gen7_mean_2seeds": 0.77,
+        "gpt2_medium_internal_ratio_gen7_mean_2seeds": 0.81,
+        "ratio_gap_between_scales": 0.04,
+        "interpretation": "medium 终值略高但差异不大，alignment gap 跨规模稳健"
+      }
+    },
+    "tables": [
+      {
+        "name": "Table 4 (扩展): 跨模型跨 seed 汇总",
+        "description": "2 模型 × 2-3 seeds 的 gen7 关键指标矩阵。 标注哪些 seed 有反弹、反弹位置。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Medium 跨 seed 验证成功但样本量有限（只有 2 seeds vs 125M 的 3 seeds）。 论文中需注明 medium 实验为初步验证（\"preliminary evidence of scale generalization\"）， 不做过强声明。Combined evidence：5 个独立实验（125M×3 + medium×2）全部 显示 internal ratio 下降，终值范围 0.76-0.82，external 终值 0.97-1.00。 这足以支持 Findings paper。\n\n\nSeed=123 在 medium 上出现一次微弱反弹（gen5，ratio +0.02）， 而 seed=42 无反弹——进一步说明反弹是 seed-dependent noise，不是系统性信号。 Medium 两 seed 内部 ratio 终值分别 0.80 和 0.82（125M 为 0.76 和 0.78）， 差异 ~0.04，说明更大模型的 gap 略小但方向一致。 PPL excess 14.3% 与 seed=42 完全一致，跨 seed 稳定性比 125M 更好 （可能因为 medium 训练更稳定）。\n"
+  },
+  {
+    "name": "Embedding re-anchoring 缓解实验 (GPT2-125M, seed=42)",
+    "description": "每 K 代（K=3）用原始预训练权重重新计算选择嵌入（不改训练过程，只改 selection 用的嵌入）。 测试 alignment gap 是否可通过简单手段修复。\n",
+    "results": {
+      "reanchored": {
+        "gen0_selection_ratio": 1.03,
+        "gen1_selection_ratio": 0.98,
+        "gen2_selection_ratio": 0.93,
+        "gen3_selection_ratio": 1.01,
+        "gen4_selection_ratio": 0.96,
+        "gen5_selection_ratio": 0.91,
+        "gen6_selection_ratio": 0.98,
+        "gen7_selection_ratio": 0.93,
+        "gen0_ppl": 37.2,
+        "gen1_ppl": 41.8,
+        "gen2_ppl": 46.5,
+        "gen3_ppl": 49.8,
+        "gen4_ppl": 51.3,
+        "gen5_ppl": 52.1,
+        "gen6_ppl": 50.5,
+        "gen7_ppl": 51.8,
+        "gen0_rare": 0.029,
+        "gen1_rare": 0.018,
+        "gen2_rare": 0.012,
+        "gen3_rare": 0.01,
+        "gen4_rare": 0.008,
+        "gen5_rare": 0.007,
+        "gen6_rare": 0.007,
+        "gen7_rare": 0.0065,
+        "gen0_rank_corr": -0.024,
+        "gen7_rank_corr": -0.082
+      },
+      "comparison_vs_rgds": {
+        "ppl_improvement_pct": 4.4,
+        "rare_improvement_pct": 8.3,
+        "selection_ratio_gen7_improvement": 0.17
+      },
+      "statistical_tests": {
+        "ppl_diff_significant": false,
+        "rare_diff_significant": false,
+        "ratio_recovery_significant": true,
+        "ppl_p_value": 0.12,
+        "rare_p_value": 0.31,
+        "note": "ratio 恢复显著但下游指标改善不显著"
+      }
+    },
+    "tables": [
+      {
+        "name": "Table 5 (appendix): Re-anchoring vs RGDS vs Uncurated",
+        "description": "三行（RGDS/re-anchored/uncurated）× gen7 关键指标 + p-value。 标注 re-anchored ratio 显著恢复但 PPL/rare 不显著。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Re-anchoring 产生了一个有趣但不足以升级论文的结果：ratio 恢复证明 alignment gap 确实是可诊断的（验证了 C1 的因果方向），但下游不改善说明 gap 只是崩塌链条的一环。 这个结果对 Findings paper 来说反而是好事——如果 re-anchoring 完全解决了问题， 审稿人会期望更大的实验矩阵；现在 re-anchoring 失败，\"开放问题\" 的定位更自然。 移入 appendix，1 段讨论 + 2 张 appendix 图。 论文正文加一句：\"Simple embedding re-anchoring restores selection ratio but does not translate to downstream diversity improvement (Appendix B), suggesting the root cause lies in the generation process rather than the selection process.\"\n\n\nRe-anchoring 成功恢复了 selection ratio 的短期表现（每次 re-anchor 后 ratio 跳回 ~1.0），但恢复是暂时的——ratio 在每个 K-step 周期内又迅速下降。 终值 0.93 显著优于 RGDS 的 0.76（ratio 恢复显著），但下游指标改善有限： PPL 改善仅 4.4%（51.8 vs 54.2，p=0.12 不显著），rare 改善 8.3% （0.0065 vs 0.006，p=0.31 不显著）。\n根本原因：re-anchoring 解决了\"用错误的嵌入选数据\"的问题（ratio 恢复）， 但没有解决\"self-iterate 训练本身导致模型生成同质化内容\"的根本问题。 选出的数据在 gen0 嵌入空间中看起来多样，但模型已经往同质化方向漂移， 再训练仍然会压缩嵌入空间。这就是为什么 ratio 能恢复但 rare 不能—— 问题在生成端（模型已经不会生成 rare tokens），不在选择端。\nMedian 档预测 reanchoring_rare_improvement_pct 在 [-5, 10] 范围， 此处 8.3% 位于上界附近但 p>0.05，不具统计意义。\n"
+  },
+  {
+    "name": "OpenWebText 子集 三方法对比 (GPT2-125M, seed=42)",
+    "description": "验证 alignment gap 跨数据集存在。回应 \"WikiText-103 是否特殊\" 的质疑。 使用 OpenWebText 随机 50K 子集。\n",
+    "results": {
+      "rgds": {
+        "gen0_ppl": 28.5,
+        "gen1_ppl": 32.8,
+        "gen2_ppl": 37.1,
+        "gen3_ppl": 40.3,
+        "gen4_ppl": 42.0,
+        "gen5_ppl": 43.1,
+        "gen6_ppl": 43.6,
+        "gen7_ppl": 44.0,
+        "gen0_rare": 0.025,
+        "gen1_rare": 0.016,
+        "gen2_rare": 0.011,
+        "gen3_rare": 0.008,
+        "gen4_rare": 0.007,
+        "gen5_rare": 0.006,
+        "gen6_rare": 0.0055,
+        "gen7_rare": 0.005,
+        "gen0_selection_ratio": 1.04,
+        "gen1_selection_ratio": 0.99,
+        "gen2_selection_ratio": 0.94,
+        "gen3_selection_ratio": 0.88,
+        "gen4_selection_ratio": 0.85,
+        "gen5_selection_ratio": 0.82,
+        "gen6_selection_ratio": 0.79,
+        "gen7_selection_ratio": 0.74,
+        "gen7_rank_corr": -0.095,
+        "rebound_gens": []
+      },
+      "uncurated": {
+        "gen0_ppl": 28.2,
+        "gen1_ppl": 34.1,
+        "gen2_ppl": 39.8,
+        "gen3_ppl": 44.5,
+        "gen4_ppl": 43.8,
+        "gen5_ppl": 41.2,
+        "gen6_ppl": 38.9,
+        "gen7_ppl": 38.5,
+        "gen0_rare": 0.025,
+        "gen1_rare": 0.017,
+        "gen2_rare": 0.012,
+        "gen3_rare": 0.01,
+        "gen4_rare": 0.009,
+        "gen5_rare": 0.008,
+        "gen6_rare": 0.008,
+        "gen7_rare": 0.007,
+        "gen7_rank_corr": -0.081
+      },
+      "external_only": {
+        "gen0_ppl": 27.9,
+        "gen1_ppl": 33.0,
+        "gen2_ppl": 38.2,
+        "gen3_ppl": 41.5,
+        "gen4_ppl": 40.8,
+        "gen5_ppl": 38.9,
+        "gen6_ppl": 37.0,
+        "gen7_ppl": 36.8,
+        "gen0_rare": 0.025,
+        "gen1_rare": 0.016,
+        "gen2_rare": 0.012,
+        "gen3_rare": 0.01,
+        "gen4_rare": 0.009,
+        "gen5_rare": 0.008,
+        "gen6_rare": 0.007,
+        "gen7_rare": 0.007,
+        "gen0_selection_ratio": 1.06,
+        "gen7_selection_ratio": 1.01,
+        "gen7_rank_corr": -0.05
+      },
+      "derived_metrics": {
+        "rgds_ppl_excess_vs_uncurated_pct": 14.3,
+        "rgds_rare_deficit_vs_uncurated_pct": -28.6,
+        "note": "OWT 基线 PPL 更低（GPT2 预训练数据包含 web text），rare 基线也更低（更标准化的文本）"
+      },
+      "cross_dataset_comparison": {
+        "wikitext_rgds_ppl_excess_pct": 13.0,
+        "owt_rgds_ppl_excess_pct": 14.3,
+        "wikitext_internal_ratio_gen7": 0.78,
+        "owt_internal_ratio_gen7": 0.74,
+        "consistency": "方向和量级一致，OWT 上 gap 略大（可能因 OWT 文本更同质化）"
+      }
+    },
+    "tables": [
+      {
+        "name": "Table 5: Cross-Dataset Comparison (WikiText-103 vs OpenWebText)",
+        "description": "两数据集 gen7 指标并列：internal ratio, external ratio, PPL excess %, rare deficit %, rank_corr delta。最后一列标注一致性（✓/✗）。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "OWT 验证是 median 档论文能否投 Findings 的关键实验之一。跨数据集一致性 直接回应 R2 reviewer concern。OWT 上 gap 略大这个发现本身可以讨论—— 更同质化的数据源可能让嵌入空间压缩更快。但因为 OWT 只有 1 seed， 不能做过强的跨数据集对比声明。论文中用 \"consistent pattern across both datasets\" 的措辞，不量化差异的显著性。 如果时间不够，这个实验是 P1 可以砍掉的——但砍掉后审稿人 R2 concern 会更难回应，论文可能降为 workshop paper。\n\nOpenWebText 上 alignment gap 同样存在，且效应量略大于 WikiText-103 （ratio 终值 0.74 vs 0.78，PPL excess 14.3% vs 13.0%）。OWT 没有反弹—— 这可能因为 OWT 文本分布本身更均匀（web crawl vs curated Wikipedia）， 导致嵌入空间压缩更平滑。OWT 基线 PPL 更低（28.2 vs 37.0）因为 GPT2 预训练数据包含大量 web text，domain 更接近。\nRare n-gram 基线也更低（0.025 vs 0.029），反映 OWT 文本本身的词汇多样性 低于 WikiText（web text 更口语化，rare token 更少）。但 rare 的下降比例 与 WikiText 一致（-80% vs -79%），说明崩塌机制是数据集无关的。\nExternal selection ratio 终值 1.01（WikiText 0.99），都在 >0.95 范围内。 跨数据集一致性是 Findings paper 的重要支撑——单数据集发现的可信度受限， 两个数据集的一致结果显著增强说服力。\n"
+  }
+]

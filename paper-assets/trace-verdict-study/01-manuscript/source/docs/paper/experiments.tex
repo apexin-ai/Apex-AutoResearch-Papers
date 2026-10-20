@@ -1,0 +1,127 @@
+\section{Experiments}
+
+We evaluate two questions:
+(1)~Do exception signals generalize across model architectures and scales?
+(2)~What is the relative contribution of each trace component?
+All experiments use $N{=}1{,}190$ test samples with Wilson 95\% CIs.\footnote{Problem-level split (472/119 problems, zero crossover). Deduplication sensitivity analysis confirms 0.00pp delta across all 19 conditions (Appendix~\ref{sec:dedup_stats}).}
+All cross-tier differences are significant at $p{<}.0001$ (paired bootstrap, $B{=}10{,}000$) unless noted.
+Under problem-level clustered bootstrap (effective $N{\approx}119$), cross-tier gaps remain significant ($p{<}.001$); within-tier comparisons show partially overlapping CIs.
+
+\subsection{Cross-Model Comparison}
+\label{sec:cross_model}
+
+Table~\ref{tab:cross_model} compares four models spanning three architecture families across a 1.5B--13B parameter range.
+
+\paragraph{Exception dominance across families.}
+Under \cond{exception\_only}, all four models converge to ${\geq}$99.33\% across all seeds, with a cross-model range of just 0.50pp, the tightest of any condition.
+CodeLlama-13B reaches 100\% on one seed; the two persistent errors on Qwen (both \textit{GeneratorExit}; Appendix~\ref{sec:irreducible}) are convergence artifacts rather than hard data limitations.
+
+\paragraph{Scale invariance.}
+Exception accuracy is independent of model scale: the smallest model (1.5B) matches the largest (13B) on the same representation (Table~\ref{tab:cross_model}).
+In contrast, \cond{no\_trace} scales monotonically with capacity and exhibits the highest seed variance of any condition.
+Exception events eliminate both the scale gap and the instability.
+
+\paragraph{VOTA robustness.}
+Excluding one training failure caused by tokenizer-induced truncation (Appendix~\ref{sec:tokenizer_analysis}), VOTA achieves ${\geq}$98.57\% across all models within a 0.80pp range.
+The failure is itself informative: 91.7\% of that seed's training samples were truncated, while compact \cond{exception\_only} inputs (median 150 tokens) sidestep truncation entirely.
+
+\subsection{Component Ablation}
+\label{sec:ablation}
+
+Table~\ref{tab:ablation} decomposes VOTA on Qwen-2.5-7B, revealing a two-tier hierarchy.
+Tier~1 signals are individually sufficient: \cond{exception\_only} alone exceeds full VOTA, implying that combining additional components introduces noise rather than value.
+Removing assertion points has no effect (\cond{VOTA\_no\_ae}), which reaffirms exception dominance.
+The Tier~1/2 boundary is sharp (Figure~\ref{fig:forest_plot}): the weakest Tier~1 condition exceeds the strongest Tier~2 by over 12pp with non-overlapping confidence intervals.
+Tier~2 (\cond{loop\_only}) benefits are model-dependent: Qwen-7B gains +10.92pp over \cond{no\_trace} while CodeLlama gains only +0.93pp (n.s.), suggesting loop utilization reflects architectural capacity to exploit structured iteration patterns rather than a universal signal.
+Within Tier~2, the larger Qwen-7B outgains Qwen-1.5B (+10.92 vs.\ +7.19pp, $p{<}.0001$), the only condition where scale provides a meaningful advantage.
+
+\paragraph{Baselines.}
+The strongest regex heuristic (exception class name matching) trails SFT \cond{exception\_only} by 6.22pp ($p{<}.001$); the gap concentrates on boundary cases where SFT distinguishes caught from uncaught exceptions, correctly resolving 6/8 ambiguous samples vs.\ 0/8 for regex (Appendix~\ref{sec:regex_baselines}).
+Zero-shot prompting spans a 42pp range across models; SFT compresses this to 0.50pp with 4,720 training samples (Figure~\ref{fig:zeroshot_vs_sft}; Appendix~\ref{sec:zeroshot_cross_model}).
+
+\begin{table}[t]
+\centering
+\caption{Information density decomposition on Qwen-7B. Gradient masking (\cond{label\_only}) bounds backward-pass dilution; the remaining gap reflects inference-time input factors. 3-seed means.}
+\label{tab:density}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lccc}
+\toprule
+\textbf{Condition} & \textbf{Acc (\%)} & \textbf{$\Delta$ vs.\ full\_trace} & \textbf{Gap explained} \\
+\midrule
+full\_trace & 81.76 & --- & --- \\
+label\_only & 85.94{\scriptsize$\pm$1.12} & +4.18pp & 24\% \\
+VOTA & 99.05{\scriptsize$\pm$0.38} & +17.29pp & 100\% \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Format Marker Ablation}
+\label{sec:nomarker}
+
+The \cond{exception\_only} format includes a ``[No exception data in trace]'' marker for pass-class samples.
+Retraining with all format markers removed (\cond{nomarker}) yields a modest drop (${\sim}$2pp on both Qwen-7B and Qwen-1.5B), accounting for only ${\sim}$9\% of the total exception lift over \cond{no\_trace}.
+Exception events thus provide two signal layers: structural markers (${\sim}$2pp, regex-learnable) and semantic content (${\sim}$22pp, requiring SFT to distinguish caught from uncaught exceptions).
+Both layers show no degradation at smaller scale.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{forest_plot_tier_boundary}
+\caption{Cross-model accuracy with 95\% Wilson CIs across all conditions and four models. The shaded region highlights the Tier~1/2 boundary gap ({>}12pp). Within Tier~1, all models converge to $\geq$99.08\%; within Tier~2, performance is model-dependent.}
+\label{fig:forest_plot}
+\end{figure}
+
+\begin{figure*}[t]
+\centering
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{budget_curve}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{token_distribution}
+\end{minipage}
+\caption{(\textbf{Left}) Cross-model tail-truncation budget curve ($N{=}1{,}190$, four models). All models remain near baseline at tail-256/384, then jump sharply at 384$\to$512 as the exception traceback is captured (shaded). Dashed: \cond{exception\_only} range; dotted: \cond{no\_trace} range. (\textbf{Right}) Input token length distribution across trace conditions (training set, $N{=}4{,}720$). Dashed line: 2,048-token context window. \cond{exception\_only} inputs (median 150 tokens) fit entirely within the window, while \cond{full\_trace} inputs frequently exceed it, triggering truncation.}
+\label{fig:trace_length}
+\label{fig:token_distribution}
+\end{figure*}
+
+\subsection{Information Density Decomposition}
+\label{sec:density}
+
+The gap between \cond{full\_trace} and VOTA decomposes via \cond{full\_trace\_label\_only}, which retains the full trace input but masks all trace tokens from the loss (Table~\ref{tab:density}).
+
+Gradient masking places an upper bound on backward-pass dilution: the +4.18pp gain bounds the backward-pass contribution to ${\sim}$24\% of the full gap.
+The remaining majority of the gap persists even with identical loss computation, suggesting that interference from thousands of irrelevant trace lines at inference, rather than training signal dilution, is the dominant factor.
+Cross-model evidence corroborates this: the tail-truncation phase transition at ${\sim}$500 tokens (\S\ref{sec:trace_length}) coincides with exception traceback length, and cross-scale validation on Qwen-1.5B yields a consistent pattern (gradient masking explains a similar minority share).
+CodeLlama and DeepSeek exhibit label-only collapse, limiting the decomposition to models whose tokenizers preserve sufficient trace structure.
+Error analysis confirms all \cond{full\_trace} errors occur where truncation removes diagnostic markers (Figure~\ref{fig:token_distribution}).
+The two factors may interact, and the decomposition is approximate (Qwen family, 2 scales, 3 seeds).
+
+\subsection{Additional Analyses}
+\label{sec:additional}
+
+\paragraph{Tail-truncation budget curve.}
+\label{sec:trace_length}
+A cross-model budget sweep reveals a sharp phase transition between 384 and 512 tail tokens (Figure~\ref{fig:trace_length}).
+Below this threshold, all models remain near baseline regardless of how many tokens are retained.
+Above it, accuracy jumps by 13--22pp in a single step, converging into a narrow band by tail-1024.
+The transition zone coincides with the typical exception traceback length (${\sim}$400--500 tokens), providing spatial evidence that diagnostic events in the trace tail drive the accuracy gains.
+
+Tail-truncation dramatically outperforms head-truncation: retaining the last $k$ tokens exceeds retaining the first $k$ by 15--23pp across models.
+Under head-truncation, accuracy is non-monotonic and confined to a narrow band, because mid-length prefixes retain enough irrelevant content to mislead the model while discarding diagnostic events near the trace terminus (Appendix~\ref{sec:trace_length_full}).
+
+\paragraph{Calibration.}
+\label{sec:calibration}
+Calibration mirrors the tier hierarchy: \cond{exception\_only} achieves an Expected Calibration Error (ECE) of 0.003 vs.\ 0.171 for \cond{no\_trace}, a 63$\times$ gap (Figure~\ref{fig:calibration}).
+This advantage generalizes across all four models (ECE~${<}$~0.007; Appendix~\ref{sec:calibration_full}).
+
+\paragraph{Error orthogonality and exception types.}
+\cond{exception\_only}'s residual errors have zero overlap with all other conditions' error sets (Jaccard\,=\,0.000; Figure~\ref{fig:error_overlap}), which confirms it operates on an independent signal dimension.
+All standard exception types achieve 100\% accuracy; the only failures arise from \textit{GeneratorExit}, a benign \textit{BaseException} subclass (Appendix~\ref{sec:exception_type}).
+
+\paragraph{Cross-dataset generalization.}
+\label{sec:debugbench}
+DebugBench \citep{tian2024debugbench} ($N{=}426$) preserves the component ranking (\cond{exception\_only} 100\%, VOTA 99.77\%, \cond{no\_trace} 96.71\%), though narrow margins reflect a ceiling effect from structurally distinctive mutations (Appendix~\ref{sec:debugbench_full}).
+

@@ -1,0 +1,16 @@
+{
+  "exp_id": "qwen15b_exception_only_seed123_v2",
+  "project": "trace-verdict-study",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:41:35.811Z",
+    "updated_at": "2026-05-18T21:42:34.558Z",
+    "hypothesis": "Qwen-1.5B exception_only seed123 应达 ~99.83%（与 seed42 一致），为 W3 reviewer concern 提供 1.5B scale 的方差估计。v1 因 GPU 并发 OOM 失败，重试。",
+    "parent": "qwen15b_exception_only_seed123"
+  },
+  "timestamp": "2026-05-18T21:42:34.788793+00:00",
+  "trigger": "update_registry"
+}

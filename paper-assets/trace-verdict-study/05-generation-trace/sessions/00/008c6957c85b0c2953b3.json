@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "008c6957c85b0c2953b3",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper discussion maxlen robustness",
+  "task_key": "worker_paper_discussion_maxlen_robustness_20260516T024623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_discussion_maxlen_robustness_20260516T024623_result.json",
+    "occurrence": 1,
+    "bytes": 567,
+    "sha256": "734ae8f47d8b73c507603476555f3dfc7ba4291dcb38cdf2a6bf2e2b248c41d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。新小节 **\"Sensitivity to Evaluation Context Length\"** 插入在 Error Analysis 和 Limitations 之间（第 51–73 行），包含：\n\n- **Full trace fragile**: 79.16% → 28.49%（100% 预测 fail），学到截断 artifact 而非 trace 语义\n- **VOTA context-dependent**: 84.45%（长上下文）vs 16.0%（短上下文截断删除结构化后缀）\n- **Exception-only robust**: 99.33% 不受 max_length 影响，输入天然短，无截断分布偏移\n- 结论段：signal brevity → fewer failure modes，呼应核心论点"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-discussion-maxlen-robustness.md"
+}

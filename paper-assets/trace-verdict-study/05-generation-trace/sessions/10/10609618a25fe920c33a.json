@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10609618a25fe920c33a",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analyze codellama13b vota seed123",
+  "task_key": "worker_analyze_codellama13b_vota_seed123_20260520T113459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_codellama13b_vota_seed123_20260520T113459_result.json",
+    "occurrence": 1,
+    "bytes": 609,
+    "sha256": "a1618b7d3ae711f15acc5cf66c8908d8b7cb14b30a9d4f2aca25032aa713cf60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新（status=DONE, conclusion=success）。\n\n## 结果汇总\n\n**codellama13b_vota_seed123: 98.91% accuracy** (95% CI: [98.3%, 99.4%])\n\n### 跨 seed 对比\n\n| Seed | Accuracy | Pass F1 | Fail F1 |\n|------|----------|---------|---------|\n| seed42 | 98.57% | — | — |\n| seed123 | 98.91% | 0.992 | 0.981 |\n| **Δ** | **+0.34pp** | — | — |\n\n### Conclusion\n\n**Success.** seed123 (98.91%) 落在预期区间 97-100% 内，与 seed42 (98.57%) 仅差 0.34pp，两者 CI 重叠。CodeLlama-13B VOTA 跨 seed 稳定性确认。cuda:1 无残留进程，无需清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-codellama13b-vota-seed123.md"
+}

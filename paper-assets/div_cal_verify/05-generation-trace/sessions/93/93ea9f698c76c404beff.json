@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93ea9f698c76c404beff",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "diag medium external seed456 exit",
+  "task_key": "worker_diag_medium_external_seed456_exit_20260514T104415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_medium_external_seed456_exit_20260514T104415_result.json",
+    "occurrence": 1,
+    "bytes": 611,
+    "sha256": "d85d230f3dda8f662488c31130bc593c35b2b40fa38a6deb4dd47f7b8c2da79d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## 诊断结果\n\n**结论：success** — 实验 8 代全部正常完成（gen_0 ~ gen_7），结束时间 2026-05-14 18:42:23 CST。\n\n**Gen7 最终 Metrics：**\n| 指标 | 值 |\n|------|------|\n| PPL | 83.00 |\n| RankMe | 426.65 |\n| k-NN | 0.988 |\n| Rare n-gram | 0.0158 |\n| Rank corr | -0.005 |\n\n**已完成操作：**\n1. Registry 更新：status=DONE, conclusion=success, metrics/checkpoint_path/log_path 已写入\n2. Cron 已删除\n3. Auto-chain 已生效：medium_random50_seed456 于 18:42:59 自动启动（cuda:1），日志显示已开始运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-medium-external-seed456-exit.md"
+}

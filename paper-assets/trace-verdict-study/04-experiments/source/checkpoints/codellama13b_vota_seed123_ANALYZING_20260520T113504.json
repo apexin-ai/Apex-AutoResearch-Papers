@@ -1,0 +1,65 @@
+{
+  "exp_id": "codellama13b_vota_seed123",
+  "project": "trace-verdict-study",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T03:10:20.719Z",
+    "updated_at": "2026-05-20T11:35:03.796Z",
+    "hypothesis": "CodeLlama-13B VOTA seed123 应在 97-100%（与 seed42=98.57% 接近），验证 VOTA Tier 1 跨 seed 稳定性",
+    "parent": "codellama13b_vota_seed42",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "601095",
+      "log_path": "~/runs/trace-verdict-study/codellama13b_vota_seed123.log",
+      "submitted_at": "2026-05-20T07:35:22.845Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/vota_train.jsonl",
+      "data_count": 4720,
+      "model_name": "CodeLlama-13B-Instruct-hf",
+      "seed": 123,
+      "checkpoint_source": "self-trained",
+      "eval_data": "/root/autodl-tmp/trace-verdict-study-data/vota_test.jsonl"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T11:32:16.006Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T11:32:20.242389+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 0.9891,
+      "accuracy_ci_lower": 0.9832,
+      "accuracy_ci_upper": 0.9941,
+      "pass_precision": 0.9929,
+      "pass_recall": 0.9918,
+      "pass_f1": 0.9924,
+      "fail_precision": 0.9794,
+      "fail_recall": 0.9823,
+      "fail_f1": 0.9809,
+      "majority_baseline": 0.7151,
+      "lift": 0.2739,
+      "n": 1190,
+      "train_loss": 0.0497
+    },
+    "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_vota_seed123/final",
+    "log_path": "/root/runs/trace-verdict-study/codellama13b_vota_seed123.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T11:35:04.229127+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c67442e276480418d7e4",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "paper fix table2 355m 2seed mean",
+  "task_key": "worker_paper_fix_table2_355m_2seed_mean_20260514T084140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_table2_355m_2seed_mean_20260514T084140_result.json",
+    "occurrence": 1,
+    "bytes": 693,
+    "sha256": "ff60ed6b2bf78f76557908cd37d740bac457b6438e482e5aba8b9a981a45e307"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "§5.7 验证通过：\n\n- Line 145: RGDS mean=86.55, Random=71.40, +21% — (86.55−71.40)/71.40×100=21.2% ✓\n- Line 151: +21% perplexity penalty ✓\n- Table 3 (tab:medium_comparison) 已有两 seed 的 per-seed 数据 ✓\n\n完成的修改：\n\n1. **Table 2 355M Δ 值**：+12.59→+15.15, −21.41→−17.96, −8.82/+3.20→−2.81；新增 RGDS vs External-only +7.90\n2. **355M 节标题**：`statistical tests pending ≥3 seeds` → `n=2 seeds (42, 123); seed=456 pending`\n3. **脚注**：移除 †/‡ 标注，替换为 `355M: n=2 seeds (42, 123); seed=456 pending; t-tests deferred until n≥3`\n4. **§5.7**：已有数字与 Table 2 一致，无需改动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-table2-355m-2seed-mean.md"
+}

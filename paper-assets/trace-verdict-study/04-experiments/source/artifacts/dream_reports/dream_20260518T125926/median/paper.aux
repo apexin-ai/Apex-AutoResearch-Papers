@@ -1,0 +1,82 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{dcsh2025}
+\citation{tracepile2025}
+\citation{traced2024}
+\citation{dcsh2025}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{dcsh2025}
+\citation{tracepile2025}
+\citation{traced2024}
+\citation{coderanker2023}
+\citation{codet2023}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Trace-augmented code models.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Verdict and test outcome prediction.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Calibration in code models.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task Definition}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Trace Representations}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}VOTA Trace Compression}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Experimental Setup}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dataset.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training.}{3}{section*.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Budget curve with tail-384 interpolation across four models. Accuracy (\%) at each token budget. $\Delta $ columns show per-step gains. Sharpness index measures the position of tail-384 within the 256--512 interval (0 = stays at 256 level, 1 = jumps to 512 level, 0.5 = exact midpoint).}}{4}{table.caption.7}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:budget}{{1}{4}{Budget curve with tail-384 interpolation across four models. Accuracy (\%) at each token budget. $\Delta $ columns show per-step gains. Sharpness index measures the position of tail-384 within the 256--512 interval (0 = stays at 256 level, 1 = jumps to 512 level, 0.5 = exact midpoint)}{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cross-seed tail-512 robustness (3 seeds $\times $ 4 models). All worst-seed results exceed head-2048 baselines ($\sim $79--81\%).}}{4}{table.caption.8}\protected@file@percent }
+\newlabel{tab:crossseed}{{2}{4}{Cross-seed tail-512 robustness (3 seeds $\times $ 4 models). All worst-seed results exceed head-2048 baselines ($\sim $79--81\%)}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\newlabel{sec:exp}{{4}{4}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Information Locality: Budget Curve Analysis}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:budget}{{4.1}{4}{Information Locality: Budget Curve Analysis}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Seed Robustness}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:seeds}{{4.2}{4}{Cross-Seed Robustness}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-model calibration for exception\_only. ECE ratio compares against no\_trace baseline (ECE = 0.171).}}{5}{table.caption.9}\protected@file@percent }
+\newlabel{tab:calibration}{{3}{5}{Cross-model calibration for exception\_only. ECE ratio compares against no\_trace baseline (ECE = 0.171)}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Error mode distribution by condition (Qwen-7B, seed 42). Directions indicate whether errors are fail$\to $pass (false positives) or pass$\to $fail (false negatives).}}{5}{table.caption.10}\protected@file@percent }
+\newlabel{tab:errors}{{4}{5}{Error mode distribution by condition (Qwen-7B, seed 42). Directions indicate whether errors are fail$\to $pass (false positives) or pass$\to $fail (false negatives)}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Cross-Model Calibration}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:calibration}{{4.3}{5}{Cross-Model Calibration}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Error Analysis}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:error}{{4.4}{5}{Error Analysis}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Tier~1 errors are irreducible.}{5}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Full-trace errors correlate with length.}{5}{section*.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Error rate by trace length (full\_trace condition, Qwen-7B).}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:length_errors}{{5}{6}{Error rate by trace length (full\_trace condition, Qwen-7B)}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces SFT vs.\ frontier few-shot comparison. Cost is approximate per-run inference cost for the 1,190-sample test set.}}{6}{table.caption.15}\protected@file@percent }
+\newlabel{tab:frontier}{{6}{6}{SFT vs.\ frontier few-shot comparison. Cost is approximate per-run inference cost for the 1,190-sample test set}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {paragraph}{Tier~1 and Tier~2 fail differently.}{6}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Frontier Model Comparison}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:frontier}{{4.5}{6}{Frontier Model Comparison}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Out-of-Distribution Generalization}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:ood}{{4.6}{6}{Out-of-Distribution Generalization}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces In-distribution vs.\ OOD accuracy by language (Qwen-7B, exception\_only SFT).}}{7}{table.caption.16}\protected@file@percent }
+\newlabel{tab:ood}{{7}{7}{In-distribution vs.\ OOD accuracy by language (Qwen-7B, exception\_only SFT)}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Convergence milestones as fraction of total training. ``Never'' indicates the threshold was not reached.}}{7}{table.caption.17}\protected@file@percent }
+\newlabel{tab:dynamics}{{8}{7}{Convergence milestones as fraction of total training. ``Never'' indicates the threshold was not reached}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Training Dynamics}{7}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:dynamics}{{4.7}{7}{Training Dynamics}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{7}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Exception signal as theoretical ceiling.}{7}{section*.19}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Learning efficiency by condition. Lift is measured over the no\_trace baseline (75.13\%).}}{8}{table.caption.18}\protected@file@percent }
+\newlabel{tab:efficiency}{{9}{8}{Learning efficiency by condition. Lift is measured over the no\_trace baseline (75.13\%)}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {paragraph}{Scale invariance of exception signal.}{8}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training-time truncation as confound.}{8}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LoRA initialization sensitivity.}{8}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{8}{Conclusion}{section.6}{}}
+\bibcite{dcsh2025}{1}
+\bibcite{tracepile2025}{2}
+\bibcite{traced2024}{3}
+\bibcite{coderanker2023}{4}
+\bibcite{codet2023}{5}
+\gdef \@abspage@last{9}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "deepseek_exception_only_seed456",
+  "project": "trace-verdict-study",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:19:31.586Z",
+    "updated_at": "2026-05-15T20:22:51.215Z",
+    "hypothesis": "Cross-model seed robustness: exception_only seed=456 on DeepSeek-Coder-6.7B. Third seed to determine if seed42 (99.83%) is outlier or seed123 (91.09%) is outlier.",
+    "parent": "deepseek_exception_only_seed123"
+  },
+  "timestamp": "2026-05-15T20:22:51.314442+00:00",
+  "trigger": "update_registry"
+}

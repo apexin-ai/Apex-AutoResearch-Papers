@@ -1,0 +1,582 @@
+narrative_guidance: 'Alignment gap framing 必须放弃。三种选择方法（internal RGDS / external /
+  uncurated）在 self-iterate 崩塌轨迹上无统计显著差异。 Internal selection ratio 不发生系统性衰减，或即使轻微衰减，external
+  也同步下降，无法建立 "internal 特有失效" 的叙事。 RGDS PPL 与 uncurated 差异 <5%，rare n-gram 三方法高度重叠。
+  论文需重构为 null result analysis paper: "Embedding-Based Diversity Selection Neither
+  Helps Nor Hurts Iterative Model Collapse"。 核心贡献：(1) controlled null result 证明 selection
+  method 不调节 collapse 速度；(2) S2 metric dissociation 仍成立；(3) phase1b 的 collapse replication
+  数据。 投 EMNLP Findings 短文或 NeurIPS negative results workshop，接收概率 ~15-20%。
+
+  '
+imagined_experiments:
+- name: Phase 2 三方法对比 (GPT2-125M, WikiText-103, seed=42)
+  plan_id: plan_001
+  description: Self-iterate GPT2-125M × 8 gens × 3 methods (uncurated/RGDS/external_only)。主实验。
+  expected_results:
+    rgds_gen0_ppl: 37.2
+    rgds_gen1_ppl: 44.5
+    rgds_gen2_ppl: 50.8
+    rgds_gen3_ppl: 55.1
+    rgds_gen4_ppl: 54.3
+    rgds_gen5_ppl: 51.0
+    rgds_gen6_ppl: 48.9
+    rgds_gen7_ppl: 48.5
+    rgds_gen0_rare: 0.0288
+    rgds_gen1_rare: 0.0195
+    rgds_gen2_rare: 0.0142
+    rgds_gen3_rare: 0.0118
+    rgds_gen4_rare: 0.0104
+    rgds_gen5_rare: 0.0097
+    rgds_gen6_rare: 0.0091
+    rgds_gen7_rare: 0.0088
+    rgds_gen0_rankme: 281.5
+    rgds_gen7_rankme: 291.2
+    rgds_gen0_knn: 0.988
+    rgds_gen7_knn: 0.988
+    rgds_gen0_rank_corr: -0.058
+    rgds_gen7_rank_corr: -0.082
+    rgds_gen0_selection_ratio: 1.02
+    rgds_gen4_selection_ratio: 0.96
+    rgds_gen7_selection_ratio: 0.93
+    uncurated_gen0_ppl: 37.0
+    uncurated_gen1_ppl: 44.8
+    uncurated_gen2_ppl: 51.5
+    uncurated_gen3_ppl: 56.8
+    uncurated_gen4_ppl: 55.5
+    uncurated_gen5_ppl: 51.6
+    uncurated_gen6_ppl: 48.5
+    uncurated_gen7_ppl: 47.9
+    uncurated_gen0_rare: 0.029
+    uncurated_gen1_rare: 0.0193
+    uncurated_gen2_rare: 0.014
+    uncurated_gen3_rare: 0.0117
+    uncurated_gen4_rare: 0.0102
+    uncurated_gen5_rare: 0.0098
+    uncurated_gen6_rare: 0.009
+    uncurated_gen7_rare: 0.0087
+    uncurated_gen0_rankme: 280.3
+    uncurated_gen7_rankme: 289.8
+    uncurated_gen0_rank_corr: -0.023
+    uncurated_gen7_rank_corr: -0.088
+    external_gen0_ppl: 36.8
+    external_gen1_ppl: 44.1
+    external_gen2_ppl: 50.2
+    external_gen3_ppl: 54.6
+    external_gen4_ppl: 53.8
+    external_gen5_ppl: 50.1
+    external_gen6_ppl: 47.8
+    external_gen7_ppl: 47.2
+    external_gen0_rare: 0.0291
+    external_gen1_rare: 0.0196
+    external_gen2_rare: 0.0143
+    external_gen3_rare: 0.0119
+    external_gen4_rare: 0.0105
+    external_gen5_rare: 0.0098
+    external_gen6_rare: 0.0092
+    external_gen7_rare: 0.0089
+    external_gen0_rankme: 282.1
+    external_gen7_rankme: 290.5
+    external_gen0_rank_corr: -0.061
+    external_gen7_rank_corr: -0.079
+    external_gen0_selection_ratio: 1.05
+    external_gen4_selection_ratio: 1.01
+    external_gen7_selection_ratio: 0.97
+    rgds_ppl_excess_vs_uncurated_pct: 1.3
+    rgds_rare_deficit_vs_uncurated_pct: -1.1
+  result_rationale: 'Worst 档核心逻辑：self-iterate 循环本身是 collapse 的唯一驱动力，selection method
+    只是在已崩塌的生成数据上做子集抽样， 无法系统性影响崩塌轨迹。具体原因： (1) RGDS internal selection ratio 从 1.02
+    仅缓慢下降到 0.93——不是论文声称的 1.04→0.52 的剧烈衰减。 这意味着内部嵌入空间虽在收缩，但 greedy submodular selection
+    在缩小后的空间中仍能选出 "相对多样" 的样本， 因为 candidate pool 本身已全部变得同质化，selection ratio 分子分母同步退化。
+    (2) External selection ratio 也从 1.05 下降到 0.97——Contriever 嵌入虽冻结，但当 candidate pool
+    全部来自 崩塌模型生成时，即使用外部嵌入度量多样性，也选不出真正多样的样本（因为输入数据本身已无多样性可选）。 (3) 三种方法的 PPL 轨迹高度重叠（gen7
+    差异 <3%），rare n-gram 轨迹几乎完全一致。 这与 mvp_serial_v4 的 3-gen 数据初步暗示的模式一致——在那里 RGDS 和
+    external 的 rare n-gram 完全相同 （0.0303→0.0313），PPL 差异也很小。 (4) rank_corr 三种方法均在 -0.03
+    到 -0.09 范围内缓慢下降，无法区分 internal 和 external。
+
+    '
+  tables:
+  - name: 'Table 1: Gen 7 三方法终态对比'
+    columns:
+    - Method
+    - PPL_gen7
+    - Rare_gen7
+    - RankMe_gen7
+    - RankCorr_gen7
+    - SelRatio_gen7
+    rows:
+    - - Uncurated
+      - 47.9
+      - 0.0087
+      - 289.8
+      - -0.088
+      - N/A
+    - - RGDS (internal)
+      - 48.5
+      - 0.0088
+      - 291.2
+      - -0.082
+      - 0.93
+    - - External (Contriever)
+      - 47.2
+      - 0.0089
+      - 290.5
+      - -0.079
+      - 0.97
+  - name: 'Table 2: PPL 和 Rare N-gram 代际轨迹'
+    columns:
+    - Gen
+    - PPL_uncur
+    - PPL_rgds
+    - PPL_ext
+    - Rare_uncur
+    - Rare_rgds
+    - Rare_ext
+    rows:
+    - - 0
+      - 37.0
+      - 37.2
+      - 36.8
+      - 0.029
+      - 0.0288
+      - 0.0291
+    - - 1
+      - 44.8
+      - 44.5
+      - 44.1
+      - 0.0193
+      - 0.0195
+      - 0.0196
+    - - 3
+      - 56.8
+      - 55.1
+      - 54.6
+      - 0.0117
+      - 0.0118
+      - 0.0119
+    - - 5
+      - 51.6
+      - 51.0
+      - 50.1
+      - 0.0098
+      - 0.0097
+      - 0.0098
+    - - 7
+      - 47.9
+      - 48.5
+      - 47.2
+      - 0.0087
+      - 0.0088
+      - 0.0089
+  figures_description:
+  - 'Fig 1: PPL over generations — 三条线几乎完全重叠，均呈先升后降曲线（peak around gen3-4），误差带大量交叉。视觉上无法区分三种方法。'
+  - 'Fig 2: Rare n-gram fraction over generations — 三条下降曲线完全重叠，从 ~0.029 单调下降到 ~0.0088，方法间差异小于
+    seed 噪声。'
+  - 'Fig 3: Selection ratio over generations — Internal 从 1.02 缓降至 0.93，external 从
+    1.05 缓降至 0.97，两条线接近平行且差异不显著。无 ''alignment gap'' 可视化效果。'
+  analysis: 'C1 不成立：internal selection ratio 未发生剧烈衰减，从 1.02 到 0.93 仅下降 9%，不符合 "alignment
+    gap worsens monotonically" 叙事。 C2-weak 不成立：external selection ratio 也在下降（1.05→0.97），两者差异不足以支撑
+    "external immune" 论点。 C3 不成立：RGDS PPL 48.5 vs uncurated 47.9（+1.3%），远未达到论文假设的
+    +49%，不构成 "accelerated collapse"。 S2 仍可挽救：RankMe 在三种方法中均上升，kNN 稳定，但 rare n-gram
+    持续下降——metric dissociation 成立。 结论：唯一可发表的信号是 null result + S2 metric dissociation。
+
+    '
+- name: External_only seed=123 复现 (GPT2-125M, WikiText-103)
+  plan_id: plan_003
+  description: 验证 external_only selection ratio >1.0 的可复现性。
+  expected_results:
+    external_s123_gen0_ppl: 37.4
+    external_s123_gen1_ppl: 45.2
+    external_s123_gen2_ppl: 51.9
+    external_s123_gen3_ppl: 56.1
+    external_s123_gen4_ppl: 55.0
+    external_s123_gen7_ppl: 47.8
+    external_s123_gen0_selection_ratio: 1.03
+    external_s123_gen4_selection_ratio: 0.99
+    external_s123_gen7_selection_ratio: 0.95
+    external_s123_gen0_rare: 0.0287
+    external_s123_gen7_rare: 0.0085
+  result_rationale: 'Seed 变化引入随机初始化和数据 shuffling 差异，但在 worst 档下这些差异不改变基本格局。 External
+    selection ratio 在 seed=123 下甚至略低于 seed=42（gen7: 0.95 vs 0.97）， 因为 Contriever 嵌入的多样性度量对不同随机种子的生成文本
+    pool 敏感度不同。 关键是 ratio 同样下降到 <1.0，直接否定了 "external immune" 的论点。 PPL 和 rare n-gram
+    轨迹与 seed=42 高度一致，确认 collapse 由训练循环驱动而非 seed artifact。
+
+    '
+  tables: []
+  figures_description:
+  - 'Fig: seed=42 vs seed=123 external selection ratio 对比 — 两条线均缓慢下降，seed=123 略低，均在
+    gen5+ 跌破 1.0。'
+  analysis: 'C2-weak 在复现实验中进一步削弱：seed=123 的 external ratio 也未能维持 >1.0。 两个 seed 的 PPL
+    差异 <2 点，rare n-gram 差异 <0.0005，确认结果非噪声但也确认无 gap。
+
+    '
+- name: 三方法 seed=123 完整复现 (GPT2-125M, WikiText-103)
+  plan_id: plan_004
+  description: 3 methods × 8 gens, seed=123。完整复现。
+  expected_results:
+    rgds_s123_gen0_ppl: 37.5
+    rgds_s123_gen7_ppl: 49.1
+    rgds_s123_gen0_rare: 0.0286
+    rgds_s123_gen7_rare: 0.009
+    rgds_s123_gen0_selection_ratio: 1.0
+    rgds_s123_gen7_selection_ratio: 0.9
+    rgds_s123_gen7_rank_corr: -0.075
+    uncurated_s123_gen0_ppl: 37.3
+    uncurated_s123_gen7_ppl: 48.6
+    uncurated_s123_gen7_rare: 0.0088
+    uncurated_s123_gen7_rank_corr: -0.091
+    external_s123_gen0_ppl: 37.1
+    external_s123_gen7_ppl: 47.8
+    external_s123_gen7_rare: 0.0085
+    external_s123_gen7_rank_corr: -0.072
+    rgds_ppl_excess_vs_uncurated_pct_s123: 1.0
+    cross_seed_ppl_std_gen7_rgds: 0.42
+    cross_seed_ppl_std_gen7_uncurated: 0.49
+    cross_seed_ppl_std_gen7_external: 0.42
+  result_rationale: 'Seed=123 复现在 worst 档下应与 seed=42 趋势高度一致但数值有小幅随机波动。 RGDS gen7 PPL
+    49.1 略高于 seed=42 的 48.5，但 uncurated 也相应更高（48.6）， 三方法间 PPL 差异仍 <3%。Selection ratio
+    轨迹类似：internal 0.90（比 seed=42 的 0.93 略低）， 但 external 也降至 0.95，二者差异不足以建立统计显著性。 Cross-seed
+    PPL 标准差 ~0.45 在三种方法间无显著差异，表明 method choice 不是方差的来源。 Rare n-gram 三种方法在两个 seed 间差异均
+    <0.0005，噪声级别。
+
+    '
+  tables:
+  - name: 'Table: Cross-seed Gen 7 一致性检验'
+    columns:
+    - Method
+    - PPL_s42
+    - PPL_s123
+    - Delta
+    - Rare_s42
+    - Rare_s123
+    - Delta_rare
+    rows:
+    - - Uncurated
+      - 47.9
+      - 48.6
+      - 0.7
+      - 0.0087
+      - 0.0088
+      - 0.0001
+    - - RGDS
+      - 48.5
+      - 49.1
+      - 0.6
+      - 0.0088
+      - 0.009
+      - 0.0002
+    - - External
+      - 47.2
+      - 47.8
+      - 0.6
+      - 0.0089
+      - 0.0085
+      - -0.0004
+  figures_description:
+  - 'Fig: seed=42 vs seed=123 三方法 PPL 轨迹 — 六条线（3 methods × 2 seeds）高度交织，方法间差异小于 seed
+    间差异。'
+  analysis: 'Cross-seed 复现确认：方法间差异（<1.5 PPL）小于或等于 seed 间波动（~0.6 PPL）。 无法通过 t-test
+    区分任何两种方法。Alignment gap 叙事无统计支撑。
+
+    '
+- name: 三方法 seed=456 完整复现 (GPT2-125M, WikiText-103)
+  plan_id: plan_005
+  description: 3 methods × 8 gens, seed=456。第三个种子。
+  expected_results:
+    rgds_s456_gen7_ppl: 48.0
+    uncurated_s456_gen7_ppl: 47.5
+    external_s456_gen7_ppl: 46.9
+    rgds_s456_gen7_rare: 0.0086
+    uncurated_s456_gen7_rare: 0.0084
+    external_s456_gen7_rare: 0.0087
+    rgds_s456_gen7_selection_ratio: 0.95
+    external_s456_gen7_selection_ratio: 0.99
+    rgds_ppl_excess_vs_uncurated_pct_s456: 1.1
+    rgds_ppl_gen7_mean_3seed: 48.53
+    rgds_ppl_gen7_std_3seed: 0.55
+    uncurated_ppl_gen7_mean_3seed: 48.0
+    uncurated_ppl_gen7_std_3seed: 0.55
+    external_ppl_gen7_mean_3seed: 47.23
+    external_ppl_gen7_std_3seed: 0.46
+    paired_ttest_rgds_vs_uncurated_pvalue: 0.31
+    paired_ttest_external_vs_uncurated_pvalue: 0.18
+  result_rationale: '第三个 seed 补完统计检验所需的最低样本量。Seed=456 的结果落在前两个 seed 的范围内， 无异常值。三个
+    seed 聚合后： (1) RGDS vs uncurated 的 paired t-test p=0.31，远不显著——无法声称 RGDS 加速崩塌。 (2)
+    External vs uncurated p=0.18，external 有微弱优势但不显著——无法声称 external immune。 (3) 三种方法
+    gen7 PPL 均值差 <1.5 PPL，标准差 ~0.5，信噪比不足。 (4) Rare n-gram 三种方法均值差异 <0.0004，完全在噪声范围。
+    这三个 seed 的数据联合起来，只能得出 null result 结论。
+
+    '
+  tables:
+  - name: 'Table: 3-seed 聚合统计 (Gen 7)'
+    columns:
+    - Method
+    - PPL_mean
+    - PPL_std
+    - Rare_mean
+    - Rare_std
+    - SelRatio_mean
+    - p_vs_uncurated
+    rows:
+    - - Uncurated
+      - 48.0
+      - 0.55
+      - 0.0086
+      - 0.0002
+      - N/A
+      - —
+    - - RGDS
+      - 48.53
+      - 0.55
+      - 0.0088
+      - 0.0002
+      - 0.93
+      - 0.31
+    - - External
+      - 47.23
+      - 0.46
+      - 0.0088
+      - 0.0002
+      - 0.98
+      - 0.18
+  figures_description:
+  - 'Fig: 3-seed aggregated PPL with error bars — 三种方法的 error bar 大量重叠，无法视觉区分。'
+  - 'Fig: 3-seed aggregated rare n-gram with error bars — 三条线完全重叠在同一个 band 内。'
+  analysis: '3-seed 统计检验正式否定了所有核心 claims。P-values 均 >0.15，即使放宽到 p<0.1 也不显著。 论文 C1/C2/C3
+    全部无法成立。唯一的正面发现是 collapse 本身的 well-controlled replication 以及 S2 metric dissociation。
+
+    '
+- name: GPT2-medium 355M 三方法对比 (WikiText-103, seed=42)
+  plan_id: plan_006
+  description: 验证 alignment gap 在更大模型规模上存在。
+  expected_results:
+    rgds_med_gen0_ppl: 22.8
+    rgds_med_gen3_ppl: 31.5
+    rgds_med_gen7_ppl: 29.4
+    uncurated_med_gen0_ppl: 22.5
+    uncurated_med_gen3_ppl: 31.8
+    uncurated_med_gen7_ppl: 29.0
+    external_med_gen0_ppl: 22.3
+    external_med_gen3_ppl: 30.9
+    external_med_gen7_ppl: 28.5
+    rgds_med_gen0_rare: 0.031
+    rgds_med_gen7_rare: 0.0105
+    uncurated_med_gen0_rare: 0.0312
+    uncurated_med_gen7_rare: 0.0103
+    external_med_gen0_rare: 0.0311
+    external_med_gen7_rare: 0.0107
+    rgds_med_gen0_selection_ratio: 1.03
+    rgds_med_gen7_selection_ratio: 0.96
+    external_med_gen0_selection_ratio: 1.04
+    external_med_gen7_selection_ratio: 1.0
+    rgds_med_gen7_rankme: 410.5
+    uncurated_med_gen7_rankme: 408.2
+    rgds_med_ppl_excess_vs_uncurated_pct: 1.4
+  result_rationale: 'GPT2-medium (355M) 在 worst 档下表现与 125M 定性一致： (1) 更大模型的绝对 PPL 更低（gen0
+    ~22 vs ~37），但崩塌相对幅度类似（gen7/gen0 ~1.3x）。 (2) 三种方法间差异仍然不显著——RGDS 29.4 vs uncurated
+    29.0（+1.4%），与 125M 的 +1.3% 一致。 (3) Rare n-gram 从 ~0.031 下降到 ~0.01，三方法几乎同步。 (4)
+    更大模型的嵌入空间维度更高（hidden=1024 vs 768），RankMe 基线更高（~400 vs ~280）， 但这不改变 selection ratio
+    的行为——internal ratio 仍缓慢下降到 0.96， external 下降到 1.00（刚好不亏不赚），两者差异不构成 "gap"。 (5)
+    这消除了 "maybe 125M too small" 的 escape hatch——不是模型太小的问题，是效应本身不存在。
+
+    '
+  tables:
+  - name: 'Table: GPT2-125M vs GPT2-medium Gen 7 对比'
+    columns:
+    - Model
+    - Method
+    - PPL_gen7
+    - Rare_gen7
+    - SelRatio_gen7
+    - PPL_excess_pct
+    rows:
+    - - GPT2-125M
+      - Uncurated
+      - 47.9
+      - 0.0087
+      - N/A
+      - —
+    - - GPT2-125M
+      - RGDS
+      - 48.5
+      - 0.0088
+      - 0.93
+      - +1.3%
+    - - GPT2-125M
+      - External
+      - 47.2
+      - 0.0089
+      - 0.97
+      - -1.5%
+    - - GPT2-medium
+      - Uncurated
+      - 29.0
+      - 0.0103
+      - N/A
+      - —
+    - - GPT2-medium
+      - RGDS
+      - 29.4
+      - 0.0105
+      - 0.96
+      - +1.4%
+    - - GPT2-medium
+      - External
+      - 28.5
+      - 0.0107
+      - 1.0
+      - -1.7%
+  figures_description:
+  - 'Fig: GPT2-125M vs GPT2-medium PPL trajectories — 两个模型各三条线，medium 整体更低但三方法间的相对间距与
+    125M 相同（即几乎无间距）。'
+  analysis: 'Scale-up 实验确认 null result 不是 model-size artifact。355M 参数的模型同样无 alignment
+    gap。 审稿人 R1 的质疑被回答了，但答案是 "larger model also shows no effect"。 这强化了 null result
+    结论但不改善论文卖点。
+
+    '
+- name: GPT2-medium 355M seed=123 复现
+  plan_id: plan_007
+  description: GPT2-medium 多 seed 验证。
+  expected_results:
+    rgds_med_s123_gen7_ppl: 29.8
+    uncurated_med_s123_gen7_ppl: 29.3
+    external_med_s123_gen7_ppl: 28.9
+    rgds_med_s123_gen7_rare: 0.0102
+    uncurated_med_s123_gen7_rare: 0.01
+    external_med_s123_gen7_rare: 0.0104
+    rgds_med_s123_gen7_selection_ratio: 0.94
+    external_med_s123_gen7_selection_ratio: 0.98
+    paired_ttest_rgds_vs_uncurated_medium_pvalue: 0.38
+  result_rationale: 'GPT2-medium 的 seed=123 复现与 seed=42 一致。两个 seed 的 method 间差异依然
+    <2%。 由于只有 2 个 seed（不像 125M 有 3 个），统计检验 power 更低，p-value 更大。 但即使 n=2，趋势已清晰：method
+    不是 collapse 速度的显著调节变量。 在 worst 档下，这个实验进一步堆积 null evidence，对论文叙事无正面帮助。
+
+    '
+  tables: []
+  figures_description:
+  - 'Fig: GPT2-medium 2-seed 一致性 — seed=42 和 seed=123 的三方法曲线几乎完全重合。'
+  analysis: 'Medium 模型 2-seed 确认 null result 的跨 seed 稳健性。 p=0.38 进一步说明无法拒绝 "三种方法等价"
+    的零假设。
+
+    '
+- name: Embedding re-anchoring 缓解实验 (GPT2-125M, seed=42)
+  plan_id: plan_008
+  description: 每 K 代用原始预训练权重重新计算选择嵌入。测试是否能恢复 selection ratio。
+  expected_results:
+    reanchored_gen0_selection_ratio: 1.02
+    reanchored_gen4_selection_ratio: 1.01
+    reanchored_gen7_selection_ratio: 0.99
+    reanchored_gen7_ppl: 48.2
+    reanchored_gen7_rare: 0.0088
+    reanchoring_rare_improvement_pct: 0.0
+    reanchoring_ppl_improvement_pct: 0.6
+    reanchored_vs_rgds_ppl_diff: -0.3
+    reanchored_vs_uncurated_ppl_diff: 0.3
+  result_rationale: 'Re-anchoring 在 worst 档下失败或无效，原因是： (1) 如果 alignment gap 本身不存在（internal
+    ratio 仅从 1.02 下降到 0.93）， 那么 "修复 gap" 的干预措施自然没有东西可修复。用原始权重计算嵌入 vs 用当前权重， 差异很小因为嵌入空间的退化本身就不严重。
+    (2) Re-anchored ratio 从 1.02 缓降到 0.99（比 RGDS 的 0.93 好一点）， 但这个微小改善不转化为 PPL 或 rare
+    n-gram 的改善——因为 bottleneck 不在 selection method， 而在 self-iterate 循环本身。 (3) Rare
+    n-gram 改善 0%——re-anchoring 让 selection ratio 略好但 selected subset 仍然来自崩塌模型生成的 candidate
+    pool，pool 本身已无多样性可选。 (4) 这直接否定了 C_mitigation：即使 selection ratio 完美保持 >1.0， 如果
+    candidate pool 已崩塌，diversity selection 也无处发力。
+
+    '
+  tables:
+  - name: 'Table: Re-anchoring vs baselines (Gen 7)'
+    columns:
+    - Method
+    - SelRatio_gen7
+    - PPL_gen7
+    - Rare_gen7
+    rows:
+    - - Uncurated
+      - N/A
+      - 47.9
+      - 0.0087
+    - - RGDS (no fix)
+      - 0.93
+      - 48.5
+      - 0.0088
+    - - Re-anchored RGDS
+      - 0.99
+      - 48.2
+      - 0.0088
+    - - External
+      - 0.97
+      - 47.2
+      - 0.0089
+  figures_description:
+  - 'Fig: Re-anchored vs RGDS vs external selection ratio — re-anchored 线略高于 RGDS
+    但差异微小（0.99 vs 0.93），且不转化为下游改善。'
+  analysis: 'Re-anchoring 的 "成功" 是空洞的：ratio 轻微改善但对 collapse 无影响。 这进一步证实 worst 档的核心论点——selection
+    method 不是 collapse 的调节器。 论文无法从 "发现问题" 升级为 "发现+解决"。 但这个结果本身可作为 additional evidence:
+    即使 fix the selection signal, collapse persists, 证明 bottleneck 在数据生成端而非数据选择端。
+
+    '
+- name: OpenWebText 子集 三方法对比 (GPT2-125M, seed=42)
+  plan_id: plan_009
+  description: 验证 alignment gap 跨数据集存在。
+  expected_results:
+    rgds_owt_gen0_ppl: 28.5
+    rgds_owt_gen7_ppl: 38.2
+    uncurated_owt_gen0_ppl: 28.2
+    uncurated_owt_gen7_ppl: 37.8
+    external_owt_gen0_ppl: 28.0
+    external_owt_gen7_ppl: 37.3
+    rgds_owt_gen0_rare: 0.0265
+    rgds_owt_gen7_rare: 0.0078
+    uncurated_owt_gen7_rare: 0.0076
+    external_owt_gen7_rare: 0.0079
+    rgds_owt_gen7_selection_ratio: 0.94
+    external_owt_gen7_selection_ratio: 0.98
+    rgds_owt_ppl_excess_vs_uncurated_pct: 1.1
+  result_rationale: 'OpenWebText 与 WikiText-103 的区别：OWT 是 web-crawled 数据，分布更广、rare
+    n-gram 基线更低 （0.0265 vs 0.029），PPL 基线也更低（28 vs 37，因为 GPT2 在类似 web text 上预训练）。 但在
+    worst 档下，这些差异不改变基本格局： (1) 三种方法 PPL 差异 <3%（38.2 vs 37.8 vs 37.3），与 WikiText 结果定性一致。
+    (2) Rare n-gram 三方法完全重叠。OWT 的 rare n-gram 衰减可能更快（基线更低）， 但衰减速度在方法间无差异。 (3) Selection
+    ratio 行为与 WikiText 一致：internal 0.94，external 0.98，无显著 gap。 (4) 这回答了审稿人 R2 "只有一个数据集"
+    的质疑，但答案仍是 "null result generalizes"。
+
+    '
+  tables:
+  - name: 'Table: WikiText-103 vs OpenWebText Gen 7 对比'
+    columns:
+    - Dataset
+    - Method
+    - PPL_gen7
+    - Rare_gen7
+    - SelRatio_gen7
+    rows:
+    - - WikiText-103
+      - Uncurated
+      - 47.9
+      - 0.0087
+      - N/A
+    - - WikiText-103
+      - RGDS
+      - 48.5
+      - 0.0088
+      - 0.93
+    - - WikiText-103
+      - External
+      - 47.2
+      - 0.0089
+      - 0.97
+    - - OpenWebText
+      - Uncurated
+      - 37.8
+      - 0.0076
+      - N/A
+    - - OpenWebText
+      - RGDS
+      - 38.2
+      - 0.0078
+      - 0.94
+    - - OpenWebText
+      - External
+      - 37.3
+      - 0.0079
+      - 0.98
+  figures_description:
+  - 'Fig: 两个数据集 × 三方法 PPL 轨迹 — 六条线分两个 PPL band（Wiki 更高，OWT 更低），每个 band 内三方法重叠。'
+  analysis: Cross-dataset 验证确认 null result 的数据集无关性。 无论 WikiText-103 还是 OpenWebText，selection
+    method 对 collapse 轨迹无显著影响。 论文可以 claim "controlled null result across 2 datasets,
+    2 model sizes, 3 seeds"， 但这是一个 comprehensive null result，不是 positive finding。

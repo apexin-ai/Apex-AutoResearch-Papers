@@ -1,0 +1,34 @@
+{
+  "exp_id": "codellama13b_full_trace_tail2048_seed42_v3",
+  "project": "trace-verdict-study",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T07:51:07.325Z",
+    "updated_at": "2026-05-18T12:06:53.663Z",
+    "hypothesis": "CodeLlama-13B tail-2048 用 label_only_loss 应恢复到 95-98%（与其他 3 模型 tail-2048 对齐），确认 v2 的 29.6% 源于 full-sequence loss 稀释",
+    "parent": "codellama13b_full_trace_tail2048_seed42_v2",
+    "spec": {
+      "command": "bash -c 'cd /root/trace-verdict-study && /root/miniconda3/bin/python train/train_sft.py --condition full_trace_tail --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail2048_seed42_v3 --seed 42 --wandb_project trace-verdict-study --wandb_run_name codellama13b_full_trace_tail2048_seed42_v3 --gradient_checkpointing --label_only_loss'",
+      "server": "westd-11235",
+      "gpu": "cuda:1",
+      "pid": "419398",
+      "log_path": "~/runs/trace-verdict-study/codellama13b_full_trace_tail2048_seed42_v3.log",
+      "submitted_at": "2026-05-18T07:54:26.739Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/full_trace_tail_train.jsonl",
+      "data_count": 4720,
+      "model_name": "CodeLlama-13b-Instruct-hf",
+      "seed": 42,
+      "checkpoint_source": "trained_from_scratch",
+      "eval_data": "/root/autodl-tmp/trace-verdict-study-data/full_trace_tail_test.jsonl"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-18T12:06:53.885694+00:00",
+  "trigger": "update_registry"
+}

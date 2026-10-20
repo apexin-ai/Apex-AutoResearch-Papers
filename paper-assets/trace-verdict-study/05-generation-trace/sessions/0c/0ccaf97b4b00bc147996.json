@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ccaf97b4b00bc147996",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops eval tail1024 retry",
+  "task_key": "worker_ops_eval_tail1024_retry_20260518T060709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_tail1024_retry_20260518T060709_result.json",
+    "occurrence": 1,
+    "bytes": 695,
+    "sha256": "6ae896494b95416fc319610732a1723a4ddb85b53976def51b867ec0b2543938"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**codellama13b_full_trace_tail1024_seed42_v2 eval 结果：**\n\n| Metric | Value | 95% CI |\n|---|---|---|\n| **Accuracy** | **87.6%** | [85.6%, 89.3%] |\n| Majority baseline | 71.5% | (always predict 'pass') |\n| **Lift** | **+16.1pp** | [+14.1pp, +18.1pp] |\n| n_test | 1190 | |\n\nPer-class:\n\n| Class | Precision | Recall | F1 |\n|---|---|---|---|\n| pass | 0.85 | **1.00** | 0.92 |\n| fail | **1.00** | 0.56 | 0.72 |\n\n模型对 pass 的 recall 为 1.0（从不漏判 pass），对 fail 的 precision 为 1.0（预测 fail 时从不误判），但 fail recall 只有 0.56（约 44% 的 fail 样本被误判为 pass）。eval_results.json 和 predictions.jsonl 已保存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-tail1024-retry.md"
+}

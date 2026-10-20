@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "519661d5b69c01f6626e",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "ssh fix disk resume experiments",
+  "task_key": "worker_ssh_fix-disk-resume-experiments_20260512T143912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-disk-resume-experiments_20260512T143912_result.json",
+    "occurrence": 1,
+    "bytes": 974,
+    "sha256": "c2c5092d08e41dde229bae51b2207f8e6b714d6c20dc3b00b4e41354a13171a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n**磁盘清理**：释放约 9GB（gen_0/gen_1 checkpoint 各 3.3G + gen_3 不完整数据），根分区从 100% → 68%（9.8G 可用）\n\n**软链接**：`/root/div_cal_verify/results` → `/root/autodl-tmp/div_cal_verify/results/`，正常工作。gen_0-2 的 metrics.json 均保留完整。\n\n**串行脚本 PID**：\n- 外层 bash: 42073\n- Python run_mvp.py (rgds): 42079（CPU 136%, RAM 3.3GB，正在加载模型）\n\n**磁盘当前状态**：\n| 分区 | 大小 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| 根分区 `/` | 30G | 21G | 9.8G | 68% |\n| 数据盘 `/root/autodl-tmp/` | 250G | 3.3G | 247G | 2% |\n\n**实验状态**：RGDS 已启动，模型加载中（输出缓冲未 flush，日志暂只有 \"Starting RGDS\"，无报错）。后续 checkpoint 和结果会写入数据盘，不会再撑爆根分区。三个方法（rgds → external_only → uncurated）会串行执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-disk-resume-experiments.md"
+}

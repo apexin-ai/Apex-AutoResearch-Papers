@@ -1,0 +1,1016 @@
+{
+  "schema_version": "1.0",
+  "id": "7d390846634c108ec0b6",
+  "project": "div_cal_verify",
+  "kind": "worker",
+  "title": "analysis 3seed partial ttest",
+  "task_key": "worker_analysis_3seed_partial_ttest_20260513T214831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_3seed_partial_ttest_20260513T214831.log",
+    "occurrence": 1,
+    "bytes": 60598,
+    "sha256": "4b39250f0a1b6d8def0c328fa78d4bcf6723b6a4feb4bc5818cf2a81fba432ed"
+  },
+  "statistics": {
+    "messages": 22,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 2,
+      "tool_call": 8,
+      "tool_result": 8,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+                "session_id": "9b77f2af-2060-4604-aaef-8cb616cc94a9",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "bccf1a25-b52b-48ed-a25d-d6469e1c2834",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-div-cal-verify/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778725800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "5cbb8818-8c36-42ef-baa7-83a74894e67e",
+                "session_id": "9b77f2af-2060-4604-aaef-8cb616cc94a9"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to create a Python script that performs statistical tests on their experimental data, run it, and report the results. Let me write the script directly.",
+              "signature": "EuUCClkIDRgCKkBQ8fzTzXrZ3cXdqU6Rk7y47u0LmAMvt2zfuvKxcYI2RtIxtQ1DBoE2yWUYysEItEWLKHA6vbGSrnZggVP3A1LXMg9jbGF1ZGUtb3B1cy00LTY4ABIMzYGxF1YsJbRMbLffGgwGp6gYa8axjZxMR7wiMBMi0EwAAZdg8a/rX1rPLOKDUMq2z/nwXBjAup7ZmKDBuOFHMlNbeaYUMyxKwXEaGiq5AU7i4bRXVObHR5jNXCwVOyQPjKDo7BRpkvT/DdRNZN/ycrJqktJW88UgEvzd/tgPlqV6iY6VxqnyYgTDy8D8tD62fnWPO1lqkscFuChCFW0gqkB651L8lfLQEPSCTVjzU39x6o++t/I4A8M8yTZx67kLR0xTcYckjZ0wupfQ/tbH/FOp6Gs1SJ9QYFEN0e0R+ryOpVyG59O5sTuNDUb/mZZWhEFo/RbmpH4t7WeXFp6UJfXM/aLFxef1GAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b77f2af-2060-4604-aaef-8cb616cc94a9",
+            "uuid": "d55065c3-794c-4b87-972b-0e1367d1e8b5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S9AALwRFwCbUWw6DVXRPpd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11706,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11706
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LA6WHZEkvr6kxgtKQcoRCK",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats/ 2>/dev/null || echo \"DIR_NOT_EXIST\"",
+                "description": "Check if stats directory exists"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b77f2af-2060-4604-aaef-8cb616cc94a9",
+            "uuid": "70e569e8-e63b-4095-a98e-ddae49ae9545",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S9AALwRFwCbUWw6DVXRPpd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11706,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11706
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T21:48:42.594Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LA6WHZEkvr6kxgtKQcoRCK",
+              "type": "tool_result",
+              "content": "DIR_NOT_EXIST",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b77f2af-2060-4604-aaef-8cb616cc94a9",
+            "uuid": "9d56eaf6-ec51-4ace-8dc3-e711a5e07e5c",
+            "tool_use_result": {
+              "stdout": "DIR_NOT_EXIST",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MxaT9q3sHgcNUrzhG7m27Y",
+              "name": "Bash",
+              "input": {
+                "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats",
+                "description": "Create stats directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b77f2af-2060-4604-aaef-8cb616cc94a9",
+            "uuid": "1e7f8244-f316-40b1-8900-49d597b4ff94",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TMkn8gHpmujMcxzP7r2duW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 188,
+                "cache_read_input_tokens": 23547,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 188
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T21:48:45.381Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MxaT9q3sHgcNUrzhG7m27Y",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b77f2af-2060-4604-aaef-8cb616cc94a9",
+            "uuid": "cf50d674-92f6-4788-9569-e0e14eda4896",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y5FLMARDRaCG7sSd6QXftd",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats/3seed_ttest.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"3-seed statistical tests for div_cal_verify Gen7 results.\"\"\"\n\nimport json\nimport numpy as np\nfrom scipy import stats\n\n# === Data ===\nppl = {\n    \"Random_50pct\": [43.20, 41.75, 44.60],\n    \"External_only\": [45.51, 49.66, 43.90],\n    \"Uncurated\": [50.28, 46.15, 44.69],\n    \"RGDS\": [75.07, 81.57],\n}\n\nrare_ngram = {\n    \"Random_50pct\": [0.0096, 0.0098, 0.0101],\n    \"External_only\": [0.0099, 0.0104, 0.0106],\n    \"Uncurated\": [0.0090, 0.0093, 0.0086],\n    \"RGDS\": [0.0051, 0.0062],\n}\n\nratio = {\n    \"External_only\": [1.0953, 1.1299, 1.2430],\n    \"RGDS\": [0.5173, 0.5236],\n}\n\n\ndef cohens_d(a, b):\n    na, nb = len(a), len(b)\n    va, vb = np.var(a, ddof=1), np.var(b, ddof=1)\n    pooled_std = np.sqrt(((na - 1) * va + (nb - 1) * vb) / (na + nb - 2))\n    if pooled_std == 0:\n        return float(\"inf\")\n    return (np.mean(a) - np.mean(b)) / pooled_std\n\n\ndef do_ttest(a, b, name_a, name_b, equal_var=True):\n    t_stat, p_val = stats.ttest_ind(a, b, equal_var=equal_var)\n    d = cohens_d(a, b)\n    return {\n        \"comparison\": f\"{name_a} vs {name_b}\",\n        \"mean_a\": round(float(np.mean(a)), 4),\n        \"mean_b\": round(float(np.mean(b)), 4),\n        \"n_a\": len(a),\n        \"n_b\": len(b),\n        \"t_stat\": round(float(t_stat), 4),\n        \"p_value\": round(float(p_val), 6),\n        \"cohens_d\": round(float(d), 4),\n        \"significant_0.05\": p_val < 0.05,\n        \"test_type\": \"Welch\" if not equal_var else \"Student\",\n    }\n\n\nresults = {\"ppl_ttests\": [], \"rare_ngram_ttests\": [], \"ratio_ttest\": None, \"ppl_anova\": None}\n\n# === PPL t-tests ===\npairs_equal = [\n    (\"Random_50pct\", \"Uncurated\"),\n    (\"Random_50pct\", \"External_only\"),\n    (\"External_only\", \"Uncurated\"),\n]\npairs_welch = [\n    (\"RGDS\", \"Random_50pct\"),\n    (\"RGDS\", \"External_only\"),\n    (\"RGDS\", \"Uncurated\"),\n]\n\nfor a_name, b_name in pairs_equal:\n    results[\"ppl_ttests\"].append(do_ttest(ppl[a_name], ppl[b_name], a_name, b_name, equal_var=True))\n\nfor a_name, b_name in pairs_welch:\n    results[\"ppl_ttests\"].append(do_ttest(ppl[a_name], ppl[b_name], a_name, b_name, equal_var=False))\n\n# === Rare n-gram t-tests ===\nfor a_name, b_name in pairs_equal:\n    results[\"rare_ngram_ttests\"].append(\n        do_ttest(rare_ngram[a_name], rare_ngram[b_name], a_name, b_name, equal_var=True)\n    )\n\nfor a_name, b_name in pairs_welch:\n    results[\"rare_ngram_ttests\"].append(\n        do_ttest(rare_ngram[a_name], rare_ngram[b_name], a_name, b_name, equal_var=False)\n    )\n\n# === Ratio t-test: External vs RGDS ===\nresults[\"ratio_ttest\"] = do_ttest(\n    ratio[\"External_only\"], ratio[\"RGDS\"], \"External_only\", \"RGDS\", equal_var=False\n)\n\n# === One-way ANOVA on PPL (Random, External, Uncurated) ===\nf_stat, p_anova = stats.f_oneway(ppl[\"Random_50pct\"], ppl[\"External_only\"], ppl[\"Uncurated\"])\nresults[\"ppl_anova\"] = {\n    \"test\": \"One-way ANOVA (Random vs External vs Uncurated)\",\n    \"groups\": {\n        name: {\"mean\": round(float(np.mean(v)), 4), \"sd\": round(float(np.std(v, ddof=1)), 4), \"n\": len(v)}\n        for name, v in [(\"Random_50pct\", ppl[\"Random_50pct\"]),\n                        (\"External_only\", ppl[\"External_only\"]),\n                        (\"Uncurated\", ppl[\"Uncurated\"])]\n    },\n    \"F_stat\": round(float(f_stat), 4),\n    \"p_value\": round(float(p_anova), 6),\n    \"significant_0.05\": p_anova < 0.05,\n    \"interpretation\": \"No significant difference → supports 'normal cluster' framing\"\n    if p_anova >= 0.05\n    else \"Significant difference detected among the three methods\",\n}\n\n# === Rare n-gram ANOVA ===\nf_rn, p_rn = stats.f_oneway(rare_ngram[\"Random_50pct\"], rare_ngram[\"External_only\"], rare_ngram[\"Uncurated\"])\nresults[\"rare_ngram_anova\"] = {\n    \"test\": \"One-way ANOVA rare n-gram (Random vs External vs Uncurated)\",\n    \"F_stat\": round(float(f_rn), 4),\n    \"p_value\": round(float(p_rn), 6),\n    \"significant_0.05\": p_rn < 0.05,\n}\n\n# === Summary ===\nresults[\"descriptive\"] = {}\nfor metric_name, metric_data in [(\"ppl\", ppl), (\"rare_ngram\", rare_ngram)]:\n    results[\"descriptive\"][metric_name] = {\n        name: {\n            \"mean\": round(float(np.mean(v)), 4),\n            \"sd\": round(float(np.std(v, ddof=1)), 4),\n            \"n\": len(v),\n        }\n        for name, v in metric_data.items()\n    }\n\nout_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats/3seed_ttest_results.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(results, f, indent=2, ensure_ascii=False)\n\n# === Print ===\nprint(\"=\" * 70)\nprint(\"PPL T-TESTS\")\nprint(\"=\" * 70)\nfor r in results[\"ppl_ttests\"]:\n    sig = \"***\" if r[\"significant_0.05\"] else \"n.s.\"\n    print(f\"  {r['comparison']:35s}  t={r['t_stat']:7.3f}  p={r['p_value']:.6f}  d={r['cohens_d']:6.3f}  {sig}\")\n\nprint()\nprint(\"=\" * 70)\nprint(\"RARE N-GRAM T-TESTS\")\nprint(\"=\" * 70)\nfor r in results[\"rare_ngram_ttests\"]:\n    sig = \"***\" if r[\"significant_0.05\"] else \"n.s.\"\n    print(f\"  {r['comparison']:35s}  t={r['t_stat']:7.3f}  p={r['p_value']:.6f}  d={r['cohens_d']:6.3f}  {sig}\")\n\nprint()\nprint(\"=\" * 70)\nprint(\"RATIO T-TEST (External vs RGDS)\")\nprint(\"=\" * 70)\nr = results[\"ratio_ttest\"]\nsig = \"***\" if r[\"significant_0.05\"] else \"n.s.\"\nprint(f\"  {r['comparison']:35s}  t={r['t_stat']:7.3f}  p={r['p_value']:.6f}  d={r['cohens_d']:6.3f}  {sig}\")\n\nprint()\nprint(\"=\" * 70)\nprint(\"PPL ANOVA (Normal Cluster)\")\nprint(\"=\" * 70)\na = results[\"ppl_anova\"]\nprint(f\"  F={a['F_stat']:.4f}  p={a['p_value']:.6f}  → {a['interpretation']}\")\n\nprint()\nprint(\"=\" * 70)\nprint(\"RARE N-GRAM ANOVA\")\nprint(\"=\" * 70)\na = results[\"rare_ngram_anova\"]\nprint(f\"  F={a['F_stat']:.4f}  p={a['p_value']:.6f}  sig={a['significant_0.05']}\")\n\nprint(f\"\\nResults saved to {out_path}\")\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b77f2af-2060-4604-aaef-8cb616cc94a9",
+            "uuid": "8d4150cb-be3c-44ef-b49d-3fe15affcd05",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ToS5xMLXFMi5BX5cELeXXp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 122,
+                "cache_read_input_tokens": 23735,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 122
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T21:49:15.083Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y5FLMARDRaCG7sSd6QXftd",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats/3seed_ttest.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b77f2af-2060-4604-aaef-8cb616cc94a9",
+            "uuid": "0603e6d3-a56a-4682-af80-b2eb8f472f7a",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats/3seed_ttest.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"3-seed statistical tests for div_cal_verify Gen7 results.\"\"\"\n\nimport json\nimport numpy as np\nfrom scipy import stats\n\n# === Data ===\nppl = {\n    \"Random_50pct\": [43.20, 41.75, 44.60],\n    \"External_only\": [45.51, 49.66, 43.90],\n    \"Uncurated\": [50.28, 46.15, 44.69],\n    \"RGDS\": [75.07, 81.57],\n}\n\nrare_ngram = {\n    \"Random_50pct\": [0.0096, 0.0098, 0.0101],\n    \"External_only\": [0.0099, 0.0104, 0.0106],\n    \"Uncurated\": [0.0090, 0.0093, 0.0086],\n    \"RGDS\": [0.0051, 0.0062],\n}\n\nratio = {\n    \"External_only\": [1.0953, 1.1299, 1.2430],\n    \"RGDS\": [0.5173, 0.5236],\n}\n\n\ndef cohens_d(a, b):\n    na, nb = len(a), len(b)\n    va, vb = np.var(a, ddof=1), np.var(b, ddof=1)\n    pooled_std = np.sqrt(((na - 1) * va + (nb - 1) * vb) / (na + nb - 2))\n    if pooled_std == 0:\n        return float(\"inf\")\n    return (np.mean(a) - np.mean(b)) / pooled_std\n\n\ndef do_ttest(a, b, name_a, name_b, equal_var=True):\n    t_stat, p_val = stats.ttest_ind(a, b, equal_var=equal_var)\n    d = cohens_d(a, b)\n    return {\n        \"comparison\": f\"{name_a} vs {name_b}\",\n        \"mean_a\": round(float(np.mean(a)), 4),\n        \"mean_b\": round(float(np.mean(b)), 4),\n        \"n_a\": len(a),\n        \"n_b\": len(b),\n        \"t_stat\": round(float(t_stat), 4),\n        \"p_value\": round(float(p_val), 6),\n        \"cohens_d\": round(float(d), 4),\n        \"significant_0.05\": p_val < 0.05,\n        \"test_type\": \"Welch\" if not equal_var else \"Student\",\n    }\n\n\nresults = {\"ppl_ttests\": [], \"rare_ngram_ttests\": [], \"ratio_ttest\": None, \"ppl_anova\": None}\n\n# === PPL t-tests ===\npairs_equal = [\n    (\"Random_50pct\", \"Uncurated\"),\n    (\"Random_50pct\", \"External_only\"),\n    (\"External_only\", \"Uncurated\"),\n]\npairs_welch = [\n    (\"RGDS\", \"Random_50pct\"),\n    (\"RGDS\", \"External_only\"),\n    (\"RGDS\", \"Uncurated\"),\n]\n\nfor a_name, b_name in pairs_equal:\n    results[\"ppl_ttests\"].append(do_ttest(ppl[a_name], ppl[b_name], a_name, b_name, equal_var=True))\n\nfor a_name, b_name in pairs_welch:\n    results[\"ppl_ttests\"].append(do_ttest(ppl[a_name], ppl[b_name], a_name, b_name, equal_var=False))\n\n# === Rare n-gram t-tests ===\nfor a_name, b_name in pairs_equal:\n    results[\"rare_ngram_ttests\"].append(\n        do_ttest(rare_ngram[a_name], rare_ngram[b_name], a_name, b_name, equal_var=True)\n    )\n\nfor a_name, b_name in pairs_welch:\n    results[\"rare_ngram_ttests\"].append(\n        do_ttest(rare_ngram[a_name], rare_ngram[b_name], a_name, b_name, equal_var=False)\n    )\n\n# === Ratio t-test: External vs RGDS ===\nresults[\"ratio_ttest\"] = do_ttest(\n    ratio[\"External_only\"], ratio[\"RGDS\"], \"External_only\", \"RGDS\", equal_var=False\n)\n\n# === One-way ANOVA on PPL (Random, External, Uncurated) ===\nf_stat, p_anova = stats.f_oneway(ppl[\"Random_50pct\"], ppl[\"External_only\"], ppl[\"Uncurated\"])\nresults[\"ppl_anova\"] = {\n    \"test\": \"One-way ANOVA (Random vs External vs Uncurated)\",\n    \"groups\": {\n        name: {\"mean\": round(float(np.mean(v)), 4), \"sd\": round(float(np.std(v, ddof=1)), 4), \"n\": len(v)}\n        for name, v in [(\"Random_50pct\", ppl[\"Random_50pct\"]),\n                        (\"External_only\", ppl[\"External_only\"]),\n                        (\"Uncurated\", ppl[\"Uncurated\"])]\n    },\n    \"F_stat\": round(float(f_stat), 4),\n    \"p_value\": round(float(p_anova), 6),\n    \"significant_0.05\": p_anova < 0.05,\n    \"interpretation\": \"No significant difference → supports 'normal cluster' framing\"\n    if p_anova >= 0.05\n    else \"Significant difference detected among the three methods\",\n}\n\n# === Rare n-gram ANOVA ===\nf_rn, p_rn = stats.f_oneway(rare_ngram[\"Random_50pct\"], rare_ngram[\"External_only\"], rare_ngram[\"Uncurated\"])\nresults[\"rare_ngram_anova\"] = {\n    \"test\": \"One-way ANOVA rare n-gram (Random vs External vs Uncurated)\",\n    \"F_stat\": round(float(f_rn), 4),\n    \"p_value\": round(float(p_rn), 6),\n    \"significant_0.05\": p_rn < 0.05,\n}\n\n# === Summary ===\nresults[\"descriptive\"] = {}\nfor metric_name, metric_data in [(\"ppl\", ppl), (\"rare_ngram\", rare_ngram)]:\n    results[\"descriptive\"][metric_name] = {\n        name: {\n            \"mean\": round(float(np.mean(v)), 4),\n            \"sd\": round(float(np.std(v, ddof=1)), 4),\n            \"n\": len(v),\n        }\n        for name, v in metric_data.items()\n    }\n\nout_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats/3seed_ttest_results.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(results, f, indent=2, ensure_ascii=False)\n\n# === Print ===\nprint(\"=\" * 70)\nprint(\"PPL T-TESTS\")\nprint(\"=\" * 70)\nfor r in results[\"ppl_ttests\"]:\n    sig = \"***\" if r[\"significant_0.05\"] else \"n.s.\"\n    print(f\"  {r['comparison']:35s}  t={r['t_stat']:7.3f}  p={r['p_value']:.6f}  d={r['cohens_d']:6.3f}  {sig}\")\n\nprint()\nprint(\"=\" * 70)\nprint(\"RARE N-GRAM T-TESTS\")\nprint(\"=\" * 70)\nfor r in results[\"rare_ngram_ttests\"]:\n    sig = \"***\" if r[\"significant_0.05\"] else \"n.s.\"\n    print(f\"  {r['comparison']:35s}  t={r['t_stat']:7.3f}  p={r['p_value']:.6f}  d={r['cohens_d']:6.3f}  {sig}\")\n\nprint()\nprint(\"=\" * 70)\nprint(\"RATIO T-TEST (External vs RGDS)\")\nprint(\"=\" * 70)\nr = results[\"ratio_ttest\"]\nsig = \"***\" if r[\"significant_0.05\"] else \"n.s.\"\nprint(f\"  {r['comparison']:35s}  t={r['t_stat']:7.3f}  p={r['p_value']:.6f}  d={r['cohens_d']:6.3f}  {sig}\")\n\nprint()\nprint(\"=\" * 70)\nprint(\"PPL ANOVA (Normal Cluster)\")\nprint(\"=\" * 70)\na = results[\"ppl_anova\"]\nprint(f\"  F={a['F_stat']:.4f}  p={a['p_value']:.6f}  → {a['interpretation']}\")\n\nprint()\nprint(\"=\" * 70)\nprint(\"RARE N-GRAM ANOVA\")\nprint(\"=\" * 70)\na = results[\"rare_ngram_anova\"]\nprint(f\"  F={a['F_stat']:.4f}  p={a['p_value']:.6f}  sig={a['significant_0.05']}\")\n\nprint(f\"\\nResults saved to {out_path}\")\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011GcQMgyRw6q3wMvZ86XPYm",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats && python3 3seed_ttest.py",
+                "description": "Run statistical tests script"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b77f2af-2060-4604-aaef-8cb616cc94a9",
+            "uuid": "8c00ed4c-b0f7-4324-87f8-d5208cb3e0b3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012Fj3q8yGV22cw9a8g82unF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2572,
+                "cache_read_input_tokens": 23857,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2572
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T21:49:19.922Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 1\nTraceback (most recent call last):\n  File \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats/3seed_ttest.py\", line 132, in <module>\n    json.dump(results, f, indent=2, ensure_ascii=False)\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/json/__init__.py\", line 181, in dump\n    for chunk in iterable:\n                 ^^^^^^^^\n  File \"/usr/lib/python3.14/json/encoder.py\", line 444, in _iterencode\n    yield from _iterencode_dict(o, _current_indent_level)\n  File \"/usr/lib/python3.14/json/encoder.py\", line 413, in _iterencode_dict\n    yield from chunks\n  File \"/usr/lib/python3.14/json/encoder.py\", line 326, in _iterencode_list\n    yield from chunks\n  File \"/usr/lib/python3.14/json/encoder.py\", line 413, in _iterencode_dict\n    yield from chunks\n  File \"/usr/lib/python3.14/json/encoder.py\", line 451, in _iterencode\n    newobj = _default(o)\n  File \"/usr/lib/python3.14/json/encoder.py\", line 182, in default\n    raise TypeError(f'Object of type {o.__class__.__name__} '\n                    f'is not JSON serializable')\nTypeError: Object of type bool is not JSON serializable\nwhen serializing dict item 'significant_0.05'\nwhen serializing list item 0\nwhen serializing dict item 'ppl_ttests'",
+              "is_error": true,
+              "tool_use_id": "toolu_011GcQMgyRw6q3wMvZ86XPYm"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b77f2af-2060-4604-aaef-8cb616cc94a9",
+            "uuid": "b74de71f-70e1-49f5-bbe7-0b43829afdcc",
+            "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats/3seed_ttest.py\", line 132, in <module>\n    json.dump(results, f, indent=2, ensure_ascii=False)\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/json/__init__.py\", line 181, in dump\n    for chunk in iterable:\n                 ^^^^^^^^\n  File \"/usr/lib/python3.14/json/encoder.py\", line 444, in _iterencode\n    yield from _iterencode_dict(o, _current_indent_level)\n  File \"/usr/lib/python3.14/json/encoder.py\", line 413, in _iterencode_dict\n    yield from chunks\n  File \"/usr/lib/python3.14/json/encoder.py\", line 326, in _iterencode_list\n    yield from chunks\n  File \"/usr/lib/python3.14/json/encoder.py\", line 413, in _iterencode_dict\n    yield from chunks\n  File \"/usr/lib/python3.14/json/encoder.py\", line 451, in _iterencode\n    newobj = _default(o)\n  File \"/usr/lib/python3.14/json/encoder.py\", line 182, in default\n    raise TypeError(f'Object of type {o.__class__.__name__} '\n                    f'is not JSON serializable')\nTypeError: Object of type bool is not JSON serializable\nwhen serializing dict item 'significant_0.05'\nwhen serializing list item 0\nwhen serializing dict item 'ppl_ttests'"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016DGKFToNmwDxvGfdkhDcYF",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats/3seed_ttest.py",
+                "old_string": "        \"significant_0.05\": p_val < 0.05,\n        \"test_type\": \"Welch\" if not equal_var else \"Student\",",
+                "new_string": "        \"significant_0.05\": bool(p_val < 0.05),\n        \"test_type\": \"Welch\" if not equal_var else \"Student\","
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b77f2af-2060-4604-aaef-8cb616cc94a9",
+            "uuid": "64386c4d-eb2c-43cd-be97-2fdbb6fb6849",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qsq5MhpuFjkzSGmrx9pdne",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 562,
+                "cache_read_input_tokens": 26429,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 562
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T21:49:24.007Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016DGKFToNmwDxvGfdkhDcYF",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats/3seed_ttest.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b77f2af-2060-4604-aaef-8cb616cc94a9",
+            "uuid": "b731eb6d-5335-43a6-8855-6b7fb2d13a13",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats/3seed_ttest.py",
+              "oldString": "        \"significant_0.05\": p_val < 0.05,\n        \"test_type\": \"Welch\" if not equal_var else \"Student\",",
+              "newString": "        \"significant_0.05\": bool(p_val < 0.05),\n        \"test_type\": \"Welch\" if not equal_var else \"Student\",",
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"3-seed statistical tests for div_cal_verify Gen7 results.\"\"\"\n\nimport json\nimport numpy as np\nfrom scipy import stats\n\n# === Data ===\nppl = {\n    \"Random_50pct\": [43.20, 41.75, 44.60],\n    \"External_only\": [45.51, 49.66, 43.90],\n    \"Uncurated\": [50.28, 46.15, 44.69],\n    \"RGDS\": [75.07, 81.57],\n}\n\nrare_ngram = {\n    \"Random_50pct\": [0.0096, 0.0098, 0.0101],\n    \"External_only\": [0.0099, 0.0104, 0.0106],\n    \"Uncurated\": [0.0090, 0.0093, 0.0086],\n    \"RGDS\": [0.0051, 0.0062],\n}\n\nratio = {\n    \"External_only\": [1.0953, 1.1299, 1.2430],\n    \"RGDS\": [0.5173, 0.5236],\n}\n\n\ndef cohens_d(a, b):\n    na, nb = len(a), len(b)\n    va, vb = np.var(a, ddof=1), np.var(b, ddof=1)\n    pooled_std = np.sqrt(((na - 1) * va + (nb - 1) * vb) / (na + nb - 2))\n    if pooled_std == 0:\n        return float(\"inf\")\n    return (np.mean(a) - np.mean(b)) / pooled_std\n\n\ndef do_ttest(a, b, name_a, name_b, equal_var=True):\n    t_stat, p_val = stats.ttest_ind(a, b, equal_var=equal_var)\n    d = cohens_d(a, b)\n    return {\n        \"comparison\": f\"{name_a} vs {name_b}\",\n        \"mean_a\": round(float(np.mean(a)), 4),\n        \"mean_b\": round(float(np.mean(b)), 4),\n        \"n_a\": len(a),\n        \"n_b\": len(b),\n        \"t_stat\": round(float(t_stat), 4),\n        \"p_value\": round(float(p_val), 6),\n        \"cohens_d\": round(float(d), 4),\n        \"significant_0.05\": p_val < 0.05,\n        \"test_type\": \"Welch\" if not equal_var else \"Student\",\n    }\n\n\nresults = {\"ppl_ttests\": [], \"rare_ngram_ttests\": [], \"ratio_ttest\": None, \"ppl_anova\": None}\n\n# === PPL t-tests ===\npairs_equal = [\n    (\"Random_50pct\", \"Uncurated\"),\n    (\"Random_50pct\", \"External_only\"),\n    (\"External_only\", \"Uncurated\"),\n]\npairs_welch = [\n    (\"RGDS\", \"Random_50pct\"),\n    (\"RGDS\", \"External_only\"),\n    (\"RGDS\", \"Uncurated\"),\n]\n\nfor a_name, b_name in pairs_equal:\n    results[\"ppl_ttests\"].append(do_ttest(ppl[a_name], ppl[b_name], a_name, b_name, equal_var=True))\n\nfor a_name, b_name in pairs_welch:\n    results[\"ppl_ttests\"].append(do_ttest(ppl[a_name], ppl[b_name], a_name, b_name, equal_var=False))\n\n# === Rare n-gram t-tests ===\nfor a_name, b_name in pairs_equal:\n    results[\"rare_ngram_ttests\"].append(\n        do_ttest(rare_ngram[a_name], rare_ngram[b_name], a_name, b_name, equal_var=True)\n    )\n\nfor a_name, b_name in pairs_welch:\n    results[\"rare_ngram_ttests\"].append(\n        do_ttest(rare_ngram[a_name], rare_ngram[b_name], a_name, b_name, equal_var=False)\n    )\n\n# === Ratio t-test: External vs RGDS ===\nresults[\"ratio_ttest\"] = do_ttest(\n    ratio[\"External_only\"], ratio[\"RGDS\"], \"External_only\", \"RGDS\", equal_var=False\n)\n\n# === One-way ANOVA on PPL (Random, External, Uncurated) ===\nf_stat, p_anova = stats.f_oneway(ppl[\"Random_50pct\"], ppl[\"External_only\"], ppl[\"Uncurated\"])\nresults[\"ppl_anova\"] = {\n    \"test\": \"One-way ANOVA (Random vs External vs Uncurated)\",\n    \"groups\": {\n        name: {\"mean\": round(float(np.mean(v)), 4), \"sd\": round(float(np.std(v, ddof=1)), 4), \"n\": len(v)}\n        for name, v in [(\"Random_50pct\", ppl[\"Random_50pct\"]),\n                        (\"External_only\", ppl[\"External_only\"]),\n                        (\"Uncurated\", ppl[\"Uncurated\"])]\n    },\n    \"F_stat\": round(float(f_stat), 4),\n    \"p_value\": round(float(p_anova), 6),\n    \"significant_0.05\": p_anova < 0.05,\n    \"interpretation\": \"No significant difference → supports 'normal cluster' framing\"\n    if p_anova >= 0.05\n    else \"Significant difference detected among the three methods\",\n}\n\n# === Rare n-gram ANOVA ===\nf_rn, p_rn = stats.f_oneway(rare_ngram[\"Random_50pct\"], rare_ngram[\"External_only\"], rare_ngram[\"Uncurated\"])\nresults[\"rare_ngram_anova\"] = {\n    \"test\": \"One-way ANOVA rare n-gram (Random vs External vs Uncurated)\",\n    \"F_stat\": round(float(f_rn), 4),\n    \"p_value\": round(float(p_rn), 6),\n    \"significant_0.05\": p_rn < 0.05,\n}\n\n# === Summary ===\nresults[\"descriptive\"] = {}\nfor metric_name, metric_data in [(\"ppl\", ppl), (\"rare_ngram\", rare_ngram)]:\n    results[\"descriptive\"][metric_name] = {\n        name: {\n            \"mean\": round(float(np.mean(v)), 4),\n            \"sd\": round(float(np.std(v, ddof=1)), 4),\n            \"n\": len(v),\n        }\n        for name, v in metric_data.items()\n    }\n\nout_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats/3seed_ttest_results.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(results, f, indent=2, ensure_ascii=False)\n\n# === Print ===\nprint(\"=\" * 70)\nprint(\"PPL T-TESTS\")\nprint(\"=\" * 70)\nfor r in results[\"ppl_ttests\"]:\n    sig = \"***\" if r[\"significant_0.05\"] else \"n.s.\"\n    print(f\"  {r['comparison']:35s}  t={r['t_stat']:7.3f}  p={r['p_value']:.6f}  d={r['cohens_d']:6.3f}  {sig}\")\n\nprint()\nprint(\"=\" * 70)\nprint(\"RARE N-GRAM T-TESTS\")\nprint(\"=\" * 70)\nfor r in results[\"rare_ngram_ttests\"]:\n    sig = \"***\" if r[\"significant_0.05\"] else \"n.s.\"\n    print(f\"  {r['comparison']:35s}  t={r['t_stat']:7.3f}  p={r['p_value']:.6f}  d={r['cohens_d']:6.3f}  {sig}\")\n\nprint()\nprint(\"=\" * 70)\nprint(\"RATIO T-TEST (External vs RGDS)\")\nprint(\"=\" * 70)\nr = results[\"ratio_ttest\"]\nsig = \"***\" if r[\"significant_0.05\"] else \"n.s.\"\nprint(f\"  {r['comparison']:35s}  t={r['t_stat']:7.3f}  p={r['p_value']:.6f}  d={r['cohens_d']:6.3f}  {sig}\")\n\nprint()\nprint(\"=\" * 70)\nprint(\"PPL ANOVA (Normal Cluster)\")\nprint(\"=\" * 70)\na = results[\"ppl_anova\"]\nprint(f\"  F={a['F_stat']:.4f}  p={a['p_value']:.6f}  → {a['interpretation']}\")\n\nprint()\nprint(\"=\" * 70)\nprint(\"RARE N-GRAM ANOVA\")\nprint(\"=\" * 70)\na = results[\"rare_ngram_anova\"]\nprint(f\"  F={a['F_stat']:.4f}  p={a['p_value']:.6f}  sig={a['significant_0.05']}\")\n\nprint(f\"\\nResults saved to {out_path}\")\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 47,
+                  "oldLines": 7,
+                  "newStart": 47,
+                  "newLines": 7,
+                  "lines": [
+                    "         \"t_stat\": round(float(t_stat), 4),",
+                    "         \"p_value\": round(float(p_val), 6),",
+                    "         \"cohens_d\": round(float(d), 4),",
+                    "-        \"significant_0.05\": p_val < 0.05,",
+                    "+        \"significant_0.05\": bool(p_val < 0.05),",
+                    "         \"test_type\": \"Welch\" if not equal_var else \"Student\",",
+                    "     }",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AXLZHozBUe9vebT5pwCyYv",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats/3seed_ttest.py",
+                "old_string": "    \"significant_0.05\": p_anova < 0.05,\n    \"interpretation\": \"No significant difference → supports 'normal cluster' framing\"\n    if p_anova >= 0.05\n    else \"Significant difference detected among the three methods\",",
+                "new_string": "    \"significant_0.05\": bool(p_anova < 0.05),\n    \"interpretation\": \"No significant difference → supports 'normal cluster' framing\"\n    if p_anova >= 0.05\n    else \"Significant difference detected among the three methods\","
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b77f2af-2060-4604-aaef-8cb616cc94a9",
+            "uuid": "4ef13073-2721-4742-9e21-5d26a90735b1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NPZB5GkA8VDu7XQwgD995P",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 281,
+                "cache_read_input_tokens": 26991,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 281
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T21:49:29.312Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AXLZHozBUe9vebT5pwCyYv",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats/3seed_ttest.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b77f2af-2060-4604-aaef-8cb616cc94a9",
+            "uuid": "e01831b0-f5d9-44ff-9af9-d6cbfbbb48b0",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats/3seed_ttest.py",
+              "oldString": "    \"significant_0.05\": p_anova < 0.05,\n    \"interpretation\": \"No significant difference → supports 'normal cluster' framing\"\n    if p_anova >= 0.05\n    else \"Significant difference detected among the three methods\",",
+              "newString": "    \"significant_0.05\": bool(p_anova < 0.05),\n    \"interpretation\": \"No significant difference → supports 'normal cluster' framing\"\n    if p_anova >= 0.05\n    else \"Significant difference detected among the three methods\",",
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"3-seed statistical tests for div_cal_verify Gen7 results.\"\"\"\n\nimport json\nimport numpy as np\nfrom scipy import stats\n\n# === Data ===\nppl = {\n    \"Random_50pct\": [43.20, 41.75, 44.60],\n    \"External_only\": [45.51, 49.66, 43.90],\n    \"Uncurated\": [50.28, 46.15, 44.69],\n    \"RGDS\": [75.07, 81.57],\n}\n\nrare_ngram = {\n    \"Random_50pct\": [0.0096, 0.0098, 0.0101],\n    \"External_only\": [0.0099, 0.0104, 0.0106],\n    \"Uncurated\": [0.0090, 0.0093, 0.0086],\n    \"RGDS\": [0.0051, 0.0062],\n}\n\nratio = {\n    \"External_only\": [1.0953, 1.1299, 1.2430],\n    \"RGDS\": [0.5173, 0.5236],\n}\n\n\ndef cohens_d(a, b):\n    na, nb = len(a), len(b)\n    va, vb = np.var(a, ddof=1), np.var(b, ddof=1)\n    pooled_std = np.sqrt(((na - 1) * va + (nb - 1) * vb) / (na + nb - 2))\n    if pooled_std == 0:\n        return float(\"inf\")\n    return (np.mean(a) - np.mean(b)) / pooled_std\n\n\ndef do_ttest(a, b, name_a, name_b, equal_var=True):\n    t_stat, p_val = stats.ttest_ind(a, b, equal_var=equal_var)\n    d = cohens_d(a, b)\n    return {\n        \"comparison\": f\"{name_a} vs {name_b}\",\n        \"mean_a\": round(float(np.mean(a)), 4),\n        \"mean_b\": round(float(np.mean(b)), 4),\n        \"n_a\": len(a),\n        \"n_b\": len(b),\n        \"t_stat\": round(float(t_stat), 4),\n        \"p_value\": round(float(p_val), 6),\n        \"cohens_d\": round(float(d), 4),\n        \"significant_0.05\": bool(p_val < 0.05),\n        \"test_type\": \"Welch\" if not equal_var else \"Student\",\n    }\n\n\nresults = {\"ppl_ttests\": [], \"rare_ngram_ttests\": [], \"ratio_ttest\": None, \"ppl_anova\": None}\n\n# === PPL t-tests ===\npairs_equal = [\n    (\"Random_50pct\", \"Uncurated\"),\n    (\"Random_50pct\", \"External_only\"),\n    (\"External_only\", \"Uncurated\"),\n]\npairs_welch = [\n    (\"RGDS\", \"Random_50pct\"),\n    (\"RGDS\", \"External_only\"),\n    (\"RGDS\", \"Uncurated\"),\n]\n\nfor a_name, b_name in pairs_equal:\n    results[\"ppl_ttests\"].append(do_ttest(ppl[a_name], ppl[b_name], a_name, b_name, equal_var=True))\n\nfor a_name, b_name in pairs_welch:\n    results[\"ppl_ttests\"].append(do_ttest(ppl[a_name], ppl[b_name], a_name, b_name, equal_var=False))\n\n# === Rare n-gram t-tests ===\nfor a_name, b_name in pairs_equal:\n    results[\"rare_ngram_ttests\"].append(\n        do_ttest(rare_ngram[a_name], rare_ngram[b_name], a_name, b_name, equal_var=True)\n    )\n\nfor a_name, b_name in pairs_welch:\n    results[\"rare_ngram_ttests\"].append(\n        do_ttest(rare_ngram[a_name], rare_ngram[b_name], a_name, b_name, equal_var=False)\n    )\n\n# === Ratio t-test: External vs RGDS ===\nresults[\"ratio_ttest\"] = do_ttest(\n    ratio[\"External_only\"], ratio[\"RGDS\"], \"External_only\", \"RGDS\", equal_var=False\n)\n\n# === One-way ANOVA on PPL (Random, External, Uncurated) ===\nf_stat, p_anova = stats.f_oneway(ppl[\"Random_50pct\"], ppl[\"External_only\"], ppl[\"Uncurated\"])\nresults[\"ppl_anova\"] = {\n    \"test\": \"One-way ANOVA (Random vs External vs Uncurated)\",\n    \"groups\": {\n        name: {\"mean\": round(float(np.mean(v)), 4), \"sd\": round(float(np.std(v, ddof=1)), 4), \"n\": len(v)}\n        for name, v in [(\"Random_50pct\", ppl[\"Random_50pct\"]),\n                        (\"External_only\", ppl[\"External_only\"]),\n                        (\"Uncurated\", ppl[\"Uncurated\"])]\n    },\n    \"F_stat\": round(float(f_stat), 4),\n    \"p_value\": round(float(p_anova), 6),\n    \"significant_0.05\": p_anova < 0.05,\n    \"interpretation\": \"No significant difference → supports 'normal cluster' framing\"\n    if p_anova >= 0.05\n    else \"Significant difference detected among the three methods\",\n}\n\n# === Rare n-gram ANOVA ===\nf_rn, p_rn = stats.f_oneway(rare_ngram[\"Random_50pct\"], rare_ngram[\"External_only\"], rare_ngram[\"Uncurated\"])\nresults[\"rare_ngram_anova\"] = {\n    \"test\": \"One-way ANOVA rare n-gram (Random vs External vs Uncurated)\",\n    \"F_stat\": round(float(f_rn), 4),\n    \"p_value\": round(float(p_rn), 6),\n    \"significant_0.05\": p_rn < 0.05,\n}\n\n# === Summary ===\nresults[\"descriptive\"] = {}\nfor metric_name, metric_data in [(\"ppl\", ppl), (\"rare_ngram\", rare_ngram)]:\n    results[\"descriptive\"][metric_name] = {\n        name: {\n            \"mean\": round(float(np.mean(v)), 4),\n            \"sd\": round(float(np.std(v, ddof=1)), 4),\n            \"n\": len(v),\n        }\n        for name, v in metric_data.items()\n    }\n\nout_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats/3seed_ttest_results.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(results, f, indent=2, ensure_ascii=False)\n\n# === Print ===\nprint(\"=\" * 70)\nprint(\"PPL T-TESTS\")\nprint(\"=\" * 70)\nfor r in results[\"ppl_ttests\"]:\n    sig = \"***\" if r[\"significant_0.05\"] else \"n.s.\"\n    print(f\"  {r['comparison']:35s}  t={r['t_stat']:7.3f}  p={r['p_value']:.6f}  d={r['cohens_d']:6.3f}  {sig}\")\n\nprint()\nprint(\"=\" * 70)\nprint(\"RARE N-GRAM T-TESTS\")\nprint(\"=\" * 70)\nfor r in results[\"rare_ngram_ttests\"]:\n    sig = \"***\" if r[\"significant_0.05\"] else \"n.s.\"\n    print(f\"  {r['comparison']:35s}  t={r['t_stat']:7.3f}  p={r['p_value']:.6f}  d={r['cohens_d']:6.3f}  {sig}\")\n\nprint()\nprint(\"=\" * 70)\nprint(\"RATIO T-TEST (External vs RGDS)\")\nprint(\"=\" * 70)\nr = results[\"ratio_ttest\"]\nsig = \"***\" if r[\"significant_0.05\"] else \"n.s.\"\nprint(f\"  {r['comparison']:35s}  t={r['t_stat']:7.3f}  p={r['p_value']:.6f}  d={r['cohens_d']:6.3f}  {sig}\")\n\nprint()\nprint(\"=\" * 70)\nprint(\"PPL ANOVA (Normal Cluster)\")\nprint(\"=\" * 70)\na = results[\"ppl_anova\"]\nprint(f\"  F={a['F_stat']:.4f}  p={a['p_value']:.6f}  → {a['interpretation']}\")\n\nprint()\nprint(\"=\" * 70)\nprint(\"RARE N-GRAM ANOVA\")\nprint(\"=\" * 70)\na = results[\"rare_ngram_anova\"]\nprint(f\"  F={a['F_stat']:.4f}  p={a['p_value']:.6f}  sig={a['significant_0.05']}\")\n\nprint(f\"\\nResults saved to {out_path}\")\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 100,
+                  "oldLines": 7,
+                  "newStart": 100,
+                  "newLines": 7,
+                  "lines": [
+                    "     },",
+                    "     \"F_stat\": round(float(f_stat), 4),",
+                    "     \"p_value\": round(float(p_anova), 6),",
+                    "-    \"significant_0.05\": p_anova < 0.05,",
+                    "+    \"significant_0.05\": bool(p_anova < 0.05),",
+                    "     \"interpretation\": \"No significant difference → supports 'normal cluster' framing\"",
+                    "     if p_anova >= 0.05",
+                    "     else \"Significant difference detected among the three methods\","
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H2pFtGYqDBrpp7zStHzavg",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats/3seed_ttest.py",
+                "old_string": "    \"significant_0.05\": p_rn < 0.05,",
+                "new_string": "    \"significant_0.05\": bool(p_rn < 0.05),"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b77f2af-2060-4604-aaef-8cb616cc94a9",
+            "uuid": "d5a1f8b2-6b8d-41eb-9c8c-03ac10b2e1a5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KBgvW9jPAQqMvLSdenx5Gj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 329,
+                "cache_read_input_tokens": 27272,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 329
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T21:49:34.236Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H2pFtGYqDBrpp7zStHzavg",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats/3seed_ttest.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b77f2af-2060-4604-aaef-8cb616cc94a9",
+            "uuid": "fd0d49d7-4978-4134-ac72-ce2a4528ad1a",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats/3seed_ttest.py",
+              "oldString": "    \"significant_0.05\": p_rn < 0.05,",
+              "newString": "    \"significant_0.05\": bool(p_rn < 0.05),",
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"3-seed statistical tests for div_cal_verify Gen7 results.\"\"\"\n\nimport json\nimport numpy as np\nfrom scipy import stats\n\n# === Data ===\nppl = {\n    \"Random_50pct\": [43.20, 41.75, 44.60],\n    \"External_only\": [45.51, 49.66, 43.90],\n    \"Uncurated\": [50.28, 46.15, 44.69],\n    \"RGDS\": [75.07, 81.57],\n}\n\nrare_ngram = {\n    \"Random_50pct\": [0.0096, 0.0098, 0.0101],\n    \"External_only\": [0.0099, 0.0104, 0.0106],\n    \"Uncurated\": [0.0090, 0.0093, 0.0086],\n    \"RGDS\": [0.0051, 0.0062],\n}\n\nratio = {\n    \"External_only\": [1.0953, 1.1299, 1.2430],\n    \"RGDS\": [0.5173, 0.5236],\n}\n\n\ndef cohens_d(a, b):\n    na, nb = len(a), len(b)\n    va, vb = np.var(a, ddof=1), np.var(b, ddof=1)\n    pooled_std = np.sqrt(((na - 1) * va + (nb - 1) * vb) / (na + nb - 2))\n    if pooled_std == 0:\n        return float(\"inf\")\n    return (np.mean(a) - np.mean(b)) / pooled_std\n\n\ndef do_ttest(a, b, name_a, name_b, equal_var=True):\n    t_stat, p_val = stats.ttest_ind(a, b, equal_var=equal_var)\n    d = cohens_d(a, b)\n    return {\n        \"comparison\": f\"{name_a} vs {name_b}\",\n        \"mean_a\": round(float(np.mean(a)), 4),\n        \"mean_b\": round(float(np.mean(b)), 4),\n        \"n_a\": len(a),\n        \"n_b\": len(b),\n        \"t_stat\": round(float(t_stat), 4),\n        \"p_value\": round(float(p_val), 6),\n        \"cohens_d\": round(float(d), 4),\n        \"significant_0.05\": bool(p_val < 0.05),\n        \"test_type\": \"Welch\" if not equal_var else \"Student\",\n    }\n\n\nresults = {\"ppl_ttests\": [], \"rare_ngram_ttests\": [], \"ratio_ttest\": None, \"ppl_anova\": None}\n\n# === PPL t-tests ===\npairs_equal = [\n    (\"Random_50pct\", \"Uncurated\"),\n    (\"Random_50pct\", \"External_only\"),\n    (\"External_only\", \"Uncurated\"),\n]\npairs_welch = [\n    (\"RGDS\", \"Random_50pct\"),\n    (\"RGDS\", \"External_only\"),\n    (\"RGDS\", \"Uncurated\"),\n]\n\nfor a_name, b_name in pairs_equal:\n    results[\"ppl_ttests\"].append(do_ttest(ppl[a_name], ppl[b_name], a_name, b_name, equal_var=True))\n\nfor a_name, b_name in pairs_welch:\n    results[\"ppl_ttests\"].append(do_ttest(ppl[a_name], ppl[b_name], a_name, b_name, equal_var=False))\n\n# === Rare n-gram t-tests ===\nfor a_name, b_name in pairs_equal:\n    results[\"rare_ngram_ttests\"].append(\n        do_ttest(rare_ngram[a_name], rare_ngram[b_name], a_name, b_name, equal_var=True)\n    )\n\nfor a_name, b_name in pairs_welch:\n    results[\"rare_ngram_ttests\"].append(\n        do_ttest(rare_ngram[a_name], rare_ngram[b_name], a_name, b_name, equal_var=False)\n    )\n\n# === Ratio t-test: External vs RGDS ===\nresults[\"ratio_ttest\"] = do_ttest(\n    ratio[\"External_only\"], ratio[\"RGDS\"], \"External_only\", \"RGDS\", equal_var=False\n)\n\n# === One-way ANOVA on PPL (Random, External, Uncurated) ===\nf_stat, p_anova = stats.f_oneway(ppl[\"Random_50pct\"], ppl[\"External_only\"], ppl[\"Uncurated\"])\nresults[\"ppl_anova\"] = {\n    \"test\": \"One-way ANOVA (Random vs External vs Uncurated)\",\n    \"groups\": {\n        name: {\"mean\": round(float(np.mean(v)), 4), \"sd\": round(float(np.std(v, ddof=1)), 4), \"n\": len(v)}\n        for name, v in [(\"Random_50pct\", ppl[\"Random_50pct\"]),\n                        (\"External_only\", ppl[\"External_only\"]),\n                        (\"Uncurated\", ppl[\"Uncurated\"])]\n    },\n    \"F_stat\": round(float(f_stat), 4),\n    \"p_value\": round(float(p_anova), 6),\n    \"significant_0.05\": bool(p_anova < 0.05),\n    \"interpretation\": \"No significant difference → supports 'normal cluster' framing\"\n    if p_anova >= 0.05\n    else \"Significant difference detected among the three methods\",\n}\n\n# === Rare n-gram ANOVA ===\nf_rn, p_rn = stats.f_oneway(rare_ngram[\"Random_50pct\"], rare_ngram[\"External_only\"], rare_ngram[\"Uncurated\"])\nresults[\"rare_ngram_anova\"] = {\n    \"test\": \"One-way ANOVA rare n-gram (Random vs External vs Uncurated)\",\n    \"F_stat\": round(float(f_rn), 4),\n    \"p_value\": round(float(p_rn), 6),\n    \"significant_0.05\": p_rn < 0.05,\n}\n\n# === Summary ===\nresults[\"descriptive\"] = {}\nfor metric_name, metric_data in [(\"ppl\", ppl), (\"rare_ngram\", rare_ngram)]:\n    results[\"descriptive\"][metric_name] = {\n        name: {\n            \"mean\": round(float(np.mean(v)), 4),\n            \"sd\": round(float(np.std(v, ddof=1)), 4),\n            \"n\": len(v),\n        }\n        for name, v in metric_data.items()\n    }\n\nout_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats/3seed_ttest_results.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(results, f, indent=2, ensure_ascii=False)\n\n# === Print ===\nprint(\"=\" * 70)\nprint(\"PPL T-TESTS\")\nprint(\"=\" * 70)\nfor r in results[\"ppl_ttests\"]:\n    sig = \"***\" if r[\"significant_0.05\"] else \"n.s.\"\n    print(f\"  {r['comparison']:35s}  t={r['t_stat']:7.3f}  p={r['p_value']:.6f}  d={r['cohens_d']:6.3f}  {sig}\")\n\nprint()\nprint(\"=\" * 70)\nprint(\"RARE N-GRAM T-TESTS\")\nprint(\"=\" * 70)\nfor r in results[\"rare_ngram_ttests\"]:\n    sig = \"***\" if r[\"significant_0.05\"] else \"n.s.\"\n    print(f\"  {r['comparison']:35s}  t={r['t_stat']:7.3f}  p={r['p_value']:.6f}  d={r['cohens_d']:6.3f}  {sig}\")\n\nprint()\nprint(\"=\" * 70)\nprint(\"RATIO T-TEST (External vs RGDS)\")\nprint(\"=\" * 70)\nr = results[\"ratio_ttest\"]\nsig = \"***\" if r[\"significant_0.05\"] else \"n.s.\"\nprint(f\"  {r['comparison']:35s}  t={r['t_stat']:7.3f}  p={r['p_value']:.6f}  d={r['cohens_d']:6.3f}  {sig}\")\n\nprint()\nprint(\"=\" * 70)\nprint(\"PPL ANOVA (Normal Cluster)\")\nprint(\"=\" * 70)\na = results[\"ppl_anova\"]\nprint(f\"  F={a['F_stat']:.4f}  p={a['p_value']:.6f}  → {a['interpretation']}\")\n\nprint()\nprint(\"=\" * 70)\nprint(\"RARE N-GRAM ANOVA\")\nprint(\"=\" * 70)\na = results[\"rare_ngram_anova\"]\nprint(f\"  F={a['F_stat']:.4f}  p={a['p_value']:.6f}  sig={a['significant_0.05']}\")\n\nprint(f\"\\nResults saved to {out_path}\")\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 112,
+                  "oldLines": 7,
+                  "newStart": 112,
+                  "newLines": 7,
+                  "lines": [
+                    "     \"test\": \"One-way ANOVA rare n-gram (Random vs External vs Uncurated)\",",
+                    "     \"F_stat\": round(float(f_rn), 4),",
+                    "     \"p_value\": round(float(p_rn), 6),",
+                    "-    \"significant_0.05\": p_rn < 0.05,",
+                    "+    \"significant_0.05\": bool(p_rn < 0.05),",
+                    " }",
+                    " ",
+                    " # === Summary ==="
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SCuJUp619gEREWhwCt4Jtr",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats && python3 3seed_ttest.py",
+                "description": "Run statistical tests script"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b77f2af-2060-4604-aaef-8cb616cc94a9",
+            "uuid": "7eb4092b-3ece-4a20-8fab-69a0f211998d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X33fmfJAHitRg4CqD8m1Ry",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 241,
+                "cache_read_input_tokens": 27601,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 241
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T21:49:38.138Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SCuJUp619gEREWhwCt4Jtr",
+              "type": "tool_result",
+              "content": "======================================================================\nPPL T-TESTS\n======================================================================\n  Random_50pct vs Uncurated            t= -2.068  p=0.107511  d=-1.688  n.s.\n  Random_50pct vs External_only        t= -1.668  p=0.170712  d=-1.362  n.s.\n  External_only vs Uncurated           t= -0.285  p=0.789743  d=-0.233  n.s.\n  RGDS vs Random_50pct                 t= 10.481  p=0.045967  d=12.127  ***\n  RGDS vs External_only                t=  8.697  p=0.025662  d= 8.889  ***\n  RGDS vs Uncurated                    t=  8.556  p=0.027557  d= 8.796  ***\n\n======================================================================\nRARE N-GRAM T-TESTS\n======================================================================\n  Random_50pct vs Uncurated            t=  3.474  p=0.025481  d= 2.837  ***\n  Random_50pct vs External_only        t= -1.838  p=0.139876  d=-1.501  n.s.\n  External_only vs Uncurated           t=  4.588  p=0.010120  d= 3.746  ***\n  RGDS vs Random_50pct                 t= -7.354  p=0.066954  d=-8.471  n.s.\n  RGDS vs External_only                t= -7.907  p=0.047235  d=-8.660  ***\n  RGDS vs Uncurated                    t= -5.658  p=0.073764  d=-6.225  n.s.\n\n======================================================================\nRATIO T-TEST (External vs RGDS)\n======================================================================\n  External_only vs RGDS                t= 14.216  p=0.004719  d=10.069  ***\n\n======================================================================\nPPL ANOVA (Normal Cluster)\n======================================================================\n  F=1.9781  p=0.218861  → No significant difference → supports 'normal cluster' framing\n\n======================================================================\nRARE N-GRAM ANOVA\n======================================================================\n  F=13.0105  p=0.006579  sig=True\n\nResults saved to /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats/3seed_ttest_results.json",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b77f2af-2060-4604-aaef-8cb616cc94a9",
+            "uuid": "569e2ee6-f0dc-4fdd-a4d3-62116b06d563",
+            "tool_use_result": {
+              "stdout": "======================================================================\nPPL T-TESTS\n======================================================================\n  Random_50pct vs Uncurated            t= -2.068  p=0.107511  d=-1.688  n.s.\n  Random_50pct vs External_only        t= -1.668  p=0.170712  d=-1.362  n.s.\n  External_only vs Uncurated           t= -0.285  p=0.789743  d=-0.233  n.s.\n  RGDS vs Random_50pct                 t= 10.481  p=0.045967  d=12.127  ***\n  RGDS vs External_only                t=  8.697  p=0.025662  d= 8.889  ***\n  RGDS vs Uncurated                    t=  8.556  p=0.027557  d= 8.796  ***\n\n======================================================================\nRARE N-GRAM T-TESTS\n======================================================================\n  Random_50pct vs Uncurated            t=  3.474  p=0.025481  d= 2.837  ***\n  Random_50pct vs External_only        t= -1.838  p=0.139876  d=-1.501  n.s.\n  External_only vs Uncurated           t=  4.588  p=0.010120  d= 3.746  ***\n  RGDS vs Random_50pct                 t= -7.354  p=0.066954  d=-8.471  n.s.\n  RGDS vs External_only                t= -7.907  p=0.047235  d=-8.660  ***\n  RGDS vs Uncurated                    t= -5.658  p=0.073764  d=-6.225  n.s.\n\n======================================================================\nRATIO T-TEST (External vs RGDS)\n======================================================================\n  External_only vs RGDS                t= 14.216  p=0.004719  d=10.069  ***\n\n======================================================================\nPPL ANOVA (Normal Cluster)\n======================================================================\n  F=1.9781  p=0.218861  → No significant difference → supports 'normal cluster' framing\n\n======================================================================\nRARE N-GRAM ANOVA\n======================================================================\n  F=13.0105  p=0.006579  sig=True\n\nResults saved to /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/stats/3seed_ttest_results.json",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存。关键发现：\n\n### PPL\n\n| 比较 | t | p | Cohen's d | 显著？ |\n|------|---|---|-----------|--------|\n| Random vs Uncurated | -2.07 | 0.108 | -1.69 | n.s. |\n| Random vs External | -1.67 | 0.171 | -1.36 | n.s. |\n| External vs Uncurated | -0.29 | 0.790 | -0.23 | n.s. |\n| RGDS vs Random | 10.48 | **0.046** | 12.13 | **sig** |\n| RGDS vs External | 8.70 | **0.026** | 8.89 | **sig** |\n| RGDS vs Uncurated | 8.56 | **0.028** | 8.80 | **sig** |\n\n**PPL ANOVA (Normal Cluster)**: F=1.98, **p=0.219** → 三方法无显著差异，支持 \"normal cluster\" framing。\n\n### Rare n-gram\n\n| 比较 | t | p | Cohen's d | 显著？ |\n|------|---|---|-----------|--------|\n| Random vs Uncurated | 3.47 | **0.025** | 2.84 | **sig** |\n| Random vs External | -1.84 | 0.140 | -1.50 | n.s. |\n| External vs Uncurated | 4.59 | **0.010** | 3.75 | **sig** |\n| RGDS vs Random | -7.35 | 0.067 | -8.47 | n.s. (borderline) |\n| RGDS vs External | -7.91 | **0.047** | -8.66 | **sig** |\n| RGDS vs Uncurated | -5.66 | 0.074 | -6.23 | n.s. (borderline) |\n\n**Rare n-gram ANOVA**: F=13.01, **p=0.007** → 三方法在 rare n-gram 上**有显著差异**。Uncurated 显著低于 Random 和 External（说明未筛选数据稀释了罕见 n-gram）。\n\n### Ratio\n\nExternal vs RGDS: t=14.22, **p=0.005**, d=10.07 → 极显著。\n\n### 总结\n\n- **PPL normal cluster 成立**：Random/External/Uncurated PPL 无显著差异 (p=0.22)，RGDS 与三者均显著不同 (p<0.05, d>8)\n- **Rare n-gram normal cluster 不成立**：三方法间有显著差异 (ANOVA p=0.007)，主要是 Uncurated 偏低\n- RGDS vs 其他的 Welch t-test 中，n=2 导致两个 rare n-gram 比较 borderline (p≈0.067-0.074)，第 3 个 seed 完成后大概率变显著\n- Random vs Uncurated PPL p=0.108，与之前一致，n=3 仍不够达显著"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b77f2af-2060-4604-aaef-8cb616cc94a9",
+            "uuid": "7eb19283-0f26-4c4b-bc05-22b27e83181a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PSTA53ax6zJaToYAr4riWB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 747,
+                "cache_read_input_tokens": 27842,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 747
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存。关键发现：\n\n### PPL\n\n| 比较 | t | p | Cohen's d | 显著？ |\n|------|---|---|-----------|--------|\n| Random vs Uncurated | -2.07 | 0.108 | -1.69 | n.s. |\n| Random vs External | -1.67 | 0.171 | -1.36 | n.s. |\n| External vs Uncurated | -0.29 | 0.790 | -0.23 | n.s. |\n| RGDS vs Random | 10.48 | **0.046** | 12.13 | **sig** |\n| RGDS vs External | 8.70 | **0.026** | 8.89 | **sig** |\n| RGDS vs Uncurated | 8.56 | **0.028** | 8.80 | **sig** |\n\n**PPL ANOVA (Normal Cluster)**: F=1.98, **p=0.219** → 三方法无显著差异，支持 \"normal cluster\" framing。\n\n### Rare n-gram\n\n| 比较 | t | p | Cohen's d | 显著？ |\n|------|---|---|-----------|--------|\n| Random vs Uncurated | 3.47 | **0.025** | 2.84 | **sig** |\n| Random vs External | -1.84 | 0.140 | -1.50 | n.s. |\n| External vs Uncurated | 4.59 | **0.010** | 3.75 | **sig** |\n| RGDS vs Random | -7.35 | 0.067 | -8.47 | n.s. (borderline) |\n| RGDS vs External | -7.91 | **0.047** | -8.66 | **sig** |\n| RGDS vs Uncurated | -5.66 | 0.074 | -6.23 | n.s. (borderline) |\n\n**Rare n-gram ANOVA**: F=13.01, **p=0.007** → 三方法在 rare n-gram 上**有显著差异**。Uncurated 显著低于 Random 和 External（说明未筛选数据稀释了罕见 n-gram）。\n\n### Ratio\n\nExternal vs RGDS: t=14.22, **p=0.005**, d=10.07 → 极显著。\n\n### 总结\n\n- **PPL normal cluster 成立**：Random/External/Uncurated PPL 无显著差异 (p=0.22)，RGDS 与三者均显著不同 (p<0.05, d>8)\n- **Rare n-gram normal cluster 不成立**：三方法间有显著差异 (ANOVA p=0.007)，主要是 Uncurated 偏低\n- RGDS vs 其他的 Welch t-test 中，n=2 导致两个 rare n-gram 比较 borderline (p≈0.067-0.074)，第 3 个 seed 完成后大概率变显著\n- Random vs Uncurated PPL p=0.108，与之前一致，n=3 仍不够达显著"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 79472,
+            "duration_api_ms": 77289,
+            "num_turns": 9,
+            "stop_reason": "end_turn",
+            "session_id": "9b77f2af-2060-4604-aaef-8cb616cc94a9",
+            "total_cost_usd": 0.32868749999999997,
+            "usage": {
+              "input_tokens": 10,
+              "cache_creation_input_tokens": 16748,
+              "cache_read_input_tokens": 219115,
+              "output_tokens": 4509,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 16748,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 849,
+                  "cache_read_input_tokens": 27842,
+                  "cache_creation_input_tokens": 747,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 747
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1575,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00168,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 10,
+                "outputTokens": 4509,
+                "cacheReadInputTokens": 219115,
+                "cacheCreationInputTokens": 16748,
+                "webSearchRequests": 0,
+                "costUSD": 0.32700749999999995,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "69c64ec6-8955-415b-892a-eed7e5b2c4af"
+          },
+          "id": "event-000022"
+        }
+      ],
+      "message_count": 22
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-3seed-partial-ttest.md"
+}

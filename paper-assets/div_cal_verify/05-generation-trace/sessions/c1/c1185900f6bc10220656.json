@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1185900f6bc10220656",
+  "project": "div_cal_verify",
+  "kind": "history",
+  "title": "agent / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1.md",
+    "occurrence": 1,
+    "bytes": 4244,
+    "sha256": "bf1b828f3c1065c5c9c3f0a620a749e10d6fbdae5bb9010aa13875e275605c5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_wall_time\nupdated: '2026-05-12T20:25:57+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-11235 的 cuda:0 和 cuda:1，双卡模式用 `--gpu_ids 0,1`（generator cuda:0, student cuda:1）\n- 根分区只有 30GB，**所有实验输出必须写数据盘** `/root/autodl-tmp/div_cal_verify/results*/`，绝不用 `--output_dir ./results`\n- GPT2 模型必须用 `torch.float32`（不支持 bfloat16），代码已 patch 但部署时需验证\n- HuggingFace 直连被墙，Qwen 模型用 ModelScope 下载，Contriever 用 hf-mirror，GPT2 走代理（`source env.sh`）\n- MVP 结论已判定 NEGATIVE（D004），**禁止未经 Director 批准启动新 Qwen 实验**——Phase 2 需 Phase 1 确认崩塌后才能跑\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-11235 (connect.westd.seetacloud.com:11235, root, 2× RTX PRO 6000 Blackwell 96GB)\n- 镜像：aml-train，conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 环境脚本：`/root/div_cal_verify/env.sh`（设 HF_HOME/SSL/network_turbo）\n- 模型路径：Qwen3-1.7B → `/root/models/Qwen/Qwen3-1.7B`，Qwen3-4B → `/root/models/Qwen/Qwen3-4B`，GPT2 系列自动 HF 下载\n- 数据路径：Qwen 数据 → `/root/div_cal_verify/data/`，GPT2 数据 → `/root/div_cal_verify/data_gpt2/`\n- 结果路径：MVP → `/root/autodl-tmp/div_cal_verify/results/`，Phase 1 → `/root/autodl-tmp/div_cal_verify/results_phase1/`\n- **活跃进程**：Phase 1 GPT2 崩塌验证 PID 93696 (bash) / 93704 (python rgds)，GPU 1，tmux 无（nohup）\n- **活跃 Cron**：`phase1_gpt2_collapse`，监控 PID 93696，600s 间隔\n- GPU 0 有 ~49GB 僵尸显存（无对应进程，无法 reset，不影响实验）\n\n### 3. 📊 当前状态\n刚完成 MVP 结果分析并向 Director 提交 Framing 调整提案（NEGATIVE）。Director 批准 D004 高强度崩塌验证两阶段方案。\n\n**Phase 1 正在跑**（`phase1_gpt2_collapse`, RUNNING）：GPT2-125M + GPT2-medium，1M tokens/gen，5 epochs，lr=1e-4，6 generations，串行跑 rgds → uncurated。预计 ~2h 完成。\n\nRegistry 活跃实验：\n- `phase1_gpt2_collapse`: RUNNING — GPT2 快速崩塌验证（cuda:1）\n- 其余全部 DONE（mvp_rgds_v1~v3, mvp_ext_v1~v2, mvp_serial_v3~v4 均已关闭）\n\n等待：Phase 1 cron 回调（进程退出时触发）\n\n### 4. 📋 待办\n- Phase 1 cron 回调到达 → spawn worker 读日志和 metrics → 判断崩塌是否发生（RankMe 下降 >20%?）\n- Phase 1 崩塌确认（RankMe >20% 下降 + PPL 恶化）→ 向 Director 汇报 → 准备 Phase 2 高强度 Qwen 实验（5M tokens/gen, 3 epochs, lr=5e-5, 6 gens, 3 方法串行双卡）\n- Phase 1 崩塌未发生 → 向 Director 汇报 negative，说明即使极端训练也不崩塌 → 可能需要 pivot 研究方向\n- Phase 1 崩溃/报错 → 诊断修复重跑（注意 uncurated 方法的 rank_correlation 已修复，但可能有其他 GPT2 兼容性问题）\n- **uncurated 方法需验证**：这是第一次成功跑 uncurated（之前一直崩溃），注意观察是否通过\n\n### 5. 🎯 战略上下文\n- **核心科学问题**：student 模型的内部表征在迭代合成训练中是否会崩塌？如果崩塌，RGDS 的 failsafe 机制能否检测并缓解？\n- **D001**: MVP 方案定义（3 方法 × 4 代 × WikiText-103）\n- **D002**: MVP gate 改为二元 PASS/FAIL（RGDS vs external ≥5% PPL 改善）\n- **D003**: 识别训练强度不足风险（250K tokens/gen 对 1.7B 模型几乎无影响）\n- **D004**: MVP FAIL 确认，启动两阶段高强度验证\n- **关键发现**：rank correlation 为负（-0.37~-0.39），internal 和 Contriever diversity scores 方向相反——可能是 interesting finding 也可能是 noise\n- **易错点**：\n  - 不要把 Phase 1 GPT2 结果直接和 MVP Qwen 结果对比（模型规模差 14x，训练强度差 20x）\n  - GPU 0 的 49GB 僵尸显存是已知问题，不要反复尝试清理\n  - `run_all_methods.sh` / `run_phase1.sh` 需要 `set -o pipefail`，否则 Python 崩溃会被 tee 吞掉\n  - registry 状态机必须 PREPARING → QUEUED → ALLOCATED → RUNNING，不能跳步\n  - 投稿目标 EMNLP 2026 ARR DDL 2026-05-25（剩 13 天），时间极紧\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-copy-2.md"
+}

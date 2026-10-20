@@ -1,0 +1,40 @@
+{
+  "exp_id": "deepseek_no_trace_seed123",
+  "project": "trace-verdict-study",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:19:12.571Z",
+    "updated_at": "2026-05-20T21:19:52.482Z",
+    "hypothesis": "DeepSeek no_trace 只有 1 seed (73.36%)，加第 2 seed 使 baseline 更 robust。no_trace 是所有条件对比的锚点，单 seed baseline 在 rebuttal 中易被质疑。",
+    "server": "westd-11235",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-11235",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-20T21:19:48.734Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/trace-verdict-study/outputs/deepseek_no_trace_seed123 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed123 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/trace-verdict-study/outputs/deepseek_no_trace_seed123/final --gpu 0 --save_predictions\"",
+      "code_commit": "e404237ccc765768e267d4d6fd3c89549dcf41a4"
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/trace-verdict-study/outputs/deepseek_no_trace_seed123 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed123 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/trace-verdict-study/outputs/deepseek_no_trace_seed123/final --gpu 0 --save_predictions\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "654604",
+      "log_path": "~/runs/trace-verdict-study/deepseek_no_trace_seed123.log",
+      "submitted_at": "2026-05-20T21:19:50.736Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "654604",
+    "log_path": "~/runs/trace-verdict-study/deepseek_no_trace_seed123.log"
+  },
+  "timestamp": "2026-05-20T21:19:53.226612+00:00",
+  "trigger": "update_registry"
+}

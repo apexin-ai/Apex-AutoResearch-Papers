@@ -1,0 +1,3058 @@
+dream_id: dream_20260513T081019
+project: div_cal_verify
+venue: EMNLP 2026 ARR
+focus: 验证 Alignment Gap 叙事（D009/D010 pivot）是否站得住。重点关注：(1) C1 alignment gap 现象的新颖性和说服力；(2)
+  C2-weak（外部嵌入免疫但不解决 rare n-gram）是否足够；(3) 从方法提案转向现象发现后，Findings 8 页能否接收；(4) 缓解实验（re-anchoring）成功/失败对投稿层级的影响。
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: Alignment gap 现象清晰、单调、效应量大；C1/C2-weak/C3 全部成立；re-anchoring 实验至少部分有效
+      key_assumptions:
+      - self-iterate 下 internal selection ratio 随代际单调下降，从 >1.0 降至 <0.7
+      - external selection ratio 全程 >1.0 且无下降趋势
+      - RGDS PPL 显著劣于 uncurated（>20%），external PPL 优于或持平 uncurated
+      - RGDS rare n-gram 显著劣于 uncurated（>30%），external rare 不劣于 uncurated
+      - rank_corr(internal) 随代际单调变负，rank_corr(external) 稳定
+      - re-anchoring（周期性重置 embedding anchor）至少在 rare n-gram 上产生可测改善
+      - seed=123 复现主趋势方向，置信区间不跨零
+      number_ranges:
+        selection_ratio_internal_gen0:
+        - 0.98
+        - 1.1
+        selection_ratio_internal_gen7:
+        - 0.4
+        - 0.65
+        selection_ratio_external_gen7:
+        - 1.05
+        - 1.35
+        rgds_gen7_ppl:
+        - 58
+        - 80
+        uncurated_gen7_ppl:
+        - 45
+        - 52
+        external_gen7_ppl:
+        - 42
+        - 50
+        rgds_ppl_excess_vs_uncurated_pct:
+        - 20
+        - 60
+        rgds_rare_gen7:
+        - 0.003
+        - 0.006
+        uncurated_rare_gen7:
+        - 0.007
+        - 0.01
+        external_rare_gen7:
+        - 0.007
+        - 0.011
+        rank_corr_internal_gen7:
+        - -0.2
+        - -0.1
+        rank_corr_external_gen7:
+        - -0.06
+        - -0.02
+        reanchoring_rare_improvement_pct:
+        - 10
+        - 40
+      narrative_direction: '原始 framing 完全可用。标题保留 "Alignment Gap" + "Accelerates Collapse"。
+        C1 用 selection ratio 单调下降曲线做主图，C3 用 RGDS vs uncurated 的 PPL/rare 分叉做第二主图。
+        C2-weak 作为对照组自然呈现。re-anchoring 作为 §6 简短缓解实验， 升级为 "found the problem AND demonstrated
+        a simple partial fix"。 可以投 main conference 8 页，reviewer 主要攻击面缩小到 scale（GPT2-125M）和
+        dataset 单一性， 这些可以用 "mechanism is general + future work" 挡住。
+
+        '
+    median:
+      tier: median
+      meaning: Alignment gap 存在但效应量中等或非完美单调；C1 弱成立，C2-weak 成立，C3 方向正确但 effect size
+        有限；re-anchoring 不显著
+      key_assumptions:
+      - internal selection ratio 整体下降但非严格单调（1-2 个代际有反弹），终值 0.65-0.85
+      - external selection ratio 全程 >0.95，明显优于 internal
+      - RGDS PPL 劣于 uncurated 但幅度 <20%，或 PPL 差异显著但 rare n-gram 差异有限
+      - PPL 和 rare n-gram 两个维度至少一个方向清晰，另一个 noisy
+      - rank_corr 变化方向正确但幅度小（Δ<0.05）或跨 seed 不一致
+      - re-anchoring 无统计显著改善，或仅在 PPL 上有效但 rare 上无效
+      number_ranges:
+        selection_ratio_internal_gen0:
+        - 0.98
+        - 1.1
+        selection_ratio_internal_gen7:
+        - 0.65
+        - 0.85
+        selection_ratio_external_gen7:
+        - 0.95
+        - 1.2
+        rgds_gen7_ppl:
+        - 50
+        - 58
+        uncurated_gen7_ppl:
+        - 45
+        - 52
+        external_gen7_ppl:
+        - 43
+        - 51
+        rgds_ppl_excess_vs_uncurated_pct:
+        - 5
+        - 20
+        rgds_rare_gen7:
+        - 0.005
+        - 0.008
+        uncurated_rare_gen7:
+        - 0.007
+        - 0.01
+        external_rare_gen7:
+        - 0.006
+        - 0.01
+        rank_corr_internal_gen7:
+        - -0.12
+        - -0.05
+        rank_corr_external_gen7:
+        - -0.07
+        - -0.03
+        reanchoring_rare_improvement_pct:
+        - -5
+        - 10
+      narrative_direction: '标题需弱化：去掉 "Accelerates"，改为 "The Embedding Alignment Gap:  Internal
+        Diversity Metrics Diverge from Content Diversity in Iterative Self-Training"。
+        C1 仍可讲，但需承认非完美单调，用 "overall trend" 措辞替代 "monotonic degradation"。 C3 从 "causes
+        accelerated collapse" 降级为 "fails to prevent and may worsen collapse"， 加 confidence
+        interval 和 effect size 报告。 S1（PPL vs rare 解耦）和 S2（RankMe 失灵）可能反而成为更强的贡献点，
+        因为这些在 phase1b 数据中已经很清晰。 投 Findings 8 页，叙事重心从 "method failure mode" 转向 "measurement
+        dissociation phenomenon"。 re-anchoring 移入 future work 或 appendix。
+
+        '
+    worst:
+      tier: worst
+      meaning: Internal 和 external 行为无显著分离，或 RGDS 不比 uncurated 更差；alignment gap 叙事不成立
+      key_assumptions:
+      - internal selection ratio 无明显下降趋势，或 external 也同步下降
+      - RGDS PPL 与 uncurated 差异 <5%，或 RGDS 在某些代际反而更优
+      - rare n-gram 三种方法趋势高度重叠（如 mvp_serial_v4 已初步暗示的模式）
+      - self-iterate 本身产生 collapse（phase1b 已确认），但 selection method 的选择不影响 collapse
+        速度
+      - rank_corr 全程接近零或三种方法无差异
+      - seed=123 与 seed=42 趋势不一致，信号被噪声淹没
+      number_ranges:
+        selection_ratio_internal_gen0:
+        - 0.98
+        - 1.1
+        selection_ratio_internal_gen7:
+        - 0.85
+        - 1.05
+        selection_ratio_external_gen7:
+        - 0.9
+        - 1.1
+        rgds_gen7_ppl:
+        - 45
+        - 53
+        uncurated_gen7_ppl:
+        - 45
+        - 52
+        external_gen7_ppl:
+        - 44
+        - 51
+        rgds_ppl_excess_vs_uncurated_pct:
+        - -3
+        - 5
+        rgds_rare_gen7:
+        - 0.007
+        - 0.01
+        uncurated_rare_gen7:
+        - 0.007
+        - 0.01
+        external_rare_gen7:
+        - 0.007
+        - 0.01
+        rank_corr_internal_gen7:
+        - -0.1
+        - -0.03
+        rank_corr_external_gen7:
+        - -0.1
+        - -0.03
+        reanchoring_rare_improvement_pct:
+        - -10
+        - 5
+      narrative_direction: Alignment gap framing 必须放弃。论文需要彻底重构为 analysis paper： "Embedding-Based
+        Diversity Selection Neither Helps Nor Hurts Iterative Model Collapse"。 核心贡献变为负面结果（null
+        result）： (1) 在 self-iterate 设定下，数据选择策略（内部/外部/无选择）对 collapse 轨迹无显著影响—— collapse
+        由训练循环本身驱动，不受 curation 调节； (2) S2 仍成立（RankMe/kNN 不追踪 rare n-gram collapse），这本身有
+        cautionary value； (3) phase1b 的 collapse 基线数据（PPL +30%，rare -70% over 7 gens）可作为
+        well-controlled replication。 投 Findings 短文（4-6 页 effective content），或 workshop
+        paper（NeurIPS negative results track）。 时间线上 EMNLP 2026 仍可尝试但需要对 "contribution
+        = controlled null result + metric dissociation"  有清醒预期。接收概率从 best 的 ~50% 降至
+        ~15-20%。
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/dream_reports/dream_20260513T081019/best/paper.pdf
+  imagined_experiments:
+  - name: Phase 2 三方法对比 (GPT2-125M, WikiText-103, seed=42)
+    plan_id: plan_001
+    description: Self-iterate GPT2-125M × 8 gens × 3 methods (uncurated/RGDS/external_only)。锚定全部
+      claims 的主实验。
+    expected_results:
+      rgds:
+        gen0:
+          ppl: 37.2
+          sel_ratio: 1.04
+          rare: 0.0288
+          rank_corr: -0.058
+          rankme: 281.5
+          knn: 0.988
+        gen1:
+          ppl: 42.5
+          sel_ratio: 0.96
+          rare: 0.0208
+          rank_corr: -0.074
+          rankme: 290.2
+          knn: 0.988
+        gen2:
+          ppl: 49.8
+          sel_ratio: 0.87
+          rare: 0.0152
+          rank_corr: -0.089
+          rankme: 296.4
+          knn: 0.987
+        gen3:
+          ppl: 56.3
+          sel_ratio: 0.79
+          rare: 0.0113
+          rank_corr: -0.103
+          rankme: 300.1
+          knn: 0.988
+        gen4:
+          ppl: 61.7
+          sel_ratio: 0.71
+          rare: 0.0086
+          rank_corr: -0.118
+          rankme: 303.2
+          knn: 0.988
+        gen5:
+          ppl: 66.4
+          sel_ratio: 0.64
+          rare: 0.0068
+          rank_corr: -0.131
+          rankme: 301.8
+          knn: 0.988
+        gen6:
+          ppl: 70.1
+          sel_ratio: 0.57
+          rare: 0.0055
+          rank_corr: -0.143
+          rankme: 298.5
+          knn: 0.988
+        gen7:
+          ppl: 72.8
+          sel_ratio: 0.52
+          rare: 0.0046
+          rank_corr: -0.155
+          rankme: 294.3
+          knn: 0.988
+      uncurated:
+        gen0:
+          ppl: 37.1
+          rare: 0.029
+          rank_corr: -0.023
+          rankme: 280.3
+          knn: 0.988
+        gen1:
+          ppl: 44.9
+          rare: 0.0192
+          rank_corr: -0.055
+          rankme: 297.8
+          knn: 0.988
+        gen2:
+          ppl: 51.6
+          rare: 0.0139
+          rank_corr: -0.049
+          rankme: 302.6
+          knn: 0.987
+        gen3:
+          ppl: 57.0
+          rare: 0.0116
+          rank_corr: -0.044
+          rankme: 303.3
+          knn: 0.988
+        gen4:
+          ppl: 55.7
+          rare: 0.0101
+          rank_corr: -0.042
+          rankme: 301.3
+          knn: 0.988
+        gen5:
+          ppl: 51.7
+          rare: 0.0098
+          rank_corr: -0.048
+          rankme: 297.4
+          knn: 0.988
+        gen6:
+          ppl: 48.7
+          rare: 0.0089
+          rank_corr: -0.065
+          rankme: 293.0
+          knn: 0.988
+        gen7:
+          ppl: 48.1
+          rare: 0.0087
+          rank_corr: -0.087
+          rankme: 289.8
+          knn: 0.988
+      external_only:
+        gen0:
+          ppl: 36.8
+          sel_ratio: 1.08
+          rare: 0.0289
+          rank_corr: -0.024
+          rankme: 280.8
+          knn: 0.988
+        gen1:
+          ppl: 42.2
+          sel_ratio: 1.12
+          rare: 0.0194
+          rank_corr: -0.032
+          rankme: 296.5
+          knn: 0.988
+        gen2:
+          ppl: 47.5
+          sel_ratio: 1.15
+          rare: 0.0141
+          rank_corr: -0.036
+          rankme: 302.0
+          knn: 0.987
+        gen3:
+          ppl: 50.8
+          sel_ratio: 1.18
+          rare: 0.0118
+          rank_corr: -0.039
+          rankme: 303.0
+          knn: 0.988
+        gen4:
+          ppl: 50.3
+          sel_ratio: 1.21
+          rare: 0.0103
+          rank_corr: -0.041
+          rankme: 300.5
+          knn: 0.988
+        gen5:
+          ppl: 48.2
+          sel_ratio: 1.24
+          rare: 0.0097
+          rank_corr: -0.04
+          rankme: 296.8
+          knn: 0.988
+        gen6:
+          ppl: 46.5
+          sel_ratio: 1.26
+          rare: 0.0091
+          rank_corr: -0.038
+          rankme: 292.5
+          knn: 0.988
+        gen7:
+          ppl: 45.8
+          sel_ratio: 1.28
+          rare: 0.0088
+          rank_corr: -0.037
+          rankme: 289.4
+          knn: 0.988
+      derived:
+        rgds_ppl_excess_vs_uncurated_pct: 51.4
+        rgds_rare_deficit_vs_uncurated_pct: 47.1
+        external_ppl_improvement_vs_uncurated_pct: -4.8
+        external_rare_vs_uncurated_pct: 1.1
+    result_rationale: 'RGDS: self-iterate 导致内部嵌入空间收缩（neural collapse 类机制）。
+
+      随代际推进，模型嵌入的"几何多样性"方向逐渐对齐到高频词汇模式上，
+
+      贪心子模选择在低维空间中选中的"远点"恰好是词汇贫乏的样本。
+
+      selection ratio 从 1.04 单调降至 0.52 反映了这种对齐错位的加剧。
+
+      训练在词汇贫乏子集上 → PPL 从 37.2 飙升到 72.8（+51%），
+
+      rare n-gram 从 0.029 降至 0.0046（-84%），远超 uncurated 的自然崩塌幅度。
+
+
+      uncurated: 无选择偏差，PPL 先升后降（gen3 峰值 57.0 → gen7 回落 48.1），
+
+      rare n-gram 持续下降到 0.0087（-70%）。
+
+      PPL 回落是因为模型逐渐"记住"自身分布，但词汇多样性不可逆损失。
+
+
+      external_only: Contriever 冻结不受训练反馈影响，diversity 信号始终校准到原始分布。
+
+      selection ratio 稳定上升（1.08→1.28），说明它确实在挑"更不像已有训练集"的样本。
+
+      PPL 略优于 uncurated（45.8 vs 48.1，-4.8%）因为语义多样性选择提供了更有信息量的训练数据。
+
+      但 rare n-gram（0.0088）≈ uncurated（0.0087），说明语义多样性 ≠ 词汇多样性——
+
+      Contriever 捕捉的是主题/语义距离而非低频词分布。
+
+      '
+    tables:
+    - 'Table 1: Gen 0-7 三方法全指标（PPL, rare, sel_ratio, rank_corr, RankMe, k-NN）'
+    - 'Table 2: Gen 7 汇总 + 方法间相对差异百分比'
+    figures_description:
+    - 'Figure 1 (hero): Selection ratio × generation 折线图，RGDS 单调下降穿过 1.0 线，external
+      稳步上升。灰色虚线标 1.0 阈值。C1 核心证据。'
+    - 'Figure 2: 双 y 轴——左 PPL, 右 rare n-gram。三方法三条线。RGDS PPL 持续上升 + rare 加速下降形成''剪刀口''。external
+      PPL 优于 uncurated 但 rare 几乎重合——视觉化 S1。'
+    - 'Figure 3: RankMe × generation，说明表征质量指标未检出多样性崩塌（S2）。'
+    analysis: 'C1 成立：selection ratio 单调下降 8 代，效应量大（1.04→0.52），不可归因于噪声。
+
+      C2-weak 成立：external ratio 始终 >1.0 且上升，与 internal 形成鲜明对照。
+
+      C3 成立：RGDS PPL +51%、rare -47% vs uncurated，完整因果链闭合。
+
+      S1 成立：external PPL -4.8% 但 rare +1.1%，PPL 与 rare 解耦。
+
+      S2 成立：RankMe 在崩塌过程中反而上升（280→303），k-NN 稳定，无法检测多样性衰退。
+
+      '
+  - name: External_only seed=123 复现
+    plan_id: plan_003
+    description: 验证 external_only selection ratio >1.0 在不同种子下的可复现性。plan_004 的子集先行实验。
+    expected_results:
+      external_only:
+        gen0:
+          ppl: 37.0
+          sel_ratio: 1.07
+          rare: 0.0291
+        gen4:
+          ppl: 50.8
+          sel_ratio: 1.19
+          rare: 0.0105
+        gen7:
+          ppl: 46.5
+          sel_ratio: 1.25
+          rare: 0.009
+    result_rationale: 'Contriever 冻结模型的选择函数不受训练种子影响，
+
+      但下游训练轨迹因初始化/采样随种子变化导致 ±5% 波动。
+
+      sel_ratio 仍 >1.0 全程，确认 C2-weak 非种子偶然。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 结果合并入 plan_004 的 3-seed 统计。单独作用是在 plan_001 完成前快速确认 C2-weak 方向。
+  - name: 三方法 seed=123 完整复现 (GPT2-125M, WikiText-103)
+    plan_id: plan_004
+    description: 3 methods × 8 gens, seed=123。第二个种子，与 plan_001 对比验证趋势可复现。
+    expected_results:
+      rgds:
+        gen0:
+          ppl: 37.5
+          sel_ratio: 1.03
+          rare: 0.0285
+          rank_corr: -0.062
+        gen3:
+          ppl: 57.8
+          sel_ratio: 0.77
+          rare: 0.0108
+          rank_corr: -0.108
+        gen7:
+          ppl: 70.5
+          sel_ratio: 0.54
+          rare: 0.005
+          rank_corr: -0.148
+      uncurated:
+        gen0:
+          ppl: 37.3
+          rare: 0.0287
+          rank_corr: -0.025
+        gen3:
+          ppl: 58.2
+          rare: 0.0119
+          rank_corr: -0.046
+        gen7:
+          ppl: 49.3
+          rare: 0.0091
+          rank_corr: -0.082
+      external_only:
+        gen0:
+          ppl: 37.0
+          sel_ratio: 1.07
+          rare: 0.0291
+          rank_corr: -0.026
+        gen3:
+          ppl: 51.5
+          sel_ratio: 1.17
+          rare: 0.0121
+          rank_corr: -0.041
+        gen7:
+          ppl: 46.5
+          sel_ratio: 1.25
+          rare: 0.009
+          rank_corr: -0.04
+      derived:
+        rgds_ppl_excess_vs_uncurated_pct: 43.0
+        rgds_rare_deficit_vs_uncurated_pct: 45.1
+    result_rationale: '所有方向性趋势与 seed=42 一致：RGDS ratio 单调下降、PPL 持续上升、external ratio
+      稳定 >1.0。
+
+      点估计波动 ±5-8%——seed=123 的 RGDS gen7 PPL (70.5) 略低于 seed=42 (72.8)，
+
+      sel_ratio (0.54) 略高于 seed=42 (0.52)。这是正常的种子间方差，来源于
+
+      mini-batch 采样和初始化差异导致的训练轨迹分散。
+
+      关键判据：方法间差异 (RGDS 70.5 vs uncurated 49.3 = Δ21.2) 远大于种子间差异 (70.5 vs 72.8 = Δ2.3)。
+
+      '
+    tables:
+    - 'Table 3: seed=42 vs seed=123 gen7 核心指标对比'
+    figures_description:
+    - Figure 1 扩展：selection ratio 图增加 seed=123 虚线，两种子趋势重合。
+    analysis: '趋势方向完全复现。RGDS ratio <1.0 by gen2, external ratio >1.0 全程,
+
+      RGDS PPL >> uncurated。种子间差异远小于方法间差异。
+
+      '
+  - name: 三方法 seed=456 完整复现 (GPT2-125M, WikiText-103)
+    plan_id: plan_005
+    description: 第三个种子。与 seed=42/123 构成 N=3 统计检验基础，计算 95% CI。
+    expected_results:
+      rgds:
+        gen0:
+          ppl: 36.9
+          sel_ratio: 1.05
+          rare: 0.0292
+          rank_corr: -0.055
+        gen3:
+          ppl: 55.1
+          sel_ratio: 0.81
+          rare: 0.0117
+          rank_corr: -0.099
+        gen7:
+          ppl: 74.2
+          sel_ratio: 0.49
+          rare: 0.0043
+          rank_corr: -0.161
+      uncurated:
+        gen0:
+          ppl: 36.8
+          rare: 0.0291
+          rank_corr: -0.021
+        gen3:
+          ppl: 55.8
+          rare: 0.0113
+          rank_corr: -0.041
+        gen7:
+          ppl: 47.5
+          rare: 0.0085
+          rank_corr: -0.091
+      external_only:
+        gen0:
+          ppl: 36.5
+          sel_ratio: 1.09
+          rare: 0.0293
+          rank_corr: -0.022
+        gen3:
+          ppl: 50.2
+          sel_ratio: 1.2
+          rare: 0.0122
+          rank_corr: -0.037
+        gen7:
+          ppl: 44.9
+          sel_ratio: 1.31
+          rare: 0.0086
+          rank_corr: -0.034
+      derived:
+        rgds_ppl_excess_vs_uncurated_pct: 56.2
+        rgds_rare_deficit_vs_uncurated_pct: 49.4
+      three_seed_aggregation:
+        note: 聚合 seed=42 (plan_001) + seed=123 (plan_004) + seed=456 (plan_005)
+        rgds_gen7_ppl:
+          mean: 72.5
+          std: 1.85
+          ci95:
+          - 67.9
+          - 77.1
+        rgds_gen7_sel_ratio:
+          mean: 0.517
+          std: 0.025
+          ci95:
+          - 0.455
+          - 0.579
+        rgds_gen7_rare:
+          mean: 0.00463
+          std: 0.00035
+          ci95:
+          - 0.00376
+          - 0.0055
+        rgds_gen7_rank_corr:
+          mean: -0.155
+          std: 0.007
+          ci95:
+          - -0.171
+          - -0.139
+        uncurated_gen7_ppl:
+          mean: 48.3
+          std: 0.91
+          ci95:
+          - 46.0
+          - 50.6
+        uncurated_gen7_rare:
+          mean: 0.00877
+          std: 0.0003
+          ci95:
+          - 0.00802
+          - 0.00952
+        external_gen7_ppl:
+          mean: 45.7
+          std: 0.8
+          ci95:
+          - 43.7
+          - 47.7
+        external_gen7_sel_ratio:
+          mean: 1.28
+          std: 0.03
+          ci95:
+          - 1.21
+          - 1.35
+        external_gen7_rare:
+          mean: 0.0088
+          std: 0.0002
+          ci95:
+          - 0.0083
+          - 0.0093
+        external_gen7_rank_corr:
+          mean: -0.037
+          std: 0.003
+          ci95:
+          - -0.044
+          - -0.03
+        key_tests:
+          rgds_sel_ratio_below_1: CI [0.455, 0.579] 不跨 1.0 ✓
+          external_sel_ratio_above_1: CI [1.21, 1.35] 不跨 1.0 ✓
+          rgds_ppl_above_uncurated: CI 无重叠 (67.9-77.1 vs 46.0-50.6) ✓
+          external_rare_eq_uncurated: CI 重叠 (0.00830-0.00930 vs 0.00802-0.00952) →
+            差异不显著 ✓
+          cohen_d_ppl: '>3 (极大效应量)'
+    result_rationale: 'seed=456 的 RGDS gen7 PPL 最高 (74.2)、sel_ratio 最低 (0.49)——
+
+      代表种子间方差的上界。三种子聚合后所有 CI 不跨关键阈值：
+
+      - sel_ratio CI [0.455, 0.579] 远低于 1.0，C1 在统计上稳固
+
+      - RGDS PPL CI [67.9, 77.1] 与 uncurated CI [46.0, 50.6] 无重叠，C3 稳固
+
+      - external sel_ratio CI [1.21, 1.35] 远高于 1.0，C2-weak 稳固
+
+      - external rare ≈ uncurated rare（CI 完全重叠），S1 稳固
+
+
+      N=3 虽少，但效应量极大（Cohen''s d >3），统计功效充足。
+
+      关键是 8 代的单调趋势不是单点测量——每个种子贡献 8 个相关但独立的观测点，
+
+      使得趋势的统计可靠性远超点估计。
+
+      '
+    tables:
+    - 'Table 4: 3-seed 聚合统计（mean ± std, 95% CI）全指标'
+    figures_description:
+    - Figure 1 最终版：三条 RGDS sel_ratio 曲线 (42/123/456) + 均值粗线 ± shading band。
+    - 'Figure 补充: gen7 指标 bar chart with 95% CI error bars，三方法并排。'
+    analysis: '三种子全部复现主趋势方向。CI 不跨零/不跨 1.0，满足 best 档复现要求。
+
+      方法间差异 (Δ=24.2 PPL) 远大于种子间差异 (std=1.9)，Cohen''s d >3。
+
+      审稿人 R3 ("N=1 seed") 完全被挡住。
+
+      '
+  - name: GPT2-medium 355M 三方法对比 (WikiText-103, seed=42)
+    plan_id: plan_006
+    description: 在 355M 参数模型上验证 alignment gap 存在。回应审稿人 R1 'GPT2-125M 太小'。
+    expected_results:
+      rgds:
+        gen0:
+          ppl: 31.2
+          sel_ratio: 1.05
+          rare: 0.0295
+          rank_corr: -0.051
+          rankme: 342.1
+          knn: 0.989
+        gen1:
+          ppl: 35.8
+          sel_ratio: 0.97
+          rare: 0.0218
+          rank_corr: -0.064
+          rankme: 351.4
+          knn: 0.989
+        gen2:
+          ppl: 41.5
+          sel_ratio: 0.89
+          rare: 0.0163
+          rank_corr: -0.078
+          rankme: 357.2
+          knn: 0.989
+        gen3:
+          ppl: 47.2
+          sel_ratio: 0.81
+          rare: 0.0122
+          rank_corr: -0.091
+          rankme: 361.8
+          knn: 0.989
+        gen4:
+          ppl: 52.7
+          sel_ratio: 0.74
+          rare: 0.0094
+          rank_corr: -0.104
+          rankme: 363.5
+          knn: 0.989
+        gen5:
+          ppl: 57.1
+          sel_ratio: 0.67
+          rare: 0.0075
+          rank_corr: -0.116
+          rankme: 361.2
+          knn: 0.989
+        gen6:
+          ppl: 60.8
+          sel_ratio: 0.61
+          rare: 0.0062
+          rank_corr: -0.127
+          rankme: 357.8
+          knn: 0.989
+        gen7:
+          ppl: 63.5
+          sel_ratio: 0.56
+          rare: 0.0052
+          rank_corr: -0.138
+          rankme: 353.5
+          knn: 0.989
+      uncurated:
+        gen0:
+          ppl: 30.8
+          rare: 0.0293
+          rank_corr: -0.019
+          rankme: 340.5
+          knn: 0.989
+        gen1:
+          ppl: 37.2
+          rare: 0.0198
+          rank_corr: -0.047
+          rankme: 355.8
+          knn: 0.989
+        gen2:
+          ppl: 42.8
+          rare: 0.0147
+          rank_corr: -0.043
+          rankme: 360.4
+          knn: 0.989
+        gen3:
+          ppl: 47.5
+          rare: 0.0123
+          rank_corr: -0.039
+          rankme: 362.1
+          knn: 0.989
+        gen4:
+          ppl: 46.8
+          rare: 0.0108
+          rank_corr: -0.037
+          rankme: 359.8
+          knn: 0.989
+        gen5:
+          ppl: 44.2
+          rare: 0.0102
+          rank_corr: -0.042
+          rankme: 355.2
+          knn: 0.989
+        gen6:
+          ppl: 42.5
+          rare: 0.0096
+          rank_corr: -0.058
+          rankme: 351.0
+          knn: 0.989
+        gen7:
+          ppl: 41.8
+          rare: 0.0092
+          rank_corr: -0.075
+          rankme: 347.5
+          knn: 0.989
+      external_only:
+        gen0:
+          ppl: 30.5
+          sel_ratio: 1.1
+          rare: 0.0294
+          rank_corr: -0.02
+          rankme: 341.2
+          knn: 0.989
+        gen1:
+          ppl: 34.9
+          sel_ratio: 1.14
+          rare: 0.0199
+          rank_corr: -0.028
+          rankme: 354.5
+          knn: 0.989
+        gen2:
+          ppl: 39.8
+          sel_ratio: 1.17
+          rare: 0.0148
+          rank_corr: -0.032
+          rankme: 359.8
+          knn: 0.989
+        gen3:
+          ppl: 43.1
+          sel_ratio: 1.2
+          rare: 0.0124
+          rank_corr: -0.035
+          rankme: 361.5
+          knn: 0.989
+        gen4:
+          ppl: 42.8
+          sel_ratio: 1.23
+          rare: 0.0109
+          rank_corr: -0.037
+          rankme: 358.8
+          knn: 0.989
+        gen5:
+          ppl: 41.0
+          sel_ratio: 1.26
+          rare: 0.0103
+          rank_corr: -0.036
+          rankme: 354.5
+          knn: 0.989
+        gen6:
+          ppl: 39.5
+          sel_ratio: 1.28
+          rare: 0.0097
+          rank_corr: -0.035
+          rankme: 350.2
+          knn: 0.989
+        gen7:
+          ppl: 38.8
+          sel_ratio: 1.3
+          rare: 0.0093
+          rank_corr: -0.033
+          rankme: 346.8
+          knn: 0.989
+      derived:
+        rgds_ppl_excess_vs_uncurated_pct: 51.9
+        rgds_rare_deficit_vs_uncurated_pct: 43.5
+        external_ppl_improvement_vs_uncurated_pct: -7.2
+    result_rationale: 'GPT2-medium 基线 PPL 更低（31 vs 37），因 355M 参数提供更强的语言建模能力。
+
+      alignment gap 相对幅度与 125M 高度一致：RGDS PPL excess 51.9%（125M: 51.4%），
+
+      sel_ratio 终点 0.56（125M: 0.52），rare deficit 43.5%（125M: 47.1%）。
+
+
+      机制不变性解释：alignment gap 源于嵌入空间在 self-iterate 下的几何收缩，
+
+      这是训练动力学的内禀性质，与模型容量正交。更大模型嵌入维度更高（1024 vs 768），
+
+      但 self-iterate 的收缩力度也相应更强（更多参数 → 更强的模式记忆 → 收缩更彻底）。
+
+      两效应大致抵消，使相对幅度在两个规模上相似。
+
+
+      RankMe 绝对值更高（340-363 vs 280-303）因嵌入维度更大，
+
+      但同样在崩塌过程中上升，未检出多样性衰退——S2 在更大规模上仍然成立。
+
+      '
+    tables:
+    - 'Table 5: GPT2-125M vs GPT2-medium gen7 对比（绝对值 + 相对差异百分比）'
+    figures_description:
+    - 'Figure 4: 双面板——左 125M 右 355M，同比例 selection ratio 曲线。两模型趋势平行，视觉冲击力强。'
+    analysis: 'C1/C2-weak/C3 在 GPT2-medium 上全部复现，相对幅度 ±5% 内一致。
+
+      确认 alignment gap 机制的规模不变性。
+
+      审稿人 R1 被有效回应：gap 在 2.8× 模型上同样清晰。
+
+      相对幅度的稳定性为"更大模型上也可能存在"提供了间接论据。
+
+      '
+  - name: GPT2-medium 355M seed=123 复现
+    plan_id: plan_007
+    description: GPT2-medium 第二种子，确认更大模型上的趋势可复现性。
+    expected_results:
+      rgds:
+        gen0:
+          ppl: 31.5
+          sel_ratio: 1.04
+          rare: 0.0292
+          rank_corr: -0.054
+        gen7:
+          ppl: 65.1
+          sel_ratio: 0.53
+          rare: 0.0049
+          rank_corr: -0.142
+      uncurated:
+        gen0:
+          ppl: 31.1
+          rare: 0.029
+        gen7:
+          ppl: 42.5
+          rare: 0.0089
+      external_only:
+        gen0:
+          ppl: 30.8
+          sel_ratio: 1.09
+          rare: 0.0293
+        gen7:
+          ppl: 39.5
+          sel_ratio: 1.27
+          rare: 0.0091
+      derived:
+        rgds_ppl_excess_vs_uncurated_pct: 53.2
+        two_seed_aggregation:
+          rgds_gen7_ppl:
+            mean: 64.3
+            range:
+            - 63.5
+            - 65.1
+          rgds_gen7_sel_ratio:
+            mean: 0.545
+            range:
+            - 0.53
+            - 0.56
+    result_rationale: 'seed=123 在 GPT2-medium 上复现相同趋势，点估计 ±3% 波动。
+
+      RGDS gen7 PPL 65.1 vs seed=42 的 63.5，sel_ratio 0.53 vs 0.56——方向完全一致。
+
+      GPT2-medium 两种子足以证明趋势可复现性（配合 125M 三种子提供交叉验证）。
+
+      '
+    tables:
+    - Table 5 扩展为 2-seed mean ± range
+    figures_description:
+    - Figure 4 GPT2-medium 面板增加 seed=123 虚线。
+    analysis: 'combined 证据：125M × 3 seeds + 355M × 2 seeds = 5 个独立验证，全部方向一致。
+
+      这是极强的鲁棒性证据。
+
+      '
+  - name: Embedding re-anchoring 缓解实验 (GPT2-125M, seed=42)
+    plan_id: plan_008
+    description: '每一代用预训练模型嵌入替代当前模型嵌入做多样性选择（不改训练过程，只改 selection 用的嵌入）。
+
+      验证 alignment gap 可修复性。成功→"found + partial fix"。
+
+      '
+    expected_results:
+      reanchored_rgds:
+        gen0:
+          ppl: 37.2
+          sel_ratio: 1.04
+          rare: 0.0288
+          rank_corr: -0.058
+        gen1:
+          ppl: 42.0
+          sel_ratio: 1.02
+          rare: 0.021
+          rank_corr: -0.061
+        gen2:
+          ppl: 48.2
+          sel_ratio: 1.01
+          rare: 0.0156
+          rank_corr: -0.064
+        gen3:
+          ppl: 53.5
+          sel_ratio: 0.99
+          rare: 0.0124
+          rank_corr: -0.067
+        gen4:
+          ppl: 54.1
+          sel_ratio: 0.98
+          rare: 0.0103
+          rank_corr: -0.069
+        gen5:
+          ppl: 52.8
+          sel_ratio: 0.97
+          rare: 0.0089
+          rank_corr: -0.071
+        gen6:
+          ppl: 51.5
+          sel_ratio: 0.96
+          rare: 0.0077
+          rank_corr: -0.073
+        gen7:
+          ppl: 51.2
+          sel_ratio: 0.95
+          rare: 0.0061
+          rank_corr: -0.075
+      comparison_at_gen7:
+        vs_rgds:
+          ppl_reduction_pct: 29.7
+          rare_improvement_pct: 32.6
+          sel_ratio_change: 0.52 → 0.95（从严重失调恢复到接近 1.0）
+        vs_uncurated:
+          ppl_excess_pct: 6.4
+          rare_deficit_pct: 29.9
+        vs_external:
+          ppl_excess_pct: 11.8
+          rare_deficit_pct: 30.7
+    result_rationale: 're-anchoring 用预训练嵌入做选择，切断"模型退化→嵌入退化→选择退化→模型更退化"的反馈环。
+
+
+      selection ratio 稳定在 ~1.0（1.04→0.95 轻微下降），而非 RGDS 的 1.04→0.52 断崖式下降。
+
+      轻微下降原因：即使嵌入质量好，生成数据本身在退化，候选池绝对多样性下降，
+
+      使得预训练嵌入虽能正确排序但最优子集的 ratio 也略有缩水。
+
+
+      PPL 大幅恢复：72.8 → 51.2（-29.7%），接近 uncurated 的 48.1（仅高 6.4%）。
+
+      说明 RGDS 的 PPL 灾难主要来自选择偏差，而非生成退化本身。
+
+      Re-anchoring 消除了选择偏差 → PPL 近乎完全恢复。
+
+
+      rare n-gram 部分恢复：0.0046 → 0.0061（+32.6%），但仍低于 uncurated 0.0087（-29.9%）。
+
+      rare n-gram 损失有两个来源：
+
+      (1) 选择偏差——词汇贫乏样本被优先选中→被 re-anchoring 修复，贡献 ~1/3 恢复
+
+      (2) 生成端词汇萎缩——模型逐渐丢失低频词能力→re-anchoring 无法修复
+
+      这个解耦本身就是一个有价值的发现。
+
+      '
+    tables:
+    - 'Table 6: RGDS vs Re-anchored RGDS vs Uncurated vs External gen7 四方对比'
+    figures_description:
+    - 'Figure 5 (§6): 双面板——(a) sel_ratio 对比: RGDS 陡降 vs re-anchored 平稳；(b) rare n-gram:
+      re-anchored 介于 RGDS 和 uncurated 之间，标注 +32.6% 改善箭头。'
+    analysis: 're-anchoring 验证了 alignment gap 的因果性：消除嵌入退化 → 选择恢复 → PPL 近乎完全恢复。
+
+      rare n-gram +32.6% 满足 best 档 [10, 40%] 要求。
+
+      论文从"发现问题"升级为"发现问题 + 简单修复部分有效 + 定位残余问题在生成端"。
+
+      为 §7 future work 自然引出"生成端干预"方向。
+
+      '
+  - name: OpenWebText 子集 三方法对比 (GPT2-125M, seed=42)
+    plan_id: plan_009
+    description: 在 OpenWebText 上验证 alignment gap 跨数据集泛化性。回应审稿人 R2。
+    expected_results:
+      rgds:
+        gen0:
+          ppl: 27.5
+          sel_ratio: 1.05
+          rare: 0.0312
+          rank_corr: -0.053
+        gen1:
+          ppl: 31.8
+          sel_ratio: 0.97
+          rare: 0.023
+          rank_corr: -0.068
+        gen2:
+          ppl: 37.4
+          sel_ratio: 0.89
+          rare: 0.0172
+          rank_corr: -0.082
+        gen3:
+          ppl: 42.8
+          sel_ratio: 0.81
+          rare: 0.0129
+          rank_corr: -0.096
+        gen4:
+          ppl: 48.1
+          sel_ratio: 0.73
+          rare: 0.0098
+          rank_corr: -0.11
+        gen5:
+          ppl: 52.5
+          sel_ratio: 0.66
+          rare: 0.0079
+          rank_corr: -0.122
+        gen6:
+          ppl: 56.2
+          sel_ratio: 0.59
+          rare: 0.0065
+          rank_corr: -0.133
+        gen7:
+          ppl: 59.1
+          sel_ratio: 0.53
+          rare: 0.0054
+          rank_corr: -0.144
+      uncurated:
+        gen0:
+          ppl: 27.2
+          rare: 0.031
+          rank_corr: -0.02
+        gen1:
+          ppl: 33.5
+          rare: 0.0212
+          rank_corr: -0.048
+        gen2:
+          ppl: 39.2
+          rare: 0.0158
+          rank_corr: -0.044
+        gen3:
+          ppl: 43.8
+          rare: 0.0131
+          rank_corr: -0.04
+        gen4:
+          ppl: 43.2
+          rare: 0.0115
+          rank_corr: -0.038
+        gen5:
+          ppl: 40.8
+          rare: 0.0108
+          rank_corr: -0.044
+        gen6:
+          ppl: 39.1
+          rare: 0.01
+          rank_corr: -0.06
+        gen7:
+          ppl: 38.5
+          rare: 0.0095
+          rank_corr: -0.08
+      external_only:
+        gen0:
+          ppl: 27.0
+          sel_ratio: 1.09
+          rare: 0.0311
+          rank_corr: -0.021
+        gen1:
+          ppl: 31.2
+          sel_ratio: 1.13
+          rare: 0.0215
+          rank_corr: -0.03
+        gen2:
+          ppl: 36.5
+          sel_ratio: 1.16
+          rare: 0.016
+          rank_corr: -0.034
+        gen3:
+          ppl: 40.2
+          sel_ratio: 1.19
+          rare: 0.0132
+          rank_corr: -0.037
+        gen4:
+          ppl: 40.0
+          sel_ratio: 1.22
+          rare: 0.0116
+          rank_corr: -0.039
+        gen5:
+          ppl: 38.2
+          sel_ratio: 1.25
+          rare: 0.0109
+          rank_corr: -0.038
+        gen6:
+          ppl: 36.8
+          sel_ratio: 1.27
+          rare: 0.0101
+          rank_corr: -0.036
+        gen7:
+          ppl: 36.1
+          sel_ratio: 1.29
+          rare: 0.0096
+          rank_corr: -0.035
+      derived:
+        rgds_ppl_excess_vs_uncurated_pct: 53.5
+        rgds_rare_deficit_vs_uncurated_pct: 43.2
+        external_ppl_improvement_vs_uncurated_pct: -6.2
+    result_rationale: 'OWT 基线 PPL 更低（27 vs 37），因为 GPT2 预训练语料 WebText 与 OWT 同分布。
+
+      OWT 基线 rare n-gram 略高（0.031 vs 0.029），因 web 文本词汇更多样化。
+
+
+      alignment gap 相对幅度与 WikiText 高度一致：
+
+      - sel_ratio: 1.05→0.53（WikiText: 1.04→0.52）
+
+      - PPL excess: +53.5%（WikiText: +51.4%）
+
+      - rare deficit: -43.2%（WikiText: -47.1%）
+
+      - external ratio: 1.09→1.29（WikiText: 1.08→1.28）
+
+
+      一致性的机制解释：alignment gap 是模型内部嵌入空间收缩的产物，
+
+      与训练数据领域无关。self-iterate 反馈环的收缩动力学是训练过程的内禀性质，
+
+      不依赖数据分布的具体形态。数据集只影响绝对 PPL 水平（通过基线语言建模难度），
+
+      不影响 gap 的相对大小。
+
+      '
+    tables:
+    - 'Table 7: WikiText-103 vs OpenWebText gen7 指标对比（绝对值 + 相对差异）'
+    figures_description:
+    - 'Figure 6: 双面板——左 WikiText 右 OWT，同比例 selection ratio + PPL 曲线。两数据集趋势平行。'
+    analysis: "alignment gap 跨数据集完全泛化。相对幅度在 WikiText 和 OWT 上一致（±3%），\n强化\"机制是通用的\"\
+      论点。审稿人 R2 被有效回应。\ncombined 全部证据：2 datasets × 2 model sizes × 3 seeds + 1 mitigation\
+      \ = \n极强的现象鲁棒性 + 因果验证。投 8 页 Findings 绰绰有余。"
+  review_report: "---\ndream_id: dream_20260513T081019\ntier: best\noverall_score:\
+    \ Findings acceptance (3.0/5), conditional on revisions\ntimestamp: 2026-05-13T08:54:16.649568+00:00\n\
+    ---\n\n# Dream Review Report: The Embedding Alignment Gap\n\n**Paper**: \"The\
+    \ Embedding Alignment Gap: Why Diversity-Based Data Selection Accelerates Model\
+    \ Collapse in Iterative Self-Training\"\n**Venue**: EMNLP 2026 ARR\n**Review Mode**:\
+    \ Full (2 Reviewers + Roundtable)\n**Date**: 2026-05-13\n\n---\n\n## Reviewer\
+    \ Assignments\n- **R1**: Methods and Experiments\n- **R2**: Novelty and Related\
+    \ Work\n\n---\n\n## Step 1: Independent Reviews\n\n### R1 Review (Methods + Experiments)\n\
+    \n**Paper Summary**: The paper identifies the \"Embedding Alignment Gap\" — in\
+    \ iterative self-training, a model's internal embeddings become misaligned with\
+    \ content diversity, causing diversity-based selection (RGDS) to accelerate model\
+    \ collapse. The authors quantify this via a \"selection ratio\" metric and validate\
+    \ across 2 model scales, 2 datasets, and 3 seeds.\n\n**Strengths**:\n1. **Clean\
+    \ three-way experimental design**: Uncurated / RGDS / External-only comparison\
+    \ isolates the alignment gap from generic model collapse. The causal attribution\
+    \ is convincing — the same submodular objective with different embeddings produces\
+    \ opposite outcomes.\n2. **Selection ratio is a well-conceived diagnostic**: Simple,\
+    \ interpretable, and directly measures the quantity of interest (alignment between\
+    \ embedding diversity and lexical diversity). The monotonic degradation across\
+    \ 8 generations is compelling.\n3. **Statistical rigor is above average for this\
+    \ topic**: 3 seeds with 95% CIs, non-overlapping intervals, Cohen's d > 3. Effect\
+    \ sizes are large and consistent.\n4. **Re-anchoring decomposition is analytically\
+    \ valuable**: The selection-side vs. generation-side decomposition (§6) provides\
+    \ actionable insight beyond merely identifying the problem.\n5. **Cross-scale\
+    \ and cross-dataset consistency**: Relative magnitudes are remarkably stable (PPL\
+    \ excess ±3% across conditions), strengthening the \"mechanism is universal\"\
+    \ argument.\n\n**Weaknesses**:\n1. **Scale range is narrow and within a single\
+    \ architecture family**: 125M and 355M are both GPT-2. The ~identical relative\
+    \ magnitudes (51.4% vs 51.9%) are suspiciously precise and may reflect architecture-specific\
+    \ dynamics rather than universal phenomena. Claims of \"scale invariance\" overreach\
+    \ the evidence — a 2.8× scale factor within one family is minimal.\n2. **Re-anchoring\
+    \ experiment uses only seed=42**: This is the most actionable contribution (§6),\
+    \ yet the 1/3 vs 2/3 decomposition rests on a single seed. The other experiments\
+    \ use 3 seeds; this inconsistency weakens the strongest practical claim.\n3. **Missing\
+    \ critical hyperparameters**: The paper does not specify: generation length, number\
+    \ of generated samples per generation, selection budget (what fraction is selected?),\
+    \ temperature/top-k/top-p for generation, learning rate/epochs for fine-tuning,\
+    \ or whether fine-tuning is from scratch each generation or continual. These are\
+    \ essential for reproducibility.\n4. **Extreme self-training setup limits practical\
+    \ relevance**: Pure self-training with no real data mixing is the most aggressive\
+    \ collapse configuration. Most real pipelines mix synthetic and real data. The\
+    \ paper doesn't test any mixed-data regime, making practical applicability uncertain.\n\
+    5. **N=3 seeds with t-distribution CIs**: With 2 degrees of freedom, the 95% CI\
+    \ coverage probability is unreliable. The large effect sizes compensate, but the\
+    \ paper should acknowledge this limitation rather than presenting CIs as fully\
+    \ rigorous.\n6. **Representation metric analysis (S2) is shallow**: Claiming RankMe/k-NN\
+    \ \"miss\" collapse based on one experiment (Table 3) without analyzing *why*\
+    \ (e.g., are the metrics measuring orthogonal properties, or are they insensitive\
+    \ in a specific range?) is insufficient.\n\n**Questions for Authors**:\n1. What\
+    \ is the selection budget (fraction of pool selected)? Does the alignment gap\
+    \ magnitude depend on this fraction?\n2. Is fine-tuning continual (M_{t-1} → M_t)\
+    \ or from-scratch each generation? This fundamentally changes the collapse dynamics.\n\
+    3. What happens at generation >8? Does the ratio plateau or continue declining?\n\
+    4. Have you tested with any real-data mixing (e.g., 50% real + 50% synthetic)?\n\
+    5. What is the computational overhead of re-anchoring (keeping M_0 for selection)?\n\
+    \n**Missing Experiments**:\n1. Re-anchoring with multiple seeds (critical)\n2.\
+    \ Mixed real/synthetic data regime\n3. Sensitivity to selection budget fraction\n\
+    4. Ablation on generation parameters (temperature, length)\n5. A model outside\
+    \ GPT-2 family (e.g., Pythia, LLaMA)\n\n**Scores**:\n- Soundness: 3.0/5\n- Excitement:\
+    \ 3.5/5\n- Overall: 3.0/5 (Findings acceptance)\n- Confidence: 4/5\n\n**Justification**:\
+    \ The core phenomenon is real, clearly demonstrated, and the selection ratio metric\
+    \ is a genuine contribution. However, the narrow scale range (GPT-2 only), missing\
+    \ hyperparameters, single-seed re-anchoring, and extreme self-training setup prevent\
+    \ this from being a main conference paper. The effect sizes are large enough that\
+    \ the conclusions are likely robust, but the paper needs more detail and breadth\
+    \ to be fully convincing. Appropriate for Findings track.\n\n---\n\n### R2 Review\
+    \ (Novelty + Related Work)\n\n**Paper Summary**: The paper formalizes the observation\
+    \ that internal-embedding-based diversity selection degrades under iterative self-training,\
+    \ introducing the \"Embedding Alignment Gap\" concept and the selection ratio\
+    \ metric. The counterintuitive finding (diversity selection accelerates collapse)\
+    \ is the headline contribution.\n\n**Strengths**:\n1. **Counterintuitive finding\
+    \ clearly articulated**: The framing — \"the cure accelerates the disease\" —\
+    \ is effective and likely to attract attention. The causal chain (embedding contraction\
+    \ → misaligned selection → vocabulary impoverishment → further contraction) is\
+    \ cleanly stated.\n2. **Selection ratio is a reusable diagnostic**: This metric\
+    \ has utility beyond this specific study and could become a standard monitoring\
+    \ tool for iterative training pipelines.\n3. **Semantic ≠ lexical diversity decomposition\
+    \ (S1)**: While not entirely novel conceptually, the specific quantification (external\
+    \ embeddings improve PPL by 5% but rare n-grams are identical) is cleanly demonstrated\
+    \ and under-discussed in the literature.\n4. **Selection-side vs. generation-side\
+    \ decomposition**: Analytically valuable — distinguishes two failure modes that\
+    \ require different interventions.\n\n**Weaknesses**:\n1. **Related work is severely\
+    \ underdeveloped**: Only 10 references for EMNLP is far below expectations. Critical\
+    \ gaps include:\n   - **Concept drift / embedding drift literature**: The core\
+    \ phenomenon (representations becoming unreliable under distribution shift) is\
+    \ well-studied in continual learning and domain adaptation. The paper doesn't\
+    \ engage with this body of work at all.\n   - **Active learning under distribution\
+    \ shift**: The observation that acquisition functions degrade when the model's\
+    \ representations shift is known in active learning (e.g., Ash et al. 2020 BADGE,\
+    \ Kirsch et al. 2019). The alignment gap is essentially an acquisition function\
+    \ failure mode.\n   - **More model collapse papers**: Guo et al. 2024 (\"Curious\
+    \ Decline\"), Dohmatob et al. 2024 (scaling laws formalization — cited but not\
+    \ deeply engaged), Briesch et al. 2023. The field has grown substantially.\n \
+    \  - **Self-play / RLHF feedback loops**: Similar feedback loops occur in RLHF\
+    \ where the reward model co-evolves with the policy. The connection to reward\
+    \ hacking / Goodhart's law is natural but unmade.\n   - **Data selection beyond\
+    \ SemDeDup/D4/DSIR**: LESS (Xia et al. 2024), SelectIT, QuRating, clustering-based\
+    \ methods. The landscape is much richer than presented.\n   - **Representational\
+    \ collapse in contrastive learning**: Jing et al. 2022 on dimensional collapse,\
+    \ Hua et al. 2021 — directly relevant to the neural collapse mechanism invoked.\n\
+    2. **Novelty is overstated**: That internal representations become unreliable\
+    \ under distributional shift is conceptually expected — it would be surprising\
+    \ if they *didn't*. The real contribution is the *quantification* (selection ratio,\
+    \ magnitude of acceleration, decomposition), but the paper frames it as a novel\
+    \ conceptual insight. The framing should be recalibrated.\n3. **Neural collapse\
+    \ connection (§8) is speculative**: Neural collapse (Papyan et al. 2020) describes\
+    \ a phenomenon in supervised classification with fixed labels converging to simplex\
+    \ ETF geometry. Applying this to unsupervised LM self-training is a significant\
+    \ conceptual leap that isn't justified. The embedding contraction observed here\
+    \ may be mechanistically distinct from neural collapse.\n4. **The S1 finding (semantic\
+    \ ≠ lexical diversity) is well-known in general**: The IR and NLP communities\
+    \ have long recognized that embedding similarity captures semantic/topical structure\
+    \ but not surface-level lexical properties. The contribution here is showing this\
+    \ in the specific context of model collapse, which is incremental.\n5. **Practical\
+    \ warning scope is unclear**: The paper warns against using internal embeddings\
+    \ for data selection in iterative training, but most modern pipelines use different\
+    \ strategies (reward models, verifiers, human feedback). The set of practitioners\
+    \ who would use raw embedding diversity for iterative curation is narrow.\n6.\
+    \ **No theoretical analysis**: The paper is purely empirical. Even a simple toy\
+    \ model showing *why* the selection ratio degrades monotonically (e.g., a Gaussian\
+    \ model where the covariance contracts along specific axes) would significantly\
+    \ strengthen the contribution.\n\n**Questions for Authors**:\n1. How does this\
+    \ relate to the well-known problem of acquisition function degradation in active\
+    \ learning? \n2. Can you formalize the connection to neural collapse more rigorously,\
+    \ or is it purely analogical?\n3. Who is the target practitioner for the \"practical\
+    \ warning\"? Which real-world pipelines use internal-embedding diversity selection\
+    \ iteratively?\n4. Would a simple lexical diversity filter (e.g., type-token ratio\
+    \ threshold) solve the problem entirely, making the embedding-based analysis less\
+    \ relevant?\n\n**Missing Related Work** (specific):\n1. Ash et al. 2020 (BADGE)\
+    \ — active learning acquisition function design\n2. Guo et al. 2024 — model collapse\
+    \ in LLMs\n3. Jing et al. 2022 — dimensional collapse in contrastive learning\n\
+    4. Xia et al. 2024 (LESS) — gradient-based data selection\n5. Concept drift literature\
+    \ (Lu et al. 2019 survey)\n6. RLHF/self-play feedback loop analysis\n7. Continual\
+    \ learning and catastrophic forgetting literature\n8. Facility-location submodular\
+    \ maximization theory (Iyer & Bilmes 2013, Wei et al. 2015)\n\n**Scores**:\n-\
+    \ Soundness: 3.0/5\n- Excitement: 2.5/5\n- Overall: 2.5/5 (Borderline Findings)\n\
+    - Confidence: 4/5\n\n**Justification**: The quantification of the alignment gap\
+    \ is a real contribution, and the selection ratio metric has utility. However,\
+    \ the related work is severely underdeveloped for EMNLP (10 references, missing\
+    \ entire relevant sub-fields), the novelty framing overstates conceptual novelty\
+    \ vs. empirical quantification, and the neural collapse connection is speculative.\
+    \ The paper needs substantial related work expansion, novelty recalibration, and\
+    \ ideally some theoretical grounding to reach Findings quality.\n\n---\n\n## Step\
+    \ 2: Cross-Sharing\n\n**R1 shares with R2**:\n- The re-anchoring experiment (§6)\
+    \ — the most actionable contribution — uses only seed=42, undermining the decomposition\
+    \ claim\n- Critical hyperparameters are missing (generation length, selection\
+    \ budget, temperature, training details)\n- The extreme self-training setup (pure\
+    \ synthetic, no real data mixing) limits real-world relevance\n- N=3 seeds with\
+    \ 2 df makes CI coverage unreliable, though large effect sizes compensate\n\n\
+    **R2 shares with R1**:\n- Only 10 references is severely below EMNLP expectations;\
+    \ entire subfields (concept drift, active learning, contrastive collapse) are\
+    \ unengaged\n- The novelty framing should be recalibrated: the *quantification*\
+    \ is the contribution, not the conceptual insight that representations shift under\
+    \ distribution drift\n- Neural collapse connection is speculative and may mislead\
+    \ readers\n- No theoretical analysis weakens the mechanistic claims\n\n---\n\n\
+    ## Step 3: Convergence\n\n**Points of Agreement**:\n1. The core empirical finding\
+    \ (selection ratio degradation, accelerated collapse) is **real and well-demonstrated**\n\
+    2. The selection ratio metric is a **genuine, reusable contribution**\n3. The\
+    \ three-way comparison design is **clean and effective**\n4. **Scale range is\
+    \ too narrow** — GPT-2 125M/355M is insufficient for generalization claims\n5.\
+    \ **Related work needs major expansion** — 10 references is inadequate\n6. **Re-anchoring\
+    \ needs more seeds** — single seed for the most actionable claim is a gap\n7.\
+    \ **Missing hyperparameters** hurt reproducibility\n8. Paper is **below main conference\
+    \ threshold** but has merit for Findings\n\n**Points of Disagreement**:\n- **Excitement**:\
+    \ R1 rates 3.5 (the counterintuitive finding is compelling for the community);\
+    \ R2 rates 2.5 (the conceptual insight is somewhat expected from concept drift\
+    \ perspective). After discussion, both agree on **3.0** — the quantification is\
+    \ valuable but not surprising enough for high excitement.\n- **Overall**: R1 rates\
+    \ 3.0 (solid Findings); R2 rates 2.5 (borderline due to related work gaps). After\
+    \ discussion, both agree the core contribution merits Findings but the related\
+    \ work weakness is addressable in revision. Converge on **3.0** with strong revision\
+    \ requirements.\n- **Neural collapse**: R1 did not flag this; R2's concern is\
+    \ valid. Agreed it should be softened to \"analogy\" rather than \"mechanism.\"\
+    \n\n**Converged Scores**:\n- Soundness: **3.0/5** — Main claims supported but\
+    \ gaps in reproducibility details and single-seed re-anchoring\n- Excitement:\
+    \ **3.0/5** — Interesting quantification with practical value, but conceptual\
+    \ novelty is moderate\n- Overall: **3.0/5** (Findings acceptance, conditional\
+    \ on revisions)\n- Confidence: **4/5**\n\n---\n\n## Step 4: Consolidated Assessment\n\
+    \n### Final Recommendation: **3.0/5 — Findings Acceptance** (conditional on revisions)\n\
+    \n### Summary\nThe paper identifies and quantifies the Embedding Alignment Gap\
+    \ — a monotonic degradation of alignment between embedding-space diversity and\
+    \ content diversity in iterative self-training. Using a cleanly designed three-way\
+    \ comparison (uncurated / internal-embedding RGDS / frozen-external Contriever)\
+    \ across 8 generations, the authors demonstrate that internal-embedding diversity\
+    \ selection accelerates model collapse (+50% PPL, −47% rare n-grams vs. uncurated).\
+    \ The selection ratio metric is well-conceived and the re-anchoring decomposition\
+    \ provides actionable insight.\n\n### Key Strengths\n1. **Clean causal design**:\
+    \ The three-way comparison with matched submodular objectives isolates the embedding\
+    \ alignment issue convincingly\n2. **Selection ratio metric**: Simple, interpretable,\
+    \ directly measures the phenomenon, and has reuse potential\n3. **Large, consistent\
+    \ effect sizes**: Cohen's d > 3, relative magnitudes stable across scales and\
+    \ datasets (±3%)\n4. **Re-anchoring decomposition**: Separating selection-side\
+    \ (~1/3) from generation-side (~2/3) collapse is analytically valuable and suggests\
+    \ different intervention strategies\n5. **Experiment coverage**: All planned experiments\
+    \ (7 configurations across scales, seeds, datasets, mitigation) are reflected\
+    \ in the paper — 100% coverage\n\n### Key Weaknesses Requiring Revision\n1. **Related\
+    \ work severely underdeveloped** (10 references): Must add concept drift, active\
+    \ learning acquisition function degradation, contrastive/dimensional collapse,\
+    \ recent model collapse papers (Guo et al. 2024), data selection methods (LESS,\
+    \ SelectIT), and RLHF feedback loops. Target: ≥25 references.\n2. **Novelty framing\
+    \ needs recalibration**: The conceptual insight (representations degrade under\
+    \ distribution shift) is expected; the contribution is the *quantification and\
+    \ decomposition*. Reframe accordingly.\n3. **Re-anchoring needs multi-seed validation**:\
+    \ §6 uses only seed=42. The 1/3 vs 2/3 decomposition claim requires at least 3-seed\
+    \ CIs to match the rigor of §4-5.\n4. **Missing hyperparameters**: Generation\
+    \ length, pool size, selection budget fraction, temperature, learning rate, epochs,\
+    \ whether training is continual or from-scratch — all essential for reproducibility.\n\
+    5. **Neural collapse connection is speculative**: §8 should soften this to an\
+    \ analogy and note the mechanistic differences between supervised classification\
+    \ collapse and unsupervised LM self-training.\n6. **Narrow scale range**: GPT-2\
+    \ only (125M, 355M). Acknowledge as limitation; \"scale invariance\" claim should\
+    \ be weakened to \"consistent across tested scales.\"\n\n### Minor Issues\n- Table\
+    \ 1 shows only seed=42 data; should reference Table 5 for multi-seed aggregation\n\
+    - The selection ratio for uncurated is undefined (shows \"—\") — should be defined\
+    \ as 1.0 by construction or explained\n- No error bars on Tables 3, 4, 7 (single-seed\
+    \ results)\n\n### Experiment Coverage Assessment\n| Planned Experiment | Paper\
+    \ Coverage | Status |\n|---|---|---|\n| plan_001: Main 3-method (125M, Wiki, seed=42)\
+    \ | §4, Tables 1-3 | ✓ Complete |\n| plan_004: seed=123 reproduction | §7.1, Table\
+    \ 5 | ✓ Complete |\n| plan_005: seed=456 + 3-seed aggregation | §7.1, Table 5\
+    \ | ✓ Complete |\n| plan_006: GPT2-medium 355M (seed=42) | §7.2, Table 6 | ✓ Complete\
+    \ |\n| plan_007: GPT2-medium 355M (seed=123) | §7.2, Table 6† | ✓ Complete |\n\
+    | plan_008: Re-anchoring mitigation | §6, Table 4 | ⚠ Single seed only |\n| plan_009:\
+    \ OpenWebText (seed=42) | §7.3, Table 7 | ✓ Complete |\n\nCoverage: 7/7 experiments\
+    \ present. 1 experiment (re-anchoring) under-validated (single seed).\n\n### Actionable\
+    \ Revision Checklist\n- [ ] Expand related work to ≥25 references covering concept\
+    \ drift, active learning, contrastive collapse, recent model collapse, broader\
+    \ data selection\n- [ ] Recalibrate novelty claims: quantification + decomposition\
+    \ is the contribution, not the conceptual observation\n- [ ] Add 2 more seeds\
+    \ to re-anchoring experiment (§6)\n- [ ] Add complete hyperparameter table (generation,\
+    \ selection, training details)\n- [ ] Soften neural collapse connection to analogy\n\
+    - [ ] Weaken \"scale invariance\" to \"consistent across tested scales\"\n- [\
+    \ ] Add sensitivity analysis for selection budget fraction\n- [ ] Discuss mixed\
+    \ real/synthetic data regime (even if only in limitations)\n"
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/dream_reports/dream_20260513T081019/median/paper.pdf
+  imagined_experiments:
+  - name: Phase 2 三方法对比 (GPT2-125M, WikiText-103, seed=42)
+    plan_id: plan_001
+    description: 'Self-iterate GPT2-125M × 8 gens × 3 methods (uncurated/RGDS/external_only)。
+      主实验验证 alignment gap 存在、外部嵌入相对免疫、内部选择加速崩塌。
+
+      '
+    expected_results:
+      rgds:
+        gen0_ppl: 37.2
+        gen1_ppl: 41.8
+        gen2_ppl: 46.5
+        gen3_ppl: 50.1
+        gen4_ppl: 51.8
+        gen5_ppl: 53.2
+        gen6_ppl: 53.8
+        gen7_ppl: 54.2
+        gen0_rare: 0.029
+        gen1_rare: 0.018
+        gen2_rare: 0.012
+        gen3_rare: 0.009
+        gen4_rare: 0.008
+        gen5_rare: 0.007
+        gen6_rare: 0.0065
+        gen7_rare: 0.006
+        gen0_selection_ratio: 1.03
+        gen1_selection_ratio: 0.98
+        gen2_selection_ratio: 0.93
+        gen3_selection_ratio: 0.87
+        gen4_selection_ratio: 0.91
+        gen5_selection_ratio: 0.84
+        gen6_selection_ratio: 0.8
+        gen7_selection_ratio: 0.76
+        gen0_rankme: 281
+        gen1_rankme: 296
+        gen2_rankme: 301
+        gen3_rankme: 305
+        gen4_rankme: 303
+        gen5_rankme: 299
+        gen6_rankme: 295
+        gen7_rankme: 292
+        gen0_knn: 0.988
+        gen7_knn: 0.988
+        gen0_rank_corr: -0.024
+        gen1_rank_corr: -0.042
+        gen2_rank_corr: -0.056
+        gen3_rank_corr: -0.069
+        gen4_rank_corr: -0.063
+        gen5_rank_corr: -0.072
+        gen6_rank_corr: -0.081
+        gen7_rank_corr: -0.09
+      uncurated:
+        gen0_ppl: 37.0
+        gen1_ppl: 44.8
+        gen2_ppl: 51.5
+        gen3_ppl: 56.8
+        gen4_ppl: 55.5
+        gen5_ppl: 51.6
+        gen6_ppl: 48.5
+        gen7_ppl: 48.0
+        gen0_rare: 0.029
+        gen1_rare: 0.019
+        gen2_rare: 0.014
+        gen3_rare: 0.012
+        gen4_rare: 0.01
+        gen5_rare: 0.01
+        gen6_rare: 0.009
+        gen7_rare: 0.009
+        gen0_rankme: 280
+        gen1_rankme: 298
+        gen2_rankme: 303
+        gen3_rankme: 304
+        gen4_rankme: 301
+        gen5_rankme: 297
+        gen6_rankme: 293
+        gen7_rankme: 290
+        gen0_knn: 0.988
+        gen7_knn: 0.988
+        gen0_rank_corr: -0.023
+        gen7_rank_corr: -0.085
+      external_only:
+        gen0_ppl: 36.9
+        gen1_ppl: 43.2
+        gen2_ppl: 48.8
+        gen3_ppl: 52.5
+        gen4_ppl: 51.4
+        gen5_ppl: 48.9
+        gen6_ppl: 46.5
+        gen7_ppl: 46.2
+        gen0_rare: 0.029
+        gen1_rare: 0.019
+        gen2_rare: 0.014
+        gen3_rare: 0.011
+        gen4_rare: 0.01
+        gen5_rare: 0.009
+        gen6_rare: 0.008
+        gen7_rare: 0.008
+        gen0_selection_ratio: 1.05
+        gen1_selection_ratio: 1.06
+        gen2_selection_ratio: 1.04
+        gen3_selection_ratio: 1.03
+        gen4_selection_ratio: 1.02
+        gen5_selection_ratio: 1.01
+        gen6_selection_ratio: 1.0
+        gen7_selection_ratio: 0.99
+        gen0_rankme: 282
+        gen1_rankme: 296
+        gen2_rankme: 302
+        gen3_rankme: 304
+        gen4_rankme: 302
+        gen5_rankme: 298
+        gen6_rankme: 294
+        gen7_rankme: 291
+        gen0_knn: 0.988
+        gen7_knn: 0.988
+        gen0_rank_corr: -0.024
+        gen7_rank_corr: -0.053
+      derived_metrics:
+        rgds_ppl_excess_vs_uncurated_pct: 12.9
+        rgds_rare_deficit_vs_uncurated_pct: -33.3
+        external_ppl_improvement_vs_uncurated_pct: -3.8
+        external_rare_vs_uncurated_pct: -11.1
+        internal_ratio_overall_delta: -0.27
+        internal_ratio_monotonic: false
+        internal_ratio_rebound_gens:
+        - 4
+        external_ratio_all_above_095: true
+    result_rationale: 'Median 档下 internal selection ratio 整体从 1.03 降至 0.76（终值在 0.65-0.85
+      范围）， 但 gen4 出现一次反弹（0.87→0.91），打破严格单调性。这源于 self-iterate 中期模型 在 PPL 降低后嵌入空间发生短暂重组——gen3-4
+      PPL plateau 使嵌入分布暂时解压， selection ratio 短暂恢复，但后续代际训练继续压缩嵌入空间。 RGDS gen7 PPL 54.2
+      比 uncurated 48.0 高 12.9%，在 5-20% 范围内，说明内部选择 确实加速了崩塌但幅度有限。External ratio 全程 >0.95（终值
+      0.99），验证 C2-weak。 关键发现：external PPL 改善 3.8% 但 rare n-gram 仅比 uncurated 差 11%——
+      PPL 和 rare 的解耦（S1）在此清晰可见。 rank_corr 从 -0.024 到 -0.090，Δ=0.066，方向正确但幅度小于理想预期。
+      RankMe 从 281 上升到 292（一度达 305），与 rare n-gram 从 0.029 降至 0.006 形成鲜明反差——S2（RankMe
+      失灵）信号强。
+
+      '
+    tables:
+    - name: 'Table 1: Main Results — PPL, Rare N-gram, Selection Ratio across Methods
+        and Generations'
+      description: '8 行（gen0-7）× 3 methods × 4 指标（PPL, rare, selection_ratio, rank_corr）。
+        Highlight：internal ratio gen4 反弹行用 † 标注。末行加 Δ(gen0→gen7) 汇总。
+
+        '
+    - name: 'Table 2: Derived Comparison Metrics at Gen 7'
+      description: '对比 RGDS vs uncurated vs external 的 PPL excess %、rare deficit %、
+        selection ratio 终值。3×3 紧凑表格。
+
+        '
+    figures_description:
+    - 'Fig 1 (left): Selection ratio 曲线，internal（红，虚线标注 gen4 反弹）vs external（蓝），x=generation,
+      y=ratio。灰色 baseline=1.0。明确标注 ''overall declining trend with transient rebound''。'
+    - 'Fig 1 (right): PPL 曲线，三方法叠加。RGDS 终值最高，external 最低，uncurated 居中。Shaded area
+      标注 RGDS-uncurated gap。'
+    - 'Fig 2: Rare n-gram ratio 曲线。三方法几乎重叠在 gen5 之后——突出 external 选择不改善 rare 的关键发现（S1）。'
+    - 'Fig 3: RankMe vs Rare n-gram 双 y 轴图。RankMe 上升（左 y）同时 rare 下降（右 y）。标注 ''representation
+      quality metrics fail to detect diversity collapse''（S2）。'
+    analysis: 'C1 成立但需弱化：internal ratio 整体下降趋势清晰（Δ=-0.27），但 gen4 反弹破坏了 "monotonic"
+      叙事。论文措辞改为 "overall declining trend with transient recovery"， 并在讨论中解释反弹的可能机制（训练中期
+      PPL plateau 导致嵌入空间短暂解压）。 C2-weak 稳固：external ratio 全程 >0.95，PPL 比 uncurated
+      好 3.8%。 但 rare n-gram 不优于 uncurated（甚至略差 11%），确认 C2 只能做弱声明。 C3 方向正确但 effect
+      size 有限：RGDS PPL excess 仅 12.9%，不是 +49% 的强信号。 S1 和 S2 成为亮点：PPL-rare 解耦和 RankMe
+      失灵都是清晰的 measurement dissociation。
+
+      '
+  - name: External_only seed=123 复现 (GPT2-125M, WikiText-103)
+    plan_id: plan_003
+    description: '验证 external_only selection ratio >0.95 的可复现性。seed=123 单独跑 external
+      arm。
+
+      '
+    expected_results:
+      external_only:
+        gen0_selection_ratio: 1.04
+        gen1_selection_ratio: 1.05
+        gen2_selection_ratio: 1.03
+        gen3_selection_ratio: 1.02
+        gen4_selection_ratio: 1.01
+        gen5_selection_ratio: 1.0
+        gen6_selection_ratio: 0.99
+        gen7_selection_ratio: 0.98
+        gen7_ppl: 46.5
+        gen7_rare: 0.008
+        gen7_rank_corr: -0.051
+    result_rationale: 'External ratio 在 seed=123 下仍全程 >0.95，终值 0.98（略低于 seed=42 的
+      0.99， 属正常 seed 变异）。Contriever 嵌入冻结不受训练反馈影响，其几何多样性评分 与内容多样性的对齐关系保持稳定。PPL 和 rare
+      与 seed=42 一致——external 选择 改善 PPL 但不改善 rare。此实验提供 C2-weak 的初步跨 seed 验证。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '确认 external selection ratio >0.95 在不同 seed 下可复现。数据合并到 plan_004 的完整
+      seed=123 结果中。
+
+      '
+  - name: 三方法 seed=123 完整复现 (GPT2-125M, WikiText-103)
+    plan_id: plan_004
+    description: '3 methods × 8 gens, seed=123。验证 alignment gap ratio 衰减趋势和 RGDS 加速崩塌的可复现性。
+
+      '
+    expected_results:
+      rgds:
+        gen0_selection_ratio: 1.01
+        gen1_selection_ratio: 0.97
+        gen2_selection_ratio: 0.94
+        gen3_selection_ratio: 0.89
+        gen4_selection_ratio: 0.86
+        gen5_selection_ratio: 0.88
+        gen6_selection_ratio: 0.82
+        gen7_selection_ratio: 0.78
+        gen7_ppl: 55.1
+        gen7_rare: 0.006
+        gen7_rankme: 294
+        gen7_rank_corr: -0.084
+        rebound_gens:
+        - 5
+      uncurated:
+        gen7_ppl: 48.5
+        gen7_rare: 0.008
+        gen7_rank_corr: -0.082
+      external_only:
+        gen7_selection_ratio: 0.98
+        gen7_ppl: 46.5
+        gen7_rare: 0.008
+        gen7_rank_corr: -0.051
+      derived_metrics:
+        rgds_ppl_excess_vs_uncurated_pct: 13.6
+        internal_ratio_monotonic: false
+        internal_ratio_rebound_gens:
+        - 5
+        cross_seed_internal_ratio_gen7_vs_seed42: 0.02
+    result_rationale: 'Seed=123 复现了 alignment gap 的整体趋势但反弹发生在 gen5（seed=42 在 gen4），
+      终值 0.78 比 seed=42 的 0.76 略高。这属于正常 seed 变异——不同初始化导致 嵌入空间压缩的具体轨迹略有不同，但整体方向一致。RGDS
+      PPL excess 13.6% 与 seed=42 的 12.9% 接近。关键发现：反弹位置的不一致说明 "monotonic" 声明不可持续，但 "overall
+      declining trend" 在两个 seed 间一致。 External ratio 终值 0.98，PPL 和 rare 模式与 seed=42
+      高度一致。
+
+      '
+    tables:
+    - name: 'Table 3 (appendix): Seed=123 Full Trajectory'
+      description: '与 Table 1 格式相同的完整 gen0-7 轨迹，用于 appendix 展示可复现性。
+
+        '
+    figures_description:
+    - 'Fig 4 (appendix): 三 seed 的 internal selection ratio 叠加图，用不同 marker 标注各 seed
+      的反弹位置。灰色 band 表示 seed 间变异范围。'
+    analysis: 'C1 跨 seed 可复现性确认：两个 seed 都显示 internal ratio 整体下降（Δ≈-0.23 到 -0.27），
+      但反弹位置不同（gen4 vs gen5），进一步支持弱化 "monotonic" 为 "overall trend"。 C2-weak 稳固复现。RGDS
+      PPL excess 跨 seed 一致（12.9% vs 13.6%）。
+
+      '
+  - name: 三方法 seed=456 完整复现 (GPT2-125M, WikiText-103)
+    plan_id: plan_005
+    description: '3 methods × 8 gens, seed=456。第三个种子，满足统计检验最低要求（3 seeds）。
+
+      '
+    expected_results:
+      rgds:
+        gen0_selection_ratio: 1.05
+        gen1_selection_ratio: 1.0
+        gen2_selection_ratio: 0.96
+        gen3_selection_ratio: 0.9
+        gen4_selection_ratio: 0.87
+        gen5_selection_ratio: 0.83
+        gen6_selection_ratio: 0.85
+        gen7_selection_ratio: 0.8
+        gen7_ppl: 53.8
+        gen7_rare: 0.007
+        gen7_rankme: 293
+        gen7_rank_corr: -0.078
+        rebound_gens:
+        - 6
+      uncurated:
+        gen7_ppl: 47.8
+        gen7_rare: 0.009
+        gen7_rank_corr: -0.08
+      external_only:
+        gen7_selection_ratio: 1.0
+        gen7_ppl: 45.8
+        gen7_rare: 0.008
+        gen7_rank_corr: -0.049
+      derived_metrics:
+        rgds_ppl_excess_vs_uncurated_pct: 12.6
+      cross_seed_summary_3seeds:
+        internal_ratio_gen7_mean: 0.78
+        internal_ratio_gen7_std: 0.02
+        external_ratio_gen7_mean: 0.99
+        external_ratio_gen7_std: 0.01
+        rgds_ppl_excess_mean_pct: 13.0
+        rgds_ppl_excess_std_pct: 0.5
+        rgds_rare_gen7_mean: 0.0063
+        rgds_rare_gen7_std: 0.0006
+        uncurated_rare_gen7_mean: 0.0087
+        uncurated_rare_gen7_std: 0.0005
+        rank_corr_delta_internal_mean: -0.06
+        rank_corr_delta_internal_std: 0.008
+        paired_t_test_internal_vs_external_ratio_p: 0.003
+        paired_t_test_rgds_vs_uncurated_ppl_p: 0.02
+        paired_t_test_rgds_vs_uncurated_rare_p: 0.04
+    result_rationale: 'Seed=456 的反弹出现在 gen6（三个 seed 分别在 gen4/5/6 反弹），终值 0.80。 三个 seed
+      汇总：internal ratio gen7 均值 0.78±0.02，external 0.99±0.01， 差异显著（paired t-test p=0.003）。RGDS
+      PPL excess 均值 13.0±0.5%， 虽然绝对值不大但跨 seed 一致，p=0.02 显著。 关键 median 特征：rare n-gram
+      差异 p=0.04——勉强显著（p<0.05 但非 p<0.01）， 这是 median 档的典型表现。rank_corr delta 均值仅 -0.060±0.008，
+      效应量小但方向一致。三个 seed 都有反弹但位置不同，支持 "overall trend" 叙事但无法声称 "monotonic"。
+
+      '
+    tables:
+    - name: 'Table 3: Cross-Seed Summary Statistics (GPT2-125M, 3 seeds)'
+      description: '汇总 3 seeds 的 gen7 关键指标：mean±std + p-value。 internal ratio, external
+        ratio, PPL excess, rare deficit, rank_corr delta。 粗体标注 p<0.05 的行。
+
+        '
+    figures_description:
+    - 'Fig 4: 三 seed internal selection ratio 叠加曲线（主图），每条线用不同 marker，反弹点用 ↑ 标注。Right
+      panel: external ratio 三 seed 叠加（紧密重叠在 ~1.0）。'
+    - 'Fig 5: Box plot——gen7 各方法的 PPL 和 rare n-gram 分布（3 seeds），whisker 标注 min/max。'
+    analysis: '三 seed 汇总后 C1 的统计基础确立：internal ratio 下降显著（p=0.003）， 但 "monotonic" 声明不可用（三个
+      seed 反弹位置各异）。 C3 可用但需附 effect size：PPL excess 13.0%（Cohen''s d ≈ 1.8，大效应量， 但绝对值不如原始
+      framing 的 49%），rare deficit 30%（p=0.04，边缘显著）。 C2-weak 是最强的 claim：external ratio
+      跨 seed 高度一致，p 极显著。 这个汇总表是论文核心 Table，需要放在正文而非 appendix。
+
+      '
+  - name: GPT2-medium 355M 三方法对比 (WikiText-103, seed=42)
+    plan_id: plan_006
+    description: '验证 alignment gap 在更大模型规模上存在。回应审稿人 "GPT2-125M 太小" 的预期质疑。
+
+      '
+    expected_results:
+      rgds:
+        gen0_ppl: 29.3
+        gen1_ppl: 33.5
+        gen2_ppl: 37.2
+        gen3_ppl: 40.1
+        gen4_ppl: 41.5
+        gen5_ppl: 42.3
+        gen6_ppl: 42.8
+        gen7_ppl: 43.2
+        gen0_rare: 0.031
+        gen1_rare: 0.021
+        gen2_rare: 0.015
+        gen3_rare: 0.012
+        gen4_rare: 0.01
+        gen5_rare: 0.009
+        gen6_rare: 0.008
+        gen7_rare: 0.007
+        gen0_selection_ratio: 1.02
+        gen1_selection_ratio: 0.98
+        gen2_selection_ratio: 0.95
+        gen3_selection_ratio: 0.9
+        gen4_selection_ratio: 0.88
+        gen5_selection_ratio: 0.86
+        gen6_selection_ratio: 0.83
+        gen7_selection_ratio: 0.8
+        gen0_rankme: 340
+        gen1_rankme: 355
+        gen2_rankme: 362
+        gen3_rankme: 368
+        gen4_rankme: 366
+        gen5_rankme: 361
+        gen6_rankme: 356
+        gen7_rankme: 352
+        gen0_rank_corr: -0.02
+        gen7_rank_corr: -0.076
+        rebound_gens: []
+      uncurated:
+        gen0_ppl: 29.0
+        gen1_ppl: 34.8
+        gen2_ppl: 39.5
+        gen3_ppl: 43.2
+        gen4_ppl: 42.5
+        gen5_ppl: 40.1
+        gen6_ppl: 38.2
+        gen7_ppl: 37.8
+        gen0_rare: 0.031
+        gen1_rare: 0.021
+        gen2_rare: 0.016
+        gen3_rare: 0.013
+        gen4_rare: 0.011
+        gen5_rare: 0.011
+        gen6_rare: 0.01
+        gen7_rare: 0.01
+        gen0_rankme: 342
+        gen7_rankme: 354
+        gen0_rank_corr: -0.019
+        gen7_rank_corr: -0.072
+      external_only:
+        gen0_ppl: 28.8
+        gen1_ppl: 33.8
+        gen2_ppl: 38.0
+        gen3_ppl: 41.0
+        gen4_ppl: 40.2
+        gen5_ppl: 38.5
+        gen6_ppl: 36.8
+        gen7_ppl: 36.5
+        gen0_rare: 0.031
+        gen1_rare: 0.021
+        gen2_rare: 0.015
+        gen3_rare: 0.012
+        gen4_rare: 0.011
+        gen5_rare: 0.01
+        gen6_rare: 0.009
+        gen7_rare: 0.009
+        gen0_selection_ratio: 1.04
+        gen7_selection_ratio: 0.98
+        gen0_rank_corr: -0.019
+        gen7_rank_corr: -0.048
+      derived_metrics:
+        rgds_ppl_excess_vs_uncurated_pct: 14.3
+        rgds_rare_deficit_vs_uncurated_pct: -30.0
+        internal_ratio_delta: -0.22
+        internal_ratio_monotonic: true
+        note: GPT2-medium 无反弹但斜率更平缓
+    result_rationale: 'GPT2-medium 的 alignment gap 效应量略小于 125M（ratio Δ=-0.22 vs -0.27），
+      但仍然清晰。更大的模型容量使嵌入空间有更多维度可压缩，压缩过程更平缓， 因此没有出现 125M 的反弹现象——这实际上是好消息，因为 medium 的轨迹
+      更接近 "monotonic"（但只有一个 seed，不能过度声明）。 PPL excess 14.3% 与 125M 的 13.0% 接近，说明 alignment
+      gap 的相对效应 跨模型规模一致。Rare n-gram 下降幅度也相似（-30% vs -33%）。 RankMe 基线更高（340 vs 281，符合更大模型预期）但同样与
+      rare 反向变动。 关键限制：uncurated gen7 PPL 37.8 比 gen0 的 29.0 高 30%，说明 self-iterate
+      崩塌在 medium 上也存在，只是 PPL 最终回落更多（medium 的 self-recovery 更强）。
+
+      '
+    tables:
+    - name: 'Table 4: GPT2-medium Results — Cross-Scale Comparison'
+      description: 'GPT2-125M vs GPT2-medium 的 gen7 指标并列对比。 重点：ratio Δ、PPL excess
+        %、rare deficit % 跨规模一致性。
+
+        '
+    figures_description:
+    - 'Fig 6: GPT2-125M（虚线）vs GPT2-medium（实线）的 internal selection ratio 对比图。两模型轨迹平行下降，medium
+      更平缓。标注：''Alignment gap persists at 355M scale''。'
+    - 'Fig 7: 跨模型 PPL excess % 柱状图。两个模型的 excess % 接近（~13% vs ~14%），说明相对效应稳定。'
+    analysis: 'GPT2-medium 确认 alignment gap 跨模型规模存在（R1 reviewer concern 回应）。 但 median
+      档下需要注意：medium 只有 1 seed，且轨迹比 125M "更好看"（无反弹）， 这可能是 cherry-picking 的风险。论文中需诚实报告
+      125M 有反弹而 medium 没有， 并解释为模型容量差异。跨规模 PPL excess 一致性（13% vs 14%）是强证据。 medium 的
+      self-recovery 更强（uncurated PPL 从峰值 43.2 回落到 37.8）， 这可能暗示更大模型的 alignment gap
+      效应在后期代际会被部分抵消—— 但 rare n-gram 仍然持续下降，再次印证 S1（PPL 和 rare 度量不同崩塌维度）。
+
+      '
+  - name: GPT2-medium 355M seed=123 复现
+    plan_id: plan_007
+    description: 'GPT2-medium 多 seed 验证，确认 355M 规模下 alignment gap 可复现。
+
+      '
+    expected_results:
+      rgds:
+        gen7_selection_ratio: 0.82
+        gen7_ppl: 44.0
+        gen7_rare: 0.007
+        gen7_rank_corr: -0.072
+        rebound_gens:
+        - 5
+      uncurated:
+        gen7_ppl: 38.5
+        gen7_rare: 0.01
+      external_only:
+        gen7_selection_ratio: 0.97
+        gen7_ppl: 37.2
+        gen7_rare: 0.009
+      derived_metrics:
+        rgds_ppl_excess_vs_uncurated_pct: 14.3
+        note: seed=123 在 medium 上出现 gen5 微弱反弹（ratio 0.85→0.87），但整体趋势一致
+      cross_scale_cross_seed_summary:
+        gpt2_125m_internal_ratio_gen7_mean_2seeds: 0.77
+        gpt2_medium_internal_ratio_gen7_mean_2seeds: 0.81
+        ratio_gap_between_scales: 0.04
+        interpretation: medium 终值略高但差异不大，alignment gap 跨规模稳健
+    result_rationale: 'Seed=123 在 medium 上出现一次微弱反弹（gen5，ratio +0.02）， 而 seed=42 无反弹——进一步说明反弹是
+      seed-dependent noise，不是系统性信号。 Medium 两 seed 内部 ratio 终值分别 0.80 和 0.82（125M 为
+      0.76 和 0.78）， 差异 ~0.04，说明更大模型的 gap 略小但方向一致。 PPL excess 14.3% 与 seed=42 完全一致，跨
+      seed 稳定性比 125M 更好 （可能因为 medium 训练更稳定）。
+
+      '
+    tables:
+    - name: 'Table 4 (扩展): 跨模型跨 seed 汇总'
+      description: '2 模型 × 2-3 seeds 的 gen7 关键指标矩阵。 标注哪些 seed 有反弹、反弹位置。
+
+        '
+    figures_description:
+    - Fig 6 扩展为 4 条线：125M×2seeds + medium×2seeds 的 internal ratio 叠加。
+    analysis: 'Medium 跨 seed 验证成功但样本量有限（只有 2 seeds vs 125M 的 3 seeds）。 论文中需注明 medium
+      实验为初步验证（"preliminary evidence of scale generalization"）， 不做过强声明。Combined evidence：5
+      个独立实验（125M×3 + medium×2）全部 显示 internal ratio 下降，终值范围 0.76-0.82，external 终值 0.97-1.00。
+      这足以支持 Findings paper。
+
+      '
+  - name: Embedding re-anchoring 缓解实验 (GPT2-125M, seed=42)
+    plan_id: plan_008
+    description: '每 K 代（K=3）用原始预训练权重重新计算选择嵌入（不改训练过程，只改 selection 用的嵌入）。 测试 alignment
+      gap 是否可通过简单手段修复。
+
+      '
+    expected_results:
+      reanchored:
+        gen0_selection_ratio: 1.03
+        gen1_selection_ratio: 0.98
+        gen2_selection_ratio: 0.93
+        gen3_selection_ratio: 1.01
+        gen4_selection_ratio: 0.96
+        gen5_selection_ratio: 0.91
+        gen6_selection_ratio: 0.98
+        gen7_selection_ratio: 0.93
+        gen0_ppl: 37.2
+        gen1_ppl: 41.8
+        gen2_ppl: 46.5
+        gen3_ppl: 49.8
+        gen4_ppl: 51.3
+        gen5_ppl: 52.1
+        gen6_ppl: 50.5
+        gen7_ppl: 51.8
+        gen0_rare: 0.029
+        gen1_rare: 0.018
+        gen2_rare: 0.012
+        gen3_rare: 0.01
+        gen4_rare: 0.008
+        gen5_rare: 0.007
+        gen6_rare: 0.007
+        gen7_rare: 0.0065
+        gen0_rank_corr: -0.024
+        gen7_rank_corr: -0.082
+      comparison_vs_rgds:
+        ppl_improvement_pct: 4.4
+        rare_improvement_pct: 8.3
+        selection_ratio_gen7_improvement: 0.17
+      statistical_tests:
+        ppl_diff_significant: false
+        rare_diff_significant: false
+        ratio_recovery_significant: true
+        ppl_p_value: 0.12
+        rare_p_value: 0.31
+        note: ratio 恢复显著但下游指标改善不显著
+    result_rationale: 'Re-anchoring 成功恢复了 selection ratio 的短期表现（每次 re-anchor 后 ratio
+      跳回 ~1.0），但恢复是暂时的——ratio 在每个 K-step 周期内又迅速下降。 终值 0.93 显著优于 RGDS 的 0.76（ratio
+      恢复显著），但下游指标改善有限： PPL 改善仅 4.4%（51.8 vs 54.2，p=0.12 不显著），rare 改善 8.3% （0.0065
+      vs 0.006，p=0.31 不显著）。
+
+      根本原因：re-anchoring 解决了"用错误的嵌入选数据"的问题（ratio 恢复）， 但没有解决"self-iterate 训练本身导致模型生成同质化内容"的根本问题。
+      选出的数据在 gen0 嵌入空间中看起来多样，但模型已经往同质化方向漂移， 再训练仍然会压缩嵌入空间。这就是为什么 ratio 能恢复但 rare 不能——
+      问题在生成端（模型已经不会生成 rare tokens），不在选择端。
+
+      Median 档预测 reanchoring_rare_improvement_pct 在 [-5, 10] 范围， 此处 8.3% 位于上界附近但 p>0.05，不具统计意义。
+
+      '
+    tables:
+    - name: 'Table 5 (appendix): Re-anchoring vs RGDS vs Uncurated'
+      description: '三行（RGDS/re-anchored/uncurated）× gen7 关键指标 + p-value。 标注 re-anchored
+        ratio 显著恢复但 PPL/rare 不显著。
+
+        '
+    figures_description:
+    - 'Fig A1 (appendix): Re-anchored selection ratio 锯齿形曲线——每 K=3 代跳回 ~1.0 然后下降。RGDS
+      ratio 平滑下降曲线叠加对比。标注 re-anchor points。'
+    - 'Fig A2 (appendix): Re-anchored vs RGDS 的 PPL 和 rare 曲线。两条线接近但 re-anchored 略好。Error
+      bar 标注不显著。'
+    analysis: 'Re-anchoring 产生了一个有趣但不足以升级论文的结果：ratio 恢复证明 alignment gap 确实是可诊断的（验证了
+      C1 的因果方向），但下游不改善说明 gap 只是崩塌链条的一环。 这个结果对 Findings paper 来说反而是好事——如果 re-anchoring
+      完全解决了问题， 审稿人会期望更大的实验矩阵；现在 re-anchoring 失败，"开放问题" 的定位更自然。 移入 appendix，1 段讨论 +
+      2 张 appendix 图。 论文正文加一句："Simple embedding re-anchoring restores selection ratio
+      but does not translate to downstream diversity improvement (Appendix B), suggesting
+      the root cause lies in the generation process rather than the selection process."
+
+      '
+  - name: OpenWebText 子集 三方法对比 (GPT2-125M, seed=42)
+    plan_id: plan_009
+    description: '验证 alignment gap 跨数据集存在。回应 "WikiText-103 是否特殊" 的质疑。 使用 OpenWebText
+      随机 50K 子集。
+
+      '
+    expected_results:
+      rgds:
+        gen0_ppl: 28.5
+        gen1_ppl: 32.8
+        gen2_ppl: 37.1
+        gen3_ppl: 40.3
+        gen4_ppl: 42.0
+        gen5_ppl: 43.1
+        gen6_ppl: 43.6
+        gen7_ppl: 44.0
+        gen0_rare: 0.025
+        gen1_rare: 0.016
+        gen2_rare: 0.011
+        gen3_rare: 0.008
+        gen4_rare: 0.007
+        gen5_rare: 0.006
+        gen6_rare: 0.0055
+        gen7_rare: 0.005
+        gen0_selection_ratio: 1.04
+        gen1_selection_ratio: 0.99
+        gen2_selection_ratio: 0.94
+        gen3_selection_ratio: 0.88
+        gen4_selection_ratio: 0.85
+        gen5_selection_ratio: 0.82
+        gen6_selection_ratio: 0.79
+        gen7_selection_ratio: 0.74
+        gen7_rank_corr: -0.095
+        rebound_gens: []
+      uncurated:
+        gen0_ppl: 28.2
+        gen1_ppl: 34.1
+        gen2_ppl: 39.8
+        gen3_ppl: 44.5
+        gen4_ppl: 43.8
+        gen5_ppl: 41.2
+        gen6_ppl: 38.9
+        gen7_ppl: 38.5
+        gen0_rare: 0.025
+        gen1_rare: 0.017
+        gen2_rare: 0.012
+        gen3_rare: 0.01
+        gen4_rare: 0.009
+        gen5_rare: 0.008
+        gen6_rare: 0.008
+        gen7_rare: 0.007
+        gen7_rank_corr: -0.081
+      external_only:
+        gen0_ppl: 27.9
+        gen1_ppl: 33.0
+        gen2_ppl: 38.2
+        gen3_ppl: 41.5
+        gen4_ppl: 40.8
+        gen5_ppl: 38.9
+        gen6_ppl: 37.0
+        gen7_ppl: 36.8
+        gen0_rare: 0.025
+        gen1_rare: 0.016
+        gen2_rare: 0.012
+        gen3_rare: 0.01
+        gen4_rare: 0.009
+        gen5_rare: 0.008
+        gen6_rare: 0.007
+        gen7_rare: 0.007
+        gen0_selection_ratio: 1.06
+        gen7_selection_ratio: 1.01
+        gen7_rank_corr: -0.05
+      derived_metrics:
+        rgds_ppl_excess_vs_uncurated_pct: 14.3
+        rgds_rare_deficit_vs_uncurated_pct: -28.6
+        note: OWT 基线 PPL 更低（GPT2 预训练数据包含 web text），rare 基线也更低（更标准化的文本）
+      cross_dataset_comparison:
+        wikitext_rgds_ppl_excess_pct: 13.0
+        owt_rgds_ppl_excess_pct: 14.3
+        wikitext_internal_ratio_gen7: 0.78
+        owt_internal_ratio_gen7: 0.74
+        consistency: 方向和量级一致，OWT 上 gap 略大（可能因 OWT 文本更同质化）
+    result_rationale: 'OpenWebText 上 alignment gap 同样存在，且效应量略大于 WikiText-103 （ratio
+      终值 0.74 vs 0.78，PPL excess 14.3% vs 13.0%）。OWT 没有反弹—— 这可能因为 OWT 文本分布本身更均匀（web
+      crawl vs curated Wikipedia）， 导致嵌入空间压缩更平滑。OWT 基线 PPL 更低（28.2 vs 37.0）因为 GPT2
+      预训练数据包含大量 web text，domain 更接近。
+
+      Rare n-gram 基线也更低（0.025 vs 0.029），反映 OWT 文本本身的词汇多样性 低于 WikiText（web text 更口语化，rare
+      token 更少）。但 rare 的下降比例 与 WikiText 一致（-80% vs -79%），说明崩塌机制是数据集无关的。
+
+      External selection ratio 终值 1.01（WikiText 0.99），都在 >0.95 范围内。 跨数据集一致性是 Findings
+      paper 的重要支撑——单数据集发现的可信度受限， 两个数据集的一致结果显著增强说服力。
+
+      '
+    tables:
+    - name: 'Table 5: Cross-Dataset Comparison (WikiText-103 vs OpenWebText)'
+      description: '两数据集 gen7 指标并列：internal ratio, external ratio, PPL excess %, rare
+        deficit %, rank_corr delta。最后一列标注一致性（✓/✗）。
+
+        '
+    figures_description:
+    - 'Fig 8: 双数据集 internal selection ratio 曲线并列。Left: WikiText-103, Right: OpenWebText。共用
+      y 轴刻度。两图形状相似，验证跨数据集泛化。'
+    - 'Fig 9: 柱状图——两个数据集的 PPL excess % 和 rare deficit % 并列。误差线来自 WikiText 的 3-seed
+      数据（OWT 只有 1 seed）。'
+    analysis: OWT 验证是 median 档论文能否投 Findings 的关键实验之一。跨数据集一致性 直接回应 R2 reviewer concern。OWT
+      上 gap 略大这个发现本身可以讨论—— 更同质化的数据源可能让嵌入空间压缩更快。但因为 OWT 只有 1 seed， 不能做过强的跨数据集对比声明。论文中用
+      "consistent pattern across both datasets" 的措辞，不量化差异的显著性。 如果时间不够，这个实验是 P1 可以砍掉的——但砍掉后审稿人
+      R2 concern 会更难回应，论文可能降为 workshop paper。
+  review_report: "---\ndream_id: dream_20260513T081019\ntier: median\noverall_score:\
+    \ borderline accept\ntimestamp: 2026-05-13T09:01:51.296529+00:00\n---\n\n# Dream\
+    \ Review Report: \"The Embedding Alignment Gap\"\n\n**dream_id:** 20260513T081019\n\
+    **Venue:** EMNLP 2026 ARR (Findings track target)\n**Review mode:** full (2 Reviewers,\
+    \ 4-step roundtable)\n\n---\n\n## Paper Summary\n\nThe paper investigates whether\
+    \ using a model's own embeddings for diversity-based data selection prevents model\
+    \ collapse during iterative self-training. The central finding is negative: internal-embedding\
+    \ diversity selection (RGDS) accelerates collapse. The authors define a *selection\
+    \ ratio* r_sel that declines from ~1.03 to ~0.78 over 8 generations of GPT-2 self-training\
+    \ (p=0.003, 3 seeds), while frozen external embeddings (Contriever) maintain ~0.99.\
+    \ Two measurement dissociation phenomena are documented: (i) PPL and rare n-gram\
+    \ decouple under external selection; (ii) RankMe increases during early collapse\
+    \ while rare n-grams decline monotonically. Results are replicated across GPT-2\
+    \ 125M/355M, WikiText-103/OpenWebText, and multiple seeds.\n\n---\n\n## Consolidated\
+    \ Scores (ARR Scale)\n\n| Dimension | Score | Justification |\n|-----------|-------|---------------|\n\
+    | **Soundness** | **3.0** | Main claims are sufficiently supported for a Findings\
+    \ paper. Clean three-way experimental design with appropriate controls. But marginal\
+    \ p-values (rare n-gram p=0.04), limited seed counts (3/2/1 across conditions),\
+    \ and missing hyperparameter details temper confidence. |\n| **Excitement** |\
+    \ **2.5** | Useful quantification of a practically important failure mode, but\
+    \ conceptual novelty is moderate — representation degradation under distribution\
+    \ shift is well-established in concept drift and active learning literature. Contribution\
+    \ is narrow (negative result + robustness), no solution proposed, and limited\
+    \ scale. |\n| **Overall** | **3.0** | Suitable for Findings track. Not main conference.\
+    \ |\n| **Confidence** | **4** | Both reviewers have strong familiarity with model\
+    \ collapse, data selection, and representation learning. |\n\n---\n\n## R1 Review:\
+    \ Methods and Experiments\n\n### Strengths\n\n1. **Clean causal isolation via\
+    \ three-way comparison.** The Uncurated / RGDS / External-only design, where the\
+    \ only variable is the embedding source while the submodular selection objective\
+    \ is identical, is the correct experiment to isolate the alignment gap. This is\
+    \ methodologically sound and superior to designs that confound the selection algorithm\
+    \ with the embedding source.\n\n2. **Selection ratio is well-defined and interpretable.**\
+    \ r_sel directly measures the quantity of interest (fraction of content-diverse\
+    \ samples retained among those deemed geometrically diverse, normalized by random\
+    \ baseline). Simple, reproducible, and adoptable by others.\n\n3. **Comprehensive\
+    \ coverage of robustness dimensions.** Cross-seed (3 seeds for 125M), cross-scale\
+    \ (355M), cross-dataset (OpenWebText), and a mitigation experiment (re-anchoring)\
+    \ systematically address the most obvious reviewer objections.\n\n4. **The PPL-rare\
+    \ n-gram dissociation (S1) is genuinely informative.** External selection improving\
+    \ PPL by ~3.8% while producing no rare n-gram improvement cleanly demonstrates\
+    \ that semantic diversity and lexical diversity are independent axes of collapse.\n\
+    \n5. **Honest, measured claims.** The paper acknowledges transient rebounds, hedges\
+    \ appropriately (\"overall declining trend with transient recovery\"), and notes\
+    \ marginal p-values. This self-awareness is commendable.\n\n### Weaknesses\n\n\
+    1. **Scale limitation is severe.** Only GPT-2 125M and 355M — very small by current\
+    \ standards (2026). The broad claim that \"embedding-based diversity selection\
+    \ is unreliable in iterative settings\" is not justified by these experiments\
+    \ alone. Larger models may exhibit qualitatively different embedding dynamics.\n\
+    \n2. **Statistical power concerns.** The paired t-test with n=3 pairs has very\
+    \ low power; significant results are driven by consistent direction rather than\
+    \ sample size. The rare n-gram deficit p=0.04 is marginal and would not survive\
+    \ Bonferroni correction across the multiple comparisons performed. Cohen's d ≈\
+    \ 1.8 computed over 3 data points has enormous confidence intervals and should\
+    \ not be interpreted as a precise effect size estimate.\n\n3. **Missing hyperparameters\
+    \ hurt reproducibility.** The paper does not specify: number of generated sequences\
+    \ per generation, selection budget fraction, generation temperature/top-p, training\
+    \ learning rate/epochs, sequence length, PCA dimensionality for submodular selection,\
+    \ or quality filter threshold. These are essential for reproduction.\n\n4. **Single\
+    \ content diversity metric.** Rare n-gram frequency is the sole lexical diversity\
+    \ measure. Established diversity metrics (Self-BLEU, distinct-n, type-token ratio)\
+    \ should at least be discussed to show robustness or contextualize the metric\
+    \ choice.\n\n5. **No qualitative analysis.** The paper measures the gap through\
+    \ aggregate statistics but provides no examples of what RGDS selects vs. discards,\
+    \ or how the selected text differs from uncurated text. Even a few examples would\
+    \ help readers build intuition.\n\n6. **Re-anchoring has single seed only.** The\
+    \ paper's most actionable finding (re-anchoring recovers r_sel but not downstream\
+    \ metrics) rests on seed=42 alone, with non-significant p-values (PPL p=0.12,\
+    \ rare p=0.31).\n\n### Questions for Authors (R1)\n\n1. How sensitive is the alignment\
+    \ gap to the selection budget fraction? Does selecting top-25% vs. top-75% change\
+    \ the gap magnitude?\n2. What happens beyond generation 7? Does the selection\
+    \ ratio asymptote or continue declining?\n3. How does generation temperature affect\
+    \ the results? Higher temperature might produce more diverse outputs, potentially\
+    \ slowing the gap.\n4. Why does uncurated PPL show a non-monotonic trajectory\
+    \ (rise then partial recovery) while RGDS PPL increases monotonically? This asymmetry\
+    \ deserves discussion.\n5. Can you provide per-generation error bars (across seeds)\
+    \ rather than only terminal Gen 7 aggregation?\n\n---\n\n## R2 Review: Novelty\
+    \ and Related Work\n\n### Strengths\n\n1. **Counterintuitive headline finding\
+    \ with practical relevance.** That diversity selection *accelerates* collapse\
+    \ rather than preventing it is attention-grabbing and important for practitioners\
+    \ building iterative training pipelines.\n\n2. **Reusable diagnostic metric.**\
+    \ The selection ratio r_sel has immediate utility beyond this study — anyone running\
+    \ iterative curation can monitor it as a canary for embedding misalignment.\n\n\
+    3. **Two-axis decomposition (semantic vs. lexical collapse) is empirically novel\
+    \ in the model collapse context.** While the general insight (embedding similarity\
+    \ ≠ lexical similarity) is known, the specific quantification under iterative\
+    \ self-training has not been done before.\n\n4. **Cross-condition consistency\
+    \ is notable.** PPL excess stable at ~13-14% across all configurations suggests\
+    \ a robust mechanism, not an artifact.\n\n5. **Measured, appropriate framing.**\
+    \ The Findings track positioning is correct for this type of contribution (documenting\
+    \ a phenomenon, not proposing a full solution).\n\n### Weaknesses\n\n1. **Related\
+    \ work is severely underdeveloped.** Only 10 references is inadequate for a paper\
+    \ at the intersection of model collapse, data curation, and representation learning.\
+    \ Major missing areas:\n   - **Concept drift / embedding drift** (Lu et al. 2019\
+    \ survey; Gama et al. 2014) — the alignment gap is fundamentally a concept drift\
+    \ phenomenon\n   - **Active learning under distribution shift** (Ash et al. 2020\
+    \ BADGE; Kirsch et al. 2019) — acquisition function degradation is the same class\
+    \ of problem\n   - **Dimensional collapse in self-supervised learning** (Jing\
+    \ et al. 2022; Hua et al. 2021) — more appropriate than neural collapse for the\
+    \ observed embedding contraction\n   - **Broader model collapse literature** (Guo\
+    \ et al. 2024; Seddik et al. 2024; Briesch et al. 2023; Hataya et al. 2023)\n\
+    \   - **Broader data selection** (Xia et al. 2024 LESS; Engstrom et al. 2024;\
+    \ Maharana et al. 2023)\n   - **Goodhart's law / reward hacking** (Gao et al.\
+    \ 2023; Skalse et al. 2022) — the alignment gap is an instance of Goodhart's law\n\
+    \   - **Self-BLEU, distinct-n** (Li et al. 2016; Zhu et al. 2018) — established\
+    \ diversity metrics not discussed\n\n2. **Conceptual novelty is overstated.**\
+    \ That a model's own representations become unreliable when the model is trained\
+    \ iteratively on its own outputs is predictable from concept drift theory. The\
+    \ novelty lies in the quantification (selection ratio, decomposition) rather than\
+    \ the concept. The paper should frame accordingly.\n\n3. **Neural collapse connection\
+    \ is speculative and potentially misleading.** Neural collapse describes terminal-phase\
+    \ supervised classification with fixed labels. Self-training has no fixed-class\
+    \ structure. Dimensional collapse (Jing et al. 2022) is a more appropriate reference.\
+    \ The paper should either provide rigorous evidence for the neural collapse connection\
+    \ or replace it with dimensional collapse.\n\n4. **No theoretical analysis.**\
+    \ Even a simple toy model showing *why* r_sel degrades would substantially strengthen\
+    \ the contribution. Without this, the causal chain in Section 6 is a plausible\
+    \ narrative, not a demonstrated mechanism.\n\n5. **Practical warning scope is\
+    \ narrow.** Most modern iterative training (RLHF, RLAIF, self-play) uses reward\
+    \ models or human feedback, not raw embedding diversity. The paper should more\
+    \ precisely identify which real-world systems are vulnerable.\n\n6. **\"Content-aware\
+    \ alternatives\" direction is vague.** The conclusion calls for \"content-aware\
+    \ selection methods\" without any indication of what these might look like.\n\n\
+    ### Questions for Authors (R2)\n\n1. How does the alignment gap relate to acquisition\
+    \ function degradation in active learning (Ash et al. 2020)?\n2. Would non-embedding-based\
+    \ selection methods (gradient-based like LESS, or simple lexical filters like\
+    \ type-token ratio) also suffer from alignment gap, or is this embedding-specific?\n\
+    3. Have you measured Self-BLEU, distinct-n, or type-token ratio? If these tell\
+    \ a different story, conclusions may need qualification.\n4. Can you formalize\
+    \ the neural collapse connection? Does the embedding covariance show simplex ETF\
+    \ convergence, or is the contraction more generic (→ dimensional collapse)?\n\
+    5. Who is the target practitioner? Can you name specific real-world pipelines\
+    \ that use internal-embedding diversity selection iteratively?\n\n---\n\n## Experiment\
+    \ Coverage vs. Design\n\nAll experiments specified in the experimental design\
+    \ are present in the paper:\n\n| Planned Experiment | Paper Location | Status\
+    \ |\n|--------------------|---------------|--------|\n| Main 3-method comparison\
+    \ (GPT2-125M, seed=42) | Table 1, Table 2 | ✅ Complete |\n| Cross-seed: seed=123\
+    \ | Table 3, Table 7 | ✅ Complete |\n| Cross-seed: seed=456 | Table 3, Table 7\
+    \ | ✅ Complete |\n| GPT-2 355M (seed=42) | Table 4 | ✅ Complete |\n| GPT-2 355M\
+    \ (seed=123) | Table 4 | ✅ Complete |\n| OpenWebText (seed=42) | Table 5 | ✅ Complete\
+    \ |\n| Re-anchoring mitigation | Table 8, Appendix B | ✅ Complete |\n| RankMe\
+    \ dissociation | Table 6 | ✅ Complete |\n\n**Coverage: 8/8 (100%)**\n\nThe paper\
+    \ includes all planned figures and tables. Notably, the re-anchoring experiment\
+    \ is appropriately placed in the appendix rather than the main body, consistent\
+    \ with the design guidance.\n\n---\n\n## Key Recommendations for Revision\n\n\
+    ### Must-fix (blocking for Findings acceptance):\n\n1. **Expand related work significantly.**\
+    \ Add 15-20 references minimum. Cover concept drift, active learning, dimensional\
+    \ collapse, broader model collapse, broader data selection, and diversity metrics\
+    \ literature. This is the most critical revision.\n\n2. **Report missing hyperparameters.**\
+    \ Selection budget fraction, generation temperature, top-p, learning rate, epochs,\
+    \ sequence length, PCA dimensionality, quality filter threshold.\n\n3. **Recalibrate\
+    \ novelty framing.** Position the contribution as \"careful quantification and\
+    \ decomposition of a failure mode\" rather than a fundamentally new concept. The\
+    \ selection ratio metric and the two-axis decomposition are the genuine novelties.\n\
+    \n### Should-fix (strengthen the paper):\n\n4. **Replace neural collapse reference\
+    \ with dimensional collapse.** Jing et al. (2022) is more appropriate for the\
+    \ observed phenomenon.\n\n5. **Add at least one additional diversity metric**\
+    \ (e.g., distinct-3 or type-token ratio) to show the findings are not metric-specific.\n\
+    \n6. **Add qualitative examples** of what RGDS selects vs. discards at early vs.\
+    \ late generations.\n\n7. **Discuss practical scope more precisely.** Identify\
+    \ which real-world iterative training systems are vulnerable and which are not.\n\
+    \n### Nice-to-have:\n\n8. Provide a simple toy model or theoretical argument for\
+    \ why r_sel degrades.\n9. Run re-anchoring with multiple seeds.\n10. Test on a\
+    \ non-GPT-2 model family (e.g., Pythia).\n\n---\n\n## Final Assessment\n\nThis\
+    \ paper documents a real and useful phenomenon — that internal-embedding diversity\
+    \ selection becomes unreliable during iterative self-training — with clean experimental\
+    \ design and appropriate controls. The selection ratio metric is a genuine contribution,\
+    \ and the measurement dissociation findings (PPL-rare decoupling, RankMe blindness)\
+    \ have value for the broader model collapse monitoring community.\n\nHowever,\
+    \ the paper is weakened by: (1) very limited model scale, (2) severely underdeveloped\
+    \ related work, (3) single content diversity metric, (4) speculative theoretical\
+    \ explanation, (5) narrow practical scope, and (6) marginal statistical significance\
+    \ on some key results.\n\n**Verdict: Borderline Findings accept (Overall 3.0).**\
+    \ The paper clears the Findings bar if the related work and reproducibility issues\
+    \ are addressed. It does not reach the main conference threshold due to limited\
+    \ scale, narrow contribution, and lack of actionable solutions. The measurement\
+    \ dissociation findings (S1, S2) and the selection ratio metric are the strongest\
+    \ reasons for acceptance."
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/dream_reports/dream_20260513T081019/worst/paper.pdf
+  imagined_experiments:
+  - name: Phase 2 三方法对比 (GPT2-125M, WikiText-103, seed=42)
+    plan_id: plan_001
+    description: Self-iterate GPT2-125M × 8 gens × 3 methods (uncurated/RGDS/external_only)。主实验。
+    expected_results:
+      rgds_gen0_ppl: 37.2
+      rgds_gen1_ppl: 44.5
+      rgds_gen2_ppl: 50.8
+      rgds_gen3_ppl: 55.1
+      rgds_gen4_ppl: 54.3
+      rgds_gen5_ppl: 51.0
+      rgds_gen6_ppl: 48.9
+      rgds_gen7_ppl: 48.5
+      rgds_gen0_rare: 0.0288
+      rgds_gen1_rare: 0.0195
+      rgds_gen2_rare: 0.0142
+      rgds_gen3_rare: 0.0118
+      rgds_gen4_rare: 0.0104
+      rgds_gen5_rare: 0.0097
+      rgds_gen6_rare: 0.0091
+      rgds_gen7_rare: 0.0088
+      rgds_gen0_rankme: 281.5
+      rgds_gen7_rankme: 291.2
+      rgds_gen0_knn: 0.988
+      rgds_gen7_knn: 0.988
+      rgds_gen0_rank_corr: -0.058
+      rgds_gen7_rank_corr: -0.082
+      rgds_gen0_selection_ratio: 1.02
+      rgds_gen4_selection_ratio: 0.96
+      rgds_gen7_selection_ratio: 0.93
+      uncurated_gen0_ppl: 37.0
+      uncurated_gen1_ppl: 44.8
+      uncurated_gen2_ppl: 51.5
+      uncurated_gen3_ppl: 56.8
+      uncurated_gen4_ppl: 55.5
+      uncurated_gen5_ppl: 51.6
+      uncurated_gen6_ppl: 48.5
+      uncurated_gen7_ppl: 47.9
+      uncurated_gen0_rare: 0.029
+      uncurated_gen1_rare: 0.0193
+      uncurated_gen2_rare: 0.014
+      uncurated_gen3_rare: 0.0117
+      uncurated_gen4_rare: 0.0102
+      uncurated_gen5_rare: 0.0098
+      uncurated_gen6_rare: 0.009
+      uncurated_gen7_rare: 0.0087
+      uncurated_gen0_rankme: 280.3
+      uncurated_gen7_rankme: 289.8
+      uncurated_gen0_rank_corr: -0.023
+      uncurated_gen7_rank_corr: -0.088
+      external_gen0_ppl: 36.8
+      external_gen1_ppl: 44.1
+      external_gen2_ppl: 50.2
+      external_gen3_ppl: 54.6
+      external_gen4_ppl: 53.8
+      external_gen5_ppl: 50.1
+      external_gen6_ppl: 47.8
+      external_gen7_ppl: 47.2
+      external_gen0_rare: 0.0291
+      external_gen1_rare: 0.0196
+      external_gen2_rare: 0.0143
+      external_gen3_rare: 0.0119
+      external_gen4_rare: 0.0105
+      external_gen5_rare: 0.0098
+      external_gen6_rare: 0.0092
+      external_gen7_rare: 0.0089
+      external_gen0_rankme: 282.1
+      external_gen7_rankme: 290.5
+      external_gen0_rank_corr: -0.061
+      external_gen7_rank_corr: -0.079
+      external_gen0_selection_ratio: 1.05
+      external_gen4_selection_ratio: 1.01
+      external_gen7_selection_ratio: 0.97
+      rgds_ppl_excess_vs_uncurated_pct: 1.3
+      rgds_rare_deficit_vs_uncurated_pct: -1.1
+    result_rationale: 'Worst 档核心逻辑：self-iterate 循环本身是 collapse 的唯一驱动力，selection method
+      只是在已崩塌的生成数据上做子集抽样， 无法系统性影响崩塌轨迹。具体原因： (1) RGDS internal selection ratio 从 1.02
+      仅缓慢下降到 0.93——不是论文声称的 1.04→0.52 的剧烈衰减。 这意味着内部嵌入空间虽在收缩，但 greedy submodular selection
+      在缩小后的空间中仍能选出 "相对多样" 的样本， 因为 candidate pool 本身已全部变得同质化，selection ratio 分子分母同步退化。
+      (2) External selection ratio 也从 1.05 下降到 0.97——Contriever 嵌入虽冻结，但当 candidate
+      pool 全部来自 崩塌模型生成时，即使用外部嵌入度量多样性，也选不出真正多样的样本（因为输入数据本身已无多样性可选）。 (3) 三种方法的 PPL 轨迹高度重叠（gen7
+      差异 <3%），rare n-gram 轨迹几乎完全一致。 这与 mvp_serial_v4 的 3-gen 数据初步暗示的模式一致——在那里 RGDS
+      和 external 的 rare n-gram 完全相同 （0.0303→0.0313），PPL 差异也很小。 (4) rank_corr 三种方法均在
+      -0.03 到 -0.09 范围内缓慢下降，无法区分 internal 和 external。
+
+      '
+    tables:
+    - name: 'Table 1: Gen 7 三方法终态对比'
+      columns:
+      - Method
+      - PPL_gen7
+      - Rare_gen7
+      - RankMe_gen7
+      - RankCorr_gen7
+      - SelRatio_gen7
+      rows:
+      - - Uncurated
+        - 47.9
+        - 0.0087
+        - 289.8
+        - -0.088
+        - N/A
+      - - RGDS (internal)
+        - 48.5
+        - 0.0088
+        - 291.2
+        - -0.082
+        - 0.93
+      - - External (Contriever)
+        - 47.2
+        - 0.0089
+        - 290.5
+        - -0.079
+        - 0.97
+    - name: 'Table 2: PPL 和 Rare N-gram 代际轨迹'
+      columns:
+      - Gen
+      - PPL_uncur
+      - PPL_rgds
+      - PPL_ext
+      - Rare_uncur
+      - Rare_rgds
+      - Rare_ext
+      rows:
+      - - 0
+        - 37.0
+        - 37.2
+        - 36.8
+        - 0.029
+        - 0.0288
+        - 0.0291
+      - - 1
+        - 44.8
+        - 44.5
+        - 44.1
+        - 0.0193
+        - 0.0195
+        - 0.0196
+      - - 3
+        - 56.8
+        - 55.1
+        - 54.6
+        - 0.0117
+        - 0.0118
+        - 0.0119
+      - - 5
+        - 51.6
+        - 51.0
+        - 50.1
+        - 0.0098
+        - 0.0097
+        - 0.0098
+      - - 7
+        - 47.9
+        - 48.5
+        - 47.2
+        - 0.0087
+        - 0.0088
+        - 0.0089
+    figures_description:
+    - 'Fig 1: PPL over generations — 三条线几乎完全重叠，均呈先升后降曲线（peak around gen3-4），误差带大量交叉。视觉上无法区分三种方法。'
+    - 'Fig 2: Rare n-gram fraction over generations — 三条下降曲线完全重叠，从 ~0.029 单调下降到 ~0.0088，方法间差异小于
+      seed 噪声。'
+    - 'Fig 3: Selection ratio over generations — Internal 从 1.02 缓降至 0.93，external
+      从 1.05 缓降至 0.97，两条线接近平行且差异不显著。无 ''alignment gap'' 可视化效果。'
+    analysis: 'C1 不成立：internal selection ratio 未发生剧烈衰减，从 1.02 到 0.93 仅下降 9%，不符合 "alignment
+      gap worsens monotonically" 叙事。 C2-weak 不成立：external selection ratio 也在下降（1.05→0.97），两者差异不足以支撑
+      "external immune" 论点。 C3 不成立：RGDS PPL 48.5 vs uncurated 47.9（+1.3%），远未达到论文假设的
+      +49%，不构成 "accelerated collapse"。 S2 仍可挽救：RankMe 在三种方法中均上升，kNN 稳定，但 rare n-gram
+      持续下降——metric dissociation 成立。 结论：唯一可发表的信号是 null result + S2 metric dissociation。
+
+      '
+  - name: External_only seed=123 复现 (GPT2-125M, WikiText-103)
+    plan_id: plan_003
+    description: 验证 external_only selection ratio >1.0 的可复现性。
+    expected_results:
+      external_s123_gen0_ppl: 37.4
+      external_s123_gen1_ppl: 45.2
+      external_s123_gen2_ppl: 51.9
+      external_s123_gen3_ppl: 56.1
+      external_s123_gen4_ppl: 55.0
+      external_s123_gen7_ppl: 47.8
+      external_s123_gen0_selection_ratio: 1.03
+      external_s123_gen4_selection_ratio: 0.99
+      external_s123_gen7_selection_ratio: 0.95
+      external_s123_gen0_rare: 0.0287
+      external_s123_gen7_rare: 0.0085
+    result_rationale: 'Seed 变化引入随机初始化和数据 shuffling 差异，但在 worst 档下这些差异不改变基本格局。 External
+      selection ratio 在 seed=123 下甚至略低于 seed=42（gen7: 0.95 vs 0.97）， 因为 Contriever
+      嵌入的多样性度量对不同随机种子的生成文本 pool 敏感度不同。 关键是 ratio 同样下降到 <1.0，直接否定了 "external immune"
+      的论点。 PPL 和 rare n-gram 轨迹与 seed=42 高度一致，确认 collapse 由训练循环驱动而非 seed artifact。
+
+      '
+    tables: []
+    figures_description:
+    - 'Fig: seed=42 vs seed=123 external selection ratio 对比 — 两条线均缓慢下降，seed=123 略低，均在
+      gen5+ 跌破 1.0。'
+    analysis: 'C2-weak 在复现实验中进一步削弱：seed=123 的 external ratio 也未能维持 >1.0。 两个 seed 的
+      PPL 差异 <2 点，rare n-gram 差异 <0.0005，确认结果非噪声但也确认无 gap。
+
+      '
+  - name: 三方法 seed=123 完整复现 (GPT2-125M, WikiText-103)
+    plan_id: plan_004
+    description: 3 methods × 8 gens, seed=123。完整复现。
+    expected_results:
+      rgds_s123_gen0_ppl: 37.5
+      rgds_s123_gen7_ppl: 49.1
+      rgds_s123_gen0_rare: 0.0286
+      rgds_s123_gen7_rare: 0.009
+      rgds_s123_gen0_selection_ratio: 1.0
+      rgds_s123_gen7_selection_ratio: 0.9
+      rgds_s123_gen7_rank_corr: -0.075
+      uncurated_s123_gen0_ppl: 37.3
+      uncurated_s123_gen7_ppl: 48.6
+      uncurated_s123_gen7_rare: 0.0088
+      uncurated_s123_gen7_rank_corr: -0.091
+      external_s123_gen0_ppl: 37.1
+      external_s123_gen7_ppl: 47.8
+      external_s123_gen7_rare: 0.0085
+      external_s123_gen7_rank_corr: -0.072
+      rgds_ppl_excess_vs_uncurated_pct_s123: 1.0
+      cross_seed_ppl_std_gen7_rgds: 0.42
+      cross_seed_ppl_std_gen7_uncurated: 0.49
+      cross_seed_ppl_std_gen7_external: 0.42
+    result_rationale: 'Seed=123 复现在 worst 档下应与 seed=42 趋势高度一致但数值有小幅随机波动。 RGDS gen7
+      PPL 49.1 略高于 seed=42 的 48.5，但 uncurated 也相应更高（48.6）， 三方法间 PPL 差异仍 <3%。Selection
+      ratio 轨迹类似：internal 0.90（比 seed=42 的 0.93 略低）， 但 external 也降至 0.95，二者差异不足以建立统计显著性。
+      Cross-seed PPL 标准差 ~0.45 在三种方法间无显著差异，表明 method choice 不是方差的来源。 Rare n-gram 三种方法在两个
+      seed 间差异均 <0.0005，噪声级别。
+
+      '
+    tables:
+    - name: 'Table: Cross-seed Gen 7 一致性检验'
+      columns:
+      - Method
+      - PPL_s42
+      - PPL_s123
+      - Delta
+      - Rare_s42
+      - Rare_s123
+      - Delta_rare
+      rows:
+      - - Uncurated
+        - 47.9
+        - 48.6
+        - 0.7
+        - 0.0087
+        - 0.0088
+        - 0.0001
+      - - RGDS
+        - 48.5
+        - 49.1
+        - 0.6
+        - 0.0088
+        - 0.009
+        - 0.0002
+      - - External
+        - 47.2
+        - 47.8
+        - 0.6
+        - 0.0089
+        - 0.0085
+        - -0.0004
+    figures_description:
+    - 'Fig: seed=42 vs seed=123 三方法 PPL 轨迹 — 六条线（3 methods × 2 seeds）高度交织，方法间差异小于
+      seed 间差异。'
+    analysis: 'Cross-seed 复现确认：方法间差异（<1.5 PPL）小于或等于 seed 间波动（~0.6 PPL）。 无法通过 t-test
+      区分任何两种方法。Alignment gap 叙事无统计支撑。
+
+      '
+  - name: 三方法 seed=456 完整复现 (GPT2-125M, WikiText-103)
+    plan_id: plan_005
+    description: 3 methods × 8 gens, seed=456。第三个种子。
+    expected_results:
+      rgds_s456_gen7_ppl: 48.0
+      uncurated_s456_gen7_ppl: 47.5
+      external_s456_gen7_ppl: 46.9
+      rgds_s456_gen7_rare: 0.0086
+      uncurated_s456_gen7_rare: 0.0084
+      external_s456_gen7_rare: 0.0087
+      rgds_s456_gen7_selection_ratio: 0.95
+      external_s456_gen7_selection_ratio: 0.99
+      rgds_ppl_excess_vs_uncurated_pct_s456: 1.1
+      rgds_ppl_gen7_mean_3seed: 48.53
+      rgds_ppl_gen7_std_3seed: 0.55
+      uncurated_ppl_gen7_mean_3seed: 48.0
+      uncurated_ppl_gen7_std_3seed: 0.55
+      external_ppl_gen7_mean_3seed: 47.23
+      external_ppl_gen7_std_3seed: 0.46
+      paired_ttest_rgds_vs_uncurated_pvalue: 0.31
+      paired_ttest_external_vs_uncurated_pvalue: 0.18
+    result_rationale: '第三个 seed 补完统计检验所需的最低样本量。Seed=456 的结果落在前两个 seed 的范围内， 无异常值。三个
+      seed 聚合后： (1) RGDS vs uncurated 的 paired t-test p=0.31，远不显著——无法声称 RGDS 加速崩塌。
+      (2) External vs uncurated p=0.18，external 有微弱优势但不显著——无法声称 external immune。 (3)
+      三种方法 gen7 PPL 均值差 <1.5 PPL，标准差 ~0.5，信噪比不足。 (4) Rare n-gram 三种方法均值差异 <0.0004，完全在噪声范围。
+      这三个 seed 的数据联合起来，只能得出 null result 结论。
+
+      '
+    tables:
+    - name: 'Table: 3-seed 聚合统计 (Gen 7)'
+      columns:
+      - Method
+      - PPL_mean
+      - PPL_std
+      - Rare_mean
+      - Rare_std
+      - SelRatio_mean
+      - p_vs_uncurated
+      rows:
+      - - Uncurated
+        - 48.0
+        - 0.55
+        - 0.0086
+        - 0.0002
+        - N/A
+        - —
+      - - RGDS
+        - 48.53
+        - 0.55
+        - 0.0088
+        - 0.0002
+        - 0.93
+        - 0.31
+      - - External
+        - 47.23
+        - 0.46
+        - 0.0088
+        - 0.0002
+        - 0.98
+        - 0.18
+    figures_description:
+    - 'Fig: 3-seed aggregated PPL with error bars — 三种方法的 error bar 大量重叠，无法视觉区分。'
+    - 'Fig: 3-seed aggregated rare n-gram with error bars — 三条线完全重叠在同一个 band 内。'
+    analysis: '3-seed 统计检验正式否定了所有核心 claims。P-values 均 >0.15，即使放宽到 p<0.1 也不显著。 论文 C1/C2/C3
+      全部无法成立。唯一的正面发现是 collapse 本身的 well-controlled replication 以及 S2 metric dissociation。
+
+      '
+  - name: GPT2-medium 355M 三方法对比 (WikiText-103, seed=42)
+    plan_id: plan_006
+    description: 验证 alignment gap 在更大模型规模上存在。
+    expected_results:
+      rgds_med_gen0_ppl: 22.8
+      rgds_med_gen3_ppl: 31.5
+      rgds_med_gen7_ppl: 29.4
+      uncurated_med_gen0_ppl: 22.5
+      uncurated_med_gen3_ppl: 31.8
+      uncurated_med_gen7_ppl: 29.0
+      external_med_gen0_ppl: 22.3
+      external_med_gen3_ppl: 30.9
+      external_med_gen7_ppl: 28.5
+      rgds_med_gen0_rare: 0.031
+      rgds_med_gen7_rare: 0.0105
+      uncurated_med_gen0_rare: 0.0312
+      uncurated_med_gen7_rare: 0.0103
+      external_med_gen0_rare: 0.0311
+      external_med_gen7_rare: 0.0107
+      rgds_med_gen0_selection_ratio: 1.03
+      rgds_med_gen7_selection_ratio: 0.96
+      external_med_gen0_selection_ratio: 1.04
+      external_med_gen7_selection_ratio: 1.0
+      rgds_med_gen7_rankme: 410.5
+      uncurated_med_gen7_rankme: 408.2
+      rgds_med_ppl_excess_vs_uncurated_pct: 1.4
+    result_rationale: 'GPT2-medium (355M) 在 worst 档下表现与 125M 定性一致： (1) 更大模型的绝对 PPL
+      更低（gen0 ~22 vs ~37），但崩塌相对幅度类似（gen7/gen0 ~1.3x）。 (2) 三种方法间差异仍然不显著——RGDS 29.4
+      vs uncurated 29.0（+1.4%），与 125M 的 +1.3% 一致。 (3) Rare n-gram 从 ~0.031 下降到 ~0.01，三方法几乎同步。
+      (4) 更大模型的嵌入空间维度更高（hidden=1024 vs 768），RankMe 基线更高（~400 vs ~280）， 但这不改变 selection
+      ratio 的行为——internal ratio 仍缓慢下降到 0.96， external 下降到 1.00（刚好不亏不赚），两者差异不构成 "gap"。
+      (5) 这消除了 "maybe 125M too small" 的 escape hatch——不是模型太小的问题，是效应本身不存在。
+
+      '
+    tables:
+    - name: 'Table: GPT2-125M vs GPT2-medium Gen 7 对比'
+      columns:
+      - Model
+      - Method
+      - PPL_gen7
+      - Rare_gen7
+      - SelRatio_gen7
+      - PPL_excess_pct
+      rows:
+      - - GPT2-125M
+        - Uncurated
+        - 47.9
+        - 0.0087
+        - N/A
+        - —
+      - - GPT2-125M
+        - RGDS
+        - 48.5
+        - 0.0088
+        - 0.93
+        - +1.3%
+      - - GPT2-125M
+        - External
+        - 47.2
+        - 0.0089
+        - 0.97
+        - -1.5%
+      - - GPT2-medium
+        - Uncurated
+        - 29.0
+        - 0.0103
+        - N/A
+        - —
+      - - GPT2-medium
+        - RGDS
+        - 29.4
+        - 0.0105
+        - 0.96
+        - +1.4%
+      - - GPT2-medium
+        - External
+        - 28.5
+        - 0.0107
+        - 1.0
+        - -1.7%
+    figures_description:
+    - 'Fig: GPT2-125M vs GPT2-medium PPL trajectories — 两个模型各三条线，medium 整体更低但三方法间的相对间距与
+      125M 相同（即几乎无间距）。'
+    analysis: 'Scale-up 实验确认 null result 不是 model-size artifact。355M 参数的模型同样无 alignment
+      gap。 审稿人 R1 的质疑被回答了，但答案是 "larger model also shows no effect"。 这强化了 null result
+      结论但不改善论文卖点。
+
+      '
+  - name: GPT2-medium 355M seed=123 复现
+    plan_id: plan_007
+    description: GPT2-medium 多 seed 验证。
+    expected_results:
+      rgds_med_s123_gen7_ppl: 29.8
+      uncurated_med_s123_gen7_ppl: 29.3
+      external_med_s123_gen7_ppl: 28.9
+      rgds_med_s123_gen7_rare: 0.0102
+      uncurated_med_s123_gen7_rare: 0.01
+      external_med_s123_gen7_rare: 0.0104
+      rgds_med_s123_gen7_selection_ratio: 0.94
+      external_med_s123_gen7_selection_ratio: 0.98
+      paired_ttest_rgds_vs_uncurated_medium_pvalue: 0.38
+    result_rationale: 'GPT2-medium 的 seed=123 复现与 seed=42 一致。两个 seed 的 method 间差异依然
+      <2%。 由于只有 2 个 seed（不像 125M 有 3 个），统计检验 power 更低，p-value 更大。 但即使 n=2，趋势已清晰：method
+      不是 collapse 速度的显著调节变量。 在 worst 档下，这个实验进一步堆积 null evidence，对论文叙事无正面帮助。
+
+      '
+    tables: []
+    figures_description:
+    - 'Fig: GPT2-medium 2-seed 一致性 — seed=42 和 seed=123 的三方法曲线几乎完全重合。'
+    analysis: 'Medium 模型 2-seed 确认 null result 的跨 seed 稳健性。 p=0.38 进一步说明无法拒绝 "三种方法等价"
+      的零假设。
+
+      '
+  - name: Embedding re-anchoring 缓解实验 (GPT2-125M, seed=42)
+    plan_id: plan_008
+    description: 每 K 代用原始预训练权重重新计算选择嵌入。测试是否能恢复 selection ratio。
+    expected_results:
+      reanchored_gen0_selection_ratio: 1.02
+      reanchored_gen4_selection_ratio: 1.01
+      reanchored_gen7_selection_ratio: 0.99
+      reanchored_gen7_ppl: 48.2
+      reanchored_gen7_rare: 0.0088
+      reanchoring_rare_improvement_pct: 0.0
+      reanchoring_ppl_improvement_pct: 0.6
+      reanchored_vs_rgds_ppl_diff: -0.3
+      reanchored_vs_uncurated_ppl_diff: 0.3
+    result_rationale: 'Re-anchoring 在 worst 档下失败或无效，原因是： (1) 如果 alignment gap 本身不存在（internal
+      ratio 仅从 1.02 下降到 0.93）， 那么 "修复 gap" 的干预措施自然没有东西可修复。用原始权重计算嵌入 vs 用当前权重， 差异很小因为嵌入空间的退化本身就不严重。
+      (2) Re-anchored ratio 从 1.02 缓降到 0.99（比 RGDS 的 0.93 好一点）， 但这个微小改善不转化为 PPL 或
+      rare n-gram 的改善——因为 bottleneck 不在 selection method， 而在 self-iterate 循环本身。 (3)
+      Rare n-gram 改善 0%——re-anchoring 让 selection ratio 略好但 selected subset 仍然来自崩塌模型生成的
+      candidate pool，pool 本身已无多样性可选。 (4) 这直接否定了 C_mitigation：即使 selection ratio 完美保持
+      >1.0， 如果 candidate pool 已崩塌，diversity selection 也无处发力。
+
+      '
+    tables:
+    - name: 'Table: Re-anchoring vs baselines (Gen 7)'
+      columns:
+      - Method
+      - SelRatio_gen7
+      - PPL_gen7
+      - Rare_gen7
+      rows:
+      - - Uncurated
+        - N/A
+        - 47.9
+        - 0.0087
+      - - RGDS (no fix)
+        - 0.93
+        - 48.5
+        - 0.0088
+      - - Re-anchored RGDS
+        - 0.99
+        - 48.2
+        - 0.0088
+      - - External
+        - 0.97
+        - 47.2
+        - 0.0089
+    figures_description:
+    - 'Fig: Re-anchored vs RGDS vs external selection ratio — re-anchored 线略高于 RGDS
+      但差异微小（0.99 vs 0.93），且不转化为下游改善。'
+    analysis: 'Re-anchoring 的 "成功" 是空洞的：ratio 轻微改善但对 collapse 无影响。 这进一步证实 worst 档的核心论点——selection
+      method 不是 collapse 的调节器。 论文无法从 "发现问题" 升级为 "发现+解决"。 但这个结果本身可作为 additional evidence:
+      即使 fix the selection signal, collapse persists, 证明 bottleneck 在数据生成端而非数据选择端。
+
+      '
+  - name: OpenWebText 子集 三方法对比 (GPT2-125M, seed=42)
+    plan_id: plan_009
+    description: 验证 alignment gap 跨数据集存在。
+    expected_results:
+      rgds_owt_gen0_ppl: 28.5
+      rgds_owt_gen7_ppl: 38.2
+      uncurated_owt_gen0_ppl: 28.2
+      uncurated_owt_gen7_ppl: 37.8
+      external_owt_gen0_ppl: 28.0
+      external_owt_gen7_ppl: 37.3
+      rgds_owt_gen0_rare: 0.0265
+      rgds_owt_gen7_rare: 0.0078
+      uncurated_owt_gen7_rare: 0.0076
+      external_owt_gen7_rare: 0.0079
+      rgds_owt_gen7_selection_ratio: 0.94
+      external_owt_gen7_selection_ratio: 0.98
+      rgds_owt_ppl_excess_vs_uncurated_pct: 1.1
+    result_rationale: 'OpenWebText 与 WikiText-103 的区别：OWT 是 web-crawled 数据，分布更广、rare
+      n-gram 基线更低 （0.0265 vs 0.029），PPL 基线也更低（28 vs 37，因为 GPT2 在类似 web text 上预训练）。
+      但在 worst 档下，这些差异不改变基本格局： (1) 三种方法 PPL 差异 <3%（38.2 vs 37.8 vs 37.3），与 WikiText
+      结果定性一致。 (2) Rare n-gram 三方法完全重叠。OWT 的 rare n-gram 衰减可能更快（基线更低）， 但衰减速度在方法间无差异。
+      (3) Selection ratio 行为与 WikiText 一致：internal 0.94，external 0.98，无显著 gap。 (4)
+      这回答了审稿人 R2 "只有一个数据集" 的质疑，但答案仍是 "null result generalizes"。
+
+      '
+    tables:
+    - name: 'Table: WikiText-103 vs OpenWebText Gen 7 对比'
+      columns:
+      - Dataset
+      - Method
+      - PPL_gen7
+      - Rare_gen7
+      - SelRatio_gen7
+      rows:
+      - - WikiText-103
+        - Uncurated
+        - 47.9
+        - 0.0087
+        - N/A
+      - - WikiText-103
+        - RGDS
+        - 48.5
+        - 0.0088
+        - 0.93
+      - - WikiText-103
+        - External
+        - 47.2
+        - 0.0089
+        - 0.97
+      - - OpenWebText
+        - Uncurated
+        - 37.8
+        - 0.0076
+        - N/A
+      - - OpenWebText
+        - RGDS
+        - 38.2
+        - 0.0078
+        - 0.94
+      - - OpenWebText
+        - External
+        - 37.3
+        - 0.0079
+        - 0.98
+    figures_description:
+    - 'Fig: 两个数据集 × 三方法 PPL 轨迹 — 六条线分两个 PPL band（Wiki 更高，OWT 更低），每个 band 内三方法重叠。'
+    analysis: Cross-dataset 验证确认 null result 的数据集无关性。 无论 WikiText-103 还是 OpenWebText，selection
+      method 对 collapse 轨迹无显著影响。 论文可以 claim "controlled null result across 2 datasets,
+      2 model sizes, 3 seeds"， 但这是一个 comprehensive null result，不是 positive finding。
+  review_report: "---\ndream_id: dream_20260513T081019\ntier: worst\noverall_score:\
+    \ Reject (2/5)\ntimestamp: 2026-05-13T09:09:16.598116+00:00\n---\n\n# Dream Review\
+    \ Report: Embedding-Based Diversity Selection Neither Helps Nor Hurts Iterative\
+    \ Model Collapse\n\n**Paper:** \"Embedding-Based Diversity Selection Neither Helps\
+    \ Nor Hurts Iterative Model Collapse: A Controlled Null Result\"\n**Venue:** EMNLP\
+    \ 2026 ARR\n**Review Mode:** Full (2 Reviewers + Roundtable)\n**Date:** 2026-05-13\n\
+    \n---\n\n## Paper Summary\n\nThe paper tests whether embedding-based diversity\
+    \ selection can slow model collapse during iterative self-training. Three data\
+    \ selection strategies are compared across 8 self-training generations: (1) uncurated\
+    \ random sampling, (2) RGDS using internal embeddings, and (3) external selection\
+    \ using frozen Contriever embeddings. The main finding is a null result: no statistically\
+    \ significant difference between methods across 2 model scales (GPT-2 125M/355M),\
+    \ 2 datasets (WikiText-103/OpenWebText), and 3 random seeds (all paired t-tests\
+    \ p > 0.15). A secondary finding documents \"metric dissociation\" where RankMe\
+    \ increases while rare n-gram frequency decreases during collapse.\n\n---\n\n\
+    ## Reviewer R1: Methods and Experiments\n\n### Strengths\n- **Well-controlled\
+    \ experimental grid.** The paper covers 2 model scales × 2 datasets × 3 seeds\
+    \ with consistent protocol, which is thorough for a GPT-2-scale study.\n- **Re-anchoring\
+    \ experiment is diagnostic.** Section 4.5 provides a clean causal test: restoring\
+    \ selection ratio (0.93→0.99) without affecting collapse metrics isolates the\
+    \ bottleneck to the candidate pool.\n- **Transparent about negative result.**\
+    \ The paper honestly frames the hypothesis as \"wrong\" rather than retrofitting\
+    \ a positive narrative.\n- **Metric dissociation is a genuine warning.** RankMe\
+    \ increasing while rare n-grams decline has practical monitoring implications.\n\
+    \n### Weaknesses\n- **[Major] Underpowered null result with no equivalence testing.**\
+    \ N=3 seeds with cross-seed std ~0.55 PPL is insufficient to claim \"no effect.\"\
+    \ The paper uses absence of significance (p > 0.15) as evidence of absence, which\
+    \ is a well-known statistical error. A null-result paper *must* include either\
+    \ (a) formal equivalence testing (TOST procedure) with a pre-specified equivalence\
+    \ margin, or (b) a power analysis showing the study could detect effects of practically\
+    \ relevant size. Neither is provided. With N=3, the minimum detectable effect\
+    \ at 80% power (α=0.05) is approximately 2.5× the pooled SD — the study cannot\
+    \ detect effects smaller than ~1.4 PPL, which is exactly the range of the observed\
+    \ inter-method differences.\n- **[Major] Consistent method ordering suggests a\
+    \ real but small effect.** External PPL < Uncurated PPL < RGDS PPL holds in *every\
+    \ experimental cell* (both model sizes, both datasets, all reported seeds). The\
+    \ probability of this ordering occurring by chance across 4+ independent conditions\
+    \ is < 5%. This systematic pattern — which the paper does not test or acknowledge\
+    \ — is exactly what an underpowered study of a real but small effect looks like.\
+    \ The external method's 1.5-1.7% PPL advantage is small but consistent.\n- **[Major]\
+    \ Checkpoint resetting design may suppress the alignment gap.** The protocol fine-tunes\
+    \ from the *original pretrained checkpoint* each generation (Section 3.1, step\
+    \ 3). This prevents the model's embedding space from cumulatively drifting across\
+    \ generations. The \"alignment gap\" hypothesis requires progressive embedding\
+    \ drift, but resetting to the pretrained checkpoint each round limits how much\
+    \ drift can accumulate. The paper should have tested both cumulative fine-tuning\
+    \ (M_{t+1} from M_t) and checkpoint-reset fine-tuning to isolate this confound.\n\
+    - **[Moderate] Missing intermediate generation reporting.** Table 1 shows generations\
+    \ 0, 1, 3, 5, 7 — omitting 2, 4, 6. For non-primary seeds, only Gen-7 endpoints\
+    \ are reported. Full trajectories for all seeds would strengthen the null claim.\n\
+    - **[Moderate] No sensitivity analysis on rare n-gram threshold.** The threshold\
+    \ \"≤5 times in original corpus\" is arbitrary. Does the null result hold at thresholds\
+    \ 1, 3, 10? This is critical for trusting the rare n-gram metric.\n- **[Minor]\
+    \ No downstream task evaluation.** PPL and rare n-gram are proxy metrics. A downstream\
+    \ NLU evaluation (e.g., GLUE subset) would strengthen the claim that selection\
+    \ method has no practical effect.\n- **[Minor] Only one diversity selection algorithm\
+    \ tested.** DPP-based selection, k-medoids, or distribution-matching methods (DSIR)\
+    \ might interact differently with collapse. The limitation is acknowledged but\
+    \ untested.\n\n### Questions for Authors\n1. Can you provide a formal power analysis\
+    \ showing what effect sizes your 3-seed design can detect?\n2. Have you tested\
+    \ cumulative fine-tuning (M_{t+1} from M_t) vs. checkpoint-reset? The alignment\
+    \ gap requires cumulative drift.\n3. What is the probability that the consistent\
+    \ External < Uncurated < RGDS ordering across all conditions is due to chance?\n\
+    4. Does the null result hold with rare n-gram thresholds of 1 and 10?\n\n### Scores\n\
+    - **Soundness:** 2/5 (Borderline) — The core statistical methodology is flawed\
+    \ for a null-result paper. Absence of significance ≠ evidence of absence, and\
+    \ the checkpoint-reset design may suppress the very effect being tested.\n- **Excitement:**\
+    \ 2/5 (Not very exciting) — The metric dissociation is the most interesting finding\
+    \ but is underdeveloped.\n- **Overall:** 2/5 (Reject)\n- **Confidence:** 4/5\n\
+    \n---\n\n## Reviewer R2: Novelty and Related Work\n\n### Strengths\n- **Honest\
+    \ framing.** The paper openly presents a null result and does not oversell it.\
+    \ The title and abstract are accurate.\n- **Clear, concise writing.** The paper\
+    \ is well-organized and easy to follow. Tables are well-formatted.\n- **Re-anchoring\
+    \ experiment provides mechanistic insight.** This is the most convincing element:\
+    \ fixing the selection signal while collapse continues demonstrates the bottleneck\
+    \ is generation-side.\n- **Practical warning about metric dissociation.** The\
+    \ finding that RankMe/k-NN can mask content diversity loss has genuine monitoring\
+    \ value.\n\n### Weaknesses\n- **[Major] The null result is predictable from first\
+    \ principles.** The core finding — that selection from an already-collapsed candidate\
+    \ pool cannot recover lost diversity — follows directly from the pipeline structure.\
+    \ If the generator produces homogeneous text, any subset of that text is also\
+    \ homogeneous, regardless of how \"diversely\" you select. This is a logical consequence\
+    \ of the information processing inequality, not an empirical surprise. The re-anchoring\
+    \ experiment (Section 4.5) confirms this reasoning but does not make it novel.\n\
+    - **[Major] The \"alignment gap\" hypothesis was the authors' own strawman.**\
+    \ The introduction states \"We hypothesized that internal embedding-based selection\
+    \ would accelerate collapse due to an alignment gap.\" This hypothesis is not\
+    \ grounded in prior work — no one in the model collapse literature has proposed\
+    \ or tested it. Disproving one's own speculative hypothesis is less valuable than\
+    \ disproving a community-held belief or a prediction from established theory.\n\
+    - **[Major] Severely underdeveloped related work.** Only 10 references total,\
+    \ which is far below the typical 30-50 for an EMNLP submission. Major gaps include:\n\
+    \  - **Missing model collapse papers:** Gerstgrasser et al. (2024) showed that\
+    \ accumulating data across generations mitigates collapse — directly relevant\
+    \ since it tests a generation-side intervention. Guo et al. (2024) on mixing ratios\
+    \ of real/synthetic data. Seddik et al. (2024) theoretical analysis. Briesch et\
+    \ al. (2024) on collapse in different model families.\n  - **Missing data selection\
+    \ methods:** LESS (Xia et al. 2024), DataComp (Gadre et al. 2024), QuRating (Wettig\
+    \ et al. 2024). Only testing one selection paradigm (submodular) weakens generalizability\
+    \ claims.\n  - **Missing representation collapse literature:** Jing et al. (2022)\
+    \ on dimensional collapse, Hua et al. (2021) on feature suppression. These are\
+    \ directly relevant to the metric dissociation finding.\n  - **No connection to\
+    \ curriculum learning or active learning under distribution shift**, which are\
+    \ the closest analogues to \"selection from degrading pool.\"\n- **[Major] Metric\
+    \ dissociation finding is shallow.** The observation that RankMe increases while\
+    \ rare n-gram decreases is stated but not analyzed. Why does this happen mechanistically?\
+    \ Is it because fine-tuning on a narrow distribution creates orthogonal \"junk\"\
+    \ dimensions that inflate effective rank? Is it related to neural collapse theory\
+    \ (Papyan et al. 2020, which is cited but not connected)? Without mechanistic\
+    \ analysis, this is an observation, not a contribution.\n- **[Moderate] Narrow\
+    \ scope limits generalizability claims.** GPT-2 (125M, 355M) is 2-3 orders of\
+    \ magnitude smaller than current frontier models. The paper acknowledges this\
+    \ but still makes broad claims (\"selection method does not modulate collapse\
+    \ speed\"). At scale, embedding spaces are higher-dimensional, generation quality\
+    \ is higher, and collapse dynamics may differ fundamentally. The jump from GPT-2\
+    \ to \"data selection doesn't matter\" is not warranted.\n- **[Moderate] No non-embedding\
+    \ baselines.** The paper tests 3 variants of essentially the same approach (random,\
+    \ internal-embedding, external-embedding). Testing a fundamentally different selection\
+    \ strategy (e.g., perplexity-based filtering, n-gram overlap deduplication, topic-model-based\
+    \ selection) would strengthen the claim that *selection in general* doesn't matter.\n\
+    - **[Minor] 8-page paper for a null result that covers well-trodden ground.**\
+    \ The contribution might be better suited to a 4-page Findings short paper or\
+    \ a NeurIPS/ICML negative results workshop.\n\n### Questions for Authors\n1. Before\
+    \ running experiments, what was your prior probability that selection method would\
+    \ matter? If the answer is \"low,\" why run the study?\n2. Can you explain mechanistically\
+    \ why RankMe increases during collapse? Is it related to the \"effective dimensionality\
+    \ inflation\" observed in overparameterized networks?\n3. Why not test at least\
+    \ one non-embedding selection baseline (e.g., perplexity filtering, n-gram deduplication)?\n\
+    4. How do you respond to the argument that checkpoint resetting (rather than cumulative\
+    \ fine-tuning) prevents the embedding drift needed for the alignment gap to manifest?\n\
+    \n### Scores\n- **Soundness:** 3/5 (Acceptable) — The experiments are properly\
+    \ executed within their design, but the design itself may not test the right hypothesis\
+    \ (see checkpoint-reset concern from R1).\n- **Excitement:** 1.5/5 (Between \"\
+    Not exciting\" and \"Not very exciting\") — The null result is predictable and\
+    \ the secondary findings are underdeveloped.\n- **Overall:** 2/5 (Reject)\n- **Confidence:**\
+    \ 4/5\n\n---\n\n## Roundtable Discussion\n\n### Step 2: Cross-Sharing\n\n**R1\
+    \ reads R2's review:** R1 agrees that the null result's predictability from first\
+    \ principles is a damaging observation — it reframes the entire paper from \"\
+    surprising null\" to \"expected null with expensive verification.\" R1 also recognizes\
+    \ the related work gap as more severe than initially assessed. R1 notes R2's point\
+    \ about the strawman hypothesis reinforces R1's concern about the consistent method\
+    \ ordering: if the hypothesis was always unlikely, the tiny consistent ordering\
+    \ pattern might actually be the more interesting signal.\n\n**R2 reads R1's review:**\
+    \ R2 finds R1's checkpoint-reset confound (Major weakness #3) compelling and had\
+    \ not considered it. If cumulative fine-tuning were used instead, the alignment\
+    \ gap might actually manifest, which would make the null result conditional on\
+    \ a specific (and somewhat unusual) training protocol rather than a general finding.\
+    \ R2 also acknowledges the consistent method ordering observation — this systematic\
+    \ pattern across all conditions is hard to dismiss as noise.\n\n### Step 3: Convergence\n\
+    \n**Points of strong agreement:**\n1. **Reject.** Both reviewers independently\
+    \ arrive at Overall 2 (Reject).\n2. **Lack of equivalence testing is a fatal flaw\
+    \ for a null-result paper.** The paper's central claim is that there is \"no difference,\"\
+    \ but uses the wrong statistical framework to support it. TOST or Bayesian equivalence\
+    \ testing is standard practice.\n3. **Metric dissociation is the strongest contribution**\
+    \ but is insufficiently developed to carry the paper.\n4. **Narrow scope** (GPT-2\
+    \ only, one selection paradigm) limits generalizability.\n\n**Points where views\
+    \ converge after cross-sharing:**\n1. **Checkpoint-reset confound** (raised by\
+    \ R1, accepted by R2) — This is potentially the most damaging concern because\
+    \ it may invalidate the experimental design's ability to test the alignment gap\
+    \ hypothesis.\n2. **Consistent method ordering** (raised by R1, accepted by R2)\
+    \ — Both now agree this pattern deserves formal analysis (e.g., sign test across\
+    \ conditions) and could indicate a real but small effect.\n3. **Predictability\
+    \ of null result** (raised by R2, accepted by R1) — Both agree this significantly\
+    \ reduces the novelty contribution.\n\n**Residual disagreement:**\n- R1 gives\
+    \ Soundness 2, R2 gives 3. After discussion, R2 acknowledges the checkpoint-reset\
+    \ confound lowers methodological soundness, but maintains the experiments are\
+    \ internally valid for what they test. Compromise: Soundness 2.5, reported as\
+    \ 2-3 range.\n\n### Consensus Scores\n| Dimension | R1 | R2 | Consensus |\n|-----------|----|----|-----------|\n\
+    | Soundness | 2 | 3 | 2.5 |\n| Excitement | 2 | 1.5 | 2 |\n| Overall | 2 | 2 |\
+    \ 2 |\n| Confidence | 4 | 4 | 4 |\n\n---\n\n## Consolidated Assessment\n\n###\
+    \ Final Recommendation: **Reject** (Overall: 2/5)\n\n### Justification\n\nThis\
+    \ paper presents a null result — embedding-based diversity selection does not\
+    \ significantly affect model collapse trajectories — supported by a thorough experimental\
+    \ grid (2 models × 2 datasets × 3 seeds × 8 generations). However, the paper has\
+    \ several critical weaknesses that prevent acceptance at EMNLP:\n\n1. **Statistical\
+    \ methodology is inadequate for a null-result claim.** The paper equates \"p >\
+    \ 0.15\" with \"no effect,\" which is a well-known statistical error. No equivalence\
+    \ testing, no power analysis, no minimum detectable effect size. This is the minimum\
+    \ bar for publishing a null result, and the paper does not meet it.\n\n2. **The\
+    \ null result is predictable a priori.** Selection from a collapsed candidate\
+    \ pool cannot recover diversity the generator failed to produce. This follows\
+    \ from the pipeline structure without requiring experiments. The \"alignment gap\"\
+    \ hypothesis being disproved was the authors' own speculation, not a community-held\
+    \ belief.\n\n3. **Experimental design may not test the right hypothesis.** Fine-tuning\
+    \ from the pretrained checkpoint each generation (rather than cumulatively) prevents\
+    \ the embedding drift needed for the alignment gap to manifest. The null result\
+    \ may be an artifact of this design choice.\n\n4. **Consistent method ordering\
+    \ undermines the null claim.** External < Uncurated < RGDS in PPL across every\
+    \ experimental condition suggests a real but small effect that the study lacks\
+    \ power to detect.\n\n5. **Related work is severely underdeveloped** (10 references\
+    \ vs. expected 30-50 for EMNLP), missing key model collapse and data selection\
+    \ papers.\n\n6. **Metric dissociation finding is underdeveloped.** The most novel\
+    \ observation (RankMe up, rare n-gram down) is reported but not analyzed mechanistically.\n\
+    \n### Actionable Suggestions for Revision\n- Add formal equivalence testing (TOST)\
+    \ with pre-specified margins\n- Test cumulative fine-tuning (M_{t+1} from M_t)\
+    \ in addition to checkpoint-reset\n- Run a sign test or permutation test on the\
+    \ consistent method ordering\n- Expand related work significantly (target 30+\
+    \ references)\n- Develop the metric dissociation finding with mechanistic analysis\n\
+    - Consider targeting EMNLP Findings (short paper) or a negative results workshop\n\
+    \n### Experiment Coverage Assessment\nThe paper covers all 8 experiments from\
+    \ the design plan: main 3-method comparison, cross-seed replications (seeds 123,\
+    \ 456), GPT-2 Medium scale-up (both seeds), re-anchoring intervention, and OpenWebText\
+    \ cross-dataset validation. Coverage is complete, but the experiments collectively\
+    \ suffer from the design issues noted above.\n"
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-13T09:09:25+00:00'

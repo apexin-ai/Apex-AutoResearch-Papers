@@ -1,0 +1,20 @@
+{
+  "exp_id": "qwen1.5b_full_trace_seed42",
+  "project": "trace-verdict-study",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T07:27:39.587Z",
+    "updated_at": "2026-05-16T07:47:12.891Z",
+    "spec": {
+      "hypothesis": "Multi-scale validation: full_trace on Qwen-2.5-Coder-1.5B.",
+      "model_name": "Qwen2.5-Coder-1.5B-Instruct",
+      "seed": 42,
+      "condition": "full_trace"
+    }
+  },
+  "timestamp": "2026-05-16T07:47:13.015736+00:00",
+  "trigger": "update_registry"
+}

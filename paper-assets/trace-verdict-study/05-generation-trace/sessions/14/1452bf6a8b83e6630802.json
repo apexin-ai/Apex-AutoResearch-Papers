@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1452bf6a8b83e6630802",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code fix seed robustness gpu",
+  "task_key": "worker_code_fix_seed_robustness_gpu_20260515T124609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_seed_robustness_gpu_20260515T124609_result.json",
+    "occurrence": 1,
+    "bytes": 479,
+    "sha256": "7690d1d6b9b856882bbbbdcf66a09fdd2d66dac852c97c8fc7c2cf675eedea70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。改动摘要：\n\n1. **CVD 隔离**：训练/评估前 `export CUDA_VISIBLE_DEVICES=$GPU`，命令内部统一 `--gpu 0`（CVD 后只见一张卡）\n2. **GPU 可用性检查**：启动时查 `nvidia-smi --id=$GPU` 已用显存，> 1000 MiB 则报错退出\n3. **默认值改为 1**：`GPU=1`，避免默认撞 cuda:0\n4. **顶部注释**：说明 GPU 参数须与 registry 分配一致\n5. **aggregate_seeds.py**：无 GPU 硬编码，无需修改"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-seed-robustness-gpu.md"
+}

@@ -1,0 +1,44 @@
+{
+  "exp_id": "vota_seed456_v2",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:39:05.494Z",
+    "updated_at": "2026-05-15T21:04:28.008Z",
+    "hypothesis": "Seed robustness: VOTA with seed=456, retry with --gradient_checkpointing (v1 OOM). Verifies VOTA 99.2% accuracy stable across seeds.",
+    "notes": "Auto-retried from vota_seed456 (OOM). PID 146592, cuda:1, --gradient_checkpointing enabled. Started 18:31 UTC, ~2h to complete. Low priority per Director (VOTA not primary claim).",
+    "parent": "vota_seed456",
+    "spec": {
+      "command": "python train/train_sft.py --condition vota --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456 --wandb_project trace-verdict-study --wandb_run_name vota_seed456_v2",
+      "server": "westd-11235",
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/vota_{train,test}.jsonl",
+      "data_count": 4720,
+      "model_name": "Qwen2.5-Coder-7B-Instruct",
+      "seed": 456,
+      "checkpoint_source": "N/A (training, not eval)",
+      "eval_data": "N/A (training, not eval)"
+    },
+    "metrics": {
+      "accuracy": 0.9908,
+      "pass_precision": 1,
+      "pass_recall": 0.987,
+      "pass_f1": 0.993,
+      "fail_precision": 0.969,
+      "fail_recall": 1,
+      "fail_f1": 0.984,
+      "ci_95": [
+        0.985,
+        0.996
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456/final",
+    "log_path": "/root/runs/trace-verdict-study/vota_seed456.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-15T21:04:28.008Z"
+  },
+  "timestamp": "2026-05-15T21:04:28.105123+00:00",
+  "trigger": "update_registry"
+}

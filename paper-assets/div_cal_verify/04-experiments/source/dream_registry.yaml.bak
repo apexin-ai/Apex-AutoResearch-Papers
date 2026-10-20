@@ -1,0 +1,23 @@
+dreams:
+  dream_20260513T081019:
+    dream_id: dream_20260513T081019
+    project: phase-gated-compound-sparse
+    status: reviewing
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: EMNLP 2026 ARR
+    focus: 验证 Alignment Gap 叙事（D009/D010 pivot）是否站得住。重点关注：(1) C1 alignment gap 现象的新颖性和说服力；(2)
+      C2-weak（外部嵌入免疫但不解决 rare n-gram）是否足够；(3) 从方法提案转向现象发现后，Findings 8 页能否接收；(4) 缓解实验（re-anchoring）成功/失败对投稿层级的影响。
+    what_if: []
+    pid: 228161
+    chat_id: oc_c0cbdaf5bdac3a922482de0775cd094a
+    card_message_id: om_x100b6f77502bc8a8b28119786a8b894
+    started_at: '2026-05-13T08:10:19+00:00'
+    updated_at: '2026-05-13T09:09:25+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 5076a920b9ad7ee3f10ee488cc343e2c148ea0054c30f74010d5fdfa06bdbe5f

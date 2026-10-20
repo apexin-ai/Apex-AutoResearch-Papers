@@ -1,0 +1,68 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{ni2024next,jain2024tracepile}
+\citation{ni2024next}
+\citation{jain2024tracepile}
+\citation{dinella2022traced}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Method}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Task Formulation}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Dataset}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Trace Representations}{2}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Full Trace.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{VOTA (Verdict-Optimized Trace Abstraction).}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Component Ablations.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Training Setup}{2}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experiments}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Claim 1: Exception Dominance Across Models}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Qwen-2.5-Coder-7B (Primary).}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Seed Robustness (Qwen).}{2}{section*.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Verdict prediction accuracy, ECE, and Brier score on Qwen-2.5-Coder-7B (seed 42). Tier~1 signals (exception, ae) achieve near-perfect accuracy \emph  {and} calibration.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:qwen_main}{{1}{3}{Verdict prediction accuracy, ECE, and Brier score on Qwen-2.5-Coder-7B (seed 42). Tier~1 signals (exception, ae) achieve near-perfect accuracy \emph {and} calibration}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Qwen exception\_only across 3 seeds. All seeds produce identical errors on the same 2 samples (GeneratorExit edge cases).}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:qwen_seeds}{{2}{3}{Qwen exception\_only across 3 seeds. All seeds produce identical errors on the same 2 samples (GeneratorExit edge cases)}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Family Validation (4 Models).}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CodeLlama-13B Detail.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Format Independence: Ruling Out Shortcuts}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evidence Chain.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Claim 2: Information Density as Primary Bottleneck}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Exception dominance across 4 models $\times $ 3 families $\times $ 2 scales. Exception\_only outperforms VOTA on every model (mean $\Delta $=+5.61pp).}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:cross_family}{{3}{4}{Exception dominance across 4 models $\times $ 3 families $\times $ 2 scales. Exception\_only outperforms VOTA on every model (mean $\Delta $=+5.61pp)}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Format marker ablation (Qwen exception\_only). Removing the \texttt  {[No exception data in trace]} marker produces zero degradation across all seeds (McNemar $p$=1.0).}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:nomarker}{{4}{4}{Format marker ablation (Qwen exception\_only). Removing the \texttt {[No exception data in trace]} marker produces zero degradation across all seeds (McNemar $p$=1.0)}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Claim 3: Two-Tier Diagnostic Hierarchy}{4}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Cross-Model Analysis}{4}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DeepSeek Seed Analysis.}{4}{section*.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Format shortcut falsification evidence chain. The model's 0.50pp advantage over regex comes from semantic understanding of exception content, not the marker string.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:evidence_chain}{{5}{5}{Format shortcut falsification evidence chain. The model's 0.50pp advantage over regex comes from semantic understanding of exception content, not the marker string}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-model comparison. $^\dagger $DeepSeek median of 3 seeds (seed42/456=99.33\%, seed123=91.09\%). Gap = max cross-model difference. Exception\_only shows minimal gap; VOTA shows large model-dependent gap.}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:cross_model}{{6}{5}{Cross-model comparison. $^\dagger $DeepSeek median of 3 seeds (seed42/456=99.33\%, seed123=91.09\%). Gap = max cross-model difference. Exception\_only shows minimal gap; VOTA shows large model-dependent gap}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Irreducible Error Analysis}{5}{subsection.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{5}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{VOTA Repositioning.}{5}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training Stability as Secondary Factor.}{5}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Token-Level Loss Decoupling.}{5}{section*.13}\protected@file@percent }
+\citation{ni2024next}
+\citation{jain2024tracepile}
+\citation{dinella2022traced}
+\citation{wang2021codet}
+\bibstyle{plainnat}
+\bibcite{ni2024next}{{1}{2024}{{Ni et al.}}{{}}}
+\bibcite{jain2024tracepile}{{2}{2025}{{Jain et al.}}{{}}}
+\bibcite{dinella2022traced}{{3}{2024}{{Dinella et al.}}{{}}}
+\bibcite{wang2021codet}{{4}{2023}{{Wang et al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{6}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Related Work}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Trace-Augmented Code Models.}{6}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Verdict Prediction.}{6}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{6}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}CodeLlama-13B Detailed Results}{6}{appendix.A}\protected@file@percent }
+\newlabel{app:codellama}{{A}{6}{CodeLlama-13B Detailed Results}{appendix.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}No-Marker Ablation Full Results}{6}{appendix.B}\protected@file@percent }
+\newlabel{app:nomarker}{{B}{6}{No-Marker Ablation Full Results}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces CodeLlama-13B-Instruct VOTA performance. Lower fail recall (0.80) compared to Qwen (1.0) reflects weaker execution reasoning for Tier~2 loop components.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:codellama_detail}{{7}{7}{CodeLlama-13B-Instruct VOTA performance. Lower fail recall (0.80) compared to Qwen (1.0) reflects weaker execution reasoning for Tier~2 loop components}{table.7}{}}
+\gdef \@abspage@last{7}

@@ -1,0 +1,28 @@
+{
+  "exp_id": "codellama13b_ae_only_seed42",
+  "project": "trace-verdict-study",
+  "state": "ALLOCATED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T12:55:37.558Z",
+    "updated_at": "2026-05-19T12:57:54.636Z",
+    "hypothesis": "CodeLlama-13B ae_only condition 应达 95-99% accuracy，与 Qwen-7B ae_only (99.92%) 一致，验证 component ablation (assertion error only) 效果跨 LLaMA 架构泛化，回应 N6 reviewer concern",
+    "server": "westd-11235",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-11235",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-19T12:56:46.334Z"
+    },
+    "spec": {
+      "server": "westd-11235",
+      "gpu": "cuda:1",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-19T12:57:54.893750+00:00",
+  "trigger": "update_registry"
+}

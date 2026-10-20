@@ -1,0 +1,15 @@
+{
+  "exp_id": "mismatch_exc2full_seed42",
+  "project": "trace-verdict-study",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T23:38:03.419Z",
+    "updated_at": "2026-05-24T23:38:09.624Z",
+    "hypothesis": "Exception_only-trained model facing full_trace inputs at inference will degrade significantly, confirming forward-pass confound: the model learned format-specific features rather than generalizable diagnostic patterns."
+  },
+  "timestamp": "2026-05-24T23:38:10.031131+00:00",
+  "trigger": "update_registry"
+}

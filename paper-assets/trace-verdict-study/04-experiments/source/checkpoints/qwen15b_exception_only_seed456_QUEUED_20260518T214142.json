@@ -1,0 +1,15 @@
+{
+  "exp_id": "qwen15b_exception_only_seed456",
+  "project": "trace-verdict-study",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T20:35:27.310Z",
+    "updated_at": "2026-05-18T21:41:41.925Z",
+    "hypothesis": "Qwen-1.5B exception_only seed456 应达 ~99.83%（与 seed42 一致），为 W3 reviewer concern 提供 1.5B scale 的方差估计"
+  },
+  "timestamp": "2026-05-18T21:41:42.154525+00:00",
+  "trigger": "update_registry"
+}

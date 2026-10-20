@@ -1,0 +1,14 @@
+{
+  "exp_id": "full_trace_seed42_v2",
+  "project": "trace-verdict-study",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:12:46.333Z",
+    "updated_at": "2026-05-14T22:12:46.333Z"
+  },
+  "timestamp": "2026-05-14T22:12:46.351505+00:00",
+  "trigger": "update_registry"
+}

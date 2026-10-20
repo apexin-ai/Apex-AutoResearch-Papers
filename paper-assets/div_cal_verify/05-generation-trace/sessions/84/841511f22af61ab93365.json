@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "841511f22af61ab93365",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "check transformers offline status",
+  "task_key": "worker_check_transformers_offline_status_20260513T163930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_transformers_offline_status_20260513T163930_result.json",
+    "occurrence": 1,
+    "bytes": 1082,
+    "sha256": "44789979f78c20919fd64d871f588c371a307ee680a4587225a6d86f2bf4c314"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果\n\n**两个实验都未运行，启动即失败。**\n\n### 日志内容（两个文件完全一致，91 字节）\n\n```\nbash: line 1: cd: /root/phase-gated-compound-sparse: No such file or directory\nEXIT_CODE=1\n```\n\n### nvidia-smi\n\n- 2x NVIDIA RTX PRO 6000 Blackwell (98GB)\n- GPU 利用率 0%，无运行进程\n- GPU 0 有 ~49GB 显存占用但无进程（可能是之前实验的残留）\n\n### 根因\n\n实验启动时有某个步骤尝试 `cd /root/phase-gated-compound-sparse`（该目录不存在）。`env.sh` 本身没有这个 cd，问题可能出在 tmux session 启动命令或 `.bashrc` 中。脚本 `set -e` 导致遇到错误立即退出，实验从未真正开始。\n\n### 结论\n\n- **网络/模型下载问题**：不适用——实验从未执行到加载模型的阶段\n- **`TRANSFORMERS_OFFLINE=1` 缺失**：同样不适用，实验未启动\n- **需要干预**：**是**。需要排查 `cd /root/phase-gated-compound-sparse` 的来源（检查 `.bashrc` 或 tmux 启动命令），修复后重新启动两个实验"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-transformers-offline-status.md"
+}

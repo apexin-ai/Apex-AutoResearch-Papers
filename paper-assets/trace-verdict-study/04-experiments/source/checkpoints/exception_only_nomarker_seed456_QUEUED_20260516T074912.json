@@ -1,0 +1,19 @@
+{
+  "exp_id": "exception_only_nomarker_seed456",
+  "project": "trace-verdict-study",
+  "state": "QUEUED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T07:12:12.683Z",
+    "updated_at": "2026-05-16T07:49:12.477Z",
+    "spec": {
+      "hypothesis": "Task G: Format marker ablation — seed=456. Remove [No exception data in trace] marker from exception_only and retrain. Tests whether format marker affects model judgment.",
+      "parent": "exception_only_seed42",
+      "plan_id": "round5_task_g"
+    }
+  },
+  "timestamp": "2026-05-16T07:49:12.724527+00:00",
+  "trigger": "update_registry"
+}

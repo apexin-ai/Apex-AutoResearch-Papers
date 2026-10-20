@@ -1,0 +1,15 @@
+{
+  "exp_id": "deepseek_no_trace_seed123",
+  "project": "trace-verdict-study",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:19:12.571Z",
+    "updated_at": "2026-05-20T21:19:19.025Z",
+    "hypothesis": "DeepSeek no_trace 只有 1 seed (73.36%)，加第 2 seed 使 baseline 更 robust。no_trace 是所有条件对比的锚点，单 seed baseline 在 rebuttal 中易被质疑。"
+  },
+  "timestamp": "2026-05-20T21:19:19.332927+00:00",
+  "trigger": "update_registry"
+}

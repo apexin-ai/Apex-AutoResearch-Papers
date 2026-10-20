@@ -1,0 +1,3 @@
+Server: westd-11235
+PDF: /root/trace-verdict-study/docs/paper/figures/training_dynamics.pdf
+PNG: /root/trace-verdict-study/docs/paper/figures/training_dynamics.png

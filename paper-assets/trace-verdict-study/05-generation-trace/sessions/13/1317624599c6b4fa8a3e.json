@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "1317624599c6b4fa8a3e",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "eval cross model calibration plan019",
+  "task_key": "worker_eval_cross_model_calibration_plan019_20260518T135431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cross_model_calibration_plan019_20260518T135431.log",
+    "occurrence": 1,
+    "bytes": 541332,
+    "sha256": "73b7275c0133739df775615ba53786633c4c09204c8bec476eb75198ddf92938"
+  },
+  "statistics": {
+    "messages": 300,
+    "user_turns": 0,
+    "tool_calls": 108,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 80,
+      "tool_call": 108,
+      "tool_result": 108,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 300,
+      "chunks": [
+        {
+          "path": "1317624599c6b4fa8a3e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1317624599c6b4fa8a3e-part-0002.json",
+          "message_count": 120
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-cross-model-calibration-plan019.md"
+}

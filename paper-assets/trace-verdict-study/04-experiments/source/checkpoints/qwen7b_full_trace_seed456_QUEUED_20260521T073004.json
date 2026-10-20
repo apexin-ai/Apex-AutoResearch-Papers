@@ -1,0 +1,16 @@
+{
+  "exp_id": "qwen7b_full_trace_seed456",
+  "project": "trace-verdict-study",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:29:51.585Z",
+    "updated_at": "2026-05-21T07:30:04.168Z",
+    "hypothesis": "Qwen-7B full_trace seed456 应在 ~81% 附近（与 seed42=81.76% 一致），为 MF-3 multi-seed 要求补齐 full_trace 方差估计。3-seed mean 将替换 Table 2 中的单 seed 值。",
+    "parent": "full_trace_seed42_v5"
+  },
+  "timestamp": "2026-05-21T07:30:04.602725+00:00",
+  "trigger": "update_registry"
+}

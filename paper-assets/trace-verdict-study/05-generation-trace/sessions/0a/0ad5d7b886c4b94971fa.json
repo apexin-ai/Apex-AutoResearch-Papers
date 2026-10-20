@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ad5d7b886c4b94971fa",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_10_1778911859.md",
+  "task_key": "loop_10_1778911859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778911859.md",
+    "occurrence": 1,
+    "bytes": 5133,
+    "sha256": "78b00ac9073f7dd99bcc43ddcf826532f135b36dec12b9e70bfedc1f6eac710f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-16T05:40:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: **仅 westd-11235 cuda:0 和 cuda:1**，不可用其他 GPU\n- ae_only_seed123/456 正在 RUNNING，cron 在监控——**不要 kill、不要在同 GPU 上启新实验**，等 cron 回调\n- label_only_seed123/456 已 ALLOCATED（cuda:0/cuda:1），**必须等 ae_only 完成后才能 submit**，不要抢占\n- eval max_length 必须匹配训练 max_length（DeepSeek 教训：2048→16384 导致 OOD 崩溃 28.5%）\n- 论文正文 ≤ 8 页（EMNLP 限制），当前有 Worker 在做压缩，Discussion 分析性小节已决定移入 appendix（D042/D043）\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-11235，账户 root\n- **工作目录**: `/root/trace-verdict-study`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **模型**: Qwen2.5-Coder-7B-Instruct（主模型），DeepSeek-Coder-6.7B-Instruct（跨模型验证）\n- **Checkpoints**: `/root/autodl-tmp/trace-verdict-study-checkpoints/{exp_id}/`\n- **数据**: `/root/autodl-tmp/trace-verdict-study-data/{condition}_{train,test}.jsonl`（训练 4720 条）\n- **W&B project**: `trace-verdict-study`\n- **活跃进程**:\n  - ae_only_seed123: RUNNING on cuda:0, cron_id=ae_only_seed123, log=/tmp/ae_only_seed123.log\n  - ae_only_seed456: RUNNING on cuda:1, cron_id=ae_only_seed456, log=/tmp/ae_only_seed456.log\n- **活跃 Worker**: `worker_paper_final-compress-v4_20260516T053602`（turn 7，正在把 Discussion 小节移入 appendix.tex 做 8 页压缩）\n\n### 3. 📊 当前状态\n**刚做完**: 全部 11/11 plan 实验 + 补充验证（DebugBench、regex baseline、trace length ablation、跨模型 DeepSeek）。本 session 大量 Worker 并行推进论文：8 页压缩、regex/DebugBench 数据 patch、图表生成、reference audit、provenance 修复。\n\n**Registry 活跃实验**:\n| exp_id | 状态 | GPU | 用途 |\n|--------|------|-----|------|\n| ae_only_seed123 | RUNNING | cuda:0 | ae_only seed robustness（最后一批 seed 实验） |\n| ae_only_seed456 | RUNNING | cuda:1 | ae_only seed robustness |\n| label_only_seed123 | ALLOCATED | cuda:0 | label_only seed robustness（ae_only 完成后接力） |\n| label_only_seed456 | ALLOCATED | cuda:1 | label_only seed robustness |\n\n**等待中**:\n- 2 个 cron 监控 ae_only seeds → 完成回调后需: 分析结果 + patch 到论文 + submit label_only seeds\n- 1 个 Worker (paper:final-compress-v4) 正在跑论文压缩 → 完成后需检查编译和页数\n- Director 未有未决决策\n\n**统计**: 成功 25 / 负向 7 / 失败 3 / 共 48（含 RUNNING 2 + ALLOCATED 2）\n\n### 4. 📋 待办（条件触发式）\n- **ae_only_seed123/456 cron 回调 ANALYZING** → spawn Worker 分析 eval_results.json + predictions.jsonl → 计算 3-seed mean±std → update registry → patch seed data 到论文 Table → 汇报 Director\n- **ae_only 分析完成 + GPU 释放** → `submit_on_allocated` 提交 label_only_seed123 (cuda:0) 和 label_only_seed456 (cuda:1)，命令参考 ae_only 格式但 `--condition label_only --label_only_loss`\n- **label_only seeds 完成** → 同上分析流程 → 所有 seed robustness 数据进论文 → 实验阶段彻底收官\n- **worker_paper_final-compress-v4 完成** → 检查论文是否 ≤ 8 页 + 编译通过 → 如果仍超页则继续压缩\n- **所有实验 + 论文初稿就绪** → 启动 Reviewer 对抗（审稿组待命）→ 3 轮迭代 (5/18-20)\n- **trace_length_ablation figure** → 确认是否已完成（之前有 Worker 在绘制），若未完成需补\n\n### 5. 🎯 战略上下文\n**核心结论**: Exception events 是 verdict prediction 最有效的 trace 组件。Qwen exception_only 99.83% ± 0.00（3 seeds 完美稳定）。Full trace 反而因 gradient dilution 导致性能崩塌（81.76%→86.22% label-only fix 证实）。VOTA 的优势主要来自 exception 信息，ae（actual/expected）冗余。\n\n**决策链关键节点**:\n- D042/D043: 论文 13→8 页重组，Discussion 移入 appendix\n- D044-D047: Regex baseline 93.61% 确认 SFT 必要性；DebugBench 100% 跨任务泛化\n- paper_framing v3.0: 3/3 core claims FINALIZED\n\n**易错点**:\n- label_only_seed123/456 的 submit 命令需要 `--label_only_loss` flag（不只是换 condition）\n- DeepSeek exception_only seed123=91.09% 是 LoRA initialization outlier，不是方法问题——论文中需 footnote 说明\n- 不要把 DebugBench 的 exception_only 100% 作为 \"trace importance\" 证据——no_trace baseline 已 96.71%，marginal gain 仅 3.29pp，定位为 generalization validation\n- 论文压缩 Worker 已经是第 4 版（v1-v3 被 cancel/失败），如果 v4 仍超页，可能需要更激进地砍 Related Work 或合并表格\n\n**9 天冲刺节奏** (ARR DDL = 5/25):\n- 5/16-17: seed 实验收官 + 初稿定稿\n- 5/18-20: Reviewer 对抗 3 轮\n- 5/21-23: 终稿 + appendix + checklist\n- 5/24: 提交\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778911859.md"
+}

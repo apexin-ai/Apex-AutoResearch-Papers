@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ffdf96509b52aa989bf",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops kill orphan and gpu status",
+  "task_key": "worker_ops_kill-orphan-and-gpu-status_20260521T151558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-orphan-and-gpu-status_20260521T151558_result.json",
+    "occurrence": 1,
+    "bytes": 784,
+    "sha256": "7351030332fe2842daf0b0c05d55305e7ba3081b1c7c86c4e0b9d26f7cf0db82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有任何进程持有 GPU 设备文件。GPU 0 的 ~49GB 占用是驱动/系统层面的残留，应该会在短时间内自动释放，或者下次有进程申请 CUDA context 时被回收。\n\n---\n\n**汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| PID 706059 (qwen1.5b_no_trace_seed42) | 已死，确认不存在 |\n| PID 706833 (codellama_exception_only_seed42) | 已杀掉 |\n| GPU 0 | 49175 MiB used / 48077 MiB free（残留显存，无活跃进程） |\n| GPU 1 | 0 MiB used / 97252 MiB free（完全空闲） |\n| 其他 GPU 进程 | 无（`nvidia-smi` compute apps 为空，`fuser /dev/nvidia*` 无结果） |\n\nGPU 1 完全可用。GPU 0 的残留显存无进程关联，可以直接使用——新进程启动 CUDA context 时会正常分配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-orphan-and-gpu-status.md"
+}

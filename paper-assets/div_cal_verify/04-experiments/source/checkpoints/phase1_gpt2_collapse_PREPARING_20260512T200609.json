@@ -1,0 +1,35 @@
+{
+  "exp_id": "phase1_gpt2_collapse",
+  "project": "div_cal_verify",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T20:06:09.792Z",
+    "updated_at": "2026-05-12T20:06:09.792Z",
+    "spec": {
+      "hypothesis": "GPT2-125M under extreme training (1M tokens/gen, 5 epochs, lr=1e-4, 6 gens) will show measurable representation collapse (RankMe >20% decline)",
+      "model_name": "gpt2 (124M) + gpt2-medium (355M)",
+      "server": "westd-11235",
+      "data_path": "/root/div_cal_verify/data_gpt2/",
+      "seed": 42,
+      "hyperparams": {
+        "methods": [
+          "rgds",
+          "uncurated"
+        ],
+        "num_generations": 6,
+        "lr": 0.0001,
+        "batch_size": 4,
+        "grad_accum": 8,
+        "seq_len": 512,
+        "gen_tokens": 1000000,
+        "train_epochs": 5,
+        "gpu_mode": "single card"
+      }
+    }
+  },
+  "timestamp": "2026-05-12T20:06:09.819570+00:00",
+  "trigger": "update_registry"
+}

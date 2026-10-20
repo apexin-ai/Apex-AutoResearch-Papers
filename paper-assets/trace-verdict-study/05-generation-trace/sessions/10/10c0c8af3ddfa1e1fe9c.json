@@ -1,0 +1,1523 @@
+{
+  "schema_version": "1.0",
+  "id": "10c0c8af3ddfa1e1fe9c",
+  "project": "trace-verdict-study",
+  "kind": "conversation",
+  "title": "cron hook vota ae only seed42 20260515T153539 341072",
+  "task_key": "cron_hook_vota_ae_only_seed42_20260515T153539_341072",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_vota_ae_only_seed42_20260515T153539_341072.jsonl",
+    "occurrence": 1,
+    "bytes": 83201,
+    "sha256": "7c3f78bb1b6a649e9d1b12c211713b80896d367d8387165dc65ed54b320b39b7"
+  },
+  "statistics": {
+    "messages": 76,
+    "user_turns": 2,
+    "tool_calls": 37,
+    "roles": {
+      "user": 2,
+      "tool_call": 37,
+      "tool_result": 35,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T12:13:37.982620+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: vota_ae_only_seed42\n- project: trace-verdict-study\n- server: westd-11235\n- log_path: ~/runs/trace-verdict-study/vota_ae_only_seed42.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T12:13:50.738387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T12:13:50.789047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T12:13:53.149824+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "trace-verdict-study",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T12:13:53.605460+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T12:13:53.606974+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"vota_ae_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T05:11:44.999Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:13:36.813Z\\\", \\\"hypothesis\\\": \\\"VOTA component ablation: ae_only condition — only actual/expected values, no exception/loop compression (plan_003 sub-a)\\\", \\\"notes\\\": \\\"⚠️ ae_only 数据 fallback 比率 88% (4159/4720): actual/expected 字段为 [fallback: full locals]（全量局部变量 dump），源自 VOTA compressor _extract_assertions() 固有行为，非 data prep bug。ae_only 测的是\\\\\\\"assertion 事件（含 locals noise）\\\\\\\"而非纯 actual/expected 信号。plan_001（减法：去掉 ae）是验证 ae 贡献的更可靠证据——不受 fallback 影响。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train/train_sft.py --condition ae_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_ae_only_seed42 && python eval/evaluate.py --condition ae_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/eval_results.json\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T12:13:36.539Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T12:13:36.813Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T12:13:37.756005+00:00\\\"}]}}, \\\"deepseek_vota_seed42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:13:39.391Z\\\", \\\"updated_at\\\": \\\"2026-05-15T10:49:51.380Z\\\", \\\"hypothesis\\\": \\\"Multi-model validation: VOTA on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if VOTA's verdict accuracy advantage generalizes beyond Qwen2.5-Coder to DCSH's same base model.\\\", \\\"spec\\\":\n…[truncated 27586 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 457
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T12:13:54.262024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "trace-verdict-study",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T12:13:54.362946+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "trace-verdict-study"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T12:13:55.720266+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"deepseek_vota_seed42\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=93484)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 2114
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T12:13:55.720785+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-15T12:13:37Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 22 个实验 — DONE 14, PREPARING 3, QUEUED 4, RUNNING 1\\\\n**DONE 分布**: failed 1, killed 3, negative 1, success 9\\\\n\\\\n### GPU 占用\\\\n- **分配**: 2 张 — westd-11235:cuda:0, westd-11235:cuda:1\\\\n- **实际运行**: 1 张 — westd-11235:cuda:0(deepseek_vota_seed42)\\\\n- **空闲（分配了没跑）**: westd-11235:cuda:1\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `deepseek_vota_seed42` | westd-11235 | cuda:0 | 93484 | `~/runs/trace-verdict-study/deepseek_vota_seed42.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `vota_ae_only_seed42` [failed] — 2026-05-15T12:13:36 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n- `vota_loop_only_seed42` [success] — 2026-05-15T10:26:30\\\\n- `vota_exception_only_seed42_v2` [success] — 2026-05-15T09:44:10\\\\n- `full_trace_label_only_seed42` [success] — 2026-05-15T08:11:50\\\\n- `no_trace_seed42_v5` [success] — 2026-05-15T06:59:49\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `vota_ae_only_seed42`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| deepseek_vota_seed42 | Multi-model validation: VOTA on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if VOTA's verdict accuracy advantage generalizes beyond Qwen2.5-Coder to DCSH's same base model. | — | — | — |\\\\n\\\\n## 待处理\\\\n- vota_seed42_v2（排队等待 GPU）\\\\n- vota_seed42（排队等待 GPU）\\\\n- no_trace_seed42_v2（排队等待 GPU）\\\\n- no_trace_seed42（排队等待 GPU）\\\\n- deepseek_exception_only_seed42: Multi-model validation: exception_only on DeepSeek-Coder-6.7B-Instruct (plan_004). Te\n…[truncated 1679 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 1458
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T12:13:55.771425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/ROADMAP.md\\\", \\\"content\\\": \\\"# trace-verdict-study — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 10:18 UTC | 更新原因: 组件消融完成，更新层级表 + 10天冲刺路线\\\\n\\\\n## 核心方向\\\\nVerdict prediction 本质是 fault detection：exception events 是近完美判别信号 (99.83%)，trace compression 的价值在于隔离这一信号而非压缩全量 trace。详见 paper_framing.md。\\\\n\\\\n## 投稿目标\\\\n- **Primary**: EMNLP 2026 Main (ARR May 25, DDL 10 天)\\\\n- Fallback: EMNLP 2026 Findings\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research (post-MVP) + 审稿进行中\\\\n- **Core claims 支撑度**: 3/3 claims 在 Qwen-2.5-Coder-7B 上已确认\\\\n  - Claim 1 (fault indicator preservation): exception_only 99.83%, vota_no_ae 99.4% ✓\\\\n  - Claim 2 (compression > full trace): gradient dilution 26% + info overload 74% 因果分解 ✓\\\\n  - Claim 3 (two-tier hierarchy): exception (99.83%) >>> loop (85.6%) >> ae (冗余) ✓\\\\n- **跨模型泛化**: plan_004 (DeepSeek-Coder) 已派，今日出结果\\\\n- **完成实验**: 9/11 plan experiments done; ae_only running (~1.5h)\\\\n\\\\n### 组件层级表 (Qwen-2.5-Coder-7B)\\\\n| Condition | Accuracy | 角色 |\\\\n|-----------|----------|------|\\\\n| exception_only | 99.83% | Tier 1: 主信号 |\\\\n| VOTA w/o ae | 99.4% | ae 冗余确认 |\\\\n| VOTA full | 99.2% | — |\\\\n| label-only loss | 86.2% | gradient dilution 修复 |\\\\n| loop_only | 85.6% | Tier 2: 行为模式 |\\\\n| full_trace | 81.8% | 原始 trace |\\\\n| no_trace | 75.1% | baseline |\\\\n\\\\n## 近期任务\\\\n- [ ] plan_004: DeepSeek-Coder 4 条件 (no_trace/full_trace/VOTA/exception_only) — cuda:0 运行中\\\\n- [ ] ae_only 完成 → 确认层级表 + 移入 Appendix — cuda:1 运行中 (~1.5h)\\\\n- [ ] plan_007: calibration analysis (ECE + reliability diagrams) — ae_only 完成后 cuda:1\\\\n- [ ] DeepSeek 结果确认后 → 正式更新 framing + 启动 Paper Agent\\\\n- [ ] plan_008: seed robustness (3 seeds) — 写作期间并行跑\\\\n- [ ] plan_005: 第二任务验证 (DebugBench) — 时间允许则加\\\\n\\\\n## GPU 预算\\\\n- 本地分配: cuda:0 + cuda:1 (westd-11235)\\\\n- cuda:0: plan_004 DeepSeek-Coder (~8h)\\\\n- cuda:1: ae_only (~1.5h remaining) → plan_007 (~1h)\\\\n- 剩余预算: plan_008 (6h) + plan_005 (6h) 可在写作期间并\n…[truncated 1894 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 1408
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T12:14:18.383792+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/skills/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T12:14:18.736397+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_2c7a3fd9."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "Read",
+            "elapsed_ms": 352
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T12:14:18.887343+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T12:14:18.938260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_2c7a3fd9."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T12:14:21.297657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/on-experiment-failed.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T12:14:21.750882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "Glob",
+            "elapsed_ms": 453
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T12:14:21.751344+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T12:14:21.801872+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T12:14:24.160393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/skills/**/on-experiment-failed*",
+              "path": "/home/ubuntu/agent-ml-research"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T12:14:24.511773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "Glob",
+            "elapsed_ms": 351
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T12:14:24.562527+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/skills/**/resource-saturation*",
+              "path": "/home/ubuntu/agent-ml-research"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T12:14:24.713392+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "Glob",
+            "elapsed_ms": 150
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T12:14:27.020749+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T12:14:27.021453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: on-experiment-failed\n3\tdescription: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。\n4\tscope: global\n5\ttags:\n6\t- workflow\n7\t- diagnosis\n8\t- cron-hook\n9\ttools:\n10\t- read_registry\n11\t- tail_training_logs\n12\t- update_registry\n13\t- append_idea\n14\t- feishu_send_result_card\n15\t- spawn_worker\n16\t- check_job_status\n17\tversion: 4\n18\theavy: true\n19\troles:\n20\t- agent\n21\t---\n22\t\n23\t# 实验失败诊断工作流\n24\t\n25\t## 触发方式\n26\t由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。\n27\t\n28\t## 步骤\n29\t\n30\t### Step 0: 读取项目上下文（诊断前必须执行）\n31\t先读文档，再看日志——否则诊断方向可能完全错误：\n32\t\n33\t- `read_project_file(\"memory.md\")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案\n34\t- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构\n35\t\n36\t读完后检查：\n37\t- memory.md 里有没有\"此类实验曾失败，原因是 X\"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程\n38\t- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）\n39\t\n40\t### Step 1: 了解失败背景\n41\t- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path\n42\t\n43\t### Step 2: 浅层日志诊断\n44\t有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)\n45\t- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback\n46\t- 没找到 → 增加行数再查\n47\t\n48\t### Step 2.5: 深查（满足以下任一条件时 spawn_worker）\n49\t- 运行时长 < 5 分钟（初始化阶段崩溃）\n50\t- tail 日志中未见明确 Traceback 或错误行\n51\t- 同类实验连续失败 ≥ 2 次\n52\t\n53\t```python\n54\tspawn_worker(\n55\t    task_type=\"diagnose:{exp_id}\",\n56\t    task_prompt=\"\"\"SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。\n57\t\n58\t项目路径：{project_path}（绝对路径）\n59\t日志路径：{log_path}（可能为空）\n60\t\n61\t执行步骤（按顺序，有结论就停）：\n62\t\n63\t1. 如果有日志路径：\n64\t   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）\n65\t   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）\n66\t   - 日志文件不存在：说明任务启动即失败，跳到步骤 2\n67\t\n68\t2. 日志无错误或无日志时，检查基础设施：\n69\t   - 入口文件是否存在\n70\t   - 激活环境并验证 import\n71\t   - 检查 configs/ 目录\n72\t\n73\t3. 检查磁盘/内存（OOM 类）\n74\t\n75\t最后输出一行 JSON：\n76\t{\"root_cause\":\"<引用具体报错行>\",\"error_type\":\"infrastructure|hyperparameter|resource|data\",\"fix_steps\":[\"步骤1\",\"步骤2\"],\"can_auto_fix\":true}\"\"\",\n77\t    tool_groups=[\"ssh\"],\n78\t)\n79\t```\n80\t\n81\tWorker 返回后，以其结论作为 Step 3 的诊断依据。\n82\t\n83\t### \n…[truncated 1766 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T12:14:27.021665+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T12:14:27.072305+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T12:14:52.285173+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__tail_training_logs",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T12:14:52.336434+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T12:14:55.799147+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "trace-verdict-study",
+              "file": "memory.md"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T12:14:56.251485+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/memory.md\\\", \\\"content\\\": \\\"# trace-verdict-study Memory\\\\n\\\\n## MVP Round 1 结论（已作废）[2026-05-14]\\\\n\\\\nRound 1 结果全部无效，原因：\\\\n1. **VOTA match 泄漏**：assertion output 中 `match=True/False` 直接泄漏 verdict，99.2% accuracy 是 pattern matching 而非理解 trace\\\\n2. **Label 截断**：full_trace 28.4% 是因为 label 在序列末尾被 tokenizer 截断，模型根本没学到正确标签\\\\n\\\\n### 教训\\\\n- VOTA 输出中任何直接或间接暴露 pass/fail 的字段都是 data leakage——审查 trace format 时需要\\\\\\\"如果模型只看这一个字段能否猜到答案\\\\\\\"的测试\\\\n- 训练数据格式化必须保证 label 不被截断——应先预留 label token budget，再分配 trace 空间\\\\n- `[No trace available - execution failed]` 这类文本也是隐性泄漏（暗示 fail）\\\\n\\\\n## MVP v5 + Ablation 结果（当前有效数据）[2026-05-15]\\\\n\\\\n### 三条件对比（全部 v5 代码版本，统一 bootstrap CI）\\\\n- no_trace v5: 75.1% [72.8, 77.5], lift +3.6pp over majority\\\\n- **full_trace v5: 81.8%** [79.7, 83.9], lift +6.6pp [4.4, 9.0] vs no_trace\\\\n- **VOTA v5: 99.2%** [98.6, 99.7], lift +24.3pp [21.8, 26.8] vs no_trace\\\\n- **VOTA vs full_trace: +17.7pp** [15.5, 19.8]（所有对比 p < 0.001）\\\\n\\\\n### plan_001 ablation: VOTA w/o actual/expected [2026-05-15]\\\\n- **accuracy 99.4%** [98.9, 99.8] — 去掉 actual/expected 后性能不降反微升（vs VOTA v5 99.2%）\\\\n- **结论：actual/expected 字段是冗余信息**，VOTA 效果来自 trace 行为模式（调用序列、变量变化、exception 等）的理解\\\\n- Claim 1 走 **full positive framing**: \\\\\\\"VOTA teaches execution-grounded verdict reasoning\\\\\\\"\\\\n- 这排除了 \\\\\\\"VOTA 只是做 actual==expected 字符串匹配\\\\\\\" 的 trivial explanation\\\\n\\\\n### plan_002 ablation: label-only loss on full_trace [2026-05-15]\\\\n- **accuracy 86.2%** [84.4, 88.1] — 比标准 full_trace v5 (81.8%) 提升 +4.5pp\\\\n- **label-only loss 部分缓解了 gradient dilution**：标准 loss 在 ~2000 trace tokens 上计算梯度导致分类信号被稀释，label-only 只在 pass/fail token 上计算 loss\\\\n- **但仍远低于 VOTA (99.2%)**：86.2% vs 99.2% = 13pp gap 不可用训练目标优化弥补\\\\n- **结论：full_trace-VOTA gap 的主因是 information overload（trace 噪声），不是 gradient dilution**\\\\n  - gradient dilution 贡献: ~4.5pp（可通过 label-only loss 修复）\\\\n  - information overload 贡献: ~13pp（只能通过 trac\n…[truncated 5427 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 452
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T12:14:57.105612+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "westd-11235",
+              "log_path": "~/runs/trace-verdict-study/vota_ae_only_seed42.log",
+              "n": "80"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T12:14:57.558096+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"`torch_dtype` is deprecated! Use `dtype` instead!\\\", \\\"Condition: ae_only\\\", \\\"Checkpoint: /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final\\\", \\\"Test samples: 1190\\\", \\\"Loading base model from /root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct\\\", \\\"\\\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.03s/it]\\\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.04s/it]\\\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:00,  1.01it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.45it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.23it/s]\\\", \\\"The following generation flags are not valid and may be ignored: ['top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\", \\\"Loading LoRA adapter from /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final\\\", \\\"Running inference...\\\", \\\"  [50/1190] running accuracy: 1.0000\\\", \\\"  [100/1190] running accuracy: 1.0000\\\", \\\"  [150/1190] running accuracy: 1.0000\\\", \\\"  [200/1190] running accuracy: 1.0000\\\", \\\"  [250/1190] running accuracy: 1.0000\\\", \\\"  [300/1190] running accuracy: 1.0000\\\", \\\"  [350/1190] running accuracy: 0.9971\\\", \\\"  [400/1190] running accuracy: 0.9975\\\", \\\"  [450/1190] running accuracy: 0.9978\\\", \\\"  [500/1190] running accuracy: 0.9980\\\", \\\"  [550/1190] running accuracy: 0.9982\\\", \\\"  [600/1190] running accuracy: 0.9983\\\", \\\"  [650/1190] running accuracy: 0.9985\\\", \\\"  [700/1190] running accuracy: 0.9986\\\", \\\"  [750/1190] running accuracy: 0.9987\\\", \\\"  [800/1190] running accuracy: 0.9988\\\", \\\"  [850/1190] running accuracy: 0.9988\\\", \\\"  [900/1190] running accuracy: 0.9989\\\", \\\"  [950/1190] running accuracy: 0.9989\\\", \\\"  [1000/1190] running accuracy: 0.9990\\\", \\\"  [1050/1190] running accuracy: 0.9990\\\", \\\"  [1100/1190] running accuracy: 0.9991\\\", \\\"  [1150/1190] running ac\n…[truncated 707 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 452
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T12:15:33.917713+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "vota_ae_only_seed42",
+              "field": "conclusion",
+              "value": "success",
+              "project": "trace-verdict-study"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T12:15:34.370208+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"vota_ae_only_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T05:11:44.999Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:15:33.933Z\\\", \\\"hypothesis\\\": \\\"VOTA component ablation: ae_only condition — only actual/expected values, no exception/loop compression (plan_003 sub-a)\\\", \\\"notes\\\": \\\"⚠️ ae_only 数据 fallback 比率 88% (4159/4720): actual/expected 字段为 [fallback: full locals]（全量局部变量 dump），源自 VOTA compressor _extract_assertions() 固有行为，非 data prep bug。ae_only 测的是\\\\\\\"assertion 事件（含 locals noise）\\\\\\\"而非纯 actual/expected 信号。plan_001（减法：去掉 ae）是验证 ae 贡献的更可靠证据——不受 fallback 影响。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train/train_sft.py --condition ae_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_ae_only_seed42 && python eval/evaluate.py --condition ae_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/eval_results.json\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T12:13:36.539Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T12:13:36.813Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T12:13:37.756005+00:00\\\"}]}}, \\\"impact_analysis\\\": {\\\"change_type\\\": \\\"experiment\\\", \\\"change_id\\\": \\\"vota_ae_only_seed42\\\", \\\"affected_decisions\\\": [], \\\"cascade_decisions\\\": [], \\\"affected_claims\\\": [], \\\"affected_figures\\\": [], \\\"recommendations\\\": [\\\"No downstream impact detected\\\"]}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1366}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T12:15:36.782396+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "vota_ae_only_seed42",
+              "field": "failure_reason",
+              "value": "N/A — cron 误判。实际已完成，eval_results.json 已生成。process dead 5x 是因为训练+eval 正常结束后进程退出，cron 无 W&B/sentinel 检测通道。",
+              "project": "trace-verdict-study"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T12:15:38.688993+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"vota_ae_only_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T05:11:44.999Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:15:36.840Z\\\", \\\"hypothesis\\\": \\\"VOTA component ablation: ae_only condition — only actual/expected values, no exception/loop compression (plan_003 sub-a)\\\", \\\"notes\\\": \\\"⚠️ ae_only 数据 fallback 比率 88% (4159/4720): actual/expected 字段为 [fallback: full locals]（全量局部变量 dump），源自 VOTA compressor _extract_assertions() 固有行为，非 data prep bug。ae_only 测的是\\\\\\\"assertion 事件（含 locals noise）\\\\\\\"而非纯 actual/expected 信号。plan_001（减法：去掉 ae）是验证 ae 贡献的更可靠证据——不受 fallback 影响。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train/train_sft.py --condition ae_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_ae_only_seed42 && python eval/evaluate.py --condition ae_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/eval_results.json\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T12:13:36.539Z\\\"}, \\\"failure_reason\\\": \\\"N/A — cron 误判。实际已完成，eval_results.json 已生成。process dead 5x 是因为训练+eval 正常结束后进程退出，cron 无 W&B/sentinel 检测通道。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T12:13:36.813Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T12:13:37.756005+00:00\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0902}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1906
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T12:15:38.840055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "vota_ae_only_seed42",
+              "field": "metrics",
+              "value": "{'accuracy': 0.999, 'majority_baseline': 0.7151, 'lift': 0.2839, 'n': 1190, 'pass_precision': 1, 'pass_recall': 1, 'pass_f1': 1, 'fail_precision': 1, 'fail_recall': 1, 'fail_f1': 1, 'accuracy_ci': [0.997, 1]}",
+              "project": "trace-verdict-study"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T12:15:38.991529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"vota_ae_only_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T05:11:44.999Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:15:38.893Z\\\", \\\"hypothesis\\\": \\\"VOTA component ablation: ae_only condition — only actual/expected values, no exception/loop compression (plan_003 sub-a)\\\", \\\"notes\\\": \\\"⚠️ ae_only 数据 fallback 比率 88% (4159/4720): actual/expected 字段为 [fallback: full locals]（全量局部变量 dump），源自 VOTA compressor _extract_assertions() 固有行为，非 data prep bug。ae_only 测的是\\\\\\\"assertion 事件（含 locals noise）\\\\\\\"而非纯 actual/expected 信号。plan_001（减法：去掉 ae）是验证 ae 贡献的更可靠证据——不受 fallback 影响。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train/train_sft.py --condition ae_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_ae_only_seed42 && python eval/evaluate.py --condition ae_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/eval_results.json\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T12:13:36.539Z\\\"}, \\\"failure_reason\\\": \\\"N/A — cron 误判。实际已完成，eval_results.json 已生成。process dead 5x 是因为训练+eval 正常结束后进程退出，cron 无 W&B/sentinel 检测通道。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T12:13:36.813Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T12:13:37.756005+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.999, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2839, \\\"n\\\": 1190, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 1, \\\"pass_f1\\\": 1, \\\"fail_precision\\\": 1, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 1, \\\"accuracy_ci\\\": [0.997, 1]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1061}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 151
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T12:15:53.873149+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "vota_ae_only_seed42",
+              "field": "checkpoint_path",
+              "value": "/root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final",
+              "project": "trace-verdict-study"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T12:15:54.375743+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"vota_ae_only_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T05:11:44.999Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:15:53.921Z\\\", \\\"hypothesis\\\": \\\"VOTA component ablation: ae_only condition — only actual/expected values, no exception/loop compression (plan_003 sub-a)\\\", \\\"notes\\\": \\\"⚠️ ae_only 数据 fallback 比率 88% (4159/4720): actual/expected 字段为 [fallback: full locals]（全量局部变量 dump），源自 VOTA compressor _extract_assertions() 固有行为，非 data prep bug。ae_only 测的是\\\\\\\"assertion 事件（含 locals noise）\\\\\\\"而非纯 actual/expected 信号。plan_001（减法：去掉 ae）是验证 ae 贡献的更可靠证据——不受 fallback 影响。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train/train_sft.py --condition ae_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_ae_only_seed42 && python eval/evaluate.py --condition ae_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/eval_results.json\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T12:13:36.539Z\\\"}, \\\"failure_reason\\\": \\\"N/A — cron 误判。实际已完成，eval_results.json 已生成。process dead 5x 是因为训练+eval 正常结束后进程退出，cron 无 W&B/sentinel 检测通道。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T12:13:36.813Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T12:13:37.756005+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.999, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2839, \\\"n\\\": 1190, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 1, \\\"pass_f1\\\": 1, \\\"fail_precision\\\": 1, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 1, \\\"accuracy_ci\\\": [0.997, 1]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/a\n…[truncated 81 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 502
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T12:15:54.627383+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "vota_ae_only_seed42",
+              "field": "log_path",
+              "value": "~/runs/trace-verdict-study/vota_ae_only_seed42.log",
+              "project": "trace-verdict-study"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T12:15:54.728208+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"vota_ae_only_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T05:11:44.999Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:15:54.681Z\\\", \\\"hypothesis\\\": \\\"VOTA component ablation: ae_only condition — only actual/expected values, no exception/loop compression (plan_003 sub-a)\\\", \\\"notes\\\": \\\"⚠️ ae_only 数据 fallback 比率 88% (4159/4720): actual/expected 字段为 [fallback: full locals]（全量局部变量 dump），源自 VOTA compressor _extract_assertions() 固有行为，非 data prep bug。ae_only 测的是\\\\\\\"assertion 事件（含 locals noise）\\\\\\\"而非纯 actual/expected 信号。plan_001（减法：去掉 ae）是验证 ae 贡献的更可靠证据——不受 fallback 影响。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train/train_sft.py --condition ae_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_ae_only_seed42 && python eval/evaluate.py --condition ae_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/eval_results.json\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T12:13:36.539Z\\\"}, \\\"failure_reason\\\": \\\"N/A — cron 误判。实际已完成，eval_results.json 已生成。process dead 5x 是因为训练+eval 正常结束后进程退出，cron 无 W&B/sentinel 检测通道。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T12:13:36.813Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T12:13:37.756005+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.999, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2839, \\\"n\\\": 1190, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 1, \\\"pass_f1\\\": 1, \\\"fail_precision\\\": 1, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 1, \\\"accuracy_ci\\\": [0.997, 1]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/a\n…[truncated 151 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 100
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T12:16:00.906967+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__feishu_send_result_card,mcp__agent-ml-research__save_project_file",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T12:16:00.957884+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T12:16:04.126806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "trace-verdict-study"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T12:16:04.479099+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Ablation: 去除 VOTA 中 actual/expected 值对，只保留 assertion structure + exception info。验证 VOTA 效果是 genuine behavioral understanding 还是 trivial string comparison。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 3, \\\"deps\\\": [], \\\"registry_id\\\": \\\"vota_no_ae_seed42\\\", \\\"notes\\\": \\\"如果去 actual/expected 后 acc 仍 >80%，证明非 trivial；如果降到 ~75%(=no_trace)，则是字符串比对。决定 Claim 1 强度和论文 framing。\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.994, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.279, \\\"n\\\": 1190, \\\"pass_f1\\\": 0.996, \\\"fail_f1\\\": 0.989, \\\"accuracy_ci_lower\\\": 0.989, \\\"accuracy_ci_upper\\\": 0.998, \\\"lift_vs_notrace\\\": 0.243, \\\"lift_vs_notrace_ci_lower\\\": 0.218, \\\"lift_vs_notrace_ci_upper\\\": 0.268, \\\"train_loss\\\": 0.0908, \\\"eval_loss\\\": 0.2215, \\\"wall_clock_seconds\\\": 6397.88}}, {\\\"id\\\": \\\"plan_002\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Ablation: full_trace + label-only loss (只对分类 token 计算 loss，mask trace tokens)。验证 collapse 根因是 gradient dilution 而非数据/代码 bug。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 3, \\\"deps\\\": [], \\\"registry_id\\\": \\\"full_trace_label_only_seed42\\\", \\\"notes\\\": \\\"如果 label-only loss 修复 collapse (acc >70%)，确认 gradient dilution 假说。如果仍 collapse，可能是 trace noise/length 本身就有害。\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.8622, \\\"accuracy_ci_lower\\\": 0.8437, \\\"accuracy_ci_upper\\\": 0.8807, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.1471, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.8821, \\\"pass_recall\\\": 0.9318, \\\"pass_f1\\\": 0.9063, \\\"fail_precision\\\": 0.8007, \\\"fail_recall\\\": 0.6873, \\\"fail_f1\\\": 0.7397, \\\"train_loss\\\": 0.2505, \\\"eval_loss\\\": 0.3205, \\\"lift_vs_notrace\\\": 0.1109, \\\"lift_vs_notrace_ci_lower\\\": 0.0849, \\\"lift_vs_notrace_ci_upper\\\": 0.137, \\\"lift_vs_standard_fulltrace\\\": 0.0445, \\\"lift_vs_standard_fulltrace_ci_lower\\\": 0.0235, \\\"lift_vs_standard_fulltrace_ci_upper\\\": 0.0655, \\\"lift_vs\n…[truncated 5215 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 352
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T12:16:04.479669+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "trace-verdict-study",
+              "section": "execution"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T12:16:04.580291+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"trace-verdict-study\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_constraint\\\": [\\\"westd-11235:cuda:0\\\", \\\"westd-11235:cuda:1\\\"], \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"project_path\\\": \\\"/root/trace-verdict-study\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"westd-11235\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 100
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T12:16:54.981466+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "eval:plan_007_calibration",
+              "project": "trace-verdict-study",
+              "task_prompt": "## 任务：Calibration Analysis (plan_007)\n\n在 westd-11235 上用 cuda:1 对已有 checkpoint 做 calibration 分析。\n\n### 背景\n项目 trace-verdict-study 已完成多个条件的训练，需要分析各条件的 calibration 质量（ECE + reliability diagram）。\n\n### 已有 checkpoints（westd-11235 上）\n- no_trace: /root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final\n- full_trace: /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final\n- VOTA: /root/autodl-tmp/trace-verdict-study-checkpoints/vota/final\n- exception_only: /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final\n- loop_only: /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final\n\n### 环境\n- 服务器: westd-11235, account: root\n- conda 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径: /root/trace-verdict-study\n- GPU: 用 cuda:1 (`export CUDA_VISIBLE_DEVICES=1`)，脚本内 --gpu 0\n- 模型: Qwen2.5-Coder-7B-Instruct，路径 /root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct\n- 测试数据: /root/autodl-tmp/trace-verdict-study-data/{condition}_test.jsonl，每个 1190 条\n- HF_HOME=/root/autodl-tmp/.hf_cache\n\n### 要做的事\n\n1. 先检查项目代码里有没有现成的 calibration 分析脚本（`ls /root/trace-verdict-study/eval/`）\n2. 如果没有，写一个 `eval/calibration.py` 脚本，功能：\n   - 加载指定 condition 的 checkpoint + test data\n   - 对每个样本生成 pass/fail 的 logit，计算 softmax probability\n   - 计算 ECE（Expected Calibration Error，10 bins）\n   - 计算 MCE（Maximum Calibration Error）\n   - 生成 reliability diagram 数据（bin_centers, bin_accuracies, bin_counts）\n   - 输出 JSON 结果到 /root/autodl-tmp/trace-verdict-study-checkpoints/{condition}/final/calibration_results.json\n   - 参考已有的 evaluate.py 看模型加载和推理方式\n\n3. 对 5 个条件依次运行（no_trace, full_trace, vota, exception_only, loop_only）\n4. 汇总结果，生成对比表\n\n### 注意\n- 必须加 --gradient_checkpointing（如果 eval 不需要就不加，eval 通常不需要）\n- \"pass\" 和 \"fail\" 在 Qwen2.5-Coder tokenizer 中分别是 token 6385 和 18403\n- 参考 evaluate.py 的推理方式，确保和训练时的 prompt 格式一致\n- 脚本写完后先 dry-run 一个条件验证能跑通\n\n### 产出\n- calibration_results.json（每个条件一个）\n- 汇总对比 markdown（打印到 stdout 即可，我会在 Worker 完成后读取）\n\n### 提交训练\n这是纯 eval 任务，用 submit_training_job 提交，command 格式：\n```\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export CUDA_VISIBLE_DEVICES=1 && cd /root/trace-verdict-study && python eval/calibration.py --conditions no_trace,full_trace,vota,exception_only,loop_only --gpu 0\"\n```\n先写好脚本、dry-run 验证通过后再用 submit_training_job 提交。",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T12:17:05.386976+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_plan_007_calibration_20260515T121655\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/logs/workers/worker_eval_plan_007_calibration_20260515T121655.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_eval_plan_007_calibration_20260515T121655 started. Use get_worker_status('worker_eval_plan_007_calibration_20260515T121655') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 10405
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T12:17:05.839320+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:ae_only_bootstrap",
+              "project": "trace-verdict-study",
+              "task_prompt": "## 任务：ae_only 实验 bootstrap 对比分析\n\nSSH 到 westd-11235 (account: root)，读取 ae_only 的 eval 结果并与其他条件做 bootstrap 对比。\n\n### 背景\nae_only 实验已完成，accuracy 99.9%。但 88% 样本的 actual/expected 字段 fallback 为 full locals dump，数据有污染。需要取完整 eval 结果并做对比。\n\n### 环境\n- 服务器: westd-11235, account: root\n- conda: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径: /root/trace-verdict-study\n\n### 步骤\n\n1. 读取 ae_only eval 结果：\n   ```\n   cat /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/eval_results.json\n   ```\n\n2. 如果项目中有 bootstrap comparison 脚本（检查 `ls /root/trace-verdict-study/eval/`），用它做 ae_only vs 其他条件的 pairwise bootstrap 比较。\n   重点对比：\n   - ae_only vs exception_only\n   - ae_only vs VOTA\n   - ae_only vs no_trace\n   - ae_only vs full_trace\n\n3. 如果没有现成的 bootstrap 脚本，直接读 eval_results.json 内容汇报即可，不需要写新脚本。\n\n4. 检查 ae_only 的训练 log 开头部分（前 30 行），确认训练参数和 epoch 数：\n   ```\n   head -30 ~/runs/trace-verdict-study/vota_ae_only_seed42.log\n   ```\n\n### 产出\n汇报：ae_only 完整 metrics + 与其他条件的对比（如有 bootstrap 结果）+ 训练参数确认。\n\n注意：这是只读分析任务，不需要修改任何文件，不需要启动训练。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T12:17:08.202983+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_ae_only_bootstrap_20260515T121705\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/logs/workers/worker_analysis_ae_only_bootstrap_20260515T121705.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_ae_only_bootstrap_20260515T121705 started. Use get_worker_status('worker_analysis_ae_only_bootstrap_20260515T121705') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2363
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T12:17:11.020211+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__feishu_send_result_card"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__feishu_send_result_card",
+            "tool_args": {
+              "exp_id": "vota_ae_only_seed42",
+              "conclusion": "success",
+              "key_metrics": "{'accuracy': 0.999, 'accuracy_ci': '[99.7%, 100.0%]', 'pass_f1': 1, 'fail_f1': 1, 'lift_over_majority': '+28.4pp', 'n': 1190, 'caveat': '88% samples fallback to full locals dump'}",
+              "baseline_comparison": "⚠️ Cron 误判为 failed（实际完成）。ae_only 99.9% 但 88% 样本 fallback 为 full locals dump，不能代表纯 actual/expected 信号。plan_001 (vota_no_ae 99.4%) 是 ae 贡献的可靠证据。"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T12:17:28.009356+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "project": "trace-verdict-study",
+              "text": "[资源] GPU 分配 2 / 实际在跑 1 (deepseek_vota cuda:0) | Worker 池 2 (GPU 1 / CPU 1)\n\n## ae_only 实验：cron 误判 → 实际 success\n\nvota_ae_only_seed42 被 cron 标记为 failed（\"process dead 5× with no sentinel/W&B\"），但查看日志发现 **训练和 eval 均已正常完成**。原因：该实验通过 tmux 手动启动（非 submit_training_job），无 W&B 也无 sentinel 文件。\n\n### 结果\n- **accuracy: 99.9%** [99.7%, 100.0%], pass/fail F1 均 1.00\n- lift over majority: +28.4pp\n\n### 解读（关键 caveat）\nae_only 数据中 **88% 样本的 actual/expected 字段 fallback 为 [full locals dump]**（全量局部变量），所以这个 99.9% 实际测的是\"assertion 事件 + 全量 locals\"，不是纯 actual/expected 信号。\n\n**结论不变**：ae 贡献的可靠证据仍是 plan_001 (vota_no_ae 99.4% — 去掉 ae 后不降)。ae_only 99.9% 作为 Appendix 补充材料（需披露 fallback 比率）。\n\n### 组件层级表更新\n| Condition | Accuracy | 角色 |\n|-----------|----------|------|\n| ae_only (88% fallback) | 99.9% | Appendix（数据不纯） |\n| exception_only | 99.83% | Tier 1: 主信号 |\n| VOTA w/o ae | 99.4% | ae 冗余确认 |\n| VOTA full | 99.2% | — |\n| label-only loss | 86.2% | gradient dilution 修复 |\n| loop_only | 85.6% | Tier 2: 行为模式 |\n| full_trace | 81.8% | 原始 trace |\n| no_trace | 75.1% | baseline |\n\n### 资源动作\n- cuda:1 空闲 → 已派 Worker 准备 **plan_007 calibration analysis**（ECE + reliability diagrams，纯 eval ~1h）\n- cuda:0 继续跑 deepseek_vota_seed42 (plan_004)\n- 另一 Worker 在做 ae_only bootstrap 对比分析（CPU 任务）\n\n### 经验教训\n通过 tmux 手动启动的实验无 cron 监控通道，会被误判。已记录到 memory.md（此前已有此教训）。"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T12:33:38.375354+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在掌握全貌。ae_only 实际成功（99.9%），cuda:1 空闲需立即安排 plan_007。派 Worker 并汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42"
+          },
+          "id": "event-000056"
+        }
+      ],
+      "message_count": 56
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T15:34:24.334464+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T15:34:33.721142+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__load_project_config",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T15:34:33.721660+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T15:34:37.788411+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "trace-verdict-study",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T15:34:37.788823+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T15:34:38.292972+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"vota_seed456\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T12:38:51.823Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:31:14.342Z\\\", \\\"spec\\\": {\\\"plan_id\\\": \\\"plan_008\\\", \\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456 --wandb_project trace-verdict-study --wandb_run_name vota_seed456 && python eval/evaluate.py --condition vota --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456/final/eval_results.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/vota_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 456}, \\\"hypothesis\\\": \\\"Seed robustness: VOTA with seed=456 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.\\\", \\\"notes\\\": \\\"Director 决策(2026-05-15): 降优先级，exception_only seed robustness 优先。VOTA 在 DeepSeek 退化到 84.5%，已不是 primary claim 核心证据。\\\"}, \\\"deepseek_exception_only_seed123\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:31:02.686Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:31:07.109Z\\\", \\\"spec\\\": {\\\"plan_id\\\": \\\"plan_008\\\", \\\"model_name\\\": \\\"deepseek-ai/deepseek-coder-6.7b-instruct\\\", \\\"seed\\\": 123, \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"server\\\": \\\"westd-11235\\\"}, \\\"hypothesis\\\": \\\"Cross-model seed robustness: exception_only with seed=123 on DeepSeek-Coder-6.7B (plan_008). Further validates exception signal cross-model generaliz\n…[truncated 42618 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 504
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T15:34:38.293366+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 504
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T15:34:38.896150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "trace-verdict-study",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T15:34:38.896569+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| deepseek_full_trace_seed42 | Multi-model comparison: full-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if full_trace also shows intermediate performance on DeepSeek-Coder. | — | — | — |\\\\n\\\\n## 待处理\\\\n- vota_seed42_v2（排队等待 GPU）\\\\n- vota_seed42（排队等待 GPU）\\\\n- no_trace_seed42_v2（排队等待 GPU）\\\\n- no_trace_seed42（排队等待 GPU）\\\\n- deepseek_exception_only_seed123（准备中）\\\\n- exception_only_seed456（准备中）\\\\n- exception_only_seed123（准备中）\\\\n- vota_seed456: Seed robustness: VOTA with seed=456 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.（准备中）\\\\n\\\\n## 近期结论\\\\n- **deepseek_exception_only_seed42** (success): Multi-model validation: exception_only on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if exception dominance (99.83% on Qwen) generalizes across models — the most valuable cross-model evidence.\\\\n- **vota_seed42_v5** (success): VOTA trace provides verdict accuracy lift over no-trace baseline (v5: fixed chat template overhead, all labels preserved)\\\\n- **deepseek_vota_seed42** (success): Multi-model validation: VOTA on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if VOTA's verdict accuracy advantage generalizes beyond Qwen2.5-Coder to DCSH's same base model.\\\\n  [deepseek_vota_seed42_analysis](/api/workspace-files/projects/trace-verdict-study/artifacts/deepseek_vota_seed42/report/analysis.md)\\\\n\\\\n## 趋势\\\\n成功 13 / 负向 2 / 失败 2 / 共 20\\\\naccuracy: 0.9933 ↑（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-11235: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- no_trace_seed42_v3: 已被终止 — unknown\\\\n- vota_seed42_v3: 已被终止 — unknown\\\\n- full_trace_seed42: 已被终止 — unknown\\\\n- vota_exception_only_seed42: 训练失败 — unknown\\\\n- vot\n…[truncated 114 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-15T15:34:39.297698+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "trace-verdict-study"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T15:34:39.298351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/ROADMAP.md\\\", \\\"content\\\": \\\"# trace-verdict-study — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 10:18 UTC | 更新原因: 组件消融完成，更新层级表 + 10天冲刺路线\\\\n\\\\n## 核心方向\\\\nVerdict prediction 本质是 fault detection：exception events 是近完美判别信号 (99.83%)，trace compression 的价值在于隔离这一信号而非压缩全量 trace。详见 paper_framing.md。\\\\n\\\\n## 投稿目标\\\\n- **Primary**: EMNLP 2026 Main (ARR May 25, DDL 10 天)\\\\n- Fallback: EMNLP 2026 Findings\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research (post-MVP) + 审稿进行中\\\\n- **Core claims 支撑度**: 3/3 claims 在 Qwen-2.5-Coder-7B 上已确认\\\\n  - Claim 1 (fault indicator preservation): exception_only 99.83%, vota_no_ae 99.4% ✓\\\\n  - Claim 2 (compression > full trace): gradient dilution 26% + info overload 74% 因果分解 ✓\\\\n  - Claim 3 (two-tier hierarchy): exception (99.83%) >>> loop (85.6%) >> ae (冗余) ✓\\\\n- **跨模型泛化**: plan_004 (DeepSeek-Coder) 已派，今日出结果\\\\n- **完成实验**: 9/11 plan experiments done; ae_only running (~1.5h)\\\\n\\\\n### 组件层级表 (Qwen-2.5-Coder-7B)\\\\n| Condition | Accuracy | 角色 |\\\\n|-----------|----------|------|\\\\n| exception_only | 99.83% | Tier 1: 主信号 |\\\\n| VOTA w/o ae | 99.4% | ae 冗余确认 |\\\\n| VOTA full | 99.2% | — |\\\\n| label-only loss | 86.2% | gradient dilution 修复 |\\\\n| loop_only | 85.6% | Tier 2: 行为模式 |\\\\n| full_trace | 81.8% | 原始 trace |\\\\n| no_trace | 75.1% | baseline |\\\\n\\\\n## 近期任务\\\\n- [ ] plan_004: DeepSeek-Coder 4 条件 (no_trace/full_trace/VOTA/exception_only) — cuda:0 运行中\\\\n- [ ] ae_only 完成 → 确认层级表 + 移入 Appendix — cuda:1 运行中 (~1.5h)\\\\n- [ ] plan_007: calibration analysis (ECE + reliability diagrams) — ae_only 完成后 cuda:1\\\\n- [ ] DeepSeek 结果确认后 → 正式更新 framing + 启动 Paper Agent\\\\n- [ ] plan_008: seed robustness (3 seeds) — 写作期间并行跑\\\\n- [ ] plan_005: 第二任务验证 (DebugBench) — 时间允许则加\\\\n\\\\n## GPU 预算\\\\n- 本地分配: cuda:0 + cuda:1 (westd-11235)\\\\n- cuda:0: plan_004 DeepSeek-Coder (~8h)\\\\n- cuda:1: ae_only (~1.5h remaining) → plan_007 (~1h)\\\\n- 剩余预算: plan_008 (6h) + plan_005 (6h) 可在写作期间并\n…[truncated 2002 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 0
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-15T15:34:39.701536+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "trace-verdict-study",
+              "limit": "20"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-15T15:34:39.752343+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_knowledge_fix_analysis_overfitting_20260515T140509\\\", \\\"task_type\\\": \\\"knowledge:fix_analysis_overfitting\\\", \\\"project\\\": \\\"trace-verdict-study\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T14:05:09.803120+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T14:05:40.362487+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ssh_check_qwen_epoch_accuracy_20260515T140516\\\", \\\"task_type\\\": \\\"ssh:check_qwen_epoch_accuracy\\\", \\\"project\\\": \\\"trace-verdict-study\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T14:05:16.215164+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T14:06:57.359829+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_knowledge_integrate_crossmodel_lit_20260515T140927\\\", \\\"task_type\\\": \\\"knowledge:integrate_crossmodel_lit\\\", \\\"project\\\": \\\"trace-verdict-study\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T14:09:27.298871+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T14:10:57.721104+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ssh_check_training_progress_20260515T140932\\\", \\\"task_type\\\": \\\"ssh:check_training_progress\\\", \\\"project\\\": \\\"trace-verdict-study\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T14:09:32.959745+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T14:09:59.601761+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ssh_check_evaluate_save_predictions_20260515T141131\\\", \\\"task_type\\\": \\\"ssh:check_evaluate_save_predictions\\\", \\\"project\\\": \\\"trace-verdict-study\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T14:11:32.117074+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T14:12:27.854331+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ssh_check_deepseek_training_progress_20260515T141138\\\", \\\"task_type\\\": \\\"ssh:check_deepseek_training_progress\\\", \\\"project\\\": \\\"trace-verdict-study\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T14:11:38.127708+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T14:12:57.893324+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_code_add_save_predictions_20260515T141334\\\", \\\"task_type\\\": \\\"code:add_save_predictions\\\", \\\"project\\\": \\\"trace-verdict-study\\\", \\\"\n…[truncated 3902 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 50
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-15T15:34:39.752782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "trace-verdict-study"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-15T15:34:39.803324+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"trace-verdict-study\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_constraint\\\": [\\\"westd-11235:cuda:0\\\", \\\"westd-11235:cuda:1\\\"], \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"project_path\\\": \\\"/root/trace-verdict-study\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"westd-11235\\\"}]}, \\\"feishu\\\": {\\\"chat_id\\\": \\\"oc_32bf96185a4c2e36ec51db573ff4edaa\\\", \\\"operational_chat_id\\\": \\\"oc_4e0fbdef0ef8deb58b61875302f06167\\\", \\\"submission_chat_id\\\": \\\"oc_47a2f37b5c77af2e2351362f8def77a1\\\"}, \\\"project\\\": {\\\"created_at\\\": \\\"2026-05-14T16:08:29.403Z\\\", \\\"description\\\": \\\"Verdict-Optimized Trace Abstraction: When Execution Semantics Help Code Behavior Classification but Not Generation\\\", \\\"name\\\": \\\"trace-verdict-study\\\", \\\"phase\\\": \\\"research\\\", \\\"source_idea_id\\\": \\\"idea_009\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 50
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-15T15:34:43.716698+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "trace-verdict-study",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-15T15:34:44.169079+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/memory.md\\\", \\\"content\\\": \\\"# trace-verdict-study Memory\\\\n\\\\n## MVP Round 1 结论（已作废）[2026-05-14]\\\\n\\\\nRound 1 结果全部无效，原因：\\\\n1. **VOTA match 泄漏**：assertion output 中 `match=True/False` 直接泄漏 verdict，99.2% accuracy 是 pattern matching 而非理解 trace\\\\n2. **Label 截断**：full_trace 28.4% 是因为 label 在序列末尾被 tokenizer 截断，模型根本没学到正确标签\\\\n\\\\n### 教训\\\\n- VOTA 输出中任何直接或间接暴露 pass/fail 的字段都是 data leakage——审查 trace format 时需要\\\\\\\"如果模型只看这一个字段能否猜到答案\\\\\\\"的测试\\\\n- 训练数据格式化必须保证 label 不被截断——应先预留 label token budget，再分配 trace 空间\\\\n- `[No trace available - execution failed]` 这类文本也是隐性泄漏（暗示 fail）\\\\n\\\\n## MVP v5 + Ablation 结果（当前有效数据）[2026-05-15]\\\\n\\\\n### 三条件对比（全部 v5 代码版本，统一 bootstrap CI）\\\\n- no_trace v5: 75.1% [72.8, 77.5], lift +3.6pp over majority\\\\n- **full_trace v5: 81.8%** [79.7, 83.9], lift +6.6pp [4.4, 9.0] vs no_trace\\\\n- **VOTA v5: 99.2%** [98.6, 99.7], lift +24.3pp [21.8, 26.8] vs no_trace\\\\n- **VOTA vs full_trace: +17.7pp** [15.5, 19.8]（所有对比 p < 0.001）\\\\n\\\\n### plan_001 ablation: VOTA w/o actual/expected [2026-05-15]\\\\n- **accuracy 99.4%** [98.9, 99.8] — 去掉 actual/expected 后性能不降反微升（vs VOTA v5 99.2%）\\\\n- **结论：actual/expected 字段是冗余信息**，VOTA 效果来自 trace 行为模式理解\\\\n- Claim 1 走 **full positive framing**: \\\\\\\"VOTA teaches execution-grounded verdict reasoning\\\\\\\"\\\\n\\\\n### plan_002 ablation: label-only loss on full_trace [2026-05-15]\\\\n- **accuracy 86.2%** [84.4, 88.1] — 比标准 full_trace v5 (81.8%) 提升 +4.5pp\\\\n- **结论：full_trace-VOTA gap 的主因是 information overload（trace 噪声），不是 gradient dilution**\\\\n  - gradient dilution 贡献: ~4.5pp | information overload 贡献: ~13pp\\\\n\\\\n### plan_003a ablation: exception_only [2026-05-15]\\\\n- **accuracy 99.83%** — pass_F1 0.999, fail_F1 0.997\\\\n- **[ERROR] 事件是 VOTA verdict 判断的主驱动因素**\\\\n\\\\n### plan_003b ablation: loop_only [2026-05-15]\\\\n- **accuracy 85.6%** [83.5, 87.6]\\\\n- **结论：loop compression 提供中等贡献，但 exception 是决定性组件**\\\\n\\\\n### plan_003c ablation: ae_\n…[truncated 6782 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 452
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-15T15:34:44.370574+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "trace-verdict-study",
+              "file": "paper_framing.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-15T15:34:44.421386+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — trace-verdict-study\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR submission)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Deadline: ARR May 25, 2026 (10 days from today)\\\\n\\\\n## Core Insight\\\\n\\\\nTrace SFT effectiveness depends critically on **trace granularity matching task output entropy**: verdict tasks (1-bit output) benefit from execution traces, but compact, decision-relevant abstractions (VOTA: 99.2%) dramatically outperform full traces (81.8%). The performance gradient no_trace (75.1%) < full_trace (81.8%) < VOTA (99.2%) shows that the \\\\\\\"right\\\\\\\" trace is not \\\\\\\"more trace\\\\\\\" — it's the minimal information sufficient to determine the verdict, providing higher information density per token. All conditions verified on v5 codebase with consistent eval pipeline.\\\\n\\\\n## Core Claims (≤3)\\\\n\\\\n1. **VOTA dramatically improves verdict prediction through fault indicator preservation**: VOTA provides +24.0pp accuracy (99.2% vs 75.1%), CI [+21.9, +26.8]. Plan_001 confirms this is not trivial actual/expected string comparison (vota_no_ae: 99.4%). Plan_003a reveals the core mechanism: exception summaries alone achieve 99.83% — VOTA's effectiveness stems from preserving fault indicators (exception events) while filtering execution noise. Verdict prediction is fundamentally a fault detection task; the design principle is to identify and preserve minimal sufficient diagnostic signals.\\\\n\\\\n2. **Trace compression significantly improves verdict accuracy over full traces**: Full execution traces achieve 81.8% (+6.6pp, CI [+4.4, +9.0]), but VOTA achieves 99.2% (+24.0pp) — a +17.4pp advantage. Plan_002 (label-only loss) 量化因果分解：gradient dilution 贡献 ~26% of gap (4.5pp, 修复后 full_trace 86.2%), information overload 贡献 ~74% (13.0pp, 只有 trace compression 能解决)。\\\\\\\"Even with oracle loss masking that\n…[truncated 5535 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-15T15:35:39.339250+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **仅** `westd-11235:cuda:0` 和 `westd-11235:cuda:1`，不得用其他设备\n- DeepSeek 组 4 条件必须全部用 **旧代码**（`load_best_model_at_end` 注释为 `# TEMP_DISABLED`），保持组内一致。Qwen seed 实验可用新代码\n- 同 GPU **禁止并行** eval+training（已知导致 7s/step→49s/step）\n- 论文同表 pairwise CI 必须统一用 paired bootstrap；所有 eval 命令必须加 `--save_predictions`\n- DeepSeek 预训练数据量是 **2T tokens**，不是 1.17T——之前有 Worker 产出错误数据，不得引用\n- `bash -c` 内必须显式 `export CUDA_VISIBLE_DEVICES={N}`\n- VOTA_seed456 已被 Director 降优先级（D016: VOTA 在 DeepSeek 退化到 84.5%，不再是 primary claim 核心证据），exception_only seed robustness 优先\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-11235, 2x RTX PRO 6000 Blackwell 94GB, CUDA 12.8\n- **工作目录**: `/root/trace-verdict-study`\n- **Python**: `/root/miniconda3/bin/python`（conda base，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型路径**: Qwen = HF cache 默认 | DeepSeek = `/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct`\n- **数据**: `/root/autodl-tmp/trace-verdict-study-data/{condition}_{train,test}.jsonl`（每条件 train=4720, test=1190）\n- **Checkpoints**: `/root/autodl-tmp/trace-verdict-study-checkpoints/{condition}/final/`\n- **W&B**: project=`trace-verdict-study`\n- **HF_HOME**: `/root/autodl-tmp/.hf_cache`\n- **活跃进程**: deepseek_full_trace_seed42 (PID 112289, tmux, cuda:0)\n- **Cron**: reconcile 返回 0 条活跃——deepseek_full_trace_seed42 的 cron 可能已被清理，需要检查是否仍在跑\n\n### 3. 📊 当前状态\n**刚做完**: DeepSeek 跨模型验证 3/4 完成（no_trace 73.36%, VOTA 84.45%, exception_only 99.33%）。D016 确认 exception signal 是 universal 跨模型诊断信号。calibration analysis (plan_007) 已完成。已向 Director 汇报 DeepSeek exception_only 结果。\n\n**正在进行**:\n- `deepseek_full_trace_seed42` (RUNNING, cuda:0) — DeepSeek 最后一个条件，约 2h 训练时长\n- 3 个 running Workers: cuda1 eval batch (Qwen 各条件 paired predictions 补跑)、Qwen eval batch、DeepSeek error analysis script\n\n**PREPARING 队列** (等 GPU 空闲):\n- `exception_only_seed123` / `exception_only_seed456` — exception_only Qwen seed robustness (plan_008, **优先**)\n- `deepseek_exception_only_seed123` — DeepSeek exception seed robustness (plan_008)\n- `vota_seed456` — 已降优先级\n\n**等待中**:\n- deepseek_full_trace_seed42 cron 回调（训练完成后触发分析）\n- 3 个 running Workers 回调\n- vota_seed123 failed (CUDA OOM)，需要用 cuda:1 单独重跑（cuda:0 被 DeepSeek 占用时发生碰撞）\n\n### 4. 📋 待办（条件触发式）\n- deepseek_full_trace_seed42 完成 → spawn Worker 收集 eval metrics + paired predictions → 更新跨模型对比表 → 汇报 Director 完整 plan_004 结果\n- deepseek_full_trace 完成释放 cuda:0 → 立即提交 exception_only_seed123 (cuda:0) + exception_only_seed456 (cuda:1)\n- cuda1 eval batch Worker 完成 → 用 paired bootstrap 重算所有 Qwen pairwise CI（替换 unpaired 结果）\n- DeepSeek error analysis Worker 完成 → 整合分析到 memory.md + paper Discussion 素材\n- plan_008 seed robustness 3 个实验全部完成 → 计算 std 和 range → 确认 headline 结果稳定性\n- vota_seed123 重跑 → 等 cuda:1 有空窗时单独提交（需 --gradient_checkpointing + 显式 CUDA_VISIBLE_DEVICES）\n- 全部 plan_004 + plan_008 完成 → 通知 Director 启动 Paper Agent\n\n### 5. 🎯 战略上下文\n**核心发现链**: exception signal 是 verdict prediction 的近完美判别信号。Qwen exception_only 99.83%, DeepSeek exception_only 99.33%——跨模型泛化确认。VOTA 的价值在于保留这个 fault indicator，不在于 \"trace reasoning\"。\n\n**关键决策**: D016 确立 exception signal 是 universal 诊断信号，VOTA 不是。论文 framing 已更新为 \"fault indicator preservation\"（见 paper_framing.md Claim 1）。\n\n**易错点**:\n- deepseek_full_trace 预计 ~85-88%（介于 no_trace 73% 和 VOTA 84% 之间），如果**高于** VOTA 84.45%，则 Claim 2 (compression > full trace) 在 DeepSeek 上不成立——需要 Framing 调整提案\n- reconcile_crons 返回 0 但 deepseek_full_trace 仍 RUNNING——cron 可能需要重新注册，否则完成后无回调\n- vota_seed123 两次 OOM 失败（retry_count=2），根因是 cuda:0 被其他进程占用导致挤到同一卡。重跑时必须确认目标 GPU 空闲\n- DeepSeek experiments 的 paired bootstrap 尚未完成（当前用 unpaired CI），论文表格前必须统一\n- 10 天冲刺：5/25 ARR DDL，5/16 应启动 Paper Agent，不能拖\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:vota_ae_only_seed42"
+          },
+          "id": "event-000076"
+        }
+      ],
+      "message_count": 20
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-vota-ae-only-seed42-20260515t153539-341072.md"
+}

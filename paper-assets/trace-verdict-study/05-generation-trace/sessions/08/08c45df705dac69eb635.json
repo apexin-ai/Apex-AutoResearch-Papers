@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08c45df705dac69eb635",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis deepseek exception only seed123",
+  "task_key": "worker_analysis_deepseek_exception_only_seed123_20260515T200548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek_exception_only_seed123_20260515T200548_result.json",
+    "occurrence": 1,
+    "bytes": 1920,
+    "sha256": "8e81856e112ca65834f5058a1305e6900705c1facb899024cc8e03f01361e1b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已获取。以下是结果汇总：\n\n---\n\n## deepseek_exception_only_seed123 实验结果\n\n### 评估指标\n\n| 指标 | seed123 | seed42 | 差异 |\n|------|---------|--------|------|\n| **Accuracy** | **91.09%** | 99.83% | **-8.74pp** |\n| Majority baseline | 71.5% | — | — |\n| Lift over majority | +19.6pp | — | — |\n| n | 1190 | — | — |\n\n**Per-class metrics (seed123):**\n\n| Class | Precision | Recall | F1 |\n|-------|-----------|--------|-----|\n| pass | 1.00 | 0.993 | 0.996 |\n| fail | 0.976 | **0.705** | 0.818 |\n\n**95% CI:** accuracy [89.4%, 92.6%]\n\n### 训练信息\n\n- train_loss: 0.1220\n- epochs: 3.0\n- train_runtime: 6384s (~106 min)\n- train_samples/sec: 2.218\n- train_steps/sec: 0.07\n\n### 文件路径\n\n- Checkpoint: `/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123/final`\n- eval_results.json: 同上目录\n- predictions.jsonl: `/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123/final/predictions.jsonl`\n\n---\n\n### 关键发现：seed123 大幅退化\n\n**Accuracy 从 99.83% (seed42) 跌至 91.09% (seed123)，差 8.74pp。** 这与 Qwen exception_only 的跨种子稳定性完全不同。\n\n问题定位在 **fail recall = 0.705**——模型漏判了约 30% 的 fail 样本。pass 侧几乎无影响（recall 0.993）。pass precision = 1.0 说明模型预测 pass 时基本不会错，但倾向于把 fail 样本也预测为 pass（保守偏移）。\n\n这意味着：\n- **DeepSeek 在 exception_only condition 上对种子不鲁棒**，seed42 的 99.83% 可能是运气好\n- exception signal 的 universality claim 需要修正：信号本身是有效的（91% >> 71.5% baseline），但 DeepSeek 利用该信号的能力不如 Qwen 稳定\n- train_loss 0.122 偏高（seed42 应该更低），暗示 LoRA 初始化随机性导致收敛到了较差的局部最优"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-exception-only-seed123.md"
+}

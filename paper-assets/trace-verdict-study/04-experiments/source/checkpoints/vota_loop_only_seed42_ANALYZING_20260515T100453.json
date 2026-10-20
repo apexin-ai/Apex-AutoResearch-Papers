@@ -1,0 +1,35 @@
+{
+  "exp_id": "vota_loop_only_seed42",
+  "project": "trace-verdict-study",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:02:41.201Z",
+    "updated_at": "2026-05-15T10:04:53.186Z",
+    "hypothesis": "VOTA component ablation: loop_only condition — only loop compression summaries, no actual/expected or exception. Tests loop behavioral pattern contribution to VOTA 99.2% accuracy (plan_003 sub-c)",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition loop_only --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_loop_only_seed42 && python eval/evaluate.py --condition loop_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final --gpu 0\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "82362",
+      "log_path": "~/runs/trace-verdict-study/vota_loop_only_seed42.log",
+      "submitted_at": "2026-05-15T07:58:06.023Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/loop_only_{train,test}.jsonl",
+      "data_count": 4720,
+      "model_name": "Qwen2.5-Coder-7B-Instruct",
+      "seed": 42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T10:04:53.052Z"
+    }
+  },
+  "timestamp": "2026-05-15T10:04:53.242927+00:00",
+  "trigger": "update_registry"
+}

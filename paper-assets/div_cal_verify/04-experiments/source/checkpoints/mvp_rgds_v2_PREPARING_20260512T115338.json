@@ -1,0 +1,23 @@
+{
+  "exp_id": "mvp_rgds_v2",
+  "project": "div_cal_verify",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T11:53:38.705Z",
+    "updated_at": "2026-05-12T11:53:38.705Z",
+    "spec": {
+      "hypothesis": "RGDS (internal representation-grounded diversity selection) preserves representation quality across generations and achieves ≥5% PPL improvement over external-only baseline",
+      "parent": "mvp_rgds_v1",
+      "model_name": "Qwen/Qwen3-1.7B + Qwen/Qwen3-4B",
+      "server": "westd-11235",
+      "data_path": "/root/div_cal_verify/data/",
+      "data_count": 237666,
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-12T11:53:38.714855+00:00",
+  "trigger": "update_registry"
+}

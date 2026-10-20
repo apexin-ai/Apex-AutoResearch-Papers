@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "3ff7bde71072672fe17e",
+  "project": "div_cal_verify",
+  "kind": "worker",
+  "title": "code env setup deploy",
+  "task_key": "worker_code_env-setup-deploy_20260512T105955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_env-setup-deploy_20260512T105955.log",
+    "occurrence": 1,
+    "bytes": 840364,
+    "sha256": "091164eb0901ed528033dcef664e2c85afab0c3554c08637c5a8b940e53935e8"
+  },
+  "statistics": {
+    "messages": 575,
+    "user_turns": 0,
+    "tool_calls": 212,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 147,
+      "tool_call": 212,
+      "tool_result": 212,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 575,
+      "chunks": [
+        {
+          "path": "3ff7bde71072672fe17e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3ff7bde71072672fe17e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3ff7bde71072672fe17e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "3ff7bde71072672fe17e-part-0004.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-env-setup-deploy.md"
+}

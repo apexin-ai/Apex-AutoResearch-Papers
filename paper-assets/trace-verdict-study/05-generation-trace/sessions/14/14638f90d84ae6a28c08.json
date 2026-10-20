@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14638f90d84ae6a28c08",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper reference audit",
+  "task_key": "worker_paper_reference-audit_20260516T045759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_reference-audit_20260516T045759_result.json",
+    "occurrence": 1,
+    "bytes": 906,
+    "sha256": "6ef6c7376965b4036089e7664c7a77e9b922f74806900190feb78013eca444da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。核心结论：\n\n**引用完整性**: 28 个 cite key 与 bib 完全 1:1 匹配，无遗漏无冗余。\n\n**Critical 问题 (1个)**: experiments.tex 的 Tables 1–3 caption 放在表格下方，ACL 要求在上方。需要把 `\\caption`+`\\label` 移到 `\\begin{tabular}` 之前。\n\n**Should Fix (4个)**:\n- per_class 表中 \"VOTA$-$AE\" 应改为 `\\texttt{VOTA\\_no\\_ae}`\n- Table 3 中 `label\\_only` 缺 `\\texttt{}`\n- per_class 表中 \"Full Trace (LO)\" 命名不统一\n- Abstract/conclusion 中 \"85.6%\" 与 Table 2 的 \"85.63%\" 不一致\n\n**ARR 合规**: 全部通过（匿名、limitations、ethics、checklist 完整、无去匿名化泄露）。\n\n**数据一致性**: VOTA_no_ae 99.41% 全文一致；需确认 registry 99.40% 的 rounding convention 差异是否需要对齐。\n\n完整报告已写入 `artifacts/reference_audit_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-reference-audit.md"
+}

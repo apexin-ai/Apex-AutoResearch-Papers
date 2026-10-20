@@ -1,0 +1,81 @@
+\section{Discussion}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig2_calibration}
+\caption{Reliability diagrams for four trace conditions on Qwen-2.5-7B ($N{=}1{,}190$). \cond{exception\_only} (ECE=0.003) clusters near the diagonal; \cond{no\_trace} (ECE=0.171) shows systematic overconfidence.}
+\label{fig:calibration}
+\end{figure}
+
+The central finding is that information density governs learning efficiency for trace-based verdict prediction.
+Exception events concentrate the fault signal in a compact format (median 150 tokens), while non-exception components record \emph{how} the program ran, not \emph{whether} it failed.
+This explains three patterns: (1)~adding information beyond exceptions provides no benefit (indeed, VOTA underperforms \cond{exception\_only}, Table~\ref{tab:ablation}); (2)~the tail-truncation phase transition at ${\sim}$500 tokens coincides with the diagnostic-event boundary (Figure~\ref{fig:trace_length}); and (3)~the SFT advantage over regex concentrates on caught-exception boundary cases (\S\ref{sec:nomarker}).
+The narrow cross-model gap (Table~\ref{tab:cross_model}) supports density, not capacity, as the binding constraint.
+
+\paragraph{SFT vs.\ regex: semantic understanding.}
+Format-marker removal drops accuracy by only ${\sim}$2pp, leaving a clear gap over the best regex.
+On boundary samples with caught exceptions, SFT correctly classifies 6/8 vs.\ 0/8 for regex ($p{=}.041$). This confirms the signal is semantic rather than syntactic.
+This distinction matters for deployment: regex baselines can detect most exceptions through surface-level pattern matching, but fail precisely on the ambiguous cases (caught exceptions within \textit{try/except} blocks) where correct classification requires understanding the exception's role in program control flow.
+SFT learns this distinction from fewer than 5{,}000 training examples, suggesting that the relevant semantic features are readily extractable from pretrained code representations when the input is sufficiently compact.
+
+\paragraph{Near-perfect floor.}
+The two residual errors (both \textit{GeneratorExit}; Appendix~\ref{sec:error_overlap}) are shared across configurations and models.
+One seed achieves 100\%, which establishes 99.83\% as a convergence \emph{floor}, not a ceiling.
+The error overlap analysis (Figure~\ref{fig:error_overlap}) reveals that these errors are orthogonal to all other conditions' error sets (Jaccard = 0.000); \cond{exception\_only} therefore operates on an independent signal dimension.
+The practical implication is that the two residual errors cannot be resolved by adding more trace information; they require disambiguating benign \textit{BaseException} subclasses from genuine faults, a representation-level fix rather than a data quantity issue.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{error_overlap}
+\caption{Pairwise Jaccard similarity between error sets (Qwen-7B, $N{=}1{,}190$). \cond{exception\_only} has zero overlap with all other conditions and operates on an independent signal dimension.}
+\label{fig:error_overlap}
+\end{figure}
+
+\paragraph{Tier hierarchy and design principles.}
+The two-tier structure (Figure~\ref{fig:forest_plot}) suggests a hierarchical extraction strategy: extract exception events first, resort to Tier~2 signals only when no exception is raised.
+Within Tier~1, both \cond{exception\_only} and \cond{ae\_only} achieve near-perfect accuracy independently, yet combining them in VOTA slightly \emph{degrades} performance, a counter-intuitive finding that underscores how additional signal can introduce noise when the primary signal is already sufficient.
+Loop benefit is model-dependent (Qwen-7B gains +10.92pp while CodeLlama gains only +0.93pp). This reflects an architecture-level capacity to exploit structured iteration patterns rather than a universal signal.
+This density--efficiency link should transfer to any trace-based task where compact diagnostic events exist within verbose runtime logs, such as crash triage in continuous integration, where stack traces carry far more signal than full execution histories.
+
+\paragraph{Cross-model robustness and scale independence.}
+The cross-model analysis reveals that \cond{exception\_only}'s accuracy range is ${<}$1pp across four models (1.5B--13B) vs.\ ${\sim}$9pp for \cond{loop\_only}, demonstrating that compact inputs eliminate the architecture-dependent variance that plagues verbose representations.
+This scale independence is striking: the smallest model (Qwen-1.5B at 1.5B parameters) matches the largest (CodeLlama-13B at 13B parameters) when given the same compact input, whereas \cond{no\_trace} accuracy scales monotonically with model capacity (Table~\ref{tab:cross_model}).
+The zero-shot comparison reinforces this: SFT compresses a 42.44pp cross-architecture range to just 0.50pp with only 4{,}720 training samples (Figure~\ref{fig:zeroshot_vs_sft}), making exception-based verdict prediction accessible to smaller models without sacrificing accuracy.
+Label-only loss on high-truncation tokenizers causes model collapse, further confirming density as the binding constraint: when the tokenizer is inefficient, even masking trace tokens from the loss cannot compensate for the inference-time interference from thousands of irrelevant tokens.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{zeroshot_vs_sft}
+\caption{Zero-shot vs.\ SFT \cond{exception\_only} accuracy across four models ($N{=}1{,}190$). SFT compresses the cross-architecture variance from 42.44pp to 0.50pp.}
+\label{fig:zeroshot_vs_sft}
+\end{figure}
+
+\paragraph{Exception events capture test verdicts, not just crashes.}
+A natural concern is that exception-based classification merely detects program crashes.
+In fact, 55.5\% of failures in our dataset are silent logic errors where the program terminates normally but produces incorrect output.
+\cond{exception\_only} nonetheless achieves 100\% fail recall because test assertions generate \textit{AssertionError} events that explicitly mark the discrepancy between actual and expected behavior.
+This means the ``exception'' signal subsumes both crash-type and assertion-type failures, making it a complete verdict signal rather than a crash detector.
+
+\paragraph{Alternative explanations.}
+Three alternatives merit discussion.
+\emph{Length asymmetry}: padding all inputs to the maximum sequence length leaves accuracy unchanged, ruling out a confound from batch-level length variation.
+\emph{Format-marker familiarity}: removing markers accounts for only ${\sim}$9\% of the exception lift, though familiarity with exception formats in pretraining data cannot be fully controlled for.
+\emph{Positional concentration}: diagnostic information concentrates in the trace tail (\S\ref{sec:trace_length}); the tail-truncation budget curve localizes the critical threshold to ${\sim}$400--500 tokens, consistent with typical exception traceback length, but fully disentangling positional proximity from semantic density requires future work with controlled position-shuffled experiments.
+
+\paragraph{Connections to prompt compression.}
+Our findings align with the prompt compression literature: LLMLingua \citep{jiang2023llmlingua} and Selective Context \citep{li2023selectivecontext} showed that pruning low-information tokens preserves downstream accuracy.
+The trace domain provides a natural instance of this phenomenon: exception events are effectively a domain-specific compression that retains the diagnostic tokens and discards the execution log.
+The information density decomposition (\S\ref{sec:density}) quantifies this: removing all non-diagnostic tokens accounts for the majority of the performance gap, while backward-pass gradient dilution explains at most 24\%.
+
+\paragraph{Learning dynamics.}
+\cond{exception\_only} converges within 50 steps and saturates by step 150, while \cond{full\_trace} oscillates across all 444 training steps without reaching stable convergence (Figure~\ref{fig:training_dynamics}).
+Seed variance negatively correlates with input density (Table~\ref{tab:ablation}): \cond{exception\_only} shows zero cross-seed variance ($\sigma{=}$0.00) while \cond{loop\_only} exhibits the highest ($\sigma{=}$0.52).
+This pattern suggests that compact inputs not only improve final accuracy but also stabilize the optimization landscape, reducing sensitivity to random initialization.
+From a practical standpoint, this means exception-based models can be trained with a single seed and minimal hyperparameter tuning, whereas verbose-trace models require multiple seeds and careful early-stopping selection.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{training_dynamics}
+\caption{Training dynamics comparison. \cond{exception\_only} (blue) converges within 50 steps and saturates by step 150. \cond{full\_trace} with label-only loss (red, dashed) oscillates without stable convergence across all 444 training steps.}
+\label{fig:training_dynamics}
+\end{figure}

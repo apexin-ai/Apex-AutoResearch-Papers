@@ -1,0 +1,1 @@
+Reliability diagram PNG at remote server: /root/trace-verdict-study/artifacts/cross_model_calibration_plan019.png

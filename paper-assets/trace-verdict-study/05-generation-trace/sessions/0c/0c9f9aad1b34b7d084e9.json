@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c9f9aad1b34b7d084e9",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_6_1778873128.md",
+  "task_key": "loop_6_1778873128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778873128.md",
+    "occurrence": 1,
+    "bytes": 4867,
+    "sha256": "e3140ca73782a6aaf1030f05ac3ca7eabe3dcf2b53f7552bf5d5fa0fe54c9af4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-15T19:13:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `cuda:0` + `cuda:1`（westd-11235），严禁使用其他 GPU\n- DeepSeek 系列实验必须用**旧代码**（`load_best_model_at_end` 注释掉），保持 DeepSeek 组内一致。Qwen 实验可用新代码\n- `to_chat_text()` label-preserving truncation fix 已由 `worker_code_fix_to_chat_text_truncation` 完成，deepseek_full_trace_v3 必须用修复后代码\n- 同一 GPU 禁止并行 eval + training（之前 cuda:1 上并行导致 7s/step → 49s/step）\n- Bootstrap 方法：论文同一张表必须统一用 paired bootstrap。DeepSeek 实验当前缺 `--save_predictions`，提交 deepseek_full_trace_v3 时务必加此 flag\n- EMNLP ARR DDL = 2026-05-25，距今 10 天\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-11235，2× RTX PRO 6000 Blackwell 94GB，CUDA 12.8\n- **工作目录**: `/root/trace-verdict-study`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**: Qwen `/root/autodl-tmp/.hf_cache/...`，DeepSeek `/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct`\n- **数据集**: `/root/autodl-tmp/trace-verdict-study-data/` (train 4720, test 1190)\n- **Checkpoints**: `/root/autodl-tmp/trace-verdict-study-checkpoints/`\n- **HF cache**: `HF_HOME=/root/autodl-tmp/.hf_cache`\n- **W&B project**: `trace-verdict-study`\n- **活跃进程**:\n  - `deepseek_exception_only_seed123`: PID 144507, tmux=deepseek_exception_only_seed123, cuda:0, cron 监控中\n  - `vota_seed456_v2`: PID 146592, tmux=vota_seed456_v2, cuda:1, cron 监控中（低优先级）\n\n### 3. 📊 当前状态\n**刚完成**: exception_only seed robustness (plan_008a) 3-seed 全部 99.83%，irreducible samples 确认 (id=901, 905)。DeepSeek 跨模型验证 3/4 条件完成。Paper framing v2.4 已更新。Bootstrap p-value 和 per-class CI 分析已完成并注册 artifact。\n\n**正在运行**:\n- `deepseek_exception_only_seed123` (RUNNING, cuda:0) — DeepSeek 跨模型 seed robustness，预计 ~20:15 UTC 完成\n- `vota_seed456_v2` (RUNNING, cuda:1) — VOTA seed robustness，低优先级，~20:30 UTC 完成\n- `worker_knowledge_paper-writing-plan` (running) — 正在生成 writing_plan.yaml\n\n**排队**:\n- `deepseek_full_trace_seed42_v3` (QUEUED) — 等 cuda:0 释放后立即提交，Director 已审批 (D023)\n\n**等待中**:\n- Worker `paper-writing-plan` 回调\n- `deepseek_exception_only_seed123` cron 完成回调\n- `vota_seed456_v2` cron 完成回调\n\n### 4. 📋 待办（条件触发式）\n- `deepseek_exception_only_seed123` 完成 → 分析结果 + 更新 registry → 立即在 cuda:0 提交 `deepseek_full_trace_seed42_v3`（命令需含 to_chat_text 修复 + `--save_predictions` + 旧代码即 load_best_model_at_end 注释）\n- `vota_seed456_v2` 完成 → 记录结果（低优先级，VOTA seed robustness 不是 headline claim）\n- `worker_knowledge_paper-writing-plan` 回调 → 审查 writing_plan.yaml → 立即 spawn Paper Agent 开始写论文初稿\n- `deepseek_full_trace_seed42_v3` 完成 → 如 success 则补入跨模型对比表 (4/4)；如 negative/failed 则 Limitations 中披露，不影响 3 claims\n- 论文初稿完成 → 为 deepseek_vota_seed42 和 deepseek_no_trace_seed42 重跑 `evaluate.py --save_predictions`，用 paired bootstrap 统一 CI 方法\n- GPU 两卡都空 → 考虑 plan_005 (DebugBench 第二任务验证)，需 Director 决策\n\n### 5. 🎯 战略上下文\n**核心结论链**: exception signal 是 verdict prediction 的 universal diagnostic signal，跨模型 gap=0.50pp（best checkpoint gap=0pp）。VOTA 价值重定义为 fault indicator isolation，不是 trace compression。Paper framing v2.4 围绕 3 claims: (1) exception model-agnostic, (2) info density > gradient dilution, (3) two-tier hierarchy。\n\n**决策链**: D014→D015→D016→D017→D019 确立 exception-centric narrative。D020 将 ae_only 定位为 co-Tier 1。D021→D022→D023 处理 DeepSeek full_trace 坍塌。\n\n**易错点**:\n- 不要把 DeepSeek epoch1 best (99.83%) 和 epoch3 final (99.33%) 混用——论文主表用 final checkpoint（组内一致），epoch1 数据放 Discussion\n- DeepSeek full_trace v3 必须用旧代码（load_best_model_at_end 注释），否则与其他 DeepSeek 实验不可比\n- `vota_seed456_v2` 用了 `--gradient_checkpointing`（v1 OOM），结果与 vota_seed42_v5（无 gradient_checkpointing）有微小训练差异，论文中需注明\n- memory.md 中 DeepSeek pretraining 数据量是 **2T tokens**（非 1.17T），之前有 Worker 产出错误数据\n- 当前 paper_framing.md 被 truncate 了最后 ~2200 字符（Discussion D2-D4 部分），读取时传 `max_chars=0`\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778873128.md"
+}

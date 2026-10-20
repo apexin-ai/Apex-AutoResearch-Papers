@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ef3273fbc7d3f280c1e",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops qwen15b nomarker submit",
+  "task_key": "worker_ops_qwen15b_nomarker_submit_20260516T170934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_qwen15b_nomarker_submit_20260516T170934_result.json",
+    "occurrence": 1,
+    "bytes": 534,
+    "sha256": "416c4efe07f09949da115fed2034939fb906c02c99ca3372fc926600903516b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练成功启动。\n\n**结果汇总：**\n- **模型路径**: `/root/trace-verdict-study/models/Qwen2.5-Coder-1.5B-Instruct` → symlink 到 `/root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct-ms/Qwen/Qwen2___5-Coder-1___5B-Instruct`\n- **PID**: 292149 (子进程 292150 在 GPU 上)\n- **GPU 0**: 38470 MiB 占用，正常运行\n- **日志**: tokenization 完成，训练已开始，444 steps，~3.5s/it，预计约 26 分钟完成\n- **条件**: `exception_only_nomarker`, seed=42, gradient_checkpointing 启用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-qwen15b-nomarker-submit.md"
+}

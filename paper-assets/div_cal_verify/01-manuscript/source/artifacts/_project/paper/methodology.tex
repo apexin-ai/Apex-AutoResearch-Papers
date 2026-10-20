@@ -1,0 +1,73 @@
+\section{Methodology}
+
+We design a controlled iterative self-training experiment to isolate how embedding-based diversity selection interacts with model collapse. The experiment holds the training protocol, data budget, and selection algorithm constant while varying only the source of embeddings used for data selection, enabling direct attribution of observed differences to the embedding alignment gap.
+
+\subsection{Base Model and Dataset}
+
+We use GPT2-125M (124M parameters) as our base model, loaded from the HuggingFace pretrained checkpoint. We train and evaluate on WikiText-103, which contains 232,588 training samples of long-form Wikipedia articles.
+
+We choose GPT2-125M for two reasons. First, its modest size permits running full self-training pipelines across multiple generations, data selection methods, and random seeds---a combinatorial design that would be prohibitively expensive with larger models. Second, despite its size, GPT2-125M exhibits the representation learning dynamics characteristic of transformer architectures, including the embedding drift and dimensional collapse phenomena central to our analysis \citep{jing2022understanding}.
+
+\subsection{Self-Training Protocol}
+
+We implement iterative self-training in a student-as-generator loop: at each generation, the current model generates synthetic text, a data selection method curates a subset, and the model is fine-tuned on that subset to produce the next-generation model.
+
+We run 8 generations (Generation 0 through 7). Generation~0 fine-tunes the pretrained GPT2-125M on the original WikiText-103 training data and serves as the shared starting point for all methods. From Generation~1 onward, each generation proceeds as follows: (1)~the model generates 500K tokens via nucleus sampling; (2)~a data selection method selects a subset; (3)~the model is fine-tuned on the selected data starting from the previous generation's checkpoint (cumulative fine-tuning).
+
+All generations share identical training hyperparameters: learning rate $5 \times 10^{-5}$ with linear warmup, batch size 4 with gradient accumulation over 8 steps (effective batch size 32), maximum sequence length 512, and 3 training epochs per generation.
+
+\subsection{Data Selection Methods}
+
+We compare four data selection methods designed as a controlled set of ablations. Three methods select 50\% of the generated data; the fourth uses all of it.
+
+\paragraph{Uncurated (100\%).} All generated data is used without any selection. This baseline captures the natural trajectory of model collapse under iterative self-training \citep{shumailov2024ai, alemohammad2024self}.
+
+\paragraph{RGDS (50\%).} Representation-Guided Diversity Selection uses the training model's own last-hidden-layer embeddings to select a maximally diverse data subset. We compute pairwise cosine similarities between sample embeddings and solve a submodular facility location maximization problem \citep{wei2015submodularity, iyer2013submodular} to select the 50\% of samples that maximize geometric coverage of the embedding space. The core assumption is that diversity in the model's embedding space reflects diversity in content.
+
+\paragraph{External-only (50\%).} This method applies the same submodular facility location algorithm but uses embeddings from a frozen Contriever encoder [CITATION NEEDED: Izacard et al.\ 2022 Contriever] instead of the training model's own embeddings. Contriever's parameters are fixed throughout all generations and are never updated during self-training. This isolates a single variable: by holding the selection algorithm constant, any performance difference between RGDS and External-only is attributable to whether the embedding space co-evolves with the model.
+
+\paragraph{Random 50\%.} Samples are selected uniformly at random to fill the 50\% budget. This provides the cleanest ablation for disentangling selection quality from data budget effects.
+
+\paragraph{Controlled comparisons.} The four methods yield a factorial ablation structure:
+
+\begin{itemize}
+    \item \textbf{RGDS vs.\ Random 50\%}: identical data budget; differences arise solely from selection mechanism quality.
+    \item \textbf{RGDS vs.\ External-only}: identical budget and algorithm; differences arise from the embedding source (drifting internal vs.\ frozen external).
+    \item \textbf{Random 50\% vs.\ Uncurated}: isolates the effect of data budget (50\% vs.\ 100\%) without any intelligent selection.
+    \item \textbf{External-only vs.\ Random 50\%}: quantifies the gain of embedding-guided selection when embeddings are stable.
+\end{itemize}
+
+\subsection{Selection Ratio}
+
+To diagnose \emph{what} each selection method preferentially retains, we define the selection ratio, a per-generation metric that measures whether the selected subset is enriched or depleted in content diversity relative to the full generated pool:
+
+\begin{equation}
+    \text{SR}_g = \frac{\bar{r}(\mathcal{S}_g)}{\bar{r}(\mathcal{D}_g)}
+\end{equation}
+
+\noindent where $\bar{r}(\mathcal{S}_g)$ is the mean rare n-gram density of the selected subset $\mathcal{S}_g$ at generation $g$, and $\bar{r}(\mathcal{D}_g)$ is the mean rare n-gram density of the full generated pool $\mathcal{D}_g$. We define a rare n-gram as any trigram that appears fewer than 5 times in the WikiText-103 training set.
+
+The selection ratio admits a direct interpretation:
+\begin{itemize}
+    \item $\text{SR} > 1$: the method preferentially retains samples rich in rare n-grams, aligning selection with content diversity.
+    \item $\text{SR} < 1$: the method preferentially retains samples poor in rare n-grams, anti-aligning selection with content diversity.
+    \item $\text{SR} \approx 1$: selection is uncorrelated with content diversity (the expected value under uniform random selection).
+\end{itemize}
+
+\noindent Tracking $\text{SR}_g$ across generations reveals whether a selection method's relationship to content diversity is stable or shifts as the model degrades.
+
+\subsection{Evaluation Metrics}
+
+We evaluate each method at every generation along two axes: language modeling quality and diversity.
+
+\paragraph{Language modeling quality.} We report perplexity (PPL) on the WikiText-103 validation set.
+
+\paragraph{Lexical diversity.} We measure the rare n-gram ratio---the proportion of trigrams in generated text that qualify as rare under the definition above---and Distinct-$n$ \citep{li2016diversity}, the fraction of unique $n$-grams ($n = 1, 2, 3$) in generated text.
+
+\paragraph{Generation diversity.} We compute Self-BLEU \citep{zhu2018texygen}: the average BLEU score between pairs of generated samples. Lower Self-BLEU indicates greater diversity across generations.
+
+\paragraph{Representation quality.} We track two embedding-space diagnostics. RankMe measures the effective rank of the embedding matrix via singular value entropy \citep{jing2022understanding}: a higher RankMe indicates more uniform utilization of embedding dimensions. The $k$-NN probe accuracy measures how well embeddings separate content categories via $k$-nearest-neighbor classification: declining accuracy signals loss of discriminative structure.
+
+\subsection{Reproducibility}
+
+All experiments are repeated across 3 random seeds (42, 123, 456). Each seed determines the random initialization of fine-tuning, the sampling randomness during generation, and (for Random 50\%) the subset selection. All methods within a given seed share the same Generation~0 checkpoint and the same generated data pools, so that observed differences are attributable to the selection method alone. We report means and standard deviations across seeds.

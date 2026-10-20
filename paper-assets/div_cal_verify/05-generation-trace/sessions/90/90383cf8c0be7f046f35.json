@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90383cf8c0be7f046f35",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "analysis rgds seed456 extract",
+  "task_key": "worker_analysis_rgds_seed456_extract_20260513T232137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rgds_seed456_extract_20260513T232137_result.json",
+    "occurrence": 1,
+    "bytes": 1124,
+    "sha256": "2ca2e10a32369661a0be4b8c8d0e64390b862576e3cdef9e97120ef83bb6a157"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。汇报如下：\n\n---\n\n## 1. rgds_seed456 Gen7 最终指标\n\n| 指标 | Gen7 值 |\n|------|---------|\n| PPL | **66.22** |\n| RankMe | **286.54** |\n| kNN | **0.988** |\n| Rare | **0.0069** |\n| Corr | **-0.0228** |\n| Ratio | **0.8682** |\n\n完成时间：2026-05-14 06:56 CST。PPL 从 Gen0 的 36.7 退化到 Gen7 的 66.22（+80%），Rare 从 0.0284 降至 0.0069，与 seed=42/123 的 RGDS 加速崩塌趋势一致。\n\n## 2. GPU 运行状态\n\n| GPU | PID | 实验 | 说明 |\n|-----|-----|------|------|\n| cuda:0 | 312677 | **medium_rgds_seed42** | gpt2-medium RGDS, 自 05:27 运行中 |\n| cuda:1 | 349822 | **medium_external_seed42** | gpt2-medium external_only, 06:58 启动 |\n\n两块 GPU 各占用 ~28.7GB 显存。\n\n## 3. medium_external 已自动启动\n\n确认：rgds_seed456 于 06:56 完成后，chain 脚本在 cuda:1 上自动启动了 `medium_external` 实验（gpt2-medium external_only, seed=42），日志 `/root/autodl-tmp/div_cal_verify/medium_external.log` 已有输出（07:19 更新）。该实验在 registry 中尚未注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rgds-seed456-extract.md"
+}

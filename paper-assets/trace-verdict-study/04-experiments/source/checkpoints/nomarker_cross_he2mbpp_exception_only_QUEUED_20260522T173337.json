@@ -1,0 +1,54 @@
+{
+  "exp_id": "nomarker_cross_he2mbpp_exception_only",
+  "project": "trace-verdict-study",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T16:57:54.481Z",
+    "updated_at": "2026-05-22T17:33:37.117Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/trace-verdict-study && /root/miniconda3/bin/python train/train_sft.py --condition cross_he2mbpp_exception_only_nomarker --data_dir /root/autodl-tmp/trace-verdict-study-data/cross_dataset/ --gpu 0 --gradient_checkpointing --seed 42 --wandb_project trace-verdict-study --wandb_run_name nomarker_cross_he2mbpp --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/nomarker_cross_he2mbpp 2>&1 | tee /root/autodl-tmp/trace-verdict-study-checkpoints/nomarker_cross_he2mbpp.log\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "821073",
+      "log_path": "~/runs/trace-verdict-study/nomarker_cross_he2mbpp_exception_only.log",
+      "submitted_at": "2026-05-22T16:57:53.985Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T17:24:48.087Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T17:24:53.191115+00:00"
+        }
+      ]
+    },
+    "hypothesis": "Cross-dataset nomarker ablation: removing format markers from exception_only in the HE→MBPP cross-dataset setting will show minimal accuracy drop (similar to in-distribution ~2pp), confirming that cross-dataset generalization relies on semantic exception content rather than format marker shortcuts.",
+    "parent": "cross_he2mbpp_exception_only_seed42",
+    "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/nomarker_cross_he2mbpp/final",
+    "log_path": "/root/runs/trace-verdict-study/nomarker_cross_he2mbpp_exception_only.log",
+    "metrics": {
+      "accuracy": 0.9546,
+      "pass_precision": 0.9943,
+      "pass_recall": 0.9396,
+      "pass_f1": 0.9662,
+      "fail_precision": 0.8801,
+      "fail_recall": 0.9879,
+      "fail_f1": 0.9309,
+      "eval_loss": 1.09,
+      "train_loss": 0.247
+    }
+  },
+  "timestamp": "2026-05-22T17:33:37.589117+00:00",
+  "trigger": "update_registry"
+}

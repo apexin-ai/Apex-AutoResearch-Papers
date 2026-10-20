@@ -1,0 +1,115 @@
+\section{Experiments}
+
+\subsection{Experimental Setup}
+
+We follow the self-training protocol described in \S\ref{sec:methodology}. All experiments use GPT2-125M on WikiText-103 with 500K tokens per generation, learning rate $5 \times 10^{-5}$, effective batch size 32, and 3 training epochs per generation. We run 8 generations (Gen~0--7) for each of the four data selection methods. All experiments are repeated across three random seeds (42, 123, 456), with each seed sharing the same Gen~0 checkpoint and generated data pools.
+
+For the model scaling experiment (\S\ref{sec:scale}), we additionally run GPT2-medium (355M parameters) under identical hyperparameters.
+
+Training is conducted on 2$\times$ RTX PRO 6000 (98GB total VRAM). A single 8-generation pipeline takes approximately 4 hours for GPT2-125M and 11 hours for GPT2-medium.
+
+\subsection{Main Results: Normal Cluster vs.\ RGDS Outlier}
+\label{sec:main_results}
+
+Table~\ref{tab:gen7_summary} reports Gen~7 perplexity, rare n-gram ratio, and selection ratio across all methods and seeds. The central result is a stark bifurcation: three of the four methods cluster within a narrow perplexity band, while RGDS diverges catastrophically.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Method} & \textbf{s42} & \textbf{s123} & \textbf{s456} & \textbf{Mean$\pm$Std} & \textbf{Rare} & \textbf{SR} \\
+\midrule
+\multicolumn{7}{l}{\textit{Normal cluster}} \\
+Random 50\% & 43.20 & 41.75 & 44.60 & 43.18$\pm$1.43 & .0098 & $\approx$1.0 \\
+External 50\% & 45.51 & 49.66 & 43.90 & 46.36$\pm$2.97 & .0103 & 1.16 \\
+Uncurated & 50.28 & 46.15 & 44.69 & 47.04$\pm$2.90 & .0090 & --- \\
+\midrule
+\multicolumn{7}{l}{\textit{Outlier}} \\
+RGDS 50\% & 75.07 & 81.57 & \placeholder{--} & \placeholder{--} & .0057 & 0.52 \\
+\bottomrule
+\end{tabular}
+\caption{Gen~7 evaluation across methods and seeds. PPL = validation perplexity (lower is better). Rare = mean rare n-gram ratio. SR = selection ratio at Gen~7. RGDS seed=456 is pending. The normal cluster spans PPL 41.75--50.28; RGDS exceeds the cluster maximum by 49\%.}
+\label{tab:gen7_summary}
+\end{table}
+
+\paragraph{The normal cluster.} Random 50\%, External-only 50\%, and Uncurated 100\% occupy a PPL range of 41.75--50.28 across all completed seeds. A one-way ANOVA across the three methods yields $p \approx 0.20$, indicating no statistically significant difference within this group. This is itself a finding: whether one uses all the data, randomly subsamples half, or applies external-embedding selection to half, the collapse trajectory is statistically indistinguishable. The common factor is that none of these methods rely on the training model's own embeddings for selection.
+
+\paragraph{The RGDS outlier.} RGDS reaches Gen~7 PPL of 75.07 (seed=42) and 81.57 (seed=123), a \placeholder{+84\%} increase over the Random 50\% baseline (2-seed means: \placeholder{78.32} vs.\ 42.48). The effect size is massive (Cohen's $d \approx 10.3$), placing RGDS well outside the normal cluster by any conventional threshold. The effect is consistent across seeds: both available seeds show RGDS Gen~7 PPL exceeding every other method's Gen~7 PPL by at least 25 points.
+
+The magnitude of this gap warrants the term \textit{catastrophic acceleration}: RGDS does not merely fail to mitigate model collapse---it amplifies the degradation far beyond what occurs with no curation at all.
+
+\paragraph{Temporal dynamics.} Figure~\ref{fig:ppl_trajectory} plots PPL across generations. All methods begin at comparable Gen~0 perplexity ($\sim$37). Through Gen~3, trajectories overlap substantially. Divergence becomes visible at Gen~4, and by Gen~5--7, RGDS separates decisively. Uncurated and External-only both show a characteristic plateau-and-recovery pattern in the later generations (Uncurated: 56.25 $\rightarrow$ 50.28; External: 53.55 $\rightarrow$ 45.51 for seed=42), while RGDS monotonically degrades (53.82 $\rightarrow$ 75.07).
+
+\subsection{The Alignment Gap: Selection Ratio Analysis}
+\label{sec:alignment_gap}
+
+The selection ratio (SR) reveals \textit{why} RGDS accelerates collapse. Recall that $\text{SR} > 1$ means the method preferentially retains samples rich in rare n-grams, while $\text{SR} < 1$ means it depletes them.
+
+\paragraph{RGDS ratio decay.} At Gen~0, RGDS begins with $\text{SR} = 1.04$ (seed=42) and $1.00$ (seed=123)---near parity, meaning the model's initial notion of ``diverse'' roughly aligns with content diversity. By Gen~7, the ratio has fallen to $0.52$ in both seeds. Figure~\ref{fig:ratio_trajectory} shows this is not a sudden collapse but a progressive drift: the ratio crosses the critical $\text{SR} = 1.0$ threshold at Gen~1 (seed=42: 0.91) and monotonically declines thereafter.
+
+The trajectory is remarkably consistent across seeds. Table~\ref{tab:sr_trajectory} reports the full RGDS ratio trajectory for seed=42:
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccccccc}
+\toprule
+\textbf{Gen} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+\midrule
+SR & 1.04 & 0.91 & 0.93 & 0.94 & 0.90 & 0.81 & 0.72 & 0.52 \\
+\bottomrule
+\end{tabular}
+\caption{RGDS selection ratio across generations (seed=42). The ratio falls below 1.0 by Gen~1 and reaches 0.52 by Gen~7, indicating the model's embedding space increasingly anti-correlates with content diversity.}
+\label{tab:sr_trajectory}
+\end{table}
+
+The interpretation is direct: by Gen~7, RGDS retains samples with only 52\% of the rare n-gram density of the full generated pool. What the model's embedding space considers ``maximally diverse'' is, in content terms, maximally homogeneous. This is the embedding alignment gap in action: the optimization target (embedding-space coverage) has diverged from the intended objective (content diversity), instantiating a Goodhart's Law failure \citep{goodhart1984problems}.
+
+\paragraph{External ratio stability.} In contrast, External-only maintains $\text{SR} > 1.0$ throughout all generations and seeds: seed=42 ranges from 1.10 to 1.28, seed=123 from 1.08 to 1.22, and seed=456 from 1.07 to 1.24 (Gen~7 mean $1.16 \pm 0.08$ across three seeds). The frozen Contriever encoder provides a stable diversity signal that does not degrade with the training model. This stability is the key differentiator: the selection \textit{algorithm} is identical between RGDS and External-only; only the embedding source differs.
+
+\paragraph{Random ratio.} Random selection yields $\text{SR} \approx 1.0$ by construction, confirming that it neither enriches nor depletes content diversity.
+
+\subsection{Representation Quality Metrics Are Blind to Collapse}
+\label{sec:blind_metrics}
+
+A natural question is whether standard embedding-quality diagnostics could detect the alignment gap in real time. We find they cannot.
+
+\paragraph{RankMe increases during collapse.} RankMe, which measures the effective dimensionality of the embedding space, rises from 280.32 at Gen~0 to 303.05 at Gen~3 for Uncurated seed=42 (+8.1\%). For RGDS seed=42, RankMe increases from 275.89 to 294.92 through Gen~4. By this metric, the embedding space \textit{improves} during the very period when RGDS begins its catastrophic divergence. The RGDS Gen~7 RankMe (292.72) remains higher than the Gen~0 value (275.89).
+
+\paragraph{$k$-NN probe accuracy remains stable.} The $k$-nearest-neighbor probe, which measures how well embeddings preserve categorical structure, maintains accuracy at 0.988 throughout the RGDS trajectory. The embedding space retains its ability to separate content categories even as its notion of ``diversity'' becomes decoupled from content diversity.
+
+These findings have a practical implication: monitoring representation quality metrics during iterative self-training would provide false assurance. A practitioner observing stable RankMe and $k$-NN accuracy would have no signal that their embedding-based selection is actively harming the model. The alignment gap is invisible to standard embedding diagnostics because it operates on the \textit{relative geometry} of the space (which directions are considered ``diverse''), not on its \textit{absolute quality} (dimensionality, discriminability).
+
+\subsection{Model Scale Amplifies Collapse}
+\label{sec:scale}
+
+To test whether the alignment gap is specific to GPT2-125M, we run the Uncurated baseline on GPT2-medium (355M parameters) under identical hyperparameters.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{Gen~0} & \textbf{Gen~7} & \textbf{Ratio} & \textbf{$\Delta$Rare} \\
+\midrule
+GPT2-125M & 37.10 & 50.28 & 1.36$\times$ & $-$69\% \\
+GPT2-355M & 26.55 & 91.66 & 3.45$\times$ & $-$60\% \\
+\bottomrule
+\end{tabular}
+\caption{Uncurated self-training collapse across model scales (seed=42). Ratio = Gen~7 PPL / Gen~0 PPL. $\Delta$Rare = relative change in rare n-gram ratio from Gen~0 to Gen~7.}
+\label{tab:scale}
+\end{table}
+
+GPT2-medium degrades from PPL 26.55 to 91.66 over 8 generations (3.45$\times$), far exceeding GPT2-125M's 1.36$\times$ degradation. The medium model starts with lower perplexity and higher rare n-gram density (0.0346 vs.\ 0.029), but this initial advantage is erased: by Gen~7, GPT2-medium's perplexity (91.66) substantially exceeds GPT2-125M's (50.28; both seed=42), despite starting from a stronger baseline.
+
+The rare n-gram ratio tells a complementary story: GPT2-medium drops from 0.0346 to 0.0139 ($-$60\%), while GPT2-125M drops from 0.029 to 0.009 ($-$69\%). Both models lose lexical diversity at comparable relative rates, but the medium model's superior language modeling ability amplifies the perplexity impact of each unit of diversity loss.
+
+GPT2-medium RGDS experiments are \placeholder{in progress}. If the pattern holds, the RGDS--Uncurated gap should be even larger at 355M scale, since the richer embedding space provides more room for the alignment gap to operate.
+
+\subsection{Observations on Data Budget}
+\label{sec:budget}
+
+Random 50\% and Uncurated (100\%) provide a direct comparison of data budget effects without intelligent selection. Across three seeds, Random 50\% achieves Gen~7 PPL of 43.20, 41.75, and 44.60 (mean 43.18$\pm$1.43), while Uncurated achieves 50.28, 46.15, and 44.69 (mean 47.04$\pm$2.90). At seed=456, the two methods are essentially identical (44.60 vs.\ 44.69).
+
+We report this as an observation rather than a claim: halving the data budget via random selection does not significantly harm---and may slightly help---the self-training trajectory. One possible explanation is that random subsampling acts as implicit data augmentation by varying the training distribution across generations. However, the effect is small and inconsistent across seeds (seed=42 shows a 7-point gap; seed=456 shows none), so we do not draw a strong conclusion.

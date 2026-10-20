@@ -1,0 +1,29 @@
+{
+  "exp_id": "codellama13b_vota_seed123",
+  "project": "trace-verdict-study",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T03:10:20.719Z",
+    "updated_at": "2026-05-20T07:48:34.329Z",
+    "hypothesis": "CodeLlama-13B VOTA seed123 应在 97-100%（与 seed42=98.57% 接近），验证 VOTA Tier 1 跨 seed 稳定性",
+    "parent": "codellama13b_vota_seed42",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_vota_seed123 --wandb_project trace-verdict-study --wandb_run_name codellama13b_vota_seed123 && python eval/evaluate.py --condition vota --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_vota_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_vota_seed123/final/eval_results.json --save_predictions\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "601095",
+      "log_path": "~/runs/trace-verdict-study/codellama13b_vota_seed123.log",
+      "submitted_at": "2026-05-20T07:35:22.845Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-20T07:48:34.883497+00:00",
+  "trigger": "update_registry"
+}

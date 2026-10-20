@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0adc6072399b40c45d50",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_7_1778885280.md",
+  "task_key": "loop_7_1778885280",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778885280.md",
+    "occurrence": 1,
+    "bytes": 5164,
+    "sha256": "af1e26c21d164ee4b2ad067646463559195201d7630bb8cf34d718c24a63ee79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-15T22:36:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单只有 `westd-11235:cuda:0` 和 `westd-11235:cuda:1`，绝对不能用其他 GPU\n- DeepSeek 系列实验必须用旧代码（`load_best_model_at_end` 已注释为 `# TEMP_DISABLED`），保持 DeepSeek 组内一致。Qwen 实验可用新代码\n- `deepseek_full_trace_seed42_v3` 正在 cuda:0 跑（PID 163109），不要 kill 它——这是 plan_004 最后一个条件\n- 同一 GPU 上禁止并行 eval + training（之前踩坑：7s/step 恶化到 35-49s/step）\n- 论文数据集来源是 **HumanEval (164) + MBPP-sanitized (427) = 591 problems × 10 solutions = 5910 samples**，不是 CRUXEval（D024 纠正过）\n- D030 CRITICAL：DeepSeek VOTA 84.45% 可能有 eval parser 问题，Worker 正在调查中，**在调查结论出来前不要在论文中引用此数值作为 final**\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-11235, 2× RTX PRO 6000 Blackwell 94GB, CUDA 12.8\n- **工作目录**: `/root/trace-verdict-study`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **激活命令**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**: `/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6.7b-instruct` (DeepSeek), Qwen 同目录结构\n- **数据路径**: `/root/autodl-tmp/trace-verdict-study-data/{condition}_{train,test}.jsonl`\n- **Checkpoint 路径**: `/root/autodl-tmp/trace-verdict-study-checkpoints/`\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **活跃进程**: `deepseek_full_trace_seed42_v3` PID=163109, cuda:0, cron 监控中（reconcile 确认 still running）\n- **cuda:1**: 空闲\n\n### 3. 📊 当前状态\n**刚完成**: D029 — Claim 1 定稿（DeepSeek seed456=99.33% 确认 seed42），framing v2.9 更新完毕。所有 3 core claims confirmed。\n\n**RUNNING (1)**:\n- `deepseek_full_trace_seed42_v3` — cuda:0, PID 163109。DeepSeek full_trace 重训（修复 label-preserving truncation），plan_004 最后一个条件。cron 监控正常。\n\n**PREPARING (4)**: plan_006 trace length ablation 四组（256/512/1024/2048 tok），Worker 已完成代码准备（`worker_exp_plan006_trace_length_ablation_setup`），等 GPU 空闲提交。\n\n**Running Workers (2)**:\n- `worker_data_plan_005_debugbench_prep` — 准备 DebugBench 数据（plan_005 第二任务验证）\n- `worker_investigate_deepseek_vota_eval_discrepancy` — 调查 D030（DeepSeek VOTA 84.45% eval parser 疑虑）\n\n**等待中**: 上述两个 Worker 的 `[WORKER DONE]` 回调。\n\n### 4. 📋 待办（条件触发式）\n- `deepseek_full_trace_seed42_v3` cron 回调（训练完成）→ spawn worker 跑 eval → 结果入跨模型对比表 → 向 Director 汇报 plan_004 全部完成\n- `worker_investigate_deepseek_vota_eval_discrepancy` 完成 → 如确认 parser bug：重跑 eval 并更新 registry/framing；如确认无问题：D030 关闭，84.45% 为 final\n- `worker_data_plan_005_debugbench_prep` 完成 → 数据就绪后向 Director 提交 plan_005 审批（DebugBench 第二任务验证）\n- cuda:0 释放（v3 完成后）→ 立即提交 plan_006 trace length ablation 第一组（已 PREPARING），四组按 GPU 可用性轮流跑\n- cuda:1 当前空闲 → 如果 D030 调查需要重跑 eval 可用 cuda:1；否则可先跑 plan_006 的一组\n- 论文方面：Paper Agent 应交付含 seed456 数据的修订章节（ROADMAP 5/16 里程碑），确保 Claim 1 seed-dependent wording 全文一致\n- Bootstrap 方法一致性待修：DeepSeek 实验缺 per-sample predictions，需重跑 `evaluate.py --save_predictions` 后用 paired bootstrap 重算 CI\n\n### 5. 🎯 战略上下文\n**项目核心结论**: Exception events 是 verdict prediction 最有效的 trace 组件。Qwen 99.83%±0.00，DeepSeek 2/3 seeds 99.33%。VOTA 的真正机制是 fault indicator isolation（提取 exception）而非 generic trace compression。\n\n**决策链**: D021(label 截断根因) → D022(kill v2 重训) → D023(阻止 v3 先修代码) → D024(数据集来源纠正) → D025-D028(seed 系列验证) → D029(Claim 1 定稿) → D030(VOTA eval parser 疑虑，调查中)\n\n**10 天冲刺**: ARR May 25 截止。当前路径：v3 完成(5/16) → 初稿(5/17-18) → Reviewer 对抗(5/19-21) → 定稿提交(5/24)。\n\n**最容易判断错的事**:\n- D030 是否影响 Claim 1：即使 VOTA 84.45% 有 parser 问题，exception_only 的 eval 代码路径不同（单 token 输出），**不影响 exception_only 结论**。但如果 VOTA 真实值更高，cross-model gap narrative 需要调整\n- plan_006（trace length ablation）四组实验共需 ~8 GPU 小时，两张卡并行约 4 小时，但必须等 v3 先完成腾出 cuda:0\n- DeepSeek full_trace v3 如果仍然 collapse（即使修了 truncation）→ 这本身也是有价值的 negative result（full_trace 在 DeepSeek 上 fundamentally 不 work），但需要按 red-section 产出 Framing 提案\n- 不要把 Qwen 的 paired bootstrap CI 和 DeepSeek 的 unpaired bootstrap CI 放在同一张表里——论文审稿人会抓这个不一致\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778885280.md"
+}

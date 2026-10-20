@@ -1,0 +1,1338 @@
+{
+  "schema_version": "1.0",
+  "id": "0005b5acc2f0e4d86683",
+  "project": "div_cal_verify",
+  "kind": "worker",
+  "title": "writing conclusion",
+  "task_key": "worker_writing_conclusion_20260513T223523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_conclusion_20260513T223523.log",
+    "occurrence": 1,
+    "bytes": 63804,
+    "sha256": "7034cfd5395524397c2cdacc873475909796b73223d60eb2d02da80d855f501a"
+  },
+  "statistics": {
+    "messages": 34,
+    "user_turns": 1,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 9,
+      "user": 1,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+                "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "6603a082-3201-46de-9cbc-cc6d342b97a6",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-div-cal-verify/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778725800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "d8dd4984-b217-4902-8a05-150a10a0c325",
+                "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me first check if there are existing paper files to understand the context, labels, and style.",
+              "signature": "Ep0CClkIDRgCKkCTJjRbpWoUsEa+ZQ3I1O1DcjAnO/B6GS+RxnVq24RMLCqD8EislBCam8y7wz6G6Mx0jsMcgtRqLf9tzNtB2GheMg9jbGF1ZGUtb3B1cy00LTY4ABIMy3EyI/UNE1AvyFVgGgz9L2fiSB9yFIVadLQiMMXX8PN+I7p/YBsMG/Csol9dPMctnM7x1AQjDSbsrFvW3TIqQeWBWuGx3qRayN85qSpyLFLiBidslr01oVpbE2+iFTJCafZXarWRyG84Qev7htfQX0dkKYe28Z0NrG6xygYmRmHwVdYvG0vtl/mCiJKQE1ngB7NS+AphyYtA594eA20KyFKYQlWHMIIesFzmw5Gzr627D+oHCbcUHZjzFVNhsNv4GAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "e7298b5d-5526-4f9c-b24e-b5fa582e1290",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TDgWiR3dedcVHrEEPxhGzn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11602,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11602
+                },
+                "output_tokens": 17,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the existing paper files for style and label references."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "3b33f7d1-1055-4fb6-bec2-5c959b7afea5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TDgWiR3dedcVHrEEPxhGzn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11602,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11602
+                },
+                "output_tokens": 17,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UAy2wNNGkDsScD5VnZfAH4",
+              "name": "Agent",
+              "input": {
+                "subagent_type": "Explore",
+                "description": "Check paper files for labels",
+                "prompt": "Find and read the discussion.tex file and any other .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/ to understand:\n1. What labels exist in discussion.tex (especially for Limitations and Future Work subsections)\n2. The writing style and formatting conventions used\n3. Any macros or custom commands defined\n\nRead discussion.tex fully, and check for main.tex or any preamble file for macro definitions. Report the exact label names for limitations and future work sections, and any relevant style conventions."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "69e0a37b-6e2b-4348-ac22-08081310f558",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TDgWiR3dedcVHrEEPxhGzn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11602,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11602
+                },
+                "output_tokens": 17,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "a9ea3f382ccbbef33",
+                "tool_use_id": "toolu_01UAy2wNNGkDsScD5VnZfAH4",
+                "description": "Check paper files for labels",
+                "task_type": "local_agent",
+                "prompt": "Find and read the discussion.tex file and any other .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/ to understand:\n1. What labels exist in discussion.tex (especially for Limitations and Future Work subsections)\n2. The writing style and formatting conventions used\n3. Any macros or custom commands defined\n\nRead discussion.tex fully, and check for main.tex or any preamble file for macro definitions. Report the exact label names for limitations and future work sections, and any relevant style conventions.",
+                "uuid": "08bf36cb-cc2f-4324-a2e5-809725041493",
+                "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8"
+              }
+            }
+          ],
+          "id": "event-000007"
+        }
+      ],
+      "message_count": 7
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T22:35:37.719Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Find and read the discussion.tex file and any other .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/ to understand:\n1. What labels exist in discussion.tex (especially for Limitations and Future Work subsections)\n2. The writing style and formatting conventions used\n3. Any macros or custom commands defined\n\nRead discussion.tex fully, and check for main.tex or any preamble file for macro definitions. Report the exact label names for limitations and future work sections, and any relevant style conventions."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01UAy2wNNGkDsScD5VnZfAH4",
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "f2540ef7-4d95-4449-a7e5-486ff2a983e0"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a9ea3f382ccbbef33",
+                "tool_use_id": "toolu_01UAy2wNNGkDsScD5VnZfAH4",
+                "description": "Running find /home/ubuntu/.agent-ml-research-idea_gen_050…",
+                "usage": {
+                  "total_tokens": 15537,
+                  "tool_uses": 1,
+                  "duration_ms": 1501
+                },
+                "last_tool_name": "Bash",
+                "uuid": "70b84a6e-74cf-44fd-b71c-d898f6bf8e15",
+                "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8"
+              }
+            }
+          ],
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LS3cmtDfE2wtKXfQSY8FQx",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/ -type f -name \"*.tex\" 2>/dev/null | sort"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01UAy2wNNGkDsScD5VnZfAH4",
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "3be552bd-0f40-43a7-bd1f-76bf042db082",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Doox1JBQZ1U78mF3jJtuVh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15520,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 15520,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T22:35:39.544Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LS3cmtDfE2wtKXfQSY8FQx",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/discussion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/methodology.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/results.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01UAy2wNNGkDsScD5VnZfAH4",
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "8699fd3b-2a29-4e9f-878e-af23c3d6b9ff"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a9ea3f382ccbbef33",
+                "tool_use_id": "toolu_01UAy2wNNGkDsScD5VnZfAH4",
+                "description": "Reading docs/paper/discussion.tex",
+                "usage": {
+                  "total_tokens": 16770,
+                  "tool_uses": 2,
+                  "duration_ms": 3453
+                },
+                "last_tool_name": "Read",
+                "uuid": "9581bfd5-2efd-4f8c-bc87-abeae74d91d9",
+                "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8"
+              }
+            }
+          ],
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017erXvFDrwWkqarCnBiQspR",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01UAy2wNNGkDsScD5VnZfAH4",
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "067650db-9b69-4f37-b98a-851515e7ae59",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017Z9Hb753qJCkLYUiz4acco",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1229,
+                "cache_read_input_tokens": 15520,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1229,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T22:35:41.189Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017erXvFDrwWkqarCnBiQspR",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\subsection{The Embedding Alignment Gap as Goodhart's Law}\n5\t\n6\tThe selection ratio trajectory of RGDS---declining from ${\\sim}1.04$ at Generation~0 to $0.52 \\pm 0.004$ at Generation~7---instantiates a specific form of Goodhart's law in representation space \\citep{gao2023scaling, karwowski2024goodhart}. The proxy measure (embedding diversity) and the true objective (content diversity) are initially correlated: at Generation~0, RGDS's selection ratio exceeds~1, and the method preferentially retains content-rich samples. But as the model trains on its own selected outputs, the embedding space drifts: regions that formerly encoded distinct content merge, effective dimensionality shrinks, and the proxy's correlation with the target degrades.\n7\t\n8\tThe selection ratio crossing~1.0 marks the critical transition. Above~1.0, the proxy---while imperfect---points in the right direction. Below~1.0, the proxy has fully inverted: the model's internal notion of ``diverse'' anti-correlates with content diversity, and selection actively filters out the samples that would slow collapse. This inversion is irreversible within the self-training loop because the next generation's embeddings are shaped by the content-depleted training data, further degrading the proxy.\n9\t\n10\t\\citet{karwowski2024goodhart} formalize Goodhart's law in the context of reward model overoptimization, showing that proxy performance peaks and then degrades as optimization pressure increases. The embedding alignment gap follows an analogous trajectory: RGDS's selection ratio rises slightly during Generations~1--3 before sustained decline, mirroring the peak-then-degrade pattern characteristic of Goodhart dynamics. The structural difference is that here the proxy (embedding space) is itself a function of the optimization outcome, creating a feedback loop absent from standard Goodhart settings where the proxy is fixed.\n11\t\n12\t\\subsection{The Normal Cluster and the Floor of Self-Training}\n13\t\n14\tThree of our four methods---Random~50\\%, External-only, and Uncurated---cluster in a band of Generation~7 perplexities between 43 and 51 despite substantial differences in design (ANOVA $p = 0.219$, $n{=}3$ per method). Random selection applies no intelligent curation; External-only applies greedy diversity maximization with frozen embeddings; Uncurated retains all data without filtering. That these methods converge to comparable PPL outcomes indicates that the floor of perplexity degradation in this self-training protocol is determined by the iterative feedback loop itself \\citep{shumailov2024ai}, not by the data selection strategy.\n15\t\n16\tCritically, this convergence is specific to perplexity. When measured by rare n-gram ratio, the same three methods show statistically significant differences (ANOVA $p = 0.007$): Uncurated retains fewer rare n-grams ($0.0090 \\pm 0.0004$) than both Random~50\\% ($0.0098 \\pm 0.0003$) and External-only ($0.0102 \\pm 0.0004$). Content diversity can degrade silently---without perplexity penalty---indicating that PPL alone is insufficient to capture all dimensions of model collapse.\n17\t\n18\tThis convergence is consistent with theoretical analyses showing that self-consuming generative processes converge toward the modes of the original distribution regardless of training procedure \\citep{seddik2024how}. Within the non-catastrophic regime, data selection method variation produces second-order effects relative to the first-order dynamics of iterative self-training. RGDS is the outlier precisely because it introduces a systematic bias---toward content-depleted samples---that compounds across generations, pushing it outside the natural convergence band.\n19\t\n20\t\\subsection{Practical Implications}\n21\t\n22\tThe results yield a direct prescription: do not use the training model's own embeddings for data selection in iterative self-training settings. Any embedding-based curation method whose embedding source co-evolves with the model---including methods based on facility location objectives, kernel density estimation, or clustering over internal representations---is vulnerable to the same proxy-target inversion. The risk is highest when curation occurs at every generation and no external anchor stabilizes the embedding space.\n23\t\n24\tRandom sampling provides a zero-cost alternative that avoids the alignment gap entirely and, in our experiments, slightly outperforms both Uncurated and External-only baselines (though the difference is not statistically significant at $n{=}3$; \\S\\ref{sec:result_s3}). When informed selection is desired, frozen external embeddings maintain selection quality across generations at the cost of an additional inference pass through the external encoder.\n25\t\n26\t\\subsection{Connection to Concept Drift}\n27\t\n28\tThe embedding alignment gap can be understood as a special case of concept drift \\citep{lu2019learning, gama2014survey} in which the drift is endogenous: the model's own outputs define its future training distribution, which in turn reshapes its representations. In standard concept drift settings, the data distribution shifts due to external factors, and the model must adapt. In self-consuming training, the model \\emph{causes} the distribution shift, creating a feedback loop where representation degradation and distributional shift co-amplify.\n29\t\n30\tThis endogenous drift is particularly insidious for embedding-based data selection because the selection mechanism relies on the very representations undergoing drift. Concept drift detection methods that monitor distributional divergence between training batches would flag the symptom (changing distributions) but not the cause (embedding-selection feedback). Addressing this failure mode requires either anchoring selection to a stable external reference---as External-only does---or monitoring the selection ratio to detect proxy inversion before it compounds.\n31\t\n32\t\\subsection{Limitations}\n33\t\n34\tSeveral limitations scope our conclusions:\n35\t\\begin{enumerate}\n36\t    \\item Our experiments use GPT2-125M and GPT2-Medium (355M, preliminary $n{=}1$); the embedding alignment gap may manifest differently in larger models with richer representational capacity.\n37\t    \\item We train and evaluate exclusively on WikiText-103; other domains (code, dialogue, scientific text) may exhibit different collapse dynamics.\n38\t    \\item Our self-training protocol uses cumulative fine-tuning with fixed hyperparameters; instruction-tuning and RLHF pipelines introduce additional variables (reward signals, preference data) that could interact with the alignment gap.\n39\t    \\item Our analysis of dimensional collapse is empirical and analogical \\citep{jing2022understanding}---we do not provide a formal theoretical proof linking effective dimensionality reduction to selection ratio decline.\n40\t    \\item GPT2-Medium results are based on a single seed at time of writing; multi-seed confirmation is pending.\n41\t\\end{enumerate}\n42\t\n43\t\\subsection{Future Work}\n44\t\n45\tThree directions extend this work. First, scaling to 1B+ parameter models would test whether richer embedding spaces resist or amplify the alignment gap. Second, replicating across diverse pretraining corpora (OpenWebText, C4, The Pile) would establish domain generality. Third, \\emph{embedding re-anchoring} strategies---periodically resetting the selection embeddings to an external encoder or a cached earlier checkpoint---could retain the benefits of informed selection while preventing proxy inversion. Finally, a theoretical analysis relating the selection ratio trajectory to the rate of effective dimensionality reduction would provide a predictive framework for identifying when the alignment gap becomes critical before the proxy has fully inverted.\n46\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01UAy2wNNGkDsScD5VnZfAH4",
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "b018b7a7-8d98-4db3-bf38-4b51fbf783a4"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a9ea3f382ccbbef33",
+                "tool_use_id": "toolu_01UAy2wNNGkDsScD5VnZfAH4",
+                "description": "Reading docs/paper/main.tex",
+                "usage": {
+                  "total_tokens": 16771,
+                  "tool_uses": 3,
+                  "duration_ms": 3553
+                },
+                "last_tool_name": "Read",
+                "uuid": "f8e8af87-bb5e-4aa8-af6a-b922f1602bd7",
+                "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8"
+              }
+            }
+          ],
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DBkgNp2fw4X7n3nmotsDdr",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01UAy2wNNGkDsScD5VnZfAH4",
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "9a974b44-b2e4-4819-880e-b3675e78a337",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017Z9Hb753qJCkLYUiz4acco",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1229,
+                "cache_read_input_tokens": 15520,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1229,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T22:35:41.279Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DBkgNp2fw4X7n3nmotsDdr",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{inconsolata}\n11\t\\usepackage{graphicx}\n12\t\\usepackage{booktabs}\n13\t\\usepackage{amsmath}\n14\t\\usepackage{amssymb}\n15\t\\usepackage{xcolor}\n16\t\n17\t\\newcommand{\\placeholder}[1]{\\textcolor{red}{[#1]}}\n18\t\n19\t\\title{The Embedding Alignment Gap: Why Diversity-Based Data Selection\\\\Accelerates Model Collapse in Iterative Self-Training}\n20\t\n21\t\\author{Anonymous}\n22\t\n23\t\\begin{document}\n24\t\\maketitle\n25\t\n26\t\\begin{abstract}\n27\tIterative self-training on model-generated data risks \\emph{model collapse}---a progressive degradation of output quality across generations. A natural mitigation is diversity-based data curation: selecting training subsets that maximize coverage in the model's own embedding space. We show that this intuitive strategy backfires. In controlled iterative self-training experiments with GPT-2 (125M and 355M parameters) on WikiText-103, Representation-Guided Diversity Selection (RGDS)---which uses the training model's embeddings to greedily maximize diversity---\\emph{accelerates} collapse rather than preventing it, producing roughly 80\\% higher perplexity than a random selection baseline operating under the same 50\\% data budget. We identify the mechanism behind this failure as the \\emph{Embedding Alignment Gap}: the model's internal notion of ``diversity'' progressively diverges from actual content diversity as its representations co-degrade with the generated data, causing the selection ratio to decline from approximately 1.0 to 0.5 over eight generations. Critically, all selection strategies that bypass the model's own embeddings---random sampling (PPL 43.18$\\pm$1.43), external frozen embeddings (PPL 46.36$\\pm$2.97), and uncurated full-corpus training (PPL 47.04$\\pm$2.90)---cluster within a narrow perplexity range with no catastrophic failure. Meanwhile, standard representation quality diagnostics such as RankMe effective dimensionality and $k$-NN accuracy remain stable throughout training, rendering the alignment gap invisible to conventional monitoring. Our results demonstrate that coupling data selection to co-degrading internal representations creates a feedback loop that amplifies rather than mitigates collapse, and that zero-cost random sampling is a more robust alternative for iterative self-training pipelines.\n28\t\\end{abstract}\n29\t\n30\t\\input{introduction}\n31\t\n32\t\\input{related_work}\n33\t\n34\t\\input{methodology}\n35\t\n36\t\\input{experiments}\n37\t\n38\t\\input{results}\n39\t\n40\t\\input{discussion}\n41\t\n42\t\\input{conclusion}\n43\t\n44\t\\bibliography{references}\n45\t\n46\t\\end{document}\n47\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01UAy2wNNGkDsScD5VnZfAH4",
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "46b53de7-e33a-4cce-8675-246efcf22812"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a9ea3f382ccbbef33",
+                "tool_use_id": "toolu_01UAy2wNNGkDsScD5VnZfAH4",
+                "description": "Running ls -la /home/ubuntu/.agent-ml-research-idea_gen_0…",
+                "usage": {
+                  "total_tokens": 19607,
+                  "tool_uses": 4,
+                  "duration_ms": 6656
+                },
+                "last_tool_name": "Bash",
+                "uuid": "ac0d56b8-8375-4fdd-844e-7e071ad1aa94",
+                "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8"
+              }
+            }
+          ],
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KPzEtrWbL4LdBSLpQdbE9S",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/ | grep -E \"\\.tex$\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01UAy2wNNGkDsScD5VnZfAH4",
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "ed1ffe52-7aa3-479c-8a03-0dbb323d370f",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DnNEv6hADSanupLi24XLvH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 2833,
+                "cache_read_input_tokens": 16749,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2833,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T22:35:44.448Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KPzEtrWbL4LdBSLpQdbE9S",
+              "type": "tool_result",
+              "content": "-rw-r--r-- 1 ubuntu ubuntu  7680 May 13 22:00 discussion.tex\n-rw-r--r-- 1 ubuntu ubuntu  6190 May 13 21:57 experiments.tex\n-rw-r--r-- 1 ubuntu ubuntu  7672 May 13 21:57 introduction.tex\n-rw-r--r-- 1 ubuntu ubuntu  2602 May 13 22:35 main.tex\n-rw-r--r-- 1 ubuntu ubuntu  8272 May 13 20:32 methodology.tex\n-rw-r--r-- 1 ubuntu ubuntu  7518 May 13 21:37 related_work.tex\n-rw-r--r-- 1 ubuntu ubuntu  8056 May 13 22:00 results.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01UAy2wNNGkDsScD5VnZfAH4",
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "ae930d63-01e5-455f-9fb5-4efce813d5c6"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a9ea3f382ccbbef33",
+                "tool_use_id": "toolu_01UAy2wNNGkDsScD5VnZfAH4",
+                "description": "Running ls -la /home/ubuntu/.agent-ml-research-idea_gen_0…",
+                "usage": {
+                  "total_tokens": 19950,
+                  "tool_uses": 5,
+                  "duration_ms": 8082
+                },
+                "last_tool_name": "Bash",
+                "uuid": "d6332c4a-3309-4f96-8740-438f00c3b8bf",
+                "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8"
+              }
+            }
+          ],
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WUePEvXftMzLSZwZ5fNpce",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/conclusion.tex 2>&1 || echo \"File not found\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01UAy2wNNGkDsScD5VnZfAH4",
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "d6aeb809-a802-4492-af65-9b30346c1d3e",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Wf82oTSymuFXrbVbpLAQgZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 342,
+                "cache_read_input_tokens": 19582,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 342,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-13T22:35:45.860Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WUePEvXftMzLSZwZ5fNpce",
+              "type": "tool_result",
+              "content": "ls: cannot access '/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/conclusion.tex': No such file or directory\nFile not found",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01UAy2wNNGkDsScD5VnZfAH4",
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "4a47b82e-d298-42f9-a5d3-783e801dcbed"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "a9ea3f382ccbbef33",
+                "tool_use_id": "toolu_01UAy2wNNGkDsScD5VnZfAH4",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Check paper files for labels",
+                "usage": {
+                  "total_tokens": 20132,
+                  "tool_uses": 5,
+                  "duration_ms": 16084
+                },
+                "uuid": "9719cfbe-1e89-484c-90e0-9892ffb196b6",
+                "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8"
+              }
+            }
+          ],
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-13T22:35:53.805Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UAy2wNNGkDsScD5VnZfAH4",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Perfect! I now have all the information needed. Let me compile my findings:\n\n## Analysis of discussion.tex and Paper Structure\n\n### Label Names for Limitations and Future Work\n\nFrom **discussion.tex**:\n\n1. **Limitations subsection label**: `\\label{sec:discussion}` (for the entire Discussion section)\n   - The Limitations subsection itself (line 32-41) does NOT have its own `\\label` command\n   - It is a `\\subsection{Limitations}` without a dedicated label\n\n2. **Future Work subsection label**: Similar to Limitations, there is NO dedicated `\\label` for the Future Work subsection\n   - It is a `\\subsection{Future Work}` (line 43) without its own label\n   - However, line 24 contains a reference: `\\S\\ref{sec:result_s3}` which suggests other sections use `sec:` prefix for labels\n\n### Section Label Conventions\n\nThe paper follows this labeling pattern:\n- Main sections use: `\\label{sec:sectionname}` (e.g., `\\label{sec:discussion}`)\n- Cross-references use: `\\ref{sec:name}` format\n- Result subsections appear to use: `sec:result_s3` (supplementary results)\n\n### Writing Style and Formatting Conventions\n\n1. **Mathematical notation**: Uses inline math mode with `$...$` for variables and symbols\n2. **Citations**: Uses `\\citep{...}` for parenthetical citations (ACL style)\n3. **Emphasis**: Uses `\\emph{...}` for emphasized text\n4. **Numerical precision**: Reports uncertainties with ±notation (e.g., `0.52 \\pm 0.004`)\n5. **Statistical references**: Uses standard notation like \"ANOVA $p = 0.219$\", \"n{=}3\"\n6. **Enumeration**: Uses `\\begin{enumerate}...\\end{enumerate}` for numbered lists (see Limitations section)\n\n### Macros and Custom Commands\n\nFrom **main.tex** (preamble):\n\nOne custom command is defined:\n```latex\n\\newcommand{\\placeholder}[1]{\\textcolor{red}{[#1]}}\n```\n\nThis command creates red-colored placeholders for unfinished text, though it doesn't appear to be used in discussion.tex.\n\n### Document Class and Packages\n\n- Document class: `\\documentclass[11pt]{article}` with `acl` package (review mode)\n- Key packages: times, latexsym, fontenc, inputenc, microtype, inconsolata, graphicx, booktabs, amsmath, amssymb, xcolor\n\n### Key Observation\n\nThe Limitations (line 32) and Future Work (line 43) subsections in discussion.tex **do not have their own `\\label` commands**. If you need to reference these sections, you would need to add labels like:\n- `\\label{sec:limitations}` after `\\subsection{Limitations}`\n- `\\label{sec:future_work}` after `\\subsection{Future Work}`\n\nThe file uses the convention of labeling main sections with `sec:` prefix, so these would follow that pattern consistently."
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "ed5ae5ba-0917-4af7-87e5-d86a2642ee0b",
+            "tool_use_result": {
+              "status": "completed",
+              "prompt": "Find and read the discussion.tex file and any other .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/ to understand:\n1. What labels exist in discussion.tex (especially for Limitations and Future Work subsections)\n2. The writing style and formatting conventions used\n3. Any macros or custom commands defined\n\nRead discussion.tex fully, and check for main.tex or any preamble file for macro definitions. Report the exact label names for limitations and future work sections, and any relevant style conventions.",
+              "agentId": "a9ea3f382ccbbef33",
+              "agentType": "Explore",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Perfect! I now have all the information needed. Let me compile my findings:\n\n## Analysis of discussion.tex and Paper Structure\n\n### Label Names for Limitations and Future Work\n\nFrom **discussion.tex**:\n\n1. **Limitations subsection label**: `\\label{sec:discussion}` (for the entire Discussion section)\n   - The Limitations subsection itself (line 32-41) does NOT have its own `\\label` command\n   - It is a `\\subsection{Limitations}` without a dedicated label\n\n2. **Future Work subsection label**: Similar to Limitations, there is NO dedicated `\\label` for the Future Work subsection\n   - It is a `\\subsection{Future Work}` (line 43) without its own label\n   - However, line 24 contains a reference: `\\S\\ref{sec:result_s3}` which suggests other sections use `sec:` prefix for labels\n\n### Section Label Conventions\n\nThe paper follows this labeling pattern:\n- Main sections use: `\\label{sec:sectionname}` (e.g., `\\label{sec:discussion}`)\n- Cross-references use: `\\ref{sec:name}` format\n- Result subsections appear to use: `sec:result_s3` (supplementary results)\n\n### Writing Style and Formatting Conventions\n\n1. **Mathematical notation**: Uses inline math mode with `$...$` for variables and symbols\n2. **Citations**: Uses `\\citep{...}` for parenthetical citations (ACL style)\n3. **Emphasis**: Uses `\\emph{...}` for emphasized text\n4. **Numerical precision**: Reports uncertainties with ±notation (e.g., `0.52 \\pm 0.004`)\n5. **Statistical references**: Uses standard notation like \"ANOVA $p = 0.219$\", \"n{=}3\"\n6. **Enumeration**: Uses `\\begin{enumerate}...\\end{enumerate}` for numbered lists (see Limitations section)\n\n### Macros and Custom Commands\n\nFrom **main.tex** (preamble):\n\nOne custom command is defined:\n```latex\n\\newcommand{\\placeholder}[1]{\\textcolor{red}{[#1]}}\n```\n\nThis command creates red-colored placeholders for unfinished text, though it doesn't appear to be used in discussion.tex.\n\n### Document Class and Packages\n\n- Document class: `\\documentclass[11pt]{article}` with `acl` package (review mode)\n- Key packages: times, latexsym, fontenc, inputenc, microtype, inconsolata, graphicx, booktabs, amsmath, amssymb, xcolor\n\n### Key Observation\n\nThe Limitations (line 32) and Future Work (line 43) subsections in discussion.tex **do not have their own `\\label` commands**. If you need to reference these sections, you would need to add labels like:\n- `\\label{sec:limitations}` after `\\subsection{Limitations}`\n- `\\label{sec:future_work}` after `\\subsection{Future Work}`\n\nThe file uses the convention of labeling main sections with `sec:` prefix, so these would follow that pattern consistently."
+                }
+              ],
+              "totalDurationMs": 16086,
+              "totalTokens": 20857,
+              "totalToolUseCount": 5,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 181,
+                "cache_read_input_tokens": 19924,
+                "output_tokens": 747,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 181
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 747,
+                    "cache_read_input_tokens": 19924,
+                    "cache_creation_input_tokens": 181,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 181,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 2,
+                "searchCount": 0,
+                "bashCount": 3,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 0
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BaD5w3ob7DsvQhNfbi3zcU",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "496576bf-d465-4e45-b763-ad6ca38906db",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WATH5Me7sDuFQzB1E6wRsb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1029,
+                "cache_read_input_tokens": 23443,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1029
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-13T22:35:56.399Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BaD5w3ob7DsvQhNfbi3zcU",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\subsection{The Embedding Alignment Gap as Goodhart's Law}\n5\t\n6\tThe selection ratio trajectory of RGDS---declining from ${\\sim}1.04$ at Generation~0 to $0.52 \\pm 0.004$ at Generation~7---instantiates a specific form of Goodhart's law in representation space \\citep{gao2023scaling, karwowski2024goodhart}. The proxy measure (embedding diversity) and the true objective (content diversity) are initially correlated: at Generation~0, RGDS's selection ratio exceeds~1, and the method preferentially retains content-rich samples. But as the model trains on its own selected outputs, the embedding space drifts: regions that formerly encoded distinct content merge, effective dimensionality shrinks, and the proxy's correlation with the target degrades.\n7\t\n8\tThe selection ratio crossing~1.0 marks the critical transition. Above~1.0, the proxy---while imperfect---points in the right direction. Below~1.0, the proxy has fully inverted: the model's internal notion of ``diverse'' anti-correlates with content diversity, and selection actively filters out the samples that would slow collapse. This inversion is irreversible within the self-training loop because the next generation's embeddings are shaped by the content-depleted training data, further degrading the proxy.\n9\t\n10\t\\citet{karwowski2024goodhart} formalize Goodhart's law in the context of reward model overoptimization, showing that proxy performance peaks and then degrades as optimization pressure increases. The embedding alignment gap follows an analogous trajectory: RGDS's selection ratio rises slightly during Generations~1--3 before sustained decline, mirroring the peak-then-degrade pattern characteristic of Goodhart dynamics. The structural difference is that here the proxy (embedding space) is itself a function of the optimization outcome, creating a feedback loop absent from standard Goodhart settings where the proxy is fixed.\n11\t\n12\t\\subsection{The Normal Cluster and the Floor of Self-Training}\n13\t\n14\tThree of our four methods---Random~50\\%, External-only, and Uncurated---cluster in a band of Generation~7 perplexities between 43 and 51 despite substantial differences in design (ANOVA $p = 0.219$, $n{=}3$ per method). Random selection applies no intelligent curation; External-only applies greedy diversity maximization with frozen embeddings; Uncurated retains all data without filtering. That these methods converge to comparable PPL outcomes indicates that the floor of perplexity degradation in this self-training protocol is determined by the iterative feedback loop itself \\citep{shumailov2024ai}, not by the data selection strategy.\n15\t\n16\tCritically, this convergence is specific to perplexity. When measured by rare n-gram ratio, the same three methods show statistically significant differences (ANOVA $p = 0.007$): Uncurated retains fewer rare n-grams ($0.0090 \\pm 0.0004$) than both Random~50\\% ($0.0098 \\pm 0.0003$) and External-only ($0.0102 \\pm 0.0004$). Content diversity can degrade silently---without perplexity penalty---indicating that PPL alone is insufficient to capture all dimensions of model collapse.\n17\t\n18\tThis convergence is consistent with theoretical analyses showing that self-consuming generative processes converge toward the modes of the original distribution regardless of training procedure \\citep{seddik2024how}. Within the non-catastrophic regime, data selection method variation produces second-order effects relative to the first-order dynamics of iterative self-training. RGDS is the outlier precisely because it introduces a systematic bias---toward content-depleted samples---that compounds across generations, pushing it outside the natural convergence band.\n19\t\n20\t\\subsection{Practical Implications}\n21\t\n22\tThe results yield a direct prescription: do not use the training model's own embeddings for data selection in iterative self-training settings. Any embedding-based curation method whose embedding source co-evolves with the model---including methods based on facility location objectives, kernel density estimation, or clustering over internal representations---is vulnerable to the same proxy-target inversion. The risk is highest when curation occurs at every generation and no external anchor stabilizes the embedding space.\n23\t\n24\tRandom sampling provides a zero-cost alternative that avoids the alignment gap entirely and, in our experiments, slightly outperforms both Uncurated and External-only baselines (though the difference is not statistically significant at $n{=}3$; \\S\\ref{sec:result_s3}). When informed selection is desired, frozen external embeddings maintain selection quality across generations at the cost of an additional inference pass through the external encoder.\n25\t\n26\t\\subsection{Connection to Concept Drift}\n27\t\n28\tThe embedding alignment gap can be understood as a special case of concept drift \\citep{lu2019learning, gama2014survey} in which the drift is endogenous: the model's own outputs define its future training distribution, which in turn reshapes its representations. In standard concept drift settings, the data distribution shifts due to external factors, and the model must adapt. In self-consuming training, the model \\emph{causes} the distribution shift, creating a feedback loop where representation degradation and distributional shift co-amplify.\n29\t\n30\tThis endogenous drift is particularly insidious for embedding-based data selection because the selection mechanism relies on the very representations undergoing drift. Concept drift detection methods that monitor distributional divergence between training batches would flag the symptom (changing distributions) but not the cause (embedding-selection feedback). Addressing this failure mode requires either anchoring selection to a stable external reference---as External-only does---or monitoring the selection ratio to detect proxy inversion before it compounds.\n31\t\n32\t\\subsection{Limitations}\n33\t\n34\tSeveral limitations scope our conclusions:\n35\t\\begin{enumerate}\n36\t    \\item Our experiments use GPT2-125M and GPT2-Medium (355M, preliminary $n{=}1$); the embedding alignment gap may manifest differently in larger models with richer representational capacity.\n37\t    \\item We train and evaluate exclusively on WikiText-103; other domains (code, dialogue, scientific text) may exhibit different collapse dynamics.\n38\t    \\item Our self-training protocol uses cumulative fine-tuning with fixed hyperparameters; instruction-tuning and RLHF pipelines introduce additional variables (reward signals, preference data) that could interact with the alignment gap.\n39\t    \\item Our analysis of dimensional collapse is empirical and analogical \\citep{jing2022understanding}---we do not provide a formal theoretical proof linking effective dimensionality reduction to selection ratio decline.\n40\t    \\item GPT2-Medium results are based on a single seed at time of writing; multi-seed confirmation is pending.\n41\t\\end{enumerate}\n42\t\n43\t\\subsection{Future Work}\n44\t\n45\tThree directions extend this work. First, scaling to 1B+ parameter models would test whether richer embedding spaces resist or amplify the alignment gap. Second, replicating across diverse pretraining corpora (OpenWebText, C4, The Pile) would establish domain generality. Third, \\emph{embedding re-anchoring} strategies---periodically resetting the selection embeddings to an external encoder or a cached earlier checkpoint---could retain the benefits of informed selection while preventing proxy inversion. Finally, a theoretical analysis relating the selection ratio trajectory to the rate of effective dimensionality reduction would provide a predictive framework for identifying when the alignment gap becomes critical before the proxy has fully inverted.\n46\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "56bf1055-5104-43c9-a84b-2477106165dc",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/discussion.tex",
+                "content": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\subsection{The Embedding Alignment Gap as Goodhart's Law}\n\nThe selection ratio trajectory of RGDS---declining from ${\\sim}1.04$ at Generation~0 to $0.52 \\pm 0.004$ at Generation~7---instantiates a specific form of Goodhart's law in representation space \\citep{gao2023scaling, karwowski2024goodhart}. The proxy measure (embedding diversity) and the true objective (content diversity) are initially correlated: at Generation~0, RGDS's selection ratio exceeds~1, and the method preferentially retains content-rich samples. But as the model trains on its own selected outputs, the embedding space drifts: regions that formerly encoded distinct content merge, effective dimensionality shrinks, and the proxy's correlation with the target degrades.\n\nThe selection ratio crossing~1.0 marks the critical transition. Above~1.0, the proxy---while imperfect---points in the right direction. Below~1.0, the proxy has fully inverted: the model's internal notion of ``diverse'' anti-correlates with content diversity, and selection actively filters out the samples that would slow collapse. This inversion is irreversible within the self-training loop because the next generation's embeddings are shaped by the content-depleted training data, further degrading the proxy.\n\n\\citet{karwowski2024goodhart} formalize Goodhart's law in the context of reward model overoptimization, showing that proxy performance peaks and then degrades as optimization pressure increases. The embedding alignment gap follows an analogous trajectory: RGDS's selection ratio rises slightly during Generations~1--3 before sustained decline, mirroring the peak-then-degrade pattern characteristic of Goodhart dynamics. The structural difference is that here the proxy (embedding space) is itself a function of the optimization outcome, creating a feedback loop absent from standard Goodhart settings where the proxy is fixed.\n\n\\subsection{The Normal Cluster and the Floor of Self-Training}\n\nThree of our four methods---Random~50\\%, External-only, and Uncurated---cluster in a band of Generation~7 perplexities between 43 and 51 despite substantial differences in design (ANOVA $p = 0.219$, $n{=}3$ per method). Random selection applies no intelligent curation; External-only applies greedy diversity maximization with frozen embeddings; Uncurated retains all data without filtering. That these methods converge to comparable PPL outcomes indicates that the floor of perplexity degradation in this self-training protocol is determined by the iterative feedback loop itself \\citep{shumailov2024ai}, not by the data selection strategy.\n\nCritically, this convergence is specific to perplexity. When measured by rare n-gram ratio, the same three methods show statistically significant differences (ANOVA $p = 0.007$): Uncurated retains fewer rare n-grams ($0.0090 \\pm 0.0004$) than both Random~50\\% ($0.0098 \\pm 0.0003$) and External-only ($0.0102 \\pm 0.0004$). Content diversity can degrade silently---without perplexity penalty---indicating that PPL alone is insufficient to capture all dimensions of model collapse.\n\nThis convergence is consistent with theoretical analyses showing that self-consuming generative processes converge toward the modes of the original distribution regardless of training procedure \\citep{seddik2024how}. Within the non-catastrophic regime, data selection method variation produces second-order effects relative to the first-order dynamics of iterative self-training. RGDS is the outlier precisely because it introduces a systematic bias---toward content-depleted samples---that compounds across generations, pushing it outside the natural convergence band.\n\n\\subsection{Practical Implications}\n\nThe results yield a direct prescription: do not use the training model's own embeddings for data selection in iterative self-training settings. Any embedding-based curation method whose embedding source co-evolves with the model---including methods based on facility location objectives, kernel density estimation, or clustering over internal representations---is vulnerable to the same proxy-target inversion. The risk is highest when curation occurs at every generation and no external anchor stabilizes the embedding space.\n\nRandom sampling provides a zero-cost alternative that avoids the alignment gap entirely and, in our experiments, slightly outperforms both Uncurated and External-only baselines (though the difference is not statistically significant at $n{=}3$; \\S\\ref{sec:result_s3}). When informed selection is desired, frozen external embeddings maintain selection quality across generations at the cost of an additional inference pass through the external encoder.\n\n\\subsection{Connection to Concept Drift}\n\nThe embedding alignment gap can be understood as a special case of concept drift \\citep{lu2019learning, gama2014survey} in which the drift is endogenous: the model's own outputs define its future training distribution, which in turn reshapes its representations. In standard concept drift settings, the data distribution shifts due to external factors, and the model must adapt. In self-consuming training, the model \\emph{causes} the distribution shift, creating a feedback loop where representation degradation and distributional shift co-amplify.\n\nThis endogenous drift is particularly insidious for embedding-based data selection because the selection mechanism relies on the very representations undergoing drift. Concept drift detection methods that monitor distributional divergence between training batches would flag the symptom (changing distributions) but not the cause (embedding-selection feedback). Addressing this failure mode requires either anchoring selection to a stable external reference---as External-only does---or monitoring the selection ratio to detect proxy inversion before it compounds.\n\n\\subsection{Limitations}\n\nSeveral limitations scope our conclusions:\n\\begin{enumerate}\n    \\item Our experiments use GPT2-125M and GPT2-Medium (355M, preliminary $n{=}1$); the embedding alignment gap may manifest differently in larger models with richer representational capacity.\n    \\item We train and evaluate exclusively on WikiText-103; other domains (code, dialogue, scientific text) may exhibit different collapse dynamics.\n    \\item Our self-training protocol uses cumulative fine-tuning with fixed hyperparameters; instruction-tuning and RLHF pipelines introduce additional variables (reward signals, preference data) that could interact with the alignment gap.\n    \\item Our analysis of dimensional collapse is empirical and analogical \\citep{jing2022understanding}---we do not provide a formal theoretical proof linking effective dimensionality reduction to selection ratio decline.\n    \\item GPT2-Medium results are based on a single seed at time of writing; multi-seed confirmation is pending.\n\\end{enumerate}\n\n\\subsection{Future Work}\n\nThree directions extend this work. First, scaling to 1B+ parameter models would test whether richer embedding spaces resist or amplify the alignment gap. Second, replicating across diverse pretraining corpora (OpenWebText, C4, The Pile) would establish domain generality. Third, \\emph{embedding re-anchoring} strategies---periodically resetting the selection embeddings to an external encoder or a cached earlier checkpoint---could retain the benefits of informed selection while preventing proxy inversion. Finally, a theoretical analysis relating the selection ratio trajectory to the rate of effective dimensionality reduction would provide a predictive framework for identifying when the alignment gap becomes critical before the proxy has fully inverted.\n",
+                "numLines": 46,
+                "startLine": 1,
+                "totalLines": 46
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014vWUsnDAULPNkiY3D4Urzx",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/",
+                "description": "List paper directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "7c87e8f5-fcc9-4320-88d9-28c251d5a9a7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015af7chEMuoAhucxb8wyv5c",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1902,
+                "cache_read_input_tokens": 24472,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1902
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-13T22:36:00.526Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014vWUsnDAULPNkiY3D4Urzx",
+              "type": "tool_result",
+              "content": "acl.sty\nacl_natbib.bst\ndiscussion.tex\nexperiments.tex\nintroduction.tex\nmain.tex\nmethodology.tex\nreferences.bib\nrelated_work.tex\nresults.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "4b5d43ac-eb2c-44ad-8fbd-9957b4a7b18c",
+            "tool_use_result": {
+              "stdout": "acl.sty\nacl_natbib.bst\ndiscussion.tex\nexperiments.tex\nintroduction.tex\nmain.tex\nmethodology.tex\nreferences.bib\nrelated_work.tex\nresults.tex",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No dedicated labels on Limitations/Future Work subsections. I'll reference them via `\\S\\ref{sec:discussion}`."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "85a6b51f-60ea-49be-86bb-17c22a5011d3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019WgwY4G2YLgA2ZkfBUihNT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 165,
+                "cache_read_input_tokens": 26374,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 165
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ek3zPw8FByQd7z39GLam6a",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/conclusion.tex",
+                "content": "\\section{Conclusion}\n\\label{sec:conclusion}\n\nThis work introduces the \\emph{embedding alignment gap}---the progressive decorrelation between a model's internal embedding similarity and actual content diversity during iterative self-training---and demonstrates its consequences for embedding-based data curation. Through controlled self-training experiments with GPT2-125M over eight generations, we establish three principal findings.\n\nFirst, the embedding alignment gap is real and self-reinforcing. The internal embedding diversity selection ratio declines from ${\\sim}1.04$ at Generation~0 to ${\\sim}0.52$ by Generation~7, indicating that the model's own embeddings increasingly select \\emph{against} content-rich samples. Once the selection ratio crosses below~1.0, the proxy has inverted: diversity-maximizing selection over internal embeddings actively accelerates the loss of content diversity.\n\nSecond, this proxy inversion has catastrophic practical consequences. Representation-guided diversity selection (RGDS) using internal embeddings produces Generation~7 perplexity approximately 80\\% higher than random baseline at the same 50\\% data budget. Meanwhile, Random~50\\% ($43.18 \\pm 1.43$), External-only ($46.36 \\pm 2.97$), and Uncurated ($47.04 \\pm 2.90$) converge to a statistically indistinguishable cluster ($n{=}3$), confirming that the catastrophic degradation of RGDS is not an artifact of data reduction but a direct consequence of co-degrading embeddings.\n\nThird, standard representation quality diagnostics fail to detect the alignment gap. Both RankMe effective dimensionality and $k$-NN probing accuracy remain stable throughout the collapse trajectory, rendering the proxy inversion invisible to conventional monitoring tools.\n\nThese findings carry several caveats. Our experiments are limited to GPT2-scale models, a single pretraining corpus, and a fixed self-training protocol; the generality of these results to larger models, diverse domains, and alternative training paradigms remains to be established (see the limitations and future directions discussed in \\S\\ref{sec:discussion}).\n\nThe practical implication is direct: internal embeddings that co-evolve with the training model should not serve as the selection criterion in iterative self-training pipelines. Random sampling---requiring no additional computation---provides a robust alternative that avoids proxy inversion entirely. When informed selection is desired, frozen external embeddings maintain alignment across generations. For practitioners who cannot abandon internal embeddings, the selection ratio offers a lightweight, real-time diagnostic: an overall declining trend below~1.0 signals that selection has begun to work against its intended objective, and corrective action---such as re-anchoring to an external encoder---should be taken before the degradation compounds.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "11386235-d625-447c-a736-0c8aedfc7f8e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019WgwY4G2YLgA2ZkfBUihNT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 165,
+                "cache_read_input_tokens": 26374,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 165
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-13T22:36:21.526Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ek3zPw8FByQd7z39GLam6a",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/conclusion.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "3eadba08-a5b0-4b7d-bb93-37644cb83bf1",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/conclusion.tex",
+              "content": "\\section{Conclusion}\n\\label{sec:conclusion}\n\nThis work introduces the \\emph{embedding alignment gap}---the progressive decorrelation between a model's internal embedding similarity and actual content diversity during iterative self-training---and demonstrates its consequences for embedding-based data curation. Through controlled self-training experiments with GPT2-125M over eight generations, we establish three principal findings.\n\nFirst, the embedding alignment gap is real and self-reinforcing. The internal embedding diversity selection ratio declines from ${\\sim}1.04$ at Generation~0 to ${\\sim}0.52$ by Generation~7, indicating that the model's own embeddings increasingly select \\emph{against} content-rich samples. Once the selection ratio crosses below~1.0, the proxy has inverted: diversity-maximizing selection over internal embeddings actively accelerates the loss of content diversity.\n\nSecond, this proxy inversion has catastrophic practical consequences. Representation-guided diversity selection (RGDS) using internal embeddings produces Generation~7 perplexity approximately 80\\% higher than random baseline at the same 50\\% data budget. Meanwhile, Random~50\\% ($43.18 \\pm 1.43$), External-only ($46.36 \\pm 2.97$), and Uncurated ($47.04 \\pm 2.90$) converge to a statistically indistinguishable cluster ($n{=}3$), confirming that the catastrophic degradation of RGDS is not an artifact of data reduction but a direct consequence of co-degrading embeddings.\n\nThird, standard representation quality diagnostics fail to detect the alignment gap. Both RankMe effective dimensionality and $k$-NN probing accuracy remain stable throughout the collapse trajectory, rendering the proxy inversion invisible to conventional monitoring tools.\n\nThese findings carry several caveats. Our experiments are limited to GPT2-scale models, a single pretraining corpus, and a fixed self-training protocol; the generality of these results to larger models, diverse domains, and alternative training paradigms remains to be established (see the limitations and future directions discussed in \\S\\ref{sec:discussion}).\n\nThe practical implication is direct: internal embeddings that co-evolve with the training model should not serve as the selection criterion in iterative self-training pipelines. Random sampling---requiring no additional computation---provides a robust alternative that avoids proxy inversion entirely. When informed selection is desired, frozen external embeddings maintain alignment across generations. For practitioners who cannot abandon internal embeddings, the selection ratio offers a lightweight, real-time diagnostic: an overall declining trend below~1.0 signals that selection has begun to work against its intended objective, and corrective action---such as re-anchoring to an external encoder---should be taken before the degradation compounds.\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已创建。约 370 词，覆盖三个核心发现、limitations/future work 引用（`\\S\\ref{sec:discussion}`）、以及 selection ratio 作为实时诊断指标的收尾。数字使用近似表述，未 overclaim。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "uuid": "b3bf600d-cc97-42de-81b1-e40973b987ed",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FLL5eYYnUBXBWkvRRatKTm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 805,
+                "cache_read_input_tokens": 26539,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 805
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已创建。约 370 词，覆盖三个核心发现、limitations/future work 引用（`\\S\\ref{sec:discussion}`）、以及 selection ratio 作为实时诊断指标的收尾。数字使用近似表述，未 overclaim。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 56662,
+            "duration_api_ms": 57355,
+            "num_turns": 5,
+            "stop_reason": "end_turn",
+            "session_id": "cf094c73-ff2e-4298-91e6-922b508f83d8",
+            "total_cost_usd": 0.22606900000000002,
+            "usage": {
+              "input_tokens": 6,
+              "cache_creation_input_tokens": 15503,
+              "cache_read_input_tokens": 112669,
+              "output_tokens": 1297,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 15503,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 80,
+                  "cache_read_input_tokens": 26539,
+                  "cache_creation_input_tokens": 805,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 805
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1502,
+                "outputTokens": 1315,
+                "cacheReadInputTokens": 71775,
+                "cacheCreationInputTokens": 20105,
+                "webSearchRequests": 0,
+                "costUSD": 0.040385750000000005,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 6,
+                "outputTokens": 1297,
+                "cacheReadInputTokens": 112669,
+                "cacheCreationInputTokens": 15503,
+                "webSearchRequests": 0,
+                "costUSD": 0.18568325,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "e015d093-9c10-466a-8a70-71933330bf70"
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/worker-executions/writing-conclusion.md"
+}

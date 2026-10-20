@@ -1,0 +1,83 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{dcsh2025}
+\citation{tracepile2025}
+\citation{traced2024}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{dcsh2025}
+\citation{tracepile2025}
+\citation{traced2024}
+\citation{cruxeval2024}
+\citation{codeexecutor2024}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Trace-augmented code models.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Code execution prediction.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM-based test verdict prediction.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task Definition}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Dataset}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Trace Representations}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{No-trace baseline.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Full trace.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{VOTA (Verdict-Optimized Trace Abstraction).}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Exception-only.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Component ablations.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Training Setup}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Verdict prediction accuracy across trace conditions (Qwen-2.5-Coder-7B, seed 42). Exception-only achieves the highest accuracy despite being the simplest representation.}}{4}{table.caption.9}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:main-results}{{1}{4}{Verdict prediction accuracy across trace conditions (Qwen-2.5-Coder-7B, seed 42). Exception-only achieves the highest accuracy despite being the simplest representation}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{4}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Exception Events Dominate All Trace Components}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:exp-main}{{4.1}{4}{Exception Events Dominate All Trace Components}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Irreducible error analysis.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Information Density Drives Trace Compression Benefit}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:exp-density}{{4.2}{4}{Information Density Drives Trace Compression Benefit}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cross-model calibration for exception-only SFT. Accuracy is universally high, but calibration quality is model-dependent. All models improve over no-trace baselines.}}{5}{table.caption.11}\protected@file@percent }
+\newlabel{tab:calibration}{{2}{5}{Cross-model calibration for exception-only SFT. Accuracy is universally high, but calibration quality is model-dependent. All models improve over no-trace baselines}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces SFT vs.\ frontier model baselines. SFT achieves the highest accuracy at $\sim $300$\times $ lower cost. Frontier models lack logit access for calibration. Exception-only input consistently produces the largest accuracy gain across all methods.}}{5}{table.caption.12}\protected@file@percent }
+\newlabel{tab:fewshot}{{3}{5}{SFT vs.\ frontier model baselines. SFT achieves the highest accuracy at $\sim $300$\times $ lower cost. Frontier models lack logit access for calibration. Exception-only input consistently produces the largest accuracy gain across all methods}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Cross-Model Calibration}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:exp-calibration}{{4.3}{5}{Cross-Model Calibration}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Few-Shot Frontier Model Baselines}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:exp-fewshot}{{4.4}{5}{Few-Shot Frontier Model Baselines}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Full trace budget curves across four models. Each model shows a distinct pattern. Only Qwen-7B is monotonically increasing. Accuracy is reported for seed 42.}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:budget}{{4}{6}{Full trace budget curves across four models. Each model shows a distinct pattern. Only Qwen-7B is monotonically increasing. Accuracy is reported for seed 42}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Seed robustness at tail-512 across four models. Exception-only seed variance is shown for comparison. Full-trace seed sensitivity scales with signal complexity.}}{6}{table.caption.14}\protected@file@percent }
+\newlabel{tab:seed-budget}{{5}{6}{Seed robustness at tail-512 across four models. Exception-only seed variance is shown for comparison. Full-trace seed sensitivity scales with signal complexity}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Budget Curve Analysis: Model-Dependent Patterns}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:exp-budget}{{4.5}{6}{Budget Curve Analysis: Model-Dependent Patterns}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Seed Robustness of Budget Curves}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:exp-seed-budget}{{4.6}{6}{Seed Robustness of Budget Curves}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Error category distribution across trace conditions (Qwen-7B). Exception-only errors are irreducible; full-trace errors are dominated by information overload.}}{7}{table.caption.15}\protected@file@percent }
+\newlabel{tab:errors}{{6}{7}{Error category distribution across trace conditions (Qwen-7B). Exception-only errors are irreducible; full-trace errors are dominated by information overload}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Learning curve milestones (Qwen-7B). Exception-only at step 50 already surpasses full-trace's converged accuracy.}}{7}{table.caption.16}\protected@file@percent }
+\newlabel{tab:dynamics}{{7}{7}{Learning curve milestones (Qwen-7B). Exception-only at step 50 already surpasses full-trace's converged accuracy}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Error Analysis}{7}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:exp-errors}{{4.7}{7}{Error Analysis}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Training Dynamics}{7}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:exp-dynamics}{{4.8}{7}{Training Dynamics}{subsection.4.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Out-of-Distribution Generalization}{7}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:exp-ood}{{4.9}{7}{Out-of-Distribution Generalization}{subsection.4.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Out-of-distribution generalization (Qwen-7B). Relative ordering is preserved, but absolute accuracy drops, especially for exception-only ($-$12.7pp).}}{8}{table.caption.17}\protected@file@percent }
+\newlabel{tab:ood}{{8}{8}{Out-of-distribution generalization (Qwen-7B). Relative ordering is preserved, but absolute accuracy drops, especially for exception-only ($-$12.7pp)}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{8}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{8}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why simplicity is robustness.}{8}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{VOTA as fault indicator isolation.}{8}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model-dependent calibration.}{8}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.21}\protected@file@percent }
+\bibstyle{plain}
+\bibcite{dcsh2025}{1}
+\bibcite{tracepile2025}{2}
+\bibcite{traced2024}{3}
+\bibcite{cruxeval2024}{4}
+\bibcite{codeexecutor2024}{5}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{9}{Conclusion}{section.6}{}}
+\gdef \@abspage@last{9}

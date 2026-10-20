@@ -1,0 +1,23 @@
+{
+  "exp_id": "mvp_ext_v1",
+  "project": "div_cal_verify",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T11:30:03.751Z",
+    "updated_at": "2026-05-12T11:30:03.751Z",
+    "spec": {
+      "hypothesis": "External-only (Contriever) baseline: always use external embeddings for diversity selection, serving as the primary comparison target for RGDS",
+      "method": "external_only",
+      "model_name": "Qwen/Qwen3-1.7B (student) + Qwen/Qwen3-4B (generator)",
+      "data_path": "/root/div_cal_verify/data/",
+      "data_count": 242666,
+      "seed": 42,
+      "server": "westd-11235"
+    }
+  },
+  "timestamp": "2026-05-12T11:30:03.755708+00:00",
+  "trigger": "update_registry"
+}

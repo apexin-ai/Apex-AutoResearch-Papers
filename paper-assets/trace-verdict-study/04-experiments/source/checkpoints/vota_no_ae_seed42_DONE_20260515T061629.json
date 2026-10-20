@@ -1,0 +1,67 @@
+{
+  "exp_id": "vota_no_ae_seed42",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T04:21:27.279Z",
+    "updated_at": "2026-05-15T06:16:29.587Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota_no_ae --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_no_ae_seed42\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "953133",
+      "log_path": "~/runs/trace-verdict-study/vota_no_ae_seed42.log",
+      "submitted_at": "2026-05-15T04:21:27.215Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/vota_no_ae_train.jsonl",
+      "data_count": 4720,
+      "model_name": "Qwen2.5-Coder-7B-Instruct",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/vota_no_ae/final",
+      "wall_clock_seconds": 6902.4,
+      "gpu_hours": 1.92
+    },
+    "hypothesis": "VOTA without actual/expected values: tests if VOTA's accuracy comes from genuine behavioral understanding vs trivial string comparison (plan_001)",
+    "reproduce": {
+      "finished_at": "2026-05-15T06:10:18.839Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T06:10:19.847891+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 0.9941,
+      "majority_baseline": 0.7151,
+      "lift": 0.279,
+      "n": 1190,
+      "pass_precision": 0.9988,
+      "pass_recall": 0.9929,
+      "pass_f1": 0.9959,
+      "fail_precision": 0.9826,
+      "fail_recall": 0.9971,
+      "fail_f1": 0.9898,
+      "train_loss": 0.0908,
+      "eval_loss": 0.2215,
+      "eval_mean_token_accuracy": 0.9577,
+      "wall_clock_seconds": 6397.88,
+      "lift_vs_vota_v5": 0.0025,
+      "lift_vs_notrace": 0.2428
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T06:16:29.587Z"
+  },
+  "timestamp": "2026-05-15T06:16:29.617174+00:00",
+  "trigger": "update_registry"
+}

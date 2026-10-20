@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4406fe8c0af32e38bc56",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "code verify finetuning design",
+  "task_key": "worker_code_verify_finetuning_design_20260513T092410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify_finetuning_design_20260513T092410_result.json",
+    "occurrence": 1,
+    "bytes": 2061,
+    "sha256": "5af25fe03e96ae60e5fc34214ca3d979dee64495f6f915100677491085c6dacc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：Cumulative，设计正确。**\n\n关键代码流程：\n\n### 1. 模型初始化（仅一次）— `run_mvp.py:217-219`\n```python\nstudent_model = AutoModelForCausalLM.from_pretrained(\n    args.student_model, torch_dtype=dtype, trust_remote_code=True\n).to(student_device)\n```\n`student_model` 在 `main()` 入口加载一次 pretrained GPT-2，之后**整个 generation loop 中不再重新加载**。\n\n### 2. Self-iterate 绑定 — `run_mvp.py:229`\n```python\ngenerator_model = student_model  # 同一个对象引用\n```\n\n### 3. 每代训练 — in-place 修改 — `run_mvp.py:318`\n```python\navg_loss = run_training(student_model, tokenizer, selected_data, str(ckpt_dir),\n                        student_device, args)\n```\n\n`run_training`（`run_mvp.py:130-152`）直接在传入的 `student_model` 对象上创建 optimizer 并 step，**不从 checkpoint 重新加载**：\n```python\ndef run_training(student_model, tokenizer, selected_data, checkpoint_dir, device, args):\n    ...\n    optimizer = torch.optim.AdamW(student_model.parameters(), lr=args.train_lr, ...)\n    for epoch in range(args.train_epochs):\n        avg_loss = train_one_epoch(student_model, dataloader, optimizer, scheduler, device, args)\n    student_model.save_pretrained(checkpoint_dir)  # 保存但不重加载\n    return avg_loss\n```\n\n### 4. Generation loop 中无 re-load\n`for gen in range(args.num_generations):` 循环体内没有任何 `from_pretrained` 调用。每代结束后 checkpoint 保存到磁盘（并删除前一代的 checkpoint 节省空间），但模型对象在内存中持续累积权重变化。\n\n### 流程链\n```\nGen 0: pretrained GPT-2 → generate → select → train(in-place) → M_0\nGen 1: M_0 → generate → select → train(in-place) → M_1\nGen 2: M_1 → generate → select → train(in-place) → M_2\n...\n```\n\n**`run_phase2.sh` 和 `run_ext_seed123.sh`** 均使用相同的 `--self_iterate` 参数调用 `run_mvp.py`，配置一致（8 generations, seed 42/123），设计无差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-finetuning-design.md"
+}

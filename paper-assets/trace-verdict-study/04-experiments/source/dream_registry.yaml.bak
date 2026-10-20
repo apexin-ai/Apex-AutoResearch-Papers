@@ -1,0 +1,415 @@
+dreams:
+  dream_20260515T013018:
+    dream_id: dream_20260515T013018
+    project: trace-verdict-study
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Key risk: VOTA 95.63% may be trivial actual==expected string comparison.
+      Ablation removing actual/expected is the make-or-break experiment. Also: full_trace
+      collapse mechanism and whether label-only loss can fix it. Paper needs to work
+      regardless of ablation outcome (contingency framing prepared).'
+    what_if: []
+    pid: 447121
+    chat_id: oc_32bf96185a4c2e36ec51db573ff4edaa
+    card_message_id: om_x100b6f533c6028b4b32b23fcd4ede05
+    started_at: '2026-05-15T01:30:18+00:00'
+    updated_at: '2026-05-15T02:10:19+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 1cdb19091fe7a384fea071ddae89b52e5445fa3ce82e30723a8a9a2307887eb8
+  dream_20260515T084908:
+    dream_id: dream_20260515T084908
+    project: trace-verdict-study
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 重点评估：(1) 当前三条件结果+两个ablation是否足够EMNLP Main，还是只够Findings；(2) 单任务/单模型是否致命弱点；(3)
+      结构性信号(trace有无/ERROR有无)作为trivial pattern的reviewer攻击面有多大；(4) plan_003 component
+      ablation结果对Claim 3的支撑力
+    what_if: []
+    pid: 494787
+    chat_id: oc_32bf96185a4c2e36ec51db573ff4edaa
+    card_message_id: om_x100b6f59ae9e2908b3cacf6adbca099
+    started_at: '2026-05-15T08:49:08+00:00'
+    updated_at: '2026-05-15T09:38:58+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: cd57608b08c53fdc1c8c5f8cde37fad3140e280421233065adbc00d02f3f4f1e
+  dream_20260516T105259:
+    dream_id: dream_20260516T105259
+    project: trace-verdict-study
+    status: done
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: 769918
+    chat_id: oc_32bf96185a4c2e36ec51db573ff4edaa
+    card_message_id: om_x100b6fb0860824acb16dcaabb1848f7
+    started_at: '2026-05-16T10:52:59+00:00'
+    updated_at: '2026-05-16T11:29:59+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: d35801e3a3ab93cf63b1075390cf626d83fb18559bc59cb15f90d726e5f88bbe
+  dream_20260516T155731:
+    dream_id: dream_20260516T155731
+    project: trace-verdict-study
+    status: done
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: 803097
+    chat_id: oc_32bf96185a4c2e36ec51db573ff4edaa
+    card_message_id: om_x100b6fbd7074f0a8b2026d42c5556ec
+    started_at: '2026-05-16T15:57:31+00:00'
+    updated_at: '2026-05-16T16:38:25+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 690185a505d2b40f9a5606cd37455a388bcc104a65948b7690928451eaa80ccf
+  dream_20260518T113804:
+    dream_id: dream_20260518T113804
+    project: trace-verdict-study
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 评估当前 plan 是否够冲 EMNLP main。重点审查：(1) 3 个 Core Claims 的证据强度，(2) P1 实验（phase
+      transition fine-grained + cross-seed）对论文质量的边际贡献，(3) 4 模型 budget curve 矩阵的 story
+      是否足够有说服力，(4) label_only_loss 发现值不值得作为独立 contribution，(5) 与同类 EMNLP/ACL 论文对比缺什么。
+    what_if:
+    - name: fine_grained_phase_transition
+      claim: Phase transition claim
+      description: tail-384 × 4 models 精确定位 phase transition 拐点
+      estimated_gpu_hours: 16.0
+    - name: cross_seed_budget_curve
+      claim: Robustness
+      description: tail-512 × 4 models × 3 seeds 验证 convergence band robustness
+      estimated_gpu_hours: 24.0
+    - name: few_shot_baseline
+      claim: Claim 1 强化
+      description: GPT-4o/Claude few-shot verdict prediction baseline 对比
+      estimated_gpu_hours: 0.0
+    pid: null
+    chat_id: oc_32bf96185a4c2e36ec51db573ff4edaa
+    card_message_id: om_x100b6f9bef04a4a4b34fe3a1c3d1ba1
+    started_at: '2026-05-18T11:38:04+00:00'
+    updated_at: '2026-05-18T12:33:37+00:00'
+    stages_completed:
+    - imagine
+    - write
+    error: 'zombie: orchestrator process crashed'
+    context_hash: 93ac2588601a33d2f48a6974e5f12412dd3a30817a9aa8e2ade6a428fbd7e1ef
+  dream_20260518T123351:
+    dream_id: dream_20260518T123351
+    project: trace-verdict-study
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 评估当前 plan 是否够冲 EMNLP main。重点审查：(1) 3 个 Core Claims 的证据强度，(2) P1 实验（phase
+      transition fine-grained + cross-seed）对论文质量的边际贡献，(3) 4 模型 budget curve 矩阵的 story
+      是否足够有说服力，(4) label_only_loss 发现值不值得作为独立 contribution，(5) 与同类 EMNLP/ACL 论文对比缺什么。
+    what_if:
+    - name: fine_grained_phase_transition
+      claim: Phase transition claim
+      description: tail-384 × 4 models 精确定位 phase transition 拐点
+      estimated_gpu_hours: 16.0
+    - name: cross_seed_budget_curve
+      claim: Robustness
+      description: tail-512 × 4 models × 3 seeds 验证 convergence band robustness
+      estimated_gpu_hours: 24.0
+    - name: few_shot_baseline
+      claim: Claim 1 强化
+      description: GPT-4o/Claude few-shot verdict prediction baseline 对比
+      estimated_gpu_hours: 0.0
+    pid: null
+    chat_id: oc_32bf96185a4c2e36ec51db573ff4edaa
+    card_message_id: om_x100b6f843dc940acb2f126868221a3b
+    started_at: '2026-05-18T12:33:51+00:00'
+    updated_at: '2026-05-18T12:42:47+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: f4d4cee6dba06c1b44d0246adf316e7d8456b514e957f7101d77be480aff930e
+  dream_20260518T124302:
+    dream_id: dream_20260518T124302
+    project: trace-verdict-study
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 评估当前 plan 是否够冲 EMNLP main。重点审查：(1) 3 个 Core Claims 的证据强度，(2) P1 实验（phase
+      transition fine-grained + cross-seed）对论文质量的边际贡献，(3) 4 模型 budget curve 矩阵的 story
+      是否足够有说服力，(4) label_only_loss 发现值不值得作为独立 contribution，(5) 与同类 EMNLP/ACL 论文对比缺什么。
+    what_if:
+    - name: fine_grained_phase_transition
+      claim: Phase transition claim
+      description: tail-384 × 4 models 精确定位 phase transition 拐点
+      estimated_gpu_hours: 16.0
+    - name: cross_seed_budget_curve
+      claim: Robustness
+      description: tail-512 × 4 models × 3 seeds 验证 convergence band robustness
+      estimated_gpu_hours: 24.0
+    - name: few_shot_baseline
+      claim: Claim 1 强化
+      description: GPT-4o/Claude few-shot verdict prediction baseline 对比
+      estimated_gpu_hours: 0.0
+    pid: null
+    chat_id: oc_32bf96185a4c2e36ec51db573ff4edaa
+    card_message_id: om_x100b6f84dbbec0a0b371f78088504b3
+    started_at: '2026-05-18T12:43:02+00:00'
+    updated_at: '2026-05-18T12:45:06+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: f4d4cee6dba06c1b44d0246adf316e7d8456b514e957f7101d77be480aff930e
+  dream_20260518T124521:
+    dream_id: dream_20260518T124521
+    project: trace-verdict-study
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 评估当前 plan 是否够冲 EMNLP main。重点审查：(1) 3 个 Core Claims 的证据强度，(2) P1 实验（phase
+      transition fine-grained + cross-seed）对论文质量的边际贡献，(3) 4 模型 budget curve 矩阵的 story
+      是否足够有说服力，(4) label_only_loss 发现值不值得作为独立 contribution，(5) 与同类 EMNLP/ACL 论文对比缺什么。
+    what_if:
+    - name: fine_grained_phase_transition
+      claim: Phase transition claim
+      description: tail-384 × 4 models 精确定位 phase transition 拐点
+      estimated_gpu_hours: 16.0
+    - name: cross_seed_budget_curve
+      claim: Robustness
+      description: tail-512 × 4 models × 3 seeds 验证 convergence band robustness
+      estimated_gpu_hours: 24.0
+    - name: few_shot_baseline
+      claim: Claim 1 强化
+      description: GPT-4o/Claude few-shot verdict prediction baseline 对比
+      estimated_gpu_hours: 0.0
+    pid: null
+    chat_id: oc_32bf96185a4c2e36ec51db573ff4edaa
+    card_message_id: om_x100b6f84d0d420b0b35731f8452f31f
+    started_at: '2026-05-18T12:45:21+00:00'
+    updated_at: '2026-05-18T12:47:31+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: f4d4cee6dba06c1b44d0246adf316e7d8456b514e957f7101d77be480aff930e
+  dream_20260518T124745:
+    dream_id: dream_20260518T124745
+    project: trace-verdict-study
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 评估当前 plan 是否够冲 EMNLP main。重点审查：(1) 3 个 Core Claims 的证据强度，(2) P1 实验（phase
+      transition fine-grained + cross-seed）对论文质量的边际贡献，(3) 4 模型 budget curve 矩阵的 story
+      是否足够有说服力，(4) label_only_loss 发现值不值得作为独立 contribution，(5) 与同类 EMNLP/ACL 论文对比缺什么。
+    what_if:
+    - name: fine_grained_phase_transition
+      claim: Phase transition claim
+      description: tail-384 × 4 models 精确定位 phase transition 拐点
+      estimated_gpu_hours: 16.0
+    - name: cross_seed_budget_curve
+      claim: Robustness
+      description: tail-512 × 4 models × 3 seeds 验证 convergence band robustness
+      estimated_gpu_hours: 24.0
+    - name: few_shot_baseline
+      claim: Claim 1 强化
+      description: GPT-4o/Claude few-shot verdict prediction baseline 对比
+      estimated_gpu_hours: 0.0
+    pid: null
+    chat_id: oc_32bf96185a4c2e36ec51db573ff4edaa
+    card_message_id: om_x100b6f84e9e964a8b2c4a59b349b480
+    started_at: '2026-05-18T12:47:45+00:00'
+    updated_at: '2026-05-18T12:52:12+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: f4d4cee6dba06c1b44d0246adf316e7d8456b514e957f7101d77be480aff930e
+  dream_20260518T125227:
+    dream_id: dream_20260518T125227
+    project: trace-verdict-study
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 评估当前 plan 是否够冲 EMNLP main。重点审查：(1) 3 个 Core Claims 的证据强度，(2) P1 实验（phase
+      transition fine-grained + cross-seed）对论文质量的边际贡献，(3) 4 模型 budget curve 矩阵的 story
+      是否足够有说服力，(4) label_only_loss 发现值不值得作为独立 contribution，(5) 与同类 EMNLP/ACL 论文对比缺什么。
+    what_if:
+    - name: fine_grained_phase_transition
+      claim: Phase transition claim
+      description: tail-384 × 4 models 精确定位 phase transition 拐点
+      estimated_gpu_hours: 16.0
+    - name: cross_seed_budget_curve
+      claim: Robustness
+      description: tail-512 × 4 models × 3 seeds 验证 convergence band robustness
+      estimated_gpu_hours: 24.0
+    - name: few_shot_baseline
+      claim: Claim 1 强化
+      description: GPT-4o/Claude few-shot verdict prediction baseline 对比
+      estimated_gpu_hours: 0.0
+    pid: null
+    chat_id: oc_32bf96185a4c2e36ec51db573ff4edaa
+    card_message_id: om_x100b6f84f60c10b0b4a0c161651b5be
+    started_at: '2026-05-18T12:52:27+00:00'
+    updated_at: '2026-05-18T12:53:48+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: f4d4cee6dba06c1b44d0246adf316e7d8456b514e957f7101d77be480aff930e
+  dream_20260518T125403:
+    dream_id: dream_20260518T125403
+    project: trace-verdict-study
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 评估当前 plan 是否够冲 EMNLP main。重点审查：(1) 3 个 Core Claims 的证据强度，(2) P1 实验（phase
+      transition fine-grained + cross-seed）对论文质量的边际贡献，(3) 4 模型 budget curve 矩阵的 story
+      是否足够有说服力，(4) label_only_loss 发现值不值得作为独立 contribution，(5) 与同类 EMNLP/ACL 论文对比缺什么。
+    what_if:
+    - name: fine_grained_phase_transition
+      claim: Phase transition claim
+      description: tail-384 × 4 models 精确定位 phase transition 拐点
+      estimated_gpu_hours: 16.0
+    - name: cross_seed_budget_curve
+      claim: Robustness
+      description: tail-512 × 4 models × 3 seeds 验证 convergence band robustness
+      estimated_gpu_hours: 24.0
+    - name: few_shot_baseline
+      claim: Claim 1 强化
+      description: GPT-4o/Claude few-shot verdict prediction baseline 对比
+      estimated_gpu_hours: 0.0
+    pid: null
+    chat_id: oc_32bf96185a4c2e36ec51db573ff4edaa
+    card_message_id: om_x100b6f84f0761ca4b370ee1a07737f6
+    started_at: '2026-05-18T12:54:03+00:00'
+    updated_at: '2026-05-18T12:56:39+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: f4d4cee6dba06c1b44d0246adf316e7d8456b514e957f7101d77be480aff930e
+  dream_20260518T125654:
+    dream_id: dream_20260518T125654
+    project: trace-verdict-study
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 评估当前 plan 是否够冲 EMNLP main。重点审查：(1) 3 个 Core Claims 的证据强度，(2) P1 实验（phase
+      transition fine-grained + cross-seed）对论文质量的边际贡献，(3) 4 模型 budget curve 矩阵的 story
+      是否足够有说服力，(4) label_only_loss 发现值不值得作为独立 contribution，(5) 与同类 EMNLP/ACL 论文对比缺什么。
+    what_if:
+    - name: fine_grained_phase_transition
+      claim: Phase transition claim
+      description: tail-384 × 4 models 精确定位 phase transition 拐点
+      estimated_gpu_hours: 16.0
+    - name: cross_seed_budget_curve
+      claim: Robustness
+      description: tail-512 × 4 models × 3 seeds 验证 convergence band robustness
+      estimated_gpu_hours: 24.0
+    - name: few_shot_baseline
+      claim: Claim 1 强化
+      description: GPT-4o/Claude few-shot verdict prediction baseline 对比
+      estimated_gpu_hours: 0.0
+    pid: null
+    chat_id: oc_32bf96185a4c2e36ec51db573ff4edaa
+    card_message_id: om_x100b6f8487a1c08cb11c01dd15c0aed
+    started_at: '2026-05-18T12:56:54+00:00'
+    updated_at: '2026-05-18T12:57:11+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: f4d4cee6dba06c1b44d0246adf316e7d8456b514e957f7101d77be480aff930e
+  dream_20260518T125727:
+    dream_id: dream_20260518T125727
+    project: trace-verdict-study
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 评估当前 plan 是否够冲 EMNLP main。重点审查：(1) 3 个 Core Claims 的证据强度，(2) P1 实验（phase
+      transition fine-grained + cross-seed）对论文质量的边际贡献，(3) 4 模型 budget curve 矩阵的 story
+      是否足够有说服力，(4) label_only_loss 发现值不值得作为独立 contribution，(5) 与同类 EMNLP/ACL 论文对比缺什么。
+    what_if:
+    - name: fine_grained_phase_transition
+      claim: Phase transition claim
+      description: tail-384 × 4 models 精确定位 phase transition 拐点
+      estimated_gpu_hours: 16.0
+    - name: cross_seed_budget_curve
+      claim: Robustness
+      description: tail-512 × 4 models × 3 seeds 验证 convergence band robustness
+      estimated_gpu_hours: 24.0
+    - name: few_shot_baseline
+      claim: Claim 1 强化
+      description: GPT-4o/Claude few-shot verdict prediction baseline 对比
+      estimated_gpu_hours: 0.0
+    pid: null
+    chat_id: oc_32bf96185a4c2e36ec51db573ff4edaa
+    card_message_id: om_x100b6f848549e4a4b3512013edccb80
+    started_at: '2026-05-18T12:57:27+00:00'
+    updated_at: '2026-05-18T12:59:10+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: f4d4cee6dba06c1b44d0246adf316e7d8456b514e957f7101d77be480aff930e
+  dream_20260518T125926:
+    dream_id: dream_20260518T125926
+    project: trace-verdict-study
+    status: reviewing
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 评估当前 plan 是否够冲 EMNLP main。重点审查：(1) 3 个 Core Claims 的证据强度，(2) P1 实验（phase
+      transition fine-grained + cross-seed）对论文质量的边际贡献，(3) 4 模型 budget curve 矩阵的 story
+      是否足够有说服力，(4) label_only_loss 发现值不值得作为独立 contribution，(5) 与同类 EMNLP/ACL 论文对比缺什么。
+    what_if:
+    - name: fine_grained_phase_transition
+      claim: Phase transition claim
+      description: tail-384 × 4 models 精确定位 phase transition 拐点
+      estimated_gpu_hours: 16.0
+    - name: cross_seed_budget_curve
+      claim: Robustness
+      description: tail-512 × 4 models × 3 seeds 验证 convergence band robustness
+      estimated_gpu_hours: 24.0
+    - name: few_shot_baseline
+      claim: Claim 1 强化
+      description: GPT-4o/Claude few-shot verdict prediction baseline 对比
+      estimated_gpu_hours: 0.0
+    pid: 1033809
+    chat_id: oc_32bf96185a4c2e36ec51db573ff4edaa
+    card_message_id: om_x100b6f849c3ebca0b2e4a4fff28499c
+    started_at: '2026-05-18T12:59:26+00:00'
+    updated_at: '2026-05-18T14:13:14+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: f4d4cee6dba06c1b44d0246adf316e7d8456b514e957f7101d77be480aff930e

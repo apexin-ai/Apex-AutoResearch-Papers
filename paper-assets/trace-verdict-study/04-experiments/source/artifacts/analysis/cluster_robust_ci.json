@@ -1,0 +1,136 @@
+{
+  "conditions": {
+    "ae_only": {
+      "n_samples": 1190,
+      "n_problems": 119,
+      "sample_accuracy": 0.99916,
+      "problem_level_accuracy": 0.99916,
+      "cluster_robust_ci": [0.997479, 1.0],
+      "wilson_ci": [0.995255, 0.999852],
+      "cluster_robust_ci_width": 0.002521,
+      "wilson_ci_width": 0.004596,
+      "bootstrap_B": 10000
+    },
+    "exception_only": {
+      "n_samples": 1190,
+      "n_problems": 119,
+      "sample_accuracy": 0.998319,
+      "problem_level_accuracy": 0.998319,
+      "cluster_robust_ci": [0.994958, 1.0],
+      "wilson_ci": [0.993893, 0.999539],
+      "cluster_robust_ci_width": 0.005042,
+      "wilson_ci_width": 0.005646,
+      "bootstrap_B": 10000
+    },
+    "vota": {
+      "n_samples": 1190,
+      "n_problems": 119,
+      "sample_accuracy": 0.994118,
+      "problem_level_accuracy": 0.994118,
+      "cluster_robust_ci": [0.983193, 1.0],
+      "wilson_ci": [0.987908, 0.997148],
+      "cluster_robust_ci_width": 0.016807,
+      "wilson_ci_width": 0.00924,
+      "bootstrap_B": 10000
+    },
+    "loop_only": {
+      "n_samples": 1190,
+      "n_problems": 119,
+      "sample_accuracy": 0.856303,
+      "problem_level_accuracy": 0.856303,
+      "cluster_robust_ci": [0.801681, 0.904202],
+      "wilson_ci": [0.835224, 0.875088],
+      "cluster_robust_ci_width": 0.102521,
+      "wilson_ci_width": 0.039863,
+      "bootstrap_B": 10000
+    },
+    "full_trace": {
+      "n_samples": 1190,
+      "n_problems": 119,
+      "sample_accuracy": 0.817647,
+      "problem_level_accuracy": 0.817647,
+      "cluster_robust_ci": [0.757143, 0.873109],
+      "wilson_ci": [0.794697, 0.838553],
+      "cluster_robust_ci_width": 0.115966,
+      "wilson_ci_width": 0.043856,
+      "bootstrap_B": 10000
+    },
+    "no_trace": {
+      "n_samples": 1190,
+      "n_problems": 119,
+      "sample_accuracy": 0.751261,
+      "problem_level_accuracy": 0.751261,
+      "cluster_robust_ci": [0.681513, 0.815126],
+      "wilson_ci": [0.725917, 0.774987],
+      "cluster_robust_ci_width": 0.133613,
+      "wilson_ci_width": 0.04907,
+      "bootstrap_B": 10000
+    },
+    "full_trace_label_only": {
+      "n_samples": 1190,
+      "n_problems": 119,
+      "sample_accuracy": 0.862185,
+      "problem_level_accuracy": 0.862185,
+      "cluster_robust_ci": [0.804202, 0.913445],
+      "wilson_ci": [0.841431, 0.880608],
+      "cluster_robust_ci_width": 0.109244,
+      "wilson_ci_width": 0.039177,
+      "bootstrap_B": 10000
+    },
+    "vota_no_ae": {
+      "n_samples": 1190,
+      "n_problems": 119,
+      "sample_accuracy": 0.994118,
+      "problem_level_accuracy": 0.994118,
+      "cluster_robust_ci": [0.983193, 1.0],
+      "wilson_ci": [0.987908, 0.997148],
+      "cluster_robust_ci_width": 0.016807,
+      "wilson_ci_width": 0.00924,
+      "bootstrap_B": 10000
+    },
+    "deepseek_vota": {
+      "n_samples": 1190,
+      "n_problems": 119,
+      "sample_accuracy": 0.844538,
+      "problem_level_accuracy": 0.844538,
+      "cluster_robust_ci": [0.781513, 0.90084],
+      "wilson_ci": [0.822845, 0.864013],
+      "cluster_robust_ci_width": 0.119328,
+      "wilson_ci_width": 0.041169,
+      "bootstrap_B": 10000
+    },
+    "deepseek_no_trace": {
+      "n_samples": 1190,
+      "n_problems": 119,
+      "sample_accuracy": 0.733613,
+      "problem_level_accuracy": 0.733613,
+      "cluster_robust_ci": [0.663866, 0.800861],
+      "wilson_ci": [0.707774, 0.75795],
+      "cluster_robust_ci_width": 0.136996,
+      "wilson_ci_width": 0.050176,
+      "bootstrap_B": 10000
+    },
+    "deepseek_exception_only": {
+      "n_samples": 1190,
+      "n_problems": 119,
+      "sample_accuracy": 0.993277,
+      "problem_level_accuracy": 0.993277,
+      "cluster_robust_ci": [0.981471, 1.0],
+      "wilson_ci": [0.98679, 0.99659],
+      "cluster_robust_ci_width": 0.018529,
+      "wilson_ci_width": 0.009799,
+      "bootstrap_B": 10000
+    },
+    "deepseek_full_trace": {
+      "n_samples": 1190,
+      "n_problems": 119,
+      "sample_accuracy": 0.105882,
+      "problem_level_accuracy": 0.105882,
+      "cluster_robust_ci": [0.066387, 0.15042],
+      "wilson_ci": [0.089651, 0.12465],
+      "cluster_robust_ci_width": 0.084034,
+      "wilson_ci_width": 0.035,
+      "bootstrap_B": 10000
+    }
+  }
+}

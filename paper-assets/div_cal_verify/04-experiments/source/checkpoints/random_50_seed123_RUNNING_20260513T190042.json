@@ -1,0 +1,35 @@
+{
+  "exp_id": "random_50_seed123",
+  "project": "div_cal_verify",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T16:01:31.859Z",
+    "updated_at": "2026-05-13T19:00:42.623Z",
+    "hypothesis": "Random 50% seed=123 复现：与 phase2_random50_v2 (seed=42) 完全一致的超参数，验证 random≈external 是否跨 seed 成立（C2-revised + C3 验证，3-seed t 检验依赖）",
+    "parent": "phase2_random50_v2",
+    "spec": {
+      "command": "cd /root/div_cal_verify && source env.sh && bash run_random50_seed123.sh",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:0"
+      ],
+      "log_path": "/root/autodl-tmp/div_cal_verify/random50_seed123.log",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/div_cal_verify/data_gpt2/",
+      "data_count": 232588,
+      "model_name": "gpt2 (124M) random_50 seed=123",
+      "seed": 123,
+      "checkpoint_source": "gpt2 (HuggingFace pretrained)",
+      "eval_data": "WikiText-103 (built-in eval)",
+      "output_dir": "/root/autodl-tmp/div_cal_verify/results_random50_seed123/",
+      "pid": "250452"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-13T19:00:42.707375+00:00",
+  "trigger": "update_registry"
+}

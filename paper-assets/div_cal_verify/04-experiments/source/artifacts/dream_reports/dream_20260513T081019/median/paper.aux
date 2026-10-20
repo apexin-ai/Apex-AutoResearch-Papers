@@ -1,0 +1,90 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shumailov2024model,alemohammad2024selfconsuming}
+\citation{dohmatob2024tale}
+\citation{abbas2023semdedup}
+\citation{tirumala2023d4}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{garrido2023rankme}
+\citation{shumailov2024model}
+\citation{alemohammad2024selfconsuming}
+\citation{dohmatob2024tale}
+\citation{abbas2023semdedup}
+\citation{tirumala2023d4}
+\citation{xie2023dsir}
+\citation{papyan2020prevalence}
+\citation{garrido2023rankme}
+\citation{merity2016pointer}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model collapse in iterative training.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Embedding-based data selection.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Neural collapse and representation geometry.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representation quality metrics.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Iterative Self-Training Protocol}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Selection Methods}{2}{subsection.3.2}\protected@file@percent }
+\citation{izacard2022contriever}
+\citation{garrido2023rankme}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Generational trajectory for GPT-2 125M on WikiText-103 (seed=42). RGDS uses the model's own embeddings for diversity selection; External uses frozen Contriever embeddings. $^\dagger $Gen 4 shows a transient rebound in RGDS selection ratio. Unc.\ = Uncurated baseline.}}{3}{table.caption.9}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:main}{{1}{3}{Generational trajectory for GPT-2 125M on WikiText-103 (seed=42). RGDS uses the model's own embeddings for diversity selection; External uses frozen Contriever embeddings. $^\dagger $Gen 4 shows a transient rebound in RGDS selection ratio. Unc.\ = Uncurated baseline}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Metrics}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Selection ratio ($\ensuremath  {r_{\text  {sel}}}$).}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Content diversity.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model quality.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representation quality.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Main Experiment: Three-Method Comparison}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:main}{{4.1}{3}{Main Experiment: Three-Method Comparison}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Derived metrics at Gen 7 (GPT-2 125M, WikiText-103, seed=42). RGDS exhibits worse PPL and lower rare $n$-gram frequency than even uncurated self-training.}}{4}{table.caption.10}\protected@file@percent }
+\newlabel{tab:derived}{{2}{4}{Derived metrics at Gen 7 (GPT-2 125M, WikiText-103, seed=42). RGDS exhibits worse PPL and lower rare $n$-gram frequency than even uncurated self-training}{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-seed summary (GPT-2 125M, WikiText-103, 3 seeds). Bold $p$-values indicate significance at $\alpha {=}0.05$.}}{4}{table.caption.11}\protected@file@percent }
+\newlabel{tab:crossseed}{{3}{4}{Cross-seed summary (GPT-2 125M, WikiText-103, 3 seeds). Bold $p$-values indicate significance at $\alpha {=}0.05$}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Seed Robustness}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:seeds}{{4.2}{4}{Cross-Seed Robustness}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Model Scale: GPT-2 355M}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:scale}{{4.3}{4}{Model Scale: GPT-2 355M}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Cross-scale, cross-seed comparison. The alignment gap persists at 355M parameters, with consistent PPL excess (${\sim }13$--$14\%$) and rare $n$-gram deficit (${\sim }25$--$33\%$). 355M shows a smoother trajectory (fewer rebounds) and slightly higher terminal $\ensuremath  {r_{\text  {sel}}}$.}}{5}{table.caption.12}\protected@file@percent }
+\newlabel{tab:scale}{{4}{5}{Cross-scale, cross-seed comparison. The alignment gap persists at 355M parameters, with consistent PPL excess (${\sim }13$--$14\%$) and rare $n$-gram deficit (${\sim }25$--$33\%$). 355M shows a smoother trajectory (fewer rebounds) and slightly higher terminal $\ratio $}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-dataset comparison (GPT-2 125M, seed=42). Direction and magnitude of the alignment gap are consistent across WikiText-103 and OpenWebText.}}{5}{table.caption.13}\protected@file@percent }
+\newlabel{tab:dataset}{{5}{5}{Cross-dataset comparison (GPT-2 125M, seed=42). Direction and magnitude of the alignment gap are consistent across WikiText-103 and OpenWebText}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Cross-Dataset Robustness: OpenWebText}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:owt}{{4.4}{5}{Cross-Dataset Robustness: OpenWebText}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Measurement Dissociation Analysis}{5}{section.5}\protected@file@percent }
+\newlabel{sec:dissociation}{{5}{5}{Measurement Dissociation Analysis}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Perplexity--Lexical Diversity Decoupling}{5}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:ppl-rare}{{5.1}{5}{Perplexity--Lexical Diversity Decoupling}{subsection.5.1}{}}
+\citation{papyan2020prevalence}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces RankMe vs.\ rare $n$-gram frequency across generations (RGDS, GPT-2 125M, seed=42). RankMe increases through Gen~3 while rare $n$-grams decline monotonically, revealing a measurement dissociation.}}{6}{table.caption.14}\protected@file@percent }
+\newlabel{tab:rankme}{{6}{6}{RankMe vs.\ rare $n$-gram frequency across generations (RGDS, GPT-2 125M, seed=42). RankMe increases through Gen~3 while rare $n$-grams decline monotonically, revealing a measurement dissociation}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}RankMe Fails to Detect Diversity Collapse}{6}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:rankme}{{5.2}{6}{RankMe Fails to Detect Diversity Collapse}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{6}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why does the gap emerge?}{6}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Transient rebounds.}{6}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Internal selection fails to prevent and may worsen collapse.}{7}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The role of external embeddings.}{7}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{7}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{7}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}Cross-Seed Full Trajectories}{7}{appendix.A}\protected@file@percent }
+\newlabel{app:seeds}{{A}{7}{Cross-Seed Full Trajectories}{appendix.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Embedding Re-anchoring}{7}{appendix.B}\protected@file@percent }
+\newlabel{app:reanchor}{{B}{7}{Embedding Re-anchoring}{appendix.B}{}}
+\bibcite{abbas2023semdedup}{Abbas et~al.(2023)}
+\bibcite{alemohammad2024selfconsuming}{Alemohammad et~al.(2024)}
+\bibcite{dohmatob2024tale}{Dohmatob et~al.(2024)}
+\bibcite{garrido2023rankme}{Garrido et~al.(2023)}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces RGDS selection ratio and PPL across 3 seeds (GPT-2 125M, WikiText-103). $^\dagger $ marks transient rebounds. Terminal Gen~7 metrics are available for all seeds; intermediate PPL is shown for seed=42 only (the primary experiment).}}{8}{table.caption.21}\protected@file@percent }
+\newlabel{tab:seed123}{{7}{8}{RGDS selection ratio and PPL across 3 seeds (GPT-2 125M, WikiText-103). $^\dagger $ marks transient rebounds. Terminal Gen~7 metrics are available for all seeds; intermediate PPL is shown for seed=42 only (the primary experiment)}{table.caption.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Re-anchoring vs.\ RGDS vs.\ Uncurated (GPT-2 125M, seed=42). Re-anchoring restores selection ratio but does not significantly improve downstream metrics, suggesting the root cause lies in the generation process rather than the selection process.}}{8}{table.caption.22}\protected@file@percent }
+\newlabel{tab:reanchor}{{8}{8}{Re-anchoring vs.\ RGDS vs.\ Uncurated (GPT-2 125M, seed=42). Re-anchoring restores selection ratio but does not significantly improve downstream metrics, suggesting the root cause lies in the generation process rather than the selection process}{table.caption.22}{}}
+\bibcite{izacard2022contriever}{Izacard et~al.(2022)}
+\bibcite{merity2016pointer}{Merity et~al.(2016)}
+\bibcite{papyan2020prevalence}{Papyan et~al.(2020)}
+\bibcite{shumailov2024model}{Shumailov et~al.(2024)}
+\bibcite{tirumala2023d4}{Tirumala et~al.(2023)}
+\bibcite{xie2023dsir}{Xie et~al.(2023)}
+\gdef \@abspage@last{9}

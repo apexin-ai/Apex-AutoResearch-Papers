@@ -1,0 +1,16 @@
+{
+  "exp_id": "phase2_3method_selfit",
+  "project": "div_cal_verify",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T03:16:41.146Z",
+    "updated_at": "2026-05-13T03:32:07.631Z",
+    "hypothesis": "RGDS diversity selection 能减缓 self-iterate 模式下的多样性崩塌（rare n-gram 丢失），表现优于 uncurated baseline，至少与 external_only 持平",
+    "parent": "phase1b_self_iterate"
+  },
+  "timestamp": "2026-05-13T03:32:07.689966+00:00",
+  "trigger": "update_registry"
+}

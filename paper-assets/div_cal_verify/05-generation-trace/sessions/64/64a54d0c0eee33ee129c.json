@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64a54d0c0eee33ee129c",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "fix bashrc old path and resubmit",
+  "task_key": "worker_fix_bashrc_old_path_and_resubmit_20260513T164137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_bashrc_old_path_and_resubmit_20260513T164137_result.json",
+    "occurrence": 1,
+    "bytes": 1264,
+    "sha256": "0421be05cf8bbd8a39be873a21060fb2b04f73a9e06b70fb721bf8fa0de9c44b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 排查结果\n\n**服务器上未找到旧路径引用** — `.bashrc`、`.profile`、`/etc/profile`、`/etc/bash.bashrc`、`.conda/`、`miniconda3/etc/profile.d/`、所有 `.sh` 脚本均已是新路径 `/root/div_cal_verify`。\n\n**根因**：`cd /root/phase-gated-compound-sparse` 来自 `submit_training_job` 工具，它从 `config/projects/div_cal_verify.yaml` 的 `execution.project_path` 读取工作目录。该配置此前已被修复为 `/root/div_cal_verify`（line 9），所以问题发生在配置修改之前的 job 提交。\n\n### 修改内容\n\n| 位置 | 操作 |\n|------|------|\n| 服务器 `/root/div_cal_verify/__pycache__/*.pyc` | 清理（含旧路径的编译缓存） |\n| 本地 `config/crons.yaml` 行 10/24/38/52 | `phase-gated-compound-sparse` → `div_cal_verify`（4 处 log_path） |\n\n### tmux session 清理\n\ntmux 服务器无活跃 session（`no server running`）— 两个失败的 session 已自行退出，无需手动清理。\n\n### 验证\n\n- 服务器 shell 配置：CLEAN（无旧路径残留）\n- pyc 缓存：已清空\n- crons.yaml：已更新\n- 项目配置 `project_path`：已是 `/root/div_cal_verify`，后续 `submit_training_job` 不会再产生旧路径 `cd` 命令"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-bashrc-old-path-and-resubmit.md"
+}

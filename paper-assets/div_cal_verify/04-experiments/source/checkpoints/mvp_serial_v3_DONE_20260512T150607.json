@@ -1,0 +1,33 @@
+{
+  "exp_id": "mvp_serial_v3",
+  "project": "div_cal_verify",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T14:44:01.355Z",
+    "updated_at": "2026-05-12T15:06:07.103Z",
+    "spec": {
+      "hypothesis": "Serial run of all 3 methods (rgds → external_only → uncurated) on dual-GPU 0,1",
+      "model_name": "Qwen/Qwen3-1.7B + Qwen/Qwen3-4B",
+      "server": "westd-11235",
+      "data_path": "/root/div_cal_verify/data/",
+      "data_count": 237666,
+      "seed": 42,
+      "command": "bash run_all_methods.sh (killed for output_dir fix)",
+      "output_dir": "/root/autodl-tmp/div_cal_verify/results/",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "42073",
+      "log_path": "~/runs/div_cal_verify/all_methods.log",
+      "checkpoint_path": "N/A"
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-12T15:06:07.103Z"
+  },
+  "timestamp": "2026-05-12T15:06:07.117195+00:00",
+  "trigger": "update_registry"
+}

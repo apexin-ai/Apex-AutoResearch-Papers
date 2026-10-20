@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f045e36e3b0d78fb896",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper fetch pdf",
+  "task_key": "worker_paper_fetch_pdf_20260519T232843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fetch_pdf_20260519T232843_result.json",
+    "occurrence": 1,
+    "bytes": 209,
+    "sha256": "386bd26e374117f1075c4513aa5908e1e957ffcebde1c9a7e6f187ec0d6466d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。PDF 已拉取到本地：\n\n- 路径：`/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/main.pdf`\n- 大小：442,076 bytes（与远程一致）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fetch-pdf.md"
+}

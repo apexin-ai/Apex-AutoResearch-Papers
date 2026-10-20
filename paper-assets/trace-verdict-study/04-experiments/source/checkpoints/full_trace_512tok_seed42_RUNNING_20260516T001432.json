@@ -1,0 +1,50 @@
+{
+  "exp_id": "full_trace_512tok_seed42",
+  "project": "trace-verdict-study",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:27:16.130Z",
+    "updated_at": "2026-05-16T00:14:31.983Z",
+    "spec": {
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl",
+      "data_count": 4720,
+      "model_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "seed": 42,
+      "max_trace_tokens": 512,
+      "hypothesis": "plan_006: trace length ablation - 512 tokens. Tests accuracy with moderate trace length.",
+      "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_512tok",
+      "log_path": "~/runs/trace-verdict-study/full_trace_512tok_seed42.log",
+      "command": "train_sft.py --condition full_trace --max_trace_tokens 512 --gradient_checkpointing --gpu 0 --seed 42 + evaluate.py",
+      "server": "westd-11235"
+    },
+    "reproduce": {
+      "pid": 197608,
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T23:16:13Z",
+      "wandb_run_name": "full_trace_512tok_seed42",
+      "code_commit": "e404237ccc765768e267d4d6fd3c89549dcf41a4"
+    },
+    "metrics": {
+      "accuracy": 0.8042,
+      "majority_baseline": 0.7151,
+      "lift": 0.0891,
+      "pass_precision": 0.8705,
+      "pass_recall": 0.8531,
+      "pass_f1": 0.8617,
+      "fail_precision": 0.6489,
+      "fail_recall": 0.6814,
+      "fail_f1": 0.6647,
+      "n": 1190,
+      "accuracy_ci": [
+        0.7815,
+        0.8261
+      ]
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-16T00:14:32.079063+00:00",
+  "trigger": "update_registry"
+}

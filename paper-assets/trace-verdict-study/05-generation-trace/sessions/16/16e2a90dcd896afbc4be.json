@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16e2a90dcd896afbc4be",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops restore cron monitoring",
+  "task_key": "worker_ops_restore-cron-monitoring_20260515T210107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restore-cron-monitoring_20260515T210107_result.json",
+    "occurrence": 1,
+    "bytes": 1217,
+    "sha256": "7c9822c17de8b6f38983e16eb434f1d210ea2af7e88b01f722478b937059d88c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### 1. deepseek_exception_only_seed456 — **RUNNING** ✓\n- **PID**: 160932，tmux session: `deepseek_exception_only_seed456`\n- **GPU**: cuda:0 (GPU 0)，占用 22414 MiB，GPU利用率 100%\n- **进度**: 165/444 steps (~37%)，~13-14s/it\n- **Checkpoint**: `checkpoint-148` 已保存\n- **预估剩余**: ~1h 左右\n\n### 2. deepseek_full_trace_seed42_v3 — **RUNNING** ✓\n- **PID**: 163109，在 pts/1 终端中（非 tmux，用 tee 输出日志）\n- **GPU**: cuda:1 (GPU 1)，占用 22386 MiB，GPU利用率 100%\n- **进度**: 11/444 steps (~2%)，刚启动不久，~16.7s/it\n- **Checkpoint**: 尚无（只有 runs/ 目录）\n- **预估剩余**: ~2h\n\n### 3. vota_seed456_v2 — **COMPLETED** ✓\n- **PID 146592**: 已结束\n- **Checkpoint**: `final/` + `checkpoint-444` + `checkpoint-296` + `checkpoint-148` 全部保存\n- **Eval 结果**:\n  - **Accuracy: 99.08%** (baseline 71.5%, lift +27.6%)\n  - Pass: precision 1.000, recall 0.987, F1 0.993\n  - Fail: precision 0.969, recall 1.000, F1 0.984\n\n三个实验均正常：2个在跑，1个已成功完成。GPU 0 显存占用较高（71.6GB/97.9GB），可能有其他缓存占用，但不影响训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restore-cron-monitoring.md"
+}

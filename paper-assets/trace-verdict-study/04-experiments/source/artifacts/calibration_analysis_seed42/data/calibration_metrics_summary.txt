@@ -1,0 +1,9 @@
+Server path: /root/autodl-tmp/trace-verdict-study-checkpoints/calibration/calibration_metrics.json
+
+Summary:
+No Trace:       Acc=0.7513  ECE=0.1715  MCE=0.4754  Brier=0.1972
+Full Trace:     Acc=0.8176  ECE=0.0946  MCE=0.2490  Brier=0.1438
+Exception Only: Acc=0.9983  ECE=0.0024  MCE=0.8359  Brier=0.0013
+VOTA:           Acc=0.9941  ECE=0.0054  MCE=0.6211  Brier=0.0052
+
+Note: High MCE for Exception Only and VOTA is due to sparse low-confidence bins (1-2 samples).

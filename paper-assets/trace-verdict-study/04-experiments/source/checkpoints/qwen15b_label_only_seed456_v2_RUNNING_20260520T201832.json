@@ -1,0 +1,41 @@
+{
+  "exp_id": "qwen15b_label_only_seed456_v2",
+  "project": "trace-verdict-study",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T20:17:58.672Z",
+    "updated_at": "2026-05-20T20:18:31.489Z",
+    "hypothesis": "Qwen-1.5B label_only 第3 seed 降低 variance：2-seed mean=80.13±1.72% (variance > Qwen-7B 的 1.12%)，第3 seed 使数据与 Qwen-7B 3-seed 可比。",
+    "parent": "qwen15b_label_only_seed42_v2",
+    "server": "westd-11235",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-11235",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-20T20:18:26.641Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --model_path /root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct --gradient_checkpointing --label_only_loss --gpu 0 --seed 456 --output_dir /root/trace-verdict-study/outputs/qwen15b_label_only_seed456_v2 --wandb_project trace-verdict-study --wandb_run_name qwen15b_label_only_seed456_v2 && python eval/evaluate.py --condition full_trace --model_path /root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct --checkpoint_dir /root/trace-verdict-study/outputs/qwen15b_label_only_seed456_v2/final --gpu 0 --save_predictions\"",
+      "code_commit": "e404237ccc765768e267d4d6fd3c89549dcf41a4"
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --model_path /root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct --gradient_checkpointing --label_only_loss --gpu 0 --seed 456 --output_dir /root/trace-verdict-study/outputs/qwen15b_label_only_seed456_v2 --wandb_project trace-verdict-study --wandb_run_name qwen15b_label_only_seed456_v2 && python eval/evaluate.py --condition full_trace --model_path /root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct --checkpoint_dir /root/trace-verdict-study/outputs/qwen15b_label_only_seed456_v2/final --gpu 0 --save_predictions\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "651166",
+      "log_path": "~/runs/trace-verdict-study/qwen15b_label_only_seed456_v2.log",
+      "submitted_at": "2026-05-20T20:18:29.626Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "651166",
+    "log_path": "~/runs/trace-verdict-study/qwen15b_label_only_seed456_v2.log"
+  },
+  "timestamp": "2026-05-20T20:18:32.505398+00:00",
+  "trigger": "update_registry"
+}

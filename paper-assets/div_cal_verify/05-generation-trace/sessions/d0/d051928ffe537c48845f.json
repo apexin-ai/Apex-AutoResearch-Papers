@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d051928ffe537c48845f",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "diagnose phase1 gpt2 collapse",
+  "task_key": "worker_diagnose_phase1_gpt2_collapse_20260513T005450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_phase1_gpt2_collapse_20260513T005450_result.json",
+    "occurrence": 1,
+    "bytes": 2661,
+    "sha256": "117449c0738751e53e28a29da3e73a62b55e0d3f4e36f22e45083bd1fa3f176a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集。诊断结果如下：\n\n---\n\n## 结论：**Negative**（实验成功完成，但未观察到模型崩塌）\n\n### 各方法完成情况\n\n| 方法 | 完成代数 | 状态 |\n|------|---------|------|\n| rgds | 6/6 (gen 0-5) | ✅ 完成 |\n| uncurated | 6/6 (gen 0-5) | ✅ 完成 |\n| external_only | 0/6 | ❌ 未运行（日志中无任何记录） |\n\n**无错误**：error=0, traceback=0, killed=0, oom=0。\n\n### 关键指标\n\n**RGDS:**\n\n| Gen | PPL | RankMe | k-NN | Rare | Rank Corr |\n|-----|-----|--------|------|------|-----------|\n| 0 | 36.64 | 286.46 | 0.987 | 0.0354 | -0.0595 |\n| 1 | 37.05 | 287.32 | 0.988 | 0.0346 | -0.0851 |\n| 2 | 36.03 | 270.93 | 0.988 | 0.0353 | -0.0936 |\n| 3 | 35.96 | 262.62 | 0.988 | 0.0356 | -0.1188 |\n| 4 | 35.96 | 265.12 | 0.988 | 0.0358 | -0.1024 |\n| 5 | 35.56 | 274.63 | 0.988 | 0.0350 | -0.1014 |\n\n**Uncurated:**\n\n| Gen | PPL | RankMe | k-NN | Rare | Rank Corr |\n|-----|-----|--------|------|------|-----------|\n| 0 | 36.20 | 290.15 | 0.988 | 0.0354 | -0.0670 |\n| 1 | 35.44 | 281.26 | 0.988 | 0.0365 | -0.0520 |\n| 2 | 34.89 | 268.41 | 0.988 | 0.0353 | -0.0975 |\n| 3 | 34.84 | 273.41 | 0.988 | 0.0354 | -0.1080 |\n| 4 | 34.52 | 283.12 | 0.988 | 0.0348 | -0.1351 |\n| 5 | 34.75 | 297.02 | 0.988 | 0.0351 | -0.1294 |\n\n### 崩塌是否发生：**否**\n\n- **PPL**：两种方法 PPL 均**轻微下降**（rgds: 36.64→35.56, uncurated: 36.20→34.75），未上升\n- **RankMe**：rgds 从 286→275 有波动但未崩塌；uncurated 从 290→297 反而略升\n- **k-NN**：恒定 0.988，无退化\n- **Rare n-gram**：恒定 ~0.035，无变化\n- **Rank correlation**：两者均从 ~-0.06 缓慢下降到 ~-0.10/-0.13，变化轻微\n\n6 代迭代后所有指标基本平稳，GPT2-125M 在此设定下**未复现模型崩塌**。可能原因：模型规模太小 / 数据量不足 / 代数不够。\n\n### 日志最后几行\n\n```\n  Perplexity:     34.75\n  RankMe:         297.02\n  k-NN accuracy:  0.9880\n  Rare n-gram:    0.03509125146558973\n  Rank corr:      -0.1294\n  Time:           1255s\n\n============================================================\nFINAL SUMMARY -- uncurated\n============================================================\n Gen      PPL   RankMe      kNN     Rare     Corr\n   0    36.20   290.15   0.9880   0.0354  -0.0670\n   1    35.44   281.26   0.9880   0.0365  -0.0520\n   2    34.89   268.41   0.9880   0.0353  -0.0975\n   3    34.84   273.41   0.9880   0.0354  -0.1080\n   4    34.52   283.12   0.9880   0.0348  -0.1351\n   5    34.75   297.02   0.9880   0.0351  -0.1294\n===== PHASE 1 COMPLETE =====\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-phase1-gpt2-collapse.md"
+}

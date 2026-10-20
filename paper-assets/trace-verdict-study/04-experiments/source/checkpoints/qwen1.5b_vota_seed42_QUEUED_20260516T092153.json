@@ -1,0 +1,21 @@
+{
+  "exp_id": "qwen1.5b_vota_seed42",
+  "project": "trace-verdict-study",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T07:27:38.134Z",
+    "updated_at": "2026-05-16T09:21:52.923Z",
+    "spec": {
+      "hypothesis": "Multi-scale validation: VOTA on Qwen-2.5-Coder-1.5B.",
+      "model_name": "Qwen2.5-Coder-1.5B-Instruct",
+      "seed": 42,
+      "condition": "vota"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-16T09:21:53.046701+00:00",
+  "trigger": "update_registry"
+}

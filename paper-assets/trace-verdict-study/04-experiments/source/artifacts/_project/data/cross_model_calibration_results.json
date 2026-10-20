@@ -1,0 +1,1 @@
+qwen_7b: ECE=0.0027 MCE=0.8355 Brier=0.0013 Acc=0.9983\nqwen_1.5b: ECE=0.0020 MCE=0.7549 Brier=0.0013 Acc=0.9983\ncodellama_13b: ECE=0.0020 MCE=0.0411 Brier=0.0013 Acc=0.9983\ndeepseek_6.7b: ECE=0.0064 MCE=0.7756 Brier=0.0061 Acc=0.9933

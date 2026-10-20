@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20d35cd51d3669165b2c",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops fix deepseek seed123 launch",
+  "task_key": "worker_ops_fix-deepseek-seed123-launch_20260523T095337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-deepseek-seed123-launch_20260523T095337_result.json",
+    "occurrence": 1,
+    "bytes": 516,
+    "sha256": "9b02f5c60f443250371792021708094232280131cac62c40fa1789a413b0a371"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动并在跑。\n\n**状态汇总：**\n- **PID**: 874893\n- **GPU**: cuda:0, 98% 利用率, 23112MiB 进程显存 (72293MiB 总占用含 ~49GB 僵尸)\n- **训练阶段**: 已进入 training loop (0/444 steps), gradient checkpointing 已启用\n- **cuda:1**: 未受影响 (CodeLlama PID 870613, 100%)\n\n**原始命令的 bug**: `cd /root/autodl-tmp/trace-verdict-study` 路径不存在。已修正为 `cd /root/trace-verdict-study`，同时修正了 model_path 和 python 路径。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-deepseek-seed123-launch.md"
+}

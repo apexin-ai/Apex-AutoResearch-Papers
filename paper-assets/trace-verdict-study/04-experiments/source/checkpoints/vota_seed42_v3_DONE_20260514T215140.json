@@ -1,0 +1,51 @@
+{
+  "exp_id": "vota_seed42_v3",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:01:04.345Z",
+    "updated_at": "2026-05-14T21:51:40.917Z",
+    "spec": {
+      "command": "python train/train_sft.py --condition vota --gpu 1",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "710601",
+      "log_path": "~/runs/trace-verdict-study/vota_seed42_v3.log",
+      "submitted_at": "2026-05-14T18:01:04.338Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/vota_train.jsonl",
+      "data_count": 4720,
+      "model_name": "Qwen2.5-Coder-7B-Instruct",
+      "seed": 42,
+      "hypothesis": "VOTA trace provides significant verdict accuracy lift over no-trace baseline",
+      "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/",
+      "wall_clock_seconds": 13468.8,
+      "gpu_hours": 3.74
+    },
+    "conclusion": "killed",
+    "metrics": {
+      "train_loss": 0.046,
+      "eval_loss": 0.085,
+      "eval_mean_token_accuracy": 0.983,
+      "accuracy": 0.992,
+      "majority_baseline": 0.7151,
+      "lift": 0.276,
+      "pass_precision": 0.99,
+      "pass_recall": 0.99,
+      "pass_f1": 0.99,
+      "fail_precision": 0.99,
+      "fail_recall": 0.99,
+      "fail_f1": 0.99
+    },
+    "completed_at": "2026-05-14T21:45:33.135Z"
+  },
+  "timestamp": "2026-05-14T21:51:40.957069+00:00",
+  "trigger": "update_registry"
+}

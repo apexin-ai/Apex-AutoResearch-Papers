@@ -1,0 +1,23 @@
+{
+  "exp_id": "mvp_ext_v2",
+  "project": "div_cal_verify",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-12T11:53:41.004Z",
+    "updated_at": "2026-05-12T11:53:44.903Z",
+    "spec": {
+      "hypothesis": "External-only (Contriever) baseline for comparison — always uses external embeddings for diversity selection",
+      "parent": "mvp_ext_v1",
+      "model_name": "Qwen/Qwen3-1.7B + Qwen/Qwen3-4B",
+      "server": "westd-11235",
+      "data_path": "/root/div_cal_verify/data/",
+      "data_count": 237666,
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-12T11:53:44.914868+00:00",
+  "trigger": "update_registry"
+}

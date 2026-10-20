@@ -1,0 +1,96 @@
+{
+  "exp_id": "medium_external_seed123",
+  "project": "div_cal_verify",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T01:56:03.780Z",
+    "updated_at": "2026-05-14T06:49:14.249Z",
+    "hypothesis": "GPT2-medium (355M) External-only seed=123: 2-seed 统计检验依赖，验证 frozen Contriever embeddings 在 355M 跨 seed 仍避免 alignment gap",
+    "parent": "medium_external_seed42",
+    "spec": {
+      "command": "bash run_medium_external_seed123.sh 1",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:1"
+      ],
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/div_cal_verify/data_gpt2/",
+      "data_count": 232588,
+      "model_name": "gpt2-medium (355M) external_only seed=123",
+      "seed": 123,
+      "checkpoint_source": "gpt2-medium (HuggingFace pretrained)",
+      "eval_data": "WikiText-103 (built-in eval)",
+      "tmux_session": "medium_external_seed123",
+      "log_path": "/root/autodl-tmp/div_cal_verify/medium_external_seed123.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "gen0": {
+        "ppl": 26.3,
+        "rankme": 366.16,
+        "knn": 0.988,
+        "rare": 0.0343,
+        "corr": 0.0119
+      },
+      "gen1": {
+        "ppl": 33.62,
+        "rankme": 400.2,
+        "knn": 0.988,
+        "rare": 0.0303,
+        "corr": 0.0077
+      },
+      "gen2": {
+        "ppl": 44.51,
+        "rankme": 417.58,
+        "knn": 0.988,
+        "rare": 0.0246,
+        "corr": -0.0114
+      },
+      "gen3": {
+        "ppl": 51.18,
+        "rankme": 421.73,
+        "knn": 0.988,
+        "rare": 0.0206,
+        "corr": -0.014
+      },
+      "gen4": {
+        "ppl": 61.11,
+        "rankme": 427.42,
+        "knn": 0.988,
+        "rare": 0.0184,
+        "corr": -0.0282
+      },
+      "gen5": {
+        "ppl": 69.58,
+        "rankme": 429.36,
+        "knn": 0.988,
+        "rare": 0.0172,
+        "corr": -0.0232
+      },
+      "gen6": {
+        "ppl": 74.33,
+        "rankme": 428.14,
+        "knn": 0.988,
+        "rare": 0.0168,
+        "corr": -0.0458
+      },
+      "gen7": {
+        "ppl": 79.56,
+        "rankme": 429.83,
+        "knn": 0.988,
+        "rare": 0.0161,
+        "corr": -0.0533,
+        "ratio": 1.222
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/div_cal_verify/results_medium_external_seed123/external_only/gen_7/checkpoint",
+    "log_path": "/root/autodl-tmp/div_cal_verify/medium_external_seed123.log",
+    "completed_at": "2026-05-14T06:49:14.249Z"
+  },
+  "timestamp": "2026-05-14T06:49:14.318363+00:00",
+  "trigger": "update_registry"
+}

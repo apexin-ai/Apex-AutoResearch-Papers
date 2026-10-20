@@ -1,0 +1,40 @@
+{
+  "exp_id": "qwen15b_no_trace_seed123",
+  "project": "trace-verdict-study",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:30:56.732Z",
+    "updated_at": "2026-05-20T21:31:38.595Z",
+    "hypothesis": "Qwen-1.5B no_trace 加第 2 seed：seed42=67.31% 是 C2 分解的 baseline 端，单 seed 易被质疑为 seed 运气差。seed123 加固 baseline 使分解更 robust。",
+    "server": "westd-11235",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-11235",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-20T21:31:34.186Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/trace-verdict-study/outputs/qwen15b_no_trace_seed123 --wandb_project trace-verdict-study --wandb_run_name qwen15b_no_trace_seed123 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct --checkpoint_dir /root/trace-verdict-study/outputs/qwen15b_no_trace_seed123/final --gpu 0 --save_predictions\"",
+      "code_commit": "e404237ccc765768e267d4d6fd3c89549dcf41a4"
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/trace-verdict-study/outputs/qwen15b_no_trace_seed123 --wandb_project trace-verdict-study --wandb_run_name qwen15b_no_trace_seed123 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct --checkpoint_dir /root/trace-verdict-study/outputs/qwen15b_no_trace_seed123/final --gpu 0 --save_predictions\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "655666",
+      "log_path": "~/runs/trace-verdict-study/qwen15b_no_trace_seed123.log",
+      "submitted_at": "2026-05-20T21:31:36.244Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "655666",
+    "log_path": "~/runs/trace-verdict-study/qwen15b_no_trace_seed123.log"
+  },
+  "timestamp": "2026-05-20T21:31:39.587509+00:00",
+  "trigger": "update_registry"
+}

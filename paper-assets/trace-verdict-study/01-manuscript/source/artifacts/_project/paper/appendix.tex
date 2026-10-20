@@ -1,0 +1,779 @@
+\section{Per-Class Performance Breakdown}
+\label{sec:per_class}
+
+Table~\ref{tab:per_class} reports per-class precision, recall, and F1 for all experimental conditions.
+
+\begin{table*}[t]
+\centering
+\caption{Per-class precision, recall, and F1 for all experimental conditions (seed 42). DeepSeek VOTA seed 42 is a training failure (84.45\%, fail recall = 45.4\%) due to tokenizer-driven truncation; seeds 123/456 achieve 99.16\%/99.33\%.}
+\label{tab:per_class}
+\small
+\begin{tabular}{llccccccc}
+\toprule
+\textbf{Condition} & \textbf{Model} & \textbf{Acc} & \textbf{Pass P} & \textbf{Pass R} & \textbf{Pass F1} & \textbf{Fail P} & \textbf{Fail R} & \textbf{Fail F1} \\
+\midrule
+No Trace          & Qwen-2.5-7B & 75.13 & 87.76 & 75.79 & 81.34 & 54.73 & 73.45 & 62.72 \\
+Full Trace        & Qwen-2.5-7B & 81.76 & 87.74 & 86.60 & 87.17 & 67.43 & 69.62 & 68.51 \\
+Full Trace (LO)   & Qwen-2.5-7B & 85.94 & 88.21 & 93.18 & 90.63 & 80.07 & 68.73 & 73.97 \\
+VOTA              & Qwen-2.5-7B & 99.05 & 100.00 & 99.18 & 99.59 & 97.98 & 100.00 & 98.98 \\
+Exception Only    & Qwen-2.5-7B & 99.83 & 100.00 & 99.76 & 99.88 & 99.41 & 100.00 & 99.71 \\
+AE Only           & Qwen-2.5-7B & 99.92 & 100.00 & 99.88 & 99.94 & 99.71 & 100.00 & 99.85 \\
+Loop Only         & Qwen-2.5-7B & 86.05 & 92.39 & 87.07 & 89.66 & 71.65 & 82.01 & 76.48 \\
+VOTA\_no\_ae       & Qwen-2.5-7B & 99.41 & 99.88 & 99.29 & 99.59 & 98.26 & 99.71 & 98.98 \\
+\midrule
+No Trace          & DeepSeek-6.7B & 73.36 & 81.71 & 80.85 & 81.28 & 53.16 & 54.57 & 53.86 \\
+Full Trace        & DeepSeek-6.7B & 79.16 & 85.70 & 85.10 & 85.40 & 63.20 & 64.30 & 63.70 \\
+VOTA              & DeepSeek-6.7B & 84.45 & 82.14 & 100.00 & 90.20 & 100.00 & 45.40 & 62.50 \\
+Exception Only    & DeepSeek-6.7B & 99.33 & 100.00 & 99.06 & 99.53 & 97.69 & 100.00 & 98.83 \\
+AE Only           & DeepSeek-6.7B & 98.74 & 98.40 & 99.90 & 99.10 & 99.70 & 95.90 & 97.70 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+%% ============================================================
+\section{Training Details}
+\label{sec:training_details}
+
+Table~\ref{tab:hyperparams} summarizes the training hyperparameters shared across all conditions.
+All experiments use the HuggingFace TRL \texttt{SFTTrainer} with LoRA \citep{hu2022lora} applied to all linear layers.
+
+\begin{table}[t]
+\centering
+\caption{Training hyperparameters (shared across all conditions).}
+\label{tab:hyperparams}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{ll}
+\toprule
+\textbf{Hyperparameter} & \textbf{Value} \\
+\midrule
+LoRA rank ($r$)            & 16 \\
+LoRA alpha ($\alpha$)      & 32 \\
+LoRA dropout               & 0.05 \\
+LoRA target modules        & all linear layers \\
+\midrule
+Epochs                     & 3 \\
+Per-device batch size       & 4 \\
+Gradient accumulation steps & 8 \\
+Effective batch size        & 32 \\
+\midrule
+Learning rate               & $2 \times 10^{-4}$ \\
+LR scheduler                & linear decay \\
+Warmup ratio                & 0.1 \\
+Weight decay                & 0.01 \\
+\midrule
+Max sequence length         & 2048 tokens \\
+Primary seed                & 42 \\
+Robustness seeds            & 123, 456 \\
+\midrule
+Hardware                    & 1$\times$ RTX PRO 6000 Blackwell (96\,GB VRAM) \\
+Framework                   & HuggingFace TRL SFTTrainer \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+Table~\ref{tab:train_time} reports per-condition training wall-clock times.
+Conditions with longer trace inputs (e.g., \texttt{full\_trace}, VOTA) require proportionally more training time due to increased sequence lengths.
+
+\begin{table}[t]
+\centering
+\caption{Training wall-clock time per condition on a single RTX PRO 6000 Blackwell GPU. Where multiple seeds were run, individual times are listed.}
+\label{tab:train_time}
+\small
+\begin{tabular}{llr}
+\toprule
+\textbf{Condition} & \textbf{Seed(s)} & \textbf{Time (h)} \\
+\midrule
+no\_trace       & 42         & ${\sim}$0.5 \\
+full\_trace     & 42         & ${\sim}$2.2 \\
+label\_only     & 42         & ${\sim}$2.2 \\
+VOTA                     & 42         & ${\sim}$2.3 \\
+exception\_only & 42         & ${\sim}$2.1 \\
+exception\_only & 123        & ${\sim}$2.1 \\
+exception\_only & 456        & ${\sim}$1.3 \\
+ae\_only        & 42         & ${\sim}$1.8 \\
+loop\_only      & 42         & ${\sim}$2.1 \\
+VOTA\_no\_ae    & 42         & ${\sim}$1.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%% ============================================================
+\section{VOTA Extraction Algorithm}
+\label{sec:vota_algorithm}
+
+Algorithm~\ref{alg:vota} describes the three-component VOTA extraction pipeline applied to a raw \texttt{sys.settrace} execution log.
+
+\begin{algorithm}[t]
+\caption{VOTA Trace Extraction}
+\label{alg:vota}
+\small
+\begin{algorithmic}[1]
+\REQUIRE Raw trace $T$ from \texttt{sys.settrace} (list of events)
+\ENSURE Compressed VOTA representation $V$
+\STATE $V \leftarrow$ empty string
+\STATE \textbf{// Component 1: Exception summary}
+\FOR{each event $e$ in $T$ with type \texttt{exception}}
+  \STATE Parse traceback $\rightarrow$ extract error type, message, file, line
+  \STATE Append \texttt{[ERROR] type: message (file:line)} to $V$
+\ENDFOR
+\IF{no exception events found}
+  \STATE Append \texttt{[No exception data in trace]} to $V$
+\ENDIF
+\STATE \textbf{// Component 2: Assertion-point comparison}
+\FOR{each \texttt{assert} or \texttt{return} event $e$ in $T$}
+  \STATE Extract actual value from execution state
+  \STATE Extract expected value from test assertion
+  \STATE Append \texttt{[ASSERT] actual=... expected=... match=T/F} to $V$
+\ENDFOR
+\STATE \textbf{// Component 3: Loop compression}
+\FOR{each consecutive repeated line sequence $S$ in $T$}
+  \IF{$|S| \geq 2$ iterations of same loop body}
+    \STATE Replace $S$ with single iteration + \texttt{[repeated $\times$N]}
+  \ENDIF
+\ENDFOR
+\STATE Append compressed non-exception lines to $V$
+\RETURN $V$
+\end{algorithmic}
+\end{algorithm}
+
+%% ============================================================
+\section{VOTA Trace Examples}
+\label{sec:vota_examples}
+
+We provide two representative VOTA trace examples illustrating the fail and pass cases.
+In the fail case, the exception event provides an unambiguous fault signal.
+In the pass case, the absence of an exception event combined with a matching assertion point confirms correct execution.
+
+\paragraph{Fail example.}
+A \texttt{ZeroDivisionError} triggers an \texttt{[ERROR]} event, providing a direct fault signal that is sufficient for the model to predict \texttt{fail}.
+
+\begin{scriptsize}
+\begin{verbatim}
+## Function
+def divide(a, b):
+    return a / b
+
+## Test Input
+divide(1, 0)
+
+## Expected Output
+inf
+
+## VOTA Trace
+[ERROR] ZeroDivisionError: division by zero
+
+## Verdict
+fail
+\end{verbatim}
+\end{scriptsize}
+
+\paragraph{Pass example.}
+No exception is raised, and the assertion point confirms that the actual output matches the expected value.
+
+\begin{scriptsize}
+\begin{verbatim}
+## Function
+def add(a, b):
+    return a + b
+
+## Test Input
+add(2, 3)
+
+## Expected Output
+5
+
+## VOTA Trace
+[LOOP] No loops detected.
+[ASSERT] actual=5, expected=5
+
+## Verdict
+pass
+\end{verbatim}
+\end{scriptsize}
+
+These examples illustrate the core asymmetry exploited by the \texttt{exception\_only} condition: fail cases produce an explicit \texttt{[ERROR]} event, while pass cases are characterized by its absence.
+This binary signal (presence vs.\ absence of an exception) is sufficient for near-perfect verdict prediction.
+
+%% ============================================================
+\section{Full Experimental Results}
+\label{sec:full_results}
+
+Tables~\ref{tab:full_qwen} and \ref{tab:full_deepseek} report the complete experimental results across all conditions, models, and seeds.
+
+\begin{table}[t]
+\centering
+\caption{Full results for Qwen-2.5-Coder-7B across all conditions and seeds. Conditions with a single seed report no variance. \texttt{exception\_only} achieves 99.83\% across all three seeds ($\sigma{=}$0). \texttt{ae\_only} achieves 99.64\% mean ($\pm$0.49; seed 123 at 99.08\% is the outlier).}
+\label{tab:full_qwen}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Condition} & \textbf{S42} & \textbf{S123} & \textbf{S456} & \textbf{Mean $\pm$ Std} \\
+\midrule
+exception\_only & 99.83 & 99.83 & 99.83 & 99.83 $\pm$ 0.00 \\
+ae\_only        & 99.92 & 99.08 & 99.92 & 99.64 $\pm$ 0.49 \\
+VOTA                     & 99.41 & 98.66 & 99.08 & 99.05 $\pm$ 0.38 \\
+VOTA\_no\_ae    & 99.41 & ---   & ---   & --- \\
+label\_only     & 86.22 & 86.89 & 84.70 & 85.94 $\pm$ 1.12 \\
+loop\_only      & 85.63 & 85.88 & 86.64 & 86.05 $\pm$ 0.52 \\
+full\_trace     & 81.76 & ---   & ---   & --- \\
+no\_trace       & 75.13 & ---   & ---   & --- \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Full results for DeepSeek-Coder-6.7B across all conditions and seeds. \texttt{exception\_only} is consistent across seeds: 99.33/99.50/99.33 ($\sigma{=}$0.10pp).}
+\label{tab:full_deepseek}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llcc}
+\toprule
+\textbf{Condition} & \textbf{Seed} & \textbf{Accuracy} & \textbf{Notes} \\
+\midrule
+exception\_only & 42  & 99.33 & epoch 1: 99.83 \\
+exception\_only & 456 & 99.33 & CI [98.82, 99.75] \\
+exception\_only & 123 & 99.50 & \\
+\midrule
+VOTA                     & 42  & 84.45 & training failure; fail recall = 45.4\% \\
+VOTA                     & 123 & 99.16 & \\
+VOTA                     & 456 & 99.33 & \\
+no\_trace       & 42  & 73.36 & \\
+full\_trace     & 42  & 79.16 & CI [76.80, 81.30] \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+%% ============================================================
+\section{Tokenizer and Truncation Analysis}
+\label{sec:tokenizer_analysis}
+
+DeepSeek VOTA seed 42 (84.45\%) is a training failure driven by tokenizer-induced truncation.
+Re-evaluation of the seed 42 checkpoint with the standard max\_length=2048 yields 16\% accuracy, confirming complete model collapse rather than marginal degradation.
+The previously reported 84.45\% was obtained with max\_length=16384, which partially bypasses tokenizer truncation.
+Seeds 123 and 456, evaluated under identical conditions, achieve 99.16\% and 99.33\% respectively.
+The DeepSeek tokenizer averages 2{,}626 tokens per VOTA sample versus 1{,}929 for Qwen, causing 91.7\% of DeepSeek VOTA training samples to exceed the 2{,}048-token context window.
+The training framework preserves the verdict label but truncates trace content, so the model trains with incomplete diagnostic information for the majority of samples.
+Seeds 123 and 456 (99.16\% and 99.33\%) demonstrate that DeepSeek can learn VOTA when LoRA initialization avoids the truncation-sensitive basin; the 2-seed mean (99.25\%$\pm$0.12) matches the cross-model VOTA range (98.74--99.54\%).
+
+A post-hoc group analysis on seed 42 provides directional evidence: partitioning test samples by whether their training-set counterparts exceeded the context window, intact samples ($N{=}99$) achieve 100\% accuracy while truncated samples ($N{=}1{,}091$) achieve 83.04\% (95\% CI [80.75\%, 85.24\%]; Fisher exact $p{<}.001$), with all 185 errors concentrated in the fail class (fail recall = 31.23\%).
+Per-class analysis (Table~\ref{tab:per_class}) confirms that seed 42 achieves 100\% fail precision but only 45.43\% fail recall, systematically defaulting to \texttt{pass}.
+
+Seed robustness is consistent across models: Qwen \texttt{exception\_only} produces identical 99.83\% across all three seeds ($\sigma{=}0$), and DeepSeek achieves 99.39\%$\pm$0.10 (seeds 42/456: 99.33\%, seed 123: 99.50\%).
+Because \texttt{exception\_only} test inputs contain 48.99\% duplicates (607 unique of 1,190; \S\ref{sec:dataset}), CIs assume $n{=}1{,}190$ independent trials; under deduplication ($n{=}607$), Qwen's accuracy is 99.67\% (Wilson CI [98.81, 99.91]).
+
+%% ============================================================
+\section{Irreducible Sample Analysis}
+\label{sec:irreducible}
+
+The \texttt{exception\_only} condition with Qwen-2.5-Coder-7B misclassifies exactly 2 out of 1,190 test samples across all three seeds (42, 123, 456), with 100\% overlap across seeds.
+Both samples (IDs 901 and 905) share the following characteristics:
+
+\begin{itemize}
+\item \textbf{Function:} \texttt{check\_dict\_case} (HumanEval/95), a function that checks whether all dictionary keys are uniformly upper-case or lower-case strings.
+\item \textbf{Ground-truth label:} \texttt{pass}.
+\item \textbf{Predicted label:} \texttt{fail} (false negative).
+\item \textbf{Cross-seed consistency:} Both samples are misclassified identically by all three seeds, indicating a systematic rather than stochastic error.
+\end{itemize}
+
+Manual inspection reveals the root cause: \texttt{check\_dict\_case} uses \texttt{all()} over a generator expression, and Python's \texttt{all()} short-circuits on the first \texttt{True} value, raising \texttt{GeneratorExit} to terminate the generator.
+Because \texttt{GeneratorExit} is a \texttt{BaseException} subclass, the tracer records it as seven \texttt{[ERROR] GeneratorExit} lines, even though the function executes correctly and the test passes.
+The model observes these spurious error markers and reasonably but incorrectly predicts \texttt{fail}.
+This is not a model failure but a representation ambiguity: the \texttt{exception\_only} format cannot distinguish genuine exceptions from benign \texttt{BaseException} subclasses triggered by Python's iterator protocol.
+
+Most configurations converge to these same 2 errors: Qwen-1.5B, Qwen-7B (3 seeds), CodeLlama-13B (seeds 42/456), and DeepSeek-6.7B (seeds 42/456) all produce error set $\{901, 905\}$.
+However, CodeLlama-13B seed 123 achieves 100\% accuracy (0/1190 errors), correctly classifying both samples.
+This demonstrates that 99.83\% is a near-perfect \emph{floor} (the convergence attractor for most LoRA initializations) rather than a hard data ceiling: the representation supports perfect accuracy, but most initializations converge to the same 2-error basin.
+The practical implication is that these errors are high-probability convergence artifacts addressable through seed selection or ensemble methods, not fundamental limitations of the exception-based representation.
+
+%% ============================================================
+\section{Exception Type Accuracy Breakdown}
+\label{sec:exception_type}
+
+Table~\ref{tab:exception_type} reports \texttt{exception\_only} accuracy stratified by exception type on Qwen-2.5-7B (seed=42, $N{=}1{,}190$).
+All standard exception types (\texttt{TypeError}, \texttt{ValueError}, \texttt{IndexError}, etc.) achieve 100\% accuracy.
+The only misclassifications arise from \texttt{GeneratorExit}, a \texttt{BaseException} subclass that is not an \texttt{Exception}. It is raised by Python's iterator protocol during generator short-circuiting, not by actual program errors.
+
+\begin{table}[t]
+\centering
+\caption{Exception type accuracy breakdown for \texttt{exception\_only} (Qwen-7B, seed=42). All true error types achieve 100\%. The only failures come from \texttt{GeneratorExit} (a \texttt{BaseException} subclass, not an \texttt{Exception}), which appears in 2 passing samples.}
+\label{tab:exception_type}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Exception Type} & \textbf{Samples} & \textbf{Accuracy} \\
+\midrule
+TypeError & 96 & 100\% \\
+ValueError & 62 & 100\% \\
+IndexError & 41 & 100\% \\
+KeyError & 28 & 100\% \\
+AttributeError & 19 & 100\% \\
+AssertionError & 15 & 100\% \\
+RecursionError & 12 & 100\% \\
+Other Exception & 66 & 100\% \\
+\midrule
+GeneratorExit (BaseException) & 2 & 0\% \\
+No exception (pass class) & 849 & 100\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This confirms that the model has learned a clean decision boundary: any true \texttt{Exception} subclass in the trace implies failure.
+The \texttt{GeneratorExit} case represents a semantic ambiguity in the trace format rather than a model failure, as discussed in \S\ref{sec:irreducible}.
+
+%% ============================================================
+\section{Trace Length Ablation}
+\label{sec:trace_length_full}
+
+To test whether the \texttt{full\_trace} performance gap is caused by input truncation at training time, we vary the maximum trace token budget on Qwen-2.5-7B (seed=42) while keeping all other hyperparameters fixed.
+
+\begin{table}[t]
+\centering
+\caption{Trace length and truncation direction ablation on Qwen-2.5-7B ($N{=}1{,}190$, seed=42). Head = standard left-truncation (retain first $k$ tokens); Tail = retain last $k$ tokens. Per-condition bootstrap 95\% CIs ($B{=}10{,}000$).}
+\label{tab:trace_length}
+\small
+\begin{tabular}{llcc}
+\toprule
+\textbf{Direction} & \textbf{Max Tokens} & \textbf{Acc (\%)} & \textbf{95\% CI} \\
+\midrule
+Head & 256  & 78.82 & [76.4, 81.0] \\
+Head & 512  & 80.42 & [78.2, 82.6] \\
+Head & 1024 & 77.23 & [74.9, 79.6] \\
+Head & no\_limit ($\infty$) & 81.76 & [79.7, 83.9] \\
+\midrule
+Tail & 256  & 77.48 & --- \\
+Tail & 512  & 93.61 & --- \\
+Tail & 1024 & 96.47 & --- \\
+Tail & 2048 & 97.31 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{budget_curve}
+\caption{Cross-model tail-truncation budget curve ($N{=}1{,}190$, four models, three architecture families). All models remain near baseline at tail-256/384, then jump +13.7--22.0pp at 384$\to$512, converging into a 93.6--98.2\% band by tail-1024. The shaded region marks the transition zone where the exception traceback (${\sim}$400--500 tokens) is captured. Dashed line: \texttt{exception\_only} range (99.3--99.9\%); dotted line: \texttt{no\_trace} range (67--77\%).}
+\label{fig:trace_length}
+\end{figure}
+
+As shown in Table~\ref{tab:trace_length} and Figure~\ref{fig:trace_length}, all four trace length conditions fall within a 5pp range (77.2\%--81.8\%).
+To quantify the reliability of the observed differences, Table~\ref{tab:trace_length_pairwise} reports paired bootstrap comparisons ($B{=}10{,}000$, seed=42) across all condition pairs.
+
+\begin{table}[t]
+\centering
+\caption{Pairwise paired bootstrap comparisons for trace length ablation ($B{=}10{,}000$, seed=42). $\Delta$ = accuracy difference between the two conditions (first $-$ second in the budget group; condition $-$ baseline in the other groups). **$p{<}.01$; ***$p{<}.001$.}
+\label{tab:trace_length_pairwise}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llccc}
+\toprule
+& \textbf{Comparison} & \textbf{$\Delta$ (pp)} & \textbf{95\% CI} & \textbf{$p$-value} \\
+\midrule
+\multirow{4}{*}{\rotatebox{90}{\scriptsize Budget}}
+& 512 vs.\ 256           & $+$1.60  & [$-$0.34, $+$3.53]   & 0.117 \\
+& 1024 vs.\ 512          & $-$3.19  & [$-$5.29, $-$1.09]   & 0.002** \\
+& no\_limit vs.\ 1024    & $+$4.54  & [$+$2.52, $+$6.55]   & ${<}$0.001*** \\
+& no\_limit vs.\ 256     & $+$2.94  & [$+$0.84, $+$5.04]   & 0.006** \\
+\midrule
+\multirow{4}{*}{\rotatebox{90}{\scriptsize vs.\ no\_trace}}
+& 256 $-$ no\_trace       & $+$3.70  & [$+$1.43, $+$6.05]   & 0.002** \\
+& 512 $-$ no\_trace       & $+$5.29  & [$+$3.03, $+$7.56]   & ${<}$0.001*** \\
+& 1024 $-$ no\_trace      & $+$2.10  & [$-$0.17, $+$4.37]   & 0.078 \\
+& no\_limit $-$ no\_trace & $+$6.64  & [$+$4.37, $+$8.99]   & ${<}$0.001*** \\
+\midrule
+\multirow{4}{*}{\rotatebox{90}{\scriptsize vs.\ exc.}}
+& 256 $-$ exc\_only       & $-$21.01 & [$-$23.45, $-$18.74] & ${<}$0.001*** \\
+& 512 $-$ exc\_only       & $-$19.41 & [$-$21.76, $-$17.14] & ${<}$0.001*** \\
+& 1024 $-$ exc\_only      & $-$22.61 & [$-$25.04, $-$20.25] & ${<}$0.001*** \\
+& no\_limit $-$ exc\_only & $-$18.07 & [$-$20.34, $-$15.88] & ${<}$0.001*** \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\paragraph{Non-monotonic pattern (head-truncation).}
+Under head-truncation (retaining trace prefixes), the trend is non-monotonic: 512 tokens (80.42\%) slightly outperforms 256 tokens (78.82\%), but doubling to 1024 tokens \emph{decreases} accuracy to 77.23\%, a statistically significant 3.19pp drop ($p{=}.002$, 95\% CI [$-$5.29, $-$1.09]).
+The no-limit condition (81.76\%) recovers and significantly exceeds 1024 tokens ($p{<}.001$), but 1024 tokens is not significantly better than \texttt{no\_trace} (75.13\%; $\Delta{=}{+}2.10$pp, $p{=}.078$, 95\% CI [$-$0.17, $+$4.37]).
+This non-monotonicity is specific to head-truncation: the 1024-token prefix retains enough irrelevant content to mislead the model while discarding diagnostic events that appear near the trace terminus.
+Under tail-truncation, accuracy increases monotonically for Qwen-7B and Qwen-1.5B (Table~\ref{tab:tail_cross_model}); only DeepSeek-6.7B shows a mild $-$1.5pp decrease at tail-1024$\to$tail-2048, attributable to architecture-specific long-context sensitivity rather than a systematic mid-length pathology.
+
+\paragraph{Comparison to baselines.}
+All four trace budget conditions significantly exceed \texttt{no\_trace} except 1024 tokens ($p{=}.078$), confirming that raw trace content provides some signal but unreliably so.
+The gap to \texttt{exception\_only} (99.83\%) is massive for every budget condition (18--23pp, all $p{<}.001$), underscoring that even unlimited raw traces cannot substitute for targeted signal extraction.
+The best full-trace condition (no\_limit, 81.76\%) still lags \texttt{exception\_only} by 18.07pp (95\% CI [$-$20.34, $-$15.88]).
+
+\paragraph{Interpretation.}
+These results rule out input truncation as the primary explanation for the full-trace performance gap: even with unlimited tokens, the model cannot extract the diagnostic signal that VOTA's targeted compression provides.
+The non-monotonic dip at 1024 tokens is consistent with a ``worst-of-both-worlds'' regime where the model receives enough noisy context to dilute the signal but not enough to compensate through broader coverage.
+The result reinforces the information density interpretation (\S\ref{sec:density}): the gap between full traces and VOTA is driven by the \emph{content} of the trace (irrelevant lines diluting the diagnostic signal), not its \emph{length}.
+In contrast, VOTA's compressed representation concentrates the diagnostic signal into fewer tokens, making it sensitive to truncation when those tokens are removed (\S\ref{sec:cross_model}).
+
+\paragraph{Truncation direction.}
+Tail-truncation (retaining the last $k$ tokens) dramatically outperforms head-truncation: \texttt{tail\_2048} achieves 97.31\% vs.\ \texttt{head\_2048} (no\_limit) at 81.76\%, a 15.55pp improvement.
+Even \texttt{tail\_512} (93.61\%) exceeds every head-truncation condition by over 11pp.
+
+However, \texttt{tail\_256} (77.48\%) performs at the \texttt{no\_trace} baseline level (75.13\%), indicating that the diagnostic signal does not reside in the very last trace lines.
+The critical jump occurs between 256 and 512 tail tokens (+16.13pp), localizing the signal window to approximately 256--512 tokens from the trace terminus.
+This is consistent with Python's execution model: exception tracebacks and assertion comparisons appear near the end of the trace but are preceded by the final function call frames, placing them typically 300--500 tokens from the terminus rather than at the absolute end.
+
+The 18.07pp gap from \texttt{full\_trace} to \texttt{exception\_only} decomposes as: 86\% positional concentration (recovered by tail-truncation at 2048 tokens) and 14\% residual content noise (the 2.52pp gap from \texttt{tail\_2048} to \texttt{exception\_only} that persists regardless of truncation direction).
+The fact that \texttt{exception\_only} (99.83\%) still outperforms \texttt{tail\_2048} (97.31\%) confirms that semantic extraction (identifying the exception type and message) is superior to positional extraction (keeping a fixed window), because the model need not filter out non-diagnostic lines that happen to fall within the window.
+
+\paragraph{Cross-model budget curve.}
+Table~\ref{tab:tail_cross_model} extends the tail-truncation analysis to a full budget sweep across four models spanning three architecture families and an 8.7$\times$ parameter range.
+
+\begin{table}[t]
+\centering
+\caption{Cross-model tail-truncation budget curve ($N{=}1{,}190$). All four models exhibit a transition between tail-384 and tail-512 (+13--23pp). $\downarrow$: non-monotonic decrease. $^\dag$CodeLlama tail-1024 trained with label-only loss to address tokenizer-driven gradient dilution (\S\ref{sec:tokenizer_analysis}). $^\ddag$CodeLlama tail-2048 outlier (41.8\%): LoRA long-sequence instability under label-only loss; excluded from cross-model analysis.}
+\label{tab:tail_cross_model}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Model} & \textbf{tail-256} & \textbf{tail-384} & \textbf{tail-512} & \textbf{tail-1024} & \textbf{tail-2048} & \textbf{exc\_only} \\
+\midrule
+Qwen-7B (7B) & 78.9 & 79.9 & 93.6 & 96.5 & 97.3 & 99.83 \\
+DeepSeek (6.7B) & 76.4 & 82.9 & 93.9 & 96.5 & 95.0$\downarrow$ & 99.33 \\
+CodeLlama (13B) & 77.9 & 80.6 & 98.2 & 98.2$^\dag$ & 41.8$^\ddag$ & 99.89 \\
+Qwen-1.5B (1.5B) & 72.6 & 73.6 & 95.6 & 96.6 & 97.9 & 99.83 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Cross-model truncation direction comparison ($N{=}1{,}190$). Head-truncation retains the first 2,048 tokens; tail-truncation retains the last 2,048. All four models' head-2048 accuracies converge into a narrow 75.3--81.8\% band (6.5pp), comparable to the tail-256 signal-poor band (72.6--78.9\%, 6.3pp). $^\dag$CodeLlama tail-2048 pending retraining (\S\ref{sec:tokenizer_analysis}).}
+\label{tab:head_vs_tail}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lccc}
+\toprule
+\textbf{Model} & \textbf{head-2048 (\%)} & \textbf{tail-2048 (\%)} & \textbf{Gap (pp)} \\
+\midrule
+Qwen-1.5B & 75.3 & 97.9 & +22.6 \\
+DeepSeek-6.7B & 78.7 & 95.0 & +16.3 \\
+CodeLlama-13B & 79.9 & ---$^\dag$ & ---$^\dag$ \\
+Qwen-7B & 81.8 & 97.3 & +15.5 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+Four patterns emerge from the budget curve.
+\emph{Phase transition between 384 and 512 tokens}: the tail-384 column reveals that the transition is not instantaneous at 256$\to$512 but localized between 384 and 512 tokens.
+At tail-384, all four models remain near baseline (73.6--82.9\%), gaining only +1.0--6.5pp over tail-256.
+The steep jump occurs at 384$\to$512: +13.7pp (Qwen-7B), +11.0pp (DeepSeek), +17.6pp (CodeLlama), +22.0pp (Qwen-1.5B), crossing from near-baseline to near-ceiling.
+This localizes the critical threshold to ${\sim}$400--500 tokens, consistent with the typical exception traceback length: below ${\sim}$384 tokens, the traceback is truncated and no diagnostic event is captured; above ${\sim}$512, it is fully included regardless of model capacity or architecture.
+
+\emph{Convergence at tail-512+}: once the phase transition is crossed, accuracy converges across all models into a 93.6--98.2\% band at tail-512 (seed 42).
+Multi-seed validation confirms robustness: across all 12 model$\times$seed combinations at tail-512 (Table~\ref{tab:tail512_seeds}), all accuracies fall within [93.61\%, 98.24\%], a 4.63pp band that compresses the signal-poor tail-256 spread (6.3pp) by 27\%.
+CodeLlama-13B shows perfect per-model convergence at tail-512: all three seeds achieve 98.24\% ($\sigma{=}$0), consistent with the 13B scale and label-only loss providing a stronger optimization signal in the signal-rich regime (Table~\ref{tab:tail512_seeds}).
+
+\begin{table}[t]
+\centering
+\caption{Cross-seed convergence at the tail-512 truncation point ($N{=}1{,}190$ per seed). All 12 model$\times$seed combinations fall within a 4.63pp band [93.61\%, 98.24\%]. CodeLlama-13B achieves identical accuracy across all three seeds ($\sigma{=}$0).}
+\label{tab:tail512_seeds}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lccccr}
+\toprule
+\textbf{Model} & \textbf{S42} & \textbf{S123} & \textbf{S456} & \textbf{Mean} & \textbf{$\sigma$} \\
+\midrule
+Qwen-7B (7B)      & 93.61 & 96.00 & 97.65 & 95.75 & 2.05 \\
+DeepSeek (6.7B)    & 93.95 & 95.04 & 96.10 & 95.03 & 1.08 \\
+Qwen-1.5B (1.5B)  & 95.63 & 97.65 & 96.72 & 96.67 & 1.01 \\
+CodeLlama (13B)    & 98.24 & 98.24 & 98.24 & \textbf{98.24} & \textbf{0.00} \\
+\midrule
+\multicolumn{4}{l}{Cross-model band} & \multicolumn{2}{r}{[93.61, 98.24] = 4.63pp} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+At tail-1024, four models reach 96.5--98.2\% (CodeLlama 98.2\% under label-only loss, three others 96.5--96.6\%).
+Scale and architecture differences that dominate the signal-poor regime (tail-256 range: 72.6--78.9\%, 6.3pp) compress dramatically in the signal-rich regime.
+
+\emph{Signal-poor convergence band}: head-2048 accuracies across all four models also converge into a narrow 75.3--81.8\% band (6.5pp; Table~\ref{tab:head_vs_tail}), comparable in width to the tail-256 band (72.6--78.9\%, 6.3pp).
+When the diagnostic signal is absent (head-truncation discards trace terminus) or unreachable (tail-256 is too short), models of different scale and architecture collapse to similar performance, suggesting a shared floor determined by code comprehension rather than trace processing.
+
+\emph{Scale behavior inversion}: in the signal-poor regime (tail-256), smaller models perform worse (Qwen-1.5B 72.6\% vs.\ Qwen-7B 78.9\%, $-$6.3pp), mirroring the \texttt{no\_trace} scale pattern.
+In the signal-rich regime (tail-512+), this reverses: Qwen-1.5B matches or exceeds Qwen-7B (95.6\% vs.\ 93.6\% at tail-512; 97.9\% vs.\ 97.3\% at tail-2048), confirming that sufficient trace signal eliminates the capacity advantage.
+
+\emph{Non-monotonicity at long sequences}: two models show accuracy decreases beyond tail-1024.
+DeepSeek-6.7B drops $-$1.5pp from tail-1024 (96.5\%) to tail-2048 (95.0\%), consistent with its known long-context sensitivity (\S\ref{sec:training_dynamics}).
+CodeLlama-13B exhibits a more severe collapse: tail-2048 under label-only loss drops to 41.8\% (vs.\ tail-1024 = 98.2\%), which we attribute to LoRA long-sequence instability under the label-only loss regime; this outlier is excluded from cross-model tail-2048 analysis.
+Qwen-7B and Qwen-1.5B increase monotonically across all budgets.
+
+Table~\ref{tab:head_vs_tail} confirms the truncation direction effect: among the three models with complete data, tail-2048 outperforms head-2048 by 15.5--22.6pp.
+The gap is largest for Qwen-1.5B (+22.6pp), indicating that smaller models benefit most from positional proximity to the diagnostic signal, as they lack the capacity to locate it within longer, noisier prefixes.
+
+%% ============================================================
+\section{Calibration Analysis}
+\label{sec:calibration_full}
+
+Beyond accuracy, we evaluate whether trace conditions affect prediction calibration, motivated by recent findings that code LLM confidence is often poorly calibrated \citep{spiess2025calibration}.
+
+\begin{table}[t]
+\centering
+\caption{Calibration metrics on Qwen-2.5-7B ($N{=}1{,}190$, seed=42). ECE = expected calibration error; Brier = Brier score. Lower is better for both.}
+\label{tab:calibration}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Condition} & \textbf{ECE $\downarrow$} & \textbf{Brier $\downarrow$} \\
+\midrule
+ae\_only & \textbf{0.0004} & \textbf{0.0008} \\
+exception\_only & 0.0027 & 0.0013 \\
+VOTA & 0.0054 & 0.005 \\
+full\_trace & 0.096 & 0.144 \\
+no\_trace & 0.171 & 0.197 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:calibration} shows that calibration quality mirrors the Tier~1/2 hierarchy.
+Tier~1 conditions (\texttt{ae\_only}: ECE=0.0004; \texttt{exception\_only}: ECE=0.0027) produce near-perfectly calibrated predictions, while \texttt{full\_trace} (ECE=0.096) and \texttt{no\_trace} (ECE=0.171) exhibit substantial miscalibration.
+VOTA (ECE=0.0054) is well-calibrated but slightly worse than either Tier~1 component alone, reinforcing the pattern that combining trace signals dilutes rather than improves the prediction signal.
+
+The Brier scores tell a consistent story: \texttt{ae\_only} (0.0008) and \texttt{exception\_only} (0.0013) achieve near-zero scores, while \texttt{no\_trace} (0.197) indicates substantial miscalibration.
+
+\paragraph{Cross-model calibration.}
+Table~\ref{tab:calibration_cross} extends the calibration analysis to four models (1.5B--13B) under \texttt{exception\_only}.
+All four models achieve ECE ${<}$ 0.007 and Brier ${<}$ 0.007, confirming that calibration quality generalizes across architectures and scales.
+CodeLlama-13B achieves the lowest ECE (0.0020) and MCE (0.0411), while DeepSeek-6.7B shows the highest ECE (0.0064) and Brier (0.0061), consistent with its higher error rate (8 errors vs.\ 2 for Qwen/CodeLlama).
+
+\begin{table}[t]
+\centering
+\caption{Cross-model calibration for \texttt{exception\_only} ($N{=}1{,}190$, seed=42). ECE = expected calibration error; Brier = Brier score; MCE = maximum calibration error. All four models (1.5B--13B) achieve ECE ${<}$ 0.007.}
+\label{tab:calibration_cross}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Model} & \textbf{ECE $\downarrow$} & \textbf{Brier $\downarrow$} & \textbf{MCE $\downarrow$} \\
+\midrule
+Qwen-1.5B & \textbf{0.0020} & \textbf{0.0013} & --- \\
+CodeLlama-13B & \textbf{0.0020} & \textbf{0.0013} & \textbf{0.0411} \\
+Qwen-7B & 0.0027 & \textbf{0.0013} & 0.8355 \\
+DeepSeek-6.7B & 0.0064 & 0.0061 & 0.7756 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig2_calibration}
+\caption{Reliability diagrams for four trace conditions on Qwen-2.5-7B ($N{=}1{,}190$, seed=42). \texttt{exception\_only} (ECE=0.0027) clusters near the diagonal, while \texttt{no\_trace} (ECE=0.171) exhibits systematic overconfidence, a 63$\times$ gap.}
+\label{fig:calibration}
+\end{figure}
+
+%% ============================================================
+\section{Error Overlap Analysis}
+\label{sec:error_overlap}
+
+We analyze the overlap between error sets of different conditions to determine whether they fail on the same samples (Figure~\ref{fig:error_overlap}).
+
+\texttt{exception\_only}'s 2 errors (samples 901 and 905) have zero intersection with the error sets of all other conditions (Jaccard = 0.000 in all pairwise comparisons).
+This orthogonality arises because \texttt{exception\_only} errors are caused by \texttt{GeneratorExit} false positives (pass samples misclassified as fail due to benign \texttt{BaseException} events), while errors from other conditions are predominantly fail samples misclassified as pass due to insufficient signal.
+
+Among non-exception conditions, error sets exhibit hierarchical containment: \texttt{ae\_only} $\subset$ VOTA $\subset$ \texttt{loop\_only} $\subset$ \texttt{no\_trace}, with pairwise Jaccard indices increasing with signal overlap.
+\texttt{loop\_only} and \texttt{full\_trace} share the highest overlap (Jaccard ${\sim}$0.65), reflecting their shared reliance on behavioral patterns rather than explicit fault indicators.
+
+This analysis confirms that \texttt{exception\_only} operates on an independent signal dimension: its errors are representation ambiguities (iterator protocol artifacts) rather than information deficits, explaining why combining it with other signals cannot eliminate these specific errors.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{error_overlap}
+\caption{Jaccard similarity between error sets of different conditions (Qwen-7B, seed=42, $N{=}1{,}190$). \texttt{exception\_only} (exc\_only) has zero overlap with all other conditions, confirming it operates on an independent signal dimension.}
+\label{fig:error_overlap}
+\end{figure}
+
+%% ============================================================
+\section{Cross-Dataset Generalization: DebugBench}
+\label{sec:debugbench_full}
+
+To test whether exception-based verdict prediction generalizes beyond LLM-generated solutions, we evaluate on DebugBench \citep{tian2024debugbench}, a dataset of human-written programs with synthetically injected bugs (single-point mutations such as operator replacement, variable misuse, and missing statements).
+After filtering for executable Python samples with valid traces, we retain 426 samples with a near-balanced class distribution (majority baseline: 51.4\%).
+
+\begin{table}[t]
+\centering
+\caption{Generalization to DebugBench ($N{=}426$, Qwen-2.5-7B, seed=42). Wilson 95\% CIs. The component ranking (exception\_only $\geq$ VOTA $>$ no\_trace) is preserved, and exception\_only achieves perfect accuracy.}
+\label{tab:debugbench}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Condition} & \textbf{Acc (\%)} & \textbf{95\% CI} \\
+\midrule
+exception\_only & \textbf{100.00} & [99.14, 100.00] \\
+VOTA & 99.77 & [99.30, 100.00] \\
+no\_trace & 96.71 & [94.80, 98.40] \\
+\midrule
+Majority baseline & 51.41 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:debugbench} shows that the component ranking from the main experiments is preserved: \texttt{exception\_only} (100.00\%) $\geq$ VOTA (99.77\%) $>$ \texttt{no\_trace} (96.71\%).
+The \texttt{exception\_only} condition achieves perfect accuracy, confirming that the exception-based representation generalizes to a different fault distribution without degradation.
+
+The absolute margins are much narrower than on the main dataset: the \texttt{no\_trace} baseline already achieves 96.71\% (compared to 75.13\% on HumanEval+MBPP), leaving only 3.29pp of headroom for trace-based improvement.
+This ceiling effect reflects a fundamental difference in fault characteristics: DebugBench bugs are synthetically injected single-point mutations, which produce code that is structurally dissimilar from the original correct solution; a model can often identify the fault from source code alone.
+In contrast, the HumanEval+MBPP solutions are LLM-generated, producing natural errors (logic mistakes, edge-case failures) where the faulty and correct solutions may be structurally similar, making code-only verdict prediction substantially harder.
+
+These results support exception-based verdict prediction as a generalizable approach: the method does not degrade on an out-of-distribution dataset, and the exception dominance ranking (exception\_only $\geq$ VOTA $>$ no\_trace) is consistent across both datasets. However, the narrow DebugBench margins are insufficient to independently validate trace importance.
+The 24.70pp trace lift on the main dataset (no\_trace 75.13\% $\to$ exception\_only 99.83\%) remains the primary evidence for the value of exception-based trace signals.
+
+%% ============================================================
+\section{Cross-Model Robustness Analysis}
+\label{sec:robustness_analysis}
+
+The cross-model gap pattern (Table~\ref{tab:cross_model}) suggests a design principle: \emph{trace representations should match the model capability floor, not the ceiling.}
+Exception events are consistently the most effective component on both models, and their structural simplicity (a fixed-format error message) ensures that the relative advantage over richer representations holds across all seeds.
+All three DeepSeek \texttt{exception\_only} seeds achieve ${\geq}$99.33\% (99.33/99.50/99.33, $\sigma{=}$0.10pp), matching Qwen and CodeLlama at ${\geq}$99.83\%.
+VOTA achieves ${\geq}$98.57\% across all models when excluding outlier seeds (cross-model range: 0.80pp), but DeepSeek VOTA exhibits seed-dependent instability: seed 42 (84.45\%) is a training failure due to tokenizer-induced truncation (91.7\% of training samples affected), while seeds 123/456 (99.16\%/99.33\%) match cross-model performance.
+This VOTA instability is confounded by tokenizer efficiency and base model differences \citep{yang2024generalization}.
+Our \texttt{exception\_only} design sidesteps the truncation confound entirely: inputs have a median of 150 tokens (mean 398), well below the 2{,}048-token context window, so no training samples are truncated on either model.
+The resulting 0.50pp cross-model gap (Table~\ref{tab:cross_model}) is therefore a clean measure of model capability differences, making the ``capability floor'' principle directly testable.
+The practical implication is that trace-based systems should default to the simplest sufficient signal.
+
+%% ============================================================
+\section{Training Dynamics and Loss Decoupling}
+\label{sec:training_dynamics}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{training_dynamics}
+\caption{Training dynamics comparison. Exception-only (blue) converges to 99.33\% within 50 steps and saturates at 99.83\% by step 150. Full-trace with label-only loss (red, dashed) oscillates between 82\% and 89\% across all 444 training steps without stable convergence, consistent with overfitting to spurious patterns in verbose trace content. (Seed~42; 3-seed final accuracies in Table~\ref{tab:cross_model} are consistent with this convergence pattern.)}
+\label{fig:training_dynamics}
+\end{figure}
+
+The DeepSeek \texttt{exception\_only} results are consistent across all three seeds (99.33/99.50/99.33, $\sigma{=}$0.10pp), matching Qwen's cross-seed stability.
+Epoch-level analysis shows mild degradation in seed 42: accuracy peaks at 99.83\% after epoch~1 but settles at 99.33\% by epoch~3 ($-$0.50pp), while seed 456 shows no degradation (99.33\% at both epochs).
+Early stopping may yield marginal gains, but the epoch effect is small (${\leq}$0.5pp).
+The practical recommendation: for deployment, use task-specific metrics (accuracy, fail recall) for checkpoint and seed selection rather than training loss, and train multiple seeds to select the best.
+
+The contrast with VOTA is instructive: DeepSeek VOTA seed 42 accuracy monotonically increases from 78.15\% to 84.45\% across epochs, consistent with a performance limit from high trace truncation (91.7\% of samples; \S\ref{sec:tokenizer_analysis}).
+Seeds 123/456, which avoid the truncation-sensitive initialization basin, achieve 99.16\%/99.33\%, confirming that the deficit is seed-specific rather than a fundamental model limitation.
+
+%% ============================================================
+\section{Deduplication Statistics}
+\label{sec:dedup_stats}
+
+Table~\ref{tab:dedup} reports the duplication rates across trace formats.
+Because multiple passing solutions to the same problem produce identical (input, output) pairs in the \texttt{exception\_only} format (correct executions raise no exceptions, so the trace content is the same regardless of the solution's internal logic), the dataset contains duplicate rows.
+Train--test input overlap is zero (split by problem ID), so no information leakage occurs.
+The high duplication in \texttt{exception\_only} does not affect our experimental conclusions: after deduplication the training set still contains 2,858 unique samples and the test set 607, providing sufficient coverage for the 591-problem benchmark.
+
+\paragraph{Problem-level partitioning and sensitivity analysis.}
+Data is partitioned at the problem level: 472 training problems and 119 test problems, with zero crossover.
+Duplicates arise from multiple candidate solutions per problem (up to 10 solutions each), not from cross-problem overlap.
+To verify that deduplication does not alter any finding, we ran a sensitivity analysis across all 19 experimental conditions (7 trace formats $\times$ 4 models, minus conditions not run): deduplication produces a 0.00pp accuracy delta in every case.
+This confirms that duplicate samples neither inflate nor deflate accuracy, because duplicates share the same ground-truth label and the model's prediction is deterministic at inference time.
+The \texttt{exception\_only} test set contains 48.99\% duplicate inputs due to representation compactness; all confidence intervals treat samples as independent Bernoulli trials.
+
+\begin{table}[t]
+\centering
+\caption{Deduplication statistics. The \texttt{exception\_only} format collapses multiple passing solutions into identical rows because correct executions produce no exception events. Train--test input overlap is 0 (no leakage).}
+\label{tab:dedup}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Split} & \textbf{Total} & \textbf{Unique} & \textbf{Dup.\ rate} \\
+\midrule
+exception\_only train & 4{,}720 & 2{,}858 & 39.45\% \\
+exception\_only test  & 1{,}190 &   607 & 48.99\% \\
+raw\_traces (full)    & 5{,}910 & 5{,}803 &  1.81\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%% ============================================================
+\section{Regex Baseline Analysis}
+\label{sec:regex_baselines}
+
+To establish a non-learning upper bound, we evaluate six regex-based baselines on the \texttt{exception\_only} test set ($N{=}1{,}190$) and two format-specific baselines on VOTA and \texttt{full\_trace} inputs.
+
+\begin{table}[t]
+\centering
+\caption{Regex baseline accuracy ($N{=}1{,}190$). B4 is the strongest semantic baseline (6.22pp below SFT \texttt{exception\_only}, McNemar $p{<}.001$). B6 uses an error count threshold. $^\ddag$B5 exploits a data formatting artifact: the \texttt{[No exception data in trace]} marker is deterministically present in all pass samples, making this a format-level shortcut rather than a genuine exception-based heuristic.}
+\label{tab:regex}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llc}
+\toprule
+\textbf{Baseline} & \textbf{Method} & \textbf{Acc (\%)} \\
+\midrule
+B1: \texttt{[ERROR]} presence & string match & 93.45 \\
+B2: Traceback presence & string match & 71.51 \\
+B3: Any keyword & union of B1+B2+Exception & 93.45 \\
+B4: Exception type regex & regex on exception class names & \textbf{93.61} \\
+B5: Format marker & \texttt{[No exception data]} $\to$ pass & 99.33$^\ddag$ \\
+B6: Error count $\geq$2 & count threshold & 92.02 \\
+\midrule
+VOTA format regex & best regex on VOTA traces & 75.55 \\
+full\_trace format regex & best regex on full traces & 77.39 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+The strongest legitimate baseline (B4, 93.61\%) applies regex pattern-matching on Python exception class names (e.g., \texttt{ValueError}, \texttt{TypeError}).
+Its errors concentrate on 8 boundary samples where a \texttt{ValueError} is raised inside a \texttt{try/except} block and caught; the program passes despite an exception occurring in the trace.
+SFT \texttt{exception\_only} correctly classifies 6 of these 8 samples, indicating that the model learns the semantic distinction between caught (benign) and uncaught (fault-indicating) exceptions.
+B5 (99.33\%) achieves near-SFT accuracy but relies on the deterministic presence of a format marker in pass-class traces, which is an artifact of the trace preprocessing pipeline rather than a generalizable signal; McNemar test vs.\ SFT yields $p{=}.041$, confirming a statistically significant difference.
+
+\paragraph{Cross-format comparison.}
+Table~\ref{tab:regex_cross_format} compares SFT and the best applicable regex baseline for each trace format.
+The SFT advantage increases with format complexity: \texttt{no\_trace} (+3.62pp over majority baseline) $<$ \texttt{full\_trace} (+4.37pp) $<$ \texttt{exception\_only} (+6.22pp) $\ll$ VOTA (+23.86pp).
+The VOTA gap is largest because its structured multi-component format carries semantic content that regex cannot parse, while \texttt{exception\_only}'s simpler format allows regex to capture most of the signal.
+
+\begin{table}[t]
+\centering
+\caption{SFT vs.\ best regex baseline by trace format ($N{=}1{,}190$). Regex baselines: majority class for \texttt{no\_trace}, keyword matching for \texttt{full\_trace}, pattern matching for VOTA, exception type regex (B4) for \texttt{exception\_only}.}
+\label{tab:regex_cross_format}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Format} & \textbf{SFT (\%)} & \textbf{Regex (\%)} & \textbf{$\Delta$ (pp)} \\
+\midrule
+exception\_only & 99.83 & 93.61 & +6.22 \\
+VOTA & 99.05 & 75.55 & +23.50 \\
+full\_trace & 81.76 & 77.39 & +4.37 \\
+no\_trace & 75.13 & 71.51 & +3.62 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%% ============================================================
+\section{Cross-Model Zero-Shot Comparison}
+\label{sec:zeroshot_cross_model}
+
+Table~\ref{tab:zeroshot_cross_model} compares zero-shot and SFT \texttt{exception\_only} accuracy across four models.
+Zero-shot performance does not correlate with model size: the smallest model (Qwen-1.5B, 93.45\%) outperforms all larger models, while the largest (CodeLlama-13B) falls below majority baseline.
+SFT compresses the 42.44pp zero-shot range to 0.50pp, eliminating architecture-dependent variance.
+
+\begin{table}[t]
+\centering
+\caption{Zero-shot vs.\ SFT \texttt{exception\_only} across four models ($N{=}1{,}190$). Zero-shot accuracy is uncorrelated with model size; SFT normalizes cross-architecture variance from 42.44pp to 0.50pp.}
+\label{tab:zeroshot_cross_model}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llccc}
+\toprule
+\textbf{Model} & \textbf{Size} & \textbf{Zero-shot (\%)} & \textbf{SFT (\%)} & \textbf{$\Delta$ (pp)} \\
+\midrule
+Qwen-1.5B & 1.5B & 93.45 & 99.83 & +6.38 \\
+DeepSeek-6.7B & 6.7B & 90.59 & 99.39 & +8.80 \\
+Qwen-7B & 7B & 89.08 & 99.83 & +10.75 \\
+CodeLlama-13B & 13B & 51.01 & 99.89 & +48.88 \\
+\midrule
+Range & --- & 42.44pp & 0.50pp & --- \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

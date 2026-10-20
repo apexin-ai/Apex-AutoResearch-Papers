@@ -1,0 +1,1801 @@
+# analysis bootstrap pvalues
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 37
+- **Recorded user turns:** 0
+- **Tool calls:** 11
+- **Original source:** `logs/workers/worker_analysis_bootstrap_pvalues_20260515T185923.log`
+- **Structured JSON:** [`99ba46fc0d7b0c07c4c5.json`](../../sessions/99/99ba46fc0d7b0c07c4c5.json)
+
+## Before a recorded user message
+
+37 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "6eba9918-1d14-4de7-a110-1d1027a30914",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778885400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "634f4e14-01df-44d0-89b5-f7b993678f0d",
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll write a script to compute paired bootstrap p-values and run it on the server.
+
+Let me first check what prediction files are available.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "6cf530ca-946e-4c4a-9f03-6dd6a0c5178c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0184N2vRQygWaszW32RrZGwU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12142,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12142
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LKxszwJcCRoLJgNo25hJ6q`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "c5b5fcf1-f24d-49af-9cf9-bba737418047",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0184N2vRQygWaszW32RrZGwU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12142,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12142
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T18:59:33.460Z_
+
+<details><summary>↩ Tool result · `toolu_01LKxszwJcCRoLJgNo25hJ6q`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "1328616f-58cc-450b-a1de-563c146e35ce",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me first find all prediction files on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "e96402e4-16bf-43a5-bd55-88622ed66d65",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0118xnR4tLxQNhYPhKBqe9Bc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 23983,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 701
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Gmt1Avh8djEvdejRrUxLrv`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "find /root/autodl-tmp/trace-verdict-study-checkpoints/ -name \"predictions.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "f943bd3c-be57-40a9-a03d-8768f43e2321",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0118xnR4tLxQNhYPhKBqe9Bc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 23983,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 701
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T18:59:37.897Z_
+
+<details><summary>↩ Tool result · `toolu_01Gmt1Avh8djEvdejRrUxLrv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/checkpoint-148/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/checkpoint-296/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/vota/checkpoint-148/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/vota/checkpoint-296/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/checkpoint-148/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/checkpoint-296/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only/final/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/vota_no_ae/final/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/checkpoint-148/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/checkpoint-148/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/checkpoint-296/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123/final/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456/final/predictions.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "2da99fc3-78ff-4512-92e9-93484a5dc14f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/checkpoint-148/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/checkpoint-296/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/vota/checkpoint-148/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/vota/checkpoint-296/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/checkpoint-148/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/checkpoint-296/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/vota_no_ae/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/checkpoint-148/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/checkpoint-148/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/checkpoint-296/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456/final/predictions.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/checkpoint-148/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/checkpoint-296/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/vota/checkpoint-148/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/vota/checkpoint-296/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/checkpoint-148/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/checkpoint-296/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only/final/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/vota_no_ae/final/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/checkpoint-148/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/checkpoint-148/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/checkpoint-296/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123/final/predictions.jsonl\\n/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456/final/predictions.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The file paths don't exactly match the task description. Let me map what's available:
+
+Qwen:
+- no_trace: `/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/predictions.jsonl` (not `no_trace_seed42_v5`)
+- full_trace: `/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/predictions.jsonl`
+
+
+- full_trace_label_only: `/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only/final/predictions.jsonl`
+- loop_only: `/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/predictions.jsonl`
+- ae_only: `/root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/predictions.jsonl`
+- exception_only: `/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/predictions.jsonl`
+
+DeepSeek also has similar checkpoint directories, though the paths appear to be cut off.
+
+I'm noticing a discrepancy between what the task specifies and what's actually on the server. The task mentions specific seed-based naming conventions like `deepseek_no_trace_seed42` and `deepseek_vota_seed42`, but the actual directory structure seems different. Let me look more carefully at what's actually available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "27b47f2f-b265-4753-9642-320a2a817cc3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KmiB9TZYQwbzqAEgzTq7sd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 855,
+      "cache_read_input_tokens": 24684,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 855
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+The actual paths differ from the task description. Let me check the file structure and sample counts, then write the bootstrap script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "4dce716b-cfeb-4dc5-aa51-c8e053c1b113",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KmiB9TZYQwbzqAEgzTq7sd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 855,
+      "cache_read_input_tokens": 24684,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 855
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Lz9DbBdSph3hCQQAaDFhpW`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "head -2 /root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/predictions.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "1530e223-7a33-4b2d-89b3-a3ce5c3bb0b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KmiB9TZYQwbzqAEgzTq7sd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 855,
+      "cache_read_input_tokens": 24684,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 855
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T18:59:50.384Z_
+
+<details><summary>↩ Tool result · `toolu_01Lz9DbBdSph3hCQQAaDFhpW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": 0, \\\"label\\\": \\\"fail\\\", \\\"pred\\\": \\\"fail\\\", \\\"raw_pred\\\": \\\"fail\\\"}\\n{\\\"id\\\": 1, \\\"label\\\": \\\"pass\\\", \\\"pred\\\": \\\"pass\\\", \\\"raw_pred\\\": \\\"pass\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "27846283-7078-47af-863a-dad1645c99fe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": 0, \\\\\\\"label\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"fail\\\\\\\"}\\\\n{\\\\\\\"id\\\\\\\": 1, \\\\\\\"label\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"pass\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": 0, \\\"label\\\": \\\"fail\\\", \\\"pred\\\": \\\"fail\\\", \\\"raw_pred\\\": \\\"fail\\\"}\\n{\\\"id\\\": 1, \\\"label\\\": \\\"pass\\\", \\\"pred\\\": \\\"pass\\\", \\\"raw_pred\\\": \\\"pass\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TakME2erv8a7NQEaBTbqHH`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "ls -d /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek*/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "44b8c088-f93b-4d69-99c2-d3dff8a60ea4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KmiB9TZYQwbzqAEgzTq7sd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 855,
+      "cache_read_input_tokens": 24684,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 855
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T18:59:51.331Z_
+
+<details><summary>↩ Tool result · `toolu_01TakME2erv8a7NQEaBTbqHH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123/\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_v2/\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "92ed3e18-1e58-42fc-a2d9-68415c69e3d1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123/\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_v2/\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123/\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_v2/\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014NbQMT2RTv3Rt9KkwwBmo7`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "wc -l /root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/predictions.jsonl /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/predictions.jsonl /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only/final/predictions.jsonl /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/predictions.jsonl /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/predictions.jsonl /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/predictions.jsonl /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/checkpoint-148/predictions.jsonl /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final/predictions.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "657a5c1a-bf89-4cb7-8ca4-43f7dd304a7e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KmiB9TZYQwbzqAEgzTq7sd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 855,
+      "cache_read_input_tokens": 24684,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 855
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T18:59:53.644Z_
+
+<details><summary>↩ Tool result · `toolu_014NbQMT2RTv3Rt9KkwwBmo7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/predictions.jsonl\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/predictions.jsonl\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only/final/predictions.jsonl\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/predictions.jsonl\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/predictions.jsonl\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/predictions.jsonl\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/checkpoint-148/predictions.jsonl\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final/predictions.jsonl\\n  9520 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "e71ce5c8-efb0-4c24-8e6f-e741f60b0c22",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/predictions.jsonl\\\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/predictions.jsonl\\\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only/final/predictions.jsonl\\\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/predictions.jsonl\\\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/predictions.jsonl\\\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/predictions.jsonl\\\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/checkpoint-148/predictions.jsonl\\\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final/predictions.jsonl\\\\n  9520 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/predictions.jsonl\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/predictions.jsonl\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only/final/predictions.jsonl\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/predictions.jsonl\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/predictions.jsonl\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/predictions.jsonl\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/checkpoint-148/predictions.jsonl\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final/predictions.jsonl\\n  9520 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. The predictions files have `id`, `label`, `pred` fields (not `prediction`). All Qwen files have 1190 samples. Let me check the DeepSeek directories for prediction files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "a3d7e8e0-0683-4534-bf96-b8d061aba5f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FyHsVAxmFVv9Ci5zyLPVkL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2107,
+      "cache_read_input_tokens": 25539,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2107
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+All files have 1190 samples. The field is `pred` not `prediction`. Let me check DeepSeek no_trace and vota.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "e7218e7c-cd3c-42bc-9128-3d7bdf35aae1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FyHsVAxmFVv9Ci5zyLPVkL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2107,
+      "cache_read_input_tokens": 25539,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2107
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NBptjpxLaU6oUE5rovytJ7`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "find /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/ /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/ -name \"predictions.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "674a2129-7e20-4f0d-8f8f-f6784376aa08",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FyHsVAxmFVv9Ci5zyLPVkL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2107,
+      "cache_read_input_tokens": 25539,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2107
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T18:59:58.748Z_
+
+<details><summary>↩ Tool result · `toolu_01NBptjpxLaU6oUE5rovytJ7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "9ad9e717-118d-44ad-9308-8f124eff1a5a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No predictions.jsonl for deepseek_no_trace or deepseek_vota. Let me check what's in those directories.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "9b55e80d-1a48-4180-b291-956d76e6a372",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Km6MH1iG6E3j3s9LfoCbww",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 331,
+      "cache_read_input_tokens": 27646,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 331
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JKZbG5efucTVuAFHNXKkfi`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "ls /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "c2d8982f-0139-42c9-9917-60bb3a30edb6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Km6MH1iG6E3j3s9LfoCbww",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 331,
+      "cache_read_input_tokens": 27646,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 331
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QrCigEhQEveRzVXPcqkasR`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "ls /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "b22cd2a7-9630-448c-8917-4faa1119dbf6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Km6MH1iG6E3j3s9LfoCbww",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 331,
+      "cache_read_input_tokens": 27646,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 331
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T19:00:04.394Z_
+
+<details><summary>↩ Tool result · `toolu_01JKZbG5efucTVuAFHNXKkfi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\ncheckpoint-148\\ncheckpoint-296\\ncheckpoint-444\\nfinal\\nruns\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "4bc1252a-6fac-47ab-abcf-25ed64e4b3e1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\ncheckpoint-148\\\\ncheckpoint-296\\\\ncheckpoint-444\\\\nfinal\\\\nruns\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"README.md\\ncheckpoint-148\\ncheckpoint-296\\ncheckpoint-444\\nfinal\\nruns\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T19:00:04.916Z_
+
+<details><summary>↩ Tool result · `toolu_01QrCigEhQEveRzVXPcqkasR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\ncheckpoint-148\\ncheckpoint-296\\ncheckpoint-444\\nfinal\\nruns\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "17d2b41d-daa7-4111-9d40-ef7ca1a6847f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\ncheckpoint-148\\\\ncheckpoint-296\\\\ncheckpoint-444\\\\nfinal\\\\nruns\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"README.md\\ncheckpoint-148\\ncheckpoint-296\\ncheckpoint-444\\nfinal\\nruns\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012m3yJmRoBD2bRaa6fE5pZ1`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "ls /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "11a6ada9-cfbf-4843-a3bc-25fd7c718b7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016fjYFz21efnGnovfRUeMgQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 659,
+      "cache_read_input_tokens": 27977,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 659
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T19:00:08.700Z_
+
+<details><summary>↩ Tool result · `toolu_012m3yJmRoBD2bRaa6fE5pZ1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\nadapter_config.json\\nadapter_model.safetensors\\nchat_template.jinja\\neval_results.json\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\ntraining_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "6ddcb4f1-b177-4abb-b507-749c237fabaa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nchat_template.jinja\\\\neval_results.json\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"README.md\\nadapter_config.json\\nadapter_model.safetensors\\nchat_template.jinja\\neval_results.json\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\ntraining_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LEFpzJCQyfpSNJq7m9SuqY`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "ls /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "c0cdc5ef-74c2-4264-a3ad-892b08d40de0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016fjYFz21efnGnovfRUeMgQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 659,
+      "cache_read_input_tokens": 27977,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 659
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T19:00:09.858Z_
+
+<details><summary>↩ Tool result · `toolu_01LEFpzJCQyfpSNJq7m9SuqY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\nadapter_config.json\\nadapter_model.safetensors\\nchat_template.jinja\\neval_results.json\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\ntraining_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "6c5f0b54-4e0b-4484-9d5d-a639e0a8c83c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nchat_template.jinja\\\\neval_results.json\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"README.md\\nadapter_config.json\\nadapter_model.safetensors\\nchat_template.jinja\\neval_results.json\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\ntraining_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+DeepSeek no_trace and vota have trained models but no predictions.jsonl yet. The deepseek_exception_only only has checkpoint-148 predictions, not final. Let me check deepseek_full_trace_v2 too.
+
+So the available predictions are:
+- Qwen: no_trace, full_trace, full_trace_label_only, loop_only, ae_only, exception_only — all at final/
+- DeepSeek: exception_only (checkpoint-148 only), full_trace (final)
+
+DeepSeek no_trace and vota don't have predictions yet. 
+
+Since DeepSeek is missing predictions for no_trace and vota, I can't run those comparisons. The task says to skip if predictions.jsonl doesn't exist, so I'll proceed with the four Qwen comparisons and note that the DeepSeek ones aren't available.
+
+Now I'm running the bootstrap script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "31f7f204-1e07-44a5-a4a0-ba1b8ebae8fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YXBSYFnYFE9TQkD7oejJq5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 585,
+      "cache_read_input_tokens": 28636,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 585
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+DeepSeek no_trace and vota don't have predictions.jsonl yet — only trained checkpoints. I'll run the 4 Qwen comparisons now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "943285af-b687-40e9-9cb4-76a09178b5b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YXBSYFnYFE9TQkD7oejJq5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 585,
+      "cache_read_input_tokens": 28636,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 585
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019C6Fd9PKegQnG2HLCJfrbv`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /tmp/paired_bootstrap.py << 'PYEOF'\nimport json\nimport numpy as np\n\nCKPT = \"/root/autodl-tmp/trace-verdict-study-checkpoints\"\n\ndef load_preds(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f]\n\ndef align(preds_a, preds_b):\n    a_dict = {p[\"id\"]: p for p in preds_a}\n    b_dict = {p[\"id\"]: p for p in preds_b}\n    common = sorted(set(a_dict) & set(b_dict))\n    assert len(common) == len(preds_a) == len(preds_b), \\\n        f\"Sample mismatch: common={len(common)}, a={len(preds_a)}, b={len(preds_b)}\"\n    return [a_dict[i] for i in common], [b_dict[i] for i in common]\n\ndef paired_bootstrap_test(preds_a, preds_b, n_bootstrap=10000, seed=42):\n    preds_a, preds_b = align(preds_a, preds_b)\n    correct_a = np.array([1 if p[\"label\"] == p[\"pred\"] else 0 for p in preds_a])\n    correct_b = np.array([1 if p[\"label\"] == p[\"pred\"] else 0 for p in preds_b])\n    \n    observed_diff = correct_a.mean() - correct_b.mean()\n    n = len(correct_a)\n    rng = np.random.RandomState(seed)\n    \n    diffs = []\n    for _ in range(n_bootstrap):\n        idx = rng.choice(n, n, replace=True)\n        diff = correct_a[idx].mean() - correct_b[idx].mean()\n        diffs.append(diff)\n    \n    diffs = np.array(diffs)\n    ci_lower = np.percentile(diffs, 2.5)\n    ci_upper = np.percentile(diffs, 97.5)\n    \n    if observed_diff > 0:\n        p_value = np.mean(diffs <= 0)\n    else:\n        p_value = np.mean(diffs >= 0)\n    p_value = 2 * p_value\n    p_value = min(p_value, 1.0)\n    \n    return {\n        \"acc_a\": correct_a.mean(),\n        \"acc_b\": correct_b.mean(),\n        \"diff\": observed_diff,\n        \"ci_lower\": ci_lower,\n        \"ci_upper\": ci_upper,\n        \"p_value\": p_value,\n        \"significant\": bool(ci_lower > 0 or ci_upper < 0)\n    }\n\ncomparisons = [\n    (\"loop_only vs no_trace\", \"Qwen\", f\"{CKPT}/loop_only/final/predictions.jsonl\", f\"{CKPT}/no_trace/final/predictions.jsonl\"),\n    (\"full_trace vs no_trace\", \"Qwen\", f\"{CKPT}/full_trace/final/predictions.jsonl\", f\"{CKPT}/no_trace/final/predictions.jsonl\"),\n    (\"label_only vs full_trace\", \"Qwen\", f\"{CKPT}/full_trace_label_only/final/predictions.jsonl\", f\"{CKPT}/full_trace/final/predictions.jsonl\"),\n    (\"ae_only vs no_trace\", \"Qwen\", f\"{CKPT}/ae_only/final/predictions.jsonl\", f\"{CKPT}/no_trace/final/predictions.jsonl\"),\n]\n\nprint(f\"| {'Comparison':<28} | {'Model':<8} | {'Acc A':>7} | {'Acc B':>7} | {'Diff (pp)':>10} | {'95% CI':>18} | {'p-value':>8} | {'Sig?':<5} |\")\nprint(f\"|{'-'*30}|{'-'*10}|{'-'*9}|{'-'*9}|{'-'*12}|{'-'*20}|{'-'*10}|{'-'*7}|\")\n\nfor name, model, path_a, path_b in comparisons:\n    preds_a = load_preds(path_a)\n    preds_b = load_preds(path_b)\n    r = paired_bootstrap_test(preds_a, preds_b)\n    sig = \"Yes\" if r[\"significant\"] else \"No\"\n    print(f\"| {name:<28} | {model:<8} | {r['acc_a']:.4f} | {r['acc_b']:.4f} | {r['diff']*100:>+8.2f}pp | [{r['ci_lower']*100:>+6.2f}, {r['ci_upper']*100:>+6.2f}]pp | {r['p_value']:.4f}   | {sig:<5} |\")\n\n# Also output JSON for records\nimport os\nresults = []\nfor name, model, path_a, path_b in comparisons:\n    preds_a = load_preds(path_a)\n    preds_b = load_preds(path_b)\n    r = paired_bootstrap_test(preds_a, preds_b)\n    r[\"comparison\"] = name\n    r[\"model\"] = model\n    results.append(r)\n\nout_path = f\"{CKPT}/paired_bootstrap_results.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(f\"\\nResults saved to {out_path}\")\n\n# Check DeepSeek availability\nprint(\"\\n--- DeepSeek status ---\")\nfor cond in [\"deepseek_no_trace\", \"deepseek_vota\", \"deepseek_exception_only\"]:\n    for sub in [\"final\", \"checkpoint-148\"]:\n        p = f\"{CKPT}/{cond}/{sub}/predictions.jsonl\"\n        if os.path.exists(p):\n            print(f\"  FOUND: {p}\")\n            break\n    else:\n        print(f\"  MISSING: {cond} — no predictions.jsonl\")\nPYEOF\npython3 /tmp/paired_bootstrap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "c133bfa1-344a-4f51-972a-08113cd84df4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YXBSYFnYFE9TQkD7oejJq5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 585,
+      "cache_read_input_tokens": 28636,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 585
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T19:00:41.570Z_
+
+<details><summary>↩ Tool result · `toolu_019C6Fd9PKegQnG2HLCJfrbv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"| Comparison                   | Model    |   Acc A |   Acc B |  Diff (pp) |             95% CI |  p-value | Sig?  |\\n|------------------------------|----------|---------|---------|------------|--------------------|----------|-------|\\n| loop_only vs no_trace        | Qwen     | 0.8563 | 0.7513 |   +10.50pp | [ +8.24, +12.86]pp | 0.0000   | Yes   |\\n| full_trace vs no_trace       | Qwen     | 0.8176 | 0.7513 |    +6.64pp | [ +4.37,  +8.99]pp | 0.0000   | Yes   |\\n| label_only vs full_trace     | Qwen     | 0.8622 | 0.8176 |    +4.45pp | [ +2.35,  +6.55]pp | 0.0000   | Yes   |\\n| ae_only vs no_trace          | Qwen     | 0.9992 | 0.7513 |   +24.79pp | [+22.35, +27.31]pp | 0.0000   | Yes   |\\n\\nResults saved to /root/autodl-tmp/trace-verdict-study-checkpoints/paired_bootstrap_results.json\\n\\n--- DeepSeek status ---\\n  MISSING: deepseek_no_trace — no predictions.jsonl\\n  MISSING: deepseek_vota — no predictions.jsonl\\n  FOUND: /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/checkpoint-148/predictions.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "7fdba09a-8ca3-40a7-8cfd-84516be41512",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"| Comparison                   | Model    |   Acc A |   Acc B |  Diff (pp) |             95% CI |  p-value | Sig?  |\\\\n|------------------------------|----------|---------|---------|------------|--------------------|----------|-------|\\\\n| loop_only vs no_trace        | Qwen     | 0.8563 | 0.7513 |   +10.50pp | [ +8.24, +12.86]pp | 0.0000   | Yes   |\\\\n| full_trace vs no_trace       | Qwen     | 0.8176 | 0.7513 |    +6.64pp | [ +4.37,  +8.99]pp | 0.0000   | Yes   |\\\\n| label_only vs full_trace     | Qwen     | 0.8622 | 0.8176 |    +4.45pp | [ +2.35,  +6.55]pp | 0.0000   | Yes   |\\\\n| ae_only vs no_trace          | Qwen     | 0.9992 | 0.7513 |   +24.79pp | [+22.35, +27.31]pp | 0.0000   | Yes   |\\\\n\\\\nResults saved to /root/autodl-tmp/trace-verdict-study-checkpoints/paired_bootstrap_results.json\\\\n\\\\n--- DeepSeek status ---\\\\n  MISSING: deepseek_no_trace — no predictions.jsonl\\\\n  MISSING: deepseek_vota — no predictions.jsonl\\\\n  FOUND: /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/checkpoint-148/predictions.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"| Comparison                   | Model    |   Acc A |   Acc B |  Diff (pp) |             95% CI |  p-value | Sig?  |\\n|------------------------------|----------|---------|---------|------------|--------------------|----------|-------|\\n| loop_only vs no_trace        | Qwen     | 0.8563 | 0.7513 |   +10.50pp | [ +8.24, +12.86]pp | 0.0000   | Yes   |\\n| full_trace vs no_trace       | Qwen     | 0.8176 | 0.7513 |    +6.64pp | [ +4.37,  +8.99]pp | 0.0000   | Yes   |\\n| label_only vs full_trace     | Qwen     | 0.8622 | 0.8176 |    +4.45pp | [ +2.35,  +6.55]pp | 0.0000   | Yes   |\\n| ae_only vs no_trace          | Qwen     | 0.9992 | 0.7513 |   +24.79pp | [+22.35, +27.31]pp | 0.0000   | Yes   |\\n\\nResults saved to /root/autodl-tmp/trace-verdict-study-checkpoints/paired_bootstrap_results.json\\n\\n--- DeepSeek status ---\\n  MISSING: deepseek_no_trace — no predictions.jsonl\\n  MISSING: deepseek_vota — no predictions.jsonl\\n  FOUND: /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/checkpoint-148/predictions.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Wait, ae_only accuracy is 0.9992? That seems suspiciously high - 99.92%. Let me double-check that. Actually, the user asked me to compute, not to question the data. Let me just report the results.
+
+Also note: all p-values are 0.0000, meaning all comparisons are significant.
+
+DeepSeek: only exception_only has predictions (at checkpoint-148, not final), and no_trace/vota are missing. So no DeepSeek comparisons can be done.
+
+
+Now I'll present the findings.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "a2379682-5230-447d-a240-b37d570a8b4f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dr6XN7oaAmpCF8voy1esGr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2591,
+      "cache_read_input_tokens": 29221,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2591
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+结果如下：
+
+| Comparison | Model | Acc A | Acc B | Diff (pp) | 95% CI | p-value | Sig? |
+|---|---|---|---|---|---|---|---|
+| loop_only vs no_trace | Qwen | 0.8563 | 0.7513 | +10.50pp | [+8.24, +12.86]pp | 0.0000 | Yes |
+| full_trace vs no_trace | Qwen | 0.8176 | 0.7513 | +6.64pp | [+4.37, +8.99]pp | 0.0000 | Yes |
+| label_only vs full_trace | Qwen | 0.8622 | 0.8176 | +4.45pp | [+2.35, +6.55]pp | 0.0000 | Yes |
+| ae_only vs no_trace | Qwen | 0.9992 | 0.7513 | +24.79pp | [+22.35, +27.31]pp | 0.0000 | Yes |
+
+所有 4 个 Qwen 比较的 p 值均 < 0.0001，95% CI 不跨零，统计显著。
+
+**DeepSeek 状态**：deepseek_no_trace 和 deepseek_vota 目录下没有 predictions.jsonl（只有训练好的 adapter），无法计算比较。deepseek_exception_only 仅有 checkpoint-148 的 predictions，缺少 no_trace baseline 也无法比较。
+
+注意：ae_only 的 accuracy 为 99.92%，异常高，建议检查该条件的数据/评估是否存在问题。
+
+结果已保存至 `/root/autodl-tmp/trace-verdict-study-checkpoints/paired_bootstrap_results.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "uuid": "897bda7a-0f0b-41e3-88e8-6fc149462c00",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dr6XN7oaAmpCF8voy1esGr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2591,
+      "cache_read_input_tokens": 29221,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2591
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 37_
+
+结果如下：
+
+| Comparison | Model | Acc A | Acc B | Diff (pp) | 95% CI | p-value | Sig? |
+|---|---|---|---|---|---|---|---|
+| loop_only vs no_trace | Qwen | 0.8563 | 0.7513 | +10.50pp | [+8.24, +12.86]pp | 0.0000 | Yes |
+| full_trace vs no_trace | Qwen | 0.8176 | 0.7513 | +6.64pp | [+4.37, +8.99]pp | 0.0000 | Yes |
+| label_only vs full_trace | Qwen | 0.8622 | 0.8176 | +4.45pp | [+2.35, +6.55]pp | 0.0000 | Yes |
+| ae_only vs no_trace | Qwen | 0.9992 | 0.7513 | +24.79pp | [+22.35, +27.31]pp | 0.0000 | Yes |
+
+所有 4 个 Qwen 比较的 p 值均 < 0.0001，95% CI 不跨零，统计显著。
+
+**DeepSeek 状态**：deepseek_no_trace 和 deepseek_vota 目录下没有 predictions.jsonl（只有训练好的 adapter），无法计算比较。deepseek_exception_only 仅有 checkpoint-148 的 predictions，缺少 no_trace baseline 也无法比较。
+
+注意：ae_only 的 accuracy 为 99.92%，异常高，建议检查该条件的数据/评估是否存在问题。
+
+结果已保存至 `/root/autodl-tmp/trace-verdict-study-checkpoints/paired_bootstrap_results.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 82153,
+  "duration_api_ms": 76752,
+  "num_turns": 12,
+  "stop_reason": "end_turn",
+  "session_id": "9473e0c7-18b3-4029-858e-ca740ff516b9",
+  "total_cost_usd": 0.35233725,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 19971,
+    "cache_read_input_tokens": 199527,
+    "output_tokens": 5025,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 19971,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 626,
+        "cache_read_input_tokens": 29221,
+        "cache_creation_input_tokens": 2591,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2591
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2000,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002075,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 5025,
+      "cacheReadInputTokens": 199527,
+      "cacheCreationInputTokens": 19971,
+      "webSearchRequests": 0,
+      "costUSD": 0.35026225,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "3fb4b340-ce6d-4133-aab5-6272226a6b68"
+}
+```
+
+</details>
+
+---

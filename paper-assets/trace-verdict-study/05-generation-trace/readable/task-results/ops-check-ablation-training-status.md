@@ -1,0 +1,52 @@
+# ops check ablation training status
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_ops_check-ablation-training-status_20260515T042740_result.json`
+- **Structured JSON:** [`9066fa87598b9b67f6d0.json`](../../sessions/90/9066fa87598b9b67f6d0.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+## 实验状态汇报
+
+### plan_001 — vota_no_ae_seed42: **Running**
+
+| 项目 | 状态 |
+|------|------|
+| PID | 953133 (存活, 运行 6h32m) |
+| 进度 | **28 / 444 steps (6.3%)** |
+| 速度 | ~13-14 s/step |
+| ETA | ~**1h30m** 后完成 |
+| GPU | cuda:1, 利用率 100%, 显存 52779 / 97887 MiB (54%) |
+
+训练正常推进中，无报错。
+
+---
+
+### plan_002 — full_trace_label_only_seed42: **Crashed (OOM)**
+
+| 项目 | 状态 |
+|------|------|
+| PID | 951174 (已退出) |
+| 退出码 | 1 |
+| 崩溃时间 | 2026-05-15T04:02:14Z |
+| Checkpoint | 无 (step 0 即崩溃) |
+
+**错误信息**：`torch.OutOfMemoryError: CUDA out of memory` — 在 GPU 0 上 step 0 的 forward pass 即 OOM。日志显示 GPU 0 当时有两个其他进程各占 ~15.8 GiB（PID 950697, 951029），加上训练本身 15.2 GiB，总计 ~47 GiB，碎片化导致无法分配 112 MiB。
+
+**当前 GPU 0 状态**：利用率 0%，但仍有 49175 MiB 被占用（可能是上述两个残留进程），无 compute app 在跑。
+
+---

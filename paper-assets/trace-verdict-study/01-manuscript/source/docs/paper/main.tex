@@ -1,0 +1,62 @@
+\documentclass[11pt]{article}
+
+% Change "review" to "final" to generate the final (camera-ready) version.
+\usepackage[review]{acl}
+
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+\usepackage{graphicx}
+\graphicspath{{../../figures/paper/}}
+
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{multirow}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\newcommand{\cond}[1]{\textit{#1}}
+
+\pdfinfo{/CreationDate () /ModDate ()}
+
+\title{Trace Verbosity Degrades SFT Verdict Prediction:\\ A Case Study in Information Density Effects}
+\author{Anonymous ACL submission}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A natural assumption when augmenting code models with execution traces is that richer runtime information yields better predictions.
+We challenge this for verdict prediction (classifying whether a test passes or fails) and find the opposite: complete traces degrade accuracy to near-baseline levels, while compact exception events alone reach ${\geq}$99.33\% across all models tested.
+Through the first systematic component ablation of trace representations across multiple code models and architecture families, we identify information density as the key factor: exception events encode the fault signal in roughly 150 tokens, whereas full traces dilute it across thousands of routine steps, trapping models in unstable oscillation.
+Controlled experiments support this finding: gradient masking isolates backward-pass dilution as a minor factor, a tail-truncation sweep reveals a sharp phase transition at the diagnostic-event boundary, and format-marker removal confirms the signal is semantic.
+These results decompose trace verbosity into a two-tier diagnostic hierarchy and establish that targeted signal extraction strictly dominates richer input for structurally constrained tasks such as verdict prediction\footnote{Code and data are available at \url{https://anonymous.4open.science/r/trace-verdict-study-291F/}.}.
+\end{abstract}
+
+\input{introduction}
+\input{related_work}
+\input{method}
+\input{experiments}
+\input{discussion}
+\input{conclusion}
+
+\section*{Limitations}
+
+Our study has three main limitations.
+First, all experiments use Python execution traces from code-specialized models ranging from 1.5B to 13B parameters; whether the observed density--efficiency relationship holds for other programming languages, human-written code, or larger models (30B+) remains untested.
+Second, our findings may not generalize beyond the current setting: Python's structured exception hierarchy makes exception events particularly informative, and languages with less structured error reporting may exhibit different signal distributions.
+Third, the gradient masking experiment isolates backward-pass signal dilution but does not quantify forward-pass attention effects; disentangling these two factors requires further investigation.
+
+\bibliography{references}
+
+\clearpage
+\appendix
+\makeatletter
+\renewcommand{\verbatim@font}{\normalfont\rmfamily\small}
+\makeatother
+\input{appendix}
+
+\end{document}

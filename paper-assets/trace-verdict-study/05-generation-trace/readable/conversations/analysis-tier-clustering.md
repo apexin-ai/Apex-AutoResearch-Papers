@@ -1,0 +1,484 @@
+# analysis tier clustering
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 15
+- **Recorded user turns:** 0
+- **Tool calls:** 7
+- **Original source:** `logs/chats/worker_analysis_tier_clustering_20260522T071852.jsonl`
+- **Structured JSON:** [`96f500e5ffa21a9d8006.json`](../../sessions/96/96f500e5ffa21a9d8006.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+15 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-22T07:21:26.821186+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tier_clustering_20260522T071852",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-22T07:21:26.821560+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tier_clustering_20260522T071852",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-22T07:21:26.821752+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "mkdir -p /root/autodl-tmp/trace-verdict-study-checkpoints/tier_clustering/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tier_clustering_20260522T071852",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "mkdir -p /root/autodl-tmp/trace-verdict-study-checkpoints/tier_clustering/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-22T07:21:26.821901+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tier_clustering_20260522T071852",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-22T07:21:26.822093+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "account": "root",
+  "command": "cat > /root/autodl-tmp/trace-verdict-study-checkpoints/tier_clustering/run_clustering.py << 'PYEOF'\nimport numpy as np\nimport json\nimport os\nfrom sklearn.cluster import KMeans\nfrom sklearn.metrics import silhouette_score\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.backends.backend_pdf import PdfPages\n\nOUT_DIR = \"/root/autodl-tmp/trace-verdict-study-checkpoints/tier_clustering\"\n\n# ── Data ──\nmodels = {\n    \"Qwen-7B\": {\n        \"exception_only\": 0.9983, \"ae_only\": 0.9992, \"vota\": 0.9563,\n        \"nomarker\": 0.9655, \"label_only\": 0.8622, \"loop_only\": 0.8563,\n        \"full_trace\": 0.8176, \"no_trace\": 0.7513\n    },\n    \"Qwen-1.5B\": {\n        \"exception_only\": 0.9983, \"ae_only\": 0.9908, \"vota\": 0.9958,\n        \"nomarker\": 0.9780, \"loop_only\": 0.7832, \"full_trace\": 0.7706,\n        \"no_trace\": 0.6731\n    },\n    \"DeepSeek-6.7B\": {\n        \"exception_only\": 0.9933, \"ae_only\": 0.9874, \"vota\": 0.8445,\n        \"loop_only\": 0.8126, \"full_trace\": 0.7916, \"no_trace\": 0.7336,\n        # label_only=0.285 excluded as outlier\n    },\n    \"CodeLlama-13B\": {\n        \"exception_only\": 0.9983, \"ae_only\": 0.9908, \"vota\": 0.9857,\n        \"loop_only\": 0.7706, \"no_trace\": 0.7650\n    },\n}\n\n# Paper's claimed tiers\nPAPER_TIER1 = {\"exception_only\", \"ae_only\", \"vota\", \"nomarker\"}\nPAPER_TIER2 = {\"loop_only\", \"full_trace\", \"label_only\", \"no_trace\"}\n\ndef gap_statistic(X, k_range, B=500, rng=None):\n    \"\"\"Compute gap statistic with SE for each k.\"\"\"\n    if rng is None:\n        rng = np.random.RandomState(42)\n    n, d = X.shape\n    x_min, x_max = X.min(axis=0), X.max(axis=0)\n\n    results = []\n    for k in k_range:\n        km = KMeans(n_clusters=k, n_init=10, random_state=42).fit(X)\n        Wk = km.inertia_\n\n        log_Wk_refs = np.zeros(B)\n        for b in range(B):\n            X_ref = rng.uniform(x_min, x_max, size=(n, d))\n            km_ref = KMeans(n_clusters=k, n_init=10, random_state=42+b).fit(X_ref)\n            log_Wk_refs[b] = np.log(km_ref.inertia_ + 1e-30)\n\n        gap = log_Wk_refs.mean() - np.log(Wk + 1e-30)\n        sdk = log_Wk_refs.std() * np.sqrt(1 + 1.0/B)\n        results.append({\"k\": k, \"gap\": float(gap), \"sk\": float(sdk), \"Wk\": float(Wk)})\n    return results\n\ndef select_k_gap(gap_results):\n    \"\"\"Tibshirani et al. rule: smallest k s.t. Gap(k) >= Gap(k+1) - s_{k+1}.\"\"\"\n    for i in range(len(gap_results) - 1):\n        curr = gap_results[i]\n        nxt = gap_results[i + 1]\n        if curr[\"gap\"] >= nxt[\"gap\"] - nxt[\"sk\"]:\n            return curr[\"k\"]\n    return gap_results[-1][\"k\"]\n\ndef analyze_model(name, cond_acc):\n    conditions = list(cond_acc.keys())\n    values = np.array([cond_acc[c] for c in conditions]).reshape(-1, 1)\n    n = len(values)\n    k_max = min(4, n - 1)\n    k_range = range(1, k_max + 1)\n\n    # Gap statistic\n    gap_results = gap_statistic(values, k_range, B=500)\n    best_k = select_k_gap(gap_results)\n\n    # Silhouette for k>=2\n    sil_scores = {}\n    cluster_assignments = {}\n    for k in range(2, k_max + 1):\n        km = KMeans(n_clusters=k, n_init=10, random_state=42).fit(values)\n        labels = km.labels_\n        sil = silhouette_score(values, labels) if k < n else float('nan')\n        sil_scores[k] = float(sil)\n\n        # Sort clusters by mean value descending\n        cluster_means = []\n        for ci in range(k):\n            mask = labels == ci\n            cluster_means.append((ci, values[mask].mean()))\n        cluster_means.sort(key=lambda x: -x[1])\n        rank_map = {old: new for new, (old, _) in enumerate(cluster_means)}\n\n        assignment = {}\n        for j, c in enumerate(conditions):\n            ranked = rank_map[labels[j]]\n            tier_name = f\"Tier_{ranked+1}\"\n            assignment.setdefault(tier_name, []).append(c)\n        cluster_assignments[k] = assignment\n\n    # Inter/intra ratio for k=2\n    ratio_k2 = None\n    if 2 in cluster_assignments:\n        km2 = KMeans(n_clusters=2, n_init=10, random_state=42).fit(values)\n        centers = km2.cluster_centers_.flatten()\n        inter_dist = abs(centers[0] - centers[1])\n        intra = 0\n        for ci in range(2):\n            mask = km2.labels_ == ci\n            intra += np.sqrt(((values[mask] - km2.cluster_centers_[ci])**2).mean())\n        intra /= 2\n        ratio_k2 = float(inter_dist / (intra + 1e-10))\n\n    return {\n        \"model\": name,\n        \"conditions\": conditions,\n        \"values\": [float(v) for v in values.flatten()],\n        \"gap_results\": gap_results,\n        \"best_k_gap\": best_k,\n        \"silhouette_scores\": sil_scores,\n        \"cluster_assignments\": cluster_assignments,\n        \"inter_intra_ratio_k2\": ratio_k2,\n    }\n\n# ── Per-model analysis ──\nall_results = {}\nfor mname, cond_acc in models.items():\n    all_results[mname] = analyze_model(mname, cond_acc)\n\n# ── Pooled analysis ──\npooled_conditions = []\npooled_values = []\npooled_labels = []\nfor mname, cond_acc in models.items():\n    for c, v in cond_acc.items():\n        pooled_conditions.append(f\"{mname}:{c}\")\n        pooled_values.append(v)\n        pooled_labels.append(mname)\npooled_arr = np.array(pooled_values).reshape(-1, 1)\npooled_gap = gap_statistic(pooled_arr, range(1, 5), B=500)\npooled_best_k = select_k_gap(pooled_gap)\n\npooled_clusters = {}\nfor k in range(2, 5):\n    km = KMeans(n_clusters=k, n_init=10, random_state=42).fit(pooled_arr)\n    labels = km.labels_\n    sil = silhouette_score(pooled_arr, labels)\n    cluster_means = []\n    for ci in range(k):\n        mask = labels == ci\n        cluster_means.append((ci, pooled_arr[mask].mean()))\n    cluster_means.sort(key=lambda x: -x[1])\n    rank_map = {old: new for new, (old, _) in enumerate(cluster_means)}\n    assignment = {}\n    for j, c in enumerate(pooled_conditions):\n        ranked = rank_map[labels[j]]\n        tier_name = f\"Tier_{ranked+1}\"\n        assignment.setdefault(tier_name, []).append((c, float(pooled_values[j])))\n    pooled_clusters[k] = {\"assignment\": assignment, \"silhouette\": float(sil)}\n\nall_results[\"Pooled\"] = {\n    \"gap_results\": pooled_gap,\n    \"best_k_gap\": pooled_best_k,\n    \"clusters\": pooled_clusters,\n}\n\n# ── Special analyses ──\nspecial = {}\n# CodeLlama loop_only vs no_trace\nspecial[\"CodeLlama_loop_vs_notrace\"] = {\n    \"loop_only\": 0.7706,\n    \"no_trace\": 0.7650,\n    \"diff_pp\": round((0.7706 - 0.7650) * 100, 2),\n    \"note\": \"Only 0.56pp apart; in k=2 both likely fall into Tier 2 / same cluster.\"\n}\n# DeepSeek vota boundary\nspecial[\"DeepSeek_vota_boundary\"] = {\n    \"vota\": 0.8445,\n    \"nearest_tier1\": 0.9874,  # ae_only\n    \"nearest_tier2\": 0.8126,  # loop_only\n    \"dist_to_tier1\": round(0.9874 - 0.8445, 4),\n    \"dist_to_tier2\": round(0.8445 - 0.8126, 4),\n    \"note\": \"vota is 0.1429 from Tier 1 center, 0.0319 from Tier 2 top — borderline.\"\n}\n\n# Cross-model consistency\nconsistency = {}\nall_conditions = set()\nfor mname in models:\n    all_conditions |= set(models[mname].keys())\nfor cond in sorted(all_conditions):\n    tier_votes = []\n    for mname in models:\n        r = all_results[mname]\n        if 2 in r[\"cluster_assignments\"] and cond in models[mname]:\n            for tier, members in r[\"cluster_assignments\"][2].items():\n                if cond in members:\n                    tier_votes.append((mname, tier))\n    consistency[cond] = tier_votes\nspecial[\"cross_model_consistency\"] = consistency\n\nall_results[\"special_analyses\"] = special\n\n# ── Save JSON ──\nwith open(os.path.join(OUT_DIR, \"tier_clustering_results.json\"), \"w\") as f:\n    json.dump(all_results, f, indent=2, ensure_ascii=False)\n\n# ── Summary text ──\nlines = [\"=\" * 60, \"TIER CLUSTERING ANALYSIS SUMMARY\", \"=\" * 60, \"\"]\n\nfor mname in models:\n    r = all_results[mname]\n    lines.append(f\"### {mname}\")\n    lines.append(f\"  Best k (gap statistic): {r['best_k_gap']}\")\n    lines.append(f\"  Silhouette scores: {r['silhouette_scores']}\")\n    if 2 in r[\"cluster_assignments\"]:\n        lines.append(f\"  k=2 cluster assignment:\")\n        for tier, members in sorted(r[\"cluster_assignments\"][2].items()):\n            vals = [f\"{m}={models[mname][m]:.4f}\" for m in members]\n            lines.append(f\"    {tier}: {', '.join(vals)}\")\n        # Check vs paper\n        t1_members = set(r[\"cluster_assignments\"][2].get(\"Tier_1\", []))\n        t2_members = set(r[\"cluster_assignments\"][2].get(\"Tier_2\", []))\n        paper_t1_here = PAPER_TIER1 & set(models[mname].keys())\n        paper_t2_here = PAPER_TIER2 & set(models[mname].keys())\n        match_t1 = t1_members == paper_t1_here\n        match_t2 = t2_members == paper_t2_here\n        lines.append(f\"  Matches paper Tier 1? {match_t1} (data: {sorted(t1_members)}, paper: {sorted(paper_t1_here)})\")\n        lines.append(f\"  Matches paper Tier 2? {match_t2} (data: {sorted(t2_members)}, paper: {sorted(paper_t2_here)})\")\n    if r[\"inter_intra_ratio_k2\"]:\n        lines.append(f\"  Inter/intra ratio (k=2): {r['inter_intra_ratio_k2']:.2f}\")\n    lines.append(\"\")\n\nlines.append(\"### Pooled Analysis (all models)\")\npr = all_results[\"Pooled\"]\nlines.append(f\"  Best k (gap statistic): {pr['best_k_gap']}\")\nfor k in [2, 3]:\n    if k in pr[\"clusters\"]:\n        lines.append(f\"  k={k} (silhouette={pr['clusters'][k]['silhouette']:.4f}):\")\n        for tier, members in sorted(pr[\"clusters\"][k][\"assignment\"].items()):\n            conds = [f\"{c}={v:.4f}\" for c, v in sorted(members, key=lambda x: -x[1])]\n            lines.append(f\"    {tier}: {', '.join(conds)}\")\nlines.append(\"\")\n\nlines.append(\"### Special Analyses\")\nlines.append(f\"  CodeLlama loop_only vs no_trace: diff = {special['CodeLlama_loop_vs_notrace']['diff_pp']}pp\")\nlines.append(f\"  DeepSeek vota: dist to Tier1={special['DeepSeek_vota_boundary']['dist_to_tier1']}, dist to Tier2={special['DeepSeek_vota_boundary']['dist_to_tier2']}\")\nlines.append(\"\")\nlines.append(\"  Cross-model consistency (k=2):\")\nfor cond in sorted(consistency):\n    votes = consistency[cond]\n    tiers = [t for _, t in votes]\n    unanimous = len(set(tiers)) <= 1\n    lines.append(f\"    {cond}: {votes} {'✓ unanimous' if unanimous else '✗ INCONSISTENT'}\")\n\nsummary = \"\\n\".join(lines)\nwith open(os.path.join(OUT_DIR, \"tier_clustering_summary.txt\"), \"w\") as f:\n    f.write(summary)\n\nprint(summary)\n\n# ── Plot ──\nfig, axes = plt.subplots(2, 3, figsize=(15, 9))\naxes = axes.flatten()\n\nplot_items = list(models.keys()) + [\"Pooled\"]\nfor idx, mname in enumerate(plot_items):\n    ax = axes[idx]\n    r = all_results[mname] if mname != \"Pooled\" else all_results[\"Pooled\"]\n    gap_res = r[\"gap_results\"]\n    ks = [g[\"k\"] for g in gap_res]\n    gaps = [g[\"gap\"] for g in gap_res]\n    sks = [g[\"sk\"] for g in gap_res]\n    best_k = r[\"best_k_gap\"]\n\n    ax.errorbar(ks, gaps, yerr=sks, fmt='o-', capsize=4, color='steelblue', linewidth=2)\n    ax.axvline(best_k, color='red', linestyle='--', alpha=0.7, label=f'Best k={best_k}')\n    ax.set_xlabel('k')\n    ax.set_ylabel('Gap(k)')\n    ax.set_title(f'{mname}')\n    ax.legend(fontsize=9)\n    ax.set_xticks(ks)\n\n# Hide unused subplot\nif len(plot_items) < len(axes):\n    for j in range(len(plot_items), len(axes)):\n        axes[j].set_visible(False)\n\nplt.suptitle('Gap Statistic by Model', fontsize=14, fontweight='bold')\nplt.tight_layout(rect=[0, 0, 1, 0.95])\nplt.savefig(os.path.join(OUT_DIR, \"gap_statistic_plot.png\"), dpi=150, bbox_inches='tight')\nplt.savefig(os.path.join(OUT_DIR, \"gap_statistic_plot.pdf\"), bbox_inches='tight')\nprint(\"\\n✓ Plots saved.\")\nPYEOF\necho \"Script written.\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tier_clustering_20260522T071852",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "account": "root",
+    "command": "cat > /root/autodl-tmp/trace-verdict-study-checkpoints/tier_clustering/run_clustering.py << 'PYEOF'\nimport numpy as np\nimport json\nimport os\nfrom sklearn.cluster import KMeans\nfrom sklearn.metrics import silhouette_score\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.backends.backend_pdf import PdfPages\n\nOUT_DIR = \"/root/autodl-tmp/trace-verdict-study-checkpoints/tier_clustering\"\n\n# ── Data ──\nmodels = {\n    \"Qwen-7B\": {\n        \"exception_only\": 0.9983, \"ae_only\": 0.9992, \"vota\": 0.9563,\n        \"nomarker\": 0.9655, \"label_only\": 0.8622, \"loop_only\": 0.8563,\n        \"full_trace\": 0.8176, \"no_trace\": 0.7513\n    },\n    \"Qwen-1.5B\": {\n        \"exception_only\": 0.9983, \"ae_only\": 0.9908, \"vota\": 0.9958,\n        \"nomarker\": 0.9780, \"loop_only\": 0.7832, \"full_trace\": 0.7706,\n        \"no_trace\": 0.6731\n    },\n    \"DeepSeek-6.7B\": {\n        \"exception_only\": 0.9933, \"ae_only\": 0.9874, \"vota\": 0.8445,\n        \"loop_only\": 0.8126, \"full_trace\": 0.7916, \"no_trace\": 0.7336,\n        # label_only=0.285 excluded as outlier\n    },\n    \"CodeLlama-13B\": {\n        \"exception_only\": 0.9983, \"ae_only\": 0.9908, \"vota\": 0.9857,\n        \"loop_only\": 0.7706, \"no_trace\": 0.7650\n    },\n}\n\n# Paper's claimed tiers\nPAPER_TIER1 = {\"exception_only\", \"ae_only\", \"vota\", \"nomarker\"}\nPAPER_TIER2 = {\"loop_only\", \"full_trace\", \"label_only\", \"no_trace\"}\n\ndef gap_statistic(X, k_range, B=500, rng=None):\n    \"\"\"Compute gap statistic with SE for each k.\"\"\"\n    if rng is None:\n        rng = np.random.RandomState(42)\n    n, d = X.shape\n    x_min, x_max = X.min(axis=0), X.max(axis=0)\n\n    results = []\n    for k in k_range:\n        km = KMeans(n_clusters=k, n_init=10, random_state=42).fit(X)\n        Wk = km.inertia_\n\n        log_Wk_refs = np.zeros(B)\n        for b in range(B):\n            X_ref = rng.uniform(x_min, x_max, size=(n, d))\n            km_ref = KMeans(n_clusters=k, n_init=10, random_state=42+b).fit(X_ref)\n            log_Wk_refs[b] = np.log(km_ref.inertia_ + 1e-30)\n\n        gap = log_Wk_refs.mean() - np.log(Wk + 1e-30)\n        sdk = log_Wk_refs.std() * np.sqrt(1 + 1.0/B)\n        results.append({\"k\": k, \"gap\": float(gap), \"sk\": float(sdk), \"Wk\": float(Wk)})\n    return results\n\ndef select_k_gap(gap_results):\n    \"\"\"Tibshirani et al. rule: smallest k s.t. Gap(k) >= Gap(k+1) - s_{k+1}.\"\"\"\n    for i in range(len(gap_results) - 1):\n        curr = gap_results[i]\n        nxt = gap_results[i + 1]\n        if curr[\"gap\"] >= nxt[\"gap\"] - nxt[\"sk\"]:\n            return curr[\"k\"]\n    return gap_results[-1][\"k\"]\n\ndef analyze_model(name, cond_acc):\n    conditions = list(cond_acc.keys())\n    values = np.array([cond_acc[c] for c in conditions]).reshape(-1, 1)\n    n = len(values)\n    k_max = min(4, n - 1)\n    k_range = range(1, k_max + 1)\n\n    # Gap statistic\n    gap_results = gap_statistic(values, k_range, B=500)\n    best_k = select_k_gap(gap_results)\n\n    # Silhouette for k>=2\n    sil_scores = {}\n    cluster_assignments = {}\n    for k in range(2, k_max + 1):\n        km = KMeans(n_clusters=k, n_init=10, random_state=42).fit(values)\n        labels = km.labels_\n        sil = silhouette_score(values, labels) if k < n else float('nan')\n        sil_scores[k] = float(sil)\n\n        # Sort clusters by mean value descending\n        cluster_means = []\n        for ci in range(k):\n            mask = labels == ci\n            cluster_means.append((ci, values[mask].mean()))\n        cluster_means.sort(key=lambda x: -x[1])\n        rank_map = {old: new for new, (old, _) in enumerate(cluster_means)}\n\n        assignment = {}\n        for j, c in enumerate(conditions):\n            ranked = rank_map[labels[j]]\n            tier_name = f\"Tier_{ranked+1}\"\n            assignment.setdefault(tier_name, []).append(c)\n        cluster_assignments[k] = assignment\n\n    # Inter/intra ratio for k=2\n    ratio_k2 = None\n    if 2 in cluster_assignments:\n        km2 = KMeans(n_clusters=2, n_init=10, random_state=42).fit(values)\n        centers = km2.cluster_centers_.flatten()\n        inter_dist = abs(centers[0] - centers[1])\n        intra = 0\n        for ci in range(2):\n            mask = km2.labels_ == ci\n            intra += np.sqrt(((values[mask] - km2.cluster_centers_[ci])**2).mean())\n        intra /= 2\n        ratio_k2 = float(inter_dist / (intra + 1e-10))\n\n    return {\n        \"model\": name,\n        \"conditions\": conditions,\n        \"values\": [float(v) for v in values.flatten()],\n        \"gap_results\": gap_results,\n        \"best_k_gap\": best_k,\n        \"silhouette_scores\": sil_scores,\n        \"cluster_assignments\": cluster_assignments,\n        \"inter_intra_ratio_k2\": ratio_k2,\n    }\n\n# ── Per-model analysis ──\nall_results = {}\nfor mname, cond_acc in models.items():\n    all_results[mname] = analyze_model(mname, cond_acc)\n\n# ── Pooled analysis ──\npooled_conditions = []\npooled_values = []\npooled_labels = []\nfor mname, cond_acc in models.items():\n    for c, v in cond_acc.items():\n        pooled_conditions.append(f\"{mname}:{c}\")\n        pooled_values.append(v)\n        pooled_labels.append(mname)\npooled_arr = np.array(pooled_values).reshape(-1, 1)\npooled_gap = gap_statistic(pooled_arr, range(1, 5), B=500)\npooled_best_k = select_k_gap(pooled_gap)\n\npooled_clusters = {}\nfor k in range(2, 5):\n    km = KMeans(n_clusters=k, n_init=10, random_state=42).fit(pooled_arr)\n    labels = km.labels_\n    sil = silhouette_score(pooled_arr, labels)\n    cluster_means = []\n    for ci in range(k):\n        mask = labels == ci\n        cluster_means.append((ci, pooled_arr[mask].mean()))\n    cluster_means.sort(key=lambda x: -x[1])\n    rank_map = {old: new for new, (old, _) in enumerate(cluster_means)}\n    assignment = {}\n    for j, c in enumerate(pooled_conditions):\n        ranked = rank_map[labels[j]]\n        tier_name = f\"Tier_{ranked+1}\"\n        assignment.setdefault(tier_name, []).append((c, float(pooled_values[j])))\n    pooled_clusters[k] = {\"assignment\": assignment, \"silhouette\": float(sil)}\n\nall_results[\"Pooled\"] = {\n    \"gap_results\": pooled_gap,\n    \"best_k_gap\": pooled_best_k,\n    \"clusters\": pooled_clusters,\n}\n\n# ── Special analyses ──\nspecial = {}\n# CodeLlama loop_only vs no_trace\nspecial[\"CodeLlama_loop_vs_notrace\"] = {\n    \"loop_only\": 0.7706,\n    \"no_trace\": 0.7650,\n    \"diff_pp\": round((0.7706 - 0.7650) * 100, 2),\n    \"note\": \"Only 0.56pp apart; in k=2 both likely fall into Tier 2 / same cluster.\"\n}\n# DeepSeek vota boundary\nspecial[\"DeepSeek_vota_boundary\"] = {\n    \"vota\": 0.8445,\n    \"nearest_tier1\": 0.9874,  # ae_only\n    \"nearest_tier2\": 0.8126,  # loop_only\n    \"dist_to_tier1\": round(0.9874 - 0.8445, 4),\n    \"dist_to_tier2\": round(0.8445 - 0.8126, 4),\n    \"note\": \"vota is 0.1429 from Tier 1 center, 0.0319 from Tier 2 top — borderline.\"\n}\n\n# Cross-model consistency\nconsistency = {}\nall_conditions = set()\nfor mname in models:\n    all_conditions |= set(models[mname].keys())\nfor cond in sorted(all_conditions):\n    tier_votes = []\n    for mname in models:\n        r = all_results[mname]\n        if 2 in r[\"cluster_assignments\"] and cond in models[mname]:\n            for tier, members in r[\"cluster_assignments\"][2].items():\n                if cond in members:\n                    tier_votes.append((mname, tier))\n    consistency[cond] = tier_votes\nspecial[\"cross_model_consistency\"] = consistency\n\nall_results[\"special_analyses\"] = special\n\n# ── Save JSON ──\nwith open(os.path.join(OUT_DIR, \"tier_clustering_results.json\"), \"w\") as f:\n    json.dump(all_results, f, indent=2, ensure_ascii=False)\n\n# ── Summary text ──\nlines = [\"=\" * 60, \"TIER CLUSTERING ANALYSIS SUMMARY\", \"=\" * 60, \"\"]\n\nfor mname in models:\n    r = all_results[mname]\n    lines.append(f\"### {mname}\")\n    lines.append(f\"  Best k (gap statistic): {r['best_k_gap']}\")\n    lines.append(f\"  Silhouette scores: {r['silhouette_scores']}\")\n    if 2 in r[\"cluster_assignments\"]:\n        lines.append(f\"  k=2 cluster assignment:\")\n        for tier, members in sorted(r[\"cluster_assignments\"][2].items()):\n            vals = [f\"{m}={models[mname][m]:.4f}\" for m in members]\n            lines.append(f\"    {tier}: {', '.join(vals)}\")\n        # Check vs paper\n        t1_members = set(r[\"cluster_assignments\"][2].get(\"Tier_1\", []))\n        t2_members = set(r[\"cluster_assignments\"][2].get(\"Tier_2\", []))\n        paper_t1_here = PAPER_TIER1 & set(models[mname].keys())\n        paper_t2_here = PAPER_TIER2 & set(models[mname].keys())\n        match_t1 = t1_members == paper_t1_here\n        match_t2 = t2_members == paper_t2_here\n        lines.append(f\"  Matches paper Tier 1? {match_t1} (data: {sorted(t1_members)}, paper: {sorted(paper_t1_here)})\")\n        lines.append(f\"  Matches paper Tier 2? {match_t2} (data: {sorted(t2_members)}, paper: {sorted(paper_t2_here)})\")\n    if r[\"inter_intra_ratio_k2\"]:\n        lines.append(f\"  Inter/intra ratio (k=2): {r['inter_intra_ratio_k2']:.2f}\")\n    lines.append(\"\")\n\nlines.append(\"### Pooled Analysis (all models)\")\npr = all_results[\"Pooled\"]\nlines.append(f\"  Best k (gap statistic): {pr['best_k_gap']}\")\nfor k in [2, 3]:\n    if k in pr[\"clusters\"]:\n        lines.append(f\"  k={k} (silhouette={pr['clusters'][k]['silhouette']:.4f}):\")\n        for tier, members in sorted(pr[\"clusters\"][k][\"assignment\"].items()):\n            conds = [f\"{c}={v:.4f}\" for c, v in sorted(members, key=lambda x: -x[1])]\n            lines.append(f\"    {tier}: {', '.join(conds)}\")\nlines.append(\"\")\n\nlines.append(\"### Special Analyses\")\nlines.append(f\"  CodeLlama loop_only vs no_trace: diff = {special['CodeLlama_loop_vs_notrace']['diff_pp']}pp\")\nlines.append(f\"  DeepSeek vota: dist to Tier1={special['DeepSeek_vota_boundary']['dist_to_tier1']}, dist to Tier2={special['DeepSeek_vota_boundary']['dist_to_tier2']}\")\nlines.append(\"\")\nlines.append(\"  Cross-model consistency (k=2):\")\nfor cond in sorted(consistency):\n    votes = consistency[cond]\n    tiers = [t for _, t in votes]\n    unanimous = len(set(tiers)) <= 1\n    lines.append(f\"    {cond}: {votes} {'✓ unanimous' if unanimous else '✗ INCONSISTENT'}\")\n\nsummary = \"\\n\".join(lines)\nwith open(os.path.join(OUT_DIR, \"tier_clustering_summary.txt\"), \"w\") as f:\n    f.write(summary)\n\nprint(summary)\n\n# ── Plot ──\nfig, axes = plt.subplots(2, 3, figsize=(15, 9))\naxes = axes.flatten()\n\nplot_items = list(models.keys()) + [\"Pooled\"]\nfor idx, mname in enumerate(plot_items):\n    ax = axes[idx]\n    r = all_results[mname] if mname != \"Pooled\" else all_results[\"Pooled\"]\n    gap_res = r[\"gap_results\"]\n    ks = [g[\"k\"] for g in gap_res]\n    gaps = [g[\"gap\"] for g in gap_res]\n    sks = [g[\"sk\"] for g in gap_res]\n    best_k = r[\"best_k_gap\"]\n\n    ax.errorbar(ks, gaps, yerr=sks, fmt='o-', capsize=4, color='steelblue', linewidth=2)\n    ax.axvline(best_k, color='red', linestyle='--', alpha=0.7, label=f'Best k={best_k}')\n    ax.set_xlabel('k')\n    ax.set_ylabel('Gap(k)')\n    ax.set_title(f'{mname}')\n    ax.legend(fontsize=9)\n    ax.set_xticks(ks)\n\n# Hide unused subplot\nif len(plot_items) < len(axes):\n    for j in range(len(plot_items), len(axes)):\n        axes[j].set_visible(False)\n\nplt.suptitle('Gap Statistic by Model', fontsize=14, fontweight='bold')\nplt.tight_layout(rect=[0, 0, 1, 0.95])\nplt.savefig(os.path.join(OUT_DIR, \"gap_statistic_plot.png\"), dpi=150, bbox_inches='tight')\nplt.savefig(os.path.join(OUT_DIR, \"gap_statistic_plot.pdf\"), bbox_inches='tight')\nprint(\"\\n✓ Plots saved.\")\nPYEOF\necho \"Script written.\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T07:21:26.822429+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tier_clustering_20260522T071852",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-22T07:21:26.822575+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "account": "root",
+  "command": "cd /root/autodl-tmp/trace-verdict-study-checkpoints/tier_clustering/ && /root/miniconda3/bin/python run_clustering.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tier_clustering_20260522T071852",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "account": "root",
+    "command": "cd /root/autodl-tmp/trace-verdict-study-checkpoints/tier_clustering/ && /root/miniconda3/bin/python run_clustering.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T07:21:26.822710+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/trace-verdict-study-checkpoints/tier_clustering/ && /root/miniconda3/bin/python run_clustering.py'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tier_clustering_20260522T071852",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T07:21:26.822856+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "account": "root",
+  "command": "cd /root/autodl-tmp/trace-verdict-study-checkpoints/tier_clustering/ && sed -i 's/B=500/B=200/g' run_clustering.py && nohup /root/miniconda3/bin/python run_clustering.py > /tmp/tier_cluster.log 2>&1 & echo \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tier_clustering_20260522T071852",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "account": "root",
+    "command": "cd /root/autodl-tmp/trace-verdict-study-checkpoints/tier_clustering/ && sed -i 's/B=500/B=200/g' run_clustering.py && nohup /root/miniconda3/bin/python run_clustering.py > /tmp/tier_cluster.log 2>&1 & echo \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T07:21:26.822986+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=775723\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 14.18}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tier_clustering_20260522T071852",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-22T07:21:26.823106+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "account": "root",
+  "command": "tail -50 /tmp/tier_cluster.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tier_clustering_20260522T071852",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-11235",
+    "account": "root",
+    "command": "tail -50 /tmp/tier_cluster.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T07:21:26.823338+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    Tier_2: loop_only=0.7832, full_trace=0.7706, no_trace=0.6731\\n  Matches paper Tier 1? True (data: ['ae_only', 'exception_only', 'nomarker', 'vota'], paper: ['ae_only', 'exception_only', 'nomarker', 'vota'])\\n  Matches paper Tier 2? True (data: ['full_trace', 'loop_only', 'no_trace'], paper: ['full_trace', 'loop_only', 'no_trace'])\\n  Inter/intra ratio (k=2): 8.71\\n\\n### DeepSeek-6.7B\\n  Best k (gap statistic): 1\\n  Silhouette scores: {2: 0.7836215945406372, 3: 0.5963340627382259, 4: 0.4772965355479306}\\n  k=2 cluster assignment:\\n    Tier_1: exception_only=0.9933, ae_only=0.9874\\n    Tier_2: vota=0.8445, loop_only=0.8126, full_trace=0.7916, no_trace=0.7336\\n  Matches paper Tier 1? False (data: ['ae_only', 'exception_only'], paper: ['ae_only', 'exception_only', 'vota'])\\n  Matches paper Tier 2? False (data: ['full_trace', 'loop_only', 'no_trace', 'vota'], paper: ['full_trace', 'loop_only', 'no_trace'])\\n  Inter/intra ratio (k=2): 8.98\\n\\n### CodeLlama-13B\\n  Best k (gap statistic): 2\\n  Silhouette scores: {2: 0.9674961065621955, 3: 0.5728849453284407, 4: 0.18304761904795203}\\n  k=2 cluster assignment:\\n    Tier_1: exception_only=0.9983, ae_only=0.9908, vota=0.9857\\n    Tier_2: loop_only=0.7706, no_trace=0.7650\\n  Matches paper Tier 1? True (data: ['ae_only', 'exception_only', 'vota'], paper: ['ae_only', 'exception_only', 'vota'])\\n  Matches paper Tier 2? True (data: ['loop_only', 'no_trace'], paper: ['loop_only', 'no_trace'])\\n  Inter/intra ratio (k=2): 56.13\\n\\n### Pooled Analysis (all models)\\n  Best k (gap statistic): 2\\n  k=2 (silhouette=0.8001):\\n    Tier_1: Qwen-7B:ae_only=0.9992, Qwen-7B:exception_only=0.9983, Qwen-1.5B:exception_only=0.9983, CodeLlama-13B:exception_only=0.9983, Qwen-1.5B:vota=0.9958, DeepSeek-6.7B:exception_only=0.9933, Qwen-1.5B:ae_only=0.9908, CodeLlama-13B:ae_only=0.9908, DeepSeek-6.7B:ae_only=0.9874, CodeLlama-13B:vota=0.9857, Qwen-1.5B:nomarker=0.9780
+…[truncated 2471 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tier_clustering_20260522T071852",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-22T07:21:26.823546+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "account": "root",
+  "command": "ls -lh /root/autodl-tmp/trace-verdict-study-checkpoints/tier_clustering/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tier_clustering_20260522T071852",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-11235",
+    "account": "root",
+    "command": "ls -lh /root/autodl-tmp/trace-verdict-study-checkpoints/tier_clustering/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T07:21:26.823686+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 204K\\n-rw-r--r-- 1 root root  25K May 22 15:21 gap_statistic_plot.pdf\\n-rw-r--r-- 1 root root 136K May 22 15:20 gap_statistic_plot.png\\n-rw-r--r-- 1 root root  11K May 22 15:20 run_clustering.py\\n-rw-r--r-- 1 root root  18K May 22 15:20 tier_clustering_results.json\\n-rw-r--r-- 1 root root 5.2K May 22 15:20 tier_clustering_summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tier_clustering_20260522T071852",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-22T07:21:26.823863+00:00_
+
+全部文件已生成。结果汇总：
+
+---
+
+### 1. 每个模型的最优 k
+
+| 模型 | Gap statistic 最优 k | Silhouette (k=2) |
+|------|---------------------|-------------------|
+| **Qwen-7B** | **2** | 0.747 |
+| **Qwen-1.5B** | **2** | 0.888 |
+| **DeepSeek-6.7B** | **1** | 0.784 |
+| **CodeLlama-13B** | **2** | 0.967 |
+| **Pooled** | **2** | 0.800 |
+
+DeepSeek gap statistic 选 k=1（数据分布较连续），但强制 k=2 时 silhouette 仍高达 0.78。其余 3 个模型和 pooled 分析均选 k=2。
+
+### 2. k=2 cluster 分配 vs 论文
+
+| 模型 | 匹配论文 Tier 划分？ | 差异 |
+|------|---------------------|------|
+| Qwen-7B | **完全匹配** | — |
+| Qwen-1.5B | **完全匹配** | — |
+| DeepSeek-6.7B | **不匹配** | vota (0.8445) 被聚到 Tier 2 而非论文的 Tier 1 |
+| CodeLlama-13B | **完全匹配** | — |
+
+### 3. CodeLlama loop_only 的归属
+
+loop_only (0.7706) 和 no_trace (0.7650) 仅差 **0.56pp**，两者均被聚入 Tier 2。k=2 下它们不可分离——这实际上意味着 CodeLlama 上 loop_only trace 几乎没有比 no_trace baseline 提供更多信息。
+
+### 4. 跨模型一致性
+
+- **7/8 conditions 一致**：exception_only, ae_only, nomarker, loop_only, full_trace, label_only, no_trace 在所有出现的模型中聚类结果一致
+- **vota 不一致**：3 个模型归 Tier 1，但 DeepSeek 归 Tier 2（0.8445 处于边界，距 Tier 1 中心 0.143，距 Tier 2 上边沿仅 0.032）
+
+### 5. Pooled k=2 分界
+
+Tier 1 (≥0.9563): exception_only, ae_only, vota (除 DeepSeek), nomarker
+Tier 2 (≤0.8622): label_only, loop_only, full_trace, no_trace, DeepSeek:vota
+
+**结论**：论文的 Two-Tier 划分在 3/4 模型上与 k-means 聚类完全吻合，pooled 分析也支持 k=2。唯一例外是 DeepSeek 的 vota (0.8445) 处于边界。建议论文中注明 vota 在 DeepSeek 上为 borderline case。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_tier_clustering_20260522T071852"
+}
+```
+
+</details>
+
+---

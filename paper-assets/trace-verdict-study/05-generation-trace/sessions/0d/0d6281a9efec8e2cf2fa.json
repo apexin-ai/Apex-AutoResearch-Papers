@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d6281a9efec8e2cf2fa",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_8_1778893240.md",
+  "task_key": "loop_8_1778893240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778893240.md",
+    "occurrence": 1,
+    "bytes": 4664,
+    "sha256": "704d08ffe38f09c7f5d1405a5be3eac1d8ad3c89ba5cfee37d4525ebcc433ab7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-16T00:18:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 cuda:0 和 cuda:1**（westd-11235），不得使用其他 GPU\n- DeepSeek 实验必须用**旧代码**（无 `load_best_model_at_end`），保持 DeepSeek 组内一致性。13:24 之后的代码新增了这 4 行，DeepSeek 实验要注释掉（标记 `# TEMP_DISABLED`）\n- VOTA 论文叙事已修正（D034）：被截断的是 **trace content**（91.7% 样本），**不是 label**。`to_chat_text()` 保留了 label。任何写作/汇报不得再用 \"label truncation/corruption\" 描述 VOTA 问题\n- Bootstrap 方法：论文同一张表不能混用 paired/unpaired。DeepSeek VOTA 和 no_trace 缺 per-sample predictions，写论文前需重跑 `evaluate.py --save_predictions` + paired bootstrap\n- DebugBench `format_data.py` 未实现 VOTA 路径——当前只能生成 no_trace/exception_only/full_trace\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：westd-11235，2x RTX PRO 6000 Blackwell 94GB，CUDA 12.8\n- **工作目录**：`/root/trace-verdict-study`\n- **Python**：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **模型缓存**：通过 ModelScope CDN 下载，HF_HUB_DISABLE_XET=1\n- **活跃进程**：\n  - `full_trace_1024tok_seed42`：PID 212643，cuda:0，cron 监控中\n  - `debugbench_vota_seed42`：PID 211253，cuda:1，cron 监控中\n- **W&B**：项目名 trace-verdict-study（run 名与 exp_id 一致）\n\n### 3. 📊 当前状态\n**刚完成**：D030 关闭 + paper framing v3.0 叙事修正 + full_trace_512tok negative 分析 + full_trace_256tok negative 分析\n\n**RUNNING（2 个，两张 GPU 满载）**：\n- `full_trace_1024tok_seed42`（cuda:0）— plan_006 token-length ablation 第 3 点，256tok=78.82% negative，512tok negative，看 1024tok 是否恢复\n- `debugbench_vota_seed42`（cuda:1）— plan_005 DebugBench 跨数据集验证，VOTA 条件\n\n**QUEUED（3 个，等 GPU 释放）**：\n- `debugbench_no_trace_seed42` / `debugbench_exception_only_seed42` / `full_trace_2048tok_seed42`\n\n**活跃 Worker**：\n- `worker_paper_narrative_fix_group_analysis_20260515T232155`（running）— 论文叙事修正 + group analysis，等其回调\n\n**等待中**：\n- 上述 Worker 的 `[WORKER DONE]` 回调\n- `full_trace_1024tok_seed42` 和 `debugbench_vota_seed42` 的 cron 完成回调\n\n### 4. 📋 待办（条件触发式）\n- `debugbench_vota_seed42` cron 回调 → 分析结果 → 更新 registry → 释放 cuda:1 → 提交 `debugbench_no_trace_seed42` 或 `debugbench_exception_only_seed42`\n- `full_trace_1024tok_seed42` cron 回调 → 分析（对比 256tok 78.82%、512tok negative、untruncated 81.8%）→ 若恢复则确认 U 型关系 → 释放 cuda:0 → 提交 `full_trace_2048tok_seed42`\n- `worker_paper_narrative_fix_group_analysis` 回调 → 整合叙事修正到论文章节 → 确认 \"trace truncation not label\" 修正已全面落地\n- DebugBench 3 条件全部完成 → 跨数据集对比表（exception_only 是否在 DebugBench 也 dominant）→ 汇报 Director\n- Token-length ablation 4 点全部完成（256/512/1024/2048）→ 画 accuracy vs token-length curve → 如果 U 型确认则强化 Claim 2（info density > gradient dilution）\n- 所有实验完成 → 催 Paper Agent 交付初稿 → 进入 Reviewer 对抗迭代（目标 5/19-21）\n\n### 5. 🎯 战略上下文\n**项目核心结论**：Exception events 是 verdict prediction 最有效的 trace 组件。Qwen 99.83%±0.00（3 seeds），DeepSeek 2/3 seeds 99.33%。VOTA 跨模型 gap（14.96pp）由 tokenizer efficiency 导致的 trace truncation 解释（D034 confirmed）。Exception_only 天然短小，免疫于此问题。\n\n**3 个 Core Claims 全部 confirmed**：\n1. Exception effectiveness（D029 finalized）\n2. Info density > gradient dilution（token ablation 进行中进一步强化）\n3. Two-tier hierarchy（ae_only + exception_only = Tier 1）\n\n**DDL**：EMNLP 2026 ARR May 25，剩 ~9 天。当前处于 sprint 第 2 天（5/16），目标 5/17-18 初稿完成。\n\n**易错点**：\n- 不要把 DeepSeek VOTA 84.45%（confounded by truncation）和 Qwen VOTA 99.41% 直接对比得出 \"模型能力差异\" 结论——truncation 是主因，不是 model capability\n- seed123 DeepSeek exception_only 91.09% 是 LoRA 初始化离群值，不是方法失败——论文写 limitation 不写 failure\n- `deepseek_full_trace_seed42_v3` 已 DONE (success)，结果需要整合到跨模型对比表\n- DebugBench `format_data.py` 的 exception_only bug 已修复（`debugbench_exception_bug_fix` DONE success），修复后理论上限从 71.1% 提升到 100%\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778893240.md"
+}

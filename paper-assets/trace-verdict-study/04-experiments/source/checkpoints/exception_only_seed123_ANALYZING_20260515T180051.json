@@ -1,0 +1,38 @@
+{
+  "exp_id": "exception_only_seed123",
+  "project": "trace-verdict-study",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:31:01.555Z",
+    "updated_at": "2026-05-15T18:00:50.993Z",
+    "spec": {
+      "plan_id": "plan_008a",
+      "model_name": "Qwen2.5-Coder-7B-Instruct",
+      "seed": 123,
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl",
+      "data_count": 4720,
+      "server": "westd-11235"
+    },
+    "hypothesis": "Seed robustness: exception_only with seed=123 on Qwen-2.5-Coder-7B (plan_008). Verifies headline result 99.83% is stable across seeds.",
+    "server": "westd-11235",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-11235",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T15:54:06.157Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123 --wandb_project trace-verdict-study --wandb_run_name exception_only_seed123 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123/final/eval_results.json\"",
+      "wandb_run_id": "exception_only_seed123",
+      "finished_at": "2026-05-15T18:00:50.835Z",
+      "training_hours": 2.11
+    },
+    "pid": "124197",
+    "log_path": "~/runs/trace-verdict-study/exception_only_seed123.log",
+    "wandb_run_id": "exception_only_seed123"
+  },
+  "timestamp": "2026-05-15T18:00:51.062676+00:00",
+  "trigger": "update_registry"
+}

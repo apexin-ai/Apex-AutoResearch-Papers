@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffe0d44153079a1f62f5",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "analysis selfbleu distinct metrics",
+  "task_key": "worker_analysis_selfbleu_distinct_metrics_20260513T163952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_selfbleu_distinct_metrics_20260513T163952_result.json",
+    "occurrence": 1,
+    "bytes": 863,
+    "sha256": "4f1ee8b510c8043cb2b0bb0046dd8a7bc0a07a5c2d64545e300cce455dbb4d9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。4 个方法 × 8 代的多样性指标已保存至 `/root/autodl-tmp/div_cal_verify/diversity_metrics_seed42.csv`。\n\n结果摘要：\n- **gen_0 所有方法相同**（因为 gen_0 是同一个初始模型生成的）：self_bleu=0.0125, distinct_1=0.069, distinct_2=0.308, distinct_3=0.528\n- **随代数增加，所有方法的多样性均下降**：distinct-n 和 TTR 持续降低，符合 model collapse 预期\n- **Self-BLEU 也下降**（句间相似度降低），但这是因为文本整体趋同后每句本身更短/更重复，BLEU 的 precision 反而变低\n- **RGDS 后期（gen_6-7）self_bleu 反而升高**（0.0096→0.0107），且 distinct 值最低，说明 RGDS 在后代也出现了显著退化\n- **external_only 在 gen_6-7 的 distinct 值略优于其他方法**，distinct_3 从 0.113 到 0.115 有微弱回升"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-selfbleu-distinct-metrics.md"
+}

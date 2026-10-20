@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12515beb9442a764ef43",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops eval exc message and submit next",
+  "task_key": "worker_ops_eval-exc-message-and-submit-next_20260522T125358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-exc-message-and-submit-next_20260522T125358_result.json",
+    "occurrence": 1,
+    "bytes": 1229,
+    "sha256": "57fc95e5fb9aaf86f0cd76f023220e118aaefe559652de8d2f21f7b2a3cd821f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正在正常进行中（step 15/444）。\n\n## 汇报\n\n### exc_message_only_seed42 评估结果\n\n| 指标 | 值 |\n|------|-----|\n| **accuracy** | **99.5%** (CI: [99.1%, 99.8%]) |\n| pass_precision | 1.000 |\n| pass_recall | 0.993 |\n| pass_f1 | 0.996 |\n| fail_precision | 0.983 |\n| fail_recall | 1.000 |\n| fail_f1 | 0.991 |\n| n_test | 1190 |\n\n对比同系列消融实验：\n- exc_stacktrace_only: 99.8%\n- **exc_message_only: 99.5%**\n- exc_type_only: 待评估\n\n三个子组件均保持极高准确率，message_only 仅比 stacktrace_only 低 0.3pp。\n\n### gradient_masking_qwen7b_seed123\n\n**已在运行中**（之前已提交），当前进度 step 15/444，~14s/step，预计还需约 1.5 小时完成。\n\n### GPU 利用情况\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| cuda:0 | 0% | 49175/97887 MiB（有残留显存） |\n| cuda:1 | 100% | 56085/97887 MiB（训练中） |\n\n注意：用户提供的训练命令包含多个不存在的参数（`--epochs`, `--lr`, `--batch_size`, `--gradient_accumulation_steps`, `--max_seq_len`, `--model_name`），已提交的任务使用了脚本实际支持的参数。Registry 已更新 exc_message_only_seed42 为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-exc-message-and-submit-next.md"
+}

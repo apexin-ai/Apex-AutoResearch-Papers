@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "2416f6ba4ce180bf9c74",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "ops pull pdf split chunks",
+  "task_key": "worker_ops_pull_pdf_split_chunks_20260520T224138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pull_pdf_split_chunks_20260520T224138.log",
+    "occurrence": 1,
+    "bytes": 1248678,
+    "sha256": "9f181b7b4adc5aca91c6be01e715860023306d6a004a51e8612ed2243ac3bd0e"
+  },
+  "statistics": {
+    "messages": 435,
+    "user_turns": 1,
+    "tool_calls": 146,
+    "roles": {
+      "log": 1,
+      "system": 116,
+      "record": 1,
+      "assistant": 25,
+      "tool_call": 146,
+      "tool_result": 145,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 92,
+      "chunks": [
+        {
+          "path": "2416f6ba4ce180bf9c74-part-0001.json",
+          "message_count": 92
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 343,
+      "chunks": [
+        {
+          "path": "2416f6ba4ce180bf9c74-part-0001.json",
+          "message_count": 21
+        },
+        {
+          "path": "2416f6ba4ce180bf9c74-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2416f6ba4ce180bf9c74-part-0003.json",
+          "message_count": 142
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-pull-pdf-split-chunks.md"
+}

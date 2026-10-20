@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0212e5d61a5c62d819c7",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "figure fig4 trace length ablation",
+  "task_key": "worker_figure_fig4_trace_length_ablation_20260516T015729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig4_trace_length_ablation_20260516T015729_result.json",
+    "occurrence": 1,
+    "bytes": 482,
+    "sha256": "0c5234507b45e3233a2d62533f2a676ec51a66e53b85c444f11f907ff8c0dddb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "生成完成。\n\n- PDF: `/root/trace-verdict-study/figures/paper/fig4_trace_length.pdf` (18K)\n- PNG: `/root/trace-verdict-study/figures/paper/fig4_trace_length.png` (112K)\n- 脚本: `/root/trace-verdict-study/figures/gen_fig4.py`\n\n图表内容：X 轴 log2 scale 显示 256/512/1024/∞，深蓝连线带 95% CI error bar，三条 baseline 虚线（majority 71.51%、no-trace 75.13%、exception-only 99.83% 标注在图内右上角），Y 轴范围 70%–85%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig4-trace-length-ablation.md"
+}

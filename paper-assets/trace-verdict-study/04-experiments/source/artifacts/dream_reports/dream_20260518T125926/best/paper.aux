@@ -1,0 +1,74 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{dcsh2025}
+\citation{tracepile2025}
+\citation{traced2024}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{dcsh2025}
+\citation{tracepile2025}
+\citation{traced2024}
+\citation{debugbench2024}
+\citation{defects4j}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Trace-enhanced code understanding.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Automated program repair and fault detection.}{2}{section*.2}\protected@file@percent }
+\citation{llmlingua2023}
+\@writefile{toc}{\contentsline {paragraph}{Information compression for language models.}{3}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task Definition}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Dataset}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:dataset}{{3.2}{3}{Dataset}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}VOTA Trace Compression}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Experimental Conditions}{4}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Models and Training}{4}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Main Results: Trace Representations and Verdict Accuracy}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:main_results}{{4.1}{4}{Main Results: Trace Representations and Verdict Accuracy}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Verdict prediction accuracy (\%) across trace representations. Qwen-7B results are from seed 42; DeepSeek results report the median of 3 seeds for exception-only. Bold indicates best per model; underline indicates second-best.}}{5}{table.1}\protected@file@percent }
+\newlabel{tab:main}{{1}{5}{Verdict prediction accuracy (\%) across trace representations. Qwen-7B results are from seed 42; DeepSeek results report the median of 3 seeds for exception-only. Bold indicates best per model; underline indicates second-best}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Component ablation on Qwen-2.5-Coder-7B. Tier~1 signals are individually near-perfect; Tier~2 carries substantial but lower signal. Combining Tier~2 with Tier~1 introduces noise.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:ablation}{{2}{5}{Component ablation on Qwen-2.5-Coder-7B. Tier~1 signals are individually near-perfect; Tier~2 carries substantial but lower signal. Combining Tier~2 with Tier~1 introduces noise}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Two-Tier Diagnostic Hierarchy}{5}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:hierarchy}{{4.2}{5}{Two-Tier Diagnostic Hierarchy}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Tail budget curve across four models. All accuracy values in \%. The 384$\to $512 transition concentrates $>$87\% of the total accuracy gain (sharpness index $S$). Cross-model standard deviation at tail-384 is only 2.08 pp, indicating the plateau is a dataset property.}}{6}{table.3}\protected@file@percent }
+\newlabel{tab:budget_curve}{{3}{6}{Tail budget curve across four models. All accuracy values in \%. The 384$\to $512 transition concentrates $>$87\% of the total accuracy gain (sharpness index $S$). Cross-model standard deviation at tail-384 is only 2.08 pp, indicating the plateau is a dataset property}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Three-seed robustness for the tail-512 condition across four models. All standard deviations $<$ 1.0 pp; all individual seeds above 92\%.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:crossseed}{{4}{6}{Three-seed robustness for the tail-512 condition across four models. All standard deviations $<$ 1.0 pp; all individual seeds above 92\%}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Phase Transition in Trace Information Budget}{6}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:phase_transition}{{4.3}{6}{Phase Transition in Trace Information Budget}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Calibration metrics for exception-only across four models. All exception-only ECE values $<$ 0.01; all no-trace ECE values $>$ 0.15. The ECE ratio column shows the calibration improvement factor.}}{7}{table.5}\protected@file@percent }
+\newlabel{tab:calibration}{{5}{7}{Calibration metrics for exception-only across four models. All exception-only ECE values $<$ 0.01; all no-trace ECE values $>$ 0.15. The ECE ratio column shows the calibration improvement factor}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Convergence speed across trace conditions (Qwen-7B). ``---'' indicates the threshold is never reached. Exception-only converges 6.7$\times $ faster than full traces to 80\% accuracy.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:convergence}{{6}{7}{Convergence speed across trace conditions (Qwen-7B). ``---'' indicates the threshold is never reached. Exception-only converges 6.7$\times $ faster than full traces to 80\% accuracy}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Cross-Model Calibration}{7}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:calibration}{{4.4}{7}{Cross-Model Calibration}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Training Dynamics}{7}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:dynamics}{{4.5}{7}{Training Dynamics}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces SFT vs.\ few-shot prompting on exception-only input. SFT models use Qwen-7B. Base model 0-shot results use the same input format without fine-tuning.}}{8}{table.7}\protected@file@percent }
+\newlabel{tab:fewshot}{{7}{8}{SFT vs.\ few-shot prompting on exception-only input. SFT models use Qwen-7B. Base model 0-shot results use the same input format without fine-tuning}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Comparison with Few-Shot Prompting}{8}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:fewshot}{{4.6}{8}{Comparison with Few-Shot Prompting}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Error Analysis}{8}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:errors}{{4.7}{8}{Error Analysis}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Error breakdown by condition (Qwen-7B). Exception-only errors are representation-inherent (GeneratorExit ambiguity); full-trace errors are distributed across multiple categories with no dominant failure mode.}}{9}{table.8}\protected@file@percent }
+\newlabel{tab:errors}{{8}{9}{Error breakdown by condition (Qwen-7B). Exception-only errors are representation-inherent (GeneratorExit ambiguity); full-trace errors are distributed across multiple categories with no dominant failure mode}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Out-of-distribution generalization of the exception-only model (Qwen-7B). The model is trained on Python HumanEval/MBPP traces and evaluated on held-out Python projects, Java, and JavaScript programs ($n$=500 per language).}}{9}{table.9}\protected@file@percent }
+\newlabel{tab:ood}{{9}{9}{Out-of-distribution generalization of the exception-only model (Qwen-7B). The model is trained on Python HumanEval/MBPP traces and evaluated on held-out Python projects, Java, and JavaScript programs ($n$=500 per language)}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Cross-Language Generalization}{9}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:ood}{{4.8}{9}{Cross-Language Generalization}{subsection.4.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{10}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{VOTA's true value: fault indicator isolation.}{10}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Loss-accuracy decoupling.}{10}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LoRA initialization sensitivity.}{10}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{10}{section*.7}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{traced2024}{{1}{2024}{{Chen et~al.}}{{}}}
+\bibcite{debugbench2024}{{2}{2024}{{Jiang et~al.}}{{}}}
+\bibcite{defects4j}{{3}{2014}{{Just et~al.}}{{}}}
+\bibcite{llmlingua2023}{{4}{2023}{{Jiang et~al.}}{{}}}
+\bibcite{dcsh2025}{{5}{2025}{{Ni et~al.}}{{}}}
+\bibcite{tracepile2025}{{6}{2025}{{Shi et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{11}{section.6}\protected@file@percent }
+\gdef \@abspage@last{11}

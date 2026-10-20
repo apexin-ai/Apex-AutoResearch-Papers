@@ -1,0 +1,1402 @@
+# eval calibration codellama deepseek
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 29
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/workers/worker_eval_calibration_codellama_deepseek_20260519T015419.log`
+- **Structured JSON:** [`fcb7084ea47b2d4d8d24.json`](../../sessions/fc/fcb7084ea47b2d4d8d24.json)
+
+## Before a recorded user message
+
+29 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "b0e9becb-872b-4986-b341-3fc6d1bba600",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to run calibration analysis (ECE + Brier score) on CodeLlama-13B and DeepSeek exception_only checkpoints on cuda:1. Let me follow the steps they outlined.
+
+Let me start by SSHing to the server to find calibration scripts and check checkpoint paths.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "9fb0575f-cf45-4fd5-9a25-7f764bc1ef51",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GXubVreorz4jQt1EBf31y4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13663,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13663
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_012qephVxjE4zrR1bPHVojXc`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "87541ae9-d96f-4e49-9d20-524413100517",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GXubVreorz4jQt1EBf31y4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13663,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13663
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-19T01:54:32.736Z_
+
+<details><summary>↩ Tool result · `toolu_012qephVxjE4zrR1bPHVojXc`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "edac00b1-9e86-4515-81c0-ebe998142cc1",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779165600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "a3da33e4-8378-4840-b624-9cad4f16e06c",
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7_
+
+先查找 calibration 脚本和 checkpoint 路径。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "89145fb5-d054-4d59-bdd2-b567c311c839",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y7v1DBBrxkFG36FAPTSwtn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 431,
+      "cache_read_input_tokens": 25504,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 431
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0169WA33K3fRxxmezBvssDVX`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "find /root/trace-verdict-study/eval/ -name \"*calibr*\" -o -name \"*ece*\" -o -name \"*brier*\" 2>/dev/null; echo \"===\"; ls /root/trace-verdict-study/eval/ 2>/dev/null; echo \"===\"; grep -r \"calibration\\|ECE\\|Brier\\|brier\\|ece\" /root/trace-verdict-study/eval/*.py 2>/dev/null | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "de47813b-7ea5-415e-9def-05f807236e6e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y7v1DBBrxkFG36FAPTSwtn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 431,
+      "cache_read_input_tokens": 25504,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 431
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T01:54:38.692Z_
+
+<details><summary>↩ Tool result · `toolu_0169WA33K3fRxxmezBvssDVX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/trace-verdict-study/eval/__pycache__/calibration.cpython-312.pyc\\n/root/trace-verdict-study/eval/calibration.py\\n/root/trace-verdict-study/eval/plot_calibration.py\\n/root/trace-verdict-study/eval/calibration.py.bak\\n/root/trace-verdict-study/eval/run_cross_model_calibration.sh\\n===\\n__pycache__\\nauto_eval_tail2048.sh\\nbootstrap_ae_only.py\\nbootstrap_compare.py\\nbootstrap_loop_only.py\\ncalibration.py\\ncalibration.py.bak\\ncluster_robust_ci.py\\ncomprehensive_error_analysis.py\\ndedup_sensitivity.py\\nerror_analysis.py\\neval_label_only_bootstrap.py\\nevaluate.py\\nfewshot_api_eval.py\\nfewshot_eval.py\\nplot_calibration.py\\nrun_cross_model_calibration.sh\\nrun_fewshot_api.sh\\ntraining_truncation_analysis.py\\nzeroshot_eval.py\\n===\\n/root/trace-verdict-study/eval/calibration.py:def compute_ece(confidences, accuracies, n_bins=10):\\n/root/trace-verdict-study/eval/calibration.py:    ece = 0.0\\n/root/trace-verdict-study/eval/calibration.py:            ece += (count / n) * abs(acc - mean_conf)\\n/root/trace-verdict-study/eval/calibration.py:    return float(ece), bin_data\\n/root/trace-verdict-study/eval/calibration.py:def compute_brier_score(true_labels, pass_probs):\\n/root/trace-verdict-study/eval/calibration.py:    \\\"\\\"\\\"Brier score: MSE between predicted prob and true binary label.\\\"\\\"\\\"\\n/root/trace-verdict-study/eval/calibration.py:def run_calibration(model, tokenizer, test_data, device, condition):\\n/root/trace-verdict-study/eval/calibration.py:    \\\"\\\"\\\"Run calibration analysis on test data, return results dict.\\\"\\\"\\\"\\n/root/trace-verdict-study/eval/calibration.py:    ece, reliability_data = compute_ece(confidences, correct)\\n/root/trace-verdict-study/eval/calibration.py:    brier = compute_brier_score(true_labels, pass_probs_list)\\n/root/trace-verdict-study/eval/calibration.py:            cls_ece, cls_rel = compute_ece(confidences[cls_mask],\\n/root/trace-verdict-study/eval/calibration.py:            cls_brier = compute_brier_score(cls_true.tolist(),\\n/root/trace-verdict-study/eval/calibration.py:                \\\"ece\\\": round(cls_ece, 6), \\\"brier\\\": round(cls_brier, 6),\\n/root/trace-verdict-study/eval/calibration.py:            per_class[cls] = {\\\"ece\\\": 0.0, \\\"brier\\\": 0.0, \\\"mce\\\": 0.0, \\\"n\\\": 0}\\n/root/trace-verdict-study/eval/calibration.py:        \\\"ece\\\": round(ece, 6),\\n/root/trace-verdict-study/eval/calibration.py:        \\\"brier_score\\\": round(brier, 6),\\n/root/trace-verdict-study/eval/calibration.py:                      \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/\\\")\\n/root/trace-verdict-study/eval/calibration.py:            results = run_calibration(model, tokenizer, test_data, device, cond)\\n/root/trace-verdict-study/eval/calibration.py:            out_path = os.path.join(output_dir, f\\\"{cond}_calibration.json\\\")\\n/root/trace-verdict-study/eval/calibration.py:            print(f\\\"ECE={results['ece']:.4f}  MCE={results['mce']:.4f}  \\\"\\n/root/trace-verdict-study/eval/calibration.py:                  f\\\"Brier={results['brier_score']:.4f}  \\\"\\n/root/trace-verdict-study/eval/calibration.py:                \\\"ece\\\": results[\\\"ece\\\"],\\n/root/trace-verdict-study/eval/calibration.py:                \\\"brier_score\\\": results[\\\"brier_score\\\"],\\n/root/trace-verdict-study/eval/calibration.py:        summary_path = os.path.join(output_dir, \\\"calibration_metrics_v2.json\\\")\\n/root/trace-verdict-study/eval/calibration.py:                f\\\"calibration_{args.condition}.json\\\")\\n/root/trace-verdict-study/eval/calibration.py:        results = run_calibration(model, tokenizer, test_data, device,\\n/root/trace-verdict-study/eval/calibration.py:        print(f\\\"ECE:         {results['ece']:.4f}\\\")\\n/root/trace-verdict-study/eval/calibration.py:        print(f\\\"Brier score: {results['brier_score']:.4f}\\\")\\n/root/trace-verdict-study/eval/calibration.py:            print(f\\\"  {cls}: ECE={v['ece']:.4f} MCE={v['mce']:.4f} \\\"\\n/root/trace-verdict-study/eval/calibration.py:                  f\\\"Brier={v['brier']:.4f} n={v['n']}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "fa9e9c7b-957b-4348-b312-9eff47cf5972",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/trace-verdict-study/eval/__pycache__/calibration.cpython-312.pyc\\\\n/root/trace-verdict-study/eval/calibration.py\\\\n/root/trace-verdict-study/eval/plot_calibration.py\\\\n/root/trace-verdict-study/eval/calibration.py.bak\\\\n/root/trace-verdict-study/eval/run_cross_model_calibration.sh\\\\n===\\\\n__pycache__\\\\nauto_eval_tail2048.sh\\\\nbootstrap_ae_only.py\\\\nbootstrap_compare.py\\\\nbootstrap_loop_only.py\\\\ncalibration.py\\\\ncalibration.py.bak\\\\ncluster_robust_ci.py\\\\ncomprehensive_error_analysis.py\\\\ndedup_sensitivity.py\\\\nerror_analysis.py\\\\neval_label_only_bootstrap.py\\\\nevaluate.py\\\\nfewshot_api_eval.py\\\\nfewshot_eval.py\\\\nplot_calibration.py\\\\nrun_cross_model_calibration.sh\\\\nrun_fewshot_api.sh\\\\ntraining_truncation_analysis.py\\\\nzeroshot_eval.py\\\\n===\\\\n/root/trace-verdict-study/eval/calibration.py:def compute_ece(confidences, accuracies, n_bins=10):\\\\n/root/trace-verdict-study/eval/calibration.py:    ece = 0.0\\\\n/root/trace-verdict-study/eval/calibration.py:            ece += (count / n) * abs(acc - mean_conf)\\\\n/root/trace-verdict-study/eval/calibration.py:    return float(ece), bin_data\\\\n/root/trace-verdict-study/eval/calibration.py:def compute_brier_score(true_labels, pass_probs):\\\\n/root/trace-verdict-study/eval/calibration.py:    \\\\\\\"\\\\\\\"\\\\\\\"Brier score: MSE between predicted prob and true binary label.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n/root/trace-verdict-study/eval/calibration.py:def run_calibration(model, tokenizer, test_data, device, condition):\\\\n/root/trace-verdict-study/eval/calibration.py:    \\\\\\\"\\\\\\\"\\\\\\\"Run calibration analysis on test data, return results dict.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n/root/trace-verdict-study/eval/calibration.py:    ece, reliability_data = compute_ece(confidences, correct)\\\\n/root/trace-verdict-study/eval/calibration.py:    brier = compute_brier_score(true_labels, pass_probs_list)\\\\n/root/trace-verdict-study/eval/calibration.py:            cls_ece, cls_rel = compute_ece(confidences[cls_mask],\\\\n/root/trace-verdict-study/eval/calibration.py:            cls_brier = compute_brier_score(cls_true.tolist(),\\\\n/root/trace-verdict-study/eval/calibration.py:                \\\\\\\"ece\\\\\\\": round(cls_ece, 6), \\\\\\\"brier\\\\\\\": round(cls_brier, 6),\\\\n/root/trace-verdict-study/eval/calibration.py:            per_class[cls] = {\\\\\\\"ece\\\\\\\": 0.0, \\\\\\\"brier\\\\\\\": 0.0, \\\\\\\"mce\\\\\\\": 0.0, \\\\\\\"n\\\\\\\": 0}\\\\n/root/trace-verdict-study/eval/calibration.py:        \\\\\\\"ece\\\\\\\": round(ece, 6),\\\\n/root/trace-verdict-study/eval/calibration.py:        \\\\\\\"brier_score\\\\\\\": round(brier, 6),\\\\n/root/trace-verdict-study/eval/calibration.py:                      \\\\\\\"/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/\\\\\\\")\\\\n/root/trace-verdict-study/eval/calibration.py:            results = run_calibration(model, tokenizer, test_data, device, cond)\\\\n/root/trace-verdict-study/eval/calibration.py:            out_path = os.path.join(output_dir, f\\\\\\\"{cond}_calibration.json\\\\\\\")\\\\n/root/trace-verdict-study/eval/calibration.py:            print(f\\\\\\\"ECE={results['ece']:.4f}  MCE={results['mce']:.4f}  \\\\\\\"\\\\n/root/trace-verdict-study/eval/calibration.py:                  f\\\\\\\"Brier={results['brier_score']:.4f}  \\\\\\\"\\\\n/root/trace-verdict-study/eval/calibration.py:                \\\\\\\"ece\\\\\\\": results[\\\\\\\"ece\\\\\\\"],\\\\n/root/trace-verdict-study/eval/calibration.py:                \\\\\\\"brier_score\\\\\\\": results[\\\\\\\"brier_score\\\\\\\"],\\\\n/root/trace-verdict-study/eval/calibration.py:        summary_path = os.path.join(output_dir, \\\\\\\"calibration_metrics_v2.json\\\\\\\")\\\\n/root/trace-verdict-study/eval/calibration.py:                f\\\\\\\"calibration_{args.condition}.json\\\\\\\")\\\\n/root/trace-verdict-study/eval/calibration.py:        results = run_calibration(model, tokenizer, test_data, device,\\\\n/root/trace-verdict-study/eval/calibration.py:        print(f\\\\\\\"ECE:         {results['ece']:.4f}\\\\\\\")\\\\n/root/trace-verdict-study/eval/calibration.py:        print(f\\\\\\\"Brier score: {results['brier_score']:.4f}\\\\\\\")\\\\n/root/trace-verdict-study/eval/calibration.py:            print(f\\\\\\\"  {cls}: ECE={v['ece']:.4f} MCE={v['mce']:.4f} \\\\\\\"\\\\n/root/trace-verdict-study/eval/calibration.py:                  f\\\\\\\"Brier={v['brier']:.4f} n={v['n']}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/trace-verdict-study/eval/__pycache__/calibration.cpython-312.pyc\\n/root/trace-verdict-study/eval/calibration.py\\n/root/trace-verdict-study/eval/plot_calibration.py\\n/root/trace-verdict-study/eval/calibration.py.bak\\n/root/trace-verdict-study/eval/run_cross_model_calibration.sh\\n===\\n__pycache__\\nauto_eval_tail2048.sh\\nbootstrap_ae_only.py\\nbootstrap_compare.py\\nbootstrap_loop_only.py\\ncalibration.py\\ncalibration.py.bak\\ncluster_robust_ci.py\\ncomprehensive_error_analysis.py\\ndedup_sensitivity.py\\nerror_analysis.py\\neval_label_only_bootstrap.py\\nevaluate.py\\nfewshot_api_eval.py\\nfewshot_eval.py\\nplot_calibration.py\\nrun_cross_model_calibration.sh\\nrun_fewshot_api.sh\\ntraining_truncation_analysis.py\\nzeroshot_eval.py\\n===\\n/root/trace-verdict-study/eval/calibration.py:def compute_ece(confidences, accuracies, n_bins=10):\\n/root/trace-verdict-study/eval/calibration.py:    ece = 0.0\\n/root/trace-verdict-study/eval/calibration.py:            ece += (count / n) * abs(acc - mean_conf)\\n/root/trace-verdict-study/eval/calibration.py:    return float(ece), bin_data\\n/root/trace-verdict-study/eval/calibration.py:def compute_brier_score(true_labels, pass_probs):\\n/root/trace-verdict-study/eval/calibration.py:    \\\"\\\"\\\"Brier score: MSE between predicted prob and true binary label.\\\"\\\"\\\"\\n/root/trace-verdict-study/eval/calibration.py:def run_calibration(model, tokenizer, test_data, device, condition):\\n/root/trace-verdict-study/eval/calibration.py:    \\\"\\\"\\\"Run calibration analysis on test data, return results dict.\\\"\\\"\\\"\\n/root/trace-verdict-study/eval/calibration.py:    ece, reliability_data = compute_ece(confidences, correct)\\n/root/trace-verdict-study/eval/calibration.py:    brier = compute_brier_score(true_labels, pass_probs_list)\\n/root/trace-verdict-study/eval/calibration.py:            cls_ece, cls_rel = compute_ece(confidences[cls_mask],\\n/root/trace-verdict-study/eval/calibration.py:            cls_brier = compute_brier_score(cls_true.tolist(),\\n/root/trace-verdict-study/eval/calibration.py:                \\\"ece\\\": round(cls_ece, 6), \\\"brier\\\": round(cls_brier, 6),\\n/root/trace-verdict-study/eval/calibration.py:            per_class[cls] = {\\\"ece\\\": 0.0, \\\"brier\\\": 0.0, \\\"mce\\\": 0.0, \\\"n\\\": 0}\\n/root/trace-verdict-study/eval/calibration.py:        \\\"ece\\\": round(ece, 6),\\n/root/trace-verdict-study/eval/calibration.py:        \\\"brier_score\\\": round(brier, 6),\\n/root/trace-verdict-study/eval/calibration.py:                      \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/\\\")\\n/root/trace-verdict-study/eval/calibration.py:            results = run_calibration(model, tokenizer, test_data, device, cond)\\n/root/trace-verdict-study/eval/calibration.py:            out_path = os.path.join(output_dir, f\\\"{cond}_calibration.json\\\")\\n/root/trace-verdict-study/eval/calibration.py:            print(f\\\"ECE={results['ece']:.4f}  MCE={results['mce']:.4f}  \\\"\\n/root/trace-verdict-study/eval/calibration.py:                  f\\\"Brier={results['brier_score']:.4f}  \\\"\\n/root/trace-verdict-study/eval/calibration.py:                \\\"ece\\\": results[\\\"ece\\\"],\\n/root/trace-verdict-study/eval/calibration.py:                \\\"brier_score\\\": results[\\\"brier_score\\\"],\\n/root/trace-verdict-study/eval/calibration.py:        summary_path = os.path.join(output_dir, \\\"calibration_metrics_v2.json\\\")\\n/root/trace-verdict-study/eval/calibration.py:                f\\\"calibration_{args.condition}.json\\\")\\n/root/trace-verdict-study/eval/calibration.py:        results = run_calibration(model, tokenizer, test_data, device,\\n/root/trace-verdict-study/eval/calibration.py:        print(f\\\"ECE:         {results['ece']:.4f}\\\")\\n/root/trace-verdict-study/eval/calibration.py:        print(f\\\"Brier score: {results['brier_score']:.4f}\\\")\\n/root/trace-verdict-study/eval/calibration.py:            print(f\\\"  {cls}: ECE={v['ece']:.4f} MCE={v['mce']:.4f} \\\"\\n/root/trace-verdict-study/eval/calibration.py:                  f\\\"Brier={v['brier']:.4f} n={v['n']}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_015dMk8WfgNb7ypYEyEwCHJc`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "ls -d /root/autodl-tmp/trace-verdict-study-checkpoints/*codellama*exception* /root/autodl-tmp/trace-verdict-study-checkpoints/*deepseek*exception* 2>/dev/null; echo \"===\"; ls -d /root/autodl-tmp/trace-verdict-study-checkpoints/*codellama* /root/autodl-tmp/trace-verdict-study-checkpoints/*deepseek* 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "06cded5a-15fa-45db-bee9-a71536f5c04a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y7v1DBBrxkFG36FAPTSwtn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 431,
+      "cache_read_input_tokens": 25504,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 431
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T01:54:39.491Z_
+
+<details><summary>↩ Tool result · `toolu_015dMk8WfgNb7ypYEyEwCHJc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456\\n/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_codellama13b_exception_only\\n/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_codellama13b_exception_only.log\\n/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_deepseek7b_exception_only\\n===\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_head2048_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail1024_seed42_v2\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail1024_seed42_v3\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail2048_seed42_v2\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail2048_seed42_v3\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail256_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail384_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail512_seed123\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail512_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail512_seed456\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_no_trace_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_vota_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_head2048_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_seed42_v3\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_seed42_v3.log\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail1024_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail2048_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail256_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail384_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail512_seed123_v2\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail512_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail512_seed456\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_v2\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota\\n/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_codellama13b_exception_only\\n/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_codellama13b_exception_only.log\\n/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_codellama13b_v2.log\\n/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_deepseek7b_exception_only\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "9ba44149-32e0-4828-b648-1cc9b2080878",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_codellama13b_exception_only\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_codellama13b_exception_only.log\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_deepseek7b_exception_only\\\\n===\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_head2048_seed42\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail1024_seed42_v2\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail1024_seed42_v3\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail2048_seed42_v2\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail2048_seed42_v3\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail256_seed42\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail384_seed42\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail512_seed123\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail512_seed42\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail512_seed456\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_no_trace_seed42\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_vota_seed42\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_head2048_seed42\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_seed42_v3\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_seed42_v3.log\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail1024_seed42\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail2048_seed42\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail256_seed42\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail384_seed42\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail512_seed123_v2\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail512_seed42\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail512_seed456\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_v2\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_codellama13b_exception_only\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_codellama13b_exception_only.log\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_codellama13b_v2.log\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_deepseek7b_exception_only\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456\\n/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_codellama13b_exception_only\\n/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_codellama13b_exception_only.log\\n/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_deepseek7b_exception_only\\n===\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed123\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed456\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_head2048_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail1024_seed42_v2\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail1024_seed42_v3\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail2048_seed42_v2\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail2048_seed42_v3\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail256_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail384_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail512_seed123\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail512_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail512_seed456\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_no_trace_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_vota_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_head2048_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_seed42_v3\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_seed42_v3.log\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail1024_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail2048_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail256_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail384_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail512_seed123_v2\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail512_seed42\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail512_seed456\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_v2\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota\\n/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_codellama13b_exception_only\\n/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_codellama13b_exception_only.log\\n/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_codellama13b_v2.log\\n/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_deepseek7b_exception_only\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found:
+1. `calibration.py` exists at `/root/trace-verdict-study/eval/calibration.py`
+2. Checkpoints:
+   - CodeLlama-13B: `/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42/`
+   - DeepSeek: `/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/` (no seed42 suffix, but there's seed123 and seed456)
+   
+Now I need to look at the calibration script to understand what arguments it expects, check the checkpoint directory structure for the final/ subfolder, and verify what's actually in the deepseek_exception_only directory to see if one of those seed variants is the seed42 version I need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "18134753-0745-4679-8e51-b79a587ad91e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SM8imuyuWN59oDweAGhg6p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3622,
+      "cache_read_input_tokens": 25935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3622
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+脚本存在。查看用法和 checkpoint 结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "f3435222-6053-4d2b-80c7-22399815fc9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SM8imuyuWN59oDweAGhg6p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3622,
+      "cache_read_input_tokens": 25935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3622
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BmHMGTGGCb64jfDdcShkWW`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "cd /root/trace-verdict-study && /root/miniconda3/bin/python eval/calibration.py --help 2>&1 | head -40",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "0821d6f6-067b-49c8-b3b0-ed7664b06865",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SM8imuyuWN59oDweAGhg6p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3622,
+      "cache_read_input_tokens": 25935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3622
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LXcu37vn2ZL4nr4DpLSkgK`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "ls /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42/; echo \"===\"; ls /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/; echo \"===\"; ls /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42/final/ 2>/dev/null; echo \"===\"; ls /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "642ed2ac-8fc2-41cb-8301-9e02a93364d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SM8imuyuWN59oDweAGhg6p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3622,
+      "cache_read_input_tokens": 25935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3622
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01KUCZ8DYrAE9BXU2uMFXkoi`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "cat /root/trace-verdict-study/eval/run_cross_model_calibration.sh 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "6e055bf8-f333-47f1-b5e2-fa71fe920360",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SM8imuyuWN59oDweAGhg6p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3622,
+      "cache_read_input_tokens": 25935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3622
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T01:54:51.207Z_
+
+<details><summary>↩ Tool result · `toolu_01BmHMGTGGCb64jfDdcShkWW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: calibration.py [-h] [--batch] [--conditions CONDITIONS]\\n                      [--condition CONDITION]\\n                      [--checkpoint_dir CHECKPOINT_DIR]\\n                      [--model_path MODEL_PATH] [--data_dir DATA_DIR]\\n                      [--gpu GPU] [--output OUTPUT] [--output_dir OUTPUT_DIR]\\n\\nCalibration analysis for trace-verdict models.\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --batch               Batch mode: run multiple conditions\\n  --conditions CONDITIONS\\n                        Comma-separated conditions for batch mode\\n  --condition CONDITION\\n                        Single condition name\\n  --checkpoint_dir CHECKPOINT_DIR\\n                        Path to checkpoint directory with LoRA adapter\\n  --model_path MODEL_PATH\\n                        Path to base model\\n  --data_dir DATA_DIR   Directory containing test data\\n  --gpu GPU             GPU device number\\n  --output OUTPUT       Output JSON path (single mode)\\n  --output_dir OUTPUT_DIR\\n                        Output directory (batch mode)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.68}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "97d3e213-2d4d-4c56-bc58-94a54c97069f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: calibration.py [-h] [--batch] [--conditions CONDITIONS]\\\\n                      [--condition CONDITION]\\\\n                      [--checkpoint_dir CHECKPOINT_DIR]\\\\n                      [--model_path MODEL_PATH] [--data_dir DATA_DIR]\\\\n                      [--gpu GPU] [--output OUTPUT] [--output_dir OUTPUT_DIR]\\\\n\\\\nCalibration analysis for trace-verdict models.\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --batch               Batch mode: run multiple conditions\\\\n  --conditions CONDITIONS\\\\n                        Comma-separated conditions for batch mode\\\\n  --condition CONDITION\\\\n                        Single condition name\\\\n  --checkpoint_dir CHECKPOINT_DIR\\\\n                        Path to checkpoint directory with LoRA adapter\\\\n  --model_path MODEL_PATH\\\\n                        Path to base model\\\\n  --data_dir DATA_DIR   Directory containing test data\\\\n  --gpu GPU             GPU device number\\\\n  --output OUTPUT       Output JSON path (single mode)\\\\n  --output_dir OUTPUT_DIR\\\\n                        Output directory (batch mode)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.68}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: calibration.py [-h] [--batch] [--conditions CONDITIONS]\\n                      [--condition CONDITION]\\n                      [--checkpoint_dir CHECKPOINT_DIR]\\n                      [--model_path MODEL_PATH] [--data_dir DATA_DIR]\\n                      [--gpu GPU] [--output OUTPUT] [--output_dir OUTPUT_DIR]\\n\\nCalibration analysis for trace-verdict models.\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --batch               Batch mode: run multiple conditions\\n  --conditions CONDITIONS\\n                        Comma-separated conditions for batch mode\\n  --condition CONDITION\\n                        Single condition name\\n  --checkpoint_dir CHECKPOINT_DIR\\n                        Path to checkpoint directory with LoRA adapter\\n  --model_path MODEL_PATH\\n                        Path to base model\\n  --data_dir DATA_DIR   Directory containing test data\\n  --gpu GPU             GPU device number\\n  --output OUTPUT       Output JSON path (single mode)\\n  --output_dir OUTPUT_DIR\\n                        Output directory (batch mode)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.68}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T01:54:51.737Z_
+
+<details><summary>↩ Tool result · `toolu_01LXcu37vn2ZL4nr4DpLSkgK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\nfinal\\nruns\\n===\\nREADME.md\\nfinal\\nruns\\n===\\nREADME.md\\nadapter_config.json\\nadapter_model.safetensors\\nchat_template.jinja\\neval_results.json\\npredictions.jsonl\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer.model\\ntokenizer_config.json\\ntraining_args.bin\\n===\\nREADME.md\\nadapter_config.json\\nadapter_model.safetensors\\nchat_template.jinja\\neval_results.json\\neval_results_with_preds.json\\npredictions.jsonl\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\ntraining_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "849714dc-9355-4992-93eb-ac9a79a79cdc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nfinal\\\\nruns\\\\n===\\\\nREADME.md\\\\nfinal\\\\nruns\\\\n===\\\\nREADME.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nchat_template.jinja\\\\neval_results.json\\\\npredictions.jsonl\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer.model\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\n===\\\\nREADME.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nchat_template.jinja\\\\neval_results.json\\\\neval_results_with_preds.json\\\\npredictions.jsonl\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"README.md\\nfinal\\nruns\\n===\\nREADME.md\\nfinal\\nruns\\n===\\nREADME.md\\nadapter_config.json\\nadapter_model.safetensors\\nchat_template.jinja\\neval_results.json\\npredictions.jsonl\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer.model\\ntokenizer_config.json\\ntraining_args.bin\\n===\\nREADME.md\\nadapter_config.json\\nadapter_model.safetensors\\nchat_template.jinja\\neval_results.json\\neval_results_with_preds.json\\npredictions.jsonl\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\ntraining_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T01:54:52.558Z_
+
+<details><summary>↩ Tool result · `toolu_01KUCZ8DYrAE9BXU2uMFXkoi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -e\\ncd /root/trace-verdict-study\\nexport CUDA_VISIBLE_DEVICES=1\\nPYTHON=/root/miniconda3/bin/python\\nOUTDIR=/root/autodl-tmp/trace-verdict-study-checkpoints/cross_model_calibration\\n\\necho \\\"=== Starting cross-model calibration on GPU 1 ===\\\"\\necho \\\"Time: $(date)\\\"\\n\\n# 1. Qwen-7B (exception_only, original seed42)\\necho \\\"\\\"\\necho \\\"========== Qwen-7B ==========\\\"\\n$PYTHON eval/calibration.py \\\\\\n  --condition exception_only \\\\\\n  --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/ \\\\\\n  --model_path /root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct \\\\\\n  --gpu 0 \\\\\\n  --output $OUTDIR/qwen7b_exception_only_calibration.json\\necho \\\"Qwen-7B done: $(date)\\\"\\n\\n# 2. Qwen-1.5B\\necho \\\"\\\"\\necho \\\"========== Qwen-1.5B ==========\\\"\\n$PYTHON eval/calibration.py \\\\\\n  --condition exception_only \\\\\\n  --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_exception_only_seed42/final/ \\\\\\n  --model_path /root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct \\\\\\n  --gpu 0 \\\\\\n  --output $OUTDIR/qwen15b_exception_only_calibration.json\\necho \\\"Qwen-1.5B done: $(date)\\\"\\n\\n# 3. DeepSeek-6.7B\\necho \\\"\\\"\\necho \\\"========== DeepSeek-6.7B ==========\\\"\\n$PYTHON eval/calibration.py \\\\\\n  --condition exception_only \\\\\\n  --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final/ \\\\\\n  --model_path \\\"/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct\\\" \\\\\\n  --gpu 0 \\\\\\n  --output $OUTDIR/deepseek_exception_only_calibration.json\\necho \\\"DeepSeek-6.7B done: $(date)\\\"\\n\\n# 4. CodeLlama-13B\\necho \\\"\\\"\\necho \\\"========== CodeLlama-13B ==========\\\"\\n$PYTHON eval/calibration.py \\\\\\n  --condition exception_only \\\\\\n  --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42/final/ \\\\\\n  --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf \\\\\\n  --gpu 0 \\\\\\n  --output $OUTDIR/codellama13b_exception_only_calibration.json\\necho \\\"CodeLlama-13B done: $(date)\\\"\\n\\necho \\\"\\\"\\necho \\\"=== All calibrations complete ===\\\"\\necho \\\"Time: $(date)\\\"\\necho \\\"DONE\\\" > $OUTDIR/calibration_done.flag\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "b7f57a81-3468-4cb4-99b9-ca953a5797ab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -e\\\\ncd /root/trace-verdict-study\\\\nexport CUDA_VISIBLE_DEVICES=1\\\\nPYTHON=/root/miniconda3/bin/python\\\\nOUTDIR=/root/autodl-tmp/trace-verdict-study-checkpoints/cross_model_calibration\\\\n\\\\necho \\\\\\\"=== Starting cross-model calibration on GPU 1 ===\\\\\\\"\\\\necho \\\\\\\"Time: $(date)\\\\\\\"\\\\n\\\\n# 1. Qwen-7B (exception_only, original seed42)\\\\necho \\\\\\\"\\\\\\\"\\\\necho \\\\\\\"========== Qwen-7B ==========\\\\\\\"\\\\n$PYTHON eval/calibration.py \\\\\\\\\\\\n  --condition exception_only \\\\\\\\\\\\n  --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/ \\\\\\\\\\\\n  --model_path /root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct \\\\\\\\\\\\n  --gpu 0 \\\\\\\\\\\\n  --output $OUTDIR/qwen7b_exception_only_calibration.json\\\\necho \\\\\\\"Qwen-7B done: $(date)\\\\\\\"\\\\n\\\\n# 2. Qwen-1.5B\\\\necho \\\\\\\"\\\\\\\"\\\\necho \\\\\\\"========== Qwen-1.5B ==========\\\\\\\"\\\\n$PYTHON eval/calibration.py \\\\\\\\\\\\n  --condition exception_only \\\\\\\\\\\\n  --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_exception_only_seed42/final/ \\\\\\\\\\\\n  --model_path /root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct \\\\\\\\\\\\n  --gpu 0 \\\\\\\\\\\\n  --output $OUTDIR/qwen15b_exception_only_calibration.json\\\\necho \\\\\\\"Qwen-1.5B done: $(date)\\\\\\\"\\\\n\\\\n# 3. DeepSeek-6.7B\\\\necho \\\\\\\"\\\\\\\"\\\\necho \\\\\\\"========== DeepSeek-6.7B ==========\\\\\\\"\\\\n$PYTHON eval/calibration.py \\\\\\\\\\\\n  --condition exception_only \\\\\\\\\\\\n  --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final/ \\\\\\\\\\\\n  --model_path \\\\\\\"/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct\\\\\\\" \\\\\\\\\\\\n  --gpu 0 \\\\\\\\\\\\n  --output $OUTDIR/deepseek_exception_only_calibration.json\\\\necho \\\\\\\"DeepSeek-6.7B done: $(date)\\\\\\\"\\\\n\\\\n# 4. CodeLlama-13B\\\\necho \\\\\\\"\\\\\\\"\\\\necho \\\\\\\"========== CodeLlama-13B ==========\\\\\\\"\\\\n$PYTHON eval/calibration.py \\\\\\\\\\\\n  --condition exception_only \\\\\\\\\\\\n  --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42/final/ \\\\\\\\\\\\n  --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf \\\\\\\\\\\\n  --gpu 0 \\\\\\\\\\\\n  --output $OUTDIR/codellama13b_exception_only_calibration.json\\\\necho \\\\\\\"CodeLlama-13B done: $(date)\\\\\\\"\\\\n\\\\necho \\\\\\\"\\\\\\\"\\\\necho \\\\\\\"=== All calibrations complete ===\\\\\\\"\\\\necho \\\\\\\"Time: $(date)\\\\\\\"\\\\necho \\\\\\\"DONE\\\\\\\" > $OUTDIR/calibration_done.flag\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -e\\ncd /root/trace-verdict-study\\nexport CUDA_VISIBLE_DEVICES=1\\nPYTHON=/root/miniconda3/bin/python\\nOUTDIR=/root/autodl-tmp/trace-verdict-study-checkpoints/cross_model_calibration\\n\\necho \\\"=== Starting cross-model calibration on GPU 1 ===\\\"\\necho \\\"Time: $(date)\\\"\\n\\n# 1. Qwen-7B (exception_only, original seed42)\\necho \\\"\\\"\\necho \\\"========== Qwen-7B ==========\\\"\\n$PYTHON eval/calibration.py \\\\\\n  --condition exception_only \\\\\\n  --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/ \\\\\\n  --model_path /root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct \\\\\\n  --gpu 0 \\\\\\n  --output $OUTDIR/qwen7b_exception_only_calibration.json\\necho \\\"Qwen-7B done: $(date)\\\"\\n\\n# 2. Qwen-1.5B\\necho \\\"\\\"\\necho \\\"========== Qwen-1.5B ==========\\\"\\n$PYTHON eval/calibration.py \\\\\\n  --condition exception_only \\\\\\n  --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_exception_only_seed42/final/ \\\\\\n  --model_path /root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct \\\\\\n  --gpu 0 \\\\\\n  --output $OUTDIR/qwen15b_exception_only_calibration.json\\necho \\\"Qwen-1.5B done: $(date)\\\"\\n\\n# 3. DeepSeek-6.7B\\necho \\\"\\\"\\necho \\\"========== DeepSeek-6.7B ==========\\\"\\n$PYTHON eval/calibration.py \\\\\\n  --condition exception_only \\\\\\n  --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final/ \\\\\\n  --model_path \\\"/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct\\\" \\\\\\n  --gpu 0 \\\\\\n  --output $OUTDIR/deepseek_exception_only_calibration.json\\necho \\\"DeepSeek-6.7B done: $(date)\\\"\\n\\n# 4. CodeLlama-13B\\necho \\\"\\\"\\necho \\\"========== CodeLlama-13B ==========\\\"\\n$PYTHON eval/calibration.py \\\\\\n  --condition exception_only \\\\\\n  --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42/final/ \\\\\\n  --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf \\\\\\n  --gpu 0 \\\\\\n  --output $OUTDIR/codellama13b_exception_only_calibration.json\\necho \\\"CodeLlama-13B done: $(date)\\\"\\n\\necho \\\"\\\"\\necho \\\"=== All calibrations complete ===\\\"\\necho \\\"Time: $(date)\\\"\\necho \\\"DONE\\\" > $OUTDIR/calibration_done.flag\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's already a `run_cross_model_calibration.sh` script that has the exact commands for all 4 models including CodeLlama-13B and DeepSeek. Let me first check if the results already exist:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "c2c491bb-f01e-4594-b590-f1f40eb722b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S79yZ5Yz6NJy5gw2aB1jMA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2468,
+      "cache_read_input_tokens": 29557,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2468
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+已有现成的 `run_cross_model_calibration.sh`。先检查是否已有结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "d0e25142-3ce9-41a4-b3f1-a471ea797947",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S79yZ5Yz6NJy5gw2aB1jMA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2468,
+      "cache_read_input_tokens": 29557,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2468
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011Qej6TzR8ds4NNcKgS5LrJ`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "ls -la /root/autodl-tmp/trace-verdict-study-checkpoints/cross_model_calibration/ 2>/dev/null; echo \"===\"; cat /root/autodl-tmp/trace-verdict-study-checkpoints/cross_model_calibration/codellama13b_exception_only_calibration.json 2>/dev/null; echo \"===\"; cat /root/autodl-tmp/trace-verdict-study-checkpoints/cross_model_calibration/deepseek_exception_only_calibration.json 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "5c6ff8a8-cece-4212-8c59-b0939d55c0d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S79yZ5Yz6NJy5gw2aB1jMA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2468,
+      "cache_read_input_tokens": 29557,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2468
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T01:54:59.066Z_
+
+<details><summary>↩ Tool result · `toolu_011Qej6TzR8ds4NNcKgS5LrJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 212\\ndrwxr-xr-x  2 root root   4096 May 18 22:06 .\\ndrwxr-xr-x 93 root root   8192 May 19 07:09 ..\\n-rw-r--r--  1 root root 176655 May 18 22:06 calibration.log\\n-rw-r--r--  1 root root      5 May 18 22:06 calibration_done.flag\\n-rw-r--r--  1 root root   2925 May 18 22:06 codellama13b_exception_only_calibration.json\\n-rw-r--r--  1 root root   2963 May 18 22:04 deepseek_exception_only_calibration.json\\n-rw-r--r--  1 root root   2932 May 18 22:03 qwen15b_exception_only_calibration.json\\n-rw-r--r--  1 root root   2917 May 18 22:02 qwen7b_exception_only_calibration.json\\n===\\n{\\n  \\\"condition\\\": \\\"exception_only\\\",\\n  \\\"n_samples\\\": 1190,\\n  \\\"accuracy\\\": 0.998319,\\n  \\\"ece\\\": 0.002039,\\n  \\\"mce\\\": 0.041056,\\n  \\\"brier_score\\\": 0.00131,\\n  \\\"reliability_diagram\\\": [\\n    {\\n      \\\"bin_lower\\\": 0.5,\\n      \\\"bin_upper\\\": 0.55,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.55,\\n      \\\"bin_upper\\\": 0.6,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.6,\\n      \\\"bin_upper\\\": 0.65,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.65,\\n      \\\"bin_upper\\\": 0.7,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.7,\\n      \\\"bin_upper\\\": 0.75,\\n      \\\"mean_confidence\\\": 0.708944,\\n      \\\"accuracy\\\": 0.75,\\n      \\\"count\\\": 8\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.75,\\n      \\\"bin_upper\\\": 0.8,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.8,\\n      \\\"bin_upper\\\": 0.85,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.85,\\n      \\\"bin_upper\\\": 0.9,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.9,\\n      \\\"bin_upper\\\": 0.95,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.95,\\n      \\\"bin_upper\\\": 1.0,\\n      \\\"mean_confidence\\\": 0.998225,\\n      \\\"accuracy\\\": 1.0,\\n      \\\"count\\\": 1182\\n    }\\n  ],\\n  \\\"confidence_distribution\\\": [\\n    {\\n      \\\"bin_lower\\\": 0.5,\\n      \\\"bin_upper\\\": 0.55,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.55,\\n      \\\"bin_upper\\\": 0.6,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.6,\\n      \\\"bin_upper\\\": 0.65,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.65,\\n      \\\"bin_upper\\\": 0.7,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.7,\\n      \\\"bin_upper\\\": 0.75,\\n      \\\"count\\\": 8,\\n      \\\"fraction\\\": 0.006723\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.75,\\n      \\\"bin_upper\\\": 0.8,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.8,\\n      \\\"bin_upper\\\": 0.85,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.85,\\n      \\\"bin_upper\\\": 0.9,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.9,\\n      \\\"bin_upper\\\": 0.95,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.95,\\n      \\\"bin_upper\\\": 1.0,\\n      \\\"count\\\": 1182,\\n      \\\"fraction\\\": 0.993277\\n    }\\n  ],\\n  \\\"per_class\\\": {\\n    \\\"pass\\\": {\\n      \\\"ece\\\": 0.001554,\\n      \\\"brier\\\": 0.001826,\\n      \\\"mce\\\": 0.041056,\\n      \\\"n\\\": 851\\n    },\\n    \\\"fail\\\": {\\n      \\\"ece\\\": 0.003257,\\n      \\\"brier\\\": 1.5e-05,\\n      \\\"mce\\\": 0.003257,\\n      \\\"n\\\": 339\\n    }\\n  },\\n  \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42/final/\\\"\\n}===\\n{\\n  \\\"condition\\\": \\\"exception_only\\\",\\n  \\\"n_samples\\\": 1190,\\n  \\\"accuracy\\\": 0.993277,\\n  \\\"ece\\\": 0.006411,\\n  \\\"mce\\\": 0.775617,\\n  \\\"brier_score\\\": 0.006126,\\n  \\\"reliability_diagram\\\": [\\n    {\\n      \\\"bin_lower\\\": 0.5,\\n      \\\"bin_upper\\\": 0.55,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.55,\\n      \\\"bin_upper\\\": 0.6,\\n      \\\"mean_confidence\\\": 0.592667,\\n      \\\"accuracy\\\": 1.0,\\n      \\\"count\\\": 1\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.6,\\n      \\\"bin_upper\\\": 0.65,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.65,\\n      \\\"bin_upper\\\": 0.7,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.7,\\n      \\\"bin_upper\\\": 0.75,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.75,\\n      \\\"bin_upper\\\": 0.8,\\n      \\\"mean_confidence\\\": 0.798187,\\n      \\\"accuracy\\\": 1.0,\\n      \\\"count\\\": 2\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.8,\\n      \\\"bin_upper\\\": 0.85,\\n      \\\"mean_confidence\\\": 0.835484,\\n      \\\"accuracy\\\": 1.0,\\n      \\\"count\\\": 1\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.85,\\n      \\\"bin_upper\\\": 0.9,\\n      \\\"mean_confidence\\\": 0.883292,\\n      \\\"accuracy\\\": 1.0,\\n      \\\"count\\\": 8\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.9,\\n      \\\"bin_upper\\\": 0.95,\\n      \\\"mean_confidence\\\": 0.918474,\\n      \\\"accuracy\\\": 0.142857,\\n      \\\"count\\\": 7\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.95,\\n      \\\"bin_upper\\\": 1.0,\\n      \\\"mean_confidence\\\": 0.998044,\\n      \\\"accuracy\\\": 0.998292,\\n      \\\"count\\\": 1171\\n    }\\n  ],\\n  \\\"confidence_distribution\\\": [\\n    {\\n      \\\"bin_lower\\\": 0.5,\\n      \\\"bin_upper\\\": 0.55,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.55,\\n      \\\"bin_upper\\\": 0.6,\\n      \\\"count\\\": 1,\\n      \\\"fraction\\\": 0.00084\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.6,\\n      \\\"bin_upper\\\": 0.65,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.65,\\n      \\\"bin_upper\\\": 0.7,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.7,\\n      \\\"bin_upper\\\": 0.75,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.75,\\n      \\\"bin_upper\\\": 0.8,\\n      \\\"count\\\": 2,\\n      \\\"fraction\\\": 0.001681\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.8,\\n      \\\"bin_upper\\\": 0.85,\\n      \\\"count\\\": 1,\\n      \\\"fraction\\\": 0.00084\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.85,\\n      \\\"bin_upper\\\": 0.9,\\n      \\\"count\\\": 8,\\n      \\\"fraction\\\": 0.006723\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.9,\\n      \\\"bin_upper\\\": 0.95,\\n      \\\"count\\\": 7,\\n      \\\"fraction\\\": 0.005882\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.95,\\n      \\\"bin_upper\\\": 1.0,\\n      \\\"count\\\": 1171,\\n      \\\"fraction\\\": 0.984034\\n    }\\n  ],\\n  \\\"per_class\\\": {\\n    \\\"pass\\\": {\\n      \\\"ece\\\": 0.006928,\\n      \\\"brier\\\": 0.008089,\\n      \\\"mce\\\": 0.914901,\\n      \\\"n\\\": 851\\n    },\\n    \\\"fail\\\": {\\n      \\\"ece\\\": 0.007863,\\n      \\\"brier\\\": 0.001197,\\n      \\\"mce\\\": 0.407333,\\n      \\\"n\\\": 339\\n    }\\n  },\\n  \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final/\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "053ecdc1-33b9-4ce4-b54c-971a9c7fa511",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 212\\\\ndrwxr-xr-x  2 root root   4096 May 18 22:06 .\\\\ndrwxr-xr-x 93 root root   8192 May 19 07:09 ..\\\\n-rw-r--r--  1 root root 176655 May 18 22:06 calibration.log\\\\n-rw-r--r--  1 root root      5 May 18 22:06 calibration_done.flag\\\\n-rw-r--r--  1 root root   2925 May 18 22:06 codellama13b_exception_only_calibration.json\\\\n-rw-r--r--  1 root root   2963 May 18 22:04 deepseek_exception_only_calibration.json\\\\n-rw-r--r--  1 root root   2932 May 18 22:03 qwen15b_exception_only_calibration.json\\\\n-rw-r--r--  1 root root   2917 May 18 22:02 qwen7b_exception_only_calibration.json\\\\n===\\\\n{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"exception_only\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 1190,\\\\n  \\\\\\\"accuracy\\\\\\\": 0.998319,\\\\n  \\\\\\\"ece\\\\\\\": 0.002039,\\\\n  \\\\\\\"mce\\\\\\\": 0.041056,\\\\n  \\\\\\\"brier_score\\\\\\\": 0.00131,\\\\n  \\\\\\\"reliability_diagram\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.5,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.55,\\\\n      \\\\\\\"mean_confidence\\\\\\\": 0.0,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.0,\\\\n      \\\\\\\"count\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.55,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.6,\\\\n      \\\\\\\"mean_confidence\\\\\\\": 0.0,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.0,\\\\n      \\\\\\\"count\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.6,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.65,\\\\n      \\\\\\\"mean_confidence\\\\\\\": 0.0,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.0,\\\\n      \\\\\\\"count\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.65,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.7,\\\\n      \\\\\\\"mean_confidence\\\\\\\": 0.0,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.0,\\\\n      \\\\\\\"count\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.7,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.75,\\\\n      \\\\\\\"mean_confidence\\\\\\\": 0.708944,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.75,\\\\n      \\\\\\\"count\\\\\\\": 8\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.75,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.8,\\\\n      \\\\\\\"mean_confidence\\\\\\\": 0.0,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.0,\\\\n      \\\\\\\"count\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.8,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.85,\\\\n      \\\\\\\"mean_confidence\\\\\\\": 0.0,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.0,\\\\n      \\\\\\\"count\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.85,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.9,\\\\n      \\\\\\\"mean_confidence\\\\\\\": 0.0,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.0,\\\\n      \\\\\\\"count\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.9,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.95,\\\\n      \\\\\\\"mean_confidence\\\\\\\": 0.0,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.0,\\\\n      \\\\\\\"count\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.95,\\\\n      \\\\\\\"bin_upper\\\\\\\": 1.0,\\\\n      \\\\\\\"mean_confidence\\\\\\\": 0.998225,\\\\n      \\\\\\\"accuracy\\\\\\\": 1.0,\\\\n      \\\\\\\"count\\\\\\\": 1182\\\\n    }\\\\n  ],\\\\n  \\\\\\\"confidence_distribution\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.5,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.55,\\\\n      \\\\\\\"count\\\\\\\": 0,\\\\n      \\\\\\\"fraction\\\\\\\": 0.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.55,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.6,\\\\n      \\\\\\\"count\\\\\\\": 0,\\\\n      \\\\\\\"fraction\\\\\\\": 0.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.6,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.65,\\\\n      \\\\\\\"count\\\\\\\": 0,\\\\n      \\\\\\\"fraction\\\\\\\": 0.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.65,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.7,\\\\n      \\\\\\\"count\\\\\\\": 0,\\\\n      \\\\\\\"fraction\\\\\\\": 0.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.7,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.75,\\\\n      \\\\\\\"count\\\\\\\": 8,\\\\n      \\\\\\\"fraction\\\\\\\": 0.006723\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.75,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.8,\\\\n      \\\\\\\"count\\\\\\\": 0,\\\\n      \\\\\\\"fraction\\\\\\\": 0.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.8,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.85,\\\\n      \\\\\\\"count\\\\\\\": 0,\\\\n      \\\\\\\"fraction\\\\\\\": 0.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.85,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.9,\\\\n      \\\\\\\"count\\\\\\\": 0,\\\\n      \\\\\\\"fraction\\\\\\\": 0.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.9,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.95,\\\\n      \\\\\\\"count\\\\\\\": 0,\\\\n      \\\\\\\"fraction\\\\\\\": 0.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.95,\\\\n      \\\\\\\"bin_upper\\\\\\\": 1.0,\\\\n      \\\\\\\"count\\\\\\\": 1182,\\\\n      \\\\\\\"fraction\\\\\\\": 0.993277\\\\n    }\\\\n  ],\\\\n  \\\\\\\"per_class\\\\\\\": {\\\\n    \\\\\\\"pass\\\\\\\": {\\\\n      \\\\\\\"ece\\\\\\\": 0.001554,\\\\n      \\\\\\\"brier\\\\\\\": 0.001826,\\\\n      \\\\\\\"mce\\\\\\\": 0.041056,\\\\n      \\\\\\\"n\\\\\\\": 851\\\\n    },\\\\n    \\\\\\\"fail\\\\\\\": {\\\\n      \\\\\\\"ece\\\\\\\": 0.003257,\\\\n      \\\\\\\"brier\\\\\\\": 1.5e-05,\\\\n      \\\\\\\"mce\\\\\\\": 0.003257,\\\\n      \\\\\\\"n\\\\\\\": 339\\\\n    }\\\\n  },\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42/final/\\\\\\\"\\\\n}===\\\\n{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"exception_only\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 1190,\\\\n  \\\\\\\"accuracy\\\\\\\": 0.993277,\\\\n  \\\\\\\"ece\\\\\\\": 0.006411,\\\\n  \\\\\\\"mce\\\\\\\": 0.775617,\\\\n  \\\\\\\"brier_score\\\\\\\": 0.006126,\\\\n  \\\\\\\"reliability_diagram\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.5,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.55,\\\\n      \\\\\\\"mean_confidence\\\\\\\": 0.0,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.0,\\\\n      \\\\\\\"count\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.55,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.6,\\\\n      \\\\\\\"mean_confidence\\\\\\\": 0.592667,\\\\n      \\\\\\\"accuracy\\\\\\\": 1.0,\\\\n      \\\\\\\"count\\\\\\\": 1\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.6,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.65,\\\\n      \\\\\\\"mean_confidence\\\\\\\": 0.0,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.0,\\\\n      \\\\\\\"count\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.65,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.7,\\\\n      \\\\\\\"mean_confidence\\\\\\\": 0.0,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.0,\\\\n      \\\\\\\"count\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.7,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.75,\\\\n      \\\\\\\"mean_confidence\\\\\\\": 0.0,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.0,\\\\n      \\\\\\\"count\\\\\\\": 0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.75,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.8,\\\\n      \\\\\\\"mean_confidence\\\\\\\": 0.798187,\\\\n      \\\\\\\"accuracy\\\\\\\": 1.0,\\\\n      \\\\\\\"count\\\\\\\": 2\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.8,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.85,\\\\n      \\\\\\\"mean_confidence\\\\\\\": 0.835484,\\\\n      \\\\\\\"accuracy\\\\\\\": 1.0,\\\\n      \\\\\\\"count\\\\\\\": 1\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.85,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.9,\\\\n      \\\\\\\"mean_confidence\\\\\\\": 0.883292,\\\\n      \\\\\\\"accuracy\\\\\\\": 1.0,\\\\n      \\\\\\\"count\\\\\\\": 8\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.9,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.95,\\\\n      \\\\\\\"mean_confidence\\\\\\\": 0.918474,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.142857,\\\\n      \\\\\\\"count\\\\\\\": 7\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.95,\\\\n      \\\\\\\"bin_upper\\\\\\\": 1.0,\\\\n      \\\\\\\"mean_confidence\\\\\\\": 0.998044,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.998292,\\\\n      \\\\\\\"count\\\\\\\": 1171\\\\n    }\\\\n  ],\\\\n  \\\\\\\"confidence_distribution\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.5,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.55,\\\\n      \\\\\\\"count\\\\\\\": 0,\\\\n      \\\\\\\"fraction\\\\\\\": 0.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.55,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.6,\\\\n      \\\\\\\"count\\\\\\\": 1,\\\\n      \\\\\\\"fraction\\\\\\\": 0.00084\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.6,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.65,\\\\n      \\\\\\\"count\\\\\\\": 0,\\\\n      \\\\\\\"fraction\\\\\\\": 0.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.65,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.7,\\\\n      \\\\\\\"count\\\\\\\": 0,\\\\n      \\\\\\\"fraction\\\\\\\": 0.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.7,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.75,\\\\n      \\\\\\\"count\\\\\\\": 0,\\\\n      \\\\\\\"fraction\\\\\\\": 0.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.75,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.8,\\\\n      \\\\\\\"count\\\\\\\": 2,\\\\n      \\\\\\\"fraction\\\\\\\": 0.001681\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.8,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.85,\\\\n      \\\\\\\"count\\\\\\\": 1,\\\\n      \\\\\\\"fraction\\\\\\\": 0.00084\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.85,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.9,\\\\n      \\\\\\\"count\\\\\\\": 8,\\\\n      \\\\\\\"fraction\\\\\\\": 0.006723\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.9,\\\\n      \\\\\\\"bin_upper\\\\\\\": 0.95,\\\\n      \\\\\\\"count\\\\\\\": 7,\\\\n      \\\\\\\"fraction\\\\\\\": 0.005882\\\\n    },\\\\n    {\\\\n      \\\\\\\"bin_lower\\\\\\\": 0.95,\\\\n      \\\\\\\"bin_upper\\\\\\\": 1.0,\\\\n      \\\\\\\"count\\\\\\\": 1171,\\\\n      \\\\\\\"fraction\\\\\\\": 0.984034\\\\n    }\\\\n  ],\\\\n  \\\\\\\"per_class\\\\\\\": {\\\\n    \\\\\\\"pass\\\\\\\": {\\\\n      \\\\\\\"ece\\\\\\\": 0.006928,\\\\n      \\\\\\\"brier\\\\\\\": 0.008089,\\\\n      \\\\\\\"mce\\\\\\\": 0.914901,\\\\n      \\\\\\\"n\\\\\\\": 851\\\\n    },\\\\n    \\\\\\\"fail\\\\\\\": {\\\\n      \\\\\\\"ece\\\\\\\": 0.007863,\\\\n      \\\\\\\"brier\\\\\\\": 0.001197,\\\\n      \\\\\\\"mce\\\\\\\": 0.407333,\\\\n      \\\\\\\"n\\\\\\\": 339\\\\n    }\\\\n  },\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final/\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 212\\ndrwxr-xr-x  2 root root   4096 May 18 22:06 .\\ndrwxr-xr-x 93 root root   8192 May 19 07:09 ..\\n-rw-r--r--  1 root root 176655 May 18 22:06 calibration.log\\n-rw-r--r--  1 root root      5 May 18 22:06 calibration_done.flag\\n-rw-r--r--  1 root root   2925 May 18 22:06 codellama13b_exception_only_calibration.json\\n-rw-r--r--  1 root root   2963 May 18 22:04 deepseek_exception_only_calibration.json\\n-rw-r--r--  1 root root   2932 May 18 22:03 qwen15b_exception_only_calibration.json\\n-rw-r--r--  1 root root   2917 May 18 22:02 qwen7b_exception_only_calibration.json\\n===\\n{\\n  \\\"condition\\\": \\\"exception_only\\\",\\n  \\\"n_samples\\\": 1190,\\n  \\\"accuracy\\\": 0.998319,\\n  \\\"ece\\\": 0.002039,\\n  \\\"mce\\\": 0.041056,\\n  \\\"brier_score\\\": 0.00131,\\n  \\\"reliability_diagram\\\": [\\n    {\\n      \\\"bin_lower\\\": 0.5,\\n      \\\"bin_upper\\\": 0.55,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.55,\\n      \\\"bin_upper\\\": 0.6,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.6,\\n      \\\"bin_upper\\\": 0.65,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.65,\\n      \\\"bin_upper\\\": 0.7,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.7,\\n      \\\"bin_upper\\\": 0.75,\\n      \\\"mean_confidence\\\": 0.708944,\\n      \\\"accuracy\\\": 0.75,\\n      \\\"count\\\": 8\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.75,\\n      \\\"bin_upper\\\": 0.8,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.8,\\n      \\\"bin_upper\\\": 0.85,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.85,\\n      \\\"bin_upper\\\": 0.9,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.9,\\n      \\\"bin_upper\\\": 0.95,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.95,\\n      \\\"bin_upper\\\": 1.0,\\n      \\\"mean_confidence\\\": 0.998225,\\n      \\\"accuracy\\\": 1.0,\\n      \\\"count\\\": 1182\\n    }\\n  ],\\n  \\\"confidence_distribution\\\": [\\n    {\\n      \\\"bin_lower\\\": 0.5,\\n      \\\"bin_upper\\\": 0.55,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.55,\\n      \\\"bin_upper\\\": 0.6,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.6,\\n      \\\"bin_upper\\\": 0.65,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.65,\\n      \\\"bin_upper\\\": 0.7,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.7,\\n      \\\"bin_upper\\\": 0.75,\\n      \\\"count\\\": 8,\\n      \\\"fraction\\\": 0.006723\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.75,\\n      \\\"bin_upper\\\": 0.8,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.8,\\n      \\\"bin_upper\\\": 0.85,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.85,\\n      \\\"bin_upper\\\": 0.9,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.9,\\n      \\\"bin_upper\\\": 0.95,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.95,\\n      \\\"bin_upper\\\": 1.0,\\n      \\\"count\\\": 1182,\\n      \\\"fraction\\\": 0.993277\\n    }\\n  ],\\n  \\\"per_class\\\": {\\n    \\\"pass\\\": {\\n      \\\"ece\\\": 0.001554,\\n      \\\"brier\\\": 0.001826,\\n      \\\"mce\\\": 0.041056,\\n      \\\"n\\\": 851\\n    },\\n    \\\"fail\\\": {\\n      \\\"ece\\\": 0.003257,\\n      \\\"brier\\\": 1.5e-05,\\n      \\\"mce\\\": 0.003257,\\n      \\\"n\\\": 339\\n    }\\n  },\\n  \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_exception_only_seed42/final/\\\"\\n}===\\n{\\n  \\\"condition\\\": \\\"exception_only\\\",\\n  \\\"n_samples\\\": 1190,\\n  \\\"accuracy\\\": 0.993277,\\n  \\\"ece\\\": 0.006411,\\n  \\\"mce\\\": 0.775617,\\n  \\\"brier_score\\\": 0.006126,\\n  \\\"reliability_diagram\\\": [\\n    {\\n      \\\"bin_lower\\\": 0.5,\\n      \\\"bin_upper\\\": 0.55,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.55,\\n      \\\"bin_upper\\\": 0.6,\\n      \\\"mean_confidence\\\": 0.592667,\\n      \\\"accuracy\\\": 1.0,\\n      \\\"count\\\": 1\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.6,\\n      \\\"bin_upper\\\": 0.65,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.65,\\n      \\\"bin_upper\\\": 0.7,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.7,\\n      \\\"bin_upper\\\": 0.75,\\n      \\\"mean_confidence\\\": 0.0,\\n      \\\"accuracy\\\": 0.0,\\n      \\\"count\\\": 0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.75,\\n      \\\"bin_upper\\\": 0.8,\\n      \\\"mean_confidence\\\": 0.798187,\\n      \\\"accuracy\\\": 1.0,\\n      \\\"count\\\": 2\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.8,\\n      \\\"bin_upper\\\": 0.85,\\n      \\\"mean_confidence\\\": 0.835484,\\n      \\\"accuracy\\\": 1.0,\\n      \\\"count\\\": 1\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.85,\\n      \\\"bin_upper\\\": 0.9,\\n      \\\"mean_confidence\\\": 0.883292,\\n      \\\"accuracy\\\": 1.0,\\n      \\\"count\\\": 8\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.9,\\n      \\\"bin_upper\\\": 0.95,\\n      \\\"mean_confidence\\\": 0.918474,\\n      \\\"accuracy\\\": 0.142857,\\n      \\\"count\\\": 7\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.95,\\n      \\\"bin_upper\\\": 1.0,\\n      \\\"mean_confidence\\\": 0.998044,\\n      \\\"accuracy\\\": 0.998292,\\n      \\\"count\\\": 1171\\n    }\\n  ],\\n  \\\"confidence_distribution\\\": [\\n    {\\n      \\\"bin_lower\\\": 0.5,\\n      \\\"bin_upper\\\": 0.55,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.55,\\n      \\\"bin_upper\\\": 0.6,\\n      \\\"count\\\": 1,\\n      \\\"fraction\\\": 0.00084\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.6,\\n      \\\"bin_upper\\\": 0.65,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.65,\\n      \\\"bin_upper\\\": 0.7,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.7,\\n      \\\"bin_upper\\\": 0.75,\\n      \\\"count\\\": 0,\\n      \\\"fraction\\\": 0.0\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.75,\\n      \\\"bin_upper\\\": 0.8,\\n      \\\"count\\\": 2,\\n      \\\"fraction\\\": 0.001681\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.8,\\n      \\\"bin_upper\\\": 0.85,\\n      \\\"count\\\": 1,\\n      \\\"fraction\\\": 0.00084\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.85,\\n      \\\"bin_upper\\\": 0.9,\\n      \\\"count\\\": 8,\\n      \\\"fraction\\\": 0.006723\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.9,\\n      \\\"bin_upper\\\": 0.95,\\n      \\\"count\\\": 7,\\n      \\\"fraction\\\": 0.005882\\n    },\\n    {\\n      \\\"bin_lower\\\": 0.95,\\n      \\\"bin_upper\\\": 1.0,\\n      \\\"count\\\": 1171,\\n      \\\"fraction\\\": 0.984034\\n    }\\n  ],\\n  \\\"per_class\\\": {\\n    \\\"pass\\\": {\\n      \\\"ece\\\": 0.006928,\\n      \\\"brier\\\": 0.008089,\\n      \\\"mce\\\": 0.914901,\\n      \\\"n\\\": 851\\n    },\\n    \\\"fail\\\": {\\n      \\\"ece\\\": 0.007863,\\n      \\\"brier\\\": 0.001197,\\n      \\\"mce\\\": 0.407333,\\n      \\\"n\\\": 339\\n    }\\n  },\\n  \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final/\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The results already exist from yesterday (May 18). Let me also grab the Qwen-7B results for comparison.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "39f25130-6810-4b1b-b8fa-9a96c75aec1d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011CY32NSRFXXwxM2AVrKvML",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4639,
+      "cache_read_input_tokens": 32025,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4639
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+结果已于 2026-05-18 跑完，直接取现有结果。拉 Qwen-7B 结果做对比。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "2a1fb614-06c5-49f7-bf38-769c049f30da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011CY32NSRFXXwxM2AVrKvML",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4639,
+      "cache_read_input_tokens": 32025,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4639
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RyMFSoBmnUdYin6dcvrVT3`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "cat /root/autodl-tmp/trace-verdict-study-checkpoints/cross_model_calibration/qwen7b_exception_only_calibration.json 2>/dev/null | /root/miniconda3/bin/python -c \"import sys,json; d=json.load(sys.stdin); print(f'Accuracy: {d[\\\"accuracy\\\"]}\\nECE: {d[\\\"ece\\\"]}\\nBrier: {d[\\\"brier_score\\\"]}\\nMCE: {d[\\\"mce\\\"]}')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "b85e49ec-de81-4451-9125-049a7c756d12",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011CY32NSRFXXwxM2AVrKvML",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4639,
+      "cache_read_input_tokens": 32025,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4639
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T01:55:06.231Z_
+
+<details><summary>↩ Tool result · `toolu_01RyMFSoBmnUdYin6dcvrVT3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Accuracy: 0.998319\\nECE: 0.002717\\nBrier: 0.001311\\nMCE: 0.835484\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "b22c11b1-27ad-4794-81d9-c304663be816",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Accuracy: 0.998319\\\\nECE: 0.002717\\\\nBrier: 0.001311\\\\nMCE: 0.835484\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Accuracy: 0.998319\\nECE: 0.002717\\nBrier: 0.001311\\nMCE: 0.835484\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+Calibration 结果已存在（2026-05-18 跑完），无需重跑。
+
+## Exception_only Calibration 汇总
+
+| Model | Accuracy | ECE | Brier | MCE |
+|---|---|---|---|---|
+| **CodeLlama-13B** | 99.83% | 0.0020 | 0.0013 | 0.0411 |
+| **DeepSeek-6.7B** | 99.33% | 0.0064 | 0.0061 | 0.7756 |
+| **Qwen-7B** (参考) | 99.83% | 0.0027 | 0.0013 | 0.8355 |
+
+**要点：**
+- CodeLlama-13B calibration 最好：ECE 最低 (0.0020)，MCE 也远低于其他两个模型 (0.041 vs 0.78+)，说明它的高置信预测几乎全正确，没有严重的过度自信 bin
+- DeepSeek ECE 和 Brier 均最高，主要问题在 0.9-0.95 confidence bin：7 个样本中只有 1 个正确（accuracy=14.3%），造成 MCE=0.776
+- Qwen-7B 和 CodeLlama-13B accuracy 相同 (99.83%)，但 Qwen 的 MCE 高很多，说明它在少数低置信样本上同样存在 miscalibration
+- 三个模型的 Brier score 都很低 (<0.007)，因为绝大多数样本 (>98%) 落在 0.95-1.0 bin 且预测正确
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "uuid": "6eb22587-8e35-40ea-90b5-cf5c02c9f461",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BWo9a3vWtq3pWedmrRQZrU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 429,
+      "cache_read_input_tokens": 36664,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 429
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 29_
+
+Calibration 结果已存在（2026-05-18 跑完），无需重跑。
+
+## Exception_only Calibration 汇总
+
+| Model | Accuracy | ECE | Brier | MCE |
+|---|---|---|---|---|
+| **CodeLlama-13B** | 99.83% | 0.0020 | 0.0013 | 0.0411 |
+| **DeepSeek-6.7B** | 99.33% | 0.0064 | 0.0061 | 0.7756 |
+| **Qwen-7B** (参考) | 99.83% | 0.0027 | 0.0013 | 0.8355 |
+
+**要点：**
+- CodeLlama-13B calibration 最好：ECE 最低 (0.0020)，MCE 也远低于其他两个模型 (0.041 vs 0.78+)，说明它的高置信预测几乎全正确，没有严重的过度自信 bin
+- DeepSeek ECE 和 Brier 均最高，主要问题在 0.9-0.95 confidence bin：7 个样本中只有 1 个正确（accuracy=14.3%），造成 MCE=0.776
+- Qwen-7B 和 CodeLlama-13B accuracy 相同 (99.83%)，但 Qwen 的 MCE 高很多，说明它在少数低置信样本上同样存在 miscalibration
+- 三个模型的 Brier score 都很低 (<0.007)，因为绝大多数样本 (>98%) 落在 0.95-1.0 bin 且预测正确
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 51477,
+  "duration_api_ms": 50834,
+  "num_turns": 9,
+  "stop_reason": "end_turn",
+  "session_id": "c8a12c3a-bf4c-452d-87c2-c54285c2233b",
+  "total_cost_usd": 0.300303,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 25252,
+    "cache_read_input_tokens": 161526,
+    "output_tokens": 2383,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 25252,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 465,
+        "cache_read_input_tokens": 36664,
+        "cache_creation_input_tokens": 429,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 429
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 2383,
+      "cacheReadInputTokens": 161526,
+      "cacheCreationInputTokens": 25252,
+      "webSearchRequests": 0,
+      "costUSD": 0.29821300000000006,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    },
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1975,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0020900000000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "502b508a-c94a-4b0b-a6b3-d5ef744a5d59"
+}
+```
+
+</details>
+
+---

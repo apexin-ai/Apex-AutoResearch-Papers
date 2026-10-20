@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13c42d10fc17ffc5801e",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "plot fig2 reliability diagram",
+  "task_key": "worker_plot_fig2_reliability_diagram_20260515T175823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_plot_fig2_reliability_diagram_20260515T175823_result.json",
+    "occurrence": 1,
+    "bytes": 436,
+    "sha256": "ab8edfb872ac45cc484bbc98a07f66cb6d5d7d4a0a046bdf87d371b252520f11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已就位，图表质量良好：\n\n- **PDF**: 24KB | **PNG**: 208KB\n- 2×2 布局，Okabe-Ito 配色，ECE 标注，gap 柱（红色半透明），下方直方图 — 全部符合规格\n- 数据来自服务器实际 calibration bin 数据\n\n唯一差异：X 轴范围是 [0.5, 1.0] 而非 [0, 1]。因为所有 condition 的 confidence 值都 > 0.5，当前范围信息密度更高。需要改为 [0, 1] 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/plot-fig2-reliability-diagram.md"
+}

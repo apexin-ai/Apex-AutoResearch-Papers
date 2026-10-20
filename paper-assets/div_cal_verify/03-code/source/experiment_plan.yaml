@@ -1,0 +1,128 @@
+# Experiment Plan — Embedding Alignment Gap
+# Created: 2026-05-13 (D010)
+# Target: EMNLP 2026 ARR Findings (8-page)
+
+experiments:
+
+  # Phase 2: Core Phenomenon (MVP) — COMPLETED
+  - plan_id: plan_001
+    name: "Phase 2 三方法对比 (GPT2-125M, WikiText-103, seed=42)"
+    claim: [C1, C2-weak, C3]
+    description: "Self-iterate GPT2-125M x 8 gens x 3 methods (uncurated/RGDS/external_only). 主实验验证 alignment gap 存在、外部嵌入免疫、内部选择加速崩塌。"
+    priority: P0
+    registry_id: phase2_3method_selfit
+    estimated_gpu_hours: 6
+    depends_on: []
+
+  - plan_id: plan_002
+    name: "Phase 1b 自迭代崩塌验证 (GPT2-125M, uncurated)"
+    claim: [C1]
+    description: "验证 self-iterate 模式可诱导崩塌（D005 验证实验）。已完成，确认 rare n-gram -70%。"
+    priority: P0
+    registry_id: phase1b_self_iterate
+    estimated_gpu_hours: 2
+    depends_on: []
+
+  # Multi-seed Replication — P0
+  - plan_id: plan_003
+    name: "External_only seed=123 复现 (GPT2-125M, WikiText-103)"
+    claim: [C2-weak]
+    description: "验证 external_only selection ratio >1.0 的可复现性。"
+    priority: P0
+    registry_id: phase2_ext_seed123
+    estimated_gpu_hours: 2
+    depends_on: [plan_001]
+
+  - plan_id: plan_004
+    name: "三方法 seed=123 完整复现 (GPT2-125M, WikiText-103)"
+    claim: [C1, C2-weak, C3]
+    description: "uncurated + RGDS seed=123 (external_only 由 plan_003 覆盖)。验证 alignment gap ratio 衰减趋势和 RGDS 加速崩塌的可复现性。"
+    priority: P0
+    registry_id: phase2_seed123_remaining
+    estimated_gpu_hours: 4
+    depends_on: [plan_001]
+
+  - plan_id: plan_005
+    name: "三方法 seed=456 完整复现 (GPT2-125M, WikiText-103)"
+    claim: [C1, C2-weak, C3]
+    description: "3 methods x 8 gens, seed=456。第三个种子，满足统计检验最低要求。"
+    priority: P0
+    estimated_gpu_hours: 6
+    depends_on: [plan_001]
+
+  # Second Model Scale — P0
+  - plan_id: plan_006
+    name: "GPT2-medium 355M 三方法对比 (WikiText-103, seed=42)"
+    claim: [C1, C2-weak, C3]
+    description: "验证 alignment gap 在更大模型规模上存在。回应审稿人 GPT2-125M 太小的预期质疑。"
+    priority: P0
+    estimated_gpu_hours: 12
+    depends_on: [plan_001]
+
+  - plan_id: plan_007
+    name: "GPT2-medium 355M seed=123 复现"
+    claim: [C1, C2-weak, C3]
+    description: "GPT2-medium 多 seed 验证。"
+    priority: P0
+    estimated_gpu_hours: 12
+    depends_on: [plan_006]
+
+  # Mitigation Experiment — P0.5
+  - plan_id: plan_008
+    name: "Embedding re-anchoring 缓解实验 (GPT2-125M, 3 seeds)"
+    claim: [C_mitigation]
+    description: "每 K 代用原始预训练权重重新计算选择嵌入。如果 ratio 恢复到 >1.0，证明 alignment gap 可修复。3 seeds (42/123/456) 满足 Dream D011 要求。成功则论文从发现升级为发现+解决。"
+    priority: P0.5
+    estimated_gpu_hours: 6
+    depends_on: [plan_001]
+
+  # Second Dataset — P1
+  - plan_id: plan_009
+    name: "OpenWebText 子集 三方法对比 (GPT2-125M, seed=42)"
+    claim: [C1, C2-weak, C3]
+    description: "验证 alignment gap 跨数据集存在。回应 WikiText-103 是否特殊的质疑。"
+    priority: P1
+    estimated_gpu_hours: 6
+    depends_on: [plan_001]
+
+  # Random 50% Baseline — P0 (Reviewer-identified critical confound)
+  - plan_id: plan_011
+    name: "Random 50% baseline (GPT2-125M, WikiText-103, seed=42)"
+    claim: [C3]
+    description: "随机 50% 采样 baseline，隔离数据量效应 vs 选择质量效应。当前 uncurated=100%, RGDS/external=50%，审稿人必问数据量 confound。Random 50% vs RGDS 50% = 纯选择质量。实现：--method uncurated + select_data() 加随机 50% 采样。"
+    priority: P0
+    estimated_gpu_hours: 2
+    depends_on: [plan_001]
+
+  # Selection Budget Ablation — P1 (Dream reviewer attack surface)
+  - plan_id: plan_010
+    name: "Selection budget ratio ablation (GPT2-125M, seed=42)"
+    claim: [C1, C3]
+    description: "测试 selection budget 30%/50%/70% 对 alignment gap 大小的影响。低成本高防御价值——审稿人可能追问 budget fraction 敏感性。"
+    priority: P1
+    estimated_gpu_hours: 2
+    depends_on: [plan_001]
+
+  # Zero-cost Analyses (no GPU needed, run on existing data)
+  - plan_id: plan_012
+    name: "Self-BLEU / distinct-n 多样性度量 (seed=42 existing data)"
+    claim: [C1, C3, S1]
+    description: "在已有 synthetic data 上计算 Self-BLEU 和 distinct-1/2/3，验证 rare n-gram 结论不是 metric artifact。0 GPU-h。"
+    priority: P0.5
+    estimated_gpu_hours: 0
+    depends_on: [plan_001]
+
+  - plan_id: plan_013
+    name: "PCA explained variance ratio 分析 (seed=42 existing data)"
+    claim: [C1]
+    description: "对每代内部嵌入跑 PCA，画 explained variance ratio 曲线。前几个主成分解释方差比例逐代增加 = dimensional collapse 直接证据，对接 Jing 2022。0 GPU-h。"
+    priority: P0.5
+    estimated_gpu_hours: 0
+    depends_on: [plan_001]
+
+# GPU Budget Summary
+# P0 total:  ~46 GPU-hours (plan_001-007, plan_011)
+# P0.5:      ~6 GPU-hours (plan_008) + 0h (plan_012-013)
+# P1:        ~8 GPU-hours (plan_009-010)
+# Grand total: ~60 GPU-hours
+# Available:  ~560 GPU-hours (2 GPUs x 12 days) — budget is ample

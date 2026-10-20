@@ -1,0 +1,16 @@
+{
+  "exp_id": "codellama13b_full_trace_tail1024_seed42_v2",
+  "project": "trace-verdict-study",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T03:25:33.875Z",
+    "updated_at": "2026-05-18T03:25:41.496Z",
+    "hypothesis": "CodeLlama-13B tail-1024 应收敛到 96.5% 附近（与 DeepSeek 96.47%、Qwen-1.5B 96.6% 不可区分），确认 tail-1024 convergence band 跨 4 模型 universal",
+    "parent": "codellama13b_full_trace_tail512_seed42"
+  },
+  "timestamp": "2026-05-18T03:25:41.710077+00:00",
+  "trigger": "update_registry"
+}

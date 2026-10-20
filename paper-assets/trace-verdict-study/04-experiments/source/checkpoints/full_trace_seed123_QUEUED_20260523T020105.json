@@ -1,0 +1,16 @@
+{
+  "exp_id": "full_trace_seed123",
+  "project": "trace-verdict-study",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T02:00:52.168Z",
+    "updated_at": "2026-05-23T02:01:05.505Z",
+    "hypothesis": "Full-trace multi-seed robustness (seed 123): full execution trace with chat-template-aware truncation achieves similar accuracy to seed42 (81.76%), establishing 3-seed statistics for the full_trace condition to support rebuttal against single-seed concerns",
+    "parent": "full_trace_seed42_v5"
+  },
+  "timestamp": "2026-05-23T02:01:05.891676+00:00",
+  "trigger": "update_registry"
+}

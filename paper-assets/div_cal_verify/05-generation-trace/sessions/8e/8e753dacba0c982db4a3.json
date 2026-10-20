@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e753dacba0c982db4a3",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "monitor all running experiments",
+  "task_key": "worker_monitor_all_running_experiments_20260513T175625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_all_running_experiments_20260513T175625_result.json",
+    "occurrence": 1,
+    "bytes": 1823,
+    "sha256": "8cc8cbd33f744005ba77dc0a8dee1a0e164d1a4b0fcae49cb7fd4dfa8c976397"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### GPU 使用\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| cuda:0 | 100% | 79986 / 97887 MiB |\n| cuda:1 | 58% | 12227 / 97887 MiB |\n\n---\n\n### 1. random_50_seed123 (PID 250452, cuda:0) — **运行中, Gen 2/7 训练阶段**\n- 运行时间: 48分45秒\n- 已完成 Gen 0 和 Gen 1，当前 Gen 2 正在训练 student\n- 每代约 710s，预计还需 ~59 分钟完成剩余 5 代\n\n**已完成 metrics:**\n\n| Gen | Perplexity | RankMe | k-NN | Rare n-gram | Rank corr | Time |\n|-----|-----------|--------|------|-------------|-----------|------|\n| 0 | 36.46 | 272.72 | 0.9880 | 0.02935 | -0.0114 | 713s |\n| 1 | 43.44 | 287.58 | 0.9880 | 0.01968 | -0.0431 | 708s |\n\nbaseline Gen-0 RankMe: 231.08\n\n---\n\n### 2. random_50_seed456 (PID 250453, cuda:0) — **运行中, Gen 2/7 训练阶段**\n- 运行时间: 48分45秒\n- 已完成 Gen 0 和 Gen 1，当前 Gen 2 正在训练 student\n\n**已完成 metrics:**\n\n| Gen | Perplexity | RankMe | k-NN | Rare n-gram | Rank corr | Time |\n|-----|-----------|--------|------|-------------|-----------|------|\n| 0 | 36.91 | 274.42 | 0.9880 | 0.02843 | -0.0070 | 706s |\n| 1 | 43.89 | 289.60 | 0.9880 | 0.01901 | -0.0316 | 709s |\n\nbaseline Gen-0 RankMe: 231.08\n\n---\n\n### 3. seed456_methods / uncurated_seed456 (cuda:1) — **运行中, 刚启动**\n- 日志仅 6 行，刚开始第一个方法 `uncurated_seed456`\n- 启动时间: Thu May 14 01:52:08 CST 2026\n- 尚未产出任何 generation metrics\n- 后续还有 ext_seed456 → rgds_seed456 串行等待\n\n---\n\n**两个 seed 的 Gen 0-1 趋势一致**: perplexity 从 ~36→~43 上升，RankMe 从 ~273→~289 上升，rare n-gram 从 ~0.029→~0.019 下降，rank corr 从 ~-0.01→~-0.04 略降。两个 random50 实验预计约 1 小时后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-all-running-experiments.md"
+}

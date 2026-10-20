@@ -1,0 +1,373 @@
+{
+  "figures_found": [
+    {
+      "number": "1",
+      "env_type": "figure*",
+      "image_path": "fig1_trace_overview",
+      "caption": "Overview of the verdict prediction pipeline. Source code and a test input are executed to produce a full raw trace. Four conditions vary the trace information: \\texttt{no\\_trace} (75.13\\%), \\texttt{fu",
+      "tool": "unknown",
+      "fig_type": "statistical",
+      "is_hero": true,
+      "source_file": "method.tex"
+    },
+    {
+      "number": "2",
+      "env_type": "figure",
+      "image_path": "fig3_cross_model_gap",
+      "caption": "Verdict accuracy vs.\\ model scale. \\texttt{exception\\_only} maintains ${\\geq}$99.33\\% regardless of scale, while \\texttt{no\\_trace} shows monotonic sensitivity (+4.12pp). \\texttt{nomarker} (markers re",
+      "tool": "unknown",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "experiments.tex"
+    },
+    {
+      "number": "3",
+      "env_type": "figure",
+      "image_path": "budget_curve",
+      "caption": "Tail-truncation budget curve across four models and three architecture families ($N{=}1{,}190$). A sharp phase transition at 384$\\to$512 tokens (+13.2--22.0pp) coincides with the globals module dump b",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "experiments.tex"
+    },
+    {
+      "number": "A.1",
+      "env_type": "figure",
+      "image_path": "fig2_calibration",
+      "caption": "Reliability diagrams for four trace conditions on Qwen-2.5-7B ($N{=}1{,}190$, seed=42). \\texttt{exception\\_only} (ECE=0.0027) clusters near the diagonal, while \\texttt{no\\_trace} (ECE=0.171) exhibits ",
+      "tool": "unknown",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.2",
+      "env_type": "figure",
+      "image_path": "error_overlap",
+      "caption": "Jaccard similarity between error sets of different conditions (Qwen-7B, seed=42, $N{=}1{,}190$). \\texttt{exception\\_only} (exc\\_only) has zero overlap with all other conditions, indicating it operates",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.3",
+      "env_type": "figure",
+      "image_path": "training_dynamics",
+      "caption": "Training dynamics: \\texttt{exception\\_only} converges to 99.83\\% by step 150; \\texttt{full\\_trace} with label-only loss oscillates (82--89\\%) without convergence.",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    }
+  ],
+  "results": [
+    {
+      "number": "1",
+      "status": "skipped",
+      "tool": "unknown",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "2",
+      "status": "skipped",
+      "tool": "unknown",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "3",
+      "status": "skipped",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.1",
+      "status": "skipped",
+      "tool": "unknown",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.2",
+      "status": "skipped",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.3",
+      "status": "skipped",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    }
+  ],
+  "post_review": {
+    "compile": {
+      "success": true,
+      "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/_latex_iso_njg_qtk3/main.pdf"
+    },
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig2_calibration' which does not exist",
+          "location": "appendix.tex:597"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'error_overlap' which does not exist",
+          "location": "appendix.tex:618"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'training_dynamics' which does not exist",
+          "location": "appendix.tex:677"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig3_cross_model_gap' which does not exist",
+          "location": "experiments.tex:56"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'budget_curve' which does not exist",
+          "location": "experiments.tex:191"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig1_trace_overview' which does not exist",
+          "location": "method.tex:34"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:training_dynamics} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:debugbench} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:additional} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:discussion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:calibration_full} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ai-assistants} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:40"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:205"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:228"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:393"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:456"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:475"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:505"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:729"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:788"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments.tex:16"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments.tex:71"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "6 critical, 18 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper",
+      "sections": [
+        {
+          "file": "arr_checklist.tex",
+          "role": "other",
+          "num_numbers": 9,
+          "num_cites": 7
+        },
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 2,
+          "num_cites": 0
+        },
+        {
+          "file": "discussion.tex",
+          "role": "other",
+          "num_numbers": 2,
+          "num_cites": 2
+        },
+        {
+          "file": "experiments.tex",
+          "role": "result",
+          "num_numbers": 172,
+          "num_cites": 1
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 4,
+          "num_cites": 10
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 17,
+          "num_cites": 8
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 35
+        }
+      ],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'jimenez2024swebench' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'kamei2013large' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'liu2023codeexecution' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'wang2025openhands' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'yang2024generalization' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "arr_checklist": [
+              "\\alpha",
+              "\\sim",
+              "\\times"
+            ],
+            "conclusion": [
+              "\\geq",
+              "\\leq"
+            ],
+            "discussion": [
+              "\\approx",
+              "\\geq",
+              "\\leq",
+              "\\sim",
+              "\\times"
+            ],
+            "experiments": [
+              "\\Delta",
+              "\\S",
+              "\\dag",
+              "\\ddag",
+              "\\geq",
+              "\\leq",
+              "\\pm",
+              "\\sigma",
+              "\\sim",
+              "\\times",
+              "\\to"
+            ],
+            "introduction": [
+              "\\geq",
+              "\\leq",
+              "\\sim"
+            ],
+            "method": [
+              "\\alpha",
+              "\\approx",
+              "\\times"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 5,
+        "info": 1
+      }
+    }
+  },
+  "backup_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/_figure_backups/20260524_052133",
+  "error": "",
+  "timestamp": "2026-05-24T05:22:10.212984+00:00"
+}

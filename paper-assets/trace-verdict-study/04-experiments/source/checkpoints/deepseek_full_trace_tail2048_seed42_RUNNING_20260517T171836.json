@@ -1,0 +1,42 @@
+{
+  "exp_id": "deepseek_full_trace_tail2048_seed42",
+  "project": "trace-verdict-study",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:52:23.728Z",
+    "updated_at": "2026-05-17T17:18:36.562Z",
+    "hypothesis": "Tail-truncation signal concentration hypothesis generalizes across architectures: DeepSeek-Coder-6.7B with tail-2048 truncation should achieve accuracy comparable to Qwen-7B tail-2048 (97.31%), because execution trace endings contain the most verdict-relevant signals regardless of model architecture.",
+    "parent": "full_trace_tail_seed42",
+    "spec": {
+      "command": "/root/miniconda3/bin/python train/train_sft.py --condition full_trace_tail --model_path ... --gradient_checkpointing --gpu 0 --seed 42 --output_dir ... && /root/miniconda3/bin/python eval/evaluate.py --condition full_trace_tail --checkpoint_dir .../final --gpu 0 --save_predictions",
+      "server": "westd-11235",
+      "gpu": "cuda:0",
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/full_trace_tail_{train,test}.jsonl",
+      "data_count": 4720,
+      "model_name": "DeepSeek-Coder-6.7B-Instruct",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail2048_seed42/final",
+      "log_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail2048_seed42/train_eval.log",
+      "checkpoint_source": "self-trained SFT on full_trace_tail data",
+      "eval_data": "/root/autodl-tmp/trace-verdict-study-data/full_trace_tail_test.jsonl (1190 samples)"
+    },
+    "metrics": {
+      "accuracy": 0.9496,
+      "accuracy_ci_lower": 0.937,
+      "accuracy_ci_upper": 0.9622,
+      "pass_precision": 0.9692,
+      "pass_recall": 0.96,
+      "pass_f1": 0.9646,
+      "fail_precision": 0.902,
+      "fail_recall": 0.9233,
+      "fail_f1": 0.9125,
+      "n_test": 1190
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T17:18:36.741089+00:00",
+  "trigger": "update_registry"
+}

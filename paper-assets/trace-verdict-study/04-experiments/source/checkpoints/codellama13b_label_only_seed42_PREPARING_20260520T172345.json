@@ -1,0 +1,15 @@
+{
+  "exp_id": "codellama13b_label_only_seed42",
+  "project": "trace-verdict-study",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:23:45.493Z",
+    "updated_at": "2026-05-20T17:23:45.493Z",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-20T17:23:45.869693+00:00",
+  "trigger": "update_registry"
+}

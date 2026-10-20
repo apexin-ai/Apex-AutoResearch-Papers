@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08fef4dc622b7dee9957",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops tex consistency check",
+  "task_key": "worker_ops_tex_consistency_check_20260521T004006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_tex_consistency_check_20260521T004006_result.json",
+    "occurrence": 1,
+    "bytes": 1625,
+    "sha256": "11c93deb22a230b4760ad194518bc662edadc31bd9c2a98155f1fa2e0ead242c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "method.tex 用的是 `figure*`（双栏通栏），所以 `\\begin{figure}` 没匹配到，正常。\n\n---\n\n## 汇报\n\n### 1. 旧数字残留\n\n| 值 | 匹配数 | 判定 |\n|---|---|---|\n| **67.31** | 0 | 已清除，无残留 |\n| **12.23** | 0 | 已清除，无残留 |\n| **12.2** | 0 | 已清除，无残留 |\n| **9.16** | 11 处 | **全部为 99.16 或 79.16**，无独立 9.16 |\n\n9.16 详细匹配（均合理，无需修复）：\n- `99.16%` — DeepSeek VOTA seed 123 的正确结果，出现在 appendix.tex (8, 243, 259, 262, 638, 654) 和 experiments.tex (40, 61)\n- `79.16%` — DeepSeek full_trace 重跑结果，出现在 appendix.tex (25, 246) 和 main.tex (43)\n\n**结论：全部 4 个旧数字已无残留，无需修复。**\n\n### 2. 交叉引用完整性\n\n| 检查项 | 结果 |\n|---|---|\n| undefined references | 无（main.log 无匹配） |\n| multiply-defined labels | 无 |\n\n**Table 统计**：22 个 `\\begin{table}`，21 个 `\\label{tab:}`。差 1 个是 arr_checklist.tex 的表格（无需 label，合理）。\n\n**Figure 统计**：5 个 `\\begin{figure}` + 1 个 `\\begin{figure*}`（method.tex），共 6 个 figure 环境；6 个 `\\label{fig:}`。**一一对应，完整。**\n\n**结论：交叉引用完整，无问题。**\n\n### 3. codellama 进度\n\n| 项 | 值 |\n|---|---|\n| PID | 654451，存活 |\n| 运行时间 | 3h 20m 49s |\n| 进度 | **408/444 steps (92%)** |\n| 速度 | ~27-28s/step |\n| 预计剩余 | **~17 分钟**（36 steps × 28s） |\n| eval 结果 | 尚未生成 |\n\n训练即将完成，eval 会在 444 step 后自动运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-tex-consistency-check.md"
+}

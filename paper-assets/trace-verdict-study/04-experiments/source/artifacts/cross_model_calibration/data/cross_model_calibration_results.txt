@@ -1,0 +1,16 @@
+Cross-model Calibration Results (exception_only, n=1190)
+
+Model            Accuracy   ECE      MCE      Brier
+Qwen2.5-7B      0.9983     0.0027   0.8355   0.0013
+Qwen2.5-1.5B    0.9983     0.0020   0.7549   0.0013
+CodeLlama-13B   0.9983     0.0020   0.0411   0.0013
+DeepSeek-6.7B   0.9933     0.0064   0.7756   0.0061
+
+Findings:
+- ECE < 0.007 for all 4 models: calibration quality is universally strong
+- 3/4 models achieve identical accuracy (99.83%), DeepSeek slightly lower (99.33%)
+- Brier scores tightly clustered: 0.0013 for 3 models, 0.0061 for DeepSeek
+- CodeLlama-13B has notably low MCE (0.041), indicating no high-confidence errors
+- DeepSeek-6.7B weakest but still excellent calibration
+
+Source: /root/autodl-tmp/trace-verdict-study-checkpoints/cross_model_calibration/

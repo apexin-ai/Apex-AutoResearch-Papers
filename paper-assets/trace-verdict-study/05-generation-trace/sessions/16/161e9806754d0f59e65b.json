@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "161e9806754d0f59e65b",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops cross dataset progress",
+  "task_key": "worker_ops_cross_dataset_progress_20260522T060128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cross_dataset_progress_20260522T060128_result.json",
+    "occurrence": 1,
+    "bytes": 1360,
+    "sha256": "e4796d95e29c8f6792e58ff0e64907e06640285cf964847e62080c49f33d1341"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总报告：\n\n## Cross-Dataset 训练进度\n\n| # | 实验 | 状态 | Accuracy | pass_f1 | fail_f1 |\n|---|------|------|----------|---------|---------|\n| 1 | cross_he2mbpp_exception_only | **DONE** | **99.4%** | 0.996 | 0.991 |\n| 2 | cross_he2mbpp_no_trace | **DONE** | **70.6%** | 0.807 | 0.376 |\n| 3 | cross_mbpp2he_exception_only | **训练中** | — | — | — |\n| 4 | cross_mbpp2he_no_trace | **未开始** | — | — | — |\n\n### 实验 3 进度\n- 训练步: 111/402 (28%)，~10.6s/step\n- 预计训练剩余: ~51 min，加评估 ~10 min → **约 15:10 CST 完成**\n- 实验 4 预计 ~17:30 CST 完成（整体 batch ~18:00 CST 前全部结束）\n\n### HE→MBPP 结果分析\nexception_only (99.4%) vs no_trace (70.6%)：差距 **28.8pp**，exception trace 在跨数据集泛化上碾压 no_trace baseline。no_trace 仅高于 majority baseline 1.5pp，fail_f1=0.376 说明几乎无法识别失败用例。\n\n### cuda:1 状态\n占用中（100% util, 87.8GB/97.9GB），跑 experiment 3。cuda:0 空闲（49.2GB 显存被占但 0% util）。\n\n### 能否开始 Experiment 3（exception subcomponent ablation）？\n**不能**，cuda:1 被 cross-dataset batch 占用，预计 ~18:00 CST 才释放。cuda:0 可用但有 49GB 显存被其他进程占用，需先确认该进程是否可以释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cross-dataset-progress.md"
+}

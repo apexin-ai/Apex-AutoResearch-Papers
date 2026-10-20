@@ -1,0 +1,21 @@
+{
+  "exp_id": "codellama_no_trace_seed42",
+  "project": "trace-verdict-study",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T07:27:42.805Z",
+    "updated_at": "2026-05-16T07:47:05.222Z",
+    "spec": {
+      "hypothesis": "Multi-family baseline: no_trace on CodeLlama-7B-Instruct.",
+      "model_name": "CodeLlama-7b-Instruct-hf",
+      "seed": 42,
+      "condition": "no_trace"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-16T07:47:05.393615+00:00",
+  "trigger": "update_registry"
+}

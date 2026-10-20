@@ -1,0 +1,28 @@
+{
+  "exp_id": "exception_only_padded2048_seed42",
+  "project": "trace-verdict-study",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T18:24:05.794Z",
+    "updated_at": "2026-05-21T18:31:07.703Z",
+    "hypothesis": "Padding exception_only traces to 2048 tokens (matching full_trace length) with neutral tokens should preserve ~99% accuracy, proving performance gap between exception_only and full_trace is due to information noise not sequence length. Controls for the 13x length confound (150 vs 2048 tokens).",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/trace-verdict-study && /root/miniconda3/bin/python train/train_sft.py --condition exception_only_padded2048 --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_padded2048_seed42 --wandb_project trace-verdict-study --wandb_run_name exception_only_padded2048_seed42 && /root/miniconda3/bin/python eval/evaluate.py --condition exception_only_padded2048 --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_padded2048_seed42/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_padded2048_seed42/final/eval_results.json --save_predictions\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "720490",
+      "log_path": "~/runs/trace-verdict-study/exception_only_padded2048_seed42.log",
+      "submitted_at": "2026-05-21T18:29:53.466Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-21T18:31:08.060833+00:00",
+  "trigger": "update_registry"
+}

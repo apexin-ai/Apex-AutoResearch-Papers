@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d150430165dcb4952a3",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "diagnose phase1b results",
+  "task_key": "worker_diagnose_phase1b_results_20260513T031032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_phase1b_results_20260513T031032_result.json",
+    "occurrence": 1,
+    "bytes": 2792,
+    "sha256": "f7ff97f30a5a274f875787fe00ac1965853c88cfa6334d3b3ac9328c23272967"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Phase 1b Self-Iterate 实验结果\n\n### 1. 进程状态\n**已完成** — PID 123407 不存在，日志显示 `EXIT_CODE=0`，于 `Wed May 13 10:41:51 CST 2026` 正常结束。\n\n### 2. 完成度\n**8/8 代全部完成**（gen_0 ~ gen_7），总耗时约 60 分钟。\n\n### 3. 每 Generation 指标\n\n| Gen | PPL | RankMe | k-NN | Rare n-gram | Rank Corr | Notes |\n|-----|-------|--------|-------|-------------|-----------|-------|\n| 0 | 37.10 | 280.32 | 0.988 | 0.0290 | -0.023 | baseline |\n| 1 | 44.90 | 297.81 | 0.988 | 0.0192 | -0.055 | |\n| 2 | 51.63 | 302.62 | 0.987 | 0.0139 | -0.049 | |\n| 3 | **56.97** | **303.27** | 0.988 | 0.0116 | -0.044 | PPL peak |\n| 4 | 55.71 | 301.33 | 0.988 | 0.0101 | -0.042 | PPL 开始回落 |\n| 5 | 51.74 | 297.35 | 0.988 | 0.0098 | -0.048 | |\n| 6 | 48.67 | 293.01 | 0.988 | 0.0089 | -0.065 | |\n| 7 | 48.11 | 289.79 | 0.988 | 0.0087 | -0.087 | |\n\n原始 GPT2 预训练模型 RankMe 基线：**231.08**（all_results.json 中的 `rankme_gen0`）\n\n### 4. 崩塌判断\n\n**RankMe**：未出现 >20% 持续下降。先从 280→303 上升（gen 0→3），再缓慢下降至 290（gen 3→7），下降幅度仅 4.4%。所有 generation 均远高于原始基线 231.08。\n\n**PPL**：先恶化（37.1→57.0，gen 0→3），后回落（57.0→48.1，gen 3→7）。非单调上升，呈倒 U 型。最终仍比 gen 0 差 30%。\n\n**k-NN**：极其稳定，全程 0.987-0.988，无退化。\n\n**Rare n-gram survival**：**单调下降 70%**（0.029→0.0087），这是最明显的崩塌信号——词汇多样性持续丢失。\n\n**Rank correlation**：全程为小负值，从 -0.023 逐渐加深至 -0.087，合成数据与真实数据排序一致性在下降。\n\n### 5. 日志最后几行\n```\n[5/5] Gen 7 summary:\n  Perplexity:     48.11\n  RankMe:         289.79\n  k-NN accuracy:  0.9880\n  Rare n-gram:    0.00871655790707865\n  Rank corr:      -0.0869\n  Time:           451s\n\n===== PHASE 1b COMPLETE =====\nEnd: Wed May 13 10:41:51 CST 2026\nEXIT_CODE=0\n```\n\n错误日志中仅有 HuggingFace 连接超时（Network unreachable），均为非致命错误，模型从本地 cache 加载成功。\n\n### 6. Conclusion: **Partial collapse (success)**\n\n无策展的 self-iterate 基线展现了**部分崩塌**模式：\n- **崩塌维度**：词汇多样性（rare n-gram）持续严重丢失（-70%），rank correlation 持续恶化\n- **稳定维度**：表征质量（RankMe、k-NN）几乎无退化；PPL 先恶化后自恢复\n\n这是一个有价值的正面结果——证明 uncurated self-iterate 下\"model collapse\"主要表现为多样性崩塌而非全面质量崩塌，为后续 Phase 2 的 curation 方法提供了清晰的 baseline 和改进目标（主攻 rare n-gram 保持）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-phase1b-results.md"
+}

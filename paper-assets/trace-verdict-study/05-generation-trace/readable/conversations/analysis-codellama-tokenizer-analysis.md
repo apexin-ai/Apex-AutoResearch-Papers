@@ -1,0 +1,1657 @@
+# analysis codellama tokenizer analysis
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 53
+- **Recorded user turns:** 0
+- **Tool calls:** 26
+- **Original source:** `logs/chats/worker_analysis_codellama_tokenizer_analysis_20260518T120927.jsonl`
+- **Structured JSON:** [`ffe3e070fc43b5f42a24.json`](../../sessions/ff/ffe3e070fc43b5f42a24.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+53 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T12:20:04.023471+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T12:20:04.023812+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T12:20:04.023983+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "head -2 /root/autodl-tmp/trace-verdict-study-data/full_trace_tail_train.jsonl | python3 -c \"import sys,json; [print(json.dumps({k: (v[:200] if isinstance(v,str) else v) for k,v in json.loads(line).items()})) for line in sys.stdin]\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "head -2 /root/autodl-tmp/trace-verdict-study-data/full_trace_tail_train.jsonl | python3 -c \"import sys,json; [print(json.dumps({k: (v[:200] if isinstance(v,str) else v) for k,v in json.loads(line).items()})) for line in sys.stdin]\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T12:20:04.024120+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "wc -l /root/autodl-tmp/trace-verdict-study-data/full_trace_tail_train.jsonl /root/autodl-tmp/trace-verdict-study-data/full_trace_tail_test.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "wc -l /root/autodl-tmp/trace-verdict-study-data/full_trace_tail_train.jsonl /root/autodl-tmp/trace-verdict-study-data/full_trace_tail_test.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-18T12:20:04.024322+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"input\\\": \\\"Given the following code:\\\\ndef consecutive_duplicates(lst):\\\\n    return [lst[i] for i in range(len(lst)) if i == 0 or lst[i] != lst[i-1]]\\\\n\\\\nTest code:\\\\nassert consecutive_duplicates([0, 0, 1, 2, 3, 4, 4, \\\", \\\"output\\\": \\\"pass\\\", \\\"problem_id\\\": \\\"MBPP/730\\\"}\\n{\\\"input\\\": \\\"Given the following code:\\\\ndef consecutive_duplicates(lst):\\\\n    return [lst[i] for i in range(len(lst)) if i == 0 or lst[i] != lst[i-1]]\\\\n\\\\nTest code:\\\\nassert consecutive_duplicates([0, 0, 1, 2, 3, 4, 4, \\\", \\\"output\\\": \\\"pass\\\", \\\"problem_id\\\": \\\"MBPP/730\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T12:20:04.024495+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    4720 /root/autodl-tmp/trace-verdict-study-data/full_trace_tail_train.jsonl\\n    1190 /root/autodl-tmp/trace-verdict-study-data/full_trace_tail_test.jsonl\\n    5910 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.0}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T12:20:04.024699+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "cat > /tmp/tokenizer_analysis.py << 'PYEOF'\nimport json\nimport numpy as np\nfrom transformers import AutoTokenizer\nimport sys\n\nmodels = {\n    \"Qwen-7B\": \"/root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct\",\n    \"DeepSeek-6.7B\": \"/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct\",\n    \"Qwen-1.5B\": \"/root/trace-verdict-study/models/Qwen2.5-Coder-1.5B-Instruct\",\n    \"CodeLlama-13B\": \"/root/autodl-tmp/models/CodeLlama-13b-Instruct-hf/\",\n}\n\nMAX_LEN = 2048\n\nprint(\"Loading tokenizers...\", file=sys.stderr)\ntokenizers = {}\nfor name, path in models.items():\n    print(f\"  Loading {name}...\", file=sys.stderr)\n    tokenizers[name] = AutoTokenizer.from_pretrained(path, trust_remote_code=True)\n\n# Load both train and test\ndata = []\nfor fpath in [\n    \"/root/autodl-tmp/trace-verdict-study-data/full_trace_tail_train.jsonl\",\n    \"/root/autodl-tmp/trace-verdict-study-data/full_trace_tail_test.jsonl\",\n]:\n    with open(fpath) as f:\n        for line in f:\n            data.append(json.loads(line))\n\nprint(f\"Loaded {len(data)} samples\", file=sys.stderr)\n\n# For each model, tokenize each sample\n# We need to construct the full text as the training pipeline would\n# Typically: input + \"\\n\" + output  or using chat template\n\nresults = {}  # model_name -> list of per-sample dicts\n\nfor model_name, tok in tokenizers.items():\n    print(f\"\\nProcessing {model_name}...\", file=sys.stderr)\n    model_results = []\n    \n    # Check vocab size\n    vocab_size = tok.vocab_size if hasattr(tok, 'vocab_size') else len(tok)\n    \n    for i, sample in enumerate(data):\n        text = sample[\"input\"]\n        label = sample[\"output\"]  # \"pass\" or \"fail\"\n        full_text = text + \"\\n\" + label\n        \n        # Tokenize full text\n        full_tokens = tok.encode(full_text, add_special_tokens=True)\n        # Tokenize input only (to find where label starts)\n        input_tokens = tok.encode(text + \"\\n\", add_special_tokens=True)\n        # Tokenize label only\n        label_tokens = tok.encode(label, add_special_tokens=False)\n        \n        full_len = len(full_tokens)\n        input_len = len(input_tokens)\n        label_len = len(label_tokens)\n        \n        # Label position (approximate: where the label tokens start)\n        label_start_pos = full_len - label_len\n        \n        # Is label truncated at MAX_LEN?\n        label_truncated = label_start_pos >= MAX_LEN\n        \n        # How many tokens exceed MAX_LEN\n        overflow = max(0, full_len - MAX_LEN)\n        \n        # What fraction of sequence is retained after truncation\n        retained_frac = min(1.0, MAX_LEN / full_len) if full_len > 0 else 1.0\n        \n        # Label fraction of total\n        label_frac = label_len / full_len if full_len > 0 else 0\n        \n        model_results.append({\n            \"full_len\": full_len,\n            \"input_len\": input_len,\n            \"label_len\": label_len,\n            \"label_start_pos\": label_start_pos,\n            \"label_truncated\": label_truncated,\n            \"overflow\": overflow,\n            \"retained_frac\": retained_frac,\n            \"label_frac\": label_frac,\n            \"exceeds_max\": full_len > MAX_LEN,\n        })\n    \n    results[model_name] = model_results\n\n# ============ ANALYSIS ============\n\nprint(\"\\n\" + \"=\"*80)\nprint(\"TOKENIZATION ANALYSIS: tail-2048 data across 4 models\")\nprint(\"=\"*80)\n\n# 1. Token count statistics\nprint(\"\\n## 1. Token Count Statistics\")\nprint(f\"\\n{'Model':<16} {'Mean':>8} {'Median':>8} {'Max':>8} {'Min':>8} {'Std':>8} | {'P25':>8} {'P50':>8} {'P75':>8} {'P90':>8} {'P99':>8}\")\nprint(\"-\" * 110)\n\nfor model_name in models:\n    lens = [r[\"full_len\"] for r in results[model_name]]\n    arr = np.array(lens)\n    ps = np.percentile(arr, [25, 50, 75, 90, 99])\n    print(f\"{model_name:<16} {arr.mean():>8.1f} {np.median(arr):>8.1f} {arr.max():>8d} {arr.min():>8d} {arr.std():>8.1f} | {ps[0]:>8.1f} {ps[1]:>8.1f} {ps[2]:>8.1f} {ps[3]:>8.1f} {ps[4]:>8.1f}\")\n\n# 2. Truncation analysis\nprint(\"\\n## 2. Truncation Analysis (max_length=2048)\")\nprint(f\"\\n{'Model':<16} {'Exceeds 2048':>14} {'% Exceeds':>10} {'Avg Overflow':>14} {'Max Overflow':>14} {'Avg Retained%':>14}\")\nprint(\"-\" * 90)\n\nfor model_name in models:\n    res = results[model_name]\n    exceeds = sum(1 for r in res if r[\"exceeds_max\"])\n    pct = 100.0 * exceeds / len(res)\n    overflows = [r[\"overflow\"] for r in res if r[\"overflow\"] > 0]\n    avg_overflow = np.mean(overflows) if overflows else 0\n    max_overflow = max(overflows) if overflows else 0\n    avg_retained = 100.0 * np.mean([r[\"retained_frac\"] for r in res])\n    print(f\"{model_name:<16} {exceeds:>14d} {pct:>9.1f}% {avg_overflow:>14.1f} {max_overflow:>14d} {avg_retained:>13.1f}%\")\n\n# 3. Label position analysis\nprint(\"\\n## 3. Label Position Analysis\")\nprint(f\"\\n{'Model':<16} {'Avg LabelPos':>14} {'Avg LabelLen':>14} {'Label Truncated':>16} {'% Truncated':>12} {'Avg LabelFrac':>14}\")\nprint(\"-\" * 95)\n\nfor model_name in models:\n    res = results[model_name]\n    avg_pos = np.mean([r[\"label_start_pos\"] for r in res])\n    avg_label_len = np.mean([r[\"label_len\"] for r in res])\n    trunc = sum(1 for r in res if r[\"label_truncated\"])\n    pct_trunc = 100.0 * trunc / len(res)\n    avg_label_frac = 100.0 * np.mean([r[\"label_frac\"] for r in res])\n    print(f\"{model_name:<16} {avg_pos:>14.1f} {avg_label_len:>14.1f} {trunc:>16d} {pct_trunc:>11.1f}% {avg_label_frac:>13.2f}%\")\n\n# 4. Cross-model comparison: for same samples, how do token counts differ?\nprint(\"\\n## 4. Cross-Model Token Count Comparison (per-sample)\")\n\n# Compute ratio of each model's token count vs Qwen-7B (reference)\nref_name = \"Qwen-7B\"\nref_lens = [r[\"full_len\"] for r in results[ref_name]]\n\nprint(f\"\\nRatio vs {ref_name}:\")\nprint(f\"{'Model':<16} {'Mean Ratio':>12} {'Median Ratio':>14} {'Max Ratio':>12} {'Min Ratio':>12}\")\nprint(\"-\" * 70)\n\nfor model_name in models:\n    if model_name == ref_name:\n        continue\n    lens = [r[\"full_len\"] for r in results[model_name]]\n    ratios = [l / r for l, r in zip(lens, ref_lens) if r > 0]\n    arr = np.array(ratios)\n    print(f\"{model_name:<16} {arr.mean():>12.3f} {np.median(arr):>14.3f} {arr.max():>12.3f} {arr.min():>12.3f}\")\n\n# 5. Detailed: samples where CodeLlama exceeds 2048 but others don't\nprint(\"\\n## 5. CodeLlama-specific Truncation\")\ncl_res = results[\"CodeLlama-13B\"]\nn_total = len(data)\n\n# For each sample, check which models exceed\nonly_cl_exceeds = 0\nall_exceed = 0\ncl_exceeds_total = 0\nothers_exceed_not_cl = 0\n\nfor i in range(n_total):\n    cl_ex = results[\"CodeLlama-13B\"][i][\"exceeds_max\"]\n    others_ex = any(results[m][i][\"exceeds_max\"] for m in models if m != \"CodeLlama-13B\")\n    \n    if cl_ex:\n        cl_exceeds_total += 1\n        if not others_ex:\n            only_cl_exceeds += 1\n        else:\n            all_exceed += 1\n    elif others_ex:\n        others_exceed_not_cl += 1\n\nprint(f\"Total samples: {n_total}\")\nprint(f\"CodeLlama exceeds 2048: {cl_exceeds_total} ({100*cl_exceeds_total/n_total:.1f}%)\")\nprint(f\"  - Only CodeLlama exceeds (others fit): {only_cl_exceeds} ({100*only_cl_exceeds/n_total:.1f}%)\")\nprint(f\"  - All models that exceed: {all_exceed} ({100*all_exceed/n_total:.1f}%)\")\nprint(f\"Others exceed but NOT CodeLlama: {others_exceed_not_cl}\")\n\n# 6. Token count distribution bins\nprint(\"\\n## 6. Token Count Distribution Bins\")\nbins = [0, 512, 1024, 1536, 2048, 2560, 3072, 4096, 8192, float('inf')]\nbin_labels = [\"0-512\", \"513-1024\", \"1025-1536\", \"1537-2048\", \"2049-2560\", \"2561-3072\", \"3073-4096\", \"4097-8192\", \"8192+\"]\n\nprint(f\"\\n{'Bin':<12}\", end=\"\")\nfor model_name in models:\n    print(f\" {model_name:>16}\", end=\"\")\nprint()\nprint(\"-\" * (12 + 17 * len(models)))\n\nfor j in range(len(bin_labels)):\n    print(f\"{bin_labels[j]:<12}\", end=\"\")\n    for model_name in models:\n        lens = [r[\"full_len\"] for r in results[model_name]]\n        count = sum(1 for l in lens if bins[j] < l <= bins[j+1])\n        # fix first bin\n        if j == 0:\n            count = sum(1 for l in lens if l <= bins[j+1])\n        print(f\" {count:>10} ({100*count/len(lens):>4.1f}%)\", end=\"\")\n    print()\n\n# 7. Label token details\nprint(\"\\n## 7. Label Token Encoding Details\")\nfor model_name, tok in tokenizers.items():\n    pass_tokens = tok.encode(\"pass\", add_special_tokens=False)\n    fail_tokens = tok.encode(\"fail\", add_special_tokens=False)\n    pass_decoded = [tok.decode([t]) for t in pass_tokens]\n    fail_decoded = [tok.decode([t]) for t in fail_tokens]\n    print(f\"{model_name:<16}: 'pass' -> {pass_tokens} {pass_decoded}  |  'fail' -> {fail_tokens} {fail_decoded}\")\n\n# 8. Vocab size comparison\nprint(\"\\n## 8. Vocabulary Size\")\nfor model_name, tok in tokenizers.items():\n    vs = tok.vocab_size if hasattr(tok, 'vocab_size') else len(tok)\n    print(f\"{model_name:<16}: {vs:,}\")\n\n# 9. Input text character length vs token length correlation\nprint(\"\\n## 9. Character-to-Token Ratio (chars per token)\")\nfor model_name in models:\n    ratios = []\n    for i, sample in enumerate(data):\n        char_len = len(sample[\"input\"])\n        tok_len = results[model_name][i][\"full_len\"]\n        if tok_len > 0:\n            ratios.append(char_len / tok_len)\n    arr = np.array(ratios)\n    print(f\"{model_name:<16}: mean={arr.mean():.2f}  median={np.median(arr):.2f}  std={arr.std():.2f}\")\n\n# 10. For samples where CodeLlama label is truncated, what's the input token count?\nprint(\"\\n## 10. CodeLlama Label-Truncated Samples: Input Token Distribution\")\ncl_trunc_input_lens = [results[\"CodeLlama-13B\"][i][\"input_len\"] for i in range(n_total) if results[\"CodeLlama-13B\"][i][\"label_truncated\"]]\nif cl_trunc_input_lens:\n    arr = np.array(cl_trunc_input_lens)\n    print(f\"N={len(arr)}, mean={arr.mean():.1f}, median={np.median(arr):.1f}, min={arr.min()}, max={arr.max()}\")\nelse:\n    print(\"No label-truncated samples for CodeLlama\")\n\n# Same for Qwen-7B\nqw_trunc = [results[\"Qwen-7B\"][i][\"input_len\"] for i in range(n_total) if results[\"Qwen-7B\"][i][\"label_truncated\"]]\nif qw_trunc:\n    arr = np.array(qw_trunc)\n    print(f\"Qwen-7B label-truncated: N={len(arr)}, mean={arr.mean():.1f}\")\nelse:\n    print(\"No label-truncated samples for Qwen-7B\")\n\nPYEOF\necho \"Script written.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "cat > /tmp/tokenizer_analysis.py << 'PYEOF'\nimport json\nimport numpy as np\nfrom transformers import AutoTokenizer\nimport sys\n\nmodels = {\n    \"Qwen-7B\": \"/root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct\",\n    \"DeepSeek-6.7B\": \"/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct\",\n    \"Qwen-1.5B\": \"/root/trace-verdict-study/models/Qwen2.5-Coder-1.5B-Instruct\",\n    \"CodeLlama-13B\": \"/root/autodl-tmp/models/CodeLlama-13b-Instruct-hf/\",\n}\n\nMAX_LEN = 2048\n\nprint(\"Loading tokenizers...\", file=sys.stderr)\ntokenizers = {}\nfor name, path in models.items():\n    print(f\"  Loading {name}...\", file=sys.stderr)\n    tokenizers[name] = AutoTokenizer.from_pretrained(path, trust_remote_code=True)\n\n# Load both train and test\ndata = []\nfor fpath in [\n    \"/root/autodl-tmp/trace-verdict-study-data/full_trace_tail_train.jsonl\",\n    \"/root/autodl-tmp/trace-verdict-study-data/full_trace_tail_test.jsonl\",\n]:\n    with open(fpath) as f:\n        for line in f:\n            data.append(json.loads(line))\n\nprint(f\"Loaded {len(data)} samples\", file=sys.stderr)\n\n# For each model, tokenize each sample\n# We need to construct the full text as the training pipeline would\n# Typically: input + \"\\n\" + output  or using chat template\n\nresults = {}  # model_name -> list of per-sample dicts\n\nfor model_name, tok in tokenizers.items():\n    print(f\"\\nProcessing {model_name}...\", file=sys.stderr)\n    model_results = []\n    \n    # Check vocab size\n    vocab_size = tok.vocab_size if hasattr(tok, 'vocab_size') else len(tok)\n    \n    for i, sample in enumerate(data):\n        text = sample[\"input\"]\n        label = sample[\"output\"]  # \"pass\" or \"fail\"\n        full_text = text + \"\\n\" + label\n        \n        # Tokenize full text\n        full_tokens = tok.encode(full_text, add_special_tokens=True)\n        # Tokenize input only (to find where label starts)\n        input_tokens = tok.encode(text + \"\\n\", add_special_tokens=True)\n        # Tokenize label only\n        label_tokens = tok.encode(label, add_special_tokens=False)\n        \n        full_len = len(full_tokens)\n        input_len = len(input_tokens)\n        label_len = len(label_tokens)\n        \n        # Label position (approximate: where the label tokens start)\n        label_start_pos = full_len - label_len\n        \n        # Is label truncated at MAX_LEN?\n        label_truncated = label_start_pos >= MAX_LEN\n        \n        # How many tokens exceed MAX_LEN\n        overflow = max(0, full_len - MAX_LEN)\n        \n        # What fraction of sequence is retained after truncation\n        retained_frac = min(1.0, MAX_LEN / full_len) if full_len > 0 else 1.0\n        \n        # Label fraction of total\n        label_frac = label_len / full_len if full_len > 0 else 0\n        \n        model_results.append({\n            \"full_len\": full_len,\n            \"input_len\": input_len,\n            \"label_len\": label_len,\n            \"label_start_pos\": label_start_pos,\n            \"label_truncated\": label_truncated,\n            \"overflow\": overflow,\n            \"retained_frac\": retained_frac,\n            \"label_frac\": label_frac,\n            \"exceeds_max\": full_len > MAX_LEN,\n        })\n    \n    results[model_name] = model_results\n\n# ============ ANALYSIS ============\n\nprint(\"\\n\" + \"=\"*80)\nprint(\"TOKENIZATION ANALYSIS: tail-2048 data across 4 models\")\nprint(\"=\"*80)\n\n# 1. Token count statistics\nprint(\"\\n## 1. Token Count Statistics\")\nprint(f\"\\n{'Model':<16} {'Mean':>8} {'Median':>8} {'Max':>8} {'Min':>8} {'Std':>8} | {'P25':>8} {'P50':>8} {'P75':>8} {'P90':>8} {'P99':>8}\")\nprint(\"-\" * 110)\n\nfor model_name in models:\n    lens = [r[\"full_len\"] for r in results[model_name]]\n    arr = np.array(lens)\n    ps = np.percentile(arr, [25, 50, 75, 90, 99])\n    print(f\"{model_name:<16} {arr.mean():>8.1f} {np.median(arr):>8.1f} {arr.max():>8d} {arr.min():>8d} {arr.std():>8.1f} | {ps[0]:>8.1f} {ps[1]:>8.1f} {ps[2]:>8.1f} {ps[3]:>8.1f} {ps[4]:>8.1f}\")\n\n# 2. Truncation analysis\nprint(\"\\n## 2. Truncation Analysis (max_length=2048)\")\nprint(f\"\\n{'Model':<16} {'Exceeds 2048':>14} {'% Exceeds':>10} {'Avg Overflow':>14} {'Max Overflow':>14} {'Avg Retained%':>14}\")\nprint(\"-\" * 90)\n\nfor model_name in models:\n    res = results[model_name]\n    exceeds = sum(1 for r in res if r[\"exceeds_max\"])\n    pct = 100.0 * exceeds / len(res)\n    overflows = [r[\"overflow\"] for r in res if r[\"overflow\"] > 0]\n    avg_overflow = np.mean(overflows) if overflows else 0\n    max_overflow = max(overflows) if overflows else 0\n    avg_retained = 100.0 * np.mean([r[\"retained_frac\"] for r in res])\n    print(f\"{model_name:<16} {exceeds:>14d} {pct:>9.1f}% {avg_overflow:>14.1f} {max_overflow:>14d} {avg_retained:>13.1f}%\")\n\n# 3. Label position analysis\nprint(\"\\n## 3. Label Position Analysis\")\nprint(f\"\\n{'Model':<16} {'Avg LabelPos':>14} {'Avg LabelLen':>14} {'Label Truncated':>16} {'% Truncated':>12} {'Avg LabelFrac':>14}\")\nprint(\"-\" * 95)\n\nfor model_name in models:\n    res = results[model_name]\n    avg_pos = np.mean([r[\"label_start_pos\"] for r in res])\n    avg_label_len = np.mean([r[\"label_len\"] for r in res])\n    trunc = sum(1 for r in res if r[\"label_truncated\"])\n    pct_trunc = 100.0 * trunc / len(res)\n    avg_label_frac = 100.0 * np.mean([r[\"label_frac\"] for r in res])\n    print(f\"{model_name:<16} {avg_pos:>14.1f} {avg_label_len:>14.1f} {trunc:>16d} {pct_trunc:>11.1f}% {avg_label_frac:>13.2f}%\")\n\n# 4. Cross-model comparison: for same samples, how do token counts differ?\nprint(\"\\n## 4. Cross-Model Token Count Comparison (per-sample)\")\n\n# Compute ratio of each model's token count vs Qwen-7B (reference)\nref_name = \"Qwen-7B\"\nref_lens = [r[\"full_len\"] for r in results[ref_name]]\n\nprint(f\"\\nRatio vs {ref_name}:\")\nprint(f\"{'Model':<16} {'Mean Ratio':>12} {'Median Ratio':>14} {'Max Ratio':>12} {'Min Ratio':>12}\")\nprint(\"-\" * 70)\n\nfor model_name in models:\n    if model_name == ref_name:\n        continue\n    lens = [r[\"full_len\"] for r in results[model_name]]\n    ratios = [l / r for l, r in zip(lens, ref_lens) if r > 0]\n    arr = np.array(ratios)\n    print(f\"{model_name:<16} {arr.mean():>12.3f} {np.median(arr):>14.3f} {arr.max():>12.3f} {arr.min():>12.3f}\")\n\n# 5. Detailed: samples where CodeLlama exceeds 2048 but others don't\nprint(\"\\n## 5. CodeLlama-specific Truncation\")\ncl_res = results[\"CodeLlama-13B\"]\nn_total = len(data)\n\n# For each sample, check which models exceed\nonly_cl_exceeds = 0\nall_exceed = 0\ncl_exceeds_total = 0\nothers_exceed_not_cl = 0\n\nfor i in range(n_total):\n    cl_ex = results[\"CodeLlama-13B\"][i][\"exceeds_max\"]\n    others_ex = any(results[m][i][\"exceeds_max\"] for m in models if m != \"CodeLlama-13B\")\n    \n    if cl_ex:\n        cl_exceeds_total += 1\n        if not others_ex:\n            only_cl_exceeds += 1\n        else:\n            all_exceed += 1\n    elif others_ex:\n        others_exceed_not_cl += 1\n\nprint(f\"Total samples: {n_total}\")\nprint(f\"CodeLlama exceeds 2048: {cl_exceeds_total} ({100*cl_exceeds_total/n_total:.1f}%)\")\nprint(f\"  - Only CodeLlama exceeds (others fit): {only_cl_exceeds} ({100*only_cl_exceeds/n_total:.1f}%)\")\nprint(f\"  - All models that exceed: {all_exceed} ({100*all_exceed/n_total:.1f}%)\")\nprint(f\"Others exceed but NOT CodeLlama: {others_exceed_not_cl}\")\n\n# 6. Token count distribution bins\nprint(\"\\n## 6. Token Count Distribution Bins\")\nbins = [0, 512, 1024, 1536, 2048, 2560, 3072, 4096, 8192, float('inf')]\nbin_labels = [\"0-512\", \"513-1024\", \"1025-1536\", \"1537-2048\", \"2049-2560\", \"2561-3072\", \"3073-4096\", \"4097-8192\", \"8192+\"]\n\nprint(f\"\\n{'Bin':<12}\", end=\"\")\nfor model_name in models:\n    print(f\" {model_name:>16}\", end=\"\")\nprint()\nprint(\"-\" * (12 + 17 * len(models)))\n\nfor j in range(len(bin_labels)):\n    print(f\"{bin_labels[j]:<12}\", end=\"\")\n    for model_name in models:\n        lens = [r[\"full_len\"] for r in results[model_name]]\n        count = sum(1 for l in lens if bins[j] < l <= bins[j+1])\n        # fix first bin\n        if j == 0:\n            count = sum(1 for l in lens if l <= bins[j+1])\n        print(f\" {count:>10} ({100*count/len(lens):>4.1f}%)\", end=\"\")\n    print()\n\n# 7. Label token details\nprint(\"\\n## 7. Label Token Encoding Details\")\nfor model_name, tok in tokenizers.items():\n    pass_tokens = tok.encode(\"pass\", add_special_tokens=False)\n    fail_tokens = tok.encode(\"fail\", add_special_tokens=False)\n    pass_decoded = [tok.decode([t]) for t in pass_tokens]\n    fail_decoded = [tok.decode([t]) for t in fail_tokens]\n    print(f\"{model_name:<16}: 'pass' -> {pass_tokens} {pass_decoded}  |  'fail' -> {fail_tokens} {fail_decoded}\")\n\n# 8. Vocab size comparison\nprint(\"\\n## 8. Vocabulary Size\")\nfor model_name, tok in tokenizers.items():\n    vs = tok.vocab_size if hasattr(tok, 'vocab_size') else len(tok)\n    print(f\"{model_name:<16}: {vs:,}\")\n\n# 9. Input text character length vs token length correlation\nprint(\"\\n## 9. Character-to-Token Ratio (chars per token)\")\nfor model_name in models:\n    ratios = []\n    for i, sample in enumerate(data):\n        char_len = len(sample[\"input\"])\n        tok_len = results[model_name][i][\"full_len\"]\n        if tok_len > 0:\n            ratios.append(char_len / tok_len)\n    arr = np.array(ratios)\n    print(f\"{model_name:<16}: mean={arr.mean():.2f}  median={np.median(arr):.2f}  std={arr.std():.2f}\")\n\n# 10. For samples where CodeLlama label is truncated, what's the input token count?\nprint(\"\\n## 10. CodeLlama Label-Truncated Samples: Input Token Distribution\")\ncl_trunc_input_lens = [results[\"CodeLlama-13B\"][i][\"input_len\"] for i in range(n_total) if results[\"CodeLlama-13B\"][i][\"label_truncated\"]]\nif cl_trunc_input_lens:\n    arr = np.array(cl_trunc_input_lens)\n    print(f\"N={len(arr)}, mean={arr.mean():.1f}, median={np.median(arr):.1f}, min={arr.min()}, max={arr.max()}\")\nelse:\n    print(\"No label-truncated samples for CodeLlama\")\n\n# Same for Qwen-7B\nqw_trunc = [results[\"Qwen-7B\"][i][\"input_len\"] for i in range(n_total) if results[\"Qwen-7B\"][i][\"label_truncated\"]]\nif qw_trunc:\n    arr = np.array(qw_trunc)\n    print(f\"Qwen-7B label-truncated: N={len(arr)}, mean={arr.mean():.1f}\")\nelse:\n    print(\"No label-truncated samples for Qwen-7B\")\n\nPYEOF\necho \"Script written.\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T12:20:04.024935+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.58}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T12:20:04.025066+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "/root/miniconda3/bin/python /tmp/tokenizer_analysis.py 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "/root/miniconda3/bin/python /tmp/tokenizer_analysis.py 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T12:20:04.025198+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: '/root/miniconda3/bin/python /tmp/tokenizer_analysis.py 2>&1'\\n\\nStdout:\\n\\nLoading tokenizers...\\n  Loading Qwen-7B...\\n  Loading DeepSeek-6.7B...\\n  Loading Qwen-1.5B...\\n  Loading CodeLlama-13B...\\nLoaded 5910 samples\\n\\nProcessing Qwen-7B...\\n\\nProcessing DeepSeek-6.7B...\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T12:20:04.025367+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "cd /tmp && nohup /root/miniconda3/bin/python /tmp/tokenizer_analysis.py > /tmp/tokenizer_output.txt 2>&1 & echo \"PID: $!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "cd /tmp && nohup /root/miniconda3/bin/python /tmp/tokenizer_analysis.py > /tmp/tokenizer_output.txt 2>&1 & echo \"PID: $!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T12:20:04.025496+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /tmp && nohup /root/miniconda3/bin/python /tmp/tokenizer_analysis.py > /tmp/tokenizer_output.txt 2>&1 & echo \\\"PID: $!\\\"'\\n\\nStdout:\\n\\nPID: 435814\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 32.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T12:20:04.025640+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "sleep 60 && (ps -p 435814 > /dev/null 2>&1 && echo \"STILL RUNNING\" || echo \"DONE\") && wc -l /tmp/tokenizer_output.txt && tail -5 /tmp/tokenizer_output.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "sleep 60 && (ps -p 435814 > /dev/null 2>&1 && echo \"STILL RUNNING\" || echo \"DONE\") && wc -l /tmp/tokenizer_output.txt && tail -5 /tmp/tokenizer_output.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T12:20:04.025768+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'sleep 60 && (ps -p 435814 > /dev/null 2>&1 && echo \\\"STILL RUNNING\\\" || echo \\\"DONE\\\") && wc -l /tmp/tokenizer_output.txt && tail -5 /tmp/tokenizer_output.txt'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 34.26}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T12:20:04.025887+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "ps -p 435814 > /dev/null 2>&1 && echo \"STILL RUNNING\" || echo \"DONE\"; wc -l /tmp/tokenizer_output.txt 2>/dev/null; tail -3 /tmp/tokenizer_output.txt 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "ps -p 435814 > /dev/null 2>&1 && echo \"STILL RUNNING\" || echo \"DONE\"; wc -l /tmp/tokenizer_output.txt 2>/dev/null; tail -3 /tmp/tokenizer_output.txt 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T12:20:04.026009+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"STILL RUNNING\\n10 /tmp/tokenizer_output.txt\\nProcessing Qwen-7B...\\n\\nProcessing DeepSeek-6.7B...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.85}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T12:20:04.026168+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "sleep 25 && ps -p 435814 > /dev/null 2>&1 && echo \"STILL RUNNING\" || echo \"DONE\"; tail -3 /tmp/tokenizer_output.txt 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "sleep 25 && ps -p 435814 > /dev/null 2>&1 && echo \"STILL RUNNING\" || echo \"DONE\"; tail -3 /tmp/tokenizer_output.txt 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T12:20:04.026336+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"STILL RUNNING\\nProcessing DeepSeek-6.7B...\\n\\nProcessing Qwen-1.5B...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 25.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T12:20:04.026615+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "sleep 25 && ps -p 435814 > /dev/null 2>&1 && echo \"STILL RUNNING\" || echo \"DONE\"; tail -3 /tmp/tokenizer_output.txt 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "sleep 25 && ps -p 435814 > /dev/null 2>&1 && echo \"STILL RUNNING\" || echo \"DONE\"; tail -3 /tmp/tokenizer_output.txt 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T12:20:04.026855+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DONE\\n## 10. CodeLlama Label-Truncated Samples: Input Token Distribution\\nN=5588, mean=2450.7, median=2494.0, min=2048, max=2634\\nNo label-truncated samples for Qwen-7B\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 25.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T12:20:04.027107+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "cat /tmp/tokenizer_output.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "cat /tmp/tokenizer_output.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T12:20:04.027365+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading tokenizers...\\n  Loading Qwen-7B...\\n  Loading DeepSeek-6.7B...\\n  Loading Qwen-1.5B...\\n  Loading CodeLlama-13B...\\nLoaded 5910 samples\\n\\nProcessing Qwen-7B...\\n\\nProcessing DeepSeek-6.7B...\\n\\nProcessing Qwen-1.5B...\\n\\nProcessing CodeLlama-13B...\\n\\n================================================================================\\nTOKENIZATION ANALYSIS: tail-2048 data across 4 models\\n================================================================================\\n\\n## 1. Token Count Statistics\\n\\nModel                Mean   Median      Max      Min      Std |      P25      P50      P75      P90      P99\\n--------------------------------------------------------------------------------------------------------------\\nQwen-7B            1929.1   2018.0     2018      112    385.6 |   2018.0   2018.0   2018.0   2018.0   2018.0\\nDeepSeek-6.7B      2550.8   2734.0     2911      124    545.7 |   2537.0   2734.0   2791.0   2831.0   2873.0\\nQwen-1.5B          1929.1   2018.0     2018      112    385.6 |   2018.0   2018.0   2018.0   2018.0   2018.0\\nCodeLlama-13B      2341.4   2488.0     2635      130    483.4 |   2364.0   2488.0   2529.0   2555.0   2582.0\\n\\n## 2. Truncation Analysis (max_length=2048)\\n\\nModel              Exceeds 2048  % Exceeds   Avg Overflow   Max Overflow  Avg Retained%\\n------------------------------------------------------------------------------------------\\nQwen-7B                       0       0.0%            0.0              0         100.0%\\nDeepSeek-6.7B              5589      94.6%          625.0            863          78.2%\\nQwen-1.5B                     0       0.0%            0.0              0         100.0%\\nCodeLlama-13B              5588      94.6%          403.7            587          84.6%\\n\\n## 3. Label Position Analysis\\n\\nModel              Avg LabelPos   Avg LabelLen  Label Truncated  % Truncated  Avg LabelFrac\\n-------------
+…[truncated 3195 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T12:20:04.027604+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "grep -r \"max_length\\|max_seq_len\\|model_max_length\\|block_size\" /root/trace-verdict-study/configs/ 2>/dev/null | head -30; echo \"---\"; ls /root/trace-verdict-study/configs/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "grep -r \"max_length\\|max_seq_len\\|model_max_length\\|block_size\" /root/trace-verdict-study/configs/ 2>/dev/null | head -30; echo \"---\"; ls /root/trace-verdict-study/configs/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T12:20:04.027752+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'grep -r \\\"max_length\\\\\\\\|max_seq_len\\\\\\\\|model_max_length\\\\\\\\|block_size\\\" /root/trace-verdict-study/configs/ 2>/dev/null | head -30; echo \\\"---\\\"; ls /root/trace-verdict-study/configs/ 2>/dev/null'\\n\\nExit code: 2\\n\\nStdout:\\n\\n---\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T12:20:04.027890+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "grep -r \"max_length\\|max_seq_len\" /root/trace-verdict-study/scripts/ 2>/dev/null | head -20; echo \"---\"; grep -r \"max_length\\|max_seq_len\" /root/trace-verdict-study/src/ 2>/dev/null | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "grep -r \"max_length\\|max_seq_len\" /root/trace-verdict-study/scripts/ 2>/dev/null | head -20; echo \"---\"; grep -r \"max_length\\|max_seq_len\" /root/trace-verdict-study/src/ 2>/dev/null | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T12:20:04.028038+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.26}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T12:20:04.028158+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "find /root/trace-verdict-study -name \"*.py\" -o -name \"*.sh\" -o -name \"*.yaml\" -o -name \"*.json\" | head -30; echo \"===\"; ls /root/trace-verdict-study/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "find /root/trace-verdict-study -name \"*.py\" -o -name \"*.sh\" -o -name \"*.yaml\" -o -name \"*.json\" | head -30; echo \"===\"; ls /root/trace-verdict-study/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T12:20:04.028337+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/trace-verdict-study/data/format_training_data.py\\n/root/trace-verdict-study/data/trace_worker.py\\n/root/trace-verdict-study/data/generate_data.py\\n/root/trace-verdict-study/data/format_component_ablation.py\\n/root/trace-verdict-study/data/debugbench_test_builder.py\\n/root/trace-verdict-study/data/debugbench_validate_tests.py\\n/root/trace-verdict-study/data/debugbench_collect_traces.py\\n/root/trace-verdict-study/data/debugbench_format_data.py\\n/root/trace-verdict-study/data/nomarker/prepare_nomarker_data.py\\n/root/trace-verdict-study/data/format_tail_truncation.py\\n/root/trace-verdict-study/data/format_tail_truncation_512.py\\n/root/trace-verdict-study/data/format_head_truncation.py\\n/root/trace-verdict-study/data/format_tail_truncation_384.py\\n/root/trace-verdict-study/scripts/verify_vota.py\\n/root/trace-verdict-study/scripts/prepare_ablation_data.py\\n/root/trace-verdict-study/scripts/run_seed_robustness.sh\\n/root/trace-verdict-study/scripts/aggregate_seeds.py\\n/root/trace-verdict-study/scripts/eval_qwen_epochs.sh\\n/root/trace-verdict-study/scripts/calibration_deepseek.sh\\n/root/trace-verdict-study/scripts/batch_eval_gpu1.sh\\n/root/trace-verdict-study/scripts/plot_calibration_reliability.py\\n/root/trace-verdict-study/scripts/run_deepseek_head2048.sh\\n/root/trace-verdict-study/results/predictions/no_trace_predictions.json\\n/root/trace-verdict-study/results/predictions/vota_predictions.json\\n/root/trace-verdict-study/results/predictions/full_trace_predictions.json\\n/root/trace-verdict-study/results/bootstrap_compare.json\\n/root/trace-verdict-study/results/predictions_v5/no_trace_predictions.json\\n/root/trace-verdict-study/results/predictions_v5/vota_predictions.json\\n/root/trace-verdict-study/results/predictions_v5/full_trace_predictions.json\\n/root/trace-verdict-study/results/bootstrap_compare_v5.json\\n===\\nanalysis\\nanalysis_deepseek_tail1024.md\\nartifacts\\nd030_analysis.p
+…[truncated 287 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-18T12:20:04.028485+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "cat /root/trace-verdict-study/train/train.py | head -80",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "cat /root/trace-verdict-study/train/train.py | head -80",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T12:20:04.028616+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/trace-verdict-study/train/train.py: No such file or directory\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-18T12:20:04.028735+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "grep -n \"max_length\\|max_seq\\|truncat\" /root/trace-verdict-study/train/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "grep -n \"max_length\\|max_seq\\|truncat\" /root/trace-verdict-study/train/train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T12:20:04.028858+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'grep -n \\\"max_length\\\\\\\\|max_seq\\\\\\\\|truncat\\\" /root/trace-verdict-study/train/train.py'\\n\\nExit code: 2\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\ngrep: /root/trace-verdict-study/train/train.py: No such file or directory\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-18T12:20:04.028975+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "ls /root/trace-verdict-study/train/; echo \"===\"; find /root/trace-verdict-study -name \"train*.py\" -o -name \"train*.sh\" | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "ls /root/trace-verdict-study/train/; echo \"===\"; find /root/trace-verdict-study -name \"train*.py\" -o -name \"train*.sh\" | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T12:20:04.029344+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\ntrain_sft.py\\n===\\n/root/trace-verdict-study/train/train_sft.py\\n/root/trace-verdict-study/eval/training_truncation_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-18T12:20:04.029494+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "grep -n \"max_length\\|max_seq\\|truncat\\|block_size\" /root/trace-verdict-study/train/train_sft.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "grep -n \"max_length\\|max_seq\\|truncat\\|block_size\" /root/trace-verdict-study/train/train_sft.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-18T12:20:04.029644+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"30:def to_chat_text(items: list[dict], tokenizer, max_length: int = 2048, truncation_side: str = \\\"right\\\") -> list[dict]:\\n31:    \\\"\\\"\\\"Convert data items to chat-formatted text with label-preserving truncation.\\n46:        budget = max(0, max_length - overhead_len)\\n48:        if truncation_side == \\\"left\\\":\\n52:        truncated_input = tokenizer.decode(content_ids, skip_special_tokens=False)\\n54:            {\\\"role\\\": \\\"user\\\", \\\"content\\\": truncated_input},\\n76:def truncate_traces(items, tokenizer, max_trace_tokens, truncation_side=\\\"right\\\"):\\n80:    truncated_count = 0\\n94:        if truncation_side == \\\"left\\\":\\n100:        truncated_count += 1\\n103:        print(f\\\"Trace truncation: {truncated_count}/{len(orig_lengths)} truncated to {max_trace_tokens} tokens\\\")\\n131:                        help=\\\"Truncate trace to first N tokens (None=no truncation)\\\")\\n132:    parser.add_argument(\\\"--truncation_side\\\", default=\\\"right\\\", choices=[\\\"left\\\", \\\"right\\\"],\\n163:        truncate_traces(train_data, tokenizer, args.max_trace_tokens, args.truncation_side)\\n164:        truncate_traces(eval_data, tokenizer, args.max_trace_tokens, args.truncation_side)\\n173:        train_dataset = Dataset.from_list(to_chat_text(train_data, tokenizer, max_length=2048, truncation_side=args.truncation_side))\\n174:        eval_dataset = Dataset.from_list(to_chat_text(eval_data, tokenizer, max_length=2048, truncation_side=args.truncation_side))\\n202:        max_length=2048,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-18T12:20:04.029829+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "sed -n '1,110p' /root/trace-verdict-study/train/train_sft.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "sed -n '1,110p' /root/trace-verdict-study/train/train_sft.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-18T12:20:04.030032+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"LoRA SFT training script for trace-verdict classification using Qwen2.5-Coder-7B-Instruct.\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom peft import LoraConfig, TaskType\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, set_seed\\nfrom trl import SFTConfig, SFTTrainer\\n\\n\\ndef load_data(data_dir: str, condition: str):\\n    \\\"\\\"\\\"Load train and test JSONL files for a given condition.\\\"\\\"\\\"\\n    def read_jsonl(path):\\n        data = []\\n        with open(path) as f:\\n            for line in f:\\n                line = line.strip()\\n                if line:\\n                    data.append(json.loads(line))\\n        return data\\n\\n    train_path = os.path.join(data_dir, f\\\"{condition}_train.jsonl\\\")\\n    test_path = os.path.join(data_dir, f\\\"{condition}_test.jsonl\\\")\\n    return read_jsonl(train_path), read_jsonl(test_path)\\n\\n\\ndef to_chat_text(items: list[dict], tokenizer, max_length: int = 2048, truncation_side: str = \\\"right\\\") -> list[dict]:\\n    \\\"\\\"\\\"Convert data items to chat-formatted text with label-preserving truncation.\\n\\n    Truncates the input (trace) content instead of the right side of the sequence,\\n    so the assistant label (\\\"pass\\\"/\\\"fail\\\") is never lost.\\n    \\\"\\\"\\\"\\n    texts = []\\n    for item in items:\\n        # Measure token overhead from chat template + label\\n        overhead_msg = tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"\\\"},\\n             {\\\"role\\\": \\\"assistant\\\", \\\"content\\\": item[\\\"output\\\"]}],\\n            tokenize=False, add_generation_prompt=False,\\n        )\\n        overhead_len = len(tokenizer(overhead_msg, add_special_tokens=False).input_ids)\\n        # Truncate input content to fit within budget, preserving label\\n        budget = 
+…[truncated 3223 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-18T12:20:04.030330+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "cat > /tmp/tokenizer_analysis_v2.py << 'PYEOF'\nimport json\nimport numpy as np\nfrom transformers import AutoTokenizer\nimport sys\n\nmodels = {\n    \"Qwen-7B\": \"/root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct\",\n    \"DeepSeek-6.7B\": \"/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct\",\n    \"Qwen-1.5B\": \"/root/trace-verdict-study/models/Qwen2.5-Coder-1.5B-Instruct\",\n    \"CodeLlama-13B\": \"/root/autodl-tmp/models/CodeLlama-13b-Instruct-hf/\",\n}\n\nMAX_LEN = 2048\n\nprint(\"Loading tokenizers...\", file=sys.stderr)\ntokenizers = {}\nfor name, path in models.items():\n    print(f\"  Loading {name}...\", file=sys.stderr)\n    tokenizers[name] = AutoTokenizer.from_pretrained(path, trust_remote_code=True)\n\n# Load data\ndata = []\nfor fpath in [\n    \"/root/autodl-tmp/trace-verdict-study-data/full_trace_tail_train.jsonl\",\n    \"/root/autodl-tmp/trace-verdict-study-data/full_trace_tail_test.jsonl\",\n]:\n    with open(fpath) as f:\n        for line in f:\n            data.append(json.loads(line))\n\nprint(f\"Loaded {len(data)} samples\", file=sys.stderr)\n\n# Replicate what to_chat_text does in train_sft.py\ndef analyze_chat_template(tokenizer, items, max_length=2048, truncation_side=\"right\"):\n    \"\"\"Replicate to_chat_text logic and collect stats.\"\"\"\n    results = []\n    for item in items:\n        # 1. Measure overhead (empty user + label assistant)\n        overhead_msg = tokenizer.apply_chat_template(\n            [{\"role\": \"user\", \"content\": \"\"},\n             {\"role\": \"assistant\", \"content\": item[\"output\"]}],\n            tokenize=False, add_generation_prompt=False,\n        )\n        overhead_len = len(tokenizer(overhead_msg, add_special_tokens=False).input_ids)\n        \n        # 2. Budget for input content\n        budget = max(0, max_length - overhead_len)\n        \n        # 3. Tokenize input\n        content_ids = tokenizer(item[\"input\"], add_special_tokens=False).input_ids\n        original_content_len = len(content_ids)\n        \n        # 4. Truncation\n        truncated = original_content_len > budget\n        if truncated:\n            if truncation_side == \"left\":\n                content_ids = content_ids[-budget:]\n            else:\n                content_ids = content_ids[:budget]\n        \n        actual_content_len = len(content_ids)\n        content_lost = original_content_len - actual_content_len\n        content_retained_frac = actual_content_len / original_content_len if original_content_len > 0 else 1.0\n        \n        # 5. Final sequence length after chat template\n        truncated_input = tokenizer.decode(content_ids, skip_special_tokens=False)\n        messages = [\n            {\"role\": \"user\", \"content\": truncated_input},\n            {\"role\": \"assistant\", \"content\": item[\"output\"]},\n        ]\n        final_text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=False)\n        final_ids = tokenizer(final_text, add_special_tokens=False).input_ids\n        final_len = len(final_ids)\n        \n        results.append({\n            \"overhead_len\": overhead_len,\n            \"budget\": budget,\n            \"original_content_len\": original_content_len,\n            \"actual_content_len\": actual_content_len,\n            \"truncated\": truncated,\n            \"content_lost\": content_lost,\n            \"content_retained_frac\": content_retained_frac,\n            \"final_len\": final_len,\n        })\n    return results\n\n# Analyze all models\nall_results = {}\nfor model_name, tok in tokenizers.items():\n    print(f\"\\nProcessing {model_name}...\", file=sys.stderr)\n    all_results[model_name] = analyze_chat_template(tok, data, max_length=MAX_LEN)\n\n# ============ ANALYSIS OUTPUT ============\nprint(\"=\"*80)\nprint(\"CHAT-TEMPLATE-AWARE TOKENIZATION ANALYSIS (tail-2048)\")\nprint(\"=\"*80)\n\n# 1. Chat template overhead\nprint(\"\\n## 1. Chat Template Overhead\")\nprint(f\"\\n{'Model':<16} {'Overhead (pass)':>16} {'Overhead (fail)':>16}\")\nprint(\"-\" * 50)\nfor model_name, tok in tokenizers.items():\n    for label in [\"pass\", \"fail\"]:\n        oh = tok.apply_chat_template(\n            [{\"role\": \"user\", \"content\": \"\"},\n             {\"role\": \"assistant\", \"content\": label}],\n            tokenize=False, add_generation_prompt=False,\n        )\n        oh_len = len(tok(oh, add_special_tokens=False).input_ids)\n        if label == \"pass\":\n            pass_oh = oh_len\n        else:\n            fail_oh = oh_len\n    print(f\"{model_name:<16} {pass_oh:>16} {fail_oh:>16}\")\n\n# 2. Content budget\nprint(\"\\n## 2. Input Content Budget (max_length=2048 - overhead)\")\nfor model_name in models:\n    res = all_results[model_name]\n    budgets = [r[\"budget\"] for r in res]\n    arr = np.array(budgets)\n    print(f\"{model_name:<16}: budget = {arr.mean():.0f} (range: {arr.min()}-{arr.max()})\")\n\n# 3. Original content length vs budget\nprint(\"\\n## 3. Original Content Token Length (before truncation)\")\nprint(f\"\\n{'Model':<16} {'Mean':>8} {'Median':>8} {'P90':>8} {'Max':>8} | {'Exceeds Budget':>15} {'% Truncated':>12}\")\nprint(\"-\" * 85)\nfor model_name in models:\n    res = all_results[model_name]\n    orig = [r[\"original_content_len\"] for r in res]\n    arr = np.array(orig)\n    trunc_count = sum(1 for r in res if r[\"truncated\"])\n    pct = 100.0 * trunc_count / len(res)\n    ps = np.percentile(arr, [90])\n    print(f\"{model_name:<16} {arr.mean():>8.1f} {np.median(arr):>8.1f} {ps[0]:>8.1f} {arr.max():>8d} | {trunc_count:>15d} {pct:>11.1f}%\")\n\n# 4. Content loss analysis\nprint(\"\\n## 4. Content Loss After Truncation\")\nprint(f\"\\n{'Model':<16} {'Avg Lost Tokens':>16} {'Avg Retained%':>14} {'Min Retained%':>14} {'Median Retained%':>16}\")\nprint(\"-\" * 80)\nfor model_name in models:\n    res = all_results[model_name]\n    # Only for truncated samples\n    trunc_res = [r for r in res if r[\"truncated\"]]\n    if trunc_res:\n        lost = np.array([r[\"content_lost\"] for r in trunc_res])\n        retained = np.array([r[\"content_retained_frac\"] for r in trunc_res])\n        print(f\"{model_name:<16} {lost.mean():>16.1f} {100*retained.mean():>13.1f}% {100*retained.min():>13.1f}% {100*np.median(retained):>15.1f}%\")\n    else:\n        print(f\"{model_name:<16} {'N/A (no truncation)':>16}\")\n\n# 5. Final sequence length (after chat template + truncation)\nprint(\"\\n## 5. Final Sequence Length (after truncation + chat template)\")\nprint(f\"\\n{'Model':<16} {'Mean':>8} {'Median':>8} {'Max':>8} {'Min':>8} | {'>2048':>8} {'% >2048':>8}\")\nprint(\"-\" * 75)\nfor model_name in models:\n    res = all_results[model_name]\n    finals = [r[\"final_len\"] for r in res]\n    arr = np.array(finals)\n    over = sum(1 for f in finals if f > 2048)\n    print(f\"{model_name:<16} {arr.mean():>8.1f} {np.median(arr):>8.1f} {arr.max():>8d} {arr.min():>8d} | {over:>8d} {100*over/len(finals):>7.1f}%\")\n\n# 6. Cross-model: same sample content retention comparison\nprint(\"\\n## 6. Cross-Model Content Retention (per-sample)\")\nprint(f\"\\n{'Model':<16} {'Samples w/ MORE truncation than Qwen-7B':>45}\")\nprint(\"-\" * 65)\nref = all_results[\"Qwen-7B\"]\nfor model_name in models:\n    if model_name == \"Qwen-7B\":\n        continue\n    res = all_results[model_name]\n    more_trunc = sum(1 for i in range(len(data)) if res[i][\"content_retained_frac\"] < ref[i][\"content_retained_frac\"])\n    print(f\"{model_name:<16} {more_trunc:>30d} ({100*more_trunc/len(data):.1f}%)\")\n\n# 7. Content retained fraction distribution\nprint(\"\\n## 7. Content Retained Fraction Distribution (all samples)\")\nprint(f\"\\n{'Model':<16} {'<50%':>8} {'50-70%':>8} {'70-80%':>8} {'80-90%':>8} {'90-95%':>8} {'95-100%':>8} {'100%':>8}\")\nprint(\"-\" * 80)\nfor model_name in models:\n    res = all_results[model_name]\n    fracs = [r[\"content_retained_frac\"] for r in res]\n    bins = [\n        sum(1 for f in fracs if f < 0.5),\n        sum(1 for f in fracs if 0.5 <= f < 0.7),\n        sum(1 for f in fracs if 0.7 <= f < 0.8),\n        sum(1 for f in fracs if 0.8 <= f < 0.9),\n        sum(1 for f in fracs if 0.9 <= f < 0.95),\n        sum(1 for f in fracs if 0.95 <= f < 1.0),\n        sum(1 for f in fracs if f >= 1.0),\n    ]\n    print(f\"{model_name:<16}\", end=\"\")\n    for b in bins:\n        print(f\" {b:>7d}\", end=\"\")\n    print()\n\n# 8. Chat template examples\nprint(\"\\n## 8. Chat Template Format Examples\")\nfor model_name, tok in tokenizers.items():\n    msgs = [\n        {\"role\": \"user\", \"content\": \"INPUT_TEXT_HERE\"},\n        {\"role\": \"assistant\", \"content\": \"pass\"},\n    ]\n    try:\n        text = tok.apply_chat_template(msgs, tokenize=False, add_generation_prompt=False)\n        # Show first 200 chars\n        display = text[:300].replace(\"\\n\", \"\\\\n\")\n        print(f\"\\n{model_name}:\")\n        print(f\"  {display}...\")\n    except Exception as e:\n        print(f\"\\n{model_name}: ERROR - {e}\")\n\n# 9. Effective training signal: what fraction of final tokens are label tokens?\nprint(\"\\n\\n## 9. Label Token Fraction in Final Sequence\")\nprint(\"(With label_only_loss, only label tokens contribute to gradient)\")\nprint(f\"\\n{'Model':<16} {'Label Tokens':>13} {'Final Len (mean)':>17} {'Label Fraction':>15}\")\nprint(\"-\" * 65)\nfor model_name, tok in tokenizers.items():\n    # Label is always 1 token (pass/fail)\n    pass_tok = len(tok.encode(\"pass\", add_special_tokens=False))\n    fail_tok = len(tok.encode(\"fail\", add_special_tokens=False))\n    avg_label = (pass_tok + fail_tok) / 2\n    finals = [r[\"final_len\"] for r in all_results[model_name]]\n    avg_final = np.mean(finals)\n    frac = avg_label / avg_final\n    print(f\"{model_name:<16} {avg_label:>13.1f} {avg_final:>17.1f} {100*frac:>14.3f}%\")\n\n# 10. The actual chat template token counts for overhead\nprint(\"\\n## 10. Detailed Chat Template Token Breakdown\")\nfor model_name, tok in tokenizers.items():\n    # Empty user + pass assistant\n    msgs_full = [{\"role\": \"user\", \"content\": \"\"}, {\"role\": \"assistant\", \"content\": \"pass\"}]\n    full_text = tok.apply_chat_template(msgs_full, tokenize=False, add_generation_prompt=False)\n    full_ids = tok(full_text, add_special_tokens=False).input_ids\n    \n    # Just the system/template tokens without any content\n    msgs_no_content = [{\"role\": \"user\", \"content\": \"\"}]\n    prompt_text = tok.apply_chat_template(msgs_no_content, tokenize=False, add_generation_prompt=True)\n    prompt_ids = tok(prompt_text, add_special_tokens=False).input_ids\n    \n    print(f\"\\n{model_name}:\")\n    print(f\"  Full template (empty user + 'pass'): {len(full_ids)} tokens\")\n    print(f\"  Prompt only (empty user + gen prompt): {len(prompt_ids)} tokens\")\n    print(f\"  Template overhead: {len(full_ids)} tokens\")\n    print(f\"  Effective content budget: {MAX_LEN} - {len(full_ids)} = {MAX_LEN - len(full_ids)} tokens\")\n\nPYEOF\necho \"Script v2 written.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "cat > /tmp/tokenizer_analysis_v2.py << 'PYEOF'\nimport json\nimport numpy as np\nfrom transformers import AutoTokenizer\nimport sys\n\nmodels = {\n    \"Qwen-7B\": \"/root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct\",\n    \"DeepSeek-6.7B\": \"/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct\",\n    \"Qwen-1.5B\": \"/root/trace-verdict-study/models/Qwen2.5-Coder-1.5B-Instruct\",\n    \"CodeLlama-13B\": \"/root/autodl-tmp/models/CodeLlama-13b-Instruct-hf/\",\n}\n\nMAX_LEN = 2048\n\nprint(\"Loading tokenizers...\", file=sys.stderr)\ntokenizers = {}\nfor name, path in models.items():\n    print(f\"  Loading {name}...\", file=sys.stderr)\n    tokenizers[name] = AutoTokenizer.from_pretrained(path, trust_remote_code=True)\n\n# Load data\ndata = []\nfor fpath in [\n    \"/root/autodl-tmp/trace-verdict-study-data/full_trace_tail_train.jsonl\",\n    \"/root/autodl-tmp/trace-verdict-study-data/full_trace_tail_test.jsonl\",\n]:\n    with open(fpath) as f:\n        for line in f:\n            data.append(json.loads(line))\n\nprint(f\"Loaded {len(data)} samples\", file=sys.stderr)\n\n# Replicate what to_chat_text does in train_sft.py\ndef analyze_chat_template(tokenizer, items, max_length=2048, truncation_side=\"right\"):\n    \"\"\"Replicate to_chat_text logic and collect stats.\"\"\"\n    results = []\n    for item in items:\n        # 1. Measure overhead (empty user + label assistant)\n        overhead_msg = tokenizer.apply_chat_template(\n            [{\"role\": \"user\", \"content\": \"\"},\n             {\"role\": \"assistant\", \"content\": item[\"output\"]}],\n            tokenize=False, add_generation_prompt=False,\n        )\n        overhead_len = len(tokenizer(overhead_msg, add_special_tokens=False).input_ids)\n        \n        # 2. Budget for input content\n        budget = max(0, max_length - overhead_len)\n        \n        # 3. Tokenize input\n        content_ids = tokenizer(item[\"input\"], add_special_tokens=False).input_ids\n        original_content_len = len(content_ids)\n        \n        # 4. Truncation\n        truncated = original_content_len > budget\n        if truncated:\n            if truncation_side == \"left\":\n                content_ids = content_ids[-budget:]\n            else:\n                content_ids = content_ids[:budget]\n        \n        actual_content_len = len(content_ids)\n        content_lost = original_content_len - actual_content_len\n        content_retained_frac = actual_content_len / original_content_len if original_content_len > 0 else 1.0\n        \n        # 5. Final sequence length after chat template\n        truncated_input = tokenizer.decode(content_ids, skip_special_tokens=False)\n        messages = [\n            {\"role\": \"user\", \"content\": truncated_input},\n            {\"role\": \"assistant\", \"content\": item[\"output\"]},\n        ]\n        final_text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=False)\n        final_ids = tokenizer(final_text, add_special_tokens=False).input_ids\n        final_len = len(final_ids)\n        \n        results.append({\n            \"overhead_len\": overhead_len,\n            \"budget\": budget,\n            \"original_content_len\": original_content_len,\n            \"actual_content_len\": actual_content_len,\n            \"truncated\": truncated,\n            \"content_lost\": content_lost,\n            \"content_retained_frac\": content_retained_frac,\n            \"final_len\": final_len,\n        })\n    return results\n\n# Analyze all models\nall_results = {}\nfor model_name, tok in tokenizers.items():\n    print(f\"\\nProcessing {model_name}...\", file=sys.stderr)\n    all_results[model_name] = analyze_chat_template(tok, data, max_length=MAX_LEN)\n\n# ============ ANALYSIS OUTPUT ============\nprint(\"=\"*80)\nprint(\"CHAT-TEMPLATE-AWARE TOKENIZATION ANALYSIS (tail-2048)\")\nprint(\"=\"*80)\n\n# 1. Chat template overhead\nprint(\"\\n## 1. Chat Template Overhead\")\nprint(f\"\\n{'Model':<16} {'Overhead (pass)':>16} {'Overhead (fail)':>16}\")\nprint(\"-\" * 50)\nfor model_name, tok in tokenizers.items():\n    for label in [\"pass\", \"fail\"]:\n        oh = tok.apply_chat_template(\n            [{\"role\": \"user\", \"content\": \"\"},\n             {\"role\": \"assistant\", \"content\": label}],\n            tokenize=False, add_generation_prompt=False,\n        )\n        oh_len = len(tok(oh, add_special_tokens=False).input_ids)\n        if label == \"pass\":\n            pass_oh = oh_len\n        else:\n            fail_oh = oh_len\n    print(f\"{model_name:<16} {pass_oh:>16} {fail_oh:>16}\")\n\n# 2. Content budget\nprint(\"\\n## 2. Input Content Budget (max_length=2048 - overhead)\")\nfor model_name in models:\n    res = all_results[model_name]\n    budgets = [r[\"budget\"] for r in res]\n    arr = np.array(budgets)\n    print(f\"{model_name:<16}: budget = {arr.mean():.0f} (range: {arr.min()}-{arr.max()})\")\n\n# 3. Original content length vs budget\nprint(\"\\n## 3. Original Content Token Length (before truncation)\")\nprint(f\"\\n{'Model':<16} {'Mean':>8} {'Median':>8} {'P90':>8} {'Max':>8} | {'Exceeds Budget':>15} {'% Truncated':>12}\")\nprint(\"-\" * 85)\nfor model_name in models:\n    res = all_results[model_name]\n    orig = [r[\"original_content_len\"] for r in res]\n    arr = np.array(orig)\n    trunc_count = sum(1 for r in res if r[\"truncated\"])\n    pct = 100.0 * trunc_count / len(res)\n    ps = np.percentile(arr, [90])\n    print(f\"{model_name:<16} {arr.mean():>8.1f} {np.median(arr):>8.1f} {ps[0]:>8.1f} {arr.max():>8d} | {trunc_count:>15d} {pct:>11.1f}%\")\n\n# 4. Content loss analysis\nprint(\"\\n## 4. Content Loss After Truncation\")\nprint(f\"\\n{'Model':<16} {'Avg Lost Tokens':>16} {'Avg Retained%':>14} {'Min Retained%':>14} {'Median Retained%':>16}\")\nprint(\"-\" * 80)\nfor model_name in models:\n    res = all_results[model_name]\n    # Only for truncated samples\n    trunc_res = [r for r in res if r[\"truncated\"]]\n    if trunc_res:\n        lost = np.array([r[\"content_lost\"] for r in trunc_res])\n        retained = np.array([r[\"content_retained_frac\"] for r in trunc_res])\n        print(f\"{model_name:<16} {lost.mean():>16.1f} {100*retained.mean():>13.1f}% {100*retained.min():>13.1f}% {100*np.median(retained):>15.1f}%\")\n    else:\n        print(f\"{model_name:<16} {'N/A (no truncation)':>16}\")\n\n# 5. Final sequence length (after chat template + truncation)\nprint(\"\\n## 5. Final Sequence Length (after truncation + chat template)\")\nprint(f\"\\n{'Model':<16} {'Mean':>8} {'Median':>8} {'Max':>8} {'Min':>8} | {'>2048':>8} {'% >2048':>8}\")\nprint(\"-\" * 75)\nfor model_name in models:\n    res = all_results[model_name]\n    finals = [r[\"final_len\"] for r in res]\n    arr = np.array(finals)\n    over = sum(1 for f in finals if f > 2048)\n    print(f\"{model_name:<16} {arr.mean():>8.1f} {np.median(arr):>8.1f} {arr.max():>8d} {arr.min():>8d} | {over:>8d} {100*over/len(finals):>7.1f}%\")\n\n# 6. Cross-model: same sample content retention comparison\nprint(\"\\n## 6. Cross-Model Content Retention (per-sample)\")\nprint(f\"\\n{'Model':<16} {'Samples w/ MORE truncation than Qwen-7B':>45}\")\nprint(\"-\" * 65)\nref = all_results[\"Qwen-7B\"]\nfor model_name in models:\n    if model_name == \"Qwen-7B\":\n        continue\n    res = all_results[model_name]\n    more_trunc = sum(1 for i in range(len(data)) if res[i][\"content_retained_frac\"] < ref[i][\"content_retained_frac\"])\n    print(f\"{model_name:<16} {more_trunc:>30d} ({100*more_trunc/len(data):.1f}%)\")\n\n# 7. Content retained fraction distribution\nprint(\"\\n## 7. Content Retained Fraction Distribution (all samples)\")\nprint(f\"\\n{'Model':<16} {'<50%':>8} {'50-70%':>8} {'70-80%':>8} {'80-90%':>8} {'90-95%':>8} {'95-100%':>8} {'100%':>8}\")\nprint(\"-\" * 80)\nfor model_name in models:\n    res = all_results[model_name]\n    fracs = [r[\"content_retained_frac\"] for r in res]\n    bins = [\n        sum(1 for f in fracs if f < 0.5),\n        sum(1 for f in fracs if 0.5 <= f < 0.7),\n        sum(1 for f in fracs if 0.7 <= f < 0.8),\n        sum(1 for f in fracs if 0.8 <= f < 0.9),\n        sum(1 for f in fracs if 0.9 <= f < 0.95),\n        sum(1 for f in fracs if 0.95 <= f < 1.0),\n        sum(1 for f in fracs if f >= 1.0),\n    ]\n    print(f\"{model_name:<16}\", end=\"\")\n    for b in bins:\n        print(f\" {b:>7d}\", end=\"\")\n    print()\n\n# 8. Chat template examples\nprint(\"\\n## 8. Chat Template Format Examples\")\nfor model_name, tok in tokenizers.items():\n    msgs = [\n        {\"role\": \"user\", \"content\": \"INPUT_TEXT_HERE\"},\n        {\"role\": \"assistant\", \"content\": \"pass\"},\n    ]\n    try:\n        text = tok.apply_chat_template(msgs, tokenize=False, add_generation_prompt=False)\n        # Show first 200 chars\n        display = text[:300].replace(\"\\n\", \"\\\\n\")\n        print(f\"\\n{model_name}:\")\n        print(f\"  {display}...\")\n    except Exception as e:\n        print(f\"\\n{model_name}: ERROR - {e}\")\n\n# 9. Effective training signal: what fraction of final tokens are label tokens?\nprint(\"\\n\\n## 9. Label Token Fraction in Final Sequence\")\nprint(\"(With label_only_loss, only label tokens contribute to gradient)\")\nprint(f\"\\n{'Model':<16} {'Label Tokens':>13} {'Final Len (mean)':>17} {'Label Fraction':>15}\")\nprint(\"-\" * 65)\nfor model_name, tok in tokenizers.items():\n    # Label is always 1 token (pass/fail)\n    pass_tok = len(tok.encode(\"pass\", add_special_tokens=False))\n    fail_tok = len(tok.encode(\"fail\", add_special_tokens=False))\n    avg_label = (pass_tok + fail_tok) / 2\n    finals = [r[\"final_len\"] for r in all_results[model_name]]\n    avg_final = np.mean(finals)\n    frac = avg_label / avg_final\n    print(f\"{model_name:<16} {avg_label:>13.1f} {avg_final:>17.1f} {100*frac:>14.3f}%\")\n\n# 10. The actual chat template token counts for overhead\nprint(\"\\n## 10. Detailed Chat Template Token Breakdown\")\nfor model_name, tok in tokenizers.items():\n    # Empty user + pass assistant\n    msgs_full = [{\"role\": \"user\", \"content\": \"\"}, {\"role\": \"assistant\", \"content\": \"pass\"}]\n    full_text = tok.apply_chat_template(msgs_full, tokenize=False, add_generation_prompt=False)\n    full_ids = tok(full_text, add_special_tokens=False).input_ids\n    \n    # Just the system/template tokens without any content\n    msgs_no_content = [{\"role\": \"user\", \"content\": \"\"}]\n    prompt_text = tok.apply_chat_template(msgs_no_content, tokenize=False, add_generation_prompt=True)\n    prompt_ids = tok(prompt_text, add_special_tokens=False).input_ids\n    \n    print(f\"\\n{model_name}:\")\n    print(f\"  Full template (empty user + 'pass'): {len(full_ids)} tokens\")\n    print(f\"  Prompt only (empty user + gen prompt): {len(prompt_ids)} tokens\")\n    print(f\"  Template overhead: {len(full_ids)} tokens\")\n    print(f\"  Effective content budget: {MAX_LEN} - {len(full_ids)} = {MAX_LEN - len(full_ids)} tokens\")\n\nPYEOF\necho \"Script v2 written.\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-18T12:20:04.030582+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script v2 written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-18T12:20:04.030729+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "cd /tmp && nohup /root/miniconda3/bin/python /tmp/tokenizer_analysis_v2.py > /tmp/tokenizer_output_v2.txt 2>&1 & echo \"PID: $!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "cd /tmp && nohup /root/miniconda3/bin/python /tmp/tokenizer_analysis_v2.py > /tmp/tokenizer_output_v2.txt 2>&1 & echo \"PID: $!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-18T12:20:04.030870+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID: 436259\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 30.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-18T12:20:04.030993+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "sleep 25 && ps -p 436259 > /dev/null 2>&1 && echo \"STILL RUNNING\" || echo \"DONE\"; tail -5 /tmp/tokenizer_output_v2.txt 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "sleep 25 && ps -p 436259 > /dev/null 2>&1 && echo \"STILL RUNNING\" || echo \"DONE\"; tail -5 /tmp/tokenizer_output_v2.txt 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T12:20:04.031119+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"STILL RUNNING\\nLoaded 5910 samples\\n\\nProcessing Qwen-7B...\\n\\nProcessing DeepSeek-6.7B...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 25.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-18T12:20:04.031255+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "sleep 25 && ps -p 436259 > /dev/null 2>&1 && echo \"STILL RUNNING\" || echo \"DONE\"; tail -5 /tmp/tokenizer_output_v2.txt 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "sleep 25 && ps -p 436259 > /dev/null 2>&1 && echo \"STILL RUNNING\" || echo \"DONE\"; tail -5 /tmp/tokenizer_output_v2.txt 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-18T12:20:04.031384+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"STILL RUNNING\\nProcessing Qwen-7B...\\n\\nProcessing DeepSeek-6.7B...\\n\\nProcessing Qwen-1.5B...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 25.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-18T12:20:04.031501+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "sleep 25 && ps -p 436259 > /dev/null 2>&1 && echo \"STILL RUNNING\" || echo \"DONE\"; tail -5 /tmp/tokenizer_output_v2.txt 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "sleep 25 && ps -p 436259 > /dev/null 2>&1 && echo \"STILL RUNNING\" || echo \"DONE\"; tail -5 /tmp/tokenizer_output_v2.txt 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-18T12:20:04.031622+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"STILL RUNNING\\nProcessing DeepSeek-6.7B...\\n\\nProcessing Qwen-1.5B...\\n\\nProcessing CodeLlama-13B...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 25.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-18T12:20:04.031736+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "sleep 25 && ps -p 436259 > /dev/null 2>&1 && echo \"STILL RUNNING\" || echo \"DONE\"; wc -l /tmp/tokenizer_output_v2.txt 2>/dev/null; tail -5 /tmp/tokenizer_output_v2.txt 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "sleep 25 && ps -p 436259 > /dev/null 2>&1 && echo \"STILL RUNNING\" || echo \"DONE\"; wc -l /tmp/tokenizer_output_v2.txt 2>/dev/null; tail -5 /tmp/tokenizer_output_v2.txt 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-18T12:20:04.031860+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DONE\\n127 /tmp/tokenizer_output_v2.txt\\nCodeLlama-13B:\\n  Full template (empty user + 'pass'): 12 tokens\\n  Prompt only (empty user + gen prompt): 9 tokens\\n  Template overhead: 12 tokens\\n  Effective content budget: 2048 - 12 = 2036 tokens\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 25.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-18T12:20:04.031982+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "cat /tmp/tokenizer_output_v2.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-11235",
+    "command": "cat /tmp/tokenizer_output_v2.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-18T12:20:04.032193+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading tokenizers...\\n  Loading Qwen-7B...\\n  Loading DeepSeek-6.7B...\\n  Loading Qwen-1.5B...\\n  Loading CodeLlama-13B...\\nLoaded 5910 samples\\n\\nProcessing Qwen-7B...\\n\\nProcessing DeepSeek-6.7B...\\n\\nProcessing Qwen-1.5B...\\n\\nProcessing CodeLlama-13B...\\n================================================================================\\nCHAT-TEMPLATE-AWARE TOKENIZATION ANALYSIS (tail-2048)\\n================================================================================\\n\\n## 1. Chat Template Overhead\\n\\nModel             Overhead (pass)  Overhead (fail)\\n--------------------------------------------------\\nQwen-7B                        32               32\\nDeepSeek-6.7B                  72               72\\nQwen-1.5B                      32               32\\nCodeLlama-13B                  12               12\\n\\n## 2. Input Content Budget (max_length=2048 - overhead)\\nQwen-7B         : budget = 2016 (range: 2016-2016)\\nDeepSeek-6.7B   : budget = 1976 (range: 1976-1976)\\nQwen-1.5B       : budget = 2016 (range: 2016-2016)\\nCodeLlama-13B   : budget = 2036 (range: 2036-2036)\\n\\n## 3. Original Content Token Length (before truncation)\\n\\nModel                Mean   Median      P90      Max |  Exceeds Budget  % Truncated\\n-------------------------------------------------------------------------------------\\nQwen-7B            1928.1   2017.0   2017.0     2017 |            5569        94.2%\\nDeepSeek-6.7B      2547.8   2731.0   2828.0     2908 |            5610        94.9%\\nQwen-1.5B          1928.1   2017.0   2017.0     2017 |            5569        94.2%\\nCodeLlama-13B      2338.4   2485.0   2552.0     2632 |            5596        94.7%\\n\\n## 4. Content Loss After Truncation\\n\\nModel             Avg Lost Tokens  Avg Retained%  Min Retained% Median Retained%\\n--------------------------------------------------------------------------------\\nQwen-7B                     
+…[truncated 4127 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-18T12:20:04.032477+00:00_
+
+数据齐了。现在合并两轮分析结果，输出完整报告。
+
+---
+
+# Tokenization 统计分析报告：CodeLlama vs 其他 3 模型 (tail-2048)
+
+## 1. 基础 Tokenizer 特性
+
+| Model | Vocab Size | Chars/Token (mean) | Chat Template Overhead | Content Budget (2048-OH) |
+|---|---|---|---|---|
+| **Qwen-7B** | 151,643 | 3.03 | 32 tokens | 2016 |
+| **Qwen-1.5B** | 151,643 | 3.03 | 32 tokens | 2016 |
+| **CodeLlama-13B** | 32,016 | 2.49 | 12 tokens | 2036 |
+| **DeepSeek-6.7B** | 32,000 | 2.29 | 72 tokens | 1976 |
+
+Qwen 的 151K 大词表使其每个 token 编码 3.03 个字符，显著优于 CodeLlama (2.49) 和 DeepSeek (2.29)。
+
+## 2. Raw Token 数统计（tokenize 原始 input+output，无 chat template）
+
+| Model | Mean | Median | Max | P90 | P99 |
+|---|---|---|---|---|---|
+| **Qwen-7B** | 1929 | 2018 | 2018 | 2018 | 2018 |
+| **Qwen-1.5B** | 1929 | 2018 | 2018 | 2018 | 2018 |
+| **CodeLlama-13B** | 2341 | 2488 | 2635 | 2555 | 2582 |
+| **DeepSeek-6.7B** | 2551 | 2734 | 2911 | 2831 | 2873 |
+
+**关键发现**：tail-2048 数据是按 Qwen tokenizer 截取的（Qwen max=2018，完美适配 2048 limit）。同一文本用 CodeLlama 编码后 **1.21x 膨胀**，DeepSeek **1.32x 膨胀**。
+
+## 3. 训练时实际截断分析（考虑 label-preserving truncation）
+
+训练代码 `to_chat_text` 实现了 **label-preserving truncation**：先计算 chat template + label 的 overhead，然后截断 input content 以适配 budget，label（pass/fail）**永远不会丢失**。
+
+### 截断率与内容损失
+
+| Model | % Samples Truncated | Avg Tokens Lost | Avg Content Retained | Min Retained |
+|---|---|---|---|---|
+| **Qwen-7B** | 94.2% | 1.0 | **100.0%** | 100.0% |
+| **Qwen-1.5B** | 94.2% | 1.0 | **100.0%** | 100.0% |
+| **CodeLlama-13B** | 94.7% | 412.1 | **83.3%** | 77.4% |
+| **DeepSeek-6.7B** | 94.9% | 691.7 | **74.4%** | 68.0% |
+
+Qwen 虽然 94.2% 的样本触发截断，但只截掉 ~1 token（数据本身就按 Qwen 裁剪到 ~2017 tokens）。CodeLlama 平均丢失 412 tokens（保留 83.3%），DeepSeek 丢失 692 tokens（保留 74.4%）。
+
+### 内容保留分布
+
+| Model | <50% | 50-70% | 70-80% | 80-90% | 90-95% | 95-100% | 100% |
+|---|---|---|---|---|---|---|---|
+| Qwen-7B | 0 | 0 | 0 | 0 | 0 | 5569 | 341 |
+| Qwen-1.5B | 0 | 0 | 0 | 0 | 0 | 5569 | 341 |
+| CodeLlama-13B | 0 | 0 | 785 | **4321** | 455 | 35 | 314 |
+| DeepSeek-6.7B | 0 | **719** | **3999** | 844 | 21 | 27 | 300 |
+
+CodeLlama 大部分样本保留 80-90%；DeepSeek 大部分在 70-80%。
+
+## 4. 最终序列长度（截断+chat template 后）
+
+| Model | Mean | Median | Max | >2048 |
+|---|---|---|---|---|
+| Qwen-7B | 1959.2 | 2048 | 2048 | 0 |
+| Qwen-1.5B | 1959.2 | 2048 | 2048 | 0 |
+| CodeLlama-13B | 1959.2 | 2047 | 2047 | 0 |
+| DeepSeek-6.7B | 1963.2 | 2048 | 2048 | 0 |
+
+所有模型最终序列都在 2048 以内，label-preserving truncation 正常工作。
+
+## 5. Label Token 特性
+
+| Model | "pass" tokens | "fail" tokens | Label Fraction in Sequence |
+|---|---|---|---|
+| Qwen-7B | 1 (`[6385]`) | 1 (`[18403]`) | 0.051% |
+| Qwen-1.5B | 1 (`[6385]`) | 1 (`[18403]`) | 0.051% |
+| CodeLlama-13B | 1 (`[1209]`) | 1 (`[4418]`) | 0.051% |
+| DeepSeek-6.7B | 1 (`[4805]`) | 1 (`[16156]`) | 0.051% |
+
+所有模型都将 pass/fail 编码为单 token。Label 仅占序列的 0.051%，这意味着使用 `label_only_loss` 时，每个 2048-token 序列中只有 1 个 token 贡献梯度。
+
+## 6. Chat Template 格式
+
+```
+Qwen:      <|im_start|>system\n...<|im_end|>\n<|im_start|>user\n{input}<|im_end|>\n<|im_start|>assistant\n{label}<|im_end|>
+DeepSeek:  <｜begin▁of▁sentence｜>{system_prompt}\n### Instruction:\n{input}\n### Response:\n{label}  (72 tokens overhead)
+CodeLlama: &lt;s>[INST] {input} [/INST] {label} &lt;/s>  (12 tokens overhead, 最简洁)
+```
+
+## 7. 核心结论
+
+### Tokenization 不能完全解释 CodeLlama tail-2048 的失败
+
+这是本分析最重要的发现：
+
+1. **DeepSeek 截断更严重却表现正常**：DeepSeek 仅保留 74.4% 内容（丢失 692 tokens），远差于 CodeLlama 的 83.3%（丢失 412 tokens），但 DeepSeek 在 tail-2048 上表现正常 (95-97.9%)。这排除了"内容截断导致信息丢失"作为 CodeLlama 失败的唯一解释。
+
+2. **Tokenizer 效率差异是系统性的但非致命的**：CodeLlama 的 32K 词表 vs Qwen 的 151K 词表导致 1.21x token 膨胀，但 DeepSeek 同样是 32K 词表且膨胀更大 (1.32x)，仍然能学。
+
+3. **截断方向的影响**：训练默认 `truncation_side="right"`，即截掉 input 的右侧（trace 末尾）。对 tail-2048 数据（本身是 full trace 的尾部），再截右侧意味着丢失 trace 的最后部分。但这对 CodeLlama 和 DeepSeek 的影响类似。
+
+### 可能的真实原因（需进一步验证）
+
+既然 tokenization/truncation 不是 root cause，CodeLlama tail-2048 的灾难性失败可能源于：
+
+- **模型架构/预训练差异**：CodeLlama (Llama-2 based) 在代码理解的 representation 质量上可能不如 Qwen/DeepSeek，特别是在 trace 被大量截断后，剩余信息不足以让 CodeLlama 学到判别模式
+- **LoRA 适配性**：相同的 LoRA 配置对不同架构的效果可能差异很大
+- **Label-only loss 的稀疏梯度问题**：每个 2048-token 序列中只有 1 个 token (0.051%) 贡献梯度，对 CodeLlama 这样的大模型来说，梯度信号可能过于稀疏，学习率/步数需要调整
+- **截断后的内容可辨别性**：虽然 CodeLlama 保留了 83% 的 trace 内容，但丢失的 17% 可能恰好包含 pass/fail 判定的关键信号（如最后的 assertion 结果），而 CodeLlama 的编码方式可能更集中地将这些关键信息放在被截断的区域
+
+### 论文 Discussion 建议
+
+可以这样 frame：tokenization efficiency 差异 (1.21x-1.32x token inflation) 对内容保留有 measurable impact，但 DeepSeek 的 counter-example 表明 truncation 不是 sufficient explanation。CodeLlama 的失败更可能是 model capability 与 truncation 的 compound effect，需要更大的 max_length 或更 aggressive 的数据适配来弥补。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_codellama_tokenizer_analysis_20260518T120927"
+}
+```
+
+</details>
+
+---

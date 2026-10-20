@@ -1,0 +1,27 @@
+{
+  "exp_id": "mvp_rgds_v1",
+  "project": "div_cal_verify",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-12T11:30:01.613Z",
+    "updated_at": "2026-05-12T11:32:40.283Z",
+    "spec": {
+      "command": "bash -c \"source /root/div_cal_verify/env.sh && cd /root/div_cal_verify && python run_mvp.py --method rgds --num_generations 4 --gpu_ids 0 --student_model /root/models/Qwen/Qwen3-1.7B --generator_model /root/models/Qwen/Qwen3-4B --output_dir ./results --data_dir ./data 2>&1 | tee logs/rgds.log\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "7205",
+      "log_path": "~/runs/div_cal_verify/mvp_rgds_v1.log",
+      "submitted_at": "2026-05-12T11:31:50.710Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-12T11:32:40.292176+00:00",
+  "trigger": "update_registry"
+}

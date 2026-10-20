@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7492c870ed20fabd0db",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "paper related work",
+  "task_key": "worker_paper_related_work_20260514T081834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_related_work_20260514T081834_result.json",
+    "occurrence": 1,
+    "bytes": 1006,
+    "sha256": "499f066c3726c566983ccf770448e8165d7fac4c9c66104fd28a291c16c9a0fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 8 个子领域缺口已经覆盖完毕，无需补充。\n\n当前 `related_work.tex` 已包含：\n\n| 子领域 | 所在小节 | 引用 |\n|--------|----------|------|\n| Concept drift | §2.4 Representation Drift | Lu, Gama, Caccia, Davari |\n| Active learning under shift | §2.3 Embedding-Based Diversity | BADGE, BatchBALD, Kothawade, Yehuda |\n| Dimensional collapse | §2.3 | Jing, Hua, Papyan, Laurent |\n| Broader model collapse | §2.1 | Guo, Seddik, Briesch + Shumailov, Alemohammad, Dohmatob, Gerstgrasser |\n| Broader data selection | §2.2 | LESS, SelectIT, QuRating, DsDm + Sorscher, SemDeDup, D4, DSIR |\n| Goodhart's law | §2.4 | Gao, Skalse, Pan, Karwowski |\n| Diversity metrics | §2.4 末段 | Li/Distinct-N, Zhu/Self-BLEU, Tevet, MAUVE |\n| Submodular maximization | §2.3 开头 | Iyer & Bilmes, Wei et al., Mirzasoleiman |\n\n`references.bib` 中 36 篇引用全部就位。`paper_framing.md` 的 \"Must Add\" 列表是历史记录，实际工作已完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-related-work.md"
+}

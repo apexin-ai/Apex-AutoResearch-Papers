@@ -1,0 +1,51 @@
+{
+  "exp_id": "full_trace_seed42",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:38:06.325Z",
+    "updated_at": "2026-05-14T21:45:33.847Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name full_trace_seed42\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "712469",
+      "log_path": "~/runs/trace-verdict-study/full_trace_seed42.log",
+      "submitted_at": "2026-05-14T18:38:06.317Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/full_trace_train.jsonl",
+      "data_count": 4720,
+      "model_name": "Qwen2.5-Coder-7B-Instruct",
+      "seed": 42,
+      "hypothesis": "Full execution trace (line-by-line Scratchpad format) provides verdict accuracy lift vs no-trace baseline",
+      "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/",
+      "wall_clock_seconds": 11247.5,
+      "gpu_hours": 3.12
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "train_loss": 0.037,
+      "eval_loss": 0.084,
+      "eval_mean_token_accuracy": 0.984,
+      "accuracy": 0.284,
+      "majority_baseline": 0.7151,
+      "lift": -0.431,
+      "pass_precision": 0.88,
+      "pass_recall": 0.08,
+      "pass_f1": 0.16,
+      "fail_precision": 0.31,
+      "fail_recall": 0.97,
+      "fail_f1": 0.57
+    },
+    "completed_at": "2026-05-14T21:45:33.847Z"
+  },
+  "timestamp": "2026-05-14T21:45:33.867435+00:00",
+  "trigger": "update_registry"
+}

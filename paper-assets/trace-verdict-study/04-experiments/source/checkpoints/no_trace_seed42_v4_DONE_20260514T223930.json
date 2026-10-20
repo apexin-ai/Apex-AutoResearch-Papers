@@ -1,0 +1,53 @@
+{
+  "exp_id": "no_trace_seed42_v4",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:12:37.755Z",
+    "updated_at": "2026-05-14T22:39:30.270Z",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/",
+      "log_path": "~/runs/trace-verdict-study/no_trace_seed42_v4.log",
+      "wall_clock_seconds": 1274.7,
+      "gpu_hours": 0.35
+    },
+    "hypothesis": "Baseline: verdict accuracy without execution trace (v4: fixed label truncation)",
+    "reproduce": {
+      "finished_at": "2026-05-14T22:34:36.523Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T22:34:37.283133+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 0.7513,
+      "majority_baseline": 0.7151,
+      "lift": 0.0361,
+      "n": 1190,
+      "pass_precision": 0.8776,
+      "pass_recall": 0.7579,
+      "pass_f1": 0.8134,
+      "fail_precision": 0.5473,
+      "fail_recall": 0.7345,
+      "fail_f1": 0.6272,
+      "accuracy_ci_lower": 0.7277,
+      "accuracy_ci_upper": 0.7748,
+      "lift_ci_lower": 0.0042,
+      "lift_ci_upper": 0.0706,
+      "train_loss": 0.18,
+      "eval_loss": 0.645
+    },
+    "completed_at": "2026-05-14T22:39:12.249Z"
+  },
+  "timestamp": "2026-05-14T22:39:30.299118+00:00",
+  "trigger": "update_registry"
+}

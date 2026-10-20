@@ -1,0 +1,64 @@
+{
+  "exp_id": "qwen15b_loop_only_seed123",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:54:39.904Z",
+    "updated_at": "2026-05-20T12:44:20.419Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition loop_only --model_path /root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_loop_only_seed123 --wandb_project trace-verdict-study --wandb_run_name qwen15b_loop_only_seed123 && python eval/evaluate.py --condition loop_only --model_path /root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_loop_only_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_loop_only_seed123/final/eval_results.json --save_predictions\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "623714",
+      "log_path": "~/runs/trace-verdict-study/qwen15b_loop_only_seed123.log",
+      "submitted_at": "2026-05-20T11:54:39.487Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/loop_only_train.jsonl",
+      "data_count": 4720,
+      "model_name": "Qwen2.5-Coder-1.5B-Instruct",
+      "seed": 123,
+      "checkpoint_source": "self-trained",
+      "eval_data": "/root/autodl-tmp/trace-verdict-study-data/loop_only_test.jsonl",
+      "wall_clock_seconds": 2980.9,
+      "gpu_hours": 0.83
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T12:40:47.934Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T12:40:50.915806+00:00"
+        }
+      ]
+    },
+    "hypothesis": "Qwen-1.5B loop_only seed123 应与 seed42 (78.32%) 接近，验证 Tier 2 loop_only 在 1.5B scale 的跨 seed 稳定性",
+    "parent": "qwen15b_loop_only_seed42",
+    "metrics": {
+      "accuracy": 0.8109,
+      "pass_f1": 0.8737,
+      "fail_f1": 0.6244,
+      "pass_precision": 0.8366,
+      "pass_recall": 0.9142,
+      "fail_precision": 0.7192,
+      "fail_recall": 0.5516,
+      "train_loss": 0.0843,
+      "train_runtime_sec": 2659.73
+    },
+    "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_loop_only_seed123/final/",
+    "log_path": "~/runs/trace-verdict-study/qwen15b_loop_only_seed123.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-20T12:44:20.419Z"
+  },
+  "timestamp": "2026-05-20T12:44:20.696593+00:00",
+  "trigger": "update_registry"
+}

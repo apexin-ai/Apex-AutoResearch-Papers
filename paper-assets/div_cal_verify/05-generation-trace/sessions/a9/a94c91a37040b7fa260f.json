@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a94c91a37040b7fa260f",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "code gpt2 medium prep",
+  "task_key": "worker_code_gpt2_medium_prep_20260513T184816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gpt2_medium_prep_20260513T184816_result.json",
+    "occurrence": 1,
+    "bytes": 1379,
+    "sha256": "61e76494e5ae088f4ff6f3677be5b46a53a68cbfbdb4957cceb890395b95c86e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部正常。以下是产出汇总：\n\n---\n\n### 1. 3 个脚本已写入服务器\n\n| 脚本 | 方法 | 输出目录 |\n|------|------|----------|\n| `run_medium_uncurated.sh` | uncurated (100%) | `results_medium_uncurated/` |\n| `run_medium_rgds.sh` | RGDS (50% embedding) | `results_medium_rgds/` |\n| `run_medium_random50.sh` | random_50 (50%) | `results_medium_random50/` |\n\n共同配置：`gpt2-medium`, seed=42, 8 代, 500K tokens/gen, lr=5e-5, epochs=3, bs=4, grad_accum=8, seq_len=512。用法：`bash run_medium_xxx.sh <GPU_ID>`。\n\n### 2. 显存 dry-run 结果\n\n| batch_size | grad_accum | peak VRAM | 状态 |\n|------------|------------|-----------|------|\n| 4 | 8 | **11.4 GB** | OK |\n| 2 | 16 | 8.7 GB | OK |\n| 1 | 32 | 7.4 GB | OK |\n\n**推荐配置：batch_size=4, grad_accum=8**（和 GPT2-125M 相同）。RTX PRO 6000 有 98GB 显存，11.4GB 毫无压力。脚本已按此配置写好，无需降 batch size。\n\n### 3. gpt2-medium 缓存\n\n已缓存在 `/root/.cache/huggingface/hub/models--gpt2-medium/`，355M 参数，TRANSFORMERS_OFFLINE=1 可直接加载。\n\n### 4. 现有实验未受影响\n\n- cuda:0: 79.9GB 占用（random_50 实验正常）\n- cuda:1: 15.4GB 占用（seed456_methods 正常，dry-run 已清理完毕）\n- 3 个 tmux session 均在线：`random_50_seed123`, `random_50_seed456`, `seed456_methods`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gpt2-medium-prep.md"
+}

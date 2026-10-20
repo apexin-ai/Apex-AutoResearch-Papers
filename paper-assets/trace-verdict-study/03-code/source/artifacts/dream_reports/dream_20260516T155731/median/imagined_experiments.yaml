@@ -1,0 +1,570 @@
+tier: median
+narrative_guidance: 'Claim 1 调整为 ''exception events + structured formatting jointly
+  constitute the most effective trace representation''。 nomarker 实验显示移除格式标记后有 ~2.4pp
+  下降（99.83% → ~97.5%），说明 format structure 是 SFT 有效性的 enabler 而非 cosmetic。 CodeLlama-13B
+  VOTA 接近 exception_only（gap 仅 0.33pp，McNemar 不显著），大模型上 Tier 层级不如 7B 明显。 Regex B5
+  (99.33%) > nomarker SFT (~97.5%) 使 ''trivial pattern'' 反驳不够 clean——需承认 format marker
+  贡献显著。 DeepSeek seed sensitivity + nomarker degradation 共同削弱 ''universal robustness''
+  叙事。 仍可 target EMNLP Main，但 framing 从 ''one clean insight'' 变为 ''nuanced empirical
+  finding with practical implications''。 Discussion 新增 format vs semantics decomposition
+  一节。Fallback EMNLP Findings ~30%。
+
+  '
+imagined_experiments:
+- name: no_trace_seed42_v5
+  plan_id: plan_mvp_notrace
+  description: 'No-trace baseline: 仅 code + test input，无任何 trace 信息'
+  expected_results:
+    accuracy: 0.7513
+    majority_baseline: 0.7151
+    lift_over_majority: 0.0361
+    pass_f1: 0.8134
+    fail_f1: 0.6272
+    accuracy_ci:
+    - 0.7277
+    - 0.7748
+    ECE: 0.1715
+    Brier: 0.1972
+  result_rationale: '[ACTUAL] 无 trace 时模型仅依赖 code structure + test input 推断 verdict，
+    lift 仅 3.6pp 接近 majority baseline。fail_recall=0.7345 远低于 pass_recall=0.7579， 说明
+    fail 判断更依赖 execution evidence。ECE=0.1715 表明模型对错误预测过度自信。 此结果建立了 trace signal 的
+    24.7pp lift 参照点（vs exception_only 99.83%）。
+
+    '
+  tables:
+  - 'Table 1: Main results'
+  figures_description:
+  - 'Bar chart: accuracy across conditions'
+  analysis: Baseline 锚点。75.13% 确认 verdict prediction 非 trivial task——代码静态分析不足以可靠判断
+    pass/fail。
+- name: vota_seed42_v5
+  plan_id: plan_mvp_vota
+  description: VOTA full trace SFT (exception + loop + ae)
+  expected_results:
+    accuracy: 0.9941
+    lift_over_notrace: 0.2428
+    pass_f1: 0.9941
+    fail_f1: 0.9855
+    accuracy_ci:
+    - 0.9882
+    - 0.9983
+    ECE: 0.0054
+    Brier: 0.0052
+  result_rationale: '[ACTUAL] VOTA 在 Qwen-7B 上近乎完美（99.41%），+24.3pp over no_trace。
+    但包含 Tier 2 组件（loop compression）引入轻微 noise，使其低于 exception_only 0.42pp。 在 median
+    tier 下，此结果作为 VOTA 在强模型上的 upper bound 参照。
+
+    '
+  tables:
+  - 'Table 1: Main results'
+  - 'Table 3: Component ablation'
+  figures_description: []
+  analysis: VOTA 核心参照点。99.41% 确认 trace compression 有效，但后续 ablation 将揭示 exception 是
+    active ingredient。
+- name: full_trace_seed42_v5
+  plan_id: plan_mvp_fulltrace
+  description: Full execution trace SFT (raw trace, 无压缩)
+  expected_results:
+    accuracy: 0.8176
+    lift_over_notrace: 0.0664
+    pass_f1: 0.8717
+    fail_f1: 0.6851
+    accuracy_ci:
+    - 0.797
+    - 0.839
+    ECE: 0.0958
+  result_rationale: '[ACTUAL] Full trace 有帮助（+6.6pp），但远不如 VOTA（-17.6pp gap）。 Epoch
+    1=83.03%, epoch 2 collapse=76.3%, final=81.76%——训练不稳定。 Long trace + gradient dilution
+    共同限制 full_trace 效果。
+
+    '
+  tables:
+  - 'Table 1: Main results'
+  - 'Table 2: Information density decomposition'
+  figures_description:
+  - Trace length ablation curve (Figure 2)
+  analysis: Gradient dilution + information overload 共同造成 full_trace 的 suboptimality，为
+    Claim 2 建立基础。
+- name: vota_no_ae_seed42
+  plan_id: plan_001
+  description: 移除 actual/expected 值对，验证非 trivial string comparison
+  expected_results:
+    accuracy: 0.9941
+    lift_vs_notrace: 0.243
+    pass_f1: 0.996
+    fail_f1: 0.989
+    accuracy_ci:
+    - 0.989
+    - 0.998
+  result_rationale: '[ACTUAL] 移除 actual/expected 后 accuracy 完全不变（99.41% = VOTA full），
+    证明 ae 值对是 redundant component。Exception signal 是 VOTA 的 active ingredient， ae
+    信息被 exception 完全 subsume。
+
+    '
+  tables:
+  - 'Table 3: Component ablation'
+  figures_description: []
+  analysis: ae 冗余确认。VOTA 的价值不在 actual/expected 比较，而在 fault indicator isolation。
+- name: full_trace_label_only_seed42
+  plan_id: plan_002
+  description: Full trace + label-only loss（mask trace tokens，只对 verdict token 计算
+    loss）
+  expected_results:
+    accuracy: 0.8622
+    lift_vs_standard_fulltrace: 0.0445
+    lift_vs_notrace: 0.1109
+    pass_f1: 0.9063
+    fail_f1: 0.7397
+    accuracy_ci:
+    - 0.8437
+    - 0.8807
+    ECE: 0.1107
+  result_rationale: '[ACTUAL] Label-only loss 提升 4.5pp over standard full_trace（86.22%
+    vs 81.76%）， 但仍远低于 VOTA（-13.2pp）。Gradient dilution 仅解释 gap 的 26%（4.5/17.6）， information
+    overload 解释 74%（13.0/17.6）。即使 oracle loss masking 也无法弥补 full trace 的 information
+    density 劣势。
+
+    '
+  tables:
+  - 'Table 2: Information density decomposition'
+  figures_description: []
+  analysis: 因果分解核心证据。26% gradient dilution + 74% information overload 的定量拆分支撑 Claim
+    2。
+- name: component_ablation_suite
+  plan_id: plan_003
+  description: 'VOTA 三组件独立测试: exception_only / ae_only / loop_only'
+  expected_results:
+    exception_only_accuracy: 0.9983
+    ae_only_accuracy: 0.9992
+    loop_only_accuracy: 0.8563
+    vota_full_accuracy: 0.9941
+    exception_vs_vota_p: 0.01
+    ae_vs_exception_p: 0.8
+  result_rationale: '[ACTUAL] Tier 1（exception 99.83%, ae 99.92%）统计等价（p=0.80），均近完美。
+    Tier 2（loop 85.63%）远低于 Tier 1 但显著高于 no_trace（+10.5pp）。 exception_only > VOTA full（p=0.01），说明
+    Tier 2 引入 noise 而非帮助。 Loop_only ≈ label_only（85.63% vs 86.22%），确认 VOTA loop compression
+    精确提取了 full trace 中的有效行为信号。
+
+    '
+  tables:
+  - 'Table 3: Component ablation'
+  - 'Table 4: Tier hierarchy'
+  figures_description:
+  - 'Figure 1: Two-tier diagnostic hierarchy'
+  analysis: 'Claim 3 核心证据。严格两层层级：Tier 1 (exception/ae) ≥ 99.83%，Tier 2 (loop) ≈ 85.6%。
+    在 median tier 下，后续 nomarker 实验将揭示 Tier 1 的效果部分依赖 format structure， 需调整 ''exception
+    content alone is sufficient'' 表述。
+
+    '
+- name: deepseek_cross_model_suite
+  plan_id: plan_004
+  description: DeepSeek-Coder-6.7B 上复现 4 条件
+  expected_results:
+    exception_only_seed42: 0.9933
+    exception_only_seed123: 0.9109
+    exception_only_seed456: 0.9933
+    exception_only_3seed_mean: 0.9658
+    vota: 0.8445
+    no_trace: 0.7336
+    full_trace_v3: 0.7916
+  result_rationale: '[ACTUAL] Exception_only 在 DeepSeek 上仍为最优组件（even worst seed 91.09%
+    > VOTA 84.45%）， 但 seed sensitivity 显著（σ≈4.8pp vs Qwen σ=0）。VOTA 84.45% 受 training-time
+    trace truncation 影响（91.7% samples 截断）。full_trace v3（label-preserving fix） 恢复到
+    79.16%，确认 v1 坍塌源自 label truncation。cross-model gap 与 signal complexity 正相关：exception
+    gap 小（0.50pp best case），VOTA gap 大（14.96pp）。
+
+    '
+  tables:
+  - 'Table 1: Main results'
+  - 'Table 5: Cross-model comparison'
+  figures_description:
+  - 'Figure 3: Cross-model gap vs signal complexity'
+  analysis: 'Exception relative dominance cross-model robust。但 DeepSeek seed sensitivity
+    + VOTA truncation confound 使 cross-model 叙事需谨慎。 在 median tier 下，这些结果与 nomarker
+    degradation 共同削弱 ''universal robustness'' narrative。
+
+    '
+- name: debugbench_generalization
+  plan_id: plan_005
+  description: DebugBench subset 上验证跨数据集泛化
+  expected_results:
+    exception_only: 1.0
+    vota: 0.9977
+    no_trace: 0.9671
+    exception_ci_wilson:
+    - 0.9914
+    - 1.0
+  result_rationale: '[ACTUAL] Exception_only 100%（426/426），VOTA 99.77%（1 error），no_trace
+    96.71%。 Trace lift 仅 3.29pp（vs 主数据集 24.7pp），天花板效应严重。 定位为泛化性证据（exception_only 跨数据集
+    robust），非 trace importance 证据。
+
+    '
+  tables:
+  - 'Table 6: DebugBench generalization'
+  figures_description: []
+  analysis: 仅作泛化验证。no_trace baseline 96.71% 说明 DebugBench 天花板高，不应用其 marginal lift
+    论证 trace 核心价值。
+- name: trace_length_ablation
+  plan_id: plan_006
+  description: 'Full trace 不同截断长度: 256/512/1024/no_limit'
+  expected_results:
+    tok_256: 0.7882
+    tok_512: 0.8042
+    tok_1024: 0.7723
+    no_limit: 0.8176
+  result_rationale: '[ACTUAL] 趋势非单调：512tok (80.42%) > 1024tok (77.23%)，可能因中间长度 epoch
+    退化模式不同。总体收益递减且全部远低于 exception_only (99.83%)。 更多 raw trace tokens 无法替代 targeted
+    signal extraction。
+
+    '
+  tables:
+  - 'Table 2 supplementary: Trace length curve'
+  figures_description:
+  - 'Figure 2: Accuracy vs trace length (log scale x-axis)'
+  analysis: '支撑 Claim 2 的 information density 论点。即使 no_limit full trace (81.76%) 仍落后
+    exception_only 18pp，说明 information overload 是根本瓶颈。
+
+    '
+- name: calibration_analysis
+  plan_id: plan_007
+  description: ECE + Brier + MCE 全条件 calibration 分析
+  expected_results:
+    exception_only_ECE: 0.0027
+    exception_only_Brier: 0.0013
+    ae_only_ECE: 0.0004
+    vota_ECE: 0.0054
+    no_trace_ECE: 0.1715
+    no_trace_Brier: 0.1972
+    ECE_ratio_notrace_vs_exception: 63.1
+    Brier_ratio_notrace_vs_exception: 151.7
+  result_rationale: '[ACTUAL] Tier 1 信号不仅 accuracy 近完美，calibration 也近完美。 no_trace
+    ECE 是 exception_only 的 63x，Brier 是 150x。 Trace signal 从根本上改善模型 calibration——模型不仅预测对，且
+    "知道自己对"。
+
+    '
+  tables:
+  - 'Table 4: Calibration metrics'
+  figures_description:
+  - 'Figure 4: Reliability diagram (all conditions)'
+  analysis: 独立于 accuracy 的 evidence dimension。在 median tier 下，calibration 数据仍是强证据——format
+    marker 不影响此结论。
+- name: seed_robustness
+  plan_id: plan_008
+  description: Qwen exception_only × 3 seeds + VOTA × 2 seeds
+  expected_results:
+    qwen_exception_3seed_mean: 0.9983
+    qwen_exception_3seed_std: 0.0
+    qwen_exception_seeds:
+      seed42: 0.9983
+      seed123: 0.9983
+      seed456: 0.9983
+    qwen_vota_seed42: 0.9941
+    qwen_vota_seed456: 0.9908
+    deepseek_exception_seeds:
+      seed42: 0.9933
+      seed123: 0.9109
+      seed456: 0.9933
+  result_rationale: '[ACTUAL] Qwen exception_only: 3 seeds 完全一致 (99.83% ± 0.00)，irreducible
+    2/1190 errors 100% 重叠（id=901,905）。这是论文最强 robustness 证据。DeepSeek: 2/3 seeds robust
+    (99.33%)， 1 outlier (91.09%) 源自 LoRA initialization sensitivity。 在 median tier
+    下，Qwen seed robustness 仍强，但 DeepSeek seed sensitivity + 后续 nomarker variance 共同限制
+    ''universally robust'' 叙事。
+
+    '
+  tables:
+  - 'Table 5: Seed robustness'
+  - 'Table 7: DeepSeek seed analysis'
+  figures_description: []
+  analysis: Qwen 3-seed variance=0 是最强证据。但需与 nomarker 和 DeepSeek 数据一起呈现 nuanced picture。
+- name: qwen15b_cross_scale
+  plan_id: plan_012
+  description: Qwen-2.5-Coder-1.5B 上复现 4 条件验证 scale invariance
+  expected_results:
+    exception_only: 0.9983
+    vota: 0.9958
+    no_trace: 0.6731
+    full_trace: 0.7706
+  result_rationale: '[ACTUAL] 关键发现：1.5B exception_only = 7B exception_only = 99.83%。
+    Signal-limited not capacity-limited——exception signal 如此 compact 和 structured，
+    即使 1.5B 模型也能完美学习。VOTA 也仅 0.25pp gap（99.58%）。 no_trace 67.31% < majority baseline
+    (71.51%)，说明 1.5B 的 code reasoning 能力不足以从静态代码推断 verdict。
+
+    '
+  tables:
+  - 'Table 5: Cross-model comparison'
+  figures_description: []
+  analysis: 'Exception signal 的 scale invariance 是强论点：如果 1.5B=7B=99.83%， 那么 signal
+    本身的 simplicity 是关键而非 model capacity。 在 median tier 下，此发现不受 nomarker 结果影响—— nomarker
+    仅测试 format 贡献，不改变 scale invariance 结论。
+
+    '
+- name: multi_seed_expansion
+  plan_id: plan_014
+  description: ae_only / label_only / loop_only 各 3 seeds
+  expected_results:
+    ae_only_3seed:
+      seed42: 0.9992
+      seed123: 0.9908
+      seed456: 0.9992
+      mean: 0.9964
+      std: 0.0049
+    label_only_3seed:
+      seed42: 0.8622
+      seed123: 0.8706
+      seed456: 0.859
+      mean: 0.8639
+    loop_only_3seed:
+      seed42: 0.8563
+      seed123: 0.8588
+      seed456: 0.8664
+      mean: 0.8605
+  result_rationale: '[ACTUAL] 三个条件的 3-seed 数据均确认 Tier 层级稳定： ae_only mean=99.64% (Tier
+    1)，label_only mean=86.39% (≈Tier 2)，loop_only mean=86.05% (Tier 2)。 label_only
+    ≈ loop_only 的等价性跨 seed 稳定，进一步确认 VOTA loop compression 精确等价于 full trace 的有效信号。ae_only
+    seed123=99.08% 是唯一轻微下降的 seed， 但仍远超 Tier 2 水平。
+
+    '
+  tables:
+  - 'Table 3: Component ablation (with seed range)'
+  figures_description: []
+  analysis: Tier 划分 seed-robust。median tier 下层级不受挑战——format marker 问题只影响 Tier 1 内部解读。
+- name: codellama13b_exception_only_seed42
+  plan_id: plan_013
+  description: CodeLlama-13B-Instruct exception_only
+  expected_results:
+    accuracy: 0.9983
+    n: 1190
+    errors: 2
+  result_rationale: '[ACTUAL] 99.83% 精确匹配 Qwen-7B 和 Qwen-1.5B，第 4 个模型确认 exception
+    signal 的 cross-family + cross-scale invariance。2 errors 预计仍为 GeneratorExit irreducible
+    samples。
+
+    '
+  tables:
+  - 'Table 5: Cross-model comparison'
+  figures_description: []
+  analysis: Exception signal 跨 LLaMA 家族 + 13B scale 仍为 99.83%——最强 universality 证据。
+- name: codellama13b_no_trace_seed42
+  plan_id: plan_013
+  description: CodeLlama-13B-Instruct no_trace baseline
+  expected_results:
+    accuracy: 0.765
+    n: 1190
+    lift_over_majority: 0.05
+    accuracy_ci:
+    - 0.738
+    - 0.787
+  result_rationale: '[ACTUAL] 76.5% 与 Qwen-7B (75.13%) 和 DeepSeek (73.36%) 同级， 说明
+    no_trace 性能主要受 task difficulty 而非 model capacity 约束。 13B 的额外容量在无 trace 条件下几乎无帮助。
+
+    '
+  tables:
+  - 'Table 5: Cross-model comparison'
+  figures_description: []
+  analysis: No-trace baseline 跨模型稳定在 73-76%，确认 verdict task 对 trace signal 的根本依赖。
+- name: codellama13b_vota_seed42
+  plan_id: plan_013
+  description: CodeLlama-13B-Instruct VOTA（PREDICTED — median tier）
+  expected_results:
+    accuracy: 0.995
+    n: 1190
+    errors: 6
+    pass_precision: 0.997
+    pass_recall: 0.996
+    pass_f1: 0.997
+    fail_precision: 0.989
+    fail_recall: 0.988
+    fail_f1: 0.989
+    accuracy_ci:
+    - 0.99
+    - 0.998
+    gap_vs_exception_only_pp: 0.33
+    mcnemar_vs_exception_p: 0.29
+    train_loss: 0.048
+    wall_clock_seconds: 14400
+  result_rationale: '[PREDICTED — median tier] 13B 模型对 VOTA 中 Tier 2 组件（loop compression）的利用能力
+    优于 7B，因为更大的 capacity 使模型更能从 loop behavioral patterns 中提取有用信号 而非被 noise 淹没。99.50%
+    仅比 exception_only (99.83%) 低 0.33pp，McNemar p≈0.29 不显著——对比 Qwen-7B 上 VOTA 99.41%
+    vs exception 99.83% (p=0.01)。
+
+    这是 median tier 的关键结果：exception 仍名义上最优，但在大模型上层级不再统计显著。 13B 的额外 capacity 使 VOTA
+    的 Tier 2 信号从 noise 变为 marginal help， 缩小了与 exception_only 的 gap。
+
+    6 个 errors 可能分布：2 个 GeneratorExit irreducible（与 exception_only 共享）， 4 个因 loop
+    context 引入的轻微 confusion（loop 显示正常但有 exception 的边缘 case）。 但 4 个 extra errors 远少于
+    Qwen-7B VOTA 的 7 个 extra errors（vs exception）， 说明 13B 更有效地利用了 Tier 2 信息。
+
+    对论文叙事的影响：Claim 3 的 "strict hierarchy" 措辞需 qualify—— 层级在 7B 上 statistically significant，在
+    13B 上仅 directional。 Discussion 应讨论 model scale 对 trace component utilization 的调节效应。
+
+    '
+  tables:
+  - 'Table 5: Cross-model comparison'
+  figures_description:
+  - 'Figure 3: Exception dominance gap vs model scale'
+  analysis: 'median tier 核心预测之一。exception > VOTA 的 gap 从 Qwen-7B 0.42pp (sig) 缩小到
+    CodeLlama-13B 0.33pp (n.s.)。Combined cross-model pattern: - Qwen-1.5B: gap=0.25pp（n.s.，但
+    n=1190 power 有限） - Qwen-7B: gap=0.42pp (sig p=0.01) - CodeLlama-13B: gap=0.33pp
+    (n.s. p≈0.29) - DeepSeek-6.7B: gap=14.88pp（truncation confound） 排除 DeepSeek truncation
+    outlier，gap 在 0.25-0.42pp 范围，scale 效应不明确。 论文应报告为 "exception consistently best
+    or tied-best across models" 而非 "exception dominates with significant margin"。
+
+    '
+- name: exception_only_nomarker_seed42
+  plan_id: plan_015
+  description: 移除格式标记 [No exception data in trace] 和 [ERROR] 前缀后重训 exception_only
+  expected_results:
+    accuracy: 0.9773
+    n: 1190
+    errors: 27
+    pass_precision: 0.993
+    pass_recall: 0.991
+    pass_f1: 0.992
+    fail_precision: 0.938
+    fail_recall: 0.942
+    fail_f1: 0.94
+    accuracy_ci:
+    - 0.969
+    - 0.984
+    train_loss: 0.135
+    eval_loss: 0.52
+    wall_clock_seconds: 4800
+  result_rationale: "[PREDICTED — median tier] 移除格式标记后 accuracy 从 99.83% 降至 97.73%（-2.10pp）。\
+    \ 降幅来源分析： - 2 个 irreducible errors（GeneratorExit，无论有无标记都无法解决） - ~15 个 pass→fail\
+    \ false alarm：无 [No exception data in trace] 标记的 pass 样本\n  变为空/minimal input，模型对\"\
+    无内容=pass\"的映射不如\"有明确 marker=pass\"可靠\n- ~10 个 fail→pass miss：移除 [ERROR] 前缀后，exception\
+    \ type+message 的 fault indicator\n  语义稍弱，特别是对简短/模糊的 exception message（如 \"ValueError\"\
+    \ 无 detail）\n\ntrain_loss 略高于 standard（0.135 vs 0.109）——无格式标记时 training signal\
+    \ 更 noisy， 模型需要更多 capacity 区分 pass/fail。\n关键对比： - Standard SFT (99.83%) vs nomarker\
+    \ SFT (97.73%) = 2.10pp format contribution - Nomarker SFT (97.73%) vs Regex B1\
+    \ [ERROR] presence (93.45%) = 4.28pp semantic learning - Nomarker SFT (97.73%)\
+    \ < Regex B5 format marker (99.33%) 最后一点是 median tier 的关键 tension：无格式标记的 SFT 甚至不如简单\
+    \ regex B5。 但 regex B5 本身就是利用格式标记，所以比较的公平性可争论。\n"
+  tables:
+  - 'Table 8: Nomarker ablation'
+  - 'Table 9: Format vs semantics decomposition'
+  figures_description:
+  - 'Figure 5: Format marker contribution decomposition'
+  analysis: 'Seed42 是 nomarker 的 anchor 结果。97.73% 说明格式标记有贡献但非主因—— 模型在无标记条件下仍远超 no_trace
+    (75.13%) 和 full_trace (81.76%)。 但 2.1pp 下降 + Regex B5 (99.33%) > nomarker SFT
+    的事实 使 "model learns deep exception semantics" 论点需要 qualification。
+
+    '
+- name: exception_only_nomarker_seed123
+  plan_id: plan_015
+  description: Nomarker seed 123（PREDICTED — median tier worst seed）
+  expected_results:
+    accuracy: 0.9672
+    n: 1190
+    errors: 39
+    pass_precision: 0.988
+    pass_recall: 0.989
+    pass_f1: 0.988
+    fail_precision: 0.916
+    fail_recall: 0.912
+    fail_f1: 0.914
+    accuracy_ci:
+    - 0.956
+    - 0.977
+    train_loss: 0.138
+  result_rationale: '[PREDICTED — median tier] Worst seed 96.72%（-3.11pp vs standard
+    99.83%）。 无格式标记增加了 training landscape 的 ruggedness—— 格式标记提供了 clean gradient signal（明确的
+    pass/fail 分界符）， 移除后 LoRA 初始化对 convergence basin 的依赖增大。
+
+    Seed123 的 fail_recall 降至 0.912（vs seed42 的 0.942）， 与 DeepSeek seed123 的 pattern
+    类似（fail 类学习更脆弱）。 但 96.72% 仍远高于 DeepSeek 的 worst seed (91.09%)—— Qwen 的基础稳定性即使在
+    nomarker 条件下也优于 DeepSeek with markers。
+
+    关键：nomarker worst seed (96.72%) 低于 Regex B5 (99.33%) 2.61pp， 且低于 standard SFT
+    worst seed (99.83%) 3.11pp。 这使 seed-robust claim 需要限定为 "with format markers"。
+
+    '
+  tables:
+  - 'Table 8: Nomarker ablation'
+  figures_description: []
+  analysis: 'Worst seed 下降更明显，说明格式标记不仅提升 mean accuracy，还提升 training stability。 format
+    markers → cleaner loss landscape → less seed sensitivity。
+
+    '
+- name: exception_only_nomarker_seed456
+  plan_id: plan_015
+  description: Nomarker seed 456（PREDICTED）
+  expected_results:
+    accuracy: 0.979
+    n: 1190
+    errors: 25
+    pass_precision: 0.994
+    pass_recall: 0.993
+    pass_f1: 0.993
+    fail_precision: 0.945
+    fail_recall: 0.947
+    fail_f1: 0.946
+    accuracy_ci:
+    - 0.971
+    - 0.986
+    train_loss: 0.133
+  result_rationale: '[PREDICTED — median tier] Best nomarker seed 97.90%（-1.93pp vs
+    standard）。 与 seed42 接近，2/3 seeds 在 97.7-97.9% range，seed123 为 outlier。 模式与 DeepSeek
+    exception_only 类似：2/3 robust + 1 weaker seed。
+
+    25 errors 分布：2 GeneratorExit + 13 pass false alarms + 10 fail misses。 pass false
+    alarms 主因：空输入被模型不确定性推向 fail 预测。
+
+    '
+  tables:
+  - 'Table 8: Nomarker ablation'
+  figures_description: []
+  analysis: Best seed 仍低于 Regex B5 (99.33%) 1.43pp——即使最好情况下，nomarker SFT 也不及 format-based
+    regex。
+- name: nomarker_3seed_summary
+  plan_id: plan_015
+  description: Nomarker 3-seed 综合分析（PREDICTED）
+  expected_results:
+    three_seed_mean: 0.9745
+    three_seed_std: 0.0063
+    three_seed_worst: 0.9672
+    three_seed_best: 0.979
+    format_marker_contribution_pp: 2.38
+    format_contribution_fraction: 0.37
+    semantic_learning_contribution_pp: 4.0
+    semantic_fraction: 0.63
+    vs_regex_B5_gap: -1.88
+    vs_regex_B1_gap: 4.0
+    mcnemar_mean_vs_standard_p: 0.0001
+  result_rationale: "[PREDICTED — median tier] 3-seed 均值 97.45%，format marker 贡献 2.38pp。\
+    \ 信号分解： - Format marker 对 SFT 的贡献: 99.83% - 97.45% = 2.38pp (37% of total SFT\
+    \ advantage) - Exception semantic learning: 97.45% - 93.45%(regex B1) = 4.00pp\
+    \ (63% of total) - Total SFT advantage over regex B1: 6.38pp = 2.38 + 4.00\nNomarker\
+    \ 3-seed std=0.63pp，远高于 standard exception_only 的 std=0—— 格式标记不仅提升 accuracy，还\
+    \ stabilize training（reduce seed variance to zero）。\n核心 tension for median tier:\
+    \ 1. Regex B5 (99.33%) > nomarker SFT mean (97.45%) → format marker 是 SFT 优于 regex\
+    \ 的主要来源之一 2. 但 nomarker SFT (97.45%) >> no_trace (75.13%) → SFT 学到的远不止 format\
+    \ pattern 3. Standard SFT (99.83%) > Regex B5 (99.33%) = 0.50pp → SFT 在有标记条件下仍优于\
+    \ regex，\n   说明模型学到了标记之外的 semantic patterns\n\n论文 framing 调整： - 旧: \"model learns\
+    \ exception semantics, not format shortcuts\" - 新: \"model leverages both exception\
+    \ semantics and format structure;\n       format markers contribute ~37% of SFT\
+    \ advantage and stabilize training\"\n"
+  tables:
+  - 'Table 8: Nomarker ablation (3 seeds with CI)'
+  - 'Table 9: Format vs semantics decomposition'
+  figures_description:
+  - 'Figure 5: Stacked bar showing format contribution (2.38pp) vs semantic contribution
+    (4.00pp) of total SFT advantage (6.38pp)'
+  - 'Figure 6: Nomarker vs standard seed variance comparison (box plot)'
+  analysis: "Median tier 的 defining result。2.38pp contribution 说明 format 不是 cosmetic\
+    \ 但也不是 dominant—— semantic learning (4.00pp) 仍占多数。但 Regex B5 > nomarker SFT 这一事实\
+    \ 使 Reviewer 可以 argue \"without the format marker, your SFT doesn't even beat\
+    \ a regex\"。\nDefense strategy: (1) format markers are part of trace design, not\
+    \ a bug—— good trace representation SHOULD include structured formatting; (2)\
+    \ nomarker still 22.3pp above no_trace, confirming SFT learns from content; (3)\
+    \ the finding itself is a contribution: trace formatting choices are SFT enablers,\
+    \ not just cosmetic decisions.\n对各 Claim 的影响： - Claim 1: 从 \"exception events\
+    \ are the most effective\" 变为\n  \"exception events with structured formatting\
+    \ jointly constitute the most effective representation\"\n- Claim 2: 不受影响（information\
+    \ density decomposition 独立于 format 问题） - Claim 3: Tier 层级仍成立（nomarker 97.45% >>\
+    \ loop_only 85.63%），\n  但需 acknowledge format structure 是 Tier 1 effective 的 enabler\n\
+    \n新增 Discussion section: \"Format vs Semantics Decomposition\" - Format markers\
+    \ 提供 3 个功能：(a) 明确的 pass/fail 分界 signal，\n  (b) attention anchor 帮助模型聚焦 relevant\
+    \ tokens，\n  (c) training stability（reduce loss landscape ruggedness）\n- 这不是 \"\
+    SFT 作弊\"——是 trace design 的 practical insight：\n  好的 trace representation 应包含 structured\
+    \ diagnostic markers"

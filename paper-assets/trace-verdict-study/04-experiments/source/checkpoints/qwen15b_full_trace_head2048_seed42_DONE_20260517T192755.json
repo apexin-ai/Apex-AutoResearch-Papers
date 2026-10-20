@@ -1,0 +1,42 @@
+{
+  "exp_id": "qwen15b_full_trace_head2048_seed42",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T17:56:23.519Z",
+    "updated_at": "2026-05-17T19:27:55.067Z",
+    "hypothesis": "Cross-scale head-truncation: Qwen-1.5B head-2048 should achieve 75-82%, and tail-2048 (97.90%) vs head-2048 gap should be >=15pp, confirming signal positional concentration holds at small scale",
+    "parent": "qwen15b_full_trace_tail2048_seed42",
+    "metrics": {
+      "accuracy": 0.7529,
+      "accuracy_ci_lower": 0.7286,
+      "accuracy_ci_upper": 0.7782,
+      "pass_precision": 0.799,
+      "pass_recall": 0.874,
+      "pass_f1": 0.835,
+      "fail_precision": 0.587,
+      "fail_recall": 0.448,
+      "fail_f1": 0.508,
+      "n_test": 1190
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_full_trace_head2048_seed42/final/",
+    "log_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_full_trace_head2048_seed42/final/eval_results.json",
+    "spec": {
+      "command": "python train/train_sft.py --condition full_trace_head --model_path Qwen2.5-Coder-1.5B-Instruct + eval",
+      "server": "westd-11235",
+      "data_path": "/root/trace-verdict-study/data/full_trace_head_train.jsonl",
+      "data_count": 4720,
+      "model_name": "Qwen2.5-Coder-1.5B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "self-trained SFT on full_trace_head data",
+      "eval_data": "/root/trace-verdict-study/data/full_trace_head_test.jsonl"
+    },
+    "completed_at": "2026-05-17T19:27:55.067Z"
+  },
+  "timestamp": "2026-05-17T19:27:55.234637+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "187ff9018b5fb2d8b776",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_8_1778890111.md",
+  "task_key": "loop_8_1778890111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778890111.md",
+    "occurrence": 1,
+    "bytes": 4845,
+    "sha256": "093fbbd6c0afcfc5453b42adfd6f6b8563d4ad9299036437e414d610fbc843fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-15T23:27:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `cuda:0` + `cuda:1`（westd-11235），绝不可用其他卡\n- DeepSeek 组实验必须用**旧代码**（无 `load_best_model_at_end`），保持 DeepSeek 组内一致性；已注释为 `# TEMP_DISABLED` 的 4 行不得启用\n- 论文同一张表不能混用 paired/unpaired bootstrap CI——DeepSeek VOTA/no_trace 缺 per-sample predictions，需重跑 `evaluate.py --save_predictions` 后用 paired bootstrap\n- exception_only 的 irreducible error 是 id=901 和 id=905（HumanEval/95 `check_dict_case`，GeneratorExit 误标），不要当成模型 bug 去修\n- D030 已关闭：VOTA 84.45% 是正式结果，叙事已修正为\"trace content truncation\"而非\"label truncation\"——不要回退到旧叙事\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`westd-11235`，账户 `root`，工作目录 `/root/trace-verdict-study`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 模型路径：DeepSeek `/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6.7b-instruct`；Qwen 用 HF hub `Qwen/Qwen2.5-Coder-7B-Instruct`\n- 数据路径：`/root/autodl-tmp/trace-verdict-study-data/`（含 full_trace/exception_only/VOTA train/test.jsonl + debugbench/）\n- 活跃进程：\n  - `deepseek_full_trace_seed42_v3`：PID 163109，cron 监控中\n  - `full_trace_256tok_seed42`：PID 187860，cron 监控中\n  - `full_trace_512tok_seed42`：RUNNING（PID 待确认，可能在 cuda:0 或 cuda:1）\n\n### 3. 📊 当前状态\n**刚做完**：D030 关闭 + paper framing v3.0 叙事修正 + DeepSeek exception_only 3-seed 分析（Claim 1 finalized D029）\n\n**RUNNING 实验 (3)**：\n- `deepseek_full_trace_seed42_v3`：DeepSeek full_trace label-preserving 重训，plan_004 最后一个条件\n- `full_trace_256tok_seed42`：plan_006 trace length ablation 第一个点\n- `full_trace_512tok_seed42`：plan_006 第二个点\n\n**PENDING (1)**：`debugbench_exception_bug_fix`——DebugBench exception 提取 bug 修复，等人工审批\n\n**QUEUED (2)**：`full_trace_1024tok_seed42`、`full_trace_2048tok_seed42`——plan_006 剩余两个 ablation 点，等 GPU 空出\n\n**活跃 Worker (3)**：\n- `worker_urgent_cuda0_check_and_recover`（running）：检查 cuda:0 状态并恢复\n- `worker_verify_debugbench_fix_landing`（running）：验证 DebugBench bug fix 已落地\n- `worker_paper_narrative_fix_group_analysis`（running）：修正论文叙事 + group analysis\n\n这 3 个 Worker 启动于 ~23:11-23:21，可能即将完成或已超时，接手后优先检查回调。\n\n### 4. 📋 待办（条件触发式）\n- `deepseek_full_trace_seed42_v3` cron 回调 → 分析结果，填 plan_004 最后一格（DeepSeek full_trace），更新跨模型对比表\n- `full_trace_256tok_seed42` 完成 → 记录 accuracy，继续排 1024tok/2048tok（等 GPU 释放）\n- `full_trace_512tok_seed42` 完成 → 同上，4 个点凑齐后绘 accuracy vs trace length 曲线\n- `debugbench_exception_bug_fix` 审批通过 → 跑 DebugBench 数据重生成（exception signal 覆盖率 376→1006/1006）\n- 3 个活跃 Worker 回调 → 读产出、更新 registry/report.md、汇报 Director\n- plan_006 4 点全齐 → 绘图 + 写论文 Claim 2 trace length section\n- plan_005 DebugBench 数据就绪 → 提交训练实验（第二任务验证 exception dominance）\n- Paper Agent 初稿交付 → 启动 Reviewer 对抗迭代\n\n### 5. 🎯 战略上下文\n**核心结论**：exception events 是 verdict prediction 最有效的 trace 组件（Qwen 99.83% ± 0.00，DeepSeek 99.33% 2/3 seeds）。3/3 core claims confirmed。VOTA 跨模型 gap (-14.96pp) 由 tokenizer efficiency 导致的 trace truncation 解释（D034 confirmed mechanism），exception_only 天然短小免疫此问题。\n\n**DDL**：EMNLP 2026 ARR May 25，剩 10 天。5/17-18 Paper Agent 完成初稿 → 5/19-21 Reviewer 对抗 → 5/24 提交。\n\n**易错点**：\n- 不要把 DeepSeek VOTA 84.45% 当 bug——它是真实结果，gap 原因是 tokenizer efficiency + trace truncation（非 label truncation）\n- plan_006 的 4 个 trace length ablation 点用的是 Qwen（不是 DeepSeek），不要搞混\n- DebugBench (plan_005) format_data.py 缺少 VOTA 格式化路径，需要补实现\n- `load_best_model_at_end` 代码变更发生在 13:24——之前的实验全用 epoch 3 final checkpoint，之后的用 best，论文报告时注意标注\n- DeepSeek 预训练规模是 2T tokens（非 1.17T），之前 Worker 产出的错误数据不得引用\n\n**决策链**：D029（Claim 1 finalized）→ D030（VOTA 84.45% 疑似伪影）→ D032（审计确认）→ D033（label corruption 假说推翻）→ D034（D030 closed，叙事修正 v3.0）→ D035（plan_005 DebugBench 保持原设计）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778890111.md"
+}

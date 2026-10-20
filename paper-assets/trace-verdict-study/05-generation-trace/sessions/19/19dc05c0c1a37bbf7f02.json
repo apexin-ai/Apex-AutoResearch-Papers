@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "19dc05c0c1a37bbf7f02",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "diagnose qwen7b full trace oom",
+  "task_key": "worker_diagnose_qwen7b_full_trace_oom_20260521T073438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_qwen7b_full_trace_oom_20260521T073438_result.json",
+    "occurrence": 1,
+    "bytes": 995,
+    "sha256": "c1bdfe5bd4ec80824ca2e47935edaf06eb5f37a37fb877cd169630aedaaeb323"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断报告已写入 `/root/trace-verdict-study/artifacts/diag_qwen7b_full_trace_oom.md`。\n\n**两个根因：**\n\n1. **GPU 未隔离** — 两个进程都跑在同一张物理 GPU 0 上。证据：seed123 进程只用了 46.43 GiB，但 GPU 剩余仅 529 MiB（~48 GiB 被 seed456 占了）。脚本内部 `os.environ[\"CUDA_VISIBLE_DEVICES\"]` 的设置在 CUDA 初始化之后已经太晚，`device_map={\"\": 0}` 始终映射到逻辑 GPU 0。\n\n2. **缺少 `--gradient_checkpointing`**（违反 C002）— seed456 独占整张 GPU 仍然 OOM：94.74 GiB 已用，还需 4.64 GiB。batch_size=4 × max_length=2048 的 7B 模型激活内存超过 95 GiB 上限。\n\n**修复（两条都要）：**\n- 在 shell 层设 `CUDA_VISIBLE_DEVICES=0` / `CUDA_VISIBLE_DEVICES=1`，不依赖脚本内部设置\n- 加 `--gradient_checkpointing`（激活内存降 ~40%，训练速度约慢 1 倍）\n\n不需要改代码，脚本已支持这两个参数。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "": 0
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-qwen7b-full-trace-oom.md"
+}

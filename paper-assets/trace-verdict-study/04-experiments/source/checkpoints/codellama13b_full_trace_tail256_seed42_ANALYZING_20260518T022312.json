@@ -1,0 +1,36 @@
+{
+  "exp_id": "codellama13b_full_trace_tail256_seed42",
+  "project": "trace-verdict-study",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T01:37:42.953Z",
+    "updated_at": "2026-05-18T02:23:11.904Z",
+    "hypothesis": "CodeLlama-13B tail-256 应在 78-85%，与 7B 级模型 tail-256 (76-79%) 类似或略高，确认 256 tokens 信号不足是 universal 的",
+    "parent": "codellama13b_full_trace_tail512_seed42",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python train.py --model /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf/ --condition full_trace --truncation tail --max_tokens 256 --seed 42'",
+      "server": "westd-11235",
+      "gpu": "cuda:0",
+      "pid": "397742",
+      "log_path": "~/runs/trace-verdict-study/codellama13b_full_trace_tail256_seed42.log",
+      "submitted_at": "2026-05-18T01:41:17.373Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/trace-verdict-study/data/",
+      "data_count": 600,
+      "model_name": "CodeLlama-13b-Instruct-hf",
+      "seed": 42,
+      "checkpoint_source": "trained_from_scratch",
+      "eval_data": "/root/trace-verdict-study/data/test.jsonl"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T02:23:11.443Z"
+    }
+  },
+  "timestamp": "2026-05-18T02:23:12.159974+00:00",
+  "trigger": "update_registry"
+}

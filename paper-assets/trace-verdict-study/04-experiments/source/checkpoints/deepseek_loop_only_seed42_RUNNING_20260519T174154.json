@@ -1,0 +1,41 @@
+{
+  "exp_id": "deepseek_loop_only_seed42",
+  "project": "trace-verdict-study",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-19T17:29:34.281Z",
+    "updated_at": "2026-05-19T17:41:54.426Z",
+    "hypothesis": "DeepSeek-6.7B loop_only 应显著低于 exception_only (99.33%)，预期 80-90%，验证 Tier hierarchy (Tier1 >> Tier2) 在第 3 个模型架构上成立，强化 MF2 跨模型证据",
+    "parent": "deepseek_exception_only_seed42",
+    "server": "westd-11235",
+    "gpu": "cuda:1",
+    "account": "root",
+    "failure_reason": "",
+    "completed_at": "2026-05-19T17:39:08.696Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition loop_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_loop_only_seed42 --wandb_project trace-verdict-study --wandb_run_name deepseek_loop_only_seed42 && python eval/evaluate.py --condition loop_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_loop_only_seed42/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_loop_only_seed42/final/eval_results.json --save_predictions\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "525732",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/",
+      "data_count": 4720,
+      "model_name": "deepseek-ai/deepseek-coder-6.7b-instruct",
+      "seed": 42,
+      "checkpoint_source": "self-trained",
+      "eval_data": "/root/autodl-tmp/trace-verdict-study-data/loop_only_test.jsonl"
+    }
+  },
+  "timestamp": "2026-05-19T17:41:54.697096+00:00",
+  "trigger": "update_registry"
+}

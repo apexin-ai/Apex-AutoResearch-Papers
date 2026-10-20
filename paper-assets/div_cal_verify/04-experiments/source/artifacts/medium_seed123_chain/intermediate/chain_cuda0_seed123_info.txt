@@ -1,0 +1,8 @@
+Scripts created on westd-11235:
+- /root/div_cal_verify/run_medium_uncurated_seed123.sh
+- /root/div_cal_verify/run_medium_rgds_seed123.sh
+- /root/div_cal_verify/run_medium_random50_seed123.sh
+- /root/div_cal_verify/chain_cuda0_seed123.sh
+
+tmux session: chain_cuda0_s123
+Started: 2026-05-14 09:58:34 CST

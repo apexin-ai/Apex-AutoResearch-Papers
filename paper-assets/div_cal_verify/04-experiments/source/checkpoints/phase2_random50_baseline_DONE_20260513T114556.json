@@ -1,0 +1,33 @@
+{
+  "exp_id": "phase2_random50_baseline",
+  "project": "div_cal_verify",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T11:29:42.169Z",
+    "updated_at": "2026-05-13T11:45:56.699Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/div_cal_verify/run_random50.sh 0",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "215364",
+      "log_path": "/root/autodl-tmp/div_cal_verify/random50_baseline.log",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/div_cal_verify/data_gpt2/",
+      "data_count": 232588,
+      "model_name": "gpt2 (124M) random_50 seed=42",
+      "seed": 42
+    },
+    "hypothesis": "Random 50% baseline: 与 RGDS/external_only 相同的 50% 数据预算但随机选择，验证 diversity-aware selection 相比随机选择的增益",
+    "parent": "phase2_3method_selfit",
+    "conclusion": "failed",
+    "completed_at": "2026-05-13T11:45:56.699Z"
+  },
+  "timestamp": "2026-05-13T11:45:56.790271+00:00",
+  "trigger": "update_registry"
+}

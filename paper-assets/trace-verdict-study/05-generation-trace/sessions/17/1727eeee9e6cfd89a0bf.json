@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1727eeee9e6cfd89a0bf",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper writing experiments",
+  "task_key": "worker_paper_writing_experiments_20260515T182502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments_20260515T182502_result.json",
+    "occurrence": 1,
+    "bytes": 903,
+    "sha256": "79e04a89dcdbafc908455fde46448c383d7c432abd2718a206e466cb0944b8d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**Part 1 — ARR 模板**\n- 从 `acl-org/acl-style-files` 下载了 `acl.sty` + `acl_natbib.bst`\n- 创建 `main.tex`（`[review]` 匿名模式）+ 6 个章节占位符\n- 编译通过，生成 2 页 PDF（仅 `fig:calibration` 和 `fig:cross_model_gap` 两个 figure ref 未定义，等图文件就绪后自动解决）\n\n**Part 2 — experiments.tex**\n- 4 个 subsection：Cross-Model Comparison / Component Ablation / Information Density Decomposition / Calibration Analysis\n- 4 张表（Table 1-4），所有数字直接来自 registry 数据，精度统一 2 位小数，95% CI 用方括号\n- McNemar's test p-values 标注（ae vs exc: p=0.80; exc vs VOTA: p=0.01）\n- Seed robustness: σ=0, n=3\n- DeepSeek full_trace 标注 N/A 并脚注说明 truncation bug\n- `wang2025dcsh` 加入 references.bib，标记 `[CITATION NEEDED]` 待验证作者和标题"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments.md"
+}

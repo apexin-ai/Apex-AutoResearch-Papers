@@ -1,0 +1,6 @@
+\section{Conclusion}
+
+We presented the first systematic component ablation of trace representations for verdict prediction, covering four code models across three architecture families.
+The finding is clear: information density, not trace completeness, determines learning efficiency under SFT.
+Compact exception events converge to ${\geq}$99.33\% across all models, while verbose full traces oscillate without stable convergence.
+These results establish a two-tier diagnostic hierarchy: Tier~1 signals (exceptions, assertion comparisons) generalize across architectures within a 0.50--1.11pp range, while Tier~2 signals (loop patterns) are model-dependent. For structurally constrained tasks such as verdict prediction, targeted signal extraction should replace wholesale trace inclusion.

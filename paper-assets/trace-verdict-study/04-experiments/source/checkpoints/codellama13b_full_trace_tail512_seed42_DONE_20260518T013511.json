@@ -1,0 +1,66 @@
+{
+  "exp_id": "codellama13b_full_trace_tail512_seed42",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T23:20:23.098Z",
+    "updated_at": "2026-05-18T01:35:11.577Z",
+    "hypothesis": "CodeLlama-13B tail-512 应在 93-96% 范围，与其他 3 模型 tail-512 收敛带一致，确认 phase transition 阈值跨 4 模型 universal",
+    "parent": "codellama13b_exception_only_seed42",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python train.py --model /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf/ --condition full_trace --truncation tail --max_tokens 512 --seed 42'",
+      "server": "westd-11235",
+      "gpu": "cuda:0",
+      "pid": "390656",
+      "log_path": "~/runs/trace-verdict-study/codellama13b_full_trace_tail512_seed42.log",
+      "submitted_at": "2026-05-17T23:23:34.065Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/trace-verdict-study/data/",
+      "data_count": 600,
+      "model_name": "CodeLlama-13b-Instruct-hf",
+      "seed": 42,
+      "checkpoint_source": "trained_from_scratch",
+      "eval_data": "/root/trace-verdict-study/data/test.jsonl",
+      "wall_clock_seconds": 7897.5,
+      "gpu_hours": 2.19
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T01:13:45.920Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T01:13:49.911715+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail512_seed42/final",
+    "log_path": "/root/trace-verdict-study/logs/codellama13b_tail512_seed42.log",
+    "metrics": {
+      "accuracy": 97.5,
+      "accuracy_ci_low": 96.6,
+      "accuracy_ci_high": 98.4,
+      "majority_baseline": 71.5,
+      "lift_over_majority": 26,
+      "pass_precision": 0.98,
+      "pass_recall": 0.99,
+      "pass_f1": 0.98,
+      "fail_precision": 0.97,
+      "fail_recall": 0.94,
+      "fail_f1": 0.95,
+      "train_loss": 0.124,
+      "eval_loss": 0.249
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-18T01:35:11.577Z"
+  },
+  "timestamp": "2026-05-18T01:35:11.763707+00:00",
+  "trigger": "update_registry"
+}

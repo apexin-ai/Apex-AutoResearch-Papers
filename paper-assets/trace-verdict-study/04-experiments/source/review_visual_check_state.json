@@ -1,0 +1,32 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T21:17:34.043882+00:00",
+  "completed_at": "2026-05-25T21:20:40.610435+00:00",
+  "findings": [
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 4 的四个子图 (a)-(d) 面积较小，图内 ECE 数值字号偏小（约 6-7pt），打印时可能不易阅读；建议适当增大子图尺寸或将 ECE 值移至 caption"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Figure 5 heatmap 面板中单元格内的数值字号偏小，多面板排列紧凑；建议考虑减少面板数或增大单个面板尺寸以提升可读性"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 13",
+      "message": "附录单页包含 6 个表格（Tables 4-9），排版非常紧凑；虽在附录中可接受，但表间距较小，建议适当分页"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Figure 2 右侧 y 轴刻度标签与图边界距离较近，建议微调 padding"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 0,
+    "info": 4
+  }
+}

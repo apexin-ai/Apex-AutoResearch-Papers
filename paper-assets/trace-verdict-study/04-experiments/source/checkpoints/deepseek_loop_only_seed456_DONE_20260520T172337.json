@@ -1,0 +1,46 @@
+{
+  "exp_id": "deepseek_loop_only_seed456",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:55:41.209Z",
+    "updated_at": "2026-05-20T17:23:37.284Z",
+    "spec": {
+      "command": "bash -c \"...deepseek_loop_only_seed456...\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "633962",
+      "log_path": "~/runs/trace-verdict-study/deepseek_loop_only_seed456.log",
+      "submitted_at": "2026-05-20T14:55:40.756Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/trace-verdict-study/data/",
+      "data_count": 1640,
+      "model_name": "DeepSeek-Coder-6.7B-Instruct",
+      "seed": 456,
+      "checkpoint_source": "self-trained",
+      "eval_data": "trace-verdict-study test split (164 samples)",
+      "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_loop_only_seed456/final/",
+      "wall_clock_seconds": 8876.5,
+      "gpu_hours": 2.47
+    },
+    "hypothesis": "DeepSeek loop_only seed456 验证 3-seed 稳定性：当前 seed42=seed123=81.26% (std=0)，reviewer 会质疑。第 3 seed 确认或修正这个异常一致性。",
+    "parent": "deepseek_loop_only_seed42",
+    "metrics": {
+      "accuracy": 0.784,
+      "majority_baseline": 0.715,
+      "lift_pp": 6.9,
+      "fail_f1": 0.63
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T17:23:37.285Z"
+  },
+  "timestamp": "2026-05-20T17:23:37.605407+00:00",
+  "trigger": "update_registry"
+}

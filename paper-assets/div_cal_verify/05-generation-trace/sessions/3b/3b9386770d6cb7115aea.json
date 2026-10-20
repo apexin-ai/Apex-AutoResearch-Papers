@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b9386770d6cb7115aea",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "code scs script audit",
+  "task_key": "worker_code_scs_script_audit_20260514T093910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scs_script_audit_20260514T093910_result.json",
+    "occurrence": 1,
+    "bytes": 3495,
+    "sha256": "cbcb5e1c66bab8995b4d8c4ebe456f7a4758034b268162791574805c209e314e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查完成。以下是结果：\n\n---\n\n## SCS/Ratio 相关脚本审查报告\n\n### 1. 脚本清单\n\n| 脚本 | 功能 | 支持 355M 3-seed |\n|------|------|------------------|\n| `run_mvp.py` L283-302 | 训练时内联计算 `selection_rare_ngram_ratio`（选中/拒绝样本的 rare n-gram 均值比），保存到 `metrics.json` 和 `all_results.json` | **是**（参数化） |\n| `analyze_355m_3seed.py` | 从 `all_results.json` 读取 ratio + ppl/rare/rankme/knn/corr，做 3-seed 摘要和 paired t-test | **是** |\n| `run_3seed_stats.py` | GPT2-small (125M) phase2 的 3-seed 统计分析，路径硬编码为 `results_phase2*` | **否**（仅 125M） |\n| `prepare_plot_data.py` | 硬编码数据输出 CSV，用于画图 | **否**（硬编码 125M 单 seed 数据） |\n| `compute_diversity_metrics.py` | Self-BLEU/Distinct-n/TTR | 无关 SCS |\n| `diversity_selection.py` | RGDS 选择逻辑（PCA + greedy submodular） | 运行时库，非分析脚本 |\n\n### 2. 没有独立 SCS 脚本\n\n项目中**不存在**名为 \"Selection Consistency Score\" 的独立指标或脚本。Director 任务中的 \"SCS\" 实际指的是 `selection_rare_ngram_ratio`（选中样本 rare n-gram 均值 / 拒绝样本 rare n-gram 均值）。这个值在 `run_mvp.py` 训练流程中**自动计算并保存**。\n\n如果需要跨 generation 的选择一致性（Jaccard overlap），需注意：每代生成的 synthetic 数据池不同，`selected_indices.pt` 中的索引指向不同数据池，**无法直接计算 Jaccard**。\n\n### 3. `analyze_355m_3seed.py` 兼容性\n\n路径映射逻辑 (`get_result_dir`)：\n- seed=42: `results_medium_{method}/{subdir}/`\n- seed≠42: `results_medium_{method}_seed{seed}/{subdir}/`\n\n**验证已有目录 vs 期望路径**：\n\n| method | seed=42 | seed=123 | seed=456 |\n|--------|---------|----------|----------|\n| rgds | ✅ 已有 | ✅ 已有 | ❌ 缺失（`results_medium_rgds_seed456/` 不存在） |\n| uncurated | ✅ | ✅ | ✅ 已有 |\n| external | ✅ | ✅ | ✅ 已有（5/8 gen） |\n| random50 | ✅ | ✅ | ❌ 缺失（`results_medium_random50_seed456/` 不存在） |\n\n脚本本身**无需修改**，路径映射正确。缺失的是 seed=456 的 rgds 和 random50 实验数据。\n\n### 4. seed=456 完成后一键出结果\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/div_cal_verify && python analyze_355m_3seed.py\n```\n\n输出：\n- stdout: 3-seed summary table + paired t-test + claim verification\n- `artifacts/355m_3seed_ttest.csv`\n- `artifacts/355m_3seed_summary.csv`\n\n### 5. 从已有结果提取 ratio 数据\n\nratio 存在每个实验的 `all_results.json` → `generations[i].selection_rare_ngram_ratio`。只有 RGDS 和 external_only 有 ratio 数据（uncurated 和 random_50 的 ratio 为 NaN，因为无选择/无 quality filter 诊断）。\n\n示例提取命令：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython3 -c \"\nimport json\nfor seed in [42, 123]:\n    path = f'/root/autodl-tmp/div_cal_verify/results_medium_rgds{\\\"\\\" if seed==42 else f\\\"_seed{seed}\\\"}/rgds/all_results.json'\n    with open(path) as f:\n        data = json.loads(f.read().replace('NaN','null'))\n    ratios = [(g['generation'], g.get('selection_rare_ngram_ratio')) for g in data['generations']]\n    print(f'RGDS seed={seed}:', ' '.join(f'g{g}={r:.3f}' if r else f'g{g}=N/A' for g,r in ratios))\n\"\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scs-script-audit.md"
+}

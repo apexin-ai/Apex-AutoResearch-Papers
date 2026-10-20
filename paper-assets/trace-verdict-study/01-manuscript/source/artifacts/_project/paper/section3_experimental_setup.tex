@@ -1,0 +1,120 @@
+\section{Experimental Setup}
+\label{sec:setup}
+
+\subsection{Task Definition}
+\label{sec:task}
+
+We study \emph{verdict prediction}: given a code snippet $c$, a test input $i$, and an expected output $o_{\text{exp}}$, predict whether executing $c$ on $i$ produces $o_{\text{exp}}$.
+Let $\mathbf{x} = (c, i, o_{\text{exp}})$ denote the static context and $t$ the full execution trace obtained by running $c(i)$.
+Each experimental condition defines a trace preprocessing function $f$ such that the model receives $(\mathbf{x}, f(t))$ and generates a verdict $\hat{y} \in \{\text{pass}, \text{fail}\}$.
+
+We formulate verdict prediction as supervised fine-tuning (SFT) in an instruction-tuned chat format.
+The model generates a single token---\texttt{pass} or \texttt{fail}---as its response, which constitutes a single token in both the Qwen and DeepSeek tokenizers used in our experiments.
+This setup differs fundamentally from code generation: the output space is $O(1)$, so all task-relevant information must be extracted from the input representation.
+The trace preprocessing function $f$ is therefore the primary design variable.
+
+\subsection{Dataset}
+\label{sec:dataset}
+
+We use the verdict prediction dataset constructed by \cite{placeholder_WangEMNLP2025} from CRUXEval \citep{placeholder_GuICML2024}, a benchmark of 800 standalone Python functions designed for execution reasoning evaluation.
+\cite{placeholder_WangEMNLP2025} paired each function with multiple test cases and collected line-by-line execution traces via a Python tracer, recording every executed line, variable assignment, function call, and exception event.
+This produced 5{,}910 labeled examples, each containing the source code, test input, expected output, ground-truth verdict, and full execution trace.
+
+We split the data into 4{,}720 training and 1{,}190 test examples.
+The test set is pass-dominant: 71.51\% of samples have verdict \emph{pass}, establishing a majority-class baseline of 71.51\% accuracy.
+This class imbalance motivates our use of per-class precision, recall, and F1 alongside overall accuracy.
+
+\subsection{Trace Representations}
+\label{sec:vota}
+
+\paragraph{Full trace.}
+The raw execution trace records every line execution, variable state, and function call in sequential order.
+For models with limited context, traces are tokenized and truncated to fit a 2{,}048-token window.
+We apply chat-template-aware truncation that reserves token budget for the verdict label at the sequence end, preventing the label from being right-truncated during tokenization---a failure mode that causes complete training collapse (Appendix~\ref{app:truncation}).
+
+\paragraph{VOTA.}
+Variable-Outcome Trace Abstraction (VOTA) extracts three diagnostic components from the full trace:
+
+\begin{enumerate}[itemsep=2pt,parsep=0pt,topsep=4pt]
+\item \textbf{Exception summary.}
+Structured error events in the format \texttt{[ERROR] type: \textit{ExceptionType} message: \textit{msg}}.
+Present only when execution raises an exception; absent for successful runs.
+
+\item \textbf{Assertion point.}
+A snapshot of the actual and expected output values: \texttt{[ASSERT] expected: \textit{X} actual: \textit{Y}}.
+Captures the diagnostic moment where the execution outcome can be compared against the specification.
+
+\item \textbf{Loop compression.}
+A behavioral summary replacing repetitive per-iteration trace lines with iteration count and variable change trends (e.g., \texttt{3 iterations, result grows [2] $\to$ [2,4] $\to$ [2,4,6]}).
+\end{enumerate}
+
+VOTA is not a lossy compression of the full trace.
+It performs \emph{targeted extraction}: each component isolates a specific diagnostic signal while discarding all intermediate execution state.
+Prior trace compression work optimizes for generation fluency by retaining a narrative of execution \citep{placeholder_FerrandoArXiv2025,placeholder_TraceCoderICSE2026}; VOTA instead selects the minimal set of events sufficient for a binary judgment.
+Figure~\ref{fig:vota_example} illustrates the transformation.
+
+\begin{figure}[t]
+\centering
+\fbox{\parbox{0.93\columnwidth}{%
+\small
+\textbf{Full trace} (excerpt, 847 tokens):\\[2pt]
+\texttt{L2: x = [1, 2, 3]}\\
+\texttt{L3: result = []}\\
+\texttt{L4: for item in x: ~~\# iter 1}\\
+\texttt{L5: ~~result.append(item * 2)}\\
+\texttt{L4: for item in x: ~~\# iter 2}\\
+\texttt{L5: ~~result.append(item * 2)}\\
+\texttt{~~\ldots~(14 more lines)}\\[6pt]
+\textbf{VOTA} (38 tokens):\\[2pt]
+\texttt{[LOOP] L4--5: 3 iters, result}\\
+\texttt{~~grows [2] $\to$ [2,4] $\to$ [2,4,6]}\\
+\texttt{[ASSERT] expected: [2,4,6]}\\
+\texttt{~~~~~~~~ actual: [2,4,6]}\\
+\texttt{[No exception]}}}
+\caption{Full trace to VOTA transformation. VOTA reduces token count by ${\sim}$20$\times$ while retaining only signals relevant to the pass/fail verdict.}
+\label{fig:vota_example}
+\end{figure}
+
+\subsection{Experimental Conditions}
+\label{sec:conditions}
+
+\paragraph{Conditions.}
+We evaluate seven trace conditions on Qwen-2.5-Coder-7B-Instruct \citep{placeholder_Qwen25Coder} and four on DeepSeek-Coder-6.7B-Instruct \citep{placeholder_DeepSeekCoder}.
+Table~\ref{tab:conditions} lists all conditions.
+The first four conditions are shared across both models; the remaining three---component-level ablations and a loss ablation---are evaluated on Qwen only.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lp{4.9cm}}
+\toprule
+\textbf{Condition} & \textbf{Input to model} \\
+\midrule
+\texttt{no\_trace} & $\mathbf{x}$ only \\
+\texttt{full\_trace} & $\mathbf{x} + t$, truncated to 2048 tokens \\
+\texttt{VOTA} & $\mathbf{x} + \text{VOTA}(t)$ \\
+\texttt{exception\_only} & $\mathbf{x}$ + exception component \\
+\texttt{ae\_only}$^*$ & $\mathbf{x}$ + assertion-point component \\
+\texttt{loop\_only}$^*$ & $\mathbf{x}$ + loop compression component \\
+\texttt{label\_only\_loss}$^{*\dag}$ & $\mathbf{x} + t$; loss on verdict token only \\
+\bottomrule
+\end{tabular}
+\caption{Experimental conditions. The first four are evaluated on both Qwen-2.5-Coder-7B and DeepSeek-Coder-6.7B; $^*$conditions are Qwen-only. $^\dag$\texttt{label\_only\_loss} uses the same input as \texttt{full\_trace} but restricts the training loss to the verdict token, isolating gradient dilution from information overload.}
+\label{tab:conditions}
+\end{table}
+
+\paragraph{Training.}
+All conditions use identical hyperparameters.
+We fine-tune with LoRA \citep{placeholder_HuLoRA2022}: rank 16, $\alpha{=}32$, applied to all linear layers.
+Training runs for 3 epochs with learning rate $2{\times}10^{-4}$, per-device batch size 4, and gradient accumulation over 8 steps (effective batch size 32).
+Maximum sequence length is 2{,}048 tokens.
+Gradient checkpointing is enabled for all runs.
+The primary seed is 42; we run two additional seeds (123, 456) for \texttt{exception\_only} to assess robustness of the headline result.
+
+All experiments run on 2$\times$ NVIDIA RTX PRO 6000 GPUs (96\,GB each) with CUDA 12.8.
+Each single-GPU training run completes in approximately 2 hours.
+
+\paragraph{Evaluation.}
+We report accuracy with bootstrap 95\% confidence intervals ($B{=}10{,}000$).
+Pairwise comparisons use paired bootstrap tests on per-sample predictions.
+We additionally report per-class precision, recall, and F1, as well as expected calibration error \citep[ECE;][]{placeholder_NaeiniICML2015} and Brier score to assess prediction confidence.

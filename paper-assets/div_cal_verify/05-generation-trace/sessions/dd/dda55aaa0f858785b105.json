@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dda55aaa0f858785b105",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "data gen7 summary table",
+  "task_key": "worker_data_gen7_summary_table_20260513T204917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_gen7_summary_table_20260513T204917_result.json",
+    "occurrence": 1,
+    "bytes": 370,
+    "sha256": "d35176fff5b59eb8fd01ce95b30be4fb7a7ea25be86b66bde7faa75fd7edc4ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已更新，精确值修正：\n\n- `table1_gen7_summary.csv` — RankMe_std (random_50: 0.95→0.98)、Corr_std (uncurated: 0.010→0.009)、PPL_std (rgds: 4.59→4.60)\n- `table1_gen7_summary_latex.tex` — 同步修正\n\n备注：random_50 的 Corr 仅基于 2/3 seeds（seed=456 无 corr 数据），kNN 全部为 0.988 未单独列出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-gen7-summary-table.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b68b8ad38be6492f401",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "data fill missing gen metrics",
+  "task_key": "worker_data_fill_missing_gen_metrics_20260514T072807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_fill_missing_gen_metrics_20260514T072807_result.json",
+    "occurrence": 1,
+    "bytes": 364,
+    "sha256": "7a1930c5c00e0e2ed26e40bf4b58955fdb6f20809a07cf1704128ed436f7263d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 registry 已更新完成：\n\n1. **medium_uncurated_seed123** — gen0-gen7 全部 5 项指标已补全（之前只有 gen7 汇总）\n2. **medium_rgds_seed123** — gen0-gen6 的 ratio 已补全（之前只有 gen7 的 ratio=0.8728）\n\nRGDS ratio 在 0.85-0.96 之间波动，与 seed42 的趋势一致（逐代下降但幅度不大）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-fill-missing-gen-metrics.md"
+}

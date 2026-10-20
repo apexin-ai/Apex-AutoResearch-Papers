@@ -1,0 +1,162 @@
+{
+  "exp_id": "phase2_seed123_remaining",
+  "project": "div_cal_verify",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T10:05:23.998Z",
+    "updated_at": "2026-05-13T15:19:03.216Z",
+    "spec": {
+      "hypothesis": "seed=123 下 uncurated + RGDS 方法的复现实验，补齐三方法对照（external_only 已在 cuda:0 运行）。基于 phase2_3method_selfit 配置。",
+      "command": "bash /root/div_cal_verify/run_seed123_remaining.sh 1",
+      "server": "westd-11235",
+      "gpu_id": 1,
+      "data_path": "/root/div_cal_verify/data_gpt2/",
+      "data_count": 232588,
+      "model_name": "gpt2 (124M) uncurated+RGDS seed=123",
+      "seed": 123,
+      "log_path": "/root/autodl-tmp/div_cal_verify/phase2_seed123_remaining.log",
+      "checkpoint_path": "/root/autodl-tmp/div_cal_verify/results_phase2_seed123/",
+      "tmux_session": "phase2_seed123_remaining",
+      "current_method": "uncurated",
+      "current_gen": 3,
+      "total_gens": 7,
+      "note": "2026-05-13 10:50 check: alive, uncurated Gen 3/7 training, GPU1 15409MiB"
+    },
+    "current_gen": 3,
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/phase-gated-compound-sparse/results_phase2_seed123/",
+    "log_path": "/root/autodl-tmp/phase-gated-compound-sparse/phase2_seed123_remaining.log",
+    "metrics": {
+      "uncurated": {
+        "gen0": {
+          "ppl": 36.69,
+          "rankme": 277.86,
+          "knn": 0.988,
+          "rare": 0.0293,
+          "corr": -0.0222
+        },
+        "gen1": {
+          "ppl": 45.29,
+          "rankme": 297.08,
+          "knn": 0.988,
+          "rare": 0.0192,
+          "corr": -0.0554
+        },
+        "gen2": {
+          "ppl": 53.76,
+          "rankme": 301.88,
+          "knn": 0.988,
+          "rare": 0.0137,
+          "corr": -0.0448
+        },
+        "gen3": {
+          "ppl": 53.76,
+          "rankme": 300.7,
+          "knn": 0.988,
+          "rare": 0.0116,
+          "corr": -0.0365
+        },
+        "gen4": {
+          "ppl": 54.33,
+          "rankme": 298.78,
+          "knn": 0.988,
+          "rare": 0.0107,
+          "corr": -0.0471
+        },
+        "gen5": {
+          "ppl": 53,
+          "rankme": 293.21,
+          "knn": 0.988,
+          "rare": 0.01,
+          "corr": -0.037
+        },
+        "gen6": {
+          "ppl": 49.87,
+          "rankme": 295.35,
+          "knn": 0.988,
+          "rare": 0.0101,
+          "corr": -0.0477
+        },
+        "gen7": {
+          "ppl": 46.15,
+          "rankme": 290.13,
+          "knn": 0.988,
+          "rare": 0.0093,
+          "corr": -0.0755
+        }
+      },
+      "rgds": {
+        "gen0": {
+          "ppl": 36.71,
+          "rankme": 272.68,
+          "knn": 0.988,
+          "rare": 0.0293,
+          "corr": -0.0116,
+          "ratio": 0.9997
+        },
+        "gen1": {
+          "ppl": 42.81,
+          "rankme": 286.96,
+          "knn": 0.988,
+          "rare": 0.0186,
+          "corr": -0.0544,
+          "ratio": 0.9066
+        },
+        "gen2": {
+          "ppl": 47.35,
+          "rankme": 291.31,
+          "knn": 0.988,
+          "rare": 0.0142,
+          "corr": -0.0569,
+          "ratio": 0.8604
+        },
+        "gen3": {
+          "ppl": 52.64,
+          "rankme": 295.72,
+          "knn": 0.988,
+          "rare": 0.0119,
+          "corr": -0.0185,
+          "ratio": 0.8689
+        },
+        "gen4": {
+          "ppl": 52.74,
+          "rankme": 294.9,
+          "knn": 0.988,
+          "rare": 0.0101,
+          "corr": -0.0042,
+          "ratio": 0.8863
+        },
+        "gen5": {
+          "ppl": 60.62,
+          "rankme": 294.93,
+          "knn": 0.988,
+          "rare": 0.0087,
+          "corr": -0.0036,
+          "ratio": 0.7809
+        },
+        "gen6": {
+          "ppl": 75.03,
+          "rankme": 299.36,
+          "knn": 0.988,
+          "rare": 0.007,
+          "corr": -0.0119,
+          "ratio": 0.6789
+        },
+        "gen7": {
+          "ppl": 81.57,
+          "rankme": 298.35,
+          "knn": 0.988,
+          "rare": 0.0062,
+          "corr": -0.0312,
+          "ratio": 0.5236
+        }
+      }
+    },
+    "completed_at": "2026-05-13T15:19:03.216Z"
+  },
+  "timestamp": "2026-05-13T15:19:03.260867+00:00",
+  "trigger": "update_registry"
+}

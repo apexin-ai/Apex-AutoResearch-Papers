@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f72490b4a6c045d63b4",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops cleanup duplicate evals",
+  "task_key": "worker_ops_cleanup_duplicate_evals_20260516T022017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup_duplicate_evals_20260516T022017_result.json",
+    "occurrence": 1,
+    "bytes": 335,
+    "sha256": "264ee89a3da8b28ca5d1181cdb0b29ef2a38866f8a92099a71f20a84c5fbc905"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n**已 kill：**\n- PID 229047 + 229042（较早的 full_trace_v3 eval 及其 bash 父进程）\n\n**保留：**\n- PID 229422（较新的 full_trace_v3 eval，cuda:0，正常运行中，GPU 利用率 83%）\n- PID 228241（deepseek_vota eval）已不在进程列表中，应该是已经自行完成了"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-duplicate-evals.md"
+}

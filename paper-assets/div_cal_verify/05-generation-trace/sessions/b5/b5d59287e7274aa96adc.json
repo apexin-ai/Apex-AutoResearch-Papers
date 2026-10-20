@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5d59287e7274aa96adc",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "ssh check gpu status 20260513",
+  "task_key": "worker_ssh_check_gpu_status_20260513_20260513T213318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_gpu_status_20260513_20260513T213318_result.json",
+    "occurrence": 1,
+    "bytes": 1074,
+    "sha256": "8b2a0ae41e2b8c49a9b1a7c0b0730a6397a7f87b046c7197ac7d6e83c8883af4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| | cuda:0 | cuda:1 |\n|---|---|---|\n| **显存** | 68,433 / 97,887 MiB (70%) | 21,687 / 97,887 MiB (22%) |\n| **GPU 利用率** | 39% | 0% (训练间隙) |\n| **当前任务** | **medium_rgds** (gpt2-medium, rgds, seed=42) | **ext_seed456** (gpt2, external_only, seed=456) |\n| **进度** | **Gen 0/7** — 刚启动 (~8 min) | **Gen 7/7** — step [3/5] Training student，接近完成 |\n| **Chain 脚本** | chain_cuda0 运行中 | chain_cuda1 运行中，等待 seed456_methods 完成 |\n\n**已完成任务：**\n- **medium_uncurated** (gpt2-medium, seed=42)：已跑完全部 8 代 (gen_0–gen_7)，chain_cuda0 于 05:25 自动切换到 medium_rgds\n- ext_seed456 的 gen_0–gen_6 均已完成，gen_7 正在训练中\n\n**Chain 调度：**\n- chain_cuda0：medium_uncurated ✅ → **medium_rgds** (进行中) → 后续任务待定\n- chain_cuda1：正在 `sleep 60` 轮询等待 seed456_methods 组（uncurated_seed456 → ext_seed456 → rgds_seed456）完成，ext_seed456 是该组的第二个，完成后自动启动 rgds_seed456"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-gpu-status-20260513.md"
+}

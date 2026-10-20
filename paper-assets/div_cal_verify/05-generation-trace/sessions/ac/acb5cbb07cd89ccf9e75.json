@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "acb5cbb07cd89ccf9e75",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "paper experiments results draft",
+  "task_key": "worker_paper_experiments_results_draft_20260513T213345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_experiments_results_draft_20260513T213345_result.json",
+    "occurrence": 1,
+    "bytes": 814,
+    "sha256": "1315ce9f1a05f61aa7d5103c27781c3a281d0eb7888b446ca8db500a23d5d0f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已写入：\n\n- `docs/paper/experiments.tex` — 实验配置、训练超参、选择算法（eigenvalue variance minimization + PCA 32d）、5 项评估指标、GPT2-Medium scaling TODO\n- `docs/paper/results.tex` — C1（RGDS PPL 78.32±4.60, +82% vs random）、C2（External 47.59±2.93, ratio >1.0）、C3（RGDS vs Random 控制消融）、S3（Random vs Uncurated p≈0.10 方向性观察）、lexical diversity 趋势、RankMe 失效\n\n`main.tex` 已更新，`\\input{experiments}` 和 `\\input{results}` 已取消注释。\n\n注意事项：\n- methodology.tex 中 grad_accum=8（effective 32），experiments.tex 按指定写的 grad_accum=4（effective 16），需要统一\n- External/RGDS 标注了 $n{=}2$†，TODO 标注了 seed=456 更新位置和 GPT2-medium 占位"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-experiments-results-draft.md"
+}

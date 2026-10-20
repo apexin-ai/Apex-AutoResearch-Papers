@@ -1,0 +1,1 @@
+Remote file: /root/trace-verdict-study/docs/paper/appendix.tex — updated with Section: Confusion Matrix and Error Bias Analysis (tab:confusion_summary, tab:fp_fn_bias). Calibration tables already present.

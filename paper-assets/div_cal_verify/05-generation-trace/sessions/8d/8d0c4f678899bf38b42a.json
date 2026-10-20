@@ -1,0 +1,1159 @@
+{
+  "schema_version": "1.0",
+  "id": "8d0c4f678899bf38b42a",
+  "project": "div_cal_verify",
+  "kind": "worker",
+  "title": "paper related work",
+  "task_key": "worker_paper_related_work_20260514T081834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_related_work_20260514T081834.log",
+    "occurrence": 1,
+    "bytes": 145649,
+    "sha256": "5051f389e7aec856c154a95ff2239d2707d4e833cc7f612544410b094a980dc9"
+  },
+  "statistics": {
+    "messages": 26,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 8,
+      "tool_result": 8,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+                "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "3d26f5c5-5b9c-4daa-bfb9-311ac31c11d6",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-div-cal-verify/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778764200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "78964c19-c4fb-48e6-8339-099e5dffdbf8",
+                "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the current related work and references to understand what's already covered."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "uuid": "bf07c3d3-5b81-447d-9281-36bfd30b9542",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ji8ob3tgDmo7RDF8jNpYcr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11705,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11705
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S2AKLRknpksrtfY57FxdmR",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__edit_paper_section",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "uuid": "c5dab57b-5f43-4901-ab1a-36569514f048",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ji8ob3tgDmo7RDF8jNpYcr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11705,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11705
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T08:18:46.413Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01S2AKLRknpksrtfY57FxdmR",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__edit_paper_section"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "uuid": "177bf3a1-ac20-4d5e-b8bb-7a4076f4be20",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__read_project_file",
+                "mcp__agent-ml-research__edit_paper_section"
+              ],
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__edit_paper_section",
+              "total_deferred_tools": 24
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the current related work section and the existing references.",
+              "signature": "EoQCClkIDRgCKkDOie+OsDmMVZtTeV+FARAYSDaQcK+8pkGMdcEH+kTNU2wBlp1aDJcV2b7DpZu5fZuSRQQvNtCPqpYmXgvN8LdMMg9jbGF1ZGUtb3B1cy00LTY4ABIMnUZgQ26MdDwRVmG7GgwHRqV2pCxZvLdKwt8iMNkUBrWQ06wD1fZ+yqWVJUhjqzFYXwIf9XCjkVwj/HD/iNlX7YD/bv2bv0I6sgwZJipZ97SnZ5tqhzHnJT345eD80UFk0uA4C2Y7IYmTw6dCOuMcbv4pUnzt3Xk7JWpXe6dnLJzk1l0jLk9qjPPrSFZnQVh2vv2vmSLDb7XzOFTuE3klUOtuhiZ3cYYYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "uuid": "0208de40-c062-4f34-a259-da216879e35a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DD8GcUKvQwWNCVt6x12swW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 856,
+                "cache_read_input_tokens": 23546,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 856
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B2rM6vXuJu5KFjMfCWKrHR",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "div_cal_verify",
+                "file": "related_work.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "uuid": "be163c2f-1830-4e4b-bf8e-c4b5506b5f12",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DD8GcUKvQwWNCVt6x12swW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 856,
+                "cache_read_input_tokens": 23546,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 856
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T08:18:50.010Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B2rM6vXuJu5KFjMfCWKrHR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'related_work.md'\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "uuid": "7b6f5576-e831-4687-8255-6f490cd7ec22",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'related_work.md'\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'related_work.md'\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RQZgyEuVUPP6SfbRQbEBMq",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/artifacts/related_work_references.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "uuid": "33545dc8-ab72-4a1c-b39d-d265fb0be1f7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DD8GcUKvQwWNCVt6x12swW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 856,
+                "cache_read_input_tokens": 23546,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 856
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PhvN3uuxkxmpJhzN6njSsf",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/paper/**"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "uuid": "78048f91-146a-4c79-ac9b-ce283f33dd94",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DD8GcUKvQwWNCVt6x12swW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 856,
+                "cache_read_input_tokens": 23546,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 856
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T08:18:50.555Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RQZgyEuVUPP6SfbRQbEBMq",
+              "type": "tool_result",
+              "content": "artifacts/related_work_references.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "uuid": "b361b28e-6768-41fe-a724-cb2e13b5db3f",
+            "tool_use_result": {
+              "filenames": [
+                "artifacts/related_work_references.md"
+              ],
+              "durationMs": 21,
+              "numFiles": 1,
+              "truncated": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T08:18:50.556Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PhvN3uuxkxmpJhzN6njSsf",
+              "type": "tool_result",
+              "content": "docs/paper/acl.sty\ndocs/paper/acl_natbib.bst\nartifacts/_project/paper/methodology.tex\nartifacts/_project/paper/experiments_112f46.tex\nartifacts/_project/paper/experiments.tex\ndocs/paper/methodology.tex\ndocs/paper/main.blg\ndocs/paper/main.bbl\ndocs/paper/main.tex\ndocs/paper/figures/fig_ppl_trends.pdf\ndocs/paper/figures/fig_ratio_trajectory.pdf\ndocs/paper/main.aux\ndocs/paper/main.out\ndocs/paper/main.log\ndocs/paper/main.pdf\ndocs/paper/conclusion.tex\ndocs/paper/experiments.tex\ndocs/paper/introduction.tex\ndocs/paper/references.bib\ndocs/paper/related_work.tex\ndocs/paper/discussion.tex\ndocs/paper/results.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "uuid": "45827650-462a-4aab-9a68-1322b34a2a2a",
+            "tool_use_result": {
+              "filenames": [
+                "docs/paper/acl.sty",
+                "docs/paper/acl_natbib.bst",
+                "artifacts/_project/paper/methodology.tex",
+                "artifacts/_project/paper/experiments_112f46.tex",
+                "artifacts/_project/paper/experiments.tex",
+                "docs/paper/methodology.tex",
+                "docs/paper/main.blg",
+                "docs/paper/main.bbl",
+                "docs/paper/main.tex",
+                "docs/paper/figures/fig_ppl_trends.pdf",
+                "docs/paper/figures/fig_ratio_trajectory.pdf",
+                "docs/paper/main.aux",
+                "docs/paper/main.out",
+                "docs/paper/main.log",
+                "docs/paper/main.pdf",
+                "docs/paper/conclusion.tex",
+                "docs/paper/experiments.tex",
+                "docs/paper/introduction.tex",
+                "docs/paper/references.bib",
+                "docs/paper/related_work.tex",
+                "docs/paper/discussion.tex",
+                "docs/paper/results.tex"
+              ],
+              "durationMs": 17,
+              "numFiles": 22,
+              "truncated": false
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YALPZ31rag4t6H2YtBWvcU",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "uuid": "8200e7c7-8634-46e5-b5e6-5b79dd4f164b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UQCHHcqxVXo7hJpUcEeoFe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 687,
+                "cache_read_input_tokens": 24402,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 687
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T08:18:54.213Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YALPZ31rag4t6H2YtBWvcU",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\n2\t\n3\t\\subsection{Model Collapse in Iterative Training}\n4\t\n5\t\\citet{shumailov2024ai} demonstrate that language models trained recursively on their own generated data undergo irreversible tail distribution erosion, establishing model collapse as a fundamental limitation of self-consuming training loops. \\citet{alemohammad2024self} formalize this as Model Autophagy Disorder (MAD), proving theoretically that without fresh real data, iterative self-consumption degrades either quality or diversity. Subsequent work has extended these findings along several axes: \\citet{dohmatob2025strong} establish a sharp phase transition in collapse behavior beyond a critical iteration threshold; \\citet{seddik2024how} derive the maximum synthetic data proportion before collapse becomes inevitable; and \\citet{guo2024curious} track the decay of lexical, syntactic, and semantic diversity across self-training generations, finding the strongest degradation in high-entropy generation tasks.\n6\t\n7\tOn the mitigation side, \\citet{gerstgrasser2024model} show that accumulating data across generations---rather than replacing it---can prevent collapse, while \\citet{briesch2023large} confirm that replacement-based training degrades output diversity proportionally to synthetic data fraction. Our work operates within the replacement setting where collapse is expected, but reveals that a natural mitigation strategy---diversity-based data selection---can paradoxically \\emph{accelerate} rather than prevent collapse when it relies on the training model's own representations.\n8\t\n9\tIt is instructive to contrast self-consuming language model training with self-play in reinforcement learning \\citep{silver2017mastering} and self-training with verification \\citep{singh2024beyond}. In both settings, models train iteratively on their own outputs, yet collapse does not occur---because an external reward signal (game outcome, unit test, verifier) anchors the training distribution. Pure language model self-training lacks such an anchor: the model is both generator and (implicit) evaluator, and embedding-based selection provides a proxy signal that degrades endogenously rather than an external ground truth that remains stable.\n10\t\n11\t\\subsection{Data Curation and Selection for LLM Training}\n12\t\n13\tData selection has emerged as a key lever for training efficiency and quality. \\citet{sorscher2022beyond} show that metric-guided data pruning can break neural scaling law power laws, motivating a family of embedding-based and model-aware selection methods. SemDeDup \\citep{abbas2023semdedup} removes semantic near-duplicates using pretrained embeddings; D4 \\citep{tirumala2023d4} combines deduplication with diversity-maximizing selection in embedding space; and DSIR \\citep{xie2023data} selects data via importance resampling to match target domain feature distributions. More recent approaches optimize for task-specific signals: LESS \\citep{xia2024less} selects instruction-tuning data based on gradient similarity to target tasks; DsDm \\citep{engstrom2024dsdm} frames selection as datamodel-based optimization, noting that naive quality proxies can harm downstream performance; QuRating \\citep{wettig2024qurating} uses LLM-generated quality scores; and SelectIT \\citep{liu2024selectit} leverages model uncertainty for instruction data filtering.\n14\t\n15\tThese methods are designed for one-shot curation of static datasets, where the embedding model is fixed and its representation quality is not in question. We show that the iterative self-training setting introduces a qualitatively different failure mode: when the model providing embeddings co-degrades with the training distribution, embedding-based selection amplifies rather than counteracts distributional collapse. Data mixing strategies that blend real and synthetic data across generations \\citep{gerstgrasser2024model} offer a complementary mitigation but do not address the selection mechanism itself.\n16\t\n17\t\\subsection{Embedding-Based Diversity and Representation Learning}\n18\t\n19\tSubmodular maximization provides the algorithmic foundation for embedding-based diversity selection. \\citet{iyer2013submodular} establish the optimization framework for submodular functions under budget constraints; \\citet{wei2015submodularity} formalize data subset selection via facility location and graph-cut objectives in feature space; and \\citet{mirzasoleiman2020coresets} apply gradient-embedding facility location for coreset construction. These methods assume a fixed, high-quality embedding space---an assumption we show breaks down under iterative self-training.\n20\t\n21\tActive learning methods face a related challenge: acquisition functions must remain well-calibrated as the model updates. BADGE \\citep{ash2020deep} selects diverse batches via gradient embeddings; BatchBALD \\citep{kirsch2019batchbald} maximizes joint mutual information; and subsequent work has shown that standard acquisition strategies degrade under distribution shift \\citep{kothawade2021similar} and that embedding quality determines selection effectiveness \\citep{yehuda2022active}. However, active learning typically involves a few rounds of model updating, not the sustained multi-generation feedback loop where selection bias compounds into the selecting model's own training data.\n22\t\n23\tThe representation learning literature documents several mechanisms by which embedding spaces can lose expressiveness. \\citet{jing2022understanding} characterize dimensional collapse in contrastive learning, where embeddings are driven into low-dimensional subspaces; \\citet{hua2021feature} identify correlated feature axes as a driver of this collapse; and \\citet{papyan2020prevalence} show that deep network representations converge to low-dimensional simplex structures during prolonged training. \\citet{laurent2024feature} argue that feature collapse can be benign in classification, but our findings demonstrate that in iterative self-training, the same geometric contraction becomes pathological---it causes diversity selection to invert its intended effect.\n24\t\n25\t\\subsection{Representation Drift and Proxy Misalignment}\n26\t\n27\tOur work connects two established literatures that, together, explain why internal-embedding diversity selection fails under iterative training.\n28\t\n29\tThe concept drift literature studies how learned representations degrade under sustained distribution shift. \\citet{lu2019learning} and \\citet{gama2014survey} provide comprehensive taxonomies of drift detection and adaptation. In the continual learning setting, \\citet{caccia2022new} quantify abrupt representation change during sequential training, and \\citet{davari2022probing} demonstrate that representation-level forgetting proceeds independently of task performance---paralleling our finding that embedding geometry diverges from content diversity even as standard representation quality metrics (RankMe, $k$-NN accuracy) remain stable.\n30\t\n31\tThe Goodhart's law and reward hacking literature formalizes the failure of proxy optimization under distribution shift. \\citet{gao2023scaling} derive scaling laws showing that overoptimizing a proxy reward model degrades true objective performance; \\citet{skalse2022defining} prove that non-trivial proxy rewards are inherently exploitable; \\citet{pan2022effects} map how proxy-objective misalignment compounds under increasing optimization pressure; and \\citet{karwowski2024goodhart} provide geometric characterizations of when proxy optimization diverges from the true objective. The embedding alignment gap is an instance of this phenomenon: internal embedding diversity serves as a proxy for content diversity, and this proxy progressively loses fidelity as the model's representations co-evolve with the selected data distribution.\n32\t\n33\tFinally, measuring diversity itself requires careful metric design. Distinct-N \\citep{li2016diversity} and Self-BLEU \\citep{zhu2018texygen} quantify surface-level lexical diversity, while \\citet{tevet2021evaluating} audit failure modes of both n-gram and neural diversity metrics. MAUVE \\citep{pillutla2021mauve} measures distributional gaps between generated and human text via embedding-space divergence frontiers. We use rare n-gram density as our content diversity measure precisely because, unlike embedding-based metrics, it is model-independent and directly captures the lexical tail erosion that defines model collapse.\n34\t\n35\t\\paragraph{Positioning.} The embedding alignment gap as a concept---that proxy metrics degrade under optimization---is well established across the literatures surveyed above. Our contribution is not conceptual novelty but empirical quantification: we provide a controlled factorial ablation (four methods $\\times$ three seeds) that decomposes the failure into its constituent factors, a diagnostic metric (selection ratio) that tracks proxy-target divergence in real time, and evidence that the failure is specific to internal embeddings rather than to diversity selection in general.\n36\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "uuid": "826f015a-502b-4023-947c-6bee903cbbfc",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/related_work.tex",
+                "content": "\\section{Related Work}\n\n\\subsection{Model Collapse in Iterative Training}\n\n\\citet{shumailov2024ai} demonstrate that language models trained recursively on their own generated data undergo irreversible tail distribution erosion, establishing model collapse as a fundamental limitation of self-consuming training loops. \\citet{alemohammad2024self} formalize this as Model Autophagy Disorder (MAD), proving theoretically that without fresh real data, iterative self-consumption degrades either quality or diversity. Subsequent work has extended these findings along several axes: \\citet{dohmatob2025strong} establish a sharp phase transition in collapse behavior beyond a critical iteration threshold; \\citet{seddik2024how} derive the maximum synthetic data proportion before collapse becomes inevitable; and \\citet{guo2024curious} track the decay of lexical, syntactic, and semantic diversity across self-training generations, finding the strongest degradation in high-entropy generation tasks.\n\nOn the mitigation side, \\citet{gerstgrasser2024model} show that accumulating data across generations---rather than replacing it---can prevent collapse, while \\citet{briesch2023large} confirm that replacement-based training degrades output diversity proportionally to synthetic data fraction. Our work operates within the replacement setting where collapse is expected, but reveals that a natural mitigation strategy---diversity-based data selection---can paradoxically \\emph{accelerate} rather than prevent collapse when it relies on the training model's own representations.\n\nIt is instructive to contrast self-consuming language model training with self-play in reinforcement learning \\citep{silver2017mastering} and self-training with verification \\citep{singh2024beyond}. In both settings, models train iteratively on their own outputs, yet collapse does not occur---because an external reward signal (game outcome, unit test, verifier) anchors the training distribution. Pure language model self-training lacks such an anchor: the model is both generator and (implicit) evaluator, and embedding-based selection provides a proxy signal that degrades endogenously rather than an external ground truth that remains stable.\n\n\\subsection{Data Curation and Selection for LLM Training}\n\nData selection has emerged as a key lever for training efficiency and quality. \\citet{sorscher2022beyond} show that metric-guided data pruning can break neural scaling law power laws, motivating a family of embedding-based and model-aware selection methods. SemDeDup \\citep{abbas2023semdedup} removes semantic near-duplicates using pretrained embeddings; D4 \\citep{tirumala2023d4} combines deduplication with diversity-maximizing selection in embedding space; and DSIR \\citep{xie2023data} selects data via importance resampling to match target domain feature distributions. More recent approaches optimize for task-specific signals: LESS \\citep{xia2024less} selects instruction-tuning data based on gradient similarity to target tasks; DsDm \\citep{engstrom2024dsdm} frames selection as datamodel-based optimization, noting that naive quality proxies can harm downstream performance; QuRating \\citep{wettig2024qurating} uses LLM-generated quality scores; and SelectIT \\citep{liu2024selectit} leverages model uncertainty for instruction data filtering.\n\nThese methods are designed for one-shot curation of static datasets, where the embedding model is fixed and its representation quality is not in question. We show that the iterative self-training setting introduces a qualitatively different failure mode: when the model providing embeddings co-degrades with the training distribution, embedding-based selection amplifies rather than counteracts distributional collapse. Data mixing strategies that blend real and synthetic data across generations \\citep{gerstgrasser2024model} offer a complementary mitigation but do not address the selection mechanism itself.\n\n\\subsection{Embedding-Based Diversity and Representation Learning}\n\nSubmodular maximization provides the algorithmic foundation for embedding-based diversity selection. \\citet{iyer2013submodular} establish the optimization framework for submodular functions under budget constraints; \\citet{wei2015submodularity} formalize data subset selection via facility location and graph-cut objectives in feature space; and \\citet{mirzasoleiman2020coresets} apply gradient-embedding facility location for coreset construction. These methods assume a fixed, high-quality embedding space---an assumption we show breaks down under iterative self-training.\n\nActive learning methods face a related challenge: acquisition functions must remain well-calibrated as the model updates. BADGE \\citep{ash2020deep} selects diverse batches via gradient embeddings; BatchBALD \\citep{kirsch2019batchbald} maximizes joint mutual information; and subsequent work has shown that standard acquisition strategies degrade under distribution shift \\citep{kothawade2021similar} and that embedding quality determines selection effectiveness \\citep{yehuda2022active}. However, active learning typically involves a few rounds of model updating, not the sustained multi-generation feedback loop where selection bias compounds into the selecting model's own training data.\n\nThe representation learning literature documents several mechanisms by which embedding spaces can lose expressiveness. \\citet{jing2022understanding} characterize dimensional collapse in contrastive learning, where embeddings are driven into low-dimensional subspaces; \\citet{hua2021feature} identify correlated feature axes as a driver of this collapse; and \\citet{papyan2020prevalence} show that deep network representations converge to low-dimensional simplex structures during prolonged training. \\citet{laurent2024feature} argue that feature collapse can be benign in classification, but our findings demonstrate that in iterative self-training, the same geometric contraction becomes pathological---it causes diversity selection to invert its intended effect.\n\n\\subsection{Representation Drift and Proxy Misalignment}\n\nOur work connects two established literatures that, together, explain why internal-embedding diversity selection fails under iterative training.\n\nThe concept drift literature studies how learned representations degrade under sustained distribution shift. \\citet{lu2019learning} and \\citet{gama2014survey} provide comprehensive taxonomies of drift detection and adaptation. In the continual learning setting, \\citet{caccia2022new} quantify abrupt representation change during sequential training, and \\citet{davari2022probing} demonstrate that representation-level forgetting proceeds independently of task performance---paralleling our finding that embedding geometry diverges from content diversity even as standard representation quality metrics (RankMe, $k$-NN accuracy) remain stable.\n\nThe Goodhart's law and reward hacking literature formalizes the failure of proxy optimization under distribution shift. \\citet{gao2023scaling} derive scaling laws showing that overoptimizing a proxy reward model degrades true objective performance; \\citet{skalse2022defining} prove that non-trivial proxy rewards are inherently exploitable; \\citet{pan2022effects} map how proxy-objective misalignment compounds under increasing optimization pressure; and \\citet{karwowski2024goodhart} provide geometric characterizations of when proxy optimization diverges from the true objective. The embedding alignment gap is an instance of this phenomenon: internal embedding diversity serves as a proxy for content diversity, and this proxy progressively loses fidelity as the model's representations co-evolve with the selected data distribution.\n\nFinally, measuring diversity itself requires careful metric design. Distinct-N \\citep{li2016diversity} and Self-BLEU \\citep{zhu2018texygen} quantify surface-level lexical diversity, while \\citet{tevet2021evaluating} audit failure modes of both n-gram and neural diversity metrics. MAUVE \\citep{pillutla2021mauve} measures distributional gaps between generated and human text via embedding-space divergence frontiers. We use rare n-gram density as our content diversity measure precisely because, unlike embedding-based metrics, it is model-independent and directly captures the lexical tail erosion that defines model collapse.\n\n\\paragraph{Positioning.} The embedding alignment gap as a concept---that proxy metrics degrade under optimization---is well established across the literatures surveyed above. Our contribution is not conceptual novelty but empirical quantification: we provide a controlled factorial ablation (four methods $\\times$ three seeds) that decomposes the failure into its constituent factors, a diagnostic metric (selection ratio) that tracks proxy-target divergence in real time, and evidence that the failure is specific to internal embeddings rather than to diversity selection in general.\n",
+                "numLines": 36,
+                "startLine": 1,
+                "totalLines": 36
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016aEUchMY1TR3pGEdzEQSs3",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/related_work_references.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "uuid": "ad8dfff4-32b9-4819-b351-6703cea3f246",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UQCHHcqxVXo7hJpUcEeoFe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 687,
+                "cache_read_input_tokens": 24402,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 687
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T08:18:54.684Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016aEUchMY1TR3pGEdzEQSs3",
+              "type": "tool_result",
+              "content": "1\t# Related Work References — div_cal_verify\n2\t\n3\t> 36 篇经过 WebSearch 验证的引用，覆盖 8 个子领域\n4\t\n5\t## 1. Concept Drift / Embedding Drift\n6\t\n7\t1. **Lu et al. (2019)** \"Learning under Concept Drift: A Review\" — *IEEE Transactions on Knowledge and Data Engineering*, Vol. 31, No. 12, pp. 2346–2363\n8\t   - 作者: Jie Lu, Anjin Liu, Fan Dong, Feng Gu, João Gama, Guangquan Zhang\n9\t   - 关联: 建立了 drift 检测与适应的分类体系，为理解自训练中嵌入空间几何漂移提供了概念框架\n10\t\n11\t2. **Gama et al. (2014)** \"A Survey on Concept Drift Adaptation\" — *ACM Computing Surveys*, Vol. 46, No. 4, Article 44\n12\t   - 作者: João Gama, Indrė Žliobaitė, Albert Bifet, Mykola Pechenizkiy, Abdelhamid Bouchachia\n13\t   - 关联: 阐述分布漂移下决策边界退化的机制，为嵌入表征在自训练伪标签分布漂移时的失对齐提供理论基础\n14\t\n15\t3. **Caccia et al. (2022)** \"New Insights on Reducing Abrupt Representation Change in Online Continual Learning\" — *ICLR 2022*\n16\t   - 作者: Lucas Caccia, Rahaf Aljundi, Nader Asadi, Tinne Tuytelaars, Joëlle Pineau, Eugene Belilovsky\n17\t   - 关联: 直接量化了序贯训练中内部表征的突变幅度，其度量框架与自训练循环中嵌入对齐间隙的观测高度类似\n18\t\n19\t4. **Davari et al. (2022)** \"Probing Representation Forgetting in Supervised and Unsupervised Continual Learning\" — *CVPR 2022*, pp. 16712–16721\n20\t   - 作者: MohammadReza Davari, Nader Asadi, Sudhir Mudur, Rahaf Aljundi, Eugene Belilovsky\n21\t   - 关联: 表明表征层面的遗忘和漂移独立于任务性能衰退，与本文发现的嵌入几何多样性与语义内容多样性脱耦现象直接对应\n22\t\n23\t## 2. Active Learning under Distribution Shift\n24\t\n25\t5. **Ash et al. (2020)** \"Deep Batch Active Learning by Diverse, Uncertain Gradient Lower Bounds\" — *ICLR 2020*\n26\t   - 作者: Jordan T. Ash, Chicheng Zhang, Akshay Krishnamurthy, John Langford, Alekh Agarwal\n27\t   - 关联: BADGE 使用梯度嵌入上的 k-means++ 选择多样性批次——正是本文研究其在表征漂移下失效的嵌入多样性选择机制\n28\t\n29\t6. **Kirsch et al. (2019)** \"BatchBALD: Efficient and Diverse Batch Acquisition for Deep Bayesian Active Learning\" — *NeurIPS 2019*\n30\t   - 作者: Andreas Kirsch, Joost van Amersfoort, Yarin Gal\n31\t   - 关联: 通过联合最大化互信息实现多样性批次选择，依赖稳定表征的假设与本文对嵌入漂移的发现形成对照\n32\t\n33\t7. **Kothawade et al. (2021)** \"SIMILAR: Submodular Information Measures Based Active Learning In Realistic Scenarios\" — *NeurIPS 2021*\n34\t   - 作者: Suraj Kothawade, Nathan Beck, Krishnateja Killamsetty, Rishabh Iyer\n35\t   - 关联: 在分布偏移的现实场景下做主动学习，表明标准嵌入选择策略在非 i.i.d. 设置中退化——直接支持 BADGE 式选择在嵌入漂移时失效的论点（亦见 §8）\n36\t\n37\t8. **Yehuda et al. (2022)** \"Active Learning Through a Covering Lens\" — *NeurIPS 2022*\n38\t   - 作者: Ofer Yehuda, Avihu Dekel, Guy Hacohen, Daphna Weinshall\n39\t   - 关联: 提出基于自监督嵌入空间的覆盖选择，证明表征质量决定多样性选择的成败\n40\t\n41\t## 3. Dimensional Collapse\n42\t\n43\t9. **Jing et al. (2022)** \"Understanding Dimensional Collapse in Contrastive Self-supervised Learning\" — *ICLR 2022*\n44\t   - 作者: Li Jing, Pascal Vincent, Yann LeCun, Yuandong Tian\n45\t   - 关联: 刻画对比训练如何将嵌入向量驱入低维子空间——嵌入对齐间隙核心的几何秩坍塌机制\n46\t\n47\t10. **Hua et al. (2021)** \"On Feature Decorrelation in Self-Supervised Learning\" — *ICCV 2021*\n48\t    - 作者: Tianyu Hua, Wenxiao Wang, Zihui Xue, Sucheng Ren, Yue Wang, Hang Zhao\n49\t    - 关联: 识别自监督训练中特征轴间相关性导致的维度坍塌，与迭代自训练中嵌入多样性丧失直接对应\n50\t\n51\t11. **Papyan et al. (2020)** \"Prevalence of Neural Collapse during the Terminal Phase of Deep Learning Training\" — *PNAS*, 117(40), pp. 24652–24663\n52\t    - 作者: Vardan Papyan, X. Y. Han, David L. Donoho\n53\t    - 关联: 高引经典，揭示训练末期最后一层激活坍塌为低维 simplex ETF 结构——建立优化压力坍塌嵌入几何的一般性原理\n54\t\n55\t12. **Laurent et al. (2024)** \"Feature Collapse\" — *ICLR 2024*\n56\t    - 作者: Thomas Laurent, James H. von Brecht, Xavier Bresson\n57\t    - 关联: Laurent et al. 证明 feature collapse 在正确条件下是良性的（共享角色实体获得相似表征），但我们的工作表明在迭代自训练中同一机制成为病理性的——内部嵌入坍缩导致 diversity selection 反向选择\n58\t\n59\t## 4. Broader Model Collapse\n60\t\n61\t13. **Shumailov et al. (2024)** \"AI Models Collapse When Trained on Recursively Generated Data\" — *Nature*, Vol. 631\n62\t    - 作者: Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Nicolas Papernot, Ross Anderson, Yarin Gal\n63\t    - 关联: Nature 标志性论文，证明递归训练 AI 生成数据导致不可逆的尾分布坍塌，奠定模型坍塌文献基础\n64\t\n65\t14. **Seddik et al. (2024)** \"How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse\" — *COLM 2024*\n66\t    - 作者: Mohamed El Amine Seddik, Suei-Wen Chen, Soufiane Hayou, Pierre Youssef, Mérouane Debbah\n67\t    - 关联: 理论刻画纯合成/混合训练下的坍塌行为，推导出坍塌不可避免的最大合成数据比例\n68\t\n69\t15. **Briesch et al. (2023)** \"Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop\" — *arXiv preprint, arXiv: 2311.16822*\n70\t    - 作者: Martin Briesch, Dominik Sobania, Franz Rothlauf\n71\t    - 关联: 实证表明 LLM 迭代自消费中输出多样性随合成数据比例退化，与嵌入空间多样性坍塌互补\n72\t\n73\t16. **Guo et al. (2024)** \"The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text\" — *Findings of NAACL 2024*\n74\t    - 作者: Yanzhu Guo, Guokan Shang, Michalis Vazirgiannis, Chloé Clavel\n75\t    - 关联: 追踪自训练轮次中词汇、句法、语义多样性的衰退，在高熵创作任务中多样性坍塌最强——直接对应嵌入空间多样性坍塌\n76\t\n77\t17. **Alemohammad et al. (2024)** \"Self-Consuming Generative Models Go MAD\" — *ICLR 2024*\n78\t    - 作者: Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, Richard G. Baraniuk\n79\t    - 关联: 提出\"模型自噬障碍\"(MAD)，理论证明无新鲜真实数据时自消费循环必然退化质量或多样性\n80\t\n81\t18. **Dohmatob et al. (2025)** \"Strong Model Collapse\" — *ICLR 2025*\n82\t    - 作者: Elvis Dohmatob, Yunzhen Feng, et al.\n83\t    - 关联: 建立\"强模型坍塌\"概念——迭代合成再训练超过临界阈值时的急剧退化相变，为经验坍塌文献提供严格补充\n84\t\n85\t19. **Gerstgrasser et al. (2024)** \"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data\" — *ICML 2024*\n86\t    - 作者: Matthias Gerstgrasser, Rylan Schaeffer, Apratim Dey, Rafael Rafailov, Henry Sleight, John Hughes, Tomasz Korbak, Rajashree Agrawal, Dhruv Pai, Andrey Gromov, Daniel A. Roberts, Diyi Yang, David L. Donoho, Sanmi Koyejo\n87\t    - 关联: 证明累积数据可避免坍塌，仅替换式训练不可避免——我们的实验设置正是替换式（每代替换前一代），为坍塌的必然性提供理论基础\n88\t\n89\t## 5. Broader Data Selection\n90\t\n91\t20. **Xia et al. (2024)** \"LESS: Selecting Influential Data for Targeted Instruction Tuning\" — *ICML 2024*\n92\t    - 作者: Mengzhou Xia, Sadhika Malladi, Suchin Gururangan, Sanjeev Arora, Danqi Chen\n93\t    - 关联: 基于梯度相似性的指令微调数据选择，在迭代 SFT 场景中与多样性方法直接对比\n94\t\n95\t21. **Liu et al. (2024)** \"SelectIT: Selective Instruction Tuning for LLMs via Uncertainty-Aware Self-Reflection\" — *NeurIPS 2024*\n96\t    - 作者: Liangxin Liu, Xuebo Liu, Derek F. Wong, Dongfang Li, Ziyi Wang, Baotian Hu, Min Zhang\n97\t    - 关联: 使用 LLM 内部不确定性（token/句子/模型级别）选择指令数据——与多样性正交的质量信号替代方案\n98\t\n99\t22. **Wettig et al. (2024)** \"QuRating: Selecting High-Quality Data for Training Language Models\" — *ICML 2024*\n100\t    - 作者: Alexander Wettig, Aatmik Gupta, Saumya Malik, Danqi Chen\n101\t    - 关联: 基于 LLM 判断的四维质量评分进行预训练数据选择，表明质量选择优于启发式过滤\n102\t\n103\t23. **Engstrom et al. (2024)** \"DsDm: Model-Aware Dataset Selection with Datamodels\" — *ICML 2024*\n104\t    - 作者: Logan Engstrom, Axel Feldmann, Aleksander Madry\n105\t    - 关联: 将数据选择框架化为基于 datamodel 的任务性能优化，发现朴素质量代理相似性可能损害性能——与代理信号和真实训练效用之间的间隙相关\n106\t\n107\t24. **Sorscher et al. (2022)** \"Beyond Neural Scaling Laws: Beating Power Law Scaling via Data Pruning\" — *NeurIPS 2022* (Outstanding Paper Award)\n108\t    - 作者: Ben Sorscher, Robert Geirhos, Shashank Shekhar, Surya Ganguli, Ari S. Morcos\n109\t    - 关联: 证明基于质量指标的数据修剪可打破幂律缩放——激发整个数据选择文献的基础性结果\n110\t\n111\t25. **Xie et al. (2023)** \"Data Selection for Language Models via Importance Resampling\" (DSIR) — *NeurIPS 2023*\n112\t    - 作者: Sang Michael Xie, Shibani Santurkar, Tengyu Ma, Percy Liang\n113\t    - 关联: 基于重要性重采样的特征分布匹配框架，提供非多样性导向的可扩展选择基线\n114\t\n115\t## 6. Goodhart's Law / Reward Hacking\n116\t\n117\t26. **Gao et al. (2023)** \"Scaling Laws for Reward Model Overoptimization\" — *ICML 2023*\n118\t    - 作者: Leo Gao, John Schulman, Jacob Hilton\n119\t    - 关联: 定量展示对代理奖励模型的过度优化导致真实目标性能下降——与使用内部嵌入作为优化代理并随模型漂移脱耦的现象直接类比\n120\t\n121\t27. **Skalse et al. (2022)** \"Defining and Characterizing Reward Hacking\" — *NeurIPS 2022*\n122\t    - 作者: Joar Skalse, Nikolaus H. R. Howe, Dmitrii Krasheninnikov, David Krueger\n123\t    - 关联: 从形式化角度证明非平凡代理奖励本质上可被利用——解释了为何任何嵌入多样性指标在优化器发现代理与真实目标失对齐后都会被攻破\n124\t\n125\t28. **Pan et al. (2022)** \"The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models\" — *ICLR 2022*\n126\t    - 作者: Alexander Pan, Kush Bhatia, Jacob Steinhardt\n127\t    - 关联: 实证映射代理奖励误差在优化压力增加下的复合效应，直接对应嵌入多样性指标随训练推进逐步失效\n128\t\n129\t29. **Karwowski et al. (2024)** \"Goodhart's Law in Reinforcement Learning\" — *ICLR 2024*\n130\t    - 作者: Jacek Karwowski, Oliver Hayman, Xingjian Bai, Klaus Kissel, Adrià Garriga-Alonso, Ulrich Paquet\n131\t    - 关联: 提供代理优化偏离真实目标的几何刻画并证明早停界——几何直觉直接映射到嵌入漂移中代理指标有效性坍塌的现象\n132\t\n133\t## 7. Diversity Metrics\n134\t\n135\t30. **Li et al. (2016)** \"A Diversity-Promoting Objective Function for Neural Conversation Models\" — *NAACL-HLT 2016*\n136\t    - 作者: Jiwei Li, Michel Galley, Chris Brockett, Jianfeng Gao, Bill Dolan\n137\t    - 关联: 提出 Distinct-1/Distinct-2（唯一 n-gram 比例），成为与嵌入多样性指标对比的标准表面多样性度量\n138\t\n139\t31. **Zhu et al. (2018)** \"Texygen: A Benchmarking Platform for Text Generation Models\" — *SIGIR 2018*\n140\t    - 作者: Yaoming Zhu, Sidi Lu, Lei Zheng, Jiaxian Guo, Weinan Zhang, Jun Wang, Yong Yu\n141\t    - 关联: 提出 Self-BLEU 作为标准化多样性指标并整合文本生成评估方法论，建立了后续几何/嵌入指标试图扩展的评估框架\n142\t\n143\t32. **Tevet & Berant (2021)** \"Evaluating the Evaluation of Diversity in Natural Language Generation\" — *EACL 2021*\n144\t    - 作者: Guy Tevet, Jonathan Berant\n145\t    - 关联: 系统审计 n-gram 和神经多样性指标（包括 Distinct-N 和 Self-BLEU）的失效模式，直接激发了对更好的内容感知多样性度量的需求\n146\t\n147\t33. **Pillutla et al. (2021)** \"MAUVE: Measuring the Gap Between Neural Text and Human Text using Divergence Frontiers\" — *NeurIPS 2021* (Outstanding Paper Award)\n148\t    - 作者: Krishna Pillutla, Swabha Swayamdipta, Rowan Zellers, John Thickstun, Sean Welleck, Yejin Choi, Zaid Harchaoui\n149\t    - 关联: 在量化 LLM 嵌入空间中使用 KL 散度衡量生成文本与人类文本的分布差异——嵌入空间多样性度量的直接先例，为\"嵌入对齐间隙\"提供关键前置工作\n150\t\n151\t## 8. Submodular Maximization for Data Selection\n152\t\n153\t34. **Iyer & Bilmes (2013)** \"Submodular Optimization with Submodular Cover and Submodular Knapsack Constraints\" — *NeurIPS 2013* (Outstanding Paper Award)\n154\t    - 作者: Rishabh Iyer, Jeff Bilmes\n155\t    - 关联: 建立带预算约束的次模最大化框架，为嵌入空间上的多样性数据选择方法奠基\n156\t\n157\t35. **Wei et al. (2015)** \"Submodularity in Data Subset Selection and Active Learning\" — *ICML 2015*\n158\t    - 作者: Kai Wei, Rishabh Iyer, Jeff Bilmes\n159\t    - 关联: 将数据子集选择形式化为次模最大化（facility location、graph cut），在特征/嵌入空间中度量覆盖和多样性——嵌入对齐间隙问题直接攻击的经典框架\n160\t\n161\t36. **Mirzasoleiman et al. (2020)** \"Coresets for Data-efficient Training of Machine Learning Models\" — *ICML 2020*\n162\t    - 作者: Baharan Mirzasoleiman, Jeff Bilmes, Jure Leskovec\n163\t    - 关联: CRAIG 使用梯度嵌入上的 facility location 次模函数选择核心集，在迭代应用时直接受嵌入空间退化影响\n164\t\n165\t## 统计\n166\t- 总引用数: 36\n167\t- 子领域覆盖: 8/8\n168\t- 每子领域篇数: 3–7\n169\t- 验证状态: 全部 VERIFIED（WebSearch 确认标题、作者、年份、venue）\n170\t- 年份分布: 2013–2025，其中 2020 年后 26 篇\n171\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "uuid": "ff6958ca-0f64-481e-92c4-0d889b889f86",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/related_work_references.md",
+                "content": "# Related Work References — div_cal_verify\n\n> 36 篇经过 WebSearch 验证的引用，覆盖 8 个子领域\n\n## 1. Concept Drift / Embedding Drift\n\n1. **Lu et al. (2019)** \"Learning under Concept Drift: A Review\" — *IEEE Transactions on Knowledge and Data Engineering*, Vol. 31, No. 12, pp. 2346–2363\n   - 作者: Jie Lu, Anjin Liu, Fan Dong, Feng Gu, João Gama, Guangquan Zhang\n   - 关联: 建立了 drift 检测与适应的分类体系，为理解自训练中嵌入空间几何漂移提供了概念框架\n\n2. **Gama et al. (2014)** \"A Survey on Concept Drift Adaptation\" — *ACM Computing Surveys*, Vol. 46, No. 4, Article 44\n   - 作者: João Gama, Indrė Žliobaitė, Albert Bifet, Mykola Pechenizkiy, Abdelhamid Bouchachia\n   - 关联: 阐述分布漂移下决策边界退化的机制，为嵌入表征在自训练伪标签分布漂移时的失对齐提供理论基础\n\n3. **Caccia et al. (2022)** \"New Insights on Reducing Abrupt Representation Change in Online Continual Learning\" — *ICLR 2022*\n   - 作者: Lucas Caccia, Rahaf Aljundi, Nader Asadi, Tinne Tuytelaars, Joëlle Pineau, Eugene Belilovsky\n   - 关联: 直接量化了序贯训练中内部表征的突变幅度，其度量框架与自训练循环中嵌入对齐间隙的观测高度类似\n\n4. **Davari et al. (2022)** \"Probing Representation Forgetting in Supervised and Unsupervised Continual Learning\" — *CVPR 2022*, pp. 16712–16721\n   - 作者: MohammadReza Davari, Nader Asadi, Sudhir Mudur, Rahaf Aljundi, Eugene Belilovsky\n   - 关联: 表明表征层面的遗忘和漂移独立于任务性能衰退，与本文发现的嵌入几何多样性与语义内容多样性脱耦现象直接对应\n\n## 2. Active Learning under Distribution Shift\n\n5. **Ash et al. (2020)** \"Deep Batch Active Learning by Diverse, Uncertain Gradient Lower Bounds\" — *ICLR 2020*\n   - 作者: Jordan T. Ash, Chicheng Zhang, Akshay Krishnamurthy, John Langford, Alekh Agarwal\n   - 关联: BADGE 使用梯度嵌入上的 k-means++ 选择多样性批次——正是本文研究其在表征漂移下失效的嵌入多样性选择机制\n\n6. **Kirsch et al. (2019)** \"BatchBALD: Efficient and Diverse Batch Acquisition for Deep Bayesian Active Learning\" — *NeurIPS 2019*\n   - 作者: Andreas Kirsch, Joost van Amersfoort, Yarin Gal\n   - 关联: 通过联合最大化互信息实现多样性批次选择，依赖稳定表征的假设与本文对嵌入漂移的发现形成对照\n\n7. **Kothawade et al. (2021)** \"SIMILAR: Submodular Information Measures Based Active Learning In Realistic Scenarios\" — *NeurIPS 2021*\n   - 作者: Suraj Kothawade, Nathan Beck, Krishnateja Killamsetty, Rishabh Iyer\n   - 关联: 在分布偏移的现实场景下做主动学习，表明标准嵌入选择策略在非 i.i.d. 设置中退化——直接支持 BADGE 式选择在嵌入漂移时失效的论点（亦见 §8）\n\n8. **Yehuda et al. (2022)** \"Active Learning Through a Covering Lens\" — *NeurIPS 2022*\n   - 作者: Ofer Yehuda, Avihu Dekel, Guy Hacohen, Daphna Weinshall\n   - 关联: 提出基于自监督嵌入空间的覆盖选择，证明表征质量决定多样性选择的成败\n\n## 3. Dimensional Collapse\n\n9. **Jing et al. (2022)** \"Understanding Dimensional Collapse in Contrastive Self-supervised Learning\" — *ICLR 2022*\n   - 作者: Li Jing, Pascal Vincent, Yann LeCun, Yuandong Tian\n   - 关联: 刻画对比训练如何将嵌入向量驱入低维子空间——嵌入对齐间隙核心的几何秩坍塌机制\n\n10. **Hua et al. (2021)** \"On Feature Decorrelation in Self-Supervised Learning\" — *ICCV 2021*\n    - 作者: Tianyu Hua, Wenxiao Wang, Zihui Xue, Sucheng Ren, Yue Wang, Hang Zhao\n    - 关联: 识别自监督训练中特征轴间相关性导致的维度坍塌，与迭代自训练中嵌入多样性丧失直接对应\n\n11. **Papyan et al. (2020)** \"Prevalence of Neural Collapse during the Terminal Phase of Deep Learning Training\" — *PNAS*, 117(40), pp. 24652–24663\n    - 作者: Vardan Papyan, X. Y. Han, David L. Donoho\n    - 关联: 高引经典，揭示训练末期最后一层激活坍塌为低维 simplex ETF 结构——建立优化压力坍塌嵌入几何的一般性原理\n\n12. **Laurent et al. (2024)** \"Feature Collapse\" — *ICLR 2024*\n    - 作者: Thomas Laurent, James H. von Brecht, Xavier Bresson\n    - 关联: Laurent et al. 证明 feature collapse 在正确条件下是良性的（共享角色实体获得相似表征），但我们的工作表明在迭代自训练中同一机制成为病理性的——内部嵌入坍缩导致 diversity selection 反向选择\n\n## 4. Broader Model Collapse\n\n13. **Shumailov et al. (2024)** \"AI Models Collapse When Trained on Recursively Generated Data\" — *Nature*, Vol. 631\n    - 作者: Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Nicolas Papernot, Ross Anderson, Yarin Gal\n    - 关联: Nature 标志性论文，证明递归训练 AI 生成数据导致不可逆的尾分布坍塌，奠定模型坍塌文献基础\n\n14. **Seddik et al. (2024)** \"How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse\" — *COLM 2024*\n    - 作者: Mohamed El Amine Seddik, Suei-Wen Chen, Soufiane Hayou, Pierre Youssef, Mérouane Debbah\n    - 关联: 理论刻画纯合成/混合训练下的坍塌行为，推导出坍塌不可避免的最大合成数据比例\n\n15. **Briesch et al. (2023)** \"Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop\" — *arXiv preprint, arXiv: 2311.16822*\n    - 作者: Martin Briesch, Dominik Sobania, Franz Rothlauf\n    - 关联: 实证表明 LLM 迭代自消费中输出多样性随合成数据比例退化，与嵌入空间多样性坍塌互补\n\n16. **Guo et al. (2024)** \"The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text\" — *Findings of NAACL 2024*\n    - 作者: Yanzhu Guo, Guokan Shang, Michalis Vazirgiannis, Chloé Clavel\n    - 关联: 追踪自训练轮次中词汇、句法、语义多样性的衰退，在高熵创作任务中多样性坍塌最强——直接对应嵌入空间多样性坍塌\n\n17. **Alemohammad et al. (2024)** \"Self-Consuming Generative Models Go MAD\" — *ICLR 2024*\n    - 作者: Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, Richard G. Baraniuk\n    - 关联: 提出\"模型自噬障碍\"(MAD)，理论证明无新鲜真实数据时自消费循环必然退化质量或多样性\n\n18. **Dohmatob et al. (2025)** \"Strong Model Collapse\" — *ICLR 2025*\n    - 作者: Elvis Dohmatob, Yunzhen Feng, et al.\n    - 关联: 建立\"强模型坍塌\"概念——迭代合成再训练超过临界阈值时的急剧退化相变，为经验坍塌文献提供严格补充\n\n19. **Gerstgrasser et al. (2024)** \"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data\" — *ICML 2024*\n    - 作者: Matthias Gerstgrasser, Rylan Schaeffer, Apratim Dey, Rafael Rafailov, Henry Sleight, John Hughes, Tomasz Korbak, Rajashree Agrawal, Dhruv Pai, Andrey Gromov, Daniel A. Roberts, Diyi Yang, David L. Donoho, Sanmi Koyejo\n    - 关联: 证明累积数据可避免坍塌，仅替换式训练不可避免——我们的实验设置正是替换式（每代替换前一代），为坍塌的必然性提供理论基础\n\n## 5. Broader Data Selection\n\n20. **Xia et al. (2024)** \"LESS: Selecting Influential Data for Targeted Instruction Tuning\" — *ICML 2024*\n    - 作者: Mengzhou Xia, Sadhika Malladi, Suchin Gururangan, Sanjeev Arora, Danqi Chen\n    - 关联: 基于梯度相似性的指令微调数据选择，在迭代 SFT 场景中与多样性方法直接对比\n\n21. **Liu et al. (2024)** \"SelectIT: Selective Instruction Tuning for LLMs via Uncertainty-Aware Self-Reflection\" — *NeurIPS 2024*\n    - 作者: Liangxin Liu, Xuebo Liu, Derek F. Wong, Dongfang Li, Ziyi Wang, Baotian Hu, Min Zhang\n    - 关联: 使用 LLM 内部不确定性（token/句子/模型级别）选择指令数据——与多样性正交的质量信号替代方案\n\n22. **Wettig et al. (2024)** \"QuRating: Selecting High-Quality Data for Training Language Models\" — *ICML 2024*\n    - 作者: Alexander Wettig, Aatmik Gupta, Saumya Malik, Danqi Chen\n    - 关联: 基于 LLM 判断的四维质量评分进行预训练数据选择，表明质量选择优于启发式过滤\n\n23. **Engstrom et al. (2024)** \"DsDm: Model-Aware Dataset Selection with Datamodels\" — *ICML 2024*\n    - 作者: Logan Engstrom, Axel Feldmann, Aleksander Madry\n    - 关联: 将数据选择框架化为基于 datamodel 的任务性能优化，发现朴素质量代理相似性可能损害性能——与代理信号和真实训练效用之间的间隙相关\n\n24. **Sorscher et al. (2022)** \"Beyond Neural Scaling Laws: Beating Power Law Scaling via Data Pruning\" — *NeurIPS 2022* (Outstanding Paper Award)\n    - 作者: Ben Sorscher, Robert Geirhos, Shashank Shekhar, Surya Ganguli, Ari S. Morcos\n    - 关联: 证明基于质量指标的数据修剪可打破幂律缩放——激发整个数据选择文献的基础性结果\n\n25. **Xie et al. (2023)** \"Data Selection for Language Models via Importance Resampling\" (DSIR) — *NeurIPS 2023*\n    - 作者: Sang Michael Xie, Shibani Santurkar, Tengyu Ma, Percy Liang\n    - 关联: 基于重要性重采样的特征分布匹配框架，提供非多样性导向的可扩展选择基线\n\n## 6. Goodhart's Law / Reward Hacking\n\n26. **Gao et al. (2023)** \"Scaling Laws for Reward Model Overoptimization\" — *ICML 2023*\n    - 作者: Leo Gao, John Schulman, Jacob Hilton\n    - 关联: 定量展示对代理奖励模型的过度优化导致真实目标性能下降——与使用内部嵌入作为优化代理并随模型漂移脱耦的现象直接类比\n\n27. **Skalse et al. (2022)** \"Defining and Characterizing Reward Hacking\" — *NeurIPS 2022*\n    - 作者: Joar Skalse, Nikolaus H. R. Howe, Dmitrii Krasheninnikov, David Krueger\n    - 关联: 从形式化角度证明非平凡代理奖励本质上可被利用——解释了为何任何嵌入多样性指标在优化器发现代理与真实目标失对齐后都会被攻破\n\n28. **Pan et al. (2022)** \"The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models\" — *ICLR 2022*\n    - 作者: Alexander Pan, Kush Bhatia, Jacob Steinhardt\n    - 关联: 实证映射代理奖励误差在优化压力增加下的复合效应，直接对应嵌入多样性指标随训练推进逐步失效\n\n29. **Karwowski et al. (2024)** \"Goodhart's Law in Reinforcement Learning\" — *ICLR 2024*\n    - 作者: Jacek Karwowski, Oliver Hayman, Xingjian Bai, Klaus Kissel, Adrià Garriga-Alonso, Ulrich Paquet\n    - 关联: 提供代理优化偏离真实目标的几何刻画并证明早停界——几何直觉直接映射到嵌入漂移中代理指标有效性坍塌的现象\n\n## 7. Diversity Metrics\n\n30. **Li et al. (2016)** \"A Diversity-Promoting Objective Function for Neural Conversation Models\" — *NAACL-HLT 2016*\n    - 作者: Jiwei Li, Michel Galley, Chris Brockett, Jianfeng Gao, Bill Dolan\n    - 关联: 提出 Distinct-1/Distinct-2（唯一 n-gram 比例），成为与嵌入多样性指标对比的标准表面多样性度量\n\n31. **Zhu et al. (2018)** \"Texygen: A Benchmarking Platform for Text Generation Models\" — *SIGIR 2018*\n    - 作者: Yaoming Zhu, Sidi Lu, Lei Zheng, Jiaxian Guo, Weinan Zhang, Jun Wang, Yong Yu\n    - 关联: 提出 Self-BLEU 作为标准化多样性指标并整合文本生成评估方法论，建立了后续几何/嵌入指标试图扩展的评估框架\n\n32. **Tevet & Berant (2021)** \"Evaluating the Evaluation of Diversity in Natural Language Generation\" — *EACL 2021*\n    - 作者: Guy Tevet, Jonathan Berant\n    - 关联: 系统审计 n-gram 和神经多样性指标（包括 Distinct-N 和 Self-BLEU）的失效模式，直接激发了对更好的内容感知多样性度量的需求\n\n33. **Pillutla et al. (2021)** \"MAUVE: Measuring the Gap Between Neural Text and Human Text using Divergence Frontiers\" — *NeurIPS 2021* (Outstanding Paper Award)\n    - 作者: Krishna Pillutla, Swabha Swayamdipta, Rowan Zellers, John Thickstun, Sean Welleck, Yejin Choi, Zaid Harchaoui\n    - 关联: 在量化 LLM 嵌入空间中使用 KL 散度衡量生成文本与人类文本的分布差异——嵌入空间多样性度量的直接先例，为\"嵌入对齐间隙\"提供关键前置工作\n\n## 8. Submodular Maximization for Data Selection\n\n34. **Iyer & Bilmes (2013)** \"Submodular Optimization with Submodular Cover and Submodular Knapsack Constraints\" — *NeurIPS 2013* (Outstanding Paper Award)\n    - 作者: Rishabh Iyer, Jeff Bilmes\n    - 关联: 建立带预算约束的次模最大化框架，为嵌入空间上的多样性数据选择方法奠基\n\n35. **Wei et al. (2015)** \"Submodularity in Data Subset Selection and Active Learning\" — *ICML 2015*\n    - 作者: Kai Wei, Rishabh Iyer, Jeff Bilmes\n    - 关联: 将数据子集选择形式化为次模最大化（facility location、graph cut），在特征/嵌入空间中度量覆盖和多样性——嵌入对齐间隙问题直接攻击的经典框架\n\n36. **Mirzasoleiman et al. (2020)** \"Coresets for Data-efficient Training of Machine Learning Models\" — *ICML 2020*\n    - 作者: Baharan Mirzasoleiman, Jeff Bilmes, Jure Leskovec\n    - 关联: CRAIG 使用梯度嵌入上的 facility location 次模函数选择核心集，在迭代应用时直接受嵌入空间退化影响\n\n## 统计\n- 总引用数: 36\n- 子领域覆盖: 8/8\n- 每子领域篇数: 3–7\n- 验证状态: 全部 VERIFIED（WebSearch 确认标题、作者、年份、venue）\n- 年份分布: 2013–2025，其中 2020 年后 26 篇\n",
+                "numLines": 171,
+                "startLine": 1,
+                "totalLines": 171
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H9SHufzYpDevayWtaEEy5K",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "uuid": "d7554569-698b-41f1-b8aa-18b92ac3f8a2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UQCHHcqxVXo7hJpUcEeoFe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 687,
+                "cache_read_input_tokens": 24402,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 687
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T08:18:55.146Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H9SHufzYpDevayWtaEEy5K",
+              "type": "tool_result",
+              "content": "1\t% === 1. Concept Drift / Embedding Drift ===\n2\t\n3\t@article{lu2019learning,\n4\t  title={Learning under Concept Drift: A Review},\n5\t  author={Lu, Jie and Liu, Anjin and Dong, Fan and Gu, Feng and Gama, Jo{\\~a}o and Zhang, Guangquan},\n6\t  journal={IEEE Transactions on Knowledge and Data Engineering},\n7\t  volume={31},\n8\t  number={12},\n9\t  pages={2346--2363},\n10\t  year={2019},\n11\t  publisher={IEEE}\n12\t}\n13\t\n14\t@article{gama2014survey,\n15\t  title={A Survey on Concept Drift Adaptation},\n16\t  author={Gama, Jo{\\~a}o and {\\v{Z}}liobait{\\.e}, Indr{\\.e} and Bifet, Albert and Pechenizkiy, Mykola and Bouchachia, Abdelhamid},\n17\t  journal={ACM Computing Surveys},\n18\t  volume={46},\n19\t  number={4},\n20\t  pages={1--37},\n21\t  year={2014},\n22\t  publisher={ACM}\n23\t}\n24\t\n25\t@inproceedings{caccia2022new,\n26\t  title={New Insights on Reducing Abrupt Representation Change in Online Continual Learning},\n27\t  author={Caccia, Lucas and Aljundi, Rahaf and Asadi, Nader and Tuytelaars, Tinne and Pineau, Jo{\\\"e}lle and Belilovsky, Eugene},\n28\t  booktitle={International Conference on Learning Representations},\n29\t  year={2022}\n30\t}\n31\t\n32\t@inproceedings{davari2022probing,\n33\t  title={Probing Representation Forgetting in Supervised and Unsupervised Continual Learning},\n34\t  author={Davari, MohammadReza and Asadi, Nader and Mudur, Sudhir and Aljundi, Rahaf and Belilovsky, Eugene},\n35\t  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},\n36\t  pages={16712--16721},\n37\t  year={2022}\n38\t}\n39\t\n40\t% === 2. Active Learning under Distribution Shift ===\n41\t\n42\t@inproceedings{ash2020deep,\n43\t  title={Deep Batch Active Learning by Diverse, Uncertain Gradient Lower Bounds},\n44\t  author={Ash, Jordan T. and Zhang, Chicheng and Krishnamurthy, Akshay and Langford, John and Agarwal, Alekh},\n45\t  booktitle={International Conference on Learning Representations},\n46\t  year={2020}\n47\t}\n48\t\n49\t@inproceedings{kirsch2019batchbald,\n50\t  title={{BatchBALD}: Efficient and Diverse Batch Acquisition for Deep {B}ayesian Active Learning},\n51\t  author={Kirsch, Andreas and van Amersfoort, Joost and Gal, Yarin},\n52\t  booktitle={Advances in Neural Information Processing Systems},\n53\t  year={2019}\n54\t}\n55\t\n56\t@inproceedings{kothawade2021similar,\n57\t  title={{SIMILAR}: Submodular Information Measures Based Active Learning In Realistic Scenarios},\n58\t  author={Kothawade, Suraj and Beck, Nathan and Killamsetty, Krishnateja and Iyer, Rishabh},\n59\t  booktitle={Advances in Neural Information Processing Systems},\n60\t  year={2021}\n61\t}\n62\t\n63\t@inproceedings{yehuda2022active,\n64\t  title={Active Learning Through a Covering Lens},\n65\t  author={Yehuda, Ofer and Dekel, Avihu and Hacohen, Guy and Weinshall, Daphna},\n66\t  booktitle={Advances in Neural Information Processing Systems},\n67\t  year={2022}\n68\t}\n69\t\n70\t% === 2b. RankMe ===\n71\t\n72\t@inproceedings{garrido2023rankme,\n73\t  title={{RankMe}: Assessing the Downstream Performance to Judge the Quality of Learnt Representations},\n74\t  author={Garrido, Quentin and Balestriero, Randall and Najman, Laurent and LeCun, Yann},\n75\t  booktitle={International Conference on Learning Representations},\n76\t  year={2023}\n77\t}\n78\t\n79\t% === 3. Dimensional Collapse ===\n80\t\n81\t@inproceedings{jing2022understanding,\n82\t  title={Understanding Dimensional Collapse in Contrastive Self-supervised Learning},\n83\t  author={Jing, Li and Vincent, Pascal and LeCun, Yann and Tian, Yuandong},\n84\t  booktitle={International Conference on Learning Representations},\n85\t  year={2022}\n86\t}\n87\t\n88\t@inproceedings{hua2021feature,\n89\t  title={On Feature Decorrelation in Self-Supervised Learning},\n90\t  author={Hua, Tianyu and Wang, Wenxiao and Xue, Zihui and Ren, Sucheng and Wang, Yue and Zhao, Hang},\n91\t  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},\n92\t  year={2021}\n93\t}\n94\t\n95\t@article{papyan2020prevalence,\n96\t  title={Prevalence of Neural Collapse during the Terminal Phase of Deep Learning Training},\n97\t  author={Papyan, Vardan and Han, X. Y. and Donoho, David L.},\n98\t  journal={Proceedings of the National Academy of Sciences},\n99\t  volume={117},\n100\t  number={40},\n101\t  pages={24652--24663},\n102\t  year={2020}\n103\t}\n104\t\n105\t@inproceedings{laurent2024feature,\n106\t  title={Feature Collapse},\n107\t  author={Laurent, Thomas and von Brecht, James H. and Bresson, Xavier},\n108\t  booktitle={International Conference on Learning Representations},\n109\t  year={2024}\n110\t}\n111\t\n112\t% === 4. Broader Model Collapse ===\n113\t\n114\t@article{shumailov2024ai,\n115\t  title={{AI} Models Collapse When Trained on Recursively Generated Data},\n116\t  author={Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n117\t  journal={Nature},\n118\t  volume={631},\n119\t  pages={755--759},\n120\t  year={2024},\n121\t  publisher={Nature Publishing Group}\n122\t}\n123\t\n124\t@inproceedings{seddik2024how,\n125\t  title={How Bad is Training on Synthetic Data? {A} Statistical Analysis of Language Model Collapse},\n126\t  author={Seddik, Mohamed El Amine and Chen, Suei-Wen and Hayou, Soufiane and Youssef, Pierre and Debbah, M{\\'e}rouane},\n127\t  booktitle={Conference on Language Modeling},\n128\t  year={2024}\n129\t}\n130\t\n131\t@article{briesch2023large,\n132\t  title={Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop},\n133\t  author={Briesch, Martin and Sobania, Dominik and Rothlauf, Franz},\n134\t  journal={arXiv preprint arXiv:2311.16822},\n135\t  year={2023}\n136\t}\n137\t\n138\t@inproceedings{guo2024curious,\n139\t  title={The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text},\n140\t  author={Guo, Yanzhu and Shang, Guokan and Vazirgiannis, Michalis and Clavel, Chlo{\\'e}},\n141\t  booktitle={Findings of the Association for Computational Linguistics: NAACL 2024},\n142\t  year={2024}\n143\t}\n144\t\n145\t@inproceedings{alemohammad2024self,\n146\t  title={Self-Consuming Generative Models Go {MAD}},\n147\t  author={Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Babaei, Hossein and LeJeune, Daniel and Siahkoohi, Ali and Baraniuk, Richard G.},\n148\t  booktitle={International Conference on Learning Representations},\n149\t  year={2024}\n150\t}\n151\t\n152\t@inproceedings{dohmatob2025strong,\n153\t  title={Strong Model Collapse},\n154\t  author={Dohmatob, Elvis and Feng, Yunzhen and Others},\n155\t  booktitle={International Conference on Learning Representations},\n156\t  year={2025}\n157\t}\n158\t\n159\t@inproceedings{gerstgrasser2024model,\n160\t  title={Is Model Collapse Inevitable? {B}reaking the Curse of Recursion by Accumulating Real and Synthetic Data},\n161\t  author={Gerstgrasser, Matthias and Schaeffer, Rylan and Dey, Apratim and Rafailov, Rafael and Sleight, Henry and Hughes, John and Korbak, Tomasz and Agrawal, Rajashree and Pai, Dhruv and Gromov, Andrey and Roberts, Daniel A. and Yang, Diyi and Donoho, David L. and Koyejo, Sanmi},\n162\t  booktitle={International Conference on Machine Learning},\n163\t  year={2024}\n164\t}\n165\t\n166\t% === 4b. Data Deduplication / Curation ===\n167\t\n168\t@inproceedings{abbas2023semdedup,\n169\t  title={{SemDeDup}: Data-efficient Learning at Web-scale through Semantic Deduplication},\n170\t  author={Abbas, Amro and Tirumala, Kushal and Simig, D{\\'a}niel and Ganguli, Surya and Morcos, Ari S.},\n171\t  booktitle={Advances in Neural Information Processing Systems},\n172\t  year={2023}\n173\t}\n174\t\n175\t@inproceedings{tirumala2023d4,\n176\t  title={{D4}: Improving {LLM} Pretraining via Document De-Duplication and Diversification},\n177\t  author={Tirumala, Kushal and Simig, D{\\'a}niel and Aghajanyan, Armen and Morcos, Ari S.},\n178\t  booktitle={Advances in Neural Information Processing Systems},\n179\t  year={2023}\n180\t}\n181\t\n182\t% === 5. Broader Data Selection ===\n183\t\n184\t@inproceedings{xia2024less,\n185\t  title={{LESS}: Selecting Influential Data for Targeted Instruction Tuning},\n186\t  author={Xia, Mengzhou and Malladi, Sadhika and Gururangan, Suchin and Arora, Sanjeev and Chen, Danqi},\n187\t  booktitle={International Conference on Machine Learning},\n188\t  year={2024}\n189\t}\n190\t\n191\t@inproceedings{liu2024selectit,\n192\t  title={{SelectIT}: Selective Instruction Tuning for {LLM}s via Uncertainty-Aware Self-Reflection},\n193\t  author={Liu, Liangxin and Liu, Xuebo and Wong, Derek F. and Li, Dongfang and Wang, Ziyi and Hu, Baotian and Zhang, Min},\n194\t  booktitle={Advances in Neural Information Processing Systems},\n195\t  year={2024}\n196\t}\n197\t\n198\t@inproceedings{wettig2024qurating,\n199\t  title={{QuRating}: Selecting High-Quality Data for Training Language Models},\n200\t  author={Wettig, Alexander and Gupta, Aatmik and Malik, Saumya and Chen, Danqi},\n201\t  booktitle={International Conference on Machine Learning},\n202\t  year={2024}\n203\t}\n204\t\n205\t@inproceedings{engstrom2024dsdm,\n206\t  title={{DsDm}: Model-Aware Dataset Selection with Datamodels},\n207\t  author={Engstrom, Logan and Feldmann, Axel and Madry, Aleksander},\n208\t  booktitle={International Conference on Machine Learning},\n209\t  year={2024}\n210\t}\n211\t\n212\t@inproceedings{sorscher2022beyond,\n213\t  title={Beyond Neural Scaling Laws: Beating Power Law Scaling via Data Pruning},\n214\t  author={Sorscher, Ben and Geirhos, Robert and Shekhar, Shashank and Ganguli, Surya and Morcos, Ari S.},\n215\t  booktitle={Advances in Neural Information Processing Systems},\n216\t  year={2022}\n217\t}\n218\t\n219\t@inproceedings{xie2023data,\n220\t  title={Data Selection for Language Models via Importance Resampling},\n221\t  author={Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n222\t  booktitle={Advances in Neural Information Processing Systems},\n223\t  year={2023}\n224\t}\n225\t\n226\t% === 6. Goodhart's Law / Reward Hacking ===\n227\t\n228\t@inproceedings{gao2023scaling,\n229\t  title={Scaling Laws for Reward Model Overoptimization},\n230\t  author={Gao, Leo and Schulman, John and Hilton, Jacob},\n231\t  booktitle={International Conference on Machine Learning},\n232\t  year={2023}\n233\t}\n234\t\n235\t@inproceedings{skalse2022defining,\n236\t  title={Defining and Characterizing Reward Hacking},\n237\t  author={Skalse, Joar and Howe, Nikolaus H. R. and Krasheninnikov, Dmitrii and Krueger, David},\n238\t  booktitle={Advances in Neural Information Processing Systems},\n239\t  year={2022}\n240\t}\n241\t\n242\t@inproceedings{pan2022effects,\n243\t  title={The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models},\n244\t  author={Pan, Alexander and Bhatia, Kush and Steinhardt, Jacob},\n245\t  booktitle={International Conference on Learning Representations},\n246\t  year={2022}\n247\t}\n248\t\n249\t@inproceedings{karwowski2024goodhart,\n250\t  title={Goodhart's Law in Reinforcement Learning},\n251\t  author={Karwowski, Jacek and Hayman, Oliver and Bai, Xingjian and Kissel, Klaus and Garriga-Alonso, Adri{\\`a} and Paquet, Ulrich},\n252\t  booktitle={International Conference on Learning Representations},\n253\t  year={2024}\n254\t}\n255\t\n256\t% === 7. Diversity Metrics ===\n257\t\n258\t@inproceedings{li2016diversity,\n259\t  title={A Diversity-Promoting Objective Function for Neural Conversation Models},\n260\t  author={Li, Jiwei and Galley, Michel and Brockett, Chris and Gao, Jianfeng and Dolan, Bill},\n261\t  booktitle={Proceedings of the 2016 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies},\n262\t  year={2016}\n263\t}\n264\t\n265\t@inproceedings{zhu2018texygen,\n266\t  title={Texygen: A Benchmarking Platform for Text Generation Models},\n267\t  author={Zhu, Yaoming and Lu, Sidi and Zheng, Lei and Guo, Jiaxian and Zhang, Weinan and Wang, Jun and Yu, Yong},\n268\t  booktitle={The 41st International ACM SIGIR Conference on Research \\& Development in Information Retrieval},\n269\t  year={2018}\n270\t}\n271\t\n272\t@inproceedings{tevet2021evaluating,\n273\t  title={Evaluating the Evaluation of Diversity in Natural Language Generation},\n274\t  author={Tevet, Guy and Berant, Jonathan},\n275\t  booktitle={Proceedings of the 16th Conference of the European Chapter of the Association for Computational Linguistics},\n276\t  year={2021}\n277\t}\n278\t\n279\t@inproceedings{pillutla2021mauve,\n280\t  title={{MAUVE}: Measuring the Gap Between Neural Text and Human Text using Divergence Frontiers},\n281\t  author={Pillutla, Krishna and Swayamdipta, Swabha and Zellers, Rowan and Thickstun, John and Welleck, Sean and Choi, Yejin and Harchaoui, Zaid},\n282\t  booktitle={Advances in Neural Information Processing Systems},\n283\t  year={2021}\n284\t}\n285\t\n286\t% === 8. Contriever ===\n287\t\n288\t@article{izacard2022unsupervised,\n289\t  title={Unsupervised Dense Information Retrieval with Contrastive Learning},\n290\t  author={Izacard, Gautier and Caron, Mathilde and Hosseini, Lucas and Riedel, Sebastian and Bojanowski, Piotr and Joulin, Armand and Grave, Edouard},\n291\t  journal={Transactions on Machine Learning Research},\n292\t  year={2022}\n293\t}\n294\t\n295\t% === 9. Submodular Maximization for Data Selection ===\n296\t\n297\t@inproceedings{iyer2013submodular,\n298\t  title={Submodular Optimization with Submodular Cover and Submodular Knapsack Constraints},\n299\t  author={Iyer, Rishabh and Bilmes, Jeff},\n300\t  booktitle={Advances in Neural Information Processing Systems},\n301\t  year={2013}\n302\t}\n303\t\n304\t@inproceedings{wei2015submodularity,\n305\t  title={Submodularity in Data Subset Selection and Active Learning},\n306\t  author={Wei, Kai and Iyer, Rishabh and Bilmes, Jeff},\n307\t  booktitle={International Conference on Machine Learning},\n308\t  year={2015}\n309\t}\n310\t\n311\t@inproceedings{mirzasoleiman2020coresets,\n312\t  title={Coresets for Data-efficient Training of Machine Learning Models},\n313\t  author={Mirzasoleiman, Baharan and Bilmes, Jeff and Leskovec, Jure},\n314\t  booktitle={International Conference on Machine Learning},\n315\t  year={2020}\n316\t}\n317\t\n318\t% === 10. Self-Play ===\n319\t\n320\t@article{silver2017mastering,\n321\t  title={Mastering the Game of {Go} without Human Knowledge},\n322\t  author={Silver, David and Schrittwieser, Julian and Simonyan, Karen and Antonoglou, Ioannis and Huang, Aja and Guez, Arthur and Hubert, Thomas and Baker, Lucas and Lai, Matthew and Bolton, Adrian and Others},\n323\t  journal={Nature},\n324\t  volume={550},\n325\t  pages={354--359},\n326\t  year={2017}\n327\t}\n328\t\n329\t@article{singh2024beyond,\n330\t  title={Beyond Human Data: Scaling Self-Training for Problem-Solving with Language Models},\n331\t  author={Singh, Avi and Co-Reyes, John D. and Agarwal, Rishabh and Anand, Ankesh and Patil, Piyush and Garcia, Xavier and Liu, Peter J. and Harrison, James and Lee, Jaehoon and Xu, Kelvin and Parisi, Aaron and Kumar, Abhishek and Alemi, Alex and Rizkowsky, Alex and Nova, Azade and Adlam, Ben and Passos, Alexandre Tachard and Anil, Rohan and Barber, David and Houlsby, Neil},\n332\t  journal={Transactions on Machine Learning Research},\n333\t  year={2024}\n334\t}\n335\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "uuid": "5991d767-6586-4647-b0a7-3220a65eed2f",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/docs/paper/references.bib",
+                "content": "% === 1. Concept Drift / Embedding Drift ===\n\n@article{lu2019learning,\n  title={Learning under Concept Drift: A Review},\n  author={Lu, Jie and Liu, Anjin and Dong, Fan and Gu, Feng and Gama, Jo{\\~a}o and Zhang, Guangquan},\n  journal={IEEE Transactions on Knowledge and Data Engineering},\n  volume={31},\n  number={12},\n  pages={2346--2363},\n  year={2019},\n  publisher={IEEE}\n}\n\n@article{gama2014survey,\n  title={A Survey on Concept Drift Adaptation},\n  author={Gama, Jo{\\~a}o and {\\v{Z}}liobait{\\.e}, Indr{\\.e} and Bifet, Albert and Pechenizkiy, Mykola and Bouchachia, Abdelhamid},\n  journal={ACM Computing Surveys},\n  volume={46},\n  number={4},\n  pages={1--37},\n  year={2014},\n  publisher={ACM}\n}\n\n@inproceedings{caccia2022new,\n  title={New Insights on Reducing Abrupt Representation Change in Online Continual Learning},\n  author={Caccia, Lucas and Aljundi, Rahaf and Asadi, Nader and Tuytelaars, Tinne and Pineau, Jo{\\\"e}lle and Belilovsky, Eugene},\n  booktitle={International Conference on Learning Representations},\n  year={2022}\n}\n\n@inproceedings{davari2022probing,\n  title={Probing Representation Forgetting in Supervised and Unsupervised Continual Learning},\n  author={Davari, MohammadReza and Asadi, Nader and Mudur, Sudhir and Aljundi, Rahaf and Belilovsky, Eugene},\n  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},\n  pages={16712--16721},\n  year={2022}\n}\n\n% === 2. Active Learning under Distribution Shift ===\n\n@inproceedings{ash2020deep,\n  title={Deep Batch Active Learning by Diverse, Uncertain Gradient Lower Bounds},\n  author={Ash, Jordan T. and Zhang, Chicheng and Krishnamurthy, Akshay and Langford, John and Agarwal, Alekh},\n  booktitle={International Conference on Learning Representations},\n  year={2020}\n}\n\n@inproceedings{kirsch2019batchbald,\n  title={{BatchBALD}: Efficient and Diverse Batch Acquisition for Deep {B}ayesian Active Learning},\n  author={Kirsch, Andreas and van Amersfoort, Joost and Gal, Yarin},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2019}\n}\n\n@inproceedings{kothawade2021similar,\n  title={{SIMILAR}: Submodular Information Measures Based Active Learning In Realistic Scenarios},\n  author={Kothawade, Suraj and Beck, Nathan and Killamsetty, Krishnateja and Iyer, Rishabh},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2021}\n}\n\n@inproceedings{yehuda2022active,\n  title={Active Learning Through a Covering Lens},\n  author={Yehuda, Ofer and Dekel, Avihu and Hacohen, Guy and Weinshall, Daphna},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2022}\n}\n\n% === 2b. RankMe ===\n\n@inproceedings{garrido2023rankme,\n  title={{RankMe}: Assessing the Downstream Performance to Judge the Quality of Learnt Representations},\n  author={Garrido, Quentin and Balestriero, Randall and Najman, Laurent and LeCun, Yann},\n  booktitle={International Conference on Learning Representations},\n  year={2023}\n}\n\n% === 3. Dimensional Collapse ===\n\n@inproceedings{jing2022understanding,\n  title={Understanding Dimensional Collapse in Contrastive Self-supervised Learning},\n  author={Jing, Li and Vincent, Pascal and LeCun, Yann and Tian, Yuandong},\n  booktitle={International Conference on Learning Representations},\n  year={2022}\n}\n\n@inproceedings{hua2021feature,\n  title={On Feature Decorrelation in Self-Supervised Learning},\n  author={Hua, Tianyu and Wang, Wenxiao and Xue, Zihui and Ren, Sucheng and Wang, Yue and Zhao, Hang},\n  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},\n  year={2021}\n}\n\n@article{papyan2020prevalence,\n  title={Prevalence of Neural Collapse during the Terminal Phase of Deep Learning Training},\n  author={Papyan, Vardan and Han, X. Y. and Donoho, David L.},\n  journal={Proceedings of the National Academy of Sciences},\n  volume={117},\n  number={40},\n  pages={24652--24663},\n  year={2020}\n}\n\n@inproceedings{laurent2024feature,\n  title={Feature Collapse},\n  author={Laurent, Thomas and von Brecht, James H. and Bresson, Xavier},\n  booktitle={International Conference on Learning Representations},\n  year={2024}\n}\n\n% === 4. Broader Model Collapse ===\n\n@article{shumailov2024ai,\n  title={{AI} Models Collapse When Trained on Recursively Generated Data},\n  author={Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n  journal={Nature},\n  volume={631},\n  pages={755--759},\n  year={2024},\n  publisher={Nature Publishing Group}\n}\n\n@inproceedings{seddik2024how,\n  title={How Bad is Training on Synthetic Data? {A} Statistical Analysis of Language Model Collapse},\n  author={Seddik, Mohamed El Amine and Chen, Suei-Wen and Hayou, Soufiane and Youssef, Pierre and Debbah, M{\\'e}rouane},\n  booktitle={Conference on Language Modeling},\n  year={2024}\n}\n\n@article{briesch2023large,\n  title={Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop},\n  author={Briesch, Martin and Sobania, Dominik and Rothlauf, Franz},\n  journal={arXiv preprint arXiv:2311.16822},\n  year={2023}\n}\n\n@inproceedings{guo2024curious,\n  title={The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text},\n  author={Guo, Yanzhu and Shang, Guokan and Vazirgiannis, Michalis and Clavel, Chlo{\\'e}},\n  booktitle={Findings of the Association for Computational Linguistics: NAACL 2024},\n  year={2024}\n}\n\n@inproceedings{alemohammad2024self,\n  title={Self-Consuming Generative Models Go {MAD}},\n  author={Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Babaei, Hossein and LeJeune, Daniel and Siahkoohi, Ali and Baraniuk, Richard G.},\n  booktitle={International Conference on Learning Representations},\n  year={2024}\n}\n\n@inproceedings{dohmatob2025strong,\n  title={Strong Model Collapse},\n  author={Dohmatob, Elvis and Feng, Yunzhen and Others},\n  booktitle={International Conference on Learning Representations},\n  year={2025}\n}\n\n@inproceedings{gerstgrasser2024model,\n  title={Is Model Collapse Inevitable? {B}reaking the Curse of Recursion by Accumulating Real and Synthetic Data},\n  author={Gerstgrasser, Matthias and Schaeffer, Rylan and Dey, Apratim and Rafailov, Rafael and Sleight, Henry and Hughes, John and Korbak, Tomasz and Agrawal, Rajashree and Pai, Dhruv and Gromov, Andrey and Roberts, Daniel A. and Yang, Diyi and Donoho, David L. and Koyejo, Sanmi},\n  booktitle={International Conference on Machine Learning},\n  year={2024}\n}\n\n% === 4b. Data Deduplication / Curation ===\n\n@inproceedings{abbas2023semdedup,\n  title={{SemDeDup}: Data-efficient Learning at Web-scale through Semantic Deduplication},\n  author={Abbas, Amro and Tirumala, Kushal and Simig, D{\\'a}niel and Ganguli, Surya and Morcos, Ari S.},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2023}\n}\n\n@inproceedings{tirumala2023d4,\n  title={{D4}: Improving {LLM} Pretraining via Document De-Duplication and Diversification},\n  author={Tirumala, Kushal and Simig, D{\\'a}niel and Aghajanyan, Armen and Morcos, Ari S.},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2023}\n}\n\n% === 5. Broader Data Selection ===\n\n@inproceedings{xia2024less,\n  title={{LESS}: Selecting Influential Data for Targeted Instruction Tuning},\n  author={Xia, Mengzhou and Malladi, Sadhika and Gururangan, Suchin and Arora, Sanjeev and Chen, Danqi},\n  booktitle={International Conference on Machine Learning},\n  year={2024}\n}\n\n@inproceedings{liu2024selectit,\n  title={{SelectIT}: Selective Instruction Tuning for {LLM}s via Uncertainty-Aware Self-Reflection},\n  author={Liu, Liangxin and Liu, Xuebo and Wong, Derek F. and Li, Dongfang and Wang, Ziyi and Hu, Baotian and Zhang, Min},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2024}\n}\n\n@inproceedings{wettig2024qurating,\n  title={{QuRating}: Selecting High-Quality Data for Training Language Models},\n  author={Wettig, Alexander and Gupta, Aatmik and Malik, Saumya and Chen, Danqi},\n  booktitle={International Conference on Machine Learning},\n  year={2024}\n}\n\n@inproceedings{engstrom2024dsdm,\n  title={{DsDm}: Model-Aware Dataset Selection with Datamodels},\n  author={Engstrom, Logan and Feldmann, Axel and Madry, Aleksander},\n  booktitle={International Conference on Machine Learning},\n  year={2024}\n}\n\n@inproceedings{sorscher2022beyond,\n  title={Beyond Neural Scaling Laws: Beating Power Law Scaling via Data Pruning},\n  author={Sorscher, Ben and Geirhos, Robert and Shekhar, Shashank and Ganguli, Surya and Morcos, Ari S.},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2022}\n}\n\n@inproceedings{xie2023data,\n  title={Data Selection for Language Models via Importance Resampling},\n  author={Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2023}\n}\n\n% === 6. Goodhart's Law / Reward Hacking ===\n\n@inproceedings{gao2023scaling,\n  title={Scaling Laws for Reward Model Overoptimization},\n  author={Gao, Leo and Schulman, John and Hilton, Jacob},\n  booktitle={International Conference on Machine Learning},\n  year={2023}\n}\n\n@inproceedings{skalse2022defining,\n  title={Defining and Characterizing Reward Hacking},\n  author={Skalse, Joar and Howe, Nikolaus H. R. and Krasheninnikov, Dmitrii and Krueger, David},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2022}\n}\n\n@inproceedings{pan2022effects,\n  title={The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models},\n  author={Pan, Alexander and Bhatia, Kush and Steinhardt, Jacob},\n  booktitle={International Conference on Learning Representations},\n  year={2022}\n}\n\n@inproceedings{karwowski2024goodhart,\n  title={Goodhart's Law in Reinforcement Learning},\n  author={Karwowski, Jacek and Hayman, Oliver and Bai, Xingjian and Kissel, Klaus and Garriga-Alonso, Adri{\\`a} and Paquet, Ulrich},\n  booktitle={International Conference on Learning Representations},\n  year={2024}\n}\n\n% === 7. Diversity Metrics ===\n\n@inproceedings{li2016diversity,\n  title={A Diversity-Promoting Objective Function for Neural Conversation Models},\n  author={Li, Jiwei and Galley, Michel and Brockett, Chris and Gao, Jianfeng and Dolan, Bill},\n  booktitle={Proceedings of the 2016 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies},\n  year={2016}\n}\n\n@inproceedings{zhu2018texygen,\n  title={Texygen: A Benchmarking Platform for Text Generation Models},\n  author={Zhu, Yaoming and Lu, Sidi and Zheng, Lei and Guo, Jiaxian and Zhang, Weinan and Wang, Jun and Yu, Yong},\n  booktitle={The 41st International ACM SIGIR Conference on Research \\& Development in Information Retrieval},\n  year={2018}\n}\n\n@inproceedings{tevet2021evaluating,\n  title={Evaluating the Evaluation of Diversity in Natural Language Generation},\n  author={Tevet, Guy and Berant, Jonathan},\n  booktitle={Proceedings of the 16th Conference of the European Chapter of the Association for Computational Linguistics},\n  year={2021}\n}\n\n@inproceedings{pillutla2021mauve,\n  title={{MAUVE}: Measuring the Gap Between Neural Text and Human Text using Divergence Frontiers},\n  author={Pillutla, Krishna and Swayamdipta, Swabha and Zellers, Rowan and Thickstun, John and Welleck, Sean and Choi, Yejin and Harchaoui, Zaid},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2021}\n}\n\n% === 8. Contriever ===\n\n@article{izacard2022unsupervised,\n  title={Unsupervised Dense Information Retrieval with Contrastive Learning},\n  author={Izacard, Gautier and Caron, Mathilde and Hosseini, Lucas and Riedel, Sebastian and Bojanowski, Piotr and Joulin, Armand and Grave, Edouard},\n  journal={Transactions on Machine Learning Research},\n  year={2022}\n}\n\n% === 9. Submodular Maximization for Data Selection ===\n\n@inproceedings{iyer2013submodular,\n  title={Submodular Optimization with Submodular Cover and Submodular Knapsack Constraints},\n  author={Iyer, Rishabh and Bilmes, Jeff},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2013}\n}\n\n@inproceedings{wei2015submodularity,\n  title={Submodularity in Data Subset Selection and Active Learning},\n  author={Wei, Kai and Iyer, Rishabh and Bilmes, Jeff},\n  booktitle={International Conference on Machine Learning},\n  year={2015}\n}\n\n@inproceedings{mirzasoleiman2020coresets,\n  title={Coresets for Data-efficient Training of Machine Learning Models},\n  author={Mirzasoleiman, Baharan and Bilmes, Jeff and Leskovec, Jure},\n  booktitle={International Conference on Machine Learning},\n  year={2020}\n}\n\n% === 10. Self-Play ===\n\n@article{silver2017mastering,\n  title={Mastering the Game of {Go} without Human Knowledge},\n  author={Silver, David and Schrittwieser, Julian and Simonyan, Karen and Antonoglou, Ioannis and Huang, Aja and Guez, Arthur and Hubert, Thomas and Baker, Lucas and Lai, Matthew and Bolton, Adrian and Others},\n  journal={Nature},\n  volume={550},\n  pages={354--359},\n  year={2017}\n}\n\n@article{singh2024beyond,\n  title={Beyond Human Data: Scaling Self-Training for Problem-Solving with Language Models},\n  author={Singh, Avi and Co-Reyes, John D. and Agarwal, Rishabh and Anand, Ankesh and Patil, Piyush and Garcia, Xavier and Liu, Peter J. and Harrison, James and Lee, Jaehoon and Xu, Kelvin and Parisi, Aaron and Kumar, Abhishek and Alemi, Alex and Rizkowsky, Alex and Nova, Azade and Adlam, Ben and Passos, Alexandre Tachard and Anil, Rohan and Barber, David and Houlsby, Neil},\n  journal={Transactions on Machine Learning Research},\n  year={2024}\n}\n",
+                "numLines": 335,
+                "startLine": 1,
+                "totalLines": 335
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a complete picture. The related work section already covers all 8 sub-areas quite thoroughly. Let me compare what the task requests vs what's already in the tex file:\n\n1. **Concept drift / embedding drift**: Lu et al. (2019), Gama et al. (2014) — Already covered in §2.4 \"Representation Drift and Proxy Misalignment\" with Caccia et al. (2022) and Davari et al. (2022) as well.\n\n2. **Active learning under distribution shift**: Ash et al. (2020, BADGE), Kirsch et al. \n\n(2019) — Already covered in §2.3 \"Embedding-Based Diversity and Representation Learning\" with Kothawade et al. (2021) and Yehuda et al. (2022).\n\n3. **Dimensional collapse in self-supervised learning**: Jing et al. (2022), Hua et al. (2021) — Already covered in §2.3 with Papyan et al. (2020) and Laurent et al. (2024).\n\n4. **Broader model collapse**: Guo et al. (2024), Seddik et al. (2024), Briesch et al. (2023) — Already covered in §2.1.\n\n5. **Broader** — continuing through the remaining sub-areas, each with corresponding coverage already present in the document.\n\nWait, I'm realizing the related work section actually addresses all eight of these potential gaps, and the bibliography contains all 36 references needed. This work appears to be complete already.\n\nLet me double-check by reviewing the paper_framing.md to see what the original task description says about the gaps and whether something's changed since then.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "uuid": "9f0efe07-1630-4b42-a95c-b46d8d4489fa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JVpG3fBJha4U2WJKFVJigA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13456,
+                "cache_read_input_tokens": 25089,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13456
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The related work section already covers all 8 sub-areas. Let me verify by checking paper_framing.md."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "uuid": "4688e52f-d9b7-40eb-b323-c0015b8de00e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JVpG3fBJha4U2WJKFVJigA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13456,
+                "cache_read_input_tokens": 25089,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13456
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DhZtaj8wATBvgCDXGSkQrS",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "div_cal_verify",
+                "file": "paper_framing.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "uuid": "7207b427-4c6b-45a1-a7bf-2f9de8669856",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JVpG3fBJha4U2WJKFVJigA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13456,
+                "cache_read_input_tokens": 25089,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13456
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T08:19:13.779Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DhZtaj8wATBvgCDXGSkQrS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — Embedding Alignment Gap\\\\n\\\\n## Target Venue\\\\nEMNLP 2026 ARR (deadline: May 25, 2026) — Findings full paper (8 pages)\\\\n\\\\n## Title (working)\\\\n\\\\\\\"The Embedding Alignment Gap: Why Diversity-Based Data Selection Accelerates Model Collapse in Iterative Self-Training\\\\\\\"\\\\n\\\\n## Core Insight\\\\nIn iterative self-training (student-as-generator feedback loop), the geometric diversity of a model's internal embeddings becomes systematically misaligned with content diversity (measured by rare n-gram survival). This \\\\\\\"alignment gap\\\\\\\" shows an overall declining trend across generations (with a transient early rebound at Gen 1-3 before accelerating decline from Gen 4), causing diversity-based data selection using internal representations to **accelerate** rather than prevent model collapse. All methods that do not rely on degrading internal embeddings — including frozen external embeddings, random selection, and no selection — avoid this catastrophic failure mode.\\\\n\\\\n## Core Claims\\\\n\\\\n### C1: Alignment Gap Exists and Worsens Progressively\\\\n- Internal embedding diversity selection ratio degrades from ~1.04 (Gen 0) to ~0.52 (Gen 7)\\\\n- Overall declining trend with transient early rebound (Gen 1-3: 0.91→0.93→0.94) before accelerating decline from Gen 4\\\\n- The model increasingly selects vocabulary-poor samples when using its own representations for diversity scoring\\\\n- Evidence: Phase 2 RGDS selection diagnostics (GPT2-125M, WikiText-103, self-iterate)\\\\n\\\\n### C2-revised: The Failure Is Specific to Internal Embeddings (D013/D014/D015)\\\\n- RGDS is the **only** method showing catastrophic performance degradation\\\\n- {random_50, external_only, uncurated} form a \\\\\\\"normal cluster\\\\\\\" (gen7 PPL range: 43-50), while RGDS is a catastrophic outlier (gen7 PPL 75-82)\\\\n- External selection ratio stable >1.0 (1.10-1.28 across seeds); random ratio stable ~1.0 (0.96-1.06); only RGDS degrades (1.04→0.52)\\\\n- ⚠️ External vs uncurated ordering is **cross-seed inconsistent** (seed=42: ext wins 9.5%; seed=123: uncurated wins 7.6%) — cannot claim external > uncurated\\\\n- ⚠️ **D016 UPDATE**: random_50 三 seed 完成（Mean PPL=43.18±1.43）。两 seed 都显示 random < external（seed42: -5.1%, seed123: -15.9%）。差距不再是 noise——趋向 Scenario 2（random 显著优于 external）。等 seed=456 external 完成后做 3-seed t 检验定论。若确认 → 升级 claim：外部嵌入选择（ratio >1.0 过度偏好 rare-rich）也次优，保持自然分布（ratio ~1.0）是最优策略（Goodhart's Law 实例）\\\\n- The key insight: the problem is not \\\\\\\"which selection method is best\\\\\\\" but \\\\\\\"using degrading internal representations for selection is catastrophically harmful\\\\\\\"\\\\n\\\\n### C3: The Gap Causes Accelerated Collapse (D013 upgraded)\\\\n- RGDS vs random_50 (same 50% data budget): PPL 75.07 vs 43.20 (**+74%**), rare n-gram 0.0051 vs 0.0096 (**-47%**) — fully attributable to selection mechanism, data budget controlled\\\\n- RGDS vs uncurated: PPL +49% (seed=42), +77% (seed=123) — consistent across seeds, far exceeds cross-method noise (~8-10%)\\\\n- Complete causal chain: embedding space contracts → \\\\\\\"geometrically diverse\\\\\\\" = \\\\\\\"vocabulary-poor\\\\\\\" → selection amplifies homogeneity → accelerated collapse\\\\n- random_50 baseline is the cleanest ablation: isolates selection quality from data budget effect\\\\n\\\\n## Secondary Claims\\\\n\\\\n### S1: PPL and Rare N-gram Improvement Are Disproportionate\\\\n- All non-RGDS methods show gen7 rare n-gram in range 0.0090-0.0099 (vs Gen 0 baseline 0.029 = -66% collapse regardless of method)\\\\n- PPL varies more across methods (43-50 for normal cluster vs baseline ~37)\\\\n- Implication: no tested selection method meaningfully prevents lexical diversity collapse — the collapse is driven by the self-iterate loop itself, not data selection\\\\n- ⚠️ Previous claim \\\\\\\"external improves PPL -9.5% vs uncurated\\\\\\\" is cross-seed inconsistent (D015) — removed from S1\\\\n\\\\n### S3: Random Pruning Effect (D017: DOWNGRADED to directional observation)\\\\n- Seed=42: random_50 (43.20) < uncurated (50.28) → -14.1%\\\\n- Seed=123: random_50 (41.75) < uncurated (46.15) → -9.5%\\\\n- Seed=456: random_50 (44.60) < uncurated (50.12) → gap 仅 +0.2%\\\\n- **D017**: 3-seed t-test p≈0.10，未达显著性。降级为 directional observation\\\\n- 论文中不做因果推断，表述限定为 \\\\\\\"conflates any selection benefit with a data quantity effect\\\\\\\"\\\\n- ⚠️ 50% vs 100% 对比混淆数据量效应，仅 within-budget 对比（RGDS vs Random，同 50%）无混淆\\\\n\\\\n### S2: Representation Quality Metrics Don't Detect Diversity Collapse\\\\n- RankMe increases during collapse (280→303, +8%)\\\\n- k-NN probe accuracy stable (0.988 throughout)\\\\n- These metrics track representation structure, not content diversity — a cautionary finding for monitoring frameworks\\\\n\\\\n## 355M Scaling Observations (seed=42+123, pending seed=456)\\\\n- **C3 holds across scale**: RGDS vs Random +18% at 355M s42 (vs +74% at 125M). 待 random50_seed123 确认。\\\\n- **Absolute collapse far more severe**: PPL multiplier gen0→gen7 = 2.7-3.5x (355M) vs 1.2-2.0x (125M)\\\\n- **External alignment gap widens with scale**: +10.7%(s42) vs Random at 355M (vs +7.4% 125M 3-seed mean)\\\\n- **355M seed=42 ranking**: Random (70.25) < External (77.74) < RGDS (82.84) < Uncurated (91.66)\\\\n- **355M seed=123 ranking**: External (79.56) < Uncurated (87.05) < RGDS (90.25) — random50 pending\\\\n\\\\n### ⚠️ RGDS vs Uncurated 跨 seed 排序翻转\\\\n- seed=42: Uncurated(91.66) > RGDS(82.84) → uncurated 最差\\\\n- seed=123: RGDS(90.25) > Uncurated(87.05) → rgds 最差（与 125M 一致）\\\\n- 方法间差距在 355M 大幅压缩（高 PPL 区间 87-92），排序不稳定\\\\n- **论文 §5.7 需修正**：\\\\\\\"两个 50% 方法都优于 Uncurated\\\\\\\" 只对 seed=42 成立。改为报告排序不稳定 + 差距压缩\\\\n\\\\n### Ratio 数据（2-seed，强信号）\\\\n- 355M gen7 RGDS ratio: 0.831(s42), 0.873(s123) → 均值 **0.852±0.029**（方差极小）\\\\n- 125M gen7 RGDS ratio: 均值 **0.636±0.20**（方差大）\\\\n- 355M ratio 明显更好且更稳定 → **favors genuine attenuation**，等 seed=456 final confirmation\\\\n\\\\n### Scaling Narrative Framework (Reviewer-approved: Modified Option B)\\\\n**双假说共存，不做二元对立**。论文 Discussion 呈现为：\\\\n> \\\\\\\"Scaling reduces alignment gap penalty, which may arise from (i) higher representational redundancy (RankMe 275→365) buffering geometric distortion, and/or (ii) compression of method differences when absolute collapse is severe.\\\\\\\"\\\\n\\\\n**关键证据**：\\\\n- 绝对差也大幅缩小（125M 均值 31.10 → 355M 12.59），不符合纯 ceiling effect\\\\n- **不对称 gap 模式（最强证据）**：External gap +7.4%(125M 3-seed)→+10.7%(355M s42)，Uncurated gap +8.9%→+30.5%（3.4倍↑），仅 RGDS gap +72%→+18%（4倍↓）。纯 ceiling effect 会压缩所有方法差异，但只有 alignment-gap-driven penalty 收缩 → favors genuine representational buffering\\\\n- 355M gen7 RGDS ratio = 0.831（125M 均值 0.636, SD=0.20）→ ratio 保留更好，但 125M seed=456 也达 0.868，高方差削弱结论\\\\n- RankMe 33% 更高提供表征冗余缓冲的机制支持\\\\n\\\\n**Ratio 是鉴别指标**：seed=456 结果决定叙事强度：\\\\n- 355M 3-seed ratio 均值 > 0.8 且 SD < 0.05 → favors genuine attenuation\\\\n- ratio 方差大或某 seed 跌到 0.5-0.6 → ceiling effect 无法排除\\\\n\\\\n**必加 limitation**：\\\\\\\"Distinguishing between representational redundancy and floor effects at this scale requires experiments at 3+ model sizes, which we leave to future work.\\\\\\\"\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n### R1: \\\\\\\"GPT2-125M is too small — does this generalize?\\\\\\\"\\\\n- GPT2-medium (355M) experiments in progress: seed=42 complete (4 methods), seed=123 running, seed=456 queued (D019)\\\\n- 355M seed=42 confirms C3 (RGDS vs Random +18%, same budget) — \\\\\\\"scales beyond toy models\\\\\\\"\\\\n- Absolute collapse worse at 355M but relative alignment gap penalty narrows (ceiling effect caveat needed)\\\\n\\\\n### R2: \\\\\\\"Only one dataset (WikiText-103)\\\\\\\"\\\\n- Response: OpenWebText subset planned as P1\\\\n- The mechanism is data-agnostic (self-iterate collapse is well-documented across datasets)\\\\n\\\\n### R3: \\\\\\\"N=1 seed — is this noise?\\\\\\\"\\\\n- seed=42 and seed=123 complete for RGDS/external/uncurated — C1 ratio highly consistent (gen7: 0.517 vs 0.524)\\\\n- seed=456 full methods + random_50 seed=123/456 in progress → 3-seed t-tests imminent\\\\n- Cross-seed variance: normal cluster ~4-6.5 PPL, RGDS effect size 49-77% → far exceeds noise\\\\n\\\\n### R4: \\\\\\\"You only found a problem, not a solution\\\\\\\"\\\\n- Response: (a) Random data pruning (50%) is a **zero-cost practical solution** — performs comparably to sophisticated external embedding selection (D013); (b) practitioners should avoid internal-embedding-based curation during iterative training; (c) embedding re-anchoring experiment planned as additional mitigation\\\\n- The message is actionable: \\\\\\\"don't use your model's own embeddings for data selection during iterative training; random sampling works just as well\\\\\\\"\\\\n\\\\n### R5: \\\\\\\"What's the theoretical explanation for the gap?\\\\\\\"\\\\n- Connect to dimensional collapse literature (Jing et al. 2022) rather than neural collapse (Papyan et al. 2020) — dimensional collapse in self-supervised learning is more mechanistically appropriate than supervised classification neural collapse\\\\n- Self-iterate reduces embedding effective dimensionality → greedy submodular selection in low-dim space favors collapsed mode directions\\\\n- Not a formal proof, but a plausible mechanistic analogy with empirical support\\\\n- Dream review consensus: neural collapse connection is speculative; soften to analogy or replace with dimensional collapse\\\\n\\\\n### R6: \\\\\\\"External embeddings don't outperform random — what's the point of C2?\\\\\\\"\\\\n- C2-revised is diagnostic, not prescriptive: it pinpoints that the catastrophic failure is **specific to internal embeddings**, not inherent to embedding-based selection or data pruning in general\\\\n- External and random both avoid the failure, confirming the mechanism (alignment gap in internal representations) rather than advocating a specific solution\\\\n- Opens future work: what selection signal DOES preserve lexical diversity?\\\\n\\\\n## Narrative Arc (D014 revised)\\\\n1. **Setup**: Iterative self-training causes model collapse (established). Diversity-based data curation is a natural mitigation idea.\\\\n2. **Surprise**: Using the model's own representations for diversity selection makes collapse WORSE, not better — +74% PPL vs random selection with the same data budget.\\\\n3. **Explanation**: The Embedding Alignment Gap — internal representations' notion of \\\\\\\"diverse\\\\\\\" diverges from content diversity as training progresses (selection ratio 1.04→0.52).\\\\n4. **Contrast**: All methods that bypass internal embeddings — random selection, external embeddings, or no selection — form a \\\\\\\"normal cluster\\\\\\\" (PPL 43-50) with no catastrophic failure. The failure is specific to self-referential selection.\\\\n5. **Implication**: In iterative training, never use the model's own embeddings for data selection. Random sampling is a zero-cost alternative that avoids the alignment gap entirely.\\\\n\\\\n## Related Work Positioning\\\\nCurrent: **36 references** across 8 subfields (artifacts/related_work_references.md), Reviewer 验证通过\\\\n\\\\n### Existing\\\\n- Model collapse: Shumailov et al. (Nature 2024), Alemohammad et al. (2024), Dohmatob et al. (2024)\\\\n- Data selection/curation: SemDeDup (Abbas 2023), D4 (Tirumala 2023), DSIR (Xie 2023) — static (non-iterative) curation; we show iterative setting introduces new failure mode\\\\n- Representation quality metrics: RankMe (Garrido et al. 2023) — we show RankMe doesn't detect diversity collapse\\\\n\\\\n### Must Add (Dream-identified gaps)\\\\n- **Concept drift / embedding drift**: Lu et al. (2019 survey), Gama et al. (2014) — alignment gap is fundamentally a concept drift phenomenon\\\\n- **Active learning under distribution shift**: Ash et al. (2020, BADGE), Kirsch et al. (2019) — acquisition function degradation is same class of problem\\\\n- **Dimensional collapse in self-supervised learning**: Jing et al. (2022), Hua et al. (2021) — replaces neural collapse as mechanistic reference\\\\n- **Broader model collapse**: Guo et al. (2024), Seddik et al. (2024), Briesch et al. (2023)\\\\n- **Broader data selection**: Xia et al. (2024, LESS), SelectIT, QuRating, Engstrom et al. (2024)\\\\n- **Goodhart's law / reward hacking**: Gao et al. (2023), Skalse et al. (2022) — alignment gap as Goodhart instance\\\\n- **Diversity metrics**: Li et al. (2016, distinct-n), Zhu et al. (2018, Self-BLEU)\\\\n- **Submodular maximization theory**: Iyer & Bilmes (2013), Wei et al. (2015)\\\\n\\\\n## Novelty Framing Note (Dream D011)\\\\nThe conceptual insight (representations degrade under distribution shift) is NOT novel — it's expected from concept drift theory. The genuine contribution is the **quantification and decomposition**: (1) selection ratio metric as diagnostic, (2) magnitude of acceleration (+74% PPL vs random baseline with controlled data budget, D013), (3) isolation of failure to internal embeddings specifically (random_50 ablation as cleanest evidence). Frame accordingly — overclaiming conceptual novelty will trigger reviewer pushback.\\\\n\\\\n## Writing Cautions (Reviewer)\\\\n- \\\\\\\"Monotonically decreasing\\\\\\\" → \\\\\\\"overall declining trend\\\\\\\" (Gen 1-3 rebound: 0.91→0.93→0.94)\\\\n- \\\\\\\"Self-repair\\\\\\\" for external_only PPL recovery → needs mechanistic justification (external anchor guiding model back to original distribution, not autonomous repair)\\\\n- Uncurated rank_corr p=0.049 is borderline — wait for multi-seed before claiming significance\\\\n\\\", \\\"total_chars\\\": 12624, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "uuid": "78147fff-9b1b-487d-8f18-4e0c36f0838c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — Embedding Alignment Gap\\\\n\\\\n## Target Venue\\\\nEMNLP 2026 ARR (deadline: May 25, 2026) — Findings full paper (8 pages)\\\\n\\\\n## Title (working)\\\\n\\\\\\\"The Embedding Alignment Gap: Why Diversity-Based Data Selection Accelerates Model Collapse in Iterative Self-Training\\\\\\\"\\\\n\\\\n## Core Insight\\\\nIn iterative self-training (student-as-generator feedback loop), the geometric diversity of a model's internal embeddings becomes systematically misaligned with content diversity (measured by rare n-gram survival). This \\\\\\\"alignment gap\\\\\\\" shows an overall declining trend across generations (with a transient early rebound at Gen 1-3 before accelerating decline from Gen 4), causing diversity-based data selection using internal representations to **accelerate** rather than prevent model collapse. All methods that do not rely on degrading internal embeddings — including frozen external embeddings, random selection, and no selection — avoid this catastrophic failure mode.\\\\n\\\\n## Core Claims\\\\n\\\\n### C1: Alignment Gap Exists and Worsens Progressively\\\\n- Internal embedding diversity selection ratio degrades from ~1.04 (Gen 0) to ~0.52 (Gen 7)\\\\n- Overall declining trend with transient early rebound (Gen 1-3: 0.91→0.93→0.94) before accelerating decline from Gen 4\\\\n- The model increasingly selects vocabulary-poor samples when using its own representations for diversity scoring\\\\n- Evidence: Phase 2 RGDS selection diagnostics (GPT2-125M, WikiText-103, self-iterate)\\\\n\\\\n### C2-revised: The Failure Is Specific to Internal Embeddings (D013/D014/D015)\\\\n- RGDS is the **only** method showing catastrophic performance degradation\\\\n- {random_50, external_only, uncurated} form a \\\\\\\"normal cluster\\\\\\\" (gen7 PPL range: 43-50), while RGDS is a catastrophic outlier (gen7 PPL 75-82)\\\\n- External selection ratio stable >1.0 (1.10-1.28 across seeds); random ratio stable ~1.0 (0.96-1.06); only RGDS degrades (1.04→0.52)\\\\n- ⚠️ External vs uncurated ordering is **cross-seed inconsistent** (seed=42: ext wins 9.5%; seed=123: uncurated wins 7.6%) — cannot claim external > uncurated\\\\n- ⚠️ **D016 UPDATE**: random_50 三 seed 完成（Mean PPL=43.18±1.43）。两 seed 都显示 random < external（seed42: -5.1%, seed123: -15.9%）。差距不再是 noise——趋向 Scenario 2（random 显著优于 external）。等 seed=456 external 完成后做 3-seed t 检验定论。若确认 → 升级 claim：外部嵌入选择（ratio >1.0 过度偏好 rare-rich）也次优，保持自然分布（ratio ~1.0）是最优策略（Goodhart's Law 实例）\\\\n- The key insight: the problem is not \\\\\\\"which selection method is best\\\\\\\" but \\\\\\\"using degrading internal representations for selection is catastrophically harmful\\\\\\\"\\\\n\\\\n### C3: The Gap Causes Accelerated Collapse (D013 upgraded)\\\\n- RGDS vs random_50 (same 50% data budget): PPL 75.07 vs 43.20 (**+74%**), rare n-gram 0.0051 vs 0.0096 (**-47%**) — fully attributable to selection mechanism, data budget controlled\\\\n- RGDS vs uncurated: PPL +49% (seed=42), +77% (seed=123) — consistent across seeds, far exceeds cross-method noise (~8-10%)\\\\n- Complete causal chain: embedding space contracts → \\\\\\\"geometrically diverse\\\\\\\" = \\\\\\\"vocabulary-poor\\\\\\\" → selection amplifies homogeneity → accelerated collapse\\\\n- random_50 baseline is the cleanest ablation: isolates selection quality from data budget effect\\\\n\\\\n## Secondary Claims\\\\n\\\\n### S1: PPL and Rare N-gram Improvement Are Disproportionate\\\\n- All non-RGDS methods show gen7 rare n-gram in range 0.0090-0.0099 (vs Gen 0 baseline 0.029 = -66% collapse regardless of method)\\\\n- PPL varies more across methods (43-50 for normal cluster vs baseline ~37)\\\\n- Implication: no tested selection method meaningfully prevents lexical diversity collapse — the collapse is driven by the self-iterate loop itself, not data selection\\\\n- ⚠️ Previous claim \\\\\\\"external improves PPL -9.5% vs uncurated\\\\\\\" is cross-seed inconsistent (D015) — removed from S1\\\\n\\\\n### S3: Random Pruning Effect (D017: DOWNGRADED to directional observation)\\\\n- Seed=42: random_50 (43.20) < uncurated (50.28) → -14.1%\\\\n- Seed=123: random_50 (41.75) < uncurated (46.15) → -9.5%\\\\n- Seed=456: random_50 (44.60) < uncurated (50.12) → gap 仅 +0.2%\\\\n- **D017**: 3-seed t-test p≈0.10，未达显著性。降级为 directional observation\\\\n- 论文中不做因果推断，表述限定为 \\\\\\\"conflates any selection benefit with a data quantity effect\\\\\\\"\\\\n- ⚠️ 50% vs 100% 对比混淆数据量效应，仅 within-budget 对比（RGDS vs Random，同 50%）无混淆\\\\n\\\\n### S2: Representation Quality Metrics Don't Detect Diversity Collapse\\\\n- RankMe increases during collapse (280→303, +8%)\\\\n- k-NN probe accuracy stable (0.988 throughout)\\\\n- These metrics track representation structure, not content diversity — a cautionary finding for monitoring frameworks\\\\n\\\\n## 355M Scaling Observations (seed=42+123, pending seed=456)\\\\n- **C3 holds across scale**: RGDS vs Random +18% at 355M s42 (vs +74% at 125M). 待 random50_seed123 确认。\\\\n- **Absolute collapse far more severe**: PPL multiplier gen0→gen7 = 2.7-3.5x (355M) vs 1.2-2.0x (125M)\\\\n- **External alignment gap widens with scale**: +10.7%(s42) vs Random at 355M (vs +7.4% 125M 3-seed mean)\\\\n- **355M seed=42 ranking**: Random (70.25) < External (77.74) < RGDS (82.84) < Uncurated (91.66)\\\\n- **355M seed=123 ranking**: External (79.56) < Uncurated (87.05) < RGDS (90.25) — random50 pending\\\\n\\\\n### ⚠️ RGDS vs Uncurated 跨 seed 排序翻转\\\\n- seed=42: Uncurated(91.66) > RGDS(82.84) → uncurated 最差\\\\n- seed=123: RGDS(90.25) > Uncurated(87.05) → rgds 最差（与 125M 一致）\\\\n- 方法间差距在 355M 大幅压缩（高 PPL 区间 87-92），排序不稳定\\\\n- **论文 §5.7 需修正**：\\\\\\\"两个 50% 方法都优于 Uncurated\\\\\\\" 只对 seed=42 成立。改为报告排序不稳定 + 差距压缩\\\\n\\\\n### Ratio 数据（2-seed，强信号）\\\\n- 355M gen7 RGDS ratio: 0.831(s42), 0.873(s123) → 均值 **0.852±0.029**（方差极小）\\\\n- 125M gen7 RGDS ratio: 均值 **0.636±0.20**（方差大）\\\\n- 355M ratio 明显更好且更稳定 → **favors genuine attenuation**，等 seed=456 final confirmation\\\\n\\\\n### Scaling Narrative Framework (Reviewer-approved: Modified Option B)\\\\n**双假说共存，不做二元对立**。论文 Discussion 呈现为：\\\\n> \\\\\\\"Scaling reduces alignment gap penalty, which may arise from (i) higher representational redundancy (RankMe 275→365) buffering geometric distortion, and/or (ii) compression of method differences when absolute collapse is severe.\\\\\\\"\\\\n\\\\n**关键证据**：\\\\n- 绝对差也大幅缩小（125M 均值 31.10 → 355M 12.59），不符合纯 ceiling effect\\\\n- **不对称 gap 模式（最强证据）**：External gap +7.4%(125M 3-seed)→+10.7%(355M s42)，Uncurated gap +8.9%→+30.5%（3.4倍↑），仅 RGDS gap +72%→+18%（4倍↓）。纯 ceiling effect 会压缩所有方法差异，但只有 alignment-gap-driven penalty 收缩 → favors genuine representational buffering\\\\n- 355M gen7 RGDS ratio = 0.831（125M 均值 0.636, SD=0.20）→ ratio 保留更好，但 125M seed=456 也达 0.868，高方差削弱结论\\\\n- RankMe 33% 更高提供表征冗余缓冲的机制支持\\\\n\\\\n**Ratio 是鉴别指标**：seed=456 结果决定叙事强度：\\\\n- 355M 3-seed ratio 均值 > 0.8 且 SD < 0.05 → favors genuine attenuation\\\\n- ratio 方差大或某 seed 跌到 0.5-0.6 → ceiling effect 无法排除\\\\n\\\\n**必加 limitation**：\\\\\\\"Distinguishing between representational redundancy and floor effects at this scale requires experiments at 3+ model sizes, which we leave to future work.\\\\\\\"\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n### R1: \\\\\\\"GPT2-125M is too small — does this generalize?\\\\\\\"\\\\n- GPT2-medium (355M) experiments in progress: seed=42 complete (4 methods), seed=123 running, seed=456 queued (D019)\\\\n- 355M seed=42 confirms C3 (RGDS vs Random +18%, same budget) — \\\\\\\"scales beyond toy models\\\\\\\"\\\\n- Absolute collapse worse at 355M but relative alignment gap penalty narrows (ceiling effect caveat needed)\\\\n\\\\n### R2: \\\\\\\"Only one dataset (WikiText-103)\\\\\\\"\\\\n- Response: OpenWebText subset planned as P1\\\\n- The mechanism is data-agnostic (self-iterate collapse is well-documented across datasets)\\\\n\\\\n### R3: \\\\\\\"N=1 seed — is this noise?\\\\\\\"\\\\n- seed=42 and seed=123 complete for RGDS/external/uncurated — C1 ratio highly consistent (gen7: 0.517 vs 0.524)\\\\n- seed=456 full methods + random_50 seed=123/456 in progress → 3-seed t-tests imminent\\\\n- Cross-seed variance: normal cluster ~4-6.5 PPL, RGDS effect size 49-77% → far exceeds noise\\\\n\\\\n### R4: \\\\\\\"You only found a problem, not a solution\\\\\\\"\\\\n- Response: (a) Random data pruning (50%) is a **zero-cost practical solution** — performs comparably to sophisticated external embedding selection (D013); (b) practitioners should avoid internal-embedding-based curation during iterative training; (c) embedding re-anchoring experiment planned as additional mitigation\\\\n- The message is actionable: \\\\\\\"don't use your model's own embeddings for data selection during iterative training; random sampling works just as well\\\\\\\"\\\\n\\\\n### R5: \\\\\\\"What's the theoretical explanation for the gap?\\\\\\\"\\\\n- Connect to dimensional collapse literature (Jing et al. 2022) rather than neural collapse (Papyan et al. 2020) — dimensional collapse in self-supervised learning is more mechanistically appropriate than supervised classification neural collapse\\\\n- Self-iterate reduces embedding effective dimensionality → greedy submodular selection in low-dim space favors collapsed mode directions\\\\n- Not a formal proof, but a plausible mechanistic analogy with empirical support\\\\n- Dream review consensus: neural collapse connection is speculative; soften to analogy or replace with dimensional collapse\\\\n\\\\n### R6: \\\\\\\"External embeddings don't outperform random — what's the point of C2?\\\\\\\"\\\\n- C2-revised is diagnostic, not prescriptive: it pinpoints that the catastrophic failure is **specific to internal embeddings**, not inherent to embedding-based selection or data pruning in general\\\\n- External and random both avoid the failure, confirming the mechanism (alignment gap in internal representations) rather than advocating a specific solution\\\\n- Opens future work: what selection signal DOES preserve lexical diversity?\\\\n\\\\n## Narrative Arc (D014 revised)\\\\n1. **Setup**: Iterative self-training causes model collapse (established). Diversity-based data curation is a natural mitigation idea.\\\\n2. **Surprise**: Using the model's own representations for diversity selection makes collapse WORSE, not better — +74% PPL vs random selection with the same data budget.\\\\n3. **Explanation**: The Embedding Alignment Gap — internal representations' notion of \\\\\\\"diverse\\\\\\\" diverges from content diversity as training progresses (selection ratio 1.04→0.52).\\\\n4. **Contrast**: All methods that bypass internal embeddings — random selection, external embeddings, or no selection — form a \\\\\\\"normal cluster\\\\\\\" (PPL 43-50) with no catastrophic failure. The failure is specific to self-referential selection.\\\\n5. **Implication**: In iterative training, never use the model's own embeddings for data selection. Random sampling is a zero-cost alternative that avoids the alignment gap entirely.\\\\n\\\\n## Related Work Positioning\\\\nCurrent: **36 references** across 8 subfields (artifacts/related_work_references.md), Reviewer 验证通过\\\\n\\\\n### Existing\\\\n- Model collapse: Shumailov et al. (Nature 2024), Alemohammad et al. (2024), Dohmatob et al. (2024)\\\\n- Data selection/curation: SemDeDup (Abbas 2023), D4 (Tirumala 2023), DSIR (Xie 2023) — static (non-iterative) curation; we show iterative setting introduces new failure mode\\\\n- Representation quality metrics: RankMe (Garrido et al. 2023) — we show RankMe doesn't detect diversity collapse\\\\n\\\\n### Must Add (Dream-identified gaps)\\\\n- **Concept drift / embedding drift**: Lu et al. (2019 survey), Gama et al. (2014) — alignment gap is fundamentally a concept drift phenomenon\\\\n- **Active learning under distribution shift**: Ash et al. (2020, BADGE), Kirsch et al. (2019) — acquisition function degradation is same class of problem\\\\n- **Dimensional collapse in self-supervised learning**: Jing et al. (2022), Hua et al. (2021) — replaces neural collapse as mechanistic reference\\\\n- **Broader model collapse**: Guo et al. (2024), Seddik et al. (2024), Briesch et al. (2023)\\\\n- **Broader data selection**: Xia et al. (2024, LESS), SelectIT, QuRating, Engstrom et al. (2024)\\\\n- **Goodhart's law / reward hacking**: Gao et al. (2023), Skalse et al. (2022) — alignment gap as Goodhart instance\\\\n- **Diversity metrics**: Li et al. (2016, distinct-n), Zhu et al. (2018, Self-BLEU)\\\\n- **Submodular maximization theory**: Iyer & Bilmes (2013), Wei et al. (2015)\\\\n\\\\n## Novelty Framing Note (Dream D011)\\\\nThe conceptual insight (representations degrade under distribution shift) is NOT novel — it's expected from concept drift theory. The genuine contribution is the **quantification and decomposition**: (1) selection ratio metric as diagnostic, (2) magnitude of acceleration (+74% PPL vs random baseline with controlled data budget, D013), (3) isolation of failure to internal embeddings specifically (random_50 ablation as cleanest evidence). Frame accordingly — overclaiming conceptual novelty will trigger reviewer pushback.\\\\n\\\\n## Writing Cautions (Reviewer)\\\\n- \\\\\\\"Monotonically decreasing\\\\\\\" → \\\\\\\"overall declining trend\\\\\\\" (Gen 1-3 rebound: 0.91→0.93→0.94)\\\\n- \\\\\\\"Self-repair\\\\\\\" for external_only PPL recovery → needs mechanistic justification (external anchor guiding model back to original distribution, not autonomous repair)\\\\n- Uncurated rank_corr p=0.049 is borderline — wait for multi-seed before claiming significance\\\\n\\\", \\\"total_chars\\\": 12624, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/paper_framing.md\", \"content\": \"# Paper Framing — Embedding Alignment Gap\\n\\n## Target Venue\\nEMNLP 2026 ARR (deadline: May 25, 2026) — Findings full paper (8 pages)\\n\\n## Title (working)\\n\\\"The Embedding Alignment Gap: Why Diversity-Based Data Selection Accelerates Model Collapse in Iterative Self-Training\\\"\\n\\n## Core Insight\\nIn iterative self-training (student-as-generator feedback loop), the geometric diversity of a model's internal embeddings becomes systematically misaligned with content diversity (measured by rare n-gram survival). This \\\"alignment gap\\\" shows an overall declining trend across generations (with a transient early rebound at Gen 1-3 before accelerating decline from Gen 4), causing diversity-based data selection using internal representations to **accelerate** rather than prevent model collapse. All methods that do not rely on degrading internal embeddings — including frozen external embeddings, random selection, and no selection — avoid this catastrophic failure mode.\\n\\n## Core Claims\\n\\n### C1: Alignment Gap Exists and Worsens Progressively\\n- Internal embedding diversity selection ratio degrades from ~1.04 (Gen 0) to ~0.52 (Gen 7)\\n- Overall declining trend with transient early rebound (Gen 1-3: 0.91→0.93→0.94) before accelerating decline from Gen 4\\n- The model increasingly selects vocabulary-poor samples when using its own representations for diversity scoring\\n- Evidence: Phase 2 RGDS selection diagnostics (GPT2-125M, WikiText-103, self-iterate)\\n\\n### C2-revised: The Failure Is Specific to Internal Embeddings (D013/D014/D015)\\n- RGDS is the **only** method showing catastrophic performance degradation\\n- {random_50, external_only, uncurated} form a \\\"normal cluster\\\" (gen7 PPL range: 43-50), while RGDS is a catastrophic outlier (gen7 PPL 75-82)\\n- External selection ratio stable >1.0 (1.10-1.28 across seeds); random ratio stable ~1.0 (0.96-1.06); only RGDS degrades (1.04→0.52)\\n- ⚠️ External vs uncurated ordering is **cross-seed inconsistent** (seed=42: ext wins 9.5%; seed=123: uncurated wins 7.6%) — cannot claim external > uncurated\\n- ⚠️ **D016 UPDATE**: random_50 三 seed 完成（Mean PPL=43.18±1.43）。两 seed 都显示 random < external（seed42: -5.1%, seed123: -15.9%）。差距不再是 noise——趋向 Scenario 2（random 显著优于 external）。等 seed=456 external 完成后做 3-seed t 检验定论。若确认 → 升级 claim：外部嵌入选择（ratio >1.0 过度偏好 rare-rich）也次优，保持自然分布（ratio ~1.0）是最优策略（Goodhart's Law 实例）\\n- The key insight: the problem is not \\\"which selection method is best\\\" but \\\"using degrading internal representations for selection is catastrophically harmful\\\"\\n\\n### C3: The Gap Causes Accelerated Collapse (D013 upgraded)\\n- RGDS vs random_50 (same 50% data budget): PPL 75.07 vs 43.20 (**+74%**), rare n-gram 0.0051 vs 0.0096 (**-47%**) — fully attributable to selection mechanism, data budget controlled\\n- RGDS vs uncurated: PPL +49% (seed=42), +77% (seed=123) — consistent across seeds, far exceeds cross-method noise (~8-10%)\\n- Complete causal chain: embedding space contracts → \\\"geometrically diverse\\\" = \\\"vocabulary-poor\\\" → selection amplifies homogeneity → accelerated collapse\\n- random_50 baseline is the cleanest ablation: isolates selection quality from data budget effect\\n\\n## Secondary Claims\\n\\n### S1: PPL and Rare N-gram Improvement Are Disproportionate\\n- All non-RGDS methods show gen7 rare n-gram in range 0.0090-0.0099 (vs Gen 0 baseline 0.029 = -66% collapse regardless of method)\\n- PPL varies more across methods (43-50 for normal cluster vs baseline ~37)\\n- Implication: no tested selection method meaningfully prevents lexical diversity collapse — the collapse is driven by the self-iterate loop itself, not data selection\\n- ⚠️ Previous claim \\\"external improves PPL -9.5% vs uncurated\\\" is cross-seed inconsistent (D015) — removed from S1\\n\\n### S3: Random Pruning Effect (D017: DOWNGRADED to directional observation)\\n- Seed=42: random_50 (43.20) < uncurated (50.28) → -14.1%\\n- Seed=123: random_50 (41.75) < uncurated (46.15) → -9.5%\\n- Seed=456: random_50 (44.60) < uncurated (50.12) → gap 仅 +0.2%\\n- **D017**: 3-seed t-test p≈0.10，未达显著性。降级为 directional observation\\n- 论文中不做因果推断，表述限定为 \\\"conflates any selection benefit with a data quantity effect\\\"\\n- ⚠️ 50% vs 100% 对比混淆数据量效应，仅 within-budget 对比（RGDS vs Random，同 50%）无混淆\\n\\n### S2: Representation Quality Metrics Don't Detect Diversity Collapse\\n- RankMe increases during collapse (280→303, +8%)\\n- k-NN probe accuracy stable (0.988 throughout)\\n- These metrics track representation structure, not content diversity — a cautionary finding for monitoring frameworks\\n\\n## 355M Scaling Observations (seed=42+123, pending seed=456)\\n- **C3 holds across scale**: RGDS vs Random +18% at 355M s42 (vs +74% at 125M). 待 random50_seed123 确认。\\n- **Absolute collapse far more severe**: PPL multiplier gen0→gen7 = 2.7-3.5x (355M) vs 1.2-2.0x (125M)\\n- **External alignment gap widens with scale**: +10.7%(s42) vs Random at 355M (vs +7.4% 125M 3-seed mean)\\n- **355M seed=42 ranking**: Random (70.25) < External (77.74) < RGDS (82.84) < Uncurated (91.66)\\n- **355M seed=123 ranking**: External (79.56) < Uncurated (87.05) < RGDS (90.25) — random50 pending\\n\\n### ⚠️ RGDS vs Uncurated 跨 seed 排序翻转\\n- seed=42: Uncurated(91.66) > RGDS(82.84) → uncurated 最差\\n- seed=123: RGDS(90.25) > Uncurated(87.05) → rgds 最差（与 125M 一致）\\n- 方法间差距在 355M 大幅压缩（高 PPL 区间 87-92），排序不稳定\\n- **论文 §5.7 需修正**：\\\"两个 50% 方法都优于 Uncurated\\\" 只对 seed=42 成立。改为报告排序不稳定 + 差距压缩\\n\\n### Ratio 数据（2-seed，强信号）\\n- 355M gen7 RGDS ratio: 0.831(s42), 0.873(s123) → 均值 **0.852±0.029**（方差极小）\\n- 125M gen7 RGDS ratio: 均值 **0.636±0.20**（方差大）\\n- 355M ratio 明显更好且更稳定 → **favors genuine attenuation**，等 seed=456 final confirmation\\n\\n### Scaling Narrative Framework (Reviewer-approved: Modified Option B)\\n**双假说共存，不做二元对立**。论文 Discussion 呈现为：\\n> \\\"Scaling reduces alignment gap penalty, which may arise from (i) higher representational redundancy (RankMe 275→365) buffering geometric distortion, and/or (ii) compression of method differences when absolute collapse is severe.\\\"\\n\\n**关键证据**：\\n- 绝对差也大幅缩小（125M 均值 31.10 → 355M 12.59），不符合纯 ceiling effect\\n- **不对称 gap 模式（最强证据）**：External gap +7.4%(125M 3-seed)→+10.7%(355M s42)，Uncurated gap +8.9%→+30.5%（3.4倍↑），仅 RGDS gap +72%→+18%（4倍↓）。纯 ceiling effect 会压缩所有方法差异，但只有 alignment-gap-driven penalty 收缩 → favors genuine representational buffering\\n- 355M gen7 RGDS ratio = 0.831（125M 均值 0.636, SD=0.20）→ ratio 保留更好，但 125M seed=456 也达 0.868，高方差削弱结论\\n- RankMe 33% 更高提供表征冗余缓冲的机制支持\\n\\n**Ratio 是鉴别指标**：seed=456 结果决定叙事强度：\\n- 355M 3-seed ratio 均值 > 0.8 且 SD < 0.05 → favors genuine attenuation\\n- ratio 方差大或某 seed 跌到 0.5-0.6 → ceiling effect 无法排除\\n\\n**必加 limitation**：\\\"Distinguishing between representational redundancy and floor effects at this scale requires experiments at 3+ model sizes, which we leave to future work.\\\"\\n\\n## Anticipated Reviewer Concerns\\n\\n### R1: \\\"GPT2-125M is too small — does this generalize?\\\"\\n- GPT2-medium (355M) experiments in progress: seed=42 complete (4 methods), seed=123 running, seed=456 queued (D019)\\n- 355M seed=42 confirms C3 (RGDS vs Random +18%, same budget) — \\\"scales beyond toy models\\\"\\n- Absolute collapse worse at 355M but relative alignment gap penalty narrows (ceiling effect caveat needed)\\n\\n### R2: \\\"Only one dataset (WikiText-103)\\\"\\n- Response: OpenWebText subset planned as P1\\n- The mechanism is data-agnostic (self-iterate collapse is well-documented across datasets)\\n\\n### R3: \\\"N=1 seed — is this noise?\\\"\\n- seed=42 and seed=123 complete for RGDS/external/uncurated — C1 ratio highly consistent (gen7: 0.517 vs 0.524)\\n- seed=456 full methods + random_50 seed=123/456 in progress → 3-seed t-tests imminent\\n- Cross-seed variance: normal cluster ~4-6.5 PPL, RGDS effect size 49-77% → far exceeds noise\\n\\n### R4: \\\"You only found a problem, not a solution\\\"\\n- Response: (a) Random data pruning (50%) is a **zero-cost practical solution** — performs comparably to sophisticated external embedding selection (D013); (b) practitioners should avoid internal-embedding-based curation during iterative training; (c) embedding re-anchoring experiment planned as additional mitigation\\n- The message is actionable: \\\"don't use your model's own embeddings for data selection during iterative training; random sampling works just as well\\\"\\n\\n### R5: \\\"What's the theoretical explanation for the gap?\\\"\\n- Connect to dimensional collapse literature (Jing et al. 2022) rather than neural collapse (Papyan et al. 2020) — dimensional collapse in self-supervised learning is more mechanistically appropriate than supervised classification neural collapse\\n- Self-iterate reduces embedding effective dimensionality → greedy submodular selection in low-dim space favors collapsed mode directions\\n- Not a formal proof, but a plausible mechanistic analogy with empirical support\\n- Dream review consensus: neural collapse connection is speculative; soften to analogy or replace with dimensional collapse\\n\\n### R6: \\\"External embeddings don't outperform random — what's the point of C2?\\\"\\n- C2-revised is diagnostic, not prescriptive: it pinpoints that the catastrophic failure is **specific to internal embeddings**, not inherent to embedding-based selection or data pruning in general\\n- External and random both avoid the failure, confirming the mechanism (alignment gap in internal representations) rather than advocating a specific solution\\n- Opens future work: what selection signal DOES preserve lexical diversity?\\n\\n## Narrative Arc (D014 revised)\\n1. **Setup**: Iterative self-training causes model collapse (established). Diversity-based data curation is a natural mitigation idea.\\n2. **Surprise**: Using the model's own representations for diversity selection makes collapse WORSE, not better — +74% PPL vs random selection with the same data budget.\\n3. **Explanation**: The Embedding Alignment Gap — internal representations' notion of \\\"diverse\\\" diverges from content diversity as training progresses (selection ratio 1.04→0.52).\\n4. **Contrast**: All methods that bypass internal embeddings — random selection, external embeddings, or no selection — form a \\\"normal cluster\\\" (PPL 43-50) with no catastrophic failure. The failure is specific to self-referential selection.\\n5. **Implication**: In iterative training, never use the model's own embeddings for data selection. Random sampling is a zero-cost alternative that avoids the alignment gap entirely.\\n\\n## Related Work Positioning\\nCurrent: **36 references** across 8 subfields (artifacts/related_work_references.md), Reviewer 验证通过\\n\\n### Existing\\n- Model collapse: Shumailov et al. (Nature 2024), Alemohammad et al. (2024), Dohmatob et al. (2024)\\n- Data selection/curation: SemDeDup (Abbas 2023), D4 (Tirumala 2023), DSIR (Xie 2023) — static (non-iterative) curation; we show iterative setting introduces new failure mode\\n- Representation quality metrics: RankMe (Garrido et al. 2023) — we show RankMe doesn't detect diversity collapse\\n\\n### Must Add (Dream-identified gaps)\\n- **Concept drift / embedding drift**: Lu et al. (2019 survey), Gama et al. (2014) — alignment gap is fundamentally a concept drift phenomenon\\n- **Active learning under distribution shift**: Ash et al. (2020, BADGE), Kirsch et al. (2019) — acquisition function degradation is same class of problem\\n- **Dimensional collapse in self-supervised learning**: Jing et al. (2022), Hua et al. (2021) — replaces neural collapse as mechanistic reference\\n- **Broader model collapse**: Guo et al. (2024), Seddik et al. (2024), Briesch et al. (2023)\\n- **Broader data selection**: Xia et al. (2024, LESS), SelectIT, QuRating, Engstrom et al. (2024)\\n- **Goodhart's law / reward hacking**: Gao et al. (2023), Skalse et al. (2022) — alignment gap as Goodhart instance\\n- **Diversity metrics**: Li et al. (2016, distinct-n), Zhu et al. (2018, Self-BLEU)\\n- **Submodular maximization theory**: Iyer & Bilmes (2013), Wei et al. (2015)\\n\\n## Novelty Framing Note (Dream D011)\\nThe conceptual insight (representations degrade under distribution shift) is NOT novel — it's expected from concept drift theory. The genuine contribution is the **quantification and decomposition**: (1) selection ratio metric as diagnostic, (2) magnitude of acceleration (+74% PPL vs random baseline with controlled data budget, D013), (3) isolation of failure to internal embeddings specifically (random_50 ablation as cleanest evidence). Frame accordingly — overclaiming conceptual novelty will trigger reviewer pushback.\\n\\n## Writing Cautions (Reviewer)\\n- \\\"Monotonically decreasing\\\" → \\\"overall declining trend\\\" (Gen 1-3 rebound: 0.91→0.93→0.94)\\n- \\\"Self-repair\\\" for external_only PPL recovery → needs mechanistic justification (external anchor guiding model back to original distribution, not autonomous repair)\\n- Uncurated rank_corr p=0.049 is borderline — wait for multi-seed before claiming significance\\n\", \"total_chars\": 12624, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear picture. The paper_framing.md lists 8 \"Must Add\" gaps under \"Related Work Positioning\", but looking at the actual `related_work.tex`, ALL 8 gaps are already covered:\n\n1. Concept drift → §2.4 has Lu et al., Gama et al., Caccia et al., Davari et al.\n2. Active learning → §2.3 has Ash/BADGE, BatchBALD, Kothawade, Yehuda\n\n\n3. Dimensional collapse → §2.3 has Jing et al., Hua et al., Papyan et al., Laurent et al.\n4. Broader model collapse → §2.1 has Guo, Seddik, Briesch, plus Shumailov, Alemohammad, Dohmatob, Gerstgrasser\n5. Broader data selection → §2.2 has Xia/LESS, SelectIT, QuRating, Engstrom/DsDm, plus Sorscher, SemDeDup, D4, DSIR\n6. Goodhart's law → §2.4 has Gao, Skalse, Pan\n\n, Karwowski\n7. Diversity metrics → §2.4 has Li/Distinct-N, Zhu/Self-BLEU, Tevet, Pillutla/MAUVE\n8. Submodular maximization → §2.3 has Iyer & Bilmes, Wei et al., Mirzasoleiman\n\nAll 36 references are in the bib file, and checking the actual tex file shows these citations are already integrated—so despite the paper_framing.md marking them as \"Must Add,\" the work appears to be done.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "uuid": "e9356d58-feac-429d-b700-4b95db8e5cce",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015gxGFgSKaqFEptikqvv6xS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5499,
+                "cache_read_input_tokens": 38545,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5499
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 8 个子领域缺口已经覆盖完毕，无需补充。\n\n当前 `related_work.tex` 已包含：\n\n| 子领域 | 所在小节 | 引用 |\n|--------|----------|------|\n| Concept drift | §2.4 Representation Drift | Lu, Gama, Caccia, Davari |\n| Active learning under shift | §2.3 Embedding-Based Diversity | BADGE, BatchBALD, Kothawade, Yehuda |\n| Dimensional collapse | §2.3 | Jing, Hua, Papyan, Laurent |\n| Broader model collapse | §2.1 | Guo, Seddik, Briesch + Shumailov, Alemohammad, Dohmatob, Gerstgrasser |\n| Broader data selection | §2.2 | LESS, SelectIT, QuRating, DsDm + Sorscher, SemDeDup, D4, DSIR |\n| Goodhart's law | §2.4 | Gao, Skalse, Pan, Karwowski |\n| Diversity metrics | §2.4 末段 | Li/Distinct-N, Zhu/Self-BLEU, Tevet, MAUVE |\n| Submodular maximization | §2.3 开头 | Iyer & Bilmes, Wei et al., Mirzasoleiman |\n\n`references.bib` 中 36 篇引用全部就位。`paper_framing.md` 的 \"Must Add\" 列表是历史记录，实际工作已完成。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "uuid": "f79b3c50-1ee5-48b6-8517-b0c6786d4c18",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015gxGFgSKaqFEptikqvv6xS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5499,
+                "cache_read_input_tokens": 38545,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5499
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 8 个子领域缺口已经覆盖完毕，无需补充。\n\n当前 `related_work.tex` 已包含：\n\n| 子领域 | 所在小节 | 引用 |\n|--------|----------|------|\n| Concept drift | §2.4 Representation Drift | Lu, Gama, Caccia, Davari |\n| Active learning under shift | §2.3 Embedding-Based Diversity | BADGE, BatchBALD, Kothawade, Yehuda |\n| Dimensional collapse | §2.3 | Jing, Hua, Papyan, Laurent |\n| Broader model collapse | §2.1 | Guo, Seddik, Briesch + Shumailov, Alemohammad, Dohmatob, Gerstgrasser |\n| Broader data selection | §2.2 | LESS, SelectIT, QuRating, DsDm + Sorscher, SemDeDup, D4, DSIR |\n| Goodhart's law | §2.4 | Gao, Skalse, Pan, Karwowski |\n| Diversity metrics | §2.4 末段 | Li/Distinct-N, Zhu/Self-BLEU, Tevet, MAUVE |\n| Submodular maximization | §2.3 开头 | Iyer & Bilmes, Wei et al., Mirzasoleiman |\n\n`references.bib` 中 36 篇引用全部就位。`paper_framing.md` 的 \"Must Add\" 列表是历史记录，实际工作已完成。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 46270,
+            "duration_api_ms": 47250,
+            "num_turns": 9,
+            "stop_reason": "end_turn",
+            "session_id": "98a156f2-431c-4c04-8729-c1a675d348a5",
+            "total_cost_usd": 0.32231624999999997,
+            "usage": {
+              "input_tokens": 8,
+              "cache_creation_input_tokens": 32203,
+              "cache_read_input_tokens": 123423,
+              "output_tokens": 2306,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 32203,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 859,
+                  "cache_read_input_tokens": 38545,
+                  "cache_creation_input_tokens": 5499,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 5499
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1551,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0016460000000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 8,
+                "outputTokens": 2306,
+                "cacheReadInputTokens": 123423,
+                "cacheCreationInputTokens": 32203,
+                "webSearchRequests": 0,
+                "costUSD": 0.32067025000000005,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "3b99a274-9998-4fd8-92e4-fd3f7ff773f2"
+          },
+          "id": "event-000026"
+        }
+      ],
+      "message_count": 26
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-related-work.md"
+}

@@ -1,0 +1,76 @@
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Experimental Configuration}
+
+Our primary experiments use GPT2-125M (124M parameters) trained on WikiText-103 (232K training samples). We run 8 self-training generations (Generation~0 through~7). At each generation, the current model generates 500K tokens via nucleus sampling (temperature~$0.8$, top-$p$~$0.95$) conditioned on WikiText-103 prefix prompts, a data selection method curates a subset, and the model is fine-tuned on the result.
+
+We compare four data selection methods spanning a factorial ablation design:
+\begin{itemize}
+    \item \textbf{RGDS} (50\%): diversity selection using the training model's own last-hidden-layer embeddings.
+    \item \textbf{External-only} (50\%): the same selection algorithm and budget, using frozen Contriever \citep{izacard2022unsupervised} embeddings that are never updated during training.
+    \item \textbf{Random 50\%}: uniform random selection with the same data budget.
+    \item \textbf{Uncurated} (100\%): all generated data retained without selection.
+\end{itemize}
+
+All experiments use 3 random seeds (42, 123, 456). Within each seed, all methods start from the same pretrained checkpoint and share the same Generation~0 data pool.
+
+\subsection{Training Details}
+
+Each generation fine-tunes from the previous generation's checkpoint using AdamW with learning rate $5 \times 10^{-5}$ and linear warmup, batch size~4 with gradient accumulation over 8~steps (effective batch size~32), maximum sequence length~512, and 3~epochs per generation. Generation~0 starts from the HuggingFace pretrained GPT2-125M checkpoint.
+
+\subsection{Selection Algorithm}
+
+Both RGDS and External-only apply the same greedy selection procedure. Embeddings (768-dimensional for both GPT2 and Contriever) are projected to 32 dimensions via PCA fitted on the WikiText-103 training set. The algorithm iteratively selects the candidate whose inclusion most reduces the normalized eigenvalue variance of the selected subset's covariance matrix:
+\begin{equation}
+    \mathcal{L}(S) = \frac{\lVert \mathbf{C}(S) \rVert_F}{\operatorname{tr}(\mathbf{C}(S))^2}
+\label{eq:selection_objective}
+\end{equation}
+where $\mathbf{C}(S)$ is the covariance of the selected set. This objective favors subsets with uniform eigenvalues, selecting for maximal dimensional coverage in the projected embedding space. Unlike facility location objectives that maximize minimum pairwise distance between selected points, eigenvalue variance minimization operates on the spectral properties of the entire subset, promoting distributional coverage rather than point-wise separation.
+
+The two methods differ only in embedding source: RGDS uses the current-generation model's last-hidden-layer representations, which co-evolve with training; External-only uses a frozen Contriever encoder.
+
+\subsection{Evaluation Metrics}
+
+We evaluate each method at every generation along six dimensions:
+\begin{itemize}
+    \item \textbf{Perplexity (PPL)}: language modeling quality on the WikiText-103 validation set.
+    \item \textbf{Selection ratio} ($\text{SR}_g$): ratio of mean rare trigram density in the selected subset to that in the rejected subset, quantifying alignment between the selection criterion and content diversity.
+    \item \textbf{Rare token ratio}: proportion of generated trigrams at or below the 10th percentile of the WikiText-103 trigram frequency distribution, measuring lexical tail preservation.
+    \item \textbf{RankMe}: effective embedding rank via singular value entropy \citep{garrido2023rankme}, tracking representation dimensionality.
+    \item \textbf{$k$-NN probe accuracy}: $k$-nearest-neighbor classification accuracy over embeddings, tracking discriminative structure preservation.
+    \item \textbf{Rank correlation}: Spearman correlation between per-sample embedding diversity scores and rare token content, measuring sample-level alignment between the selection criterion and content diversity.
+\end{itemize}
+
+Generation~7 summary statistics appear in Table~\ref{tab:gen7_summary}; per-generation perplexity trajectories are plotted in Figure~\ref{fig:ppl_trends}.
+
+\subsection{Scaling Experiment: GPT2-Medium}
+\label{sec:scaling}
+
+To assess whether the embedding alignment gap generalizes beyond 125M parameters, we replicate the full experimental protocol with GPT2-Medium (355M parameters), using identical training configuration, data selection methods, and evaluation metrics. Table~\ref{tab:medium_uncurated} reports the Uncurated baseline trajectory (seed=42, $n{=}1$).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+Gen & PPL & RankMe & kNN & Rare & Corr \\
+\midrule
+0 & 26.55 & 371.57 & 0.988 & 0.0346 & $+$0.022 \\
+1 & 35.12 & 403.80 & 0.988 & 0.0281 & $+$0.023 \\
+2 & 46.90 & 420.83 & 0.988 & 0.0216 & $+$0.018 \\
+3 & 57.40 & 425.35 & 0.988 & 0.0185 & $+$0.001 \\
+4 & 67.45 & 430.68 & 0.988 & 0.0172 & $-$0.005 \\
+5 & 78.55 & 438.62 & 0.987 & 0.0159 & $-$0.018 \\
+6 & 84.59 & 442.85 & 0.987 & 0.0144 & $-$0.046 \\
+7 & 91.66 & 443.98 & 0.988 & 0.0139 & $-$0.038 \\
+\bottomrule
+\end{tabular}
+\caption{GPT2-Medium (355M) Uncurated baseline per-generation metrics (seed=42). PPL: perplexity on WikiText-103 validation set. RankMe: effective embedding rank. kNN: $k$-nearest-neighbor probe accuracy. Rare: rare trigram ratio. Corr: Spearman correlation between embedding diversity scores and rare token content.}
+\label{tab:medium_uncurated}
+\end{table}
+
+The Uncurated baseline shows substantially more severe degradation at the larger scale: GPT2-Medium perplexity increases from 26.55 to 91.66 over 8 generations (3.45$\times$), compared to 1.28$\times$ for GPT2-125M under the same protocol (36.7 to 47.04, $n{=}3$). RankMe inflation is also amplified, rising by $+$72.4 points (371.57 to 443.98) versus $+$11.1 for the smaller model. The rank correlation between embedding diversity and rare token content turns negative at Generation~4 ($-$0.005) and reaches $-$0.038 by Generation~7, exhibiting the same alignment inversion pattern observed in GPT2-125M.
+
+All four methods on GPT2-Medium are complete for seeds 42 and 123 ($n{=}2$). Full 355M results appear in \S\ref{sec:result_scaling}. Seed=456 experiments are pending.%
+%TODO(355M-seeds): update when seed=456 completes

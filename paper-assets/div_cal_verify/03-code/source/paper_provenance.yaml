@@ -1,0 +1,524 @@
+paper:
+  title: ''
+  version: 70
+  generated_at: '2026-05-14T09:49:36.955739+00:00'
+claims:
+- id: C001
+  location:
+    section: methodology
+    paragraph: 0
+    sentence: 0
+  text: GPT2-125M (124M parameters) as base model, trained on WikiText-103 (232,588
+    samples)
+  type: configuration
+  evidence:
+  - exp_id: phase2_3method_selfit
+    field: spec.model_name
+  - exp_id: phase2_3method_selfit
+    field: spec.data_count
+    value: 232588
+  decisions: []
+  deprecated: false
+- id: C003
+  location:
+    section: methodology
+    paragraph: 0
+    sentence: 0
+  text: 8 generations of self-training with 500K tokens per generation, cumulative
+    fine-tuning
+  type: configuration
+  evidence:
+  - exp_id: phase2_3method_selfit
+    field: spec.hyperparams
+  decisions: []
+  deprecated: false
+- id: C006
+  location:
+    section: methodology
+    paragraph: 0
+    sentence: 0
+  text: 'Training hyperparameters: lr=5e-5, batch_size=4, grad_accum=8, seq_len=512,
+    3 epochs per generation'
+  type: configuration
+  evidence:
+  - exp_id: phase2_3method_selfit
+    field: spec.hyperparams
+  decisions: []
+  deprecated: false
+- id: C010
+  location:
+    section: methodology
+    paragraph: 0
+    sentence: 0
+  text: 'Four methods: uncurated (100%), RGDS (50% internal embedding), external-only
+    (50% frozen Contriever), random 50%'
+  type: method_description
+  evidence:
+  - exp_id: phase2_3method_selfit
+  - exp_id: phase2_random50_v2
+  - exp_id: phase2_ext_seed123
+  decisions: []
+  deprecated: false
+- id: C015
+  location:
+    section: methodology
+    paragraph: 0
+    sentence: 0
+  text: Selection ratio SR_g = mean_rare(selected) / mean_rare(full) measures alignment
+    between selection and content diversity
+  type: definition
+  evidence:
+  - exp_id: phase2_3method_selfit
+    field: metrics.rgds.gen0_ratio
+    value: 1.0371
+  decisions: []
+  deprecated: false
+- id: C021
+  location:
+    section: methodology
+    paragraph: 0
+    sentence: 0
+  text: Experiments repeated across 3 random seeds (42, 123, 456) for statistical
+    robustness
+  type: configuration
+  evidence:
+  - exp_id: phase2_3method_selfit
+    note: seed=42
+  - exp_id: phase2_seed123_remaining
+    note: seed=123
+  - exp_id: rgds_seed456
+    note: seed=456
+  decisions: []
+  deprecated: false
+- id: C022
+  location:
+    section: methodology
+    paragraph: 0
+    sentence: 0
+  text: RGDS selects 50% of data using greedy eigenvalue variance minimization on
+    PCA-projected (768→32d) internal embeddings
+  type: method_description
+  evidence:
+  - exp_id: phase2_3method_selfit
+    field: code:diversity_selection.py:greedy_disf_selection
+  decisions: []
+  deprecated: false
+- id: C023
+  location:
+    section: methodology
+    paragraph: 0
+    sentence: 0
+  text: Rare n-gram defined as trigram at or below 10th percentile of frequency distribution
+    (data-adaptive threshold)
+  type: definition
+  evidence:
+  - exp_id: phase2_3method_selfit
+    field: code:evaluate.py:compute_rare_ngram_survival:rare_percentile=10
+  decisions: []
+  deprecated: false
+- id: C024
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: RGDS underperforms Random 50% by +18% at 355M (82.84 vs 70.25, seed=42)
+  type: quantitative
+  evidence:
+  - exp_id: medium_rgds_seed42
+    metric: gen7.ppl
+    value: 82.84
+  - exp_id: medium_random50_seed42
+    metric: gen7.ppl
+    value: 70.25
+  decisions: []
+  deprecated: false
+- id: C025
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Random 50% reduces Gen7 PPL by 23% vs Uncurated at 355M (70.25 vs 91.66)
+  type: quantitative
+  evidence:
+  - exp_id: medium_random50_seed42
+    metric: gen7.ppl
+    value: 70.25
+  - exp_id: medium_uncurated_seed42
+    metric: gen7_ppl
+    value: 91.66
+  decisions: []
+  deprecated: false
+- id: C026
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: RGDS reduces Gen7 PPL by 10% vs Uncurated at 355M (82.84 vs 91.66)
+  type: quantitative
+  evidence:
+  - exp_id: medium_rgds_seed42
+    metric: gen7.ppl
+    value: 82.84
+  - exp_id: medium_uncurated_seed42
+    metric: gen7_ppl
+    value: 91.66
+  decisions: []
+  deprecated: false
+- id: C027
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: RGDS selection ratio at Gen7 is 0.83 at 355M vs 0.64+-0.20 at 125M
+  type: quantitative
+  evidence:
+  - exp_id: medium_rgds_seed42
+    metric: gen7.ratio
+    value: 0.831
+  decisions: []
+  deprecated: false
+- id: C028
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: RankMe at Gen7 for 355M RGDS (424.72) substantially exceeds 125M (292.54+-5.91)
+  type: quantitative
+  evidence:
+  - exp_id: medium_rgds_seed42
+    metric: gen7.rankme
+    value: 424.72
+  - exp_id: phase2_3method_selfit
+    metric: rgds.gen7_rankme
+    value: 292.72
+  decisions: []
+  deprecated: false
+- id: C029
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Absolute PPL gap contracts from 31.10 at 125M (n=3) to 12.59 at 355M (seed=42)
+  type: quantitative
+  evidence:
+  - exp_id: phase2_3method_selfit
+    metric: rgds.gen7_ppl vs random50 baselines, 125M 3-seed mean
+  - exp_id: medium_rgds_seed42
+    metric: gen7.ppl=82.84
+  - exp_id: medium_random50_seed42
+    metric: gen7.ppl=70.25
+  decisions: []
+  deprecated: false
+- id: C030
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Relative gap narrows from +72% to +18% at 355M
+  type: quantitative
+  evidence:
+  - exp_id: medium_rgds_seed42
+    metric: gen7.ppl=82.84
+  - exp_id: medium_random50_seed42
+    metric: gen7.ppl=70.25
+  decisions: []
+  deprecated: false
+- id: C031
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: GPT2-Medium Generation 0 RankMe (~365) exceeds GPT2-125M (~276) by 33%
+  type: quantitative
+  evidence:
+  - exp_id: medium_rgds_seed42
+    metric: gen0.rankme=365.07
+  - exp_id: phase2_3method_selfit
+    metric: rgds.gen0_rankme=275.89
+  decisions: []
+  deprecated: false
+- id: C032
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: RGDS selection ratio at Generation 7 improves from 0.64±0.20 (125M) to 0.83
+    (355M)
+  type: quantitative
+  evidence:
+  - exp_id: medium_rgds_seed42
+    metric: gen7.ratio=0.8313
+  - exp_id: phase2_3method_selfit
+    metric: rgds 125M 3-seed gen7 ratio mean=0.64
+  decisions: []
+  deprecated: false
+- id: C033
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 355M Uncurated baseline PPL 91.66 vs 125M 47.04±2.90
+  type: quantitative
+  evidence:
+  - exp_id: medium_uncurated_seed42
+    metric: gen7_ppl=91.66
+  - exp_id: phase2_3method_selfit
+    metric: uncurated 125M 3-seed gen7 ppl mean=47.04
+  decisions: []
+  deprecated: false
+- id: C034
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Distinguishing representational redundancy and floor effects requires 3+ model
+    sizes
+  type: limitation
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C035
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: External-only penalty relative to Random increases from +7.4% (125M) to +10.7%
+    (355M)
+  type: quantitative
+  evidence:
+  - exp_id: phase2_3method_selfit
+    metric: external gen7 PPL 46.36 vs random 43.18
+  - exp_id: medium_external_seed42
+    metric: gen7_ppl=77.74
+  - exp_id: medium_random50_seed42
+    metric: gen7.ppl=70.25
+  decisions: []
+  deprecated: false
+- id: C036
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Uncurated penalty relative to Random increases from +8.9% (125M) to +30.5%
+    (355M)
+  type: quantitative
+  evidence:
+  - exp_id: phase2_3method_selfit
+    metric: uncurated gen7 PPL 47.04 vs random 43.18
+  - exp_id: medium_uncurated_seed42
+    metric: gen7_ppl=91.66
+  - exp_id: medium_random50_seed42
+    metric: gen7.ppl=70.25
+  decisions: []
+  deprecated: false
+- id: C037
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: RGDS underperforms random selection by +18% at 355M (seed=42)
+  type: quantitative
+  evidence:
+  - exp_id: medium_rgds_seed42
+    metric: gen7.ppl=82.84
+  - exp_id: medium_random50_seed42
+    metric: gen7.ppl=70.25
+  decisions: []
+  deprecated: true
+- id: C038
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: RGDS outperforms Uncurated at seed=42 (82.84 vs 91.66) but underperforms at
+    seed=123 (90.25 vs 87.05)
+  type: quantitative
+  evidence:
+  - exp_id: medium_rgds_seed42
+    metric: gen7.ppl=82.84
+  - exp_id: medium_uncurated_seed42
+    metric: gen7_ppl=91.66
+  - exp_id: medium_rgds_seed123
+    metric: gen7_ppl=90.25 (Director-provided)
+  - exp_id: medium_uncurated_seed123
+    metric: gen7_ppl=87.05 (Director-provided)
+  decisions: []
+  deprecated: false
+- id: C039
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: RGDS Generation 7 perplexity exceeds Random 50% by +72% under identical budget
+    conditions (74.29±7.71 vs 43.18±1.43, p=.017, d=5.61)
+  type: statistical
+  evidence:
+  - exp_125m_3seed_gen7
+  decisions:
+  - D003
+  deprecated: false
+- id: C040
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: RGDS rare n-gram ratio is 38% lower than Random 50% (0.0061±0.0009 vs 0.0098±0.0003,
+    p=.014, d=-5.66)
+  type: statistical
+  evidence:
+  - exp_125m_3seed_gen7
+  decisions:
+  - D003
+  deprecated: false
+- id: C041
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Within-budget comparison (same 50% budget) isolates selection mechanism effect,
+    free from data-volume confound
+  type: methodological
+  evidence:
+  - experimental_design
+  decisions:
+  - D003
+  deprecated: false
+- id: C042
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Random 50% vs Uncurated comparison conflates selection benefit with data quantity
+    effect; p=0.133, reported as directional observation only
+  type: methodological
+  evidence:
+  - exp_125m_3seed_gen7
+  decisions:
+  - D017
+  deprecated: false
+- id: C043
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: RGDS selection ratio declines from ~1.0 (Gen 0) to 0.64±0.20 (Gen 7), quantifying
+    progressive embedding alignment gap
+  type: C1
+  evidence:
+  - phase2_rgds_selection_diagnostics_3seed
+  decisions:
+  - D011
+  - D013
+  deprecated: false
+- id: C045
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: RGDS is the only catastrophic method; random, external, uncurated form normal
+    cluster (PPL 43-50, ANOVA p=0.219)
+  type: C2-revised
+  evidence:
+  - phase2_4method_comparison_3seed
+  - anova_normal_cluster
+  decisions:
+  - D013
+  - D014
+  - D015
+  deprecated: false
+- id: C048
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Same 50% budget: RGDS vs Random +72% PPL, -47% rare n-gram (n=3); preliminary
+    355M confirmation'
+  type: C3
+  evidence:
+  - rgds_vs_random_3seed
+  - 355m_seed42_rgds_vs_random
+  decisions:
+  - D013
+  - D019
+  deprecated: false
+- id: C049
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Absolute PPL gap contracts from 31.10 at 125M (n=3) to 15.15 at 355M (n=2)
+  type: quantitative
+  evidence:
+  - exp_id: medium_rgds_seed42
+    metric: gen7.ppl=82.84
+  - exp_id: medium_rgds_seed123
+    metric: gen7_ppl=90.25
+  - exp_id: medium_random50_seed42
+    metric: gen7.ppl=70.25
+  - exp_id: medium_random50_seed123
+    metric: gen7_ppl=72.55
+  decisions: []
+  deprecated: false
+- id: C050
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Relative gap narrows from +72% to +21% at 355M (n=2)
+  type: quantitative
+  evidence:
+  - exp_id: medium_rgds_seed42
+    metric: 2-seed mean 86.55
+  - exp_id: medium_random50_seed42
+    metric: 2-seed mean 71.40
+  decisions: []
+  deprecated: false
+- id: C051
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: External-only penalty increases from +7.4% (125M, n=3) to +10.2% (355M, n=2)
+  type: quantitative
+  evidence:
+  - exp_id: medium_external_seed42
+    metric: gen7_ppl=77.74
+  - exp_id: medium_external_seed123
+    metric: gen7.ppl=79.56
+  - exp_id: medium_random50_seed42
+    metric: gen7.ppl=70.25
+  - exp_id: medium_random50_seed123
+    metric: gen7_ppl=72.55
+  decisions: []
+  deprecated: false
+- id: C052
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Uncurated penalty increases from +8.9% (125M) to +25.1% (355M, n=2)
+  type: quantitative
+  evidence:
+  - exp_id: medium_uncurated_seed42
+    metric: gen7_ppl=91.66
+  - exp_id: medium_uncurated_seed123
+    metric: gen7_ppl=87.05
+  - exp_id: medium_random50_seed42
+    metric: gen7.ppl=70.25
+  - exp_id: medium_random50_seed123
+    metric: gen7_ppl=72.55
+  decisions: []
+  deprecated: false
+tables: []
+figures: []
+_completeness:
+  coverage: 32/33
+  claims: 33
+  tables: 0
+  figures: 0
+  tier_counts:
+    tier1: 0
+    tier2: 32
+    tier3: 1
+    tierX: 0
+  last_checked: '2026-05-14T09:49:36.955774+00:00'

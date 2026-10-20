@@ -1,0 +1,83 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shumailov2024nature}
+\citation{shumailov2024nature,alemohammad2024selfconsuming,dohmatob2024tale}
+\citation{abbas2023semdedup}
+\citation{tirumala2023d4}
+\citation{kirchhoff2014submodular}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{shumailov2024nature}
+\citation{alemohammad2024selfconsuming}
+\citation{dohmatob2024tale}
+\citation{abbas2023semdedup}
+\citation{tirumala2023d4}
+\citation{xie2023dsir}
+\citation{papyan2020prevalence}
+\citation{garrido2023rankme}
+\citation{izacard2022contriever}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Background and Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Model collapse.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data curation and selection.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Neural collapse.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representation quality metrics.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Iterative Self-Training Loop}{2}{subsection.3.1}\protected@file@percent }
+\citation{garrido2023rankme}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Selection Ratio: Quantifying the Alignment Gap}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Evaluation Metrics}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Main Results: The Alignment Gap}{3}{section.4}\protected@file@percent }
+\newlabel{sec:main_results}{{4}{3}{Main Results: The Alignment Gap}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Setup}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Selection Ratio Degradation (C1)}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Selection ratio across generations (seed=42). RGDS ratio drops monotonically below 1.0, indicating the selector increasingly favors vocabulary-poor samples. External embeddings maintain ratio $>1.0$ throughout.}}{4}{table.caption.5}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:sel_ratio}{{1}{4}{Selection ratio across generations (seed=42). RGDS ratio drops monotonically below 1.0, indicating the selector increasingly favors vocabulary-poor samples. External embeddings maintain ratio $>1.0$ throughout}{table.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Core metrics at generations 0 and 7 (GPT-2 125M, WikiText-103). RGDS worsens both PPL (+50\% vs uncurated) and rare $n$-gram survival ($-$47\%). 3-seed 95\% CIs for RGDS vs uncurated PPL do not overlap: $[67.9, 77.1]$ vs $[46.0, 50.6]$, $p < 0.01$.}}{4}{table.caption.6}\protected@file@percent }
+\newlabel{tab:main_full}{{2}{4}{Core metrics at generations 0 and 7 (GPT-2 125M, WikiText-103). RGDS worsens both PPL (+50\% vs uncurated) and rare $n$-gram survival ($-$47\%). 3-seed 95\% CIs for RGDS vs uncurated PPL do not overlap: $[67.9, 77.1]$ vs $[46.0, 50.6]$, $p < 0.01$}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Accelerated Collapse (C3)}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Representation Metrics Miss the Collapse (S2)}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}External Embeddings and the PPL--Diversity Dissociation}{4}{section.5}\protected@file@percent }
+\newlabel{sec:external}{{5}{4}{External Embeddings and the PPL--Diversity Dissociation}{section.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces RankMe and $k$-NN under RGDS collapse (seed=42). Despite catastrophic PPL and rare $n$-gram degradation, RankMe \emph  {increases} and $k$-NN is stable. These metrics track geometric structure, not content diversity.}}{5}{table.caption.7}\protected@file@percent }
+\newlabel{tab:metrics_blind}{{3}{5}{RankMe and $k$-NN under RGDS collapse (seed=42). Despite catastrophic PPL and rare $n$-gram degradation, RankMe \emph {increases} and $k$-NN is stable. These metrics track geometric structure, not content diversity}{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Re-anchoring results (gen 7, GPT-2 125M, seed=42). Re-anchoring largely eliminates the selection ratio degradation ($0.52 \to 0.95$) and recovers most of the PPL gap. Rare $n$-gram recovery is partial ($+33\%$), localizing residual loss to the generation side.}}{5}{table.caption.8}\protected@file@percent }
+\newlabel{tab:reanchor}{{4}{5}{Re-anchoring results (gen 7, GPT-2 125M, seed=42). Re-anchoring largely eliminates the selection ratio degradation ($0.52 \to 0.95$) and recovers most of the PPL gap. Rare $n$-gram recovery is partial ($+33\%$), localizing residual loss to the generation side}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Mitigation: Embedding Re-Anchoring}{5}{section.6}\protected@file@percent }
+\newlabel{sec:mitigation}{{6}{5}{Mitigation: Embedding Re-Anchoring}{section.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Three-seed aggregated statistics (seeds 42, 123, 456; GPT-2 125M, WikiText-103). All key contrasts hold: RGDS ratio CI below 1.0; external ratio CI above 1.0; RGDS--uncurated PPL CIs non-overlapping.}}{6}{table.caption.9}\protected@file@percent }
+\newlabel{tab:three_seed}{{5}{6}{Three-seed aggregated statistics (seeds 42, 123, 456; GPT-2 125M, WikiText-103). All key contrasts hold: RGDS ratio CI below 1.0; external ratio CI above 1.0; RGDS--uncurated PPL CIs non-overlapping}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-scale comparison at gen 7 (WikiText-103). 355M results from seed=42 and $^\dagger $seed=123. Relative magnitudes are consistent: RGDS PPL excess $+52\%$ (125M) vs.\ $+52\%$ (355M); selection ratio endpoints $0.52$ vs.\ $0.56$.}}{6}{table.caption.10}\protected@file@percent }
+\newlabel{tab:scale}{{6}{6}{Cross-scale comparison at gen 7 (WikiText-103). 355M results from seed=42 and $^\dagger $seed=123. Relative magnitudes are consistent: RGDS PPL excess $+52\%$ (125M) vs.\ $+52\%$ (355M); selection ratio endpoints $0.52$ vs.\ $0.56$}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Robustness}{6}{section.7}\protected@file@percent }
+\newlabel{sec:robustness}{{7}{6}{Robustness}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Multiple Seeds}{6}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Model Scale: GPT-2 Medium (355M)}{6}{subsection.7.2}\protected@file@percent }
+\citation{papyan2020prevalence}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-dataset comparison at gen 7 (GPT-2 125M, seed=42). OpenWebText shows lower absolute PPL (GPT-2's pre-training domain) but identical alignment gap magnitudes: RGDS PPL excess $+54\%$, rare deficit $-43\%$.}}{7}{table.caption.11}\protected@file@percent }
+\newlabel{tab:dataset}{{7}{7}{Cross-dataset comparison at gen 7 (GPT-2 125M, seed=42). OpenWebText shows lower absolute PPL (GPT-2's pre-training domain) but identical alignment gap magnitudes: RGDS PPL excess $+54\%$, rare deficit $-43\%$}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Dataset Generalization: OpenWebText}{7}{subsection.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Discussion}{7}{section.8}\protected@file@percent }
+\newlabel{sec:discussion}{{8}{7}{Discussion}{section.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why does the alignment gap arise?}{7}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{7}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusion}{7}{section.9}\protected@file@percent }
+\newlabel{sec:conclusion}{{9}{7}{Conclusion}{section.9}{}}
+\bibstyle{plainnat}
+\bibdata{custom}
+\bibcite{abbas2023semdedup}{{1}{2023}{{Abbas et~al.}}{{Abbas, Tirumala, Simig, Ganguli, and Morcos}}}
+\bibcite{alemohammad2024selfconsuming}{{2}{2024}{{Alemohammad et~al.}}{{Alemohammad, Casco-Rodriguez, Luber, Babaei, Letizia, Bastani, and Calmon}}}
+\bibcite{dohmatob2024tale}{{3}{2024}{{Dohmatob et~al.}}{{Dohmatob, Feng, Subramonian, and Kempe}}}
+\bibcite{garrido2023rankme}{{4}{2023}{{Garrido et~al.}}{{Garrido, Balestriero, Najman, and LeCun}}}
+\bibcite{izacard2022contriever}{{5}{2022}{{Izacard et~al.}}{{Izacard, Caron, Hosseini, Riedel, Bojanowski, Joulin, and Grave}}}
+\bibcite{kirchhoff2014submodular}{{6}{2014}{{Kirchhoff and Bilmes}}{{}}}
+\bibcite{papyan2020prevalence}{{7}{2020}{{Papyan et~al.}}{{Papyan, Han, and Donoho}}}
+\bibcite{shumailov2024nature}{{8}{2024}{{Shumailov et~al.}}{{Shumailov, Shumaylov, Zhao, Papernot, Anderson, and Gal}}}
+\bibcite{tirumala2023d4}{{9}{2023}{{Tirumala et~al.}}{{Tirumala, Markosyan, Zettlemoyer, and Aghajanyan}}}
+\bibcite{xie2023dsir}{{10}{2023}{{Xie et~al.}}{{Xie, Santurkar, Ma, and Liang}}}
+\gdef \@abspage@last{8}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "medium_external_seed42",
+  "project": "div_cal_verify",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T23:32:08.840Z",
+    "updated_at": "2026-05-13T23:32:08.840Z"
+  },
+  "timestamp": "2026-05-13T23:32:08.933142+00:00",
+  "trigger": "update_registry"
+}

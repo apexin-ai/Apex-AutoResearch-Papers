@@ -1,0 +1,31 @@
+{
+  "exp_id": "exception_only_nomarker_seed42",
+  "project": "trace-verdict-study",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 2,
+    "created_at": "2026-05-16T06:03:33.324Z",
+    "updated_at": "2026-05-16T15:51:16.062Z",
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "reproduce": {
+      "finished_at": "2026-05-16T15:50:20.250Z"
+    },
+    "completed_at": "2026-05-16T15:50:22.017Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T15:50:23.894246+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-16T15:51:16.202825+00:00",
+  "trigger": "update_registry"
+}

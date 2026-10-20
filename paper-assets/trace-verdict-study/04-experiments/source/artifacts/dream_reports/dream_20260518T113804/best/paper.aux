@@ -1,0 +1,76 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{ni2024dcsh}
+\citation{tracepile2025}
+\citation{traced2024}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{ni2024dcsh}
+\citation{tracepile2025}
+\citation{traced2024}
+\citation{wong2016survey}
+\citation{chen2023codet}
+\citation{gu2024cruxeval}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Trace-augmented code LLMs.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Verdict prediction and fault localization.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Execution reasoning in LLMs.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task Definition}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Dataset}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Trace Representations}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Tail-Truncation Token Budget Analysis}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Training Protocol}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Exception-only verdict accuracy across four models. Comparison conditions shown for Qwen-7B. Exception-only achieves the highest accuracy in every model, outperforming full VOTA (which includes additional components) and full traces.}}{4}{table.caption.4}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:exception_dominance}{{1}{4}{Exception-only verdict accuracy across four models. Comparison conditions shown for Qwen-7B. Exception-only achieves the highest accuracy in every model, outperforming full VOTA (which includes additional components) and full traces}{table.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Evaluation Metrics}{4}{subsection.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments and Results}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Exception Dominance Across Models}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:exception_dominance}{{4.1}{4}{Exception Dominance Across Models}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Comparison with frontier model prompting.}{4}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Causal Decomposition of the Compression Gap}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:causal}{{4.2}{4}{Causal Decomposition of the Compression Gap}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces SFT exception-only vs.\ few-shot prompting. SFT on a 1.5B model with exception signal produces 11.5$\times $ fewer errors than Claude 3-shot prompting, at a fraction of the cost.}}{5}{table.caption.6}\protected@file@percent }
+\newlabel{tab:fewshot}{{2}{5}{SFT exception-only vs.\ few-shot prompting. SFT on a 1.5B model with exception signal produces 11.5$\times $ fewer errors than Claude 3-shot prompting, at a fraction of the cost}{table.caption.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Two-tier diagnostic hierarchy (Qwen-7B). Tier~1 signals (exceptions, assertion outcomes) are each individually near-perfect and sufficient. Tier~2 (loop summaries) carries moderate signal but is fully subsumed. Combining tiers introduces noise: exception-only (99.83\%) $>$ VOTA (99.41\%), $p$=0.01.}}{5}{table.caption.7}\protected@file@percent }
+\newlabel{tab:hierarchy}{{3}{5}{Two-tier diagnostic hierarchy (Qwen-7B). Tier~1 signals (exceptions, assertion outcomes) are each individually near-perfect and sufficient. Tier~2 (loop summaries) carries moderate signal but is fully subsumed. Combining tiers introduces noise: exception-only (99.83\%) $>$ VOTA (99.41\%), $p$=0.01}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Two-Tier Diagnostic Hierarchy}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:hierarchy}{{4.3}{5}{Two-Tier Diagnostic Hierarchy}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Exception-only calibration across four models. All models achieve ECE $<$ 0.01. Improvement over the no-trace baseline (ECE=0.1715) ranges from 21$\times $ to 71$\times $.}}{6}{table.caption.8}\protected@file@percent }
+\newlabel{tab:calibration}{{4}{6}{Exception-only calibration across four models. All models achieve ECE $<$ 0.01. Improvement over the no-trace baseline (ECE=0.1715) ranges from 21$\times $ to 71$\times $}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Verdict accuracy (\%) by tail-token budget across four models. A sharp phase transition occurs between 384 and 512 tokens universally. DS = DeepSeek, CL = CodeLlama.}}{6}{table.caption.9}\protected@file@percent }
+\newlabel{tab:budget}{{5}{6}{Verdict accuracy (\%) by tail-token budget across four models. A sharp phase transition occurs between 384 and 512 tokens universally. DS = DeepSeek, CL = CodeLlama}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Cross-Model Calibration}{6}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Universal Phase Transition in Token Budget Curves}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:phase_transition}{{4.5}{6}{Universal Phase Transition in Token Budget Curves}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-seed tail-512 convergence (3 seeds per model). All standard deviations are below 1pp. The worst seed for any model (92.5\%) far exceeds the best tail-384 result (79.8\%).}}{7}{table.caption.11}\protected@file@percent }
+\newlabel{tab:cross_seed}{{6}{7}{Cross-seed tail-512 convergence (3 seeds per model). All standard deviations are below 1pp. The worst seed for any model (92.5\%) far exceeds the best tail-384 result (79.8\%)}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {paragraph}{Interpreting the phase transition.}{7}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Cross-Seed Convergence and Training Stability}{7}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:training_stability}{{4.6}{7}{Cross-Seed Convergence and Training Stability}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Training Dynamics}{7}{subsection.4.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Convergence milestones for exception-only vs.\ full-trace SFT (Qwen-7B). Exception-only surpasses the full-trace ceiling in under 50 steps and converges 4.2$\times $ faster to the full-trace final accuracy.}}{8}{table.caption.12}\protected@file@percent }
+\newlabel{tab:dynamics}{{7}{8}{Convergence milestones for exception-only vs.\ full-trace SFT (Qwen-7B). Exception-only surpasses the full-trace ceiling in under 50 steps and converges 4.2$\times $ faster to the full-trace final accuracy}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Error mode analysis by condition (Qwen-7B). Error interpretability correlates with tier level: Tier~1 errors are deterministic and representation-inherent; lower-tier errors are diffuse and stochastic. FP = false positive. Interp.\ = fraction of errors with identifiable root cause.}}{8}{table.caption.13}\protected@file@percent }
+\newlabel{tab:errors}{{8}{8}{Error mode analysis by condition (Qwen-7B). Error interpretability correlates with tier level: Tier~1 errors are deterministic and representation-inherent; lower-tier errors are diffuse and stochastic. FP = false positive. Interp.\ = fraction of errors with identifiable root cause}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Failure Mode Analysis}{8}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:error_analysis}{{4.8}{8}{Failure Mode Analysis}{subsection.4.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Out-of-Domain Generalization}{8}{subsection.4.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Cross-language generalization of exception-only SFT (Qwen-7B). OOD accuracy remains above 96\%, with only a 3.1pp mean gap versus in-domain, suggesting the model learns language-agnostic fault detection rather than Python-specific patterns.}}{9}{table.caption.14}\protected@file@percent }
+\newlabel{tab:ood}{{9}{9}{Cross-language generalization of exception-only SFT (Qwen-7B). OOD accuracy remains above 96\%, with only a 3.1pp mean gap versus in-domain, suggesting the model learns language-agnostic fault detection rather than Python-specific patterns}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{9}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{VOTA as fault indicator isolation.}{9}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Signal-limited, not capacity-limited.}{9}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training stability as practical bottleneck.}{9}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Addressing the ``feature engineering'' concern.}{9}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{9}{section*.19}\protected@file@percent }
+\bibcite{ni2024dcsh}{1}
+\bibcite{tracepile2025}{2}
+\bibcite{traced2024}{3}
+\bibcite{wong2016survey}{4}
+\bibcite{chen2023codet}{5}
+\bibcite{gu2024cruxeval}{6}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{10}{section.6}\protected@file@percent }
+\gdef \@abspage@last{10}

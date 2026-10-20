@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "094ac9e4badc8f338118",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis cross family error overlap",
+  "task_key": "worker_analysis_cross_family_error_overlap_20260516T182909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_family_error_overlap_20260516T182909_result.json",
+    "occurrence": 1,
+    "bytes": 1279,
+    "sha256": "2328ce017e45427a04e804da6322ad487e621b42f3a0d518422b6c9bf9a74eac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入。以下是核心结论：\n\n---\n\n## 结果\n\n**确认 universal irreducible ceiling：所有 4 个模型在 exception_only 条件下共享完全相同的 2 个错误样本（index 901, 905）。**\n\n| 模型 | 错误数 | 错误索引 |\n|------|--------|----------|\n| Qwen-7B (3 seeds) | 2 | [901, 905] |\n| Qwen-1.5B | 2 | [901, 905] |\n| CodeLlama-13B | 2 | [901, 905] |\n| DeepSeek-6.7B | 8 | [540-543, 548-549, 901, 905] |\n\n**两个 universal error 样本均来自 HumanEval/95 (check_dict_case)**，标签为 pass，但 trace 中有 7 条 `[ERROR] GeneratorExit` —— 这是 `all()` 短路 generator 时的正常 Python 行为，不是真正的错误。在 exception_only 视图下，模型只看到密集的 [ERROR] 行，无法区分这是无害的 runtime artifact。\n\nDeepSeek 额外错的 6 个样本来自 MBPP/113 (check_integer)，trace 显示被 try/except 捕获的 ValueError —— 同样是\"看起来像错误但实际通过\"的情况，但其他 3 个模型能正确判断。\n\n**根因**：exception_only 表示的语义歧义（GeneratorExit + caught exceptions 显示为 [ERROR]）造成了表示层面的硬上限，与模型容量无关。\n\n报告路径：`artifacts/cross_model_exception_only_overlap.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-family-error-overlap.md"
+}

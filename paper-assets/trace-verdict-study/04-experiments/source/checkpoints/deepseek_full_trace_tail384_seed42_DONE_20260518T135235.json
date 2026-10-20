@@ -1,0 +1,42 @@
+{
+  "exp_id": "deepseek_full_trace_tail384_seed42",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T12:06:02.727Z",
+    "updated_at": "2026-05-18T13:52:35.606Z",
+    "hypothesis": "DeepSeek-6.7B tail-384 应在 85-93% 之间（256→512 phase transition 的中间点），精确定位 phase transition 曲线形状",
+    "spec": {
+      "server": "westd-11235",
+      "gpu": "cuda:0",
+      "command": "source /root/miniconda3/bin/activate && python train/train_sft.py --condition full_trace_tail_384 --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail384_seed42 --gpu 0 --seed 42",
+      "data_path": "/root/trace-verdict-study/data/",
+      "data_count": 600,
+      "model_name": "deepseek-coder-6.7b-instruct",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail384_seed42/final",
+      "log_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail384_seed42/final/eval_results.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 0.807,
+      "accuracy_ci_lower": 0.786,
+      "accuracy_ci_upper": 0.829,
+      "majority_baseline": 0.715,
+      "lift": 0.092,
+      "n": 1190,
+      "pass_precision": 0.83,
+      "pass_recall": 0.92,
+      "pass_f1": 0.87,
+      "fail_precision": 0.73,
+      "fail_recall": 0.51,
+      "fail_f1": 0.6
+    },
+    "completed_at": "2026-05-18T13:52:35.607Z"
+  },
+  "timestamp": "2026-05-18T13:52:35.825451+00:00",
+  "trigger": "update_registry"
+}

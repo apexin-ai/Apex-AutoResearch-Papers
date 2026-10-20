@@ -1,0 +1,221 @@
+meta:
+  venue: EMNLP 2026 ARR
+  track: Findings (full paper)
+  template: templates/latex/acl/
+  template_note: "EMNLP uses ACL style files; using acl.sty with review option"
+  page_limit: 8
+  deadline: 2026-05-25
+  core_claim: >
+    In iterative self-training, the model's internal embedding diversity becomes
+    systematically misaligned with content diversity (Embedding Alignment Gap,
+    selection ratio 1.04→0.52), causing diversity-based data selection using
+    internal representations to accelerate model collapse by +74% PPL vs random selection.
+  created_at: 2026-05-13T18:00:00Z
+  phase: partial_draft
+  sections_in_scope: [introduction, related_work, methodology]
+  sections_deferred: [abstract, experiments, results, discussion, conclusion, limitations]
+
+paper_outline:
+  - section: abstract
+    word_budget: 200
+    status: deferred
+    core_bullets:
+      - "We show diversity-based data selection using internal embeddings accelerates model collapse in iterative self-training"
+      - "Selection ratio metric quantifies embedding-content alignment degradation (1.04→0.52)"
+      - "+74% PPL vs random selection with same data budget; all non-internal-embedding methods form a 'normal cluster'"
+    dependencies: [experiments, methodology]
+
+  - section: introduction
+    word_budget: 1200
+    status: active
+    core_bullets:
+      - "Hook: Diversity-based data curation is a natural defense against model collapse—but using the model's own representations for diversity selection makes collapse 74% worse, not better"
+      - "Gap: Existing data selection literature assumes stable representations; iterative training violates this assumption as embeddings co-degrade with the data distribution"
+      - "Insight: Embedding Alignment Gap—internal representations' notion of 'diverse' diverges from content diversity as self-training progresses (selection ratio 1.04→0.52)"
+      - "Contrast: All methods bypassing internal embeddings (random, external, no selection) form a normal cluster (PPL 43-50); only internal-embedding selection is catastrophic (PPL 75-82)"
+      - "Contributions: (1) selection ratio diagnostic metric (2) +74% PPL acceleration quantification (3) isolation of failure to internal embeddings via random baseline ablation"
+    dependencies: []
+    registry_refs: [phase2_3method_selfit, phase2_random50_v2, phase2_seed123_remaining, phase2_ext_seed123]
+    citation_hints:
+      - "model collapse: Shumailov et al. 2024, Alemohammad et al. 2024"
+      - "data selection: SemDeDup (Abbas 2023), D4 (Tirumala 2023)"
+      - "dimensional collapse: Jing et al. 2022"
+
+  - section: related_work
+    word_budget: 1000
+    status: active
+    core_bullets:
+      - "Model collapse literature (Shumailov, Gerstgrasser, Alemohammad, Dohmatob, Seddik, Briesch, Guo): establish collapse phenomenon; we add the mechanism of HOW data selection interacts with collapse"
+      - "Data selection/curation (SemDeDup, DSIR, LESS, D4, Sorscher, SelectIT, QuRating, Engstrom): static (non-iterative) setting; we show iterative setting introduces alignment gap failure mode"
+      - "Concept drift / embedding drift (Lu 2019, Gama 2014, Caccia 2022, Davari 2022): alignment gap as a specific form of representation drift in self-training loops"
+      - "Dimensional collapse (Jing 2022, Hua 2021, Papyan 2020, Laurent 2024): geometric mechanism underlying embedding space contraction"
+      - "Goodhart's law / proxy degradation (Gao 2023, Skalse 2022, Pan 2022, Karwowski 2024): alignment gap as Goodhart instance—optimizing proxy diversity degrades true diversity"
+      - "Submodular maximization (Iyer & Bilmes 2013, Wei 2015, Mirzasoleiman 2020): theoretical framework attacked by alignment gap"
+      - "Active learning under shift (BADGE, BatchBALD, SIMILAR, Yehuda 2022): acquisition function degradation under distribution shift"
+      - "Diversity metrics (Li 2016 distinct-n, Zhu 2018 Self-BLEU, Tevet 2021, Pillutla 2021 MAUVE): content diversity measurement"
+    dependencies: [introduction]
+    citation_hints:
+      - "All 36 references from artifacts/related_work_references.md"
+
+  - section: methodology
+    word_budget: 1200
+    status: active
+    core_bullets:
+      - "Base model: GPT2-125M (124M params), pretrained from HuggingFace"
+      - "Dataset: WikiText-103 (232,588 training samples)"
+      - "Self-iterate protocol: 8 generations, cumulative fine-tuning, 500K tokens generated per generation"
+      - "Training: lr=5e-5, batch_size=4, grad_accum=8, seq_len=512, 3 epochs per generation"
+      - "Four methods: (1) uncurated (100% data, no selection) (2) RGDS (50%, internal GPT2 embedding diversity selection via submodular maximization) (3) external_only (50%, frozen Contriever embedding selection) (4) random_50 (50%, uniform random selection)"
+      - "Selection ratio definition: ratio of mean rare n-gram density in selected subset vs full generated set; measures whether selection preferentially retains content-diverse samples"
+      - "Evaluation metrics: perplexity (PPL), rare n-gram ratio, RankMe (effective rank), distinct-n, Self-BLEU, k-NN probe accuracy"
+      - "Seeds: 42, 123, 456 (3-seed for statistical robustness)"
+    dependencies: []
+    registry_refs: [phase2_3method_selfit, phase2_random50_v2]
+    notation_table:
+      G: "number of self-training generations (0-7)"
+      SR_g: "selection ratio at generation g"
+      PPL: "perplexity on WikiText-103 validation set"
+      r_g: "rare n-gram ratio at generation g"
+
+  - section: experiments
+    word_budget: 2000
+    status: deferred
+    core_bullets:
+      - "Main results: PPL trajectories across 4 methods × 8 generations (Table 1 + Figure)"
+      - "Selection ratio analysis: RGDS ratio degradation vs external/random stability"
+      - "Effect size: RGDS vs random_50 controlled comparison (+74% PPL, -47% rare n-gram)"
+      - "Cross-seed consistency: seed=42 and seed=123 patterns match; seed=456 pending"
+      - "Representation metric blind spot: RankMe increases during collapse, k-NN stable"
+    dependencies: [methodology]
+    registry_refs: [phase2_3method_selfit, phase2_random50_v2, phase2_seed123_remaining, phase2_ext_seed123]
+    tables: [tab1_main_results, tab2_selection_ratio]
+    figures: [fig1_ppl_trajectory, fig2_ratio_trajectory, fig3_rare_ngram]
+
+  - section: conclusion
+    word_budget: 400
+    status: deferred
+    core_bullets:
+      - "Summary: alignment gap as a systematic failure mode of internal-embedding data selection"
+      - "Practical recommendation: do not use model's own embeddings for data selection during iterative training; random sampling is zero-cost alternative"
+      - "Limitations: GPT2-125M scale, WikiText-103 only (pending GPT2-medium + OpenWebText)"
+      - "Future work: embedding re-anchoring, cross-architecture validation"
+    dependencies: [experiments, methodology]
+
+  - section: limitations
+    word_budget: 300
+    status: deferred
+    core_bullets:
+      - "Scale: GPT2-125M (124M params), below frontier model sizes"
+      - "Dataset: WikiText-103 only (single domain)"
+      - "Seeds: 2 complete + 1 in progress at time of writing"
+      - "No formal theoretical proof of alignment gap—empirical observation with mechanistic analogy to dimensional collapse"
+    dependencies: [experiments]
+
+visualization_plan:
+  - fig_id: fig1_ppl_trajectory
+    type: statistical
+    tool: matplotlib
+    description: "PPL trajectories across 8 generations for 4 methods (2-seed average with error bands). RGDS diverges catastrophically from normal cluster."
+    data_source: "registry: phase2_3method_selfit, phase2_random50_v2, phase2_seed123_remaining, phase2_ext_seed123"
+    placement: experiments
+    aspect_ratio: "4:3"
+    status: deferred
+
+  - fig_id: fig2_ratio_trajectory
+    type: statistical
+    tool: matplotlib
+    description: "Selection ratio across generations: RGDS declining (1.04→0.52), external stable (>1.0), random stable (~1.0). Key diagnostic figure."
+    data_source: "registry: phase2_3method_selfit, phase2_ext_seed123"
+    placement: experiments
+    aspect_ratio: "4:3"
+    status: deferred
+
+  - fig_id: fig3_rare_ngram
+    type: statistical
+    tool: matplotlib
+    description: "Rare n-gram ratio trajectories showing RGDS accelerated lexical diversity loss vs normal cluster."
+    data_source: "registry: phase2_3method_selfit, phase2_random50_v2, phase2_seed123_remaining, phase2_ext_seed123"
+    placement: experiments
+    aspect_ratio: "4:3"
+    status: deferred
+
+table_plan:
+  - table_id: tab1_main_results
+    caption: "Generation 7 results across methods (2-seed mean ± std). RGDS shows catastrophic PPL increase while all non-internal-embedding methods form a normal cluster."
+    placement: experiments
+    type: comparison
+    columns: [Method, Data%, "Gen 7 PPL ↓", "Gen 7 Rare ↓", "Gen 7 RankMe", "Δ PPL vs Gen 0"]
+    data_source: "registry: phase2_3method_selfit, phase2_random50_v2, phase2_seed123_remaining, phase2_ext_seed123"
+    status: deferred
+
+  - table_id: tab2_selection_ratio
+    caption: "Selection ratio trajectory across generations. RGDS ratio degrades monotonically while external ratio remains stable above 1.0."
+    placement: experiments
+    type: statistics
+    columns: [Method, Gen0, Gen1, Gen2, Gen3, Gen4, Gen5, Gen6, Gen7]
+    data_source: "registry: phase2_3method_selfit, phase2_ext_seed123"
+    status: deferred
+
+  - table_id: tab3_setup
+    caption: "Experimental configuration."
+    placement: methodology
+    type: configuration
+    columns: [Parameter, Value]
+    data_source: "manual"
+    status: active
+
+literature_strategy:
+  citation_budget: 40
+  source: "artifacts/related_work_references.md (36 verified references)"
+  macro_context:
+    - "model collapse in iterative/recursive training"
+    - "data selection and curation for language models"
+    - "representation drift and dimensional collapse"
+  micro_clusters:
+    - cluster_name: "Model Collapse"
+      target_count: 7
+      verified_count: 7
+      gap: 0
+      must_cite:
+        - "Shumailov et al. 2024 (Nature)"
+        - "Gerstgrasser et al. 2024 (ICML)"
+        - "Alemohammad et al. 2024 (ICLR)"
+        - "Dohmatob et al. 2025 (ICLR)"
+    - cluster_name: "Data Selection"
+      target_count: 7
+      verified_count: 7
+      gap: 0
+      must_cite:
+        - "Sorscher et al. 2022"
+        - "Xie et al. 2023 (DSIR)"
+    - cluster_name: "Concept Drift / Embedding Drift"
+      target_count: 4
+      verified_count: 4
+      gap: 0
+    - cluster_name: "Dimensional Collapse"
+      target_count: 4
+      verified_count: 4
+      gap: 0
+      must_cite:
+        - "Jing et al. 2022 (ICLR)"
+    - cluster_name: "Goodhart's Law"
+      target_count: 4
+      verified_count: 4
+      gap: 0
+    - cluster_name: "Active Learning under Shift"
+      target_count: 4
+      verified_count: 4
+      gap: 0
+    - cluster_name: "Diversity Metrics"
+      target_count: 4
+      verified_count: 4
+      gap: 0
+    - cluster_name: "Submodular Maximization"
+      target_count: 3
+      verified_count: 3
+      gap: 0
+
+writing_order:
+  - methodology
+  - introduction
+  - related_work

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "15cac458971d836397d0",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "code data gen trace",
+  "task_key": "worker_code_data-gen-trace_20260514T163506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_data-gen-trace_20260514T163506.log",
+    "occurrence": 1,
+    "bytes": 824036,
+    "sha256": "2ba87eb8685a70080e68a3a0d0c8ac645afa756b12d56610bcef0bca9b4e3857"
+  },
+  "statistics": {
+    "messages": 500,
+    "user_turns": 0,
+    "tool_calls": 184,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 128,
+      "tool_call": 184,
+      "tool_result": 184,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 500,
+      "chunks": [
+        {
+          "path": "15cac458971d836397d0-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "15cac458971d836397d0-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "15cac458971d836397d0-part-0003.json",
+          "message_count": 140
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-data-gen-trace.md"
+}

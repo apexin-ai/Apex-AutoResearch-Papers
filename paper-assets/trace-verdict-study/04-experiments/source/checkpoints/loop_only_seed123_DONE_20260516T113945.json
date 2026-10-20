@@ -1,0 +1,69 @@
+{
+  "exp_id": "loop_only_seed123",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T06:03:35.196Z",
+    "updated_at": "2026-05-16T11:39:45.684Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition loop_only --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed123 --wandb_project trace-verdict-study --wandb_run_name loop_only_seed123 && python eval/evaluate.py --condition loop_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed123/final/eval_results.json --save_predictions\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "261213",
+      "log_path": "~/runs/trace-verdict-study/loop_only_seed123.log",
+      "submitted_at": "2026-05-16T09:21:29.194Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed123/final",
+      "wall_clock_seconds": 7779.8,
+      "gpu_hours": 2.16
+    },
+    "server": "westd-11235",
+    "gpu": "cuda:1",
+    "account": "root",
+    "pid": "261213",
+    "log_path": "~/runs/trace-verdict-study/loop_only_seed123.log",
+    "wandb_run_id": "loop_only_seed123",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition loop_only --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed123 --wandb_project trace-verdict-study --wandb_run_name loop_only_seed123 && python eval/evaluate.py --condition loop_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed123/final/eval_results.json --save_predictions\"",
+      "wandb_run_id": "loop_only_seed123",
+      "code_commit": "e404237ccc765768e267d4d6fd3c89549dcf41a4",
+      "finished_at": "2026-05-16T11:28:44.218Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T11:28:46.379629+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 0.8588,
+      "majority_baseline": 0.7151,
+      "lift": 0.1437,
+      "n": 1190,
+      "pass_precision": 0.9129,
+      "pass_recall": 0.8872,
+      "pass_f1": 0.8999,
+      "fail_precision": 0.7355,
+      "fail_recall": 0.7876,
+      "fail_f1": 0.7607,
+      "accuracy_ci": [
+        0.8403,
+        0.8773
+      ]
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-16T11:31:09.027Z"
+  },
+  "timestamp": "2026-05-16T11:39:45.807017+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,40 @@
+{
+  "exp_id": "zeroshot_qwen15b_exception_only",
+  "project": "trace-verdict-study",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:05:17.683Z",
+    "updated_at": "2026-05-17T14:13:40.728Z",
+    "hypothesis": "Zero-shot cross-scale baseline: Qwen-1.5B zero-shot may perform poorly (similar to CodeLlama-13B) due to limited capacity, but SFT normalizes it to 99.83%, demonstrating SFT eliminates scale variance",
+    "parent": "zeroshot_qwen7b_exception_only",
+    "metrics": {
+      "accuracy": 0.9345,
+      "accuracy_ci_lower": 0.9202,
+      "accuracy_ci_upper": 0.9479,
+      "pass_f1": 0.969,
+      "fail_f1": 0.873,
+      "pass_recall": 0.9906,
+      "fail_recall": 0.7935,
+      "n_test": 1190,
+      "n_unknown": 24
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_qwen15b_exception_only/",
+    "log_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_qwen15b_exception_only/eval_results.json",
+    "spec": {
+      "command": "python eval/zeroshot_eval.py --model_path Qwen2.5-Coder-1.5B-Instruct --data_path exception_only_test.jsonl --gpu 0",
+      "server": "westd-11235",
+      "data_path": "/root/trace-verdict-study/data/exception_only_test.jsonl",
+      "data_count": 1190,
+      "model_name": "Qwen2.5-Coder-1.5B-Instruct",
+      "seed": 0,
+      "checkpoint_source": "pretrained (no fine-tuning)",
+      "eval_data": "/root/trace-verdict-study/data/exception_only_test.jsonl"
+    }
+  },
+  "timestamp": "2026-05-17T14:13:40.900021+00:00",
+  "trigger": "update_registry"
+}

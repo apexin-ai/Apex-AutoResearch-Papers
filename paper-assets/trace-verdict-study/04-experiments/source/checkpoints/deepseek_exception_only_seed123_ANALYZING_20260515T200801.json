@@ -1,0 +1,63 @@
+{
+  "exp_id": "deepseek_exception_only_seed123",
+  "project": "trace-verdict-study",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:31:02.686Z",
+    "updated_at": "2026-05-15T20:08:01.834Z",
+    "spec": {
+      "command": "bash -c \"... train_sft.py --condition exception_only --seed 123 + evaluate.py\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "144507",
+      "log_path": "~/runs/trace-verdict-study/deepseek_exception_only_seed123.log",
+      "submitted_at": "2026-05-15T18:14:56.180Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "plan_id": "plan_008",
+      "model_name": "deepseek-ai/deepseek-coder-6.7b-instruct",
+      "seed": 123,
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl",
+      "data_count": 4720
+    },
+    "hypothesis": "Cross-model seed robustness: exception_only with seed=123 on DeepSeek-Coder-6.7B (plan_008). Further validates exception signal cross-model generalization (99.33% seed42).",
+    "reproduce": {
+      "finished_at": "2026-05-15T20:04:43.247Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T20:04:44.489564+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 0.9109,
+      "pass_precision": 1,
+      "pass_recall": 0.993,
+      "pass_f1": 0.996,
+      "fail_precision": 0.976,
+      "fail_recall": 0.705,
+      "fail_f1": 0.818,
+      "ci_95": [
+        0.894,
+        0.926
+      ],
+      "train_loss": 0.122,
+      "train_runtime_sec": 6384
+    },
+    "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123/final",
+    "log_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123/final/predictions.jsonl",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-15T20:08:01.931408+00:00",
+  "trigger": "update_registry"
+}

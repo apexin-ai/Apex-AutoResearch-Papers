@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16973c91782edd9cc8fb",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "infra deepseek prep verify",
+  "task_key": "worker_infra_deepseek_prep_verify_20260515T113321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_deepseek_prep_verify_20260515T113321_result.json",
+    "occurrence": 1,
+    "bytes": 4327,
+    "sha256": "41e791dae510f2b7c5b7adfa9d9c3abe63ec53ba3e53bf4358381dbe560ed44e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集。汇总如下：\n\n---\n\n## deepseek_vota_seed42 进度\n\n- **Step**: 159/444 (35.8%)\n- **Epoch**: ~1.07 (刚完成第 1 轮 eval)\n- **Loss 趋势**: 0.467 → 0.052 (epoch 0→1)，正常下降\n- **Token accuracy**: 98.4%\n- **速度**: ~17-18s/step\n- **预计剩余**: 285 steps × ~17.5s ≈ **83 分钟** (~1h23m)\n\n## ae_only 进度\n\n- **Step**: 358/444 (80.6%)\n- **Epoch**: 2.37\n- **Loss**: 0.023，token accuracy 99.3%\n- **速度**: ~19s/step\n- **预计剩余**: 86 steps × ~19s ≈ **27 分钟**\n\n## 数据文件验证\n\n全部 6 个文件存在，行数一致：\n\n| 条件 | Train | Test |\n|------|-------|------|\n| exception_only | 4720 | 1190 |\n| full_trace | 4720 | 1190 |\n| no_trace | 4720 | 1190 |\n\n## 脚本兼容性\n\n- `train/train_sft.py`: 支持 `--model_path`（L63），默认 Qwen，可覆盖为 DeepSeek 路径\n- `eval/evaluate.py`: 支持 `--model_path`（L114）和 `--output`（L119）\n\n## 3 个 DeepSeek 提交命令\n\n**1. exception_only**\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_exception_only_seed42 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final/eval_results.json\"\n```\n\n**2. no_trace**\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\"\n```\n\n**3. full_trace**\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_full_trace_seed42 && python eval/evaluate.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final/eval_results.json\"\n```\n\n## 风险/注意事项\n\n- **GPU 竞争**: deepseek_vota 和 ae_only 都在 `--gpu 0` 运行。服务器有 2 张卡，但当前两个 tmux session 可能占满。提交新任务前需确认 ae_only 已完成或使用 `CUDA_VISIBLE_DEVICES=1` 分配到另一张卡。\n- **ae_only 约 27 分钟完成**，完成后 GPU 1 会空出来（如果它在 GPU 1 上的话），或需要等 deepseek_vota 也完成才能在同一张卡上排队。\n- **full_trace 数据量最大**（32MB train），训练时间会比其他条件更长。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-deepseek-prep-verify.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88e57c3948ff3c531c69",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "ssh check ext seed456 health",
+  "task_key": "worker_ssh_check_ext_seed456_health_20260513T214440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_ext_seed456_health_20260513T214440_result.json",
+    "occurrence": 1,
+    "bytes": 1490,
+    "sha256": "31842ea7fbdcf09c96398e4db4a998bd47e221b66b98bcba7f499962edcea448"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。诊断报告：\n\n## ext_seed456 诊断结果\n\n### 1. 状态：已完成 ✓\n\n实验于 `Thu May 14 05:43:16 CST 2026` 结束，总耗时约 9161 秒（~2.5h）。\n\n### 2. 完整 gen0-gen7 Metrics\n\n| Gen | PPL | RankMe | kNN | Rare | Corr | Ratio |\n|-----|------|--------|------|--------|---------|-------|\n| 0 | 36.51 | 273.85 | 0.988 | 0.0284 | -0.0103 | 1.1621 |\n| 1 | 44.77 | 291.93 | 0.988 | 0.0203 | -0.0404 | 1.0686 |\n| 2 | 50.84 | 298.52 | 0.987 | 0.0152 | -0.0292 | 1.1119 |\n| 3 | **54.43** | **298.35** | 0.987 | 0.0130 | -0.0223 | 1.1551 |\n| 4 | 49.91 | 295.86 | 0.988 | 0.0118 | -0.0321 | 1.1841 |\n| 5 | 50.45 | 297.37 | 0.988 | 0.0111 | -0.0300 | 1.2186 |\n| 6 | 47.09 | 294.35 | 0.988 | 0.0100 | -0.0207 | 1.0818 |\n| 7 | **43.90** | 292.69 | 0.988 | 0.0106 | -0.0227 | **1.2430** |\n\nPPL 在 gen3 达到峰值 54.43 后回落，gen7 回到 43.90（低于 gen1-6）。Rare ngram 持续下降至 ~0.01 后稳定。Ratio 在 gen7 达到最高 1.243。RankMe baseline=231.08。\n\n### 3. rgds_seed456：已启动 ✓\n\nchain_cuda1 在 ext_seed456 完成后立即启动了 rgds_seed456（`Thu May 14 05:43:16 CST`）。日志显示只有初始化信息，尚在 gen_0 早期阶段。\n\n### 4. GPU 利用情况\n\n| GPU | Utilization | Memory |\n|-----|------------|--------|\n| cuda:0 | 100% | 77917/97887 MiB |\n| cuda:1 | 99% | 12225/97887 MiB |\n\n两块 GPU 都在高负载运行。cuda:1 上 rgds_seed456 正在训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-ext-seed456-health-copy-2.md"
+}

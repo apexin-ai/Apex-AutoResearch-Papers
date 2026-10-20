@@ -1,0 +1,38 @@
+{
+  "exp_id": "qwen15b_label_only_seed123_v2",
+  "project": "trace-verdict-study",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T19:20:03.067Z",
+    "updated_at": "2026-05-20T20:15:43.005Z",
+    "hypothesis": "Qwen-1.5B label_only seed123 验证 C2 decomposition 跨 seed 稳定性：seed42=78.9%, 第 2 seed 确认 label formatting 贡献约 11pp (vs no_trace 67.31%)。",
+    "parent": "qwen15b_label_only_seed42_v2",
+    "server": "westd-11235",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-11235",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-20T19:20:24.443Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --model_path /root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct --gradient_checkpointing --label_only_loss --gpu 0 --seed 123 --output_dir /root/trace-verdict-study/outputs/qwen15b_label_only_seed123_v2 --wandb_project trace-verdict-study --wandb_run_name qwen15b_label_only_seed123_v2 && python eval/evaluate.py --condition full_trace --model_path /root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct --checkpoint_dir /root/trace-verdict-study/outputs/qwen15b_label_only_seed123_v2/final --gpu 0 --save_predictions\"",
+      "code_commit": "e404237ccc765768e267d4d6fd3c89549dcf41a4",
+      "finished_at": "2026-05-20T20:15:42.280Z",
+      "training_hours": 0.92
+    },
+    "spec": {
+      "data_path": "/root/trace-verdict-study/data/",
+      "data_count": 1640,
+      "model_name": "Qwen2.5-Coder-1.5B-Instruct",
+      "seed": 123,
+      "checkpoint_source": "self-trained",
+      "eval_data": "trace-verdict-study test split (164 samples)"
+    },
+    "pid": "648034",
+    "log_path": "~/runs/trace-verdict-study/qwen15b_label_only_seed123_v2.log"
+  },
+  "timestamp": "2026-05-20T20:15:43.305708+00:00",
+  "trigger": "update_registry"
+}

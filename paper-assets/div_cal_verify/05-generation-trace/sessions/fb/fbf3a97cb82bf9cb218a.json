@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbf3a97cb82bf9cb218a",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "check gpu status medium",
+  "task_key": "worker_check_gpu_status_medium_20260514T005220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu_status_medium_20260514T005220_result.json",
+    "occurrence": 1,
+    "bytes": 1389,
+    "sha256": "d92951381f1fcbf5c22d500aa49aac63d1085a8c2600170a3adedcecdf5cbfab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 状态\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| cuda:0 | 33% | 71.6/97.9 GB |\n| cuda:1 | 0% | 28.7/97.9 GB |\n\n### medium_rgds_seed42 (cuda:0) — ✅ 已完成\nGen 7/7 全部跑完，已自动衔接 **medium_random50** (当前 Gen 3/7 训练中)。\n\n```\nGen 0: ppl=26.04, rankme=365.07, knn=0.988, rare=0.0346, corr=0.0196, ratio=0.9759\nGen 1: ppl=32.99, rankme=398.29, knn=0.988, rare=0.0286, corr=0.0402, ratio=0.9991\nGen 2: ppl=41.99, rankme=418.21, knn=0.988, rare=0.0232, corr=0.0014, ratio=0.9225\nGen 3: ppl=50.80, rankme=421.44, knn=0.988, rare=0.0198, corr=0.0058, ratio=0.9127\nGen 4: ppl=60.71, rankme=425.62, knn=0.988, rare=0.0187, corr=-0.0068, ratio=0.7989\nGen 5: ppl=66.29, rankme=424.71, knn=0.988, rare=0.0180, corr=-0.0235, ratio=0.9002\nGen 6: ppl=72.00, rankme=423.93, knn=0.988, rare=0.0168, corr=-0.0197, ratio=0.7622\nGen 7: ppl=82.84, rankme=424.72, knn=0.988, rare=0.0166, corr=-0.0286, ratio=0.8313\n```\n\nRegistry 已更新为 DONE/success。\n\n### medium_external_seed42 (cuda:1) — 🔄 进行中\n当前 **Gen 3/7**，正在训练 student。tmux session `chain_cuda1` 运行中。cuda:1 利用率 0% 说明刚好在训练间隙或数据准备阶段。\n\n### tmux sessions\n- `chain_cuda0` ✅ 运行中（已衔接 medium_random50）\n- `chain_cuda1` ✅ 运行中（medium_external Gen 3）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-status-medium.md"
+}

@@ -1,0 +1,51 @@
+{
+  "exp_id": "no_trace_seed42_v3",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:01:02.647Z",
+    "updated_at": "2026-05-14T22:12:18.583Z",
+    "spec": {
+      "command": "python train/train_sft.py --condition no_trace --gpu 0",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "710523",
+      "log_path": "~/runs/trace-verdict-study/no_trace_seed42_v3.log",
+      "submitted_at": "2026-05-14T18:01:02.641Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/no_trace_train.jsonl",
+      "data_count": 4720,
+      "model_name": "Qwen2.5-Coder-7B-Instruct",
+      "seed": 42,
+      "hypothesis": "Baseline: verdict accuracy without execution trace",
+      "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/",
+      "wall_clock_seconds": 4617.5,
+      "gpu_hours": 1.28
+    },
+    "conclusion": "killed",
+    "metrics": {
+      "train_loss": 0.18,
+      "eval_loss": 0.645,
+      "eval_mean_token_accuracy": 0.89,
+      "accuracy": 0.7513,
+      "majority_baseline": 0.7151,
+      "lift": 0.0361,
+      "pass_precision": 0.8776,
+      "pass_recall": 0.7579,
+      "pass_f1": 0.8134,
+      "fail_precision": 0.5473,
+      "fail_recall": 0.7345,
+      "fail_f1": 0.6272
+    },
+    "completed_at": "2026-05-14T19:18:00.158Z"
+  },
+  "timestamp": "2026-05-14T22:12:18.622271+00:00",
+  "trigger": "update_registry"
+}

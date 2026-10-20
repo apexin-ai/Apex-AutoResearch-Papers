@@ -1,0 +1,50 @@
+{
+  "exp_id": "label_only_seed123",
+  "project": "trace-verdict-study",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:40:18.683Z",
+    "updated_at": "2026-05-16T09:01:25.212Z",
+    "hypothesis": "Seed robustness: label_only (full_trace + label-only loss) with seed=123 on Qwen-2.5-Coder-7B. Verifies label_only 86.22% stability across seeds.",
+    "parent": "full_trace_label_only_seed42",
+    "server": "westd-11235",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-11235",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-16T05:31:02.488Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --label_only_loss --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed123 --wandb_project trace-verdict-study --wandb_run_name label_only_seed123 && python eval/evaluate.py --condition full_trace --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed123/final/eval_results.json --save_predictions\"",
+      "wandb_run_id": "label_only_seed123",
+      "code_commit": "e404237ccc765768e267d4d6fd3c89549dcf41a4",
+      "finished_at": "2026-05-16T08:58:33.644Z",
+      "training_hours": 3.46
+    },
+    "spec": {
+      "command": "python train/train_sft.py --condition full_trace --label_only_loss --gradient_checkpointing --gpu 0 --seed 123 + evaluate.py",
+      "server": "westd-11235",
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl",
+      "data_count": 5910,
+      "model_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "seed": 123
+    },
+    "pid": "249124",
+    "log_path": "~/runs/trace-verdict-study/label_only_seed123.log",
+    "wandb_run_id": "label_only_seed123",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T08:58:35.632418+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T09:01:25.358988+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "qwen7b_vota_seed456",
+  "project": "trace-verdict-study",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T05:39:43.207Z",
+    "updated_at": "2026-05-19T05:39:43.207Z"
+  },
+  "timestamp": "2026-05-19T05:39:43.543842+00:00",
+  "trigger": "update_registry"
+}

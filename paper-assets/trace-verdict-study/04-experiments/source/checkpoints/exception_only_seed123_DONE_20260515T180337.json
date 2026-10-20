@@ -1,0 +1,77 @@
+{
+  "exp_id": "exception_only_seed123",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:31:01.555Z",
+    "updated_at": "2026-05-15T18:03:37.166Z",
+    "spec": {
+      "plan_id": "plan_008a",
+      "model_name": "Qwen2.5-Coder-7B-Instruct",
+      "seed": 123,
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl",
+      "data_count": 4720,
+      "server": "westd-11235"
+    },
+    "hypothesis": "Seed robustness: exception_only with seed=123 on Qwen-2.5-Coder-7B (plan_008). Verifies headline result 99.83% is stable across seeds.",
+    "server": "westd-11235",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-11235",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T15:54:06.157Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123 --wandb_project trace-verdict-study --wandb_run_name exception_only_seed123 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123/final/eval_results.json\"",
+      "wandb_run_id": "exception_only_seed123",
+      "finished_at": "2026-05-15T18:00:50.835Z",
+      "training_hours": 2.11
+    },
+    "pid": "124197",
+    "log_path": "~/runs/trace-verdict-study/exception_only_seed123.log",
+    "wandb_run_id": "exception_only_seed123",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T18:00:52.169672+00:00"
+        }
+      ]
+    },
+    "notes": "Seed robustness 结论: exception_only 99.83% ± 0.00 (seeds 42/123/456), 每 seed 恰好 2/1190 errors。极大概率同一组 irreducible 样本。",
+    "metrics": {
+      "accuracy": 0.9983,
+      "accuracy_ci": [
+        0.9958,
+        1
+      ],
+      "majority_baseline": 0.7151,
+      "lift": 0.2832,
+      "n": 1190,
+      "pass_precision": 1,
+      "pass_recall": 0.9976,
+      "pass_f1": 0.9988,
+      "fail_precision": 0.9941,
+      "fail_recall": 1,
+      "fail_f1": 0.9971,
+      "train_loss": 0.1096,
+      "train_runtime_sec": 7507,
+      "epochs": 3,
+      "seed_comparison": {
+        "seed42_accuracy": 0.9983,
+        "seed456_accuracy": 0.9983,
+        "seed123_accuracy": 0.9983,
+        "max_diff": 0,
+        "note": "identical accuracy to 4 decimal places across all 3 seeds (42/456/123); each has exactly 2/1190 errors; exception_only fully seed-robust"
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123/final",
+    "conclusion": "success",
+    "completed_at": "2026-05-15T18:03:37.166Z"
+  },
+  "timestamp": "2026-05-15T18:03:37.461889+00:00",
+  "trigger": "update_registry"
+}

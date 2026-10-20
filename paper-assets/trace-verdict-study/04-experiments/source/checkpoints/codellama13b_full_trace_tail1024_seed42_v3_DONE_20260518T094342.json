@@ -1,0 +1,33 @@
+{
+  "exp_id": "codellama13b_full_trace_tail1024_seed42_v3",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:39:08.941Z",
+    "updated_at": "2026-05-18T09:43:42.053Z",
+    "hypothesis": "CodeLlama-13B tail-1024 用 label_only_loss 应恢复到 ~96.5%（与 DeepSeek 96.47%、Qwen-1.5B 96.6% 对齐），确认 v2 的 87.6% 源于 full-sequence loss 稀释而非 tail-1024 条件本身",
+    "parent": "codellama13b_full_trace_tail1024_seed42_v2",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail1024_seed42_v3/",
+      "log_path": "~/runs/trace-verdict-study/codellama13b_full_trace_tail1024_seed42_v3.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "accuracy_epoch1": 0.9824,
+      "accuracy_epoch3": 0.9756,
+      "pass_f1_epoch1": 0.988,
+      "fail_f1_epoch1": 0.968,
+      "pass_f1_epoch3": 0.983,
+      "fail_f1_epoch3": 0.955,
+      "best_accuracy": 0.9824,
+      "best_epoch": 1,
+      "overfitting": true
+    },
+    "completed_at": "2026-05-18T09:43:42.053Z"
+  },
+  "timestamp": "2026-05-18T09:43:42.311965+00:00",
+  "trigger": "update_registry"
+}

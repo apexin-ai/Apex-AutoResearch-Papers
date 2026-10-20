@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f27feabbf27c220c6ce5",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "paper fix intro number",
+  "task_key": "worker_paper_fix_intro_number_20260514T082520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_intro_number_20260514T082520_result.json",
+    "occurrence": 1,
+    "bytes": 339,
+    "sha256": "a7fef4ba3d99d520fc28001e8b0b1f1dd30aac73c1dd8cb2fe3beb40226ff432"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Changed \"47%\" → \"38%\" in both locations in the Introduction (line 7 paragraph and contribution item 3). The +72% PPL figure is correct — it matches the 3-seed means ($74.29$ vs $43.18$). The 38% rare n-gram reduction is now consistent with Results §5.3 and the underlying data ($0.0061$ vs $0.0098$, $n{=}3$)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-intro-number.md"
+}

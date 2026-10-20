@@ -1,0 +1,72 @@
+{
+  "exp_id": "codellama13b_no_trace_seed42",
+  "project": "trace-verdict-study",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-16T07:47:20.182Z",
+    "updated_at": "2026-05-20T03:08:56.556Z",
+    "server": "westd-11235",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_no_trace_seed42 --wandb_project trace-verdict-study --wandb_run_name codellama13b_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_no_trace_seed42/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_no_trace_seed42/final/eval_results.json --save_predictions\"",
+      "wandb_run_id": "codellama13b_no_trace_seed42",
+      "code_commit": "e404237ccc765768e267d4d6fd3c89549dcf41a4",
+      "finished_at": "2026-05-16T14:19:42.177Z"
+    },
+    "gpu_ids": [
+      "cuda:1"
+    ],
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T14:19:44.574583+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "accuracy": 0.765,
+          "n": 1190,
+          "majority_baseline": 0.7151,
+          "lift": 0.05,
+          "pass_precision": 0.84,
+          "pass_recall": 0.83,
+          "pass_f1": 0.84,
+          "fail_precision": 0.59,
+          "fail_recall": 0.59,
+          "fail_f1": 0.59,
+          "accuracy_ci": [
+            0.738,
+            0.787
+          ]
+        }
+      }
+    },
+    "completed_at": "2026-05-16T14:22:58.643Z",
+    "hypothesis": "CodeLlama-13B no-trace baseline: without execution trace, larger model capacity does not compensate for missing diagnostic signal — accuracy near majority baseline as on smaller models",
+    "parent": "no_trace_seed42_v5",
+    "spec": {
+      "command": "previously completed",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:1"
+      ],
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/no_trace_train.jsonl",
+      "data_count": 4720,
+      "model_name": "codellama/CodeLlama-13b-Instruct-hf",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_no_trace_seed42/final",
+      "log_path": "~/runs/trace-verdict-study/codellama13b_no_trace_seed42.log",
+      "checkpoint_source": "self-trained",
+      "eval_data": "/root/autodl-tmp/trace-verdict-study-data/no_trace_test.jsonl"
+    }
+  },
+  "timestamp": "2026-05-20T03:08:56.840168+00:00",
+  "trigger": "update_registry"
+}

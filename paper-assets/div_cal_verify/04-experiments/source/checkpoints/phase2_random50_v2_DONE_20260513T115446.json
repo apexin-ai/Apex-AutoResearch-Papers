@@ -1,0 +1,35 @@
+{
+  "exp_id": "phase2_random50_v2",
+  "project": "div_cal_verify",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T11:46:06.927Z",
+    "updated_at": "2026-05-13T11:54:46.226Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /root/div_cal_verify/env.sh && export TRANSFORMERS_OFFLINE=1 && bash /root/div_cal_verify/run_random50.sh 0",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:0"
+      ],
+      "log_path": "/root/autodl-tmp/div_cal_verify/random50_v2.log",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/div_cal_verify/data_gpt2/",
+      "data_count": 232588,
+      "model_name": "gpt2 (124M) random_50 seed=42",
+      "seed": 42,
+      "checkpoint_source": "gpt2 (HuggingFace pretrained)",
+      "eval_data": "/root/div_cal_verify/data_gpt2/"
+    },
+    "hypothesis": "Random 50% baseline v2: 与 Phase 2 对照组完全一致的超参数(lr=5e-5, epochs=3, 500K tokens/gen)，随机选择 50% 数据，验证 diversity-aware selection 相比随机选择的增益",
+    "parent": "phase2_3method_selfit",
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "failed",
+    "completed_at": "2026-05-13T11:54:46.226Z"
+  },
+  "timestamp": "2026-05-13T11:54:46.260578+00:00",
+  "trigger": "update_registry"
+}

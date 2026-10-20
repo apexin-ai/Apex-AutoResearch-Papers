@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e0f1c1ad005a2228aa3",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis debugbench vota seed42",
+  "task_key": "worker_analysis_debugbench_vota_seed42_20260516T005644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_debugbench_vota_seed42_20260516T005644_result.json",
+    "occurrence": 1,
+    "bytes": 1477,
+    "sha256": "ce4a0fa3ec2b841c95ecf166f973d33bf78ca522c663ab88089b8ba49414c321"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有 predictions 文件。结果汇总如下：\n\n## 评估结果\n- **accuracy: 99.77%** (95% CI: [99.3%, 100.0%])\n- majority_baseline: 51.41% (always predict 'pass')\n- **lift: +48.36pp** (95% CI: [+43.4pp, +49.8pp])\n- pass: P=1.00, R=1.00, F1=1.00\n- fail: P=1.00, R=1.00, F1=1.00\n- train_loss: 0.0980\n- eval_loss: 0.1179\n- eval_mean_token_accuracy: 97.37%\n- 预测分布: 从 running accuracy 日志推断，426 样本中仅 1 个错误（accuracy=425/426）\n- predictions.jsonl: **不存在**（评估脚本未输出该文件）\n\n## Checkpoint 状态\n**完整。** adapter_model.safetensors (154MB)、adapter_config.json、tokenizer 全套文件、training_args.bin 均在。\n\n## W&B\n未配置（无 wandb_config.yaml 和 .env）。\n\n## 异常\n- `torch_dtype` deprecated 警告（无影响）\n- `top_k` generation flag 警告（被忽略，无影响）\n- 无 predictions.jsonl 输出，如需逐条分析需改评估脚本\n\n## 初步判断\n**conclusion: success**\n\n理由：\n- DebugBench 上 VOTA 达到 **99.77% accuracy**，与主实验 HumanEval+MBPP 上的 99.41% 高度一致\n- 相对 majority baseline (51.4%) 有 +48.4pp 的显著提升\n- 精确率/召回率/F1 在 pass 和 fail 两类上均接近 1.00，模型不存在偏向某一类的问题\n- 训练 loss (0.098) 和 eval loss (0.118) 接近，无过拟合迹象\n- VOTA 在跨数据集（DebugBench vs HumanEval+MBPP）上表现稳定，支持 generalization claim"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-debugbench-vota-seed42.md"
+}

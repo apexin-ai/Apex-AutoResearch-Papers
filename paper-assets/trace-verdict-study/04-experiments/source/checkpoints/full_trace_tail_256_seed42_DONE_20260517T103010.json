@@ -1,0 +1,55 @@
+{
+  "exp_id": "full_trace_tail_256_seed42",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:13:21.000Z",
+    "updated_at": "2026-05-17T10:30:10.501Z",
+    "hypothesis": "Tail-256 token budget: tests if diagnostic signal is concentrated in the last 256 tokens. If tail-256 approaches tail-512 (93.6%), signal is extremely localized at trace end; if much lower, exception events need surrounding context for effective learning",
+    "parent": "full_trace_tail_512_seed42",
+    "spec": {
+      "command": "python train/train_sft.py --condition full_trace_tail_256 --truncation_side left --gradient_checkpointing --gpu 0 --seed 42 + eval/evaluate.py",
+      "server": "westd-11235",
+      "gpu": "cuda:0",
+      "pid": 339962,
+      "log_path": "~/runs/trace-verdict-study/full_trace_tail_256_seed42.log",
+      "submitted_at": "2026-05-17T08:19:49.240Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/full_trace_tail_256_{train,test}.jsonl",
+      "data_count": {
+        "train": 4720,
+        "test": 1190
+      },
+      "model_name": "Qwen2.5-Coder-7B-Instruct",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_tail_256_seed42",
+      "truncation": "tail-256 (keep last 256 tokens of trace)",
+      "checkpoint_source": "self-trained",
+      "eval_data": "/root/autodl-tmp/trace-verdict-study-data/full_trace_tail_256_test.jsonl",
+      "wall_clock_seconds": 7821.3,
+      "gpu_hours": 2.17
+    },
+    "metrics": {
+      "accuracy": 0.7748,
+      "accuracy_ci": [
+        0.7496,
+        0.7975
+      ],
+      "majority_baseline": 0.7151,
+      "lift": 0.0597,
+      "n": 1190,
+      "pass_f1": 0.8333,
+      "fail_f1": 0.6528
+    },
+    "conclusion": "negative",
+    "log_path": "~/runs/trace-verdict-study/full_trace_tail_256_seed42.log",
+    "completed_at": "2026-05-17T10:30:10.501Z"
+  },
+  "timestamp": "2026-05-17T10:30:10.676173+00:00",
+  "trigger": "update_registry"
+}

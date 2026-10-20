@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0231426e7a3368072339",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis deepseek ae only seed123",
+  "task_key": "worker_analysis_deepseek_ae_only_seed123_20260520T151900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek_ae_only_seed123_20260520T151900_result.json",
+    "occurrence": 1,
+    "bytes": 694,
+    "sha256": "9f603f41a3fb7fe8f0ed8f30088db129089e4def9cd1dbe7b473fc5eaec65482"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**deepseek_ae_only_seed123 — SUCCESS**\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | **98.32%** [97.56%, 98.99%] |\n| Fail F1 | 0.970 |\n| Fail Precision | 0.982 |\n| Fail Recall | 0.959 |\n| Pass F1 | 0.988 |\n| Eval loss | 0.1907 |\n| Train loss | 0.0702 |\n\n**跨 seed 对比**：seed42=98.74% vs seed123=98.32%，差 -0.42pp，CI 重叠，方差低（std ~0.3%）。\n\n**跨模型 ae_only 排序**：Qwen-7B 99.64% > Qwen-1.5B 99.08% = CodeLlama-13B 99.08% > DeepSeek-6.7B 98.53%。DeepSeek 虽最低但仍稳过 98% 阈值，ae_only 在全部四个模型 scale 均为 Tier 1。\n\n已完成：analysis.md 已注册为 artifact，registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-ae-only-seed123.md"
+}

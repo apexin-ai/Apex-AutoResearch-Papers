@@ -1,0 +1,34 @@
+{
+  "exp_id": "uncurated_seed456",
+  "project": "div_cal_verify",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T16:44:55.468Z",
+    "updated_at": "2026-05-13T19:28:01.103Z",
+    "hypothesis": "Uncurated (100% data) seed=456 复现：3-seed 统计检验依赖，验证 uncurated 的 PPL/rare 轨迹跨 seed 一致性",
+    "parent": "phase2_3method_selfit",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 bash run_uncurated_seed456.sh",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:1"
+      ],
+      "log_path": "/root/autodl-tmp/div_cal_verify/uncurated_seed456.log",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/div_cal_verify/data_gpt2/",
+      "data_count": 232588,
+      "model_name": "gpt2 (124M) uncurated seed=456",
+      "seed": 456,
+      "checkpoint_source": "gpt2 (HuggingFace pretrained)",
+      "eval_data": "WikiText-103 (built-in eval)",
+      "tmux_session": "seed456_methods"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-13T19:28:01.172094+00:00",
+  "trigger": "update_registry"
+}

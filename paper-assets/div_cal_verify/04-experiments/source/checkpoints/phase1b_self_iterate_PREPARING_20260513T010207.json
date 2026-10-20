@@ -1,0 +1,14 @@
+{
+  "exp_id": "phase1b_self_iterate",
+  "project": "div_cal_verify",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T01:02:07.616Z",
+    "updated_at": "2026-05-13T01:02:07.616Z"
+  },
+  "timestamp": "2026-05-13T01:02:07.636826+00:00",
+  "trigger": "update_registry"
+}

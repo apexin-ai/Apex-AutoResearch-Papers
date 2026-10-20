@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f4ec6ea7e4137c75f55",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "fix gpu0 zombie cleanup",
+  "task_key": "worker_fix_gpu0_zombie_cleanup_20260513T152208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_gpu0_zombie_cleanup_20260513T152208_result.json",
+    "occurrence": 1,
+    "bytes": 814,
+    "sha256": "a2d1dc96ffa409643441287cdae70b79669b1f8b50cd141e13b6c4d585e4b999"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "容器内无 rmmod，无法重载内核模块。\n\n## 结论\n\n**GPU 0**: 49175 MiB 被驱动级孤儿内存占用（无任何用户进程持有）。实际可用 ~46 GB / 总计 ~95 GB。\n\n**GPU 1**: 0 MiB 占用，完全空闲，~95 GB 可用。\n\n**已尝试的清理方法（全部失败）**:\n- `nvidia-smi --gpu-reset` → 硬件/容器不支持\n- `torch.cuda.empty_cache()` + `ipc_collect()` → 无效（不是 PyTorch 管理的内存）\n- 关闭/开启 persistence mode → 无效\n- 内核模块重载 → 容器内无 rmmod/modprobe\n- fuser/kill 进程 → 无进程可杀\n\n**唯一解决办法**: 重启容器实例。这是容器环境下驱动级僵尸内存的唯一清理途径。如果当前不方便重启，GPU 0 仍有 ~46 GB 可用，GPU 1 完全空闲（~95 GB）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-gpu0-zombie-cleanup.md"
+}

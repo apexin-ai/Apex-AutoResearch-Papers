@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12afc5da961aead7e686",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper appendix expansion",
+  "task_key": "worker_paper_appendix-expansion_20260515T194033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix-expansion_20260515T194033_result.json",
+    "occurrence": 1,
+    "bytes": 652,
+    "sha256": "81ff01b323cab06c792c6b395f6f2db8a098554ac387d8927866d1684d6f9b98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。appendix.tex 新增 4 个 section：\n\n- **Section B (Training Details)**: 超参表格 + 各 condition 训练时长表格\n- **Section C (VOTA Trace Examples)**: 1 个 fail（ZeroDivisionError）+ 1 个 pass（add）示例，用 `verbatim` 环境\n- **Section D (Full Experimental Results)**: Qwen 跨 8 条件 × 3 种子完整表格 + DeepSeek 4 条件表格（含 label truncation bug 标注）\n- **Section E (Irreducible Sample Analysis)**: 2 个 irreducible samples (ID 901, 905) 的 check\\_dict\\_case 分析，含 99.83% accuracy ceiling 推导\n\n原有 Section A (Per-Class Performance Breakdown) 保持不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-appendix-expansion.md"
+}

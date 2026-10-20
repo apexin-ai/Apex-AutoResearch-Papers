@@ -1,0 +1,907 @@
+# cron hook deepseek exception only seed456 20260516T011307 169760
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 28
+- **Recorded user turns:** 2
+- **Tool calls:** 12
+- **Original source:** `logs/chats/archive/cron_hook_deepseek_exception_only_seed456_20260516T011307_169760.jsonl`
+- **Structured JSON:** [`de3b6967344474d41032.json`](../../sessions/de/de3b6967344474d41032.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+26 recorded events
+
+### User
+
+_source line 1 · 2026-05-15T22:08:35.646876+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: deepseek_exception_only_seed456
+- project: trace-verdict-study
+- server: westd-11235
+- log_path: /root/runs/trace-verdict-study/deepseek_exception_only_seed456.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-15T22:08:46.592531+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__read_experiment_plan_with_status",
+  "max_results": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__read_experiment_plan_with_status",
+    "max_results": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-15T22:08:46.693455+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T22:08:49.266511+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "trace-verdict-study",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T22:08:49.266924+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T22:08:49.770655+00:00_
+
+&lt;persisted-output>
+Output too large (57.7KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-f363f895/a9f8eaca-e2b7-4b38-8928-3ad37ce253d4/tool-results/toolu_01P9rNRP7WyqWPJQNbo3ZGuw.txt
+
+Preview (first 2KB):
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"deepseek_exception_only_seed456\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:19:31.586Z\", \"updated_at\": \"2026-05-15T22:08:34.265Z\", \"hypothesis\": \"Cross-model seed robustness: exception_only seed=456 on DeepSeek-Coder-6.7B. Third seed to determine if seed42 (99.83%) is outlier or seed123 (91.09%) is outlier.\", \"parent\": \"deepseek_exception_only_seed123\", \"spec\": {\"command\": \"python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456 --gradient_checkpointing --gpu 0 --seed 456 --wandb_project trace-verdict-study --wandb_run_name deepseek_exception_only_seed456\", \"server\": \"westd-11235\", \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 456, \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\", \"data_count\": 4720, \"checkpoint_source\": \"N/A - training run\", \"eval_data\": \"N/A - training run\"}, \"reproduce\": {\"finished_at\": \"2026-05-15T22:08:34.111Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:08:35.359157+00:00\"}]}}, \"vota_seed456_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:39:05.494Z\", \"updated_at\": \"2026-05-15T21:04:28.008Z\", \"hypothesis\": \"Seed robustness: VOTA with seed=456, retry with --gradient_checkpointing (v1 OOM). Verifies VOTA 99.2% accuracy
+…[truncated 348 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 504
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T22:08:50.323116+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "trace-verdict-study",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T22:08:50.373719+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "trace-verdict-study"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "trace-verdict-study"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T22:08:51.730054+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"deepseek_full_trace_seed42_v3\", \"success\": true, \"actions\": [\"Job still running (pid=163109)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 2463
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T22:08:51.730736+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-15T22:08:34Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 32 个实验 — ANALYZING 1, DONE 30, RUNNING 1\\n**DONE 分布**: failed 2, killed 8, negative 4, success 16\\n\\n### GPU 占用\\n- **分配**: 2 张 — westd-11235:cuda:0, westd-11235:cuda:1\\n- **空闲（分配了没跑）**: westd-11235:cuda:0, westd-11235:cuda:1\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `deepseek_full_trace_seed42_v3` | westd-11235 | ? | ? | `—` |\\n\\n### 📌 最近完成 (top 5)\\n- `vota_seed456_v2` [success] — 2026-05-15T21:04:28\\n- `deepseek_exception_only_seed123` [negative] — 2026-05-15T20:08:03\\n- `no_trace_seed42` [killed] — 2026-05-15T19:53:26\\n- `no_trace_seed42_v2` [killed] — 2026-05-15T19:53:25\\n- `vota_seed42` [killed] — 2026-05-15T19:53:23\\n\\n### 🔴 最近失败原因 (top 3)\\n- `no_trace_seed42`: _(no failure_reason — pre-2026-04-24 entry)_\\n- `no_trace_seed42_v2`: _(no failure_reason — pre-2026-04-24 entry)_\\n- `vota_seed42`: _(no failure_reason — pre-2026-04-24 entry)_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| deepseek_full_trace_seed42_v3 | DeepSeek full_trace v3: retrain with label-preserving truncation fix in to_chat_text(). v1/v2 collapsed due to DeepSeek tokenizer producing >2048 tokens → SFTTrainer right-truncated labels. Tests if full_trace shows intermediate performance on DeepSeek (plan_004, 4th condition). | — | — | — |\\n| deepseek_exception_only_seed456 | Cross-model seed robustness: exception_only seed=456 on DeepSeek-Coder-6.7B. Third seed to determine if seed42 (99.83%) is outlier or seed123 (91.09%) is outlier. | — | — | — |\\
+…[truncated 1180 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 1407
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T22:08:51.731307+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/ROADMAP.md\", \"content\": \"# trace-verdict-study — Research Dashboard\\n\\n> 最后更新: 2026-05-15 20:23 UTC | 更新原因: D028: epoch1 假说被推翻, Claim 1 major revision, 0pp gap 不可维持, seed456 紧急排期\\n\\n## 核心方向\\nException events 是 verdict prediction 的 **most effective trace component**——Qwen 99.83% ± 0.00 (3 seeds perfectly robust)，DeepSeek seed-dependent (seed42=99.83%, seed123=91.43% epoch1, LoRA initialization sensitivity)。即使最差 seed，exception_only (91.09%) 仍优于 VOTA (84.45%) 和 no_trace (73.36%)。**\\\"0pp universal gap\\\" 叙事已不可维持**（D028），Claim 1 从 \\\"model-agnostic universality\\\" 转向 \\\"consistently best component\\\"。seed456 pending (~2h)。详见 paper_framing.md v2.8。\\n\\n## 投稿目标\\n- **Primary**: EMNLP 2026 Main (ARR May 25, DDL 10 天)\\n- Fallback: EMNLP 2026 Findings\\n\\n## 当前进展\\n- **阶段**: Research (post-MVP) + 审稿进行中 + Paper Agent Full Draft 进行中\\n- **Core claims 支撑度**: 2/3 confirmed, 1 under major revision\\n  - Claim 1 (exception effectiveness): ⚠️ **MAJOR REVISION** — \\\"0pp gap\\\" dead; reframing as \\\"consistently best component, seed-dependent on DeepSeek\\\"; seed456 pending for 3-seed quantification\\n  - Claim 2 (info density > gradient dilution): ✓\\n  - Claim 3 (two-tier hierarchy): ✓ (Tier 1 cross-model dominance caveat added for DeepSeek seed sensitivity)\\n- **跨模型对比**:\\n  - exception_only: Qwen 99.83% ± 0.00; DeepSeek seed42=99.83%/99.33%, seed123=91.43%/91.09% ⚠️\\n  - VOTA: -14.96pp (model-capability-dependent) ✓\\n  - no_trace: -1.77pp (baseline 一致) ✓\\n  - full_trace: DeepSeek v3 pending (label truncation fix)\\n\\n### 组件层级表 (Qwen-2.5-Coder-7B, seed42)\\n| Condition | Accuracy | 角色 |\\n|-----------|----------|------|\\n| exception_only | 99.83% | Tier 1: most effective signal |\\n| VOTA w/o ae | 99.4% | ae 冗余确认 |\\n| VOTA full | 99.41% | — |\\n| label-only loss | 86.2% | gradient dilution fix |\\n| loop_only | 85.6% | Tie
+…[truncated 2644 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 1357
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T22:09:04.984105+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-f363f895/a9f8eaca-e2b7-4b38-8928-3ad37ce253d4/tool-results/toolu_01P9rNRP7WyqWPJQNbo3ZGuw.txt",
+  "offset": "0",
+  "limit": "200"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-f363f895/a9f8eaca-e2b7-4b38-8928-3ad37ce253d4/tool-results/toolu_01P9rNRP7WyqWPJQNbo3ZGuw.txt",
+    "offset": "0",
+    "limit": "200"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T22:09:05.237124+00:00_
+
+0	{"result":"{\"success\": true, \"data\": {\"experiments\": {\"deepseek_exception_only_seed456\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:19:31.586Z\", \"updated_at\": \"2026-05-15T22:08:34.265Z\", \"hypothesis\": \"Cross-model seed robustness: exception_only seed=456 on DeepSeek-Coder-6.7B. Third seed to determine if seed42 (99.83%) is outlier or seed123 (91.09%) is outlier.\", \"parent\": \"deepseek_exception_only_seed123\", \"spec\": {\"command\": \"python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456 --gradient_checkpointing --gpu 0 --seed 456 --wandb_project trace-verdict-study --wandb_run_name deepseek_exception_only_seed456\", \"server\": \"westd-11235\", \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 456, \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\", \"data_count\": 4720, \"checkpoint_source\": \"N/A - training run\", \"eval_data\": \"N/A - training run\"}, \"reproduce\": {\"finished_at\": \"2026-05-15T22:08:34.111Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:08:35.359157+00:00\"}]}}, \"vota_seed456_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:39:05.494Z\", \"updated_at\": \"2026-05-15T21:04:28.008Z\", \"hypothesis\": \"Seed robustness: VOTA with seed=456, retry with --gradient_checkpointing (v1 OOM). Verifies VOTA 99.2% accuracy stable across seeds.\", \"notes\": \"Auto-retried from vota_seed456 (OOM). PID 146592, cuda:1, --gradient_checkpointing enabled. Started 18:31 UTC, ~2h to complete. Low priority per Director (VOTA not primary claim).\", \"parent\": \"vota_seed456\", \"spec\": {\"command\": \"python train/train_sft.py --condition vota --
+…[truncated 57041 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "Read",
+  "elapsed_ms": 253
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T22:09:05.287866+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "trace-verdict-study",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T22:09:05.389122+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/memory.md\", \"content\": \"# trace-verdict-study Memory\\n\\n## MVP Round 1 结论（已作废）[2026-05-14]\\n\\nRound 1 结果全部无效，原因：\\n1. **VOTA match 泄漏**：assertion output 中 `match=True/False` 直接泄漏 verdict，99.2% accuracy 是 pattern matching 而非理解 trace\\n2. **Label 截断**：full_trace 28.4% 是因为 label 在序列末尾被 tokenizer 截断，模型根本没学到正确标签\\n\\n### 教训\\n- VOTA 输出中任何直接或间接暴露 pass/fail 的字段都是 data leakage——审查 trace format 时需要\\\"如果模型只看这一个字段能否猜到答案\\\"的测试\\n- 训练数据格式化必须保证 label 不被截断——应先预留 label token budget，再分配 trace 空间\\n- `[No trace available - execution failed]` 这类文本也是隐性泄漏（暗示 fail）\\n\\n## MVP v5 + Ablation 结果（当前有效数据）[2026-05-15]\\n\\n### 三条件对比（全部 v5 代码版本，统一 bootstrap CI）\\n- no_trace v5: 75.1% [72.8, 77.5], lift +3.6pp over majority\\n- **full_trace v5: 81.8%** [79.7, 83.9], lift +6.6pp [4.4, 9.0] vs no_trace\\n- **VOTA v5: 99.41%** [98.8, 99.8], lift +24.3pp [21.8, 26.8] vs no_trace (accuracy corrected from 99.16% due to Run 4 adapter overwrite)\\n- **VOTA vs full_trace: +17.7pp** [15.5, 19.8]（所有对比 p < 0.001）\\n\\n### plan_001 ablation: VOTA w/o actual/expected [2026-05-15]\\n- **accuracy 99.4%** [98.9, 99.8] — 去掉 actual/expected 后性能不降反微升（vs VOTA v5 99.2%）\\n- **结论：actual/expected 字段是冗余信息**，VOTA 效果来自 trace 行为模式理解\\n- Claim 1 走 **full positive framing**: \\\"VOTA teaches execution-grounded verdict reasoning\\\"\\n\\n### plan_002 ablation: label-only loss on full_trace [2026-05-15]\\n- **accuracy 86.2%** [84.4, 88.1] — 比标准 full_trace v5 (81.8%) 提升 +4.5pp\\n- **结论：full_trace-VOTA gap 的主因是 information overload（trace 噪声），不是 gradient dilution**\\n  - gradient dilution 贡献: ~4.5pp | information overload 贡献: ~13pp\\n\\n### plan_003a ablation: exception_only [2026-05-15]\\n- **accuracy 99.83%** — pass_F1 0.999, fail_F1 0.997\\n- **[ERROR] 事件是 VOTA verdict 判断的主驱动因素**\\n\\n### plan_003b ablation: loop_only [2026-05-15]\\n- **accuracy 85.6%** [83.5, 87.6]\\n- **结论：loop compres
+…[truncated 10413 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T22:09:24.828441+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T22:09:26.184143+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_f363f895.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "Read",
+  "elapsed_ms": 1355
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T22:09:26.184534+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__auto_build_provenance",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__auto_build_provenance",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T22:09:26.234968+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T22:09:55.626386+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "trace-verdict-study",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "trace-verdict-study",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T22:09:55.677017+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T22:10:32.406449+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "analysis:deepseek_eo_seed456_eval",
+  "project": "trace-verdict-study",
+  "task_prompt": "## 任务：分析 deepseek_exception_only_seed456 实验结果\n\n### 背景\nDeepSeek-Coder-6.7B exception_only condition，seed=456。这是第三个 seed，用于确定 Claim 1 最终 framing：\n- seed42: 99.83% (epoch1) / 99.33% (epoch3 final)\n- seed123: 91.09% (negative, LoRA initialization bad luck)\n- seed456: 训练刚完成，需要跑 eval\n\n### 服务器信息\n- 服务器: westd-11235\n- 环境: conda base (`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`)\n- HF_HOME=/root/autodl-tmp/.hf_cache\n- 代码目录: /root/trace-verdict-study\n- Checkpoint: /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456/final\n- 模型: /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct\n- 训练 log: /root/runs/trace-verdict-study/deepseek_exception_only_seed456.log\n\n### 步骤\n\n1. **SSH 检查训练日志**（ssh_read_only）：\n   - `tail -50 /root/runs/trace-verdict-study/deepseek_exception_only_seed456.log` 确认训练完成\n   - `ls -la /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456/final/` 确认 checkpoint 存在\n   - `nvidia-smi` 确认哪个 GPU 空闲（deepseek_full_trace_seed42_v3 可能还在跑）\n\n2. **运行 evaluate.py**（ssh_execute）：\n   ```bash\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456/final/eval_results.json --save_predictions --max_length 2048\n   ```\n   **注意**：先用 nvidia-smi 确认目标 GPU 没有其他进程。如果 cuda:0 被 full_trace_v3 占用，改用 cuda:1。`--gpu 0` 里的 0 是逻辑 GPU，由 CUDA_VISIBLE_DEVICES 映射。所以如果 cuda:1 空闲，用 `CUDA_VISIBLE_DEVICES=1` + `--gpu 0`。\n\n3. **读取 eval 结果**（ssh_read_only）：\n   - `cat /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456/final/eval_results.json`\n   - 确认 accuracy, precision, recall, F1\n\n4. **epoch-level 分析**（如可能）：\n   - 检查是否有 epoch1 checkpoint：`ls /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456/checkpoint-*/`\n   - 如果有 epoch1 checkpoint，也跑一次 eval（seed42 的 epoch1 = 99.83% vs epoch3 = 99.33%，seed123 的 epoch1 = 91.43%）\n   - 这对确定是 overfitting 还是 LoRA initialization 问题很关键\n\n5. **对比分析**（不需要 SSH）：\n   - seed456 vs seed42 (99.33%) vs seed123 (91.09%)\n   - 如果 seed456 ≈ 99%：seed123 是 outlier（LoRA initialization bad luck），Claim 1 可以说 \"2/3 seeds ≥99%, 1 seed 91%\"\n   - 如果 seed456 ≈ 91%：seed42 是 outlier，DeepSeek 上 exception_only 不稳定\n   - 如果 seed456 介于二者之间：需要更多分析\n\n6. **Irreducible error 检查**：\n   - Qwen 3 seeds 都错在 id=901/905 (HumanEval/95)\n   - 检查 seed456 的 predictions.jsonl 中错误样本的 id，看是否也是 901/905\n\n### 产出\n以结构化格式汇报：\n```\n## 训练完成确认\n- 训练是否正常完成: 是/否\n- Final train_loss: X\n- Training time: X seconds\n\n## Eval 结果 (epoch3 final)\n- accuracy: X\n- pass_precision/recall/F1: X\n- fail_precision/recall/F1: X\n- 95% CI (如 eval 脚本输出): X\n\n## Epoch1 Eval (如有)\n- accuracy: X\n- 对比 epoch3: X\n\n## Seed 对比\n| Seed | Accuracy | fail_recall |\n|------|----------|-------------|\n| 42   | 99.33%   | 1.000       |\n| 123  | 91.09%   | 0.705       |\n| 456  | ???      | ???         |\n\n## Error Analysis\n- 错误样本 ids: [...]\n- 与 Qwen irreducible errors (901/905) 重叠: 是/否\n\n## 结论\n- conclusion: success/negative\n- 一句话总结\n```",
+  "tool_groups": "['ssh', 'registry']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:deepseek_eo_seed456_eval",
+    "project": "trace-verdict-study",
+    "task_prompt": "## 任务：分析 deepseek_exception_only_seed456 实验结果\n\n### 背景\nDeepSeek-Coder-6.7B exception_only condition，seed=456。这是第三个 seed，用于确定 Claim 1 最终 framing：\n- seed42: 99.83% (epoch1) / 99.33% (epoch3 final)\n- seed123: 91.09% (negative, LoRA initialization bad luck)\n- seed456: 训练刚完成，需要跑 eval\n\n### 服务器信息\n- 服务器: westd-11235\n- 环境: conda base (`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`)\n- HF_HOME=/root/autodl-tmp/.hf_cache\n- 代码目录: /root/trace-verdict-study\n- Checkpoint: /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456/final\n- 模型: /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct\n- 训练 log: /root/runs/trace-verdict-study/deepseek_exception_only_seed456.log\n\n### 步骤\n\n1. **SSH 检查训练日志**（ssh_read_only）：\n   - `tail -50 /root/runs/trace-verdict-study/deepseek_exception_only_seed456.log` 确认训练完成\n   - `ls -la /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456/final/` 确认 checkpoint 存在\n   - `nvidia-smi` 确认哪个 GPU 空闲（deepseek_full_trace_seed42_v3 可能还在跑）\n\n2. **运行 evaluate.py**（ssh_execute）：\n   ```bash\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456/final/eval_results.json --save_predictions --max_length 2048\n   ```\n   **注意**：先用 nvidia-smi 确认目标 GPU 没有其他进程。如果 cuda:0 被 full_trace_v3 占用，改用 cuda:1。`--gpu 0` 里的 0 是逻辑 GPU，由 CUDA_VISIBLE_DEVICES 映射。所以如果 cuda:1 空闲，用 `CUDA_VISIBLE_DEVICES=1` + `--gpu 0`。\n\n3. **读取 eval 结果**（ssh_read_only）：\n   - `cat /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456/final/eval_results.json`\n   - 确认 accuracy, precision, recall, F1\n\n4. **epoch-level 分析**（如可能）：\n   - 检查是否有 epoch1 checkpoint：`ls /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456/checkpoint-*/`\n   - 如果有 epoch1 checkpoint，也跑一次 eval（seed42 的 epoch1 = 99.83% vs epoch3 = 99.33%，seed123 的 epoch1 = 91.43%）\n   - 这对确定是 overfitting 还是 LoRA initialization 问题很关键\n\n5. **对比分析**（不需要 SSH）：\n   - seed456 vs seed42 (99.33%) vs seed123 (91.09%)\n   - 如果 seed456 ≈ 99%：seed123 是 outlier（LoRA initialization bad luck），Claim 1 可以说 \"2/3 seeds ≥99%, 1 seed 91%\"\n   - 如果 seed456 ≈ 91%：seed42 是 outlier，DeepSeek 上 exception_only 不稳定\n   - 如果 seed456 介于二者之间：需要更多分析\n\n6. **Irreducible error 检查**：\n   - Qwen 3 seeds 都错在 id=901/905 (HumanEval/95)\n   - 检查 seed456 的 predictions.jsonl 中错误样本的 id，看是否也是 901/905\n\n### 产出\n以结构化格式汇报：\n```\n## 训练完成确认\n- 训练是否正常完成: 是/否\n- Final train_loss: X\n- Training time: X seconds\n\n## Eval 结果 (epoch3 final)\n- accuracy: X\n- pass_precision/recall/F1: X\n- fail_precision/recall/F1: X\n- 95% CI (如 eval 脚本输出): X\n\n## Epoch1 Eval (如有)\n- accuracy: X\n- 对比 epoch3: X\n\n## Seed 对比\n| Seed | Accuracy | fail_recall |\n|------|----------|-------------|\n| 42   | 99.33%   | 1.000       |\n| 123  | 91.09%   | 0.705       |\n| 456  | ???      | ???         |\n\n## Error Analysis\n- 错误样本 ids: [...]\n- 与 Qwen irreducible errors (901/905) 重叠: 是/否\n\n## 结论\n- conclusion: success/negative\n- 一句话总结\n```",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T22:10:33.566558+00:00_
+
+called mcp__agent-ml-research__fetch_wandb_metrics
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__fetch_wandb_metrics</summary>
+
+```json
+{
+  "run_id": "deepseek_exception_only_seed456",
+  "metric_names": "['train/loss', 'eval/loss', 'train/epoch', 'eval/mean_token_accuracy']",
+  "project": "trace-verdict-study"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "mcp__agent-ml-research__fetch_wandb_metrics",
+  "tool_args": {
+    "run_id": "deepseek_exception_only_seed456",
+    "metric_names": "['train/loss', 'eval/loss', 'train/epoch', 'eval/mean_token_accuracy']",
+    "project": "trace-verdict-study"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T22:10:35.475554+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_deepseek_eo_seed456_eval_20260515T221033\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/logs/workers/worker_analysis_deepseek_eo_seed456_eval_20260515T221033.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_deepseek_eo_seed456_eval_20260515T221033 started. Use get_worker_status('worker_analysis_deepseek_eo_seed456_eval_20260515T221033') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 3069
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T22:10:35.476010+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"W&B entity/project not configured. Set in config/projects/*.yaml\", \"metadata\": {\"elapsed_seconds\": 0}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "tool": "mcp__agent-ml-research__fetch_wandb_metrics",
+  "elapsed_ms": 1909
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-15T22:11:00.022727+00:00_
+
+Worker 已派发，正在 westd-11235 上运行 eval + 分析 seed456 结果。W&B entity 未配置，Worker 将直接从服务器获取数据。
+
+当前状态：
+- `deepseek_exception_only_seed456`: ANALYZING → Worker 正在跑 eval
+- `deepseek_full_trace_seed42_v3`: RUNNING (pid=163109)
+- Worker 池: 1（分析 Worker）
+
+等待 Worker 回调后处理结果、更新 registry、向 Director 汇报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:deepseek_exception_only_seed456"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 27 · 2026-05-16T01:12:18.017528+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:deepseek_exception_only_seed456",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-16T01:13:07.167811+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-11235 cuda:0 和 cuda:1，**不得用其他 GPU**
+- DeepSeek 系列实验必须用**旧代码**（load_best_model_at_end 已注释），不能用 13:24 之后 Worker 新增的 L149-152，否则与 seed42/seed123 不可比
+- evaluate.py 必须加 `--save_predictions` 保存 per-sample 结果（论文需要 paired bootstrap，unpaired 不可接受）
+- evaluate.py 必须加 `--max_length 2048`（DeepSeek tokenizer overhead 与 Qwen 不同）
+- 同 GPU 上**禁止并行 eval + training**（已验证：7s/step 恶化到 35-49s/step）
+- exception_only seed456 的 eval 必须用 `--model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct`（注意下划线路径）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-11235，2x RTX PRO 6000 Blackwell 94GB，CUDA 12.8
+- 工作目录：/root/trace-verdict-study
+- Python：/root/miniconda3/bin/python（conda base 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）
+- HF_HOME=/root/autodl-tmp/.hf_cache
+- 模型路径：Qwen `/root/autodl-tmp/.hf_cache/...`（默认），DeepSeek `/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct`
+- 数据集：/root/autodl-tmp/trace-verdict-study-data/{condition}_{train,test}.jsonl（每条件 train=4720, test=1190）
+- Checkpoint 根目录：/root/autodl-tmp/trace-verdict-study-checkpoints/
+- W&B：项目 trace-verdict-study（entity 未在 config 中配置，fetch_wandb_metrics 会失败，需要 Worker SSH 读 log 或直接看 W&B dashboard）
+- 活跃进程：deepseek_full_trace_seed42_v3（PID 163109，tmux，cuda:0 或 cuda:1，reconcile_crons 确认仍在运行）
+
+### 3. 📊 当前状态
+**刚做完**：收到 deepseek_exception_only_seed456 的 cron 回调（进程正常退出，ANALYZING），已派 Worker `worker_analysis_deepseek_eo_seed456_eval_20260515T221033` 去跑 eval + 分析。
+
+**等待中的回调**：
+- Worker `worker_analysis_deepseek_eo_seed456_eval_20260515T221033`（RUNNING）→ 将返回 seed456 的 accuracy 和 error analysis
+- deepseek_full_trace_seed42_v3（RUNNING，PID 163109）→ cron 监控中，完成后自动回调
+
+**Registry 状态**：32 DONE + 1 ANALYZING (seed456) + 1 RUNNING (full_trace_v3) = 34 总
+
+**尚未向 Director 汇报 seed456 结果**——等 Worker 回调拿到 eval metrics 后才能汇报。
+
+### 4. 📋 待办
+- Worker eval 回调到达 → 根据 accuracy 判断 conclusion：
+  - seed456 ≥ 95% → conclusion=success，seed123 是 outlier（2/3 seeds ≥99%），Claim 1 framing = "consistently best, one seed anomaly due to LoRA init"
+  - seed456 ≈ 91% → conclusion=negative，seed42 是 outlier，Claim 1 需要 major reframe
+  - 介于两者之间 → 需要更多分析
+- seed456 结论确定 → update_registry + 更新 report.md + 向 Director 汇报（**必须带 [资源] 行**）+ 确定 Claim 1 最终 framing + 通知 Paper Agent
+- deepseek_full_trace_seed42_v3 完成回调 → 跑 eval（用空闲 GPU）→ 这是 DeepSeek 跨模型对比的最后一格（label-preserving truncation fix 后的 full_trace）
+- full_trace_v3 结果出来后 → 跨模型对比表完整，可以 finalize paper_framing.md
+- **Claim 1 framing 确定后** → 论文 12+ 处需要修改（ROADMAP 5/16 任务）
+
+### 5. 🎯 战略上下文
+**核心 story**：Exception events 是 verdict prediction 最有效的 trace 组件。Qwen 上 99.83% ± 0.00（完美 seed robust），DeepSeek 上 seed-dependent。"0pp universal gap" 叙事已死（D028），Claim 1 从 "model-agnostic universality" 转向 "consistently best component"。
+
+**seed456 是 tiebreaker**：决定 DeepSeek exception_only 是 "2/3 seeds near-perfect"（可 claim robust with caveat）还是 "1/3 seeds lucky"（需要更深 reframe）。这直接决定 paper_framing.md v2.8 的最终定稿。
+
+**易判断错的事**：
+- DeepSeek seed42 的 99.83% 是 **epoch1** checkpoint 的结果，epoch3 final 是 99.33%。比较时必须明确用哪个 checkpoint。seed123 没有 epoch1 ≈ 99% 的表现（epoch1 = 91.43%），所以不是 overfitting 问题而是 LoRA init 问题（D028）
+- W&B entity 未配置，fetch_wandb_metrics 工具会失败——必须通过 Worker SSH 读 log 或 eval_results.json 获取指标
+- exception_only 的 "irreducible errors" 是 id=901 和 id=905（HumanEval/95），根因是 Python `all()` generator 的 `GeneratorExit` 被 tracer 误标为 `[ERROR]`——这不是模型错误，是 tracer 的语言特性盲区
+
+**投稿 deadline**：EMNLP 2026 ARR May 25，还剩 9 天。10 天冲刺路线见 ROADMAP。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:deepseek_exception_only_seed456"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,23 @@
+{
+  "exp_id": "vota_exception_only_seed42_v2",
+  "project": "trace-verdict-study",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:16:14.602Z",
+    "updated_at": "2026-05-15T07:16:26.603Z",
+    "spec": {
+      "command": "python train/train_sft.py --condition exception_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_exception_only_seed42_v2 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/eval_results.json",
+      "server": "westd-11235",
+      "data_path": "exception_only",
+      "data_count": 4720,
+      "model_name": "Qwen2.5-Coder-7B-Instruct",
+      "seed": 42
+    },
+    "hypothesis": "VOTA component ablation: exception_only condition — only exception summaries, no actual/expected or loop compression. Tests if [ERROR] events are the primary driver (plan_003 sub-b, v2: +gradient_checkpointing)"
+  },
+  "timestamp": "2026-05-15T07:16:26.650519+00:00",
+  "trigger": "update_registry"
+}

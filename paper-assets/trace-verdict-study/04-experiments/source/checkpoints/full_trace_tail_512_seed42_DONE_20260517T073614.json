@@ -1,0 +1,54 @@
+{
+  "exp_id": "full_trace_tail_512_seed42",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T04:55:57.365Z",
+    "updated_at": "2026-05-17T07:36:14.051Z",
+    "hypothesis": "Tail-truncation token budget: if tail-2048 >> head-2048, tail-512 reveals how concentrated the signal is. tail-512 ≈ tail-2048 means signal is in last ~500 tokens; tail-512 << tail-2048 means more context needed beyond immediate exception event",
+    "parent": "full_trace_tail_seed42",
+    "spec": {
+      "command": "python train/train_sft.py --condition full_trace_tail_512 --truncation_side left --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_tail_512_seed42 && python eval/evaluate.py --condition full_trace_tail_512 --checkpoint_dir .../final --gpu 0 --save_predictions",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "330357",
+      "model_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "seed": 42,
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/full_trace_tail_512_{train,test}.jsonl",
+      "data_count": 5910,
+      "submitted_at": "2026-05-17T05:03:00Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 9194.1,
+      "gpu_hours": 2.55
+    },
+    "metrics": {
+      "accuracy": 0.936,
+      "accuracy_ci": [
+        0.922,
+        0.95
+      ],
+      "majority_baseline": 0.7151,
+      "lift": 0.221,
+      "n": 1190,
+      "pass_precision": 0.98,
+      "pass_recall": 0.93,
+      "pass_f1": 0.95,
+      "fail_precision": 0.85,
+      "fail_recall": 0.94,
+      "fail_f1": 0.89
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_tail_512_seed42/final",
+    "log_path": "~/runs/trace-verdict-study/full_trace_tail_512_seed42.log",
+    "completed_at": "2026-05-17T07:36:14.051Z"
+  },
+  "timestamp": "2026-05-17T07:36:14.233888+00:00",
+  "trigger": "update_registry"
+}

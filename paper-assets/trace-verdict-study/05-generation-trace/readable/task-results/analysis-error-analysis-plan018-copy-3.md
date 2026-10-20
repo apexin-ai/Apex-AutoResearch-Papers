@@ -1,0 +1,36 @@
+# analysis error analysis plan018
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_analysis_error_analysis_plan018_20260521T051450_result.json`
+- **Structured JSON:** [`340a6967c5e0a7a03262.json`](../../sessions/34/340a6967c5e0a7a03262.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+报告已写入本地 `artifacts/error_analysis_plan018.md`（286行）。完整的逐样本错误表保留在服务器 `/root/trace-verdict-study/artifacts/error_analysis_plan018.md`（379行）。
+
+核心发现摘要：
+
+| 维度 | 结论 |
+|------|------|
+| exception_only 不可约误差 | 仅 2 个真不可约样本（HumanEval/95），11/14 runs 跨 4 模型均错。其余 106 个错误全来自 deepseek_seed123 这一 outlier run |
+| loop_only 瓶颈 | AssertionError 样本误判率 46.2%，远高于 pass 样本（15.7%）。loop trace 无法传递 expected/actual 值信息 |
+| 跨模型一致性 | exception_only: codellama/qwen15b/qwen7b Jaccard=1.000（完全相同错误集）；loop_only: Jaccard 0.25-0.39（低重叠，多为模型特异性错误） |
+| Tier 1→2 分离 | Tier 1 错误几乎是 Tier 2 的子集；Tier 2 新增 350-554 个错误，集中在 none(pass) 和 AssertionError |
+| SyntaxError | 所有条件、所有模型 0% 错误率 — 完美解决 |
+| 混淆矩阵 | exception_only/ae_only FPR=0（零假阳），loop_only 双向误判（FPR=18%, FNR=13%） |
+
+---

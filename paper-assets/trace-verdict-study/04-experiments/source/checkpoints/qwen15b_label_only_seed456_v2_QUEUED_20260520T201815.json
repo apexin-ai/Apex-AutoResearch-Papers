@@ -1,0 +1,16 @@
+{
+  "exp_id": "qwen15b_label_only_seed456_v2",
+  "project": "trace-verdict-study",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T20:17:58.672Z",
+    "updated_at": "2026-05-20T20:18:15.404Z",
+    "hypothesis": "Qwen-1.5B label_only 第3 seed 降低 variance：2-seed mean=80.13±1.72% (variance > Qwen-7B 的 1.12%)，第3 seed 使数据与 Qwen-7B 3-seed 可比。",
+    "parent": "qwen15b_label_only_seed42_v2"
+  },
+  "timestamp": "2026-05-20T20:18:15.743735+00:00",
+  "trigger": "update_registry"
+}

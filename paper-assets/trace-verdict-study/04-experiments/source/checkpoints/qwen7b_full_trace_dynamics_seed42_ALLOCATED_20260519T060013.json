@@ -1,0 +1,28 @@
+{
+  "exp_id": "qwen7b_full_trace_dynamics_seed42",
+  "project": "trace-verdict-study",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:21:30.436Z",
+    "updated_at": "2026-05-19T06:00:12.914Z",
+    "hypothesis": "full_trace (label_only_loss) 收敛速度应慢于 exception_only，因 trace 中冗余信息稀释了有效 signal density。通过每 50 steps eval 记录 learning curve 验证。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/trace-verdict-study && /root/miniconda3/bin/python train/train_sft.py --condition full_trace --model_path /root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct --seed 42 --gradient_checkpointing --label_only_loss --save_steps 50 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_dynamics_seed42/ --wandb_project trace-verdict-study --wandb_run_name qwen7b_full_trace_dynamics_seed42 && echo '=== Training done, starting batch eval ===' && /root/miniconda3/bin/python eval/batch_eval_dynamics.py --checkpoint_root /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_dynamics_seed42/ --condition full_trace && echo '=== Batch eval done, cleaning checkpoints ===' && find /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_dynamics_seed42/ -maxdepth 1 -name 'checkpoint-*' -type d -exec rm -rf {} + && echo '=== All done ==='\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "485337",
+      "log_path": "~/runs/trace-verdict-study/qwen7b_full_trace_dynamics_seed42.log",
+      "submitted_at": "2026-05-19T03:27:23.137Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-19T06:00:13.174819+00:00",
+  "trigger": "update_registry"
+}

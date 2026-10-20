@@ -1,0 +1,28 @@
+{
+  "exp_id": "codellama13b_label_only_seed42_v2",
+  "project": "trace-verdict-study",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:24:00.685Z",
+    "updated_at": "2026-05-20T17:24:35.886Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --label_only_loss --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_label_only_seed42_v2 --wandb_project trace-verdict-study --wandb_run_name codellama13b_label_only_seed42_v2 && python eval/evaluate.py --condition full_trace --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_label_only_seed42_v2/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_label_only_seed42_v2/final/eval_results.json --save_predictions\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "642747",
+      "log_path": "~/runs/trace-verdict-study/codellama13b_label_only_seed42_v2.log",
+      "submitted_at": "2026-05-20T17:24:00.283Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "CodeLlama-13B label_only (full_trace with label-only loss) 验证 C2 decomposition 跨架构泛化：Qwen-7B label_only=86.22%, DeepSeek label_only=28.5%. CodeLlama 是第 3 个架构数据点。"
+  },
+  "timestamp": "2026-05-20T17:24:36.203694+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,39 @@
+{
+  "exp_id": "codellama13b_full_trace_tail1024_seed42",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T01:37:33.166Z",
+    "updated_at": "2026-05-18T03:25:19.162Z",
+    "hypothesis": "CodeLlama-13B tail-1024 应收敛到 96.5% 附近（与 DeepSeek 96.47%、Qwen-1.5B 96.6% 不可区分），确认 tail-1024 convergence band 跨 4 模型 universal",
+    "parent": "codellama13b_full_trace_tail512_seed42",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/trace-verdict-study && python train.py --model /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf/ --condition full_trace --truncation tail --max_tokens 1024 --seed 42'",
+      "server": "westd-11235",
+      "gpu": "cuda:0",
+      "pid": "unknown",
+      "log_path": "N/A",
+      "submitted_at": "2026-05-18T02:28:32.411Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/trace-verdict-study/data/",
+      "data_count": 600,
+      "model_name": "CodeLlama-13b-Instruct-hf",
+      "seed": 42,
+      "checkpoint_source": "trained_from_scratch",
+      "eval_data": "/root/trace-verdict-study/data/test.jsonl",
+      "checkpoint_path": "N/A",
+      "failure_reason": "Wrong script path: used train.py instead of train/train_sft.py. Process exited immediately with Errno 2.",
+      "wall_clock_seconds": 3406.8,
+      "gpu_hours": 0.95
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-18T03:25:19.162Z"
+  },
+  "timestamp": "2026-05-18T03:25:19.364556+00:00",
+  "trigger": "update_registry"
+}

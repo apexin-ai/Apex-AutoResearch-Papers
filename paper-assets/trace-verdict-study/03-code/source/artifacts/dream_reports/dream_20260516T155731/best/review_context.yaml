@@ -1,0 +1,229 @@
+narrative_guidance: '原始 framing 完全成立。所有 pending 实验完美确认：exception signal 有效性来自 fault
+  semantics 而非 format shortcut，跨 4 models × 3 families × 2 scales 验证一致。Title: ''Exception
+  Events Are All You Need for Verdict Prediction''。'
+imagined_experiments:
+- name: exception_only_nomarker_seed42
+  plan_id: plan_015
+  description: 移除 '[No exception data in trace]' 格式标记后重训 exception_only，seed42
+  expected_results:
+    accuracy: 0.9983
+    accuracy_ci_lower: 0.9958
+    accuracy_ci_upper: 1.0
+    n: 1190
+    errors: 2
+    error_ids:
+    - 901
+    - 905
+    pass_precision: 1.0
+    pass_recall: 0.9976
+    pass_f1: 0.9988
+    fail_precision: 0.9941
+    fail_recall: 1.0
+    fail_f1: 0.9971
+    train_loss: 0.112
+    eval_loss: 0.48
+  result_rationale: '模型从未依赖 ''[No exception data in trace]'' 作为 pass 分类的 shortcut。原因：(1)
+    fail 样本包含丰富的 exception 语义信息（ERROR type: XxxError, message: ...），模型学到的是''有具体异常内容→fail''的
+    fault detection 映射；(2) pass 样本在移除 marker 后变为空或极短的 trace（无异常内容），''缺乏异常语义内容''本身就是充分的
+    pass signal，无需特定格式字符串；(3) Regex B5 分析已证明纯格式标记能达 99.33%，但 SFT 的额外 0.50pp 恰好来自模型对
+    GeneratorExit 语义的部分理解——这种语义学习在移除 marker 后完全保留；(4) 2 个 irreducible errors (id=901,905,
+    GeneratorExit) 是 representation 固有限制，与 marker 无关，在所有 seeds 中必然复现。'
+  tables:
+  - name: nomarker vs original comparison
+    data: '| Condition | Seed 42 | Seed 123 | Seed 456 | Mean | Std |
+
+      |-----------|---------|----------|----------|------|-----|
+
+      | exception_only (original) | 99.83% | 99.83% | 99.83% | 99.83% | 0.00 |
+
+      | exception_only (nomarker) | 99.83% | 99.83% | 99.83% | 99.83% | 0.00 |
+
+      | Δ (nomarker - original) | 0.00pp | 0.00pp | 0.00pp | 0.00pp | — |
+
+      '
+  figures_description:
+  - 'Bar chart: nomarker 3-seed accuracy 与 original 3-seed accuracy 完全重叠，均为 99.83%。Error
+    bars 显示 Wilson CI [99.58%, 100%]。视觉上两组无法区分。'
+  analysis: McNemar test p=1.0（无差异）。3 seeds 错误样本与 original 完全相同（id=901, 905），确认模型未使用
+    format marker 作为分类依据。这直接证伪 'pattern matching [No exception data in trace]' 的 reviewer
+    concern：模型学到的是 exception fault semantics，format marker 是冗余信号。
+- name: exception_only_nomarker_seed123
+  plan_id: plan_015
+  description: 移除格式标记后重训 exception_only，seed123
+  expected_results:
+    accuracy: 0.9983
+    accuracy_ci_lower: 0.9958
+    accuracy_ci_upper: 1.0
+    n: 1190
+    errors: 2
+    error_ids:
+    - 901
+    - 905
+    pass_precision: 1.0
+    pass_recall: 0.9976
+    pass_f1: 0.9988
+    fail_precision: 0.9941
+    fail_recall: 1.0
+    fail_f1: 0.9971
+    train_loss: 0.11
+    eval_loss: 0.47
+  result_rationale: Qwen-2.5-Coder-7B 在 exception_only 条件下对 LoRA 初始化完全不敏感（original
+    3 seeds variance=0），这种 robustness 源自 exception signal 的结构简单性——映射空间极小（有异常内容→fail，无异常内容→pass），任何合理的
+    LoRA 初始化都能在 3 epochs 内收敛到相同的 decision boundary。移除 format marker 不改变这一结构：pass 样本仍然是'无异常语义内容'，信息量与
+    marker 版本等价。seed123 在 Qwen 上无 DeepSeek 式的 LoRA 不稳定性。
+  tables: []
+  figures_description: []
+  analysis: 与 seed42 和 seed456 结果完全一致，进一步确认 Qwen exception_only 的完美 seed robustness
+    在移除 format marker 后保持不变。
+- name: exception_only_nomarker_seed456
+  plan_id: plan_015
+  description: 移除格式标记后重训 exception_only，seed456
+  expected_results:
+    accuracy: 0.9983
+    accuracy_ci_lower: 0.9958
+    accuracy_ci_upper: 1.0
+    n: 1190
+    errors: 2
+    error_ids:
+    - 901
+    - 905
+    pass_precision: 1.0
+    pass_recall: 0.9976
+    pass_f1: 0.9988
+    fail_precision: 0.9941
+    fail_recall: 1.0
+    fail_f1: 0.9971
+    train_loss: 0.109
+    eval_loss: 0.46
+  result_rationale: 同 seed42/123 逻辑。3 seeds 完美一致性的预测基于：(1) original exception_only
+    在 Qwen 上 3 seeds variance=0 已建立 precedent；(2) 移除 marker 不改变有效信息量——fail 样本的 exception
+    content 完整保留，pass 样本的'无内容'信号同样明确；(3) 2 个 irreducible errors 是 data/representation
+    属性（GeneratorExit），完全独立于 LoRA 初始化和 format marker presence。
+  tables: []
+  figures_description: []
+  analysis: 3-seed 汇总统计：mean=99.83%, std=0.00, worst=99.83%。与 original exception_only
+    3-seed 统计完全相同。这是本文回应 'format shortcut' concern 的决定性证据。
+- name: codellama13b_vota_seed42
+  plan_id: plan_013
+  description: CodeLlama-13B-Instruct VOTA trace SFT，验证 VOTA 跨第三模型家族表现
+  expected_results:
+    accuracy: 0.9294
+    accuracy_ci_lower: 0.914
+    accuracy_ci_upper: 0.944
+    n: 1190
+    pass_precision: 0.93
+    pass_recall: 0.98
+    pass_f1: 0.955
+    fail_precision: 0.93
+    fail_recall: 0.8
+    fail_f1: 0.86
+    train_loss: 0.058
+    eval_loss: 0.12
+    epoch_level:
+      epoch1_accuracy: 0.905
+      epoch3_accuracy: 0.9294
+  result_rationale: CodeLlama-13B VOTA 预测在 Qwen (99.41%) 和 DeepSeek (84.45%) 之间偏上，原因：(1)
+    13B 参数量提供更强的 execution reasoning capacity（VOTA 的 loop compression 组件需要理解迭代行为），相比
+    6.7B DeepSeek 有显著优势；(2) 但 LLaMA-based architecture 的 code reasoning 能力弱于 Qwen-2.5-Coder（后者在
+    code-specific pretraining 上投入更大），VOTA 中 Tier 2 组件的利用效率不及 Qwen；(3) CodeLlama 的
+    tokenizer 对 VOTA 格式的 token efficiency 可能介于两者之间——部分训练样本仍可能被截断但比率低于 DeepSeek 的 91.7%（13B
+    模型 context 处理更好，且 LLaMA tokenizer 可能对 trace 格式更紧凑）；(4) 最关键：VOTA accuracy 92.94%
+    < exception_only 99.83%，确认 exception dominance 在第三模型家族成立，cross_family_exception_dominance
+    = 6.89pp。
+  tables:
+  - name: Cross-family VOTA comparison
+    data: '| Model | Family | Scale | VOTA | exception_only | Δ (exc - VOTA) |
+
+      |-------|--------|-------|------|----------------|----------------|
+
+      | Qwen-2.5-Coder-7B | Qwen | 7B | 99.41% | 99.83% | +0.42pp |
+
+      | Qwen-2.5-Coder-1.5B | Qwen | 1.5B | 99.58% | 99.83% | +0.25pp |
+
+      | DeepSeek-Coder-6.7B | DeepSeek | 6.7B | 84.45% | 99.33% | +14.88pp |
+
+      | CodeLlama-13B-Instruct | LLaMA | 13B | 92.94% | 99.83% | +6.89pp |
+
+      '
+  - name: Exception dominance across all 4 models
+    data: '| Model | exception_only | Best non-exception | Dominance (pp) |
+
+      |-------|---------------|-------------------|----------------|
+
+      | Qwen-7B | 99.83% | 99.41% (VOTA) | +0.42 |
+
+      | Qwen-1.5B | 99.83% | 99.58% (VOTA) | +0.25 |
+
+      | DeepSeek-6.7B | 99.33% | 84.45% (VOTA) | +14.88 |
+
+      | CodeLlama-13B | 99.83% | 92.94% (VOTA) | +6.89 |
+
+      '
+  figures_description:
+  - 'Grouped bar chart: 4 models × (exception_only, VOTA, no_trace)。所有模型 exception_only
+    柱子在 99-100% 区间密集分布，VOTA 柱子呈现明显的 model-dependent spread (84-99%)，no_trace 柱子在 67-77%
+    范围。视觉上 exception_only 是唯一跨模型一致的 condition。'
+  - 'Scatter plot: x=model execution reasoning proxy (CRUXEval-I or similar), y=VOTA
+    accuracy。3 点近似线性关系（DeepSeek 39%→84.45%, CodeLlama ~48%→92.94%, Qwen 56.5%→99.41%），而
+    exception_only 作为 horizontal reference line 在 99.83% 不随 x 变化。'
+  analysis: CodeLlama-13B 确认 exception > VOTA 的层级关系在第三个模型家族（LLaMA）成立。VOTA gap 的 model-dependency
+    pattern 更加清晰：execution reasoning 能力越弱的模型，VOTA degradation 越大（因为 VOTA 包含需要 reasoning
+    的 Tier 2 loop 组件）。Exception signal 因结构简单性完全绕过这一 bottleneck——4 models × 3 families
+    × 2 scales 均达到 99.83%（除 DeepSeek seed-dependent 外），构成 'universally dominant' 的最强证据。cross_family_exception_dominance
+    在 0.25pp 到 14.88pp 之间，mean=5.61pp，所有方向一致。overall_model_count_supporting_claim1
+    = 4/4。
+- name: nomarker_3seed_summary
+  plan_id: plan_015
+  description: plan_015 三 seed 汇总分析——format independence 证据
+  expected_results:
+    nomarker_accuracy_3seed_mean: 0.9983
+    nomarker_accuracy_worst_seed: 0.9983
+    nomarker_accuracy_std: 0.0
+    nomarker_vs_original_mcnemar_p: 1.0
+    nomarker_error_overlap_with_original: 1.0
+    format_contribution_to_accuracy: 0.0
+  result_rationale: 3-seed nomarker 与 original 结果完全相同，提供 format independence 的决定性证据。逻辑链：(1)
+    Regex B5（纯 format marker 匹配）达 99.33%，说明 format marker 确实是 strong feature；(2) 但
+    SFT 模型在移除该 feature 后性能不降（99.83%→99.83%），说明模型学到了比 format marker 更深的 representation——即
+    exception 语义内容本身；(3) SFT 比 regex B5 高 0.50pp 的 gap 恰好是 irreducible error 分析所解释的：regex
+    无法处理的 edge cases（如部分 GeneratorExit 在 regex 中被误判）由 SFT 通过上下文理解部分修正，但 2 个 truly
+    irreducible 的 GeneratorExit 仍无法解决；(4) 这证明 exception_only SFT 的 contribution 不是
+    'learned a format shortcut' 而是 'learned fault semantics that happen to correlate
+    with but are not reducible to format markers'。
+  tables:
+  - name: Format shortcut 证伪证据链
+    data: '| Evidence | Value | Interpretation |
+
+      |----------|-------|----------------|
+
+      | Regex B5 (format marker only) | 99.33% | Format marker IS a strong feature
+      |
+
+      | SFT original (with marker) | 99.83% | SFT > regex by 0.50pp |
+
+      | SFT nomarker (without marker) | 99.83% | Removing marker → no degradation
+      |
+
+      | SFT - Regex gap | +0.50pp | SFT learned something beyond format |
+
+      | nomarker - original gap | 0.00pp | That ''something'' is not the marker itself
+      |
+
+      | Irreducible errors (both conditions) | 2/1190 | Same GeneratorExit samples
+      |
+
+      | Conclusion | — | Model learns exception fault semantics, not format pattern
+      |
+
+      '
+  figures_description:
+  - '2×3 confusion matrix comparison: nomarker vs original, 3 seeds。所有 6 个 confusion
+    matrices 完全相同（TP=851, TN=337, FP=0, FN=2）。视觉上证明 format marker removal 对模型 decision
+    boundary 无任何影响。'
+  analysis: 这是 best tier 的核心证据之一。论文可以 confidently claim：'The model's near-perfect
+    performance stems from learning exception fault semantics — the presence and content
+    of error events — rather than format-level shortcuts such as the absence/presence
+    of a specific marker string.' 配合 irreducible error 分析（2/1190 = GeneratorExit,
+    representation ceiling）和 regex baseline gap（0.50pp = semantic understanding beyond
+    pattern matching），三条证据链收敛于同一结论：exception_only SFT 实现了 genuine fault detection，非
+    trivial feature engineering。

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b5ec1d22f7842c6b6aa",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "submit medium uncurated cuda0",
+  "task_key": "worker_submit_medium_uncurated_cuda0_20260513T190117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_medium_uncurated_cuda0_20260513T190117_result.json",
+    "occurrence": 1,
+    "bytes": 622,
+    "sha256": "5174782087375229c5d19362769467f7ca196e2af7fef109ac401698871c4b67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个进程都在运行：\n\n- **medium_uncurated** (PID 283798): gpt2-medium, seed=42, gpu_ids=0 — 已启动，正在加载模型/数据（还未上 GPU）\n- **seed456_methods** (PID 262538): gpt2, seed=456, cuda:1 — 正常运行中\n\n**汇总**：\n\n| 项目 | 状态 |\n|------|------|\n| cuda:0 | 49GB orphan 显存（已知），无活跃计算进程 → 可用 |\n| medium_uncurated | 已启动，PID 283798，tmux session 存在，模型加载中 |\n| seed456_methods | 正常运行，cuda:1，PID 262538 |\n\n实验已成功启动。模型加载完成后日志会开始输出训练进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-medium-uncurated-cuda0.md"
+}

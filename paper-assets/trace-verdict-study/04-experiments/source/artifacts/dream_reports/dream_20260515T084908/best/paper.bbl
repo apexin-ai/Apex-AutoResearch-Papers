@@ -1,0 +1,36 @@
+\begin{thebibliography}{5}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Anonymous(2024{\natexlab{a}})]{debugbench2024}
+Anonymous.
+\newblock {DebugBench}: Evaluating debugging capability of large language
+  models.
+\newblock In \emph{ACL}, 2024{\natexlab{a}}.
+
+\bibitem[Anonymous(2024{\natexlab{b}})]{instruction_length}
+Anonymous.
+\newblock On the effect of instruction length on {LLM} fine-tuning.
+\newblock \emph{arXiv preprint}, 2024{\natexlab{b}}.
+
+\bibitem[Anonymous(2024{\natexlab{c}})]{traced2024}
+Anonymous.
+\newblock {TRACED}: Execution-aware pre-training for source code.
+\newblock In \emph{ICSE}, 2024{\natexlab{c}}.
+
+\bibitem[Anonymous(2025{\natexlab{a}})]{dcsh2025}
+Anonymous.
+\newblock Does trace help code {LLM}s? a systematic evaluation of execution
+  trace formats for code generation.
+\newblock In \emph{Findings of EMNLP}, 2025{\natexlab{a}}.
+
+\bibitem[Anonymous(2025{\natexlab{b}})]{tracepile2025}
+Anonymous.
+\newblock {TracePile}: A large-scale execution trace corpus for code language
+  model pretraining.
+\newblock In \emph{NeurIPS}, 2025{\natexlab{b}}.
+
+\end{thebibliography}

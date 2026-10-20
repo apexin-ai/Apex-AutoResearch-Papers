@@ -1,0 +1,48 @@
+{
+  "exp_id": "codellama13b_label_only_seed42_v2",
+  "project": "trace-verdict-study",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:24:00.685Z",
+    "updated_at": "2026-05-20T21:18:50.191Z",
+    "spec": {
+      "command": "...full_trace --label_only_loss --model_path CodeLlama-13b-Instruct-hf...",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "642747",
+      "log_path": "~/runs/trace-verdict-study/codellama13b_label_only_seed42_v2.log",
+      "submitted_at": "2026-05-20T17:24:00.283Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/trace-verdict-study/data/",
+      "data_count": 1640,
+      "model_name": "CodeLlama-13B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "self-trained",
+      "eval_data": "trace-verdict-study test split (164 samples)"
+    },
+    "hypothesis": "CodeLlama-13B label_only (full_trace with label-only loss) 验证 C2 decomposition 跨架构泛化：Qwen-7B label_only=86.22%, DeepSeek label_only=28.5%. CodeLlama 是第 3 个架构数据点。",
+    "metrics": {
+      "accuracy": 0.2849,
+      "accuracy_ci_lower": 0.2613,
+      "accuracy_ci_upper": 0.3084,
+      "majority_baseline": 0.7151,
+      "lift_pp": -43.03,
+      "pass_recall": 0,
+      "pass_precision": 0,
+      "pass_f1": 0,
+      "fail_recall": 1,
+      "fail_precision": 0.2849,
+      "fail_f1": 0.4434
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-20T21:18:50.494045+00:00",
+  "trigger": "update_registry"
+}

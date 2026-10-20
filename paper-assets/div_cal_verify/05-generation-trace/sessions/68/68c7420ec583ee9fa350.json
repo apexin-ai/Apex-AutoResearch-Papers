@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "68c7420ec583ee9fa350",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "code bugfix deploy",
+  "task_key": "worker_code_bugfix-deploy_20260512T113728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bugfix-deploy_20260512T113728_result.json",
+    "occurrence": 1,
+    "bytes": 1572,
+    "sha256": "33f189cd598f3ec79d841fe5a293e71e1ffeb5d3013b3ec8861e984609063242"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n---\n\n### 1. Sanity Check 输出\n\n```\n=== Sanity Check: Greedy Diversity Selection ===\nTotal points: 100, Selected: 20\nCluster distribution of selected points: {0: 5, 1: 5, 2: 5, 3: 5}\nAll clusters covered: True\nBalance ratio (max/min): 1.0 (want < 3.0)\nMean dist to centroid — selected: 8.29, random: 7.15\n✅ PASS: Selection covers all clusters with reasonable balance\n```\n\n4 个 cluster 各选 5 个点，完美均衡（ratio=1.0）。选中点的平均距质心距离 8.29 > 随机 7.15，说明选择偏向外围（覆盖更广）。\n\n### 2. meta.json\n\n```json\n{\n  \"tokenizer\": \"/root/models/Qwen/Qwen3-1.7B\",\n  \"seq_len\": 512,\n  \"num_train\": 242666,\n  \"num_ref\": 5000,\n  \"num_test\": 583,\n  \"num_rare_positive\": 4962,\n  \"seed\": 42\n}\n```\n\n### 3. Rare n-gram labels 分布\n\n- **4962/5000 positive (99.2%)**，38 negative\n- 不再是 5000/5000 全正，bug 已修复\n- 正比例高是因为 512-token 的 chunk 很长，几乎每段都会包含至少一个 rare trigram — 这是符合预期的\n\n### 4. 数据文件\n\n| 文件 | 大小 |\n|------|------|\n| train_chunks.pt | 342M (237,666 chunks，扣除 5000 ref) |\n| ref_chunks.pt | 7.2M (5,000 chunks) |\n| ref_rare_labels.pt | 6.2K |\n| test_chunks.pt | 861K (583 chunks) |\n| meta.json | 171B |\n\n无错误。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "tokenizer": "/root/models/Qwen/Qwen3-1.7B",
+              "seq_len": 512,
+              "num_train": 242666,
+              "num_ref": 5000,
+              "num_test": 583,
+              "num_rare_positive": 4962,
+              "seed": 42
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bugfix-deploy.md"
+}

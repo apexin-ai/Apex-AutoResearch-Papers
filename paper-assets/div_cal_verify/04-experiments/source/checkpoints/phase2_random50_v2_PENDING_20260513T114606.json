@@ -1,0 +1,28 @@
+{
+  "exp_id": "phase2_random50_v2",
+  "project": "div_cal_verify",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T11:46:06.927Z",
+    "updated_at": "2026-05-13T11:46:06.927Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /root/div_cal_verify/env.sh && export TRANSFORMERS_OFFLINE=1 && bash /root/div_cal_verify/run_random50.sh 0",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:0"
+      ],
+      "log_path": "/root/autodl-tmp/div_cal_verify/random50_v2.log",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/div_cal_verify/data_gpt2/",
+      "data_count": 232588,
+      "model_name": "gpt2 (124M) random_50 seed=42",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-13T11:46:06.961198+00:00",
+  "trigger": "update_registry"
+}

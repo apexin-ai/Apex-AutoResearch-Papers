@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca56cc154625046e91f1",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "fix run mvp keyerror",
+  "task_key": "worker_fix_run_mvp_keyerror_20260512T203111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_run_mvp_keyerror_20260512T203111_result.json",
+    "occurrence": 1,
+    "bytes": 344,
+    "sha256": "a74631369f14461d062449eb62e9ea8490db6fe9ad4504a8d36ace5f9e842907"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处修改完成，语法验证通过：\n\n- **第277行**：`metrics['rank_correlation']` → `metrics.get('rank_correlation', float('nan'))`\n- **第292行**：`r['rank_correlation']` → `r.get('rank_correlation', float('nan'))`\n\nuncurated 方法不计算 `rank_correlation` 时，这两处会显示 `nan` 而非崩溃。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-run-mvp-keyerror.md"
+}

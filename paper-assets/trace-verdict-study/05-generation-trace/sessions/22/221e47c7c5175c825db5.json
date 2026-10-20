@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "221e47c7c5175c825db5",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper irreducible error paragraph",
+  "task_key": "worker_paper_irreducible-error-paragraph_20260516T120220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_irreducible-error-paragraph_20260516T120220_result.json",
+    "occurrence": 1,
+    "bytes": 316,
+    "sha256": "cb9c292880a351bccbde9194ba66a5314de5aafbf649e060a963b3d6db173caf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "段落已插入，位于 \"Format marker sensitivity.\" 之后、\"Tier hierarchy: practical implications.\" 之前（第29–34行）。6行 LaTeX，涵盖了所有要求的要点：跨模型 error set 重叠、GeneratorExit 根因、99.83% 理论上限、signal-limited vs capacity-limited 结论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-irreducible-error-paragraph.md"
+}

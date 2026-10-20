@@ -1,0 +1,14 @@
+{
+  "exp_id": "qwen7b_full_trace_label_only_seed123",
+  "project": "trace-verdict-study",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T05:39:45.764Z",
+    "updated_at": "2026-05-19T05:39:45.764Z"
+  },
+  "timestamp": "2026-05-19T05:39:46.213925+00:00",
+  "trigger": "update_registry"
+}

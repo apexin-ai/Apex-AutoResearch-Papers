@@ -1,0 +1,15 @@
+{
+  "exp_id": "qwen15b_full_trace_tail384_seed42",
+  "project": "trace-verdict-study",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T12:06:04.119Z",
+    "updated_at": "2026-05-18T13:46:29.720Z",
+    "hypothesis": "Qwen-1.5B tail-384 应在 80-90% 之间（小模型在 transition zone 可能更低），精确定位 phase transition 曲线形状"
+  },
+  "timestamp": "2026-05-18T13:46:29.933424+00:00",
+  "trigger": "update_registry"
+}

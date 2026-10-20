@@ -1,0 +1,52 @@
+{
+  "exp_id": "deepseek_exception_only_seed123",
+  "project": "trace-verdict-study",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-15T15:31:02.686Z",
+    "updated_at": "2026-05-20T04:58:28.485Z",
+    "hypothesis": "Cross-model seed robustness: exception_only with seed=123 on DeepSeek-Coder-6.7B (plan_008). Further validates exception signal cross-model generalization (99.33% seed42).",
+    "reproduce": {
+      "finished_at": "2026-05-15T20:04:43.247Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T20:04:44.489564+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "negative",
+        "metrics": {
+          "accuracy": 0.9109,
+          "pass_precision": 1,
+          "pass_recall": 0.993,
+          "pass_f1": 0.996,
+          "fail_precision": 0.976,
+          "fail_recall": 0.705,
+          "fail_f1": 0.818,
+          "ci_95": [
+            0.894,
+            0.926
+          ],
+          "train_loss": 0.122,
+          "train_runtime_sec": 6384
+        },
+        "notes": "NEGATIVE: accuracy 91.09% vs seed42 99.83% (-8.74pp). fail_recall=0.705, train_loss=0.122 偏高。DeepSeek exception_only 对 seed 不鲁棒，seed42 的 99.83% 可能是 LoRA 初始化运气。Exception signal 仍有效（+19.6pp over baseline）但跨模型稳定性不成立。"
+      }
+    },
+    "completed_at": "2026-05-15T20:08:02.101Z",
+    "notes": "NEGATIVE: accuracy 91.09% vs seed42 99.83% (-8.74pp). fail_recall=0.705, train_loss=0.122 偏高。DeepSeek exception_only 对 seed 不鲁棒，seed42 的 99.83% 可能是 LoRA 初始化运气。Exception signal 仍有效（+19.6pp over baseline）但跨模型稳定性不成立。",
+    "outputs": {
+      "predictions_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123/checkpoint-148/predictions.jsonl"
+    },
+    "parent": "deepseek_exception_only_seed42"
+  },
+  "timestamp": "2026-05-20T04:58:28.849600+00:00",
+  "trigger": "update_registry"
+}

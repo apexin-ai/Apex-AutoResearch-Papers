@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "129d86518c66c83aa0d2",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_10_1778908692.md",
+  "task_key": "loop_10_1778908692",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778908692.md",
+    "occurrence": 1,
+    "bytes": 3986,
+    "sha256": "c44780dd532a9c333495c9605c9b34692df70d81d1cdc9a13a40cfbdf1f7aacf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-16T05:18:06+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `westd-11235:cuda:0` 和 `westd-11235:cuda:1`，禁止用其他 GPU\n- DeepSeek 实验 eval 时 `max_length` 必须匹配训练值（2048），用 16384 会 OOD 崩溃（28.5%），已踩坑\n- DeepSeek exception_only seed123=91.09% 是 LoRA initialization outlier，不是方法失败，论文中需注明而非隐藏\n- label_only_seed123/456 还在 PREPARING 状态，**不要提交**——目前两块 GPU 都被 ae_only seeds 占满，等它们完成后再提交\n- 论文 EMNLP 正文限 8 页，当前初稿 ~13 页，Discussion 4 小节已决定移入 appendix（D042/D043）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`westd-11235`，账号 `root`，项目目录 `/root/trace-verdict-study`\n- Python/环境：检测镜像 `aml-train`（conda base），Python 在 `/root/miniconda3/bin/python`\n- 模型：Qwen-2.5-Coder-7B + DeepSeek-Coder-6.7B-Instruct（路径见各实验 spec）\n- W&B：项目内配置（具体 entity/project 见实验 spec）\n- 活跃进程：\n  - `ae_only_seed123` — RUNNING，cron 监控中（reconcile 确认 still running）\n  - `ae_only_seed456` — RUNNING，cron 监控中（reconcile 确认 still running）\n- CronList 本 session 为空（cron 由前 session 注册，reconcile 已接管）\n\n### 3. 📊 当前状态\n**刚做完**：session-start 初始化（read_registry + reconcile_crons + report.md + ROADMAP）。\n\n**Registry 概览**（44 实验）：\n- RUNNING(2): `ae_only_seed123`, `ae_only_seed456`（Qwen ae_only seed robustness，最后一批 GPU 实验）\n- PREPARING(2): `label_only_seed123`, `label_only_seed456`（排队等 GPU 释放）\n- DONE(40): 25 success / 7 negative / 3 failed / 5 killed\n\n**等待中**：\n- ae_only_seed123/456 的 cron 完成回调 → 触发 on-experiment-done 流程\n- 无活跃 Worker\n- Paper Agent patch（regex baseline + DebugBench + ablation 数据整合进初稿）尚未启动\n- trace_length_ablation figure 绘制状态未确认\n\n### 4. 📋 待办（条件触发式）\n- ae_only_seed123 cron 回调到达 → on-experiment-done：更新 registry + report.md，patch seed data into paper，若两个 seed 都完成则汇报 Director seed robustness 最终结果\n- ae_only_seed456 cron 回调到达 → 同上\n- 两个 ae_only seeds 均完成 → 释放 cuda:0/1 → 提交 label_only_seed123 (cuda:0) + label_only_seed456 (cuda:1)\n- label_only seeds 完成 → 最后一组 seed robustness 数据入表，Paper Agent 可冻结所有数字\n- GPU 空闲 + 无待提交实验 → spawn Worker 启动 Paper Agent patch（整合 regex baseline + DebugBench + seed data + ablation 图 → 初稿）\n- 初稿完成 → 进入 Reviewer 对抗（3 轮，5/18-20）\n- 5/24 提交 ARR\n\n### 5. 🎯 战略上下文\n**核心发现**：Exception events 是 verdict prediction 最有效的 trace component。Qwen exception_only 99.83%（3 seeds 完美 robust），远超 full_trace 任何变体（77-82%）和 regex baseline（93.61%，McNemar p=0.041）。DebugBench 跨任务 100%。\n\n**决策链关键节点**：\n- D042/D043: 13→8 页重组方案已定（Discussion 移 appendix）\n- D044-D047: regex baseline + DebugBench 验证全部完成，补强了 Reviewer 预期攻击面\n- plan_006 (trace length ablation) 是唯一 negative：256/512/1024/no_limit 全低于 exception_only，叙事已转为\"raw trace 无论多长都不如结构化压缩\"\n\n**易错点**：\n- 不要把 DeepSeek seed123 的 91.09% 当系统性失败——这是 LoRA init sensitivity，seed42/456 都是 99.33%\n- DeepSeek VOTA 84.45% 是 confounded（truncation + model），不要和 Qwen VOTA 99.41% 直接对比得出模型差异结论\n- ae_only 和 exception_only 都是 Tier 1（99.92% vs 99.83%），但论文 framing 以 exception_only 为主角（更 interpretable，DebugBench 验证更强）\n- 9 天冲刺时间表紧，seed 实验完成后必须立即推进论文，不能再加新实验\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778908692.md"
+}

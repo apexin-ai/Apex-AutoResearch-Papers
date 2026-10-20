@@ -1,0 +1,16 @@
+{
+  "exp_id": "codellama13b_full_trace_tail2048_seed42_v3",
+  "project": "trace-verdict-study",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T07:51:07.325Z",
+    "updated_at": "2026-05-18T07:54:07.242Z",
+    "hypothesis": "CodeLlama-13B tail-2048 用 label_only_loss 应恢复到 95-98%（与其他 3 模型 tail-2048 对齐），确认 v2 的 29.6% 源于 full-sequence loss 稀释",
+    "parent": "codellama13b_full_trace_tail2048_seed42_v2"
+  },
+  "timestamp": "2026-05-18T07:54:07.441214+00:00",
+  "trigger": "update_registry"
+}

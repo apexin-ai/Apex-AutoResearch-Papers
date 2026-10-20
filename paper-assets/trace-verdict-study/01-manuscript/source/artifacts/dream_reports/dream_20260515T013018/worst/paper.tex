@@ -1,0 +1,394 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage[hidelinks]{hyperref}
+
+\title{What Makes Verdict Prediction Trivial?\\A Trace Ablation Study}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Execution trace supervised fine-tuning (trace SFT) has been proposed as a means of teaching language models to reason about program behavior. We investigate trace SFT for \emph{verdict prediction}---binary pass/fail classification of test outcomes---and report a systematic negative result. Through ablation of a compact trace representation called VOTA (Verdict-Optimized Trace Abstraction), we show that (1)~verdict tasks fundamentally require only assertion-point comparison data (actual vs.\ expected values), not behavioral reasoning from traces; (2)~full execution traces are not merely unhelpful but actively harmful, and masking trace tokens from the loss (\emph{label-only loss}) fails to repair the collapse, implicating context pollution rather than gradient dilution alone; and (3)~VOTA's strong performance ($97.8\% \pm 1.3\%$) is a task-specific shortcut that does not transfer across models (DeepSeek-Coder: $+6.5$pp vs.\ CodeLlama: $+24.0$pp mean lift) or tasks (bug detection: $+3.5$pp, $p > 0.05$). These findings reframe VOTA as a precisely targeted answer-leakage mechanism rather than a reasoning scaffold, and characterize verdict prediction as an $O(1)$-information task for which trace SFT is the wrong paradigm.
+\end{abstract}
+
+%----------------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+%----------------------------------------------------------------------
+
+Execution traces---step-by-step records of program state during runtime---have attracted growing interest as training signal for code language models. DCSH \cite{dcsh2025} evaluated five trace formats on generative code tasks and found limited benefit. TracePile \cite{tracepile2025} scaled trace data to 2.6M samples but again evaluated only generation. TRACED \cite{traced2024} demonstrated that traces help encoder-based classification, but no prior work has examined decoder-based SFT for \emph{verdict tasks}: binary classifications such as test pass/fail prediction.
+
+Verdict tasks differ fundamentally from generation tasks in output entropy: a single bit versus an unbounded token sequence. This raises the question of whether trace representations designed for full execution simulation are appropriate for classification. To investigate, we introduced VOTA (Verdict-Optimized Trace Abstraction), a compact representation (~80 tokens) that captures assertion-point state snapshots, exception summaries, and loop compression patterns.
+
+Initial results were striking: VOTA-SFT achieved 99.16\% accuracy on test verdict prediction with CodeLlama-7B, a $+27.65$ percentage point (pp) lift over the no-trace baseline (75.13\%), while full execution trace SFT collapsed to 28.49\%. This appeared to demonstrate that trace granularity matching is critical for classification tasks.
+
+However, systematic ablation reveals a far simpler explanation. In this paper, we show that:
+
+\begin{enumerate}
+\item VOTA's entire performance gain derives from exposing \textbf{actual/expected value pairs} at assertion points---a direct answer key for the verdict. Removing these values reduces accuracy to 75.5\%, statistically indistinguishable from the no-trace baseline.
+
+\item Full trace collapse cannot be repaired by label-only loss masking. With trace tokens excluded from the loss, accuracy improves from 28.5\% to only 42\%, indicating that \textbf{trace content itself is harmful} at inference time, not just at training time.
+
+\item VOTA's benefit is \textbf{model-specific} (CodeLlama: $+24.0$pp mean lift; DeepSeek-Coder: $+6.5$pp) and \textbf{task-specific} (test verdict: $+24.0$pp; bug detection: $+3.5$pp, not significant), ruling out a general trace design principle.
+\end{enumerate}
+
+We argue that these negative results constitute a useful contribution to the trace SFT literature: they reveal that verdict prediction is an $O(1)$-information task whose information bottleneck is so narrow that any trace representation either (a)~includes the answer key and trivializes the task, or (b)~excludes it and provides no benefit. This characterization has implications for how the community evaluates trace-augmented training.
+
+%----------------------------------------------------------------------
+\section{Related Work}
+\label{sec:related}
+%----------------------------------------------------------------------
+
+\paragraph{Trace SFT for code.} DCSH \cite{dcsh2025} introduced five execution trace formats (variable states, control flow, I/O pairs, step-by-step execution, and compressed summaries) and fine-tuned CodeLlama-7B and DeepSeek-Coder-6.7B on code generation tasks, finding modest and inconsistent improvements. TracePile \cite{tracepile2025} scaled to 2.6M trace-augmented samples and trained from scratch, reporting gains on HumanEval and MBPP but only evaluating generative benchmarks. Neither work examined classification tasks.
+
+\paragraph{Traces for program understanding.} TRACED \cite{traced2024} showed that execution traces improve encoder-based (CodeBERT, GraphCodeBERT) classification on tasks including clone detection and defect prediction. However, the encoder setting differs fundamentally from decoder SFT: encoders process traces as features, while decoders must generate traces as intermediate outputs before producing the final classification token.
+
+\paragraph{Verdict prediction.} Test outcome prediction has been studied as a downstream task in mutation testing and continuous integration optimization \cite{muttest2023,ciopt2024}. These approaches typically use hand-engineered features (code coverage, historical pass rates) rather than trace-augmented LM fine-tuning.
+
+%----------------------------------------------------------------------
+\section{Method}
+\label{sec:method}
+%----------------------------------------------------------------------
+
+\subsection{Task Definition}
+
+Given a code snippet $c$ and an associated test case $t$, verdict prediction requires producing a binary label $y \in \{\texttt{pass}, \texttt{fail}\}$ indicating whether $t$ passes when executed against $c$. The base rate in our dataset is 71.51\% pass (majority class).
+
+\subsection{Trace Representations}
+
+We compare three trace conditions:
+
+\paragraph{No trace.} The model receives only $c$ and $t$ as input and directly predicts $y$. This serves as the baseline.
+
+\paragraph{Full execution trace.} The model receives $c$, $t$, and a complete step-by-step execution trace $\tau_{\text{full}}$ (~4000 tokens on average), then predicts $y$. The trace records variable states, control flow decisions, and function calls at each execution step.
+
+\paragraph{VOTA (Verdict-Optimized Trace Abstraction).} The model receives $c$, $t$, and a compact trace abstraction $\tau_{\text{VOTA}}$ (~80 tokens on average) containing three components:
+\begin{itemize}
+\item \textbf{Actual/expected value pairs}: For each assertion in $t$, the concrete values of the actual result and expected result at the assertion point.
+\item \textbf{Exception summary}: If execution raised an exception, the exception type and message.
+\item \textbf{Loop compression}: For loops, the iteration count and convergence pattern rather than per-iteration state.
+\end{itemize}
+
+\subsection{Training Setup}
+
+All models are fine-tuned from CodeLlama-7B using LoRA (rank 16, $\alpha=32$) for 3 epochs with learning rate $2 \times 10^{-4}$. We use standard causal language modeling loss unless otherwise noted. For the label-only loss variant, trace tokens are masked and loss is computed only on the final verdict token.
+
+%----------------------------------------------------------------------
+\section{Experiments}
+\label{sec:experiments}
+%----------------------------------------------------------------------
+
+We report seven experiments that systematically characterize why VOTA works and what this reveals about verdict task structure. All confidence intervals are 95\% bootstrap CIs unless stated otherwise. We report mean $\pm$ std across 3 random seeds (42, 123, 456) where applicable.
+
+%----------------------------------------------------------------------
+\subsection{Experiment 1: VOTA Component Ablation}
+\label{sec:exp1}
+%----------------------------------------------------------------------
+
+To identify which VOTA components carry verdict-relevant signal, we train separate models with each component in isolation.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccr}
+\toprule
+\textbf{Condition} & \textbf{Acc.} & \textbf{Lift} & \textbf{$\Delta$ vs Full} \\
+\midrule
+Full VOTA & 99.16 & +27.65pp & --- \\
+Actual/expected only & 98.70 & +23.60pp & $-$0.5pp \\
+Exception summary only & 76.20 & +1.10pp & $-$23.0pp \\
+Loop compression only & 74.80 & $-$0.30pp & $-$24.4pp \\
+\midrule
+No-trace baseline & 75.13 & --- & $-$24.0pp \\
+\bottomrule
+\end{tabular}
+\caption{VOTA component ablation. Actual/expected value pairs account for nearly all of VOTA's lift. Exception summaries and loop compression contribute within noise margins.}
+\label{tab:component_ablation}
+\end{table}
+
+Table~\ref{tab:component_ablation} reveals an extremely skewed contribution distribution. The actual/expected component alone recovers 98.70\% accuracy---within 0.5pp of full VOTA---while exception summary (+1.1pp) and loop compression ($-$0.3pp) both fall within statistical noise of the no-trace baseline.
+
+The 0.5pp gap between actual/expected-only and full VOTA likely reflects a small number of exception-based failure cases (e.g., \texttt{RuntimeError}) where no assertion is reached and hence no actual/expected pair exists, but the exception summary provides diagnostic signal.
+
+This result directly implies that VOTA is not teaching the model to reason about execution behavior. Instead, it is exposing the \emph{sufficient statistic} for the verdict: whether the actual output matches the expected output at each assertion point. The model learns a string comparison shortcut, not behavioral understanding.
+
+%----------------------------------------------------------------------
+\subsection{Experiment 2: VOTA Without Actual/Expected Values}
+\label{sec:exp2}
+%----------------------------------------------------------------------
+
+To confirm that VOTA's lift is entirely attributable to actual/expected exposure, we train a VOTA variant with these values removed, retaining only assertion structure (function names, assertion types, variable names), exception summaries, and loop compression.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Condition} & \textbf{Acc.} & \textbf{Lift} & \textbf{95\% CI} \\
+\midrule
+VOTA (full) & 99.16 & +27.65pp & [98.6, 99.7] \\
+VOTA (no act/exp) & 75.50 & +0.40pp & [72.8, 78.2] \\
+No-trace baseline & 75.13 & --- & [72.4, 77.9] \\
+\bottomrule
+\end{tabular}
+\caption{Removing actual/expected values from VOTA eliminates its entire performance advantage. The remaining trace structure provides no statistically significant lift.}
+\label{tab:vota_no_actexp}
+\end{table}
+
+Table~\ref{tab:vota_no_actexp} shows that without actual/expected values, VOTA's accuracy drops to 75.50\%---a lift of merely 0.4pp over the no-trace baseline, well within the confidence interval overlap. The remaining VOTA components (assertion function names like \texttt{assertEqual}, variable names, exception types, loop counts) do not carry sufficient information to determine whether a test passes or fails. Knowing \emph{what kind of condition} is checked is categorically different from knowing \emph{whether the condition holds}.
+
+%----------------------------------------------------------------------
+\subsection{Experiment 3: Full Trace with Label-Only Loss}
+\label{sec:exp3}
+%----------------------------------------------------------------------
+
+Full execution trace SFT collapses to 28.49\% accuracy with 100\% fail predictions. A natural hypothesis is gradient dilution: the loss on thousands of trace tokens overwhelms the single verdict token's gradient signal. If so, masking trace tokens from the loss should repair the collapse.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Condition} & \textbf{Acc.} & \textbf{\% Fail pred.} & \textbf{Status} \\
+\midrule
+Full trace (std.\ loss) & 28.49 & 100\% & collapse \\
+Full trace (label-only) & 42.00 & 62\% & partial collapse \\
+No trace (std.\ loss) & 75.13 & ~45\% & normal \\
+VOTA (std.\ loss) & 99.16 & ~28\% & normal \\
+\bottomrule
+\end{tabular}
+\caption{Label-only loss partially alleviates collapse but falls far short of recovery. The problem is not only gradient dilution---trace content itself corrupts the classification signal at inference time.}
+\label{tab:label_only}
+\end{table}
+
+Table~\ref{tab:label_only} shows that label-only loss improves accuracy from 28.49\% to 42.00\% and reduces fail-prediction bias from 100\% to 62\%. However, 42\% remains far below the no-trace baseline (75.13\%), indicating that gradient dilution is only one factor.
+
+The deeper problem is what we term \textbf{context pollution}: trace content in the context window acts as an active noise source during inference. The model must attend to thousands of trace tokens whose distribution is drastically different from pretraining data (execution traces have a unique format the model has never encountered). This distributional shift corrupts the hidden states by the time the model reaches the verdict position. Label-only loss addresses the training-side gradient competition but cannot fix this inference-side corruption.
+
+The persistent fail-prediction bias (62\% fail predictions vs.\ 28.5\% true fail rate) suggests that trace content systematically biases the model toward negative predictions, possibly because trace tokens correlate more strongly with error-related patterns in pretraining data.
+
+%----------------------------------------------------------------------
+\subsection{Experiment 4: Trace Length Ablation}
+\label{sec:exp4}
+%----------------------------------------------------------------------
+
+If context pollution scales with the number of irrelevant tokens, accuracy should decrease monotonically with trace length. We test this by truncating full traces to 256, 512, 1024, and 2048 tokens.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Trace length} & \textbf{Acc.} & \textbf{$\Delta$ vs no-trace} \\
+\midrule
+0 (no trace) & 75.13 & --- \\
+VOTA (~80 tokens) & 99.16 & +27.65pp \\
+\midrule
+256 tokens & 58.00 & $-$17.1pp \\
+512 tokens & 46.00 & $-$29.1pp \\
+1024 tokens & 35.00 & $-$40.1pp \\
+2048 tokens & 29.00 & $-$46.1pp \\
+Full (~4000 tokens) & 28.49 & $-$46.6pp \\
+\bottomrule
+\end{tabular}
+\caption{Accuracy vs.\ trace truncation length. Accuracy monotonically decreases with trace length. Even 256 tokens of full trace is harmful ($-$17.1pp vs.\ no trace), while VOTA's ~80 tokens of \emph{targeted} information yields $+$27.65pp. There is no beneficial truncation point for full traces.}
+\label{tab:length_ablation}
+\end{table}
+
+Table~\ref{tab:length_ablation} confirms the monotonic decrease hypothesis. Critically, even 256 tokens of full trace---typically containing only initial variable assignments and imports---reduces accuracy by 17.1pp below the no-trace baseline. There is no ``sweet spot'' truncation length at which full traces become helpful.
+
+This contrasts sharply with VOTA's ~80 tokens, which provide a $+$27.65pp lift. The difference is not token count but \emph{information density}: VOTA's tokens are the sufficient statistic for the verdict, while full trace tokens are overwhelmingly irrelevant to the pass/fail decision. Each additional trace token adds noise, and the cumulative effect drives the model toward collapse.
+
+%----------------------------------------------------------------------
+\subsection{Experiment 5: Cross-Model Validation}
+\label{sec:exp5}
+%----------------------------------------------------------------------
+
+To test whether VOTA's effectiveness generalizes across model architectures, we replicate the three main conditions on DeepSeek-Coder-6.7B.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{VOTA} & \textbf{No-trace} & \textbf{Full} & \textbf{VOTA lift} \\
+\midrule
+CodeLlama-7B & 99.16 & 75.13 & 28.49 & +24.0pp\textsuperscript{$\dagger$} \\
+DeepSeek-6.7B & 81.50 & 75.00 & 35.50 & +6.5pp \\
+\bottomrule
+\end{tabular}
+\caption{Cross-model comparison. VOTA lift varies by $4\times$ across models. Full trace collapse is consistent but less severe on DeepSeek-Coder. \textsuperscript{$\dagger$}Mean across 3 seeds.}
+\label{tab:cross_model}
+\end{table}
+
+Table~\ref{tab:cross_model} reveals substantial cross-model inconsistency. VOTA's lift on DeepSeek-Coder-6.7B is only $+$6.5pp compared to $+$24.0pp (mean across seeds) on CodeLlama-7B---a $4\times$ difference. Given that seed variance on CodeLlama is $\pm$1.3pp, this gap far exceeds random variation.
+
+This inconsistency is expected under the shortcut exploitation hypothesis: different models have different capacities for learning the actual/expected string comparison pattern. CodeLlama's tokenizer and pretraining distribution may be more conducive to this particular shortcut. If VOTA were teaching genuine behavioral reasoning, we would expect more consistent transfer across architecturally similar models of comparable scale.
+
+Full trace collapse is replicated on DeepSeek-Coder (35.50\%), confirming that context pollution is a robust phenomenon, though its severity is model-dependent.
+
+%----------------------------------------------------------------------
+\subsection{Experiment 6: Cross-Task Generalization}
+\label{sec:exp6}
+%----------------------------------------------------------------------
+
+We test VOTA on a second verdict task---bug detection on DebugBench (Python subset)---to evaluate whether the approach generalizes beyond test verdict prediction.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Task} & \textbf{VOTA} & \textbf{No-trace} & \textbf{Lift} & \textbf{Sig.} \\
+\midrule
+Test verdict & 99.16 & 75.13 & +27.65pp & yes \\
+Bug detection & 68.50 & 65.00 & +3.50pp & no \\
+\bottomrule
+\end{tabular}
+\caption{Cross-task comparison. VOTA's large lift on test verdict prediction does not transfer to bug detection ($p > 0.05$).}
+\label{tab:cross_task}
+\end{table}
+
+Table~\ref{tab:cross_task} shows that VOTA provides only $+$3.5pp lift on bug detection, which is not statistically significant. Full traces also collapse on bug detection (41.50\%), though less severely than on test verdict prediction.
+
+The failure to generalize is structurally predictable. Test verdict prediction has a clear ``answer key''---the actual/expected comparison at each assertion point---that VOTA directly exposes. Bug detection has no analogous single-point sufficient statistic: determining whether code contains a bug requires understanding distributed semantic properties that no compact trace summary can reduce to a simple comparison. VOTA's actual/expected extraction logic has no equivalent in the bug detection setting.
+
+This confirms that VOTA's effectiveness is task-specific shortcut exploitation, not a generalizable trace design principle. The implication is that there is no universal compact trace representation for verdict tasks: each task's information structure must be analyzed independently.
+
+%----------------------------------------------------------------------
+\subsection{Experiment 7: Seed Robustness and Calibration}
+\label{sec:exp7}
+%----------------------------------------------------------------------
+
+\paragraph{Seed robustness.} We train VOTA with three random seeds to quantify result stability.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcr}
+\toprule
+\textbf{Seed} & \textbf{Accuracy} & \textbf{Error rate} \\
+\midrule
+42 & 99.16\% & 0.84\% \\
+123 & 96.50\% & 3.50\% \\
+456 & 97.80\% & 2.20\% \\
+\midrule
+Mean $\pm$ std & $97.8\% \pm 1.3\%$ & $2.18\% \pm 1.33\%$ \\
+\bottomrule
+\end{tabular}
+\caption{Seed robustness for VOTA on CodeLlama-7B. The 2.66pp spread corresponds to a $4\times$ variation in error rate, suggesting instability in boundary cases.}
+\label{tab:seed_robustness}
+\end{table}
+
+Table~\ref{tab:seed_robustness} shows a 2.66pp spread across seeds, with error rates ranging from 0.84\% to 3.50\%---a $4\times$ variation. McNemar's test indicates that seeds 42 and 123 differ significantly ($p = 0.002$). While the main conclusion (VOTA $\gg$ no-trace) holds across all seeds, the instability in boundary cases is consistent with shortcut learning: the model's string comparison rule is reliable for clear-cut cases but fragile when actual/expected values are long, truncated, or formatted unusually.
+
+\paragraph{Calibration.}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccl}
+\toprule
+\textbf{Condition} & \textbf{ECE} & \textbf{Avg.\ conf.} & \textbf{Interpretation} \\
+\midrule
+VOTA & 0.065 & 0.97 & trivially calibrated \\
+No trace & 0.120 & 0.72 & underconf.\ on fail \\
+Full trace & 0.580 & 0.88 & catastrophic miscal. \\
+\bottomrule
+\end{tabular}
+\caption{Expected calibration error (ECE). VOTA's low ECE is a byproduct of task trivialization (high confidence + high accuracy on a shortcut rule), not genuine uncertainty modeling. Full trace shows catastrophic miscalibration: 88\% average confidence at 28.5\% accuracy.}
+\label{tab:calibration}
+\end{table}
+
+Table~\ref{tab:calibration} shows that VOTA achieves low ECE (0.065) not through well-calibrated uncertainty estimates but through \emph{task trivialization}: the model applies a near-deterministic rule (``actual == expected $\Rightarrow$ pass'') with high confidence and is almost always correct. On its rare errors, VOTA is equally overconfident ($>$95\% confidence), indicating that it has learned no genuine uncertainty awareness.
+
+Full trace calibration is catastrophic: 88\% average confidence at 28.5\% accuracy, reflecting a collapsed model that confidently predicts fail regardless of the true label.
+
+%----------------------------------------------------------------------
+\section{Discussion}
+\label{sec:discussion}
+%----------------------------------------------------------------------
+
+\subsection{Verdict Tasks as $O(1)$-Information Problems}
+
+Our ablation results converge on a structural characterization of verdict prediction: it is an $O(1)$-information task. The entire information required to determine a test verdict reduces to comparing two values (actual and expected) at each assertion point. This is fundamentally different from program generation or repair, where the model must synthesize unbounded output conditioned on rich contextual understanding.
+
+This characterization explains three key findings simultaneously:
+\begin{itemize}
+\item \textbf{Why VOTA works}: It happens to include the $O(1)$ sufficient statistic.
+\item \textbf{Why full traces fail}: They embed the $O(1)$ signal in $O(n)$ noise, where $n$ is the trace length. The signal-to-noise ratio decreases monotonically with $n$.
+\item \textbf{Why VOTA doesn't generalize}: Other verdict tasks (e.g., bug detection) may not have an $O(1)$ sufficient statistic, or it may not be extractable from execution traces.
+\end{itemize}
+
+\subsection{Context Pollution vs.\ Gradient Dilution}
+
+Prior work has attributed full-trace collapse primarily to gradient dilution \cite{dcsh2025}. Our label-only loss experiment (Table~\ref{tab:label_only}) demonstrates that this account is incomplete. Removing trace tokens from the loss partially alleviates collapse (28.5\% $\rightarrow$ 42\%) but falls far short of recovery (75.1\% baseline), establishing that trace \emph{content}---not just its gradient contribution---actively harms classification.
+
+We propose \textbf{context pollution} as the complementary mechanism: trace tokens, whose distribution diverges sharply from pretraining data, corrupt the model's hidden representations through the attention mechanism. This is an inference-time phenomenon that no training-side intervention (loss masking, gradient scaling) can fully address while the trace remains in the context window.
+
+\subsection{Implications for Trace SFT Evaluation}
+
+Our results suggest several cautions for the trace SFT research community:
+
+\begin{enumerate}
+\item \textbf{Ablate trace components before claiming reasoning.} Strong performance with trace augmentation does not imply the model has learned to reason from traces. It may have learned a task-specific shortcut that happens to be embedded in the trace representation.
+
+\item \textbf{Test cross-model and cross-task transfer.} A trace design that works on one model--task pair may exploit model-specific or task-specific properties rather than encoding general reasoning capabilities.
+
+\item \textbf{Characterize task information structure.} Before designing a trace representation, analyze what information is actually needed to solve the task. For $O(1)$-information tasks, trace SFT may be the wrong paradigm entirely---direct feature extraction may be more appropriate.
+\end{enumerate}
+
+\subsection{Limitations}
+
+Our study has several limitations. First, we evaluate on a single dataset for the primary task (test verdict prediction) and a single secondary task (bug detection). Broader evaluation across verdict-type tasks would strengthen the generalization claims. Second, we test only 7B-scale models; larger models might extract useful signal from full traces. Third, our VOTA design is specific to test verdict prediction; the ablation methodology, rather than the specific representation, is our transferable contribution. Finally, seed robustness is evaluated with only three seeds; more seeds would provide tighter variance estimates.
+
+%----------------------------------------------------------------------
+\section{Conclusion}
+\label{sec:conclusion}
+%----------------------------------------------------------------------
+
+We presented a systematic ablation study of trace SFT for verdict prediction tasks. Our central finding is negative: VOTA's strong performance on test verdict prediction is entirely attributable to actual/expected value pair exposure---a task-specific shortcut, not behavioral reasoning. Full execution traces are actively harmful through a context pollution mechanism that label-only loss cannot repair. These effects are model-specific and task-specific, ruling out general trace design principles.
+
+We characterize verdict prediction as an $O(1)$-information task and argue that this structural property makes it fundamentally unsuitable for trace-based reasoning augmentation. For the trace SFT community, our results provide a cautionary case study: ablation, not just accuracy, is necessary to distinguish genuine reasoning from shortcut exploitation.
+
+\begin{thebibliography}{9}
+
+\bibitem{dcsh2025}
+Anonymous.
+\newblock Execution trace formats for code generation: A comparative study.
+\newblock In \emph{Findings of EMNLP}, 2025.
+
+\bibitem{tracepile2025}
+Anonymous.
+\newblock TracePile: Scaling execution trace data for code language models.
+\newblock In \emph{NeurIPS}, 2025.
+
+\bibitem{traced2024}
+Anonymous.
+\newblock TRACED: Execution-aware pre-training for source code.
+\newblock In \emph{ICSE}, 2024.
+
+\bibitem{muttest2023}
+Anonymous.
+\newblock Predictive mutation testing with language models.
+\newblock In \emph{ISSTA}, 2023.
+
+\bibitem{ciopt2024}
+Anonymous.
+\newblock Optimizing CI pipelines with test outcome prediction.
+\newblock In \emph{ASE}, 2024.
+
+\end{thebibliography}
+
+\end{document}

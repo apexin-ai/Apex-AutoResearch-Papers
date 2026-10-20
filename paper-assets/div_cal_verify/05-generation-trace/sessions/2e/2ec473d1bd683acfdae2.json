@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ec473d1bd683acfdae2",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "check phase2 seed123 remaining analysis",
+  "task_key": "worker_check_phase2_seed123_remaining_analysis_20260513T151658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_phase2_seed123_remaining_analysis_20260513T151658_result.json",
+    "occurrence": 1,
+    "bytes": 1613,
+    "sha256": "20b9ce3c7db6ae14963ae1d32e5409ff3b7857f6ccdff0249e76e9d25f7df785"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 **phase2_seed123_remaining** 已完成，registry 已更新为 DONE/success。\n\n## 结果汇总\n\n运行时间：18:04 → 20:27 CST（约 2h23min）\n\n### Uncurated (seed=123)\n\n| Gen | PPL | RankMe | kNN | Rare | Corr |\n|-----|------|--------|------|-------|-------|\n| 0 | 36.69 | 277.86 | 0.988 | 0.0293 | -0.0222 |\n| 1 | 45.29 | 297.08 | 0.988 | 0.0192 | -0.0554 |\n| 2 | 53.76 | 301.88 | 0.988 | 0.0137 | -0.0448 |\n| 3 | 53.76 | 300.70 | 0.988 | 0.0116 | -0.0365 |\n| 4 | 54.33 | 298.78 | 0.988 | 0.0107 | -0.0471 |\n| 5 | 53.00 | 293.21 | 0.988 | 0.0100 | -0.0370 |\n| 6 | 49.87 | 295.35 | 0.988 | 0.0101 | -0.0477 |\n| 7 | **46.15** | 290.13 | 0.988 | 0.0093 | -0.0755 |\n\nPPL 先升后降（gen4 峰值 54.33 → gen7 回到 46.15），rare n-gram 持续下降。\n\n### RGDS (seed=123)\n\n| Gen | PPL | RankMe | kNN | Rare | Corr | Ratio |\n|-----|------|--------|------|-------|-------|-------|\n| 0 | 36.71 | 272.68 | 0.988 | 0.0293 | -0.0116 | 0.9997 |\n| 1 | 42.81 | 286.96 | 0.988 | 0.0186 | -0.0544 | 0.9066 |\n| 2 | 47.35 | 291.31 | 0.988 | 0.0142 | -0.0569 | 0.8604 |\n| 3 | 52.64 | 295.72 | 0.988 | 0.0119 | -0.0185 | 0.8689 |\n| 4 | 52.74 | 294.90 | 0.988 | 0.0101 | -0.0042 | 0.8863 |\n| 5 | 60.62 | 294.93 | 0.988 | 0.0087 | -0.0036 | 0.7809 |\n| 6 | 75.03 | 299.36 | 0.988 | 0.0070 | -0.0119 | 0.6789 |\n| 7 | **81.57** | 298.35 | 0.988 | 0.0062 | -0.0312 | 0.5236 |\n\nRGDS 的 PPL 单调上升（36.71 → 81.57），selection ratio 持续下降（1.0 → 0.52），表明 RGDS 越来越积极地过滤数据，但 PPL 退化明显比 uncurated 更严重。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-phase2-seed123-remaining-analysis.md"
+}

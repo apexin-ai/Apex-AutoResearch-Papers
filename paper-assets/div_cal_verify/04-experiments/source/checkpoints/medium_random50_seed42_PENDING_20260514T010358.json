@@ -1,0 +1,16 @@
+{
+  "exp_id": "medium_random50_seed42",
+  "project": "div_cal_verify",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T01:01:02.034Z",
+    "updated_at": "2026-05-14T01:03:58.824Z",
+    "hypothesis": "GPT2-medium (355M) Random 50% baseline: 验证同 budget 随机选择在更大模型上的表现，作为 RGDS alignment gap 在 355M scale 的关键对照组",
+    "parent": "medium_rgds_seed42"
+  },
+  "timestamp": "2026-05-14T01:03:58.905688+00:00",
+  "trigger": "update_registry"
+}

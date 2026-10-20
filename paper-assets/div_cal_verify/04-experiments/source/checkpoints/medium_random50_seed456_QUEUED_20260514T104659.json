@@ -1,0 +1,16 @@
+{
+  "exp_id": "medium_random50_seed456",
+  "project": "div_cal_verify",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T03:21:29.247Z",
+    "updated_at": "2026-05-14T10:46:59.059Z",
+    "hypothesis": "GPT2-medium (355M) Random 50% seed=456: 3-seed 统计检验，验证 C3 (RGDS 劣于 Random) 在 355M 跨 seed 一致",
+    "parent": "medium_random50_seed42"
+  },
+  "timestamp": "2026-05-14T10:46:59.130936+00:00",
+  "trigger": "update_registry"
+}

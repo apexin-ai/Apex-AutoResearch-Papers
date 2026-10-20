@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "155f6e92a3caa086fd20",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "paper fix results warnings",
+  "task_key": "worker_paper_fix_results_warnings_20260514T082602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_results_warnings_20260514T082602_result.json",
+    "occurrence": 1,
+    "bytes": 1342,
+    "sha256": "d4e61891fc0e07765dc8ee61834a70e1f461065a61be8562637511374cf72461"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三处改动均已验证正确。\n\n---\n\n### 汇总\n\n**WARNING 1 (§5.7 ratio 数据)** — 已修正 `results.tex:150`\n- `0.83 at 355M` → `$0.85 \\pm 0.03$ at 355M ($n{=}2$; 0.83 at seed=42, 0.87 at seed=123)`\n\n**WARNING 2 (Table 2 脚注)** — 已修正 `results.tex:112`\n- `statistical tests pending seed=123` → `pending Random~50\\% seed=123 and all seed=456 experiments`\n\n**Info 1 (§5.1 标题)** — 已修正 `results.tex:37`\n- `Produces` → `Accelerates`\n\n**Info 2 (figures 目录)** — 两个文件均存在：\n- `docs/paper/figures/fig_ppl_trends.pdf` ✓\n- `docs/paper/figures/fig_ratio_trajectory.pdf` ✓\n\n**Info 3 (`%TODO(355M-seeds)` 占位符)** — 共 7 处：\n\n| 文件 | 行号 | 内容 |\n|------|------|------|\n| `results.tex` | 125 | `update when Random seed=123 and all seed=456 complete` |\n| `results.tex` | 145 | `confirm with seed=123 and report significance` |\n| `results.tex` | 148 | `update with seed=456 data` |\n| `results.tex` | 151 | `confirm ratio trajectory with seed=123 完成后补充完整 4-method 对比和统计检验` |\n| `experiments.tex` | 76 | `update when seed=123 completes` |\n| `discussion.tex` | 26 | `confirm with 3-seed data` |\n| `discussion.tex` | 34 | `confirm with 3-seed data` |\n| `discussion.tex` | 38 | `confirm with seed=123 data` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-results-warnings.md"
+}

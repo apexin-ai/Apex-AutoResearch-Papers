@@ -1,0 +1,104 @@
+{
+  "exp_id": "phase1_gpt2_collapse",
+  "project": "div_cal_verify",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T20:06:09.792Z",
+    "updated_at": "2026-05-13T00:57:35.030Z",
+    "spec": {
+      "hypothesis": "GPT2-125M under extreme training (1M tokens/gen, 5 epochs, lr=1e-4, 6 gens) will show measurable representation collapse (RankMe >20% decline)",
+      "model_name": "gpt2 (124M) + gpt2-medium (355M)",
+      "server": "westd-11235",
+      "data_path": "/root/div_cal_verify/data_gpt2/",
+      "seed": 42,
+      "hyperparams": {
+        "methods": [
+          "rgds",
+          "uncurated"
+        ],
+        "num_generations": 6,
+        "lr": 0.0001,
+        "batch_size": 4,
+        "grad_accum": 8,
+        "seq_len": 512,
+        "gen_tokens": 1000000,
+        "train_epochs": 5,
+        "gpu_mode": "single card"
+      },
+      "data_count": 232588,
+      "command": "bash run_phase1.sh 1 (rgds -> uncurated serial)",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "93696",
+      "log_path": "~/runs/div_cal_verify/phase1_all.log",
+      "output_dir": "/root/autodl-tmp/div_cal_verify/results_phase1/"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "rgds": {
+        "gen0_ppl": 36.64,
+        "gen1_ppl": 37.05,
+        "gen2_ppl": 36.03,
+        "gen3_ppl": 35.96,
+        "gen4_ppl": 35.96,
+        "gen5_ppl": 35.56,
+        "gen0_rankme": 286.46,
+        "gen1_rankme": 287.32,
+        "gen2_rankme": 270.93,
+        "gen3_rankme": 262.62,
+        "gen4_rankme": 265.12,
+        "gen5_rankme": 274.63,
+        "gen0_knn": 0.987,
+        "gen1_knn": 0.988,
+        "gen2_knn": 0.988,
+        "gen3_knn": 0.988,
+        "gen4_knn": 0.988,
+        "gen5_knn": 0.988,
+        "gen0_rank_corr": -0.0595,
+        "gen1_rank_corr": -0.0851,
+        "gen2_rank_corr": -0.0936,
+        "gen3_rank_corr": -0.1188,
+        "gen4_rank_corr": -0.1024,
+        "gen5_rank_corr": -0.1014
+      },
+      "uncurated": {
+        "gen0_ppl": 36.2,
+        "gen1_ppl": 35.44,
+        "gen2_ppl": 34.89,
+        "gen3_ppl": 34.84,
+        "gen4_ppl": 34.52,
+        "gen5_ppl": 34.75,
+        "gen0_rankme": 290.15,
+        "gen1_rankme": 281.26,
+        "gen2_rankme": 268.41,
+        "gen3_rankme": 273.41,
+        "gen4_rankme": 283.12,
+        "gen5_rankme": 297.02,
+        "gen0_knn": 0.988,
+        "gen1_knn": 0.988,
+        "gen2_knn": 0.988,
+        "gen3_knn": 0.988,
+        "gen4_knn": 0.988,
+        "gen5_knn": 0.988,
+        "gen0_rank_corr": -0.067,
+        "gen1_rank_corr": -0.052,
+        "gen2_rank_corr": -0.0975,
+        "gen3_rank_corr": -0.108,
+        "gen4_rank_corr": -0.1351,
+        "gen5_rank_corr": -0.1294
+      },
+      "external_only": {
+        "status": "not_run",
+        "note": "script did not execute external_only method"
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/div_cal_verify/results_phase1/",
+    "completed_at": "2026-05-13T00:57:35.030Z"
+  },
+  "timestamp": "2026-05-13T00:57:35.048811+00:00",
+  "trigger": "update_registry"
+}

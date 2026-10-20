@@ -1,0 +1,16 @@
+{
+  "exp_id": "label_only_seed123",
+  "project": "trace-verdict-study",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:40:18.683Z",
+    "updated_at": "2026-05-16T05:30:03.247Z",
+    "hypothesis": "Seed robustness: label_only (full_trace + label-only loss) with seed=123 on Qwen-2.5-Coder-7B. Verifies label_only 86.22% stability across seeds.",
+    "parent": "full_trace_label_only_seed42"
+  },
+  "timestamp": "2026-05-16T05:30:03.373239+00:00",
+  "trigger": "update_registry"
+}

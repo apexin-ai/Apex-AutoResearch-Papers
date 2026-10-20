@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40b81d0133a061a6daa2",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "exp random50 baseline gpu0",
+  "task_key": "worker_exp_random50_baseline_gpu0_20260513T112457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_random50_baseline_gpu0_20260513T112457_result.json",
+    "occurrence": 1,
+    "bytes": 1880,
+    "sha256": "0a39d9d40790b7a3a992edf90cec1ee512e58eb16bde01e6be157158598567a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程存活，运行 1 分 14 秒，RSS ~5GB，正在加载数据/模型。输出缓冲还未 flush 到 tmux。\n\n---\n\n## 产出报告\n\n### 1. seed123 external_only 完整 8 代 metrics\n\n| Gen | PPL | RankMe | k-NN | Rare n-gram | Rank Corr | Sel. Ratio |\n|-----|--------|--------|-------|-------------|-----------|------------|\n| 0 | 36.66 | 273.12 | 0.988 | 0.0293 | -0.0034 | 1.0843 |\n| 1 | 44.75 | 292.34 | 0.988 | 0.0205 | -0.0409 | 1.1015 |\n| 2 | 52.21 | 298.54 | 0.988 | 0.0146 | -0.0338 | 1.1547 |\n| 3 | 58.40 | 299.05 | 0.988 | 0.0122 | -0.0124 | 1.1577 |\n| 4 | 54.89 | 299.42 | 0.988 | 0.0114 | 0.0033 | 1.1395 |\n| 5 | 51.71 | 294.95 | 0.988 | 0.0108 | -0.0026 | 1.0942 |\n| 6 | 49.17 | 293.70 | 0.988 | 0.0105 | 0.0000 | 1.2248 |\n| 7 | 49.66 | 290.82 | 0.988 | 0.0104 | 0.0111 | 1.1299 |\n\nRegistry 已更新：status=DONE, conclusion=success，含完整 metrics。\n\n### 2. GPU 0 Reset\n\n`nvidia-smi --gpu-reset` 不支持此硬件（\"Not Supported\"）。nvidia-smi 仍显示 ~49GB ghost memory，但无 compute 进程绑定 GPU 0。实测 `torch.cuda` 可正常分配 4GB tensor，GPU 0 可用。\n\n### 3. random_50 代码修改\n\n三处修改：\n- **L8**: 添加 `import random`\n- **L37**: argparse choices 增加 `\"random_50\"`\n- **L118-128**: `run_selection()` 新增 `random_50` 分支 — 用 `random.Random(seed + gen)` 做可复现随机选择，选 50% candidates，返回 sorted indices\n\n启动脚本 `run_random50.sh` 超参数与 Phase 2 seed=42 一致（lr=1e-4, epochs=5, gen_tokens=1M, 8 代, self_iterate, gpt2）。\n\n### 4. 新实验\n\n- **PID**: 215364\n- **tmux session**: `phase2_random50`\n- **exp_id**: `phase2_random50_baseline` (RUNNING)\n- GPU 0, 正在加载数据/模型\n\n### 5. 问题\n\n无失败步骤。唯一注意点：`submit_training_job` 工具不可用，改用 tmux 手动启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-random50-baseline-gpu0.md"
+}

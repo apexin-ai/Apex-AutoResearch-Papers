@@ -1,0 +1,2322 @@
+# analysis 355m 3seed full stats
+
+**The Embedding Alignment Gap: Why Diversity-Based Data Selection Accelerates Model Collapse in Iterative Self-Training** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 39
+- **Recorded user turns:** 0
+- **Tool calls:** 13
+- **Original source:** `logs/workers/worker_analysis_355m_3seed_full_stats_20260514T125323.log`
+- **Structured JSON:** [`9e1f3f6e0901d55db362.json`](../../sessions/9e/9e1f3f6e0901d55db362.json)
+
+## Before a recorded user message
+
+39 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "315186f9-b661-4ca4-be9d-309d30942605",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-div-cal-verify/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778764200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "d9c94e83-8485-4ed6-8676-a71e8e9fc243",
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me execute the tasks step by step. First, run the analysis script on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "bd18812b-6c1f-412f-b1ed-1eb321f8acb3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CuYcLYPWvLLHeuHgUuzzDd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11630,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11630
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01EwdwQW7vuwk8R7VizVBJpn`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "e90f597c-1938-4215-bc48-e37a55994270",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CuYcLYPWvLLHeuHgUuzzDd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11630,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11630
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T12:53:36.059Z_
+
+<details><summary>↩ Tool result · `toolu_01EwdwQW7vuwk8R7VizVBJpn`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "68b0066f-dc9d-47bf-b7f8-09d5f9d2fd92",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+运行统计分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "56d2f8e6-b727-4664-88b8-23bdd83b860f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016zwmLNFDHnugJm254X6qxC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 705,
+      "cache_read_input_tokens": 23471,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 705
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01AvztyQJcNeX253fRESdfaC`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/div_cal_verify && python artifacts/analyze_355m_3seed.py 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "c5b1d73f-998b-4b71-811d-02f6b01affc4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016zwmLNFDHnugJm254X6qxC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 705,
+      "cache_read_input_tokens": 23471,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 705
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T12:53:41.083Z_
+
+<details><summary>↩ Tool result · `toolu_01AvztyQJcNeX253fRESdfaC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/div_cal_verify && python artifacts/analyze_355m_3seed.py 2>&1'\\n\\nExit code: 2\\n\\nStdout:\\n\\npython: can't open file '/root/div_cal_verify/artifacts/analyze_355m_3seed.py': [Errno 2] No such file or directory\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "16a3779f-a992-429e-a51f-7c341616ef7c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/div_cal_verify && python artifacts/analyze_355m_3seed.py 2>&1'\\\\n\\\\nExit code: 2\\\\n\\\\nStdout:\\\\n\\\\npython: can't open file '/root/div_cal_verify/artifacts/analyze_355m_3seed.py': [Errno 2] No such file or directory\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/div_cal_verify && python artifacts/analyze_355m_3seed.py 2>&1'\\n\\nExit code: 2\\n\\nStdout:\\n\\npython: can't open file '/root/div_cal_verify/artifacts/analyze_355m_3seed.py': [Errno 2] No such file or directory\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+脚本不存在，检查实际文件结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "3dc3c737-6422-4281-a9b8-24ea0c82c86d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HCz9UdH2CMDAp5B6yBU3qF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 353,
+      "cache_read_input_tokens": 24176,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 353
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018Yitd1BMDRhC9AzUEZwLSU`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "ls /root/div_cal_verify/artifacts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "75826c95-8689-4a05-ad38-20ec3f2bd1f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HCz9UdH2CMDAp5B6yBU3qF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 353,
+      "cache_read_input_tokens": 24176,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 353
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T12:53:48.030Z_
+
+<details><summary>↩ Tool result · `toolu_018Yitd1BMDRhC9AzUEZwLSU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"355m_3seed_latex.tex\\n355m_3seed_summary.csv\\n355m_3seed_ttest.csv\\n3seed_summary.csv\\n3seed_ttest_results.csv\\ndiagnostics_output.log\\nmitigation_diagnostics.py\\nppl_comparison.pdf\\nquality_filter_diagnostics.pdf\\nrare_ngram_survival.pdf\\nselection_diagnostics.pdf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "459d0cfa-7dd0-44b7-97a6-59ea0c8c889e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"355m_3seed_latex.tex\\\\n355m_3seed_summary.csv\\\\n355m_3seed_ttest.csv\\\\n3seed_summary.csv\\\\n3seed_ttest_results.csv\\\\ndiagnostics_output.log\\\\nmitigation_diagnostics.py\\\\nppl_comparison.pdf\\\\nquality_filter_diagnostics.pdf\\\\nrare_ngram_survival.pdf\\\\nselection_diagnostics.pdf\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"355m_3seed_latex.tex\\n355m_3seed_summary.csv\\n355m_3seed_ttest.csv\\n3seed_summary.csv\\n3seed_ttest_results.csv\\ndiagnostics_output.log\\nmitigation_diagnostics.py\\nppl_comparison.pdf\\nquality_filter_diagnostics.pdf\\nrare_ngram_survival.pdf\\nselection_diagnostics.pdf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01P8k2h66RrPb687KyF6K4iW`</summary>
+
+```json
+{
+  "pattern": "**/analyze_355m*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "435bb47e-b0dc-4481-abe9-13d11e91d4bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WV6E9SWM8zM6SshaBCJPHT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 313,
+      "cache_read_input_tokens": 24529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 313
+      },
+      "output_tokens": 57,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T12:53:51.696Z_
+
+<details><summary>↩ Tool result · `toolu_01P8k2h66RrPb687KyF6K4iW`</summary>
+
+```text
+artifacts/analyze_355m_3seed.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "06c49cee-fa16-47e4-b474-dbd6536766f6",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/analyze_355m_3seed.py"
+    ],
+    "durationMs": 14,
+    "numFiles": 1,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+脚本在本地但没同步到服务器。先查看脚本内容，然后推送到服务器。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "fc71cc3e-b7e5-4da4-9c3c-e7b979295f7c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012GNQ862sfojttXjrUQhFrj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 124,
+      "cache_read_input_tokens": 24842,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 124
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01PgAmZiEWjC4GY1CtgPtAWM`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/analyze_355m_3seed.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "1e9c6ab8-6895-4448-8d31-1aea7457fdc2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012GNQ862sfojttXjrUQhFrj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 124,
+      "cache_read_input_tokens": 24842,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 124
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T12:53:55.877Z_
+
+<details><summary>↩ Tool result · `toolu_01PgAmZiEWjC4GY1CtgPtAWM`</summary>
+
+```text
+1	#!/usr/bin/env python3
+2	"""
+3	3-seed statistical analysis for GPT2-medium (355M) model collapse experiments.
+4	
+5	Reads gen0-gen7 metrics from all_results.json or per-gen metrics.json
+6	across 4 methods x 3 seeds. Outputs summary table and paired t-test results.
+7	
+8	Input:  /root/autodl-tmp/div_cal_verify/results_medium_*/
+9	Output: stdout tables (paper-ready) + artifacts/355m_3seed_ttest.csv
+10	Deps:   numpy, scipy
+11	"""
+12	
+13	import json
+14	import os
+15	import sys
+16	from pathlib import Path
+17	
+18	import numpy as np
+19	
+20	try:
+21	    from scipy import stats
+22	except ImportError:
+23	    print("ERROR: scipy not installed. Run: pip install scipy")
+24	    sys.exit(1)
+25	
+26	BASE = "/root/autodl-tmp/div_cal_verify"
+27	OUT_DIR = Path("/root/div_cal_verify/artifacts")
+28	
+29	METHODS = ["uncurated", "rgds", "external_only", "random_50"]
+30	SEEDS = [42, 123, 456]
+31	NUM_GENS = 8  # gen0-gen7
+32	
+33	# Directory mapping: seed -> method -> (result_dir, method_subdir)
+34	def get_result_dir(seed, method):
+35	    dir_suffix = {
+36	        "uncurated": "uncurated",
+37	        "rgds": "rgds",
+38	        "external_only": "external",
+39	        "random_50": "random50",
+40	    }[method]
+41	    subdir = method  # actual subdirectory name matches method key
+42	    if method == "external_only":
+43	        subdir = "external_only"
+44	
+45	    if seed == 42:
+46	        return f"{BASE}/results_medium_{dir_suffix}/{subdir}"
+47	    else:
+48	        return f"{BASE}/results_medium_{dir_suffix}_seed{seed}/{subdir}"
+49	
+50	FIELD_MAP = {
+51	    "ppl":    "held_out_perplexity",
+52	    "rare":   "rare_ngram_survival",
+53	    "rankme": "rankme",
+54	    "knn":    "knn_probe_accuracy",
+55	    "corr":   "rank_correlation",
+56	    "ratio":  "selection_rare_ngram_ratio",
+57	}
+58	
+59	COMPARISONS = [
+60	    ("rgds_vs_uncurated",  "rgds",          "uncurated",     "C1: RGDS accelerates collapse"),
+61	    ("ext_vs_uncurated",   "external_only", "uncurated",     "C2: external mitigates collapse"),
+62	    ("rgds_vs_random50",   "rgds",          "random_50",     "C3: RGDS worse than random same-budget"),
+63	    ("ext_vs_random50",    "external_only", "random_50",     "C2: external vs random same-budget"),
+64	]
+65	
+66	
+67	def load_all_results(path):
+68	    """Load from all_results.json (seed=42 format)."""
+69	    fp = os.path.join(path, "all_results.json")
+70	    if not os.path.exists(fp):
+71	        return None
+72	    with open(fp) as f:
+73	        text = f.read().replace("NaN", "null")
+74	        data = json.loads(text)
+75	    rows = []
+76	    for g in data["generations"]:
+77	        row = {"gen": g["generation"]}
+78	        for short, full in FIELD_MAP.items():
+79	            v = g.get(full)
+80	            row[short] = v
+81	        rows.append(row)
+82	    return rows
+83	
+84	
+85	def load_per_gen_metrics(path):
+86	    """Load from per-gen metrics.json files (seed=123/456 in-progress format)."""
+87	    rows = []
+88	    for gen_i in range(NUM_GENS):
+89	        fp = os.path.join(path, f"gen_{gen_i}", "metrics.json")
+90	        if not os.path.exists(fp):
+91	            break
+92	        with open(fp) as f:
+93	            text = f.read().replace("NaN", "null")
+94	            g = json.loads(text)
+95	        row = {"gen": g["generation"]}
+96	        for short, full in FIELD_MAP.items():
+97	            row[short] = g.get(full)
+98	        rows.append(row)
+99	    return rows if rows else None
+100	
+101	
+102	def load_method_seed(seed, method):
+103	    """Try all_results.json first, then per-gen metrics.json."""
+104	    path = get_result_dir(seed, method)
+105	    data = load_all_results(path)
+106	    if data is not None:
+107	        return data, "all_results.json"
+108	    data = load_per_gen_metrics(path)
+109	    if data is not None:
+110	        return data, "per-gen metrics"
+111	    return None, None
+112	
+113	
+114	def cohens_d(x, y):
+115	    diff = np.array(x, dtype=float) - np.array(y, dtype=float)
+116	    sd = np.std(diff, ddof=1)
+117	    if sd == 0:
+118	        return float("inf") if np.mean(diff) != 0 else 0.0
+119	    return float(np.mean(diff) / sd)
+120	
+121	
+122	def main():
+123	    os.makedirs(OUT_DIR, exist_ok=True)
+124	
+125	    # ── Phase 1: Load all data ──
+126	    print("=" * 60)
+127	    print("GPT2-medium (355M) 3-seed Analysis")
+128	    print("=" * 60)
+129	
+130	    # method -> seed -> list of gen dicts
+131	    data = {}
+132	    method_availability = {}
+133	
+134	    for method in METHODS:
+135	        data[method] = {}
+136	        method_availability[method] = []
+137	        for seed in SEEDS:
+138	            rows, source = load_method_seed(seed, method)
+139	            if rows is None:
+140	                print(f"  SKIP  {method:15s} seed={seed}: not found")
+141	                continue
+142	            max_gen = max(r["gen"] for r in rows)
+143	            print(f"  OK    {method:15s} seed={seed}: {len(rows)} gens (0-{max_gen}) [{source}]")
+144	            data[method][seed] = rows
+145	            method_availability[method].append(seed)
+146	
+147	    # ── Phase 2: Gen7 summary table ──
+148	    print(f"\n{'=' * 60}")
+149	    print("Gen7 Summary: mean +/- std (across seeds)")
+150	    print(f"{'=' * 60}")
+151	    header_metrics = ["ppl", "rankme", "rare"]
+152	    print(f"{'Method':15s} {'Seeds':6s}  " + "  ".join(f"{m:>20s}" for m in header_metrics))
+153	    print("-" * 80)
+154	
+155	    method_seed_gen7 = {}
+156	
+157	    for method in METHODS:
+158	        vals = {m: [] for m in header_metrics}
+159	        for seed in method_availability[method]:
+160	            gens = data[method][seed]
+161	            gen7 = [r for r in gens if r["gen"] == 7]
+162	            if not gen7:
+163	                continue
+164	            g7 = gen7[0]
+165	            method_seed_gen7[(method, seed)] = g7
+166	            for m in header_metrics:
+167	                if g7[m] is not None:
+168	                    vals[m].append(g7[m])
+169	
+170	        n = len(method_availability[method])
+171	        n_g7 = len(vals["ppl"])
+172	        parts = []
+173	        for m in header_metrics:
+174	            v = vals[m]
+175	            if len(v) >= 2:
+176	                parts.append(f"{np.mean(v):8.2f} +/- {np.std(v, ddof=1):6.2f}")
+177	            elif len(v) == 1:
+178	                parts.append(f"{v[0]:8.4f}       -     ")
+179	            else:
+180	                parts.append(f"{'N/A':>20s}")
+181	
+182	        status = f"{n_g7}/{n}s"
+183	        print(f"{method:15s} {status:6s}  " + "  ".join(parts))
+184	
+185	    # ── Phase 3: Per-gen trajectory (all available seeds) ──
+186	    print(f"\n{'=' * 60}")
+187	    print("PPL Trajectory (per gen, all seeds)")
+188	    print(f"{'=' * 60}")
+189	    print(f"{'Method':15s} " + " ".join(f"{'gen'+str(i):>8s}" for i in range(NUM_GENS)))
+190	    print("-" * 85)
+191	    for method in METHODS:
+192	        row_parts = []
+193	        for gen_i in range(NUM_GENS):
+194	            ppls = []
+195	            for seed in method_availability[method]:
+196	                gens = data[method][seed]
+197	                g = [r for r in gens if r["gen"] == gen_i]
+198	                if g and g[0]["ppl"] is not None:
+199	                    ppls.append(g[0]["ppl"])
+200	            if len(ppls) >= 2:
+201	                row_parts.append(f"{np.mean(ppls):6.1f}({len(ppls)})")
+202	            elif len(ppls) == 1:
+203	                row_parts.append(f"{ppls[0]:6.1f}(1)")
+204	            else:
+205	                row_parts.append(f"{'--':>8s}")
+206	        print(f"{method:15s} " + " ".join(row_parts))
+207	
+208	    # ── Phase 4: Paired t-tests ──
+209	    print(f"\n{'=' * 60}")
+210	    print("Paired t-tests (gen7, across seeds)")
+211	    print(f"{'=' * 60}")
+212	    test_metrics = ["ppl", "rankme", "rare"]
+213	    ttest_rows = []
+214	
+215	    for comp_name, method_a, method_b, hypothesis in COMPARISONS:
+216	        seeds_a = set(method_availability.get(method_a, []))
+217	        seeds_b = set(method_availability.get(method_b, []))
+218	        common_seeds = sorted(seeds_a & seeds_b)
+219	
+220	        # filter to seeds that have gen7
+221	        common_seeds = [s for s in common_seeds
+222	                        if (method_a, s) in method_seed_gen7
+223	                        and (method_b, s) in method_seed_gen7]
+224	
+225	        print(f"\n  {comp_name} -- {hypothesis}")
+226	        if len(common_seeds) < 2:
+227	            print(f"    Only {len(common_seeds)} common seeds with gen7 -- skipped")
+228	            continue
+229	
+230	        if len(common_seeds) < 3:
+231	            print(f"    WARNING: only {len(common_seeds)} seeds (need 3 for valid t-test)")
+232	            print(f"    Showing descriptive stats only:")
+233	            for m in test_metrics:
+234	                va = [method_seed_gen7[(method_a, s)][m] for s in common_seeds
+235	                      if method_seed_gen7[(method_a, s)][m] is not None]
+236	                vb = [method_seed_gen7[(method_b, s)][m] for s in common_seeds
+237	                      if method_seed_gen7[(method_b, s)][m] is not None]
+238	                if va and vb:
+239	                    diff = np.mean(va) - np.mean(vb)
+240	                    print(f"    {m:8s}: {method_a}={np.mean(va):.2f}, "
+241	                          f"{method_b}={np.mean(vb):.2f}, diff={diff:+.2f}")
+242	                    ttest_rows.append({
+243	                        "comparison": comp_name, "metric": m,
+244	                        "t_stat": "N/A", "p_value": "N/A", "cohens_d": "N/A",
+245	                        "mean_a": f"{np.mean(va):.4f}", "mean_b": f"{np.mean(vb):.4f}",
+246	                        "mean_diff": f"{diff:.4f}", "n_seeds": len(common_seeds),
+247	                        "sig": "PARTIAL",
+248	                    })
+249	            continue
+250	
+251	        for m in test_metrics:
+252	            va = [method_seed_gen7[(method_a, s)][m] for s in common_seeds]
+253	            vb = [method_seed_gen7[(method_b, s)][m] for s in common_seeds]
+254	            if any(v is None for v in va + vb):
+255	                print(f"    {m:8s}: missing values, skipped")
+256	                continue
+257	            t_stat, p_val = stats.ttest_rel(va, vb)
+258	            d = cohens_d(va, vb)
+259	            mean_diff = np.mean(va) - np.mean(vb)
+260	            sig = "***" if p_val < 0.001 else "**" if p_val < 0.01 else "*" if p_val < 0.05 else "ns"
+261	            direction = f"{method_a}>{method_b}" if mean_diff > 0 else f"{method_a}<{method_b}"
+262	
+263	            print(f"    {m:8s}: t={t_stat:+.3f}, p={p_val:.4f} {sig}, "
+264	                  f"d={d:+.2f}, diff={mean_diff:+.4f} ({direction})")
+265	
+266	            ttest_rows.append({
+267	                "comparison": comp_name, "metric": m,
+268	                "t_stat": f"{t_stat:.4f}", "p_value": f"{p_val:.6f}",
+269	                "cohens_d": f"{d:.4f}",
+270	                "mean_a": f"{np.mean(va):.4f}", "mean_b": f"{np.mean(vb):.4f}",
+271	                "mean_diff": f"{mean_diff:.4f}", "n_seeds": len(common_seeds),
+272	                "sig": sig,
+273	            })
+274	
+275	    # ── Phase 5: Claim verification ──
+276	    print(f"\n{'=' * 60}")
+277	    print("Claim Verification Status")
+278	    print(f"{'=' * 60}")
+279	
+280	    # C1: ratio degradation across seeds (RGDS has selection_rare_ngram_ratio)
+281	    print("\n  C1: Diversity ratio degrades across generations")
+282	    for method in ["rgds"]:
+283	        for seed in method_availability.get(method, []):
+284	            gens = data[method][seed]
+285	            ratios = [(r["gen"], r["ratio"]) for r in gens if r["ratio"] is not None]
+286	            if ratios:
+287	                print(f"    {method} seed={seed}: " +
+288	                      ", ".join(f"g{g}={v:.3f}" for g, v in ratios))
+289	            else:
+290	                print(f"    {method} seed={seed}: no ratio data")
+291	
+292	    # C3: RGDS > random_50 ppl (worse) across seeds
+293	    print("\n  C3: RGDS worse than Random-50 at same budget")
+294	    for seed in sorted(set(method_availability.get("rgds", [])) &
+295	                       set(method_availability.get("random_50", []))):
+296	        g7_rgds = method_seed_gen7.get(("rgds", seed))
+297	        g7_rand = method_seed_gen7.get(("random_50", seed))
+298	        if g7_rgds and g7_rand and g7_rgds["ppl"] is not None and g7_rand["ppl"] is not None:
+299	            diff = g7_rgds["ppl"] - g7_rand["ppl"]
+300	            print(f"    seed={seed}: rgds_ppl={g7_rgds['ppl']:.2f}, "
+301	                  f"random50_ppl={g7_rand['ppl']:.2f}, diff={diff:+.2f} "
+302	                  f"({'RGDS worse' if diff > 0 else 'RGDS better'})")
+303	
+304	    # ── Phase 6: Write CSV ──
+305	    if ttest_rows:
+306	        import csv
+307	        csv_path = OUT_DIR / "355m_3seed_ttest.csv"
+308	        fields = ["comparison", "metric", "t_stat", "p_value", "cohens_d",
+309	                   "mean_a", "mean_b", "mean_diff", "n_seeds", "sig"]
+310	        with open(csv_path, "w", newline="") as f:
+311	            writer = csv.DictWriter(f, fieldnames=fields)
+312	            writer.writeheader()
+313	            for row in ttest_rows:
+314	                writer.writerow(row)
+315	        print(f"\nCSV written: {csv_path} ({len(ttest_rows)} rows)")
+316	
+317	    # ── Summary ──
+318	    total_available = sum(len(v) for v in method_availability.values())
+319	    total_possible = len(METHODS) * len(SEEDS)
+320	    print(f"\nData coverage: {total_available}/{total_possible} method-seed combos loaded")
+321	    missing = [(m, s) for m in METHODS for s in SEEDS if s not in method_availability[m]]
+322	    if missing:
+323	        print(f"Missing: {', '.join(f'{m}/s{s}' for m, s in missing)}")
+324	
+325	
+326	if __name__ == "__main__":
+327	    main()
+328	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "e13a8666-b961-47cf-8a4a-95fa283d7ac2",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/artifacts/analyze_355m_3seed.py",
+      "content": "#!/usr/bin/env python3\n\"\"\"\n3-seed statistical analysis for GPT2-medium (355M) model collapse experiments.\n\nReads gen0-gen7 metrics from all_results.json or per-gen metrics.json\nacross 4 methods x 3 seeds. Outputs summary table and paired t-test results.\n\nInput:  /root/autodl-tmp/div_cal_verify/results_medium_*/\nOutput: stdout tables (paper-ready) + artifacts/355m_3seed_ttest.csv\nDeps:   numpy, scipy\n\"\"\"\n\nimport json\nimport os\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\n\ntry:\n    from scipy import stats\nexcept ImportError:\n    print(\"ERROR: scipy not installed. Run: pip install scipy\")\n    sys.exit(1)\n\nBASE = \"/root/autodl-tmp/div_cal_verify\"\nOUT_DIR = Path(\"/root/div_cal_verify/artifacts\")\n\nMETHODS = [\"uncurated\", \"rgds\", \"external_only\", \"random_50\"]\nSEEDS = [42, 123, 456]\nNUM_GENS = 8  # gen0-gen7\n\n# Directory mapping: seed -> method -> (result_dir, method_subdir)\ndef get_result_dir(seed, method):\n    dir_suffix = {\n        \"uncurated\": \"uncurated\",\n        \"rgds\": \"rgds\",\n        \"external_only\": \"external\",\n        \"random_50\": \"random50\",\n    }[method]\n    subdir = method  # actual subdirectory name matches method key\n    if method == \"external_only\":\n        subdir = \"external_only\"\n\n    if seed == 42:\n        return f\"{BASE}/results_medium_{dir_suffix}/{subdir}\"\n    else:\n        return f\"{BASE}/results_medium_{dir_suffix}_seed{seed}/{subdir}\"\n\nFIELD_MAP = {\n    \"ppl\":    \"held_out_perplexity\",\n    \"rare\":   \"rare_ngram_survival\",\n    \"rankme\": \"rankme\",\n    \"knn\":    \"knn_probe_accuracy\",\n    \"corr\":   \"rank_correlation\",\n    \"ratio\":  \"selection_rare_ngram_ratio\",\n}\n\nCOMPARISONS = [\n    (\"rgds_vs_uncurated\",  \"rgds\",          \"uncurated\",     \"C1: RGDS accelerates collapse\"),\n    (\"ext_vs_uncurated\",   \"external_only\", \"uncurated\",     \"C2: external mitigates collapse\"),\n    (\"rgds_vs_random50\",   \"rgds\",          \"random_50\",     \"C3: RGDS worse than random same-budget\"),\n    (\"ext_vs_random50\",    \"external_only\", \"random_50\",     \"C2: external vs random same-budget\"),\n]\n\n\ndef load_all_results(path):\n    \"\"\"Load from all_results.json (seed=42 format).\"\"\"\n    fp = os.path.join(path, \"all_results.json\")\n    if not os.path.exists(fp):\n        return None\n    with open(fp) as f:\n        text = f.read().replace(\"NaN\", \"null\")\n        data = json.loads(text)\n    rows = []\n    for g in data[\"generations\"]:\n        row = {\"gen\": g[\"generation\"]}\n        for short, full in FIELD_MAP.items():\n            v = g.get(full)\n            row[short] = v\n        rows.append(row)\n    return rows\n\n\ndef load_per_gen_metrics(path):\n    \"\"\"Load from per-gen metrics.json files (seed=123/456 in-progress format).\"\"\"\n    rows = []\n    for gen_i in range(NUM_GENS):\n        fp = os.path.join(path, f\"gen_{gen_i}\", \"metrics.json\")\n        if not os.path.exists(fp):\n            break\n        with open(fp) as f:\n            text = f.read().replace(\"NaN\", \"null\")\n            g = json.loads(text)\n        row = {\"gen\": g[\"generation\"]}\n        for short, full in FIELD_MAP.items():\n            row[short] = g.get(full)\n        rows.append(row)\n    return rows if rows else None\n\n\ndef load_method_seed(seed, method):\n    \"\"\"Try all_results.json first, then per-gen metrics.json.\"\"\"\n    path = get_result_dir(seed, method)\n    data = load_all_results(path)\n    if data is not None:\n        return data, \"all_results.json\"\n    data = load_per_gen_metrics(path)\n    if data is not None:\n        return data, \"per-gen metrics\"\n    return None, None\n\n\ndef cohens_d(x, y):\n    diff = np.array(x, dtype=float) - np.array(y, dtype=float)\n    sd = np.std(diff, ddof=1)\n    if sd == 0:\n        return float(\"inf\") if np.mean(diff) != 0 else 0.0\n    return float(np.mean(diff) / sd)\n\n\ndef main():\n    os.makedirs(OUT_DIR, exist_ok=True)\n\n    # ── Phase 1: Load all data ──\n    print(\"=\" * 60)\n    print(\"GPT2-medium (355M) 3-seed Analysis\")\n    print(\"=\" * 60)\n\n    # method -> seed -> list of gen dicts\n    data = {}\n    method_availability = {}\n\n    for method in METHODS:\n        data[method] = {}\n        method_availability[method] = []\n        for seed in SEEDS:\n            rows, source = load_method_seed(seed, method)\n            if rows is None:\n                print(f\"  SKIP  {method:15s} seed={seed}: not found\")\n                continue\n            max_gen = max(r[\"gen\"] for r in rows)\n            print(f\"  OK    {method:15s} seed={seed}: {len(rows)} gens (0-{max_gen}) [{source}]\")\n            data[method][seed] = rows\n            method_availability[method].append(seed)\n\n    # ── Phase 2: Gen7 summary table ──\n    print(f\"\\n{'=' * 60}\")\n    print(\"Gen7 Summary: mean +/- std (across seeds)\")\n    print(f\"{'=' * 60}\")\n    header_metrics = [\"ppl\", \"rankme\", \"rare\"]\n    print(f\"{'Method':15s} {'Seeds':6s}  \" + \"  \".join(f\"{m:>20s}\" for m in header_metrics))\n    print(\"-\" * 80)\n\n    method_seed_gen7 = {}\n\n    for method in METHODS:\n        vals = {m: [] for m in header_metrics}\n        for seed in method_availability[method]:\n            gens = data[method][seed]\n            gen7 = [r for r in gens if r[\"gen\"] == 7]\n            if not gen7:\n                continue\n            g7 = gen7[0]\n            method_seed_gen7[(method, seed)] = g7\n            for m in header_metrics:\n                if g7[m] is not None:\n                    vals[m].append(g7[m])\n\n        n = len(method_availability[method])\n        n_g7 = len(vals[\"ppl\"])\n        parts = []\n        for m in header_metrics:\n            v = vals[m]\n            if len(v) >= 2:\n                parts.append(f\"{np.mean(v):8.2f} +/- {np.std(v, ddof=1):6.2f}\")\n            elif len(v) == 1:\n                parts.append(f\"{v[0]:8.4f}       -     \")\n            else:\n                parts.append(f\"{'N/A':>20s}\")\n\n        status = f\"{n_g7}/{n}s\"\n        print(f\"{method:15s} {status:6s}  \" + \"  \".join(parts))\n\n    # ── Phase 3: Per-gen trajectory (all available seeds) ──\n    print(f\"\\n{'=' * 60}\")\n    print(\"PPL Trajectory (per gen, all seeds)\")\n    print(f\"{'=' * 60}\")\n    print(f\"{'Method':15s} \" + \" \".join(f\"{'gen'+str(i):>8s}\" for i in range(NUM_GENS)))\n    print(\"-\" * 85)\n    for method in METHODS:\n        row_parts = []\n        for gen_i in range(NUM_GENS):\n            ppls = []\n            for seed in method_availability[method]:\n                gens = data[method][seed]\n                g = [r for r in gens if r[\"gen\"] == gen_i]\n                if g and g[0][\"ppl\"] is not None:\n                    ppls.append(g[0][\"ppl\"])\n            if len(ppls) >= 2:\n                row_parts.append(f\"{np.mean(ppls):6.1f}({len(ppls)})\")\n            elif len(ppls) == 1:\n                row_parts.append(f\"{ppls[0]:6.1f}(1)\")\n            else:\n                row_parts.append(f\"{'--':>8s}\")\n        print(f\"{method:15s} \" + \" \".join(row_parts))\n\n    # ── Phase 4: Paired t-tests ──\n    print(f\"\\n{'=' * 60}\")\n    print(\"Paired t-tests (gen7, across seeds)\")\n    print(f\"{'=' * 60}\")\n    test_metrics = [\"ppl\", \"rankme\", \"rare\"]\n    ttest_rows = []\n\n    for comp_name, method_a, method_b, hypothesis in COMPARISONS:\n        seeds_a = set(method_availability.get(method_a, []))\n        seeds_b = set(method_availability.get(method_b, []))\n        common_seeds = sorted(seeds_a & seeds_b)\n\n        # filter to seeds that have gen7\n        common_seeds = [s for s in common_seeds\n                        if (method_a, s) in method_seed_gen7\n                        and (method_b, s) in method_seed_gen7]\n\n        print(f\"\\n  {comp_name} -- {hypothesis}\")\n        if len(common_seeds) < 2:\n            print(f\"    Only {len(common_seeds)} common seeds with gen7 -- skipped\")\n            continue\n\n        if len(common_seeds) < 3:\n            print(f\"    WARNING: only {len(common_seeds)} seeds (need 3 for valid t-test)\")\n            print(f\"    Showing descriptive stats only:\")\n            for m in test_metrics:\n                va = [method_seed_gen7[(method_a, s)][m] for s in common_seeds\n                      if method_seed_gen7[(method_a, s)][m] is not None]\n                vb = [method_seed_gen7[(method_b, s)][m] for s in common_seeds\n                      if method_seed_gen7[(method_b, s)][m] is not None]\n                if va and vb:\n                    diff = np.mean(va) - np.mean(vb)\n                    print(f\"    {m:8s}: {method_a}={np.mean(va):.2f}, \"\n                          f\"{method_b}={np.mean(vb):.2f}, diff={diff:+.2f}\")\n                    ttest_rows.append({\n                        \"comparison\": comp_name, \"metric\": m,\n                        \"t_stat\": \"N/A\", \"p_value\": \"N/A\", \"cohens_d\": \"N/A\",\n                        \"mean_a\": f\"{np.mean(va):.4f}\", \"mean_b\": f\"{np.mean(vb):.4f}\",\n                        \"mean_diff\": f\"{diff:.4f}\", \"n_seeds\": len(common_seeds),\n                        \"sig\": \"PARTIAL\",\n                    })\n            continue\n\n        for m in test_metrics:\n            va = [method_seed_gen7[(method_a, s)][m] for s in common_seeds]\n            vb = [method_seed_gen7[(method_b, s)][m] for s in common_seeds]\n            if any(v is None for v in va + vb):\n                print(f\"    {m:8s}: missing values, skipped\")\n                continue\n            t_stat, p_val = stats.ttest_rel(va, vb)\n            d = cohens_d(va, vb)\n            mean_diff = np.mean(va) - np.mean(vb)\n            sig = \"***\" if p_val < 0.001 else \"**\" if p_val < 0.01 else \"*\" if p_val < 0.05 else \"ns\"\n            direction = f\"{method_a}>{method_b}\" if mean_diff > 0 else f\"{method_a}<{method_b}\"\n\n            print(f\"    {m:8s}: t={t_stat:+.3f}, p={p_val:.4f} {sig}, \"\n                  f\"d={d:+.2f}, diff={mean_diff:+.4f} ({direction})\")\n\n            ttest_rows.append({\n                \"comparison\": comp_name, \"metric\": m,\n                \"t_stat\": f\"{t_stat:.4f}\", \"p_value\": f\"{p_val:.6f}\",\n                \"cohens_d\": f\"{d:.4f}\",\n                \"mean_a\": f\"{np.mean(va):.4f}\", \"mean_b\": f\"{np.mean(vb):.4f}\",\n                \"mean_diff\": f\"{mean_diff:.4f}\", \"n_seeds\": len(common_seeds),\n                \"sig\": sig,\n            })\n\n    # ── Phase 5: Claim verification ──\n    print(f\"\\n{'=' * 60}\")\n    print(\"Claim Verification Status\")\n    print(f\"{'=' * 60}\")\n\n    # C1: ratio degradation across seeds (RGDS has selection_rare_ngram_ratio)\n    print(\"\\n  C1: Diversity ratio degrades across generations\")\n    for method in [\"rgds\"]:\n        for seed in method_availability.get(method, []):\n            gens = data[method][seed]\n            ratios = [(r[\"gen\"], r[\"ratio\"]) for r in gens if r[\"ratio\"] is not None]\n            if ratios:\n                print(f\"    {method} seed={seed}: \" +\n                      \", \".join(f\"g{g}={v:.3f}\" for g, v in ratios))\n            else:\n                print(f\"    {method} seed={seed}: no ratio data\")\n\n    # C3: RGDS > random_50 ppl (worse) across seeds\n    print(\"\\n  C3: RGDS worse than Random-50 at same budget\")\n    for seed in sorted(set(method_availability.get(\"rgds\", [])) &\n                       set(method_availability.get(\"random_50\", []))):\n        g7_rgds = method_seed_gen7.get((\"rgds\", seed))\n        g7_rand = method_seed_gen7.get((\"random_50\", seed))\n        if g7_rgds and g7_rand and g7_rgds[\"ppl\"] is not None and g7_rand[\"ppl\"] is not None:\n            diff = g7_rgds[\"ppl\"] - g7_rand[\"ppl\"]\n            print(f\"    seed={seed}: rgds_ppl={g7_rgds['ppl']:.2f}, \"\n                  f\"random50_ppl={g7_rand['ppl']:.2f}, diff={diff:+.2f} \"\n                  f\"({'RGDS worse' if diff > 0 else 'RGDS better'})\")\n\n    # ── Phase 6: Write CSV ──\n    if ttest_rows:\n        import csv\n        csv_path = OUT_DIR / \"355m_3seed_ttest.csv\"\n        fields = [\"comparison\", \"metric\", \"t_stat\", \"p_value\", \"cohens_d\",\n                   \"mean_a\", \"mean_b\", \"mean_diff\", \"n_seeds\", \"sig\"]\n        with open(csv_path, \"w\", newline=\"\") as f:\n            writer = csv.DictWriter(f, fieldnames=fields)\n            writer.writeheader()\n            for row in ttest_rows:\n                writer.writerow(row)\n        print(f\"\\nCSV written: {csv_path} ({len(ttest_rows)} rows)\")\n\n    # ── Summary ──\n    total_available = sum(len(v) for v in method_availability.values())\n    total_possible = len(METHODS) * len(SEEDS)\n    print(f\"\\nData coverage: {total_available}/{total_possible} method-seed combos loaded\")\n    missing = [(m, s) for m in METHODS for s in SEEDS if s not in method_availability[m]]\n    if missing:\n        print(f\"Missing: {', '.join(f'{m}/s{s}' for m, s in missing)}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+      "numLines": 328,
+      "startLine": 1,
+      "totalLines": 328
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+需要把脚本上传到服务器。用 ssh_execute 写入文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "8de1b0fb-b6ba-42d8-9aa3-82411db41b46",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N85ypJD1K3FrzeXv19Qzo6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5138,
+      "cache_read_input_tokens": 24966,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5138
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01N8PDccMVFpVT24vMG4xxYF`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "cat > /root/div_cal_verify/artifacts/analyze_355m_3seed.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"\n3-seed statistical analysis for GPT2-medium (355M) model collapse experiments.\n\nReads gen0-gen7 metrics from all_results.json or per-gen metrics.json\nacross 4 methods x 3 seeds. Outputs summary table and paired t-test results.\n\nInput:  /root/autodl-tmp/div_cal_verify/results_medium_*/\nOutput: stdout tables (paper-ready) + artifacts/355m_3seed_ttest.csv\nDeps:   numpy, scipy\n\"\"\"\n\nimport json\nimport os\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\n\ntry:\n    from scipy import stats\nexcept ImportError:\n    print(\"ERROR: scipy not installed. Run: pip install scipy\")\n    sys.exit(1)\n\nBASE = \"/root/autodl-tmp/div_cal_verify\"\nOUT_DIR = Path(\"/root/div_cal_verify/artifacts\")\n\nMETHODS = [\"uncurated\", \"rgds\", \"external_only\", \"random_50\"]\nSEEDS = [42, 123, 456]\nNUM_GENS = 8  # gen0-gen7\n\n# Directory mapping: seed -> method -> (result_dir, method_subdir)\ndef get_result_dir(seed, method):\n    dir_suffix = {\n        \"uncurated\": \"uncurated\",\n        \"rgds\": \"rgds\",\n        \"external_only\": \"external\",\n        \"random_50\": \"random50\",\n    }[method]\n    subdir = method  # actual subdirectory name matches method key\n    if method == \"external_only\":\n        subdir = \"external_only\"\n\n    if seed == 42:\n        return f\"{BASE}/results_medium_{dir_suffix}/{subdir}\"\n    else:\n        return f\"{BASE}/results_medium_{dir_suffix}_seed{seed}/{subdir}\"\n\nFIELD_MAP = {\n    \"ppl\":    \"held_out_perplexity\",\n    \"rare\":   \"rare_ngram_survival\",\n    \"rankme\": \"rankme\",\n    \"knn\":    \"knn_probe_accuracy\",\n    \"corr\":   \"rank_correlation\",\n    \"ratio\":  \"selection_rare_ngram_ratio\",\n}\n\nCOMPARISONS = [\n    (\"rgds_vs_uncurated\",  \"rgds\",          \"uncurated\",     \"C1: RGDS accelerates collapse\"),\n    (\"ext_vs_uncurated\",   \"external_only\", \"uncurated\",     \"C2: external mitigates collapse\"),\n    (\"rgds_vs_random50\",   \"rgds\",          \"random_50\",     \"C3: RGDS worse than random same-budget\"),\n    (\"ext_vs_random50\",    \"external_only\", \"random_50\",     \"C2: external vs random same-budget\"),\n]\n\n\ndef load_all_results(path):\n    \"\"\"Load from all_results.json (seed=42 format).\"\"\"\n    fp = os.path.join(path, \"all_results.json\")\n    if not os.path.exists(fp):\n        return None\n    with open(fp) as f:\n        text = f.read().replace(\"NaN\", \"null\")\n        data = json.loads(text)\n    rows = []\n    for g in data[\"generations\"]:\n        row = {\"gen\": g[\"generation\"]}\n        for short, full in FIELD_MAP.items():\n            v = g.get(full)\n            row[short] = v\n        rows.append(row)\n    return rows\n\n\ndef load_per_gen_metrics(path):\n    \"\"\"Load from per-gen metrics.json files (seed=123/456 in-progress format).\"\"\"\n    rows = []\n    for gen_i in range(NUM_GENS):\n        fp = os.path.join(path, f\"gen_{gen_i}\", \"metrics.json\")\n        if not os.path.exists(fp):\n            break\n        with open(fp) as f:\n            text = f.read().replace(\"NaN\", \"null\")\n            g = json.loads(text)\n        row = {\"gen\": g[\"generation\"]}\n        for short, full in FIELD_MAP.items():\n            row[short] = g.get(full)\n        rows.append(row)\n    return rows if rows else None\n\n\ndef load_method_seed(seed, method):\n    \"\"\"Try all_results.json first, then per-gen metrics.json.\"\"\"\n    path = get_result_dir(seed, method)\n    data = load_all_results(path)\n    if data is not None:\n        return data, \"all_results.json\"\n    data = load_per_gen_metrics(path)\n    if data is not None:\n        return data, \"per-gen metrics\"\n    return None, None\n\n\ndef cohens_d(x, y):\n    diff = np.array(x, dtype=float) - np.array(y, dtype=float)\n    sd = np.std(diff, ddof=1)\n    if sd == 0:\n        return float(\"inf\") if np.mean(diff) != 0 else 0.0\n    return float(np.mean(diff) / sd)\n\n\ndef main():\n    os.makedirs(OUT_DIR, exist_ok=True)\n\n    # -- Phase 1: Load all data --\n    print(\"=\" * 60)\n    print(\"GPT2-medium (355M) 3-seed Analysis\")\n    print(\"=\" * 60)\n\n    # method -> seed -> list of gen dicts\n    data = {}\n    method_availability = {}\n\n    for method in METHODS:\n        data[method] = {}\n        method_availability[method] = []\n        for seed in SEEDS:\n            rows, source = load_method_seed(seed, method)\n            if rows is None:\n                print(f\"  SKIP  {method:15s} seed={seed}: not found\")\n                continue\n            max_gen = max(r[\"gen\"] for r in rows)\n            print(f\"  OK    {method:15s} seed={seed}: {len(rows)} gens (0-{max_gen}) [{source}]\")\n            data[method][seed] = rows\n            method_availability[method].append(seed)\n\n    # -- Phase 2: Gen7 summary table --\n    print(f\"\\n{'=' * 60}\")\n    print(\"Gen7 Summary: mean +/- std (across seeds)\")\n    print(f\"{'=' * 60}\")\n    header_metrics = [\"ppl\", \"rankme\", \"rare\"]\n    print(f\"{'Method':15s} {'Seeds':6s}  \" + \"  \".join(f\"{m:>20s}\" for m in header_metrics))\n    print(\"-\" * 80)\n\n    method_seed_gen7 = {}\n\n    for method in METHODS:\n        vals = {m: [] for m in header_metrics}\n        for seed in method_availability[method]:\n            gens = data[method][seed]\n            gen7 = [r for r in gens if r[\"gen\"] == 7]\n            if not gen7:\n                continue\n            g7 = gen7[0]\n            method_seed_gen7[(method, seed)] = g7\n            for m in header_metrics:\n                if g7[m] is not None:\n                    vals[m].append(g7[m])\n\n        n = len(method_availability[method])\n        n_g7 = len(vals[\"ppl\"])\n        parts = []\n        for m in header_metrics:\n            v = vals[m]\n            if len(v) >= 2:\n                parts.append(f\"{np.mean(v):8.2f} +/- {np.std(v, ddof=1):6.2f}\")\n            elif len(v) == 1:\n                parts.append(f\"{v[0]:8.4f}       -     \")\n            else:\n                parts.append(f\"{'N/A':>20s}\")\n\n        status = f\"{n_g7}/{n}s\"\n        print(f\"{method:15s} {status:6s}  \" + \"  \".join(parts))\n\n    # -- Phase 3: Per-gen trajectory (all available seeds) --\n    print(f\"\\n{'=' * 60}\")\n    print(\"PPL Trajectory (per gen, all seeds)\")\n    print(f\"{'=' * 60}\")\n    print(f\"{'Method':15s} \" + \" \".join(f\"{'gen'+str(i):>8s}\" for i in range(NUM_GENS)))\n    print(\"-\" * 85)\n    for method in METHODS:\n        row_parts = []\n        for gen_i in range(NUM_GENS):\n            ppls = []\n            for seed in method_availability[method]:\n                gens = data[method][seed]\n                g = [r for r in gens if r[\"gen\"] == gen_i]\n                if g and g[0][\"ppl\"] is not None:\n                    ppls.append(g[0][\"ppl\"])\n            if len(ppls) >= 2:\n                row_parts.append(f\"{np.mean(ppls):6.1f}({len(ppls)})\")\n            elif len(ppls) == 1:\n                row_parts.append(f\"{ppls[0]:6.1f}(1)\")\n            else:\n                row_parts.append(f\"{'--':>8s}\")\n        print(f\"{method:15s} \" + \" \".join(row_parts))\n\n    # -- Phase 4: Paired t-tests --\n    print(f\"\\n{'=' * 60}\")\n    print(\"Paired t-tests (gen7, across seeds)\")\n    print(f\"{'=' * 60}\")\n    test_metrics = [\"ppl\", \"rankme\", \"rare\"]\n    ttest_rows = []\n\n    for comp_name, method_a, method_b, hypothesis in COMPARISONS:\n        seeds_a = set(method_availability.get(method_a, []))\n        seeds_b = set(method_availability.get(method_b, []))\n        common_seeds = sorted(seeds_a & seeds_b)\n\n        # filter to seeds that have gen7\n        common_seeds = [s for s in common_seeds\n                        if (method_a, s) in method_seed_gen7\n                        and (method_b, s) in method_seed_gen7]\n\n        print(f\"\\n  {comp_name} -- {hypothesis}\")\n        if len(common_seeds) < 2:\n            print(f\"    Only {len(common_seeds)} common seeds with gen7 -- skipped\")\n            continue\n\n        if len(common_seeds) < 3:\n            print(f\"    WARNING: only {len(common_seeds)} seeds (need 3 for valid t-test)\")\n            print(f\"    Showing descriptive stats only:\")\n            for m in test_metrics:\n                va = [method_seed_gen7[(method_a, s)][m] for s in common_seeds\n                      if method_seed_gen7[(method_a, s)][m] is not None]\n                vb = [method_seed_gen7[(method_b, s)][m] for s in common_seeds\n                      if method_seed_gen7[(method_b, s)][m] is not None]\n                if va and vb:\n                    diff = np.mean(va) - np.mean(vb)\n                    print(f\"    {m:8s}: {method_a}={np.mean(va):.2f}, \"\n                          f\"{method_b}={np.mean(vb):.2f}, diff={diff:+.2f}\")\n                    ttest_rows.append({\n                        \"comparison\": comp_name, \"metric\": m,\n                        \"t_stat\": \"N/A\", \"p_value\": \"N/A\", \"cohens_d\": \"N/A\",\n                        \"mean_a\": f\"{np.mean(va):.4f}\", \"mean_b\": f\"{np.mean(vb):.4f}\",\n                        \"mean_diff\": f\"{diff:.4f}\", \"n_seeds\": len(common_seeds),\n                        \"sig\": \"PARTIAL\",\n                    })\n            continue\n\n        for m in test_metrics:\n            va = [method_seed_gen7[(method_a, s)][m] for s in common_seeds]\n            vb = [method_seed_gen7[(method_b, s)][m] for s in common_seeds]\n            if any(v is None for v in va + vb):\n                print(f\"    {m:8s}: missing values, skipped\")\n                continue\n            t_stat, p_val = stats.ttest_rel(va, vb)\n            d = cohens_d(va, vb)\n            mean_diff = np.mean(va) - np.mean(vb)\n            sig = \"***\" if p_val < 0.001 else \"**\" if p_val < 0.01 else \"*\" if p_val < 0.05 else \"ns\"\n            direction = f\"{method_a}>{method_b}\" if mean_diff > 0 else f\"{method_a}<{method_b}\"\n\n            print(f\"    {m:8s}: t={t_stat:+.3f}, p={p_val:.4f} {sig}, \"\n                  f\"d={d:+.2f}, diff={mean_diff:+.4f} ({direction})\")\n\n            ttest_rows.append({\n                \"comparison\": comp_name, \"metric\": m,\n                \"t_stat\": f\"{t_stat:.4f}\", \"p_value\": f\"{p_val:.6f}\",\n                \"cohens_d\": f\"{d:.4f}\",\n                \"mean_a\": f\"{np.mean(va):.4f}\", \"mean_b\": f\"{np.mean(vb):.4f}\",\n                \"mean_diff\": f\"{mean_diff:.4f}\", \"n_seeds\": len(common_seeds),\n                \"sig\": sig,\n            })\n\n    # -- Phase 5: Claim verification --\n    print(f\"\\n{'=' * 60}\")\n    print(\"Claim Verification Status\")\n    print(f\"{'=' * 60}\")\n\n    # C1: ratio degradation across seeds (RGDS has selection_rare_ngram_ratio)\n    print(\"\\n  C1: Diversity ratio degrades across generations\")\n    for method in [\"rgds\"]:\n        for seed in method_availability.get(method, []):\n            gens = data[method][seed]\n            ratios = [(r[\"gen\"], r[\"ratio\"]) for r in gens if r[\"ratio\"] is not None]\n            if ratios:\n                print(f\"    {method} seed={seed}: \" +\n                      \", \".join(f\"g{g}={v:.3f}\" for g, v in ratios))\n            else:\n                print(f\"    {method} seed={seed}: no ratio data\")\n\n    # C3: RGDS > random_50 ppl (worse) across seeds\n    print(\"\\n  C3: RGDS worse than Random-50 at same budget\")\n    for seed in sorted(set(method_availability.get(\"rgds\", [])) &\n                       set(method_availability.get(\"random_50\", []))):\n        g7_rgds = method_seed_gen7.get((\"rgds\", seed))\n        g7_rand = method_seed_gen7.get((\"random_50\", seed))\n        if g7_rgds and g7_rand and g7_rgds[\"ppl\"] is not None and g7_rand[\"ppl\"] is not None:\n            diff = g7_rgds[\"ppl\"] - g7_rand[\"ppl\"]\n            print(f\"    seed={seed}: rgds_ppl={g7_rgds['ppl']:.2f}, \"\n                  f\"random50_ppl={g7_rand['ppl']:.2f}, diff={diff:+.2f} \"\n                  f\"({'RGDS worse' if diff > 0 else 'RGDS better'})\")\n\n    # -- Phase 6: Write CSV --\n    if ttest_rows:\n        import csv\n        csv_path = OUT_DIR / \"355m_3seed_ttest.csv\"\n        fields = [\"comparison\", \"metric\", \"t_stat\", \"p_value\", \"cohens_d\",\n                   \"mean_a\", \"mean_b\", \"mean_diff\", \"n_seeds\", \"sig\"]\n        with open(csv_path, \"w\", newline=\"\") as f:\n            writer = csv.DictWriter(f, fieldnames=fields)\n            writer.writeheader()\n            for row in ttest_rows:\n                writer.writerow(row)\n        print(f\"\\nCSV written: {csv_path} ({len(ttest_rows)} rows)\")\n\n    # -- Summary --\n    total_available = sum(len(v) for v in method_availability.values())\n    total_possible = len(METHODS) * len(SEEDS)\n    print(f\"\\nData coverage: {total_available}/{total_possible} method-seed combos loaded\")\n    missing = [(m, s) for m in METHODS for s in SEEDS if s not in method_availability[m]]\n    if missing:\n        print(f\"Missing: {', '.join(f'{m}/s{s}' for m, s in missing)}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "4f935a57-758c-41ce-901a-1bf31bfe2b28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N85ypJD1K3FrzeXv19Qzo6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5138,
+      "cache_read_input_tokens": 24966,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5138
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T12:54:40.782Z_
+
+<details><summary>↩ Tool result · `toolu_01N8PDccMVFpVT24vMG4xxYF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "74575b78-af01-4d67-a5f4-4aca62ca05b8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+脚本已上传，现在执行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "877cfc74-22f3-4f02-a38a-e2bcb6481f8c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ld62Jug1aHTUYSMJ9Lpbk9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4621,
+      "cache_read_input_tokens": 30104,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4621
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_012CuWet7cvudv8Cn2GfPUkX`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/div_cal_verify && python artifacts/analyze_355m_3seed.py 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "2b2458e0-b105-4c23-8cd2-eedb99df5b6f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ld62Jug1aHTUYSMJ9Lpbk9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4621,
+      "cache_read_input_tokens": 30104,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4621
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T12:54:49.983Z_
+
+<details><summary>↩ Tool result · `toolu_012CuWet7cvudv8Cn2GfPUkX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nGPT2-medium (355M) 3-seed Analysis\\n============================================================\\n  OK    uncurated       seed=42: 8 gens (0-7) [all_results.json]\\n  OK    uncurated       seed=123: 8 gens (0-7) [all_results.json]\\n  OK    uncurated       seed=456: 8 gens (0-7) [all_results.json]\\n  OK    rgds            seed=42: 8 gens (0-7) [all_results.json]\\n  OK    rgds            seed=123: 8 gens (0-7) [all_results.json]\\n  OK    rgds            seed=456: 8 gens (0-7) [all_results.json]\\n  OK    external_only   seed=42: 8 gens (0-7) [all_results.json]\\n  OK    external_only   seed=123: 8 gens (0-7) [all_results.json]\\n  OK    external_only   seed=456: 8 gens (0-7) [all_results.json]\\n  OK    random_50       seed=42: 8 gens (0-7) [all_results.json]\\n  OK    random_50       seed=123: 8 gens (0-7) [all_results.json]\\n  OK    random_50       seed=456: 8 gens (0-7) [all_results.json]\\n\\n============================================================\\nGen7 Summary: mean +/- std (across seeds)\\n============================================================\\nMethod          Seeds                    ppl                rankme                  rare\\n--------------------------------------------------------------------------------\\nuncurated       3/3s       85.57 +/-   6.95    437.90 +/-   5.39      0.01 +/-   0.00\\nrgds            3/3s       86.38 +/-   3.72    429.31 +/-   4.00      0.02 +/-   0.00\\nexternal_only   3/3s       80.10 +/-   2.67    425.99 +/-   4.21      0.02 +/-   0.00\\nrandom_50       3/3s       70.64 +/-   1.75    421.16 +/-   5.77      0.01 +/-   0.00\\n\\n============================================================\\nPPL Trajectory (per gen, all seeds)\\n============================================================\\nMethod              gen0     gen1     gen2     gen3     gen4     gen5     gen6     gen7\\n-------------------------------------------------------------------------------------\\nuncurated         26.4(3)   35.2(3)   47.7(3)   59.3(3)   67.9(3)   76.5(3)   82.5(3)   85.6(3)\\nrgds              26.1(3)   33.1(3)   42.2(3)   51.2(3)   59.3(3)   67.5(3)   75.8(3)   86.4(3)\\nexternal_only     26.2(3)   33.5(3)   43.1(3)   51.0(3)   60.3(3)   68.8(3)   75.6(3)   80.1(3)\\nrandom_50         26.2(3)   33.2(3)   42.2(3)   50.4(3)   57.9(3)   64.4(3)   71.3(3)   70.6(3)\\n\\n============================================================\\nPaired t-tests (gen7, across seeds)\\n============================================================\\n\\n  rgds_vs_uncurated -- C1: RGDS accelerates collapse\\n    ppl     : t=+0.161, p=0.8868 ns, d=+0.09, diff=+0.8077 (rgds>uncurated)\\n    rankme  : t=-1.587, p=0.2534 ns, d=-0.92, diff=-8.5938 (rgds&lt;uncurated)\\n    rare    : t=+4.360, p=0.0488 *, d=+2.52, diff=+0.0019 (rgds>uncurated)\\n\\n  ext_vs_uncurated -- C2: external mitigates collapse\\n    ppl     : t=-0.985, p=0.4285 ns, d=-0.57, diff=-5.4718 (external_only&lt;uncurated)\\n    rankme  : t=-2.250, p=0.1534 ns, d=-1.30, diff=-11.9096 (external_only&lt;uncurated)\\n    rare    : t=+29.159, p=0.0012 **, d=+16.83, diff=+0.0025 (external_only>uncurated)\\n\\n  rgds_vs_random50 -- C3: RGDS worse than random same-budget\\n    ppl     : t=+9.923, p=0.0100 *, d=+5.73, diff=+15.7361 (rgds>random_50)\\n    rankme  : t=+1.496, p=0.2733 ns, d=+0.86, diff=+8.1465 (rgds>random_50)\\n    rare    : t=+4.915, p=0.0390 *, d=+2.84, diff=+0.0027 (rgds>random_50)\\n\\n  ext_vs_random50 -- C2: external vs random same-budget\\n    ppl     : t=+4.272, p=0.0507 ns, d=+2.47, diff=+9.4566 (external_only>random_50)\\n    rankme  : t=+0.960, p=0.4385 ns, d=+0.55, diff=+4.8307 (external_only>random_50)\\n    rare    : t=+16.296, p=0.0037 **, d=+9.41, diff=+0.0033 (external_only>random_50)\\n\\n============================================================\\nClaim Verification Status\\n============================================================\\n\\n  C1: Diversity ratio degrades across generations\\n    rgds seed=42: g0=0.976, g1=0.999, g2=0.922, g3=0.913, g4=0.799, g5=0.900, g6=0.762, g7=0.831\\n    rgds seed=123: g0=0.962, g1=0.889, g2=0.945, g3=0.847, g4=0.944, g5=0.900, g6=0.936, g7=0.873\\n    rgds seed=456: g0=0.923, g1=0.914, g2=0.919, g3=0.872, g4=0.954, g5=0.848, g6=0.893, g7=0.790\\n\\n  C3: RGDS worse than Random-50 at same budget\\n    seed=42: rgds_ppl=82.84, random50_ppl=70.25, diff=+12.60 (RGDS worse)\\n    seed=123: rgds_ppl=90.25, random50_ppl=72.55, diff=+17.70 (RGDS worse)\\n    seed=456: rgds_ppl=86.03, random50_ppl=69.12, diff=+16.91 (RGDS worse)\\n\\nCSV written: /root/div_cal_verify/artifacts/355m_3seed_ttest.csv (12 rows)\\n\\nData coverage: 12/12 method-seed combos loaded\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "f2502a24-981d-4d98-9e99-a14026f9ca28",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nGPT2-medium (355M) 3-seed Analysis\\\\n============================================================\\\\n  OK    uncurated       seed=42: 8 gens (0-7) [all_results.json]\\\\n  OK    uncurated       seed=123: 8 gens (0-7) [all_results.json]\\\\n  OK    uncurated       seed=456: 8 gens (0-7) [all_results.json]\\\\n  OK    rgds            seed=42: 8 gens (0-7) [all_results.json]\\\\n  OK    rgds            seed=123: 8 gens (0-7) [all_results.json]\\\\n  OK    rgds            seed=456: 8 gens (0-7) [all_results.json]\\\\n  OK    external_only   seed=42: 8 gens (0-7) [all_results.json]\\\\n  OK    external_only   seed=123: 8 gens (0-7) [all_results.json]\\\\n  OK    external_only   seed=456: 8 gens (0-7) [all_results.json]\\\\n  OK    random_50       seed=42: 8 gens (0-7) [all_results.json]\\\\n  OK    random_50       seed=123: 8 gens (0-7) [all_results.json]\\\\n  OK    random_50       seed=456: 8 gens (0-7) [all_results.json]\\\\n\\\\n============================================================\\\\nGen7 Summary: mean +/- std (across seeds)\\\\n============================================================\\\\nMethod          Seeds                    ppl                rankme                  rare\\\\n--------------------------------------------------------------------------------\\\\nuncurated       3/3s       85.57 +/-   6.95    437.90 +/-   5.39      0.01 +/-   0.00\\\\nrgds            3/3s       86.38 +/-   3.72    429.31 +/-   4.00      0.02 +/-   0.00\\\\nexternal_only   3/3s       80.10 +/-   2.67    425.99 +/-   4.21      0.02 +/-   0.00\\\\nrandom_50       3/3s       70.64 +/-   1.75    421.16 +/-   5.77      0.01 +/-   0.00\\\\n\\\\n============================================================\\\\nPPL Trajectory (per gen, all seeds)\\\\n============================================================\\\\nMethod              gen0     gen1     gen2     gen3     gen4     gen5     gen6     gen7\\\\n-------------------------------------------------------------------------------------\\\\nuncurated         26.4(3)   35.2(3)   47.7(3)   59.3(3)   67.9(3)   76.5(3)   82.5(3)   85.6(3)\\\\nrgds              26.1(3)   33.1(3)   42.2(3)   51.2(3)   59.3(3)   67.5(3)   75.8(3)   86.4(3)\\\\nexternal_only     26.2(3)   33.5(3)   43.1(3)   51.0(3)   60.3(3)   68.8(3)   75.6(3)   80.1(3)\\\\nrandom_50         26.2(3)   33.2(3)   42.2(3)   50.4(3)   57.9(3)   64.4(3)   71.3(3)   70.6(3)\\\\n\\\\n============================================================\\\\nPaired t-tests (gen7, across seeds)\\\\n============================================================\\\\n\\\\n  rgds_vs_uncurated -- C1: RGDS accelerates collapse\\\\n    ppl     : t=+0.161, p=0.8868 ns, d=+0.09, diff=+0.8077 (rgds>uncurated)\\\\n    rankme  : t=-1.587, p=0.2534 ns, d=-0.92, diff=-8.5938 (rgds&lt;uncurated)\\\\n    rare    : t=+4.360, p=0.0488 *, d=+2.52, diff=+0.0019 (rgds>uncurated)\\\\n\\\\n  ext_vs_uncurated -- C2: external mitigates collapse\\\\n    ppl     : t=-0.985, p=0.4285 ns, d=-0.57, diff=-5.4718 (external_only&lt;uncurated)\\\\n    rankme  : t=-2.250, p=0.1534 ns, d=-1.30, diff=-11.9096 (external_only&lt;uncurated)\\\\n    rare    : t=+29.159, p=0.0012 **, d=+16.83, diff=+0.0025 (external_only>uncurated)\\\\n\\\\n  rgds_vs_random50 -- C3: RGDS worse than random same-budget\\\\n    ppl     : t=+9.923, p=0.0100 *, d=+5.73, diff=+15.7361 (rgds>random_50)\\\\n    rankme  : t=+1.496, p=0.2733 ns, d=+0.86, diff=+8.1465 (rgds>random_50)\\\\n    rare    : t=+4.915, p=0.0390 *, d=+2.84, diff=+0.0027 (rgds>random_50)\\\\n\\\\n  ext_vs_random50 -- C2: external vs random same-budget\\\\n    ppl     : t=+4.272, p=0.0507 ns, d=+2.47, diff=+9.4566 (external_only>random_50)\\\\n    rankme  : t=+0.960, p=0.4385 ns, d=+0.55, diff=+4.8307 (external_only>random_50)\\\\n    rare    : t=+16.296, p=0.0037 **, d=+9.41, diff=+0.0033 (external_only>random_50)\\\\n\\\\n============================================================\\\\nClaim Verification Status\\\\n============================================================\\\\n\\\\n  C1: Diversity ratio degrades across generations\\\\n    rgds seed=42: g0=0.976, g1=0.999, g2=0.922, g3=0.913, g4=0.799, g5=0.900, g6=0.762, g7=0.831\\\\n    rgds seed=123: g0=0.962, g1=0.889, g2=0.945, g3=0.847, g4=0.944, g5=0.900, g6=0.936, g7=0.873\\\\n    rgds seed=456: g0=0.923, g1=0.914, g2=0.919, g3=0.872, g4=0.954, g5=0.848, g6=0.893, g7=0.790\\\\n\\\\n  C3: RGDS worse than Random-50 at same budget\\\\n    seed=42: rgds_ppl=82.84, random50_ppl=70.25, diff=+12.60 (RGDS worse)\\\\n    seed=123: rgds_ppl=90.25, random50_ppl=72.55, diff=+17.70 (RGDS worse)\\\\n    seed=456: rgds_ppl=86.03, random50_ppl=69.12, diff=+16.91 (RGDS worse)\\\\n\\\\nCSV written: /root/div_cal_verify/artifacts/355m_3seed_ttest.csv (12 rows)\\\\n\\\\nData coverage: 12/12 method-seed combos loaded\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.23}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nGPT2-medium (355M) 3-seed Analysis\\n============================================================\\n  OK    uncurated       seed=42: 8 gens (0-7) [all_results.json]\\n  OK    uncurated       seed=123: 8 gens (0-7) [all_results.json]\\n  OK    uncurated       seed=456: 8 gens (0-7) [all_results.json]\\n  OK    rgds            seed=42: 8 gens (0-7) [all_results.json]\\n  OK    rgds            seed=123: 8 gens (0-7) [all_results.json]\\n  OK    rgds            seed=456: 8 gens (0-7) [all_results.json]\\n  OK    external_only   seed=42: 8 gens (0-7) [all_results.json]\\n  OK    external_only   seed=123: 8 gens (0-7) [all_results.json]\\n  OK    external_only   seed=456: 8 gens (0-7) [all_results.json]\\n  OK    random_50       seed=42: 8 gens (0-7) [all_results.json]\\n  OK    random_50       seed=123: 8 gens (0-7) [all_results.json]\\n  OK    random_50       seed=456: 8 gens (0-7) [all_results.json]\\n\\n============================================================\\nGen7 Summary: mean +/- std (across seeds)\\n============================================================\\nMethod          Seeds                    ppl                rankme                  rare\\n--------------------------------------------------------------------------------\\nuncurated       3/3s       85.57 +/-   6.95    437.90 +/-   5.39      0.01 +/-   0.00\\nrgds            3/3s       86.38 +/-   3.72    429.31 +/-   4.00      0.02 +/-   0.00\\nexternal_only   3/3s       80.10 +/-   2.67    425.99 +/-   4.21      0.02 +/-   0.00\\nrandom_50       3/3s       70.64 +/-   1.75    421.16 +/-   5.77      0.01 +/-   0.00\\n\\n============================================================\\nPPL Trajectory (per gen, all seeds)\\n============================================================\\nMethod              gen0     gen1     gen2     gen3     gen4     gen5     gen6     gen7\\n-------------------------------------------------------------------------------------\\nuncurated         26.4(3)   35.2(3)   47.7(3)   59.3(3)   67.9(3)   76.5(3)   82.5(3)   85.6(3)\\nrgds              26.1(3)   33.1(3)   42.2(3)   51.2(3)   59.3(3)   67.5(3)   75.8(3)   86.4(3)\\nexternal_only     26.2(3)   33.5(3)   43.1(3)   51.0(3)   60.3(3)   68.8(3)   75.6(3)   80.1(3)\\nrandom_50         26.2(3)   33.2(3)   42.2(3)   50.4(3)   57.9(3)   64.4(3)   71.3(3)   70.6(3)\\n\\n============================================================\\nPaired t-tests (gen7, across seeds)\\n============================================================\\n\\n  rgds_vs_uncurated -- C1: RGDS accelerates collapse\\n    ppl     : t=+0.161, p=0.8868 ns, d=+0.09, diff=+0.8077 (rgds>uncurated)\\n    rankme  : t=-1.587, p=0.2534 ns, d=-0.92, diff=-8.5938 (rgds&lt;uncurated)\\n    rare    : t=+4.360, p=0.0488 *, d=+2.52, diff=+0.0019 (rgds>uncurated)\\n\\n  ext_vs_uncurated -- C2: external mitigates collapse\\n    ppl     : t=-0.985, p=0.4285 ns, d=-0.57, diff=-5.4718 (external_only&lt;uncurated)\\n    rankme  : t=-2.250, p=0.1534 ns, d=-1.30, diff=-11.9096 (external_only&lt;uncurated)\\n    rare    : t=+29.159, p=0.0012 **, d=+16.83, diff=+0.0025 (external_only>uncurated)\\n\\n  rgds_vs_random50 -- C3: RGDS worse than random same-budget\\n    ppl     : t=+9.923, p=0.0100 *, d=+5.73, diff=+15.7361 (rgds>random_50)\\n    rankme  : t=+1.496, p=0.2733 ns, d=+0.86, diff=+8.1465 (rgds>random_50)\\n    rare    : t=+4.915, p=0.0390 *, d=+2.84, diff=+0.0027 (rgds>random_50)\\n\\n  ext_vs_random50 -- C2: external vs random same-budget\\n    ppl     : t=+4.272, p=0.0507 ns, d=+2.47, diff=+9.4566 (external_only>random_50)\\n    rankme  : t=+0.960, p=0.4385 ns, d=+0.55, diff=+4.8307 (external_only>random_50)\\n    rare    : t=+16.296, p=0.0037 **, d=+9.41, diff=+0.0033 (external_only>random_50)\\n\\n============================================================\\nClaim Verification Status\\n============================================================\\n\\n  C1: Diversity ratio degrades across generations\\n    rgds seed=42: g0=0.976, g1=0.999, g2=0.922, g3=0.913, g4=0.799, g5=0.900, g6=0.762, g7=0.831\\n    rgds seed=123: g0=0.962, g1=0.889, g2=0.945, g3=0.847, g4=0.944, g5=0.900, g6=0.936, g7=0.873\\n    rgds seed=456: g0=0.923, g1=0.914, g2=0.919, g3=0.872, g4=0.954, g5=0.848, g6=0.893, g7=0.790\\n\\n  C3: RGDS worse than Random-50 at same budget\\n    seed=42: rgds_ppl=82.84, random50_ppl=70.25, diff=+12.60 (RGDS worse)\\n    seed=123: rgds_ppl=90.25, random50_ppl=72.55, diff=+17.70 (RGDS worse)\\n    seed=456: rgds_ppl=86.03, random50_ppl=69.12, diff=+16.91 (RGDS worse)\\n\\nCSV written: /root/div_cal_verify/artifacts/355m_3seed_ttest.csv (12 rows)\\n\\nData coverage: 12/12 method-seed combos loaded\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+脚本成功，12/12 全覆盖。现在做交叉验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "46600bd8-df2e-48c8-8154-41ba28d1aa13",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BTTkL4dgCV1hhkpoAwQDTG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2210,
+      "cache_read_input_tokens": 34725,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2210
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UJRq93JNvXnfxeh3djd5qZ`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/div_cal_verify/results_medium_rgds_seed456/rgds/gen_7/metrics.json') as f:\n    d = json.load(f)\nprint('rgds s456 gen7 ppl:', d.get('held_out_perplexity', 'NOT FOUND'))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "588b0d15-a7b3-42e8-bd86-8262359a511d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BTTkL4dgCV1hhkpoAwQDTG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2210,
+      "cache_read_input_tokens": 34725,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2210
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T12:54:56.128Z_
+
+<details><summary>↩ Tool result · `toolu_01UJRq93JNvXnfxeh3djd5qZ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "c315928f-ac48-482d-85dd-c55721d11d01",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LMcSmA88s2tALR8DUp4c2n`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/div_cal_verify/results_medium_random50_seed456/random_50/gen_7/metrics.json') as f:\n    d = json.load(f)\nprint('random50 s456 gen7 ppl:', d.get('held_out_perplexity', 'NOT FOUND'))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "0f42eb2f-854d-4fdb-b366-2a16753aa5f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BTTkL4dgCV1hhkpoAwQDTG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2210,
+      "cache_read_input_tokens": 34725,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2210
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T12:54:57.122Z_
+
+<details><summary>↩ Tool result · `toolu_01LMcSmA88s2tALR8DUp4c2n`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "7410ed73-ec7c-4d1e-8db6-f7efc2904c7a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0166KNaopqptjqkYEGvEis9w`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/div_cal_verify/results_medium_uncurated_seed123/uncurated/gen_7/metrics.json') as f:\n    d = json.load(f)\nprint('uncurated s123 gen7 ppl:', d.get('held_out_perplexity', 'NOT FOUND'))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "3a18963e-0abf-4cc4-a665-9084bb5c59fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BTTkL4dgCV1hhkpoAwQDTG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2210,
+      "cache_read_input_tokens": 34725,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2210
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T12:54:58.983Z_
+
+<details><summary>↩ Tool result · `toolu_0166KNaopqptjqkYEGvEis9w`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "adcdcd69-7a3a-41ab-864d-ebec13d8fbd8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+用 cat + grep 来验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "e30cbb10-1693-46d2-bb40-92bbc3fa02db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HJHPAWcXMLm5c1uj59AaQX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 940,
+      "cache_read_input_tokens": 36935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 940
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QDHU2FFtfWRXnhzCEMxDao`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "grep held_out_perplexity /root/autodl-tmp/div_cal_verify/results_medium_rgds_seed456/rgds/gen_7/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "75fd44c1-b78a-4c05-8ca5-74c7452f8714",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HJHPAWcXMLm5c1uj59AaQX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 940,
+      "cache_read_input_tokens": 36935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 940
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T12:55:09.426Z_
+
+<details><summary>↩ Tool result · `toolu_01QDHU2FFtfWRXnhzCEMxDao`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"held_out_perplexity\\\": 86.03492530280415,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "7b2fb420-df90-4849-960e-846a5cc2537f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"held_out_perplexity\\\\\\\": 86.03492530280415,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  \\\"held_out_perplexity\\\": 86.03492530280415,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0177sKa1QmkBPmRNgqJD5GCk`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "grep held_out_perplexity /root/autodl-tmp/div_cal_verify/results_medium_random50_seed456/random_50/gen_7/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "af4da9cd-5b09-4631-9aeb-de6b2f07b7d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HJHPAWcXMLm5c1uj59AaQX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 940,
+      "cache_read_input_tokens": 36935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 940
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-14T12:55:10.145Z_
+
+<details><summary>↩ Tool result · `toolu_0177sKa1QmkBPmRNgqJD5GCk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"held_out_perplexity\\\": 69.12277833430896,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "aab520b0-c04b-4f9a-805a-b73f893268a6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"held_out_perplexity\\\\\\\": 69.12277833430896,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  \\\"held_out_perplexity\\\": 69.12277833430896,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01K27ZAmV2TftcLshLGJHoFV`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "grep held_out_perplexity /root/autodl-tmp/div_cal_verify/results_medium_uncurated_seed123/uncurated/gen_7/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "f67d8b9e-d744-4185-9ebb-29f4964a765e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HJHPAWcXMLm5c1uj59AaQX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 940,
+      "cache_read_input_tokens": 36935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 940
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T12:55:10.933Z_
+
+<details><summary>↩ Tool result · `toolu_01K27ZAmV2TftcLshLGJHoFV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"held_out_perplexity\\\": 87.05072830321437,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "d296ab46-26d8-41d6-91c5-b37a8bb5cbc4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"held_out_perplexity\\\\\\\": 87.05072830321437,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  \\\"held_out_perplexity\\\": 87.05072830321437,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+交叉验证全部匹配。以下是完整报告。
+
+---
+
+## 脚本完整输出（逐字）
+
+```
+============================================================
+GPT2-medium (355M) 3-seed Analysis
+============================================================
+  OK    uncurated       seed=42: 8 gens (0-7) [all_results.json]
+  OK    uncurated       seed=123: 8 gens (0-7) [all_results.json]
+  OK    uncurated       seed=456: 8 gens (0-7) [all_results.json]
+  OK    rgds            seed=42: 8 gens (0-7) [all_results.json]
+  OK    rgds            seed=123: 8 gens (0-7) [all_results.json]
+  OK    rgds            seed=456: 8 gens (0-7) [all_results.json]
+  OK    external_only   seed=42: 8 gens (0-7) [all_results.json]
+  OK    external_only   seed=123: 8 gens (0-7) [all_results.json]
+  OK    external_only   seed=456: 8 gens (0-7) [all_results.json]
+  OK    random_50       seed=42: 8 gens (0-7) [all_results.json]
+  OK    random_50       seed=123: 8 gens (0-7) [all_results.json]
+  OK    random_50       seed=456: 8 gens (0-7) [all_results.json]
+
+============================================================
+Gen7 Summary: mean +/- std (across seeds)
+============================================================
+Method          Seeds                    ppl                rankme                  rare
+--------------------------------------------------------------------------------
+uncurated       3/3s       85.57 +/-   6.95    437.90 +/-   5.39      0.01 +/-   0.00
+rgds            3/3s       86.38 +/-   3.72    429.31 +/-   4.00      0.02 +/-   0.00
+external_only   3/3s       80.10 +/-   2.67    425.99 +/-   4.21      0.02 +/-   0.00
+random_50       3/3s       70.64 +/-   1.75    421.16 +/-   5.77      0.01 +/-   0.00
+
+============================================================
+PPL Trajectory (per gen, all seeds)
+============================================================
+Method              gen0     gen1     gen2     gen3     gen4     gen5     gen6     gen7
+-------------------------------------------------------------------------------------
+uncurated         26.4(3)   35.2(3)   47.7(3)   59.3(3)   67.9(3)   76.5(3)   82.5(3)   85.6(3)
+rgds              26.1(3)   33.1(3)   42.2(3)   51.2(3)   59.3(3)   67.5(3)   75.8(3)   86.4(3)
+external_only     26.2(3)   33.5(3)   43.1(3)   51.0(3)   60.3(3)   68.8(3)   75.6(3)   80.1(3)
+random_50         26.2(3)   33.2(3)   42.2(3)   50.4(3)   57.9(3)   64.4(3)   71.3(3)   70.6(3)
+
+============================================================
+Paired t-tests (gen7, across seeds)
+============================================================
+
+  rgds_vs_uncurated -- C1: RGDS accelerates collapse
+    ppl     : t=+0.161, p=0.8868 ns, d=+0.09, diff=+0.8077 (rgds>uncurated)
+    rankme  : t=-1.587, p=0.2534 ns, d=-0.92, diff=-8.5938 (rgds&lt;uncurated)
+    rare    : t=+4.360, p=0.0488 *, d=+2.52, diff=+0.0019 (rgds>uncurated)
+
+  ext_vs_uncurated -- C2: external mitigates collapse
+    ppl     : t=-0.985, p=0.4285 ns, d=-0.57, diff=-5.4718 (external_only&lt;uncurated)
+    rankme  : t=-2.250, p=0.1534 ns, d=-1.30, diff=-11.9096 (external_only&lt;uncurated)
+    rare    : t=+29.159, p=0.0012 **, d=+16.83, diff=+0.0025 (external_only>uncurated)
+
+  rgds_vs_random50 -- C3: RGDS worse than random same-budget
+    ppl     : t=+9.923, p=0.0100 *, d=+5.73, diff=+15.7361 (rgds>random_50)
+    rankme  : t=+1.496, p=0.2733 ns, d=+0.86, diff=+8.1465 (rgds>random_50)
+    rare    : t=+4.915, p=0.0390 *, d=+2.84, diff=+0.0027 (rgds>random_50)
+
+  ext_vs_random50 -- C2: external vs random same-budget
+    ppl     : t=+4.272, p=0.0507 ns, d=+2.47, diff=+9.4566 (external_only>random_50)
+    rankme  : t=+0.960, p=0.4385 ns, d=+0.55, diff=+4.8307 (external_only>random_50)
+    rare    : t=+16.296, p=0.0037 **, d=+9.41, diff=+0.0033 (external_only>random_50)
+
+============================================================
+Claim Verification Status
+============================================================
+
+  C1: Diversity ratio degrades across generations
+    rgds seed=42: g0=0.976, g1=0.999, g2=0.922, g3=0.913, g4=0.799, g5=0.900, g6=0.762, g7=0.831
+    rgds seed=123: g0=0.962, g1=0.889, g2=0.945, g3=0.847, g4=0.944, g5=0.900, g6=0.936, g7=0.873
+    rgds seed=456: g0=0.923, g1=0.914, g2=0.919, g3=0.872, g4=0.954, g5=0.848, g6=0.893, g7=0.790
+
+  C3: RGDS worse than Random-50 at same budget
+    seed=42: rgds_ppl=82.84, random50_ppl=70.25, diff=+12.60 (RGDS worse)
+    seed=123: rgds_ppl=90.25, random50_ppl=72.55, diff=+17.70 (RGDS worse)
+    seed=456: rgds_ppl=86.03, random50_ppl=69.12, diff=+16.91 (RGDS worse)
+
+CSV written: /root/div_cal_verify/artifacts/355m_3seed_ttest.csv (12 rows)
+
+Data coverage: 12/12 method-seed combos loaded
+```
+
+## 交叉验证
+
+| 验证项 | metrics.json 原值 | 脚本使用值 | 匹配 |
+|--------|-------------------|-----------|------|
+| rgds s456 gen7 PPL | 86.0349... | 86.03 | ✓ |
+| random50 s456 gen7 PPL | 69.1228... | 69.12 | ✓ |
+| uncurated s123 gen7 PPL | 87.0507... | (mean 85.57 包含此值) | ✓ |
+
+## 一句话总结
+
+**显著的比较：** RGDS vs Random50 的 PPL (p=0.0100\*) 和 rare (p=0.0390\*) 显著，确认 C3（RGDS 比同预算随机选择更差）；ext vs uncurated 的 rare (p=0.0012\*\*) 和 ext vs random50 的 rare (p=0.0037\*\*) 显著。
+
+**不显著：** RGDS vs Uncurated 的 PPL (p=0.8868) 完全不显著——Uncurated 自身方差太大 (SD=6.95) 吞掉了差异；ext vs uncurated 的 PPL (p=0.4285) 同理；ext vs random50 的 PPL (p=0.0507) 刚好卡在边界未达显著（95% CI 包含 0）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "uuid": "13e270b5-14a4-4af9-8a50-5fb752916c67",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CjVTr9yAh2yavEZiQVmqwY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 897,
+      "cache_read_input_tokens": 37875,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 897
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 39_
+
+交叉验证全部匹配。以下是完整报告。
+
+---
+
+## 脚本完整输出（逐字）
+
+```
+============================================================
+GPT2-medium (355M) 3-seed Analysis
+============================================================
+  OK    uncurated       seed=42: 8 gens (0-7) [all_results.json]
+  OK    uncurated       seed=123: 8 gens (0-7) [all_results.json]
+  OK    uncurated       seed=456: 8 gens (0-7) [all_results.json]
+  OK    rgds            seed=42: 8 gens (0-7) [all_results.json]
+  OK    rgds            seed=123: 8 gens (0-7) [all_results.json]
+  OK    rgds            seed=456: 8 gens (0-7) [all_results.json]
+  OK    external_only   seed=42: 8 gens (0-7) [all_results.json]
+  OK    external_only   seed=123: 8 gens (0-7) [all_results.json]
+  OK    external_only   seed=456: 8 gens (0-7) [all_results.json]
+  OK    random_50       seed=42: 8 gens (0-7) [all_results.json]
+  OK    random_50       seed=123: 8 gens (0-7) [all_results.json]
+  OK    random_50       seed=456: 8 gens (0-7) [all_results.json]
+
+============================================================
+Gen7 Summary: mean +/- std (across seeds)
+============================================================
+Method          Seeds                    ppl                rankme                  rare
+--------------------------------------------------------------------------------
+uncurated       3/3s       85.57 +/-   6.95    437.90 +/-   5.39      0.01 +/-   0.00
+rgds            3/3s       86.38 +/-   3.72    429.31 +/-   4.00      0.02 +/-   0.00
+external_only   3/3s       80.10 +/-   2.67    425.99 +/-   4.21      0.02 +/-   0.00
+random_50       3/3s       70.64 +/-   1.75    421.16 +/-   5.77      0.01 +/-   0.00
+
+============================================================
+PPL Trajectory (per gen, all seeds)
+============================================================
+Method              gen0     gen1     gen2     gen3     gen4     gen5     gen6     gen7
+-------------------------------------------------------------------------------------
+uncurated         26.4(3)   35.2(3)   47.7(3)   59.3(3)   67.9(3)   76.5(3)   82.5(3)   85.6(3)
+rgds              26.1(3)   33.1(3)   42.2(3)   51.2(3)   59.3(3)   67.5(3)   75.8(3)   86.4(3)
+external_only     26.2(3)   33.5(3)   43.1(3)   51.0(3)   60.3(3)   68.8(3)   75.6(3)   80.1(3)
+random_50         26.2(3)   33.2(3)   42.2(3)   50.4(3)   57.9(3)   64.4(3)   71.3(3)   70.6(3)
+
+============================================================
+Paired t-tests (gen7, across seeds)
+============================================================
+
+  rgds_vs_uncurated -- C1: RGDS accelerates collapse
+    ppl     : t=+0.161, p=0.8868 ns, d=+0.09, diff=+0.8077 (rgds>uncurated)
+    rankme  : t=-1.587, p=0.2534 ns, d=-0.92, diff=-8.5938 (rgds&lt;uncurated)
+    rare    : t=+4.360, p=0.0488 *, d=+2.52, diff=+0.0019 (rgds>uncurated)
+
+  ext_vs_uncurated -- C2: external mitigates collapse
+    ppl     : t=-0.985, p=0.4285 ns, d=-0.57, diff=-5.4718 (external_only&lt;uncurated)
+    rankme  : t=-2.250, p=0.1534 ns, d=-1.30, diff=-11.9096 (external_only&lt;uncurated)
+    rare    : t=+29.159, p=0.0012 **, d=+16.83, diff=+0.0025 (external_only>uncurated)
+
+  rgds_vs_random50 -- C3: RGDS worse than random same-budget
+    ppl     : t=+9.923, p=0.0100 *, d=+5.73, diff=+15.7361 (rgds>random_50)
+    rankme  : t=+1.496, p=0.2733 ns, d=+0.86, diff=+8.1465 (rgds>random_50)
+    rare    : t=+4.915, p=0.0390 *, d=+2.84, diff=+0.0027 (rgds>random_50)
+
+  ext_vs_random50 -- C2: external vs random same-budget
+    ppl     : t=+4.272, p=0.0507 ns, d=+2.47, diff=+9.4566 (external_only>random_50)
+    rankme  : t=+0.960, p=0.4385 ns, d=+0.55, diff=+4.8307 (external_only>random_50)
+    rare    : t=+16.296, p=0.0037 **, d=+9.41, diff=+0.0033 (external_only>random_50)
+
+============================================================
+Claim Verification Status
+============================================================
+
+  C1: Diversity ratio degrades across generations
+    rgds seed=42: g0=0.976, g1=0.999, g2=0.922, g3=0.913, g4=0.799, g5=0.900, g6=0.762, g7=0.831
+    rgds seed=123: g0=0.962, g1=0.889, g2=0.945, g3=0.847, g4=0.944, g5=0.900, g6=0.936, g7=0.873
+    rgds seed=456: g0=0.923, g1=0.914, g2=0.919, g3=0.872, g4=0.954, g5=0.848, g6=0.893, g7=0.790
+
+  C3: RGDS worse than Random-50 at same budget
+    seed=42: rgds_ppl=82.84, random50_ppl=70.25, diff=+12.60 (RGDS worse)
+    seed=123: rgds_ppl=90.25, random50_ppl=72.55, diff=+17.70 (RGDS worse)
+    seed=456: rgds_ppl=86.03, random50_ppl=69.12, diff=+16.91 (RGDS worse)
+
+CSV written: /root/div_cal_verify/artifacts/355m_3seed_ttest.csv (12 rows)
+
+Data coverage: 12/12 method-seed combos loaded
+```
+
+## 交叉验证
+
+| 验证项 | metrics.json 原值 | 脚本使用值 | 匹配 |
+|--------|-------------------|-----------|------|
+| rgds s456 gen7 PPL | 86.0349... | 86.03 | ✓ |
+| random50 s456 gen7 PPL | 69.1228... | 69.12 | ✓ |
+| uncurated s123 gen7 PPL | 87.0507... | (mean 85.57 包含此值) | ✓ |
+
+## 一句话总结
+
+**显著的比较：** RGDS vs Random50 的 PPL (p=0.0100\*) 和 rare (p=0.0390\*) 显著，确认 C3（RGDS 比同预算随机选择更差）；ext vs uncurated 的 rare (p=0.0012\*\*) 和 ext vs random50 的 rare (p=0.0037\*\*) 显著。
+
+**不显著：** RGDS vs Uncurated 的 PPL (p=0.8868) 完全不显著——Uncurated 自身方差太大 (SD=6.95) 吞掉了差异；ext vs uncurated 的 PPL (p=0.4285) 同理；ext vs random50 的 PPL (p=0.0507) 刚好卡在边界未达显著（95% CI 包含 0）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 122669,
+  "duration_api_ms": 120297,
+  "num_turns": 14,
+  "stop_reason": "end_turn",
+  "session_id": "4fc80c73-5ff9-4f92-9ae8-68c0a27129d4",
+  "total_cost_usd": 0.52125475,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 26931,
+    "cache_read_input_tokens": 273464,
+    "output_tokens": 8582,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 26931,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 2328,
+        "cache_read_input_tokens": 37875,
+        "cache_creation_input_tokens": 897,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 897
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1489,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0015840000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 14,
+      "outputTokens": 8582,
+      "cacheReadInputTokens": 273464,
+      "cacheCreationInputTokens": 26931,
+      "webSearchRequests": 0,
+      "costUSD": 0.5196707500000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "19d7ba24-395a-4fe3-ae78-505bcf32d020"
+}
+```
+
+</details>
+
+---

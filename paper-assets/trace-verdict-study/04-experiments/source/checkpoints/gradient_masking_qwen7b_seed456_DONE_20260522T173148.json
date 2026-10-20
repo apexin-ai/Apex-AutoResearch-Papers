@@ -1,0 +1,71 @@
+{
+  "exp_id": "gradient_masking_qwen7b_seed456",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T14:59:22.718Z",
+    "updated_at": "2026-05-22T17:31:48.573Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/trace-verdict-study && /root/miniconda3/bin/python train/train_sft.py --condition exception_only --gpu 0 --gradient_mask_ratio 0.998 --gradient_checkpointing --seed 456 --wandb_project trace-verdict-study --wandb_run_name gradient_masking_qwen7b_seed456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/gradient_masking_qwen7b_seed456\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "815300",
+      "log_path": "~/runs/trace-verdict-study/gradient_masking_qwen7b_seed456.log",
+      "submitted_at": "2026-05-22T14:59:22.210Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/",
+      "data_count": 1190,
+      "model_name": "Qwen2.5-Coder-7B-Instruct",
+      "seed": 456,
+      "checkpoint_source": "trained_from_scratch",
+      "eval_data": "/root/autodl-tmp/trace-verdict-study-data/test/",
+      "wall_clock_seconds": 9146.4,
+      "gpu_hours": 2.54
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T16:16:37.982Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T16:16:41.493373+00:00"
+        }
+      ]
+    },
+    "hypothesis": "Gradient masking seed robustness (seed 456): gradient masking (keeping only top 0.2% gradient signals) on exception_only condition achieves comparable accuracy to seed42 and seed123, confirming that content quality explains ~95% of performance consistently across seeds.",
+    "parent": "gradient_masking_qwen7b_seed123",
+    "metrics": {
+      "accuracy": 0.9933,
+      "pass_precision": 1,
+      "pass_recall": 0.9906,
+      "pass_f1": 0.9953,
+      "fail_precision": 0.9769,
+      "fail_recall": 1,
+      "fail_f1": 0.9883,
+      "n": 1190,
+      "accuracy_ci": [
+        0.9882,
+        0.9975
+      ],
+      "majority_baseline": 0.7151,
+      "lift": 0.2782,
+      "eval_loss": 0.0381,
+      "train_loss": 1.6031
+    },
+    "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/gradient_masking_qwen7b_seed456/final",
+    "log_path": "~/runs/trace-verdict-study/gradient_masking_qwen7b_seed456.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-22T17:31:48.573Z"
+  },
+  "timestamp": "2026-05-22T17:31:48.936387+00:00",
+  "trigger": "update_registry"
+}

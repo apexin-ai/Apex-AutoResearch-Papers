@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ddd80206ef89591a74e",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper dataset limitations patch",
+  "task_key": "worker_paper_dataset_limitations_patch_20260515T195027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_dataset_limitations_patch_20260515T195027_result.json",
+    "occurrence": 1,
+    "bytes": 541,
+    "sha256": "02239f583e659f3bbff38e65062ee0d09ba29e7880bd3f2a17352c06cfceb359"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处修改已完成：\n\n1. **Dataset（method.tex L15-36）**：在数据集描述后新增 `\\paragraph{Deduplication statistics.}` 段落和 `Table 5`，披露了三个 split 的总行数/去重行数/重复率，解释了重复产生的原因（同题多个 passing 解在 exception\\_only 格式下映射为相同行），并明确 train-test input overlap = 0。\n\n2. **Limitations（discussion.tex L50）**：在 \"for transparency.\" 之后插入了一句关于 pass/fail 分布依赖生成模型能力的讨论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-dataset-limitations-patch.md"
+}

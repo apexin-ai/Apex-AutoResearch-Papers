@@ -1,0 +1,51 @@
+{
+  "exp_id": "full_trace_tail_1024_seed42",
+  "project": "trace-verdict-study",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:13:21.880Z",
+    "updated_at": "2026-05-17T10:29:52.856Z",
+    "hypothesis": "Tail-1024 token budget: tests diminishing returns of tail context. If tail-1024 approaches tail-2048 (97.3%), 1024 tokens already captures nearly all diagnostic signal; the extra 1024 tokens add marginal value",
+    "parent": "full_trace_tail_seed42",
+    "spec": {
+      "command": "python train/train_sft.py --condition full_trace_tail_1024 --truncation_side left --gradient_checkpointing --gpu 0 --seed 42 + eval",
+      "server": "westd-11235",
+      "gpu": "cuda:1",
+      "pid": 340169,
+      "log_path": "~/runs/trace-verdict-study/full_trace_tail_1024_seed42.log",
+      "submitted_at": "2026-05-17T08:20:01.416Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/full_trace_tail_1024_{train,test}.jsonl",
+      "data_count": {
+        "train": 4720,
+        "test": 1190
+      },
+      "model_name": "Qwen2.5-Coder-7B-Instruct",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_tail_1024_seed42",
+      "checkpoint_source": "self-trained",
+      "eval_data": "full_trace_tail_1024_test.jsonl",
+      "tmux_session": "full_trace_tail_1024_seed42"
+    },
+    "metrics": {
+      "accuracy": 0.9647,
+      "accuracy_ci": [
+        0.9546,
+        0.9748
+      ],
+      "majority_baseline": 0.7151,
+      "lift": 0.2496,
+      "n": 1190,
+      "pass_f1": 0.9753,
+      "fail_f1": 0.9381
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T10:29:53.020031+00:00",
+  "trigger": "update_registry"
+}

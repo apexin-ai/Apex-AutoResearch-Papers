@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3cdaf58b5635612a0366",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "check random50 tmux alive",
+  "task_key": "worker_check_random50_tmux_alive_20260513T170658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_random50_tmux_alive_20260513T170658_result.json",
+    "occurrence": 1,
+    "bytes": 686,
+    "sha256": "53b26713a99c070c7c7062e13837f102de5707fd53d4f33720ee47b6af4b53b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**两个 random_50 实验都在正常运行。**\n\n| 项目 | seed123 | seed456 |\n|------|---------|---------|\n| tmux session | `random_50_seed123` ✅ | `random_50_seed456` ✅ |\n| PID | 248465 (176% CPU) | 248464 (172% CPU) |\n| GPU | GPU 0, 12216MiB / 97887MiB, 98% util | GPU 1, 12216MiB / 97887MiB, 98% util |\n| 启动时间 | 01:05 | 01:05 |\n| 当前阶段 | gen_0（刚开始，目录已创建但还没产出文件） | gen_0（同上） |\n\n**状态：刚启动约 2 分钟，两个实验都在 generation 0 阶段做初始数据生成，GPU 满负荷运行，无错误。** gen_0 目录已创建但尚未写出结果文件，属于正常的初始阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-random50-tmux-alive.md"
+}

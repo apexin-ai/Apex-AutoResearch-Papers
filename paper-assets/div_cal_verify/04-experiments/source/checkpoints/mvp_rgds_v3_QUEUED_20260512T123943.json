@@ -1,0 +1,35 @@
+{
+  "exp_id": "mvp_rgds_v3",
+  "project": "div_cal_verify",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-12T12:31:40.361Z",
+    "updated_at": "2026-05-12T12:39:43.205Z",
+    "spec": {
+      "hypothesis": "RGDS internal diversity selection preserves representation quality and achieves >=5% PPL improvement over external-only (dual-GPU mode, fixed PCA alignment)",
+      "parent": "mvp_rgds_v2",
+      "model_name": "Qwen/Qwen3-1.7B + Qwen/Qwen3-4B",
+      "server": "westd-11235",
+      "data_path": "/root/div_cal_verify/data/",
+      "data_count": 237666,
+      "seed": 42,
+      "hyperparams": {
+        "method": "rgds",
+        "num_generations": 4,
+        "lr": 2e-05,
+        "batch_size": 4,
+        "grad_accum": 8,
+        "seq_len": 512,
+        "gen_tokens": 500000,
+        "gpu_mode": "dual (0,1)",
+        "tau_rank": 0.5,
+        "tau_knn": 0.6
+      }
+    }
+  },
+  "timestamp": "2026-05-12T12:39:43.240007+00:00",
+  "trigger": "update_registry"
+}

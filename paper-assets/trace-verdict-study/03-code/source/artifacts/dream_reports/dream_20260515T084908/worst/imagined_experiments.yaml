@@ -1,0 +1,610 @@
+tier: worst
+narrative_guidance: '核心叙事崩塌点：exception_only 与 VOTA 无统计显著差异，证明 VOTA 99.2% 的效果本质是 error
+  flag extraction 而非 execution-grounded reasoning。loop compression 无贡献 （≈ no_trace），ae
+  信号中等但有 fallback 污染。trivial rule (has_ERROR→fail) 达 93%， 逼近 exception_only。论文必须放弃
+  "behavioral understanding" 和 "component design principles"， 转向 "What Makes Traces
+  Work for Verdict Tasks? An Empirical Decomposition"。 Claim 3 完全失败（无 component hierarchy），Claim
+  1 大幅削弱（genuine→signal extraction）， Claim 2 不受影响。EMNLP Main 概率降至 ~30%，Findings 仍
+  solid。 关键防线：full_trace 也有 ERROR 信号但仅 81.8%，说明 information overload 仍是真实现象—— 但 "解药"
+  不是 intelligent compression 而只是 isolate the error flag。
+
+  '
+imagined_experiments:
+- name: exception_only
+  plan_id: plan_003
+  description: '只保留 VOTA 中的 exception summary 组件（[ERROR] Traceback... / [No exceptions]），
+    去除 assertion snapshots 和 loop compression。训练数据中 trace 字段仅含异常摘要。
+
+    '
+  expected_results:
+    accuracy: 0.98
+    accuracy_ci_lower: 0.97
+    accuracy_ci_upper: 0.989
+    majority_baseline: 0.7151
+    lift_vs_notrace: 0.229
+    lift_vs_notrace_ci_lower: 0.205
+    lift_vs_notrace_ci_upper: 0.253
+    pass_f1: 0.987
+    fail_f1: 0.96
+    train_loss: 0.095
+    eval_loss: 0.18
+    n: 1190
+    gap_vs_vota: -0.012
+    gap_vs_vota_pvalue: 0.25
+    mcnemar_vs_vota_pvalue: 0.18
+  result_rationale: '在 worst 档下，exception summary 包含了 VOTA 几乎全部的 decision-relevant
+    signal： [ERROR] 标记直接映射 fail，[No exceptions] 高度相关 pass。模型只需学会 "有 ERROR → fail,
+    无 ERROR → pass" 这一近乎 trivial 的映射。与 VOTA 的差距 仅 ~1.2pp（14 样本/1190），McNemar p=0.18
+    不显著——统计上无法拒绝 "exception_only = VOTA" 的零假设。这证明 assertion snapshots 和 loop compression
+    对 verdict 预测几乎无边际贡献，VOTA 的效果可归约为 error flag extraction。
+
+    '
+  tables:
+  - title: Component Ablation Accuracy Comparison
+    rows:
+    - condition: VOTA (full)
+      accuracy: 0.992
+      delta_vs_notrace: +24.0pp
+      delta_vs_exception_only: +1.2pp
+      p_vs_exception_only: —
+    - condition: exception_only
+      accuracy: 0.98
+      delta_vs_notrace: +22.9pp
+      delta_vs_exception_only: —
+      p_vs_exception_only: —
+    - condition: ae_only
+      accuracy: 0.875
+      delta_vs_notrace: +12.4pp
+      delta_vs_exception_only: -10.5pp
+      p_vs_exception_only: <0.001
+    - condition: loop_only
+      accuracy: 0.755
+      delta_vs_notrace: +0.4pp
+      delta_vs_exception_only: -22.5pp
+      p_vs_exception_only: <0.001
+    - condition: no_trace
+      accuracy: 0.751
+      delta_vs_notrace: —
+      delta_vs_exception_only: -22.9pp
+      p_vs_exception_only: <0.001
+  figures_description:
+  - 'Bar chart: 5 条件 accuracy 对比，exception_only 与 VOTA 柱高几乎相同，两者之间标注 n.s.（not significant）；loop_only
+    与 no_trace 柱高几乎相同。'
+  analysis: '这是 worst 档的核心打击：exception_only ≈ VOTA 直接摧毁 Claim 3 的 "component importance
+    hierarchy"。无法声称各组件有差异化贡献，因为一个组件就解释了 几乎全部效果。论文必须将此报告为 negative result： "We find
+    no evidence that assertion snapshots or loop compression contribute meaningfully
+    beyond what exception summaries alone provide." 但可以 reframe：这揭示了 verdict tasks
+    的信息结构——pass/fail 决策的 information bottleneck 就在 exception presence，这本身是有价值的发现。
+
+    '
+- name: loop_only
+  plan_id: plan_003
+  description: '只保留 VOTA 中的 loop compression 组件（迭代次数、收敛摘要）， 去除 exception summary 和
+    assertion snapshots。
+
+    '
+  expected_results:
+    accuracy: 0.755
+    accuracy_ci_lower: 0.73
+    accuracy_ci_upper: 0.778
+    majority_baseline: 0.7151
+    lift_vs_notrace: 0.004
+    lift_vs_notrace_ci_lower: -0.025
+    lift_vs_notrace_ci_upper: 0.033
+    lift_vs_notrace_pvalue: 0.72
+    pass_f1: 0.82
+    fail_f1: 0.635
+    train_loss: 0.175
+    eval_loss: 0.61
+    n: 1190
+  result_rationale: 'Loop compression 记录的是循环执行模式（迭代次数、early termination）， 这些信息与 pass/fail
+    verdict 的相关性极弱。在 worst 档下， 测试通过/失败几乎完全由异常有无决定，循环行为是 verdict-orthogonal 的执行细节。loop_only
+    的信息价值 ≈ 随机噪声，模型退化到与 no_trace 相同的 majority-leaning 行为。lift 仅 +0.4pp，CI 跨零，p=0.72。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'loop_only ≈ no_trace 证实 loop compression 对 verdict task 无贡献。 这进一步支持 worst
+    档叙事：VOTA 的全部效果来自 exception signal， loop 和 assertion 是 dead weight。但需注意：这不能证明 loop
+    compression 对所有任务无用——它可能对 generation tasks 有价值。
+
+    '
+- name: ae_only
+  plan_id: plan_003
+  description: '只保留 VOTA 中的 actual/expected 值对（assertion point 的具体数值）， 去除 exception
+    summary 和 loop compression。已知有 fallback 污染问题。
+
+    '
+  expected_results:
+    accuracy: 0.875
+    accuracy_ci_lower: 0.853
+    accuracy_ci_upper: 0.896
+    majority_baseline: 0.7151
+    lift_vs_notrace: 0.124
+    lift_vs_notrace_ci_lower: 0.098
+    lift_vs_notrace_ci_upper: 0.15
+    pass_f1: 0.91
+    fail_f1: 0.79
+    train_loss: 0.14
+    eval_loss: 0.35
+    n: 1190
+  result_rationale: 'ae_only 包含 actual vs expected 数值，mismatch 间接暗示 failure，但信号远不如
+    ERROR flag 直接。且存在 fallback 污染：部分样本因 trace 生成失败使用了 fallback template，引入了 systematic
+    bias。在 worst 档下 ae_only 比 no_trace 好 12.4pp（数值比对有一定诊断价值），但远不及 exception_only 的
+    22.9pp， 且受 fallback 污染无法做可靠归因。此结果移至 Appendix 附 caveat。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'ae_only 的中等表现 (87.5%) 看似为 ae 组件提供了存在价值，但 plan_001 已证明去除 ae 后 VOTA 不降反升
+    (99.4%)，说明 ae 信息是 redundant 而非 complementary。ae_only 的 87.5% 更可能来自 actual/expected
+    mismatch 作为 error 的 noisy proxy，而非独立的推理通道。Fallback 污染使此结论进一步弱化。
+
+    '
+- name: trivial_rule_baseline
+  plan_id: plan_003
+  description: '无需训练的 rule-based baseline：检查 trace 文本中是否包含 ERROR/Exception 关键词 → fail；包含
+    ASSERT 且无 ERROR → pass；无 trace → majority vote。 纯 eval 实验，直接在测试集上计算。
+
+    '
+  expected_results:
+    accuracy: 0.93
+    accuracy_ci_lower: 0.912
+    accuracy_ci_upper: 0.946
+    majority_baseline: 0.7151
+    lift_vs_notrace: 0.179
+    pass_f1: 0.952
+    fail_f1: 0.872
+    n: 1190
+    gap_vs_exception_only: -0.05
+    gap_vs_vota: -0.062
+  result_rationale: '在 worst 档下，test verdict 的 ground truth 与 ERROR presence 高度相关。
+    trivial rule 不需要 SFT，不需要理解 trace 语义，仅做关键词匹配就达到 93%。 这意味着 exception_only SFT 的
+    98% 中约 93pp 可被 trivial rule 解释， SFT 的真正边际贡献仅 ~5pp（处理 error 信息缺失或 ambiguous 的边缘情况）。
+    这是对 "behavioral understanding" framing 的致命打击：reviewer 可以合理质疑 "你训了个 7B 模型做关键词匹配？"
+
+    '
+  tables:
+  - title: Trivial Rule vs SFT Conditions
+    rows:
+    - condition: VOTA SFT
+      accuracy: 0.992
+      requires_training: true
+      gpu_hours: 2
+    - condition: exception_only SFT
+      accuracy: 0.98
+      requires_training: true
+      gpu_hours: 2
+    - condition: trivial_rule (no training)
+      accuracy: 0.93
+      requires_training: false
+      gpu_hours: 0
+    - condition: no_trace SFT
+      accuracy: 0.751
+      requires_training: true
+      gpu_hours: 1
+  figures_description:
+  - Stacked bar 或 waterfall chart：从 no_trace (75.1%) → trivial_rule (93.0%) → exception_only
+    (98.0%) → VOTA (99.2%)，标注每段增益来源。trivial_rule→exception_only 的 5pp 标注为 'SFT marginal
+    gain over keyword matching'。
+  analysis: 'trivial rule 93% 是 worst 档最 damaging 的数字之一。它证明 VOTA trace 中的 "information"
+    大部分可被无参数规则捕获。SFT 的额外 5-6pp 可能来自： (1) 处理 ERROR 信号缺失但实际 fail 的边缘案例， (2) 处理有 ERROR
+    但实际 pass 的 flaky test， (3) 更好的 no_trace 样本处理。 论文需要在 Discussion 中诚实面对这个数字，但可以辩护：
+    "The fact that a trivial rule achieves 93% confirms our decomposition finding
+    that error status is the dominant signal. SFT''s value is in handling the remaining
+    7% where the signal is ambiguous — precisely the cases where genuine reasoning
+    about execution state is needed."
+
+    '
+- name: deepseek_coder_vota
+  plan_id: plan_004
+  description: 'DeepSeek-Coder-6.7B 上复现 VOTA condition，与 DCSH 同模型直接对比。
+
+    '
+  expected_results:
+    accuracy: 0.978
+    accuracy_ci_lower: 0.966
+    accuracy_ci_upper: 0.988
+    majority_baseline: 0.7151
+    lift_vs_notrace: 0.222
+    pass_f1: 0.985
+    fail_f1: 0.955
+    train_loss: 0.1
+    eval_loss: 0.195
+    n: 1190
+  result_rationale: 'DeepSeek-Coder 代码理解能力略弱于主实验模型，VOTA 准确率可能略低 (~97.8% vs 99.2%)
+    但仍远超 baseline。在 worst 档下，这反而加强负面叙事：即使换模型， error flag extraction 仍然足以达到 ~98%，说明高准确率不是模型特异的
+    "理解能力" 而是 task-data 结构决定的 trivial pattern。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: ''
+- name: deepseek_coder_notrace
+  plan_id: plan_004
+  description: 'DeepSeek-Coder-6.7B 上复现 no_trace baseline。
+
+    '
+  expected_results:
+    accuracy: 0.756
+    accuracy_ci_lower: 0.731
+    accuracy_ci_upper: 0.78
+    majority_baseline: 0.7151
+    lift: 0.041
+    pass_f1: 0.822
+    fail_f1: 0.635
+    train_loss: 0.185
+    eval_loss: 0.64
+    n: 1190
+  result_rationale: 'No-trace baseline 不依赖 trace 信息，主要靠代码 pattern 和 test 名推断结果。 DeepSeek-Coder
+    与主模型在 no_trace 上差异极小（75.6% vs 75.1%）， 因为两者的 code understanding 在不看 trace 时差异有限。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: ''
+- name: deepseek_coder_fulltrace
+  plan_id: plan_004
+  description: 'DeepSeek-Coder-6.7B 上复现 full_trace condition。
+
+    '
+  expected_results:
+    accuracy: 0.805
+    accuracy_ci_lower: 0.782
+    accuracy_ci_upper: 0.828
+    majority_baseline: 0.7151
+    lift_vs_notrace: 0.049
+    pass_f1: 0.862
+    fail_f1: 0.67
+    train_loss: 0.055
+    eval_loss: 0.095
+    n: 1190
+  result_rationale: 'DeepSeek-Coder 在 full_trace 上预期略低于主模型 (80.5% vs 81.8%)， 因为较弱的模型在
+    information overload 场景下更容易被 irrelevant trace detail 干扰。full_trace 包含 ERROR 信号但被大量无关执行细节淹没，
+    模型难以稳定提取 decision signal。三条件层次 (no_trace < full_trace < VOTA) 在第二模型上复现，但在 worst
+    档下这只是说明 error flag 的 surface-level accessibility 差异，不是 reasoning depth 差异。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: ''
+- name: deepseek_coder_exception_only
+  plan_id: plan_004
+  description: '追加实验：如果主实验已确认 exception_only ≈ VOTA， 在 DeepSeek-Coder 上验证此等价性是否跨模型成立。
+
+    '
+  expected_results:
+    accuracy: 0.972
+    accuracy_ci_lower: 0.958
+    accuracy_ci_upper: 0.984
+    gap_vs_vota: -0.006
+    gap_vs_vota_pvalue: 0.45
+    n: 1190
+  result_rationale: '如果 exception_only ≈ VOTA 是 task structure 决定的而非模型特异的， 那么在 DeepSeek-Coder
+    上也应成立。worst 档预测 gap 仅 0.6pp，p=0.45， 跨模型一致证实 error flag extraction 假说。
+
+    '
+  tables:
+  - title: Cross-Model Replication (3+1 conditions)
+    rows:
+    - model: CodeLlama-7B (primary)
+      no_trace: 0.751
+      full_trace: 0.818
+      vota: 0.992
+      exception_only: 0.98
+    - model: DeepSeek-Coder-6.7B
+      no_trace: 0.756
+      full_trace: 0.805
+      vota: 0.978
+      exception_only: 0.972
+  figures_description:
+  - 'Grouped bar chart: 两模型 × 四条件，展示 pattern 跨模型一致性。标注 exception_only 与 VOTA 在两模型上均为
+    n.s.。'
+  analysis: '跨模型复现在 worst 档下是双刃剑：证明了结果的 robustness（reviewer 喜欢）， 但也证明了 error flag
+    extraction 的 trivialness 是 task-structural 而非 model-dependent（加强负面解读）。论文应如实报告，在
+    Discussion 中转化为： "The cross-model consistency of exception-only equivalence confirms
+    that verdict prediction effectiveness is driven by task information structure,
+    not model-specific reasoning capabilities — a finding that directly informs trace
+    design for future verdict-oriented SFT."
+
+    '
+- name: second_task_vota
+  plan_id: plan_005
+  description: '在 DebugBench (Python subset) 的 bug detection verdict task 上测试 VOTA。
+    任务：给定代码+测试+VOTA trace，预测是否有 bug（binary verdict）。
+
+    '
+  expected_results:
+    accuracy: 0.885
+    accuracy_ci_lower: 0.86
+    accuracy_ci_upper: 0.908
+    majority_baseline: 0.52
+    lift_vs_notrace: 0.195
+    pass_f1: 0.89
+    fail_f1: 0.878
+    n: 800
+  result_rationale: 'DebugBench 的 bug detection 与 test verdict 的关键区别：buggy 代码不一定 产生
+    runtime ERROR（可能是 logic bug 导致 wrong output），因此 error flag 不再是完美的 decision signal。在
+    worst 档下，VOTA 仍然有效 (+19.5pp) 但准确率显著低于 test verdict 的 99.2%，因为 bug detection 需要的
+    信号更复杂（值比对、逻辑推理），不能被 trivial error flag extraction 覆盖。 讽刺的是，这反而部分挽救了论文——证明 test
+    verdict task 的 near-perfect 性能确实有 task-specific 原因（error signal dominance），而不同
+    verdict tasks 需要不同的 trace 设计。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: ''
+- name: second_task_notrace
+  plan_id: plan_005
+  description: 'DebugBench no_trace baseline。
+
+    '
+  expected_results:
+    accuracy: 0.69
+    accuracy_ci_lower: 0.658
+    accuracy_ci_upper: 0.722
+    majority_baseline: 0.52
+    lift: 0.17
+    n: 800
+  result_rationale: 'Bug detection 的 no_trace baseline 高于 test verdict (69% vs 75.1%)
+    的 绝对值可能不同，但 lift over majority 更大 (+17pp vs +3.6pp)， 因为 DebugBench 的 majority
+    baseline 更低 (52% vs 71.5%)。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: ''
+- name: second_task_exception_only
+  plan_id: plan_005
+  description: 'DebugBench exception_only condition。验证 error flag extraction 在第二任务上
+    是否仍是 dominant mechanism。
+
+    '
+  expected_results:
+    accuracy: 0.815
+    accuracy_ci_lower: 0.787
+    accuracy_ci_upper: 0.842
+    majority_baseline: 0.52
+    lift_vs_notrace: 0.125
+    gap_vs_vota: -0.07
+    gap_vs_vota_pvalue: 0.001
+    n: 800
+  result_rationale: '在 DebugBench 上 exception_only ≠ VOTA（gap 7pp, p<0.01），因为 logic
+    bugs 不触发 exception，exception_only 错失这部分信号。这与 test verdict task 上 exception_only
+    ≈ VOTA 形成对比，支持更细致的结论：error flag extraction 是 test verdict 的 dominant mechanism
+    但不是所有 verdict tasks 的。
+
+    '
+  tables:
+  - title: Cross-Task Comparison
+    rows:
+    - task: Test Verdict
+      no_trace: 0.751
+      exception_only: 0.98
+      vota: 0.992
+      exception_only_vs_vota_gap: -1.2pp (n.s.)
+    - task: Bug Detection (DebugBench)
+      no_trace: 0.69
+      exception_only: 0.815
+      vota: 0.885
+      exception_only_vs_vota_gap: -7.0pp (p<0.01)
+  figures_description:
+  - 'Side-by-side grouped bars: 两任务 × 三条件。关键视觉信息：test verdict 上 exception_only ≈ VOTA（平齐），bug
+    detection 上 exception_only < VOTA（明显落差）。标注 significance levels。'
+  analysis: '第二任务结果在 worst 档下产生有趣的 tension：test verdict 的 exception_only ≈ VOTA 证实了
+    error flag extraction 假说，但 bug detection 的 exception_only < VOTA 说明 VOTA 的其他组件在非
+    error-dominated 任务上确实有贡献。这为论文提供了 nuanced narrative："The dominance of error signals
+    is task-dependent. For verdict tasks where failures manifest as runtime exceptions
+    (test outcomes), error flag extraction suffices. For verdict tasks involving logic
+    errors (bug detection), richer trace components become necessary." 这个 task-dependent
+    finding 可能比原始的 "universal design principles" 更有 intellectual depth，但也更复杂、更难在一篇论文中充分论证。
+
+    '
+- name: trace_length_256
+  plan_id: plan_006
+  description: Full trace 截断至 256 tokens。
+  expected_results:
+    accuracy: 0.862
+    accuracy_ci_lower: 0.838
+    accuracy_ci_upper: 0.884
+    n: 1190
+  result_rationale: '256 tokens 通常足以包含 ERROR traceback 的前几行（如果在 trace 开头或结尾出现）。 在
+    worst 档下，短 trace 只要捕获 error flag 就足够。但 256 tokens 有时会 截断到 trace 中间的无关执行步骤，错失 ERROR
+    信号。准确率接近 label-only full_trace (86.2%)，因为两者都是 "partial error signal access"。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: ''
+- name: trace_length_512
+  plan_id: plan_006
+  description: Full trace 截断至 512 tokens。
+  expected_results:
+    accuracy: 0.845
+    accuracy_ci_lower: 0.821
+    accuracy_ci_upper: 0.868
+    n: 1190
+  result_rationale: '512 tokens 捕获更多 trace context 但也引入更多 noise。在 worst 档下， 当 trace
+    中 ERROR 出现在较后位置时 512 能捕获但 256 不能， 但额外 noise 部分抵消了信息增益。准确率与 256 差异不大。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: ''
+- name: trace_length_1024
+  plan_id: plan_006
+  description: Full trace 截断至 1024 tokens。
+  expected_results:
+    accuracy: 0.83
+    accuracy_ci_lower: 0.806
+    accuracy_ci_upper: 0.854
+    n: 1190
+  result_rationale: '1024 tokens 几乎总能包含 ERROR 信号（如果存在），但同时大量无关执行细节 开始显著稀释 signal density。在
+    worst 档下出现反直觉现象： 更长 trace 准确率反而略低，因为 noise-to-signal ratio 恶化。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: ''
+- name: trace_length_2048
+  plan_id: plan_006
+  description: Full trace 截断至 2048 tokens。
+  expected_results:
+    accuracy: 0.82
+    accuracy_ci_lower: 0.795
+    accuracy_ci_upper: 0.843
+    n: 1190
+  result_rationale: '接近 full_trace (81.8%) 的水平，因为大部分 trace 在 2048 tokens 内。 标准训练的
+    full_trace 用 standard loss 是 81.8%，但此处用 standard loss 所以结果基本一致。
+
+    '
+  tables:
+  - title: Accuracy vs Trace Length
+    rows:
+    - length: VOTA (~80 tokens avg)
+      accuracy: 0.992
+      tokens_per_sample: 80
+    - length: 256 tokens
+      accuracy: 0.862
+      tokens_per_sample: 256
+    - length: 512 tokens
+      accuracy: 0.845
+      tokens_per_sample: 512
+    - length: 1024 tokens
+      accuracy: 0.83
+      tokens_per_sample: 1024
+    - length: 2048 tokens
+      accuracy: 0.82
+      tokens_per_sample: 2048
+    - length: Full trace (avg ~3200)
+      accuracy: 0.818
+      tokens_per_sample: 3200
+    - length: No trace
+      accuracy: 0.751
+      tokens_per_sample: 0
+  figures_description:
+  - 'Line plot: X 轴 = trace tokens (log scale: 0, 80, 256, 512, 1024, 2048, 3200),
+    Y 轴 = accuracy。关键视觉特征：(1) VOTA 在 80 tokens 处达到最高点 99.2%， 与主曲线脱离（单独标注为 ★）；(2) 截断
+    trace 从 256→3200 呈微弱下降趋势 （86.2% → 81.8%），而非预期的上升；(3) no_trace 在 0 处为 75.1%。 标注："More
+    trace ≠ better prediction — signal density dominates."
+
+    '
+  analysis: 'Trace length ablation 在 worst 档下产生 "inverted U" 或近似 monotonic decline：
+    短 trace 比长 trace 好（因为 error signal 的 density 更高），但都远不及 VOTA （因为 VOTA 直接 isolate
+    了 signal）。这支持 "information overload" 叙事， 但在 worst 档解读下，"overload" 的本质不是 "execution
+    detail 干扰 reasoning" 而是 "keyword dilution 降低 pattern matching accuracy"。 此图表在论文中仍有高价值——它直观展示了
+    signal density 假说， 只是 underlying mechanism 比原 framing 更 trivial。
+
+    '
+- name: calibration_analysis
+  plan_id: plan_007
+  description: 'ECE (Expected Calibration Error) + reliability diagrams 对比 VOTA/no_trace/full_trace
+    的 calibration 质量。纯 eval 实验。
+
+    '
+  expected_results:
+    vota_ece: 0.008
+    vota_brier: 0.012
+    exception_only_ece: 0.015
+    exception_only_brier: 0.022
+    full_trace_ece: 0.085
+    full_trace_brier: 0.145
+    full_trace_label_only_ece: 0.068
+    full_trace_label_only_brier: 0.115
+    no_trace_ece: 0.165
+    no_trace_brier: 0.225
+    n: 1190
+  result_rationale: '在 worst 档下，VOTA 和 exception_only 都有极低的 ECE，因为它们本质上是 near-deterministic
+    的 pattern matching（看到 ERROR → 高置信度 fail）。 calibration 好不是因为 "深层理解产生了 well-calibrated
+    uncertainty"， 而是因为 signal 太强导致模型几乎不产生 uncertain predictions。 full_trace 的 ECE
+    较高反映了 noise-induced uncertainty， no_trace 最高因为缺少 decision signal 导致系统性 miscalibration。
+
+    '
+  tables:
+  - title: Calibration Metrics
+    rows:
+    - condition: VOTA
+      ece: 0.008
+      brier: 0.012
+      mean_confidence: 0.985
+    - condition: exception_only
+      ece: 0.015
+      brier: 0.022
+      mean_confidence: 0.975
+    - condition: full_trace_label_only
+      ece: 0.068
+      brier: 0.115
+      mean_confidence: 0.89
+    - condition: full_trace
+      ece: 0.085
+      brier: 0.145
+      mean_confidence: 0.87
+    - condition: no_trace
+      ece: 0.165
+      brier: 0.225
+      mean_confidence: 0.78
+  figures_description:
+  - '5-panel reliability diagram (one per condition)：X 轴 = predicted probability,
+    Y 轴 = observed frequency, 对角线 = perfect calibration。 VOTA 和 exception_only 的点集中在
+    (0,0) 和 (1,1) 两端（near-binary predictions）， 几乎不在中间；no_trace 的点散布更广且偏离对角线。
+
+    '
+  - 'Single-panel ECE bar chart: 5 条件从低到高排列，VOTA/exception_only 几乎为零， no_trace 最高。
+
+    '
+  analysis: 'Calibration 结果在 worst 档下的论文价值有限：VOTA 的 excellent calibration 是 near-perfect
+    accuracy 的 trivial 后果，不提供额外 insight。 但 full_trace 的 poor calibration 可以用来支持 "information
+    overload causes not just accuracy drop but also uncertainty increase" 的叙事点。 建议放
+    Appendix 而非主文，避免 reviewer 指出 "of course a 99% accurate model is well-calibrated"。
+
+    '
+- name: seed_robustness
+  plan_id: plan_008
+  description: '3 random seeds (42/123/456) 验证 VOTA 结果稳定性。McNemar test + bootstrap
+    CI。
+
+    '
+  expected_results:
+    seed_42_accuracy: 0.992
+    seed_123_accuracy: 0.988
+    seed_456_accuracy: 0.99
+    mean_accuracy: 0.99
+    std_accuracy: 0.002
+    max_pairwise_gap: 0.004
+    mcnemar_max_pvalue: 0.55
+    bootstrap_ci_lower: 0.985
+    bootstrap_ci_upper: 0.995
+    n: 1190
+  result_rationale: '在 worst 档下，VOTA 跨 seed 极其稳定（std < 0.2pp），因为 error flag signal
+    太强，training randomness 几乎不影响 learned decision boundary。任何 seed 都能在 early training
+    阶段学会 ERROR→fail 映射。高稳定性在论文中是正面结果 但在 worst 档叙事下也是 trivialness 的又一证据：真正困难的 task
+    不会有 0.2pp 的跨 seed 方差。
+
+    '
+  tables:
+  - title: Seed Robustness (VOTA)
+    rows:
+    - seed: 42
+      accuracy: 0.992
+      pass_f1: 0.994
+      fail_f1: 0.986
+    - seed: 123
+      accuracy: 0.988
+      pass_f1: 0.992
+      fail_f1: 0.979
+    - seed: 456
+      accuracy: 0.99
+      pass_f1: 0.993
+      fail_f1: 0.982
+    - seed: Mean ± Std
+      accuracy: 0.990 ± 0.002
+      pass_f1: 0.993 ± 0.001
+      fail_f1: 0.982 ± 0.004
+  figures_description:
+  - 'Error bar plot: 3 seeds 的 accuracy ± CI，紧密聚集在 99% 附近。标注 ''All pairwise McNemar
+    p > 0.5''。'
+  analysis: Seed robustness 在所有 tiers 下都是正面的（结果稳定），区别在于解读。 在 worst 档下，需在 Discussion
+    中承认："The low variance across seeds is consistent with our finding that the learned
+    decision function is dominated by a strong surface-level signal (error presence),
+    which is easily captured regardless of initialization." 但不需要 apologize—— robustness
+    is robustness，reviewer 不会因为结果太稳定而 reject。

@@ -1,0 +1,29 @@
+{
+  "exp_id": "full_trace_tail_256_seed42",
+  "project": "trace-verdict-study",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:13:21.000Z",
+    "updated_at": "2026-05-17T08:19:59.717Z",
+    "hypothesis": "Tail-256 token budget: tests if diagnostic signal is concentrated in the last 256 tokens. If tail-256 approaches tail-512 (93.6%), signal is extremely localized at trace end; if much lower, exception events need surrounding context for effective learning",
+    "parent": "full_trace_tail_512_seed42",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && /root/miniconda3/bin/python train/train_sft.py --condition full_trace_tail_256 --truncation_side left --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_tail_256_seed42 --wandb_project trace-verdict-study --wandb_run_name full_trace_tail_256_seed42 && /root/miniconda3/bin/python eval/evaluate.py --condition full_trace_tail_256 --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_tail_256_seed42/final --gpu 0 --save_predictions --output /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_tail_256_seed42/final/eval_results.json\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "339962",
+      "log_path": "~/runs/trace-verdict-study/full_trace_tail_256_seed42.log",
+      "submitted_at": "2026-05-17T08:19:49.240Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-17T08:19:59.904993+00:00",
+  "trigger": "update_registry"
+}

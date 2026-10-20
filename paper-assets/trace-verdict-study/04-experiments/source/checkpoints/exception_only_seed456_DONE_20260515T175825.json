@@ -1,0 +1,76 @@
+{
+  "exp_id": "exception_only_seed456",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:31:02.005Z",
+    "updated_at": "2026-05-15T17:58:25.389Z",
+    "spec": {
+      "plan_id": "plan_008a",
+      "model_name": "Qwen2.5-Coder-7B-Instruct",
+      "seed": 456,
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl",
+      "data_count": 4720,
+      "server": "westd-11235"
+    },
+    "hypothesis": "Seed robustness: exception_only with seed=456 on Qwen-2.5-Coder-7B (plan_008). Verifies headline result 99.83% is stable across seeds.",
+    "server": "westd-11235",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-11235",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T16:38:44.142Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456 --wandb_project trace-verdict-study --wandb_run_name exception_only_seed456 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456/final/eval_results.json\"",
+      "wandb_run_id": "exception_only_seed456",
+      "finished_at": "2026-05-15T17:56:16.196Z",
+      "training_hours": 1.29
+    },
+    "pid": "129476",
+    "log_path": "~/runs/trace-verdict-study/exception_only_seed456.log",
+    "wandb_run_id": "exception_only_seed456",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T17:56:17.874949+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 0.9983,
+      "accuracy_ci": [
+        0.9958,
+        1
+      ],
+      "majority_baseline": 0.7151,
+      "lift": 0.2832,
+      "n": 1190,
+      "pass_precision": 1,
+      "pass_recall": 0.9976,
+      "pass_f1": 0.9988,
+      "fail_precision": 0.9941,
+      "fail_recall": 1,
+      "fail_f1": 0.9971,
+      "vs_seed42": {
+        "seed42_accuracy": 0.9983,
+        "seed456_accuracy": 0.9983,
+        "diff": 0,
+        "note": "identical accuracy to 4 decimal places; no predictions.jsonl for paired bootstrap"
+      },
+      "train_loss": 0.1087,
+      "eval_loss": 0.4629,
+      "train_runtime_sec": 4541,
+      "epochs": 3
+    },
+    "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456/final",
+    "conclusion": "success",
+    "completed_at": "2026-05-15T17:58:25.389Z"
+  },
+  "timestamp": "2026-05-15T17:58:25.551873+00:00",
+  "trigger": "update_registry"
+}

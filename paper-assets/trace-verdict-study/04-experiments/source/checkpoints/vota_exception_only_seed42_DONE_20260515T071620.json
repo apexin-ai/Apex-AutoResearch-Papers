@@ -1,0 +1,31 @@
+{
+  "exp_id": "vota_exception_only_seed42",
+  "project": "trace-verdict-study",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:02:39.821Z",
+    "updated_at": "2026-05-15T07:16:20.123Z",
+    "hypothesis": "VOTA component ablation: exception_only condition — only exception summaries, no actual/expected or loop compression. Tests if [ERROR] events are the primary driver of VOTA's 99.2% accuracy (plan_003 sub-b)",
+    "spec": {
+      "command": "python train/train_sft.py --condition exception_only --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_exception_only_seed42 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final --gpu 1",
+      "server": "westd-11235",
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl",
+      "data_count": {
+        "train": 4720,
+        "test": 1190
+      },
+      "model_name": "Qwen2.5-Coder-7B-Instruct",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "~/runs/trace-verdict-study/vota_exception_only_seed42.log",
+      "failure_reason": "OOM at step 8/444 — missing --gradient_checkpointing flag"
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T07:16:20.123Z"
+  },
+  "timestamp": "2026-05-15T07:16:20.176527+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1da503c358a75d7ff0ce",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "knowledge paper writing plan",
+  "task_key": "worker_knowledge_paper-writing-plan_20260515T190919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_paper-writing-plan_20260515T190919_result.json",
+    "occurrence": 1,
+    "bytes": 1018,
+    "sha256": "17159a695ef36801974d763cf3ed9be9a5e9c11bb17efa406319c4c5039d0c32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`writing_plan.yaml` 已保存。结构覆盖：\n\n- **7 sections outline**，每个标注 `write_now` / `partial` / `wait` 状态\n- **6 figures** (VOTA schematic, decomposition bar, cross-model comparison, hierarchy bar, reliability diagram, seed robustness)\n- **4 tables** (main results, cross-model, calibration, seed robustness)\n- **文献策略**：3 core competitors (DCSH, TracePile, TRACED) + calibration ref + methodological refs，预计 25-35 篇\n- **6-phase 写作时间线**：Phase 1-2 (5/15-17) Method+RW+Results 并行 → Phase 3 (5/17-18) Intro+Discussion → Phase 4 (5/18-19) Conclusion+Abstract → Phase 5 (5/19-22) Review 迭代 → Phase 6 (5/23-24) 提交\n- **4 pending items**：DeepSeek full_trace v3 (non-blocking), 额外 seed, per-bin calibration data, plan_005 DebugBench — 全部有 fallback 方案\n\n写作优先级：先 Method + Related Work（不依赖 pending），再 Results（数据 95% 就绪），最后 Intro/Conclusion（需要全文定稿后写）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-paper-writing-plan.md"
+}

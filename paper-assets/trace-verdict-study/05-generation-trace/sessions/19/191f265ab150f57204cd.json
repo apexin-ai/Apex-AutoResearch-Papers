@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "191f265ab150f57204cd",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_8_1778893353.md",
+  "task_key": "loop_8_1778893353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778893353.md",
+    "occurrence": 1,
+    "bytes": 5039,
+    "sha256": "41b7d5ffd496ade2d3f67ecfdf89b9ca2c8d383f6567a9f29bf4378913bf4fd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-16T01:00:58+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: **仅 westd-11235:cuda:0 和 cuda:1**。其他 GPU 编号禁止使用\n- DeepSeek 系列实验必须用**旧版代码**（`load_best_model_at_end` 注释为 TEMP_DISABLED），保持 DeepSeek 组内一致性（13:24 之前的 checkpoint selection 逻辑）\n- Bootstrap 方法：**同一张论文表格不能混用 paired/unpaired bootstrap**。DeepSeek VOTA 和 no_trace 目前是 unpaired，需要重跑 `--save_predictions` 后用 paired 统一\n- DebugBench 数据集 n=426（从 1414 衰减至 1024 再验证到 426），不要假设更大的 n\n- `debugbench_vota_seed42` 已完成 accuracy=99.77%——这个数字极高，下一个 session 必须确认是否已更新到 report.md 和论文\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-11235, 工作目录 `/root/trace-verdict-study`\n- **Python**: 需要确认（conda base 或 venv，前序 session 用的 miniconda3 可能性高）\n- **GPU 分配**: cuda:0 + cuda:1\n- **活跃进程**:\n  - `full_trace_1024tok_seed42`: PID 212643, cron 监控中（reconcile 确认 still running）\n  - `debugbench_no_trace_seed42`: PID 215223, cron 刚创建 62s\n- **模型**: Qwen/Qwen2.5-Coder-7B-Instruct（主模型）, DeepSeek-Coder-6.7B（跨模型验证）\n- **数据集**: HumanEval(164) + MBPP-sanitized(427) = 591 problems × 10 solutions = 5910 samples; DebugBench subset n=426\n\n### 3. 📊 当前状态\n**刚完成的关键事件**:\n- `debugbench_vota_seed42` SUCCESS: accuracy=99.77%, fail_recall=1.0, pass_recall=1.0 — DebugBench 上 VOTA 近乎完美\n- `full_trace_512tok_seed42` NEGATIVE, `full_trace_256tok_seed42` NEGATIVE — 短 trace 两个都比 untruncated 差，支持 U 型关系\n- `deepseek_full_trace_seed42_v3` SUCCESS — label-preserving fix 后 DeepSeek full_trace 跑通\n\n**RUNNING (2)**:\n- `full_trace_1024tok_seed42` — plan_006 trace length ablation 1024tok, westd-11235\n- `debugbench_no_trace_seed42` — plan_005 DebugBench no-trace baseline, westd-11235\n\n**QUEUED (2)**:\n- `debugbench_exception_only_seed42` — plan_005 exception_only on DebugBench\n- `full_trace_2048tok_seed42` — plan_006 2048tok control\n\n**Worker 运行中 (1)**:\n- `worker_paper_narrative_fix_group_analysis_20260515T232155` — paper:narrative_fix_group_analysis, 从 23:21 开始，尚未回调。这个 Worker 在修复论文中 group analysis 叙事（D030/D034 后的 narrative correction）\n\n**等待中**:\n- 2 个 RUNNING 实验的 cron 完成回调\n- paper narrative fix Worker 的 `[WORKER DONE]` 回调\n- QUEUED 实验等 GPU 空出（RUNNING 完成后自动排上）\n\n### 4. 📋 待办（条件触发式）\n- `full_trace_1024tok_seed42` cron 回调 → 分析 accuracy：≥81.8% 则 1024tok 是 sweet spot（U 型谷底右侧回升），<81.8% 则 U 型进一步确认\n- `debugbench_no_trace_seed42` cron 回调 → 记录 baseline accuracy → 与 debugbench_vota_seed42 (99.77%) 对比 lift → 立即提交 `debugbench_exception_only_seed42`（GPU 腾出后）\n- `full_trace_2048tok_seed42` 完成 → 与 untruncated full_trace (81.8%) 对比，应该非常接近（2048=max_seq_length 控制条件）\n- `debugbench_exception_only_seed42` 完成 → 与 debugbench_vota (99.77%) 对比。若 exception_only 也 ~99%+，Claim 1 跨任务泛化确认；若显著低于 VOTA，DebugBench 上 exception dominance 可能不成立（logic error 类 bug 可能需要更多 trace context）\n- paper narrative fix Worker 回调 → 审查修改内容，确认 D030/D034 叙事一致性\n- 所有 plan_005 + plan_006 完成 → 更新 paper_framing.md，汇报 Director，推进论文初稿交付\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D029: Claim 1 finalized — exception_only 跨模型 robust（Qwen 99.83%±0.00, DeepSeek 2/3 seeds 99.33%）\n- D030→D034: DeepSeek VOTA 84.45% 确认有效，14.96pp gap 的根因是 tokenizer efficiency（91.7% 样本训练时被截断），非 label corruption\n- D035: plan_005 DebugBench 设计 post-bug-fix confirmed\n- 3/3 Core Claims confirmed，进入论文写作冲刺\n\n**DDL**: EMNLP 2026 ARR May 25 — **还剩 9 天**\n\n**最容易判断错的事**:\n1. DebugBench VOTA 99.77% 极高 — 不要忘记 n=426（比主数据集 1190 小很多），CI 会更宽。论文中不能 claim \"consistently 99%+\" 跨任务，要注明样本量差异\n2. plan_006 trace length ablation 的 256tok 和 512tok 都是 NEGATIVE — 但这**不**是坏消息，它强化了 Claim 2（information density > gradient dilution）。不要触发 red-section framing 调整\n3. DeepSeek full_trace v3 已成功 — 但 v3 用了 label-preserving truncation fix，与 Qwen full_trace（无此 fix）不完全可比。论文 Discussion 需要 acknowledge 这个 confound\n4. `load_best_model_at_end` 时间线分界（13:24）是硬约束 — DeepSeek 组不能用新代码，Qwen 组可以用\n5. Bootstrap 方法不一致问题仍未解决（Qwen=paired, DeepSeek=unpaired）— 论文定稿前必须统一\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778893353.md"
+}

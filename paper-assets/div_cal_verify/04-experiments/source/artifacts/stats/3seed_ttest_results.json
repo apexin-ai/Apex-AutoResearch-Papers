@@ -1,0 +1,238 @@
+{
+  "ppl_ttests": [
+    {
+      "comparison": "Random_50pct vs Uncurated",
+      "mean_a": 43.1833,
+      "mean_b": 47.04,
+      "n_a": 3,
+      "n_b": 3,
+      "t_stat": -2.0677,
+      "p_value": 0.107511,
+      "cohens_d": -1.6883,
+      "significant_0.05": false,
+      "test_type": "Student"
+    },
+    {
+      "comparison": "Random_50pct vs External_only",
+      "mean_a": 43.1833,
+      "mean_b": 46.3567,
+      "n_a": 3,
+      "n_b": 3,
+      "t_stat": -1.6676,
+      "p_value": 0.170712,
+      "cohens_d": -1.3616,
+      "significant_0.05": false,
+      "test_type": "Student"
+    },
+    {
+      "comparison": "External_only vs Uncurated",
+      "mean_a": 46.3567,
+      "mean_b": 47.04,
+      "n_a": 3,
+      "n_b": 3,
+      "t_stat": -0.2851,
+      "p_value": 0.789743,
+      "cohens_d": -0.2328,
+      "significant_0.05": false,
+      "test_type": "Student"
+    },
+    {
+      "comparison": "RGDS vs Random_50pct",
+      "mean_a": 78.32,
+      "mean_b": 43.1833,
+      "n_a": 2,
+      "n_b": 3,
+      "t_stat": 10.4806,
+      "p_value": 0.045967,
+      "cohens_d": 12.1265,
+      "significant_0.05": true,
+      "test_type": "Welch"
+    },
+    {
+      "comparison": "RGDS vs External_only",
+      "mean_a": 78.32,
+      "mean_b": 46.3567,
+      "n_a": 2,
+      "n_b": 3,
+      "t_stat": 8.6972,
+      "p_value": 0.025662,
+      "cohens_d": 8.8891,
+      "significant_0.05": true,
+      "test_type": "Welch"
+    },
+    {
+      "comparison": "RGDS vs Uncurated",
+      "mean_a": 78.32,
+      "mean_b": 47.04,
+      "n_a": 2,
+      "n_b": 3,
+      "t_stat": 8.5564,
+      "p_value": 0.027557,
+      "cohens_d": 8.7962,
+      "significant_0.05": true,
+      "test_type": "Welch"
+    }
+  ],
+  "rare_ngram_ttests": [
+    {
+      "comparison": "Random_50pct vs Uncurated",
+      "mean_a": 0.0098,
+      "mean_b": 0.009,
+      "n_a": 3,
+      "n_b": 3,
+      "t_stat": 3.4744,
+      "p_value": 0.025481,
+      "cohens_d": 2.8368,
+      "significant_0.05": true,
+      "test_type": "Student"
+    },
+    {
+      "comparison": "Random_50pct vs External_only",
+      "mean_a": 0.0098,
+      "mean_b": 0.0103,
+      "n_a": 3,
+      "n_b": 3,
+      "t_stat": -1.8383,
+      "p_value": 0.139876,
+      "cohens_d": -1.501,
+      "significant_0.05": false,
+      "test_type": "Student"
+    },
+    {
+      "comparison": "External_only vs Uncurated",
+      "mean_a": 0.0103,
+      "mean_b": 0.009,
+      "n_a": 3,
+      "n_b": 3,
+      "t_stat": 4.5883,
+      "p_value": 0.01012,
+      "cohens_d": 3.7463,
+      "significant_0.05": true,
+      "test_type": "Student"
+    },
+    {
+      "comparison": "RGDS vs Random_50pct",
+      "mean_a": 0.0057,
+      "mean_b": 0.0098,
+      "n_a": 2,
+      "n_b": 3,
+      "t_stat": -7.3538,
+      "p_value": 0.066954,
+      "cohens_d": -8.4708,
+      "significant_0.05": false,
+      "test_type": "Welch"
+    },
+    {
+      "comparison": "RGDS vs External_only",
+      "mean_a": 0.0057,
+      "mean_b": 0.0103,
+      "n_a": 2,
+      "n_b": 3,
+      "t_stat": -7.9071,
+      "p_value": 0.047235,
+      "cohens_d": -8.6598,
+      "significant_0.05": true,
+      "test_type": "Welch"
+    },
+    {
+      "comparison": "RGDS vs Uncurated",
+      "mean_a": 0.0057,
+      "mean_b": 0.009,
+      "n_a": 2,
+      "n_b": 3,
+      "t_stat": -5.6581,
+      "p_value": 0.073764,
+      "cohens_d": -6.2248,
+      "significant_0.05": false,
+      "test_type": "Welch"
+    }
+  ],
+  "ratio_ttest": {
+    "comparison": "External_only vs RGDS",
+    "mean_a": 1.1561,
+    "mean_b": 0.5204,
+    "n_a": 3,
+    "n_b": 2,
+    "t_stat": 14.2162,
+    "p_value": 0.004719,
+    "cohens_d": 10.0691,
+    "significant_0.05": true,
+    "test_type": "Welch"
+  },
+  "ppl_anova": {
+    "test": "One-way ANOVA (Random vs External vs Uncurated)",
+    "groups": {
+      "Random_50pct": {
+        "mean": 43.1833,
+        "sd": 1.4251,
+        "n": 3
+      },
+      "External_only": {
+        "mean": 46.3567,
+        "sd": 2.9719,
+        "n": 3
+      },
+      "Uncurated": {
+        "mean": 47.04,
+        "sd": 2.8993,
+        "n": 3
+      }
+    },
+    "F_stat": 1.9781,
+    "p_value": 0.218861,
+    "significant_0.05": false,
+    "interpretation": "No significant difference → supports 'normal cluster' framing"
+  },
+  "rare_ngram_anova": {
+    "test": "One-way ANOVA rare n-gram (Random vs External vs Uncurated)",
+    "F_stat": 13.0105,
+    "p_value": 0.006579,
+    "significant_0.05": true
+  },
+  "descriptive": {
+    "ppl": {
+      "Random_50pct": {
+        "mean": 43.1833,
+        "sd": 1.4251,
+        "n": 3
+      },
+      "External_only": {
+        "mean": 46.3567,
+        "sd": 2.9719,
+        "n": 3
+      },
+      "Uncurated": {
+        "mean": 47.04,
+        "sd": 2.8993,
+        "n": 3
+      },
+      "RGDS": {
+        "mean": 78.32,
+        "sd": 4.5962,
+        "n": 2
+      }
+    },
+    "rare_ngram": {
+      "Random_50pct": {
+        "mean": 0.0098,
+        "sd": 0.0003,
+        "n": 3
+      },
+      "External_only": {
+        "mean": 0.0103,
+        "sd": 0.0004,
+        "n": 3
+      },
+      "Uncurated": {
+        "mean": 0.009,
+        "sd": 0.0004,
+        "n": 3
+      },
+      "RGDS": {
+        "mean": 0.0057,
+        "sd": 0.0008,
+        "n": 2
+      }
+    }
+  }
+}

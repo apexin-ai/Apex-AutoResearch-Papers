@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04652aaa3cda792add0f",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "fig fig2 calibration",
+  "task_key": "worker_fig_fig2_calibration_20260515T175615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fig_fig2_calibration_20260515T175615_result.json",
+    "occurrence": 1,
+    "bytes": 663,
+    "sha256": "c45b71374fef06e64e7a8002df9dadbbb9cabdb0fff32bffad7f7535b6a5d037"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "fig2_calibration 已生成并拉回本地，之前的 worker 已完成了全部工作。\n\n文件验证：\n- **PDF**: 24.5 KB (`fig2_calibration.pdf`)\n- **PNG**: 208 KB (`fig2_calibration.png`)\n\n图表包含 2×2 布局：\n- **(a) No Trace** — ECE = 0.172，明显 overconfidence（红色 gap 大）\n- **(b) Full Trace** — ECE = 0.095，校准改善但仍有偏差\n- **(c) Exception Only** — ECE = 0.002，近乎完美校准，样本集中在高 confidence\n- **(d) VOTA** — ECE = 0.005，类似 exception_only，高度集中\n\n每个 panel 都有 reliability curve（上）和 confidence 分布直方图（下），符合规格。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fig-fig2-calibration.md"
+}

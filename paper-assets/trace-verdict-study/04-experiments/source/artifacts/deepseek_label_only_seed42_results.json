@@ -1,0 +1,33 @@
+{
+  "experiment": "deepseek_label_only_seed42",
+  "status": "completed_but_collapsed",
+  "accuracy": 0.2849,
+  "accuracy_ci_lower": 0.2613,
+  "accuracy_ci_upper": 0.3084,
+  "pass_precision": 0.0,
+  "pass_recall": 0.0,
+  "pass_f1": 0.0,
+  "fail_precision": 0.2849,
+  "fail_recall": 1.0,
+  "fail_f1": 0.4434,
+  "majority_baseline": 0.7151,
+  "majority_class": "pass",
+  "lift": -0.4303,
+  "train_loss": 1.7839,
+  "eval_loss": null,
+  "eval_entropy": 0.2966,
+  "eval_mean_token_accuracy": 0.1174,
+  "epochs": 3.0,
+  "total_steps": 444,
+  "train_runtime_seconds": 7766.55,
+  "n_eval_samples": 1190,
+  "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_label_only_seed42/final",
+  "log_path": "/root/runs/trace-verdict-study/deepseek_label_only_seed42.log",
+  "comparison": {
+    "deepseek_full_trace_seed42_v3_accuracy": 0.7916,
+    "qwen7b_label_only_seed42_accuracy": 0.8622,
+    "expected_range": "0.82-0.88",
+    "lift_vs_standard_fulltrace": -0.5067,
+    "verdict": "FAILURE — model collapsed to always predicting 'fail'. Accuracy 28.5% is below majority baseline 71.5%. eval_loss=nan indicates training divergence."
+  }
+}

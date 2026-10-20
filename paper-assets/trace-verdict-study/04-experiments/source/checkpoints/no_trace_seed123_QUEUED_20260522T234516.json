@@ -1,0 +1,41 @@
+{
+  "exp_id": "no_trace_seed123",
+  "project": "trace-verdict-study",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T23:16:32.361Z",
+    "updated_at": "2026-05-22T23:45:16.493Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/trace-verdict-study && /root/miniconda3/bin/python train/train_sft.py --condition no_trace --gpu 0 --gradient_checkpointing --seed 123 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/no_trace_seed123 2>&1 | tee /root/autodl-tmp/trace-verdict-study-checkpoints/no_trace_seed123.log\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "837113",
+      "log_path": "~/runs/trace-verdict-study/no_trace_seed123.log",
+      "submitted_at": "2026-05-22T23:16:31.881Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T23:38:40.611Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T23:38:44.195419+00:00"
+        }
+      ]
+    },
+    "hypothesis": "no_trace multi-seed robustness (seed 123): implicit pathway (terminal execution state only, no diagnostic tokens) achieves similar accuracy to seed42 (75.13%), confirming the 93-97% implicit pathway ceiling and higher variance compared to explicit pathway conditions",
+    "parent": "no_trace_seed42"
+  },
+  "timestamp": "2026-05-22T23:45:16.847174+00:00",
+  "trigger": "update_registry"
+}

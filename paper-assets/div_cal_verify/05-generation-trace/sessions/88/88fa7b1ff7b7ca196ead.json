@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88fa7b1ff7b7ca196ead",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "diag medium random50 seed456 exit",
+  "task_key": "worker_diag_medium_random50_seed456_exit_20260514T122537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_medium_random50_seed456_exit_20260514T122537_result.json",
+    "occurrence": 1,
+    "bytes": 467,
+    "sha256": "024c32189b6089e13dbfbfbb82295afaf86c468b5de117d88e31a876b525a884"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**1. 退出原因**：success — 8 代全部跑完，日志 `===== COMPLETE =====`\n\n**2. Gen 7 metrics**：\n\n| 指标 | 值 |\n|------|-----|\n| PPL | 69.12 |\n| RankMe | 415.04 |\n| kNN | 0.9880 |\n| Rare | 0.0124 |\n| Corr | -0.0139 |\n\n**3. Registry & Cron**：registry 已更新为 DONE/success，cron 已删除\n\n**4. GPU 状态**：cuda:1 已空闲（0% 利用率，0 MiB 显存）；cuda:0 仍在使用（65%，~78GB）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-medium-random50-seed456-exit.md"
+}

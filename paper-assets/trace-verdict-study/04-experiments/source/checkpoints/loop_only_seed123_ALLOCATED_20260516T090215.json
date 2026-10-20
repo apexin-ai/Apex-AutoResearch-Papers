@@ -1,0 +1,22 @@
+{
+  "exp_id": "loop_only_seed123",
+  "project": "trace-verdict-study",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T06:03:35.196Z",
+    "updated_at": "2026-05-16T09:02:14.816Z",
+    "spec": {
+      "hypothesis": "Task H: loop_only seed robustness — seed=123. Verifies loop_only 85.63% stability across seeds.",
+      "parent": "loop_only_seed42",
+      "plan_id": "round5_task_h",
+      "server": "westd-11235",
+      "gpu": "cuda:1",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-16T09:02:15.036469+00:00",
+  "trigger": "update_registry"
+}

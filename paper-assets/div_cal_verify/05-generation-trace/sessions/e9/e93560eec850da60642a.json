@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e93560eec850da60642a",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "code phase2 prep",
+  "task_key": "worker_code_phase2_prep_20260512T202818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase2_prep_20260512T202818_result.json",
+    "occurrence": 1,
+    "bytes": 1366,
+    "sha256": "6d38043a481d50ac50accd2cb0b9b6af1956bc90772ff6431d9d0e074d858730"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。总结：\n\n### 产出\n\n**`/root/div_cal_verify/run_phase2.sh`** — 可直接执行\n- 3 方法串行：RGDS → External-only → Uncurated\n- 超参：5M tokens/gen, 3 epochs, lr=5e-5, 6 generations\n- 双卡 `--gpu_ids 0,1`（generator cuda:0, student cuda:1）\n- 输出到 `/root/autodl-tmp/div_cal_verify/results_phase2/{method}/`\n- 日志到 `~/runs/div_cal_verify/phase2_{method}.log`\n\n### Bug 修复\n\n**`run_mvp.py` 第 192-195 行**：Contriever 改为所有方法都加载（原来只对 rgds/external_only 加载）。\n\n根因：uncurated 方法 `contriever_model=None` → `run_evaluation` 跳过 `rank_correlation` 计算 → 后续 print `metrics['rank_correlation']` KeyError 崩溃。旧日志 `mvp_uncurated_v1.log` 确认了这个崩溃路径（虽然具体 traceback 是更早版本在 `compute_rank_correlation` 内部崩的，guard 加了之后变成 KeyError）。\n\n修复：Contriever 是评估指标（rank correlation），不是选择方法，所有方法都应计算，且 CPU 加载开销极小。备份在 `run_mvp.py.bak`。\n\n### Phase 1 状态\n- PID 93696 存活，RGDS gen_0 目录已创建，尚无 metrics.json\n- 日志仅一行 `torch_dtype` 弃用警告 → 仍在 gen_0 早期\n- **Phase 1 的 uncurated 运行也会受益于此修复**（RGDS 跑完后才轮到 uncurated）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase2-prep.md"
+}

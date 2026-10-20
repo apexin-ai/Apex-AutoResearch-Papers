@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33b70d8793859049acd7",
+  "project": "div_cal_verify",
+  "kind": "result",
+  "title": "code analyze phase2",
+  "task_key": "worker_code_analyze_phase2_20260513T063622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_analyze_phase2_20260513T063622_result.json",
+    "occurrence": 1,
+    "bytes": 483,
+    "sha256": "1b2c5743afb58ece7aab6dc9cf0da9b71573308a94c21d6af696ea247b4f91da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。脚本已创建并成功运行：\n\n**表格输出**：3 方法 × 8 代（external_only 目前只有 gen 0-1）的 PPL/RankMe/k-NN/rare_ngram/rank_corr，含 Δ% 行。\n\n**4 个 PDF 图表**已生成到 `artifacts/`：\n- `rare_ngram_survival.pdf`\n- `ppl_comparison.pdf`\n- `selection_diagnostics.pdf`\n- `quality_filter_diagnostics.pdf`\n\n**判定结果**：FAIL — external_only 缺少 gen7 数据（仅跑到 gen 1），无法与 RGDS gen7 对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-analyze-phase2.md"
+}

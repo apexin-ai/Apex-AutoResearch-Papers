@@ -1,0 +1,16 @@
+{
+  "exp_id": "vota_ae_only_seed42",
+  "project": "trace-verdict-study",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T05:11:44.999Z",
+    "updated_at": "2026-05-15T09:39:46.342Z",
+    "hypothesis": "VOTA component ablation: ae_only condition — only actual/expected values, no exception/loop compression (plan_003 sub-a)",
+    "notes": "⚠️ ae_only 数据 fallback 比率 88% (4159/4720): actual/expected 字段为 [fallback: full locals]（全量局部变量 dump），源自 VOTA compressor _extract_assertions() 固有行为，非 data prep bug。ae_only 测的是\"assertion 事件（含 locals noise）\"而非纯 actual/expected 信号。plan_001（减法：去掉 ae）是验证 ae 贡献的更可靠证据——不受 fallback 影响。"
+  },
+  "timestamp": "2026-05-15T09:39:46.384727+00:00",
+  "trigger": "update_registry"
+}

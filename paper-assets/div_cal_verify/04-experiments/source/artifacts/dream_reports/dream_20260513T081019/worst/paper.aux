@@ -1,0 +1,76 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shumailov2024nature,alemohammad2024selfconsuming,dohmatob2024tale}
+\citation{abbas2023semdedup}
+\citation{tirumala2023d4}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{shumailov2024nature}
+\citation{alemohammad2024selfconsuming}
+\citation{dohmatob2024tale}
+\citation{abbas2023semdedup}
+\citation{tirumala2023d4}
+\citation{xie2023dsir}
+\citation{garrido2023rankme}
+\citation{papyan2020prevalence}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model Collapse.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data Selection and Curation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Representation Quality Metrics.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Iterative Self-Training Protocol}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Selection Methods}{2}{subsection.3.2}\protected@file@percent }
+\citation{izacard2022contriever}
+\citation{radford2019language}
+\@writefile{toc}{\contentsline {paragraph}{Uncurated.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RGDS (Internal).}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{External (Contriever).}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Evaluation Metrics}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Main Comparison: Three Methods $\times $ 8 Generations}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:main}{{4.1}{3}{Main Comparison: Three Methods $\times $ 8 Generations}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces PPL and rare n-gram trajectories across 8 self-training generations (GPT-2 125M, WikiText-103, seed=42). All three methods follow nearly identical collapse curves.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:main_trajectory}{{1}{4}{PPL and rare n-gram trajectories across 8 self-training generations (GPT-2 125M, WikiText-103, seed=42). All three methods follow nearly identical collapse curves}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Gen-7 endpoint comparison (GPT-2 125M, WikiText-103, seed=42). No method shows a meaningful advantage or disadvantage.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:gen7_summary}{{2}{4}{Gen-7 endpoint comparison (GPT-2 125M, WikiText-103, seed=42). No method shows a meaningful advantage or disadvantage}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Seed Reproducibility}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:seeds}{{4.2}{4}{Cross-Seed Reproducibility}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-seed Gen-7 consistency (GPT-2 125M, WikiText-103). Inter-seed variance exceeds inter-method variance.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:cross_seed}{{3}{4}{Cross-seed Gen-7 consistency (GPT-2 125M, WikiText-103). Inter-seed variance exceeds inter-method variance}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Model Scale: GPT-2 Medium (355M)}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:scale}{{4.3}{4}{Model Scale: GPT-2 Medium (355M)}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Three-seed aggregate statistics (Gen 7, GPT-2 125M, WikiText-103). No pairwise comparison reaches significance at $\alpha = 0.10$.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:3seed_agg}{{4}{5}{Three-seed aggregate statistics (Gen 7, GPT-2 125M, WikiText-103). No pairwise comparison reaches significance at $\alpha = 0.10$}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces GPT-2 125M vs.\ GPT-2 Medium (355M) Gen-7 comparison. The null result holds at larger scale.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:scale}{{5}{5}{GPT-2 125M vs.\ GPT-2 Medium (355M) Gen-7 comparison. The null result holds at larger scale}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Cross-Dataset: OpenWebText}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:owt}{{4.4}{5}{Cross-Dataset: OpenWebText}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces WikiText-103 vs.\ OpenWebText Gen-7 comparison. The null result generalizes across datasets.}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:dataset}{{6}{5}{WikiText-103 vs.\ OpenWebText Gen-7 comparison. The null result generalizes across datasets}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Embedding Re-Anchoring}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:reanchor}{{4.5}{5}{Embedding Re-Anchoring}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Re-anchoring vs.\ baselines (Gen 7, GPT-2 125M, WikiText-103). Re-anchoring restores selection ratio without affecting collapse metrics.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:reanchor}{{7}{6}{Re-anchoring vs.\ baselines (Gen 7, GPT-2 125M, WikiText-103). Re-anchoring restores selection ratio without affecting collapse metrics}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Metric Dissociation}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:dissociation}{{4.6}{6}{Metric Dissociation}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{RankMe increases during collapse.}{6}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{$k$-NN accuracy remains stable.}{6}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Rank correlation is weak and negative.}{6}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why selection doesn't matter.}{6}{section*.10}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{abbas2023semdedup}{{1}{2023}{{Abbas et~al.}}{{}}}
+\bibcite{alemohammad2024selfconsuming}{{2}{2024}{{Alemohammad et~al.}}{{}}}
+\bibcite{dohmatob2024tale}{{3}{2024}{{Dohmatob et~al.}}{{}}}
+\bibcite{garrido2023rankme}{{4}{2023}{{Garrido et~al.}}{{}}}
+\bibcite{izacard2022contriever}{{5}{2022}{{Izacard et~al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Implications for model collapse mitigation.}{7}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\bibcite{papyan2020prevalence}{{6}{2020}{{Papyan et~al.}}{{}}}
+\bibcite{radford2019language}{{7}{2019}{{Radford et~al.}}{{}}}
+\bibcite{shumailov2024nature}{{8}{2024}{{Shumailov et~al.}}{{}}}
+\bibcite{tirumala2023d4}{{9}{2023}{{Tirumala et~al.}}{{}}}
+\bibcite{xie2023dsir}{{10}{2023}{{Xie et~al.}}{{}}}
+\gdef \@abspage@last{8}

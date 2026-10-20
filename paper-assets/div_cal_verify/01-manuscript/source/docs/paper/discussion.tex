@@ -1,0 +1,67 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{The Embedding Alignment Gap as Goodhart's Law}
+
+The selection ratio trajectory of RGDS---declining from ${\sim}1.0$ at Generation~0 to $0.64 \pm 0.20$ at Generation~7 ($n{=}3$)---instantiates a specific form of Goodhart's law in representation space \citep{gao2023scaling, karwowski2024goodhart}. The proxy measure (embedding diversity) and the true objective (content diversity) are initially correlated: at Generation~0, RGDS's selection ratio exceeds~1, and the method preferentially retains content-rich samples. But as the model trains on its own selected outputs, the embedding space drifts: regions that formerly encoded distinct content merge, effective dimensionality shrinks, and the proxy's correlation with the target degrades.
+
+The selection ratio declining below~1.0 marks the critical transition. Above~1.0, the proxy---while imperfect---points in the right direction. Below~1.0, the proxy has inverted: the model's internal notion of ``diverse'' anti-correlates with content diversity, and selection actively filters out the samples that would slow collapse. With 3-seed data, RGDS's mean ratio begins near~1.0 ($0.98 \pm 0.06$) and falls below~1.0 by Generation~1, never recovering. This degradation is self-reinforcing within the self-training loop because the next generation's embeddings are shaped by the content-depleted training data, further degrading the proxy.
+
+\citet{karwowski2024goodhart} formalize Goodhart's law in the context of reward model overoptimization, showing that proxy performance peaks and then degrades as optimization pressure increases. The embedding alignment gap follows an analogous trajectory: RGDS's mean selection ratio rises slightly in early generations before sustained decline, mirroring the peak-then-degrade pattern characteristic of Goodhart dynamics. The structural difference is that here the proxy (embedding space) is itself a function of the optimization outcome, creating a feedback loop absent from standard Goodhart settings where the proxy is fixed.
+
+The inter-seed variance of the Generation~7 selection ratio ($0.64 \pm 0.20$) reveals an additional nuance. Seeds~42 and~123 reach deeply inverted ratios (${\sim}0.52$), while seed=456 exhibits a late-generation rebound from 0.65 at Generation~6 to 0.87 at Generation~7. Critically, this ratio recovery does not translate into perplexity recovery: seed=456's Generation~7 perplexity (66.22) remains catastrophically elevated relative to the non-RGDS cluster (43--47). This dissociation suggests that the alignment gap operates as a ratchet: once several generations of content-depleted training have degraded model quality, restoring selection alignment at a late stage cannot undo the accumulated distributional damage. The practical implication is that monitoring the selection ratio alone is insufficient---corrective action must be taken \emph{before} the proxy has inverted, not after.
+
+\subsection{The Normal Cluster and the Floor of Self-Training}
+
+Three of our four methods---Random~50\%, External-only, and Uncurated---cluster in a band of Generation~7 perplexities between 43 and 51 despite substantial differences in design (ANOVA $p = 0.219$, $n{=}3$ per method). Random selection applies no intelligent curation; External-only applies greedy diversity maximization with frozen embeddings; Uncurated retains all data without filtering. That these methods converge to comparable PPL outcomes indicates that the floor of perplexity degradation in this self-training protocol is determined by the iterative feedback loop itself \citep{shumailov2024ai}, not by the data selection strategy.
+
+Critically, this convergence is specific to perplexity. When measured by rare n-gram ratio, the same three methods show statistically significant differences (ANOVA $p = 0.007$): Uncurated retains fewer rare n-grams ($0.0090 \pm 0.0004$) than both Random~50\% ($0.0098 \pm 0.0003$) and External-only ($0.0102 \pm 0.0004$). Content diversity can degrade silently---without perplexity penalty---indicating that PPL alone is insufficient to capture all dimensions of model collapse.
+
+This convergence is consistent with theoretical analyses showing that self-consuming generative processes converge toward the modes of the original distribution regardless of training procedure \citep{seddik2024how}. Within the non-catastrophic regime, data selection method variation produces second-order effects relative to the first-order dynamics of iterative self-training. RGDS is the outlier precisely because it introduces a systematic bias---toward content-depleted samples---that compounds across generations, pushing it outside the natural convergence band.
+
+\subsection{Why the Alignment Gap Narrows with Scale}
+\label{sec:discuss_scaling}
+
+The within-budget comparison (RGDS vs.\ Random~50\%, both at 50\%) reveals that scaling reduces the alignment gap penalty: the absolute PPL gap contracts from 31.10 at 125M ($n{=}3$) to 15.15 at 355M ($n{=}2$), and the relative gap narrows from $+$72\% to $+$21\%.%
+%TODO(355M-seeds): confirm with 3-seed data
+Two mechanisms---not mutually exclusive---may underlie this attenuation.
+
+\emph{Representational redundancy.} Larger models begin self-training with higher effective embedding dimensionality: GPT2-Medium's Generation~0 RankMe (${\sim}365$) exceeds GPT2-125M's (${\sim}276$) by 33\%. This additional representational capacity buffers the geometric distortion that drives proxy inversion \citep{jing2022understanding}---more dimensions carry meaningful signal, so the eigenvalue-based selection objective tracks genuine content distinctions for longer. Consistent with this mechanism, the RGDS selection ratio at Generation~7 improves from $0.64 \pm 0.20$ (125M, $n{=}3$) to $0.85 \pm 0.03$ (355M, $n{=}2$), indicating that proxy-target alignment degrades more slowly at larger scale.
+
+\emph{Compression under severe collapse.} The 355M Uncurated baseline degrades far more severely than at 125M (PPL~$89.36$, $n{=}2$, vs.\ $47.04 \pm 2.90$, $n{=}3$). When absolute collapse is severe, method differences may compress toward a common degradation trajectory, shrinking the relative gap between RGDS and Random~50\% independently of representational improvement. The absolute gap contracts from 31.10 to 15.15, consistent with---but not diagnostic of---either explanation.
+
+Moreover, the gap compression is specific to RGDS. External-only's penalty relative to Random~50\% increases from $+$7.4\% at 125M ($n{=}3$) to $+$10.2\% at 355M ($n{=}2$), and Uncurated's penalty increases from $+$8.9\% to $+$25.1\%.%
+%TODO(355M-seeds): confirm with 3-seed data
+A uniform compression effect would shrink all method differences symmetrically; the observed asymmetry---where only the alignment-gap-driven penalty contracts while other penalties widen---is directionally consistent with representational redundancy as a contributing factor.
+
+These two effects likely co-exist, and the observed attenuation reflects their joint action. The absolute penalty persists---RGDS remains 21\% worse than Random~50\% at 355M ($n{=}2$)---but the alignment gap is attenuated, not eliminated. Definitively distinguishing between representational redundancy and floor-compression effects requires experiments at three or more model scales. The asymmetric gap pattern at 355M---where only the alignment-gap-driven penalty contracts while other method differences expand---provides directional evidence consistent with representational redundancy, but does not rule out scale-dependent floor compression.%
+%TODO(355M-seeds): confirm with seed=456 data
+
+\subsection{Practical Implications}
+
+The results yield a direct prescription: do not use the training model's own embeddings for data selection in iterative self-training settings. Any embedding-based curation method whose embedding source co-evolves with the model---including methods based on facility location objectives, kernel density estimation, or clustering over internal representations---is vulnerable to the same proxy-target inversion. The risk is highest when curation occurs at every generation and no external anchor stabilizes the embedding space.
+
+Random sampling provides a zero-cost alternative that avoids the alignment gap entirely and, in our experiments, slightly outperforms both Uncurated and External-only baselines (though the difference is not statistically significant at $n{=}3$; \S\ref{sec:result_s3}). When informed selection is desired, frozen external embeddings maintain selection quality across generations at the cost of an additional inference pass through the external encoder.
+
+\subsection{Connection to Concept Drift}
+
+The embedding alignment gap can be understood as a special case of concept drift \citep{lu2019learning, gama2014survey} in which the drift is endogenous: the model's own outputs define its future training distribution, which in turn reshapes its representations. In standard concept drift settings, the data distribution shifts due to external factors, and the model must adapt. In self-consuming training, the model \emph{causes} the distribution shift, creating a feedback loop where representation degradation and distributional shift co-amplify.
+
+This endogenous drift is particularly insidious for embedding-based data selection because the selection mechanism relies on the very representations undergoing drift. Concept drift detection methods that monitor distributional divergence between training batches would flag the symptom (changing distributions) but not the cause (embedding-selection feedback). Addressing this failure mode requires either anchoring selection to a stable external reference---as External-only does---or monitoring the selection ratio to detect proxy inversion before it compounds.
+
+\subsection{Limitations}
+
+Several limitations scope our conclusions:
+\begin{enumerate}
+    \item Our experiments use GPT2-125M ($n{=}3$) and GPT2-Medium (355M, $n{=}2$); the embedding alignment gap may manifest differently in larger models with richer representational capacity.
+    \item We train and evaluate exclusively on WikiText-103; other domains (code, dialogue, scientific text) may exhibit different collapse dynamics.
+    \item Our self-training protocol uses cumulative fine-tuning with fixed hyperparameters; instruction-tuning and RLHF pipelines introduce additional variables (reward signals, preference data) that could interact with the alignment gap.
+    \item Our analysis of dimensional collapse is empirical and analogical \citep{jing2022understanding}---we do not provide a formal theoretical proof linking effective dimensionality reduction to selection ratio decline.
+    \item GPT2-Medium results are based on two seeds ($n{=}2$); full three-seed confirmation is pending.
+    \item We fix the selection budget at 50\%. Lower budgets (e.g., 30\%) would amplify any selection bias---including the alignment gap---by concentrating training on a smaller, more aggressively filtered subset. Higher budgets (e.g., 70\%) would dilute the selection signal and approach the Uncurated baseline. Our 50\% budget represents a moderate operating point; the alignment gap's sensitivity to budget fraction is an open question.
+    \item We extract embeddings from the last hidden layer. Intermediate layers or pooled representations may exhibit different alignment dynamics; exploring this design choice is left to future work.
+\end{enumerate}
+
+\subsection{Future Work}
+
+Three directions extend this work. First, scaling to 1B+ parameter models would test whether richer embedding spaces resist or amplify the alignment gap. Second, replicating across diverse pretraining corpora (OpenWebText, C4, The Pile) would establish domain generality. Third, \emph{embedding re-anchoring} strategies---periodically resetting the selection embeddings to an external encoder or a cached earlier checkpoint---could retain the benefits of informed selection while preventing proxy inversion. Finally, a theoretical analysis relating the selection ratio trajectory to the rate of effective dimensionality reduction would provide a predictive framework for identifying when the alignment gap becomes critical before the proxy has fully inverted.

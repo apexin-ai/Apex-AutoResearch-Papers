@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f263e243c01299d0a72",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "monitor training progress",
+  "task_key": "worker_monitor_training_progress_20260515T051024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_training_progress_20260515T051024_result.json",
+    "occurrence": 1,
+    "bytes": 540,
+    "sha256": "db7fab6fecade71bcc2a09904b2d7ce1bada593237ed446accec1d4aa855982a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/report_training_progress.md`。\n\n| 实验 | 进度 | Loss | 速度 | 预计完成 (UTC) |\n|------|------|------|------|----------------|\n| vota_no_ae_seed42 | 208/444 (47%) | 0.0603 ↓ | 13.5 s/it | ~14:04 |\n| full_trace_label_only_seed42 | 70/444 (16%) | 待输出 | 18.4 s/it | ~15:06 |\n\n两张 RTX PRO 6000 Blackwell 均 100% 利用率，温度正常，无 OOM/loss spike。实验 2 因 gradient_checkpointing + full trace 输入更长，显存占用 92%（90 GB），单步慢约 36%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-training-progress.md"
+}

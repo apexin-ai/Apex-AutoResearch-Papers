@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0acf856e057077934d63",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "ops anonymous repo push",
+  "task_key": "worker_ops_anonymous-repo-push_20260523T132023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_anonymous-repo-push_20260523T132023.log",
+    "occurrence": 1,
+    "bytes": 624109,
+    "sha256": "c5ece913c925b3c0f50b41f3ae0eb186a44953c8c0f9c2498898e60c27de8735"
+  },
+  "statistics": {
+    "messages": 128,
+    "user_turns": 0,
+    "tool_calls": 45,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 34,
+      "tool_call": 45,
+      "tool_result": 45,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 128,
+      "chunks": [
+        {
+          "path": "0acf856e057077934d63-part-0001.json",
+          "message_count": 119
+        },
+        {
+          "path": "0acf856e057077934d63-part-0002.json",
+          "message_count": 9
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-anonymous-repo-push.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ffda97da9a4a6a3fc79",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "fix figure paths and recompile",
+  "task_key": "worker_fix_figure_paths_and_recompile_20260519T173059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_figure_paths_and_recompile_20260519T173059_result.json",
+    "occurrence": 1,
+    "bytes": 324,
+    "sha256": "7c7bc3722ef7f3041e03846766d37085bddda1ef27a9a59dcc8dbb0087e2a8af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译结果：\n\n- **Errors: 0** — 无错误\n- **Not found: 0** — 无缺失文件\n- **Overfull hbox: 6**\n- **Underfull hbox: 214**\n- **输出: main.pdf, 22 页, 447KB**\n\n`budget_curve.pdf` 和 `error_overlap.pdf` 已复制到 `/root/trace-verdict-study/figures/paper/`，编译通过，0 errors。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-figure-paths-and-recompile.md"
+}

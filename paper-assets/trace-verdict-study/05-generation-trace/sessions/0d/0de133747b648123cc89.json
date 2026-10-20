@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0de133747b648123cc89",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis trace length ablation fig",
+  "task_key": "worker_analysis_trace_length_ablation_fig_20260516T040942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_trace_length_ablation_fig_20260516T040942_result.json",
+    "occurrence": 1,
+    "bytes": 1224,
+    "sha256": "663b96c383ce3994c4ebea0f33be6fe712fcaa21389a02ec4b6481a523209f91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有任务完成。总结：\n\n**已完成：**\n\n1. **生成缺失的 predictions.jsonl** — 在 GPU 1 上成功运行了 256tok 和 512tok 的评估，predictions 已保存到各自的 checkpoint 目录。\n\n2. **Paired Bootstrap 显著性检验** (N=10,000, seed=42) — 12 对比较全部完成。关键发现：\n   - 256→512: +1.60pp, **不显著** (p=0.117)\n   - 512→1024: **-3.19pp** (p=0.002), 1024tok 显著更差\n   - 1024→no_limit: **+4.54pp** (p<0.001), no_limit 显著更好\n   - 所有 full_trace vs exception_only: **-18~23pp** (全部 p<0.001)\n   - 1024tok vs no_trace: +2.10pp, **不显著** (p=0.078)\n\n3. **论文级图表** — `fig_trace_ablation.pdf` 和 `.png` 已生成在服务器 `/root/trace-verdict-study/artifacts/`。使用 DejaVu Serif 字体，线性 x 轴，带 95% CI error bars，含 exception_only 和 no_trace 参考线。\n\n4. **分析报告** — 写入本地 `artifacts/trace_ablation_analysis.md`。\n\n5. **Bootstrap JSON** — 已复制到本地 `artifacts/trace_ablation_bootstrap.json`。\n\n**图表文件位于服务器：** `/root/trace-verdict-study/artifacts/fig_trace_ablation.{pdf,png}`（SCP 不可用，无法直接传输到本地）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-trace-length-ablation-fig.md"
+}

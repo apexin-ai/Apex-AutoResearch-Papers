@@ -1,0 +1,948 @@
+# paper discussion two fixes
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 19
+- **Recorded user turns:** 0
+- **Tool calls:** 5
+- **Original source:** `logs/workers/worker_paper_discussion_two_fixes_20260516T025027.log`
+- **Structured JSON:** [`463da292ba8fe947804e.json`](../../sessions/46/463da292ba8fe947804e.json)
+
+## Before a recorded user message
+
+19 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "session_id": "a17fed99-81aa-4eb9-a086-1aa669776342",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "9661eacd-94d2-4097-afae-aeaf6abb8491",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3_
+
+Let me read the file first to find the exact text to modify.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a17fed99-81aa-4eb9-a086-1aa669776342",
+  "uuid": "6c8b324c-7a9c-413d-a53d-ed809f590691",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L8ECj3G46gq1ptduEKs41S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11018,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11018
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LmYs2sk1yMVc8Ao8Qg9Knz`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a17fed99-81aa-4eb9-a086-1aa669776342",
+  "uuid": "2f8db593-d9bf-4a73-8128-5954f060385b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L8ECj3G46gq1ptduEKs41S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11018,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11018
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-16T02:50:40.441Z_
+
+<details><summary>↩ Tool result · `toolu_01LmYs2sk1yMVc8Ao8Qg9Knz`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a17fed99-81aa-4eb9-a086-1aa669776342",
+  "uuid": "38113805-645c-47af-b71d-ea97ff7039d9",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778904600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "4610ef46-ab48-4cdb-ba85-626c38824ed8",
+  "session_id": "a17fed99-81aa-4eb9-a086-1aa669776342"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the discussion.tex file to find the exact text that needs to be modified.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a17fed99-81aa-4eb9-a086-1aa669776342",
+  "uuid": "bcae8082-c2e8-48a7-88bf-9612d5f70fe0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ampp5dBSBbWsiogpJHFEvd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 22859,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 686
+      },
+      "output_tokens": 52,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0114tjy1SeeqbB7MfZSvVw17`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "cat /root/trace-verdict-study/docs/paper/discussion.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a17fed99-81aa-4eb9-a086-1aa669776342",
+  "uuid": "3918e024-b950-4bc3-a75d-2afc85152d99",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ampp5dBSBbWsiogpJHFEvd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 22859,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 686
+      },
+      "output_tokens": 52,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T02:50:45.440Z_
+
+<details><summary>↩ Tool result · `toolu_0114tjy1SeeqbB7MfZSvVw17`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Discussion}\\n\\n\\\\subsection{Why Exception Events Dominate}\\n\\nVerdict prediction is fundamentally a fault detection task: the model must determine whether execution deviated from expected behavior.\\nException events are the most explicit signal of such deviation---structured diagnostic moments that encode the nature and location of a fault.\\nUnlike loop compressions or assertion-point values, which require the model to integrate information across multiple trace elements, exception events provide a self-contained verdict cue.\\nThis explains why \\\\texttt{exception\\\\_only} matches or exceeds VOTA: adding non-exception trace components dilutes the model's attention on the diagnostic signal rather than providing complementary information.\\n\\nWe acknowledge that exception-based verdict prediction is, at its core, fault indicator presence detection: the model learns to map the presence or absence of a structured error message to a binary label, which is close to trivially solvable for any instruction-tuned LLM.\\nThe Tier~1 accuracy of ${\\\\geq}$99.8\\\\% is therefore unsurprising in isolation.\\nThe contribution of this finding lies not in demonstrating that a strong signal yields high accuracy, but in two less obvious results: (a)~adding more trace information---loop compressions, assertion-point values---actively \\\\emph{hurts} performance (VOTA $<$ \\\\texttt{exception\\\\_only}, Table~\\\\ref{tab:ablation}), quantifying an information density dilution effect that has not been previously measured; and (b)~this dilution is confounded by tokenizer-driven trace truncation on DeepSeek: the DeepSeek tokenizer produces longer sequences than Qwen for identical inputs, causing the majority of VOTA training samples to exceed the context window (\\\\S\\\\ref{sec:cross_model}); the verdict label is preserved, but the trace content is truncated, depriving the model of diagnostic information and contributing to the collapse of DeepSeek VOTA fail recall to 45.43\\\\% (Table~\\\\ref{tab:per_class}) while Qwen maintains 100\\\\%.\\n\\n\\\\subsection{Simplicity as Relative Robustness}\\n\\nThe cross-model gap pattern (Table~\\\\ref{tab:cross_model}) suggests a design principle: \\\\emph{trace representations should match the model capability floor, not the ceiling.}\\nException events are consistently the most effective component on both models, and their structural simplicity---a fixed-format error message---ensures that the relative advantage over richer representations holds across all seeds.\\nTwo of three DeepSeek seeds match Qwen-level accuracy (99.33\\\\%); the outlier (seed 123, 91.09\\\\%) is attributable to LoRA initialization landing in a suboptimal basin (fail recall = 70.5\\\\%), not to a failure of the exception signal itself---even this outlier outperforms VOTA (84.45\\\\%) by 6.64pp.\\nThe VOTA cross-model gap is confounded by two factors: (1)~tokenizer efficiency---the DeepSeek tokenizer averages 2{,}626 tokens per VOTA sample versus Qwen's 1{,}908, causing 91.7\\\\% of training samples to exceed the 2{,}048-token context window, truncating trace content while preserving the verdict label---and (2)~base model capability differences, consistent with findings that SFT generalization depends on pretrain quality \\\\citep{yang2024generalization}.\\nThe two factors cannot be disentangled in the current experimental design.\\nOur \\\\texttt{exception\\\\_only} design sidesteps the truncation confound entirely by keeping inputs short (median 314 tokens), making its cross-model comparison clean and the ``capability floor'' principle directly testable.\\nThe practical implication is that trace-based systems should default to the simplest sufficient signal; for smaller models, training stability (multi-seed selection, warmup schedules) is a secondary but addressable concern.\\n\\n\\\\subsection{Training Dynamics and Loss Decoupling}\\n\\nThe DeepSeek \\\\texttt{exception\\\\_only} results reveal two instructive training dynamics.\\nFirst, epoch-level analysis shows mild degradation in 2/3 seeds: seed 42 peaks at 99.83\\\\% after epoch~1 but settles \\n\\n... [截断: 输出过长，省略 4140 字符] ...\\n\\n the truncation artifact (abrupt sequence termination) with the verdict label; when truncation is removed by extending the context window, the input distribution shifts out-of-distribution and the learned cue vanishes.\\nThis confirms that \\\\texttt{full\\\\_trace} accuracy reflects truncation pattern matching rather than genuine trace comprehension.\\n\\n\\\\textbf{VOTA is context-dependent.}\\nVOTA trained at \\\\texttt{max\\\\_length}=2{,}048 (where 91.7\\\\% of samples are truncated) achieves 84.45\\\\% when evaluated at \\\\texttt{max\\\\_length}=16{,}384, recovering performance by restoring the complete structured trace including the terminal ``Answer:'' prompt.\\nHowever, the reverse direction fails: evaluating at \\\\texttt{max\\\\_length}=2{,}048 yields only 16.0\\\\%, because truncation removes the structured suffix that the model relies on for verdict extraction.\\nVOTA's accuracy is thus contingent on context length being sufficient to preserve its structured format---a fragility that scales with trace verbosity.\\n\\n\\\\textbf{Exception-only is inherently robust.}\\n\\\\texttt{exception\\\\_only} maintains 99.33\\\\% accuracy regardless of evaluation context length.\\nBecause exception events are concise (median 314 tokens), no sample exceeds 2{,}048 tokens; varying \\\\texttt{max\\\\_length} between 2{,}048 and 16{,}384 produces identical inputs and therefore identical predictions.\\nThis robustness is not an engineered property but a natural consequence of signal brevity: there is no truncation to create distribution shift.\\n\\nThese results add an inference-time dimension to the signal quality argument.\\nException-based traces are not only the most accurate at training time (Table~\\\\ref{tab:ablation}) but also the most robust to deployment-time configuration changes---a practical advantage for systems where the evaluation context length may differ from the training setting.\\nThe pattern reinforces a consistent theme: \\\\emph{simpler, shorter signals are more robust because they have fewer failure modes.}\\n\\n\\\\subsection{Limitations}\\n\\nOur study has several limitations.\\nFirst, all experiments use a single dataset (591 problems from HumanEval and MBPP-sanitized); generalization to other languages, larger codebases, or different fault types remains untested.\\nSecond, we evaluate only two models at the 7B parameter scale; the relationship between model size and trace signal utility is unexplored.\\nThird, DeepSeek \\\\texttt{exception\\\\_only} exhibits seed-dependent variance: 2/3 seeds achieve 99.33\\\\% while seed 123 yields 91.09\\\\% ($\\\\sigma{=}4.76$pp, $n{=}3$), attributable to LoRA initialization sensitivity (fail recall = 70.5\\\\% for the outlier vs.\\\\ 100\\\\% for others).\\nQwen shows perfect seed robustness ($\\\\sigma{=}0$, $n{=}3$).\\nWhether training stabilization techniques (e.g., larger warmup ratio, LoRA rank adjustment) can eliminate DeepSeek's seed sensitivity is unexplored.\\nOther conditions use a single seed.\\nFourth, the initial DeepSeek \\\\texttt{full\\\\_trace} run was invalidated by context overflow (the DeepSeek tokenizer produced sequences exceeding 2{,}048 tokens, truncating the verdict label); a re-run with label-preserving truncation yields 79.16\\\\% (CI [76.80\\\\%, 81.30\\\\%]), 2.60pp below Qwen (Table~\\\\ref{tab:cross_model}).\\nFifth, the candidate solutions were generated by Qwen-2.5-Coder-7B-Instruct, which also serves as one of our evaluation models.\\nThis does not affect verdict prediction---the task is to classify a \\\\emph{given} solution as pass or fail, not to generate solutions---but we note the overlap for transparency.\\nMoreover, the pass/fail distribution in the dataset is determined by the generating model's coding ability; a stronger or weaker generator would yield a different class balance, potentially affecting task difficulty and the generalizability of our accuracy estimates.\\nFinally, our analysis is limited to verdict prediction; whether exception dominance extends to other classification tasks (vulnerability detection, clone detection) or to generation tasks (program repair) is an open question.\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a17fed99-81aa-4eb9-a086-1aa669776342",
+  "uuid": "b127d383-e678-44fc-949e-3e2d4e8727bf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Discussion}\\\\n\\\\n\\\\\\\\subsection{Why Exception Events Dominate}\\\\n\\\\nVerdict prediction is fundamentally a fault detection task: the model must determine whether execution deviated from expected behavior.\\\\nException events are the most explicit signal of such deviation---structured diagnostic moments that encode the nature and location of a fault.\\\\nUnlike loop compressions or assertion-point values, which require the model to integrate information across multiple trace elements, exception events provide a self-contained verdict cue.\\\\nThis explains why \\\\\\\\texttt{exception\\\\\\\\_only} matches or exceeds VOTA: adding non-exception trace components dilutes the model's attention on the diagnostic signal rather than providing complementary information.\\\\n\\\\nWe acknowledge that exception-based verdict prediction is, at its core, fault indicator presence detection: the model learns to map the presence or absence of a structured error message to a binary label, which is close to trivially solvable for any instruction-tuned LLM.\\\\nThe Tier~1 accuracy of ${\\\\\\\\geq}$99.8\\\\\\\\% is therefore unsurprising in isolation.\\\\nThe contribution of this finding lies not in demonstrating that a strong signal yields high accuracy, but in two less obvious results: (a)~adding more trace information---loop compressions, assertion-point values---actively \\\\\\\\emph{hurts} performance (VOTA $<$ \\\\\\\\texttt{exception\\\\\\\\_only}, Table~\\\\\\\\ref{tab:ablation}), quantifying an information density dilution effect that has not been previously measured; and (b)~this dilution is confounded by tokenizer-driven trace truncation on DeepSeek: the DeepSeek tokenizer produces longer sequences than Qwen for identical inputs, causing the majority of VOTA training samples to exceed the context window (\\\\\\\\S\\\\\\\\ref{sec:cross_model}); the verdict label is preserved, but the trace content is truncated, depriving the model of diagnostic information and contributing to the collapse of DeepSeek VOTA fail recall to 45.43\\\\\\\\% (Table~\\\\\\\\ref{tab:per_class}) while Qwen maintains 100\\\\\\\\%.\\\\n\\\\n\\\\\\\\subsection{Simplicity as Relative Robustness}\\\\n\\\\nThe cross-model gap pattern (Table~\\\\\\\\ref{tab:cross_model}) suggests a design principle: \\\\\\\\emph{trace representations should match the model capability floor, not the ceiling.}\\\\nException events are consistently the most effective component on both models, and their structural simplicity---a fixed-format error message---ensures that the relative advantage over richer representations holds across all seeds.\\\\nTwo of three DeepSeek seeds match Qwen-level accuracy (99.33\\\\\\\\%); the outlier (seed 123, 91.09\\\\\\\\%) is attributable to LoRA initialization landing in a suboptimal basin (fail recall = 70.5\\\\\\\\%), not to a failure of the exception signal itself---even this outlier outperforms VOTA (84.45\\\\\\\\%) by 6.64pp.\\\\nThe VOTA cross-model gap is confounded by two factors: (1)~tokenizer efficiency---the DeepSeek tokenizer averages 2{,}626 tokens per VOTA sample versus Qwen's 1{,}908, causing 91.7\\\\\\\\% of training samples to exceed the 2{,}048-token context window, truncating trace content while preserving the verdict label---and (2)~base model capability differences, consistent with findings that SFT generalization depends on pretrain quality \\\\\\\\citep{yang2024generalization}.\\\\nThe two factors cannot be disentangled in the current experimental design.\\\\nOur \\\\\\\\texttt{exception\\\\\\\\_only} design sidesteps the truncation confound entirely by keeping inputs short (median 314 tokens), making its cross-model comparison clean and the ``capability floor'' principle directly testable.\\\\nThe practical implication is that trace-based systems should default to the simplest sufficient signal; for smaller models, training stability (multi-seed selection, warmup schedules) is a secondary but addressable concern.\\\\n\\\\n\\\\\\\\subsection{Training Dynamics and Loss Decoupling}\\\\n\\\\nThe DeepSeek \\\\\\\\texttt{exception\\\\\\\\_only} results reveal two instructive training dynamics.\\\\nFirst, epoch-level analysis shows mild degradation in 2/3 seeds: seed 42 peaks at 99.83\\\\\\\\% after epoch~1 but settles \\\\n\\\\n... [截断: 输出过长，省略 4140 字符] ...\\\\n\\\\n the truncation artifact (abrupt sequence termination) with the verdict label; when truncation is removed by extending the context window, the input distribution shifts out-of-distribution and the learned cue vanishes.\\\\nThis confirms that \\\\\\\\texttt{full\\\\\\\\_trace} accuracy reflects truncation pattern matching rather than genuine trace comprehension.\\\\n\\\\n\\\\\\\\textbf{VOTA is context-dependent.}\\\\nVOTA trained at \\\\\\\\texttt{max\\\\\\\\_length}=2{,}048 (where 91.7\\\\\\\\% of samples are truncated) achieves 84.45\\\\\\\\% when evaluated at \\\\\\\\texttt{max\\\\\\\\_length}=16{,}384, recovering performance by restoring the complete structured trace including the terminal ``Answer:'' prompt.\\\\nHowever, the reverse direction fails: evaluating at \\\\\\\\texttt{max\\\\\\\\_length}=2{,}048 yields only 16.0\\\\\\\\%, because truncation removes the structured suffix that the model relies on for verdict extraction.\\\\nVOTA's accuracy is thus contingent on context length being sufficient to preserve its structured format---a fragility that scales with trace verbosity.\\\\n\\\\n\\\\\\\\textbf{Exception-only is inherently robust.}\\\\n\\\\\\\\texttt{exception\\\\\\\\_only} maintains 99.33\\\\\\\\% accuracy regardless of evaluation context length.\\\\nBecause exception events are concise (median 314 tokens), no sample exceeds 2{,}048 tokens; varying \\\\\\\\texttt{max\\\\\\\\_length} between 2{,}048 and 16{,}384 produces identical inputs and therefore identical predictions.\\\\nThis robustness is not an engineered property but a natural consequence of signal brevity: there is no truncation to create distribution shift.\\\\n\\\\nThese results add an inference-time dimension to the signal quality argument.\\\\nException-based traces are not only the most accurate at training time (Table~\\\\\\\\ref{tab:ablation}) but also the most robust to deployment-time configuration changes---a practical advantage for systems where the evaluation context length may differ from the training setting.\\\\nThe pattern reinforces a consistent theme: \\\\\\\\emph{simpler, shorter signals are more robust because they have fewer failure modes.}\\\\n\\\\n\\\\\\\\subsection{Limitations}\\\\n\\\\nOur study has several limitations.\\\\nFirst, all experiments use a single dataset (591 problems from HumanEval and MBPP-sanitized); generalization to other languages, larger codebases, or different fault types remains untested.\\\\nSecond, we evaluate only two models at the 7B parameter scale; the relationship between model size and trace signal utility is unexplored.\\\\nThird, DeepSeek \\\\\\\\texttt{exception\\\\\\\\_only} exhibits seed-dependent variance: 2/3 seeds achieve 99.33\\\\\\\\% while seed 123 yields 91.09\\\\\\\\% ($\\\\\\\\sigma{=}4.76$pp, $n{=}3$), attributable to LoRA initialization sensitivity (fail recall = 70.5\\\\\\\\% for the outlier vs.\\\\\\\\ 100\\\\\\\\% for others).\\\\nQwen shows perfect seed robustness ($\\\\\\\\sigma{=}0$, $n{=}3$).\\\\nWhether training stabilization techniques (e.g., larger warmup ratio, LoRA rank adjustment) can eliminate DeepSeek's seed sensitivity is unexplored.\\\\nOther conditions use a single seed.\\\\nFourth, the initial DeepSeek \\\\\\\\texttt{full\\\\\\\\_trace} run was invalidated by context overflow (the DeepSeek tokenizer produced sequences exceeding 2{,}048 tokens, truncating the verdict label); a re-run with label-preserving truncation yields 79.16\\\\\\\\% (CI [76.80\\\\\\\\%, 81.30\\\\\\\\%]), 2.60pp below Qwen (Table~\\\\\\\\ref{tab:cross_model}).\\\\nFifth, the candidate solutions were generated by Qwen-2.5-Coder-7B-Instruct, which also serves as one of our evaluation models.\\\\nThis does not affect verdict prediction---the task is to classify a \\\\\\\\emph{given} solution as pass or fail, not to generate solutions---but we note the overlap for transparency.\\\\nMoreover, the pass/fail distribution in the dataset is determined by the generating model's coding ability; a stronger or weaker generator would yield a different class balance, potentially affecting task difficulty and the generalizability of our accuracy estimates.\\\\nFinally, our analysis is limited to verdict prediction; whether exception dominance extends to other classification tasks (vulnerability detection, clone detection) or to generation tasks (program repair) is an open question.\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Discussion}\\n\\n\\\\subsection{Why Exception Events Dominate}\\n\\nVerdict prediction is fundamentally a fault detection task: the model must determine whether execution deviated from expected behavior.\\nException events are the most explicit signal of such deviation---structured diagnostic moments that encode the nature and location of a fault.\\nUnlike loop compressions or assertion-point values, which require the model to integrate information across multiple trace elements, exception events provide a self-contained verdict cue.\\nThis explains why \\\\texttt{exception\\\\_only} matches or exceeds VOTA: adding non-exception trace components dilutes the model's attention on the diagnostic signal rather than providing complementary information.\\n\\nWe acknowledge that exception-based verdict prediction is, at its core, fault indicator presence detection: the model learns to map the presence or absence of a structured error message to a binary label, which is close to trivially solvable for any instruction-tuned LLM.\\nThe Tier~1 accuracy of ${\\\\geq}$99.8\\\\% is therefore unsurprising in isolation.\\nThe contribution of this finding lies not in demonstrating that a strong signal yields high accuracy, but in two less obvious results: (a)~adding more trace information---loop compressions, assertion-point values---actively \\\\emph{hurts} performance (VOTA $<$ \\\\texttt{exception\\\\_only}, Table~\\\\ref{tab:ablation}), quantifying an information density dilution effect that has not been previously measured; and (b)~this dilution is confounded by tokenizer-driven trace truncation on DeepSeek: the DeepSeek tokenizer produces longer sequences than Qwen for identical inputs, causing the majority of VOTA training samples to exceed the context window (\\\\S\\\\ref{sec:cross_model}); the verdict label is preserved, but the trace content is truncated, depriving the model of diagnostic information and contributing to the collapse of DeepSeek VOTA fail recall to 45.43\\\\% (Table~\\\\ref{tab:per_class}) while Qwen maintains 100\\\\%.\\n\\n\\\\subsection{Simplicity as Relative Robustness}\\n\\nThe cross-model gap pattern (Table~\\\\ref{tab:cross_model}) suggests a design principle: \\\\emph{trace representations should match the model capability floor, not the ceiling.}\\nException events are consistently the most effective component on both models, and their structural simplicity---a fixed-format error message---ensures that the relative advantage over richer representations holds across all seeds.\\nTwo of three DeepSeek seeds match Qwen-level accuracy (99.33\\\\%); the outlier (seed 123, 91.09\\\\%) is attributable to LoRA initialization landing in a suboptimal basin (fail recall = 70.5\\\\%), not to a failure of the exception signal itself---even this outlier outperforms VOTA (84.45\\\\%) by 6.64pp.\\nThe VOTA cross-model gap is confounded by two factors: (1)~tokenizer efficiency---the DeepSeek tokenizer averages 2{,}626 tokens per VOTA sample versus Qwen's 1{,}908, causing 91.7\\\\% of training samples to exceed the 2{,}048-token context window, truncating trace content while preserving the verdict label---and (2)~base model capability differences, consistent with findings that SFT generalization depends on pretrain quality \\\\citep{yang2024generalization}.\\nThe two factors cannot be disentangled in the current experimental design.\\nOur \\\\texttt{exception\\\\_only} design sidesteps the truncation confound entirely by keeping inputs short (median 314 tokens), making its cross-model comparison clean and the ``capability floor'' principle directly testable.\\nThe practical implication is that trace-based systems should default to the simplest sufficient signal; for smaller models, training stability (multi-seed selection, warmup schedules) is a secondary but addressable concern.\\n\\n\\\\subsection{Training Dynamics and Loss Decoupling}\\n\\nThe DeepSeek \\\\texttt{exception\\\\_only} results reveal two instructive training dynamics.\\nFirst, epoch-level analysis shows mild degradation in 2/3 seeds: seed 42 peaks at 99.83\\\\% after epoch~1 but settles \\n\\n... [截断: 输出过长，省略 4140 字符] ...\\n\\n the truncation artifact (abrupt sequence termination) with the verdict label; when truncation is removed by extending the context window, the input distribution shifts out-of-distribution and the learned cue vanishes.\\nThis confirms that \\\\texttt{full\\\\_trace} accuracy reflects truncation pattern matching rather than genuine trace comprehension.\\n\\n\\\\textbf{VOTA is context-dependent.}\\nVOTA trained at \\\\texttt{max\\\\_length}=2{,}048 (where 91.7\\\\% of samples are truncated) achieves 84.45\\\\% when evaluated at \\\\texttt{max\\\\_length}=16{,}384, recovering performance by restoring the complete structured trace including the terminal ``Answer:'' prompt.\\nHowever, the reverse direction fails: evaluating at \\\\texttt{max\\\\_length}=2{,}048 yields only 16.0\\\\%, because truncation removes the structured suffix that the model relies on for verdict extraction.\\nVOTA's accuracy is thus contingent on context length being sufficient to preserve its structured format---a fragility that scales with trace verbosity.\\n\\n\\\\textbf{Exception-only is inherently robust.}\\n\\\\texttt{exception\\\\_only} maintains 99.33\\\\% accuracy regardless of evaluation context length.\\nBecause exception events are concise (median 314 tokens), no sample exceeds 2{,}048 tokens; varying \\\\texttt{max\\\\_length} between 2{,}048 and 16{,}384 produces identical inputs and therefore identical predictions.\\nThis robustness is not an engineered property but a natural consequence of signal brevity: there is no truncation to create distribution shift.\\n\\nThese results add an inference-time dimension to the signal quality argument.\\nException-based traces are not only the most accurate at training time (Table~\\\\ref{tab:ablation}) but also the most robust to deployment-time configuration changes---a practical advantage for systems where the evaluation context length may differ from the training setting.\\nThe pattern reinforces a consistent theme: \\\\emph{simpler, shorter signals are more robust because they have fewer failure modes.}\\n\\n\\\\subsection{Limitations}\\n\\nOur study has several limitations.\\nFirst, all experiments use a single dataset (591 problems from HumanEval and MBPP-sanitized); generalization to other languages, larger codebases, or different fault types remains untested.\\nSecond, we evaluate only two models at the 7B parameter scale; the relationship between model size and trace signal utility is unexplored.\\nThird, DeepSeek \\\\texttt{exception\\\\_only} exhibits seed-dependent variance: 2/3 seeds achieve 99.33\\\\% while seed 123 yields 91.09\\\\% ($\\\\sigma{=}4.76$pp, $n{=}3$), attributable to LoRA initialization sensitivity (fail recall = 70.5\\\\% for the outlier vs.\\\\ 100\\\\% for others).\\nQwen shows perfect seed robustness ($\\\\sigma{=}0$, $n{=}3$).\\nWhether training stabilization techniques (e.g., larger warmup ratio, LoRA rank adjustment) can eliminate DeepSeek's seed sensitivity is unexplored.\\nOther conditions use a single seed.\\nFourth, the initial DeepSeek \\\\texttt{full\\\\_trace} run was invalidated by context overflow (the DeepSeek tokenizer produced sequences exceeding 2{,}048 tokens, truncating the verdict label); a re-run with label-preserving truncation yields 79.16\\\\% (CI [76.80\\\\%, 81.30\\\\%]), 2.60pp below Qwen (Table~\\\\ref{tab:cross_model}).\\nFifth, the candidate solutions were generated by Qwen-2.5-Coder-7B-Instruct, which also serves as one of our evaluation models.\\nThis does not affect verdict prediction---the task is to classify a \\\\emph{given} solution as pass or fail, not to generate solutions---but we note the overlap for transparency.\\nMoreover, the pass/fail distribution in the dataset is determined by the generating model's coding ability; a stronger or weaker generator would yield a different class balance, potentially affecting task difficulty and the generalizability of our accuracy estimates.\\nFinally, our analysis is limited to verdict prediction; whether exception dominance extends to other classification tasks (vulnerability detection, clone detection) or to generation tasks (program repair) is an open question.\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full file content. Let me find the two parts that need modification:
+
+1. **VOTA truncation wording**: I need to find "truncation removes the structured suffix" and change it to "content-aware truncation preferentially removes the terminal structured prompt"
+
+The exact text is:
+"because truncation removes the structured suffix that the model relies on for verdict extraction"
+
+Change to:
+"because content-aware truncation preferentially removes the terminal structured prompt that the model relies on for verdict extraction"
+
+
+2. **Qwen VOTA token count**: Find "1{,}908" and change to "1{,}929"
+
+The exact text is:
+"Qwen's 1{,}908"
+
+Change to:
+"Qwen's 1{,}929"
+
+Now I'll execute both sed commands via SSH to make these changes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a17fed99-81aa-4eb9-a086-1aa669776342",
+  "uuid": "9c0aad6f-0a6a-4a83-b5be-bd683512159e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Y4GEqrW89rzBHeSr7oiGN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2402,
+      "cache_read_input_tokens": 23545,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2402
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+Found both targets. Making the two edits:
+
+1. "truncation removes the structured suffix" → "content-aware truncation preferentially removes the terminal structured prompt"
+2. "1{,}908" → "1{,}929"
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a17fed99-81aa-4eb9-a086-1aa669776342",
+  "uuid": "167e418a-e0e3-4620-929e-4867cbfc18dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Y4GEqrW89rzBHeSr7oiGN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2402,
+      "cache_read_input_tokens": 23545,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2402
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_017TmUFuZJQHafNgtuVnipw9`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "cd /root/trace-verdict-study/docs/paper && sed -i 's/truncation removes the structured suffix/content-aware truncation preferentially removes the terminal structured prompt/' discussion.tex && sed -i 's/1{,}908/1{,}929/' discussion.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a17fed99-81aa-4eb9-a086-1aa669776342",
+  "uuid": "0f4db1a9-9f2a-4255-a375-1f884b793dee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Y4GEqrW89rzBHeSr7oiGN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2402,
+      "cache_read_input_tokens": 23545,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2402
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T02:50:52.987Z_
+
+<details><summary>↩ Tool result · `toolu_017TmUFuZJQHafNgtuVnipw9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a17fed99-81aa-4eb9-a086-1aa669776342",
+  "uuid": "be55f84b-9f7a-4f20-83a9-515c97423658",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Cdhd1QMv8BXQ1koWki4KC9`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "grep -n \"content-aware truncation preferentially\" /root/trace-verdict-study/docs/paper/discussion.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a17fed99-81aa-4eb9-a086-1aa669776342",
+  "uuid": "3f053a88-2103-41c6-a36d-a8d559bba093",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MqVPRjcxpXtrTGG5Q65j9n",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 500,
+      "cache_read_input_tokens": 25947,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 500
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T02:50:56.878Z_
+
+<details><summary>↩ Tool result · `toolu_01Cdhd1QMv8BXQ1koWki4KC9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"62:However, the reverse direction fails: evaluating at \\\\texttt{max\\\\_length}=2{,}048 yields only 16.0\\\\%, because content-aware truncation preferentially removes the terminal structured prompt that the model relies on for verdict extraction.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a17fed99-81aa-4eb9-a086-1aa669776342",
+  "uuid": "144a25a6-d98c-4573-ac43-ad1979ef4703",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"62:However, the reverse direction fails: evaluating at \\\\\\\\texttt{max\\\\\\\\_length}=2{,}048 yields only 16.0\\\\\\\\%, because content-aware truncation preferentially removes the terminal structured prompt that the model relies on for verdict extraction.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"62:However, the reverse direction fails: evaluating at \\\\texttt{max\\\\_length}=2{,}048 yields only 16.0\\\\%, because content-aware truncation preferentially removes the terminal structured prompt that the model relies on for verdict extraction.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HiENHcavrpE6nHbxmNd3po`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "grep -n \"1{,}929\" /root/trace-verdict-study/docs/paper/discussion.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a17fed99-81aa-4eb9-a086-1aa669776342",
+  "uuid": "f874c4b1-6e88-44d8-9516-8fd7c10824b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MqVPRjcxpXtrTGG5Q65j9n",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 500,
+      "cache_read_input_tokens": 25947,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 500
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T02:50:57.397Z_
+
+<details><summary>↩ Tool result · `toolu_01HiENHcavrpE6nHbxmNd3po`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"19:The VOTA cross-model gap is confounded by two factors: (1)~tokenizer efficiency---the DeepSeek tokenizer averages 2{,}626 tokens per VOTA sample versus Qwen's 1{,}929, causing 91.7\\\\% of training samples to exceed the 2{,}048-token context window, truncating trace content while preserving the verdict label---and (2)~base model capability differences, consistent with findings that SFT generalization depends on pretrain quality \\\\citep{yang2024generalization}.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a17fed99-81aa-4eb9-a086-1aa669776342",
+  "uuid": "d5206289-153e-422d-9e87-6997331829fa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"19:The VOTA cross-model gap is confounded by two factors: (1)~tokenizer efficiency---the DeepSeek tokenizer averages 2{,}626 tokens per VOTA sample versus Qwen's 1{,}929, causing 91.7\\\\\\\\% of training samples to exceed the 2{,}048-token context window, truncating trace content while preserving the verdict label---and (2)~base model capability differences, consistent with findings that SFT generalization depends on pretrain quality \\\\\\\\citep{yang2024generalization}.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"19:The VOTA cross-model gap is confounded by two factors: (1)~tokenizer efficiency---the DeepSeek tokenizer averages 2{,}626 tokens per VOTA sample versus Qwen's 1{,}929, causing 91.7\\\\% of training samples to exceed the 2{,}048-token context window, truncating trace content while preserving the verdict label---and (2)~base model capability differences, consistent with findings that SFT generalization depends on pretrain quality \\\\citep{yang2024generalization}.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+两处均已更新：
+- **L62**: "content-aware truncation preferentially removes the terminal structured prompt"
+- **L19**: Qwen token 数 `1{,}929`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a17fed99-81aa-4eb9-a086-1aa669776342",
+  "uuid": "3c92ffa0-95fe-4874-abe7-a8d64356dcaf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XtowoMeZP2GjHL5EbVpw8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 643,
+      "cache_read_input_tokens": 26447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 643
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 19_
+
+两处均已更新：
+- **L62**: "content-aware truncation preferentially removes the terminal structured prompt"
+- **L19**: Qwen token 数 `1{,}929`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 23353,
+  "duration_api_ms": 27898,
+  "num_turns": 6,
+  "stop_reason": "end_turn",
+  "session_id": "a17fed99-81aa-4eb9-a086-1aa669776342",
+  "total_cost_usd": 0.17628275,
+  "usage": {
+    "input_tokens": 9,
+    "cache_creation_input_tokens": 15249,
+    "cache_read_input_tokens": 110639,
+    "output_tokens": 985,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 15249,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 50,
+        "cache_read_input_tokens": 26447,
+        "cache_creation_input_tokens": 643,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 643
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-4-6": {
+      "inputTokens": 9,
+      "outputTokens": 985,
+      "cacheReadInputTokens": 110639,
+      "cacheCreationInputTokens": 15249,
+      "webSearchRequests": 0,
+      "costUSD": 0.17529574999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    },
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 877,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000987,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "f8a1ac0f-e097-4f19-863c-4e5cb62f20e4"
+}
+```
+
+</details>
+
+---

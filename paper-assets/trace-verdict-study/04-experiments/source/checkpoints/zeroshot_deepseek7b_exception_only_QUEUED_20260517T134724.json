@@ -1,0 +1,31 @@
+{
+  "exp_id": "zeroshot_deepseek7b_exception_only",
+  "project": "trace-verdict-study",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:00:43.420Z",
+    "updated_at": "2026-05-17T13:47:24.310Z",
+    "hypothesis": "Zero-shot cross-model baseline: untuned DeepSeek-Coder-6.7B-Instruct similarly cannot reach SFT-level accuracy on exception_only verdict prediction, confirming SFT necessity is architecture-independent",
+    "metrics": {
+      "accuracy": 0.9059,
+      "accuracy_ci_lower": 0.8899,
+      "accuracy_ci_upper": 0.9218,
+      "pass_precision": 0.9743,
+      "pass_recall": 0.8919,
+      "pass_f1": 0.9313,
+      "fail_precision": 0.7762,
+      "fail_recall": 0.941,
+      "fail_f1": 0.8507,
+      "n_test": 1190,
+      "n_unknown": 0
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_deepseek7b_exception_only/",
+    "log_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_deepseek7b_exception_only/eval_results.json"
+  },
+  "timestamp": "2026-05-17T13:47:24.467975+00:00",
+  "trigger": "update_registry"
+}

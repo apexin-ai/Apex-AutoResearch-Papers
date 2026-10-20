@@ -1,0 +1,20 @@
+{
+  "exp_id": "codellama13b_vota_seed42",
+  "project": "trace-verdict-study",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T07:47:21.632Z",
+    "updated_at": "2026-05-16T07:49:15.746Z",
+    "spec": {
+      "hypothesis": "Multi-family validation: VOTA on CodeLlama-13B-Instruct.",
+      "model_name": "CodeLlama-13b-Instruct-hf",
+      "seed": 42,
+      "condition": "vota"
+    }
+  },
+  "timestamp": "2026-05-16T07:49:15.880665+00:00",
+  "trigger": "update_registry"
+}

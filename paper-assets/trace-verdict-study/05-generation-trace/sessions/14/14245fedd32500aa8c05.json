@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14245fedd32500aa8c05",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "infra train progress monitor",
+  "task_key": "worker_infra_train-progress-monitor_20260514T195031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_train-progress-monitor_20260514T195031_result.json",
+    "occurrence": 1,
+    "bytes": 58,
+    "sha256": "772c43a8dc4809fca62f0c51450e044e93f9dea55001567a220056b2a5596015"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "等待 ~2 分钟后执行第 2 轮检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-train-progress-monitor.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b301ab1640d7f213860",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code plan 003 data prep",
+  "task_key": "worker_code_plan_003_data_prep_20260515T045842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_003_data_prep_20260515T045842_result.json",
+    "occurrence": 1,
+    "bytes": 1565,
+    "sha256": "c485440ce38fb76cb841fcad9361de53ff942aa9c9566ed4f411bad945cadf83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 产出汇总\n\n### 3 个新数据文件\n路径: `/root/autodl-tmp/trace-verdict-study-data/`\n\n| 文件 | 样本数 | 说明 |\n|------|--------|------|\n| `ae_only_train.jsonl` / `_test.jsonl` | 4720 / 1190 | 只保留 `[ASSERT] actual=X, expected=Y` |\n| `exception_only_train.jsonl` / `_test.jsonl` | 4720 / 1190 | 只保留 `[ERROR]` 异常摘要 |\n| `loop_only_train.jsonl` / `_test.jsonl` | 4720 / 1190 | 只保留 `[LOOP]` 循环压缩 |\n\n### Token 分布统计\n\n| Condition | Median | Mean | Truncated | Empty Component |\n|-----------|--------|------|-----------|-----------------|\n| **ae_only** | 1570 | 1398.7 | 27.0% | 2.5% |\n| **exception_only** | 228 | 508.5 | 0.9% | 66.7% |\n| **loop_only** | 1023 | 1213.2 | 15.4% | 0.0% |\n\n所有数据集 >2048 token 的样本比例: **0.0%**（CHAT_TEMPLATE_OVERHEAD=32 生效）。标签分布: pass 67.0% / fail 33.0%（与 VOTA 一致）。\n\n### 代码变更\n- **新增**: `/root/trace-verdict-study/data/format_component_ablation.py` — 从 raw_traces.jsonl 重新处理，调用 VOTACompressor 内部组件方法\n- **修改**: `/root/trace-verdict-study/train/train_sft.py` — `--condition` 新增 `ae_only`, `exception_only`, `loop_only` 三个选项\n\n### 注意\n- `exception_only` 有 66.7% 的样本没有异常数据（主要是 pass 样本），这对 ablation 是预期行为——如果 exception 信号强，模型应该能学会 \"无异常→pass\"\n- `ae_only` truncation 率 27%，与 full VOTA 类似（ae 是 VOTA 中最大的组件）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-003-data-prep.md"
+}

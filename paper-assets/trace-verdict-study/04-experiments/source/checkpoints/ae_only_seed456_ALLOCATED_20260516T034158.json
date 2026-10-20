@@ -1,0 +1,15 @@
+{
+  "exp_id": "ae_only_seed456",
+  "project": "trace-verdict-study",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:41:51.316Z",
+    "updated_at": "2026-05-16T03:41:58.890Z",
+    "hypothesis": "Seed robustness: ae_only with seed=456 on Qwen-2.5-Coder-7B. Verifies ae_only 99.92% is stable across seeds (Reviewer P0 requirement)."
+  },
+  "timestamp": "2026-05-16T03:41:58.994322+00:00",
+  "trigger": "update_registry"
+}

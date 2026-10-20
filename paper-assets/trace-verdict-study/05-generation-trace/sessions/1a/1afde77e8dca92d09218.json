@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1afde77e8dca92d09218",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_6_1778869503.md",
+  "task_key": "loop_6_1778869503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778869503.md",
+    "occurrence": 1,
+    "bytes": 5079,
+    "sha256": "d3120eb2b0aa21b5ceb0d0456328593b52be3f12637b8470074a8db7e9cc77c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-15T18:11:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-11235 的 cuda:0 和 cuda:1（gpu_ids 白名单）\n- DeepSeek 系列实验必须用 epoch 3 final checkpoint（不能用 load_best_model_at_end），保持 DeepSeek 组内一致性。代码中 L149-152 的 load_best_model_at_end 已被注释为 TEMP_DISABLED\n- 同一 GPU 上禁止并行 eval+training（之前 cuda:1 上并行导致 7s/step→49s/step）\n- Bootstrap 方法：论文同一张表必须统一用 paired 或 unpaired，不能混用。DeepSeek 实验的 evaluate.py 必须加 `--save_predictions`\n- W&B entity/project 未在 config 中配置，fetch_wandb_metrics 不可用——所有指标必须从服务器 eval_results.json 获取\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-11235，2x RTX PRO 6000 Blackwell 94GB，CUDA 12.8\n- 工作目录：/root/trace-verdict-study\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- HF_HOME：/root/autodl-tmp/.hf_cache\n- 模型路径：\n  - Qwen: /root/autodl-tmp/models/qwen2.5-coder-7b-instruct（默认，train_sft.py 内置）\n  - DeepSeek: /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct\n- 数据：/root/autodl-tmp/trace-verdict-study-data/（各条件的 {train,test}.jsonl）\n- Checkpoints：/root/autodl-tmp/trace-verdict-study-checkpoints/\n- 活跃进程：**未知**——handoff 时有 2 个 Worker 在跑但未返回结果（见第 3 节）\n\n### 3. 📊 当前状态\n收到 `deepseek_exception_only_seed42` 的 cron 回调（ANALYZING），立即派了 2 个 Worker：\n1. **worker_analysis_deepseek_exception_only_seed42_20260515T150745** — SSH 读取 eval_results.json + bootstrap 对比分析（vs deepseek_no_trace/deepseek_vota/Qwen exception_only）\n2. **worker_check_deepseek_full_trace_status_20260515T150823** — 检查 deepseek_full_trace_seed42 进程是否还活着（registry PREPARING 但有 PID 112289，提交于 13:47，reconcile_crons 显示 0 running）\n\n**两个 Worker 均未返回**——下一个 session 启动后需要 `get_worker_status` 检查这两个 Worker，如果已完成则处理结果，如果还在跑则等回调。\n\nRegistry 关键状态：\n- `deepseek_exception_only_seed42`: ANALYZING（等分析 Worker 结果）\n- `deepseek_full_trace_seed42`: PREPARING（可能已完成或已死，等检查 Worker 结果）\n- `vota_seed456`: PREPARING（plan_008 seed robustness，未提交）\n- 两块 GPU 都空闲⚠️\n\n### 4. 📋 待办（条件触发式）\n- Worker analysis 回调到达 → 读 deepseek_exception_only 指标，update_registry(status=DONE, conclusion=success/negative, metrics=...)，更新 report.md + memory.md\n- deepseek_exception_only accuracy ≥ 95% → plan_004 **A 档**（D015），exception dominance 跨模型泛化强，Claim 1/3 最强 framing\n- deepseek_exception_only accuracy 85-95% → **B 档**，exception 跨模型有效但幅度衰减，需要在 Discussion 中加 model capability caveat\n- deepseek_exception_only accuracy < 85% → **C 档**，exception dominance 不泛化，需要 Framing 调整提案（red-section）\n- Worker check 回调到达 → 如果 deepseek_full_trace 已完成，提取结果并推进到 DONE；如果已死，诊断原因并重新提交到 cuda:0\n- deepseek_full_trace 完成 → plan_004 四条件全齐，cuda:0 空出，可提交 vota_seed456（plan_008）\n- plan_004 四条件全部 DONE → 向 Director 汇报完整跨模型对比表 + 建议启动 Paper Agent\n- GPU 空闲 → 立即提交待做实验（vota_seed456 优先，然后考虑 plan_005 DebugBench 或 plan_006 trace length ablation）\n\n### 5. 🎯 战略上下文\n**核心结论链**：exception_only (99.83%) 是 VOTA 的主驱动信号 → ae_only (99.92%) 统计等价 → loop_only (85.6%) 是 Tier 2 → full_trace collapse 的 74% 是 info overload、26% 是 gradient dilution → VOTA 的价值 = 隔离 fault indicator signals\n\n**跨模型关键发现**：DeepSeek VOTA 84.45% vs Qwen 99.2%，14.75pp gap 与 CRUXEval execution reasoning gap (15-17pp) 吻合。no_trace baseline 两模型一致（~73-75%）。deepseek_exception_only 的结果决定 Claim 1/3 的强度（D014/D015 contingency plan）。\n\n**易错点**：\n- vota_seed123 OOM 失败是因为 cuda:1 上另一个进程占了显存——提交新实验前必须 nvidia-smi 确认 GPU 空闲\n- DeepSeek 实验的 checkpoint selection 必须用 final（不能用 best），代码中已注释掉 load_best_model_at_end\n- 不要对 DeepSeek 的较低准确率用 negative framing——这是 expected 的 model capability difference，论文中作为 \"execution reasoning readiness\" 假说放在 Discussion\n- plan_008 seed robustness 只完成了 seed42（原始），seed123 OOM，seed456 未提交。如果时间紧张可以降优先级（单 seed 的 CI 已经够窄）\n- DDL 是 ARR May 25（还剩 10 天），按 ROADMAP 冲刺计划，5/16 应该启动 Paper Agent\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778869503.md"
+}

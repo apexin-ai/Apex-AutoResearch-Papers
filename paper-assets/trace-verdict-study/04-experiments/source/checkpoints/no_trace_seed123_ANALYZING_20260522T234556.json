@@ -1,0 +1,48 @@
+{
+  "exp_id": "no_trace_seed123",
+  "project": "trace-verdict-study",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T23:16:32.361Z",
+    "updated_at": "2026-05-22T23:45:56.367Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --gpu 0 --gradient_checkpointing --seed 123\"",
+      "server": "westd-11235",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "837113",
+      "log_path": "~/runs/trace-verdict-study/no_trace_seed123.log",
+      "submitted_at": "2026-05-22T23:16:31.881Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/no_trace_train.jsonl",
+      "data_count": 4720,
+      "model_name": "Qwen2.5-Coder-7B-Instruct",
+      "seed": 123,
+      "checkpoint_source": "trained_from_scratch",
+      "eval_data": "/root/autodl-tmp/trace-verdict-study-data/test/"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T23:38:40.611Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T23:38:44.195419+00:00"
+        }
+      ]
+    },
+    "hypothesis": "no_trace multi-seed robustness (seed 123): implicit pathway (terminal execution state only, no diagnostic tokens) achieves similar accuracy to seed42 (75.13%), confirming the 93-97% implicit pathway ceiling and higher variance compared to explicit pathway conditions",
+    "parent": "no_trace_seed42",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T23:45:56.835344+00:00",
+  "trigger": "update_registry"
+}

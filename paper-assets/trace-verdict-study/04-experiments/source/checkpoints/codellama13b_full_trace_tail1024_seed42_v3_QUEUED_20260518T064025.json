@@ -1,0 +1,16 @@
+{
+  "exp_id": "codellama13b_full_trace_tail1024_seed42_v3",
+  "project": "trace-verdict-study",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:39:08.941Z",
+    "updated_at": "2026-05-18T06:40:25.408Z",
+    "hypothesis": "CodeLlama-13B tail-1024 用 label_only_loss 应恢复到 ~96.5%（与 DeepSeek 96.47%、Qwen-1.5B 96.6% 对齐），确认 v2 的 87.6% 源于 full-sequence loss 稀释而非 tail-1024 条件本身",
+    "parent": "codellama13b_full_trace_tail1024_seed42_v2"
+  },
+  "timestamp": "2026-05-18T06:40:25.612277+00:00",
+  "trigger": "update_registry"
+}

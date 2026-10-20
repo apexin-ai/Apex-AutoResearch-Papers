@@ -1,0 +1,73 @@
+\begin{thebibliography}{10}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Abbas et~al.(2023)Abbas, Tirumala, Simig, Ganguli, and
+  Morcos]{abbas2023semdedup}
+Amro Abbas, Kushal Tirumala, D{\'a}niel Simig, Surya Ganguli, and Ari Morcos.
+\newblock {SemDeDup}: Data-efficient learning at web-scale through semantic
+  deduplication.
+\newblock In \emph{Proceedings of NeurIPS}, 2023.
+
+\bibitem[Alemohammad et~al.(2024)Alemohammad, Casco-Rodriguez, Luber, Babaei,
+  Letizia, Bastani, and Calmon]{alemohammad2024selfconsuming}
+Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luber, Ahmed Babaei, Daniel
+  Letizia, Osbert Bastani, and Flavio Calmon.
+\newblock Self-consuming generative models go {MAD}.
+\newblock \emph{arXiv preprint arXiv:2307.01850}, 2024.
+
+\bibitem[Dohmatob et~al.(2024)Dohmatob, Feng, Subramonian, and
+  Kempe]{dohmatob2024tale}
+Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, and Julia Kempe.
+\newblock A tale of tails: Model collapse as a change of scaling laws.
+\newblock \emph{arXiv preprint arXiv:2402.07043}, 2024.
+
+\bibitem[Garrido et~al.(2023)Garrido, Balestriero, Najman, and
+  LeCun]{garrido2023rankme}
+Quentin Garrido, Randall Balestriero, Laurent Najman, and Yann LeCun.
+\newblock {RankMe}: Assessing the downstream performance of pretrained
+  self-supervised representations by their rank.
+\newblock \emph{arXiv preprint arXiv:2210.02885}, 2023.
+
+\bibitem[Izacard et~al.(2022)Izacard, Caron, Hosseini, Riedel, Bojanowski,
+  Joulin, and Grave]{izacard2022contriever}
+Gautier Izacard, Mathilde Caron, Lucas Hosseini, Sebastian Riedel, Piotr
+  Bojanowski, Armand Joulin, and Edouard Grave.
+\newblock Unsupervised dense information retrieval with contrastive learning.
+\newblock \emph{Transactions on Machine Learning Research}, 2022.
+
+\bibitem[Kirchhoff and Bilmes(2014)]{kirchhoff2014submodular}
+Katrin Kirchhoff and Jeff Bilmes.
+\newblock Submodularity for data selection in machine translation.
+\newblock In \emph{Proceedings of EMNLP}, 2014.
+
+\bibitem[Papyan et~al.(2020)Papyan, Han, and Donoho]{papyan2020prevalence}
+Vardan Papyan, X.Y. Han, and David~L. Donoho.
+\newblock Prevalence of neural collapse during the terminal phase of deep
+  learning training.
+\newblock In \emph{Proceedings of the National Academy of Sciences}, volume
+  117, pages 24652--24663, 2020.
+
+\bibitem[Shumailov et~al.(2024)Shumailov, Shumaylov, Zhao, Papernot, Anderson,
+  and Gal]{shumailov2024nature}
+Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Nicolas Papernot, Ross Anderson,
+  and Yarin Gal.
+\newblock Ai models collapse when trained on recursively generated data.
+\newblock \emph{Nature}, 631:\penalty0 755--759, 2024.
+
+\bibitem[Tirumala et~al.(2023)Tirumala, Markosyan, Zettlemoyer, and
+  Aghajanyan]{tirumala2023d4}
+Kushal Tirumala, Aram Markosyan, Luke Zettlemoyer, and Armen Aghajanyan.
+\newblock D4: Improving {LLM} pretraining via document de-duplication and
+  diversification.
+\newblock \emph{arXiv preprint arXiv:2308.12284}, 2023.
+
+\bibitem[Xie et~al.(2023)Xie, Santurkar, Ma, and Liang]{xie2023dsir}
+Sang~Michael Xie, Shibani Santurkar, Tengyu Ma, and Percy Liang.
+\newblock Data selection for language models via importance resampling.
+\newblock In \emph{Proceedings of NeurIPS}, 2023.
+
+\end{thebibliography}

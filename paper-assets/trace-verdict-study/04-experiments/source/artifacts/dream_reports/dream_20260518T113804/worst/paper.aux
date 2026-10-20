@@ -1,0 +1,104 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{ni2024dcsh}
+\citation{ding2025tracepile}
+\citation{traced2024}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{ni2024dcsh}
+\citation{ding2025tracepile}
+\citation{traced2024}
+\citation{lam2019flaky,parry2022flaky}
+\citation{hu2022lora}
+\citation{dettmers2023qlora}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Trace-augmented code LLMs.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Test verdict prediction.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LoRA training stability.}{2}{section*.3}\protected@file@percent }
+\citation{chen2021codex}
+\citation{austin2021mbpp}
+\citation{hu2022lora}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task and Dataset}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:dataset}{{3.1}{3}{Task and Dataset}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Trace Representations}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}VOTA: Verdict-Oriented Trace Abstraction}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Component ablation on Qwen-2.5-Coder-7B. Tier~1 components (exception, assertion-point) individually outperform full VOTA. Loop abstraction (Tier~2) approximates the full\_trace label-only condition.}}{4}{table.caption.4}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:component}{{1}{4}{Component ablation on Qwen-2.5-Coder-7B. Tier~1 components (exception, assertion-point) individually outperform full VOTA. Loop abstraction (Tier~2) approximates the full\_trace label-only condition}{table.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Training Setup}{4}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{4}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Component Ablation: Exception Events Dominate}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:component}{{4.1}{4}{Component Ablation: Exception Events Dominate}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Model Validation}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:crossmodel}{{4.2}{4}{Cross-Model Validation}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cross-model comparison on primary conditions. Exception\_only is the best component on both models. The VOTA cross-model gap (14.96pp) reflects both model capability differences and training-time trace truncation on DeepSeek (91.7\% of VOTA samples exceeded the 2,048-token limit).}}{5}{table.caption.5}\protected@file@percent }
+\newlabel{tab:crossmodel}{{2}{5}{Cross-model comparison on primary conditions. Exception\_only is the best component on both models. The VOTA cross-model gap (14.96pp) reflects both model capability differences and training-time trace truncation on DeepSeek (91.7\% of VOTA samples exceeded the 2,048-token limit)}{table.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Exception\_only accuracy and calibration across four models. Non-outlier configurations consistently achieve $\geq $99.3\% accuracy with ECE $<$ 0.009.}}{5}{table.caption.6}\protected@file@percent }
+\newlabel{tab:fourmodel_cal}{{3}{5}{Exception\_only accuracy and calibration across four models. Non-outlier configurations consistently achieve $\geq $99.3\% accuracy with ECE $<$ 0.009}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Four-Model Exception Ceiling Consistency}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:fourmodel}{{4.3}{5}{Four-Model Exception Ceiling Consistency}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Seed Robustness}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:seed}{{4.4}{5}{Seed Robustness}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces SFT vs. few-shot prompting on exception\_only inputs. SFT achieves higher accuracy at substantially lower inference cost, though the accuracy gap is modest (2.7pp vs. best few-shot).}}{6}{table.caption.7}\protected@file@percent }
+\newlabel{tab:fewshot}{{4}{6}{SFT vs. few-shot prompting on exception\_only inputs. SFT achieves higher accuracy at substantially lower inference cost, though the accuracy gap is modest (2.7pp vs. best few-shot)}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Information Density Analysis}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:density}{{4.5}{6}{Information Density Analysis}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Comparison with Few-Shot Prompting}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:fewshot}{{4.6}{6}{Comparison with Few-Shot Prompting}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-language OOD generalization. Accuracy degrades substantially (mean 19.1pp) outside the Python training distribution, with degradation correlated to exception format similarity.}}{7}{table.caption.8}\protected@file@percent }
+\newlabel{tab:ood}{{5}{7}{Cross-language OOD generalization. Accuracy degrades substantially (mean 19.1pp) outside the Python training distribution, with degradation correlated to exception format similarity}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Error analysis by condition. Errors decrease with signal specificity; higher-tier conditions' errors are strict subsets of lower-tier errors.}}{7}{table.caption.9}\protected@file@percent }
+\newlabel{tab:errors}{{6}{7}{Error analysis by condition. Errors decrease with signal specificity; higher-tier conditions' errors are strict subsets of lower-tier errors}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Out-of-Distribution Generalization}{7}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:ood}{{4.7}{7}{Out-of-Distribution Generalization}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Error Analysis}{7}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:errors}{{4.8}{7}{Error Analysis}{subsection.4.8}{}}
+\citation{ni2024dcsh}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces DeepSeek-7B exception\_only across three seeds. Seeds 42 and 456 produce identical results; seed 123 is an outlier with fail recall of only 0.705, indicating the LoRA initialization failed to learn the exception-to-fail mapping for a substantial fraction of negative samples.}}{8}{table.caption.10}\protected@file@percent }
+\newlabel{tab:seed_deepseek}{{7}{8}{DeepSeek-7B exception\_only across three seeds. Seeds 42 and 456 produce identical results; seed 123 is an outlier with fail recall of only 0.705, indicating the LoRA initialization failed to learn the exception-to-fail mapping for a substantial fraction of negative samples}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Training Stability: LoRA Initialization Sensitivity}{8}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:training_stability}{{4.9}{8}{Training Stability: LoRA Initialization Sensitivity}{subsection.4.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Cross-Seed Token Budget Analysis}{8}{subsection.4.10}\protected@file@percent }
+\newlabel{sec:budget}{{4.10}{8}{Cross-Seed Token Budget Analysis}{subsection.4.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Cross-seed tail-512 results across four models. DeepSeek's high variance (6.4pp std) is consistent with LoRA initialization sensitivity; other models are stable.}}{9}{table.caption.11}\protected@file@percent }
+\newlabel{tab:cross_seed_512}{{8}{9}{Cross-seed tail-512 results across four models. DeepSeek's high variance (6.4pp std) is consistent with LoRA initialization sensitivity; other models are stable}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{9}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{9}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Verdict prediction as fault detection.}{9}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{When does richer information help?}{9}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Loss-accuracy decoupling as a general concern.}{9}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical deployment considerations.}{9}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Limitations}{10}{section.6}\protected@file@percent }
+\newlabel{sec:limitations}{{6}{10}{Limitations}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Single-language training.}{10}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Two-model depth, four-model breadth.}{10}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LoRA initialization sensitivity.}{10}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dataset scope.}{10}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Narrow SFT advantage.}{10}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{10}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{10}{Conclusion}{section.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Token Budget Curve}{10}{appendix.A}\protected@file@percent }
+\newlabel{app:budget}{{A}{10}{Token Budget Curve}{appendix.A}{}}
+\bibstyle{plainnat}
+\bibcite{austin2021mbpp}{{1}{2021}{{Austin et~al.}}{{}}}
+\bibcite{chen2021codex}{{2}{2021}{{Chen et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Four-model tail token budget curve. Accuracy increases monotonically with no phase transition. The 2,048-token CodeLlama result shows training collapse.}}{11}{table.caption.21}\protected@file@percent }
+\newlabel{tab:budget}{{9}{11}{Four-model tail token budget curve. Accuracy increases monotonically with no phase transition. The 2,048-token CodeLlama result shows training collapse}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Training Dynamics}{11}{appendix.B}\protected@file@percent }
+\newlabel{app:training}{{B}{11}{Training Dynamics}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Convergence milestones by condition. Exception\_only converges rapidly to near-perfect accuracy; full\_trace shows non-monotonic dynamics consistent with information overload.}}{11}{table.caption.22}\protected@file@percent }
+\newlabel{tab:convergence}{{10}{11}{Convergence milestones by condition. Exception\_only converges rapidly to near-perfect accuracy; full\_trace shows non-monotonic dynamics consistent with information overload}{table.caption.22}{}}
+\bibcite{dettmers2023qlora}{{3}{2023}{{Dettmers et~al.}}{{}}}
+\bibcite{ding2025tracepile}{{4}{2025}{{Ding et~al.}}{{}}}
+\bibcite{hu2022lora}{{5}{2022}{{Hu et~al.}}{{}}}
+\bibcite{lam2019flaky}{{6}{2019}{{Lam et~al.}}{{}}}
+\bibcite{ni2024dcsh}{{7}{2024}{{Ni et~al.}}{{}}}
+\bibcite{parry2022flaky}{{8}{2022}{{Parry et~al.}}{{}}}
+\bibcite{traced2024}{{9}{2024}{{TRACED}}{{}}}
+\gdef \@abspage@last{12}
