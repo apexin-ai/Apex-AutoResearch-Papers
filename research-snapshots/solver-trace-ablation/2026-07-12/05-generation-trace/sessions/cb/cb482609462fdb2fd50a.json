@@ -1,0 +1,1017 @@
+{
+  "schema_version": "1.0",
+  "id": "cb482609462fdb2fd50a",
+  "project": "solver-trace-ablation--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to extract specific experiment data from a large JSON registry file. The file is at: /home/ubuntu/.claude-account",
+  "task_key": "agent-ab42d9f85c23650de",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-ab42d9f85c23650de.jsonl",
+    "occurrence": 1,
+    "bytes": 59020,
+    "sha256": "50d755b7b9db7a3e11d514c5f500268e002e5a85c0ff3892e28a5c9aad995f56"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 1,
+    "tool_calls": 6,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 6,
+      "tool_result": 6
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T15:30:20.092Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to extract specific experiment data from a large JSON registry file. The file is at:\n/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/04321c60-0605-4e09-be37-b73e75f1410c/tool-results/mcp-agent-ml-research-read_registry-1778772608947.txt\n\nThe file has schema: {result: string} where result is a JSON string that needs to be parsed.\n\nI need data for these experiments (the key names may vary slightly — look for partial matches):\n1. plan002-additive-b01-s42 (or similar with plan002, b01/beta0.1, s42/seed42)\n2. plan002-additive-b01-s43 (or similar)\n3. plan002-additive-b01-s44 (or similar)\n4. plan018-additive-random-b01-s42 (or similar with plan018, random, b01, s42)\n5. plan018-additive-random-b01-s44 (or similar)\n6. plan001-exec-only-s42-r2 (or similar with plan001, exec-only, s42)\n\nSteps:\n1. First probe the structure: `jq 'type' file` and then parse the result string\n2. List all experiment keys/IDs so we can find the right ones\n3. For each matched experiment, extract ALL fields — especially: status, metrics (PR, ISR, pass_rate, any hacking-related fields like H7, H1, genuine, conclusion_duplication), conclusion, notes\n\nReturn the COMPLETE data for each matched experiment. Quote field values verbatim. If any experiment is not found, list the closest matches."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "b775d983-bd02-451f-9901-ea43f46033cc",
+            "agentId": "ab42d9f85c23650de",
+            "type": "user",
+            "uuid": "4d3791b5-a158-43f7-8d1a-e0ac91368ae2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "04321c60-0605-4e09-be37-b73e75f1410c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T15:30:20.096Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "4d3791b5-a158-43f7-8d1a-e0ac91368ae2",
+                "isSidechain": true,
+                "agentId": "ab42d9f85c23650de",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "3adc10f6-ea3f-46db-bf20-33673134663a",
+                "timestamp": "2026-05-14T15:30:20.096Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+                "sessionId": "04321c60-0605-4e09-be37-b73e75f1410c",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T15:30:22.512Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll start by probing the file structure."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3adc10f6-ea3f-46db-bf20-33673134663a",
+            "isSidechain": true,
+            "agentId": "ab42d9f85c23650de",
+            "requestId": "req_011Cb2hagGy7EMiUR6b6gV91",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1b80cadd-6b44-4f1a-bced-1c438d807ae4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "04321c60-0605-4e09-be37-b73e75f1410c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019eKWeUKk1guBgsmVsH16Jn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14517,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14517,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T15:30:23.529Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0192m2xN4jBNiHiGBk6fBkZv",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/04321c60-0605-4e09-be37-b73e75f1410c/tool-results/mcp-agent-ml-research-read_registry-1778772608947.txt",
+                "limit": 50
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1b80cadd-6b44-4f1a-bced-1c438d807ae4",
+            "isSidechain": true,
+            "agentId": "ab42d9f85c23650de",
+            "requestId": "req_011Cb2hagGy7EMiUR6b6gV91",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a0976d7a-0e69-4ef6-9ab9-ad4672205a83",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "04321c60-0605-4e09-be37-b73e75f1410c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019eKWeUKk1guBgsmVsH16Jn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14517,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 170,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 14517
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 170,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 14517,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 14517,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T15:30:23.878Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (44586 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_0192m2xN4jBNiHiGBk6fBkZv"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a0976d7a-0e69-4ef6-9ab9-ad4672205a83",
+            "isSidechain": true,
+            "promptId": "b775d983-bd02-451f-9901-ea43f46033cc",
+            "agentId": "ab42d9f85c23650de",
+            "type": "user",
+            "uuid": "c52a7e17-65a9-4cb5-823c-b030f7aab97d",
+            "toolUseResult": "Error: File content (44586 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "a0976d7a-0e69-4ef6-9ab9-ad4672205a83",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "04321c60-0605-4e09-be37-b73e75f1410c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T15:30:26.592Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file is large. Let me read the beginning to understand the structure, then search for the experiment keys."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c52a7e17-65a9-4cb5-823c-b030f7aab97d",
+            "isSidechain": true,
+            "agentId": "ab42d9f85c23650de",
+            "requestId": "req_011Cb2haxSK2vbrWRSY6swH8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "762157f5-5612-4faf-83aa-b03009b5ad52",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "04321c60-0605-4e09-be37-b73e75f1410c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014jXzfT5odyKA9m2R64rW4H",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1072,
+                "cache_read_input_tokens": 14517,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1072,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T15:30:27.533Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GhKSM8BWFszHq8hGhpN6T6",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/04321c60-0605-4e09-be37-b73e75f1410c/tool-results/mcp-agent-ml-research-read_registry-1778772608947.txt",
+                "limit": 30,
+                "offset": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "762157f5-5612-4faf-83aa-b03009b5ad52",
+            "isSidechain": true,
+            "agentId": "ab42d9f85c23650de",
+            "requestId": "req_011Cb2haxSK2vbrWRSY6swH8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a71f47c0-a975-49ce-88d1-f34b14d4780d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "04321c60-0605-4e09-be37-b73e75f1410c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014jXzfT5odyKA9m2R64rW4H",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1072,
+                "cache_read_input_tokens": 14517,
+                "output_tokens": 198,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1072
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 198,
+                    "cache_read_input_tokens": 14517,
+                    "cache_creation_input_tokens": 1072,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1072,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T15:30:27.811Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (44586 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_01GhKSM8BWFszHq8hGhpN6T6"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a71f47c0-a975-49ce-88d1-f34b14d4780d",
+            "isSidechain": true,
+            "promptId": "b775d983-bd02-451f-9901-ea43f46033cc",
+            "agentId": "ab42d9f85c23650de",
+            "type": "user",
+            "uuid": "4ac1d30f-5b9e-4874-a824-44d27ba02cbc",
+            "toolUseResult": "Error: File content (44586 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "a71f47c0-a975-49ce-88d1-f34b14d4780d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "04321c60-0605-4e09-be37-b73e75f1410c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T15:30:31.412Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019XsFfzPr8cvFP6X8BZrJmR",
+              "name": "Bash",
+              "input": {
+                "command": "wc -l \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/04321c60-0605-4e09-be37-b73e75f1410c/tool-results/mcp-agent-ml-research-read_registry-1778772608947.txt\"",
+                "description": "Check file line count"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4ac1d30f-5b9e-4874-a824-44d27ba02cbc",
+            "isSidechain": true,
+            "agentId": "ab42d9f85c23650de",
+            "requestId": "req_011Cb2hbFjNkvAGJ8vi4BJ5R",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9ab3e2a5-d264-4e52-ac2a-82f10af718e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "04321c60-0605-4e09-be37-b73e75f1410c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016vQBHp2mgdfuvFSsZ81TUJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 259,
+                "cache_read_input_tokens": 15589,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 259,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T15:30:31.586Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019XsFfzPr8cvFP6X8BZrJmR",
+              "type": "tool_result",
+              "content": "0 /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/04321c60-0605-4e09-be37-b73e75f1410c/tool-results/mcp-agent-ml-research-read_registry-1778772608947.txt",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9ab3e2a5-d264-4e52-ac2a-82f10af718e9",
+            "isSidechain": true,
+            "promptId": "b775d983-bd02-451f-9901-ea43f46033cc",
+            "agentId": "ab42d9f85c23650de",
+            "type": "user",
+            "uuid": "b71d2959-778b-44b1-a0ee-ddd83709b9eb",
+            "sourceToolAssistantUUID": "9ab3e2a5-d264-4e52-ac2a-82f10af718e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "04321c60-0605-4e09-be37-b73e75f1410c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T15:30:32.648Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H1B2qZ3bwDhR2hsRLoSBNy",
+              "name": "Bash",
+              "input": {
+                "command": "head -c 500 \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/04321c60-0605-4e09-be37-b73e75f1410c/tool-results/mcp-agent-ml-research-read_registry-1778772608947.txt\"",
+                "description": "Read first 500 bytes to see structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b71d2959-778b-44b1-a0ee-ddd83709b9eb",
+            "isSidechain": true,
+            "agentId": "ab42d9f85c23650de",
+            "requestId": "req_011Cb2hbFjNkvAGJ8vi4BJ5R",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8332ca48-979c-4926-aa61-71a8b901b2c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "04321c60-0605-4e09-be37-b73e75f1410c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016vQBHp2mgdfuvFSsZ81TUJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 259,
+                "cache_read_input_tokens": 15589,
+                "output_tokens": 320,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 259
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 320,
+                    "cache_read_input_tokens": 15589,
+                    "cache_creation_input_tokens": 259,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 259,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T15:30:32.707Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H1B2qZ3bwDhR2hsRLoSBNy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan018-additive-random-b01-s43-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T14:01:24.111Z\\\", \\\"updated_at\\\": \\\"2026-05-14T15:24:33.554Z\\\", \\\"hypothesis\\\": \\\"Random β=0.1 seed=43 控制组 r2: 重试 (原 s43 step 200 磁盘满崩溃)。与 plan002-b01-s43 (ISR β=0.1) 同 seed 对照。3-seed mean±std 审稿硬性要求。\\\", \\\"parent\\\": \\\"plan018-additive-random-b01-s43\\\", \\\"server\\\": \\\"westd-39",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8332ca48-979c-4926-aa61-71a8b901b2c8",
+            "isSidechain": true,
+            "promptId": "b775d983-bd02-451f-9901-ea43f46033cc",
+            "agentId": "ab42d9f85c23650de",
+            "type": "user",
+            "uuid": "347947ee-e7fb-4944-b816-0a4d88111fdf",
+            "sourceToolAssistantUUID": "8332ca48-979c-4926-aa61-71a8b901b2c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "04321c60-0605-4e09-be37-b73e75f1410c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T15:30:35.527Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "It's a single-line JSON file. Let me use jq to parse and extract the experiment keys."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "347947ee-e7fb-4944-b816-0a4d88111fdf",
+            "isSidechain": true,
+            "agentId": "ab42d9f85c23650de",
+            "requestId": "req_011Cb2hbcDv3ttLPyhZcEpLB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "34305f84-acb3-47c3-85a5-9cce014b690a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "04321c60-0605-4e09-be37-b73e75f1410c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CMD1idgYCQoWpKPx5g65Bi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 701,
+                "cache_read_input_tokens": 15848,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 701,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T15:30:37.398Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015ehaEQ9TErLrPCYN6zS15y",
+              "name": "Bash",
+              "input": {
+                "command": "FILE=\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/04321c60-0605-4e09-be37-b73e75f1410c/tool-results/mcp-agent-ml-research-read_registry-1778772608947.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\nfor k in sorted(exps.keys()):\n    print(k)\n\"",
+                "description": "Parse JSON and list all experiment keys"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "34305f84-acb3-47c3-85a5-9cce014b690a",
+            "isSidechain": true,
+            "agentId": "ab42d9f85c23650de",
+            "requestId": "req_011Cb2hbcDv3ttLPyhZcEpLB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3dc52cd9-7080-4898-a3be-623a99ee6682",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "04321c60-0605-4e09-be37-b73e75f1410c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CMD1idgYCQoWpKPx5g65Bi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 701,
+                "cache_read_input_tokens": 15848,
+                "output_tokens": 257,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 701
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 257,
+                    "cache_read_input_tokens": 15848,
+                    "cache_creation_input_tokens": 701,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 701,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T15:30:37.509Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015ehaEQ9TErLrPCYN6zS15y",
+              "type": "tool_result",
+              "content": "plan001-exec-only-s42\nplan001-exec-only-s42-r2\nplan001-exec-only-s42-r3\nplan001-exec-only-s43\nplan001-exec-only-s43-r2\nplan001-exec-only-s43-r3\nplan001-exec-only-s43-r4\nplan001-exec-only-s44\nplan002-additive-b01-s42\nplan002-additive-b01-s43\nplan002-additive-b01-s44\nplan002-additive-b03-s42\nplan003-eval-exec-only-r5\nplan005-sta-low-s42\nplan006-prolog-exec-s42\nplan006-prolog-exec-s43\nplan006-prolog-exec-s43-r2\nplan006-prolog-exec-s43-r3\nplan006-prolog-exec-s44\nplan006-prolog-sta-s42\nplan006-prolog-sta-s43\nplan006-prolog-sta-s44\nplan009-sft-baseline-s42\nplan009-sft-baseline-s42-r2\nplan009-sft-baseline-s42-r3\nplan009-sft-baseline-s42-r4\nplan012-hacking-taxonomy\nplan013-random-reward-s42\nplan013-random-reward-s42-r2\nplan013-random-reward-s42-r3\nplan013-random-reward-s42-r4\nplan014-downstream-nli-s42\nplan016-extended-1000-s42\nplan017-additive-random-s42\nplan018-additive-random-b01-s42\nplan018-additive-random-b01-s43\nplan018-additive-random-b01-s43-r2\nplan018-additive-random-b01-s44\nsta-gt-isr-baseline\nsta-phase0-baseline\nsta-phase1-exec-only\nsta-phase1-exec-only-r2\nsta-phase1-exec-only-r3\nsta-phase1-exec-only-r4\nsta-phase1-exec-only-r5\nsta-phase1-exec-sta\nsta-phase1-exec-sta-r2\nsta-phase1-exec-sta-r3\nsta-phase1-exec-sta-r4\nsta-phase1-exec-sta-r5",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3dc52cd9-7080-4898-a3be-623a99ee6682",
+            "isSidechain": true,
+            "promptId": "b775d983-bd02-451f-9901-ea43f46033cc",
+            "agentId": "ab42d9f85c23650de",
+            "type": "user",
+            "uuid": "271cd807-00ce-42d7-bef8-eb504342e001",
+            "sourceToolAssistantUUID": "3dc52cd9-7080-4898-a3be-623a99ee6682",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "04321c60-0605-4e09-be37-b73e75f1410c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T15:30:40.804Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I can see all the keys. Now let me extract the complete data for the 6 requested experiments."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "271cd807-00ce-42d7-bef8-eb504342e001",
+            "isSidechain": true,
+            "agentId": "ab42d9f85c23650de",
+            "requestId": "req_011Cb2hbxmBj3WE41pGVe152",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0c06acae-f96e-4acc-9378-f2cf91fba7b9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "04321c60-0605-4e09-be37-b73e75f1410c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EdwckCbKKEcaEfLGVr4GFm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 859,
+                "cache_read_input_tokens": 16549,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 859,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T15:30:44.624Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A7ASKos6qKvXcfk253cvh5",
+              "name": "Bash",
+              "input": {
+                "command": "FILE=\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/04321c60-0605-4e09-be37-b73e75f1410c/tool-results/mcp-agent-ml-research-read_registry-1778772608947.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n\ntargets = [\n    'plan002-additive-b01-s42',\n    'plan002-additive-b01-s43',\n    'plan002-additive-b01-s44',\n    'plan018-additive-random-b01-s42',\n    'plan018-additive-random-b01-s44',\n    'plan001-exec-only-s42-r2',\n]\n\nfor t in targets:\n    print('='*80)\n    if t in exps:\n        print(f'KEY: {t}')\n        print(json.dumps(exps[t], indent=2, ensure_ascii=False))\n    else:\n        print(f'KEY: {t} — NOT FOUND')\n        # find closest matches\n        matches = [k for k in exps if t[:10] in k]\n        if matches:\n            print(f'  Closest matches: {matches}')\n    print()\n\"",
+                "description": "Extract complete data for 6 target experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0c06acae-f96e-4acc-9378-f2cf91fba7b9",
+            "isSidechain": true,
+            "agentId": "ab42d9f85c23650de",
+            "requestId": "req_011Cb2hbxmBj3WE41pGVe152",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "59bd6241-9802-44e3-9bb9-e5936b2d22d0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "04321c60-0605-4e09-be37-b73e75f1410c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EdwckCbKKEcaEfLGVr4GFm",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 859,
+                "cache_read_input_tokens": 16549,
+                "output_tokens": 468,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 859
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 468,
+                    "cache_read_input_tokens": 16549,
+                    "cache_creation_input_tokens": 859,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 859,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T15:30:44.721Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A7ASKos6qKvXcfk253cvh5",
+              "type": "tool_result",
+              "content": "================================================================================\nKEY: plan002-additive-b01-s42\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-14T05:29:08.138Z\",\n  \"updated_at\": \"2026-05-14T15:09:40.467Z\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s42\\\"\",\n    \"server\": \"westd-39279\",\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"pid\": \"262261\",\n    \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b01-s42.log\",\n    \"submitted_at\": \"2026-05-14T05:32:32.415Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"data/train_500_seed42.jsonl\",\n    \"data_count\": 500,\n    \"model_name\": \"Qwen3-4B\",\n    \"seed\": 42,\n    \"plan_id\": \"plan002\",\n    \"reward_formula\": \"r_exec * (1 + 0.1 * ISR)\",\n    \"num_steps\": 500,\n    \"wall_clock_seconds\": 4493.9,\n    \"gpu_hours\": 1.25,\n    \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan002_additive_b01_s42\"\n  },\n  \"parent\": \"plan002-additive-b03-s42\",\n  \"server\": \"westd-39279\",\n  \"gpu\": \"cuda:0\",\n  \"account\": \"root\",\n  \"pid\": \"262261\",\n  \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b01-s42.log\",\n  \"reproduce\": {\n    \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s42\\\"\",\n    \"finished_at\": \"2026-05-14T06:37:58.285Z\"\n  },\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-14T06:37:59.656631+00:00\"\n      }\n    ]\n  },\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"eval_prove_rate\": 0.81,\n    \"eval_mean_isr\": 0.3365,\n    \"eval_isr_std\": 0.3227,\n    \"eval_proved_only_isr\": 0.4154,\n    \"eval_median_isr\": 0.2,\n    \"eval_n_proved\": 81,\n    \"eval_n_problems\": 100,\n    \"eval_method\": \"eval_sta.py full STA\",\n    \"eval_data\": \"proofwriter_fol_100.jsonl\",\n    \"eval_component_count_mean\": 5.58,\n    \"eval_component_count_2_ratio\": 0.037,\n    \"eval_isr_1_ratio\": 0.124,\n    \"eval_isr_0_ratio\": 0.037,\n    \"eval_by_type_false_pr\": 0.88,\n    \"eval_by_type_false_isr\": 0.3515,\n    \"eval_by_type_unknown_pr\": 0.83,\n    \"eval_by_type_unknown_isr\": 0.3684,\n    \"eval_by_type_true_pr\": 0.74,\n    \"eval_by_type_true_isr\": 0.2869,\n    \"tautological_collapse\": false,\n    \"train_total_steps\": 500,\n    \"train_duration_min\": 63,\n    \"train_last100_pr\": 0.6875,\n    \"train_last100_isr\": 0.1954,\n    \"train_last100_loss\": 0.015\n  },\n  \"notes\": \"H7 audit (2026-05-14): 81 proved samples. H7 (single premise=conclusion): 13/81=16.0%, mean ISR=0.6603. H1 (multi premise contains conclusion): 42/81=51.9%, mean ISR=0.2245. Genuine (no conclusion duplication): 26/81=32.1%, mean ISR=0.6014. Combined conclusion duplication = 67.9%. CRITICAL: only 32.1% of proved samples are free of conclusion embedding. H7 inflates ISR; H1 deflates ISR but proof is trivially achievable via embedded conclusion. Claim 2 \\\"genuine structural guidance\\\" needs reframing — ISR signal is dominated by conclusion duplication artifacts.\",\n  \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan002_additive_b01_s42\",\n  \"completed_at\": \"2026-05-14T06:47:26.358Z\"\n}\n\n================================================================================\nKEY: plan002-additive-b01-s43\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-14T08:36:16.367Z\",\n  \"updated_at\": \"2026-05-14T10:12:36.502Z\",\n  \"hypothesis\": \"ISR β=0.1 seed=43 多 seed 验证：plan002-b01-s42 (PR=0.81, ISR=0.337) 在 s43 下是否可复现？exec-only s43 是 degraded seed (PR=14%)，ISR β=0.1 能否拯救 bad seed？3-seed mean±std 用于论文 Claim 2 统计支撑。\",\n  \"parent\": \"plan002-additive-b01-s42\",\n  \"server\": \"westd-39279\",\n  \"gpu\": \"cuda:0\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"westd-39279\",\n    \"gpu\": \"cuda:0\",\n    \"started_at\": \"2026-05-14T08:45:10.999Z\",\n    \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s43\\\"\",\n    \"finished_at\": \"2026-05-14T09:41:23.932Z\",\n    \"training_hours\": 0.94\n  },\n  \"spec\": {\n    \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s43\\\"\",\n    \"server\": \"westd-39279\",\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"pid\": \"466128\",\n    \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b01-s43.log\",\n    \"submitted_at\": \"2026-05-14T08:45:54.837Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"wall_clock_seconds\": 4096.6,\n    \"gpu_hours\": 1.14\n  },\n  \"pid\": \"466128\",\n  \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b01-s43.log\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-14T09:41:25.536028+00:00\"\n      }\n    ]\n  },\n  \"metrics\": {\n    \"eval_prove_rate\": 0.61,\n    \"eval_mean_isr\": 0.5063,\n    \"eval_isr_std\": 0.4518,\n    \"eval_median_isr\": 0.5,\n    \"eval_proved_only_isr\": 0.8301,\n    \"component_count_mean\": 4.03,\n    \"component_count_2_ratio\": 0,\n    \"tautological_collapse\": false,\n    \"isr_0_ratio\": 0.39,\n    \"isr_1_ratio\": 0.656,\n    \"proved_single_premise_ratio\": 1,\n    \"h7_rate_calibrated\": 0.967,\n    \"h7_definition\": \"single_premise AND premise==conclusion (normalized)\",\n    \"hacking_mode\": \"conclusion_duplication_isr_inflation\",\n    \"conclusion_embedding\": true,\n    \"by_answer_type\": {\n      \"false\": {\n        \"n\": 25,\n        \"proved\": 18,\n        \"PR\": 0.72,\n        \"ISR\": 0.6\n      },\n      \"unknown\": {\n        \"n\": 41,\n        \"proved\": 22,\n        \"PR\": 0.537,\n        \"ISR\": 0.442\n      },\n      \"true\": {\n        \"n\": 34,\n        \"proved\": 21,\n        \"PR\": 0.618,\n        \"ISR\": 0.515\n      }\n    },\n    \"train_total_steps\": 500,\n    \"train_duration_min\": 53,\n    \"train_loss\": 0.012\n  },\n  \"conclusion\": \"negative\",\n  \"notes\": \"NEGATIVE: conclusion duplication hacking 确认。100% proved 样本仅 1 premise，97% premise=conclusion（重言式 P→P）。ISR=0.506 是 artifact（唯一 premise 必然 necessary）。与 s44 相同失败模式。3-seed 中 s42 唯一可能 genuine（待验证），s43/s44 均 collapse。β=0.1 additive bonus 多 seed 可靠性不足。\",\n  \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan002_additive_b01_s43/checkpoint-500\",\n  \"completed_at\": \"2026-05-14T09:54:11.468Z\"\n}\n\n================================================================================\nKEY: plan002-additive-b01-s44\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-14T08:36:17.298Z\",\n  \"updated_at\": \"2026-05-14T10:12:40.545Z\",\n  \"hypothesis\": \"ISR β=0.1 seed=44 多 seed 验证：exec-only s44 是 tautological collapse (PR=98%, ISR=0.57 fake)，ISR β=0.1 能否防止 tautological collapse？3-seed mean±std 用于论文 Claim 2。\",\n  \"parent\": \"plan002-additive-b01-s42\",\n  \"server\": \"westd-39279\",\n  \"gpu\": \"cuda:1\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"westd-39279\",\n    \"gpu\": \"cuda:1\",\n    \"started_at\": \"2026-05-14T08:45:11.826Z\",\n    \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s44\\\"\",\n    \"finished_at\": \"2026-05-14T09:28:10.836Z\",\n    \"training_hours\": 0.72\n  },\n  \"spec\": {\n    \"command\": \"python3 scripts/train_grpo.py --mode additive_bonus --isr_beta 0.1 --seed 44\",\n    \"server\": \"westd-39279\",\n    \"gpu\": [\n      \"cuda:1\"\n    ],\n    \"pid\": \"466540\",\n    \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b01-s44.log\",\n    \"submitted_at\": \"2026-05-14T08:46:23.037Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"data/train_500_seed42.jsonl\",\n    \"data_count\": 500,\n    \"model_name\": \"Qwen3-4B\",\n    \"seed\": 44,\n    \"wall_clock_seconds\": 2950.3,\n    \"gpu_hours\": 0.82\n  },\n  \"pid\": \"466540\",\n  \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b01-s44.log\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-14T09:28:12.416418+00:00\"\n      }\n    ]\n  },\n  \"metrics\": {\n    \"eval_prove_rate\": 0.89,\n    \"eval_mean_isr\": 0.803,\n    \"eval_isr_std\": 0.3418,\n    \"eval_median_isr\": 1,\n    \"component_count_mean\": 4.33,\n    \"component_count_2_ratio\": 0.022,\n    \"tautological_collapse\": false,\n    \"isr_0_ratio\": 0.12,\n    \"isr_1_ratio\": 0.73,\n    \"proved_single_premise_ratio\": 1,\n    \"h7_rate_calibrated\": 0.865,\n    \"h7_definition\": \"single_premise AND premise==conclusion (normalized)\",\n    \"hacking_mode\": \"conclusion_duplication_isr_inflation\",\n    \"conclusion_embedding\": true,\n    \"component_dist\": {\n      \"2\": 2,\n      \"4\": 54,\n      \"5\": 33\n    },\n    \"by_answer_type\": {\n      \"false\": {\n        \"n\": 25,\n        \"proved\": 22,\n        \"PR\": 0.88,\n        \"ISR\": 0.824\n      },\n      \"unknown\": {\n        \"n\": 41,\n        \"proved\": 38,\n        \"PR\": 0.927,\n        \"ISR\": 0.837\n      },\n      \"true\": {\n        \"n\": 34,\n        \"proved\": 29,\n        \"PR\": 0.853,\n        \"ISR\": 0.747\n      }\n    }\n  },\n  \"conclusion\": \"negative\",\n  \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan002_additive_b01_s44\",\n  \"notes\": \"RECLASSIFIED negative (D039): Reviewer 逐样本审查发现 semantic drift hacking — 模型生成极简形式化（单 premise≈conclusion），通过 conclusion sub-component ablation 膨胀 ISR。ISR=0.902 是 conclusion_duplication_isr_inflation artifact，非真正证明质量。65% 样本 ISR=1.0 为 conclusion embedding。此 hacking mode 本身是论文 positive finding（强化 Claim 1 Goodhart 叙事：ISR reward 导致新型 hacking）。原始 eval 指标：PR=0.89, mean_isr=0.803, component_mean=4.33, comp_2_ratio=0.022。exec-only s44 是 tautological collapse (94% 2-comp)，ISR β=0.1 s44 避免了 tautological collapse 但转向了 conclusion duplication hacking。\",\n  \"completed_at\": \"2026-05-14T09:35:33.310Z\"\n}\n\n================================================================================\nKEY: plan018-additive-random-b01-s42\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-14T06:55:48.888Z\",\n  \"updated_at\": \"2026-05-14T08:32:44.808Z\",\n  \"hypothesis\": \"β=0.1 random control: r = r_exec·(1+0.1·random[0,1]). 与 plan002-b01 (additive ISR β=0.1, PR=0.81, ISR=0.337) 同 β 对照。如果 ISR β=0.1 >> random β=0.1 → ISR 信号在低剂量下有结构价值; 如果 ISR ≈ random → ISR 信号在低剂量下也仅是 variance regularization。D031 紧急实验。\",\n  \"parent\": \"plan002-additive-b01-s42\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random_b01.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s42\\\"\",\n    \"server\": \"westd-39279\",\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"pid\": \"377678\",\n    \"log_path\": \"~/runs/solver-trace-ablation/plan018-additive-random-b01-s42.log\",\n    \"submitted_at\": \"2026-05-14T06:55:59.287Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"data/train_500_seed42.jsonl\",\n    \"data_count\": 500,\n    \"model_name\": \"Qwen3-4B\",\n    \"seed\": 42,\n    \"plan_id\": \"plan018\",\n    \"reward_formula\": \"r = r_exec * (1 + 0.1 * random[0,1])\",\n    \"num_steps\": 500,\n    \"checkpoint_source\": \"N/A (training, not eval)\",\n    \"eval_data\": \"N/A (training, not eval)\",\n    \"wall_clock_seconds\": 5160.4,\n    \"gpu_hours\": 1.43,\n    \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan018_additive_random_b01_s42\"\n  },\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-14T08:09:07.662Z\"\n  },\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-14T08:09:09.188407+00:00\"\n      }\n    ]\n  },\n  \"conclusion\": \"negative\",\n  \"metrics\": {\n    \"eval_prove_rate\": 0.79,\n    \"eval_mean_isr\": 0.1038,\n    \"eval_isr_std\": 0.1369,\n    \"eval_median_isr\": 0.0357,\n    \"eval_proved_only_isr\": 0.1314,\n    \"eval_n_proved\": 79,\n    \"eval_n_problems\": 100,\n    \"eval_component_count_mean\": 8.46,\n    \"eval_component_count_median\": 8,\n    \"eval_component_count_2_ratio\": 0,\n    \"eval_isr_1_ratio\": 0,\n    \"eval_isr_0_ratio\": 0.367,\n    \"eval_isr_gt0_ratio\": 0.633,\n    \"eval_by_type_false_pr\": 0.8,\n    \"eval_by_type_false_isr\": 0.1318,\n    \"eval_by_type_unknown_pr\": 0.7317,\n    \"eval_by_type_unknown_isr\": 0.0944,\n    \"eval_by_type_true_pr\": 0.8529,\n    \"eval_by_type_true_isr\": 0.0945,\n    \"tautological_collapse\": false,\n    \"train_total_steps\": 500,\n    \"train_duration_min\": 70.5,\n    \"train_last100_pr\": 0.805,\n    \"train_last100_isr\": 0.1432,\n    \"train_loss\": 0.005\n  },\n  \"notes\": \"Random control β=0.1 vs ISR β=0.1 (plan002-b01) 对照。conclusion=negative: random control的ISR远低于ISR-guided。\\n\\n对比 plan002-b01 (ISR β=0.1):\\n- PR: 0.79 vs 0.81 (≈持平, Δ=0.02)\\n- Mean ISR: 0.104 vs 0.337 (ISR 3.2x higher)\\n- Proved-only ISR: 0.131 vs 0.415 (ISR 3.2x higher)\\n- Median ISR: 0.036 vs plan002未记录\\n- Component count: 8.46 vs 5.58 (random组更多冗余)\\n- ISR=0占比(proved): 36.7% (random组大量proof无结构)\\n- Tautological collapse: 无 (component_2_ratio=0)\\n\\n关键发现: PR几乎相同说明β=0.1 random噪声不影响证明能力。但ISR差3.2倍，证明ISR reward提供genuine structural guidance而非仅variance regularization。这强力支持Claim 2: ISR信号在低剂量下有结构价值。\\n\\nEval output: /root/autodl-tmp/outputs/plan018_additive_random_b01_s42/eval_results.json\",\n  \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan018_additive_random_b01_s42\",\n  \"completed_at\": \"2026-05-14T08:21:59.737Z\"\n}\n\n================================================================================\nKEY: plan018-additive-random-b01-s44\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-14T08:36:18.722Z\",\n  \"updated_at\": \"2026-05-14T15:00:09.178Z\",\n  \"hypothesis\": \"Random β=0.1 seed=44 控制组：与 plan002-b01-s44 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > random 的结论在 s44 下是否成立。\",\n  \"parent\": \"plan018-additive-random-b01-s42\",\n  \"server\": \"westd-39279\",\n  \"gpu\": \"cuda:0\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"westd-39279\",\n    \"gpu\": \"cuda:0\",\n    \"started_at\": \"2026-05-14T11:34:13.338Z\",\n    \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random_b01.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --beta 0.1 --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s44\\\"\",\n    \"finished_at\": \"2026-05-14T13:37:42.200Z\",\n    \"training_hours\": 2.06\n  },\n  \"spec\": {\n    \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random_b01.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --beta 0.1 --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s44\\\"\",\n    \"server\": \"westd-39279\",\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"pid\": \"564900\",\n    \"data_path\": \"data/train_500_seed42.jsonl\",\n    \"data_count\": 500,\n    \"model_name\": \"Qwen3-4B\",\n    \"seed\": 44,\n    \"reward_formula\": \"r = r_exec * (1 + 0.1 * random[0,1])\",\n    \"num_steps\": 500\n  },\n  \"pid\": \"564900\",\n  \"log_path\": \"~/runs/solver-trace-ablation/plan018-additive-random-b01-s44.log\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-14T13:37:43.236026+00:00\"\n      }\n    ]\n  },\n  \"metrics\": {\n    \"prove_rate\": 0.89,\n    \"mean_isr\": 0.0619,\n    \"isr_std\": 0.1756,\n    \"median_isr\": 0,\n    \"proved_only_mean_isr\": 0.0695,\n    \"n_proved\": 89,\n    \"n_problems\": 100,\n    \"max_isr\": 1,\n    \"min_isr\": 0,\n    \"isr_pr_ratio\": 0.0695,\n    \"isr_zero_count\": 72,\n    \"isr_one_count\": 2,\n    \"by_answer_type\": {\n      \"false\": {\n        \"count\": 25,\n        \"proved\": 21,\n        \"prove_rate\": 0.84,\n        \"mean_isr\": 0.0533\n      },\n      \"unknown\": {\n        \"count\": 41,\n        \"proved\": 40,\n        \"prove_rate\": 0.976,\n        \"mean_isr\": 0.0892\n      },\n      \"true\": {\n        \"count\": 34,\n        \"proved\": 28,\n        \"prove_rate\": 0.824,\n        \"mean_isr\": 0.0353\n      }\n    },\n    \"elapsed_seconds\": 1012.7,\n    \"eval_method\": \"eval_sta.py with Prover9Solver, FOL\"\n  },\n  \"conclusion\": \"success\",\n  \"notes\": \"DONE (success). Random β=0.1 s44 对照分析完成: PR=0.89/ISR=0.062 (clean) vs ISR β=0.1 s44 PR=0.89/ISR=0.803 (H7=86.5% inflated). 同 PR 下 ISR reward 导致 conclusion duplication，random 无此问题。与 s42 结论一致: ISR s42 genuine ISR=0.337 vs Random s42 ISR=0.104 (3.2x)。Random 2/3 seeds done, 等 s43 (plan018-random-b01-s43-r2 QUEUED)。\",\n  \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan018_additive_random_b01_s44/checkpoint-500\",\n  \"completed_at\": \"2026-05-14T14:29:21.226Z\"\n}\n\n================================================================================\nKEY: plan001-exec-only-s42-r2\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 1,\n  \"created_at\": \"2026-05-13T22:40:41.773Z\",\n  \"updated_at\": \"2026-05-14T03:45:49.703Z\",\n  \"completed_at\": \"2026-05-13T23:46:00Z\",\n  \"extra\": {\n    \"previous_failure\": {\n      \"conclusion\": \"failed\"\n    },\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-13T23:46:01.596431+00:00\"\n      }\n    ]\n  },\n  \"spec\": {\n    \"command\": \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s42\",\n    \"server\": \"westd-39279\",\n    \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\",\n    \"data_count\": 500,\n    \"model_name\": \"Qwen3-4B\",\n    \"seed\": 42,\n    \"hypothesis\": \"500-step exec-only baseline for STA comparison (K=8)\",\n    \"pid\": \"84901\",\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"log_path\": \"~/runs/solver-trace-ablation/plan001-exec-only-s42-r2.log\",\n    \"submitted_at\": \"2026-05-13T22:42:40.204Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"wall_clock_seconds\": 3820,\n    \"gpu_hours\": 1.06\n  },\n  \"notes\": \"Cron 误判 DONE/failed（因 --help|grep 前缀命令的 PID 84896 退出，实际训练子进程 PID 84901 仍在运行）。已手动恢复 RUNNING。严禁在 cuda:0 启动新进程直到 r2 自然完成。⚠️ Reviewer 中期审查标注: 训练日志中 ISR=0.8612 为 binary approximation (_fast_fn)，非真实 ISR。最终可比 ISR 需通过 eval_sta.py (full STA) 重新评估。\",\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-13T23:46:00.369Z\"\n  },\n  \"conclusion\": \"success\",\n  \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan001_exec_only_s42/checkpoint-500\",\n  \"log_path\": \"/root/autodl-tmp/outputs/plan001_exec_only_s42/reward_log.jsonl\",\n  \"metrics\": {\n    \"eval_prove_rate\": 0.93,\n    \"eval_mean_isr\": 0.1232,\n    \"eval_isr_std\": 0.1887,\n    \"eval_proved_only_isr\": 0.1324,\n    \"eval_median_isr\": 0,\n    \"eval_n_proved\": 93,\n    \"eval_n_problems\": 100,\n    \"eval_method\": \"eval_sta.py full STA\",\n    \"eval_data\": \"proofwriter_fol_100.jsonl\"\n  }\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "59bd6241-9802-44e3-9bb9-e5936b2d22d0",
+            "isSidechain": true,
+            "promptId": "b775d983-bd02-451f-9901-ea43f46033cc",
+            "agentId": "ab42d9f85c23650de",
+            "type": "user",
+            "uuid": "9979442e-2654-4f02-9d1b-360390eb65a2",
+            "sourceToolAssistantUUID": "59bd6241-9802-44e3-9bb9-e5936b2d22d0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "04321c60-0605-4e09-be37-b73e75f1410c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T15:31:44.334Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 6 experiments found. Here is the complete extracted data:\n\n---\n\n## 1. plan002-additive-b01-s42\n\n- **status**: `\"DONE\"`\n- **conclusion**: `\"success\"`\n- **created_at**: `\"2026-05-14T05:29:08.138Z\"`\n- **completed_at**: `\"2026-05-14T06:47:26.358Z\"`\n- **parent**: `\"plan002-additive-b03-s42\"`\n- **server**: `\"westd-39279\"`, **gpu**: `\"cuda:0\"`\n\n**Metrics**:\n- `eval_prove_rate`: 0.81\n- `eval_mean_isr`: 0.3365\n- `eval_isr_std`: 0.3227\n- `eval_proved_only_isr`: 0.4154\n- `eval_median_isr`: 0.2\n- `eval_n_proved`: 81, `eval_n_problems`: 100\n- `eval_component_count_mean`: 5.58, `eval_component_count_2_ratio`: 0.037\n- `eval_isr_1_ratio`: 0.124, `eval_isr_0_ratio`: 0.037\n- `tautological_collapse`: false\n- `train_total_steps`: 500, `train_duration_min`: 63\n- `train_last100_pr`: 0.6875, `train_last100_isr`: 0.1954, `train_last100_loss`: 0.015\n- By type: false PR=0.88/ISR=0.3515, unknown PR=0.83/ISR=0.3684, true PR=0.74/ISR=0.2869\n\n**Notes** (verbatim): `\"H7 audit (2026-05-14): 81 proved samples. H7 (single premise=conclusion): 13/81=16.0%, mean ISR=0.6603. H1 (multi premise contains conclusion): 42/81=51.9%, mean ISR=0.2245. Genuine (no conclusion duplication): 26/81=32.1%, mean ISR=0.6014. Combined conclusion duplication = 67.9%. CRITICAL: only 32.1% of proved samples are free of conclusion embedding. H7 inflates ISR; H1 deflates ISR but proof is trivially achievable via embedded conclusion. Claim 2 \\\"genuine structural guidance\\\" needs reframing — ISR signal is dominated by conclusion duplication artifacts.\"`\n\n---\n\n## 2. plan002-additive-b01-s43\n\n- **status**: `\"DONE\"`\n- **conclusion**: `\"negative\"`\n- **hypothesis**: `\"ISR β=0.1 seed=43 多 seed 验证：plan002-b01-s42 (PR=0.81, ISR=0.337) 在 s43 下是否可复现？exec-only s43 是 degraded seed (PR=14%)，ISR β=0.1 能否拯救 bad seed？3-seed mean±std 用于论文 Claim 2 统计支撑。\"`\n\n**Metrics**:\n- `eval_prove_rate`: 0.61\n- `eval_mean_isr`: 0.5063\n- `eval_isr_std`: 0.4518\n- `eval_median_isr`: 0.5\n- `eval_proved_only_isr`: 0.8301\n- `component_count_mean`: 4.03, `component_count_2_ratio`: 0\n- `tautological_collapse`: false\n- `isr_0_ratio`: 0.39, `isr_1_ratio`: 0.656\n- `proved_single_premise_ratio`: 1\n- `h7_rate_calibrated`: 0.967\n- `h7_definition`: `\"single_premise AND premise==conclusion (normalized)\"`\n- `hacking_mode`: `\"conclusion_duplication_isr_inflation\"`\n- `conclusion_embedding`: true\n- By type: false n=25/proved=18/PR=0.72/ISR=0.6; unknown n=41/proved=22/PR=0.537/ISR=0.442; true n=34/proved=21/PR=0.618/ISR=0.515\n- `train_total_steps`: 500, `train_duration_min`: 53, `train_loss`: 0.012\n\n**Notes** (verbatim): `\"NEGATIVE: conclusion duplication hacking 确认。100% proved 样本仅 1 premise，97% premise=conclusion（重言式 P→P）。ISR=0.506 是 artifact（唯一 premise 必然 necessary）。与 s44 相同失败模式。3-seed 中 s42 唯一可能 genuine（待验证），s43/s44 均 collapse。β=0.1 additive bonus 多 seed 可靠性不足。\"`\n\n---\n\n## 3. plan002-additive-b01-s44\n\n- **status**: `\"DONE\"`\n- **conclusion**: `\"negative\"`\n- **hypothesis**: `\"ISR β=0.1 seed=44 多 seed 验证：exec-only s44 是 tautological collapse (PR=98%, ISR=0.57 fake)，ISR β=0.1 能否防止 tautological collapse？3-seed mean±std 用于论文 Claim 2。\"`\n\n**Metrics**:\n- `eval_prove_rate`: 0.89\n- `eval_mean_isr`: 0.803\n- `eval_isr_std`: 0.3418\n- `eval_median_isr`: 1\n- `component_count_mean`: 4.33, `component_count_2_ratio`: 0.022\n- `tautological_collapse`: false\n- `isr_0_ratio`: 0.12, `isr_1_ratio`: 0.73\n- `proved_single_premise_ratio`: 1\n- `h7_rate_calibrated`: 0.865\n- `h7_definition`: `\"single_premise AND premise==conclusion (normalized)\"`\n- `hacking_mode`: `\"conclusion_duplication_isr_inflation\"`\n- `conclusion_embedding`: true\n- `component_dist`: {2: 2, 4: 54, 5: 33}\n- By type: false n=25/proved=22/PR=0.88/ISR=0.824; unknown n=41/proved=38/PR=0.927/ISR=0.837; true n=34/proved=29/PR=0.853/ISR=0.747\n\n**Notes** (verbatim): `\"RECLASSIFIED negative (D039): Reviewer 逐样本审查发现 semantic drift hacking — 模型生成极简形式化（单 premise≈conclusion），通过 conclusion sub-component ablation 膨胀 ISR。ISR=0.902 是 conclusion_duplication_isr_inflation artifact，非真正证明质量。65% 样本 ISR=1.0 为 conclusion embedding。此 hacking mode 本身是论文 positive finding（强化 Claim 1 Goodhart 叙事：ISR reward 导致新型 hacking）。原始 eval 指标：PR=0.89, mean_isr=0.803, component_mean=4.33, comp_2_ratio=0.022。exec-only s44 是 tautological collapse (94% 2-comp)，ISR β=0.1 s44 避免了 tautological collapse 但转向了 conclusion duplication hacking。\"`\n\n---\n\n## 4. plan018-additive-random-b01-s42\n\n- **status**: `\"DONE\"`\n- **conclusion**: `\"negative\"`\n- **hypothesis**: `\"β=0.1 random control: r = r_exec·(1+0.1·random[0,1]). 与 plan002-b01 (additive ISR β=0.1, PR=0.81, ISR=0.337) 同 β 对照。如果 ISR β=0.1 >> random β=0.1 → ISR 信号在低剂量下有结构价值; 如果 ISR ≈ random → ISR 信号在低剂量下也仅是 variance regularization。D031 紧急实验。\"`\n- **reward_formula**: `\"r = r_exec * (1 + 0.1 * random[0,1])\"`\n\n**Metrics**:\n- `eval_prove_rate`: 0.79\n- `eval_mean_isr`: 0.1038\n- `eval_isr_std`: 0.1369\n- `eval_median_isr`: 0.0357\n- `eval_proved_only_isr`: 0.1314\n- `eval_n_proved`: 79, `eval_n_problems`: 100\n- `eval_component_count_mean`: 8.46, `eval_component_count_median`: 8\n- `eval_component_count_2_ratio`: 0, `eval_isr_1_ratio`: 0, `eval_isr_0_ratio`: 0.367\n- `tautological_collapse`: false\n- `train_total_steps`: 500, `train_duration_min`: 70.5\n- `train_last100_pr`: 0.805, `train_last100_isr`: 0.1432, `train_loss`: 0.005\n- By type: false PR=0.8/ISR=0.1318; unknown PR=0.7317/ISR=0.0944; true PR=0.8529/ISR=0.0945\n\n**Notes** (verbatim): `\"Random control β=0.1 vs ISR β=0.1 (plan002-b01) 对照。conclusion=negative: random control的ISR远低于ISR-guided。\\n\\n对比 plan002-b01 (ISR β=0.1):\\n- PR: 0.79 vs 0.81 (≈持平, Δ=0.02)\\n- Mean ISR: 0.104 vs 0.337 (ISR 3.2x higher)\\n- Proved-only ISR: 0.131 vs 0.415 (ISR 3.2x higher)\\n- Median ISR: 0.036 vs plan002未记录\\n- Component count: 8.46 vs 5.58 (random组更多冗余)\\n- ISR=0占比(proved): 36.7% (random组大量proof无结构)\\n- Tautological collapse: 无 (component_2_ratio=0)\\n\\n关键发现: PR几乎相同说明β=0.1 random噪声不影响证明能力。但ISR差3.2倍，证明ISR reward提供genuine structural guidance而非仅variance regularization。这强力支持Claim 2: ISR信号在低剂量下有结构价值。\\n\\nEval output: /root/autodl-tmp/outputs/plan018_additive_random_b01_s42/eval_results.json\"`\n\n---\n\n## 5. plan018-additive-random-b01-s44\n\n- **status**: `\"DONE\"`\n- **conclusion**: `\"success\"`\n- **hypothesis**: `\"Random β=0.1 seed=44 控制组：与 plan002-b01-s44 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > random 的结论在 s44 下是否成立。\"`\n- **reward_formula**: `\"r = r_exec * (1 + 0.1 * random[0,1])\"`\n\n**Metrics**:\n- `prove_rate`: 0.89\n- `mean_isr`: 0.0619\n- `isr_std`: 0.1756\n- `median_isr`: 0\n- `proved_only_mean_isr`: 0.0695\n- `n_proved`: 89, `n_problems`: 100\n- `max_isr`: 1, `min_isr`: 0\n- `isr_zero_count`: 72, `isr_one_count`: 2\n- `elapsed_seconds`: 1012.7\n- `eval_method`: `\"eval_sta.py with Prover9Solver, FOL\"`\n- By type: false count=25/proved=21/PR=0.84/ISR=0.0533; unknown count=41/proved=40/PR=0.976/ISR=0.0892; true count=34/proved=28/PR=0.824/ISR=0.0353\n\n**Notes** (verbatim): `\"DONE (success). Random β=0.1 s44 对照分析完成: PR=0.89/ISR=0.062 (clean) vs ISR β=0.1 s44 PR=0.89/ISR=0.803 (H7=86.5% inflated). 同 PR 下 ISR reward 导致 conclusion duplication，random 无此问题。与 s42 结论一致: ISR s42 genuine ISR=0.337 vs Random s42 ISR=0.104 (3.2x)。Random 2/3 seeds done, 等 s43 (plan018-random-b01-s43-r2 QUEUED)。\"`\n\n---\n\n## 6. plan001-exec-only-s42-r2\n\n- **status**: `\"DONE\"`\n- **conclusion**: `\"success\"`\n- **retry_count**: 1\n- **created_at**: `\"2026-05-13T22:40:41.773Z\"`\n- **completed_at**: `\"2026-05-13T23:46:00Z\"`\n- **spec.hypothesis**: `\"500-step exec-only baseline for STA comparison (K=8)\"`\n- **spec.wall_clock_seconds**: 3820, **spec.gpu_hours**: 1.06\n\n**Metrics**:\n- `eval_prove_rate`: 0.93\n- `eval_mean_isr`: 0.1232\n- `eval_isr_std`: 0.1887\n- `eval_proved_only_isr`: 0.1324\n- `eval_median_isr`: 0\n- `eval_n_proved`: 93, `eval_n_problems`: 100\n- `eval_method`: `\"eval_sta.py full STA\"`\n- `eval_data`: `\"proofwriter_fol_100.jsonl\"`\n\n**Notes** (verbatim): `\"Cron 误判 DONE/failed（因 --help|grep 前缀命令的 PID 84896 退出，实际训练子进程 PID 84901 仍在运行）。已手动恢复 RUNNING。严禁在 cuda:0 启动新进程直到 r2 自然完成。⚠️ Reviewer 中期审查标注: 训练日志中 ISR=0.8612 为 binary approximation (_fast_fn)，非真实 ISR。最终可比 ISR 需通过 eval_sta.py (full STA) 重新评估。\"`\n\n**checkpoint_path**: `\"/root/autodl-tmp/outputs/plan001_exec_only_s42/checkpoint-500\"`\n\n---\n\nAll 6 experiments were exact matches. No fuzzy matching was needed. Note the metric field naming is inconsistent across experiments (some use `eval_prove_rate` vs `prove_rate`, `eval_mean_isr` vs `mean_isr`). The `plan002-b01-s43` and `plan002-b01-s44` experiments include hacking-specific fields (`h7_rate_calibrated`, `hacking_mode`, `conclusion_embedding`, `proved_single_premise_ratio`) that are absent from the other entries."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9979442e-2654-4f02-9d1b-360390eb65a2",
+            "isSidechain": true,
+            "agentId": "ab42d9f85c23650de",
+            "requestId": "req_011Cb2hcVZboCaSwPRwrzhGV",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1dae160e-da2b-4df5-b4cb-e61c1d4d5205",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "04321c60-0605-4e09-be37-b73e75f1410c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LFe15CrTM4FNEpWwBbw2yZ",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9235,
+                "cache_read_input_tokens": 17408,
+                "output_tokens": 4019,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 9235
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4019,
+                    "cache_read_input_tokens": 17408,
+                    "cache_creation_input_tokens": 9235,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 9235,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-extract-specific-experiment-data-from-a-large-json-registry-file-the.md"
+}

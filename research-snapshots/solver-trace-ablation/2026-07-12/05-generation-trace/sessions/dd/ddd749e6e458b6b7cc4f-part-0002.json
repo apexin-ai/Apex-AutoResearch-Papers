@@ -1,0 +1,1060 @@
+{
+  "schema_version": "1.0",
+  "session_id": "ddd749e6e458b6b7cc4f",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 163,
+          "timestamp": "2026-05-16T09:26:28.304Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CxZ9WT1CigENpPS9wJQfYC",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/analysis_sweep_exec_only_s45_r2.md",
+                "content": "# Analysis: sweep-exec-only-s45-r2\n\n## Training Summary\n- **Status**: Completed 500/500 steps, EXIT_CODE=0\n- **Model**: Qwen3-4B, seed=45, execution-only reward\n- **Data**: data/train_500_seed42.jsonl (500 examples)\n- **Runtime**: 3282s (~54.7 min), 2 epochs\n\n### Training Metrics (Final)\n| Metric | Value |\n|--------|-------|\n| prove_rate | 0.74025 |\n| mean_isr | 0.3596 |\n| train_loss | 0.0273 |\n| parse_rate | 1.0 |\n| entropy (final) | 0.045 |\n\n### Training Trajectory\n- Steps 1–19: cold start, reward=0\n- Step 20: first successful proving\n- Steps ~100+: prove_rate climbing to 0.5–0.75\n- Steps 400+: consistently 0.75–1.0\n\n## Eval Results (proofwriter_fol_100.jsonl)\n| Metric | Value |\n|--------|-------|\n| prove_rate | 99/100 (0.99) |\n| mean_isr | 0.5012 ± 0.2055 |\n| median_isr | 0.5000 |\n| proved_only_isr | 0.5062 |\n\n### By Answer Type\n| Type | n | Proved | Prove Rate | Mean ISR |\n|------|---|--------|------------|----------|\n| false | 25 | 25 | 1.00 | 0.590 |\n| unknown | 41 | 41 | 1.00 | 0.476 |\n| true | 34 | 33 | 0.971 | 0.467 |\n\n## Hacking Taxonomy (classify_h7.py)\n| Category | Count | Rate |\n|----------|-------|------|\n| H7a (text-match tautology) | 93 | 93.9% |\n| H7b (obfuscated tautology) | 0 | 0.0% |\n| H7 total | 93 | 93.9% |\n| H1 (conclusion embedding) | 5 | 5.1% |\n| H8 (conjunction collapse) | 1 | 1.0% |\n| **Genuine** | **1** | **1.0%** |\n| Content-independent | 47 | 47.5% |\n| Single premise | 92 | 92.9% |\n\n## Cross-Seed Comparison (Exec-Only)\n| Seed | Steps | Prove% | H7% | H1% | H8% | Genuine% |\n|------|-------|--------|-----|-----|-----|----------|\n| s42 (plan001-r2) | 500 | 93 | 0 | 87.1 | 6.5 | 7.5 |\n| s43 (plan001-1000-r2) | 1000 | 90 | 100 | 0 | 0 | 0 |\n| s44 (plan001-1000-r2) | 1000 | 100 | 0 | 85 | 15 | 0 |\n| **s45 (this)** | **500** | **99** | **93.9** | **5.1** | **1.0** | **1.0** |\n\n## Analysis\n- **Tautological collapse**: 93.9% H7a — model generates single-premise P→P proofs. This is the dominant exec-only failure mode.\n- **ISR=0.5 artifact**: With 2-component proofs (1 premise + conclusion), ISR=0.5 is structural, not indicative of reasoning.\n- **s45 pattern**: H7-dominant like s43@1000, different from s42@500 (H1-dominant) and s44@1000 (H1-dominant). Seed-dependent hacking mechanism but universally near-zero genuine reasoning.\n- **Genuine=1.0%**: Only 1/99 proved samples shows genuine reasoning.\n\n## Conclusion: **success**\nTraining completed normally. Results consistent with exec-only reward hacking across all seeds. Suitable for 5-seed sweep.\n\n## Paths\n- Checkpoint: `/root/autodl-tmp/outputs/sweep_exec_only_s45`\n- Log: `~/runs/solver-trace-ablation/sweep-exec-only-s45-r2.log`\n- Eval: `/root/autodl-tmp/outputs/sweep_exec_only_s45/eval_sta_results.json`\n- Taxonomy: `/root/autodl-tmp/outputs/sweep_exec_only_s45/classify_h7_results.json`\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "90f32f63-8af2-45d7-aa4d-620dc9022bc7",
+            "isSidechain": false,
+            "requestId": "req_011Cb61S3rrPWDxHDBiGdkNy",
+            "type": "assistant",
+            "uuid": "506befd9-a76b-4ccd-96e7-b10328c25498",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "3b99ff8f-767e-4845-ac73-a062f3e796af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M7X7rq3aHZNd5GxE2sWSsU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2107,
+                "cache_read_input_tokens": 91802,
+                "output_tokens": 1464,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2107,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1464,
+                    "cache_read_input_tokens": 91802,
+                    "cache_creation_input_tokens": 2107,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2107
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-16T09:26:28.334Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CxZ9WT1CigENpPS9wJQfYC",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/analysis_sweep_exec_only_s45_r2.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "506befd9-a76b-4ccd-96e7-b10328c25498",
+            "isSidechain": false,
+            "promptId": "2eb0e2dc-2844-4d85-8c21-bc0f74f2317d",
+            "type": "user",
+            "uuid": "241b0e8b-2520-45fa-a87f-226a6a0fd40a",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/analysis_sweep_exec_only_s45_r2.md",
+              "content": "# Analysis: sweep-exec-only-s45-r2\n\n## Training Summary\n- **Status**: Completed 500/500 steps, EXIT_CODE=0\n- **Model**: Qwen3-4B, seed=45, execution-only reward\n- **Data**: data/train_500_seed42.jsonl (500 examples)\n- **Runtime**: 3282s (~54.7 min), 2 epochs\n\n### Training Metrics (Final)\n| Metric | Value |\n|--------|-------|\n| prove_rate | 0.74025 |\n| mean_isr | 0.3596 |\n| train_loss | 0.0273 |\n| parse_rate | 1.0 |\n| entropy (final) | 0.045 |\n\n### Training Trajectory\n- Steps 1–19: cold start, reward=0\n- Step 20: first successful proving\n- Steps ~100+: prove_rate climbing to 0.5–0.75\n- Steps 400+: consistently 0.75–1.0\n\n## Eval Results (proofwriter_fol_100.jsonl)\n| Metric | Value |\n|--------|-------|\n| prove_rate | 99/100 (0.99) |\n| mean_isr | 0.5012 ± 0.2055 |\n| median_isr | 0.5000 |\n| proved_only_isr | 0.5062 |\n\n### By Answer Type\n| Type | n | Proved | Prove Rate | Mean ISR |\n|------|---|--------|------------|----------|\n| false | 25 | 25 | 1.00 | 0.590 |\n| unknown | 41 | 41 | 1.00 | 0.476 |\n| true | 34 | 33 | 0.971 | 0.467 |\n\n## Hacking Taxonomy (classify_h7.py)\n| Category | Count | Rate |\n|----------|-------|------|\n| H7a (text-match tautology) | 93 | 93.9% |\n| H7b (obfuscated tautology) | 0 | 0.0% |\n| H7 total | 93 | 93.9% |\n| H1 (conclusion embedding) | 5 | 5.1% |\n| H8 (conjunction collapse) | 1 | 1.0% |\n| **Genuine** | **1** | **1.0%** |\n| Content-independent | 47 | 47.5% |\n| Single premise | 92 | 92.9% |\n\n## Cross-Seed Comparison (Exec-Only)\n| Seed | Steps | Prove% | H7% | H1% | H8% | Genuine% |\n|------|-------|--------|-----|-----|-----|----------|\n| s42 (plan001-r2) | 500 | 93 | 0 | 87.1 | 6.5 | 7.5 |\n| s43 (plan001-1000-r2) | 1000 | 90 | 100 | 0 | 0 | 0 |\n| s44 (plan001-1000-r2) | 1000 | 100 | 0 | 85 | 15 | 0 |\n| **s45 (this)** | **500** | **99** | **93.9** | **5.1** | **1.0** | **1.0** |\n\n## Analysis\n- **Tautological collapse**: 93.9% H7a — model generates single-premise P→P proofs. This is the dominant exec-only failure mode.\n- **ISR=0.5 artifact**: With 2-component proofs (1 premise + conclusion), ISR=0.5 is structural, not indicative of reasoning.\n- **s45 pattern**: H7-dominant like s43@1000, different from s42@500 (H1-dominant) and s44@1000 (H1-dominant). Seed-dependent hacking mechanism but universally near-zero genuine reasoning.\n- **Genuine=1.0%**: Only 1/99 proved samples shows genuine reasoning.\n\n## Conclusion: **success**\nTraining completed normally. Results consistent with exec-only reward hacking across all seeds. Suitable for 5-seed sweep.\n\n## Paths\n- Checkpoint: `/root/autodl-tmp/outputs/sweep_exec_only_s45`\n- Log: `~/runs/solver-trace-ablation/sweep-exec-only-s45-r2.log`\n- Eval: `/root/autodl-tmp/outputs/sweep_exec_only_s45/eval_sta_results.json`\n- Taxonomy: `/root/autodl-tmp/outputs/sweep_exec_only_s45/classify_h7_results.json`\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "506befd9-a76b-4ccd-96e7-b10328c25498",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "3b99ff8f-767e-4845-ac73-a062f3e796af",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-16T09:26:28.340Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "241b0e8b-2520-45fa-a87f-226a6a0fd40a",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "9ca6c30b-ef05-415a-abda-3c6dcb331ab6",
+                "timestamp": "2026-05-16T09:26:28.340Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+                "sessionId": "3b99ff8f-767e-4845-ac73-a062f3e796af",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-16T09:26:30.980Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now register the artifact and update the registry."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9ca6c30b-ef05-415a-abda-3c6dcb331ab6",
+            "isSidechain": false,
+            "requestId": "req_011Cb61TCRKp4rLmN2jo6CRW",
+            "type": "assistant",
+            "uuid": "02b9b502-8d35-42d0-80a8-d0ff0462dc1a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "3b99ff8f-767e-4845-ac73-a062f3e796af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016KapGbNESGsjLt4VtyUMHz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1630,
+                "cache_read_input_tokens": 93909,
+                "output_tokens": 95,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1630,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 95,
+                    "cache_read_input_tokens": 93909,
+                    "cache_creation_input_tokens": 1630,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1630
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-16T09:26:31.360Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018LfQhWwUpjeaqxNxtqziox",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "02b9b502-8d35-42d0-80a8-d0ff0462dc1a",
+            "isSidechain": false,
+            "requestId": "req_011Cb61TCRKp4rLmN2jo6CRW",
+            "type": "assistant",
+            "uuid": "7aace92b-97da-4c1f-91a3-3abcccdfc948",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "3b99ff8f-767e-4845-ac73-a062f3e796af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016KapGbNESGsjLt4VtyUMHz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1630,
+                "cache_read_input_tokens": 93909,
+                "output_tokens": 95,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1630,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 95,
+                    "cache_read_input_tokens": 93909,
+                    "cache_creation_input_tokens": 1630,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1630
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": "2026-05-16T09:26:31.366Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_018LfQhWwUpjeaqxNxtqziox",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7aace92b-97da-4c1f-91a3-3abcccdfc948",
+            "isSidechain": false,
+            "promptId": "2eb0e2dc-2844-4d85-8c21-bc0f74f2317d",
+            "type": "user",
+            "uuid": "3f2e55b3-754d-49fa-acad-edc87b04edc4",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 29
+            },
+            "sourceToolAssistantUUID": "7aace92b-97da-4c1f-91a3-3abcccdfc948",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "3b99ff8f-767e-4845-ac73-a062f3e796af",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-16T09:26:37.433Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0117LMiymHxFEXuE1hqjJuvc",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "analysis_sweep_exec_only_s45_r2",
+                "type": "report",
+                "description": "Training + eval + hacking taxonomy analysis for sweep-exec-only-s45-r2. 500-step exec-only GRPO, seed=45. Result: 99% prove rate, 93.9% H7a tautological collapse, 1.0% genuine.",
+                "project": "solver-trace-ablation",
+                "exp_id": "sweep-exec-only-s45-r2",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/analysis_sweep_exec_only_s45_r2.md",
+                "tags": [
+                  "exec-only",
+                  "sweep",
+                  "s45",
+                  "hacking-taxonomy"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3f2e55b3-754d-49fa-acad-edc87b04edc4",
+            "isSidechain": false,
+            "requestId": "req_011Cb61TSRCEfnd7dryZTmdm",
+            "type": "assistant",
+            "uuid": "deb71883-6911-438c-a951-381eaa259c60",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "3b99ff8f-767e-4845-ac73-a062f3e796af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WM6Z2hRz4qckbieNQJSjGS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 722,
+                "cache_read_input_tokens": 95539,
+                "output_tokens": 433,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 722,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 433,
+                    "cache_read_input_tokens": 95539,
+                    "cache_creation_input_tokens": 722,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 722
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": "2026-05-16T09:26:37.661Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0117LMiymHxFEXuE1hqjJuvc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_f2a7e1\\\", \\\"name\\\": \\\"analysis_sweep_exec_only_s45_r2\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Training + eval + hacking taxonomy analysis for sweep-exec-only-s45-r2. 500-step exec-only GRPO, seed=45. Result: 99% prove rate, 93.9% H7a tautological collapse, 1.0% genuine.\\\", \\\"path\\\": \\\"projects/solver-trace-ablation/artifacts/sweep-exec-only-s45-r2/report/analysis_sweep_exec_only_s45_r2.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"exp_id\\\": \\\"sweep-exec-only-s45-r2\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T09:26:37.439680+00:00\\\", \\\"tags\\\": [\\\"exec-only\\\", \\\"sweep\\\", \\\"s45\\\", \\\"hacking-taxonomy\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "deb71883-6911-438c-a951-381eaa259c60",
+            "isSidechain": false,
+            "promptId": "2eb0e2dc-2844-4d85-8c21-bc0f74f2317d",
+            "type": "user",
+            "uuid": "31fd53ff-5522-423a-8b77-02b65c6fd4cf",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_f2a7e1\\\", \\\"name\\\": \\\"analysis_sweep_exec_only_s45_r2\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Training + eval + hacking taxonomy analysis for sweep-exec-only-s45-r2. 500-step exec-only GRPO, seed=45. Result: 99% prove rate, 93.9% H7a tautological collapse, 1.0% genuine.\\\", \\\"path\\\": \\\"projects/solver-trace-ablation/artifacts/sweep-exec-only-s45-r2/report/analysis_sweep_exec_only_s45_r2.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"exp_id\\\": \\\"sweep-exec-only-s45-r2\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T09:26:37.439680+00:00\\\", \\\"tags\\\": [\\\"exec-only\\\", \\\"sweep\\\", \\\"s45\\\", \\\"hacking-taxonomy\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_f2a7e1\", \"name\": \"analysis_sweep_exec_only_s45_r2\", \"type\": \"report\", \"description\": \"Training + eval + hacking taxonomy analysis for sweep-exec-only-s45-r2. 500-step exec-only GRPO, seed=45. Result: 99% prove rate, 93.9% H7a tautological collapse, 1.0% genuine.\", \"path\": \"projects/solver-trace-ablation/artifacts/sweep-exec-only-s45-r2/report/analysis_sweep_exec_only_s45_r2.md\", \"url\": null, \"project\": \"solver-trace-ablation\", \"exp_id\": \"sweep-exec-only-s45-r2\", \"skill\": \"\", \"created_at\": \"2026-05-16T09:26:37.439680+00:00\", \"tags\": [\"exec-only\", \"sweep\", \"s45\", \"hacking-taxonomy\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "deb71883-6911-438c-a951-381eaa259c60",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "3b99ff8f-767e-4845-ac73-a062f3e796af",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-16T09:26:38.127Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LP7K19A3KsWV3WvkHyYpsN",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "sweep-exec-only-s45-r2",
+                "field": "conclusion",
+                "value": "success",
+                "project": "solver-trace-ablation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "31fd53ff-5522-423a-8b77-02b65c6fd4cf",
+            "isSidechain": false,
+            "requestId": "req_011Cb61TSRCEfnd7dryZTmdm",
+            "type": "assistant",
+            "uuid": "ab649a97-d14a-4a52-bbf1-12ab853e81c9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "3b99ff8f-767e-4845-ac73-a062f3e796af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WM6Z2hRz4qckbieNQJSjGS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 722,
+                "cache_read_input_tokens": 95539,
+                "output_tokens": 433,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 722,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 433,
+                    "cache_read_input_tokens": 95539,
+                    "cache_creation_input_tokens": 722,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 722
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-16T09:26:38.892Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LP7K19A3KsWV3WvkHyYpsN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sweep-exec-only-s45-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:22:36.240Z\\\", \\\"updated_at\\\": \\\"2026-05-16T09:26:38.568Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --seed 45 --num_steps 500 --num_generations 4 --output_dir /root/autodl-tmp/outputs/sweep_exec_only_s45 --no_wandb\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"768865\\\", \\\"data_path\\\": \\\"data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 45, \\\"reward_mode\\\": \\\"execution_only\\\", \\\"num_steps\\\": 500, \\\"num_generations\\\": 4, \\\"account\\\": \\\"root\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/sweep-exec-only-s45-r2.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T09:19:04.304Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T09:19:08.026390+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7524}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ab649a97-d14a-4a52-bbf1-12ab853e81c9",
+            "isSidechain": false,
+            "promptId": "2eb0e2dc-2844-4d85-8c21-bc0f74f2317d",
+            "type": "user",
+            "uuid": "fe1d7686-13d8-4f6b-b28b-53124c1c2583",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sweep-exec-only-s45-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:22:36.240Z\\\", \\\"updated_at\\\": \\\"2026-05-16T09:26:38.568Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --seed 45 --num_steps 500 --num_generations 4 --output_dir /root/autodl-tmp/outputs/sweep_exec_only_s45 --no_wandb\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"768865\\\", \\\"data_path\\\": \\\"data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 45, \\\"reward_mode\\\": \\\"execution_only\\\", \\\"num_steps\\\": 500, \\\"num_generations\\\": 4, \\\"account\\\": \\\"root\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/sweep-exec-only-s45-r2.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T09:19:04.304Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T09:19:08.026390+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7524}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"sweep-exec-only-s45-r2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T08:22:36.240Z\", \"updated_at\": \"2026-05-16T09:26:38.568Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --seed 45 --num_steps 500 --num_generations 4 --output_dir /root/autodl-tmp/outputs/sweep_exec_only_s45 --no_wandb\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"768865\", \"data_path\": \"data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 45, \"reward_mode\": \"execution_only\", \"num_steps\": 500, \"num_generations\": 4, \"account\": \"root\", \"log_path\": \"~/runs/solver-trace-ablation/sweep-exec-only-s45-r2.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-16T09:19:04.304Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T09:19:08.026390+00:00\"}]}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7524}}"
+              }
+            },
+            "sourceToolAssistantUUID": "ab649a97-d14a-4a52-bbf1-12ab853e81c9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "3b99ff8f-767e-4845-ac73-a062f3e796af",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": "2026-05-16T09:26:47.929Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CC1x7bmTZ4JomRR3WRWsv2",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "sweep-exec-only-s45-r2",
+                "field": "metrics",
+                "value": {
+                  "prove_rate": 0.74025,
+                  "mean_isr": 0.3596,
+                  "train_loss": 0.0273,
+                  "parse_rate": 1,
+                  "steps_completed": 500,
+                  "steps_total": 500,
+                  "train_runtime_sec": 3282,
+                  "entropy_final": 0.045,
+                  "eval_prove_rate": 0.99,
+                  "eval_n_proved": 99,
+                  "eval_n_problems": 100,
+                  "eval_mean_isr": 0.5012,
+                  "eval_isr_std": 0.2055,
+                  "eval_median_isr": 0.5,
+                  "eval_proved_only_isr": 0.5062,
+                  "eval_data": "proofwriter_fol_100.jsonl",
+                  "eval_by_answer_type": {
+                    "false": {
+                      "count": 25,
+                      "proved": 25,
+                      "prove_rate": 1,
+                      "mean_isr": 0.59
+                    },
+                    "unknown": {
+                      "count": 41,
+                      "proved": 41,
+                      "prove_rate": 1,
+                      "mean_isr": 0.476
+                    },
+                    "true": {
+                      "count": 34,
+                      "proved": 33,
+                      "prove_rate": 0.971,
+                      "mean_isr": 0.467
+                    }
+                  },
+                  "h7a_count": 93,
+                  "h7a_rate": 0.939,
+                  "h7b_count": 0,
+                  "h7_count": 93,
+                  "h7_rate": 0.939,
+                  "h1_count": 5,
+                  "h1_rate": 0.051,
+                  "h8_count": 1,
+                  "h8_rate": 0.01,
+                  "genuine_count": 1,
+                  "genuine_rate": 0.01,
+                  "content_independent_count": 47,
+                  "single_premise_count": 92,
+                  "taxonomy_tool": "classify_h7.py standard (2026-05-16)"
+                },
+                "project": "solver-trace-ablation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fe1d7686-13d8-4f6b-b28b-53124c1c2583",
+            "isSidechain": false,
+            "requestId": "req_011Cb61TyXxP5zqLNRcV3KLd",
+            "type": "assistant",
+            "uuid": "db4a0fc7-d4bf-4da3-8d15-0d45ad553818",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "3b99ff8f-767e-4845-ac73-a062f3e796af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y28Jz3r1ZgZ19aExSyQwtU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1359,
+                "cache_read_input_tokens": 96261,
+                "output_tokens": 928,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1359,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 928,
+                    "cache_read_input_tokens": 96261,
+                    "cache_creation_input_tokens": 1359,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1359
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": "2026-05-16T09:26:48.850Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014tY8S6DEc3yy3ntL6TLKxP",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "sweep-exec-only-s45-r2",
+                "field": "checkpoint_path",
+                "value": "/root/autodl-tmp/outputs/sweep_exec_only_s45",
+                "project": "solver-trace-ablation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "db4a0fc7-d4bf-4da3-8d15-0d45ad553818",
+            "isSidechain": false,
+            "requestId": "req_011Cb61TyXxP5zqLNRcV3KLd",
+            "type": "assistant",
+            "uuid": "1b51b4f0-d0c4-48ec-9014-e25c4dece83b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "3b99ff8f-767e-4845-ac73-a062f3e796af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y28Jz3r1ZgZ19aExSyQwtU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1359,
+                "cache_read_input_tokens": 96261,
+                "output_tokens": 928,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1359,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 928,
+                    "cache_read_input_tokens": 96261,
+                    "cache_creation_input_tokens": 1359,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1359
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-16T09:26:48.911Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CC1x7bmTZ4JomRR3WRWsv2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sweep-exec-only-s45-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:22:36.240Z\\\", \\\"updated_at\\\": \\\"2026-05-16T09:26:48.629Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --seed 45 --num_steps 500 --num_generations 4 --output_dir /root/autodl-tmp/outputs/sweep_exec_only_s45 --no_wandb\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"768865\\\", \\\"data_path\\\": \\\"data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 45, \\\"reward_mode\\\": \\\"execution_only\\\", \\\"num_steps\\\": 500, \\\"num_generations\\\": 4, \\\"account\\\": \\\"root\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/sweep-exec-only-s45-r2.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T09:19:04.304Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T09:19:08.026390+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"prove_rate\\\": 0.74025, \\\"mean_isr\\\": 0.3596, \\\"train_loss\\\": 0.0273, \\\"parse_rate\\\": 1, \\\"steps_completed\\\": 500, \\\"steps_total\\\": 500, \\\"train_runtime_sec\\\": 3282, \\\"entropy_final\\\": 0.045, \\\"eval_prove_rate\\\": 0.99, \\\"eval_n_proved\\\": 99, \\\"eval_n_problems\\\": 100, \\\"eval_mean_isr\\\": 0.5012, \\\"eval_isr_std\\\": 0.2055, \\\"eval_median_isr\\\": 0.5, \\\"eval_proved_only_isr\\\": 0.5062, \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_by_answer_type\\\": {\\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 25, \\\"prove_rate\\\": 1, \\\"mean_isr\\\": 0.59}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 41, \\\"prove_rate\\\": 1, \\\"mean_isr\\\": 0.476}, \\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 33, \\\"prove_rate\\\": 0.971, \\\"mean_isr\\\": 0.467}}, \\\"h7a_count\\\": 93, \\\"h7a_rate\\\": 0.939, \\\"h7b_count\\\": 0, \\\"h7_count\\\": 93, \\\"h7_rate\\\": 0.939, \\\"h1_count\\\": 5, \\\"h1_rate\\\": 0.051, \\\"h8_count\\\": 1, \\\"h8_rate\\\": 0.01, \\\"genuine_count\\\": 1, \\\"genuine_rate\\\": 0.01, \\\"content_independent_count\\\": 47, \\\"single_premise_count\\\": 92, \\\"taxonomy_tool\\\": \\\"classify_h7.py standard (2026-05-16)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9684}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "db4a0fc7-d4bf-4da3-8d15-0d45ad553818",
+            "isSidechain": false,
+            "promptId": "2eb0e2dc-2844-4d85-8c21-bc0f74f2317d",
+            "type": "user",
+            "uuid": "e120ea71-80d6-406e-90f4-c083f802ef48",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sweep-exec-only-s45-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:22:36.240Z\\\", \\\"updated_at\\\": \\\"2026-05-16T09:26:48.629Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --seed 45 --num_steps 500 --num_generations 4 --output_dir /root/autodl-tmp/outputs/sweep_exec_only_s45 --no_wandb\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"768865\\\", \\\"data_path\\\": \\\"data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 45, \\\"reward_mode\\\": \\\"execution_only\\\", \\\"num_steps\\\": 500, \\\"num_generations\\\": 4, \\\"account\\\": \\\"root\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/sweep-exec-only-s45-r2.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T09:19:04.304Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T09:19:08.026390+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"prove_rate\\\": 0.74025, \\\"mean_isr\\\": 0.3596, \\\"train_loss\\\": 0.0273, \\\"parse_rate\\\": 1, \\\"steps_completed\\\": 500, \\\"steps_total\\\": 500, \\\"train_runtime_sec\\\": 3282, \\\"entropy_final\\\": 0.045, \\\"eval_prove_rate\\\": 0.99, \\\"eval_n_proved\\\": 99, \\\"eval_n_problems\\\": 100, \\\"eval_mean_isr\\\": 0.5012, \\\"eval_isr_std\\\": 0.2055, \\\"eval_median_isr\\\": 0.5, \\\"eval_proved_only_isr\\\": 0.5062, \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_by_answer_type\\\": {\\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 25, \\\"prove_rate\\\": 1, \\\"mean_isr\\\": 0.59}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 41, \\\"prove_rate\\\": 1, \\\"mean_isr\\\": 0.476}, \\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 33, \\\"prove_rate\\\": 0.971, \\\"mean_isr\\\": 0.467}}, \\\"h7a_count\\\": 93, \\\"h7a_rate\\\": 0.939, \\\"h7b_count\\\": 0, \\\"h7_count\\\": 93, \\\"h7_rate\\\": 0.939, \\\"h1_count\\\": 5, \\\"h1_rate\\\": 0.051, \\\"h8_count\\\": 1, \\\"h8_rate\\\": 0.01, \\\"genuine_count\\\": 1, \\\"genuine_rate\\\": 0.01, \\\"content_independent_count\\\": 47, \\\"single_premise_count\\\": 92, \\\"taxonomy_tool\\\": \\\"classify_h7.py standard (2026-05-16)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9684}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"sweep-exec-only-s45-r2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T08:22:36.240Z\", \"updated_at\": \"2026-05-16T09:26:48.629Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --seed 45 --num_steps 500 --num_generations 4 --output_dir /root/autodl-tmp/outputs/sweep_exec_only_s45 --no_wandb\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"768865\", \"data_path\": \"data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 45, \"reward_mode\": \"execution_only\", \"num_steps\": 500, \"num_generations\": 4, \"account\": \"root\", \"log_path\": \"~/runs/solver-trace-ablation/sweep-exec-only-s45-r2.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-16T09:19:04.304Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T09:19:08.026390+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"prove_rate\": 0.74025, \"mean_isr\": 0.3596, \"train_loss\": 0.0273, \"parse_rate\": 1, \"steps_completed\": 500, \"steps_total\": 500, \"train_runtime_sec\": 3282, \"entropy_final\": 0.045, \"eval_prove_rate\": 0.99, \"eval_n_proved\": 99, \"eval_n_problems\": 100, \"eval_mean_isr\": 0.5012, \"eval_isr_std\": 0.2055, \"eval_median_isr\": 0.5, \"eval_proved_only_isr\": 0.5062, \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_by_answer_type\": {\"false\": {\"count\": 25, \"proved\": 25, \"prove_rate\": 1, \"mean_isr\": 0.59}, \"unknown\": {\"count\": 41, \"proved\": 41, \"prove_rate\": 1, \"mean_isr\": 0.476}, \"true\": {\"count\": 34, \"proved\": 33, \"prove_rate\": 0.971, \"mean_isr\": 0.467}}, \"h7a_count\": 93, \"h7a_rate\": 0.939, \"h7b_count\": 0, \"h7_count\": 93, \"h7_rate\": 0.939, \"h1_count\": 5, \"h1_rate\": 0.051, \"h8_count\": 1, \"h8_rate\": 0.01, \"genuine_count\": 1, \"genuine_rate\": 0.01, \"content_independent_count\": 47, \"single_premise_count\": 92, \"taxonomy_tool\": \"classify_h7.py standard (2026-05-16)\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9684}}"
+              }
+            },
+            "sourceToolAssistantUUID": "db4a0fc7-d4bf-4da3-8d15-0d45ad553818",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "3b99ff8f-767e-4845-ac73-a062f3e796af",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": "2026-05-16T09:26:49.481Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MxeqfiHQDYgLGW93e3Nhmt",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "sweep-exec-only-s45-r2",
+                "field": "log_path",
+                "value": "~/runs/solver-trace-ablation/sweep-exec-only-s45-r2.log",
+                "project": "solver-trace-ablation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e120ea71-80d6-406e-90f4-c083f802ef48",
+            "isSidechain": false,
+            "requestId": "req_011Cb61TyXxP5zqLNRcV3KLd",
+            "type": "assistant",
+            "uuid": "01b89ffa-a0e4-44eb-80f2-4bfb8dd96021",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "3b99ff8f-767e-4845-ac73-a062f3e796af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y28Jz3r1ZgZ19aExSyQwtU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1359,
+                "cache_read_input_tokens": 96261,
+                "output_tokens": 928,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1359,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 928,
+                    "cache_read_input_tokens": 96261,
+                    "cache_creation_input_tokens": 1359,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1359
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-16T09:26:49.626Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014tY8S6DEc3yy3ntL6TLKxP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sweep-exec-only-s45-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:22:36.240Z\\\", \\\"updated_at\\\": \\\"2026-05-16T09:26:49.345Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --seed 45 --num_steps 500 --num_generations 4 --output_dir /root/autodl-tmp/outputs/sweep_exec_only_s45 --no_wandb\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"768865\\\", \\\"data_path\\\": \\\"data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 45, \\\"reward_mode\\\": \\\"execution_only\\\", \\\"num_steps\\\": 500, \\\"num_generations\\\": 4, \\\"account\\\": \\\"root\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/sweep-exec-only-s45-r2.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T09:19:04.304Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T09:19:08.026390+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"prove_rate\\\": 0.74025, \\\"mean_isr\\\": 0.3596, \\\"train_loss\\\": 0.0273, \\\"parse_rate\\\": 1, \\\"steps_completed\\\": 500, \\\"steps_total\\\": 500, \\\"train_runtime_sec\\\": 3282, \\\"entropy_final\\\": 0.045, \\\"eval_prove_rate\\\": 0.99, \\\"eval_n_proved\\\": 99, \\\"eval_n_problems\\\": 100, \\\"eval_mean_isr\\\": 0.5012, \\\"eval_isr_std\\\": 0.2055, \\\"eval_median_isr\\\": 0.5, \\\"eval_proved_only_isr\\\": 0.5062, \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_by_answer_type\\\": {\\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 25, \\\"prove_rate\\\": 1, \\\"mean_isr\\\": 0.59}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 41, \\\"prove_rate\\\": 1, \\\"mean_isr\\\": 0.476}, \\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 33, \\\"prove_rate\\\": 0.971, \\\"mean_isr\\\": 0.467}}, \\\"h7a_count\\\": 93, \\\"h7a_rate\\\": 0.939, \\\"h7b_count\\\": 0, \\\"h7_count\\\": 93, \\\"h7_rate\\\": 0.939, \\\"h1_count\\\": 5, \\\"h1_rate\\\": 0.051, \\\"h8_count\\\": 1, \\\"h8_rate\\\": 0.01, \\\"genuine_count\\\": 1, \\\"genuine_rate\\\": 0.01, \\\"content_independent_count\\\": 47, \\\"single_premise_count\\\": 92, \\\"taxonomy_tool\\\": \\\"classify_h7.py standard (2026-05-16)\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/sweep_exec_only_s45\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7059}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1b51b4f0-d0c4-48ec-9014-e25c4dece83b",
+            "isSidechain": false,
+            "promptId": "2eb0e2dc-2844-4d85-8c21-bc0f74f2317d",
+            "type": "user",
+            "uuid": "e62fc503-8cdc-4fd5-9283-61b4906271dd",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sweep-exec-only-s45-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:22:36.240Z\\\", \\\"updated_at\\\": \\\"2026-05-16T09:26:49.345Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --seed 45 --num_steps 500 --num_generations 4 --output_dir /root/autodl-tmp/outputs/sweep_exec_only_s45 --no_wandb\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"768865\\\", \\\"data_path\\\": \\\"data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 45, \\\"reward_mode\\\": \\\"execution_only\\\", \\\"num_steps\\\": 500, \\\"num_generations\\\": 4, \\\"account\\\": \\\"root\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/sweep-exec-only-s45-r2.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T09:19:04.304Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T09:19:08.026390+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"prove_rate\\\": 0.74025, \\\"mean_isr\\\": 0.3596, \\\"train_loss\\\": 0.0273, \\\"parse_rate\\\": 1, \\\"steps_completed\\\": 500, \\\"steps_total\\\": 500, \\\"train_runtime_sec\\\": 3282, \\\"entropy_final\\\": 0.045, \\\"eval_prove_rate\\\": 0.99, \\\"eval_n_proved\\\": 99, \\\"eval_n_problems\\\": 100, \\\"eval_mean_isr\\\": 0.5012, \\\"eval_isr_std\\\": 0.2055, \\\"eval_median_isr\\\": 0.5, \\\"eval_proved_only_isr\\\": 0.5062, \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_by_answer_type\\\": {\\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 25, \\\"prove_rate\\\": 1, \\\"mean_isr\\\": 0.59}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 41, \\\"prove_rate\\\": 1, \\\"mean_isr\\\": 0.476}, \\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 33, \\\"prove_rate\\\": 0.971, \\\"mean_isr\\\": 0.467}}, \\\"h7a_count\\\": 93, \\\"h7a_rate\\\": 0.939, \\\"h7b_count\\\": 0, \\\"h7_count\\\": 93, \\\"h7_rate\\\": 0.939, \\\"h1_count\\\": 5, \\\"h1_rate\\\": 0.051, \\\"h8_count\\\": 1, \\\"h8_rate\\\": 0.01, \\\"genuine_count\\\": 1, \\\"genuine_rate\\\": 0.01, \\\"content_independent_count\\\": 47, \\\"single_premise_count\\\": 92, \\\"taxonomy_tool\\\": \\\"classify_h7.py standard (2026-05-16)\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/sweep_exec_only_s45\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7059}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"sweep-exec-only-s45-r2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T08:22:36.240Z\", \"updated_at\": \"2026-05-16T09:26:49.345Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --seed 45 --num_steps 500 --num_generations 4 --output_dir /root/autodl-tmp/outputs/sweep_exec_only_s45 --no_wandb\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"768865\", \"data_path\": \"data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 45, \"reward_mode\": \"execution_only\", \"num_steps\": 500, \"num_generations\": 4, \"account\": \"root\", \"log_path\": \"~/runs/solver-trace-ablation/sweep-exec-only-s45-r2.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-16T09:19:04.304Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T09:19:08.026390+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"prove_rate\": 0.74025, \"mean_isr\": 0.3596, \"train_loss\": 0.0273, \"parse_rate\": 1, \"steps_completed\": 500, \"steps_total\": 500, \"train_runtime_sec\": 3282, \"entropy_final\": 0.045, \"eval_prove_rate\": 0.99, \"eval_n_proved\": 99, \"eval_n_problems\": 100, \"eval_mean_isr\": 0.5012, \"eval_isr_std\": 0.2055, \"eval_median_isr\": 0.5, \"eval_proved_only_isr\": 0.5062, \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_by_answer_type\": {\"false\": {\"count\": 25, \"proved\": 25, \"prove_rate\": 1, \"mean_isr\": 0.59}, \"unknown\": {\"count\": 41, \"proved\": 41, \"prove_rate\": 1, \"mean_isr\": 0.476}, \"true\": {\"count\": 34, \"proved\": 33, \"prove_rate\": 0.971, \"mean_isr\": 0.467}}, \"h7a_count\": 93, \"h7a_rate\": 0.939, \"h7b_count\": 0, \"h7_count\": 93, \"h7_rate\": 0.939, \"h1_count\": 5, \"h1_rate\": 0.051, \"h8_count\": 1, \"h8_rate\": 0.01, \"genuine_count\": 1, \"genuine_rate\": 0.01, \"content_independent_count\": 47, \"single_premise_count\": 92, \"taxonomy_tool\": \"classify_h7.py standard (2026-05-16)\"}, \"checkpoint_path\": \"/root/autodl-tmp/outputs/sweep_exec_only_s45\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7059}}"
+              }
+            },
+            "sourceToolAssistantUUID": "1b51b4f0-d0c4-48ec-9014-e25c4dece83b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "3b99ff8f-767e-4845-ac73-a062f3e796af",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "e62fc503-8cdc-4fd5-9283-61b4906271dd",
+                "sessionId": "3b99ff8f-767e-4845-ac73-a062f3e796af"
+              }
+            }
+          ],
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Analyze sweep-exec-only-s45-r2 training results",
+                "sessionId": "3b99ff8f-767e-4845-ac73-a062f3e796af"
+              }
+            }
+          ],
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-16T09:26:50.888Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MxeqfiHQDYgLGW93e3Nhmt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sweep-exec-only-s45-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:22:36.240Z\\\", \\\"updated_at\\\": \\\"2026-05-16T09:26:50.238Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --seed 45 --num_steps 500 --num_generations 4 --output_dir /root/autodl-tmp/outputs/sweep_exec_only_s45 --no_wandb\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"768865\\\", \\\"data_path\\\": \\\"data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 45, \\\"reward_mode\\\": \\\"execution_only\\\", \\\"num_steps\\\": 500, \\\"num_generations\\\": 4, \\\"account\\\": \\\"root\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/sweep-exec-only-s45-r2.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T09:19:04.304Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T09:19:08.026390+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"prove_rate\\\": 0.74025, \\\"mean_isr\\\": 0.3596, \\\"train_loss\\\": 0.0273, \\\"parse_rate\\\": 1, \\\"steps_completed\\\": 500, \\\"steps_total\\\": 500, \\\"train_runtime_sec\\\": 3282, \\\"entropy_final\\\": 0.045, \\\"eval_prove_rate\\\": 0.99, \\\"eval_n_proved\\\": 99, \\\"eval_n_problems\\\": 100, \\\"eval_mean_isr\\\": 0.5012, \\\"eval_isr_std\\\": 0.2055, \\\"eval_median_isr\\\": 0.5, \\\"eval_proved_only_isr\\\": 0.5062, \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_by_answer_type\\\": {\\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 25, \\\"prove_rate\\\": 1, \\\"mean_isr\\\": 0.59}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 41, \\\"prove_rate\\\": 1, \\\"mean_isr\\\": 0.476}, \\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 33, \\\"prove_rate\\\": 0.971, \\\"mean_isr\\\": 0.467}}, \\\"h7a_count\\\": 93, \\\"h7a_rate\\\": 0.939, \\\"h7b_count\\\": 0, \\\"h7_count\\\": 93, \\\"h7_rate\\\": 0.939, \\\"h1_count\\\": 5, \\\"h1_rate\\\": 0.051, \\\"h8_count\\\": 1, \\\"h8_rate\\\": 0.01, \\\"genuine_count\\\": 1, \\\"genuine_rate\\\": 0.01, \\\"content_independent_count\\\": 47, \\\"single_premise_count\\\": 92, \\\"taxonomy_tool\\\": \\\"classify_h7.py standard (2026-05-16)\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/sweep_exec_only_s45\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/sweep-exec-only-s45-r2.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2409}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "01b89ffa-a0e4-44eb-80f2-4bfb8dd96021",
+            "isSidechain": false,
+            "promptId": "2eb0e2dc-2844-4d85-8c21-bc0f74f2317d",
+            "type": "user",
+            "uuid": "884d4688-8039-470f-b63c-6d7a33ed7441",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sweep-exec-only-s45-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:22:36.240Z\\\", \\\"updated_at\\\": \\\"2026-05-16T09:26:50.238Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --seed 45 --num_steps 500 --num_generations 4 --output_dir /root/autodl-tmp/outputs/sweep_exec_only_s45 --no_wandb\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"768865\\\", \\\"data_path\\\": \\\"data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 45, \\\"reward_mode\\\": \\\"execution_only\\\", \\\"num_steps\\\": 500, \\\"num_generations\\\": 4, \\\"account\\\": \\\"root\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/sweep-exec-only-s45-r2.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T09:19:04.304Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T09:19:08.026390+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"prove_rate\\\": 0.74025, \\\"mean_isr\\\": 0.3596, \\\"train_loss\\\": 0.0273, \\\"parse_rate\\\": 1, \\\"steps_completed\\\": 500, \\\"steps_total\\\": 500, \\\"train_runtime_sec\\\": 3282, \\\"entropy_final\\\": 0.045, \\\"eval_prove_rate\\\": 0.99, \\\"eval_n_proved\\\": 99, \\\"eval_n_problems\\\": 100, \\\"eval_mean_isr\\\": 0.5012, \\\"eval_isr_std\\\": 0.2055, \\\"eval_median_isr\\\": 0.5, \\\"eval_proved_only_isr\\\": 0.5062, \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_by_answer_type\\\": {\\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 25, \\\"prove_rate\\\": 1, \\\"mean_isr\\\": 0.59}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 41, \\\"prove_rate\\\": 1, \\\"mean_isr\\\": 0.476}, \\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 33, \\\"prove_rate\\\": 0.971, \\\"mean_isr\\\": 0.467}}, \\\"h7a_count\\\": 93, \\\"h7a_rate\\\": 0.939, \\\"h7b_count\\\": 0, \\\"h7_count\\\": 93, \\\"h7_rate\\\": 0.939, \\\"h1_count\\\": 5, \\\"h1_rate\\\": 0.051, \\\"h8_count\\\": 1, \\\"h8_rate\\\": 0.01, \\\"genuine_count\\\": 1, \\\"genuine_rate\\\": 0.01, \\\"content_independent_count\\\": 47, \\\"single_premise_count\\\": 92, \\\"taxonomy_tool\\\": \\\"classify_h7.py standard (2026-05-16)\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/sweep_exec_only_s45\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/sweep-exec-only-s45-r2.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2409}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"sweep-exec-only-s45-r2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T08:22:36.240Z\", \"updated_at\": \"2026-05-16T09:26:50.238Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --seed 45 --num_steps 500 --num_generations 4 --output_dir /root/autodl-tmp/outputs/sweep_exec_only_s45 --no_wandb\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"768865\", \"data_path\": \"data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 45, \"reward_mode\": \"execution_only\", \"num_steps\": 500, \"num_generations\": 4, \"account\": \"root\", \"log_path\": \"~/runs/solver-trace-ablation/sweep-exec-only-s45-r2.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-16T09:19:04.304Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T09:19:08.026390+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"prove_rate\": 0.74025, \"mean_isr\": 0.3596, \"train_loss\": 0.0273, \"parse_rate\": 1, \"steps_completed\": 500, \"steps_total\": 500, \"train_runtime_sec\": 3282, \"entropy_final\": 0.045, \"eval_prove_rate\": 0.99, \"eval_n_proved\": 99, \"eval_n_problems\": 100, \"eval_mean_isr\": 0.5012, \"eval_isr_std\": 0.2055, \"eval_median_isr\": 0.5, \"eval_proved_only_isr\": 0.5062, \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_by_answer_type\": {\"false\": {\"count\": 25, \"proved\": 25, \"prove_rate\": 1, \"mean_isr\": 0.59}, \"unknown\": {\"count\": 41, \"proved\": 41, \"prove_rate\": 1, \"mean_isr\": 0.476}, \"true\": {\"count\": 34, \"proved\": 33, \"prove_rate\": 0.971, \"mean_isr\": 0.467}}, \"h7a_count\": 93, \"h7a_rate\": 0.939, \"h7b_count\": 0, \"h7_count\": 93, \"h7_rate\": 0.939, \"h1_count\": 5, \"h1_rate\": 0.051, \"h8_count\": 1, \"h8_rate\": 0.01, \"genuine_count\": 1, \"genuine_rate\": 0.01, \"content_independent_count\": 47, \"single_premise_count\": 92, \"taxonomy_tool\": \"classify_h7.py standard (2026-05-16)\"}, \"checkpoint_path\": \"/root/autodl-tmp/outputs/sweep_exec_only_s45\", \"log_path\": \"~/runs/solver-trace-ablation/sweep-exec-only-s45-r2.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2409}}"
+              }
+            },
+            "sourceToolAssistantUUID": "01b89ffa-a0e4-44eb-80f2-4bfb8dd96021",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "3b99ff8f-767e-4845-ac73-a062f3e796af",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-16T09:27:00.625Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## sweep-exec-only-s45-r2 结果摘要\n\n**训练**: 500/500 步正常完成，prove_rate=0.74, train_loss=0.027, 运行 54.7 分钟。\n\n**Eval (proofwriter_fol_100)**:\n- prove_rate = **99%** (99/100)\n- mean_isr = 0.5012 ± 0.2055\n\n**Hacking 分类**:\n| 类别 | 数量 | 比例 |\n|------|------|------|\n| H7a (同义反复) | 93 | 93.9% |\n| H1 (结论嵌入) | 5 | 5.1% |\n| H8 (合取坍缩) | 1 | 1.0% |\n| **Genuine** | **1** | **1.0%** |\n\n**结论: success** — 典型的 exec-only 坍缩模式，93.9% H7a 单前提 P→P 证明。ISR=0.5 是 2 组件结构的伪影，genuine 仅 1%。与其他 seed 的 exec-only 结果一致，可纳入 5-seed sweep。\n\nRegistry 已更新 conclusion=success + metrics + checkpoint_path + log_path。状态保持 ANALYZING，由 Main Agent 决定推进。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "884d4688-8039-470f-b63c-6d7a33ed7441",
+            "isSidechain": false,
+            "requestId": "req_011Cb61Urqf9XGwVLvWn7QrV",
+            "type": "assistant",
+            "uuid": "55d52650-a1c0-4bce-aeab-dddb8e6a4785",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+            "sessionId": "3b99ff8f-767e-4845-ac73-a062f3e796af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019K5JdTzBqmsikHKXN2kKA4",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4089,
+                "cache_read_input_tokens": 97620,
+                "output_tokens": 381,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4089,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 381,
+                    "cache_read_input_tokens": 97620,
+                    "cache_creation_input_tokens": 4089,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4089
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "55d52650-a1c0-4bce-aeab-dddb8e6a4785",
+                "sessionId": "3b99ff8f-767e-4845-ac73-a062f3e796af"
+              }
+            }
+          ],
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Analyze sweep-exec-only-s45-r2 training results",
+                "sessionId": "3b99ff8f-767e-4845-ac73-a062f3e796af"
+              }
+            }
+          ],
+          "id": "event-000183"
+        }
+      ]
+    }
+  ]
+}

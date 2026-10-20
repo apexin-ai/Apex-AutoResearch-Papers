@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "ab4249fb38c8d9473b14",
+  "project": "solver-trace-ablation--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: solver-trace-ablation ## 运行环境 - 服务器名: westd-39279 - SSH 账户: root（调用 ssh_execute / submit_trainin",
+  "task_key": "b10151f4-d96b-4ef9-be78-8debbb878451",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/b10151f4-d96b-4ef9-be78-8debbb878451.jsonl",
+    "occurrence": 1,
+    "bytes": 524788,
+    "sha256": "9ac557a8a64bbad3523badce325a989dffcf96d3f5e3c9641c1936e79f75030c"
+  },
+  "statistics": {
+    "messages": 269,
+    "user_turns": 1,
+    "tool_calls": 74,
+    "roles": {
+      "record": 48,
+      "user": 1,
+      "assistant": 72,
+      "tool_call": 74,
+      "tool_result": 74
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ab4249fb38c8d9473b14-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 267,
+      "chunks": [
+        {
+          "path": "ab4249fb38c8d9473b14-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "ab4249fb38c8d9473b14-part-0002.json",
+          "message_count": 89
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-solver-trace-ablation-westd-39279-ssh-root-ssh-execute-submit-copy-19.md"
+}

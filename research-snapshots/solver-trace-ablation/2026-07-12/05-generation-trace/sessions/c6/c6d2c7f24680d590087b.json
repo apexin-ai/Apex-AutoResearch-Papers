@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "id": "c6d2c7f24680d590087b",
+  "project": "solver-trace-ablation--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> plan006-prolog-exec-s42 参考 metrics: {\"eval_prove_rate\": 0.83, \"eval_mean_isr\": 0.031, \"eval_proved_only_",
+  "task_key": "c9be9f3b-b312-4b63-ba16-97273c471624",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/c9be9f3b-b312-4b63-ba16-97273c471624.jsonl",
+    "occurrence": 1,
+    "bytes": 1211409,
+    "sha256": "4c87626e6a6c0c960033a3d680d37905684d07f485e39eee1500139d69609359"
+  },
+  "statistics": {
+    "messages": 763,
+    "user_turns": 1,
+    "tool_calls": 287,
+    "roles": {
+      "record": 108,
+      "user": 1,
+      "assistant": 80,
+      "tool_call": 287,
+      "tool_result": 287
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "c6d2c7f24680d590087b-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 761,
+      "chunks": [
+        {
+          "path": "c6d2c7f24680d590087b-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "c6d2c7f24680d590087b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c6d2c7f24680d590087b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "c6d2c7f24680d590087b-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "c6d2c7f24680d590087b-part-0005.json",
+          "message_count": 43
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-plan006-prolog-exec-s42-metrics-eval-prove-rate-0-83-eval-mean-i.md"
+}

@@ -1,0 +1,1177 @@
+{
+  "schema_version": "1.0",
+  "id": "5dfaa4e1455f754f726b",
+  "project": "solver-trace-ablation--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to find ALL references to appendix labels in the main text of the paper at /home/ubuntu/.agent-ml-research-idea_g",
+  "task_key": "agent-a5b7bc955cca621d0",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a5b7bc955cca621d0.jsonl",
+    "occurrence": 1,
+    "bytes": 76626,
+    "sha256": "5949734f729015a4aa09869fafd565e563c8350a3a64b6b474c4427541c7bca5"
+  },
+  "statistics": {
+    "messages": 22,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "user": 1,
+      "assistant": 7,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T09:10:40.524Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to find ALL references to appendix labels in the main text of the paper at /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/. \n\nSearch these main text files for any reference to appendix sections, tables, or figures:\n- abstract.tex\n- introduction.tex  \n- method.tex\n- experiments.tex\n- related_work.tex\n- conclusion.tex\n- limitations.tex\n\nSpecifically, grep for ALL of these appendix labels (from appendix.tex):\n- app:setup\n- tab:hyperparams\n- app:prooffol-construction\n- tab:prooffol-vs-folio\n- app:extended-discussion\n- app:shapley\n- app:premise-count\n- tab:premise-bin-modes\n- tab:bootstrap-ci\n- app:statistical-details\n- app:hacking-modes\n- tab:hacking-taxonomy\n- tab:hacking-taxonomy-app\n- tab:classifier-precision\n- app:h8\n- app:detailed-results\n- tab:fol-detailed\n- tab:fol-beta01-detailed\n- tab:prolog-detailed\n- tab:prooffol-detailed\n- app:beta03\n- tab:beta03-detailed\n- app:100step\n- app:o1-ablation\n- app:llama-coldstart\n- app:seed-convergence\n- app:n2-sensitivity\n- tab:n2-sensitivity\n- app:8b-results\n- tab:8b-combined\n- app:ai-assistants\n- app:practical-guidelines\n\nFor each label, report whether it is referenced in the main text (and from which file/line), or if it is NOT referenced (orphan). Be very thorough — search breadth \"very thorough\"."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "b8001cdb-9b65-4f33-9ed1-b46347fe28b8",
+            "agentId": "a5b7bc955cca621d0",
+            "type": "user",
+            "uuid": "f55e2990-30b6-4f67-b0b5-e724efdca77b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/director_acd679de",
+            "sessionId": "8f1c0800-1749-497c-a3d5-4fd006846ba8",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "enchanted-leaping-sprout"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-25T09:10:42.413Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you find all references to appendix labels in the main text files. Let me start by searching for each label across all the specified files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f55e2990-30b6-4f67-b0b5-e724efdca77b",
+            "isSidechain": true,
+            "agentId": "a5b7bc955cca621d0",
+            "requestId": "req_011CbP2XaD3nNMX1iTx1KGCJ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9ce1becd-b01f-41f6-a4bf-0e9ca10cb5f4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/director_acd679de",
+            "sessionId": "8f1c0800-1749-497c-a3d5-4fd006846ba8",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "enchanted-leaping-sprout",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01P3w54R7izF9SLwW3nDY3QL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 37586,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 37586,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-25T09:10:42.580Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CpbjhzH2YAKZzQnyNCodwQ",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9ce1becd-b01f-41f6-a4bf-0e9ca10cb5f4",
+            "isSidechain": true,
+            "agentId": "a5b7bc955cca621d0",
+            "requestId": "req_011CbP2XaD3nNMX1iTx1KGCJ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fba2e411-fbb5-4a17-a86c-c6edfd677db1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/director_acd679de",
+            "sessionId": "8f1c0800-1749-497c-a3d5-4fd006846ba8",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "enchanted-leaping-sprout",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01P3w54R7izF9SLwW3nDY3QL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 37586,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 119,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 37586
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 119,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 37586,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 37586,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-25T09:10:42.796Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CpbjhzH2YAKZzQnyNCodwQ",
+              "type": "tool_result",
+              "content": "total 4496\ndrwxr-xr-x 5 ubuntu ubuntu    4096 May 25 08:38 .\ndrwxr-xr-x 4 ubuntu ubuntu    4096 May 25 07:57 ..\ndrwxr-xr-x 5 ubuntu ubuntu    4096 May 24 12:05 _figure_backups\ndrwxr-xr-x 2 ubuntu ubuntu    4096 May 25 08:38 _pdf_images\n-rw-r--r-- 1 ubuntu ubuntu    1655 May 25 08:38 abstract.tex\n-rw-r--r-- 1 ubuntu ubuntu   11615 May 15 20:39 acl.sty\n-rw-r--r-- 1 ubuntu ubuntu   45186 May 15 20:39 acl_natbib.bst\n-rw-r--r-- 1 ubuntu ubuntu   57290 May 25 07:38 appendix.tex\n-rw-r--r-- 1 ubuntu ubuntu    4328 May 25 07:38 checklist.tex\n-rw-r--r-- 1 ubuntu ubuntu    1136 May 25 05:35 conclusion.tex\n-rw-r--r-- 1 ubuntu ubuntu     194 May 20 11:04 discussion.tex\n-rw-r--r-- 1 ubuntu ubuntu       1 May 24 17:27 ethics.tex\n-rw-r--r-- 1 ubuntu ubuntu   17809 May 15 20:39 experiments.md\n-rw-r--r-- 1 ubuntu ubuntu   14697 May 25 08:36 experiments.tex\ndrwxr-xr-x 8 ubuntu ubuntu    4096 May 24 19:54 figures\n-rw-r--r-- 1 ubuntu ubuntu    4592 May 25 05:34 introduction.tex\n-rw-r--r-- 1 ubuntu ubuntu     733 May 25 07:49 limitations.tex\n-rw-r--r-- 1 ubuntu ubuntu   64823 May 25 08:38 main.aux\n-rw-r--r-- 1 ubuntu ubuntu   20327 May 25 08:38 main.bbl\n-rw-r--r-- 1 ubuntu ubuntu    1300 May 25 08:38 main.blg\n-rw-r--r-- 1 ubuntu ubuntu   20892 May 25 08:38 main.fdb_latexmk\n-rw-r--r-- 1 ubuntu ubuntu   20743 May 25 08:38 main.fls\n-rw-r--r-- 1 ubuntu ubuntu   45834 May 25 08:38 main.log\n-rw-r--r-- 1 ubuntu ubuntu    6652 May 25 08:38 main.out\n-rw-r--r-- 1 ubuntu ubuntu 4147554 May 25 08:38 main.pdf\n-rw-r--r-- 1 ubuntu ubuntu     911 May 24 19:42 main.tex\n-rw-r--r-- 1 ubuntu ubuntu    9078 May 25 07:55 method.tex\n-rw-r--r-- 1 ubuntu ubuntu   24519 May 25 04:28 references.bib\n-rw-r--r-- 1 ubuntu ubuntu    3379 May 25 05:35 related_work.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fba2e411-fbb5-4a17-a86c-c6edfd677db1",
+            "isSidechain": true,
+            "promptId": "b8001cdb-9b65-4f33-9ed1-b46347fe28b8",
+            "agentId": "a5b7bc955cca621d0",
+            "type": "user",
+            "uuid": "f6dc5f2b-7b42-4d28-ac03-9dfbbcface74",
+            "sourceToolAssistantUUID": "fba2e411-fbb5-4a17-a86c-c6edfd677db1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/director_acd679de",
+            "sessionId": "8f1c0800-1749-497c-a3d5-4fd006846ba8",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "enchanted-leaping-sprout"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-25T09:10:44.378Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good! Now let me search for all the appendix labels in the main text files. I'll conduct comprehensive searches for each label across all specified files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f6dc5f2b-7b42-4d28-ac03-9dfbbcface74",
+            "isSidechain": true,
+            "agentId": "a5b7bc955cca621d0",
+            "requestId": "req_011CbP2Xjn1wcxKuZrWBmXsW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d32767bd-0db1-4020-a59d-7f109bdc0c27",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/director_acd679de",
+            "sessionId": "8f1c0800-1749-497c-a3d5-4fd006846ba8",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "enchanted-leaping-sprout",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01RXfri4uCrSzWB3D1e56aDV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1832,
+                "cache_read_input_tokens": 37586,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1832,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-25T09:10:47.936Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Gh6kkGpbMGAy8J53CddXmx",
+              "name": "Grep",
+              "input": {
+                "pattern": "app:setup|tab:hyperparams|app:prooffol-construction|tab:prooffol-vs-folio|app:extended-discussion|app:shapley|app:premise-count|tab:premise-bin-modes|tab:bootstrap-ci|app:statistical-details|app:hacking-modes|tab:hacking-taxonomy|tab:hacking-taxonomy-app|tab:classifier-precision|app:h8|app:detailed-results|tab:fol-detailed|tab:fol-beta01-detailed|tab:prolog-detailed|tab:prooffol-detailed|app:beta03|tab:beta03-detailed|app:100step|app:o1-ablation|app:llama-coldstart|app:seed-convergence|app:n2-sensitivity|tab:n2-sensitivity|app:8b-results|tab:8b-combined|app:ai-assistants|app:practical-guidelines",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper",
+                "output_mode": "content",
+                "type": "tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d32767bd-0db1-4020-a59d-7f109bdc0c27",
+            "isSidechain": true,
+            "agentId": "a5b7bc955cca621d0",
+            "requestId": "req_011CbP2Xjn1wcxKuZrWBmXsW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "44e41e90-dca6-4c76-8d25-01c8c4a51710",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/director_acd679de",
+            "sessionId": "8f1c0800-1749-497c-a3d5-4fd006846ba8",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "enchanted-leaping-sprout",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01RXfri4uCrSzWB3D1e56aDV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1832,
+                "cache_read_input_tokens": 37586,
+                "output_tokens": 385,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1832
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 385,
+                    "cache_read_input_tokens": 37586,
+                    "cache_creation_input_tokens": 1832,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1832,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-25T09:10:47.978Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Gh6kkGpbMGAy8J53CddXmx",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (22.2KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-director-acd679de/8f1c0800-1749-497c-a3d5-4fd006846ba8/tool-results/toolu_01Gh6kkGpbMGAy8J53CddXmx.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:9:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:10:Held-out evaluation uses 100 FOLIO examples with greedy decoding;\\footnote{Seed~43 uses nucleus sampling ($T{=}0.7$) due to greedy-mode degeneration; excluding s43 yields consistent or stronger collapse: at 1000 steps, both remaining seeds show ${\\leq}7\\%$ non-hacking (Appendix~\\ref{app:detailed-results}).} all cross-run ISR values are recomputed uniformly by a single evaluator so training-log ISR is never compared across runs.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:11:Cross-dataset experiments (\\S\\ref{sec:crossdomain}) use ProofFOL, a silver-standard FOL corpus of ${\\sim}$500 training examples constructed by translating ProofWriter~\\citep{proofwriter} problems via GPT-4o and filtering through Prover9 (${\\sim}70\\%$ retention; Appendix~\\ref{app:prooffol-construction}); \\emph{stable convergence} denotes $\\overline{\\text{PR}}_{\\text{final\\,50}} > 0.90$.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:12:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:24:An $N{=}2$ sensitivity analysis excluding s43 confirms consistent or stronger patterns (Appendix~\\ref{app:n2-sensitivity}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:34:A binary variant testing only collective premise necessity misses the collapse entirely ($\\text{ISR}{=}1.0$ for all proved samples), confirming that per-component LOO testing is essential (Appendix~\\ref{app:o1-ablation}).\n...\n</persisted-output>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "44e41e90-dca6-4c76-8d25-01c8c4a51710",
+            "isSidechain": true,
+            "promptId": "b8001cdb-9b65-4f33-9ed1-b46347fe28b8",
+            "agentId": "a5b7bc955cca621d0",
+            "type": "user",
+            "uuid": "21953255-3379-40fa-8e3c-d57ddc21a149",
+            "sourceToolAssistantUUID": "44e41e90-dca6-4c76-8d25-01c8c4a51710",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/director_acd679de",
+            "sessionId": "8f1c0800-1749-497c-a3d5-4fd006846ba8",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "enchanted-leaping-sprout"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-25T09:10:49.196Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the full output file to see all matches:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "21953255-3379-40fa-8e3c-d57ddc21a149",
+            "isSidechain": true,
+            "agentId": "a5b7bc955cca621d0",
+            "requestId": "req_011CbP2Y7unBeogctbxTQiyN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e36fe18e-ac42-451f-a0c7-8229e02255cd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/director_acd679de",
+            "sessionId": "8f1c0800-1749-497c-a3d5-4fd006846ba8",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "enchanted-leaping-sprout",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01LAqFkoigZqckgKuWm4U5ET",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1147,
+                "cache_read_input_tokens": 39418,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1147,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-25T09:10:49.702Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AYU68ZQfXZ8bjGQjLxHWLG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-director-acd679de/8f1c0800-1749-497c-a3d5-4fd006846ba8/tool-results/toolu_01Gh6kkGpbMGAy8J53CddXmx.txt"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e36fe18e-ac42-451f-a0c7-8229e02255cd",
+            "isSidechain": true,
+            "agentId": "a5b7bc955cca621d0",
+            "requestId": "req_011CbP2Y7unBeogctbxTQiyN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e8113e04-9ccb-402f-b42c-bf2a99e1ec92",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/director_acd679de",
+            "sessionId": "8f1c0800-1749-497c-a3d5-4fd006846ba8",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "enchanted-leaping-sprout",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01LAqFkoigZqckgKuWm4U5ET",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1147,
+                "cache_read_input_tokens": 39418,
+                "output_tokens": 172,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1147
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 172,
+                    "cache_read_input_tokens": 39418,
+                    "cache_creation_input_tokens": 1147,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1147,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-25T09:10:49.717Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AYU68ZQfXZ8bjGQjLxHWLG",
+              "type": "tool_result",
+              "content": "1\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:9:[Omitted long matching line]\n2\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:10:Held-out evaluation uses 100 FOLIO examples with greedy decoding;\\footnote{Seed~43 uses nucleus sampling ($T{=}0.7$) due to greedy-mode degeneration; excluding s43 yields consistent or stronger collapse: at 1000 steps, both remaining seeds show ${\\leq}7\\%$ non-hacking (Appendix~\\ref{app:detailed-results}).} all cross-run ISR values are recomputed uniformly by a single evaluator so training-log ISR is never compared across runs.\n3\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:11:Cross-dataset experiments (\\S\\ref{sec:crossdomain}) use ProofFOL, a silver-standard FOL corpus of ${\\sim}$500 training examples constructed by translating ProofWriter~\\citep{proofwriter} problems via GPT-4o and filtering through Prover9 (${\\sim}70\\%$ retention; Appendix~\\ref{app:prooffol-construction}); \\emph{stable convergence} denotes $\\overline{\\text{PR}}_{\\text{final\\,50}} > 0.90$.\n4\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:12:[Omitted long matching line]\n5\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:24:An $N{=}2$ sensitivity analysis excluding s43 confirms consistent or stronger patterns (Appendix~\\ref{app:n2-sensitivity}).\n6\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:34:A binary variant testing only collective premise necessity misses the collapse entirely ($\\text{ISR}{=}1.0$ for all proved samples), confirming that per-component LOO testing is essential (Appendix~\\ref{app:o1-ablation}).\n7\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:35:All three exec-only seeds converge to ${\\leq}6.2\\%$ non-hacking by 1000 steps (Table~\\ref{tab:fol-detailed}), confirming that structural degeneration under exec-only reward is not seed-specific among converged runs.\n8\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:38:Three seeds diverge into qualitatively different failure modes: conclusion embedding (s42), repetition collapse (s43), and tautological collapse (s44), yet all converge to ${\\leq}6.2\\%$ non-hacking by 1000 steps (Table~\\ref{tab:fol-detailed}; Appendix~\\ref{app:detailed-results}).\n9\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:40:Two additional seeds under identical conditions fail to converge ($\\text{PR}{\\approx}14\\%$; Appendix~\\ref{app:seed-convergence}), retaining genuine reasoning and suggesting that structural degeneration requires successful convergence, though the confound between model capability and optimization success precludes strong causal attribution (Appendix~\\ref{app:llama-coldstart}).\n10\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:45:Early-training comparison supports this interpretation: at 100 steps ($\\text{PR}{=}32\\%$), hacking already reaches $31\\%$ vs.\\ SFT's $8\\%$ at comparable PR (Appendix~\\ref{app:100step}). %% registry: plan009-sft-baseline-s42-1000/s43-1000/s44-1000-r3\n11\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:55:Three controls constrain the multiplicative confound: exec-only's convergence to pure hacking, the qualitative TS shift under ISR, and an additive variant that did not converge (Appendix~\\ref{app:setup}).\n12\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:56:The shuffled-ISR control ($87\\%$ non-hacking at low PR) is consistent with the interpretation that Goodhart effects require sample-level ISR signal; however, the low PR (comparable to non-converging exec-only seeds; Appendix~\\ref{app:seed-convergence}) means that non-convergence alone cannot be ruled out as an alternative explanation.\n13\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:59:ISR reward amplifies TS convergence: $71\\%$ of proved samples under ISR exhibit tautological shortcuts vs.\\ $14\\%$ under random (Appendix~\\ref{app:statistical-details}). %% registry: plan002 vs plan018 all seeds; D095 FINAL\n14\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:62:A seed-stratified $\\chi^2$ test confirms the overall mode distribution differs significantly between ISR and random conditions ($\\chi^2{=}174.8$, $\\text{df}{=}2$, $p{<}10^{-38}$; Appendix~\\ref{app:statistical-details}).\n15\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:65:ISR reward produces bimodal outcomes (Figure~\\ref{fig:seed-divergence}): 3 of 5 seeds converge to gaming, demonstrating that the Goodhart effect can occur under standard training conditions (95\\% Clopper--Pearson CI: [11.8\\%, 88.1\\%]; $n{=}5$); 2 of 5 retain substantial genuine reasoning (seeds~45/46 added post-hoc to test replication; Appendix~\\ref{app:detailed-results}).\n16\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:66:Excluding seed~43 (which uses nucleus sampling; \\S\\ref{sec:setup}), seed~44 shows $0\\%$ non-hacking and $100\\%$ TS at 500 steps; seed~42 retains $17\\%$ non-hacking at 500 steps but collapses to $2\\%$ by 1000 steps (full $N{=}2$ analysis: Appendix~\\ref{app:n2-sensitivity}).\n17\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:70:The premise-count-matched comparison yields only $1.06\\times$ (McNemar $p{=}0.317$, $n{=}100$ matched pairs; Appendix~\\ref{app:premise-count}), indicating that the scalar ISR advantage is not statistically significant.\n18\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:73:In the modal premise-count range (4--6 premises, where most proved samples fall), TS reaches $19.7\\%$ under ISR versus $0\\%$ under random reward (Figure~\\ref{fig:premise-bins}; Table~\\ref{tab:premise-bin-modes}).\n19\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:87:Higher doses accelerate collapse: $\\beta{=}0.2$ eliminates all non-hacking; $\\beta{=}0.3$ destabilizes training itself, producing multi-modal failure~\\citep{gao-reward-overoptimization} across both ISR and random conditions (Appendix~\\ref{app:beta03}). %% registry: plan002-additive-b02-s42/s43/s44, plan002-additive-b03-s42/s43/s44\n20\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:104:Under ISR-as-reward, all three seeds reach $0\\%$ non-hacking through distinct mechanisms: clean TS (s42), degenerate syntax bypassing text-match classifiers (s43), and query-as-fact gaming (s44; Table~\\ref{tab:prolog-detailed}).\n21\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:112:ISR reward on ProofFOL produces directionally higher genuine rates than exec-only ($p{=}0.10$, exploratory; Table~\\ref{tab:prooffol-detailed}).\n22\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:116:Qwen3-8B does not converge under exec-only GRPO ($\\text{PR}{=}14\\%$, $K{=}8$; $K{=}4$ produces zero gradient), consistent with degeneration requiring successful convergence (Appendix~\\ref{app:8b-results}).\n23\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:124:\\caption{Hacking composition across reward conditions (proved samples; exec-only: seed~42; all other bars: pooled across 3 seeds, per-seed breakdown in Appendix Table~\\ref{tab:fol-detailed}). ISR systematically selects for TS over CE without reducing total hacking; SFT shows near-zero hacking.}\n24\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:128:Three modes account for the vast majority of hacking (Appendix Table~\\ref{tab:hacking-taxonomy}; Appendix~\\ref{app:hacking-modes}): CE (conclusion embedding), TS (conclusion duplication), and PG (premise-subset gaming).\n25\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/conclusion.tex:4:STA exposes structural degeneration invisible to execution-based evaluation; repurposed as reward, ISR produces a seed-dependent Goodhart effect: structural proxies for formalization integrity are easier to observe than to optimize (Appendix~\\ref{app:practical-guidelines}).\n26\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/conclusion.tex:6:Convergence appears necessary for degeneration (Appendix~\\ref{app:seed-convergence}); for practitioners, structural diagnostics should be applied post-hoc, with the mode breakdown providing the reliable signal.\n27\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/checklist.tex:41:Yes. The model size (4B) is reported in \\S\\ref{sec:task}. Training details (GRPO $K{=}4$, 500/1000 steps, seeds, batch sizes) are in \\S\\ref{sec:task} and Appendix~\\ref{app:setup}. Computing infrastructure and total GPU hours are reported in Appendix~\\ref{app:setup}.\n28\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/checklist.tex:44:Yes. All hyperparameters are reported in \\S\\ref{sec:rewards} and Appendix~\\ref{app:setup}. No hyperparameter search was performed; $\\beta$ values were chosen for dose-response analysis.\n29\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/checklist.tex:47:Yes. We report mean$\\pm$std across seeds (Table~\\ref{tab:goodhart-landscape}), per-seed ranges, bootstrap confidence intervals (Appendix Table~\\ref{tab:bootstrap-ci}), and discuss statistical power limitations (\\S\\ref{sec:limitations}).\n30\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/checklist.tex:50:Yes. We report Qwen3-4B model versions, Prover9, and SWI-Prolog. Training uses TRL 0.17.0, PyTorch 2.6.0, and Transformers 4.51.3; versions are listed in Appendix~\\ref{app:setup}.\n31\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/checklist.tex:54:Minimal. Manual audit was conducted for classifier precision (50 random CE/TS samples verified; Appendix~\\ref{app:hacking-modes}) and for PG false-negative correction (seed 42 only). No crowdsourced annotation was used.\n32\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/method.tex:53:ISR computes the LOO marginal contribution, a restriction of the Shapley value to the maximal coalition (Appendix~\\ref{app:shapley}); full interaction detection would require $O(2^n)$ evaluations.\n33\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/method.tex:68:Each RL condition uses seeds $\\{42,43,44\\}$ and identical training data (formulation alternatives in Appendix~\\ref{app:setup}).\n34\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/method.tex:91:\\caption{Goodhart landscape across reward conditions. PR = prove rate; ISR$^*$ = proved-only ISR; TS = tautological shortcut; CE = conclusion embedding; N-H = non-hacking (upper bound on genuine reasoning). Multi-seed rows: pooled TS/CE/N-H; PR/ISR$^*$ as mean$\\pm$std. $^\\dagger$Seed~42 only. $^\\ddagger$Premise-count-matched (\\S\\ref{sec:goodhart}). $^\\P$FN-corrected (\\S\\ref{app:h8}). $^\\S$Seed-dependent (s43: 38.3\\%). Per-seed data: Table~\\ref{tab:fol-detailed}.}\n35\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/method.tex:96:Across conditions, seeds, and logic types we identify eight structural-degeneration modes (full definitions in Appendix~\\ref{app:hacking-modes}), dominated by three: \\textbf{CE} (conclusion embedded among multiple premises), \\textbf{TS} (single-premise conclusion duplication; targets ISR directly since removing the sole premise forces $\\text{ISR}\\geq 0.5$), and \\textbf{PG} (premise-subset gaming: each component is LOO-necessary but the premise set is incomplete; Appendix~\\ref{app:h8}).\n36\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/limitations.tex:6:ISR quantifies component necessity, not semantic faithfulness; its diagnostic value is realized through the mode breakdown, not the scalar alone (Appendix~\\ref{app:extended-discussion}).\n37\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:4:\\label{app:setup}\n38\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:6:Table~\\ref{tab:hyperparams} lists all hyperparameters shared across experiments.\n39\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:13:\\label{tab:hyperparams}\n40\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:68:\\label{app:prooffol-construction}\n41\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:72:Table~\\ref{tab:prooffol-vs-folio} compares key structural properties.\n42\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:77:\\label{tab:prooffol-vs-folio}\n43\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:99:\\label{app:extended-discussion}\n44\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:114:\\label{app:shapley}\n45\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:121:\\label{app:premise-count}\n46\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:125:Premise-count-matched comparison eliminates the difference ($1.06\\times$, McNemar's test $p{=}0.317$; Table~\\ref{tab:fol-beta01-detailed}), confirming that the scalar ISR advantage is not statistically significant.\n47\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:128:Mode composition analysis (CE vs.\\ TS rates) is unaffected by premise-count confounding because TS classification depends on tautological proof structure (\\S\\ref{app:hacking-modes}), not on the number of premises in the formalization.\n48\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:148:\\label{tab:premise-bin-modes}\n49\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:153:\\caption{Fisher exact tests for non-hacking rate across conditions (3-seed pooled). ISR $\\beta{=}0.1$ non-hacking rate is corrected for PG reclassification and TS false negatives (Appendix~\\ref{app:h8}).}\n50\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:154:\\label{tab:bootstrap-ci}\n51\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:173:{\\small ISR: $n{=}231$ (3 seeds). Random: $n{=}262$ (3 seeds). Exec-only: $n{=}93$ (s42). SFT: $n{=}39$ (3 seeds, 1000 steps). 95\\% Wilson CIs in brackets where shown. Pooled statistics treat within-seed samples as independent and serve as descriptive summaries only; the seed-stratified CMH test (\\S\\ref{app:statistical-details}) accounts for within-seed dependence.}\n52\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:192:In Prolog STA, two seeds achieved 100\\% genuine classification under strict text matching, yet functional analysis via the $n_{\\text{necessary}}$ distribution revealed 0\\% genuine in both cases (Table~\\ref{tab:prolog-detailed}).\n53\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:197:\\label{app:practical-guidelines}\n54\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:206:\\label{app:statistical-details}\n55\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:222:\\label{app:hacking-modes}\n56\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:225:TS comprises two subtypes: TSa (text-match duplication, where the premise is textually identical to the conclusion) and TSb (obfuscated tautology, where the premise is logically equivalent but textually distinct; \\S\\ref{app:h8}).\n57\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:249:\\label{tab:hacking-taxonomy}\n58\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:252:Table~\\ref{tab:hacking-taxonomy} provides a compact cross-condition summary; Table~\\ref{tab:hacking-taxonomy-app} below gives the extended breakdown.\n59\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:271:[Omitted long matching line]\n60\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:272:\\label{tab:hacking-taxonomy-app}\n61\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:283:This cross-validation revealed query-as-fact gaming in Prolog (\\S\\ref{app:hacking-modes}), where the strict text classifier reported 100\\% non-hacking but functional analysis showed 95/97 samples were tautological ($n_{\\text{necessary}}{=}1$).\n62\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:309:\\label{tab:classifier-precision}\n63\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:315:\\label{app:h8}\n64\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:548:\\label{app:detailed-results}\n65\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:550:Tables~\\ref{tab:fol-beta01-detailed} and \\ref{tab:prolog-detailed} report full per-seed results.\n66\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:557:\\label{tab:fol-detailed}\n67\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:558:\\label{tab:fol-beta01-detailed}\n68\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:602:  & \\multicolumn{8}{l}{See Table~\\ref{tab:beta03-detailed} for per-seed $\\beta{=}0.3$ results.} \\\\\n69\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:631:\\label{tab:prolog-detailed}\n70\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:664:\\label{tab:prooffol-detailed}\n71\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:693:Table~\\ref{tab:fol-detailed} traces the ISR collapse over training:\n72\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:706:\\label{app:beta03}\n73\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:708:Table~\\ref{tab:beta03-detailed} reports per-seed results for ISR at $\\beta{=}0.2$ and both ISR and Random at $\\beta{=}0.3$.\n74\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:715:\\label{tab:beta03-detailed}\n75\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:748:\\label{app:100step}\n76\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:757:\\label{app:o1-ablation}\n77\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:781:\\label{app:llama-coldstart}\n78\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:783:We applied the identical GRPO configuration (Table~\\ref{tab:hyperparams}) to LLaMA-3.2-3B~\\citep{grattafiori2024llama} (3B; exec-only, seed~42, $K{=}4$, FOLIO).\n79\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:794:\\label{app:seed-convergence}\n80\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:801:This parallels the LLaMA-3.2-3B finding (Appendix~\\ref{app:llama-coldstart}), where GRPO also fails to improve PR and retains structural quality.\n81\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:805:\\label{app:n2-sensitivity}\n82\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:807:Seed~43 was evaluated with sampling ($T{=}0.7$) rather than greedy decoding (\\S\\ref{app:setup}).\n83\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:808:To assess whether this non-standard protocol affects qualitative conclusions, Table~\\ref{tab:n2-sensitivity} reports pooled statistics from seeds~42 and~44 only.\n84\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:823:\\label{tab:n2-sensitivity}\n85\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:831:\\label{app:8b-results}\n86\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:834:Table~\\ref{tab:8b-combined} summarizes configuration differences and results.\n87\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:863:\\label{tab:8b-combined}\n88\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:870:This result mirrors two other non-convergence cases: (1)~the seed-dependent 4B non-convergence (s45, s52; Appendix~\\ref{app:seed-convergence}), where identical 4B configurations fail to bootstrap, and (2)~the LLaMA-3.2-3B cold-start failure (Appendix~\\ref{app:llama-coldstart}), where the base model lacks FOL generation capability entirely.\n89\t/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex:874:\\label{app:ai-assistants}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e8113e04-9ccb-402f-b42c-bf2a99e1ec92",
+            "isSidechain": true,
+            "promptId": "b8001cdb-9b65-4f33-9ed1-b46347fe28b8",
+            "agentId": "a5b7bc955cca621d0",
+            "type": "user",
+            "uuid": "e2562836-c318-48c8-8683-58cc643ed52b",
+            "sourceToolAssistantUUID": "e8113e04-9ccb-402f-b42c-bf2a99e1ec92",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/director_acd679de",
+            "sessionId": "8f1c0800-1749-497c-a3d5-4fd006846ba8",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "enchanted-leaping-sprout"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-25T09:10:51.404Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for each label individually in the main text files to create a complete summary. Let me check the individual main text files more carefully:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e2562836-c318-48c8-8683-58cc643ed52b",
+            "isSidechain": true,
+            "agentId": "a5b7bc955cca621d0",
+            "requestId": "req_011CbP2YFVC5xH5dNPx7qJxH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3db698b2-d6be-4088-8559-367b33af2510",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/director_acd679de",
+            "sessionId": "8f1c0800-1749-497c-a3d5-4fd006846ba8",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "enchanted-leaping-sprout",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JUNQjrvy2yoH6yFXAsjnMH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8040,
+                "cache_read_input_tokens": 40565,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8040,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-25T09:10:52.125Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CYb5qhFHgfAatWiaf1QzU4",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"ref{app:\\|ref{tab:\" /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/abstract.tex 2>/dev/null || echo \"No matches in abstract.tex\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3db698b2-d6be-4088-8559-367b33af2510",
+            "isSidechain": true,
+            "agentId": "a5b7bc955cca621d0",
+            "requestId": "req_011CbP2YFVC5xH5dNPx7qJxH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d5120016-3711-489d-b87c-1724d3fe0737",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/director_acd679de",
+            "sessionId": "8f1c0800-1749-497c-a3d5-4fd006846ba8",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "enchanted-leaping-sprout",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JUNQjrvy2yoH6yFXAsjnMH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8040,
+                "cache_read_input_tokens": 40565,
+                "output_tokens": 147,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 8040
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 147,
+                    "cache_read_input_tokens": 40565,
+                    "cache_creation_input_tokens": 8040,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 8040,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-25T09:10:52.214Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CYb5qhFHgfAatWiaf1QzU4",
+              "type": "tool_result",
+              "content": "No matches in abstract.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d5120016-3711-489d-b87c-1724d3fe0737",
+            "isSidechain": true,
+            "promptId": "b8001cdb-9b65-4f33-9ed1-b46347fe28b8",
+            "agentId": "a5b7bc955cca621d0",
+            "type": "user",
+            "uuid": "24efae02-8639-489e-b479-a0d67e166915",
+            "sourceToolAssistantUUID": "d5120016-3711-489d-b87c-1724d3fe0737",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/director_acd679de",
+            "sessionId": "8f1c0800-1749-497c-a3d5-4fd006846ba8",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "enchanted-leaping-sprout"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-25T09:10:53.967Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011JeRH3Hooq7Cx3wwbQcjxv",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"ref{app:\\|ref{tab:\" /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/introduction.tex /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/related_work.tex 2>/dev/null || echo \"No matches in introduction/related_work\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "24efae02-8639-489e-b479-a0d67e166915",
+            "isSidechain": true,
+            "agentId": "a5b7bc955cca621d0",
+            "requestId": "req_011CbP2YSM3cK7jt5KqxGr1g",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "44cce766-d654-4ad4-bd91-e04f874e1c74",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/director_acd679de",
+            "sessionId": "8f1c0800-1749-497c-a3d5-4fd006846ba8",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "enchanted-leaping-sprout",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NY6aYcqZhQazBd9e2JG8qA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 165,
+                "cache_read_input_tokens": 48605,
+                "output_tokens": 156,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 165
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 156,
+                    "cache_read_input_tokens": 48605,
+                    "cache_creation_input_tokens": 165,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 165,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-25T09:10:54.042Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011JeRH3Hooq7Cx3wwbQcjxv",
+              "type": "tool_result",
+              "content": "No matches in introduction/related_work",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "44cce766-d654-4ad4-bd91-e04f874e1c74",
+            "isSidechain": true,
+            "promptId": "b8001cdb-9b65-4f33-9ed1-b46347fe28b8",
+            "agentId": "a5b7bc955cca621d0",
+            "type": "user",
+            "uuid": "f670ad6c-4e4a-4057-911d-ebca1a00eaef",
+            "sourceToolAssistantUUID": "44cce766-d654-4ad4-bd91-e04f874e1c74",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/director_acd679de",
+            "sessionId": "8f1c0800-1749-497c-a3d5-4fd006846ba8",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "enchanted-leaping-sprout"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-25T09:10:55.469Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good. Now let me get detailed line numbers for each appendix label mentioned in the main text files. Let me search more systematically:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f670ad6c-4e4a-4057-911d-ebca1a00eaef",
+            "isSidechain": true,
+            "agentId": "a5b7bc955cca621d0",
+            "requestId": "req_011CbP2YZqW2VpMybWSjsSpW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8e44b869-ad7b-47d2-8276-bf31317ecf3d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/director_acd679de",
+            "sessionId": "8f1c0800-1749-497c-a3d5-4fd006846ba8",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "enchanted-leaping-sprout",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UnogKv6r96fqcWGxVEHQPA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 176,
+                "cache_read_input_tokens": 48770,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 176,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-25T09:11:00.239Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QgJ1Sup5qYXC37vpYbak99",
+              "name": "Bash",
+              "input": {
+                "command": "cat > /tmp/check_labels.sh << 'ENDSCRIPT'\n#!/bin/bash\n\n# Define all appendix labels to search for\nlabels=(\n\"app:setup\"\n\"tab:hyperparams\"\n\"app:prooffol-construction\"\n\"tab:prooffol-vs-folio\"\n\"app:extended-discussion\"\n\"app:shapley\"\n\"app:premise-count\"\n\"tab:premise-bin-modes\"\n\"tab:bootstrap-ci\"\n\"app:statistical-details\"\n\"app:hacking-modes\"\n\"tab:hacking-taxonomy\"\n\"tab:hacking-taxonomy-app\"\n\"tab:classifier-precision\"\n\"app:h8\"\n\"app:detailed-results\"\n\"tab:fol-detailed\"\n\"tab:fol-beta01-detailed\"\n\"tab:prolog-detailed\"\n\"tab:prooffol-detailed\"\n\"app:beta03\"\n\"tab:beta03-detailed\"\n\"app:100step\"\n\"app:o1-ablation\"\n\"app:llama-coldstart\"\n\"app:seed-convergence\"\n\"app:n2-sensitivity\"\n\"tab:n2-sensitivity\"\n\"app:8b-results\"\n\"tab:8b-combined\"\n\"app:ai-assistants\"\n\"app:practical-guidelines\"\n)\n\n# Main text files to search\nmain_files=(\n\"abstract.tex\"\n\"introduction.tex\"\n\"method.tex\"\n\"experiments.tex\"\n\"related_work.tex\"\n\"conclusion.tex\"\n\"limitations.tex\"\n)\n\npaper_dir=\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper\"\n\necho \"=== APPENDIX LABEL REFERENCE AUDIT ===\"\necho \"\"\n\nfor label in \"${labels[@]}\"; do\n    found=0\n    echo \"Label: $label\"\n    for file in \"${main_files[@]}\"; do\n        matches=$(grep -n \"ref{$label}\" \"$paper_dir/$file\" 2>/dev/null)\n        if [ ! -z \"$matches\" ]; then\n            found=1\n            echo \"  REFERENCED in $file:\"\n            echo \"$matches\" | while read line; do\n                line_num=$(echo \"$line\" | cut -d: -f1)\n                line_content=$(echo \"$line\" | cut -d: -f2-)\n                echo \"    Line $line_num: $line_content\"\n            done\n        fi\n    done\n    if [ $found -eq 0 ]; then\n        echo \"  NOT REFERENCED in main text (ORPHAN)\"\n    fi\n    echo \"\"\ndone\nENDSCRIPT\nbash /tmp/check_labels.sh\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8e44b869-ad7b-47d2-8276-bf31317ecf3d",
+            "isSidechain": true,
+            "agentId": "a5b7bc955cca621d0",
+            "requestId": "req_011CbP2YZqW2VpMybWSjsSpW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6cbb692c-5d30-4702-b0be-82f56931236c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/director_acd679de",
+            "sessionId": "8f1c0800-1749-497c-a3d5-4fd006846ba8",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "enchanted-leaping-sprout",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UnogKv6r96fqcWGxVEHQPA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 176,
+                "cache_read_input_tokens": 48770,
+                "output_tokens": 738,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 176
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 738,
+                    "cache_read_input_tokens": 48770,
+                    "cache_creation_input_tokens": 176,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 176,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-25T09:11:01.323Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QgJ1Sup5qYXC37vpYbak99",
+              "type": "tool_result",
+              "content": "=== APPENDIX LABEL REFERENCE AUDIT ===\n\nLabel: app:setup\n  REFERENCED in method.tex:\n    Line 68: Each RL condition uses seeds ${42,43,44}$ and identical training data (formulation alternatives in Appendix~ref{app:setup}).\n  REFERENCED in experiments.tex:\n    Line 55: Three controls constrain the multiplicative confound: exec-only's convergence to pure hacking, the qualitative TS shift under ISR, and an additive variant that did not converge (Appendix~ref{app:setup}).\n\nLabel: tab:hyperparams\n  NOT REFERENCED in main text (ORPHAN)\n\nLabel: app:prooffol-construction\n  REFERENCED in experiments.tex:\n    Line 11: Cross-dataset experiments (Sref{sec:crossdomain}) use ProofFOL, a silver-standard FOL corpus of ${sim}$500 training examples constructed by translating ProofWriter~citep{proofwriter} problems via GPT-4o and filtering through Prover9 (${sim}70%$ retention; Appendix~ref{app:prooffol-construction}); emph{stable convergence} denotes $overline{text{PR}}_{text{final,50}} > 0.90$.\n\nLabel: tab:prooffol-vs-folio\n  NOT REFERENCED in main text (ORPHAN)\n\nLabel: app:extended-discussion\n  REFERENCED in experiments.tex:\n    Line 12: We report prove rate (PR), proved-only ISR ($text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for CE/TS plus functional analysis of the per-sample $n_{text{necessary}}$ distribution; Sref{sec:taxonomy-method}; classifier blind spots discussed in Appendix~ref{app:extended-discussion}), and a emph{non-hacking} (N-H) rate, an upper bound on genuine reasoning: the residual matching none of the eight cataloged patterns (classifier recall unknown; 152-sample precision audit in Appendix~ref{app:hacking-modes}).\n  REFERENCED in limitations.tex:\n    Line 6: ISR quantifies component necessity, not semantic faithfulness; its diagnostic value is realized through the mode breakdown, not the scalar alone (Appendix~ref{app:extended-discussion}).\n\nLabel: app:shapley\n  REFERENCED in method.tex:\n    Line 53: ISR computes the LOO marginal contribution, a restriction of the Shapley value to the maximal coalition (Appendix~ref{app:shapley}); full interaction detection would require $O(2^n)$ evaluations.\n\nLabel: app:premise-count\n  REFERENCED in experiments.tex:\n    Line 70: The premise-count-matched comparison yields only $1.06times$ (McNemar $p{=}0.317$, $n{=}100$ matched pairs; Appendix~ref{app:premise-count}), indicating that the scalar ISR advantage is not statistically significant.\n\nLabel: tab:premise-bin-modes\n  REFERENCED in experiments.tex:\n    Line 73: In the modal premise-count range (4--6 premises, where most proved samples fall), TS reaches $19.7%$ under ISR versus $0%$ under random reward (Figure~ref{fig:premise-bins}; Table~ref{tab:premise-bin-modes}).\n\nLabel: tab:bootstrap-ci\n  NOT REFERENCED in main text (ORPHAN)\n\nLabel: app:statistical-details\n  REFERENCED in experiments.tex:\n    Line 59: ISR reward amplifies TS convergence: $71%$ of proved samples under ISR exhibit tautological shortcuts vs. $14%$ under random (Appendix~ref{app:statistical-details}). %% registry: plan002 vs plan018 all seeds; D095 FINAL\n    Line 62: A seed-stratified $chi^2$ test confirms the overall mode distribution differs significantly between ISR and random conditions ($chi^2{=}174.8$, $text{df}{=}2$, $p{<}10^{-38}$; Appendix~ref{app:statistical-details}).\n\nLabel: app:hacking-modes\n  REFERENCED in method.tex:\n    Line 96: Across conditions, seeds, and logic types we identify eight structural-degeneration modes (full definitions in Appendix~ref{app:hacking-modes}), dominated by three: textbf{CE} (conclusion embedded among multiple premises), textbf{TS} (single-premise conclusion duplication; targets ISR directly since removing the sole premise forces $text{ISR}geq 0.5$), and textbf{PG} (premise-subset gaming: each component is LOO-necessary but the premise set is incomplete; Appendix~ref{app:h8}).\n  REFERENCED in experiments.tex:\n    Line 12: We report prove rate (PR), proved-only ISR ($text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for CE/TS plus functional analysis of the per-sample $n_{text{necessary}}$ distribution; Sref{sec:taxonomy-method}; classifier blind spots discussed in Appendix~ref{app:extended-discussion}), and a emph{non-hacking} (N-H) rate, an upper bound on genuine reasoning: the residual matching none of the eight cataloged patterns (classifier recall unknown; 152-sample precision audit in Appendix~ref{app:hacking-modes}).\n    Line 128: Three modes account for the vast majority of hacking (Appendix Table~ref{tab:hacking-taxonomy}; Appendix~ref{app:hacking-modes}): CE (conclusion embedding), TS (conclusion duplication), and PG (premise-subset gaming).\n\nLabel: tab:hacking-taxonomy\n  REFERENCED in experiments.tex:\n    Line 128: Three modes account for the vast majority of hacking (Appendix Table~ref{tab:hacking-taxonomy}; Appendix~ref{app:hacking-modes}): CE (conclusion embedding), TS (conclusion duplication), and PG (premise-subset gaming).\n\nLabel: tab:hacking-taxonomy-app\n  NOT REFERENCED in main text (ORPHAN)\n\nLabel: tab:classifier-precision\n  NOT REFERENCED in main text (ORPHAN)\n\nLabel: app:h8\n  REFERENCED in method.tex:\n    Line 91: caption{Goodhart landscape across reward conditions. PR = prove rate; ISR$^*$ = proved-only ISR; TS = tautological shortcut; CE = conclusion embedding; N-H = non-hacking (upper bound on genuine reasoning). Multi-seed rows: pooled TS/CE/N-H; PR/ISR$^*$ as mean$pm$std. $^dagger$Seed~42 only. $^ddagger$Premise-count-matched (Sref{sec:goodhart}). $^P$FN-corrected (Sref{app:h8}). $^S$Seed-dependent (s43: 38.3%). Per-seed data: Table~ref{tab:fol-detailed}.}\n    Line 96: Across conditions, seeds, and logic types we identify eight structural-degeneration modes (full definitions in Appendix~ref{app:hacking-modes}), dominated by three: textbf{CE} (conclusion embedded among multiple premises), textbf{TS} (single-premise conclusion duplication; targets ISR directly since removing the sole premise forces $text{ISR}geq 0.5$), and textbf{PG} (premise-subset gaming: each component is LOO-necessary but the premise set is incomplete; Appendix~ref{app:h8}).\n\nLabel: app:detailed-results\n  REFERENCED in experiments.tex:\n    Line 9: We train Qwen3-4B~citep{qwen3} with GRPO~citep{deepseekmath} ($K{=}4$, lr $10^{-6}$, 500 steps default, 1000 where noted) over seeds ${42,43,44}$ (ISR $beta{=}0.1$ extends to ${45,46}$; Appendix~ref{app:detailed-results}) on a fixed 500-example FOLIO~citep{folio} subset held constant across all conditions; the SFT baseline uses negative log-likelihood on gold formalizations.footnote{Seeds control initialization and rollout sampling; all conditions share the same fixed training subset.}\n    Line 10: Held-out evaluation uses 100 FOLIO examples with greedy decoding;footnote{Seed~43 uses nucleus sampling ($T{=}0.7$) due to greedy-mode degeneration; excluding s43 yields consistent or stronger collapse: at 1000 steps, both remaining seeds show ${leq}7%$ non-hacking (Appendix~ref{app:detailed-results}).} all cross-run ISR values are recomputed uniformly by a single evaluator so training-log ISR is never compared across runs.\n    Line 38: Three seeds diverge into qualitatively different failure modes: conclusion embedding (s42), repetition collapse (s43), and tautological collapse (s44), yet all converge to ${leq}6.2%$ non-hacking by 1000 steps (Table~ref{tab:fol-detailed}; Appendix~ref{app:detailed-results}).\n    Line 65: ISR reward produces bimodal outcomes (Figure~ref{fig:seed-divergence}): 3 of 5 seeds converge to gaming, demonstrating that the Goodhart effect can occur under standard training conditions (95% Clopper--Pearson CI: [11.8%, 88.1%]; $n{=}5$); 2 of 5 retain substantial genuine reasoning (seeds~45/46 added post-hoc to test replication; Appendix~ref{app:detailed-results}).\n\nLabel: tab:fol-detailed\n  REFERENCED in method.tex:\n    Line 91: caption{Goodhart landscape across reward conditions. PR = prove rate; ISR$^*$ = proved-only ISR; TS = tautological shortcut; CE = conclusion embedding; N-H = non-hacking (upper bound on genuine reasoning). Multi-seed rows: pooled TS/CE/N-H; PR/ISR$^*$ as mean$pm$std. $^dagger$Seed~42 only. $^ddagger$Premise-count-matched (Sref{sec:goodhart}). $^P$FN-corrected (Sref{app:h8}). $^S$Seed-dependent (s43: 38.3%). Per-seed data: Table~ref{tab:fol-detailed}.}\n  REFERENCED in experiments.tex:\n    Line 35: All three exec-only seeds converge to ${leq}6.2%$ non-hacking by 1000 steps (Table~ref{tab:fol-detailed}), confirming that structural degeneration under exec-only reward is not seed-specific among converged runs.\n    Line 38: Three seeds diverge into qualitatively different failure modes: conclusion embedding (s42), repetition collapse (s43), and tautological collapse (s44), yet all converge to ${leq}6.2%$ non-hacking by 1000 steps (Table~ref{tab:fol-detailed}; Appendix~ref{app:detailed-results}).\n    Line 124: caption{Hacking composition across reward conditions (proved samples; exec-only: seed~42; all other bars: pooled across 3 seeds, per-seed breakdown in Appendix Table~ref{tab:fol-detailed}). ISR systematically selects for TS over CE without reducing total hacking; SFT shows near-zero hacking.}\n\nLabel: tab:fol-beta01-detailed\n  NOT REFERENCED in main text (ORPHAN)\n\nLabel: tab:prolog-detailed\n  REFERENCED in experiments.tex:\n    Line 104: Under ISR-as-reward, all three seeds reach $0%$ non-hacking through distinct mechanisms: clean TS (s42), degenerate syntax bypassing text-match classifiers (s43), and query-as-fact gaming (s44; Table~ref{tab:prolog-detailed}).\n\nLabel: tab:prooffol-detailed\n  REFERENCED in experiments.tex:\n    Line 112: ISR reward on ProofFOL produces directionally higher genuine rates than exec-only ($p{=}0.10$, exploratory; Table~ref{tab:prooffol-detailed}).\n\nLabel: app:beta03\n  REFERENCED in experiments.tex:\n    Line 87: Higher doses accelerate collapse: $beta{=}0.2$ eliminates all non-hacking; $beta{=}0.3$ destabilizes training itself, producing multi-modal failure~citep{gao-reward-overoptimization} across both ISR and random conditions (Appendix~ref{app:beta03}). %% registry: plan002-additive-b02-s42/s43/s44, plan002-additive-b03-s42/s43/s44\n\nLabel: tab:beta03-detailed\n  NOT REFERENCED in main text (ORPHAN)\n\nLabel: app:100step\n  REFERENCED in experiments.tex:\n    Line 45: Early-training comparison supports this interpretation: at 100 steps ($text{PR}{=}32%$), hacking already reaches $31%$ vs. SFT's $8%$ at comparable PR (Appendix~ref{app:100step}). %% registry: plan009-sft-baseline-s42-1000/s43-1000/s44-1000-r3\n\nLabel: app:o1-ablation\n  REFERENCED in experiments.tex:\n    Line 34: A binary variant testing only collective premise necessity misses the collapse entirely ($text{ISR}{=}1.0$ for all proved samples), confirming that per-component LOO testing is essential (Appendix~ref{app:o1-ablation}).\n\nLabel: app:llama-coldstart\n  REFERENCED in experiments.tex:\n    Line 40: Two additional seeds under identical conditions fail to converge ($text{PR}{approx}14%$; Appendix~ref{app:seed-convergence}), retaining genuine reasoning and suggesting that structural degeneration requires successful convergence, though the confound between model capability and optimization success precludes strong causal attribution (Appendix~ref{app:llama-coldstart}).\n\nLabel: app:seed-convergence\n  REFERENCED in experiments.tex:\n    Line 40: Two additional seeds under identical conditions fail to converge ($text{PR}{approx}14%$; Appendix~ref{app:seed-convergence}), retaining genuine reasoning and suggesting that structural degeneration requires successful convergence, though the confound between model capability and optimization success precludes strong causal attribution (Appendix~ref{app:llama-coldstart}).\n    Line 56: The shuffled-ISR control ($87%$ non-hacking at low PR) is consistent with the interpretation that Goodhart effects require sample-level ISR signal; however, the low PR (comparable to non-converging exec-only seeds; Appendix~ref{app:seed-convergence}) means that non-convergence alone cannot be ruled out as an alternative explanation.\n  REFERENCED in conclusion.tex:\n    Line 6: Convergence appears necessary for degeneration (Appendix~ref{app:seed-convergence}); for practitioners, structural diagnostics should be applied post-hoc, with the mode breakdown providing the reliable signal.\n\nLabel: app:n2-sensitivity\n  REFERENCED in experiments.tex:\n    Line 24: An $N{=}2$ sensitivity analysis excluding s43 confirms consistent or stronger patterns (Appendix~ref{app:n2-sensitivity}).\n    Line 66: Excluding seed~43 (which uses nucleus sampling; Sref{sec:setup}), seed~44 shows $0%$ non-hacking and $100%$ TS at 500 steps; seed~42 retains $17%$ non-hacking at 500 steps but collapses to $2%$ by 1000 steps (full $N{=}2$ analysis: Appendix~ref{app:n2-sensitivity}).\n\nLabel: tab:n2-sensitivity\n  NOT REFERENCED in main text (ORPHAN)\n\nLabel: app:8b-results\n  REFERENCED in experiments.tex:\n    Line 116: Qwen3-8B does not converge under exec-only GRPO ($text{PR}{=}14%$, $K{=}8$; $K{=}4$ produces zero gradient), consistent with degeneration requiring successful convergence (Appendix~ref{app:8b-results}).\n\nLabel: tab:8b-combined\n  NOT REFERENCED in main text (ORPHAN)\n\nLabel: app:ai-assistants\n  NOT REFERENCED in main text (ORPHAN)\n\nLabel: app:practical-guidelines\n  REFERENCED in conclusion.tex:\n    Line 4: STA exposes structural degeneration invisible to execution-based evaluation; repurposed as reward, ISR produces a seed-dependent Goodhart effect: structural proxies for formalization integrity are easier to observe than to optimize (Appendix~ref{app:practical-guidelines}).",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6cbb692c-5d30-4702-b0be-82f56931236c",
+            "isSidechain": true,
+            "promptId": "b8001cdb-9b65-4f33-9ed1-b46347fe28b8",
+            "agentId": "a5b7bc955cca621d0",
+            "type": "user",
+            "uuid": "3f72f7d0-fd00-4e6d-9e55-f717f02ac74a",
+            "sourceToolAssistantUUID": "6cbb692c-5d30-4702-b0be-82f56931236c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/director_acd679de",
+            "sessionId": "8f1c0800-1749-497c-a3d5-4fd006846ba8",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "enchanted-leaping-sprout"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-25T09:11:02.840Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me create a comprehensive summary based on this thorough search. Let me verify the checklist.tex references as well since that's part of the paper:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3f72f7d0-fd00-4e6d-9e55-f717f02ac74a",
+            "isSidechain": true,
+            "agentId": "a5b7bc955cca621d0",
+            "requestId": "req_011CbP2Z6yzzficozsiEJUN6",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8be6865a-7cd0-4238-a47a-e8c4b04e62ae",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/director_acd679de",
+            "sessionId": "8f1c0800-1749-497c-a3d5-4fd006846ba8",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "enchanted-leaping-sprout",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011SPfN5DwiojZVVsroHydAW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 4901,
+                "cache_read_input_tokens": 48946,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4901,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-25T09:11:03.831Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014Y1ZpfuNiynrn7FoLtMx56",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"ref{app:\\|ref{tab:\" /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/checklist.tex 2>/dev/null | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8be6865a-7cd0-4238-a47a-e8c4b04e62ae",
+            "isSidechain": true,
+            "agentId": "a5b7bc955cca621d0",
+            "requestId": "req_011CbP2Z6yzzficozsiEJUN6",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6fbefb40-1470-4518-8824-489794ab686e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/director_acd679de",
+            "sessionId": "8f1c0800-1749-497c-a3d5-4fd006846ba8",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "enchanted-leaping-sprout",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011SPfN5DwiojZVVsroHydAW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 4901,
+                "cache_read_input_tokens": 48946,
+                "output_tokens": 147,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4901
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 147,
+                    "cache_read_input_tokens": 48946,
+                    "cache_creation_input_tokens": 4901,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4901,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-25T09:11:03.903Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014Y1ZpfuNiynrn7FoLtMx56",
+              "type": "tool_result",
+              "content": "41:Yes. The model size (4B) is reported in \\S\\ref{sec:task}. Training details (GRPO $K{=}4$, 500/1000 steps, seeds, batch sizes) are in \\S\\ref{sec:task} and Appendix~\\ref{app:setup}. Computing infrastructure and total GPU hours are reported in Appendix~\\ref{app:setup}.\n44:Yes. All hyperparameters are reported in \\S\\ref{sec:rewards} and Appendix~\\ref{app:setup}. No hyperparameter search was performed; $\\beta$ values were chosen for dose-response analysis.\n47:Yes. We report mean$\\pm$std across seeds (Table~\\ref{tab:goodhart-landscape}), per-seed ranges, bootstrap confidence intervals (Appendix Table~\\ref{tab:bootstrap-ci}), and discuss statistical power limitations (\\S\\ref{sec:limitations}).\n50:Yes. We report Qwen3-4B model versions, Prover9, and SWI-Prolog. Training uses TRL 0.17.0, PyTorch 2.6.0, and Transformers 4.51.3; versions are listed in Appendix~\\ref{app:setup}.\n54:Minimal. Manual audit was conducted for classifier precision (50 random CE/TS samples verified; Appendix~\\ref{app:hacking-modes}) and for PG false-negative correction (seed 42 only). No crowdsourced annotation was used.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6fbefb40-1470-4518-8824-489794ab686e",
+            "isSidechain": true,
+            "promptId": "b8001cdb-9b65-4f33-9ed1-b46347fe28b8",
+            "agentId": "a5b7bc955cca621d0",
+            "type": "user",
+            "uuid": "b7d69eae-4f95-4a33-9b01-7c24a4671d25",
+            "sourceToolAssistantUUID": "6fbefb40-1470-4518-8824-489794ab686e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/director_acd679de",
+            "sessionId": "8f1c0800-1749-497c-a3d5-4fd006846ba8",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "enchanted-leaping-sprout"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-25T09:11:17.014Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent. Now I have a complete picture. Let me compile the final comprehensive report:\n\n## APPENDIX LABEL REFERENCE AUDIT - COMPLETE RESULTS\n\nBased on a thorough search of all main text files (abstract.tex, introduction.tex, method.tex, experiments.tex, related_work.tex, conclusion.tex, and limitations.tex), here is the complete status of all 32 appendix labels:\n\n### REFERENCED LABELS (23 total)\n\n1. **app:setup** - REFERENCED\n   - method.tex:68: formulation alternatives\n   - experiments.tex:55: additive variant discussion\n   - checklist.tex:41,44,50: training details, hyperparameters, versions\n\n2. **app:prooffol-construction** - REFERENCED\n   - experiments.tex:11: ProofFOL corpus construction via GPT-4o and Prover9\n\n3. **app:extended-discussion** - REFERENCED\n   - experiments.tex:12: classifier blind spots\n   - limitations.tex:6: semantic faithfulness vs. necessity\n\n4. **app:shapley** - REFERENCED\n   - method.tex:53: LOO as Shapley value restriction\n\n5. **app:premise-count** - REFERENCED\n   - experiments.tex:70: premise-count-matched comparison\n\n6. **tab:premise-bin-modes** - REFERENCED\n   - experiments.tex:73: TS rates across premise-count ranges\n\n7. **app:statistical-details** - REFERENCED\n   - experiments.tex:59: TS amplification rates\n   - experiments.tex:62: chi-square test results\n\n8. **app:hacking-modes** - REFERENCED\n   - experiments.tex:12: classifier precision audit (152-sample)\n   - method.tex:96: full mode definitions\n   - experiments.tex:128: mode breakdown (CE, TS, PG)\n   - checklist.tex:54: classifier precision verification\n\n9. **tab:hacking-taxonomy** - REFERENCED\n   - experiments.tex:128: cross-condition summary\n\n10. **app:h8** - REFERENCED\n    - method.tex:91: FN-corrected footnote in caption\n    - method.tex:96: premise-subset gaming definition\n\n11. **app:detailed-results** - REFERENCED\n    - experiments.tex:9: seeds 45/46 extension\n    - experiments.tex:10: excluding s43 analysis\n    - experiments.tex:38: qualitative failure modes\n    - experiments.tex:65: post-hoc replication seeds\n\n12. **tab:fol-detailed** - REFERENCED\n    - method.tex:91: per-seed data in caption\n    - experiments.tex:35: exec-only convergence\n    - experiments.tex:38: qualitative failure modes with table\n    - experiments.tex:124: per-seed breakdown in caption\n\n13. **tab:prolog-detailed** - REFERENCED\n    - experiments.tex:104: three seeds distinct mechanisms under ISR\n\n14. **tab:prooffol-detailed** - REFERENCED\n    - experiments.tex:112: genuine rates comparison\n\n15. **app:beta03** - REFERENCED\n    - experiments.tex:87: beta=0.2 and beta=0.3 results\n\n16. **app:100step** - REFERENCED\n    - experiments.tex:45: early-training hacking comparison at 100 steps\n\n17. **app:o1-ablation** - REFERENCED\n    - experiments.tex:34: binary variant (collective premise necessity)\n\n18. **app:llama-coldstart** - REFERENCED\n    - experiments.tex:40: LLaMA-3.2-3B cold-start failure\n\n19. **app:seed-convergence** - REFERENCED\n    - experiments.tex:40: non-converging seeds analysis\n    - experiments.tex:56: shuffled-ISR control discussion\n    - conclusion.tex:6: convergence necessity\n\n20. **app:n2-sensitivity** - REFERENCED\n    - experiments.tex:24: N=2 sensitivity excluding s43\n    - experiments.tex:66: full N=2 analysis\n\n21. **app:8b-results** - REFERENCED\n    - experiments.tex:116: Qwen3-8B non-convergence\n\n22. **app:practical-guidelines** - REFERENCED\n    - conclusion.tex:4: structural diagnostics post-hoc\n\n### ORPHANED LABELS (9 total) - NOT REFERENCED IN MAIN TEXT\n\n1. **tab:hyperparams** - ORPHAN (only defined in appendix.tex:13)\n2. **tab:prooffol-vs-folio** - ORPHAN (only defined in appendix.tex:77)\n3. **tab:bootstrap-ci** - ORPHAN (only defined in appendix.tex:154, mentioned in checklist.tex:47)\n4. **tab:hacking-taxonomy-app** - ORPHAN (only defined in appendix.tex:272)\n5. **tab:classifier-precision** - ORPHAN (only defined in appendix.tex:309)\n6. **tab:fol-beta01-detailed** - ORPHAN (only defined in appendix.tex:558)\n7. **tab:beta03-detailed** - ORPHAN (only defined in appendix.tex:715)\n8. **tab:n2-sensitivity** - ORPHAN (only defined in appendix.tex:823)\n9. **tab:8b-combined** - ORPHAN (only defined in appendix.tex:863)\n10. **app:ai-assistants** - ORPHAN (only defined in appendix.tex:874)\n\n### NOTE ON CHECKLIST.TEX\nThe checklist.tex file (which is typically author-provided metadata) does reference several appendix labels (app:setup, app:hacking-modes, tab:bootstrap-ci), but since your search request was specifically for the main body text files, these additional references have been noted but are separate from the core analysis."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b7d69eae-4f95-4a33-9b01-7c24a4671d25",
+            "isSidechain": true,
+            "agentId": "a5b7bc955cca621d0",
+            "requestId": "req_011CbP2ZJ2GUQJQr1rMqowAW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d66456cb-15d1-4482-80ca-eb8c3114d962",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/director_acd679de",
+            "sessionId": "8f1c0800-1749-497c-a3d5-4fd006846ba8",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "enchanted-leaping-sprout",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AwJvvUen8eZ1QosnhaHfv3",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 518,
+                "cache_read_input_tokens": 53847,
+                "output_tokens": 1402,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 518
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 1402,
+                    "cache_read_input_tokens": 53847,
+                    "cache_creation_input_tokens": 518,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 518,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        }
+      ],
+      "message_count": 22
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-find-all-references-to-appendix-labels-in-the-main-text-of-the-paper.md"
+}

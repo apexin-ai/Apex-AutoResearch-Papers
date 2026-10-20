@@ -1,0 +1,776 @@
+{
+  "schema_version": "1.0",
+  "session_id": "d1a34190e3752a80e0fb",
+  "rounds": [
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 147,
+          "timestamp": "2026-05-13T05:43:02.208Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BvtmWAhLHo95CfQX5MNJuD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Phase 2 实验框架：多模型 × 多任务 × 多方法的 CSS circuit discovery。\\\\n\\\\n复用 run_circus.py 的 pipeline + analyze_mvp_results.py 的分析，\\\\n支持配置化批量实验。\\\\n\\\\nUsage:\\\\n    python run_phase2_experiment.py --config phase2_configs.yaml --experiment gpt2_ioi\\\\n    python run_phase2_experiment.py --config phase2_configs.yaml --all\\\\n    python run_phase2_experiment.py --config phase2_configs.yaml --priority 2\\\\n    python run_phase2_experiment.py --list  # 列出所有候选实验\\\\n    python run_phase2_experiment.py --status  # 查看已完抉/待运行状态\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\n# GPU guard: 必须在 torch import 之前设置 (D007)\\\\n_GPU_ID = os.environ.get(\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\", \\\\\\\"5\\\\\\\")\\\\nos.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = _GPU_ID\\\\n\\\\nimport argparse\\\\nimport hashlib\\\\nimport json\\\\nimport logging\\\\nimport sys\\\\nimport time\\\\nfrom dataclasses import dataclass, field\\\\nfrom pathlib import Path\\\\nfrom typing import Any, Dict, List, Optional, Set\\\\n\\\\nimport yaml\\\\n\\\\nCANONICAL_VERSION = \\\\\\\"v2\\\\\\\"\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\\\\\\\",\\\\n    datefmt=\\\\\\\"%Y-%m-%d %H:%M:%S\\\\\\\",\\\\n)\\\\nlogger = logging.getLogger(\\\\\\\"phase2\\\\\\\")\\\\n\\\\n\\\\n# -----------------------------------------------------------------------------\\\\n# Config dataclasses\\\\n# -----------------------------------------------------------------------------\\\\n\\\\n@dataclass\\\\nclass ExperimentConfig:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"单个实验的配置。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    name: str\\\\n    model: str\\\\n    task: str\\\\n    methods: List[str]\\\\n    backend: str  # \\\\\\\"transformerlens\\\\\\\" | \\\\\\\"huggingface\\\\\\\"\\\\n    priority: int = 3\\\\n    model_path: Optional[str] = None\\\\n    K: int = 3\\\\n    num_samples: int = 50\\\\n    gpu_id: str = \\\\\\\"0\\\\\\\"\\\\n    seed: int = 42\\\\n    eap_ig_steps: int = 5\\\\n    edge_pruning_epochs: int = 100\\\\n    edge_pruning_lambda: float = 1e-2\\\\n    ifr_threshold: float = 0.1\\\\n    css_threshold: float = 0.67\\\\n    circus_B: int = 10\\\\n    binarize: Dict[str, Dict[str, Any]] = field(default_factory=dict)\\\\n    thresholds: Dict[str, List[float]] = field(default_factory=dict)\\\\n    notes: str = \\\\\\\"\\\\\\\"\\\\n\\\\n    def __post_init__(self):\\\\n        if not self.binarize:\\\\n            self.binarize = {\\\\n                \\\\\\\"eap_ig\\\\\\\": {\\\\\\\"strategy\\\\\\\": \\\\\\\"topn\\\\\\\", \\\\\\\"n\\\\\\\": 200},\\\\n                \\\\\\\"edge_pruning\\\\\\\": {\\\\\\\"strategy\\\\\\\": \\\\\\\"topn\\\\\\\", \\\\\\\"n\\\\\\\": 200},\\\\n                \\\\\\\"ifr\\\\\\\": {\\\\\\\"strategy\\\\\\\": \\\\\\\"unique_score_rank\\\\\\\", \\\\\\\"n\\\\\\\": 50},  # D010\\\\n                \\\\\\\"acdc\\\\\\\": {\\\\\\\"strategy\\\\\\\": \\\\\\\"threshold\\\\\\\", \\\\\\\"threshold\\\\\\\": 0.05},\\\\n            }\\\\n\\\\n    @property\\\\n    def model_slug(self) -> str:\\\\n        return self.model.replace(\\\\\\\"/\\\\\\\", \\\\\\\"_\\\\\\\").replace(\\\\\\\"-\\\\\\\", \\\\\\\"_\\\\\\\")\\\\n\\\\n    @property\\\\n    def output_dir(self) -> Path:\\\\n        return Path(\\\\\\\"results\\\\\\\") / f\\\\\\\"{self.model_slug}_{self.task}\\\\\\\"\\\\n\\\\n    @property\\\\n    def cache_dir(self) -> Path:\\\\n        return Path(\\\\\\\"cache\\\\\\\") / self.model_slug / self.task\\\\n\\\\n    def to_run_circus_config(self) -> Dict[str, Any]:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"转换为 run_circus.py 的 config dict 格式。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        cfg = {\\\\n            \\\\\\\"model\\\\\\\": self.model_path or self.model,\\\\n            \\\\\\\"task\\\\\\\": self.task,\\\\n            \\\\\\\"methods\\\\\\\": self.methods,\\\\n            \\\\\\\"K\\\\\\\": self.K,\\\\n            \\\\\\\"num_samples\\\\\\\": self.num_samples,\\\\n            \\\\\\\"gpu_id\\\\\\\": self.gpu_id,\\\\n            \\\\\\\"seed\\\\\\\": self.seed,\\\\n            \\\\\\\"eap_ig_steps\\\\\\\": self.eap_ig_steps,\\\\n            \\\\\\\"edge_pruning_epochs\\\\\\\": self.edge_pruning_epochs,\\\\n            \\\\\\\"edge_pruning_lambda\\\\\\\": self.edge_pruning_lambda,\\\\n            \\\\\\\"ifr_threshold\\\\\\\": self.ifr_threshold,\\\\n            \\\\\\\"css_threshold\\\\\\\": self.css_threshold,\\\\n            \\\\\\\"circus_B\\\\\\\": self.circus_B,\\\\n            \\\\\\\"binarize\\\\\\\": {m: v for m, v in self.binarize.items() if m in self.methods},\\\\n            \\\\\\\"device\\\\\\\": \\\\\\\"cuda\\\\\\\",\\\\n            \\\\\\\"output_dir\\\\\\\": str(self.output_dir),\\\\n            \\\\\\\"cache_dir\\\\\\\": str(self.cache_dir),\\\\n        }\\\\n        return cfg\\\\n\\\\n\\\\n# -----------------------------------------------------------------------------\\\\n# Config loading\\\\n# -----------------------------------------------------------------------------\\\\n\\\\ndef load_experiment_matrix(config_path: str) -> Dict[str, ExperimentConfig]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"从 YAML 加载实验矩阵。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    path = Path(config_path)\\\\n    if not path.exists():\\\\n        raise FileNotFoundError(f\\\\\\\"Config not found: {config_path}\\\\\\\")\\\\n\\\\n    with open(path) as f:\\\\n        raw = yaml.safe_load(f)\\\\n\\\\n    de\\\\n\\\\n... [截断: 输出过长，省略 565 字符] ...\\\\n\\\\n2: \\\\\\\"MVP 后立即跑\\\\\\\", 3: \\\\\\\"有空再跑\\\\\\\"}.get(pri, f\\\\\\\"P{pri}\\\\\\\")\\\\n        print(f\\\\\\\"\\\\\\\\n=== Priority {pri}: {label} ===\\\\\\\")\\\\n        for exp in sorted(by_priority[pri], key=lambda e: e.name):\\\\n            methods_str = \\\\\\\", \\\\\\\".join(exp.methods)\\\\n            print(f\\\\\\\"  {exp.name:30s}  {exp.model:30s}  {exp.task:15s}  [{methods_str}]\\\\\\\")\\\\n\\\\n    total = len(experiments)\\\\n    counts = {p: len(exps) for p, exps in by_priority.items()}\\\\n    print(f\\\\\\\"\\\\\\\\nTotal: {total} experiments | \\\\\\\" + \\\\\\\" | \\\\\\\".join(f\\\\\\\"P{p}={c}\\\\\\\" for p, c in sorted(counts.items())))\\\\n\\\\n\\\\n# -----------------------------------------------------------------------------\\\\n# Cache management\\\\n# -----------------------------------------------------------------------------\\\\n\\\\ndef _cache_key(exp: ExperimentConfig, method: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"生成缓存文件名，绑定 CANONICAL_VERSION + 超参哈希。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    params = {\\\\n        \\\\\\\"model\\\\\\\": exp.model,\\\\n        \\\\\\\"task\\\\\\\": exp.task,\\\\n        \\\\\\\"method\\\\\\\": method,\\\\n        \\\\\\\"num_samples\\\\\\\": exp.num_samples,\\\\n        \\\\\\\"seed\\\\\\\": exp.seed,\\\\n    }\\\\n    if method == \\\\\\\"eap_ig\\\\\\\":\\\\n        params[\\\\\\\"steps\\\\\\\"] = exp.eap_ig_steps\\\\n    elif method == \\\\\\\"edge_pruning\\\\\\\":\\\\n        params[\\\\\\\"epochs\\\\\\\"] = exp.edge_pruning_epochs\\\\n        params[\\\\\\\"lambda\\\\\\\"] = exp.edge_pruning_lambda\\\\n    elif method == \\\\\\\"ifr\\\\\\\":\\\\n        params[\\\\\\\"threshold\\\\\\\"] = exp.ifr_threshold\\\\n    elif method == \\\\\\\"acdc\\\\\\\":\\\\n        params[\\\\\\\"thresholds\\\\\\\"] = exp.thresholds.get(\\\\\\\"acdc\\\\\\\", [0.05])\\\\n\\\\n    h = hashlib.md5(json.dumps(params, sort_keys=True).encode()).hexdigest()[:16]\\\\n    return f\\\\\\\"{method}_{CANONICAL_VERSION}_{h}.json\\\\\\\"\\\\n\\\\n\\\\ndef check_cache(exp: ExperimentConfig) -> Dict[str, bool]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"检查每个方法的缓存状态。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    status = {}\\\\n    for method in exp.methods:\\\\n        cache_file = exp.cache_dir / _cache_key(exp, method)\\\\n        status[method] = cache_file.exists()\\\\n    return status\\\\n\\\\n\\\\ndef load_cached_scores(exp: ExperimentConfig, method: str) -> Optional[Dict[str, float]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"加载已缓存的 edge scores。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    cache_file = exp.cache_dir / _cache_key(exp, method)\\\\n    if not cache_file.exists():\\\\n        return None\\\\n    with open(cache_file) as f:\\\\n        data = json.load(f)\\\\n    if data.get(\\\\\\\"canonical_version\\\\\\\") != CANONICAL_VERSION:\\\\n        logger.warning(\\\\\\\"Cache version mismatch for %s/%s, will recompute\\\\\\\", exp.name, method)\\\\n        return None\\\\n    return data.get(\\\\\\\"scores\\\\\\\", {})\\\\n\\\\n\\\\ndef save_cached_scores(exp: ExperimentConfig, method: str, scores: Dict[str, float]) -> None:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"保存 edge scores 到缓存。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    exp.cache_dir.mkdir(parents=True, exist_ok=True)\\\\n    cache_file = exp.cache_dir / _cache_key(exp, method)\\\\n    data = {\\\\n        \\\\\\\"canonical_version\\\\\\\": CANONICAL_VERSION,\\\\n        \\\\\\\"model\\\\\\\": exp.model,\\\\n        \\\\\\\"task\\\\\\\": exp.task,\\\\n        \\\\\\\"method\\\\\\\": method,\\\\n        \\\\\\\"n_edges\\\\\\\": len(scores),\\\\n        \\\\\\\"scores\\\\\\\": scores,\\\\n    }\\\\n    with open(cache_file, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(data, f, indent=2)\\\\n    logger.info(\\\\\\\"Cached %d edges → %s\\\\\\\", len(scores), cache_file)\\\\n\\\\n\\\\n# -----------------------------------------------------------------------------\\\\n# Experiment runner\\\\n# -----------------------------------------------------------------------------\\\\n\\\\ndef run_single_experiment(exp: ExperimentConfig, force: bool = False) -> Dict[str, Any]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"运行单个实验：调用 run_circus pipeline，支持断点续跛。\\\\n\\\\n    Returns:\\\\n        run_circus.run_pipeline() 的完整输出 dict，包含\\\\n        method_edge_counts, css_distribution, cross_table 等。\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"Starting experiment: %s\\\\\\\", exp.name)\\\\n    logger.info(\\\\\\\"  Model: %s (%s backend)\\\\\\\", exp.model, exp.backend)\\\\n    logger.info(\\\\\\\"  Task: %s | Methods: %s | K=%d\\\\\\\", exp.task, exp.methods, exp.K)\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    # 断点续跑：检查哪些方法已有缓存\\\\n    cache_status = check_cache(exp)\\\\n    if not force:\\\\n        cached = [m for m, done in cache_status.items() if done]\\\\n        pending = [m for m, done in cache_status.items() if not done]\\\\n        if cached:\\\\n            logger.info(\\\\\\\"Cached methods (skip): %s\\\\\\\", cached)\\\\n        if not pending:\\\\n            logger.info(\\\\\\\"All methods cached, running CSS/CIRCUS\\\\u0006a`�\\\\b�MatO\\\\u0007n only\\\\\\\")\\\\n    else:\\\\n        pending = exp.methods\\\\n        logger.info(\\\\\\\"Force mode: recomputing all methods\\\\\\\")\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c828ea1e-60bf-4c10-8315-cd4025c6a494",
+            "isSidechain": false,
+            "promptId": "4efd9eee-86cd-46c7-bd32-d518cb0902f4",
+            "type": "user",
+            "uuid": "1a0d53eb-5eaa-4f60-b406-339f1d647d8f",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Phase 2 实验框架：多模型 × 多任务 × 多方法的 CSS circuit discovery。\\\\n\\\\n复用 run_circus.py 的 pipeline + analyze_mvp_results.py 的分析，\\\\n支持配置化批量实验。\\\\n\\\\nUsage:\\\\n    python run_phase2_experiment.py --config phase2_configs.yaml --experiment gpt2_ioi\\\\n    python run_phase2_experiment.py --config phase2_configs.yaml --all\\\\n    python run_phase2_experiment.py --config phase2_configs.yaml --priority 2\\\\n    python run_phase2_experiment.py --list  # 列出所有候选实验\\\\n    python run_phase2_experiment.py --status  # 查看已完抉/待运行状态\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\n# GPU guard: 必须在 torch import 之前设置 (D007)\\\\n_GPU_ID = os.environ.get(\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\", \\\\\\\"5\\\\\\\")\\\\nos.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = _GPU_ID\\\\n\\\\nimport argparse\\\\nimport hashlib\\\\nimport json\\\\nimport logging\\\\nimport sys\\\\nimport time\\\\nfrom dataclasses import dataclass, field\\\\nfrom pathlib import Path\\\\nfrom typing import Any, Dict, List, Optional, Set\\\\n\\\\nimport yaml\\\\n\\\\nCANONICAL_VERSION = \\\\\\\"v2\\\\\\\"\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\\\\\\\",\\\\n    datefmt=\\\\\\\"%Y-%m-%d %H:%M:%S\\\\\\\",\\\\n)\\\\nlogger = logging.getLogger(\\\\\\\"phase2\\\\\\\")\\\\n\\\\n\\\\n# -----------------------------------------------------------------------------\\\\n# Config dataclasses\\\\n# -----------------------------------------------------------------------------\\\\n\\\\n@dataclass\\\\nclass ExperimentConfig:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"单个实验的配置。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    name: str\\\\n    model: str\\\\n    task: str\\\\n    methods: List[str]\\\\n    backend: str  # \\\\\\\"transformerlens\\\\\\\" | \\\\\\\"huggingface\\\\\\\"\\\\n    priority: int = 3\\\\n    model_path: Optional[str] = None\\\\n    K: int = 3\\\\n    num_samples: int = 50\\\\n    gpu_id: str = \\\\\\\"0\\\\\\\"\\\\n    seed: int = 42\\\\n    eap_ig_steps: int = 5\\\\n    edge_pruning_epochs: int = 100\\\\n    edge_pruning_lambda: float = 1e-2\\\\n    ifr_threshold: float = 0.1\\\\n    css_threshold: float = 0.67\\\\n    circus_B: int = 10\\\\n    binarize: Dict[str, Dict[str, Any]] = field(default_factory=dict)\\\\n    thresholds: Dict[str, List[float]] = field(default_factory=dict)\\\\n    notes: str = \\\\\\\"\\\\\\\"\\\\n\\\\n    def __post_init__(self):\\\\n        if not self.binarize:\\\\n            self.binarize = {\\\\n                \\\\\\\"eap_ig\\\\\\\": {\\\\\\\"strategy\\\\\\\": \\\\\\\"topn\\\\\\\", \\\\\\\"n\\\\\\\": 200},\\\\n                \\\\\\\"edge_pruning\\\\\\\": {\\\\\\\"strategy\\\\\\\": \\\\\\\"topn\\\\\\\", \\\\\\\"n\\\\\\\": 200},\\\\n                \\\\\\\"ifr\\\\\\\": {\\\\\\\"strategy\\\\\\\": \\\\\\\"unique_score_rank\\\\\\\", \\\\\\\"n\\\\\\\": 50},  # D010\\\\n                \\\\\\\"acdc\\\\\\\": {\\\\\\\"strategy\\\\\\\": \\\\\\\"threshold\\\\\\\", \\\\\\\"threshold\\\\\\\": 0.05},\\\\n            }\\\\n\\\\n    @property\\\\n    def model_slug(self) -> str:\\\\n        return self.model.replace(\\\\\\\"/\\\\\\\", \\\\\\\"_\\\\\\\").replace(\\\\\\\"-\\\\\\\", \\\\\\\"_\\\\\\\")\\\\n\\\\n    @property\\\\n    def output_dir(self) -> Path:\\\\n        return Path(\\\\\\\"results\\\\\\\") / f\\\\\\\"{self.model_slug}_{self.task}\\\\\\\"\\\\n\\\\n    @property\\\\n    def cache_dir(self) -> Path:\\\\n        return Path(\\\\\\\"cache\\\\\\\") / self.model_slug / self.task\\\\n\\\\n    def to_run_circus_config(self) -> Dict[str, Any]:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"转换为 run_circus.py 的 config dict 格式。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        cfg = {\\\\n            \\\\\\\"model\\\\\\\": self.model_path or self.model,\\\\n            \\\\\\\"task\\\\\\\": self.task,\\\\n            \\\\\\\"methods\\\\\\\": self.methods,\\\\n            \\\\\\\"K\\\\\\\": self.K,\\\\n            \\\\\\\"num_samples\\\\\\\": self.num_samples,\\\\n            \\\\\\\"gpu_id\\\\\\\": self.gpu_id,\\\\n            \\\\\\\"seed\\\\\\\": self.seed,\\\\n            \\\\\\\"eap_ig_steps\\\\\\\": self.eap_ig_steps,\\\\n            \\\\\\\"edge_pruning_epochs\\\\\\\": self.edge_pruning_epochs,\\\\n            \\\\\\\"edge_pruning_lambda\\\\\\\": self.edge_pruning_lambda,\\\\n            \\\\\\\"ifr_threshold\\\\\\\": self.ifr_threshold,\\\\n            \\\\\\\"css_threshold\\\\\\\": self.css_threshold,\\\\n            \\\\\\\"circus_B\\\\\\\": self.circus_B,\\\\n            \\\\\\\"binarize\\\\\\\": {m: v for m, v in self.binarize.items() if m in self.methods},\\\\n            \\\\\\\"device\\\\\\\": \\\\\\\"cuda\\\\\\\",\\\\n            \\\\\\\"output_dir\\\\\\\": str(self.output_dir),\\\\n            \\\\\\\"cache_dir\\\\\\\": str(self.cache_dir),\\\\n        }\\\\n        return cfg\\\\n\\\\n\\\\n# -----------------------------------------------------------------------------\\\\n# Config loading\\\\n# -----------------------------------------------------------------------------\\\\n\\\\ndef load_experiment_matrix(config_path: str) -> Dict[str, ExperimentConfig]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"从 YAML 加载实验矩阵。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    path = Path(config_path)\\\\n    if not path.exists():\\\\n        raise FileNotFoundError(f\\\\\\\"Config not found: {config_path}\\\\\\\")\\\\n\\\\n    with open(path) as f:\\\\n        raw = yaml.safe_load(f)\\\\n\\\\n    de\\\\n\\\\n... [截断: 输出过长，省略 565 字符] ...\\\\n\\\\n2: \\\\\\\"MVP 后立即跑\\\\\\\", 3: \\\\\\\"有空再跑\\\\\\\"}.get(pri, f\\\\\\\"P{pri}\\\\\\\")\\\\n        print(f\\\\\\\"\\\\\\\\n=== Priority {pri}: {label} ===\\\\\\\")\\\\n        for exp in sorted(by_priority[pri], key=lambda e: e.name):\\\\n            methods_str = \\\\\\\", \\\\\\\".join(exp.methods)\\\\n            print(f\\\\\\\"  {exp.name:30s}  {exp.model:30s}  {exp.task:15s}  [{methods_str}]\\\\\\\")\\\\n\\\\n    total = len(experiments)\\\\n    counts = {p: len(exps) for p, exps in by_priority.items()}\\\\n    print(f\\\\\\\"\\\\\\\\nTotal: {total} experiments | \\\\\\\" + \\\\\\\" | \\\\\\\".join(f\\\\\\\"P{p}={c}\\\\\\\" for p, c in sorted(counts.items())))\\\\n\\\\n\\\\n# -----------------------------------------------------------------------------\\\\n# Cache management\\\\n# -----------------------------------------------------------------------------\\\\n\\\\ndef _cache_key(exp: ExperimentConfig, method: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"生成缓存文件名，绑定 CANONICAL_VERSION + 超参哈希。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    params = {\\\\n        \\\\\\\"model\\\\\\\": exp.model,\\\\n        \\\\\\\"task\\\\\\\": exp.task,\\\\n        \\\\\\\"method\\\\\\\": method,\\\\n        \\\\\\\"num_samples\\\\\\\": exp.num_samples,\\\\n        \\\\\\\"seed\\\\\\\": exp.seed,\\\\n    }\\\\n    if method == \\\\\\\"eap_ig\\\\\\\":\\\\n        params[\\\\\\\"steps\\\\\\\"] = exp.eap_ig_steps\\\\n    elif method == \\\\\\\"edge_pruning\\\\\\\":\\\\n        params[\\\\\\\"epochs\\\\\\\"] = exp.edge_pruning_epochs\\\\n        params[\\\\\\\"lambda\\\\\\\"] = exp.edge_pruning_lambda\\\\n    elif method == \\\\\\\"ifr\\\\\\\":\\\\n        params[\\\\\\\"threshold\\\\\\\"] = exp.ifr_threshold\\\\n    elif method == \\\\\\\"acdc\\\\\\\":\\\\n        params[\\\\\\\"thresholds\\\\\\\"] = exp.thresholds.get(\\\\\\\"acdc\\\\\\\", [0.05])\\\\n\\\\n    h = hashlib.md5(json.dumps(params, sort_keys=True).encode()).hexdigest()[:16]\\\\n    return f\\\\\\\"{method}_{CANONICAL_VERSION}_{h}.json\\\\\\\"\\\\n\\\\n\\\\ndef check_cache(exp: ExperimentConfig) -> Dict[str, bool]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"检查每个方法的缓存状态。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    status = {}\\\\n    for method in exp.methods:\\\\n        cache_file = exp.cache_dir / _cache_key(exp, method)\\\\n        status[method] = cache_file.exists()\\\\n    return status\\\\n\\\\n\\\\ndef load_cached_scores(exp: ExperimentConfig, method: str) -> Optional[Dict[str, float]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"加载已缓存的 edge scores。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    cache_file = exp.cache_dir / _cache_key(exp, method)\\\\n    if not cache_file.exists():\\\\n        return None\\\\n    with open(cache_file) as f:\\\\n        data = json.load(f)\\\\n    if data.get(\\\\\\\"canonical_version\\\\\\\") != CANONICAL_VERSION:\\\\n        logger.warning(\\\\\\\"Cache version mismatch for %s/%s, will recompute\\\\\\\", exp.name, method)\\\\n        return None\\\\n    return data.get(\\\\\\\"scores\\\\\\\", {})\\\\n\\\\n\\\\ndef save_cached_scores(exp: ExperimentConfig, method: str, scores: Dict[str, float]) -> None:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"保存 edge scores 到缓存。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    exp.cache_dir.mkdir(parents=True, exist_ok=True)\\\\n    cache_file = exp.cache_dir / _cache_key(exp, method)\\\\n    data = {\\\\n        \\\\\\\"canonical_version\\\\\\\": CANONICAL_VERSION,\\\\n        \\\\\\\"model\\\\\\\": exp.model,\\\\n        \\\\\\\"task\\\\\\\": exp.task,\\\\n        \\\\\\\"method\\\\\\\": method,\\\\n        \\\\\\\"n_edges\\\\\\\": len(scores),\\\\n        \\\\\\\"scores\\\\\\\": scores,\\\\n    }\\\\n    with open(cache_file, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(data, f, indent=2)\\\\n    logger.info(\\\\\\\"Cached %d edges → %s\\\\\\\", len(scores), cache_file)\\\\n\\\\n\\\\n# -----------------------------------------------------------------------------\\\\n# Experiment runner\\\\n# -----------------------------------------------------------------------------\\\\n\\\\ndef run_single_experiment(exp: ExperimentConfig, force: bool = False) -> Dict[str, Any]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"运行单个实验：调用 run_circus pipeline，支持断点续跛。\\\\n\\\\n    Returns:\\\\n        run_circus.run_pipeline() 的完整输出 dict，包含\\\\n        method_edge_counts, css_distribution, cross_table 等。\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"Starting experiment: %s\\\\\\\", exp.name)\\\\n    logger.info(\\\\\\\"  Model: %s (%s backend)\\\\\\\", exp.model, exp.backend)\\\\n    logger.info(\\\\\\\"  Task: %s | Methods: %s | K=%d\\\\\\\", exp.task, exp.methods, exp.K)\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    # 断点续跑：检查哪些方法已有缓存\\\\n    cache_status = check_cache(exp)\\\\n    if not force:\\\\n        cached = [m for m, done in cache_status.items() if done]\\\\n        pending = [m for m, done in cache_status.items() if not done]\\\\n        if cached:\\\\n            logger.info(\\\\\\\"Cached methods (skip): %s\\\\\\\", cached)\\\\n        if not pending:\\\\n            logger.info(\\\\\\\"All methods cached, running CSS/CIRCUS\\\\u0006a`�\\\\b�MatO\\\\u0007n only\\\\\\\")\\\\n    else:\\\\n        pending = exp.methods\\\\n        logger.info(\\\\\\\"Force mode: recomputing all methods\\\\\\\")\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 2 实验框架：多模型 × 多任务 × 多方法的 CSS circuit discovery。\\n\\n复用 run_circus.py 的 pipeline + analyze_mvp_results.py 的分析，\\n支持配置化批量实验。\\n\\nUsage:\\n    python run_phase2_experiment.py --config phase2_configs.yaml --experiment gpt2_ioi\\n    python run_phase2_experiment.py --config phase2_configs.yaml --all\\n    python run_phase2_experiment.py --config phase2_configs.yaml --priority 2\\n    python run_phase2_experiment.py --list  # 列出所有候选实验\\n    python run_phase2_experiment.py --status  # 查看已完抉/待运行状态\\n\\\"\\\"\\\"\\n\\nimport os\\n# GPU guard: 必须在 torch import 之前设置 (D007)\\n_GPU_ID = os.environ.get(\\\"CUDA_VISIBLE_DEVICES\\\", \\\"5\\\")\\nos.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = _GPU_ID\\n\\nimport argparse\\nimport hashlib\\nimport json\\nimport logging\\nimport sys\\nimport time\\nfrom dataclasses import dataclass, field\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List, Optional, Set\\n\\nimport yaml\\n\\nCANONICAL_VERSION = \\\"v2\\\"\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\\\",\\n    datefmt=\\\"%Y-%m-%d %H:%M:%S\\\",\\n)\\nlogger = logging.getLogger(\\\"phase2\\\")\\n\\n\\n# -----------------------------------------------------------------------------\\n# Config dataclasses\\n# -----------------------------------------------------------------------------\\n\\n@dataclass\\nclass ExperimentConfig:\\n    \\\"\\\"\\\"单个实验的配置。\\\"\\\"\\\"\\n    name: str\\n    model: str\\n    task: str\\n    methods: List[str]\\n    backend: str  # \\\"transformerlens\\\" | \\\"huggingface\\\"\\n    priority: int = 3\\n    model_path: Optional[str] = None\\n    K: int = 3\\n    num_samples: int = 50\\n    gpu_id: str = \\\"0\\\"\\n    seed: int = 42\\n    eap_ig_steps: int = 5\\n    edge_pruning_epochs: int = 100\\n    edge_pruning_lambda: float = 1e-2\\n    ifr_threshold: float = 0.1\\n    css_threshold: float = 0.67\\n    circus_B: int = 10\\n    binarize: Dict[str, Dict[str, Any]] = field(default_factory=dict)\\n    thresholds: Dict[str, List[float]] = field(default_factory=dict)\\n    notes: str = \\\"\\\"\\n\\n    def __post_init__(self):\\n        if not self.binarize:\\n            self.binarize = {\\n                \\\"eap_ig\\\": {\\\"strategy\\\": \\\"topn\\\", \\\"n\\\": 200},\\n                \\\"edge_pruning\\\": {\\\"strategy\\\": \\\"topn\\\", \\\"n\\\": 200},\\n                \\\"ifr\\\": {\\\"strategy\\\": \\\"unique_score_rank\\\", \\\"n\\\": 50},  # D010\\n                \\\"acdc\\\": {\\\"strategy\\\": \\\"threshold\\\", \\\"threshold\\\": 0.05},\\n            }\\n\\n    @property\\n    def model_slug(self) -> str:\\n        return self.model.replace(\\\"/\\\", \\\"_\\\").replace(\\\"-\\\", \\\"_\\\")\\n\\n    @property\\n    def output_dir(self) -> Path:\\n        return Path(\\\"results\\\") / f\\\"{self.model_slug}_{self.task}\\\"\\n\\n    @property\\n    def cache_dir(self) -> Path:\\n        return Path(\\\"cache\\\") / self.model_slug / self.task\\n\\n    def to_run_circus_config(self) -> Dict[str, Any]:\\n        \\\"\\\"\\\"转换为 run_circus.py 的 config dict 格式。\\\"\\\"\\\"\\n        cfg = {\\n            \\\"model\\\": self.model_path or self.model,\\n            \\\"task\\\": self.task,\\n            \\\"methods\\\": self.methods,\\n            \\\"K\\\": self.K,\\n            \\\"num_samples\\\": self.num_samples,\\n            \\\"gpu_id\\\": self.gpu_id,\\n            \\\"seed\\\": self.seed,\\n            \\\"eap_ig_steps\\\": self.eap_ig_steps,\\n            \\\"edge_pruning_epochs\\\": self.edge_pruning_epochs,\\n            \\\"edge_pruning_lambda\\\": self.edge_pruning_lambda,\\n            \\\"ifr_threshold\\\": self.ifr_threshold,\\n            \\\"css_threshold\\\": self.css_threshold,\\n            \\\"circus_B\\\": self.circus_B,\\n            \\\"binarize\\\": {m: v for m, v in self.binarize.items() if m in self.methods},\\n            \\\"device\\\": \\\"cuda\\\",\\n            \\\"output_dir\\\": str(self.output_dir),\\n            \\\"cache_dir\\\": str(self.cache_dir),\\n        }\\n        return cfg\\n\\n\\n# -----------------------------------------------------------------------------\\n# Config loading\\n# -----------------------------------------------------------------------------\\n\\ndef load_experiment_matrix(config_path: str) -> Dict[str, ExperimentConfig]:\\n    \\\"\\\"\\\"从 YAML 加载实验矩阵。\\\"\\\"\\\"\\n    path = Path(config_path)\\n    if not path.exists():\\n        raise FileNotFoundError(f\\\"Config not found: {config_path}\\\")\\n\\n    with open(path) as f:\\n        raw = yaml.safe_load(f)\\n\\n    de\\n\\n... [截断: 输出过长，省略 565 字符] ...\\n\\n2: \\\"MVP 后立即跑\\\", 3: \\\"有空再跑\\\"}.get(pri, f\\\"P{pri}\\\")\\n        print(f\\\"\\\\n=== Priority {pri}: {label} ===\\\")\\n        for exp in sorted(by_priority[pri], key=lambda e: e.name):\\n            methods_str = \\\", \\\".join(exp.methods)\\n            print(f\\\"  {exp.name:30s}  {exp.model:30s}  {exp.task:15s}  [{methods_str}]\\\")\\n\\n    total = len(experiments)\\n    counts = {p: len(exps) for p, exps in by_priority.items()}\\n    print(f\\\"\\\\nTotal: {total} experiments | \\\" + \\\" | \\\".join(f\\\"P{p}={c}\\\" for p, c in sorted(counts.items())))\\n\\n\\n# -----------------------------------------------------------------------------\\n# Cache management\\n# -----------------------------------------------------------------------------\\n\\ndef _cache_key(exp: ExperimentConfig, method: str) -> str:\\n    \\\"\\\"\\\"生成缓存文件名，绑定 CANONICAL_VERSION + 超参哈希。\\\"\\\"\\\"\\n    params = {\\n        \\\"model\\\": exp.model,\\n        \\\"task\\\": exp.task,\\n        \\\"method\\\": method,\\n        \\\"num_samples\\\": exp.num_samples,\\n        \\\"seed\\\": exp.seed,\\n    }\\n    if method == \\\"eap_ig\\\":\\n        params[\\\"steps\\\"] = exp.eap_ig_steps\\n    elif method == \\\"edge_pruning\\\":\\n        params[\\\"epochs\\\"] = exp.edge_pruning_epochs\\n        params[\\\"lambda\\\"] = exp.edge_pruning_lambda\\n    elif method == \\\"ifr\\\":\\n        params[\\\"threshold\\\"] = exp.ifr_threshold\\n    elif method == \\\"acdc\\\":\\n        params[\\\"thresholds\\\"] = exp.thresholds.get(\\\"acdc\\\", [0.05])\\n\\n    h = hashlib.md5(json.dumps(params, sort_keys=True).encode()).hexdigest()[:16]\\n    return f\\\"{method}_{CANONICAL_VERSION}_{h}.json\\\"\\n\\n\\ndef check_cache(exp: ExperimentConfig) -> Dict[str, bool]:\\n    \\\"\\\"\\\"检查每个方法的缓存状态。\\\"\\\"\\\"\\n    status = {}\\n    for method in exp.methods:\\n        cache_file = exp.cache_dir / _cache_key(exp, method)\\n        status[method] = cache_file.exists()\\n    return status\\n\\n\\ndef load_cached_scores(exp: ExperimentConfig, method: str) -> Optional[Dict[str, float]]:\\n    \\\"\\\"\\\"加载已缓存的 edge scores。\\\"\\\"\\\"\\n    cache_file = exp.cache_dir / _cache_key(exp, method)\\n    if not cache_file.exists():\\n        return None\\n    with open(cache_file) as f:\\n        data = json.load(f)\\n    if data.get(\\\"canonical_version\\\") != CANONICAL_VERSION:\\n        logger.warning(\\\"Cache version mismatch for %s/%s, will recompute\\\", exp.name, method)\\n        return None\\n    return data.get(\\\"scores\\\", {})\\n\\n\\ndef save_cached_scores(exp: ExperimentConfig, method: str, scores: Dict[str, float]) -> None:\\n    \\\"\\\"\\\"保存 edge scores 到缓存。\\\"\\\"\\\"\\n    exp.cache_dir.mkdir(parents=True, exist_ok=True)\\n    cache_file = exp.cache_dir / _cache_key(exp, method)\\n    data = {\\n        \\\"canonical_version\\\": CANONICAL_VERSION,\\n        \\\"model\\\": exp.model,\\n        \\\"task\\\": exp.task,\\n        \\\"method\\\": method,\\n        \\\"n_edges\\\": len(scores),\\n        \\\"scores\\\": scores,\\n    }\\n    with open(cache_file, \\\"w\\\") as f:\\n        json.dump(data, f, indent=2)\\n    logger.info(\\\"Cached %d edges → %s\\\", len(scores), cache_file)\\n\\n\\n# -----------------------------------------------------------------------------\\n# Experiment runner\\n# -----------------------------------------------------------------------------\\n\\ndef run_single_experiment(exp: ExperimentConfig, force: bool = False) -> Dict[str, Any]:\\n    \\\"\\\"\\\"运行单个实验：调用 run_circus pipeline，支持断点续跛。\\n\\n    Returns:\\n        run_circus.run_pipeline() 的完整输出 dict，包含\\n        method_edge_counts, css_distribution, cross_table 等。\\n    \\\"\\\"\\\"\\n    logger.info(\\\"=\\\" * 60)\\n    logger.info(\\\"Starting experiment: %s\\\", exp.name)\\n    logger.info(\\\"  Model: %s (%s backend)\\\", exp.model, exp.backend)\\n    logger.info(\\\"  Task: %s | Methods: %s | K=%d\\\", exp.task, exp.methods, exp.K)\\n    logger.info(\\\"=\\\" * 60)\\n\\n    # 断点续跑：检查哪些方法已有缓存\\n    cache_status = check_cache(exp)\\n    if not force:\\n        cached = [m for m, done in cache_status.items() if done]\\n        pending = [m for m, done in cache_status.items() if not done]\\n        if cached:\\n            logger.info(\\\"Cached methods (skip): %s\\\", cached)\\n        if not pending:\\n            logger.info(\\\"All methods cached, running CSS/CIRCUS\\u0006a`�\\b�MatO\\u0007n only\\\")\\n    else:\\n        pending = exp.methods\\n        logger.info(\\\"Force mode: recomputing all methods\\\")\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            },
+            "sourceToolAssistantUUID": "c828ea1e-60bf-4c10-8315-cd4025c6a494",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "9d49cb46-91a6-4da4-80dc-2f9b9cfb1c68",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "graceful-roaming-hamming"
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "1a0d53eb-5eaa-4f60-b406-339f1d647d8f",
+                "sessionId": "9d49cb46-91a6-4da4-80dc-2f9b9cfb1c68"
+              }
+            }
+          ],
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Deploy Phase 2 IFR integration to server",
+                "sessionId": "9d49cb46-91a6-4da4-80dc-2f9b9cfb1c68"
+              }
+            }
+          ],
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": "2026-05-13T05:43:06.685Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "There's a corruption around line 246 - I can see garbled characters: `CSS/CIRCUS\\u0006a`�\\b�MatO\\u0007n only` which should be something like `CSS/CIRCUS aggregation only`. The file was transferred via base64 but something got corrupted. Let me check the local artifact more carefully.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a0d53eb-5eaa-4f60-b406-339f1d647d8f",
+            "isSidechain": false,
+            "requestId": "req_011Caz2zEEBEUjXAkh12FpAz",
+            "type": "assistant",
+            "uuid": "06dcceec-4fc2-4730-8057-2662e596e89b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "9d49cb46-91a6-4da4-80dc-2f9b9cfb1c68",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "graceful-roaming-hamming",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0138DBUboktXSCq5FssvmJkJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3584,
+                "cache_read_input_tokens": 38708,
+                "output_tokens": 254,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3584,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 254,
+                    "cache_read_input_tokens": 38708,
+                    "cache_creation_input_tokens": 3584,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3584
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": "2026-05-13T05:43:07.519Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file has encoding corruption around line 246 — garbled bytes in the string `CSS/CIRCUS...`. Let me check the local artifact to get the correct content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "06dcceec-4fc2-4730-8057-2662e596e89b",
+            "isSidechain": false,
+            "requestId": "req_011Caz2zEEBEUjXAkh12FpAz",
+            "type": "assistant",
+            "uuid": "861b354b-d01f-4197-93bd-930a1c73ab27",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "9d49cb46-91a6-4da4-80dc-2f9b9cfb1c68",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "graceful-roaming-hamming",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0138DBUboktXSCq5FssvmJkJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3584,
+                "cache_read_input_tokens": 38708,
+                "output_tokens": 254,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3584,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 254,
+                    "cache_read_input_tokens": 38708,
+                    "cache_creation_input_tokens": 3584,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3584
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-13T05:43:09.049Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UnSvyjnZpvKkZTyyB1foYL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/run_phase2_experiment.py",
+                "offset": 240,
+                "limit": 20
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "861b354b-d01f-4197-93bd-930a1c73ab27",
+            "isSidechain": false,
+            "requestId": "req_011Caz2zEEBEUjXAkh12FpAz",
+            "type": "assistant",
+            "uuid": "d101291d-634d-4c57-a73a-1089501d3e15",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "9d49cb46-91a6-4da4-80dc-2f9b9cfb1c68",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "graceful-roaming-hamming",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0138DBUboktXSCq5FssvmJkJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3584,
+                "cache_read_input_tokens": 38708,
+                "output_tokens": 254,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3584,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 254,
+                    "cache_read_input_tokens": 38708,
+                    "cache_creation_input_tokens": 3584,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3584
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": "2026-05-13T05:43:09.055Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UnSvyjnZpvKkZTyyB1foYL",
+              "type": "tool_result",
+              "content": "240\t    if not force:\n241\t        cached = [m for m, done in cache_status.items() if done]\n242\t        pending = [m for m, done in cache_status.items() if not done]\n243\t        if cached:\n244\t            logger.info(\"Cached methods (skip): %s\", cached)\n245\t        if not pending:\n246\t            logger.info(\"All methods cached, running CSS/CIRCUS aggregation only\")\n247\t    else:\n248\t        pending = exp.methods\n249\t        logger.info(\"Force mode: recomputing all methods\")\n250\t\n251\t    # 构建 run_circus config\n252\t    circus_cfg = exp.to_run_circus_config()\n253\t    exp.output_dir.mkdir(parents=True, exist_ok=True)\n254\t\n255\t    # 调用 run_circus pipeline\n256\t    # TODO: 当前直接调用 run_pipeline，未来可拆分为：\n257\t    #   1. run_methods_only(circus_cfg, skip=cached) → 仅跑 scoring\n258\t    #   2. run_aggregation(circus_cfg, all_scores) → CSS + CIRCUS + cross-tab\n259\t    # 以支持更细粒度的断点续跑"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d101291d-634d-4c57-a73a-1089501d3e15",
+            "isSidechain": false,
+            "promptId": "4efd9eee-86cd-46c7-bd32-d518cb0902f4",
+            "type": "user",
+            "uuid": "3e7a2a60-48be-4b0d-ab24-2ca6c3402154",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/run_phase2_experiment.py",
+                "content": "    if not force:\n        cached = [m for m, done in cache_status.items() if done]\n        pending = [m for m, done in cache_status.items() if not done]\n        if cached:\n            logger.info(\"Cached methods (skip): %s\", cached)\n        if not pending:\n            logger.info(\"All methods cached, running CSS/CIRCUS aggregation only\")\n    else:\n        pending = exp.methods\n        logger.info(\"Force mode: recomputing all methods\")\n\n    # 构建 run_circus config\n    circus_cfg = exp.to_run_circus_config()\n    exp.output_dir.mkdir(parents=True, exist_ok=True)\n\n    # 调用 run_circus pipeline\n    # TODO: 当前直接调用 run_pipeline，未来可拆分为：\n    #   1. run_methods_only(circus_cfg, skip=cached) → 仅跑 scoring\n    #   2. run_aggregation(circus_cfg, all_scores) → CSS + CIRCUS + cross-tab\n    # 以支持更细粒度的断点续跑",
+                "numLines": 20,
+                "startLine": 240,
+                "totalLines": 479
+              }
+            },
+            "sourceToolAssistantUUID": "d101291d-634d-4c57-a73a-1089501d3e15",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "9d49cb46-91a6-4da4-80dc-2f9b9cfb1c68",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "graceful-roaming-hamming"
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": "2026-05-13T05:43:12.033Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Line 246 should be `\"All methods cached, running CSS/CIRCUS aggregation only\"`. The file got corrupted during base64 transfer. I'll re-upload the entire file cleanly."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3e7a2a60-48be-4b0d-ab24-2ca6c3402154",
+            "isSidechain": false,
+            "requestId": "req_011Caz2zjtseHJ5jnnaeUULx",
+            "type": "assistant",
+            "uuid": "d7b4a42b-1153-4757-8868-96c7ca58edf9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "9d49cb46-91a6-4da4-80dc-2f9b9cfb1c68",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "graceful-roaming-hamming",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VSvohNZ6qxhiw83En3xMhu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 584,
+                "cache_read_input_tokens": 42292,
+                "output_tokens": 135,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 584,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 135,
+                    "cache_read_input_tokens": 42292,
+                    "cache_creation_input_tokens": 584,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 584
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": "2026-05-13T05:43:12.518Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018aWmXmas3FVV4U65GfLe2g",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/run_phase2_experiment.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d7b4a42b-1153-4757-8868-96c7ca58edf9",
+            "isSidechain": false,
+            "requestId": "req_011Caz2zjtseHJ5jnnaeUULx",
+            "type": "assistant",
+            "uuid": "3b48e4e0-6923-4e25-8df2-3c99ac86f878",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "9d49cb46-91a6-4da4-80dc-2f9b9cfb1c68",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "graceful-roaming-hamming",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VSvohNZ6qxhiw83En3xMhu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 584,
+                "cache_read_input_tokens": 42292,
+                "output_tokens": 135,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 584,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 135,
+                    "cache_read_input_tokens": 42292,
+                    "cache_creation_input_tokens": 584,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 584
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": "2026-05-13T05:43:12.522Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018aWmXmas3FVV4U65GfLe2g",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Phase 2 实验框架：多模型 × 多任务 × 多方法的 CSS circuit discovery。\n2\t\n3\t复用 run_circus.py 的 pipeline + analyze_mvp_results.py 的分析，\n4\t支持配置化批量实验。\n5\t\n6\tUsage:\n7\t    python run_phase2_experiment.py --config phase2_configs.yaml --experiment gpt2_ioi\n8\t    python run_phase2_experiment.py --config phase2_configs.yaml --all\n9\t    python run_phase2_experiment.py --config phase2_configs.yaml --priority 2\n10\t    python run_phase2_experiment.py --list  # 列出所有候选实验\n11\t    python run_phase2_experiment.py --status  # 查看已完成/待运行状态\n12\t\"\"\"\n13\t\n14\timport os\n15\t# GPU guard: 必须在 torch import 之前设置 (D007)\n16\t_GPU_ID = os.environ.get(\"CUDA_VISIBLE_DEVICES\", \"5\")\n17\tos.environ[\"CUDA_VISIBLE_DEVICES\"] = _GPU_ID\n18\t\n19\timport argparse\n20\timport hashlib\n21\timport json\n22\timport logging\n23\timport sys\n24\timport time\n25\tfrom dataclasses import dataclass, field\n26\tfrom pathlib import Path\n27\tfrom typing import Any, Dict, List, Optional, Set\n28\t\n29\timport yaml\n30\t\n31\tCANONICAL_VERSION = \"v2\"\n32\t\n33\tlogging.basicConfig(\n34\t    level=logging.INFO,\n35\t    format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n36\t    datefmt=\"%Y-%m-%d %H:%M:%S\",\n37\t)\n38\tlogger = logging.getLogger(\"phase2\")\n39\t\n40\t\n41\t# ---------------------------------------------------------------------------\n42\t# Config dataclasses\n43\t# ---------------------------------------------------------------------------\n44\t\n45\t@dataclass\n46\tclass ExperimentConfig:\n47\t    \"\"\"单个实验的配置。\"\"\"\n48\t    name: str\n49\t    model: str\n50\t    task: str\n51\t    methods: List[str]\n52\t    backend: str  # \"transformerlens\" | \"huggingface\"\n53\t    priority: int = 3\n54\t    model_path: Optional[str] = None\n55\t    K: int = 3\n56\t    num_samples: int = 50\n57\t    gpu_id: str = \"0\"\n58\t    seed: int = 42\n59\t    eap_ig_steps: int = 5\n60\t    edge_pruning_epochs: int = 100\n61\t    edge_pruning_lambda: float = 1e-2\n62\t    ifr_threshold: float = 0.1\n63\t    css_threshold: float = 0.67\n64\t    circus_B: int = 10\n65\t    binarize: Dict[str, Dict[str, Any]] = field(default_factory=dict)\n66\t    thresholds: Dict[str, List[float]] = field(default_factory=dict)\n67\t    notes: str = \"\"\n68\t\n69\t    def __post_init__(self):\n70\t        if not self.binarize:\n71\t            self.binarize = {\n72\t                \"eap_ig\": {\"strategy\": \"topn\", \"n\": 200},\n73\t                \"edge_pruning\": {\"strategy\": \"topn\", \"n\": 200},\n74\t                \"ifr\": {\"strategy\": \"unique_score_rank\", \"n\": 50},  # D010\n75\t                \"acdc\": {\"strategy\": \"threshold\", \"threshold\": 0.05},\n76\t            }\n77\t\n78\t    @property\n79\t    def model_slug(self) -> str:\n80\t        return self.model.replace(\"/\", \"_\").replace(\"-\", \"_\")\n81\t\n82\t    @property\n83\t    def output_dir(self) -> Path:\n84\t        return Path(\"results\") / f\"{self.model_slug}_{self.task}\"\n85\t\n86\t    @property\n87\t    def cache_dir(self) -> Path:\n88\t        return Path(\"cache\") / self.model_slug / self.task\n89\t\n90\t    def to_run_circus_config(self) -> Dict[str, Any]:\n91\t        \"\"\"转换为 run_circus.py 的 config dict 格式。\"\"\"\n92\t        cfg = {\n93\t            \"model\": self.model_path or self.model,\n94\t            \"task\": self.task,\n95\t            \"methods\": self.methods,\n96\t            \"K\": self.K,\n97\t            \"num_samples\": self.num_samples,\n98\t            \"gpu_id\": self.gpu_id,\n99\t            \"seed\": self.seed,\n100\t            \"eap_ig_steps\": self.eap_ig_steps,\n101\t            \"edge_pruning_epochs\": self.edge_pruning_epochs,\n102\t            \"edge_pruning_lambda\": self.edge_pruning_lambda,\n103\t            \"ifr_threshold\": self.ifr_threshold,\n104\t            \"css_threshold\": self.css_threshold,\n105\t            \"circus_B\": self.circus_B,\n106\t            \"binarize\": {m: v for m, v in self.binarize.items() if m in self.methods},\n107\t            \"device\": \"cuda\",\n108\t            \"output_dir\": str(self.output_dir),\n109\t            \"cache_dir\": str(self.cache_dir),\n110\t        }\n111\t        return cfg\n112\t\n113\t\n114\t# ---------------------------------------------------------------------------\n115\t# Config loading\n116\t# ---------------------------------------------------------------------------\n117\t\n118\tdef load_experiment_matrix(config_path: str) -> Dict[str, ExperimentConfig]:\n119\t    \"\"\"从 YAML 加载实验矩阵。\"\"\"\n120\t    path = Path(config_path)\n121\t    if not path.exists():\n122\t        raise FileNotFoundError(f\"Config not found: {config_path}\")\n123\t\n124\t    with open(path) as f:\n125\t        raw = yaml.safe_load(f)\n126\t\n127\t    defaults = raw.get(\"defaults\", {})\n128\t    experiments = {}\n129\t\n130\t    for name, exp_cfg in raw.get(\"experiments\", {}).items():\n131\t        merged = {**defaults, **exp_cfg}\n132\t        experiments[name] = ExperimentConfig(name=name, **merged)\n133\t\n134\t    return experiments\n135\t\n136\t\n137\tdef list_experiments(experiments: Dict[str, ExperimentConfig]) -> None:\n138\t    \"\"\"打印实验列表。\"\"\"\n139\t    by_priority: Dict[int, List[ExperimentConfig]] = {}\n140\t    for exp in experiments.values():\n141\t        by_priority.setdefault(exp.priority, []).append(exp)\n142\t\n143\t    for pri in sorted(by_priority):\n144\t        label = {1: \"MVP (已跑/在跑)\", 2: \"MVP 后立即跑\", 3: \"有空再跑\"}.get(pri, f\"P{pri}\")\n145\t        print(f\"\\n=== Priority {pri}: {label} ===\")\n146\t        for exp in sorted(by_priority[pri], key=lambda e: e.name):\n147\t            methods_str = \", \".join(exp.methods)\n148\t            print(f\"  {exp.name:30s}  {exp.model:30s}  {exp.task:15s}  [{methods_str}]\")\n149\t\n150\t    total = len(experiments)\n151\t    counts = {p: len(exps) for p, exps in by_priority.items()}\n152\t    print(f\"\\nTotal: {total} experiments | \" + \" | \".join(f\"P{p}={c}\" for p, c in sorted(counts.items())))\n153\t\n154\t\n155\t# ---------------------------------------------------------------------------\n156\t# Cache management\n157\t# ---------------------------------------------------------------------------\n158\t\n159\tdef _cache_key(exp: ExperimentConfig, method: str) -> str:\n160\t    \"\"\"生成缓存文件名，绑定 CANONICAL_VERSION + 超参哈希。\"\"\"\n161\t    params = {\n162\t        \"model\": exp.model,\n163\t        \"task\": exp.task,\n164\t        \"method\": method,\n165\t        \"num_samples\": exp.num_samples,\n166\t        \"seed\": exp.seed,\n167\t    }\n168\t    if method == \"eap_ig\":\n169\t        params[\"steps\"] = exp.eap_ig_steps\n170\t    elif method == \"edge_pruning\":\n171\t        params[\"epochs\"] = exp.edge_pruning_epochs\n172\t        params[\"lambda\"] = exp.edge_pruning_lambda\n173\t    elif method == \"ifr\":\n174\t        params[\"threshold\"] = exp.ifr_threshold\n175\t    elif method == \"acdc\":\n176\t        params[\"thresholds\"] = exp.thresholds.get(\"acdc\", [0.05])\n177\t\n178\t    h = hashlib.md5(json.dumps(params, sort_keys=True).encode()).hexdigest()[:16]\n179\t    return f\"{method}_{CANONICAL_VERSION}_{h}.json\"\n180\t\n181\t\n182\tdef check_cache(exp: ExperimentConfig) -> Dict[str, bool]:\n183\t    \"\"\"检查每个方法的缓存状态。\"\"\"\n184\t    status = {}\n185\t    for method in exp.methods:\n186\t        cache_file = exp.cache_dir / _cache_key(exp, method)\n187\t        status[method] = cache_file.exists()\n188\t    return status\n189\t\n190\t\n191\tdef load_cached_scores(exp: ExperimentConfig, method: str) -> Optional[Dict[str, float]]:\n192\t    \"\"\"加载已缓存的 edge scores。\"\"\"\n193\t    cache_file = exp.cache_dir / _cache_key(exp, method)\n194\t    if not cache_file.exists():\n195\t        return None\n196\t    with open(cache_file) as f:\n197\t        data = json.load(f)\n198\t    if data.get(\"canonical_version\") != CANONICAL_VERSION:\n199\t        logger.warning(\"Cache version mismatch for %s/%s, will recompute\", exp.name, method)\n200\t        return None\n201\t    return data.get(\"scores\", {})\n202\t\n203\t\n204\tdef save_cached_scores(exp: ExperimentConfig, method: str, scores: Dict[str, float]) -> None:\n205\t    \"\"\"保存 edge scores 到缓存。\"\"\"\n206\t    exp.cache_dir.mkdir(parents=True, exist_ok=True)\n207\t    cache_file = exp.cache_dir / _cache_key(exp, method)\n208\t    data = {\n209\t        \"canonical_version\": CANONICAL_VERSION,\n210\t        \"model\": exp.model,\n211\t        \"task\": exp.task,\n212\t        \"method\": method,\n213\t        \"n_edges\": len(scores),\n214\t        \"scores\": scores,\n215\t    }\n216\t    with open(cache_file, \"w\") as f:\n217\t        json.dump(data, f, indent=2)\n218\t    logger.info(\"Cached %d edges → %s\", len(scores), cache_file)\n219\t\n220\t\n221\t# ---------------------------------------------------------------------------\n222\t# Experiment runner\n223\t# ---------------------------------------------------------------------------\n224\t\n225\tdef run_single_experiment(exp: ExperimentConfig, force: bool = False) -> Dict[str, Any]:\n226\t    \"\"\"运行单个实验：调用 run_circus pipeline，支持断点续跑。\n227\t\n228\t    Returns:\n229\t        run_circus.run_pipeline() 的完整输出 dict，包含\n230\t        method_edge_counts, css_distribution, cross_table 等。\n231\t    \"\"\"\n232\t    logger.info(\"=\" * 60)\n233\t    logger.info(\"Starting experiment: %s\", exp.name)\n234\t    logger.info(\"  Model: %s (%s backend)\", exp.model, exp.backend)\n235\t    logger.info(\"  Task: %s | Methods: %s | K=%d\", exp.task, exp.methods, exp.K)\n236\t    logger.info(\"=\" * 60)\n237\t\n238\t    # 断点续跑：检查哪些方法已有缓存\n239\t    cache_status = check_cache(exp)\n240\t    if not force:\n241\t        cached = [m for m, done in cache_status.items() if done]\n242\t        pending = [m for m, done in cache_status.items() if not done]\n243\t        if cached:\n244\t            logger.info(\"Cached methods (skip): %s\", cached)\n245\t        if not pending:\n246\t            logger.info(\"All methods cached, running CSS/CIRCUS aggregation only\")\n247\t    else:\n248\t        pending = exp.methods\n249\t        logger.info(\"Force mode: recomputing all methods\")\n250\t\n251\t    # 构建 run_circus config\n252\t    circus_cfg = exp.to_run_circus_config()\n253\t    exp.output_dir.mkdir(parents=True, exist_ok=True)\n254\t\n255\t    # 调用 run_circus pipeline\n256\t    # TODO: 当前直接调用 run_pipeline，未来可拆分为：\n257\t    #   1. run_methods_only(circus_cfg, skip=cached) → 仅跑 scoring\n258\t    #   2. run_aggregation(circus_cfg, all_scores) → CSS + CIRCUS + cross-tab\n259\t    # 以支持更细粒度的断点续跑\n260\t    try:\n261\t        from run_circus import run_pipeline\n262\t        results = run_pipeline(config=circus_cfg)\n263\t    except ImportError:\n264\t        logger.error(\"run_circus.py not found in sys.path. Add artifacts/ to PYTHONPATH.\")\n265\t        raise\n266\t    except Exception as e:\n267\t        logger.error(\"Experiment %s failed: %s\", exp.name, e)\n268\t        raise\n269\t\n270\t    # 保存实验元信息\n271\t    meta = {\n272\t        \"experiment_name\": exp.name,\n273\t        \"priority\": exp.priority,\n274\t        \"backend\": exp.backend,\n275\t        \"canonical_version\": CANONICAL_VERSION,\n276\t        \"timestamp\": time.strftime(\"%Y-%m-%d %H:%M:%S\"),\n277\t    }\n278\t    results[\"phase2_meta\"] = meta\n279\t\n280\t    output_file = exp.output_dir / f\"{exp.model_slug}_{exp.task}_K{exp.K}.json\"\n281\t    with open(output_file, \"w\") as f:\n282\t        json.dump(results, f, indent=2, default=str)\n283\t    logger.info(\"Results → %s\", output_file)\n284\t\n285\t    return results\n286\t\n287\t\n288\tdef run_analysis_for_experiment(exp: ExperimentConfig) -> Optional[Dict[str, Any]]:\n289\t    \"\"\"实验完成后调用 analyze_mvp_results 的分析逻辑。\"\"\"\n290\t    try:\n291\t        from analyze_mvp_results import run_analysis\n292\t    except ImportError:\n293\t        logger.warning(\"analyze_mvp_results.py not importable, skipping analysis\")\n294\t        return None\n295\t\n296\t    analysis_dir = exp.output_dir / \"analysis\"\n297\t    analysis_dir.mkdir(parents=True, exist_ok=True)\n298\t\n299\t    # run_analysis 从 cache dir 加载 per-method scores\n300\t    results = run_analysis(\n301\t        results_dir=exp.cache_dir.parent.parent,  # results/ 根\n302\t        output_dir=analysis_dir,\n303\t        top_n=200,\n304\t    )\n305\t    logger.info(\"Analysis → %s\", analysis_dir)\n306\t    return results\n307\t\n308\t\n309\t# ---------------------------------------------------------------------------\n310\t# Batch runner\n311\t# ---------------------------------------------------------------------------\n312\t\n313\tdef run_batch(\n314\t    experiments: Dict[str, ExperimentConfig],\n315\t    names: Optional[List[str]] = None,\n316\t    max_priority: Optional[int] = None,\n317\t    force: bool = False,\n318\t) -> Dict[str, Dict[str, Any]]:\n319\t    \"\"\"批量运行实验。\n320\t\n321\t    Args:\n322\t        experiments: 完整实验矩阵\n323\t        names: 指定运行的实验名（None=全部）\n324\t        max_priority: 只运行 priority <= 此值的实验\n325\t        force: 忽略缓存，强制重算\n326\t    \"\"\"\n327\t    selected = _select_experiments(experiments, names, max_priority)\n328\t\n329\t    # 按 priority 排序\n330\t    ordered = sorted(selected.values(), key=lambda e: (e.priority, e.name))\n331\t    logger.info(\"Running %d experiments (sorted by priority)\", len(ordered))\n332\t\n333\t    all_results = {}\n334\t    for i, exp in enumerate(ordered, 1):\n335\t        logger.info(\"[%d/%d] %s (priority=%d)\", i, len(ordered), exp.name, exp.priority)\n336\t        t0 = time.time()\n337\t\n338\t        try:\n339\t            results = run_single_experiment(exp, force=force)\n340\t            analysis = run_analysis_for_experiment(exp)\n341\t            if analysis:\n342\t                results[\"analysis\"] = analysis\n343\t\n344\t            elapsed = time.time() - t0\n345\t            results[\"elapsed_sec\"] = elapsed\n346\t            all_results[exp.name] = results\n347\t            logger.info(\"✓ %s completed in %.1f sec\", exp.name, elapsed)\n348\t\n349\t        except Exception as e:\n350\t            logger.error(\"✗ %s failed: %s\", exp.name, e)\n351\t            all_results[exp.name] = {\"error\": str(e)}\n352\t\n353\t    _save_batch_summary(all_results)\n354\t    return all_results\n355\t\n356\t\n357\tdef _select_experiments(\n358\t    experiments: Dict[str, ExperimentConfig],\n359\t    names: Optional[List[str]] = None,\n360\t    max_priority: Optional[int] = None,\n361\t) -> Dict[str, ExperimentConfig]:\n362\t    \"\"\"筛选实验子集。\"\"\"\n363\t    selected = experiments\n364\t    if names:\n365\t        missing = set(names) - set(experiments)\n366\t        if missing:\n367\t            raise ValueError(f\"Unknown experiments: {missing}\")\n368\t        selected = {n: experiments[n] for n in names}\n369\t    if max_priority is not None:\n370\t        selected = {n: e for n, e in selected.items() if e.priority <= max_priority}\n371\t    if not selected:\n372\t        raise ValueError(\"No experiments match the filter criteria\")\n373\t    return selected\n374\t\n375\t\n376\tdef _save_batch_summary(all_results: Dict[str, Dict[str, Any]]) -> None:\n377\t    \"\"\"保存批量运行摘要。\"\"\"\n378\t    summary_path = Path(\"results\") / \"phase2_batch_summary.json\"\n379\t    summary_path.parent.mkdir(parents=True, exist_ok=True)\n380\t\n381\t    summary = {\n382\t        \"timestamp\": time.strftime(\"%Y-%m-%d %H:%M:%S\"),\n383\t        \"canonical_version\": CANONICAL_VERSION,\n384\t        \"experiments\": {},\n385\t    }\n386\t    for name, res in all_results.items():\n387\t        entry = {\"status\": \"error\" if \"error\" in res else \"ok\"}\n388\t        if \"error\" in res:\n389\t            entry[\"error\"] = res[\"error\"]\n390\t        else:\n391\t            entry[\"elapsed_sec\"] = res.get(\"elapsed_sec\")\n392\t            if \"cross_table\" in res:\n393\t                entry[\"off_diagonal_pct\"] = res[\"cross_table\"].get(\"off_diagonal_pct\")\n394\t            if \"css_distribution\" in res:\n395\t                entry[\"css_distribution\"] = res[\"css_distribution\"]\n396\t        summary[\"experiments\"][name] = entry\n397\t\n398\t    with open(summary_path, \"w\") as f:\n399\t        json.dump(summary, f, indent=2)\n400\t    logger.info(\"Batch summary → %s\", summary_path)\n401\t\n402\t\n403\t# ---------------------------------------------------------------------------\n404\t# Status check\n405\t# ---------------------------------------------------------------------------\n406\t\n407\tdef show_status(experiments: Dict[str, ExperimentConfig]) -> None:\n408\t    \"\"\"显示每个实验的完成状态。\"\"\"\n409\t    print(f\"\\n{'Experiment':30s} {'Model':25s} {'Task':12s} {'Cached Methods':40s} {'Result'}\")\n410\t    print(\"-\" * 120)\n411\t\n412\t    for name in sorted(experiments, key=lambda n: (experiments[n].priority, n)):\n413\t        exp = experiments[name]\n414\t        cache = check_cache(exp)\n415\t        cached_str = \" \".join(f\"{'✓' if v else '✗'}{m}\" for m, v in cache.items())\n416\t\n417\t        result_file = exp.output_dir / f\"{exp.model_slug}_{exp.task}_K{exp.K}.json\"\n418\t        result_str = \"✓\" if result_file.exists() else \"—\"\n419\t\n420\t        print(f\"  P{exp.priority} {name:28s} {exp.model:25s} {exp.task:12s} {cached_str:40s} {result_str}\")\n421\t\n422\t\n423\t# ---------------------------------------------------------------------------\n424\t# CLI\n425\t# ---------------------------------------------------------------------------\n426\t\n427\tdef parse_args() -> argparse.Namespace:\n428\t    parser = argparse.ArgumentParser(description=\"Phase 2 experiment runner\")\n429\t    parser.add_argument(\"--config\", type=str, default=\"phase2_configs.yaml\",\n430\t                        help=\"实验矩阵 YAML 路径\")\n431\t    parser.add_argument(\"--experiment\", type=str, nargs=\"+\",\n432\t                        help=\"运行指定实验（空格分隔多个）\")\n433\t    parser.add_argument(\"--all\", action=\"store_true\",\n434\t                        help=\"运行全部实验\")\n435\t    parser.add_argument(\"--priority\", type=int,\n436\t                        help=\"只运行 priority <= N 的实验\")\n437\t    parser.add_argument(\"--list\", action=\"store_true\",\n438\t                        help=\"列出所有实验\")\n439\t    parser.add_argument(\"--status\", action=\"store_true\",\n440\t                        help=\"显示完成状态\")\n441\t    parser.add_argument(\"--force\", action=\"store_true\",\n442\t                        help=\"忽略缓存强制重算\")\n443\t    parser.add_argument(\"--gpu\", type=str, default=None,\n444\t                        help=\"覆盖 CUDA_VISIBLE_DEVICES\")\n445\t    return parser.parse_args()\n446\t\n447\t\n448\tdef main():\n449\t    args = parse_args()\n450\t\n451\t    if args.gpu:\n452\t        os.environ[\"CUDA_VISIBLE_DEVICES\"] = args.gpu\n453\t        logger.info(\"GPU override: CUDA_VISIBLE_DEVICES=%s\", args.gpu)\n454\t\n455\t    experiments = load_experiment_matrix(args.config)\n456\t\n457\t    if args.list:\n458\t        list_experiments(experiments)\n459\t        return\n460\t\n461\t    if args.status:\n462\t        show_status(experiments)\n463\t        return\n464\t\n465\t    if args.experiment:\n466\t        run_batch(experiments, names=args.experiment, force=args.force)\n467\t    elif args.all:\n468\t        run_batch(experiments, max_priority=args.priority, force=args.force)\n469\t    elif args.priority:\n470\t        run_batch(experiments, max_priority=args.priority, force=args.force)\n471\t    else:\n472\t        parser = argparse.ArgumentParser()\n473\t        parser.print_help()\n474\t        print(\"\\nHint: use --list to see experiments, --experiment NAME to run one\")\n475\t\n476\t\n477\tif __name__ == \"__main__\":\n478\t    main()\n479\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3b48e4e0-6923-4e25-8df2-3c99ac86f878",
+            "isSidechain": false,
+            "promptId": "4efd9eee-86cd-46c7-bd32-d518cb0902f4",
+            "type": "user",
+            "uuid": "cd68983a-e7ef-407b-995c-c6d5f1bc0eac",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/run_phase2_experiment.py",
+                "content": "\"\"\"Phase 2 实验框架：多模型 × 多任务 × 多方法的 CSS circuit discovery。\n\n复用 run_circus.py 的 pipeline + analyze_mvp_results.py 的分析，\n支持配置化批量实验。\n\nUsage:\n    python run_phase2_experiment.py --config phase2_configs.yaml --experiment gpt2_ioi\n    python run_phase2_experiment.py --config phase2_configs.yaml --all\n    python run_phase2_experiment.py --config phase2_configs.yaml --priority 2\n    python run_phase2_experiment.py --list  # 列出所有候选实验\n    python run_phase2_experiment.py --status  # 查看已完成/待运行状态\n\"\"\"\n\nimport os\n# GPU guard: 必须在 torch import 之前设置 (D007)\n_GPU_ID = os.environ.get(\"CUDA_VISIBLE_DEVICES\", \"5\")\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = _GPU_ID\n\nimport argparse\nimport hashlib\nimport json\nimport logging\nimport sys\nimport time\nfrom dataclasses import dataclass, field\nfrom pathlib import Path\nfrom typing import Any, Dict, List, Optional, Set\n\nimport yaml\n\nCANONICAL_VERSION = \"v2\"\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    datefmt=\"%Y-%m-%d %H:%M:%S\",\n)\nlogger = logging.getLogger(\"phase2\")\n\n\n# ---------------------------------------------------------------------------\n# Config dataclasses\n# ---------------------------------------------------------------------------\n\n@dataclass\nclass ExperimentConfig:\n    \"\"\"单个实验的配置。\"\"\"\n    name: str\n    model: str\n    task: str\n    methods: List[str]\n    backend: str  # \"transformerlens\" | \"huggingface\"\n    priority: int = 3\n    model_path: Optional[str] = None\n    K: int = 3\n    num_samples: int = 50\n    gpu_id: str = \"0\"\n    seed: int = 42\n    eap_ig_steps: int = 5\n    edge_pruning_epochs: int = 100\n    edge_pruning_lambda: float = 1e-2\n    ifr_threshold: float = 0.1\n    css_threshold: float = 0.67\n    circus_B: int = 10\n    binarize: Dict[str, Dict[str, Any]] = field(default_factory=dict)\n    thresholds: Dict[str, List[float]] = field(default_factory=dict)\n    notes: str = \"\"\n\n    def __post_init__(self):\n        if not self.binarize:\n            self.binarize = {\n                \"eap_ig\": {\"strategy\": \"topn\", \"n\": 200},\n                \"edge_pruning\": {\"strategy\": \"topn\", \"n\": 200},\n                \"ifr\": {\"strategy\": \"unique_score_rank\", \"n\": 50},  # D010\n                \"acdc\": {\"strategy\": \"threshold\", \"threshold\": 0.05},\n            }\n\n    @property\n    def model_slug(self) -> str:\n        return self.model.replace(\"/\", \"_\").replace(\"-\", \"_\")\n\n    @property\n    def output_dir(self) -> Path:\n        return Path(\"results\") / f\"{self.model_slug}_{self.task}\"\n\n    @property\n    def cache_dir(self) -> Path:\n        return Path(\"cache\") / self.model_slug / self.task\n\n    def to_run_circus_config(self) -> Dict[str, Any]:\n        \"\"\"转换为 run_circus.py 的 config dict 格式。\"\"\"\n        cfg = {\n            \"model\": self.model_path or self.model,\n            \"task\": self.task,\n            \"methods\": self.methods,\n            \"K\": self.K,\n            \"num_samples\": self.num_samples,\n            \"gpu_id\": self.gpu_id,\n            \"seed\": self.seed,\n            \"eap_ig_steps\": self.eap_ig_steps,\n            \"edge_pruning_epochs\": self.edge_pruning_epochs,\n            \"edge_pruning_lambda\": self.edge_pruning_lambda,\n            \"ifr_threshold\": self.ifr_threshold,\n            \"css_threshold\": self.css_threshold,\n            \"circus_B\": self.circus_B,\n            \"binarize\": {m: v for m, v in self.binarize.items() if m in self.methods},\n            \"device\": \"cuda\",\n            \"output_dir\": str(self.output_dir),\n            \"cache_dir\": str(self.cache_dir),\n        }\n        return cfg\n\n\n# ---------------------------------------------------------------------------\n# Config loading\n# ---------------------------------------------------------------------------\n\ndef load_experiment_matrix(config_path: str) -> Dict[str, ExperimentConfig]:\n    \"\"\"从 YAML 加载实验矩阵。\"\"\"\n    path = Path(config_path)\n    if not path.exists():\n        raise FileNotFoundError(f\"Config not found: {config_path}\")\n\n    with open(path) as f:\n        raw = yaml.safe_load(f)\n\n    defaults = raw.get(\"defaults\", {})\n    experiments = {}\n\n    for name, exp_cfg in raw.get(\"experiments\", {}).items():\n        merged = {**defaults, **exp_cfg}\n        experiments[name] = ExperimentConfig(name=name, **merged)\n\n    return experiments\n\n\ndef list_experiments(experiments: Dict[str, ExperimentConfig]) -> None:\n    \"\"\"打印实验列表。\"\"\"\n    by_priority: Dict[int, List[ExperimentConfig]] = {}\n    for exp in experiments.values():\n        by_priority.setdefault(exp.priority, []).append(exp)\n\n    for pri in sorted(by_priority):\n        label = {1: \"MVP (已跑/在跑)\", 2: \"MVP 后立即跑\", 3: \"有空再跑\"}.get(pri, f\"P{pri}\")\n        print(f\"\\n=== Priority {pri}: {label} ===\")\n        for exp in sorted(by_priority[pri], key=lambda e: e.name):\n            methods_str = \", \".join(exp.methods)\n            print(f\"  {exp.name:30s}  {exp.model:30s}  {exp.task:15s}  [{methods_str}]\")\n\n    total = len(experiments)\n    counts = {p: len(exps) for p, exps in by_priority.items()}\n    print(f\"\\nTotal: {total} experiments | \" + \" | \".join(f\"P{p}={c}\" for p, c in sorted(counts.items())))\n\n\n# ---------------------------------------------------------------------------\n# Cache management\n# ---------------------------------------------------------------------------\n\ndef _cache_key(exp: ExperimentConfig, method: str) -> str:\n    \"\"\"生成缓存文件名，绑定 CANONICAL_VERSION + 超参哈希。\"\"\"\n    params = {\n        \"model\": exp.model,\n        \"task\": exp.task,\n        \"method\": method,\n        \"num_samples\": exp.num_samples,\n        \"seed\": exp.seed,\n    }\n    if method == \"eap_ig\":\n        params[\"steps\"] = exp.eap_ig_steps\n    elif method == \"edge_pruning\":\n        params[\"epochs\"] = exp.edge_pruning_epochs\n        params[\"lambda\"] = exp.edge_pruning_lambda\n    elif method == \"ifr\":\n        params[\"threshold\"] = exp.ifr_threshold\n    elif method == \"acdc\":\n        params[\"thresholds\"] = exp.thresholds.get(\"acdc\", [0.05])\n\n    h = hashlib.md5(json.dumps(params, sort_keys=True).encode()).hexdigest()[:16]\n    return f\"{method}_{CANONICAL_VERSION}_{h}.json\"\n\n\ndef check_cache(exp: ExperimentConfig) -> Dict[str, bool]:\n    \"\"\"检查每个方法的缓存状态。\"\"\"\n    status = {}\n    for method in exp.methods:\n        cache_file = exp.cache_dir / _cache_key(exp, method)\n        status[method] = cache_file.exists()\n    return status\n\n\ndef load_cached_scores(exp: ExperimentConfig, method: str) -> Optional[Dict[str, float]]:\n    \"\"\"加载已缓存的 edge scores。\"\"\"\n    cache_file = exp.cache_dir / _cache_key(exp, method)\n    if not cache_file.exists():\n        return None\n    with open(cache_file) as f:\n        data = json.load(f)\n    if data.get(\"canonical_version\") != CANONICAL_VERSION:\n        logger.warning(\"Cache version mismatch for %s/%s, will recompute\", exp.name, method)\n        return None\n    return data.get(\"scores\", {})\n\n\ndef save_cached_scores(exp: ExperimentConfig, method: str, scores: Dict[str, float]) -> None:\n    \"\"\"保存 edge scores 到缓存。\"\"\"\n    exp.cache_dir.mkdir(parents=True, exist_ok=True)\n    cache_file = exp.cache_dir / _cache_key(exp, method)\n    data = {\n        \"canonical_version\": CANONICAL_VERSION,\n        \"model\": exp.model,\n        \"task\": exp.task,\n        \"method\": method,\n        \"n_edges\": len(scores),\n        \"scores\": scores,\n    }\n    with open(cache_file, \"w\") as f:\n        json.dump(data, f, indent=2)\n    logger.info(\"Cached %d edges → %s\", len(scores), cache_file)\n\n\n# ---------------------------------------------------------------------------\n# Experiment runner\n# ---------------------------------------------------------------------------\n\ndef run_single_experiment(exp: ExperimentConfig, force: bool = False) -> Dict[str, Any]:\n    \"\"\"运行单个实验：调用 run_circus pipeline，支持断点续跑。\n\n    Returns:\n        run_circus.run_pipeline() 的完整输出 dict，包含\n        method_edge_counts, css_distribution, cross_table 等。\n    \"\"\"\n    logger.info(\"=\" * 60)\n    logger.info(\"Starting experiment: %s\", exp.name)\n    logger.info(\"  Model: %s (%s backend)\", exp.model, exp.backend)\n    logger.info(\"  Task: %s | Methods: %s | K=%d\", exp.task, exp.methods, exp.K)\n    logger.info(\"=\" * 60)\n\n    # 断点续跑：检查哪些方法已有缓存\n    cache_status = check_cache(exp)\n    if not force:\n        cached = [m for m, done in cache_status.items() if done]\n        pending = [m for m, done in cache_status.items() if not done]\n        if cached:\n            logger.info(\"Cached methods (skip): %s\", cached)\n        if not pending:\n            logger.info(\"All methods cached, running CSS/CIRCUS aggregation only\")\n    else:\n        pending = exp.methods\n        logger.info(\"Force mode: recomputing all methods\")\n\n    # 构建 run_circus config\n    circus_cfg = exp.to_run_circus_config()\n    exp.output_dir.mkdir(parents=True, exist_ok=True)\n\n    # 调用 run_circus pipeline\n    # TODO: 当前直接调用 run_pipeline，未来可拆分为：\n    #   1. run_methods_only(circus_cfg, skip=cached) → 仅跑 scoring\n    #   2. run_aggregation(circus_cfg, all_scores) → CSS + CIRCUS + cross-tab\n    # 以支持更细粒度的断点续跑\n    try:\n        from run_circus import run_pipeline\n        results = run_pipeline(config=circus_cfg)\n    except ImportError:\n        logger.error(\"run_circus.py not found in sys.path. Add artifacts/ to PYTHONPATH.\")\n        raise\n    except Exception as e:\n        logger.error(\"Experiment %s failed: %s\", exp.name, e)\n        raise\n\n    # 保存实验元信息\n    meta = {\n        \"experiment_name\": exp.name,\n        \"priority\": exp.priority,\n        \"backend\": exp.backend,\n        \"canonical_version\": CANONICAL_VERSION,\n        \"timestamp\": time.strftime(\"%Y-%m-%d %H:%M:%S\"),\n    }\n    results[\"phase2_meta\"] = meta\n\n    output_file = exp.output_dir / f\"{exp.model_slug}_{exp.task}_K{exp.K}.json\"\n    with open(output_file, \"w\") as f:\n        json.dump(results, f, indent=2, default=str)\n    logger.info(\"Results → %s\", output_file)\n\n    return results\n\n\ndef run_analysis_for_experiment(exp: ExperimentConfig) -> Optional[Dict[str, Any]]:\n    \"\"\"实验完成后调用 analyze_mvp_results 的分析逻辑。\"\"\"\n    try:\n        from analyze_mvp_results import run_analysis\n    except ImportError:\n        logger.warning(\"analyze_mvp_results.py not importable, skipping analysis\")\n        return None\n\n    analysis_dir = exp.output_dir / \"analysis\"\n    analysis_dir.mkdir(parents=True, exist_ok=True)\n\n    # run_analysis 从 cache dir 加载 per-method scores\n    results = run_analysis(\n        results_dir=exp.cache_dir.parent.parent,  # results/ 根\n        output_dir=analysis_dir,\n        top_n=200,\n    )\n    logger.info(\"Analysis → %s\", analysis_dir)\n    return results\n\n\n# ---------------------------------------------------------------------------\n# Batch runner\n# ---------------------------------------------------------------------------\n\ndef run_batch(\n    experiments: Dict[str, ExperimentConfig],\n    names: Optional[List[str]] = None,\n    max_priority: Optional[int] = None,\n    force: bool = False,\n) -> Dict[str, Dict[str, Any]]:\n    \"\"\"批量运行实验。\n\n    Args:\n        experiments: 完整实验矩阵\n        names: 指定运行的实验名（None=全部）\n        max_priority: 只运行 priority <= 此值的实验\n        force: 忽略缓存，强制重算\n    \"\"\"\n    selected = _select_experiments(experiments, names, max_priority)\n\n    # 按 priority 排序\n    ordered = sorted(selected.values(), key=lambda e: (e.priority, e.name))\n    logger.info(\"Running %d experiments (sorted by priority)\", len(ordered))\n\n    all_results = {}\n    for i, exp in enumerate(ordered, 1):\n        logger.info(\"[%d/%d] %s (priority=%d)\", i, len(ordered), exp.name, exp.priority)\n        t0 = time.time()\n\n        try:\n            results = run_single_experiment(exp, force=force)\n            analysis = run_analysis_for_experiment(exp)\n            if analysis:\n                results[\"analysis\"] = analysis\n\n            elapsed = time.time() - t0\n            results[\"elapsed_sec\"] = elapsed\n            all_results[exp.name] = results\n            logger.info(\"✓ %s completed in %.1f sec\", exp.name, elapsed)\n\n        except Exception as e:\n            logger.error(\"✗ %s failed: %s\", exp.name, e)\n            all_results[exp.name] = {\"error\": str(e)}\n\n    _save_batch_summary(all_results)\n    return all_results\n\n\ndef _select_experiments(\n    experiments: Dict[str, ExperimentConfig],\n    names: Optional[List[str]] = None,\n    max_priority: Optional[int] = None,\n) -> Dict[str, ExperimentConfig]:\n    \"\"\"筛选实验子集。\"\"\"\n    selected = experiments\n    if names:\n        missing = set(names) - set(experiments)\n        if missing:\n            raise ValueError(f\"Unknown experiments: {missing}\")\n        selected = {n: experiments[n] for n in names}\n    if max_priority is not None:\n        selected = {n: e for n, e in selected.items() if e.priority <= max_priority}\n    if not selected:\n        raise ValueError(\"No experiments match the filter criteria\")\n    return selected\n\n\ndef _save_batch_summary(all_results: Dict[str, Dict[str, Any]]) -> None:\n    \"\"\"保存批量运行摘要。\"\"\"\n    summary_path = Path(\"results\") / \"phase2_batch_summary.json\"\n    summary_path.parent.mkdir(parents=True, exist_ok=True)\n\n    summary = {\n        \"timestamp\": time.strftime(\"%Y-%m-%d %H:%M:%S\"),\n        \"canonical_version\": CANONICAL_VERSION,\n        \"experiments\": {},\n    }\n    for name, res in all_results.items():\n        entry = {\"status\": \"error\" if \"error\" in res else \"ok\"}\n        if \"error\" in res:\n            entry[\"error\"] = res[\"error\"]\n        else:\n            entry[\"elapsed_sec\"] = res.get(\"elapsed_sec\")\n            if \"cross_table\" in res:\n                entry[\"off_diagonal_pct\"] = res[\"cross_table\"].get(\"off_diagonal_pct\")\n            if \"css_distribution\" in res:\n                entry[\"css_distribution\"] = res[\"css_distribution\"]\n        summary[\"experiments\"][name] = entry\n\n    with open(summary_path, \"w\") as f:\n        json.dump(summary, f, indent=2)\n    logger.info(\"Batch summary → %s\", summary_path)\n\n\n# ---------------------------------------------------------------------------\n# Status check\n# ---------------------------------------------------------------------------\n\ndef show_status(experiments: Dict[str, ExperimentConfig]) -> None:\n    \"\"\"显示每个实验的完成状态。\"\"\"\n    print(f\"\\n{'Experiment':30s} {'Model':25s} {'Task':12s} {'Cached Methods':40s} {'Result'}\")\n    print(\"-\" * 120)\n\n    for name in sorted(experiments, key=lambda n: (experiments[n].priority, n)):\n        exp = experiments[name]\n        cache = check_cache(exp)\n        cached_str = \" \".join(f\"{'✓' if v else '✗'}{m}\" for m, v in cache.items())\n\n        result_file = exp.output_dir / f\"{exp.model_slug}_{exp.task}_K{exp.K}.json\"\n        result_str = \"✓\" if result_file.exists() else \"—\"\n\n        print(f\"  P{exp.priority} {name:28s} {exp.model:25s} {exp.task:12s} {cached_str:40s} {result_str}\")\n\n\n# ---------------------------------------------------------------------------\n# CLI\n# ---------------------------------------------------------------------------\n\ndef parse_args() -> argparse.Namespace:\n    parser = argparse.ArgumentParser(description=\"Phase 2 experiment runner\")\n    parser.add_argument(\"--config\", type=str, default=\"phase2_configs.yaml\",\n                        help=\"实验矩阵 YAML 路径\")\n    parser.add_argument(\"--experiment\", type=str, nargs=\"+\",\n                        help=\"运行指定实验（空格分隔多个）\")\n    parser.add_argument(\"--all\", action=\"store_true\",\n                        help=\"运行全部实验\")\n    parser.add_argument(\"--priority\", type=int,\n                        help=\"只运行 priority <= N 的实验\")\n    parser.add_argument(\"--list\", action=\"store_true\",\n                        help=\"列出所有实验\")\n    parser.add_argument(\"--status\", action=\"store_true\",\n                        help=\"显示完成状态\")\n    parser.add_argument(\"--force\", action=\"store_true\",\n                        help=\"忽略缓存强制重算\")\n    parser.add_argument(\"--gpu\", type=str, default=None,\n                        help=\"覆盖 CUDA_VISIBLE_DEVICES\")\n    return parser.parse_args()\n\n\ndef main():\n    args = parse_args()\n\n    if args.gpu:\n        os.environ[\"CUDA_VISIBLE_DEVICES\"] = args.gpu\n        logger.info(\"GPU override: CUDA_VISIBLE_DEVICES=%s\", args.gpu)\n\n    experiments = load_experiment_matrix(args.config)\n\n    if args.list:\n        list_experiments(experiments)\n        return\n\n    if args.status:\n        show_status(experiments)\n        return\n\n    if args.experiment:\n        run_batch(experiments, names=args.experiment, force=args.force)\n    elif args.all:\n        run_batch(experiments, max_priority=args.priority, force=args.force)\n    elif args.priority:\n        run_batch(experiments, max_priority=args.priority, force=args.force)\n    else:\n        parser = argparse.ArgumentParser()\n        parser.print_help()\n        print(\"\\nHint: use --list to see experiments, --experiment NAME to run one\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 479,
+                "startLine": 1,
+                "totalLines": 479
+              }
+            },
+            "sourceToolAssistantUUID": "3b48e4e0-6923-4e25-8df2-3c99ac86f878",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "9d49cb46-91a6-4da4-80dc-2f9b9cfb1c68",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "graceful-roaming-hamming"
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "cd68983a-e7ef-407b-995c-c6d5f1bc0eac",
+                "sessionId": "9d49cb46-91a6-4da4-80dc-2f9b9cfb1c68"
+              }
+            }
+          ],
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Deploy Phase 2 IFR integration to server",
+                "sessionId": "9d49cb46-91a6-4da4-80dc-2f9b9cfb1c68"
+              }
+            }
+          ],
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-13T05:43:23.011Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "File is 478 lines. I'll re-upload it cleanly using base64."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cd68983a-e7ef-407b-995c-c6d5f1bc0eac",
+            "isSidechain": false,
+            "requestId": "req_011Caz2zzaB8e1GSBhntznAR",
+            "type": "assistant",
+            "uuid": "2abd2758-e56d-45fc-bcc7-a41df962b11c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "9d49cb46-91a6-4da4-80dc-2f9b9cfb1c68",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "graceful-roaming-hamming",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VRqu3q2eoxxNWVUct6XBWC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6459,
+                "cache_read_input_tokens": 42876,
+                "output_tokens": 148,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6459,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 148,
+                    "cache_read_input_tokens": 42876,
+                    "cache_creation_input_tokens": 6459,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6459
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": "2026-05-13T05:43:25.552Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Jvd43iEKVPvg5xRNPPyUQy",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/run_phase2_experiment.py | base64 -w0",
+                "description": "Base64 encode run_phase2_experiment.py for clean transfer"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2abd2758-e56d-45fc-bcc7-a41df962b11c",
+            "isSidechain": false,
+            "requestId": "req_011Caz2zzaB8e1GSBhntznAR",
+            "type": "assistant",
+            "uuid": "439461d8-e3e7-42b9-8ae3-08d525d59299",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "9d49cb46-91a6-4da4-80dc-2f9b9cfb1c68",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "graceful-roaming-hamming",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VRqu3q2eoxxNWVUct6XBWC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6459,
+                "cache_read_input_tokens": 42876,
+                "output_tokens": 148,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6459,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 148,
+                    "cache_read_input_tokens": 42876,
+                    "cache_creation_input_tokens": 6459,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6459
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-13T05:43:25.622Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Jvd43iEKVPvg5xRNPPyUQy",
+              "type": "tool_result",
+              "content": "[ATTACHMENT_DATA_REDACTED]",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "439461d8-e3e7-42b9-8ae3-08d525d59299",
+            "isSidechain": false,
+            "promptId": "4efd9eee-86cd-46c7-bd32-d518cb0902f4",
+            "type": "user",
+            "uuid": "364cc6a0-cc11-4297-bc2a-80f9d5d373ee",
+            "toolUseResult": {
+              "stdout": "[ATTACHMENT_DATA_REDACTED]",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "439461d8-e3e7-42b9-8ae3-08d525d59299",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "9d49cb46-91a6-4da4-80dc-2f9b9cfb1c68",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "graceful-roaming-hamming"
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "364cc6a0-cc11-4297-bc2a-80f9d5d373ee",
+                "sessionId": "9d49cb46-91a6-4da4-80dc-2f9b9cfb1c68"
+              }
+            }
+          ],
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Deploy Phase 2 IFR integration to server",
+                "sessionId": "9d49cb46-91a6-4da4-80dc-2f9b9cfb1c68"
+              }
+            }
+          ],
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "364cc6a0-cc11-4297-bc2a-80f9d5d373ee",
+                "sessionId": "9d49cb46-91a6-4da4-80dc-2f9b9cfb1c68"
+              }
+            }
+          ],
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Deploy Phase 2 IFR integration to server",
+                "sessionId": "9d49cb46-91a6-4da4-80dc-2f9b9cfb1c68"
+              }
+            }
+          ],
+          "id": "event-000165"
+        }
+      ]
+    }
+  ]
+}

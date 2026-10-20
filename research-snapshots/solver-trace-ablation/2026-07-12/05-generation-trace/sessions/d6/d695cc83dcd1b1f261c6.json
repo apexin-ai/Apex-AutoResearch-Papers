@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "d695cc83dcd1b1f261c6",
+  "project": "solver-trace-ablation--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 服务器：westd-pro6000，conda base 环境。cuda:1 分配给本实验，cuda:0 正在跑 Qwen ACDC 不要碰。前次 crash 原因：run_edge_pruning 参数不匹",
+  "task_key": "5b85cb68-b57e-47df-9811-5e45798fac57",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/5b85cb68-b57e-47df-9811-5e45798fac57.jsonl",
+    "occurrence": 1,
+    "bytes": 716121,
+    "sha256": "7f950be8a2d7689e9a33e90eeef3a9ee892052d2391ffb92b89fe27f533fcf42"
+  },
+  "statistics": {
+    "messages": 184,
+    "user_turns": 1,
+    "tool_calls": 49,
+    "roles": {
+      "record": 46,
+      "user": 1,
+      "assistant": 39,
+      "tool_call": 49,
+      "tool_result": 49
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d695cc83dcd1b1f261c6-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 182,
+      "chunks": [
+        {
+          "path": "d695cc83dcd1b1f261c6-part-0001.json",
+          "message_count": 125
+        },
+        {
+          "path": "d695cc83dcd1b1f261c6-part-0002.json",
+          "message_count": 57
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-westd-pro6000-conda-base-cuda-1-cuda-0-qwen-acdc-crash-run-edge.md"
+}

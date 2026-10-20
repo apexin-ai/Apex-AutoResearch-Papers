@@ -1,0 +1,1325 @@
+{
+  "schema_version": "1.0",
+  "session_id": "ddc4a3a2c795d9fc41c0",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 339,
+          "timestamp": "2026-05-13T07:27:12.689Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FfqyA2h8h188uFQY8KVvc5",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "phase2_qwen05b_ioi_k3",
+                "field": "status",
+                "value": "DONE",
+                "project": "structfuse-context",
+                "spec": {
+                  "checkpoint_path": "/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi/Qwen_Qwen2.5_0.5B_ioi_K3.json",
+                  "log_path": "/tmp/qwen_ioi.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d10680a7-48de-465d-8502-c890de847cc7",
+            "isSidechain": false,
+            "requestId": "req_011CazAvfVn21L947hTugEdV",
+            "type": "assistant",
+            "uuid": "ab98614a-6078-4509-bc2f-a8c7be6bc6dd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013ioWzpqMKBvmcfknTNBzP5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 533,
+                "cache_read_input_tokens": 159673,
+                "output_tokens": 223,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 533,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 223,
+                    "cache_read_input_tokens": 159673,
+                    "cache_creation_input_tokens": 533,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 533
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000339"
+        },
+        {
+          "source_line": 340,
+          "timestamp": "2026-05-13T07:27:12.906Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FfqyA2h8h188uFQY8KVvc5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase2_qwen05b_ioi_k3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T07:01:39.691Z\\\", \\\"updated_at\\\": \\\"2026-05-13T07:27:12.720Z\\\", \\\"hypothesis\\\": \\\"Qwen-2.5 0.5B 上 CSS=1.0 (EAP-IG+EP+IFR) faithfulness > single-method，验证 CSS 跨模型泛化（Phase 2 首个实验，plan_006）\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python run_qwen_ioi.py\\\", \\\"server\\\": \\\"westd-pro6000\\\", \\\"data_path\\\": \\\"/root/structfuse-context/\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen/Qwen2.5-0.5B\\\", \\\"seed\\\": 42, \\\"methods\\\": [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"ifr\\\"], \\\"task\\\": \\\"ioi\\\", \\\"K\\\": 3, \\\"binarize\\\": \\\"top-100\\\", \\\"pid\\\": 14601, \\\"gpu_ids\\\": [0], \\\"checkpoint_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi/Qwen_Qwen2.5_0.5B_ioi_K3.json\\\", \\\"log_path\\\": \\\"/tmp/qwen_ioi.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-13T07:27:12.720Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.206}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ab98614a-6078-4509-bc2f-a8c7be6bc6dd",
+            "isSidechain": false,
+            "promptId": "bc6d467b-1878-40a7-b25d-0453863ec507",
+            "type": "user",
+            "uuid": "076cbe60-9f32-4909-900f-01335dddc846",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"phase2_qwen05b_ioi_k3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T07:01:39.691Z\\\", \\\"updated_at\\\": \\\"2026-05-13T07:27:12.720Z\\\", \\\"hypothesis\\\": \\\"Qwen-2.5 0.5B 上 CSS=1.0 (EAP-IG+EP+IFR) faithfulness > single-method，验证 CSS 跨模型泛化（Phase 2 首个实验，plan_006）\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python run_qwen_ioi.py\\\", \\\"server\\\": \\\"westd-pro6000\\\", \\\"data_path\\\": \\\"/root/structfuse-context/\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen/Qwen2.5-0.5B\\\", \\\"seed\\\": 42, \\\"methods\\\": [\\\"eap_ig\\\", \\\"edge_pruning\\\", \\\"ifr\\\"], \\\"task\\\": \\\"ioi\\\", \\\"K\\\": 3, \\\"binarize\\\": \\\"top-100\\\", \\\"pid\\\": 14601, \\\"gpu_ids\\\": [0], \\\"checkpoint_path\\\": \\\"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi/Qwen_Qwen2.5_0.5B_ioi_K3.json\\\", \\\"log_path\\\": \\\"/tmp/qwen_ioi.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-13T07:27:12.720Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.206}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"phase2_qwen05b_ioi_k3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T07:01:39.691Z\", \"updated_at\": \"2026-05-13T07:27:12.720Z\", \"hypothesis\": \"Qwen-2.5 0.5B 上 CSS=1.0 (EAP-IG+EP+IFR) faithfulness > single-method，验证 CSS 跨模型泛化（Phase 2 首个实验，plan_006）\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python run_qwen_ioi.py\", \"server\": \"westd-pro6000\", \"data_path\": \"/root/structfuse-context/\", \"data_count\": 100, \"model_name\": \"Qwen/Qwen2.5-0.5B\", \"seed\": 42, \"methods\": [\"eap_ig\", \"edge_pruning\", \"ifr\"], \"task\": \"ioi\", \"K\": 3, \"binarize\": \"top-100\", \"pid\": 14601, \"gpu_ids\": [0], \"checkpoint_path\": \"/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi/Qwen_Qwen2.5_0.5B_ioi_K3.json\", \"log_path\": \"/tmp/qwen_ioi.log\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-13T07:27:12.720Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.206}}"
+              }
+            },
+            "sourceToolAssistantUUID": "ab98614a-6078-4509-bc2f-a8c7be6bc6dd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000340"
+        },
+        {
+          "source_line": 341,
+          "timestamp": "2026-05-13T07:27:32.264Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CxYoaX15t7fSaenc1G83yu",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "Qwen2.5-0.5B IOI K3 results",
+                "type": "data",
+                "description": "Phase 2 Qwen-2.5 0.5B IOI K=3 experiment results. CSS-core=0, EAP-IG/EP agree on late-layer circuits (Jaccard=0.54), IFR finds early-layer patterns (zero overlap). All CPR near zero with top-100 binarization.",
+                "project": "structfuse-context",
+                "exp_id": "phase2_qwen05b_ioi_k3",
+                "content_filename": "phase2_qwen05b_ioi_k3_summary.json",
+                "content": "{\n  \"experiment_id\": \"phase2_qwen05b_ioi_k3\",\n  \"model\": \"Qwen/Qwen2.5-0.5B\",\n  \"task\": \"ioi\",\n  \"K\": 3,\n  \"methods\": [\"eap_ig\", \"edge_pruning\", \"ifr\"],\n  \"binarize\": \"top-100\",\n  \"baseline_io_s_diff\": 7.0764,\n  \"timings\": {\"eap_ig\": \"5.3s\", \"ep\": \"70.7s\", \"ifr\": \"1.3s\", \"total\": \"83.0s\"},\n  \"css_core_count\": 0,\n  \"off_diagonal_pct\": 1.0,\n  \"css_distribution\": {\"1/3\": 160, \"2/3\": 70},\n  \"pairwise_jaccard\": {\"eap_ig_vs_ep\": 0.5385, \"eap_ig_vs_ifr\": 0.0, \"ep_vs_ifr\": 0.0},\n  \"key_finding\": \"IFR (proximity-based) discovers early-layer circuits (m2->a3), while EAP-IG/EP (gradient-based) discover late-layer circuits (a20.h9). Methods fundamentally disagree on Qwen-2.5 IOI.\",\n  \"next_steps\": [\"Try top-500/1000 binarization\", \"Use unique_score_rank for IFR ties\", \"Investigate EP per-edge vs per-node masking\"]\n}",
+                "tags": [
+                  "phase2",
+                  "qwen",
+                  "ioi",
+                  "css",
+                  "negative"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "076cbe60-9f32-4909-900f-01335dddc846",
+            "isSidechain": false,
+            "requestId": "req_011CazAvzjAs7ijzR6vUjdae",
+            "type": "assistant",
+            "uuid": "0df7bfdb-4c57-4bdd-8a6b-01f607c0e6bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014uZTXo7sEuA7Z9B3JCC4Ji",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 761,
+                "cache_read_input_tokens": 160206,
+                "output_tokens": 709,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 761,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 709,
+                    "cache_read_input_tokens": 160206,
+                    "cache_creation_input_tokens": 761,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 761
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000341"
+        },
+        {
+          "source_line": 342,
+          "timestamp": "2026-05-13T07:27:32.286Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment_id': 'phase2...e vs per-node masking']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_01CxYoaX15t7fSaenc1G83yu"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0df7bfdb-4c57-4bdd-8a6b-01f607c0e6bc",
+            "isSidechain": false,
+            "promptId": "bc6d467b-1878-40a7-b25d-0453863ec507",
+            "type": "user",
+            "uuid": "7bfab126-c8a5-4b22-bd0e-03aa256edf0d",
+            "toolUseResult": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment_id': 'phase2...e vs per-node masking']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+            "sourceToolAssistantUUID": "0df7bfdb-4c57-4bdd-8a6b-01f607c0e6bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000342"
+        },
+        {
+          "source_line": 343,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "7bfab126-c8a5-4b22-bd0e-03aa256edf0d",
+                "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e"
+              }
+            }
+          ],
+          "id": "event-000343"
+        },
+        {
+          "source_line": 344,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Validate Qwen-2.5 0.5B IOI K=3 experiment",
+                "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e"
+              }
+            }
+          ],
+          "id": "event-000344"
+        },
+        {
+          "source_line": 345,
+          "timestamp": "2026-05-13T07:27:37.257Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GS6WQFEBzN6rv1AwJGtSGA",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "Qwen2.5-0.5B IOI K3 results",
+                "type": "data",
+                "description": "Phase 2 Qwen-2.5 0.5B IOI K=3 experiment results. CSS-core=0, EAP-IG/EP agree on late-layer circuits (Jaccard=0.54), IFR finds early-layer patterns (zero overlap). All CPR near zero with top-100 binarization.",
+                "project": "structfuse-context",
+                "exp_id": "phase2_qwen05b_ioi_k3",
+                "source_path": "/root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi/Qwen_Qwen2.5_0.5B_ioi_K3.json",
+                "tags": [
+                  "phase2",
+                  "qwen",
+                  "ioi",
+                  "css",
+                  "negative"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7bfab126-c8a5-4b22-bd0e-03aa256edf0d",
+            "isSidechain": false,
+            "requestId": "req_011CazAxRXCahxKAWqptVmz1",
+            "type": "assistant",
+            "uuid": "b5c2e7a4-817d-4cff-9c0a-726483925535",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WrFRvYpi1rMYVoW3Xw335r",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 818,
+                "cache_read_input_tokens": 160967,
+                "output_tokens": 347,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 818,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 347,
+                    "cache_read_input_tokens": 160967,
+                    "cache_creation_input_tokens": 818,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 818
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000345"
+        },
+        {
+          "source_line": 346,
+          "timestamp": "2026-05-13T07:27:37.272Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GS6WQFEBzN6rv1AwJGtSGA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi/Qwen_Qwen2.5_0.5B_ioi_K3.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b5c2e7a4-817d-4cff-9c0a-726483925535",
+            "isSidechain": false,
+            "promptId": "bc6d467b-1878-40a7-b25d-0453863ec507",
+            "type": "user",
+            "uuid": "d2fbd171-67ca-4ad6-a54e-51a9f637d143",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi/Qwen_Qwen2.5_0.5B_ioi_K3.json\\\", \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi/Qwen_Qwen2.5_0.5B_ioi_K3.json\", \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "b5c2e7a4-817d-4cff-9c0a-726483925535",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000346"
+        },
+        {
+          "source_line": 347,
+          "timestamp": "2026-05-13T07:27:41.596Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The artifact is on the remote server, not local. I need to either read it and pass as content string, or use a different approach.",
+              "signature": "Er4CClkIDRgCKkDcK23GpmKiiSPYOVqg+h+M6RXSZkUjF/payOTtUkenilr6Ig0KuyCZzpMtA3iiyDHPFY/JfbdrevZC0C6ev3HvMg9jbGF1ZGUtb3B1cy00LTY4ABIMTwsSDaW/lImmUaoAGgzZZpf+7Ry4oQPKF2IiMGXq4JTg+BKEwSKfmLfot0k/+cO5uY7Xw0G+6vdMxhUxoZYn5dfXVFXdfDuf99rcgyqSAaf+87YOajOTnte53nXk0DjcD9T7NiRmLMXZuQYg+6s+6IZCFk12C50NimFXFwSxeOfkbkfeytYGbPDCH+7PLpF5gfoSIP9uzb0obcEcQai4zD92JOze2vjMcCPvDuCi68uDB0SdHqNEhwNruQHZud3nYmFNUyesrjmPFAhpkKzYKGAmxBMYuAhRaFgyHrYd3qePGAE="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d2fbd171-67ca-4ad6-a54e-51a9f637d143",
+            "isSidechain": false,
+            "requestId": "req_011CazAxnx41cxy5owW6zQwx",
+            "type": "assistant",
+            "uuid": "19b27c4f-ef4d-456a-b7e0-38eca54955c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T2WtqhRdxM7hWyQU6Rbe3o",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 447,
+                "cache_read_input_tokens": 161785,
+                "output_tokens": 200,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 447,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 200,
+                    "cache_read_input_tokens": 161785,
+                    "cache_creation_input_tokens": 447,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 447
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000347"
+        },
+        {
+          "source_line": 348,
+          "timestamp": "2026-05-13T07:27:42.696Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SoCE2QTNruGm5h74U7JYis",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-pro6000",
+                "command": "cat /root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi/Qwen_Qwen2.5_0.5B_ioi_K3.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "19b27c4f-ef4d-456a-b7e0-38eca54955c8",
+            "isSidechain": false,
+            "requestId": "req_011CazAxnx41cxy5owW6zQwx",
+            "type": "assistant",
+            "uuid": "519e75d9-269c-4564-9e77-70db41e5a880",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T2WtqhRdxM7hWyQU6Rbe3o",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 447,
+                "cache_read_input_tokens": 161785,
+                "output_tokens": 200,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 447,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 200,
+                    "cache_read_input_tokens": 161785,
+                    "cache_creation_input_tokens": 447,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 447
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000348"
+        },
+        {
+          "source_line": 349,
+          "timestamp": "2026-05-13T07:27:43.150Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SoCE2QTNruGm5h74U7JYis",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment_id\\\\\\\": \\\\\\\"phase2_qwen05b_ioi_k3\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\",\\\\n  \\\\\\\"task\\\\\\\": \\\\\\\"ioi\\\\\\\",\\\\n  \\\\\\\"K\\\\\\\": 3,\\\\n  \\\\\\\"num_samples\\\\\\\": 100,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"binarize\\\\\\\": {\\\\n    \\\\\\\"strategy\\\\\\\": \\\\\\\"topn\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 100\\\\n  },\\\\n  \\\\\\\"baseline_io_s_diff\\\\\\\": 7.0764,\\\\n  \\\\\\\"method_edge_counts\\\\\\\": {\\\\n    \\\\\\\"eap_ig\\\\\\\": 179388,\\\\n    \\\\\\\"edge_pruning\\\\\\\": 179388,\\\\n    \\\\\\\"ifr\\\\\\\": 141384\\\\n  },\\\\n  \\\\\\\"binarized_counts\\\\\\\": {\\\\n    \\\\\\\"eap_ig\\\\\\\": 100,\\\\n    \\\\\\\"edge_pruning\\\\\\\": 100,\\\\n    \\\\\\\"ifr\\\\\\\": 100\\\\n  },\\\\n  \\\\\\\"css_distribution\\\\\\\": {\\\\n    \\\\\\\"1/3\\\\\\\": 160,\\\\n    \\\\\\\"2/3\\\\\\\": 70\\\\n  },\\\\n  \\\\\\\"css_core_count\\\\\\\": 0,\\\\n  \\\\\\\"css_core_edges\\\\\\\": [],\\\\n  \\\\\\\"off_diagonal_pct\\\\\\\": 1.0,\\\\n  \\\\\\\"pairwise_jaccard\\\\\\\": {\\\\n    \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 0.5385,\\\\n    \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0.0,\\\\n    \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"faithfulness\\\\\\\": {\\\\n    \\\\\\\"css_core\\\\\\\": {\\\\n      \\\\\\\"zero\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": -0.0044,\\\\n        \\\\\\\"cpr\\\\\\\": -0.0006\\\\n      },\\\\n      \\\\\\\"mean\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": -0.1083,\\\\n        \\\\\\\"cpr\\\\\\\": -0.0153\\\\n      }\\\\n    },\\\\n    \\\\\\\"eap_ig\\\\\\\": {\\\\n      \\\\\\\"zero\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": 0.0467,\\\\n        \\\\\\\"cpr\\\\\\\": 0.0066\\\\n      },\\\\n      \\\\\\\"mean\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": -0.1148,\\\\n        \\\\\\\"cpr\\\\\\\": -0.0162\\\\n      }\\\\n    },\\\\n    \\\\\\\"edge_pruning\\\\\\\": {\\\\n      \\\\\\\"zero\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": 0.0706,\\\\n        \\\\\\\"cpr\\\\\\\": 0.01\\\\n      },\\\\n      \\\\\\\"mean\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": 0.1379,\\\\n        \\\\\\\"cpr\\\\\\\": 0.0195\\\\n      }\\\\n    },\\\\n    \\\\\\\"ifr\\\\\\\": {\\\\n      \\\\\\\"zero\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": -0.3388,\\\\n        \\\\\\\"cpr\\\\\\\": -0.0479\\\\n      },\\\\n      \\\\\\\"mean\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": 0.1627,\\\\n        \\\\\\\"cpr\\\\\\\": 0.023\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"elapsed_sec\\\\\\\": 83.0,\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-13 15:25:56\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "519e75d9-269c-4564-9e77-70db41e5a880",
+            "isSidechain": false,
+            "promptId": "bc6d467b-1878-40a7-b25d-0453863ec507",
+            "type": "user",
+            "uuid": "0435f15c-a528-472c-b26b-954cfadce00b",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment_id\\\\\\\": \\\\\\\"phase2_qwen05b_ioi_k3\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Qwen/Qwen2.5-0.5B\\\\\\\",\\\\n  \\\\\\\"task\\\\\\\": \\\\\\\"ioi\\\\\\\",\\\\n  \\\\\\\"K\\\\\\\": 3,\\\\n  \\\\\\\"num_samples\\\\\\\": 100,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"binarize\\\\\\\": {\\\\n    \\\\\\\"strategy\\\\\\\": \\\\\\\"topn\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 100\\\\n  },\\\\n  \\\\\\\"baseline_io_s_diff\\\\\\\": 7.0764,\\\\n  \\\\\\\"method_edge_counts\\\\\\\": {\\\\n    \\\\\\\"eap_ig\\\\\\\": 179388,\\\\n    \\\\\\\"edge_pruning\\\\\\\": 179388,\\\\n    \\\\\\\"ifr\\\\\\\": 141384\\\\n  },\\\\n  \\\\\\\"binarized_counts\\\\\\\": {\\\\n    \\\\\\\"eap_ig\\\\\\\": 100,\\\\n    \\\\\\\"edge_pruning\\\\\\\": 100,\\\\n    \\\\\\\"ifr\\\\\\\": 100\\\\n  },\\\\n  \\\\\\\"css_distribution\\\\\\\": {\\\\n    \\\\\\\"1/3\\\\\\\": 160,\\\\n    \\\\\\\"2/3\\\\\\\": 70\\\\n  },\\\\n  \\\\\\\"css_core_count\\\\\\\": 0,\\\\n  \\\\\\\"css_core_edges\\\\\\\": [],\\\\n  \\\\\\\"off_diagonal_pct\\\\\\\": 1.0,\\\\n  \\\\\\\"pairwise_jaccard\\\\\\\": {\\\\n    \\\\\\\"eap_ig_vs_edge_pruning\\\\\\\": 0.5385,\\\\n    \\\\\\\"eap_ig_vs_ifr\\\\\\\": 0.0,\\\\n    \\\\\\\"edge_pruning_vs_ifr\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"faithfulness\\\\\\\": {\\\\n    \\\\\\\"css_core\\\\\\\": {\\\\n      \\\\\\\"zero\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": -0.0044,\\\\n        \\\\\\\"cpr\\\\\\\": -0.0006\\\\n      },\\\\n      \\\\\\\"mean\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": -0.1083,\\\\n        \\\\\\\"cpr\\\\\\\": -0.0153\\\\n      }\\\\n    },\\\\n    \\\\\\\"eap_ig\\\\\\\": {\\\\n      \\\\\\\"zero\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": 0.0467,\\\\n        \\\\\\\"cpr\\\\\\\": 0.0066\\\\n      },\\\\n      \\\\\\\"mean\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": -0.1148,\\\\n        \\\\\\\"cpr\\\\\\\": -0.0162\\\\n      }\\\\n    },\\\\n    \\\\\\\"edge_pruning\\\\\\\": {\\\\n      \\\\\\\"zero\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": 0.0706,\\\\n        \\\\\\\"cpr\\\\\\\": 0.01\\\\n      },\\\\n      \\\\\\\"mean\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": 0.1379,\\\\n        \\\\\\\"cpr\\\\\\\": 0.0195\\\\n      }\\\\n    },\\\\n    \\\\\\\"ifr\\\\\\\": {\\\\n      \\\\\\\"zero\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": -0.3388,\\\\n        \\\\\\\"cpr\\\\\\\": -0.0479\\\\n      },\\\\n      \\\\\\\"mean\\\\\\\": {\\\\n        \\\\\\\"full_metric\\\\\\\": 7.0764,\\\\n        \\\\\\\"circuit_metric\\\\\\\": 0.1627,\\\\n        \\\\\\\"cpr\\\\\\\": 0.023\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"elapsed_sec\\\\\\\": 83.0,\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-13 15:25:56\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment_id\\\": \\\"phase2_qwen05b_ioi_k3\\\",\\n  \\\"model\\\": \\\"Qwen/Qwen2.5-0.5B\\\",\\n  \\\"task\\\": \\\"ioi\\\",\\n  \\\"K\\\": 3,\\n  \\\"num_samples\\\": 100,\\n  \\\"seed\\\": 42,\\n  \\\"binarize\\\": {\\n    \\\"strategy\\\": \\\"topn\\\",\\n    \\\"n\\\": 100\\n  },\\n  \\\"baseline_io_s_diff\\\": 7.0764,\\n  \\\"method_edge_counts\\\": {\\n    \\\"eap_ig\\\": 179388,\\n    \\\"edge_pruning\\\": 179388,\\n    \\\"ifr\\\": 141384\\n  },\\n  \\\"binarized_counts\\\": {\\n    \\\"eap_ig\\\": 100,\\n    \\\"edge_pruning\\\": 100,\\n    \\\"ifr\\\": 100\\n  },\\n  \\\"css_distribution\\\": {\\n    \\\"1/3\\\": 160,\\n    \\\"2/3\\\": 70\\n  },\\n  \\\"css_core_count\\\": 0,\\n  \\\"css_core_edges\\\": [],\\n  \\\"off_diagonal_pct\\\": 1.0,\\n  \\\"pairwise_jaccard\\\": {\\n    \\\"eap_ig_vs_edge_pruning\\\": 0.5385,\\n    \\\"eap_ig_vs_ifr\\\": 0.0,\\n    \\\"edge_pruning_vs_ifr\\\": 0.0\\n  },\\n  \\\"faithfulness\\\": {\\n    \\\"css_core\\\": {\\n      \\\"zero\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": -0.0044,\\n        \\\"cpr\\\": -0.0006\\n      },\\n      \\\"mean\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": -0.1083,\\n        \\\"cpr\\\": -0.0153\\n      }\\n    },\\n    \\\"eap_ig\\\": {\\n      \\\"zero\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": 0.0467,\\n        \\\"cpr\\\": 0.0066\\n      },\\n      \\\"mean\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": -0.1148,\\n        \\\"cpr\\\": -0.0162\\n      }\\n    },\\n    \\\"edge_pruning\\\": {\\n      \\\"zero\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": 0.0706,\\n        \\\"cpr\\\": 0.01\\n      },\\n      \\\"mean\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": 0.1379,\\n        \\\"cpr\\\": 0.0195\\n      }\\n    },\\n    \\\"ifr\\\": {\\n      \\\"zero\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": -0.3388,\\n        \\\"cpr\\\": -0.0479\\n      },\\n      \\\"mean\\\": {\\n        \\\"full_metric\\\": 7.0764,\\n        \\\"circuit_metric\\\": 0.1627,\\n        \\\"cpr\\\": 0.023\\n      }\\n    }\\n  },\\n  \\\"elapsed_sec\\\": 83.0,\\n  \\\"timestamp\\\": \\\"2026-05-13 15:25:56\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            },
+            "sourceToolAssistantUUID": "519e75d9-269c-4564-9e77-70db41e5a880",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000349"
+        },
+        {
+          "source_line": 350,
+          "timestamp": "2026-05-13T07:27:43.153Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "0435f15c-a528-472c-b26b-954cfadce00b",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [
+                    {
+                      "content": "Fix environment: create GPT-2 symlink, verify deps (eap unavailable, use custom impl)",
+                      "status": "completed",
+                      "activeForm": "Fixing server environment"
+                    },
+                    {
+                      "content": "Part 1: GPT-2 IOI E2E validation (N=20, custom EAP-IG + L0 EP)",
+                      "status": "completed",
+                      "activeForm": "Running GPT-2 E2E validation"
+                    },
+                    {
+                      "content": "Part 2: Create run_qwen_ioi.py with HF-native EAP-IG + EP + IFR",
+                      "status": "completed",
+                      "activeForm": "Creating Qwen IOI experiment script"
+                    },
+                    {
+                      "content": "Submit Qwen experiment via nohup and register artifacts",
+                      "status": "in_progress",
+                      "activeForm": "Submitting Qwen experiment"
+                    }
+                  ],
+                  "itemCount": 4
+                },
+                "type": "attachment",
+                "uuid": "11944b2f-77d5-4ca9-9554-171c78a39cbf",
+                "timestamp": "2026-05-13T07:27:43.153Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+                "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000350"
+        },
+        {
+          "source_line": 351,
+          "timestamp": "2026-05-13T07:27:51.326Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014BKA5J62B72oLaoKNsyvRC",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "Qwen2.5-0.5B IOI K3 results",
+                "type": "data",
+                "description": "Phase 2 Qwen-2.5 0.5B IOI K=3. CSS-core=0, EAP-IG/EP Jaccard=0.54 (late layers), IFR zero overlap (early layers). All CPR near zero with top-100.",
+                "project": "structfuse-context",
+                "exp_id": "phase2_qwen05b_ioi_k3",
+                "content": "{\"experiment_id\":\"phase2_qwen05b_ioi_k3\",\"model\":\"Qwen/Qwen2.5-0.5B\",\"task\":\"ioi\",\"K\":3,\"num_samples\":100,\"baseline_io_s_diff\":7.0764,\"method_edge_counts\":{\"eap_ig\":179388,\"edge_pruning\":179388,\"ifr\":141384},\"binarized_counts\":{\"eap_ig\":100,\"edge_pruning\":100,\"ifr\":100},\"css_distribution\":{\"1/3\":160,\"2/3\":70},\"css_core_count\":0,\"off_diagonal_pct\":1.0,\"pairwise_jaccard\":{\"eap_ig_vs_edge_pruning\":0.5385,\"eap_ig_vs_ifr\":0.0,\"edge_pruning_vs_ifr\":0.0},\"faithfulness\":{\"eap_ig\":{\"zero\":{\"cpr\":0.0066},\"mean\":{\"cpr\":-0.0162}},\"edge_pruning\":{\"zero\":{\"cpr\":0.01},\"mean\":{\"cpr\":0.0195}},\"ifr\":{\"zero\":{\"cpr\":-0.0479},\"mean\":{\"cpr\":0.023}}},\"elapsed_sec\":83.0}",
+                "content_filename": "phase2_qwen05b_ioi_k3.json",
+                "tags": [
+                  "phase2",
+                  "qwen",
+                  "ioi",
+                  "css",
+                  "negative"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "11944b2f-77d5-4ca9-9554-171c78a39cbf",
+            "isSidechain": false,
+            "requestId": "req_011CazAyDsFQKsTHKkVLNRkT",
+            "type": "assistant",
+            "uuid": "b59fa061-8e12-43e1-a0c9-c12a3426799c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K7mhHAALhyDhCeKCcVARH1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1691,
+                "cache_read_input_tokens": 162232,
+                "output_tokens": 625,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1691,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 625,
+                    "cache_read_input_tokens": 162232,
+                    "cache_creation_input_tokens": 1691,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1691
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000351"
+        },
+        {
+          "source_line": 352,
+          "timestamp": "2026-05-13T07:27:51.333Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment_id': 'phase2...}}, 'elapsed_sec': 83.0}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_014BKA5J62B72oLaoKNsyvRC"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b59fa061-8e12-43e1-a0c9-c12a3426799c",
+            "isSidechain": false,
+            "promptId": "bc6d467b-1878-40a7-b25d-0453863ec507",
+            "type": "user",
+            "uuid": "4d5debea-65e4-4ff9-8815-b381fc8087e8",
+            "toolUseResult": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment_id': 'phase2...}}, 'elapsed_sec': 83.0}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+            "sourceToolAssistantUUID": "b59fa061-8e12-43e1-a0c9-c12a3426799c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000352"
+        },
+        {
+          "source_line": 353,
+          "timestamp": "2026-05-13T07:27:58.028Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015ynCfAKas9o5W919Zx5itr",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "Qwen2.5-0.5B IOI K3 results",
+                "type": "data",
+                "description": "Phase 2 Qwen-2.5 0.5B IOI K=3. CSS-core=0, EAP-IG/EP Jaccard=0.54 (late layers), IFR zero overlap (early layers). All CPR near zero with top-100.",
+                "project": "structfuse-context",
+                "exp_id": "phase2_qwen05b_ioi_k3",
+                "content": "{\"experiment_id\":\"phase2_qwen05b_ioi_k3\",\"model\":\"Qwen/Qwen2.5-0.5B\",\"task\":\"ioi\",\"K\":3,\"baseline\":7.0764,\"css_core\":0,\"off_diag\":1.0,\"jaccard\":{\"eap_ep\":0.54,\"eap_ifr\":0.0,\"ep_ifr\":0.0},\"cpr_zero\":{\"eap\":0.007,\"ep\":0.01,\"ifr\":-0.048},\"elapsed\":83}",
+                "content_filename": "phase2_qwen05b_ioi_k3.json",
+                "tags": [
+                  "phase2",
+                  "qwen",
+                  "ioi",
+                  "css",
+                  "negative"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4d5debea-65e4-4ff9-8815-b381fc8087e8",
+            "isSidechain": false,
+            "requestId": "req_011CazAyq9nV4NK4p8b2H7Eg",
+            "type": "assistant",
+            "uuid": "d9f92d7d-ddb8-4c7b-a6f3-27d9b3d2aac4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F9PcjSS9cfLNk3gCYJKgEQ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 738,
+                "cache_read_input_tokens": 163923,
+                "output_tokens": 444,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 738,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 444,
+                    "cache_read_input_tokens": 163923,
+                    "cache_creation_input_tokens": 738,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 738
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000353"
+        },
+        {
+          "source_line": 354,
+          "timestamp": "2026-05-13T07:27:58.035Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment_id': 'phase2... -0.048}, 'elapsed': 83}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_015ynCfAKas9o5W919Zx5itr"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d9f92d7d-ddb8-4c7b-a6f3-27d9b3d2aac4",
+            "isSidechain": false,
+            "promptId": "bc6d467b-1878-40a7-b25d-0453863ec507",
+            "type": "user",
+            "uuid": "52b8be0f-4b95-4cb2-9b5f-2c10907a5f8f",
+            "toolUseResult": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment_id': 'phase2... -0.048}, 'elapsed': 83}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+            "sourceToolAssistantUUID": "d9f92d7d-ddb8-4c7b-a6f3-27d9b3d2aac4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000354"
+        },
+        {
+          "source_line": 355,
+          "timestamp": "2026-05-13T07:28:01.685Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The content parameter needs to be a string, not a dict. Let me pass it as a JSON string.",
+              "signature": "EpMCClkIDRgCKkBBIBkRF09Oi5mfBdlFRQ/FeDn8jVeh0wnbUI3jLXFgKgEziu7n7rqcXhFNMnjx5der+tx8Pn7QpOAyEmoeZhvPMg9jbGF1ZGUtb3B1cy00LTY4ABIMe3CAm06LoyaHcEgEGgzVAfS7oCMqTnEzy1IiMIJt33T9qtyX4/y9/XwmDPZwgokfgjES92O8/zhmLHnagVSeEs9RPXGQ0mf8UU8T+ypoloTeIlXqI6zhPlhAhDbVz7hQPPOU6nDk8LwlgIeSFOOP3pl1HK01z3/+iJdTAjQ+BKgzTgezvdRYxMcw4Y2FSgdxh2hGd8l/NSuk4JwdIjTzaWRZKwLlvQaihgJxoHNIkYsgRPIPBFIYAQ=="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "52b8be0f-4b95-4cb2-9b5f-2c10907a5f8f",
+            "isSidechain": false,
+            "requestId": "req_011CazAzKhWyEhCrVUpVNwTD",
+            "type": "assistant",
+            "uuid": "4bc72330-d2ca-4c50-9757-988114a7152d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S6vicABueZSYo9EQxNcADM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 556,
+                "cache_read_input_tokens": 164661,
+                "output_tokens": 715,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 556,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 715,
+                    "cache_read_input_tokens": 164661,
+                    "cache_creation_input_tokens": 556,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 556
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000355"
+        },
+        {
+          "source_line": 356,
+          "timestamp": "2026-05-13T07:28:09.472Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BFpbPCvUwoWixXFzRqu9KG",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "Qwen2.5-0.5B IOI K3 results",
+                "type": "data",
+                "description": "Phase 2 Qwen-2.5 0.5B IOI K=3. CSS-core=0, EAP-IG/EP Jaccard=0.54 (late layers), IFR zero overlap (early layers). All CPR near zero with top-100.",
+                "project": "structfuse-context",
+                "exp_id": "phase2_qwen05b_ioi_k3",
+                "content": "Server: westd-pro6000, GPU: cuda:0\nModel: Qwen/Qwen2.5-0.5B (24L 14H), Baseline IO-S diff: 7.0764\nMethods: EAP-IG (5.3s) + EP-L0 (70.7s) + IFR (1.3s), total 83s\nBinarization: top-100\n\nCSS Results:\n- CSS-core (3/3): 0 edges\n- Off-diagonal: 100%\n- Distribution: {1/3: 160, 2/3: 70}\n- Jaccard: EAP-IG vs EP = 0.54, EAP-IG vs IFR = 0.0, EP vs IFR = 0.0\n\nFaithfulness (CPR):\n- EAP-IG:  zero=0.007, mean=-0.016\n- EP:      zero=0.010, mean=0.020\n- IFR:     zero=-0.048, mean=0.023\n\nKey Finding: IFR (proximity) finds early-layer circuits (m2->a3), EAP-IG/EP (gradient) find late-layer circuits (a20.h9). Complete method disagreement.\nResult JSON: /root/structfuse-context/results/Qwen_Qwen2.5_0.5B_ioi/Qwen_Qwen2.5_0.5B_ioi_K3.json",
+                "content_filename": "phase2_qwen05b_ioi_k3_summary.txt",
+                "tags": [
+                  "phase2",
+                  "qwen",
+                  "ioi",
+                  "css",
+                  "negative"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4bc72330-d2ca-4c50-9757-988114a7152d",
+            "isSidechain": false,
+            "requestId": "req_011CazAzKhWyEhCrVUpVNwTD",
+            "type": "assistant",
+            "uuid": "d59af6cc-9901-4f79-8f44-7d7636973d56",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S6vicABueZSYo9EQxNcADM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 556,
+                "cache_read_input_tokens": 164661,
+                "output_tokens": 715,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 556,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 715,
+                    "cache_read_input_tokens": 164661,
+                    "cache_creation_input_tokens": 556,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 556
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000356"
+        },
+        {
+          "source_line": 357,
+          "timestamp": "2026-05-13T07:28:09.614Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BFpbPCvUwoWixXFzRqu9KG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260513_c0e897\\\", \\\"name\\\": \\\"Qwen2.5-0.5B IOI K3 results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Phase 2 Qwen-2.5 0.5B IOI K=3. CSS-core=0, EAP-IG/EP Jaccard=0.54 (late layers), IFR zero overlap (early layers). All CPR near zero with top-100.\\\", \\\"path\\\": \\\"projects/structfuse-context/artifacts/phase2_qwen05b_ioi_k3/data/phase2_qwen05b_ioi_k3_summary.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"structfuse-context\\\", \\\"exp_id\\\": \\\"phase2_qwen05b_ioi_k3\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-13T07:28:09.489764+00:00\\\", \\\"tags\\\": [\\\"phase2\\\", \\\"qwen\\\", \\\"ioi\\\", \\\"css\\\", \\\"negative\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d59af6cc-9901-4f79-8f44-7d7636973d56",
+            "isSidechain": false,
+            "promptId": "bc6d467b-1878-40a7-b25d-0453863ec507",
+            "type": "user",
+            "uuid": "6f5752da-71cd-4fde-a4f9-a50318321f78",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260513_c0e897\\\", \\\"name\\\": \\\"Qwen2.5-0.5B IOI K3 results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Phase 2 Qwen-2.5 0.5B IOI K=3. CSS-core=0, EAP-IG/EP Jaccard=0.54 (late layers), IFR zero overlap (early layers). All CPR near zero with top-100.\\\", \\\"path\\\": \\\"projects/structfuse-context/artifacts/phase2_qwen05b_ioi_k3/data/phase2_qwen05b_ioi_k3_summary.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"structfuse-context\\\", \\\"exp_id\\\": \\\"phase2_qwen05b_ioi_k3\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-13T07:28:09.489764+00:00\\\", \\\"tags\\\": [\\\"phase2\\\", \\\"qwen\\\", \\\"ioi\\\", \\\"css\\\", \\\"negative\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260513_c0e897\", \"name\": \"Qwen2.5-0.5B IOI K3 results\", \"type\": \"data\", \"description\": \"Phase 2 Qwen-2.5 0.5B IOI K=3. CSS-core=0, EAP-IG/EP Jaccard=0.54 (late layers), IFR zero overlap (early layers). All CPR near zero with top-100.\", \"path\": \"projects/structfuse-context/artifacts/phase2_qwen05b_ioi_k3/data/phase2_qwen05b_ioi_k3_summary.txt\", \"url\": null, \"project\": \"structfuse-context\", \"exp_id\": \"phase2_qwen05b_ioi_k3\", \"skill\": \"\", \"created_at\": \"2026-05-13T07:28:09.489764+00:00\", \"tags\": [\"phase2\", \"qwen\", \"ioi\", \"css\", \"negative\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "d59af6cc-9901-4f79-8f44-7d7636973d56",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000357"
+        },
+        {
+          "source_line": 358,
+          "timestamp": "2026-05-13T07:28:14.206Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B51ufhUtTY6Ua6Ymce72Ey",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Fix environment: create GPT-2 symlink, verify deps (eap unavailable, use custom impl)",
+                    "status": "completed",
+                    "activeForm": "Fixing server environment"
+                  },
+                  {
+                    "content": "Part 1: GPT-2 IOI E2E validation (N=20, custom EAP-IG + L0 EP)",
+                    "status": "completed",
+                    "activeForm": "Running GPT-2 E2E validation"
+                  },
+                  {
+                    "content": "Part 2: Create run_qwen_ioi.py with HF-native EAP-IG + EP + IFR",
+                    "status": "completed",
+                    "activeForm": "Creating Qwen IOI experiment script"
+                  },
+                  {
+                    "content": "Submit Qwen experiment via nohup and register artifacts",
+                    "status": "completed",
+                    "activeForm": "Submitting Qwen experiment"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6f5752da-71cd-4fde-a4f9-a50318321f78",
+            "isSidechain": false,
+            "requestId": "req_011CazB1C7tAhvWAP47ZA3Gc",
+            "type": "assistant",
+            "uuid": "9676e38c-5cea-46d0-bb7d-e2f38ecf3fd5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T9YCUjHvp9NbXgWou1wm6c",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1075,
+                "cache_read_input_tokens": 165217,
+                "output_tokens": 251,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1075,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 251,
+                    "cache_read_input_tokens": 165217,
+                    "cache_creation_input_tokens": 1075,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1075
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000358"
+        },
+        {
+          "source_line": 359,
+          "timestamp": "2026-05-13T07:28:14.209Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B51ufhUtTY6Ua6Ymce72Ey",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9676e38c-5cea-46d0-bb7d-e2f38ecf3fd5",
+            "isSidechain": false,
+            "promptId": "bc6d467b-1878-40a7-b25d-0453863ec507",
+            "type": "user",
+            "uuid": "2942f720-df6c-4bb6-a572-e261b76e08ee",
+            "toolUseResult": {
+              "oldTodos": [
+                {
+                  "content": "Fix environment: create GPT-2 symlink, verify deps (eap unavailable, use custom impl)",
+                  "status": "completed",
+                  "activeForm": "Fixing server environment"
+                },
+                {
+                  "content": "Part 1: GPT-2 IOI E2E validation (N=20, custom EAP-IG + L0 EP)",
+                  "status": "completed",
+                  "activeForm": "Running GPT-2 E2E validation"
+                },
+                {
+                  "content": "Part 2: Create run_qwen_ioi.py with HF-native EAP-IG + EP + IFR",
+                  "status": "completed",
+                  "activeForm": "Creating Qwen IOI experiment script"
+                },
+                {
+                  "content": "Submit Qwen experiment via nohup and register artifacts",
+                  "status": "in_progress",
+                  "activeForm": "Submitting Qwen experiment"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Fix environment: create GPT-2 symlink, verify deps (eap unavailable, use custom impl)",
+                  "status": "completed",
+                  "activeForm": "Fixing server environment"
+                },
+                {
+                  "content": "Part 1: GPT-2 IOI E2E validation (N=20, custom EAP-IG + L0 EP)",
+                  "status": "completed",
+                  "activeForm": "Running GPT-2 E2E validation"
+                },
+                {
+                  "content": "Part 2: Create run_qwen_ioi.py with HF-native EAP-IG + EP + IFR",
+                  "status": "completed",
+                  "activeForm": "Creating Qwen IOI experiment script"
+                },
+                {
+                  "content": "Submit Qwen experiment via nohup and register artifacts",
+                  "status": "completed",
+                  "activeForm": "Submitting Qwen experiment"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            },
+            "sourceToolAssistantUUID": "9676e38c-5cea-46d0-bb7d-e2f38ecf3fd5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000359"
+        },
+        {
+          "source_line": 360,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "2942f720-df6c-4bb6-a572-e261b76e08ee",
+                "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e"
+              }
+            }
+          ],
+          "id": "event-000360"
+        },
+        {
+          "source_line": 361,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Validate Qwen-2.5 0.5B IOI K=3 experiment",
+                "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e"
+              }
+            }
+          ],
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": "2026-05-13T07:28:31.334Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n---\n\n### Part 1: GPT-2 E2E 验证 — **PASS**\n- 服务器：westd-pro6000, 2× RTX PRO 6000 (98GB), conda Python 3.12.3, PyTorch 2.10+cu128\n- `eap` 库因 GitHub 不可达无法安装，实现了自定义 EAP-IG (gradient × activation_diff)\n- GPT-2 从本地加载（需 monkey-patch AutoConfig 绕过 HF 离线限制）\n- EAP-IG: 32,334 edges, 0.9s\n- EP-L0: 449 active edges (50 epochs), 122.9s\n- CSS pipeline 正常输出，`E2E VALIDATION OK`\n\n### Part 2: Qwen-2.5 0.5B IOI K=3 — **完成 (negative result)**\n- **PID**: 14601 (已完成)\n- **总耗时**: 83.0s\n- **TransformerLens 不支持 Qwen2.5**，全部用 HF-native 实现\n- 三个方法均用 top-100 binarization\n\n| 指标 | 值 |\n|------|-----|\n| Baseline IO-S diff | 7.0764 |\n| EAP-IG edges | 179,388 (5.3s) |\n| EP edges | 179,388 (70.7s) |\n| IFR edges | 141,384 (1.3s) |\n| CSS-core (3/3) | **0** |\n| Off-diagonal | **100%** |\n| EAP-IG vs EP Jaccard | 0.54 |\n| EAP-IG vs IFR Jaccard | 0.00 |\n| EP vs IFR Jaccard | 0.00 |\n\n**关键发现**: IFR (proximity-based) 聚焦早期层 (m2→a3)，EAP-IG/EP (gradient-based) 聚焦深层 (a20.h9)。三方法在 Qwen2.5-0.5B 上发现完全不同的电路。所有 CPR ≈ 0 因为 top-100 对 361 组件模型太稀疏。\n\n**建议后续**:\n1. 尝试 top-500/1000 binarization\n2. IFR 用 `unique_score_rank` 处理 tied scores\n3. EP 改为 per-edge masking（当前为 per-node）\n4. 增大 EP epochs 或调 lambda 以获得更好的 sparsity-task tradeoff"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2942f720-df6c-4bb6-a572-e261b76e08ee",
+            "isSidechain": false,
+            "requestId": "req_011CazB1X5uRPRwQchLp67E2",
+            "type": "assistant",
+            "uuid": "6d8c23fd-f5e0-4fd4-bd43-19cc09a1f058",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+            "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011r5dxkywE8e6yXgepVFHnv",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 293,
+                "cache_read_input_tokens": 166292,
+                "output_tokens": 726,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 293,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 726,
+                    "cache_read_input_tokens": 166292,
+                    "cache_creation_input_tokens": 293,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 293
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000362"
+        },
+        {
+          "source_line": 363,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "6d8c23fd-f5e0-4fd4-bd43-19cc09a1f058",
+                "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e"
+              }
+            }
+          ],
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Validate Qwen-2.5 0.5B IOI K=3 experiment",
+                "sessionId": "06530ed7-76e0-4ba2-a5b3-45b3a12cc14e"
+              }
+            }
+          ],
+          "id": "event-000364"
+        }
+      ]
+    }
+  ]
+}

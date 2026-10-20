@@ -1,0 +1,1360 @@
+{
+  "schema_version": "1.0",
+  "id": "f92ffa25478689160a60",
+  "project": "solver-trace-ablation--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to verify key numbers in a paper (experiments.tex) against the experiment registry. The registry JSON is saved at",
+  "task_key": "agent-af07ab58e3cc6e1dd",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-af07ab58e3cc6e1dd.jsonl",
+    "occurrence": 1,
+    "bytes": 77055,
+    "sha256": "4a30b18db544bf3c111dba0bf7114d58cfebd9c99d5f58f5dab1ce0837773284"
+  },
+  "statistics": {
+    "messages": 25,
+    "user_turns": 1,
+    "tool_calls": 8,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 8,
+      "tool_result": 8
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T20:24:49.687Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to verify key numbers in a paper (experiments.tex) against the experiment registry. The registry JSON is saved at:\n/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-reviewer-5c7e23f1/e68b00f3-6abd-4b8e-aa50-c424de71f72e/tool-results/mcp-agent-ml-research-read_registry-1778876673860.txt\n\nThis file is JSON with schema: {result: string} where the inner string is also JSON.\n\nI need you to extract the following experiments' metrics and report them back precisely:\n\n**Group 1: plan002-additive-b01 (ISR β=0.1, 3 seeds)**\n- plan002-additive-b01-s42 (or similar name)\n- plan002-additive-b01-s43-r2 (or similar)\n- plan002-additive-b01-s44 (or similar)\nFor each: h7_count, h1_count, genuine_count, n_proved (eval_n_proved), eval_prove_rate\n\n**Group 2: plan018-additive-random-b01 (Random β=0.1, 3 seeds)**\n- plan018-additive-random-b01-s42\n- plan018-additive-random-b01-s43-r3\n- plan018-additive-random-b01-s44-r2\nFor each: h7_count, h1_count, genuine_count, n_proved (eval_n_proved), eval_prove_rate\n\n**Group 3: plan002-additive-b03 (ISR β=0.3, 3 seeds)**\n- plan002-additive-b03-s42\n- plan002-additive-b03-s43\n- plan002-additive-b03-s44\nFor each: h7_count, h1_count, genuine_count, n_proved, eval_prove_rate\n\n**Group 4: Random β=0.3 (3 seeds)**\n- plan017-additive-random-s42\n- exp1-random-b03-s43-r4\n- exp1-random-b03-s44-r2\nFor each: h7_count, h1_count, genuine_count, n_proved, eval_prove_rate\n\n**Group 5: Exec-only**\n- plan001-exec-only-s42-r2\n- plan001-exec-only-s43-r4 (or similar latest)\n- plan001-exec-only-s44\nFor each: h7_count, h1_count, genuine_count, n_proved, eval_prove_rate\n\n**Group 6: SFT baselines (1000 steps)**\n- plan009-sft-baseline-s42-1000\n- plan009-sft-baseline-s43-1000\n- plan009-sft-baseline-s44-1000-r3 (or similar)\nFor each: h7_count, h1_count, genuine_count, n_proved, eval_prove_rate\n\nAlso extract:\n- plan003-eval-exec-only-r5 metrics (100-step eval)\n- plan016-extended-1000-s42 metrics\n- plan001-exec-only-s43-1000-r2 metrics\n- plan001-exec-only-s44-1000-r2 metrics\n\nUse jq or python to parse. First probe the structure, then extract. Report ALL raw numbers — I'll do the verification myself. Be thorough and precise.\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "8211b4e6-ad0d-44f3-a5c0-50fd209b3fad",
+            "agentId": "af07ab58e3cc6e1dd",
+            "type": "user",
+            "uuid": "baf72424-72e9-47b6-a048-4841231eabe7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T20:24:49.694Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "baf72424-72e9-47b6-a048-4841231eabe7",
+                "isSidechain": true,
+                "agentId": "af07ab58e3cc6e1dd",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reviewer_post_to_director",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__tail_training_logs"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reviewer_post_to_director",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__tail_training_logs"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "1de20b9f-76cd-4fe5-98b7-942acfd3035e",
+                "timestamp": "2026-05-15T20:24:49.694Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+                "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T20:24:52.358Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll parse the registry JSON and extract all requested metrics. Let me start by probing the structure."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1de20b9f-76cd-4fe5-98b7-942acfd3035e",
+            "isSidechain": true,
+            "agentId": "af07ab58e3cc6e1dd",
+            "requestId": "req_011Cb4yr6Y27wkdvAyngC8YE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c020c511-20b8-4708-9444-62a0865a412b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EmhwemghSCpR8APbGTC1np",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 15981,
+                "cache_read_input_tokens": 7667,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 15981,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T20:24:53.564Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013R9oHizGAtdyQ8mPAB9w4v",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-reviewer-5c7e23f1/e68b00f3-6abd-4b8e-aa50-c424de71f72e/tool-results/mcp-agent-ml-research-read_registry-1778876673860.txt",
+                "limit": 50
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c020c511-20b8-4708-9444-62a0865a412b",
+            "isSidechain": true,
+            "agentId": "af07ab58e3cc6e1dd",
+            "requestId": "req_011Cb4yr6Y27wkdvAyngC8YE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4de14931-b0d2-4cb0-af5e-f797d4a53838",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EmhwemghSCpR8APbGTC1np",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 15981,
+                "cache_read_input_tokens": 7667,
+                "output_tokens": 197,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 15981
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 197,
+                    "cache_read_input_tokens": 7667,
+                    "cache_creation_input_tokens": 15981,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 15981,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T20:24:53.893Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (42984 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_013R9oHizGAtdyQ8mPAB9w4v"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4de14931-b0d2-4cb0-af5e-f797d4a53838",
+            "isSidechain": true,
+            "promptId": "8211b4e6-ad0d-44f3-a5c0-50fd209b3fad",
+            "agentId": "af07ab58e3cc6e1dd",
+            "type": "user",
+            "uuid": "30b74326-e7b5-45fd-b7b2-134a73ab96ea",
+            "toolUseResult": "Error: File content (42984 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "4de14931-b0d2-4cb0-af5e-f797d4a53838",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T20:24:56.652Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file is large. Let me use Python to parse it and extract the needed experiments."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "30b74326-e7b5-45fd-b7b2-134a73ab96ea",
+            "isSidechain": true,
+            "agentId": "af07ab58e3cc6e1dd",
+            "requestId": "req_011Cb4yrQV1kerqa4w5JncP7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3a863158-aeb3-4e3b-854f-204a96cf67a5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MS9x9maX2STYPLMb4SKw3d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1098,
+                "cache_read_input_tokens": 23648,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1098,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T20:25:00.009Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018fppC1nFdpnVBWtvxL4bnz",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-reviewer-5c7e23f1/e68b00f3-6abd-4b8e-aa50-c424de71f72e/tool-results/mcp-agent-ml-research-read_registry-1778876673860.txt",
+                "limit": 20
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3a863158-aeb3-4e3b-854f-204a96cf67a5",
+            "isSidechain": true,
+            "agentId": "af07ab58e3cc6e1dd",
+            "requestId": "req_011Cb4yrQV1kerqa4w5JncP7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f00ad15a-1285-4d6f-a34a-b189c67dd1cb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MS9x9maX2STYPLMb4SKw3d",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1098,
+                "cache_read_input_tokens": 23648,
+                "output_tokens": 193,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1098
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 193,
+                    "cache_read_input_tokens": 23648,
+                    "cache_creation_input_tokens": 1098,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1098,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T20:25:00.276Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (42984 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_018fppC1nFdpnVBWtvxL4bnz"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f00ad15a-1285-4d6f-a34a-b189c67dd1cb",
+            "isSidechain": true,
+            "promptId": "8211b4e6-ad0d-44f3-a5c0-50fd209b3fad",
+            "agentId": "af07ab58e3cc6e1dd",
+            "type": "user",
+            "uuid": "c43beda0-20e9-49f6-9a4e-507a94e3a820",
+            "toolUseResult": "Error: File content (42984 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "f00ad15a-1285-4d6f-a34a-b189c67dd1cb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T20:25:04.708Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MpQ8yGMhtJYs5tuGQi4yzY",
+              "name": "Bash",
+              "input": {
+                "command": "head -c 2000 \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-reviewer-5c7e23f1/e68b00f3-6abd-4b8e-aa50-c424de71f72e/tool-results/mcp-agent-ml-research-read_registry-1778876673860.txt\"",
+                "description": "Probe first 2000 chars of registry JSON to understand structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c43beda0-20e9-49f6-9a4e-507a94e3a820",
+            "isSidechain": true,
+            "agentId": "af07ab58e3cc6e1dd",
+            "requestId": "req_011Cb4yrsq4eZJwyZDYRJRCE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b5f7c425-2567-46cc-8afa-84e78971040e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NWBY4vkqymLJD4q63ArcjD",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 254,
+                "cache_read_input_tokens": 24746,
+                "output_tokens": 194,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 254
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 194,
+                    "cache_read_input_tokens": 24746,
+                    "cache_creation_input_tokens": 254,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 254,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T20:25:04.780Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MpQ8yGMhtJYs5tuGQi4yzY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan018-additive-random-b01-s44-r2\\\": {\\\"spec\\\": {\\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"data_path\\\": \\\"data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"seed\\\": 44, \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"conclusion_reason\\\": \\\"D095 negative: H7=0, H1=73 (82%), H8=16 (18%), genuine=6 (6.7%). H1+H8 overlap=6 samples. C013 set-exclusion formula applied.\\\"}, \\\"metrics\\\": {\\\"train_prove_rate\\\": 0.64675, \\\"train_mean_isr\\\": 0.08092, \\\"train_loss\\\": 0.00937, \\\"train_steps\\\": 500, \\\"train_runtime_sec\\\": 4998, \\\"eval_prove_rate\\\": 0.89, \\\"eval_mean_isr\\\": 0.0619, \\\"eval_isr_std\\\": 0.1756, \\\"eval_median_isr\\\": 0, \\\"eval_isr_pr_ratio\\\": 0.0695, \\\"eval_proved_only_isr\\\": 0.0695, \\\"eval_n_proved\\\": 89, \\\"eval_n_problems\\\": 100, \\\"h7_count\\\": 0, \\\"h7a_count\\\": 0, \\\"h7b_count\\\": 0, \\\"h1_count\\\": 73, \\\"h8_count\\\": 16, \\\"genuine_count\\\": 6, \\\"genuine_rate\\\": 0.067, \\\"h7_rate\\\": 0, \\\"h1_rate\\\": 0.82, \\\"h8_rate\\\": 0.18, \\\"content_independent_count\\\": 18}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan018-additive-random-b01-s43-r3\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random_b01.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --beta 0.1 --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"486853\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan018-additive-random-b01-s43-r3.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T16:27:24.202Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 43, \\\"wall_clock_seconds\\\": 5840.8, \\\"gpu_hours\\\": 1.62}, \\\"metrics\\\": {\\\"prove_rate\\\": 0.94",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b5f7c425-2567-46cc-8afa-84e78971040e",
+            "isSidechain": true,
+            "promptId": "8211b4e6-ad0d-44f3-a5c0-50fd209b3fad",
+            "agentId": "af07ab58e3cc6e1dd",
+            "type": "user",
+            "uuid": "5bdd2665-6a62-4d68-b716-e76db8a766d4",
+            "sourceToolAssistantUUID": "b5f7c425-2567-46cc-8afa-84e78971040e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T20:25:07.652Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, I can see the structure. Let me use Python to parse and extract all the needed experiments."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5bdd2665-6a62-4d68-b716-e76db8a766d4",
+            "isSidechain": true,
+            "agentId": "af07ab58e3cc6e1dd",
+            "requestId": "req_011Cb4ysD3Tqi5RYTskPXdyn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8e3bc43c-fde0-43c3-881e-97db0a9e952c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K4wbuVhVgm2cq3ZQ5pW5XG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1081,
+                "cache_read_input_tokens": 25000,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1081,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T20:25:09.731Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q5xsJBiWS55f2s4yJGroLM",
+              "name": "Bash",
+              "input": {
+                "command": "cd \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-reviewer-5c7e23f1/e68b00f3-6abd-4b8e-aa50-c424de71f72e/tool-results\" && python3 << 'PYEOF'\nimport json\n\nwith open(\"mcp-agent-ml-research-read_registry-1778876673860.txt\", \"r\") as f:\n    outer = json.loads(f.read())\n\ninner = json.loads(outer[\"result\"])\nexperiments = inner[\"data\"][\"experiments\"]\n\n# List all experiment IDs\nfor eid in sorted(experiments.keys()):\n    print(eid)\nPYEOF",
+                "description": "List all experiment IDs in the registry"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8e3bc43c-fde0-43c3-881e-97db0a9e952c",
+            "isSidechain": true,
+            "agentId": "af07ab58e3cc6e1dd",
+            "requestId": "req_011Cb4ysD3Tqi5RYTskPXdyn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e5c06770-f50a-42a1-8a2b-474992f7d893",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K4wbuVhVgm2cq3ZQ5pW5XG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1081,
+                "cache_read_input_tokens": 25000,
+                "output_tokens": 290,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1081
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 290,
+                    "cache_read_input_tokens": 25000,
+                    "cache_creation_input_tokens": 1081,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1081,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T20:25:09.843Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q5xsJBiWS55f2s4yJGroLM",
+              "type": "tool_result",
+              "content": "exp1-isr-b03-s42-1000\nexp1-isr-b03-s42-1000-r2\nexp1-isr-b03-s43\nexp1-isr-b03-s43-r2\nexp1-isr-b03-s43-r3\nexp1-isr-b03-s43-r4\nexp1-isr-b03-s44\nexp1-isr-b03-s44-r2\nexp1-random-b03-s43\nexp1-random-b03-s43-r2\nexp1-random-b03-s43-r3\nexp1-random-b03-s43-r4\nexp1-random-b03-s44\nexp1-random-b03-s44-r2\nexp2-exec-s43-greedy\nexp4-100step-h1h7\nplan001-exec-only-s42\nplan001-exec-only-s42-r2\nplan001-exec-only-s42-r3\nplan001-exec-only-s43\nplan001-exec-only-s43-1000\nplan001-exec-only-s43-1000-r2\nplan001-exec-only-s43-r2\nplan001-exec-only-s43-r3\nplan001-exec-only-s43-r4\nplan001-exec-only-s44\nplan001-exec-only-s44-1000\nplan001-exec-only-s44-1000-r2\nplan002-additive-b01-s42\nplan002-additive-b01-s42-1000\nplan002-additive-b01-s43\nplan002-additive-b01-s43-r2\nplan002-additive-b01-s44\nplan002-additive-b03-s42\nplan003-eval-exec-only-r5\nplan004-o1-ablation-s42\nplan005-sta-low-s42\nplan006-prolog-exec-s42\nplan006-prolog-exec-s43\nplan006-prolog-exec-s43-r2\nplan006-prolog-exec-s43-r3\nplan006-prolog-exec-s44\nplan006-prolog-sta-s42\nplan006-prolog-sta-s43\nplan006-prolog-sta-s44\nplan009-sft-baseline-s42\nplan009-sft-baseline-s42-1000\nplan009-sft-baseline-s42-r2\nplan009-sft-baseline-s42-r3\nplan009-sft-baseline-s42-r4\nplan009-sft-baseline-s43\nplan009-sft-baseline-s43-1000\nplan009-sft-baseline-s44\nplan009-sft-baseline-s44-1000\nplan009-sft-baseline-s44-1000-r2\nplan009-sft-baseline-s44-1000-r3\nplan012-hacking-taxonomy\nplan013-random-reward-s42\nplan013-random-reward-s42-r2\nplan013-random-reward-s42-r3\nplan013-random-reward-s42-r4\nplan014-downstream-nli-s42\nplan015-linear-s42\nplan016-extended-1000-s42\nplan017-additive-random-s42\nplan018-additive-random-b01-s42\nplan018-additive-random-b01-s42-1000\nplan018-additive-random-b01-s42-1000-r2\nplan018-additive-random-b01-s42-1000-r3\nplan018-additive-random-b01-s43\nplan018-additive-random-b01-s43-r2\nplan018-additive-random-b01-s43-r3\nplan018-additive-random-b01-s44\nplan018-additive-random-b01-s44-r2\nsta-gt-isr-baseline\nsta-phase0-baseline\nsta-phase1-exec-only\nsta-phase1-exec-only-r2\nsta-phase1-exec-only-r3\nsta-phase1-exec-only-r4\nsta-phase1-exec-only-r5\nsta-phase1-exec-sta\nsta-phase1-exec-sta-r2\nsta-phase1-exec-sta-r3\nsta-phase1-exec-sta-r4\nsta-phase1-exec-sta-r5",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e5c06770-f50a-42a1-8a2b-474992f7d893",
+            "isSidechain": true,
+            "promptId": "8211b4e6-ad0d-44f3-a5c0-50fd209b3fad",
+            "agentId": "af07ab58e3cc6e1dd",
+            "type": "user",
+            "uuid": "0243493a-7b79-46d3-89b1-0983ca5f7e27",
+            "sourceToolAssistantUUID": "e5c06770-f50a-42a1-8a2b-474992f7d893",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T20:25:12.984Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I see all experiments. I notice some names differ from what was requested (e.g., no `plan002-additive-b03-s43` or `plan002-additive-b03-s44`). Let me extract all requested experiments with the key metrics."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0243493a-7b79-46d3-89b1-0983ca5f7e27",
+            "isSidechain": true,
+            "agentId": "af07ab58e3cc6e1dd",
+            "requestId": "req_011Cb4ysahxKz8rz3Nmygfrc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f0d3c57c-dabc-417f-8196-658faf12ef75",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C2bQtFteMzp7GaSE2HpphV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1406,
+                "cache_read_input_tokens": 26081,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1406,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T20:25:25.027Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013MgBY6JcEvXmJDW1uEEdvQ",
+              "name": "Bash",
+              "input": {
+                "command": "cd \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-reviewer-5c7e23f1/e68b00f3-6abd-4b8e-aa50-c424de71f72e/tool-results\" && python3 << 'PYEOF'\nimport json\n\nwith open(\"mcp-agent-ml-research-read_registry-1778876673860.txt\", \"r\") as f:\n    outer = json.loads(f.read())\n\ninner = json.loads(outer[\"result\"])\nexperiments = inner[\"data\"][\"experiments\"]\n\ntarget_fields = [\"h7_count\", \"h1_count\", \"genuine_count\", \"eval_n_proved\", \"n_proved\", \"eval_prove_rate\", \"prove_rate\", \"h8_count\", \"genuine_rate\", \"h7_rate\", \"h1_rate\", \"h8_rate\", \"content_independent_count\"]\n\n# All experiment IDs we want\ntargets = [\n    # Group 1: plan002-additive-b01 (ISR beta=0.1)\n    \"plan002-additive-b01-s42\",\n    \"plan002-additive-b01-s43\",\n    \"plan002-additive-b01-s43-r2\",\n    \"plan002-additive-b01-s44\",\n    # Group 2: plan018-additive-random-b01 (Random beta=0.1)\n    \"plan018-additive-random-b01-s42\",\n    \"plan018-additive-random-b01-s43-r3\",\n    \"plan018-additive-random-b01-s44-r2\",\n    # Group 3: plan002-additive-b03 (ISR beta=0.3)\n    \"plan002-additive-b03-s42\",\n    # Also check exp1 ISR b03 variants\n    \"exp1-isr-b03-s43-r4\",\n    \"exp1-isr-b03-s44-r2\",\n    # Group 4: Random beta=0.3\n    \"plan017-additive-random-s42\",\n    \"exp1-random-b03-s43-r4\",\n    \"exp1-random-b03-s44-r2\",\n    # Group 5: Exec-only\n    \"plan001-exec-only-s42-r2\",\n    \"plan001-exec-only-s43-r4\",\n    \"plan001-exec-only-s44\",\n    # Group 6: SFT baselines (1000 steps)\n    \"plan009-sft-baseline-s42-1000\",\n    \"plan009-sft-baseline-s43-1000\",\n    \"plan009-sft-baseline-s44-1000-r3\",\n    # Others\n    \"plan003-eval-exec-only-r5\",\n    \"plan016-extended-1000-s42\",\n    \"plan001-exec-only-s43-1000-r2\",\n    \"plan001-exec-only-s44-1000-r2\",\n    # Also check these for completeness\n    \"plan002-additive-b01-s42-1000\",\n    \"exp1-isr-b03-s42-1000-r2\",\n    \"plan001-exec-only-s42-r3\",\n]\n\nfor eid in targets:\n    if eid in experiments:\n        exp = experiments[eid]\n        m = exp.get(\"metrics\", {})\n        conclusion = exp.get(\"conclusion\", \"N/A\")\n        spec = exp.get(\"spec\", {})\n        seed = spec.get(\"seed\", \"?\")\n        print(f\"\\n=== {eid} ===\")\n        print(f\"  conclusion: {conclusion}\")\n        print(f\"  seed: {seed}\")\n        for f in target_fields:\n            if f in m:\n                print(f\"  {f}: {m[f]}\")\n        # Also show train metrics if relevant\n        for tf in [\"train_prove_rate\", \"train_steps\", \"train_loss\"]:\n            if tf in m:\n                print(f\"  {tf}: {m[tf]}\")\n    else:\n        print(f\"\\n=== {eid} === NOT FOUND\")\n\nPYEOF",
+                "description": "Extract all requested experiment metrics from registry"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f0d3c57c-dabc-417f-8196-658faf12ef75",
+            "isSidechain": true,
+            "agentId": "af07ab58e3cc6e1dd",
+            "requestId": "req_011Cb4ysahxKz8rz3Nmygfrc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "453a777b-61b8-4f9c-8ec2-256348971a87",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C2bQtFteMzp7GaSE2HpphV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1406,
+                "cache_read_input_tokens": 26081,
+                "output_tokens": 1208,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1406
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1208,
+                    "cache_read_input_tokens": 26081,
+                    "cache_creation_input_tokens": 1406,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1406,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T20:25:25.156Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013MgBY6JcEvXmJDW1uEEdvQ",
+              "type": "tool_result",
+              "content": "=== plan002-additive-b01-s42 ===\n  conclusion: negative\n  seed: 42\n  h7_count: 13\n  h1_count: 42\n  genuine_count: 14\n  eval_n_proved: 81\n  eval_prove_rate: 0.81\n  genuine_rate: 0.173\n  h7_rate: 0.16\n  h1_rate: 0.519\n\n=== plan002-additive-b01-s43 ===\n  conclusion: negative\n  seed: ?\n  h7_count: 59\n  h1_count: 0\n  genuine_count: 2\n  eval_n_proved: 61\n  eval_prove_rate: 0.61\n  genuine_rate: 0.0328\n  h7_rate: 0.9672\n  h1_rate: 0\n\n=== plan002-additive-b01-s43-r2 ===\n  conclusion: negative\n  seed: ?\n  h7_count: 61\n  h1_count: 0\n  genuine_count: 0\n  eval_n_proved: 61\n  eval_prove_rate: 0.61\n  genuine_rate: 0\n  h7_rate: 1\n  h1_rate: 0\n  train_prove_rate: 0.68775\n\n=== plan002-additive-b01-s44 ===\n  conclusion: negative\n  seed: 44\n  h7_count: 89\n  h1_count: 0\n  genuine_count: 0\n  eval_n_proved: 89\n  eval_prove_rate: 0.89\n  genuine_rate: 0\n  h7_rate: 1\n  h1_rate: 0\n\n=== plan018-additive-random-b01-s42 ===\n  conclusion: negative\n  seed: 42\n  h7_count: 0\n  h1_count: 58\n  genuine_count: 18\n  eval_n_proved: 79\n  eval_prove_rate: 0.79\n  h8_count: 4\n  genuine_rate: 0.2278\n  h7_rate: 0\n  h1_rate: 0.7342\n  h8_rate: 0.0506\n\n=== plan018-additive-random-b01-s43-r3 ===\n  conclusion: negative\n  seed: 43\n  h7_count: 36\n  h1_count: 56\n  genuine_count: 1\n  n_proved: 94\n  prove_rate: 0.94\n  h8_count: 1\n  genuine_rate: 0.0106\n  h7_rate: 0.383\n  h1_rate: 0.596\n  h8_rate: 0.011\n  train_prove_rate: 0.5825\n\n=== plan018-additive-random-b01-s44-r2 ===\n  conclusion: negative\n  seed: 44\n  h7_count: 0\n  h1_count: 73\n  genuine_count: 6\n  eval_n_proved: 89\n  eval_prove_rate: 0.89\n  h8_count: 16\n  genuine_rate: 0.067\n  h7_rate: 0\n  h1_rate: 0.82\n  h8_rate: 0.18\n  content_independent_count: 18\n  train_prove_rate: 0.64675\n  train_steps: 500\n  train_loss: 0.00937\n\n=== plan002-additive-b03-s42 ===\n  conclusion: negative\n  seed: 42\n  h7_count: 0\n  h1_count: 14\n  genuine_count: 1\n  eval_n_proved: 18\n  eval_prove_rate: 0.18\n  genuine_rate: 0.0556\n  h7_rate: 0\n  h1_rate: 0.778\n\n=== exp1-isr-b03-s43-r4 ===\n  conclusion: killed\n  seed: 43\n\n=== exp1-isr-b03-s44-r2 ===\n  conclusion: success\n  seed: 44\n  h7_count: 95\n  h1_count: 0\n  genuine_count: 0\n  n_proved: 95\n  prove_rate: 0.95\n  genuine_rate: 0\n  h7_rate: 1\n  h1_rate: 0\n\n=== plan017-additive-random-s42 ===\n  conclusion: negative\n  seed: 42\n  h7_count: 4\n  h1_count: 44\n  genuine_count: 0\n  eval_n_proved: 48\n  eval_prove_rate: 0.48\n  h8_count: 0\n  genuine_rate: 0\n  h7_rate: 0.0833\n  h1_rate: 0.9167\n  h8_rate: 0\n\n=== exp1-random-b03-s43-r4 ===\n  conclusion: success\n  seed: 43\n  h7_count: 7\n  h1_count: 82\n  genuine_count: 3\n  eval_n_proved: 92\n  eval_prove_rate: 0.92\n  prove_rate: 0.5505\n  h8_count: 0\n  genuine_rate: 0.0326\n  h7_rate: 0.076\n  h1_rate: 0.891\n  h8_rate: 0\n  train_loss: 0.01365\n\n=== exp1-random-b03-s44-r2 ===\n  conclusion: success\n  seed: 44\n  h7_count: 0\n  h1_count: 23\n  genuine_count: 0\n  eval_n_proved: 23\n  eval_prove_rate: 0.23\n  h8_count: 0\n  genuine_rate: 0\n  h7_rate: 0\n  h1_rate: 1\n  h8_rate: 0\n\n=== plan001-exec-only-s42-r2 ===\n  conclusion: success\n  seed: 42\n  h7_count: 0\n  h1_count: 81\n  genuine_count: 7\n  eval_n_proved: 93\n  eval_prove_rate: 0.93\n  genuine_rate: 0.0753\n  h7_rate: 0\n  h1_rate: 0.871\n\n=== plan001-exec-only-s43-r4 ===\n  conclusion: negative\n  seed: 43\n\n=== plan001-exec-only-s44 ===\n  conclusion: negative\n  seed: ?\n  h7_count: 97\n  h1_count: 0\n  genuine_count: 0\n  eval_n_proved: 98\n  eval_prove_rate: 0.98\n  genuine_rate: 0\n  h7_rate: 1\n  h1_rate: 0\n\n=== plan009-sft-baseline-s42-1000 ===\n  conclusion: success\n  seed: 42\n  genuine_count: 12\n  eval_n_proved: 13\n  eval_prove_rate: 0.13\n  genuine_rate: 0.9231\n  content_independent_count: 0\n  train_steps: 1000\n\n=== plan009-sft-baseline-s43-1000 ===\n  conclusion: success\n  seed: 43\n  genuine_count: 10\n  n_proved: 11\n  prove_rate: 0.11\n  genuine_rate: 0.9091\n  content_independent_count: 0\n\n=== plan009-sft-baseline-s44-1000-r3 ===\n  conclusion: success\n  seed: 44\n  h7_count: 0\n  h1_count: 1\n  genuine_count: 14\n  eval_n_proved: 15\n  eval_prove_rate: 0.15\n  genuine_rate: 0.9333\n  h7_rate: 0\n  h1_rate: 0.0667\n\n=== plan003-eval-exec-only-r5 ===\n  conclusion: success\n  seed: 0\n  prove_rate: 0.32\n\n=== plan016-extended-1000-s42 ===\n  conclusion: success\n  seed: 42\n  h7_count: 0\n  h1_count: 96\n  genuine_count: 0\n  n_proved: 96\n  prove_rate: 0.96\n  h8_count: 0\n  genuine_rate: 0\n  h7_rate: 0\n  h1_rate: 1\n  h8_rate: 0\n\n=== plan001-exec-only-s43-1000-r2 ===\n  conclusion: success\n  seed: ?\n  h7_count: 90\n  h1_count: 0\n  genuine_count: 0\n  n_proved: 90\n  prove_rate: 0.9\n  h8_count: 0\n  genuine_rate: 0\n  h7_rate: 1\n  h1_rate: 0\n  h8_rate: 0\n\n=== plan001-exec-only-s44-1000-r2 ===\n  conclusion: success\n  seed: ?\n  h7_count: 0\n  h1_count: 85\n  genuine_count: 0\n  n_proved: 100\n  prove_rate: 1\n  h8_count: 15\n  genuine_rate: 0\n  h7_rate: 0\n  h1_rate: 0.85\n  h8_rate: 0.15\n\n=== plan002-additive-b01-s42-1000 ===\n  conclusion: negative\n  seed: ?\n  h7_count: 87\n  h1_count: 0\n  genuine_count: 2\n  eval_n_proved: 90\n  eval_prove_rate: 0.9\n  genuine_rate: 0.0222\n  h7_rate: 0.9667\n  h1_rate: 0\n\n=== exp1-isr-b03-s42-1000-r2 ===\n  conclusion: negative\n  seed: ?\n  h7_count: 0\n  h1_count: 54\n  genuine_count: 0\n  eval_n_proved: 95\n  eval_prove_rate: 0.95\n  genuine_rate: 0\n  h7_rate: 0\n  h1_rate: 0.568\n  train_loss: 0.0041\n\n=== plan001-exec-only-s42-r3 ===\n  conclusion: failed\n  seed: 42",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "453a777b-61b8-4f9c-8ec2-256348971a87",
+            "isSidechain": true,
+            "promptId": "8211b4e6-ad0d-44f3-a5c0-50fd209b3fad",
+            "agentId": "af07ab58e3cc6e1dd",
+            "type": "user",
+            "uuid": "f03d3de7-d978-442a-8bdc-e33f896a9dc2",
+            "sourceToolAssistantUUID": "453a777b-61b8-4f9c-8ec2-256348971a87",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T20:25:28.315Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also check the missing experiments for Group 3 (ISR beta=0.3) and get more detail on plan001-exec-only-s43-r4."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f03d3de7-d978-442a-8bdc-e33f896a9dc2",
+            "isSidechain": true,
+            "agentId": "af07ab58e3cc6e1dd",
+            "requestId": "req_011Cb4yti6ySXPtiY2GACxpZ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "57642021-36c9-437a-87a1-3a63da0485cc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TqtmHtyehs6XNpjfFLFuYD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3904,
+                "cache_read_input_tokens": 27487,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3904,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T20:25:36.582Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GXCczznpz6x38V77fptuFr",
+              "name": "Bash",
+              "input": {
+                "command": "cd \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-reviewer-5c7e23f1/e68b00f3-6abd-4b8e-aa50-c424de71f72e/tool-results\" && python3 << 'PYEOF'\nimport json\n\nwith open(\"mcp-agent-ml-research-read_registry-1778876673860.txt\", \"r\") as f:\n    outer = json.loads(f.read())\n\ninner = json.loads(outer[\"result\"])\nexperiments = inner[\"data\"][\"experiments\"]\n\n# Check for ISR b03 experiments - all variants\nprint(\"=== ISR b03 variants (Group 3 candidates) ===\")\nfor eid in sorted(experiments.keys()):\n    if \"b03\" in eid and \"random\" not in eid:\n        exp = experiments[eid]\n        m = exp.get(\"metrics\", {})\n        conclusion = exp.get(\"conclusion\", \"N/A\")\n        seed = exp.get(\"spec\", {}).get(\"seed\", \"?\")\n        print(f\"\\n--- {eid} ---\")\n        print(f\"  conclusion: {conclusion}, seed: {seed}\")\n        for f in [\"h7_count\",\"h1_count\",\"genuine_count\",\"eval_n_proved\",\"n_proved\",\"eval_prove_rate\",\"prove_rate\",\"genuine_rate\",\"h7_rate\",\"h1_rate\"]:\n            if f in m:\n                print(f\"  {f}: {m[f]}\")\n\n# Check exec-only s43 variants\nprint(\"\\n\\n=== Exec-only s43 variants (Group 5 candidates) ===\")\nfor eid in sorted(experiments.keys()):\n    if \"exec-only-s43\" in eid and \"1000\" not in eid:\n        exp = experiments[eid]\n        m = exp.get(\"metrics\", {})\n        conclusion = exp.get(\"conclusion\", \"N/A\")\n        seed = exp.get(\"spec\", {}).get(\"seed\", \"?\")\n        print(f\"\\n--- {eid} ---\")\n        print(f\"  conclusion: {conclusion}, seed: {seed}\")\n        for f in [\"h7_count\",\"h1_count\",\"genuine_count\",\"eval_n_proved\",\"n_proved\",\"eval_prove_rate\",\"prove_rate\",\"genuine_rate\",\"h7_rate\",\"h1_rate\"]:\n            if f in m:\n                print(f\"  {f}: {m[f]}\")\n\n# Check plan009 SFT baselines fully\nprint(\"\\n\\n=== SFT baselines - all variants ===\")\nfor eid in sorted(experiments.keys()):\n    if \"sft\" in eid:\n        exp = experiments[eid]\n        m = exp.get(\"metrics\", {})\n        conclusion = exp.get(\"conclusion\", \"N/A\")\n        seed = exp.get(\"spec\", {}).get(\"seed\", \"?\")\n        print(f\"\\n--- {eid} ---\")\n        print(f\"  conclusion: {conclusion}, seed: {seed}\")\n        for f in [\"h7_count\",\"h1_count\",\"genuine_count\",\"eval_n_proved\",\"n_proved\",\"eval_prove_rate\",\"prove_rate\",\"genuine_rate\",\"h7_rate\",\"h1_rate\",\"content_independent_count\",\"train_steps\"]:\n            if f in m:\n                print(f\"  {f}: {m[f]}\")\n\nPYEOF",
+                "description": "Check ISR b03 variants, exec-only s43 variants, and SFT baseline variants"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "57642021-36c9-437a-87a1-3a63da0485cc",
+            "isSidechain": true,
+            "agentId": "af07ab58e3cc6e1dd",
+            "requestId": "req_011Cb4yti6ySXPtiY2GACxpZ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0f8f7d3a-4012-4a8b-beb6-8a49aa5a0845",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TqtmHtyehs6XNpjfFLFuYD",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3904,
+                "cache_read_input_tokens": 27487,
+                "output_tokens": 990,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3904
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 990,
+                    "cache_read_input_tokens": 27487,
+                    "cache_creation_input_tokens": 3904,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3904,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T20:25:36.691Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GXCczznpz6x38V77fptuFr",
+              "type": "tool_result",
+              "content": "=== ISR b03 variants (Group 3 candidates) ===\n\n--- exp1-isr-b03-s42-1000 ---\n  conclusion: failed, seed: ?\n\n--- exp1-isr-b03-s42-1000-r2 ---\n  conclusion: negative, seed: ?\n  h7_count: 0\n  h1_count: 54\n  genuine_count: 0\n  eval_n_proved: 95\n  eval_prove_rate: 0.95\n  genuine_rate: 0\n  h7_rate: 0\n  h1_rate: 0.568\n\n--- exp1-isr-b03-s43 ---\n  conclusion: success, seed: 43\n  genuine_count: 61\n  n_proved: 91\n  prove_rate: 0.91\n  genuine_rate: 0.6703\n\n--- exp1-isr-b03-s43-r2 ---\n  conclusion: killed, seed: ?\n\n--- exp1-isr-b03-s43-r3 ---\n  conclusion: success, seed: 43\n  eval_n_proved: 86\n  eval_prove_rate: 0.86\n  prove_rate: 0.56125\n\n--- exp1-isr-b03-s43-r4 ---\n  conclusion: killed, seed: 43\n\n--- exp1-isr-b03-s44 ---\n  conclusion: failed, seed: ?\n\n--- exp1-isr-b03-s44-r2 ---\n  conclusion: success, seed: 44\n  h7_count: 95\n  h1_count: 0\n  genuine_count: 0\n  n_proved: 95\n  prove_rate: 0.95\n  genuine_rate: 0\n  h7_rate: 1\n  h1_rate: 0\n\n--- plan002-additive-b03-s42 ---\n  conclusion: negative, seed: 42\n  h7_count: 0\n  h1_count: 14\n  genuine_count: 1\n  eval_n_proved: 18\n  eval_prove_rate: 0.18\n  genuine_rate: 0.0556\n  h7_rate: 0\n  h1_rate: 0.778\n\n\n=== Exec-only s43 variants (Group 5 candidates) ===\n\n--- plan001-exec-only-s43 ---\n  conclusion: failed, seed: 43\n\n--- plan001-exec-only-s43-r2 ---\n  conclusion: failed, seed: 43\n\n--- plan001-exec-only-s43-r3 ---\n  conclusion: failed, seed: 43\n\n--- plan001-exec-only-s43-r4 ---\n  conclusion: negative, seed: 43\n\n\n=== SFT baselines - all variants ===\n\n--- plan009-sft-baseline-s42 ---\n  conclusion: killed, seed: ?\n\n--- plan009-sft-baseline-s42-1000 ---\n  conclusion: success, seed: 42\n  genuine_count: 12\n  eval_n_proved: 13\n  eval_prove_rate: 0.13\n  genuine_rate: 0.9231\n  content_independent_count: 0\n  train_steps: 1000\n\n--- plan009-sft-baseline-s42-r2 ---\n  conclusion: failed, seed: 42\n\n--- plan009-sft-baseline-s42-r3 ---\n  conclusion: failed, seed: ?\n\n--- plan009-sft-baseline-s42-r4 ---\n  conclusion: success, seed: 42\n  h7_count: 0\n  h1_count: 1\n  genuine_count: 13\n  eval_n_proved: 14\n  eval_prove_rate: 0.14\n  genuine_rate: 0.929\n  h7_rate: 0\n  h1_rate: 0.071\n\n--- plan009-sft-baseline-s43 ---\n  conclusion: success, seed: 43\n  h7_count: 0\n  h1_count: 1\n  genuine_count: 14\n  eval_prove_rate: 0.15\n  genuine_rate: 0.933\n  h7_rate: 0\n  h1_rate: 0.067\n  train_steps: 500\n\n--- plan009-sft-baseline-s43-1000 ---\n  conclusion: success, seed: 43\n  genuine_count: 10\n  n_proved: 11\n  prove_rate: 0.11\n  genuine_rate: 0.9091\n  content_independent_count: 0\n\n--- plan009-sft-baseline-s44 ---\n  conclusion: success, seed: 44\n  eval_n_proved: 17\n  eval_prove_rate: 0.17\n  train_steps: 500\n\n--- plan009-sft-baseline-s44-1000 ---\n  conclusion: success, seed: 44\n  genuine_count: 14\n  n_proved: 15\n  prove_rate: 0.15\n  genuine_rate: 0.9333\n  content_independent_count: 0\n\n--- plan009-sft-baseline-s44-1000-r2 ---\n  conclusion: failed, seed: ?\n\n--- plan009-sft-baseline-s44-1000-r3 ---\n  conclusion: success, seed: 44\n  h7_count: 0\n  h1_count: 1\n  genuine_count: 14\n  eval_n_proved: 15\n  eval_prove_rate: 0.15\n  genuine_rate: 0.9333\n  h7_rate: 0\n  h1_rate: 0.0667",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0f8f7d3a-4012-4a8b-beb6-8a49aa5a0845",
+            "isSidechain": true,
+            "promptId": "8211b4e6-ad0d-44f3-a5c0-50fd209b3fad",
+            "agentId": "af07ab58e3cc6e1dd",
+            "type": "user",
+            "uuid": "0fd6bd52-e2d0-4351-8daf-fb0f6e73f23e",
+            "sourceToolAssistantUUID": "0f8f7d3a-4012-4a8b-beb6-8a49aa5a0845",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T20:25:44.516Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A2LmWHMGE9K2ovPKYbbSZy",
+              "name": "Bash",
+              "input": {
+                "command": "cd \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-reviewer-5c7e23f1/e68b00f3-6abd-4b8e-aa50-c424de71f72e/tool-results\" && python3 << 'PYEOF'\nimport json\n\nwith open(\"mcp-agent-ml-research-read_registry-1778876673860.txt\", \"r\") as f:\n    outer = json.loads(f.read())\n\ninner = json.loads(outer[\"result\"])\nexperiments = inner[\"data\"][\"experiments\"]\n\n# Get full details for experiments with incomplete metrics\ndetailed_targets = [\n    \"plan001-exec-only-s43-r4\",\n    \"exp1-isr-b03-s43-r3\",\n    \"exp1-isr-b03-s43\",\n    \"plan003-eval-exec-only-r5\",\n    \"plan009-sft-baseline-s42-1000\",\n    \"plan009-sft-baseline-s43-1000\",\n]\n\nfor eid in detailed_targets:\n    if eid in experiments:\n        exp = experiments[eid]\n        m = exp.get(\"metrics\", {})\n        spec = exp.get(\"spec\", {})\n        print(f\"\\n=== {eid} (FULL DUMP) ===\")\n        print(f\"  conclusion: {exp.get('conclusion', 'N/A')}\")\n        print(f\"  spec keys: {list(spec.keys())}\")\n        print(f\"  ALL metrics: {json.dumps(m, indent=4)}\")\n        # check conclusion_reason\n        cr = spec.get(\"conclusion_reason\", \"N/A\")\n        print(f\"  conclusion_reason: {cr}\")\nPYEOF",
+                "description": "Get full metric dumps for experiments with potentially incomplete data"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0fd6bd52-e2d0-4351-8daf-fb0f6e73f23e",
+            "isSidechain": true,
+            "agentId": "af07ab58e3cc6e1dd",
+            "requestId": "req_011Cb4yuZU6XyoaB1AG5GoaC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e201e5b8-13de-478f-95e1-fc1dac0b43d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VEkWGiiwufB8fQWRa43zYL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2398,
+                "cache_read_input_tokens": 31391,
+                "output_tokens": 533,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2398
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 533,
+                    "cache_read_input_tokens": 31391,
+                    "cache_creation_input_tokens": 2398,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2398,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T20:25:44.671Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A2LmWHMGE9K2ovPKYbbSZy",
+              "type": "tool_result",
+              "content": "=== plan001-exec-only-s43-r4 (FULL DUMP) ===\n  conclusion: negative\n  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'hypothesis', 'plan_id', 'wall_clock_seconds', 'gpu_hours']\n  ALL metrics: {\n    \"eval_sampling_prove_rate\": 0.14,\n    \"eval_sampling_mean_isr\": 0,\n    \"eval_sampling_n_proved\": 14,\n    \"eval_sampling_temperature\": 0.7,\n    \"eval_sampling_method\": \"do_sample=True, temperature=0.7\",\n    \"eval_sampling_by_answer\": {\n        \"true\": {\n            \"count\": 34,\n            \"proved\": 6,\n            \"prove_rate\": 0.176\n        },\n        \"false\": {\n            \"count\": 25,\n            \"proved\": 2,\n            \"prove_rate\": 0.08\n        },\n        \"unknown\": {\n            \"count\": 41,\n            \"proved\": 6,\n            \"prove_rate\": 0.146\n        }\n    },\n    \"eval_greedy_prove_rate\": 0.13,\n    \"eval_greedy_mean_isr\": 0,\n    \"eval_greedy_proved_only_isr\": 0,\n    \"eval_greedy_n_proved\": 13,\n    \"eval_greedy_method\": \"eval_sta.py default (do_sample=False)\",\n    \"eval_greedy_by_answer\": {\n        \"true\": {\n            \"count\": 34,\n            \"proved\": 4,\n            \"prove_rate\": 0.118\n        },\n        \"false\": {\n            \"count\": 25,\n            \"proved\": 5,\n            \"prove_rate\": 0.2\n        },\n        \"unknown\": {\n            \"count\": 41,\n            \"proved\": 4,\n            \"prove_rate\": 0.0976\n        }\n    },\n    \"eval_greedy_h7_count\": 0,\n    \"eval_greedy_h7_rate\": 0,\n    \"eval_greedy_h1_count\": 13,\n    \"eval_greedy_h1_rate\": 1,\n    \"eval_greedy_genuine_rate\": 0,\n    \"eval_greedy_n_premises_proved_mean\": 17.92,\n    \"eval_greedy_mean_components_proved\": 18.92,\n    \"eval_greedy_n_premises_all_mean\": 32.67,\n    \"eval_sampling_h1_rate\": 1,\n    \"eval_sampling_h7_rate\": 0,\n    \"eval_sampling_genuine_rate\": 0,\n    \"eval_sampling_mean_components_proved\": 18.5,\n    \"eval_greedy_vs_sampling_delta_pr\": -0.01,\n    \"eval_method_note\": \"Greedy and sampling agree on failure profile (ISR*=0, H1=100%, components~18.5-18.9). s43 collapse is decoding-invariant.\"\n}\n  conclusion_reason: N/A\n\n=== exp1-isr-b03-s43-r3 (FULL DUMP) ===\n  conclusion: success\n  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'output_dir', 'checkpoint_path', 'wall_clock_seconds', 'gpu_hours']\n  ALL metrics: {\n    \"final_step\": 500,\n    \"prove_rate\": 0.56125,\n    \"mean_isr\": 0.1515,\n    \"parse_rate\": 1,\n    \"train_loss\": 0.0176,\n    \"train_runtime_sec\": 4153.6,\n    \"epoch\": 2,\n    \"eval_prove_rate\": 0.86,\n    \"eval_mean_isr\": 0.2535,\n    \"eval_isr_std\": 0.2406,\n    \"eval_median_isr\": 0.3333,\n    \"eval_proved_only_mean_isr\": 0.2948,\n    \"eval_min_isr\": 0,\n    \"eval_max_isr\": 0.75,\n    \"eval_n_proved\": 86,\n    \"eval_n_problems\": 100,\n    \"eval_data\": \"proofwriter_fol_100.jsonl\",\n    \"eval_h7_strict_rate\": 0.047,\n    \"eval_h7_strict_count\": 4,\n    \"eval_h1_strict_rate\": 0.686,\n    \"eval_h1_strict_count\": 59,\n    \"eval_conclusion_in_premise_rate\": 0.733,\n    \"eval_conclusion_in_premise_count\": 63,\n    \"eval_genuine_rate\": 0.267,\n    \"eval_genuine_count\": 23,\n    \"eval_single_premise_rate\": 0.058,\n    \"eval_single_premise_count\": 5,\n    \"eval_isr_1_count\": 0,\n    \"eval_by_answer_type\": {\n        \"false\": {\n            \"count\": 25,\n            \"proved\": 23,\n            \"prove_rate\": 0.92,\n            \"mean_isr\": 0.334\n        },\n        \"unknown\": {\n            \"count\": 41,\n            \"proved\": 35,\n            \"prove_rate\": 0.854,\n            \"mean_isr\": 0.199\n        },\n        \"true\": {\n            \"count\": 34,\n            \"proved\": 28,\n            \"prove_rate\": 0.824,\n            \"mean_isr\": 0.26\n        }\n    }\n}\n  conclusion_reason: N/A\n\n=== exp1-isr-b03-s43 (FULL DUMP) ===\n  conclusion: success\n  spec keys: ['data_path', 'data_count', 'model_name', 'seed', 'hypothesis', 'plan_id', 'reward_formula', 'num_steps', 'beta', 'command', 'server', 'gpu', 'pid', 'checkpoint_path']\n  ALL metrics: {\n    \"parse_rate\": 1,\n    \"prove_rate\": 0.91,\n    \"mean_isr\": 0.2575,\n    \"isr_std\": 0.2363,\n    \"median_isr\": 0.3333,\n    \"proved_only_mean_isr\": 0.283,\n    \"hacking_rate_strict_h7\": 0.022,\n    \"hacking_rate_functional\": 0.3297,\n    \"genuine_rate\": 0.6703,\n    \"genuine_count\": 61,\n    \"n_proved\": 91,\n    \"n_problems\": 100,\n    \"h1_conclusion_in_premise\": 0.747,\n    \"eval_data\": \"test_100.jsonl\",\n    \"eval_output\": \"/root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s43.json\"\n}\n  conclusion_reason: N/A\n\n=== plan003-eval-exec-only-r5 (FULL DUMP) ===\n  conclusion: success\n  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data', 'hypothesis', 'wall_clock_seconds', 'gpu_hours']\n  ALL metrics: {\n    \"prove_rate\": 0.32,\n    \"mean_isr\": 0.2055,\n    \"isr_std\": 0.3194,\n    \"proved_only_isr\": 0.6423,\n    \"isr_by_type\": {\n        \"true\": 0.3598,\n        \"false\": 0.1723,\n        \"unknown\": 0.0979\n    },\n    \"total_samples\": 100,\n    \"proved_count\": 32,\n    \"runtime_s\": 251.7\n}\n  conclusion_reason: N/A\n\n=== plan009-sft-baseline-s42-1000 (FULL DUMP) ===\n  conclusion: success\n  spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'gpu', 'submitted_at', 'wall_clock_seconds', 'gpu_hours', 'checkpoint_source', 'eval_data']\n  ALL metrics: {\n    \"train_final_loss\": 0.0168,\n    \"train_last_step_loss\": 0.0168,\n    \"train_token_accuracy\": 0.9955,\n    \"train_epochs\": 15.88,\n    \"train_runtime_sec\": 1415,\n    \"train_steps\": 1000,\n    \"eval_prove_rate\": 0.13,\n    \"eval_n_proved\": 13,\n    \"eval_n_problems\": 100,\n    \"eval_mean_isr\": 0.0738,\n    \"eval_isr_std\": 0.2077,\n    \"eval_median_isr\": 0,\n    \"eval_proved_only_isr\": 0.5677,\n    \"eval_data\": \"proofwriter_fol_100.jsonl\",\n    \"eval_method\": \"eval_sta.py full STA\",\n    \"eval_output_path\": \"/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/eval_sta_results.json\",\n    \"h7_strict_count\": 0,\n    \"h7_strict_rate\": 0,\n    \"h1_strict_count\": 1,\n    \"h1_strict_rate\": 0.0769,\n    \"h8_conjunction_collapse_count\": 0,\n    \"h8_conjunction_collapse_rate\": 0,\n    \"genuine_count\": 12,\n    \"genuine_rate\": 0.9231,\n    \"conclusion_in_premise_count\": 1,\n    \"conclusion_in_premise_rate\": 0.0769,\n    \"isr_1_count\": 0,\n    \"content_independent_count\": 0,\n    \"eval_by_answer_type\": {\n        \"true\": {\n            \"count\": 34,\n            \"proved\": 12,\n            \"prove_rate\": 0.353,\n            \"mean_isr\": 0.209\n        },\n        \"false\": {\n            \"count\": 25,\n            \"proved\": 1,\n            \"prove_rate\": 0.04,\n            \"mean_isr\": 0.011\n        },\n        \"unknown\": {\n            \"count\": 41,\n            \"proved\": 0,\n            \"prove_rate\": 0,\n            \"mean_isr\": 0\n        }\n    }\n}\n  conclusion_reason: N/A\n\n=== plan009-sft-baseline-s43-1000 (FULL DUMP) ===\n  conclusion: success\n  spec keys: ['data_path', 'data_count', 'model_name', 'seed']\n  ALL metrics: {\n    \"prove_rate\": 0.11,\n    \"n_proved\": 11,\n    \"n_problems\": 100,\n    \"mean_isr\": 0.0699,\n    \"isr_std\": 0.2155,\n    \"median_isr\": 0,\n    \"proved_only_mean_isr\": 0.6352,\n    \"by_answer_type\": {\n        \"true\": {\n            \"count\": 34,\n            \"proved\": 11,\n            \"prove_rate\": 0.3235\n        },\n        \"false\": {\n            \"count\": 25,\n            \"proved\": 0,\n            \"prove_rate\": 0\n        },\n        \"unknown\": {\n            \"count\": 41,\n            \"proved\": 0,\n            \"prove_rate\": 0\n        }\n    },\n    \"genuine_count\": 10,\n    \"genuine_rate\": 0.9091,\n    \"h7_strict_count\": 0,\n    \"h7_strict_rate\": 0,\n    \"h1_strict_count\": 1,\n    \"h1_strict_rate\": 0.0909,\n    \"h8_conjunction_collapse_count\": 0,\n    \"h8_conjunction_collapse_rate\": 0,\n    \"conclusion_in_premise_count\": 1,\n    \"conclusion_in_premise_rate\": 0.0909,\n    \"content_independent_count\": 0,\n    \"content_independent_rate\": 0,\n    \"isr_1_count\": 1,\n    \"isr_1_rate\": 0.0909,\n    \"train_final_loss\": 0.0167,\n    \"train_avg_loss\": 0.1551,\n    \"train_token_accuracy\": 0.9954,\n    \"train_runtime_s\": 1584.79,\n    \"eval_elapsed_s\": 326.1\n}\n  conclusion_reason: N/A",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e201e5b8-13de-478f-95e1-fc1dac0b43d1",
+            "isSidechain": true,
+            "promptId": "8211b4e6-ad0d-44f3-a5c0-50fd209b3fad",
+            "agentId": "af07ab58e3cc6e1dd",
+            "type": "user",
+            "uuid": "2c2de50a-602c-46be-b5eb-5024c8f441fd",
+            "sourceToolAssistantUUID": "e201e5b8-13de-478f-95e1-fc1dac0b43d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T20:25:48.134Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also check the ISR b03 s43 experiment that has full hacking taxonomy data (exp1-isr-b03-s43-r3 uses different field names)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2c2de50a-602c-46be-b5eb-5024c8f441fd",
+            "isSidechain": true,
+            "agentId": "af07ab58e3cc6e1dd",
+            "requestId": "req_011Cb4yv9aSZ9pGMJJtkTh2z",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "61445462-8789-459b-83c7-d2c32e2fbc46",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UaH4EB1BqsQNL79uLr4FuJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3951,
+                "cache_read_input_tokens": 33789,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3951,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T20:25:53.282Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016PdYX13qS2sP9rjtT9ivft",
+              "name": "Bash",
+              "input": {
+                "command": "cd \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-reviewer-5c7e23f1/e68b00f3-6abd-4b8e-aa50-c424de71f72e/tool-results\" && python3 << 'PYEOF'\nimport json\n\nwith open(\"mcp-agent-ml-research-read_registry-1778876673860.txt\", \"r\") as f:\n    outer = json.loads(f.read())\n\ninner = json.loads(outer[\"result\"])\nexperiments = inner[\"data\"][\"experiments\"]\n\n# Full dump for remaining experiments of interest\nfor eid in [\"exp1-isr-b03-s44-r2\", \"plan017-additive-random-s42\", \"exp1-random-b03-s43-r4\", \"exp1-random-b03-s44-r2\", \"plan001-exec-only-s42-r2\", \"plan001-exec-only-s44\", \"plan016-extended-1000-s42\", \"plan001-exec-only-s43-1000-r2\", \"plan001-exec-only-s44-1000-r2\"]:\n    if eid in experiments:\n        exp = experiments[eid]\n        m = exp.get(\"metrics\", {})\n        spec = exp.get(\"spec\", {})\n        print(f\"\\n=== {eid} (FULL METRICS) ===\")\n        print(f\"  conclusion: {exp.get('conclusion', 'N/A')}, seed: {spec.get('seed','?')}\")\n        print(json.dumps(m, indent=2))\nPYEOF",
+                "description": "Full metric dump for remaining experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "61445462-8789-459b-83c7-d2c32e2fbc46",
+            "isSidechain": true,
+            "agentId": "af07ab58e3cc6e1dd",
+            "requestId": "req_011Cb4yv9aSZ9pGMJJtkTh2z",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d3934776-93ef-4684-b32f-a3193e2072e2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UaH4EB1BqsQNL79uLr4FuJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3951,
+                "cache_read_input_tokens": 33789,
+                "output_tokens": 540,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3951
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 540,
+                    "cache_read_input_tokens": 33789,
+                    "cache_creation_input_tokens": 3951,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3951,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T20:25:53.378Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016PdYX13qS2sP9rjtT9ivft",
+              "type": "tool_result",
+              "content": "=== exp1-isr-b03-s44-r2 (FULL METRICS) ===\n  conclusion: success, seed: 44\n{\n  \"prove_rate\": 0.95,\n  \"mean_isr\": 0.705,\n  \"isr_std\": 0.172,\n  \"proved_only_isr\": 0.7421,\n  \"n_proved\": 95,\n  \"n_problems\": 100,\n  \"h7_rate\": 1,\n  \"h7_count\": 95,\n  \"h1_rate\": 0,\n  \"h1_count\": 0,\n  \"genuine_rate\": 0,\n  \"genuine_count\": 0,\n  \"single_premise_rate\": 1,\n  \"eval_data\": \"proofwriter_fol_100.jsonl\",\n  \"eval_note\": \"Re-eval with correct test set (D062). Previous test_100.jsonl results invalidated.\"\n}\n\n=== plan017-additive-random-s42 (FULL METRICS) ===\n  conclusion: negative, seed: 42\n{\n  \"eval_prove_rate\": 0.48,\n  \"eval_mean_isr\": 0.0453,\n  \"eval_isr_std\": 0.0759,\n  \"eval_median_isr\": 0,\n  \"eval_max_isr\": 0.2857,\n  \"eval_proved_only_isr\": 0.0943,\n  \"eval_n_proved\": 48,\n  \"eval_n_problems\": 100,\n  \"eval_method\": \"eval_sta.py full STA\",\n  \"eval_data\": \"proofwriter_fol_100.jsonl\",\n  \"eval_component_count_mean\": 9.6,\n  \"eval_component_count_2_ratio\": 0,\n  \"tautological_collapse\": false,\n  \"h7_count\": 4,\n  \"h7_rate\": 0.0833,\n  \"h7a_count\": 4,\n  \"h7b_count\": 0,\n  \"h1_count\": 44,\n  \"h1_rate\": 0.9167,\n  \"h8_count\": 0,\n  \"h8_rate\": 0,\n  \"genuine_count\": 0,\n  \"genuine_rate\": 0,\n  \"taxonomy_tool\": \"classify_h7.py standard (2026-05-15)\",\n  \"taxonomy_note\": \"Re-classified with current classify_h7.py. Old values: H7=0, H1=48, genuine=0. New: H7=4 (4 H7a text-match tautologies reclassified from H1), H1=44, H8=0, genuine=0.\"\n}\n\n=== exp1-random-b03-s43-r4 (FULL METRICS) ===\n  conclusion: success, seed: 43\n{\n  \"final_step\": 500,\n  \"prove_rate\": 0.5505,\n  \"mean_isr\": 0.1358,\n  \"parse_rate\": 1,\n  \"train_loss\": 0.01365,\n  \"train_runtime_sec\": 6161.1,\n  \"epoch\": 2,\n  \"eval_prove_rate\": 0.92,\n  \"eval_mean_isr\": 0.1659,\n  \"eval_isr_std\": 0.1147,\n  \"eval_median_isr\": 0.1429,\n  \"eval_proved_only_mean_isr\": 0.1803,\n  \"eval_min_isr\": 0,\n  \"eval_max_isr\": 0.5,\n  \"eval_n_proved\": 92,\n  \"eval_n_problems\": 100,\n  \"eval_data\": \"proofwriter_fol_100.jsonl\",\n  \"eval_by_answer_type\": {\n    \"false\": {\n      \"count\": 25,\n      \"proved\": 23,\n      \"prove_rate\": 0.92,\n      \"mean_isr\": 0.156\n    },\n    \"unknown\": {\n      \"count\": 41,\n      \"proved\": 37,\n      \"prove_rate\": 0.902,\n      \"mean_isr\": 0.184\n    },\n    \"true\": {\n      \"count\": 34,\n      \"proved\": 32,\n      \"prove_rate\": 0.941,\n      \"mean_isr\": 0.151\n    }\n  },\n  \"h7_count\": 7,\n  \"h7_rate\": 0.076,\n  \"h7a_count\": 7,\n  \"h7b_count\": 0,\n  \"h1_count\": 82,\n  \"h1_rate\": 0.891,\n  \"h8_count\": 0,\n  \"h8_rate\": 0,\n  \"genuine_count\": 3,\n  \"genuine_rate\": 0.0326,\n  \"taxonomy_tool\": \"classify_h7.py standard (2026-05-15)\",\n  \"taxonomy_note\": \"Re-classified with current classify_h7.py. Matches previous strict values: H7=7, H1=82, H8=0, genuine=3. No change.\"\n}\n\n=== exp1-random-b03-s44-r2 (FULL METRICS) ===\n  conclusion: success, seed: 44\n{\n  \"eval_prove_rate\": 0.23,\n  \"eval_proved_only_mean_isr\": 0,\n  \"eval_mean_isr\": 0,\n  \"eval_isr_std\": 0,\n  \"eval_median_isr\": 0,\n  \"eval_n_proved\": 23,\n  \"eval_n_problems\": 100,\n  \"eval_data\": \"proofwriter_fol_100.jsonl\",\n  \"h7_count\": 0,\n  \"h7_rate\": 0,\n  \"h7a_count\": 0,\n  \"h7b_count\": 0,\n  \"h1_count\": 23,\n  \"h1_rate\": 1,\n  \"h8_count\": 0,\n  \"h8_rate\": 0,\n  \"genuine_count\": 0,\n  \"genuine_rate\": 0,\n  \"taxonomy_tool\": \"classify_h7.py standard (2026-05-15)\",\n  \"taxonomy_note\": \"Re-classified with current classify_h7.py. Matches previous values: H7=0, H1=23, H8=0, genuine=0. No change.\"\n}\n\n=== plan001-exec-only-s42-r2 (FULL METRICS) ===\n  conclusion: success, seed: 42\n{\n  \"eval_prove_rate\": 0.93,\n  \"eval_mean_isr\": 0.1232,\n  \"eval_isr_std\": 0.1887,\n  \"eval_proved_only_isr\": 0.1324,\n  \"eval_median_isr\": 0,\n  \"eval_n_proved\": 93,\n  \"eval_n_problems\": 100,\n  \"eval_method\": \"eval_sta.py full STA\",\n  \"eval_data\": \"proofwriter_fol_100.jsonl\",\n  \"h7_rate\": 0,\n  \"h7_count\": 0,\n  \"h1_rate\": 0.871,\n  \"h1_count\": 81,\n  \"h8_conjunction_collapse_count\": 6,\n  \"h8_conjunction_collapse_rate\": 0.0645,\n  \"genuine_rate\": 0.0753,\n  \"genuine_count\": 7,\n  \"genuine_mean_isr\": 0.3141,\n  \"h1_mean_isr\": 0.1055,\n  \"conclusion_embedding_total\": 0.871,\n  \"content_independent_predicates_count\": 1,\n  \"h8_audit_note\": \"2026-05-15: H8 conjunction collapse added. genuine 12\\u21927.\"\n}\n\n=== plan001-exec-only-s44 (FULL METRICS) ===\n  conclusion: negative, seed: ?\n{\n  \"eval_prove_rate\": 0.98,\n  \"eval_mean_isr\": 0.57,\n  \"eval_isr_std\": 0.2013,\n  \"eval_median_isr\": 0.5,\n  \"eval_proved_only_isr\": 0.5816,\n  \"eval_n_proved\": 98,\n  \"eval_n_problems\": 100,\n  \"eval_method\": \"eval_sta.py full STA\",\n  \"eval_data\": \"proofwriter_fol_100.jsonl\",\n  \"eval_component_count_mean\": 2.04,\n  \"eval_component_count_2\": 94,\n  \"eval_component_count_3\": 4,\n  \"tautological_collapse\": true,\n  \"h7_rate\": 1,\n  \"h7_count\": 97,\n  \"h1_rate\": 0,\n  \"h1_count\": 0,\n  \"genuine_rate\": 0,\n  \"genuine_count\": 0,\n  \"conclusion_embedding_total\": 1\n}\n\n=== plan016-extended-1000-s42 (FULL METRICS) ===\n  conclusion: success, seed: 42\n{\n  \"prove_rate\": 0.96,\n  \"n_proved\": 96,\n  \"n_problems\": 100,\n  \"h7_count\": 0,\n  \"h7_rate\": 0,\n  \"h7a_count\": 0,\n  \"h7b_count\": 0,\n  \"h1_count\": 96,\n  \"h1_rate\": 1,\n  \"h8_count\": 0,\n  \"h8_rate\": 0,\n  \"genuine_count\": 0,\n  \"genuine_rate\": 0,\n  \"genuine_h1_near\": 0,\n  \"genuine_strict\": 0,\n  \"content_independent_rate\": 1,\n  \"single_premise_rate\": 0,\n  \"taxonomy_audit\": \"2026-05-15\",\n  \"taxonomy_tool\": \"classify_h7.py current version (with H8 detection)\",\n  \"taxonomy_note\": \"Re-run with current classify_h7.py. Old value genuine=7 was incorrect (old version lacked H8 and had weaker H1 detection). All 96 proved are H1 (conclusion embedded in premises). 0 H7, 0 H8.\"\n}\n\n=== plan001-exec-only-s43-1000-r2 (FULL METRICS) ===\n  conclusion: success, seed: ?\n{\n  \"prove_rate\": 0.9,\n  \"n_proved\": 90,\n  \"n_problems\": 100,\n  \"mean_isr\": 0.531,\n  \"isr_std\": 0.15,\n  \"isr_corrected\": 0.465,\n  \"isr_artifact_note\": \"n_components=3 quantifier decomposition artifact (+0.066) + $T solver bug 5 samples (+0.025). Corrected ISR=0.465, but both values entirely from H7a tautological necessity, no reasoning quality signal.\",\n  \"h7_count\": 90,\n  \"h7_rate\": 1,\n  \"h7a_count\": 90,\n  \"h7b_count\": 0,\n  \"h1_count\": 0,\n  \"h1_rate\": 0,\n  \"h8_count\": 0,\n  \"h8_rate\": 0,\n  \"genuine_count\": 0,\n  \"genuine_rate\": 0\n}\n\n=== plan001-exec-only-s44-1000-r2 (FULL METRICS) ===\n  conclusion: success, seed: ?\n{\n  \"prove_rate\": 1,\n  \"n_proved\": 100,\n  \"n_problems\": 100,\n  \"mean_isr\": 0.002,\n  \"isr_std\": 0.0146,\n  \"h7_count\": 0,\n  \"h7_rate\": 0,\n  \"h7a_count\": 0,\n  \"h7b_count\": 0,\n  \"h1_count\": 85,\n  \"h1_rate\": 0.85,\n  \"h8_count\": 15,\n  \"h8_rate\": 0.15,\n  \"genuine_count\": 0,\n  \"genuine_rate\": 0,\n  \"genuine_note\": \"D091: 3 samples escape text-match classifiers but are functionally degenerate (ISR=0, disjunctive/commuted bypasses)\"\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d3934776-93ef-4684-b32f-a3193e2072e2",
+            "isSidechain": true,
+            "promptId": "8211b4e6-ad0d-44f3-a5c0-50fd209b3fad",
+            "agentId": "af07ab58e3cc6e1dd",
+            "type": "user",
+            "uuid": "97f01336-effe-4bc2-b73c-ba349bc68c74",
+            "sourceToolAssistantUUID": "d3934776-93ef-4684-b32f-a3193e2072e2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T20:26:36.932Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the complete extraction of all requested metrics from the registry.\n\n---\n\n## Group 1: ISR β=0.1 (plan002-additive-b01, 3 seeds)\n\n| Metric | s42 | s43-r2 | s44 |\n|--------|-----|--------|-----|\n| eval_prove_rate | 0.81 | 0.61 | 0.89 |\n| eval_n_proved | 81 | 61 | 89 |\n| h7_count | 13 | 61 | 89 |\n| h1_count | 42 | 0 | 0 |\n| genuine_count | 14 | 0 | 0 |\n| genuine_rate | 0.173 | 0 | 0 |\n| h7_rate | 0.16 | 1.0 | 1.0 |\n| h1_rate | 0.519 | 0 | 0 |\n\nNote: `plan002-additive-b01-s43` (non-r2) also exists with h7=59, h1=0, genuine=2, n_proved=61, prove_rate=0.61. The r2 version has h7=61, h1=0, genuine=0.\n\n---\n\n## Group 2: Random β=0.1 (plan018-additive-random-b01, 3 seeds)\n\n| Metric | s42 | s43-r3 | s44-r2 |\n|--------|-----|--------|--------|\n| eval_prove_rate | 0.79 | 0.94 (field: `prove_rate`) | 0.89 |\n| n_proved | 79 (eval_n_proved) | 94 (field: `n_proved`) | 89 (eval_n_proved) |\n| h7_count | 0 | 36 | 0 |\n| h1_count | 58 | 56 | 73 |\n| h8_count | 4 | 1 | 16 |\n| genuine_count | 18 | 1 | 6 |\n| genuine_rate | 0.2278 | 0.0106 | 0.067 |\n| h7_rate | 0 | 0.383 | 0 |\n| h1_rate | 0.7342 | 0.596 | 0.82 |\n| h8_rate | 0.0506 | 0.011 | 0.18 |\n\n---\n\n## Group 3: ISR β=0.3 (3 seeds)\n\nOnly `plan002-additive-b03-s42` exists under plan002. The s43 and s44 seeds are under `exp1-isr-b03-*`.\n\n| Metric | plan002-...-s42 | exp1-isr-b03-s43 | exp1-isr-b03-s44-r2 |\n|--------|-----------------|-------------------|----------------------|\n| eval_prove_rate | 0.18 | 0.91 (prove_rate) | 0.95 (prove_rate) |\n| n_proved | 18 (eval_n_proved) | 91 (n_proved) | 95 (n_proved) |\n| h7_count | 0 | N/A (field absent; hacking_rate_strict_h7=0.022) | 95 |\n| h1_count | 14 | N/A (h1_conclusion_in_premise=0.747) | 0 |\n| genuine_count | 1 | 61 | 0 |\n| genuine_rate | 0.0556 | 0.6703 | 0 |\n| h7_rate | 0 | 0.022 (strict_h7) | 1.0 |\n| h1_rate | 0.778 | 0.747 (conclusion_in_premise) | 0 |\n\n`exp1-isr-b03-s43-r3` is the re-run of s43 with newer eval: eval_prove_rate=0.86, eval_n_proved=86, eval_h7_strict_count=4, eval_h1_strict_count=59, eval_genuine_count=23, eval_genuine_rate=0.267.\n\n`exp1-isr-b03-s43-r4` = killed (no metrics).\n\n---\n\n## Group 4: Random β=0.3 (3 seeds)\n\n| Metric | plan017-...-s42 | exp1-random-b03-s43-r4 | exp1-random-b03-s44-r2 |\n|--------|-----------------|------------------------|------------------------|\n| eval_prove_rate | 0.48 | 0.92 | 0.23 |\n| n_proved | 48 (eval_n_proved) | 92 (eval_n_proved) | 23 (eval_n_proved) |\n| h7_count | 4 | 7 | 0 |\n| h1_count | 44 | 82 | 23 |\n| h8_count | 0 | 0 | 0 |\n| genuine_count | 0 | 3 | 0 |\n| genuine_rate | 0 | 0.0326 | 0 |\n| h7_rate | 0.0833 | 0.076 | 0 |\n| h1_rate | 0.9167 | 0.891 | 1.0 |\n\n---\n\n## Group 5: Exec-only (3 seeds, 500 steps)\n\n| Metric | plan001-...-s42-r2 | plan001-...-s43-r4 | plan001-...-s44 |\n|--------|--------------------|--------------------|-----------------|\n| eval_prove_rate | 0.93 | 0.13 (greedy) / 0.14 (sampling) | 0.98 |\n| n_proved | 93 | 13 (greedy) / 14 (sampling) | 98 |\n| h7_count | 0 | 0 (eval_greedy_h7_count) | 97 |\n| h1_count | 81 | 13 (eval_greedy_h1_count) | 0 |\n| h8_count | 6 (h8_conjunction_collapse) | N/A | N/A |\n| genuine_count | 7 | 0 (eval_greedy_genuine_rate=0) | 0 |\n| genuine_rate | 0.0753 | 0 | 0 |\n| h7_rate | 0 | 0 | 1.0 |\n| h1_rate | 0.871 | 1.0 | 0 |\n\nNote: `plan001-exec-only-s43-r4` has conclusion=\"negative\" and uses different metric field names (`eval_greedy_*` and `eval_sampling_*`). No standard `h7_count`/`h1_count` fields; equivalent fields are `eval_greedy_h7_count=0`, `eval_greedy_h1_count=13`, `eval_greedy_h1_rate=1.0`, `eval_greedy_genuine_rate=0`.\n\n---\n\n## Group 6: SFT Baselines (1000 steps)\n\n| Metric | s42-1000 | s43-1000 | s44-1000-r3 |\n|--------|----------|----------|-------------|\n| eval_prove_rate | 0.13 | 0.11 (field: `prove_rate`) | 0.15 |\n| n_proved | 13 | 11 (field: `n_proved`) | 15 |\n| h7_count | 0 (h7_strict_count) | 0 (h7_strict_count) | 0 |\n| h1_count | 1 (h1_strict_count) | 1 (h1_strict_count) | 1 |\n| genuine_count | 12 | 10 | 14 |\n| genuine_rate | 0.9231 | 0.9091 | 0.9333 |\n| content_independent_count | 0 | 0 | N/A |\n\n---\n\n## Individual Experiments\n\n**plan003-eval-exec-only-r5** (100-step checkpoint eval):\n- prove_rate: 0.32\n- proved_count: 32\n- mean_isr: 0.2055\n- proved_only_isr: 0.6423\n- No h7/h1/genuine taxonomy fields in this experiment.\n\n**plan016-extended-1000-s42** (ISR β=0.1, 1000 steps):\n- prove_rate: 0.96\n- n_proved: 96\n- h7_count: 0, h1_count: 96, h8_count: 0, genuine_count: 0\n- h1_rate: 1.0, genuine_rate: 0\n- taxonomy_note: \"Re-run with current classify_h7.py. Old value genuine=7 was incorrect.\"\n\n**plan001-exec-only-s43-1000-r2** (exec-only 1000 steps, s43):\n- prove_rate: 0.9\n- n_proved: 90\n- h7_count: 90 (all H7a), h1_count: 0, h8_count: 0, genuine_count: 0\n- h7_rate: 1.0, genuine_rate: 0\n- mean_isr: 0.531 (corrected: 0.465, all from H7a tautological necessity)\n\n**plan001-exec-only-s44-1000-r2** (exec-only 1000 steps, s44):\n- prove_rate: 1.0\n- n_proved: 100\n- h7_count: 0, h1_count: 85, h8_count: 15, genuine_count: 0\n- h7_rate: 0, h1_rate: 0.85, h8_rate: 0.15, genuine_rate: 0\n- mean_isr: 0.002\n\n---\n\n## Key Caveats for Verification\n\n1. **Field name inconsistency**: Some experiments use `eval_prove_rate`/`eval_n_proved`, others use `prove_rate`/`n_proved`. The paper should reference the correct field.\n\n2. **exp1-isr-b03-s43 vs exp1-isr-b03-s43-r3**: The original (s43) has genuine_count=61, genuine_rate=0.6703. The re-run (r3) has eval_genuine_count=23, eval_genuine_rate=0.267. These are very different -- which one does the paper use?\n\n3. **plan001-exec-only-s43-r4**: conclusion=\"negative\", uses non-standard metric names (eval_greedy_*/eval_sampling_*), only 13-14 proved. Massive deviation from s42 (93 proved) and s44 (98 proved).\n\n4. **plan002-additive-b03**: Only s42 exists under plan002. s43 and s44 are under exp1-isr-b03-* with different naming conventions and possibly different eval pipelines.\n\n5. **SFT baselines at 1000 steps**: h7_count/h1_count fields use different names in s42-1000 (`h7_strict_count`) vs s44-1000-r3 (`h7_count`).\n\n6. **plan016-extended-1000-s42**: taxonomy was corrected -- old genuine=7 was wrong, current genuine=0. If paper cites genuine=7, it's stale data."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "97f01336-effe-4bc2-b73c-ba349bc68c74",
+            "isSidechain": true,
+            "agentId": "af07ab58e3cc6e1dd",
+            "requestId": "req_011Cb4yvnnp2vPuaRwzSvMaV",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "51b8eebd-4efa-43c1-97ea-e2da66325bd3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+            "sessionId": "e68b00f3-6abd-4b8e-aa50-c424de71f72e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LtsGY5FUqxRGq4RfrGboLV",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3754,
+                "cache_read_input_tokens": 37740,
+                "output_tokens": 2938,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3754
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2938,
+                    "cache_read_input_tokens": 37740,
+                    "cache_creation_input_tokens": 3754,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3754,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-verify-key-numbers-in-a-paper-experiments-tex-against-the-experiment.md"
+}

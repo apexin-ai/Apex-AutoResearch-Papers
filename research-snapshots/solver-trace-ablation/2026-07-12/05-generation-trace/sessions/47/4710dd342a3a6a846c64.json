@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "4710dd342a3a6a846c64",
+  "project": "solver-trace-ablation--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 服务器：westd-pro6000，conda base 环境。项目路径：/root/structfuse-context。已有脚本参考：run_sva.py（SVA 任务）、run_sva_cuda1.py",
+  "task_key": "5a17afbf-9cc3-4bf4-8a9b-97fe226a6a80",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/5a17afbf-9cc3-4bf4-8a9b-97fe226a6a80.jsonl",
+    "occurrence": 1,
+    "bytes": 621548,
+    "sha256": "ff36b93ca587fec7641949edd67c7f39567a560b17d6c50d256b71b4cf12ec3b"
+  },
+  "statistics": {
+    "messages": 151,
+    "user_turns": 1,
+    "tool_calls": 42,
+    "roles": {
+      "record": 37,
+      "user": 1,
+      "assistant": 29,
+      "tool_call": 42,
+      "tool_result": 42
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "4710dd342a3a6a846c64-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 149,
+      "chunks": [
+        {
+          "path": "4710dd342a3a6a846c64-part-0001.json",
+          "message_count": 130
+        },
+        {
+          "path": "4710dd342a3a6a846c64-part-0002.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-westd-pro6000-conda-base-root-structfuse-context-run-sva-py-sva.md"
+}

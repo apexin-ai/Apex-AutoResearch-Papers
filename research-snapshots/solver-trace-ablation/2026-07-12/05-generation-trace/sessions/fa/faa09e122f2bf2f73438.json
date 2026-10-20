@@ -1,0 +1,1309 @@
+{
+  "schema_version": "1.0",
+  "id": "faa09e122f2bf2f73438",
+  "project": "solver-trace-ablation--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search the directory /home/ubuntu/.agent-ml-research-idea_gen_0509_3 for files related to experiment plans. Look for fil",
+  "task_key": "agent-ae2cfb4e926a97c40",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-ae2cfb4e926a97c40.jsonl",
+    "occurrence": 1,
+    "bytes": 116998,
+    "sha256": "d0847a3fc755ecadf3b2f639d4f17d63c03e1e2e529c2509dbb05e0f9b9f8c2a"
+  },
+  "statistics": {
+    "messages": 28,
+    "user_turns": 1,
+    "tool_calls": 11,
+    "roles": {
+      "user": 1,
+      "assistant": 5,
+      "tool_call": 11,
+      "tool_result": 11
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T09:23:12.400Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search the directory /home/ubuntu/.agent-ml-research-idea_gen_0509_3 for files related to experiment plans. Look for files named like \"experiment_plan*\", \"plan*\", or any YAML/markdown files that contain \"planned\" experiment definitions. Use glob patterns like **/*experiment*plan*, **/*plan*.yaml, **/*plan*.md, and grep for \"status: planned\" or \"PLANNED\". I need to find where the planned (not yet completed) experiments are defined. Report the file paths and their content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "4dbfd802-256b-444a-87ad-fa7fca8fc291",
+            "agentId": "ae2cfb4e926a97c40",
+            "type": "user",
+            "uuid": "5a6e9a8a-ce99-454f-8063-b578586a4777",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T09:23:13.742Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search the directory for files related to experiment plans with various patterns and content searches."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5a6e9a8a-ce99-454f-8063-b578586a4777",
+            "isSidechain": true,
+            "agentId": "ae2cfb4e926a97c40",
+            "requestId": "req_011CazKn1Q9h2tFWYsEjZGAL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "32998a57-5f80-4ea8-a323-14eadb44e5c7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NmawXoNJu7pHyqUKAdcYGu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14350,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14350,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T09:23:13.959Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HWqfmHkGRrHZrSHBNuh8hh",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*experiment*plan*",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "32998a57-5f80-4ea8-a323-14eadb44e5c7",
+            "isSidechain": true,
+            "agentId": "ae2cfb4e926a97c40",
+            "requestId": "req_011CazKn1Q9h2tFWYsEjZGAL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5d7cf58c-d4fd-43c7-a68c-dbcaa83d4975",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NmawXoNJu7pHyqUKAdcYGu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14350,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14350,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T09:23:13.975Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HWqfmHkGRrHZrSHBNuh8hh",
+              "type": "tool_result",
+              "content": "projects/structfuse-context/experiment_plan.lock\nprojects/structfuse-context/experiment_plan.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5d7cf58c-d4fd-43c7-a68c-dbcaa83d4975",
+            "isSidechain": true,
+            "promptId": "4dbfd802-256b-444a-87ad-fa7fca8fc291",
+            "agentId": "ae2cfb4e926a97c40",
+            "type": "user",
+            "uuid": "54713033-1387-468d-9213-d04e98900812",
+            "sourceToolAssistantUUID": "5d7cf58c-d4fd-43c7-a68c-dbcaa83d4975",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T09:23:14.174Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012b94CWvdoEXivdtgdxnW99",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*plan*.yaml",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "54713033-1387-468d-9213-d04e98900812",
+            "isSidechain": true,
+            "agentId": "ae2cfb4e926a97c40",
+            "requestId": "req_011CazKn1Q9h2tFWYsEjZGAL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "33683434-e7e7-4cf7-937a-b4c7e91153de",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NmawXoNJu7pHyqUKAdcYGu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14350,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14350,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T09:23:14.188Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012b94CWvdoEXivdtgdxnW99",
+              "type": "tool_result",
+              "content": "projects/structfuse-context/experiment_plan.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "33683434-e7e7-4cf7-937a-b4c7e91153de",
+            "isSidechain": true,
+            "promptId": "4dbfd802-256b-444a-87ad-fa7fca8fc291",
+            "agentId": "ae2cfb4e926a97c40",
+            "type": "user",
+            "uuid": "ca1953ee-20d9-4ae0-ba94-09c282f8e82b",
+            "sourceToolAssistantUUID": "33683434-e7e7-4cf7-937a-b4c7e91153de",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T09:23:14.389Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WzypiSYwyS9mGBzueNAfAZ",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*plan*.md",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca1953ee-20d9-4ae0-ba94-09c282f8e82b",
+            "isSidechain": true,
+            "agentId": "ae2cfb4e926a97c40",
+            "requestId": "req_011CazKn1Q9h2tFWYsEjZGAL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4706600f-caa0-4c1a-9c47-0d3b05c3244e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NmawXoNJu7pHyqUKAdcYGu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14350,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14350,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T09:23:14.406Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WzypiSYwyS9mGBzueNAfAZ",
+              "type": "tool_result",
+              "content": "No files found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4706600f-caa0-4c1a-9c47-0d3b05c3244e",
+            "isSidechain": true,
+            "promptId": "4dbfd802-256b-444a-87ad-fa7fca8fc291",
+            "agentId": "ae2cfb4e926a97c40",
+            "type": "user",
+            "uuid": "0abd0e03-b8ec-4519-81bb-0c07ba948bf7",
+            "sourceToolAssistantUUID": "4706600f-caa0-4c1a-9c47-0d3b05c3244e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T09:23:14.850Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0118FubJFRseWGXrnNVqhZAP",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*plan*.json",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0abd0e03-b8ec-4519-81bb-0c07ba948bf7",
+            "isSidechain": true,
+            "agentId": "ae2cfb4e926a97c40",
+            "requestId": "req_011CazKn1Q9h2tFWYsEjZGAL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "84f836ff-291b-45fc-8f40-98c14e0bc526",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NmawXoNJu7pHyqUKAdcYGu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14350,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14350,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T09:23:14.863Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0118FubJFRseWGXrnNVqhZAP",
+              "type": "tool_result",
+              "content": "No files found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "84f836ff-291b-45fc-8f40-98c14e0bc526",
+            "isSidechain": true,
+            "promptId": "4dbfd802-256b-444a-87ad-fa7fca8fc291",
+            "agentId": "ae2cfb4e926a97c40",
+            "type": "user",
+            "uuid": "47fe327b-85c0-4ff0-b24f-0e0e42ee5d4e",
+            "sourceToolAssistantUUID": "84f836ff-291b-45fc-8f40-98c14e0bc526",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T09:23:15.143Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MvScrkp63cVx4ccXrb1bhi",
+              "name": "Grep",
+              "input": {
+                "pattern": "status:\\s*(PLANNED|planned)",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+                "output_mode": "files_with_matches"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "47fe327b-85c0-4ff0-b24f-0e0e42ee5d4e",
+            "isSidechain": true,
+            "agentId": "ae2cfb4e926a97c40",
+            "requestId": "req_011CazKn1Q9h2tFWYsEjZGAL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "088bb144-04cd-4cb4-8d62-3703cc35da1e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NmawXoNJu7pHyqUKAdcYGu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14350,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14350,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T09:23:15.198Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MvScrkp63cVx4ccXrb1bhi",
+              "type": "tool_result",
+              "content": "Found 19 files\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/logs/phase2_best_attempt0.log\nprojects/structfuse-context/logs/chats/feishu_group_oc_fde8ba5e95b6c6af458dd6d4bf74a233_director.jsonl\nprojects/structfuse-context/experiment_plan.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/meta.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/logs/review_worst.log\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/worst/review_context.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/worst/imagined_experiments.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/logs/phase2_worst_attempt0.log\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/logs/phase2_median_attempt1.log\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/logs/phase2_median_attempt0.log\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/logs/phase2_best_attempt0.log\nprojects/structfuse-context/logs/workers/worker_code_update-phase2-configs_20260513T080035.log\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/logs/phase2_worst_attempt0.log\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/logs/phase2_median_attempt0.log\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/logs/phase2_best_attempt0.log\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T044816/logs/phase2_worst_attempt0.log\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T044816/logs/phase2_median_attempt1.log\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T044816/logs/phase2_median_attempt0.log\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T044816/logs/phase2_best_attempt0.log"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "088bb144-04cd-4cb4-8d62-3703cc35da1e",
+            "isSidechain": true,
+            "promptId": "4dbfd802-256b-444a-87ad-fa7fca8fc291",
+            "agentId": "ae2cfb4e926a97c40",
+            "type": "user",
+            "uuid": "b5ed465c-830c-4782-8344-65ff20c50c96",
+            "sourceToolAssistantUUID": "088bb144-04cd-4cb4-8d62-3703cc35da1e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T09:23:16.297Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Great! I found the main experiment plan files. Let me read the content of the key files, particularly the experiment_plan.yaml file:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b5ed465c-830c-4782-8344-65ff20c50c96",
+            "isSidechain": true,
+            "agentId": "ae2cfb4e926a97c40",
+            "requestId": "req_011CazKnDMjdtzFw4LRixoZM",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "459877b6-e267-4c5e-bf82-fc5348a0b847",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KzzR7BoPfmrkTAjtAbHjM5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2037,
+                "cache_read_input_tokens": 14350,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2037,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T09:23:16.937Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SVm4EzP4Mkpvc3PZJgHrcb",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/experiment_plan.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "459877b6-e267-4c5e-bf82-fc5348a0b847",
+            "isSidechain": true,
+            "agentId": "ae2cfb4e926a97c40",
+            "requestId": "req_011CazKnDMjdtzFw4LRixoZM",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "67992f55-8f9b-44f4-a845-3dfaab6bd836",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KzzR7BoPfmrkTAjtAbHjM5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2037,
+                "cache_read_input_tokens": 14350,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2037,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T09:23:16.947Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SVm4EzP4Mkpvc3PZJgHrcb",
+              "type": "tool_result",
+              "content": "1\t# Experiment Plan — structfuse-context (Route A: Analysis Paper)\n2\t# 最后更新: 2026-05-13 | 更新原因: D034 reframe 为 \"When Does Consensus Fail\" 分析论文\n3\t\n4\texperiments:\n5\t  # === GPT-2 Task Coverage (Claim 2: CSS fails on majority of configs) ===\n6\t  - plan_id: plan_001\n7\t    name: \"GPT-2 IOI K=3 CSS\"\n8\t    claim: [\"Claim 2\", \"Claim 4\"]\n9\t    description: \"GPT-2 Small / IOI, K=3 (EAP-IG + EP + ACDC isinf). Lone positive case — CSS=1.0 CPR > single method\"\n10\t    registry_id: mvp_pilot_gpt2_ioi_v3\n11\t    priority: P0\n12\t    status: done\n13\t    result: \"PASS — CSS=1.0 (7 edges) CPR=0.109 > all single methods; Jaccard=0.31\"\n14\t\n15\t  - plan_id: plan_002\n16\t    name: \"GPT-2 Arithmetic K=3 CSS\"\n17\t    claim: [\"Claim 2\", \"Claim 4\"]\n18\t    description: \"GPT-2 Small / Greaterthan, K=3. Task structure forces high Jaccard → CSS fails\"\n19\t    registry_id: mvp_arithmetic_gpt2_k3\n20\t    priority: P0\n21\t    status: done\n22\t    result: \"FAIL — CSS=1.0 CPR < EAP-IG; Jaccard=0.695 (methods too correlated)\"\n23\t\n24\t  - plan_id: plan_003\n25\t    name: \"GPT-2 SVA K=3 CSS\"\n26\t    claim: [\"Claim 2\", \"Claim 4\"]\n27\t    description: \"GPT-2 Small / SVA. Inconclusive — marginal signal at noise level\"\n28\t    registry_id: mvp_sva_gpt2_k3_topk\n29\t    priority: P0\n30\t    status: done\n31\t    result: \"INCONCLUSIVE — D033: cross-server Δ=0.006/0.013, avg < 0.01 threshold\"\n32\t\n33\t  - plan_id: plan_004\n34\t    name: \"GPT-2 Factual Recall K=3 CSS\"\n35\t    claim: [\"Claim 2\", \"Claim 4\"]\n36\t    description: \"GPT-2 Small / Country-Capital factual recall. MLP-based knowledge retrieval circuit\"\n37\t    registry_id: gpt2_factual_recall_k3_v2\n38\t    priority: P0\n39\t    status: running\n40\t    depends_on: []\n41\t    gpu_hours_est: 1\n42\t\n43\t  # === ACDC Binarization Pathology (Claim 1: strongest contribution) ===\n44\t  - plan_id: plan_005\n45\t    name: \"ACDC isinf→top-k binarization sweep\"\n46\t    claim: [\"Claim 1\"]\n47\t    description: \"k=50/75/100/150 on IOI and Arithmetic. Show isinf→top-k Jaccard shift and CSS degeneration break\"\n48\t    priority: P0\n49\t    status: done\n50\t    result: \"Confirmed: isinf causes CSS=1.0≡ACDC; top-k breaks degeneration; Jaccard shifts +0.16 to +0.25\"\n51\t\n52\t  # === Cross-Model Scaling Failure (Claim 3: component-level scoring) ===\n53\t  - plan_id: plan_006\n54\t    name: \"Qwen-0.5B IOI K=3 with IFR\"\n55\t    claim: [\"Claim 3\"]\n56\t    description: \"First scaling attempt. IFR degenerates to block-voting (layer-level), zero CSS=1.0 edges\"\n57\t    registry_id: phase2_qwen05b_ioi_k3\n58\t    priority: P0\n59\t    status: done\n60\t    result: \"FAIL — IFR Jaccard=0.000 with gradient methods; block-voting granularity mismatch\"\n61\t\n62\t  - plan_id: plan_007\n63\t    name: \"Qwen-0.5B IOI K=3 with ACDC\"\n64\t    claim: [\"Claim 3\"]\n65\t    description: \"D029: ACDC替代IFR. ACDC also degenerates to node-level scoring on 179K-edge model\"\n66\t    registry_id: phase2_qwen05b_ioi_acdc_k3\n67\t    priority: P0\n68\t    status: done\n69\t    result: \"FAIL — ACDC node-level scoring; all Jaccard≈0; zero CSS=1.0 edges. Confirms scaling failure is structural\"\n70\t\n71\t  # === Critical Controls (Dream reviewers unanimously requested) ===\n72\t  - plan_id: plan_008\n73\t    name: \"IOI size-controlled baseline\"\n74\t    claim: [\"Claim 2\"]\n75\t    description: \"Compare CSS=1.0 (N edges) vs top-N of each single method + random-N. Rules out size confound\"\n76\t    priority: P0\n77\t    status: running\n78\t    depends_on: [plan_001]\n79\t    gpu_hours_est: 0.5\n80\t\n81\t  - plan_id: plan_009\n82\t    name: \"Bootstrap confidence intervals on CPR\"\n83\t    claim: [\"Claim 2\"]\n84\t    description: \"Bootstrap CIs on all CPR differences across all completed experiments\"\n85\t    priority: P1\n86\t    status: planned\n87\t    depends_on: [plan_004, plan_008]\n88\t    gpu_hours_est: 1\n89\t\n90\t  # === Comparative / Ablation ===\n91\t  - plan_id: plan_010\n92\t    name: \"CIRCUS negative ablation\"\n93\t    claim: [\"Claim 5\"]\n94\t    description: \"D021: CIRCUS failed 3×. Within-method threshold diversity produces negative CPR on all tasks\"\n95\t    priority: P1\n96\t    status: done\n97\t    result: \"CIRCUS negative CPR on all tasks. Implementation caveats noted\"\n98\t    gpu_hours_est: 0\n99\t\n100\t  - plan_id: plan_011\n101\t    name: \"Ablation method comparison (zero vs mean)\"\n102\t    claim: [\"Claim 2\"]\n103\t    description: \"Compare zero and mean ablation on IOI. Dream worst-tier identified zero ablation bias as IOI confound\"\n104\t    priority: P1\n105\t    status: planned\n106\t    depends_on: [plan_008]\n107\t    gpu_hours_est: 1\n108\t\n109\t  # === Discussion Analyses ===\n110\t  - plan_id: plan_012\n111\t    name: \"IFR vs ACDC vs gradient method divergence analysis\"\n112\t    claim: [\"Claim 3\"]\n113\t    description: \"Document IFR and ACDC failure modes on Qwen as case study for component-level scoring issue\"\n114\t    priority: P2\n115\t    status: planned\n116\t    depends_on: [plan_006, plan_007]\n117\t    gpu_hours_est: 0\n118\t\n119\t  - plan_id: plan_013\n120\t    name: \"Jaccard-CSS scatter plot + correlation\"\n121\t    claim: [\"Claim 4\"]\n122\t    description: \"Across all completed experiments, plot max Jaccard vs CSS advantage. Report honestly as underpowered (n≤6)\"\n123\t    priority: P1\n124\t    status: planned\n125\t    depends_on: [plan_004, plan_008]\n126\t    gpu_hours_est: 0\n127\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "67992f55-8f9b-44f4-a845-3dfaab6bd836",
+            "isSidechain": true,
+            "promptId": "4dbfd802-256b-444a-87ad-fa7fca8fc291",
+            "agentId": "ae2cfb4e926a97c40",
+            "type": "user",
+            "uuid": "66e7e06a-701c-461c-82f4-9e07755798c0",
+            "sourceToolAssistantUUID": "67992f55-8f9b-44f4-a845-3dfaab6bd836",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T09:23:17.453Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UYs5HD8947Zy3Sgih1wGiy",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/experiment_plan.lock"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "66e7e06a-701c-461c-82f4-9e07755798c0",
+            "isSidechain": true,
+            "agentId": "ae2cfb4e926a97c40",
+            "requestId": "req_011CazKnDMjdtzFw4LRixoZM",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e79c8203-9f48-4c83-882a-0cd69d9290c9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KzzR7BoPfmrkTAjtAbHjM5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2037,
+                "cache_read_input_tokens": 14350,
+                "output_tokens": 183,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2037
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 183,
+                    "cache_read_input_tokens": 14350,
+                    "cache_creation_input_tokens": 2037,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2037,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T09:23:17.459Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UYs5HD8947Zy3Sgih1wGiy",
+              "type": "tool_result",
+              "content": "<system-reminder>Warning: the file exists but is shorter than the provided offset (1). The file has 1 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e79c8203-9f48-4c83-882a-0cd69d9290c9",
+            "isSidechain": true,
+            "promptId": "4dbfd802-256b-444a-87ad-fa7fca8fc291",
+            "agentId": "ae2cfb4e926a97c40",
+            "type": "user",
+            "uuid": "f8eca8a1-126b-4f8c-b010-15fbdf76b706",
+            "sourceToolAssistantUUID": "e79c8203-9f48-4c83-882a-0cd69d9290c9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T09:23:19.025Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check those files with \"status: planned\" more closely and also search for any imagined_experiments files:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f8eca8a1-126b-4f8c-b010-15fbdf76b706",
+            "isSidechain": true,
+            "agentId": "ae2cfb4e926a97c40",
+            "requestId": "req_011CazKnPPjJs8YVyVPxWaoU",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b5ac2641-6318-4456-aeb5-72bd471891ea",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01YQ5dZGc92bUGBTFJfmoWXr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7276,
+                "cache_read_input_tokens": 16387,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7276,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T09:23:19.691Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Emoa78BXjqK1hRXVVQQm8P",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/imagined_experiments*",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b5ac2641-6318-4456-aeb5-72bd471891ea",
+            "isSidechain": true,
+            "agentId": "ae2cfb4e926a97c40",
+            "requestId": "req_011CazKnPPjJs8YVyVPxWaoU",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "301d2c02-66fe-4eb6-883a-613dc2e917bb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01YQ5dZGc92bUGBTFJfmoWXr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7276,
+                "cache_read_input_tokens": 16387,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7276,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T09:23:19.705Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Emoa78BXjqK1hRXVVQQm8P",
+              "type": "tool_result",
+              "content": "projects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/best/imagined_experiments.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/median/imagined_experiments.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/worst/imagined_experiments.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/median/imagined_experiments.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/best/imagined_experiments.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/worst/imagined_experiments.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "301d2c02-66fe-4eb6-883a-613dc2e917bb",
+            "isSidechain": true,
+            "promptId": "4dbfd802-256b-444a-87ad-fa7fca8fc291",
+            "agentId": "ae2cfb4e926a97c40",
+            "type": "user",
+            "uuid": "1d298be9-4f73-4066-8cf4-2be7418cd66b",
+            "sourceToolAssistantUUID": "301d2c02-66fe-4eb6-883a-613dc2e917bb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-13T09:23:19.974Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WKS63L4gxFRubpq5SLVMLh",
+              "name": "Grep",
+              "input": {
+                "pattern": "status:\\s*planned",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+                "output_mode": "content",
+                "context": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1d298be9-4f73-4066-8cf4-2be7418cd66b",
+            "isSidechain": true,
+            "agentId": "ae2cfb4e926a97c40",
+            "requestId": "req_011CazKnPPjJs8YVyVPxWaoU",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3f81134a-027e-4ddb-b3fd-820fc7ed9e94",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01YQ5dZGc92bUGBTFJfmoWXr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7276,
+                "cache_read_input_tokens": 16387,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7276,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-13T09:23:20.031Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WKS63L4gxFRubpq5SLVMLh",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (42.2KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3/34ed447c-bdea-491d-9484-fa0c1a53bf03/tool-results/toolu_01WKS63L4gxFRubpq5SLVMLh.txt\n\nPreview (first 2KB):\nprojects/structfuse-context/experiment_plan.yaml-83-    claim: [\"Claim 2\"]\nprojects/structfuse-context/experiment_plan.yaml-84-    description: \"Bootstrap CIs on all CPR differences across all completed experiments\"\nprojects/structfuse-context/experiment_plan.yaml-85-    priority: P1\nprojects/structfuse-context/experiment_plan.yaml:86:    status: planned\nprojects/structfuse-context/experiment_plan.yaml-87-    depends_on: [plan_004, plan_008]\nprojects/structfuse-context/experiment_plan.yaml-88-    gpu_hours_est: 1\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/experiment_plan.yaml-89-\n--\nprojects/structfuse-context/experiment_plan.yaml-102-    claim: [\"Claim 2\"]\nprojects/structfuse-context/experiment_plan.yaml-103-    description: \"Compare zero and mean ablation on IOI. Dream worst-tier identified zero ablation bias as IOI confound\"\nprojects/structfuse-context/experiment_plan.yaml-104-    priority: P1\nprojects/structfuse-context/experiment_plan.yaml:105:    status: planned\nprojects/structfuse-context/experiment_plan.yaml-106-    depends_on: [plan_008]\nprojects/structfuse-context/experiment_plan.yaml-107-    gpu_hours_est: 1\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/experiment_plan.yaml-108-\n--\nprojects/structfuse-context/experiment_plan.yaml-112-    claim: [\"Claim 3\"]\nprojects/structfuse-context/experiment_plan.yaml-113-    description: \"Document IFR and ACDC failure modes on Qwen as case study for component-level scoring issue\"\nprojects/structfuse-context/experiment_plan.yaml-114-    priority: P2\nprojects/structfuse-context/experiment_plan.yaml:115:    status: planned\nprojects/structfuse-context/experiment_plan.yaml-116-    depends_on: [plan_006, plan_007]\nprojects/structfuse-context/experiment_plan.yaml-117-    gpu_hours_est: 0\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/experiment_plan.yaml-118-\n--\n...\n</persisted-output>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3f81134a-027e-4ddb-b3fd-820fc7ed9e94",
+            "isSidechain": true,
+            "promptId": "4dbfd802-256b-444a-87ad-fa7fca8fc291",
+            "agentId": "ae2cfb4e926a97c40",
+            "type": "user",
+            "uuid": "b299da0c-b310-4fde-aca7-8721b602050b",
+            "sourceToolAssistantUUID": "3f81134a-027e-4ddb-b3fd-820fc7ed9e94",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-13T09:23:21.151Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read some of the imagined_experiments files to understand what planned experiments look like in those reports:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b299da0c-b310-4fde-aca7-8721b602050b",
+            "isSidechain": true,
+            "agentId": "ae2cfb4e926a97c40",
+            "requestId": "req_011CazKnZxyJDeHWs2AWc7HH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "df23ea42-98ba-4789-93b9-00b1ea4d5c12",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0191L6NB15PE85QQVnT1HWDB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1217,
+                "cache_read_input_tokens": 23663,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1217,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-13T09:23:21.628Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FLTGmHuvyuYXgzJFVSC62q",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/best/imagined_experiments.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "df23ea42-98ba-4789-93b9-00b1ea4d5c12",
+            "isSidechain": true,
+            "agentId": "ae2cfb4e926a97c40",
+            "requestId": "req_011CazKnZxyJDeHWs2AWc7HH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "561668d0-d6f3-4198-8c2a-1cfab780bb29",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0191L6NB15PE85QQVnT1HWDB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1217,
+                "cache_read_input_tokens": 23663,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1217,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-13T09:23:21.775Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Tow14y3YSGYYkvNo1H6PB6",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/worst/imagined_experiments.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "561668d0-d6f3-4198-8c2a-1cfab780bb29",
+            "isSidechain": true,
+            "agentId": "ae2cfb4e926a97c40",
+            "requestId": "req_011CazKnZxyJDeHWs2AWc7HH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0d0f9d84-aab2-4dbe-83c7-8c066ff99e33",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0191L6NB15PE85QQVnT1HWDB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1217,
+                "cache_read_input_tokens": 23663,
+                "output_tokens": 212,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1217
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 212,
+                    "cache_read_input_tokens": 23663,
+                    "cache_creation_input_tokens": 1217,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1217,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-13T09:23:21.787Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Tow14y3YSGYYkvNo1H6PB6",
+              "type": "tool_result",
+              "content": "1\ttier: worst\n2\tnarrative_guidance: 'Method paper 不可行，必须 pivot 为 analysis paper。 新叙事：\"Why Cross-Method\n3\t  Circuit Consensus Fails: An Empirical Analysis\"。 核心贡献变为：(1) 揭示 circuit discovery\n4\t  方法在多数任务上高度相关或互补性不足， binary consensus 的前提（独立证据源）在实践中很少满足； (2) ACDC isinf binarization\n5\t  问题的系统性分析（Claim 3，已强支撑）； (3) CSS 跨模型 scaling 的结构性失败（D034，179k-edge graph 下所有方法 Jaccard≈0）；\n6\t  (4) Jaccard 作为方法兼容性诊断工具（不再是 \"predicts success\" 而是 \"explains failure\"）。 IOI GPT-2\n7\t  成为 \"唯一有效案例\" 的 case study 而非 generalization 的起点。 投稿目标降级为 EMNLP Findings 或 workshop\n8\t  paper。\n9\t\n10\t  '\n11\timagined_experiments:\n12\t- name: GPT-2 SVA K=3 CSS（css_1.00 重新评估）\n13\t  plan_id: plan_004\n14\t  description: '已有两次运行（mvp_sva_gpt2_k3 top-100, mvp_sva_gpt2_k3_topk top-k）。 Worst\n15\t    档下 SVA re-eval 用 css_1.00 重新评估条件④，Δ(CPR) 降至 <0.005 或为负值， condition④ FAIL。D033\n16\t    降级为 inconclusive 在 worst 档下进一步恶化： 多 seed bootstrap 表明 Δ=0.0127 是上界，真实均值 ≤0.003。\n17\t\n18\t    '\n19\t  expected_results:\n20\t    status: done\n21\t    conclusion: negative\n22\t    pairwise_jaccard:\n23\t      eapig_x_ep: 0.6529\n24\t      eapig_x_acdc: 0.3158\n25\t      ep_x_acdc: 0.4184\n26\t    max_jaccard: 0.6529\n27\t    three_way_ratio: 0.2785\n28\t    css_distribution:\n29\t      '0.33': 60\n30\t      '0.67': 54\n31\t      '1.00': 44\n32\t    faithfulness_mean:\n33\t      css_1.00:\n34\t        edges: 44\n35\t        CPR: 1.173\n36\t        CMD: 0.558\n37\t      css_0.67:\n38\t        edges: 98\n39\t        CPR: 1.1724\n40\t        CMD: 0.503\n41\t      eapig_k75:\n42\t        edges: 75\n43\t        CPR: 1.1703\n44\t        CMD: 0.53\n45\t      ep_k75:\n46\t        edges: 75\n47\t        CPR: 1.1703\n48\t        CMD: 0.53\n49\t      acdc_k75:\n50\t        edges: 75\n51\t        CPR: 1.1746\n52\t        CMD: 0.52\n53\t    css_1.00_delta_cpr: -0.0016\n54\t    d025_cond4_verdict: FAIL (css_1.00 CPR=1.173 < acdc=1.175, Δ=−0.002)\n55\t    bootstrap_analysis:\n56\t      n_seeds: 5\n57\t      delta_mean: 0.003\n58\t      delta_95ci: '[-0.012, +0.019]'\n59\t      ci_includes_zero: true\n60\t    sva_gate_verdict: FAIL — multi-seed bootstrap CI includes zero; D033 inconclusive\n61\t      confirmed as negative\n62\t  result_rationale: 'D032 报告的 Δ=0.0127 来自单一 seed（seed=42）。Worst 档假设这是随机波动上界： SVA 的\n63\t    EAP-IG×EP Jaccard=0.6529 接近 Arithmetic 的 0.695， 两种 gradient 方法在 SVA number-tracking\n64\t    heads (layer 7-10) 上高度一致， ACDC top-k 虽然引入了名义上的 \"第三视角\"，但其在 GPT-2 12层模型上的 greedy\n65\t    search 仍然优先选择与 gradient saliency 高度相关的边。在 5 个 bootstrap seeds 下， css_1.00 CPR\n66\t    的波动范围 [1.168, 1.192]，acdc CPR 的波动范围 [1.170, 1.182]， 两者重叠区域大——Δ 的 95% CI 横跨零点。实际观测到的\n67\t    Δ=0.0127 恰好落在 CI 上界附近， 属于统计上的 \"lucky draw\"。D033 的 \"inconclusive\" 判定在 worst 档下变为明确\n68\t    FAIL： 无法区分 CSS=1.0 和 ACDC 单方法。SVA 从 \"marginal PASS\" 彻底变为 FAIL。\n69\t\n70\t    '\n71\t  tables:\n72\t  - caption: 'Table: SVA css_1.00 multi-seed bootstrap (worst tier)'\n73\t    rows:\n74\t    - - Seed\n75\t      - CSS=1.0 CPR\n76\t      - ACDC CPR\n77\t      - Δ\n78\t    - - 42 (original)\n79\t      - '1.187'\n80\t      - '1.175'\n81\t      - '+0.013'\n82\t    - - '123'\n83\t      - '1.168'\n84\t      - '1.179'\n85\t      - −0.011\n86\t    - - '456'\n87\t      - '1.178'\n88\t      - '1.182'\n89\t      - −0.004\n90\t    - - '789'\n91\t      - '1.175'\n92\t      - '1.170'\n93\t      - '+0.005'\n94\t    - - '1024'\n95\t      - '1.171'\n96\t      - '1.174'\n97\t      - −0.003\n98\t    - - mean ± std\n99\t      - 1.176 ± 0.007\n100\t      - 1.176 ± 0.005\n101\t      - +0.000 ± 0.009\n102\t  - caption: 'Table: SVA D025 conditions (worst tier final)'\n103\t    rows:\n104\t    - - Condition\n105\t      - Result\n106\t      - Note\n107\t    - - ①Jaccard<0.70\n108\t      - PASS (0.653)\n109\t      - marginal\n110\t    - - ②CSS≥2/3≥10\n111\t      - PASS (54)\n112\t      - ''\n113\t    - - ③CSS=1.0≥3\n114\t      - PASS (44)\n115\t      - ''\n116\t    - - ④CPR dominance\n117\t      - FAIL (Δ≈0, CI includes zero)\n118\t      - D033→negative\n119\t  figures_description:\n120\t  - 'Fig: SVA bootstrap Δ distribution — 正态分布以 0 为中心，原始 Δ=0.013 标记为虚线但在分布体内'\n121\t  analysis: 'SVA 在 worst 档下确认为 FAIL。至此 GPT-2 三任务中仅 IOI 明确 PASS， 成功率 1/3。SVA 的 max_jaccard=0.653\n122\t    过高，gradient methods 主导的 consensus 退化为 ACDC 和 gradient-pair 交集。对 Claim 2 提供了一个符合预期方向的数据点\n123\t    （高 Jaccard → CSS 无优势），但 Δ≈0 无法区分 \"marginal positive\" 和 \"neutral\"， 这是 n=3-4 时 Jaccard-utility\n124\t    regression 的致命噪声源。\n125\t\n126\t    '\n127\t- name: GPT-2 Factual Recall K=3 CSS\n128\t  plan_id: plan_005\n129\t  description: 'GPT-2 Small 上的 factual recall (国家首都)。GPT-2 Small 117M 参数 对 factual\n130\t    knowledge 能力极弱，circuit discovery 前提（clean baseline performance）不满足。\n131\t\n132\t    '\n133\t  expected_results:\n134\t    status: abandoned\n135\t    conclusion: task_model_mismatch\n136\t    partial_metrics:\n137\t      baseline_accuracy: 0.52\n138\t      baseline_accuracy_note: 几乎随机 (random=0.25, GPT-2 仅略好)\n139\t      eapig_completed: true\n140\t      ep_completed: true\n141\t      acdc_completed: false\n142\t      acdc_failure_reason: 'GPT-2 Small 对 \"The capital of France is ___\" 类问题准确率 ~52%，\n143\t        clean performance 波动 ±15%。ACDC patching 在 baseline 不稳定时 无法收敛——阈值过高得空电路，过低保留全图。\n144\t\n145\t        '\n146\t      eapig_k50_cpr: 0.02\n147\t      ep_k50_cpr: -0.01\n148\t      cpr_note: faithfulness 接近零，电路无意义\n149\t  result_rationale: 'GPT-2 Small 的 parametric knowledge 极度稀疏——factual recall 没有形成\n150\t    dedicated retrieval circuit。信息分散在 residual stream 中，无法 localize。 这不是 CSS 方法论的失败，而是\n151\t    task-model 根本不匹配。 ACDC 对这种 diffuse computation 最敏感：所有边的 importance 都在噪声水平。 Worst\n152\t    档下这个实验浪费了 ~4 GPU hours 才确认失败，挤占了写作时间。\n153\t\n154\t    '\n155\t  tables: []\n156\t  figures_description: []\n157\t  analysis: '第四 GPT-2 任务失败。论文只能报告 3 个 GPT-2 tasks。 在 Limitations 说明 GPT-2 Small 对\n158\t    factual recall 能力不足。 Reviewer 攻击 \"only 3 tasks on one tiny model\" 时防守空间有限。\n159\t\n160\t    '\n161\t- name: Qwen-2.5 0.5B IOI K=3 (EAP-IG + EP + ACDC top-k)\n162\t  plan_id: plan_006\n163\t  description: 'D029 后用 ACDC top-k 替代 IFR。D034 已确认结果：CSS=1.0=0 边， 所有 pairwise Jaccard≈0。CSS\n164\t    跨模型 scaling 根本性失败。 Worst 档下这是 paper 的致命打击——CSS 仅在 GPT-2 (32k edges) 上工作， 无法 scale\n165\t    到 Qwen (179k edges)。\n166\t\n167\t    '\n168\t  expected_results:\n169\t    status: done\n170\t    conclusion: negative\n171\t    total_edges: 179388\n172\t    binarization: top-0.3% (~538 edges per method)\n173\t    pairwise_jaccard:\n174\t      eapig_x_ep: 0.042\n175\t      eapig_x_acdc: 0.006\n176\t      ep_x_acdc: 0.008\n177\t    max_jaccard: 0.042\n178\t    css_distribution:\n179\t      1/3: 1058\n180\t      2/3: 66\n181\t      3/3: 0\n182\t    css_core_3of3: 0\n183\t    faithfulness_mean:\n184\t      css_0.67:\n185\t        edges: 66\n186\t        CPR: 0.031\n187\t        CMD: 0.972\n188\t      eapig_top538:\n189\t        edges: 538\n190\t        CPR: 0.055\n191\t        CMD: 0.948\n192\t      ep_top538:\n193\t        edges: 538\n194\t        CPR: 0.048\n195\t        CMD: 0.955\n196\t      acdc_top538:\n197\t        edges: 538\n198\t        CPR: 0.029\n199\t        CMD: 0.974\n200\t    d025_verdict: FAIL — CSS=1.0 = empty set\n201\t    ifr_version_comparison:\n202\t      ifr_jaccard_eapig: 0.0\n203\t      ifr_jaccard_ep: 0.0\n204\t      acdc_jaccard_eapig: 0.006\n205\t      acdc_jaccard_ep: 0.008\n206\t      note: ACDC 比 IFR 稍好但仍实质为零——问题不在方法选择而在模型规模\n207\t    scaling_analysis:\n208\t      gpt2_edge_space: 32491\n209\t      qwen_edge_space: 179388\n210\t      ratio: 5.52\n211\t      gpt2_topk_pct: 0.31\n212\t      qwen_topk_pct: 0.3\n213\t      gpt2_max_jaccard: 0.307\n214\t      qwen_max_jaccard: 0.042\n215\t      jaccard_ratio: 7.3\n216\t      conclusion: 相同比例的 top-k 在更大 edge space 中产生更低 Jaccard，这是组合稀释效应\n217\t  result_rationale: 'D034 已确认：ACDC 在 179k-edge Qwen 图上退化为 node-level scoring， 与 IFR\n218\t    的 block-voting 问题本质相同。核心机制是组合稀释： top-0.3% 在 32k 边的 GPT-2 上选约 100 条边，方法间有 meaningful\n219\t    overlap； 在 179k 边的 Qwen 上选约 538 条边，但 edge space 增大 5.5×， 而 circuit structure 并非线性\n220\t    scale——IOI circuit 在 Qwen 上分散到更多层/头， 方法各自 \"看到\" 不同子集。EAP-IG×EP Jaccard 从 GPT-2\n221\t    的 0.31 暴跌至 0.04， ACDC 与任何方法几乎零重叠。CSS=1.0 要求三方法全部同意——在 Jaccard≈0 时 这是空集。即使放宽到 CSS≥0.67，也只有\n222\t    66 条边，CPR=0.031 远低于单方法。 这证明 CSS 的前提（方法对同一 edge 有 meaningful overlap）在大模型上不成立。\n223\t\n224\t    '\n225\t  tables:\n226\t  - caption: 'Table: GPT-2 vs Qwen edge space scaling'\n227\t    rows:\n228\t    - - ''\n229\t      - GPT-2 Small\n230\t      - Qwen-2.5 0.5B\n231\t      - Ratio\n232\t    - - Total edges\n233\t      - 32,491\n234\t      - 179,388\n235\t      - 5.5×\n236\t    - - Top-k (0.3%)\n237\t      - ~100\n238\t      - ~538\n239\t      - 5.4×\n240\t    - - Max Jaccard (EAP-IG×EP)\n241\t      - '0.307'\n242\t      - '0.042'\n243\t      - 7.3×↓\n244\t    - - CSS=1.0 edges\n245\t      - '7'\n246\t      - '0'\n247\t      - —\n248\t    - - CSS=1.0 CPR\n249\t      - '0.109'\n250\t      - —\n251\t      - —\n252\t  - caption: 'Table: Qwen IOI method comparison — IFR vs ACDC (both fail)'\n253\t    rows:\n254\t    - - Third method\n255\t      - J(×EAP-IG)\n256\t      - J(×EP)\n257\t      - CSS=1.0\n258\t    - - IFR (D028)\n259\t      - '0.000'\n260\t      - '0.000'\n261\t      - 0 edges\n262\t    - - ACDC (D034)\n263\t      - '0.006'\n264\t      - '0.008'\n265\t      - 0 edges\n266\t  figures_description:\n267\t  - 'Fig: Jaccard vs edge space size — log-log plot 显示 Jaccard 随 edge space 指数级衰减'\n268\t  - 'Fig: CSS=1.0 edge count vs model size — 从 GPT-2 (7 edges) 到 Qwen (0 edges) 的断崖式下降'\n269\t  analysis: 'D034 是 worst 档的核心证据之一。CSS 跨模型 scaling 的结构性失败 意味着论文不能 claim \"CSS generalizes\n270\t    across models\"。 在 analysis paper 中重构为：\"CSS 的 edge-level consensus 依赖于 methods\n271\t    在相同 edge space 中有 meaningful overlap， 这一前提在 model scale up 时因组合稀释而系统性地被违反。\" 这是一个有价值的\n272\t    negative finding，但将 CSS 定位为 \"仅适用于小模型\" 的方法。\n273\t\n274\t    '\n275\t- name: Qwen-2.5 0.5B Arithmetic K=3 (EAP-IG + EP + ACDC top-k)\n276\t  plan_id: plan_007\n277\t  description: '基于 D034 的结果，Qwen Arithmetic 预期与 Qwen IOI 相同模式： ACDC 在大 edge space\n278\t    上退化，CSS=1.0 为空集或退化。\n279\t\n280\t    '\n281\t  expected_results:\n282\t    status: planned\n283\t    conclusion: negative\n284\t    total_edges: ~179000\n285\t    pairwise_jaccard:\n286\t      eapig_x_ep: 0.038\n287\t      eapig_x_acdc: 0.004\n288\t      ep_x_acdc: 0.005\n289\t    max_jaccard: 0.038\n290\t    css_distribution:\n291\t      1/3: ~1080\n292\t      2/3: ~55\n293\t      3/3: 0\n294\t    css_core_3of3: 0\n295\t    faithfulness_mean:\n296\t      css_0.67:\n297\t        edges: ~55\n298\t        CPR: 0.025\n299\t        CMD: 0.978\n300\t      eapig_top538:\n301\t        edges: 538\n302\t        CPR: 0.049\n303\t        CMD: 0.954\n304\t    d025_verdict: FAIL — CSS=1.0 = empty set, same as Qwen IOI\n305\t    qwen_ioi_css10_cpr_vs_best: null\n306\t    note: CSS=1.0 为空集，无法计算 CPR vs best single\n307\t  result_rationale: 'Qwen IOI (D034) 已证明 ACDC 在 179k-edge graph 上退化。 Arithmetic 在\n308\t    Qwen 上的 edge space 与 IOI 几乎相同（同一模型）， EAP-IG×EP 的 Jaccard 预期更低（Arithmetic 在更大模型上更分散），\n309\t    ACDC 的退化模式完全相同（node-level scoring）。 这个实验本质上是 Qwen IOI 的重复，不产生新信息。 Worst 档建议：如果\n310\t    Qwen IOI 已 FAIL，跳过 Qwen Arithmetic 以节省时间。\n311\t\n312\t    '\n313\t  tables:\n314\t  - caption: 'Table: Qwen tasks — all fail with same pattern'\n315\t    rows:\n316\t    - - Task\n317\t      - CSS=1.0 edges\n318\t      - Max Jaccard\n319\t      - Verdict\n320\t    - - IOI (IFR)\n321\t      - '0'\n322\t      - '0.000'\n323\t      - FAIL\n324\t    - - IOI (ACDC)\n325\t      - '0'\n326\t      - '0.042'\n327\t      - FAIL\n328\t    - - Arithmetic (ACDC, predicted)\n329\t      - '0'\n330\t      - ~0.038\n331\t      - FAIL\n332\t  figures_description: []\n333\t  analysis: 'Qwen Arithmetic 是 sunk cost。D034 已证明问题是结构性的（edge space scaling）， 不因任务而异。在\n334\t    analysis paper 中只需一句： \"We verified the scaling failure extends to Arithmetic (Table\n335\t    X)\"。 不值得单独的 figure 或 detailed analysis。\n336\t\n337\t    '\n338\t- name: Gemma-2 2B IOI K=3\n339\t  plan_id: plan_008\n340\t  description: 'Scale 到 2B 模型。Worst 档下 Qwen 0.5B 已完全失败， Gemma-2 2B 的 edge space 更大（~500k+），失败是确定性的。\n341\t\n342\t    '\n343\t  expected_results:\n344\t    status: not_attempted\n345\t    conclusion: null\n346\t    predicted_outcome: FAIL — edge space ~500k+, Jaccard→0, CSS=1.0→empty set\n347\t    reason_not_attempted: 'D034 已证明 CSS 在 179k-edge Qwen 上失败。Gemma-2 2B 有 26 层 16\n348\t      头， edge space 估计 >500k，组合稀释效应更严重。 投入 ~16 GPU-hours 仅为确认一个已知结论不合理。\n349\t\n350\t      '\n351\t  result_rationale: 'Gemma-2 2B 的 edge space 是 Qwen 的 ~3×，Qwen 上已观察到 Jaccard→0。 在更大\n352\t    edge space 中，top-0.3% 选约 1500+ 条边，但三种方法各自 \"看到\" 的功能通路更加分散——26 层中 IOI 信息流经更多 intermediate\n353\t    heads。 CSS 的 edge-level consensus 前提在此彻底不成立。 这个实验的唯一价值是确认 \"scaling law\"，但 GPT-2\n354\t    → Qwen 的两个数据点 已足够支撑 analysis paper 的论点。\n355\t\n356\t    '\n357\t  tables: []\n358\t  figures_description: []\n359\t  analysis: '明确建议取消。节省 16 GPU-hours 和 2 天调试时间用于论文写作。 在 paper 中用 back-of-envelope 计算替代实验：\n360\t    \"At Gemma-2 2B scale (~500k edges), top-0.3% binarization yields ~1500 edges per\n361\t    method; extrapolating from GPT-2→Qwen Jaccard decay (0.31→0.04), expected max\n362\t    Jaccard ≈ 0.01, rendering consensus trivially empty.\"\n363\t\n364\t    '\n365\t- name: Llama-3.1 8B IOI K=3\n366\t  plan_id: plan_009\n367\t  description: '最大规模实验。Worst 档下无论如何都不应运行。\n368\t\n369\t    '\n370\t  expected_results:\n371\t    status: not_attempted\n372\t    conclusion: null\n373\t    predicted_outcome: FAIL — edge space ~2M+, hardware insufficient (needs A100 80GB)\n374\t    reason_not_attempted: P3 priority + hardware barrier (RTX 4090D 24GB insufficient\n375\t      for EP) + D034 已证明 scaling failure\n376\t  result_rationale: '8B 模型有 32 层 32 头，edge space 估计 ~2M。 top-0.3% ≈ 6000 条边/方法，但 pairwise\n377\t    Jaccard 在如此巨大的空间中 趋近于 random intersection baseline (~0.003)。 EP 在 8B 上需要 A100\n378\t    80GB（edge-level pruning 内存超线性增长）， 当前 RTX 4090D 24GB 完全不够。即使有硬件，ROI 为负。\n379\t\n380\t    '\n381\t  tables: []\n382\t  figures_description: []\n383\t  analysis: '明确取消。在 Future Work 中一句带过即可。\n384\t\n385\t    '\n386\t- name: Top-k Binarization Sensitivity Sweep\n387\t  plan_id: plan_010\n388\t  description: '系统性 top-k sweep (k=50, 75, 100, 150) 在 GPT-2 tasks 上。 Worst 档下 CSS\n389\t    CPR 对 k 稳定——但这只证明 CSS 是 \"consistently mediocre\"， 优势永远不超过 single method（IOI 除外）。\n390\t    关键发现：ACDC isinf-vs-topk 的 Jaccard 差异驱动了虚假的 Jaccard-utility 关联。\n391\t\n392\t    '\n393\t  expected_results:\n394\t    status: done\n395\t    conclusion: stable_but_irrelevant\n396\t    ioi_gpt2_css_cpr_by_k:\n397\t      k50: 0.109\n398\t      k75: 0.102\n399\t      k100: 0.095\n400\t      k150: 0.088\n401\t    sva_gpt2_css_cpr_by_k:\n402\t      k50: -0.82\n403\t      k75: -0.82\n404\t      k100: -0.74\n405\t      k150: -0.71\n406\t    arithmetic_gpt2_css_cpr_by_k:\n407\t      k50: 0.919\n408\t      k75: 0.919\n409\t      k100: 0.926\n410\t      k150: 0.933\n411\t    sva_mean_css_cpr_by_k:\n412\t      k50: 1.185\n413\t      k75: 1.187\n414\t      k100: 1.174\n415\t      k150: 1.168\n416\t    css_stable_across_k: true\n417\t    but_advantage_never_positive_except_ioi: true\n418\t    key_finding: 'CSS CPR 在 k=50-150 内稳定 (std<0.02)，但这只说明 binarization 不是 CSS 失败的原因——\n419\t      方法相关性才是。CSS 在 SVA 和 Arithmetic 上 never beats single method， 无论 k 取什么值。\n420\t\n421\t      '\n422\t    acdc_isinf_vs_topk_jaccard_gap:\n423\t      ioi: isinf J=0.09 → topk J=0.25 (Δ=+0.16)\n424\t      arithmetic: isinf J=0.17 → topk J=0.42 (Δ=+0.25)\n425\t      sva: isinf J=0.37 → topk J=0.37 (Δ=0, already topk)\n426\t    confound_implication: 'IOI 的 \"low Jaccard → CSS works\" 部分由 ACDC isinf 的极端 sparsity\n427\t      (14 edges) 驱动。 ACDC isinf 人为压低了 ACDC×EAP-IG 和 ACDC×EP 的 Jaccard。 top-k 归一化后\n428\t      IOI max Jaccard 从 0.31 上升到约 0.41 (EAP-IG×EP pair 不变， 但 ACDC pair 上升)。Jaccard-utility\n429\t      关系中 IOI 的 \"low Jaccard\" 被 ACDC binarization inflated。\n430\t\n431\t      '\n432\t  result_rationale: 'Top-k 归一化使三种方法在 comparable edge budget 下比较，消除了 ACDC isinf 的 extreme\n433\t    sparsity artifact。k 越大，pairwise overlap 自然增加， CSS=1.0 集合扩大但新增的边是 low-confidence\n434\t    coincidental consensus。 IOI 在所有 k 下仍为正面是因为其 14 条核心 ACDC isinf 边（全被三方法确认） 质量极高——但这是\n435\t    IOI 任务 + GPT-2 模型的特异性，非方法优势。 ACDC isinf-vs-topk Jaccard 差异是 worst 档 Jaccard-utility\n436\t    confound 的核心： 在 isinf 下 ACDC 只有 14-17 条边，与 100 条边的 EAP-IG/EP 的 Jaccard 自然极低； top-k\n437\t    归一化后差异缩小，但 IOI 的正面结果不变—— 这说明 IOI 的 CSS 优势与 Jaccard level 关系弱于预期。\n438\t\n439\t    '\n440\t  tables:\n441\t  - caption: 'Table: CSS=1.0 CPR across k values (GPT-2 tasks, zero ablation for IOI,\n442\t      mean for others)'\n443\t    rows:\n444\t    - - Task\n445\t      - k=50\n446\t      - k=75\n447\t      - k=100\n448\t      - k=150\n449\t      - Stable?\n450\t      - Beats single?\n451\t    - - IOI (zero)\n452\t      - '0.109'\n453\t      - '0.102'\n454\t      - '0.095'\n455\t      - '0.088'\n456\t      - 'Yes'\n457\t      - Yes (all k)\n458\t    - - SVA (mean)\n459\t      - '1.185'\n460\t      - '1.187'\n461\t      - '1.174'\n462\t      - '1.168'\n463\t      - 'Yes'\n464\t      - No (all k)\n465\t    - - Arith (mean)\n466\t      - '0.919'\n467\t      - '0.919'\n468\t      - '0.926'\n469\t      - '0.933'\n470\t      - 'Yes'\n471\t      - No (all k)\n472\t  - caption: 'Table: ACDC binarization effect on Jaccard'\n473\t    rows:\n474\t    - - Task\n475\t      - J (isinf)\n476\t      - J (top-k)\n477\t      - Δ\n478\t      - CSS outcome changes?\n479\t    - - IOI\n480\t      - '0.09'\n481\t      - '0.25'\n482\t      - '+0.16'\n483\t      - No (still PASS)\n484\t    - - Arithmetic\n485\t      - '0.17'\n486\t      - '0.42'\n487\t      - '+0.25'\n488\t      - No (still FAIL)\n489\t    - - SVA\n490\t      - 0.37 (already topk)\n491\t      - '0.37'\n492\t      - '0'\n493\t      - N/A\n494\t  figures_description:\n495\t  - 'Fig: CPR vs k line plot — IOI 永远正面，SVA/Arithmetic 永远负面，k 只影响量级不影响方向'\n496\t  - 'Fig: ACDC isinf vs top-k Jaccard comparison — 证明 binarization choice 是 Jaccard\n497\t    的重要 confound'\n498\t  analysis: 'Binarization sensitivity 是 worst 档下最有分析价值的实验之一。 两个结论：(1) CSS 对 k 稳定——方法论上\n499\t    clean； (2) Jaccard-utility 关系的一部分方差由 ACDC binarization 解释， 而非 genuine method diversity。\n500\t    这为 analysis paper 提供了 \"binarization pathology taxonomy\" 贡献 （Claim 3 延伸），也是 \"why\n501\t    consensus fails\" 叙事的技术核心。\n502\t\n503\t    '\n504\t- name: Ablation Method Comparison (Zero vs Mean vs Resample)\n505\t  plan_id: plan_011\n506\t  description: '在 IOI 上比较 zero/mean/resample ablation 下 CSS 优势。 Worst 档揭示 IOI positive\n507\t    result 部分由 zero ablation bias 驱动。\n508\t\n509\t    '\n510\t  expected_results:\n511\t    status: partial\n512\t    conclusion: ioi_advantage_ablation_dependent\n513\t    completed_tasks:\n514\t    - IOI (GPT-2)\n515\t    ioi_gpt2:\n516\t      zero:\n517\t        css_1_cpr: 0.109\n518\t        best_single_cpr: 0.029\n519\t        advantage: 0.08\n520\t      mean:\n521\t        css_1_cpr: 0.095\n522\t        best_single_cpr: 0.088\n523\t        advantage: 0.007\n524\t      resample:\n525\t        css_1_cpr: 0.082\n526\t        best_single_cpr: 0.079\n527\t        advantage: 0.003\n528\t    sva_gpt2:\n529\t      zero:\n530\t        css_1_cpr: -0.82\n531\t        best_single_cpr: -0.35\n532\t        advantage: -0.47\n533\t      mean:\n534\t        css_1_cpr: 1.173\n535\t        best_single_cpr: 1.175\n536\t        advantage: -0.002\n537\t      resample:\n538\t        css_1_cpr: 1.05\n539\t        best_single_cpr: 1.07\n540\t        advantage: -0.02\n541\t    arithmetic_gpt2:\n542\t      zero:\n543\t        css_1_cpr: -0.184\n544\t        best_single_cpr: -0.131\n545\t        advantage: -0.053\n546\t      mean:\n547\t        css_1_cpr: 0.919\n548\t        best_single_cpr: 0.985\n549\t        advantage: -0.066\n550\t      resample:\n551\t        css_1_cpr: 0.85\n552\t        best_single_cpr: 0.92\n553\t        advantage: -0.07\n554\t    key_finding: 'IOI 的 CSS 优势从 zero (+0.080) 到 mean (+0.007) 到 resample (+0.003)\n555\t      急剧衰减。Mean/resample 下的 Δ 在噪声水平内。 IOI positive result 高度依赖于 zero ablation 的破坏性偏差——\n556\t      zero ablation 对 100-edge 电路的惩罚远大于 7-edge 电路。\n557\t\n558\t      '\n559\t  result_rationale: 'Zero ablation 将 ablated edges 设为零，破坏性与 circuit size 成正比： 100\n560\t    条边的 EAP-IG circuit 中有 93 条非 CSS=1.0 边被保留， 但这 93 条边在 zero ablation 下仍会因 cascade\n561\t    effects 被部分破坏。 相比之下 CSS=1.0 的 7 条边几乎没有 cascade loss。 这给了 CSS=1.0 一个 evaluation\n562\t    artifact 优势，而非 genuine faithfulness 优势。 Mean ablation 将 baseline 设为均值，大大减少了 cascade\n563\t    destruction， 所有方法的 CPR 趋近——CSS 优势从 0.08 缩到 0.007。 Resample ablation 进一步消除 OOD\n564\t    artifact，CSS 优势仅 0.003。 这意味着 IOI 的 \"strong positive result\" 是 evaluation method\n565\t    confound： 选不同的 ablation method 就能让 CSS 优势消失。 SVA 和 Arithmetic 在所有 ablation 下 CSS\n566\t    都不优，进一步确认 IOI 是唯一正面案例且其正面性高度 fragile。\n567\t\n568\t    '\n569\t  tables:\n570\t  - caption: 'Table: CSS advantage by ablation method × task'\n571\t    rows:\n572\t    - - Task\n573\t      - Zero Δ\n574\t      - Mean Δ\n575\t      - Resample Δ\n576\t    - - IOI\n577\t      - '+0.080'\n578\t      - '+0.007'\n579\t      - '+0.003'\n580\t    - - SVA\n581\t      - −0.470\n582\t      - −0.002\n583\t      - −0.020\n584\t    - - Arithmetic\n585\t      - −0.053\n586\t      - −0.066\n587\t      - −0.070\n588\t  figures_description:\n589\t  - 'Fig: Grouped bar chart — CSS advantage by ablation × task。IOI zero ablation 柱高突出，其余接近零线'\n590\t  analysis: 'IOI 的 zero ablation bias 是 worst 档对 Claim 1 的第二个打击 （第一个是 ACDC isinf confound）。综合两个\n591\t    confound： IOI CSS positive result = ACDC isinf extreme sparsity + zero ablation\n592\t    size bias。 去除任一 confound（用 top-k / 用 mean ablation），CSS 优势大幅缩水。 两个 confound 同时存在时才产生\n593\t    Δ=+0.08 的 \"impressive\" 结果。 Analysis paper 中这是诚实且有价值的方法论贡献： \"Evaluation confounds\n594\t    in circuit faithfulness measurement\"。\n595\t\n596\t    '\n597\t- name: CIRCUS vs CSS Negative Ablation\n598\t  plan_id: plan_012\n599\t  description: 'D021 CIRCUS 失败数据的整理。Worst 档下 CSS 也在多数任务失败， 对比变为 \"both fail, CSS marginally\n600\t    less bad\"。\n601\t\n602\t    '\n603\t  expected_results:\n604\t    status: done\n605\t    conclusion: both_methods_limited\n606\t    circus_ioi_cpr: -0.108\n607\t    circus_sva_cpr: -0.15\n608\t    circus_arithmetic_cpr: -0.12\n609\t    css_ioi_cpr: 0.109\n610\t    css_sva_cpr: -0.82\n611\t    css_arithmetic_cpr: -0.184\n612\t    circus_failure_rate: 3/3 tasks\n613\t    css_failure_rate: 2/3 tasks (only IOI positive)\n614\t    comparison_framing: 'CIRCUS 在所有任务上 CPR 为负（比 random 还差）。 CSS 在 IOI 上为正但在 SVA/Arithmetic\n615\t      上也为负（zero ablation）。 两种 consensus 方法在多数场景都失败——区别仅在于 CSS 在一个 特定任务上因 ACDC isinf\n616\t      + zero ablation 的组合而显正。\n617\t\n618\t      '\n619\t  result_rationale: 'CIRCUS 使用 threshold diversity 在单一方法内构建 consensus—— 本质是 nested\n620\t    sets (k=50 ⊂ k=100 ⊂ k=150) 的交集， 等价于最 conservative 的 cut。CSS 使用跨方法 binary agreement，\n621\t    至少利用了方法间的信息差异。但当方法本身高度相关时（SVA, Arithmetic）， CSS 的跨方法 consensus 也退化为 single-method\n622\t    artifact。 IOI 是唯一例外——三方法 genuinely disagree (max Jaccard=0.31)， consensus 有意义。CIRCUS\n623\t    在 IOI 上也失败是因为它只用了一种方法的 threshold sweep， 完全无法利用跨方法信息。\n624\t\n625\t    '\n626\t  tables:\n627\t  - caption: 'Table: CIRCUS vs CSS on all GPT-2 tasks (zero ablation)'\n628\t    rows:\n629\t    - - Method\n630\t      - IOI CPR\n631\t      - SVA CPR\n632\t      - Arith CPR\n633\t      - Tasks positive\n634\t    - - CIRCUS\n635\t      - −0.108\n636\t      - −0.150\n637\t      - −0.120\n638\t      - 0/3\n639\t    - - CSS=1.0\n640\t      - '+0.109'\n641\t      - −0.820\n642\t      - −0.184\n643\t      - 1/3\n644\t    - - Best single\n645\t      - '+0.029'\n646\t      - −0.348\n647\t      - −0.131\n648\t      - 0/3 (all neg)\n649\t  figures_description:\n650\t  - 'Fig: CIRCUS vs CSS bar chart — CIRCUS always negative, CSS positive only on IOI'\n651\t  analysis: 'CIRCUS negative ablation 在 worst 档下从 \"CSS clearly better\" 变为 \"both methods\n652\t    severely limited\"。这仍是有效的分析贡献—— 审稿人不会因为你的方法也不好而否定你说竞品不好的论述。 在 analysis paper 中用一段说明：\n653\t    \"Neither structural consensus (CSS) nor within-method stability (CIRCUS) consistently\n654\t    identifies faithful circuits, though CSS shows advantage on IOI where methods\n655\t    genuinely disagree.\"\n656\t\n657\t    '\n658\t- name: Jaccard-CSS Utility Correlation Analysis\n659\t  plan_id: plan_013\n660\t  description: '汇总所有 model×task 数据点，拟合 Jaccard vs CSS advantage 关系。 Worst 档下仅有 2-3\n661\t    个有效 GPT-2 数据点 + Qwen 全部 degenerate， correlation 不显著且由单个 confounded IOI 数据点驱动。\n662\t\n663\t    '\n664\t  expected_results:\n665\t    status: done\n666\t    conclusion: not_significant_confounded\n667\t    data_points:\n668\t    - task: IOI\n669\t      model: GPT-2\n670\t      max_jaccard: 0.307\n671\t      css_advantage: 0.08\n672\t      confounds: ACDC isinf + zero ablation\n673\t      quality: confounded_positive\n674\t    - task: SVA\n675\t      model: GPT-2\n676\t      max_jaccard: 0.653\n677\t      css_advantage: -0.002\n678\t      confounds: Δ within noise (bootstrap CI includes zero)\n679\t      quality: neutral\n680\t    - task: Arithmetic\n681\t      model: GPT-2\n682\t      max_jaccard: 0.695\n683\t      css_advantage: -0.066\n684\t      confounds: null\n685\t      quality: clear_negative\n686\t    - task: IOI\n687\t      model: Qwen-0.5B\n688\t      max_jaccard: 0.042\n689\t      css_advantage: null\n690\t      confounds: CSS=1.0 empty set — degenerate, cannot compute advantage\n691\t      quality: degenerate\n692\t    - task: Arithmetic\n693\t      model: Qwen-0.5B\n694\t      max_jaccard: 0.038\n695\t      css_advantage: null\n696\t      confounds: CSS=1.0 empty set — degenerate\n697\t      quality: degenerate\n698\t    n_valid_data_points: 3\n699\t    n_degenerate: 2\n700\t    spearman_rho: -0.5\n701\t    spearman_p_value: 0.67\n702\t    pearson_r: -0.58\n703\t    pearson_p_value: 0.61\n704\t    note: n=3 (excluding degenerate Qwen points)\n705\t    confound_analysis: '去除 IOI GPT-2（唯一用 ACDC isinf 且 zero ablation 的数据点）后： n=2, correlation\n706\t      undefined。IOI GPT-2 是 Cook''s D > 5.0 的 extreme influential point，驱动了全部 negative\n707\t      correlation。 Qwen 数据点无法参与 regression（CSS advantage undefined when CSS=1.0 empty）。\n708\t\n709\t      '\n710\t    jaccard_utility_spearman_rho: -0.5\n711\t    total_task_model_points: 3\n712\t    low_jaccard_css_pass_fraction: 0.33\n713\t  result_rationale: 'Worst 档下有效数据仅 3 个 GPT-2 点（IOI/SVA/Arithmetic）。 Qwen 的两个点因 CSS=1.0\n714\t    为空集而 degenerate——它们甚至不在 Jaccard-utility scatter plot 的定义域内（y 轴 \"CSS advantage\"\n715\t    无法计算）。 这 3 个点中 IOI 是唯一正面且同时有两个 confounds (isinf + zero ablation)。 去除 IOI 后，剩余\n716\t    2 个点（SVA neutral, Arithmetic negative） 无法拟合任何趋势。n=3 下 Spearman test 的 power 极低——\n717\t    即使完美 rank correlation (rho=−1.0)，p 也只有 0.17。 Jaccard-utility 关系在 worst 档下是 one-point\n718\t    story： IOI GPT-2 是唯一 CSS positive case，恰好也是最低 Jaccard—— 但这可能是 ACDC isinf 的 artifact\n719\t    而非 causal relationship。 论文不能声称 \"Jaccard predicts CSS utility\" 作为 empirical finding，\n720\t    只能提出为 \"hypothesis suggested by a single data point\"。\n721\t\n722\t    '\n723\t  tables:\n724\t  - caption: 'Table: Jaccard-CSS correlation data (worst tier)'\n725\t    rows:\n726\t    - - Task×Model\n727\t      - Max Jaccard\n728\t      - CSS Advantage\n729\t      - Quality\n730\t      - Confounds\n731\t    - - IOI×GPT-2\n732\t      - '0.307'\n733\t      - '+0.080'\n734\t      - confounded\n735\t      - ACDC isinf + zero ablation\n736\t    - - SVA×GPT-2\n737\t      - '0.653'\n738\t      - −0.002\n739\t      - neutral\n740\t      - Δ ≈ noise\n741\t    - - Arith×GPT-2\n742\t      - '0.695'\n743\t      - −0.066\n744\t      - negative\n745\t      - —\n746\t    - - IOI×Qwen\n747\t      - '0.042'\n748\t      - undefined\n749\t      - degenerate\n750\t      - CSS=1.0 empty\n751\t    - - Arith×Qwen\n752\t      - '0.038'\n753\t      - undefined\n754\t      - degenerate\n755\t      - CSS=1.0 empty\n756\t  - caption: 'Table: Correlation robustness analysis'\n757\t    rows:\n758\t    - - Analysis\n759\t      - ρ\n760\t      - p\n761\t      - n\n762\t      - Interpretation\n763\t    - - All valid points\n764\t      - −0.50\n765\t      - '0.67'\n766\t      - '3'\n767\t      - not significant\n768\t    - - Remove IOI (confounded)\n769\t      - undefined\n770\t      - —\n771\t      - '2'\n772\t      - cannot compute\n773\t    - - Include Qwen as Δ=−0.05 proxy\n774\t      - −0.30\n775\t      - '0.62'\n776\t      - '5'\n777\t      - not significant\n778\t  figures_description:\n779\t  - 'Fig: Scatter — 3 valid points + 2 degenerate (marked with ×), IOI 是 extreme outlier\n780\t    with confound annotations'\n781\t  - 'Fig: Same scatter with IOI marked hollow — regression line becomes flat, illustrating\n782\t    one-point-driven correlation'\n783\t  analysis: Jaccard-utility 分析在 worst 档下从 \"primary finding\" 降级为 \"exploratory observation\"。\n784\t    3 个有效点 + 2 个 degenerate 点无法支撑任何统计 claim。 Qwen 的 degenerate points 反而提供了不同的 insight：\n785\t    在 extremely low Jaccard (0.04) 时 CSS 不是 \"works great\" 而是 \"completely breaks\" (empty\n786\t    consensus set)—— 这否定了 \"lower Jaccard → better CSS\" 的简单线性关系， 暗示存在一个 U-shaped failure\n787\t    mode： 太高 → methods agree, no consensus value； 太低 → methods completely disagree,\n788\t    no consensus possible。 这是 analysis paper 中最有趣的 reframe： \"Consensus requires a\n789\t    Goldilocks zone of inter-method agreement— high enough for non-empty intersection,\n790\t    low enough for information gain.\" 但 n=5 (3 valid + 2 degenerate) 仅能 suggest 而非\n791\t    prove 这个 framework。\n792\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0d0f9d84-aab2-4dbe-83c7-8c066ff99e33",
+            "isSidechain": true,
+            "promptId": "4dbfd802-256b-444a-87ad-fa7fca8fc291",
+            "agentId": "ae2cfb4e926a97c40",
+            "type": "user",
+            "uuid": "2650f436-e8ce-4dd2-acdd-1c0561f1e313",
+            "sourceToolAssistantUUID": "0d0f9d84-aab2-4dbe-83c7-8c066ff99e33",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-13T09:23:21.925Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FLTGmHuvyuYXgzJFVSC62q",
+              "type": "tool_result",
+              "content": "1\ttier: best\n2\tnarrative_guidance: '原始 framing 成立。SVA 在 k=50 re-eval 后条件④翻转为 clear PASS（Δ=0.035），GPT-2\n3\t  pass rate 2/3。 Qwen ACDC top-0.3% 替代 IFR 后提供有效第三方法——max pairwise Jaccard=0.38（EAP-IG×EP），\n4\t  远低于 IFR 的退化零值，CSS=1.0 在 Qwen IOI 上 CPR=0.142 显著优于 best single（ACDC 0.072）。 Factual\n5\t  Recall 提供关键中间插值点（Jaccard=0.48, Δ=+0.04）。 Jaccard-utility Spearman ρ=0.943 (p=0.005)\n6\t  跨 6 个 model×task 数据点成立， fitted threshold≈0.55。 低 Jaccard tasks（IOI GPT-2, Qwen IOI,\n7\t  Factual）CSS PASS 率 3/3=100%。 SVA（max_J=0.58）作为 near-threshold positive case 丰富了叙事——\n8\t  EAP-IG×EP 高 Jaccard 被 ACDC 的低相关性部分抵消，consensus 仍有效但优势小。 Arithmetic（GPT-2 + Qwen）稳定\n9\t  FAIL，作为 predicted negative 验证理论。 Claim 1 + Claim 2 同时作为 primary contributions。\n10\t\n11\t  '\n12\timagined_experiments:\n13\t- name: GPT-2 SVA K=3 CSS (k=50 re-run)\n14\t  plan_id: plan_004\n15\t  description: '用 D029 统一方法论对 SVA 做 definitive re-run：EAP-IG/EP/ACDC 均 top-50， css_0.67\n16\t    bug 已修复（不影响 css_1.00），评估用 mean ablation 为主、zero 为辅。 目标：验证 condition④ 在修正方法论下是否翻转为\n17\t    PASS。\n18\t\n19\t    '\n20\t  expected_results:\n21\t    binarization: top-50\n22\t    edge_counts:\n23\t      eap_ig: 50\n24\t      ep: 50\n25\t      acdc: 50\n26\t    pairwise_jaccard:\n27\t      eapig_x_ep: 0.582\n28\t      acdc_x_eapig: 0.253\n29\t      acdc_x_ep: 0.347\n30\t    max_pairwise_jaccard: 0.582\n31\t    three_way_jaccard: 0.189\n32\t    css_distribution:\n33\t      '0.33': 68\n34\t      '0.67': 34\n35\t      '1.00': 14\n36\t    evaluation_mean:\n37\t      css_1.00:\n38\t        edges: 14\n39\t        CPR: 1.21\n40\t        CMD: 0.487\n41\t      css_0.67:\n42\t        edges: 48\n43\t        CPR: 1.192\n44\t        CMD: 0.512\n45\t      acdc:\n46\t        edges: 50\n47\t        CPR: 1.175\n48\t        CMD: 0.528\n49\t      eap_ig:\n50\t        edges: 50\n51\t        CPR: 1.172\n52\t        CMD: 0.531\n53\t      ep:\n54\t        edges: 50\n55\t        CPR: 1.17\n56\t        CMD: 0.533\n57\t    evaluation_zero:\n58\t      css_1.00:\n59\t        edges: 14\n60\t        CPR: -0.482\n61\t        CMD: 5.18\n62\t      eap_ig:\n63\t        edges: 50\n64\t        CPR: -0.371\n65\t        CMD: 4.92\n66\t    d025_conditions:\n67\t      cond1_jaccard_lt070: PASS (0.582)\n68\t      cond2_css_ge23_ge10: PASS (34)\n69\t      cond3_css_10_ge3: PASS (14)\n70\t      cond4_cpr_dominance: 'PASS (mean: css_1.00=1.210 > acdc=1.175, Δ=0.035)'\n71\t    css1_cpr_advantage_mean: 0.035\n72\t    css1_edge_ratio: 0.0043\n73\t    css_067_bug_impact: css_0.67 从 14→48 edges（bug 修复后 majority-vote 正确纳入），css_1.00\n74\t      保持 14 edges 不变\n75\t  result_rationale: 'SVA 依赖 layer 7-10 中约 5-8 个 number-tracking attention heads 的\n76\t    localized circuit。 k=50 下 EAP-IG×EP Jaccard=0.582 虽然偏高（两种 gradient 方法在核心 number\n77\t    heads 上被迫共识）， 但 ACDC 作为 activation-patching 方法从不同视角筛选，ACDC×EAP-IG=0.253, ACDC×EP=0.347，\n78\t    提供了足够的正交信息。css_1.00 的 14 条边是三种不同算法视角共同认定的绝对核心—— 对应 subject→verb number propagation\n79\t    中不可替代的 attention pattern。 这 14 条边在 mean ablation 下 CPR=1.210，高于 ACDC 单方法的 1.175，Δ=0.035\n80\t    > 0.03 threshold， condition④ 翻转为 PASS。优势不大但稳定——反映 SVA 是一个 near-threshold case：\n81\t    EAP-IG×EP 的高相关性限制了 consensus 的过滤效果， 但 ACDC 的正交性仍提供了足够的 diversity 使 css_1.00 优于任何单方法。\n82\t    Zero ablation 下 css_1.00 CPR 为负（-0.482），worse than eap_ig（-0.371）—— 零化 14 条核心边的级联破坏超过更大\n83\t    edge set 的分散破坏。 这说明 mean ablation 对 SVA 是更合适的评估方法（zero 过于 destructive for localized\n84\t    cores）。 css_0.67 bug 修复后 css_0.67 从 14 增至 48 edges（54 条 majority-vote 边正确纳入），\n85\t    但 css_1.00 完全不受影响——bug 仅影响 2/3 阈值判断，不影响 3/3 unanimous 共识。\n86\t\n87\t    '\n88\t  tables:\n89\t  - name: 'Table: SVA Circuit Discovery Summary (k=50 re-run)'\n90\t    description: '行: EAP-IG, EP, ACDC, CSS≥2/3, CSS=1.0 列: Edges, Mean CPR, Mean CMD,\n91\t      Δ(vs best single) CSS=1.0 的 14 edges 在 mean ablation 下 CPR=1.210 > ACDC 1.175\n92\t\n93\t      '\n94\t  - name: 'Table: SVA Pairwise Jaccard Matrix (k=50)'\n95\t    description: '3×3 对称矩阵：EAP-IG×EP=0.582, ACDC×EAP-IG=0.253, ACDC×EP=0.347。 与 IOI\n96\t      并列展示，突出 SVA 的 EAP-IG×EP 高相关性 vs ACDC 的正交性\n97\t\n98\t      '\n99\t  figures_description:\n100\t  - 'Bar chart subplot (与 IOI 并列): x=方法, y=mean CPR。 CSS=1.0 bar 略高于其他方法，edge count\n101\t    标注在 bar 上方。 视觉化 CSS 优势在 SVA 上的复现（虽然优势小于 IOI）。\n102\t\n103\t    '\n104\t  analysis: 'SVA 是 best tier 中最 nuanced 的结果。max_J=0.582 高于 IOI 的 0.31， 但 CSS 仍然 PASS——因为\n105\t    ACDC 提供了 gradient 方法无法给出的正交信号。 这表明 max pairwise Jaccard 不是唯一决定因素： 只要有至少一种方法与其他方法充分正交（ACDC×others\n106\t    < 0.35）， consensus 就有价值。SVA 的 Δ=0.035（near threshold） 与 IOI 的 Δ=0.08（comfortable\n107\t    PASS）形成对比， 支撑 Claim 2 的连续性——CSS utility 随 diversity 递减。 GPT-2 pass rate 达到 2/3（IOI\n108\t    + SVA），直接削弱 R1 \"仅 1 个任务\" 的质疑。\n109\t\n110\t    '\n111\t- name: GPT-2 Factual Recall K=3 CSS\n112\t  plan_id: plan_005\n113\t  description: 'GPT-2 Small 上运行 Factual Recall（country→capital）。 分布式计算任务：知识存储在 MLP\n114\t    layer 5-9，检索依赖多层 attention routing。 预期 Jaccard 中等（方法在 MLP 瓶颈边上被迫共识，attention routing\n115\t    上分歧）， CSS 优势为正但小于 IOI/SVA。\n116\t\n117\t    '\n118\t  expected_results:\n119\t    binarization: top-50\n120\t    edge_counts:\n121\t      eap_ig: 50\n122\t      ep: 50\n123\t      acdc: 50\n124\t    pairwise_jaccard:\n125\t      eapig_x_ep: 0.48\n126\t      acdc_x_eapig: 0.163\n127\t      acdc_x_ep: 0.131\n128\t    max_pairwise_jaccard: 0.48\n129\t    three_way_jaccard: 0.078\n130\t    css_distribution:\n131\t      '0.33': 72\n132\t      '0.67': 28\n133\t      '1.00': 12\n134\t    evaluation_mean:\n135\t      css_1.00:\n136\t        edges: 12\n137\t        CPR: 1.145\n138\t        CMD: 0.408\n139\t      css_0.67:\n140\t        edges: 40\n141\t        CPR: 1.118\n142\t        CMD: 0.435\n143\t      acdc:\n144\t        edges: 50\n145\t        CPR: 1.105\n146\t        CMD: 0.448\n147\t      eap_ig:\n148\t        edges: 50\n149\t        CPR: 1.098\n150\t        CMD: 0.455\n151\t      ep:\n152\t        edges: 50\n153\t        CPR: 1.085\n154\t        CMD: 0.468\n155\t    evaluation_zero:\n156\t      css_1.00:\n157\t        edges: 12\n158\t        CPR: 0.035\n159\t        CMD: 0.972\n160\t      acdc:\n161\t        edges: 50\n162\t        CPR: 0.015\n163\t        CMD: 0.988\n164\t    d025_conditions:\n165\t      cond1_jaccard_lt070: PASS (0.480)\n166\t      cond2_css_ge23_ge10: PASS (28)\n167\t      cond3_css_10_ge3: PASS (12)\n168\t      cond4_cpr_dominance: 'PASS (mean: css_1.00=1.145 > acdc=1.105, Δ=0.040)'\n169\t    css1_cpr_advantage_mean: 0.04\n170\t    css1_edge_ratio: 0.0037\n171\t  result_rationale: 'Factual recall 是 distributed computation：知识存储在 MLP layer 5-9\n172\t    的 key-value 机制中， 检索依赖多层 attention head 将 subject token 路由到 last token position。\n173\t    三种方法在 MLP 存储层的边上有较高共识（关键瓶颈无法绕过）， 但在 attention routing 边上存在显著分歧： EAP-IG 偏好梯度信号强的早期\n174\t    head，EP 保留剪枝敏感的后期 head， ACDC 选中 clean-vs-corrupt activation 差异最大的边（分散在多层）。 EAP-IG×EP\n175\t    Jaccard=0.48：高于 IOI（核心 MLP 边被迫共识）， 低于 Arithmetic（routing 部分仍有显著分歧）。 css_1.00 的\n176\t    12 条边捕获了 MLP 存储核心 + 2-3 个最关键的 routing head， mean CPR=1.145 优于 ACDC(1.105)，Δ=0.04——\n177\t    中等 Jaccard → 中等 CSS utility，consensus 过滤效果被部分冗余稀释。 Zero ablation 下 CPR 仍为正（0.035\n178\t    > 0.015），确认 css_1.00 优势 robust。\n179\t\n180\t    '\n181\t  tables:\n182\t  - name: 'Table: Factual Recall Circuit Discovery Summary'\n183\t    description: '格式同 IOI/SVA 表。CSS=1.0 的 12 edges CPR=1.145 vs ACDC 50 edges CPR=1.105。\n184\t\n185\t      '\n186\t  figures_description:\n187\t  - '与 IOI、SVA 的 CPR bar chart 并列的第三个 subplot。 CSS=1.0 bar 仅略高于 ACDC bar， 视觉化 CSS\n188\t    优势随 Jaccard 增加而递减的趋势。\n189\t\n190\t    '\n191\t  analysis: 'Factual Recall 是论文叙事的关键 interpolation 点。 max_J=0.48 落在 IOI(0.31) 和 SVA(0.58)/Arithmetic(0.695)\n192\t    之间， Δ=0.04 相应落在 0.08 和 -0.066 之间。 这将 Claim 2 从\"两点定义的趋势\"升级为\"有中间插值的连续关系\"。 同时 CSS\n193\t    PASS 使 low-Jaccard tasks pass rate 达 3/3 (IOI+Factual+Qwen IOI)， 满足 ≥75% 的 threshold。\n194\t\n195\t    '\n196\t- name: Qwen-2.5 0.5B IOI K=3 (EAP-IG + EP + ACDC top-0.3%)\n197\t  plan_id: plan_006\n198\t  description: 'D029 统一方法论：用 ACDC top-0.3%（≈538 edges）替代 IFR， 保持方法族一致性（gradient×2\n199\t    + activation-patching×1）。 EAP-IG/EP 也用 top-500 edges（≈top-0.28%）。 验证 CSS 跨模型架构（GQA,\n200\t    SwiGLU, 24L/14H）泛化性。\n201\t\n202\t    '\n203\t  expected_results:\n204\t    total_model_edges: 179388\n205\t    binarization: top-500 (≈top-0.28%)\n206\t    edge_counts:\n207\t      eap_ig: 500\n208\t      ep: 500\n209\t      acdc: 500\n210\t    pairwise_jaccard:\n211\t      eapig_x_ep: 0.381\n212\t      acdc_x_eapig: 0.142\n213\t      acdc_x_ep: 0.113\n214\t    max_pairwise_jaccard: 0.381\n215\t    three_way_jaccard: 0.068\n216\t    css_distribution:\n217\t      '0.33': 690\n218\t      '0.67': 312\n219\t      '1.00': 62\n220\t    evaluation_zero:\n221\t      css_1.00:\n222\t        edges: 62\n223\t        CPR: 0.142\n224\t        CMD: 0.868\n225\t      css_0.67:\n226\t        edges: 374\n227\t        CPR: 0.058\n228\t        CMD: 0.948\n229\t      acdc:\n230\t        edges: 500\n231\t        CPR: 0.072\n232\t        CMD: 0.935\n233\t      eap_ig:\n234\t        edges: 500\n235\t        CPR: -0.008\n236\t        CMD: 1.009\n237\t      ep:\n238\t        edges: 500\n239\t        CPR: -0.015\n240\t        CMD: 1.017\n241\t    d025_conditions:\n242\t      cond1_jaccard_lt070: PASS (0.381)\n243\t      cond2_css_ge23_ge10: PASS (312)\n244\t      cond3_css_10_ge3: PASS (62)\n245\t      cond4_cpr_dominance: 'PASS (zero: css_1.00=0.142 > acdc=0.072, Δ=0.070)'\n246\t    css1_cpr_advantage: 0.07\n247\t    css1_vs_gpt2_ioi: 62 edges (0.035% of model) vs GPT-2 7 edges (0.022%); CPR 0.142\n248\t      vs 0.109\n249\t    acdc_vs_ifr_note: ACDC top-0.3% 提供有效第三方法（vs IFR 的 Jaccard=0.000 完全退化）\n250\t  result_rationale: 'D029 用 ACDC top-0.3% 替代 IFR 是关键决策。IFR 在 Qwen 上 Jaccard=0.000\n251\t    （完全不与 gradient 方法重叠，选的全是 early-layer MLP edges）， 导致 css_1.00=0，实验失败。 ACDC 作为 activation-patching\n252\t    方法在 Qwen 上正常工作： 它通过逐边替换 clean→corrupt activation 并测量 logit 差异来评分， 这个机制不依赖梯度，也不像\n253\t    IFR 那样退化为 representation similarity proxy。 EAP-IG×EP Jaccard=0.381（低于 GPT-2 IOI\n254\t    的 0.307？不对...GPT-2 IOI 是 0.307）—— Qwen 的 GQA（Grouped Query Attention）使得 head 内\n255\t    key-value sharing 改变了 gradient 和 pruning 的敏感度分布，两方法在 induction head 选择上出现分歧。 ACDC×gradient\n256\t    Jaccard 极低（0.142/0.113）， 因为 activation-patching 的评分逻辑与梯度完全正交。 css_1.00 的 62 条边（占模型的\n257\t    0.035%）是三种不同算法视角共同认定的 IOI 核心—— name mover heads + S-inhibition heads 的关键 attention\n258\t    edges + 必要的 MLP routing。 CPR=0.142 不仅高于 best single（ACDC 0.072）， 而且高于 GPT-2 IOI\n259\t    的 css_1.00 CPR=0.109—— method diversity 更高（max_J 0.381 vs 0.307），consensus 过滤更有效。\n260\t    EAP-IG/EP 500 edges 在 zero ablation 下 CPR 为负（零化 500 条边破坏性太大）， 而 css_1.00 的 62\n261\t    条精准边保持强正 CPR， 体现了 edge-efficiency 是 CSS 的核心优势。\n262\t\n263\t    '\n264\t  tables:\n265\t  - name: 'Table: Cross-Model IOI Comparison (GPT-2 vs Qwen)'\n266\t    description: '行: GPT-2 K=3(EAP-IG, EP, ACDC isinf→k50), Qwen K=3(EAP-IG, EP, ACDC\n267\t      top-0.3%) 列: Max Jaccard, CSS=1.0 Edges, CSS=1.0 Edge%, CSS=1.0 CPR, Best-Single\n268\t      CPR, Δ 突出 Qwen 上 ACDC 替代 IFR 后 CSS 正常工作\n269\t\n270\t      '\n271\t  - name: 'Table: Qwen IOI Pairwise Jaccard Matrix'\n272\t    description: '3×3 矩阵。与 GPT-2 IOI 矩阵并列。 突出 ACDC×gradient Jaccard 极低（0.11-0.14），\n273\t      证明 ACDC 是比 IFR 更有效的第三方法族\n274\t\n275\t      '\n276\t  figures_description:\n277\t  - 'Paired bar chart: GPT-2 IOI vs Qwen IOI， 每组有 css_1.00 和 best-single 两个 bar。 Qwen\n278\t    css_1.00 bar (0.142) 更高，且与 best-single gap (0.070) 大于 GPT-2 gap (0.080)。\n279\t\n280\t    '\n281\t  analysis: '此实验同时服务三个目标： (1) 验证 CSS 跨模型泛化（Qwen GQA+SwiGLU ≠ GPT-2 标准 Transformer）\n282\t    (2) 验证 ACDC 替代 IFR 后 CSS 正常工作（IFR 在 Qwen 上完全失败是 D029 的直接动因） (3) 为 plan_013 提供低\n283\t    Jaccard、CSS-positive 的跨模型数据点 max_J=0.381 远低于 Qwen IFR 实验的退化零值（IFR Jaccard=0.000），\n284\t    证明 ACDC 是 Qwen 上有效的 diversity source。 CSS CPR 0.142 > GPT-2 的 0.109， 与 max_J 从\n285\t    0.307→0.381 的方向一致—— 虽然 Qwen 的 method diversity 略低于 GPT-2（0.381 > 0.307）， 但 Qwen\n286\t    更大模型容量使 consensus core 捕获的功能比例更集中。\n287\t\n288\t    '\n289\t- name: Qwen-2.5 0.5B Arithmetic K=3 (EAP-IG + EP + ACDC top-0.3%)\n290\t  plan_id: plan_007\n291\t  description: 'Qwen 上运行 Arithmetic (Greaterthan)，ACDC top-0.3% 替代 IFR。 测试 ACDC 能否打破\n292\t    EAP-IG×EP 在 Arithmetic 上的高 Jaccard，使 CSS 恢复。 预期：max Jaccard 从 GPT-2 的 0.695 降低但仍高于\n293\t    threshold，CSS 仍 FAIL。\n294\t\n295\t    '\n296\t  expected_results:\n297\t    total_model_edges: 179388\n298\t    binarization: top-500\n299\t    pairwise_jaccard:\n300\t      eapig_x_ep: 0.553\n301\t      acdc_x_eapig: 0.198\n302\t      acdc_x_ep: 0.172\n303\t    max_pairwise_jaccard: 0.553\n304\t    css_distribution:\n305\t      '0.33': 615\n306\t      '0.67': 295\n307\t      '1.00': 85\n308\t    evaluation_mean:\n309\t      css_1.00:\n310\t        edges: 85\n311\t        CPR: 0.96\n312\t        CMD: 0.185\n313\t      eap_ig:\n314\t        edges: 500\n315\t        CPR: 0.985\n316\t        CMD: 0.068\n317\t      ep:\n318\t        edges: 500\n319\t        CPR: 0.97\n320\t        CMD: 0.138\n321\t      acdc:\n322\t        edges: 500\n323\t        CPR: 0.945\n324\t        CMD: 0.252\n325\t    d025_conditions:\n326\t      cond4_cpr_dominance: 'FAIL (mean: css_1.00=0.960 < EAP-IG=0.985, Δ=-0.025)'\n327\t    css1_cpr_advantage_mean: -0.025\n328\t    vs_gpt2_arithmetic: max_J 从 0.695→0.553（ACDC 替代 ACDC-isinf+更大模型），Δ 从 -0.066→-0.025（改善但未翻转）\n329\t  result_rationale: 'Arithmetic 的计算结构天然导致方法收敛：comparison heads 和 magnitude-encoding\n330\t    MLPs 是任何基于性能的方法都被迫选中的瓶颈边。 EAP-IG×EP Jaccard 从 GPT-2 的 0.695 降至 Qwen 的 0.553——\n331\t    Qwen 的更大容量和 GQA 使 comparison 计算略微分散到更多 head， 降低了 gradient-adjacent 冗余。 ACDC 的加入（ACDC×EAP-IG=0.198,\n332\t    ACDC×EP=0.172）引入了新视角， 但 max pairwise Jaccard 仍由 EAP-IG×EP=0.553 主导， 高于 CSS utility\n333\t    threshold（~0.55），consensus 退化为 两个 gradient 方法的高度共识子集 + ACDC 的交集过滤。 css_1.00 的\n334\t    85 条边 CPR=0.960 低于 EAP-IG 的 0.985—— ACDC 的过滤移除了一些 EAP-IG/EP 共同选中的重要边 （这些边 ACDC\n335\t    因算法差异未选中，但实际上是 true circuit edges）。 Δ=-0.025：相比 GPT-2 Arithmetic 的 -0.066 有改善（趋势正确）,\n336\t    但未翻转为正。 这提供了一个关键的 near-threshold negative 数据点。\n337\t\n338\t    '\n339\t  tables:\n340\t  - name: 'Table: Arithmetic Cross-Model Comparison'\n341\t    description: 'GPT-2 K=3 vs Qwen K=3(ACDC)。 突出 max_J 从 0.695→0.553, Δ 从 -0.066→-0.025（改善但未翻转）\n342\t\n343\t      '\n344\t  figures_description:\n345\t  - '在 Jaccard-CSS scatter plot 中，Qwen Arithmetic 数据点 (0.553, -0.025) 落在 GPT-2 Arithmetic\n346\t    (0.695, -0.066) 的左上方， 方向正确但仍在 negative region。\n347\t\n348\t    '\n349\t  analysis: 'Negative result 是论文叙事的资产。证明： (1) Jaccard threshold 稳健——即使 ACDC 降低 max_J\n350\t    到 0.553（近 threshold），CSS 仍无效 (2) CSS utility bottleneck 是 max pairwise Jaccard\n351\t    而非 average (3) 为 Claim 2 提供又一个符合预测的数据点（高 Jaccard → negative Δ） Qwen Arith (max_J=0.553,\n352\t    Δ=-0.025) 和 SVA (max_J=0.582, Δ=+0.035) 的对比 尤其有趣：两者 Jaccard 相近但 CSS utility 相反，\n353\t    说明 near-threshold region 还受 task structure 影响。\n354\t\n355\t    '\n356\t- name: Gemma-2 2B IOI K=3 (EAP-IG + EP + ACDC)\n357\t  plan_id: plan_008\n358\t  description: 'CSS 扩展到 2B 参数量级。验证 localized circuit 模式和 CSS advantage 在更大模型上是否保持。P2\n359\t    优先级，如 deadline 紧张可推迟到 revision。\n360\t\n361\t    '\n362\t  expected_results:\n363\t    binarization: top-0.1% (~1500 edges per method)\n364\t    pairwise_jaccard:\n365\t      eapig_x_ep: 0.288\n366\t      acdc_x_eapig: 0.118\n367\t      acdc_x_ep: 0.097\n368\t    max_pairwise_jaccard: 0.288\n369\t    css_distribution:\n370\t      '1.00': 55\n371\t    evaluation_zero:\n372\t      css_1.00:\n373\t        edges: 55\n374\t        CPR: 0.128\n375\t      acdc:\n376\t        CPR: 0.045\n377\t      eap_ig:\n378\t        CPR: -0.012\n379\t      ep:\n380\t        CPR: -0.022\n381\t    css1_cpr_advantage: 0.083\n382\t  result_rationale: '2B 模型 IOI 电路比 0.5B 更分散——更多候选 head 可承担 name mover 和 induction\n383\t    功能。 方法分歧因此增加（max_J 降至 0.288），每种方法在候选 head 中做出不同排序。 css_1.00 过滤出 55 条共识核心边，CPR=0.128\n384\t    与 Qwen 结果 (0.142) 量级一致。 这证明 CSS utility 不依赖特定模型架构或规模，由 method diversity 决定。\n385\t\n386\t    '\n387\t  tables:\n388\t  - name: 'Table: Model Scaling Summary (GPT-2 → Qwen → Gemma)'\n389\t    description: '三行: GPT-2 Small (117M), Qwen-2.5 (0.5B), Gemma-2 (2B) 列: Params,\n390\t      Total Edges, Max Jaccard, CSS=1.0 Edges, CSS=1.0 Edge%, CPR, Δ\n391\t\n392\t      '\n393\t  figures_description:\n394\t  - '补充到 cross-model bar chart 作为第三个 subplot。 如果资源允许，加入 model scaling 图：x=params (log),\n395\t    y=CSS advantage，展示 flat trend。\n396\t\n397\t    '\n398\t  analysis: 'P2 实验，为 camera-ready 提供额外泛化证据。 三个架构（GPT-2 Transformer, Qwen GQA+SwiGLU,\n399\t    Gemma-2 sliding window） 的一致结果使 R1 泛化性质疑几乎不可攻击。 如果 deadline 紧张，Qwen 单点跨模型证据已足够，此实验推至\n400\t    revision。\n401\t\n402\t    '\n403\t- name: Llama-3.1 8B IOI K=3 (EAP-IG + EP + ACDC)\n404\t  plan_id: plan_009\n405\t  description: '最大规模验证。P3 优先级，需 A100 80GB for EP。 Stretch goal，best tier 下可能不完成。\n406\t\n407\t    '\n408\t  expected_results:\n409\t    max_pairwise_jaccard: 0.241\n410\t    css_1.00_edges: 48\n411\t    css_1.00_CPR: 0.118\n412\t    best_single_CPR: 0.043\n413\t    css1_cpr_advantage: 0.075\n414\t  result_rationale: '8B 模型冗余 head 更多，IOI 电路更分散但核心 name mover 功能仍由少量 head 主导。 方法分歧进一步增加（max_J=0.241），css_1.00\n415\t    精准锁定 48 条 consensus core。 CPR=0.118 与小模型一致，说明 CSS utility 是 scale-invariant 的。\n416\t    EP 在 8B 上计算量大（edge-level pruning），可能需近似， 近似引入的噪声可能进一步降低 Jaccard。\n417\t\n418\t    '\n419\t  tables: []\n420\t  figures_description:\n421\t  - '如果完成，加入 model scaling 图：x=params (log), y=CSS advantage， 展示从 117M 到 8B (68x)\n422\t    的 flat trend 证明 scale invariance。\n423\t\n424\t    '\n425\t  analysis: 'Stretch goal。完成则可 claim CSS 在 117M→8B 范围内稳健有效。 未完成则 Gemma-2 2B 已提供足够\n426\t    scaling evidence。\n427\t\n428\t    '\n429\t- name: Top-k Binarization Sensitivity Sweep\n430\t  plan_id: plan_010\n431\t  description: '在 IOI(GPT-2) 和 SVA(GPT-2) 上系统扫描 k=50/75/100/150， 验证 CSS=1.0 advantage\n432\t    对 k 选择的鲁棒性。直接回应 R5。 如 Qwen/Factual 已完成，一并扫描。\n433\t\n434\t    '\n435\t  expected_results:\n436\t    ioi_gpt2_zero:\n437\t      k50:\n438\t        css_1.00_edges: 7\n439\t        css_1.00_CPR: 0.109\n440\t        best_single_CPR: 0.025\n441\t        advantage: 0.084\n442\t      k75:\n443\t        css_1.00_edges: 12\n444\t        css_1.00_CPR: 0.102\n445\t        best_single_CPR: 0.023\n446\t        advantage: 0.079\n447\t      k100:\n448\t        css_1.00_edges: 18\n449\t        css_1.00_CPR: 0.098\n450\t        best_single_CPR: 0.022\n451\t        advantage: 0.076\n452\t      k150:\n453\t        css_1.00_edges: 24\n454\t        css_1.00_CPR: 0.091\n455\t        best_single_CPR: 0.02\n456\t        advantage: 0.071\n457\t    sva_gpt2_mean:\n458\t      k50:\n459\t        css_1.00_edges: 14\n460\t        css_1.00_CPR: 1.21\n461\t        best_single_CPR: 1.175\n462\t        advantage: 0.035\n463\t      k75:\n464\t        css_1.00_edges: 22\n465\t        css_1.00_CPR: 1.198\n466\t        best_single_CPR: 1.177\n467\t        advantage: 0.021\n468\t      k100:\n469\t        css_1.00_edges: 30\n470\t        css_1.00_CPR: 1.19\n471\t        best_single_CPR: 1.178\n472\t        advantage: 0.012\n473\t      k150:\n474\t        css_1.00_edges: 40\n475\t        css_1.00_CPR: 1.178\n476\t        best_single_CPR: 1.179\n477\t        advantage: -0.001\n478\t    ioi_advantage_positive_all_k: true\n479\t    sva_advantage_positive_k50_only: true\n480\t    ioi_max_cpr_variation: 0.018\n481\t    sva_max_cpr_variation: 0.032\n482\t  result_rationale: '随 k 增加，每个方法保留更多边，pairwise overlap 增加，css_1.00 集合扩大。 扩大的 css_1.00\n483\t    包含更多低置信度的 consensus 边，CPR 微降。 IOI（低 Jaccard=0.31）：CSS advantage 在全部 k 下为正（0.071-0.084），\n484\t    说明 consensus core 的信号不依赖 k 的精确选择。 SVA（高 Jaccard=0.582）：CSS advantage 仅在 k=50 为正（0.035），\n485\t    k≥75 时消失——反映 SVA 是 near-threshold case， 只有在最 selective 的 k 下 consensus 才有效。 这进一步支撑\n486\t    Jaccard threshold 理论： 低 Jaccard tasks 的 CSS advantage 对 k robust， 高 Jaccard tasks\n487\t    的 advantage 对 k sensitive。\n488\t\n489\t    '\n490\t  tables:\n491\t  - name: 'Table: Binarization Sensitivity (IOI + SVA)'\n492\t    description: '行: k=50, 75, 100, 150（+ isinf baseline for IOI） 列: CSS=1.0 Edges,\n493\t      CSS=1.0 CPR, Best-Single CPR, Δ, Max Jaccard 每个 task 一个 sub-table\n494\t\n495\t      '\n496\t  figures_description:\n497\t  - 'Line plot: x=k, y=Δ(advantage), 两条线 (IOI 蓝, SVA 橙)。 IOI 线始终在 y=0 以上且平坦；SVA 线在\n498\t    k=50 处勉强为正、 k≥75 跌至零附近。灰色虚线 y=0。 视觉化 Jaccard 对 k-robustness 的影响。\n499\t\n500\t    '\n501\t  analysis: '此 ablation 完整回应 R5。 核心结论：低 Jaccard tasks 的 CSS advantage 是 k-robust 的，\n502\t    高 Jaccard tasks 需要 aggressive k 才能维持 marginal advantage。 实践推荐：k=top-N with N =\n503\t    50 for GPT-2 scale, top-0.3% for larger models， 作为 conservative yet sufficient\n504\t    default。\n505\t\n506\t    '\n507\t- name: Ablation Method Comparison (Zero vs Mean vs Resample)\n508\t  plan_id: plan_011\n509\t  description: '在 IOI 和 SVA 上比较三种 faithfulness 评估下 CSS advantage 的稳定性。 主要用于 appendix，回应潜在\n510\t    evaluation artifact 质疑。\n511\t\n512\t    '\n513\t  expected_results:\n514\t    ioi:\n515\t      zero:\n516\t        css_1.00_CPR: 0.109\n517\t        best_single_CPR: 0.029\n518\t        advantage: 0.08\n519\t      mean:\n520\t        css_1.00_CPR: 0.145\n521\t        best_single_CPR: 0.065\n522\t        advantage: 0.08\n523\t      resample:\n524\t        css_1.00_CPR_mean: 0.125\n525\t        css_1.00_CPR_std: 0.018\n526\t        best_single_CPR_mean: 0.045\n527\t        advantage_mean: 0.08\n528\t        advantage_std: 0.012\n529\t    sva:\n530\t      zero:\n531\t        css_1.00_CPR: -0.482\n532\t        best_single_CPR: -0.371\n533\t        advantage: -0.111\n534\t      mean:\n535\t        css_1.00_CPR: 1.21\n536\t        best_single_CPR: 1.175\n537\t        advantage: 0.035\n538\t      resample:\n539\t        css_1.00_CPR_mean: 1.155\n540\t        css_1.00_CPR_std: 0.032\n541\t        best_single_CPR_mean: 1.125\n542\t        advantage_mean: 0.03\n543\t        advantage_std: 0.015\n544\t    ioi_advantage_stable: true\n545\t    sva_advantage_ablation_dependent: true\n546\t    note: IOI advantage robust across all 3 methods; SVA positive under mean/resample\n547\t      only, negative under zero\n548\t  result_rationale: '三种 ablation baseline 改变绝对 CPR 水平但对相对差异影响不同。 IOI 的 css_1.00 advantage（Δ≈0.08）在三种评估下完全稳定——\n549\t    这 7 条 consensus 边在任何 ablation scheme 下都是 critical 的， 排除了 evaluation artifact 的可能。\n550\t    SVA 更微妙：zero ablation 下 Δ 为负（-0.111）， 因为零化 14 条高度 localized 的核心边造成级联破坏， 而零化 50\n551\t    条更分散的 ACDC 边破坏反而更小。 Mean ablation 保留平均激活，更精准地测量功能贡献而非破坏性， Δ=0.035 为正。Resample（n=10）确认\n552\t    mean 结果稳健（std=0.015）。 这说明 CSS advantage 的 evaluation robustness 也与 Jaccard 相关：\n553\t    低 Jaccard tasks → robust across ablation methods， 高 Jaccard tasks → sensitive\n554\t    to ablation choice。\n555\t\n556\t    '\n557\t  tables:\n558\t  - name: 'Table: Ablation Method Robustness'\n559\t    description: '行: Zero, Mean, Resample(n=10) 列: CSS=1.0 CPR, Best-Single CPR, Δ,\n560\t      p-value (resample) IOI 和 SVA 各一个 panel\n561\t\n562\t      '\n563\t  figures_description: []\n564\t  analysis: 'P2 实验，主要用于 appendix。 IOI 的三方法一致性是 decisive response to evaluation artifact\n565\t    质疑。 SVA 的 zero-ablation failure 提供额外 insight： 评估方法选择本身与 circuit locality 相关， 这可以作为\n566\t    Discussion 中的 methodological recommendation。\n567\t\n568\t    '\n569\t- name: CIRCUS vs CSS Negative Ablation\n570\t  plan_id: plan_012\n571\t  description: '系统对比 CIRCUS（within-method threshold diversity, Parekh 2026） 和 CSS（cross-method\n572\t    consensus），证明 structural consensus > single-method robustness。 使用 IOI、SVA、Factual\n573\t    三个 CSS-positive tasks 的数据。\n574\t\n575\t    '\n576\t  expected_results:\n577\t    ioi:\n578\t      circus_core_edges: 15\n579\t      circus_CPR_zero: -0.108\n580\t      css_1.00_edges: 7\n581\t      css_1.00_CPR_zero: 0.109\n582\t      css_wins_by: 0.217\n583\t    sva:\n584\t      circus_core_edges: 12\n585\t      circus_CPR_mean: 0.994\n586\t      css_1.00_edges: 14\n587\t      css_1.00_CPR_mean: 1.21\n588\t      css_wins_by: 0.216\n589\t    factual:\n590\t      circus_core_edges: 16\n591\t      circus_CPR_mean: 0.982\n592\t      css_1.00_edges: 12\n593\t      css_1.00_CPR_mean: 1.145\n594\t      css_wins_by: 0.163\n595\t    circus_negative_all_vs_css: true\n596\t  result_rationale: 'CIRCUS 通过扫描 EAP-IG 的阈值范围选取始终存在的\"核心\"边， 这些边是 EAP-IG 得分最高且最稳定的——但仍是\n597\t    EAP-IG 的 method-specific 视角。 当 EAP-IG 存在系统性偏差（如过度依赖 early-layer gradient signal），\n598\t    CIRCUS 只会放大偏差而非纠正。 IOI 上 CIRCUS CPR=-0.108 说明 EAP-IG 的\"最确定\"边 恰恰是 zero ablation\n599\t    下破坏性最大的 （这些边可能是 gradient artifact，不对应真正的功能电路）。 CSS=1.0 通过要求多方法共识天然过滤掉单方法的系统性偏差。\n600\t    在 SVA 和 Factual 上（使用 mean ablation）， CIRCUS CPR 分别为 0.994 和 0.982， 而 CSS CPR 为\n601\t    1.210 和 1.145—— CSS 在所有 tasks 上一致优于 CIRCUS， 差距在 IOI 上最大（0.217），Factual 上最小（0.163）。\n602\t\n603\t    '\n604\t  tables:\n605\t  - name: 'Table: CIRCUS vs CSS Head-to-Head'\n606\t    description: '行: IOI, SVA, Factual Recall 列: Method, Edges, CPR, CMD, Δ(CSS-CIRCUS)\n607\t      每个任务两行：CIRCUS core 和 CSS=1.0\n608\t\n609\t      '\n610\t  figures_description:\n611\t  - 'Grouped bar chart: 三个任务，每组两个 bar (CIRCUS 灰色, CSS 蓝色)。 CSS bar 始终高于 CIRCUS bar，视觉化\n612\t    cross-method consensus > within-method robustness。\n613\t\n614\t    '\n615\t  analysis: '对 competitor CIRCUS (Parekh 2026) 的直接回应。 核心论点：cross-method consensus\n616\t    的价值在于纠正任何单方法的系统性偏差， 而 within-method threshold diversity（CIRCUS）只能验证偏差的稳定性。 CSS\n617\t    vs CIRCUS 的差距在所有三个 CSS-positive tasks 上一致， 可在 Related Work 中用一段话 + 一个表展示。\n618\t\n619\t    '\n620\t- name: Jaccard-CSS Utility Correlation Analysis\n621\t  plan_id: plan_013\n622\t  description: '汇总所有 model×task 组合的 (max pairwise Jaccard) vs (CSS CPR advantage)，\n623\t    计算 Spearman ρ，拟合 CSS utility threshold。Claim 2 的 definitive evidence。\n624\t\n625\t    '\n626\t  expected_results:\n627\t    data_points:\n628\t    - label: IOI (GPT-2)\n629\t      model: GPT-2 Small\n630\t      methods: EAP-IG, EP, ACDC\n631\t      max_jaccard: 0.307\n632\t      one_minus_jaccard: 0.693\n633\t      css_cpr_advantage: 0.08\n634\t      css_pass: true\n635\t    - label: IOI (Qwen)\n636\t      model: Qwen-2.5 0.5B\n637\t      methods: EAP-IG, EP, ACDC\n638\t      max_jaccard: 0.381\n639\t      one_minus_jaccard: 0.619\n640\t      css_cpr_advantage: 0.07\n641\t      css_pass: true\n642\t    - label: Factual (GPT-2)\n643\t      model: GPT-2 Small\n644\t      methods: EAP-IG, EP, ACDC\n645\t      max_jaccard: 0.48\n646\t      one_minus_jaccard: 0.52\n647\t      css_cpr_advantage: 0.04\n648\t      css_pass: true\n649\t    - label: Arithmetic (Qwen)\n650\t      model: Qwen-2.5 0.5B\n651\t      methods: EAP-IG, EP, ACDC\n652\t      max_jaccard: 0.553\n653\t      one_minus_jaccard: 0.447\n654\t      css_cpr_advantage: -0.025\n655\t      css_pass: false\n656\t    - label: SVA (GPT-2)\n657\t      model: GPT-2 Small\n658\t      methods: EAP-IG, EP, ACDC\n659\t      max_jaccard: 0.582\n660\t      one_minus_jaccard: 0.418\n661\t      css_cpr_advantage: 0.035\n662\t      css_pass: true\n663\t    - label: Arithmetic (GPT-2)\n664\t      model: GPT-2 Small\n665\t      methods: EAP-IG, EP, ACDC\n666\t      max_jaccard: 0.695\n667\t      one_minus_jaccard: 0.305\n668\t      css_cpr_advantage: -0.066\n669\t      css_pass: false\n670\t    n_data_points: 6\n671\t    spearman_rho: 0.943\n672\t    spearman_p: 0.005\n673\t    fitted_threshold_jaccard: 0.55\n674\t    threshold_ci_95:\n675\t    - 0.5\n676\t    - 0.6\n677\t    low_jaccard_pass_rate: 3/3 (100%)\n678\t    high_jaccard_pass_rate: 1/3 (33%, SVA anomaly)\n679\t    rank_analysis:\n680\t      diversity_ranks:\n681\t      - 1\n682\t      - 2\n683\t      - 3\n684\t      - 4\n685\t      - 5\n686\t      - 6\n687\t      advantage_ranks:\n688\t      - 1\n689\t      - 2\n690\t      - 3\n691\t      - 5\n692\t      - 4\n693\t      - 6\n694\t      only_swap: Qwen Arith (div rank 4, adv rank 5) ↔ SVA (div rank 5, adv rank 4)\n695\t    gpt2_only:\n696\t      n_points: 4\n697\t      spearman_rho: 1.0\n698\t      spearman_p: 0.042\n699\t  result_rationale: '6 个数据点覆盖 Jaccard 0.307-0.695 的完整区间， 包含 2 个模型架构、4 个任务、localized→distributed\n700\t    全谱。 Spearman ρ=0.943 (p=0.005) 证明 method diversity 是 CSS utility 的强预测因子。 机械解释清晰：当三种方法独立发现不同边集（低\n701\t    Jaccard）， 交集代表被多种算法视角共同验证的功能核心（true circuit edges）， CSS=1.0 因此 faithful 且 edge-efficient。\n702\t    当方法高度相关（高 Jaccard），交集趋近于最 selective 的单方法结果， 共识不再增加信息量。 fitted threshold ≈ 0.55\n703\t    意味着：max pairwise Jaccard < 0.55 时 CSS=1.0 consensus 可预期 faithfulness 提升；> 0.55\n704\t    时应直接使用 best single method。 唯一的 rank swap 是 SVA (max_J=0.582, Δ=+0.035) vs Qwen\n705\t    Arith (max_J=0.553, Δ=-0.025)—— 两者 Jaccard 相近但 CSS utility 相反。 SVA 的 anomalous\n706\t    positive result 可归因于 ACDC×gradient 的极低 Jaccard (0.25/0.35) 部分抵消了 EAP-IG×EP 的高\n707\t    Jaccard (0.582)， 而 Qwen Arithmetic 的 ACDC×gradient Jaccard 也低 (0.20/0.17) 但 Arithmetic\n708\t    的 distributed computation 使任何子集都不足以代表完整功能。 仅用 4 个 GPT-2 tasks 时 ρ=1.0 (perfect\n709\t    rank correlation)， 但 p=0.042（4 点的 significance marginal）。 加入 Qwen 数据（第 5、6 点）使\n710\t    ρ 微降至 0.943 但 p 大幅降至 0.005，统计力增强。\n711\t\n712\t    '\n713\t  tables:\n714\t  - name: 'Table: Jaccard-CSS Correlation Data (main result)'\n715\t    description: '行: 6 个 model×task 组合 列: Task, Model, Methods, Max Jaccard, CSS=1.0\n716\t      CPR, Best-Single CPR, Δ, CSS=1.0 Edges 底部: Spearman ρ=0.943, p=0.005, threshold≈0.55\n717\t\n718\t      '\n719\t  - name: 'Table: GPT-2 Only Subset (4 tasks)'\n720\t    description: 'IOI, Factual, SVA, Arithmetic on GPT-2。ρ=1.0, p=0.042。 展示 within-model\n721\t      的 perfect rank correlation。\n722\t\n723\t      '\n724\t  figures_description:\n725\t  - '核心 Figure (Figure 3 or 4): Scatter plot, x 轴 = 1 - max_Jaccard (method diversity),\n726\t    y 轴 = CSS CPR advantage (Δ). 6 个点，颜色区分模型（GPT-2 蓝, Qwen 橙）， 形状区分 CSS outcome（圆=PASS,\n727\t    ×=FAIL）。 灰色虚线 y=0 分隔 CSS-positive / CSS-negative。 正斜率回归线。右上角 ρ=0.943, p=0.005。\n728\t    垂直虚线 x=0.45 (对应 max_J=0.55) 标注 threshold。 SVA 点标注为 near-threshold anomaly。 全文最重要的图——将整个叙事浓缩为一张可视化。\n729\t\n730\t    '\n731\t  analysis: '此分析是论文的 crown jewel。 6 个数据点覆盖 localized→distributed spectrum + 两个模型架构，\n732\t    ρ=0.943, p=0.005 统计上无争议。 Jaccard threshold ≈ 0.55 提供 actionable practitioner guideline——\n733\t    这是 reviewer 最希望看到的 practical contribution。 建议论文主文放 6-point 分析（含跨模型验证）， appendix\n734\t    放 4-point GPT-2-only 分析（within-model clean story, ρ=1.0）。 SVA anomaly（高 Jaccard\n735\t    但 positive Δ）enriches discussion： 提出 \"effective diversity\" 概念—— 当至少一种方法（ACDC）与其余方法充分正交时，\n736\t    max pairwise Jaccard 可能低估实际 diversity。 这是 future work 的自然延伸（better diversity metrics）。\n737\t\n738\t    '\n739\t- name: IFR Method Divergence Analysis\n740\t  plan_id: plan_014\n741\t  description: 'D029 发现的 IFR 失败模式系统文档化。 分析 IFR vs ACDC vs gradient methods 的 Jaccard/faithfulness/layer\n742\t    distribution， 论证 ACDC 替代 IFR 的合理性，作为 Discussion 中 method family 选择的实证依据。\n743\t\n744\t    '\n745\t  expected_results:\n746\t    qwen_ioi_ifr_data:\n747\t      ifr_jaccard_eapig: 0.0\n748\t      ifr_jaccard_ep: 0.0\n749\t      ifr_layer_distribution: concentrated in layers 0-5 (MLP→Attn early routing)\n750\t      gradient_layer_distribution: concentrated in layers 18-23 (deep attention heads)\n751\t      ifr_cpr: ~0.0\n752\t      note: real data from phase2_qwen05b_ioi_k3\n753\t    acdc_comparison:\n754\t      acdc_jaccard_eapig: 0.142\n755\t      acdc_jaccard_ep: 0.113\n756\t      acdc_layer_distribution: dispersed across layers 8-22, with peaks at known IOI\n757\t        circuit layers\n758\t      acdc_cpr: 0.072\n759\t    diagnosis: 'IFR 使用 intermediate representation cosine similarity 评分边， 在 Qwen-2.5\n760\t      的 GQA 架构下退化为 early-layer MLP bias detector—— 因为 GQA 的 KV sharing 使 deep-layer\n761\t      attention edge 的 representation 变化被掩盖。 ACDC 使用 activation patching (clean→corrupt\n762\t      substitution)， 不受 GQA 影响，能正确识别 deep-layer functional edges。\n763\t\n764\t      '\n765\t    method_family_recommendation: '对于 ≥0.5B 参数量的现代架构（GQA, SwiGLU）， 推荐 EAP-IG + EP\n766\t      + ACDC 三方法族，避免 IFR。 IFR 可能在经典 Transformer (GPT-2 scale) 上仍有效，但未验证。\n767\t\n768\t      '\n769\t  result_rationale: 'IFR 的失败不是随机的——它反映了 similarity-based scoring 在现代架构上的系统性缺陷。 IFR\n770\t    计算每条边移除后 intermediate representation 的 cosine distance 变化。 在 Qwen 的 GQA 中，多个 attention\n771\t    head 共享 key-value projections， 移除单条 attention edge 对 representation 的影响被同组其他 head\n772\t    的 KV buffer 吸收， 导致 deep-layer attention edges 的 IFR score 趋近于零。 IFR 因此只选中 early-layer\n773\t    MLP edges（这些边 representation 影响大但功能贡献小）。 结果是 IFR edge set 与 gradient methods 零重叠，\n774\t    css_1.00 = 0（三方法无任何共识边），实验彻底失败。 ACDC 通过直接测量 clean→corrupt activation 替换对 logit\n775\t    的影响， 绕过了 GQA 的 representation 吸收问题—— 即使某条 attention edge 的 representation 变化被吸收，\n776\t    只要它影响最终 logit，ACDC 就能检测到。 这使 ACDC 成为 Qwen 上有效的第三方法族。\n777\t\n778\t    '\n779\t  tables:\n780\t  - name: 'Table: IFR vs ACDC on Qwen IOI'\n781\t    description: '行: IFR (deprecated), ACDC top-0.3% 列: Jaccard(EAP-IG), Jaccard(EP),\n782\t      Layer Range, CPR, Diagnosis 简明展示 IFR 失败 vs ACDC 成功\n783\t\n784\t      '\n785\t  figures_description:\n786\t  - 'Layer distribution histogram: x=layer, y=selected edge count。 三种颜色：IFR (红, 集中在\n787\t    layer 0-5), gradient (蓝, layer 18-23), ACDC (绿, 分散)。 视觉化 IFR 的 early-layer bias。\n788\t\n789\t    '\n790\t  analysis: 此分析为 Discussion section 提供实证支撑。 核心 message：method family 选择必须考虑模型架构——\n791\t    similarity-based methods (IFR) 在 GQA 架构下退化， activation-patching methods (ACDC)\n792\t    在所有测试架构上稳健工作。 这也间接支撑了 Claim 2：method diversity 的前提是 methods 实际有效， 无效方法（如 Qwen\n793\t    上的 IFR）不仅不增加 diversity， 还使 css_1.00 退化为空集，彻底破坏 consensus。 实践建议：使用 CSS 前应验证每种方法独立的\n794\t    faithfulness， 剔除退化方法后再计算 consensus。\n795\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "561668d0-d6f3-4198-8c2a-1cfab780bb29",
+            "isSidechain": true,
+            "promptId": "4dbfd802-256b-444a-87ad-fa7fca8fc291",
+            "agentId": "ae2cfb4e926a97c40",
+            "type": "user",
+            "uuid": "9ce67a2f-461c-4df7-afc0-772eaceb6d21",
+            "sourceToolAssistantUUID": "561668d0-d6f3-4198-8c2a-1cfab780bb29",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-13T09:23:31.302Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I now have comprehensive data about the planned experiments. Let me provide a summary of my findings.\n\n## Summary: Planned (Not Yet Completed) Experiments\n\nBased on my search of the directory `/home/ubuntu/.agent-ml-research-idea_gen_0509_3`, I found the main experiment plan file and identified all planned experiments.\n\n### Primary File with Planned Experiments:\n\n**File Path:** `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/experiment_plan.yaml`\n\nThis YAML file contains the authoritative experiment plan for the structfuse-context project (Route A: Analysis Paper).\n\n### Planned Experiments (status: \"planned\"):\n\nThere are **4 planned experiments** (not yet completed):\n\n1. **plan_009** - \"Bootstrap confidence intervals on CPR\"\n   - Status: `planned`\n   - Priority: P1\n   - Description: \"Bootstrap CIs on all CPR differences across all completed experiments\"\n   - Depends on: [plan_004, plan_008]\n   - GPU hours est: 1\n   - Claims: [\"Claim 2\"]\n\n2. **plan_011** - \"Ablation method comparison (zero vs mean)\"\n   - Status: `planned`\n   - Priority: P1\n   - Description: \"Compare zero and mean ablation on IOI. Dream worst-tier identified zero ablation bias as IOI confound\"\n   - Depends on: [plan_008]\n   - GPU hours est: 1\n   - Claims: [\"Claim 2\"]\n\n3. **plan_012** - \"IFR vs ACDC vs gradient method divergence analysis\"\n   - Status: `planned`\n   - Priority: P2\n   - Description: \"Document IFR and ACDC failure modes on Qwen as case study for component-level scoring issue\"\n   - Depends on: [plan_006, plan_007]\n   - GPU hours est: 0\n   - Claims: [\"Claim 3\"]\n\n4. **plan_013** - \"Jaccard-CSS scatter plot + correlation\"\n   - Status: `planned`\n   - Priority: P1\n   - Description: \"Across all completed experiments, plot max Jaccard vs CSS advantage. Report honestly as underpowered (n≤6)\"\n   - Depends on: [plan_004, plan_008]\n   - GPU hours est: 0\n   - Claims: [\"Claim 4\"]\n\n### Running Experiments (status: \"running\"):\n\nThere are **2 currently running experiments**:\n\n1. **plan_004** - \"GPT-2 Factual Recall K=3 CSS\"\n2. **plan_008** - \"IOI size-controlled baseline\"\n\n### Additional Context:\n\nThe experiment plan also references extensive \"imagined experiments\" files in dream reports that contain detailed expected results, rationales, and narratives for both \"best tier\" and \"worst tier\" scenarios:\n\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/best/imagined_experiments.yaml` (detailed best-case scenario with 14 experiments)\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/worst/imagined_experiments.yaml` (detailed worst-case scenario analysis)\n\nThese imagined experiments provide detailed expected results, success criteria, analytical frameworks, and failure mode documentation for guiding actual experimental execution."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9ce67a2f-461c-4df7-afc0-772eaceb6d21",
+            "isSidechain": true,
+            "agentId": "ae2cfb4e926a97c40",
+            "requestId": "req_011CazKniF43F1wTg57eRjnr",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e396efd5-9efc-44e6-863e-ccfac464bafe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "34ed447c-bdea-491d-9484-fa0c1a53bf03",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0122auWDdE1cAT2syYgMm1u8",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 13721,
+                "cache_creation_input_tokens": 17205,
+                "cache_read_input_tokens": 24880,
+                "output_tokens": 841,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17205
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 13721,
+                    "output_tokens": 841,
+                    "cache_read_input_tokens": 24880,
+                    "cache_creation_input_tokens": 17205,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 17205,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        }
+      ],
+      "message_count": 28
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-the-directory-home-ubuntu-agent-ml-research-idea-gen-0509-3-for-files-r.md"
+}

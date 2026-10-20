@@ -1,0 +1,212 @@
+{
+  "schema_version": "1.0",
+  "id": "d73604abe800a5669835",
+  "project": "solver-trace-ablation--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 系统通知：审稿审批已通过。请开始审稿。 [论文提交] - 项目: solver-trace-ablation - 论文路径: projects/solver-trace-ablation/docs/paper/main.tex - 目标 v",
+  "task_key": "bc95258f-10e3-480a-a247-eaedf51e6791",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/bc95258f-10e3-480a-a247-eaedf51e6791.jsonl",
+    "occurrence": 1,
+    "bytes": 637068,
+    "sha256": "1767e23334dc1b0dbe412323c5a378c46d67835257637bfbb8c9f688dbbbc033"
+  },
+  "statistics": {
+    "messages": 174,
+    "user_turns": 15,
+    "tool_calls": 37,
+    "roles": {
+      "record": 55,
+      "user": 15,
+      "assistant": 30,
+      "tool_call": 37,
+      "tool_result": 37
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d73604abe800a5669835-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 79,
+      "chunks": [
+        {
+          "path": "d73604abe800a5669835-part-0001.json",
+          "message_count": 79
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "d73604abe800a5669835-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "d73604abe800a5669835-part-0001.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d73604abe800a5669835-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "d73604abe800a5669835-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d73604abe800a5669835-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "d73604abe800a5669835-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "d73604abe800a5669835-part-0001.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d73604abe800a5669835-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "d73604abe800a5669835-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "d73604abe800a5669835-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "d73604abe800a5669835-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "boundary": "recorded_user_message",
+      "message_count": 28,
+      "chunks": [
+        {
+          "path": "d73604abe800a5669835-part-0001.json",
+          "message_count": 15
+        },
+        {
+          "path": "d73604abe800a5669835-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d73604abe800a5669835-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "d73604abe800a5669835-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-solver-trace-ablation-projects-solver-trace-ablation-docs-paper-main-tex-v-copy-5.md"
+}

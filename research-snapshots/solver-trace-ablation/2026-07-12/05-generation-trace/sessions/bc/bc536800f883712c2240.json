@@ -1,0 +1,1022 @@
+{
+  "schema_version": "1.0",
+  "id": "bc536800f883712c2240",
+  "project": "solver-trace-ablation--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Find the experiment plan file in /home/ubuntu/.agent-ml-research-idea_gen_0509_3. Look for files named experiment_plan*,",
+  "task_key": "agent-af63f730191870686",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-af63f730191870686.jsonl",
+    "occurrence": 1,
+    "bytes": 41820,
+    "sha256": "80fe8e5ee433a1b4a6be16492997f0f83d18e5658ba3f11894f61f8d4955dd9f"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 1,
+    "tool_calls": 8,
+    "roles": {
+      "user": 1,
+      "assistant": 4,
+      "tool_call": 8,
+      "tool_result": 8
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T09:34:23.562Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Find the experiment plan file in /home/ubuntu/.agent-ml-research-idea_gen_0509_3. Look for files named experiment_plan*, plan*, or any YAML/markdown files that contain planned experiments. Search broadly — try patterns like **/*plan*, **/*experiment*, **/*.yaml, **/*.yml. Report the full paths and the first 200 lines of any matching files that contain experiment definitions with \"planned\" status."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "98fb7a61-ed39-4516-a1f3-5dc3716bacd7",
+            "agentId": "af63f730191870686",
+            "type": "user",
+            "uuid": "b96b846e-273f-4171-abe1-db32f9b51c06",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "86290856-70b2-4901-851e-3b06929c0ba4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T09:34:24.841Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you find the experiment plan file. Let me search the directory using multiple patterns to locate experiment plan files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b96b846e-273f-4171-abe1-db32f9b51c06",
+            "isSidechain": true,
+            "agentId": "af63f730191870686",
+            "requestId": "req_011CazLdUxDJrEDjCML71gRk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c5d014e1-0a91-45fd-b3b5-107599d5dfab",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "86290856-70b2-4901-851e-3b06929c0ba4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TqNwpGVWy6czU1cYs6FZd3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14326,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14326,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T09:34:25.093Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0123umLQvrmaYSYrnkM9pi1Q",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*plan*",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c5d014e1-0a91-45fd-b3b5-107599d5dfab",
+            "isSidechain": true,
+            "agentId": "af63f730191870686",
+            "requestId": "req_011CazLdUxDJrEDjCML71gRk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "734db87c-0a89-45b3-bf69-d4e1fa327095",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "86290856-70b2-4901-851e-3b06929c0ba4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TqNwpGVWy6czU1cYs6FZd3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14326,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14326,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T09:34:25.117Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0123umLQvrmaYSYrnkM9pi1Q",
+              "type": "tool_result",
+              "content": "projects/structfuse-context/experiment_plan.lock\nprojects/structfuse-context/experiment_plan.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "734db87c-0a89-45b3-bf69-d4e1fa327095",
+            "isSidechain": true,
+            "promptId": "98fb7a61-ed39-4516-a1f3-5dc3716bacd7",
+            "agentId": "af63f730191870686",
+            "type": "user",
+            "uuid": "8a01964e-5972-4654-9b0d-49838e150bed",
+            "sourceToolAssistantUUID": "734db87c-0a89-45b3-bf69-d4e1fa327095",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "86290856-70b2-4901-851e-3b06929c0ba4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T09:34:25.350Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AjBJDFM9tPTXBzhGQv4bvT",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*experiment*",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8a01964e-5972-4654-9b0d-49838e150bed",
+            "isSidechain": true,
+            "agentId": "af63f730191870686",
+            "requestId": "req_011CazLdUxDJrEDjCML71gRk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dd82048a-0b36-4e74-a5da-ac91abbeaa50",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "86290856-70b2-4901-851e-3b06929c0ba4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TqNwpGVWy6czU1cYs6FZd3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14326,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14326,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T09:34:25.375Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AjBJDFM9tPTXBzhGQv4bvT",
+              "type": "tool_result",
+              "content": "projects/structfuse-context/artifacts/_project/data/run_phase2_experiment.py\nprojects/structfuse-context/logs/workers/worker_code_phase2_experiment_framework_20260512T220705.log\nprojects/structfuse-context/logs/workers/worker_code_phase2_experiment_framework_20260512T220705_result.json\nprojects/structfuse-context/artifacts/run_phase2_experiment.py\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/best/imagined_experiments.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/best/experiment_data.json\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/median/imagined_experiments.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/median/experiment_data.json\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/worst/imagined_experiments.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/worst/experiment_data.json\nprojects/structfuse-context/experiment_plan.lock\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/median/imagined_experiments.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/best/imagined_experiments.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/best/experiment_data.json\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/worst/imagined_experiments.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/worst/experiment_data.json\nprojects/structfuse-context/experiment_plan.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd82048a-0b36-4e74-a5da-ac91abbeaa50",
+            "isSidechain": true,
+            "promptId": "98fb7a61-ed39-4516-a1f3-5dc3716bacd7",
+            "agentId": "af63f730191870686",
+            "type": "user",
+            "uuid": "85c658b3-26bb-4a7e-a4c3-6bc0a35125d4",
+            "sourceToolAssistantUUID": "dd82048a-0b36-4e74-a5da-ac91abbeaa50",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "86290856-70b2-4901-851e-3b06929c0ba4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T09:34:25.512Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EB2C3p8q17ZnXizjJCvRRF",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.yaml",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "85c658b3-26bb-4a7e-a4c3-6bc0a35125d4",
+            "isSidechain": true,
+            "agentId": "af63f730191870686",
+            "requestId": "req_011CazLdUxDJrEDjCML71gRk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cbde2e22-1d89-40d8-9df3-64a4a60c6568",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "86290856-70b2-4901-851e-3b06929c0ba4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TqNwpGVWy6czU1cYs6FZd3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14326,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14326,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T09:34:25.525Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EB2C3p8q17ZnXizjJCvRRF",
+              "type": "tool_result",
+              "content": "config/approvals.yaml\nworkspace.yaml\nconfig/backend.yaml\nconfig/feishu.yaml\nglobal/approvals.yaml\nprojects/structfuse-context/artifacts/_project/data/phase2_configs.yaml\nprojects/structfuse-context/artifacts/phase2_configs.yaml\nprojects/structfuse-context/artifacts/literature_map.yaml\nidea_generator/ideas.yaml\nconfig/secrets/structfuse-context/manifest.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/best/imagined_experiments.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/median/imagined_experiments.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/worst/imagined_experiments.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/best/review_context.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/median/review_context.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/worst/review_context.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/meta.yaml\nconfig/crons.yaml\nprojects/structfuse-context/artifacts/manifest.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/median/imagined_experiments.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/best/imagined_experiments.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/worst/imagined_experiments.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/best/review_context.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/worst/review_context.yaml\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/meta.yaml\nprojects/structfuse-context/registry.yaml\nprojects/structfuse-context/experiment_plan.yaml\nprojects/structfuse-context/decisions.yaml\nprojects/structfuse-context/dream_registry.yaml\nconfig/resources.yaml\nconfig/projects/structfuse-context.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cbde2e22-1d89-40d8-9df3-64a4a60c6568",
+            "isSidechain": true,
+            "promptId": "98fb7a61-ed39-4516-a1f3-5dc3716bacd7",
+            "agentId": "af63f730191870686",
+            "type": "user",
+            "uuid": "5a346c8e-8806-4840-a14e-0389bb3931b4",
+            "sourceToolAssistantUUID": "cbde2e22-1d89-40d8-9df3-64a4a60c6568",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "86290856-70b2-4901-851e-3b06929c0ba4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T09:34:25.743Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016nx9wvrsfKL8YVkkDqVRUC",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.yml",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5a346c8e-8806-4840-a14e-0389bb3931b4",
+            "isSidechain": true,
+            "agentId": "af63f730191870686",
+            "requestId": "req_011CazLdUxDJrEDjCML71gRk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8ad37bde-66a4-43ce-9073-1f0c3a5d82a2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "86290856-70b2-4901-851e-3b06929c0ba4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TqNwpGVWy6czU1cYs6FZd3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14326,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14326,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T09:34:25.755Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016nx9wvrsfKL8YVkkDqVRUC",
+              "type": "tool_result",
+              "content": "No files found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8ad37bde-66a4-43ce-9073-1f0c3a5d82a2",
+            "isSidechain": true,
+            "promptId": "98fb7a61-ed39-4516-a1f3-5dc3716bacd7",
+            "agentId": "af63f730191870686",
+            "type": "user",
+            "uuid": "a7e8cd9d-3060-401f-b5af-4a94fb560971",
+            "sourceToolAssistantUUID": "8ad37bde-66a4-43ce-9073-1f0c3a5d82a2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "86290856-70b2-4901-851e-3b06929c0ba4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T09:34:25.960Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XFxFLjD1sootHmhyR997LB",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.md",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a7e8cd9d-3060-401f-b5af-4a94fb560971",
+            "isSidechain": true,
+            "agentId": "af63f730191870686",
+            "requestId": "req_011CazLdUxDJrEDjCML71gRk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dd9400f7-f215-43c1-8f4a-5ac8a46b7811",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "86290856-70b2-4901-851e-3b06929c0ba4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TqNwpGVWy6czU1cYs6FZd3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14326,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 404,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 14326
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 404,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 14326,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 14326,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T09:34:25.980Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XFxFLjD1sootHmhyR997LB",
+              "type": "tool_result",
+              "content": ".claude/sessions/no_project_809e304a/CLAUDE.md\n.claude/sessions/no_project_809e304a/AGENTS.md\n.claude/sessions/idea_reviewer_b1617403/CLAUDE.md\n.claude/sessions/idea_reviewer_b1617403/AGENTS.md\nprojects/structfuse-context/docs/IDEA_BRIEF.md\nprojects/structfuse-context/artifacts/structfuse-mvp/API_SURVEY.md\nprojects/structfuse-context/artifacts/_project/report/LARGE_MODEL_THIRD_METHOD.md\nprojects/structfuse-context/artifacts/structfuse-mvp/LARGE_MODEL_THIRD_METHOD.md\nprojects/structfuse-context/task_context/history/agent/loop_1.md\nprojects/structfuse-context/task_context/history/director/loop_1.md\nprojects/structfuse-context/task_context/history/reviewer/loop_1.md\nprojects/structfuse-context/artifacts/mvp_status_report_20260512.md\nprojects/structfuse-context/task_context/director.md\nprojects/structfuse-context/task_context/history/reviewer/loop_2.md\nprojects/structfuse-context/artifacts/_project/report/related_work_notes.md\nprojects/structfuse-context/artifacts/_project/report/related_work_notes_114feb.md\nprojects/structfuse-context/artifacts/related_work_notes.md\nprojects/structfuse-context/task_context/agent.md\nprojects/structfuse-context/artifacts/literature_jaccard_overlap.md\nprojects/structfuse-context/artifacts/_project/report/literature_jaccard_overlap.md\nprojects/structfuse-context/.claude/sessions/agent_7e74ce9e/CLAUDE.md\nprojects/structfuse-context/.claude/sessions/agent_7e74ce9e/AGENTS.md\nprojects/structfuse-context/artifacts/D020_acdc_edge_selection.md\nprojects/structfuse-context/artifacts/mvp_pilot_gpt2_ioi_v3/report/D020_acdc_edge_selection.md\nprojects/structfuse-context/task_context/reviewer.md\nprojects/structfuse-context/artifacts/literature_survey_related_work.md\nprojects/structfuse-context/artifacts/_project/report/edge_pruning_precheck_report.md\nprojects/structfuse-context/artifacts/edge_pruning_precheck_report.md\nprojects/structfuse-context/artifacts/_project/report/literature_survey_related_work.md\nprojects/structfuse-context/artifacts/_project/report/ifr_code_survey.md\nprojects/structfuse-context/artifacts/ifr_code_survey.md\nprojects/structfuse-context/artifacts/mvp_arithmetic_gpt2_k3/report/mvp_gate_checklist_d025.md\nprojects/structfuse-context/artifacts/mvp_gate_checklist_d025.md\nprojects/structfuse-context/artifacts/mvp_arithmetic_gpt2_k3/report/acdc_topk_sweep_results.md\nprojects/structfuse-context/artifacts/mvp_arithmetic_gpt2_k3/report/topk_faithfulness_final.md\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/best/paper_framing.md\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/median/paper_framing.md\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/worst/paper_framing.md\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/best/review_report.md\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/median/review_report.md\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T054654/worst/review_report.md\nprojects/structfuse-context/artifacts/phase2_qwen05b_ioi_k3/report/ifr_perhead_diagnosis.md\nprojects/structfuse-context/memory.md\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/best/paper_framing.md\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/worst/paper_framing.md\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/best/review_report.md\nprojects/structfuse-context/artifacts/dream_reports/dream_20260513T081242/worst/review_report.md\nprojects/structfuse-context/report.md\nprojects/structfuse-context/.claude/sessions/reviewer_2ef08c26/CLAUDE.md\nprojects/structfuse-context/.claude/sessions/reviewer_2ef08c26/AGENTS.md\nprojects/structfuse-context/.claude/sessions/agent_1f8a7b5e/CLAUDE.md\nprojects/structfuse-context/.claude/sessions/agent_1f8a7b5e/AGENTS.md\nprojects/structfuse-context/paper_framing.md\nprojects/structfuse-context/ROADMAP.md\n.claude/CLAUDE.md\nAGENTS.md\nprojects/structfuse-context/.claude/CLAUDE.md\nprojects/structfuse-context/AGENTS.md\nprojects/structfuse-context/.claude/sessions/director_df679b87/CLAUDE.md\nprojects/structfuse-context/.claude/sessions/director_df679b87/AGENTS.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd9400f7-f215-43c1-8f4a-5ac8a46b7811",
+            "isSidechain": true,
+            "promptId": "98fb7a61-ed39-4516-a1f3-5dc3716bacd7",
+            "agentId": "af63f730191870686",
+            "type": "user",
+            "uuid": "e888dbd7-81be-4b9c-b858-792e3b47e3a2",
+            "sourceToolAssistantUUID": "dd9400f7-f215-43c1-8f4a-5ac8a46b7811",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "86290856-70b2-4901-851e-3b06929c0ba4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T09:34:28.855Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Great! I found the main experiment plan file. Now let me read it to get the content and look for any \"planned\" status entries."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e888dbd7-81be-4b9c-b858-792e3b47e3a2",
+            "isSidechain": true,
+            "agentId": "af63f730191870686",
+            "requestId": "req_011CazLdgzGGqXcfnn4CV93C",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e0740a37-ebcf-4406-ba9f-abf49593fb08",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "86290856-70b2-4901-851e-3b06929c0ba4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01A9rJ5pVafmuCkTRsDT2eFi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3845,
+                "cache_read_input_tokens": 14326,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3845,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T09:34:29.646Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015q1T9xqyyLLvnkwXJHDGFM",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/experiment_plan.yaml",
+                "limit": 200
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e0740a37-ebcf-4406-ba9f-abf49593fb08",
+            "isSidechain": true,
+            "agentId": "af63f730191870686",
+            "requestId": "req_011CazLdgzGGqXcfnn4CV93C",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "62157b49-1d78-4f5f-bbeb-152988839a48",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "86290856-70b2-4901-851e-3b06929c0ba4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01A9rJ5pVafmuCkTRsDT2eFi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3845,
+                "cache_read_input_tokens": 14326,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3845,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T09:34:29.655Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015q1T9xqyyLLvnkwXJHDGFM",
+              "type": "tool_result",
+              "content": "1\t# Experiment Plan — structfuse-context (Route A: Analysis Paper)\n2\t# 最后更新: 2026-05-13 | 更新原因: D034 reframe 为 \"When Does Consensus Fail\" 分析论文\n3\t\n4\texperiments:\n5\t  # === GPT-2 Task Coverage (Claim 2: CSS fails on majority of configs) ===\n6\t  - plan_id: plan_001\n7\t    name: \"GPT-2 IOI K=3 CSS\"\n8\t    claim: [\"Claim 2\", \"Claim 4\"]\n9\t    description: \"GPT-2 Small / IOI, K=3 (EAP-IG + EP + ACDC isinf). Lone positive case — CSS=1.0 CPR > single method\"\n10\t    registry_id: mvp_pilot_gpt2_ioi_v3\n11\t    priority: P0\n12\t    status: done\n13\t    result: \"PASS — CSS=1.0 (7 edges) CPR=0.109 > all single methods; Jaccard=0.31\"\n14\t\n15\t  - plan_id: plan_002\n16\t    name: \"GPT-2 Arithmetic K=3 CSS\"\n17\t    claim: [\"Claim 2\", \"Claim 4\"]\n18\t    description: \"GPT-2 Small / Greaterthan, K=3. Task structure forces high Jaccard → CSS fails\"\n19\t    registry_id: mvp_arithmetic_gpt2_k3\n20\t    priority: P0\n21\t    status: done\n22\t    result: \"FAIL — CSS=1.0 CPR < EAP-IG; Jaccard=0.695 (methods too correlated)\"\n23\t\n24\t  - plan_id: plan_003\n25\t    name: \"GPT-2 SVA K=3 CSS\"\n26\t    claim: [\"Claim 2\", \"Claim 4\"]\n27\t    description: \"GPT-2 Small / SVA. Inconclusive — marginal signal at noise level\"\n28\t    registry_id: mvp_sva_gpt2_k3_topk\n29\t    priority: P0\n30\t    status: done\n31\t    result: \"INCONCLUSIVE — D033: cross-server Δ=0.006/0.013, avg < 0.01 threshold\"\n32\t\n33\t  - plan_id: plan_004\n34\t    name: \"GPT-2 Factual Recall K=3 CSS\"\n35\t    claim: [\"Claim 2\", \"Claim 4\"]\n36\t    description: \"GPT-2 Small / Country-Capital factual recall. MLP-based knowledge retrieval circuit\"\n37\t    registry_id: gpt2_factual_recall_k3_v2\n38\t    priority: P0\n39\t    status: running\n40\t    depends_on: []\n41\t    gpu_hours_est: 1\n42\t\n43\t  # === ACDC Binarization Pathology (Claim 1: strongest contribution) ===\n44\t  - plan_id: plan_005\n45\t    name: \"ACDC isinf→top-k binarization sweep\"\n46\t    claim: [\"Claim 1\"]\n47\t    description: \"k=50/75/100/150 on IOI and Arithmetic. Show isinf→top-k Jaccard shift and CSS degeneration break\"\n48\t    priority: P0\n49\t    status: done\n50\t    result: \"Confirmed: isinf causes CSS=1.0≡ACDC; top-k breaks degeneration; Jaccard shifts +0.16 to +0.25\"\n51\t\n52\t  # === Cross-Model Scaling Failure (Claim 3: component-level scoring) ===\n53\t  - plan_id: plan_006\n54\t    name: \"Qwen-0.5B IOI K=3 with IFR\"\n55\t    claim: [\"Claim 3\"]\n56\t    description: \"First scaling attempt. IFR degenerates to block-voting (layer-level), zero CSS=1.0 edges\"\n57\t    registry_id: phase2_qwen05b_ioi_k3\n58\t    priority: P0\n59\t    status: done\n60\t    result: \"FAIL — IFR Jaccard=0.000 with gradient methods; block-voting granularity mismatch\"\n61\t\n62\t  - plan_id: plan_007\n63\t    name: \"Qwen-0.5B IOI K=3 with ACDC\"\n64\t    claim: [\"Claim 3\"]\n65\t    description: \"D029: ACDC替代IFR. ACDC also degenerates to node-level scoring on 179K-edge model\"\n66\t    registry_id: phase2_qwen05b_ioi_acdc_k3\n67\t    priority: P0\n68\t    status: done\n69\t    result: \"FAIL — ACDC node-level scoring; all Jaccard≈0; zero CSS=1.0 edges. Confirms scaling failure is structural\"\n70\t\n71\t  # === Critical Controls (Dream reviewers unanimously requested) ===\n72\t  - plan_id: plan_008\n73\t    name: \"IOI size-controlled baseline\"\n74\t    claim: [\"Claim 2\"]\n75\t    description: \"Compare CSS=1.0 (N edges) vs top-N of each single method + random-N. Rules out size confound\"\n76\t    priority: P0\n77\t    status: running\n78\t    depends_on: [plan_001]\n79\t    gpu_hours_est: 0.5\n80\t\n81\t  - plan_id: plan_009\n82\t    name: \"Bootstrap confidence intervals on CPR\"\n83\t    claim: [\"Claim 2\"]\n84\t    description: \"Bootstrap CIs on all CPR differences across all completed experiments\"\n85\t    priority: P1\n86\t    status: planned\n87\t    depends_on: [plan_004, plan_008]\n88\t    gpu_hours_est: 1\n89\t\n90\t  # === Comparative / Ablation ===\n91\t  - plan_id: plan_010\n92\t    name: \"CIRCUS negative ablation\"\n93\t    claim: [\"Claim 5\"]\n94\t    description: \"D021: CIRCUS failed 3×. Within-method threshold diversity produces negative CPR on all tasks\"\n95\t    priority: P1\n96\t    status: done\n97\t    result: \"CIRCUS negative CPR on all tasks. Implementation caveats noted\"\n98\t    gpu_hours_est: 0\n99\t\n100\t  - plan_id: plan_011\n101\t    name: \"Ablation method comparison (zero vs mean)\"\n102\t    claim: [\"Claim 2\"]\n103\t    description: \"Compare zero and mean ablation on IOI. Dream worst-tier identified zero ablation bias as IOI confound\"\n104\t    priority: P1\n105\t    status: planned\n106\t    depends_on: [plan_008]\n107\t    gpu_hours_est: 1\n108\t\n109\t  # === Discussion Analyses ===\n110\t  - plan_id: plan_012\n111\t    name: \"IFR vs ACDC vs gradient method divergence analysis\"\n112\t    claim: [\"Claim 3\"]\n113\t    description: \"Document IFR and ACDC failure modes on Qwen as case study for component-level scoring issue\"\n114\t    priority: P2\n115\t    status: planned\n116\t    depends_on: [plan_006, plan_007]\n117\t    gpu_hours_est: 0\n118\t\n119\t  - plan_id: plan_013\n120\t    name: \"Jaccard-CSS scatter plot + correlation\"\n121\t    claim: [\"Claim 4\"]\n122\t    description: \"Across all completed experiments, plot max Jaccard vs CSS advantage. Report honestly as underpowered (n≤6)\"\n123\t    priority: P1\n124\t    status: planned\n125\t    depends_on: [plan_004, plan_008]\n126\t    gpu_hours_est: 0\n127\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "62157b49-1d78-4f5f-bbeb-152988839a48",
+            "isSidechain": true,
+            "promptId": "98fb7a61-ed39-4516-a1f3-5dc3716bacd7",
+            "agentId": "af63f730191870686",
+            "type": "user",
+            "uuid": "81dcc276-7ace-44bb-b127-32929b7c5bbe",
+            "sourceToolAssistantUUID": "62157b49-1d78-4f5f-bbeb-152988839a48",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "86290856-70b2-4901-851e-3b06929c0ba4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T09:34:29.817Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QjJJ9cmCFJoszoRE4CrSYD",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/experiment_plan.lock",
+                "limit": 200
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "81dcc276-7ace-44bb-b127-32929b7c5bbe",
+            "isSidechain": true,
+            "agentId": "af63f730191870686",
+            "requestId": "req_011CazLdgzGGqXcfnn4CV93C",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5a2d7d9a-bb28-4928-ba01-93bb08bc5e87",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "86290856-70b2-4901-851e-3b06929c0ba4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01A9rJ5pVafmuCkTRsDT2eFi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3845,
+                "cache_read_input_tokens": 14326,
+                "output_tokens": 217,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3845
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 217,
+                    "cache_read_input_tokens": 14326,
+                    "cache_creation_input_tokens": 3845,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3845,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T09:34:29.823Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QjJJ9cmCFJoszoRE4CrSYD",
+              "type": "tool_result",
+              "content": "<system-reminder>Warning: the file exists but is shorter than the provided offset (1). The file has 1 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5a2d7d9a-bb28-4928-ba01-93bb08bc5e87",
+            "isSidechain": true,
+            "promptId": "98fb7a61-ed39-4516-a1f3-5dc3716bacd7",
+            "agentId": "af63f730191870686",
+            "type": "user",
+            "uuid": "15157019-c6b6-42e7-b750-e6b139cf00c9",
+            "sourceToolAssistantUUID": "5a2d7d9a-bb28-4928-ba01-93bb08bc5e87",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "86290856-70b2-4901-851e-3b06929c0ba4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T09:34:31.095Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I found the experiment plan file. Let me continue reading to capture more of the planned experiments."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "15157019-c6b6-42e7-b750-e6b139cf00c9",
+            "isSidechain": true,
+            "agentId": "af63f730191870686",
+            "requestId": "req_011CazLdx29Ct7DRPrRsc2SW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "355d80cc-369f-460c-8bef-ae2e1a072c61",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "86290856-70b2-4901-851e-3b06929c0ba4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DzbnkXKdBiz1T6v8f26TYj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7310,
+                "cache_read_input_tokens": 18171,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7310,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T09:34:31.895Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0195hpaZoJ4vqHCbBEYUo18X",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/experiment_plan.yaml",
+                "limit": 200,
+                "offset": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "355d80cc-369f-460c-8bef-ae2e1a072c61",
+            "isSidechain": true,
+            "agentId": "af63f730191870686",
+            "requestId": "req_011CazLdx29Ct7DRPrRsc2SW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c6df327b-356a-4559-86f2-ff786f3f63f8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "86290856-70b2-4901-851e-3b06929c0ba4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DzbnkXKdBiz1T6v8f26TYj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7310,
+                "cache_read_input_tokens": 18171,
+                "output_tokens": 141,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7310
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 141,
+                    "cache_read_input_tokens": 18171,
+                    "cache_creation_input_tokens": 7310,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 7310,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T09:34:31.922Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0195hpaZoJ4vqHCbBEYUo18X",
+              "type": "tool_result",
+              "content": "0\t# Experiment Plan — structfuse-context (Route A: Analysis Paper)\n1\t# 最后更新: 2026-05-13 | 更新原因: D034 reframe 为 \"When Does Consensus Fail\" 分析论文\n2\t\n3\texperiments:\n4\t  # === GPT-2 Task Coverage (Claim 2: CSS fails on majority of configs) ===\n5\t  - plan_id: plan_001\n6\t    name: \"GPT-2 IOI K=3 CSS\"\n7\t    claim: [\"Claim 2\", \"Claim 4\"]\n8\t    description: \"GPT-2 Small / IOI, K=3 (EAP-IG + EP + ACDC isinf). Lone positive case — CSS=1.0 CPR > single method\"\n9\t    registry_id: mvp_pilot_gpt2_ioi_v3\n10\t    priority: P0\n11\t    status: done\n12\t    result: \"PASS — CSS=1.0 (7 edges) CPR=0.109 > all single methods; Jaccard=0.31\"\n13\t\n14\t  - plan_id: plan_002\n15\t    name: \"GPT-2 Arithmetic K=3 CSS\"\n16\t    claim: [\"Claim 2\", \"Claim 4\"]\n17\t    description: \"GPT-2 Small / Greaterthan, K=3. Task structure forces high Jaccard → CSS fails\"\n18\t    registry_id: mvp_arithmetic_gpt2_k3\n19\t    priority: P0\n20\t    status: done\n21\t    result: \"FAIL — CSS=1.0 CPR < EAP-IG; Jaccard=0.695 (methods too correlated)\"\n22\t\n23\t  - plan_id: plan_003\n24\t    name: \"GPT-2 SVA K=3 CSS\"\n25\t    claim: [\"Claim 2\", \"Claim 4\"]\n26\t    description: \"GPT-2 Small / SVA. Inconclusive — marginal signal at noise level\"\n27\t    registry_id: mvp_sva_gpt2_k3_topk\n28\t    priority: P0\n29\t    status: done\n30\t    result: \"INCONCLUSIVE — D033: cross-server Δ=0.006/0.013, avg < 0.01 threshold\"\n31\t\n32\t  - plan_id: plan_004\n33\t    name: \"GPT-2 Factual Recall K=3 CSS\"\n34\t    claim: [\"Claim 2\", \"Claim 4\"]\n35\t    description: \"GPT-2 Small / Country-Capital factual recall. MLP-based knowledge retrieval circuit\"\n36\t    registry_id: gpt2_factual_recall_k3_v2\n37\t    priority: P0\n38\t    status: running\n39\t    depends_on: []\n40\t    gpu_hours_est: 1\n41\t\n42\t  # === ACDC Binarization Pathology (Claim 1: strongest contribution) ===\n43\t  - plan_id: plan_005\n44\t    name: \"ACDC isinf→top-k binarization sweep\"\n45\t    claim: [\"Claim 1\"]\n46\t    description: \"k=50/75/100/150 on IOI and Arithmetic. Show isinf→top-k Jaccard shift and CSS degeneration break\"\n47\t    priority: P0\n48\t    status: done\n49\t    result: \"Confirmed: isinf causes CSS=1.0≡ACDC; top-k breaks degeneration; Jaccard shifts +0.16 to +0.25\"\n50\t\n51\t  # === Cross-Model Scaling Failure (Claim 3: component-level scoring) ===\n52\t  - plan_id: plan_006\n53\t    name: \"Qwen-0.5B IOI K=3 with IFR\"\n54\t    claim: [\"Claim 3\"]\n55\t    description: \"First scaling attempt. IFR degenerates to block-voting (layer-level), zero CSS=1.0 edges\"\n56\t    registry_id: phase2_qwen05b_ioi_k3\n57\t    priority: P0\n58\t    status: done\n59\t    result: \"FAIL — IFR Jaccard=0.000 with gradient methods; block-voting granularity mismatch\"\n60\t\n61\t  - plan_id: plan_007\n62\t    name: \"Qwen-0.5B IOI K=3 with ACDC\"\n63\t    claim: [\"Claim 3\"]\n64\t    description: \"D029: ACDC替代IFR. ACDC also degenerates to node-level scoring on 179K-edge model\"\n65\t    registry_id: phase2_qwen05b_ioi_acdc_k3\n66\t    priority: P0\n67\t    status: done\n68\t    result: \"FAIL — ACDC node-level scoring; all Jaccard≈0; zero CSS=1.0 edges. Confirms scaling failure is structural\"\n69\t\n70\t  # === Critical Controls (Dream reviewers unanimously requested) ===\n71\t  - plan_id: plan_008\n72\t    name: \"IOI size-controlled baseline\"\n73\t    claim: [\"Claim 2\"]\n74\t    description: \"Compare CSS=1.0 (N edges) vs top-N of each single method + random-N. Rules out size confound\"\n75\t    priority: P0\n76\t    status: running\n77\t    depends_on: [plan_001]\n78\t    gpu_hours_est: 0.5\n79\t\n80\t  - plan_id: plan_009\n81\t    name: \"Bootstrap confidence intervals on CPR\"\n82\t    claim: [\"Claim 2\"]\n83\t    description: \"Bootstrap CIs on all CPR differences across all completed experiments\"\n84\t    priority: P1\n85\t    status: planned\n86\t    depends_on: [plan_004, plan_008]\n87\t    gpu_hours_est: 1\n88\t\n89\t  # === Comparative / Ablation ===\n90\t  - plan_id: plan_010\n91\t    name: \"CIRCUS negative ablation\"\n92\t    claim: [\"Claim 5\"]\n93\t    description: \"D021: CIRCUS failed 3×. Within-method threshold diversity produces negative CPR on all tasks\"\n94\t    priority: P1\n95\t    status: done\n96\t    result: \"CIRCUS negative CPR on all tasks. Implementation caveats noted\"\n97\t    gpu_hours_est: 0\n98\t\n99\t  - plan_id: plan_011\n100\t    name: \"Ablation method comparison (zero vs mean)\"\n101\t    claim: [\"Claim 2\"]\n102\t    description: \"Compare zero and mean ablation on IOI. Dream worst-tier identified zero ablation bias as IOI confound\"\n103\t    priority: P1\n104\t    status: planned\n105\t    depends_on: [plan_008]\n106\t    gpu_hours_est: 1\n107\t\n108\t  # === Discussion Analyses ===\n109\t  - plan_id: plan_012\n110\t    name: \"IFR vs ACDC vs gradient method divergence analysis\"\n111\t    claim: [\"Claim 3\"]\n112\t    description: \"Document IFR and ACDC failure modes on Qwen as case study for component-level scoring issue\"\n113\t    priority: P2\n114\t    status: planned\n115\t    depends_on: [plan_006, plan_007]\n116\t    gpu_hours_est: 0\n117\t\n118\t  - plan_id: plan_013\n119\t    name: \"Jaccard-CSS scatter plot + correlation\"\n120\t    claim: [\"Claim 4\"]\n121\t    description: \"Across all completed experiments, plot max Jaccard vs CSS advantage. Report honestly as underpowered (n≤6)\"\n122\t    priority: P1\n123\t    status: planned\n124\t    depends_on: [plan_004, plan_008]\n125\t    gpu_hours_est: 0\n126\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c6df327b-356a-4559-86f2-ff786f3f63f8",
+            "isSidechain": true,
+            "promptId": "98fb7a61-ed39-4516-a1f3-5dc3716bacd7",
+            "agentId": "af63f730191870686",
+            "type": "user",
+            "uuid": "6565d9b8-6a7e-4a92-bd0b-d3d99d57c7e1",
+            "sourceToolAssistantUUID": "c6df327b-356a-4559-86f2-ff786f3f63f8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "86290856-70b2-4901-851e-3b06929c0ba4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-13T09:34:36.877Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I have found and reviewed the experiment plan file. Here's my report:\n\n## Summary\n\nI found the main experiment plan file in the directory structure:\n\n**Full Path:** `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/experiment_plan.yaml`\n\nThis is a YAML file containing a comprehensive experiment plan for the \"structfuse-context\" project (Route A: Analysis Paper). The file was last updated on 2026-05-13.\n\n## Experiments with \"Planned\" Status\n\nThe file contains 13 experiments total. The following experiments have **\"planned\"** status:\n\n1. **plan_009** - \"Bootstrap confidence intervals on CPR\"\n   - Claim: Claim 2\n   - Description: Bootstrap CIs on all CPR differences across all completed experiments\n   - Priority: P1\n   - Status: **planned**\n   - Depends on: [plan_004, plan_008]\n   - GPU hours estimate: 1\n\n2. **plan_011** - \"Ablation method comparison (zero vs mean)\"\n   - Claim: Claim 2\n   - Description: Compare zero and mean ablation on IOI. Dream worst-tier identified zero ablation bias as IOI confound\n   - Priority: P1\n   - Status: **planned**\n   - Depends on: [plan_008]\n   - GPU hours estimate: 1\n\n3. **plan_012** - \"IFR vs ACDC vs gradient method divergence analysis\"\n   - Claim: Claim 3\n   - Description: Document IFR and ACDC failure modes on Qwen as case study for component-level scoring issue\n   - Priority: P2\n   - Status: **planned**\n   - Depends on: [plan_006, plan_007]\n   - GPU hours estimate: 0\n\n4. **plan_013** - \"Jaccard-CSS scatter plot + correlation\"\n   - Claim: Claim 4\n   - Description: Across all completed experiments, plot max Jaccard vs CSS advantage. Report honestly as underpowered (n≤6)\n   - Priority: P1\n   - Status: **planned**\n   - Depends on: [plan_004, plan_008]\n   - GPU hours estimate: 0\n\nThe file also contains 7 completed experiments (status: \"done\"), 2 running experiments (status: \"running\"), and 4 planned experiments as listed above. The experiment plan is well-structured with priorities, dependency tracking, and GPU resource estimates."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6565d9b8-6a7e-4a92-bd0b-d3d99d57c7e1",
+            "isSidechain": true,
+            "agentId": "af63f730191870686",
+            "requestId": "req_011CazLe6twFzHEigCj2uTHH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ef0a422c-8bda-410c-86f3-d0e7be913cd5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3",
+            "sessionId": "86290856-70b2-4901-851e-3b06929c0ba4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016At7B2cd1V5P7tXhA4n9nL",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 2194,
+                "cache_read_input_tokens": 25481,
+                "output_tokens": 588,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2194
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 588,
+                    "cache_read_input_tokens": 25481,
+                    "cache_creation_input_tokens": 2194,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2194,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-find-the-experiment-plan-file-in-home-ubuntu-agent-ml-research-idea-gen-0509-3.md"
+}

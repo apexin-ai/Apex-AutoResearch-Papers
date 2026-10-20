@@ -1,0 +1,654 @@
+{
+  "schema_version": "1.0",
+  "session_id": "d73604abe800a5669835",
+  "rounds": [
+    {
+      "number": 13,
+      "messages": [
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-24T23:09:02.416Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll prepare the updated issue tracker and the final report. Let me first compose the issues YAML update."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1ade40f7-2818-42d9-b566-29ba894f5131",
+            "isSidechain": false,
+            "requestId": "req_011CbNEbWM8mbjNMVxcZZYY5",
+            "type": "assistant",
+            "uuid": "108951bc-e1d0-4530-b96f-26ff75ab3578",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/review_director_a46f8029",
+            "sessionId": "bc95258f-10e3-480a-a247-eaedf51e6791",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011GNLg3cussbouAekE1MFcM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3216,
+                "cache_read_input_tokens": 128047,
+                "output_tokens": 6684,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3216,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6684,
+                    "cache_read_input_tokens": 128047,
+                    "cache_creation_input_tokens": 3216,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3216
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": "2026-05-24T23:10:30.109Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016nDtb9NcbTM1ULKnJktZL9",
+              "name": "mcp__agent-ml-research__update_review_issues",
+              "input": {
+                "project": "solver-trace-ablation",
+                "issues_yaml": "issues:\n- id: R1-W1\n  summary: \"统计效力严重不足：β=0.3 仅 single seed，abstract '93%' 来自 single seed\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 0\n  last_seen_round: 2\n  resolution: \"β=0.3 ISR 和 Random 各 3 seeds 已完成。\"\n  resolution_round: 2\n- id: v22-R12-N3\n  summary: \"Premise-count confound 使 ISR scalar 诊断价值严重削弱（3.2×→1.06×）\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 22\n  last_seen_round: 34\n  resolution: \"Two-level Goodhart separation + χ² test. Compositional narrative front-loaded. Per-sample mode classification positioned as primary diagnostic.\"\n  resolution_round: 32\n  mentions:\n    - round: 34\n      note: \"R34 两位 Reviewer 再次指出 ISR scalar 在控制 premise-count 后诊断价值消失(1.06×, p=0.317)与论文 ISR-centric framing 之间存在张力。虽然已有 compositional reframe，但框架层面的协调不够彻底。见 v34-R12-N2。\"\n- id: v22-R12-N1\n  summary: \"ISR vs Random non-hacking rate p=0.182 不显著，Goodhart framing 暗示因果\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 22\n  last_seen_round: 33\n  resolution: \"Compositional Goodhart reframed. C2 changed to 'seed-dependent Goodhart effect'. χ² (174.8, p<10⁻³⁸) as primary evidence.\"\n  resolution_round: 33\n- id: v17-R12-W1\n  summary: \"单模型 (Qwen3-4B) 无法支撑通用性声明\"\n  category: experiment\n  severity: critical\n  status: wont_fix\n  first_raised_round: 17\n  last_seen_round: 33\n  resolution: \"结构性限制。R33: 'model-agnostic' → 'applicable to any solver-verified reasoning system'. C2/C3 scoped to Qwen3-4B. §5 'applicable in principle' retained as future work hypothesis. 8B/LLaMA non-convergence prevents cross-model validation.\"\n- id: v27-R1-N2\n  summary: \"CMH pseudo-replication：within-seed samples 非独立\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 27\n  last_seen_round: 34\n  resolution: \"CMH OR moved to appendix. χ² retained. Per-seed qualitative analysis as primary.\"\n  resolution_round: 32\n  mentions:\n    - round: 34\n      note: \"R34 R1 再次指出 Table 5 仍以 pooled Fisher exact test 为 primary test，CMH 仅在 Appendix。R2 同意但认为降级为 should-fix（论文已声明 pooled stats 是 descriptive）。见 v34-R1-N3。\"\n- id: v17-R1-W9\n  summary: \"Seed 43 使用 T=0.7 sampling 评估而非 greedy\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 34\n  resolution: \"N=2 sensitivity analysis. s43 flagged in limitations. Greedy re-eval not feasible.\"\n  resolution_round: 31\n  mentions:\n    - round: 34\n      note: \"R34 R1 再次指出 s43 仍被纳入聚合统计（Table 1 mean, Table 5 pooled Fisher），N=2 sensitivity analysis 仅在 Appendix/footnote 中，可见性不足。R2 确认 sensitivity analysis 已存在但建议在正文增加排除 s43 的统计行。\"\n- id: v22-R2-N1\n  summary: \"方法论新颖性不足——LOO 是标准技术\"\n  category: framing\n  severity: warning\n  status: wont_fix\n  first_raised_round: 22\n  last_seen_round: 34\n  resolution: \"结构性 framing 问题。C1 降为 'method'（非 framework）。LOO 标准性已承认。贡献在组合（LOO + taxonomy + cross-domain protocol）。三轮审稿后不再退让。\"\n  mentions:\n    - round: 34\n      note: \"R34 R2 再次评估方法新颖性有限，但认同应用层面发现有价值，C1+C2 构成合理贡献。R1 部分不同意（将 LOO 应用于 solver trace 是新 application）。\"\n- id: v29-R2-W5\n  summary: \"'Observe-vs-optimize asymmetry' 非新概念——本质即 Goodhart's Law\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 34\n  resolution: \"Reframed as empirical instantiation of Goodhart's Law.\"\n  resolution_round: 31\n  mentions:\n    - round: 34\n      note: \"R34 R2 再次提出概念包装超出实际新意。R1 明确 REBUT：empirical mechanism 贡献独立于理论预期性，Gao/Skalse 也是 Goodhart 的领域特化但被顶会接收。分歧未解决。\"\n- id: v30-R1-W1\n  summary: \"SFT baseline PR=13% vs exec-only PR=93% 使 ISR 比较存在 selection bias\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 30\n  last_seen_round: 32\n  resolution: \"SFT positioned as pre-RL temporal reference.\"\n  resolution_round: 31\n- id: v22-R1-W4\n  summary: \"Shuffled-ISR control N=46 统计效力有限\"\n  category: experiment\n  severity: warning\n  status: wont_fix\n  first_raised_round: 22\n  last_seen_round: 31\n  resolution: \"结构性限制。Positioned as 'corroborating rather than definitive'.\"\n- id: v27-R2-W4\n  summary: \"Hacking taxonomy recall 未评估\"\n  category: experiment\n  severity: warning\n  status: wont_fix\n  first_raised_round: 27\n  last_seen_round: 34\n  resolution: \"结构性限制。152 samples precision=1.00。R33: 正文加 taxonomy 互斥性规则 + N-H upper bound 说明。\"\n  mentions:\n    - round: 34\n      note: \"R34 两位 Reviewer 再次提出 classifier recall unknown 影响 N-H rate 解释力。Prolog 案例（strict classifier 100% genuine 但 functional analysis 0% genuine）暴露了 rule-based classifier 对 semantic gaming 的系统性盲区。建议至少在 Limitations 增加定量风险讨论。\"\n- id: v19-R12-W3\n  summary: \"ProofFOL p=0.10 被过度引用\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 19\n  last_seen_round: 34\n  resolution: \"'directionally higher'. ProofFOL labeled exploratory.\"\n  resolution_round: 31\n  mentions:\n    - round: 34\n      note: \"R34 ProofFOL overclaim 升级为 C3 贡献声称问题的一部分。虽然正文已标注 exploratory，但 C3 仍使用 'establishing' 语言。见 v34-R12-N1。\"\n- id: v30-R2-W3\n  summary: \"ISR 与 NLI accuracy 不相关限制 actionability\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 30\n  last_seen_round: 33\n  resolution: \"ISR=0 disambiguation. 'reasoning quality' → 'formalization integrity'.\"\n  resolution_round: 32\n- id: v31-R2-MR-SPECGAMING\n  summary: \"缺失引用：Nishimura et al. 2026 spec gaming\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 31\n  last_seen_round: 31\n  resolution: \"Citation added.\"\n  resolution_round: 31\n- id: v31-R2-W-TITLE-LENGTH\n  summary: \"标题过长\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 31\n  last_seen_round: 32\n  resolution: \"Title shortened to ~95 chars.\"\n  resolution_round: 32\n- id: v31-R2-M-ISR0-AMBIGUITY\n  summary: \"ISR=0 proved vs unproved 语义不同\"\n  category: method\n  severity: info\n  status: resolved\n  first_raised_round: 31\n  last_seen_round: 31\n  resolution: \"ISR=0 semantic disambiguation added.\"\n  resolution_round: 31\n- id: v32-R12-MR-UNFAITHFUL-COT\n  summary: \"缺失引用：Lanham/Turpin\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 32\n  last_seen_round: 32\n  resolution: \"Both citations added.\"\n  resolution_round: 32\n- id: v33-N2-BIMODAL\n  summary: \"5-seed 双峰 (40% seeds genuine) 弱化 Goodhart 核心叙事\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 33\n  last_seen_round: 33\n  resolution: \"C2 changed to 'seed-dependent Goodhart effect'. Bimodal discussion front-loaded in §4.3. Table 1 caption explains 3-seed vs 5-seed. Abstract updated.\"\n  resolution_round: 33\n- id: v33-W1-EXEC-POOLING\n  summary: \"Table 1 exec-only 仅报告 s42，其他条件报告 pooled\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 33\n  last_seen_round: 33\n  resolution: \"§4.2 explains why pooling is precluded (PR 13-98%). Table 1 footnote expanded with s43/s44 details.\"\n  resolution_round: 33\n- id: v33-M8-CONVERTS\n  summary: \"'ISR converts CE into TS' 不准确——exec-only s44 自发 TS\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 33\n  last_seen_round: 33\n  resolution: \"'converts' → 'systematically selects for TS over CE'.\"\n  resolution_round: 33\n- id: v33-W3-TAXONOMY\n  summary: \"Taxonomy 互斥性和 N-H upper bound 未在正文说明\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 33\n  last_seen_round: 33\n  resolution: \"Priority rule (PG>CE>TS) and N-H upper bound caveat added to §3.3.\"\n  resolution_round: 33\n# ===== Round 34 新发现 =====\n- id: v34-R12-N1\n  summary: \"C3 贡献声称 overclaim：'establishing' + underpowered ProofFOL (p=0.10)\"\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [R1, R2]\n      note: \"两位 Reviewer 共识 Must-Fix。C3 使用 'establishing' 断言语言但 ProofFOL p=0.10 underpowered。Prolog 仅验证诊断端（exec-only ISR collapse）——但 R2 交叉回应时指出 Prolog 实际上也有 ISR-as-reward 条件（Section 4.4: 0% non-hacking across 3 seeds），R1 的 'Prolog 无 ISR-as-reward' 是事实性错误。仍然，C3 整体证据强度不足以支撑 'establishing' 措辞。\"\n- id: v34-R12-N2\n  summary: \"ISR scalar framing 张力：ISR-centric 框架 vs mode taxonomy 作为实际诊断\"\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [R1, R2]\n      note: \"R2 列为 Must-Fix，R1 列为 Should-Fix (framing 问题非 soundness 问题)。ISR* 214× collapse 在控制 premise-count 后仅 1.06× (p=0.317)。论文标题/核心概念以 ISR 为中心，但 §4.3 自己承认 'mode breakdown, not ISR scalar, licenses interpretation'。R1 认为 ISR 仍有 screening value，调整叙述即可解决。\"\n- id: v34-R1-N1\n  summary: \"3-5 seeds 统计效力不足：3/5 的 95% CI 为 [15%, 95%]\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [R1, R2]\n      note: \"R1 列为 Must-Fix，R2 同意但加 nuance：seed-dependence claim 只需 ≥1 gaming + ≥1 genuine（N=5 下已充分），不需要精确 proportion。建议将 '3/5' 改为更谨慎的表述并加 CI。交叉回应后降级为 warning。\"\n- id: v34-R1-N2\n  summary: \"Seed 43 sensitivity analysis 可见性不足：N=2 分析仅在 Appendix/footnote\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [R1, R2]\n      note: \"R2 确认 sensitivity analysis 已存在（Appendix D.6），但被压缩在脚注引用中。建议在 Table 1 或 §4.3 正文增加排除 s43 的统计行。\"\n- id: v34-R1-N3\n  summary: \"Table 5 仍以 pooled Fisher exact test 为 primary test，CMH 仅在 Appendix\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [R1, R2]\n      note: \"R1 列为 Must-Fix，R2 降级为 Should-Fix（论文已声明 pooled stats 是 descriptive, not formal inference；核心证据是 qualitative mode shifts 而非 p-values）。\"\n- id: v34-R12-W1\n  summary: \"Table 1 caption 过长（~150 词 + 4 个 footnote markers），可读性严重不足\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [R1, R2]\n      note: \"两位 Reviewer 共识。建议拆分表格或简化 caption（控制在 60 词内），footnote 内容移入正文或 Appendix。\"\n- id: v34-R1-W3\n  summary: \"'Degeneration requires convergence' 因果 claim 过强\"\n  category: framing\n  severity: warning\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [R1, R2]\n      note: \"LLaMA cold-start failure trivially expected（无 FOL 生成能力）；8B non-convergence 的 confound（K=4 insufficient rollouts）使因果推断不干净。建议弱化为 'evidence is consistent with convergence being necessary'。\"\n- id: v34-R2-W3\n  summary: \"正文信息密度过高，部分子结果（Prolog mechanisms, ProofFOL asymmetry）讨论深度不足\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [R1, R2]\n      note: \"R2 列为 Should-Fix，R1 同意但加 qualification：Appendix 提供了深度，问题在于正文 signposting 不足。建议在正文更明确标注 primary vs secondary findings。\"\n- id: v34-R2-W5\n  summary: \"Abstract 最后一句含 [anonymized] 脚注，无实际信息\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [R1, R2]\n      note: \"建议移除或移至 Section 1 末尾。\"\n- id: v34-R1-W5\n  summary: \"ISR = (n-1)-coalition Shapley value 的声明缺形式化推导\"\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 34\n  last_seen_round: 34\n  mentions:\n    - round: 34\n      reviewers: [R1, R2]\n      note: \"R1 列为 Should-Fix，R2 降级为 Minor（ISR-Shapley 连接是 side remark，非核心 claim）。建议在 Appendix 补充 2-3 行推导。\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "108951bc-e1d0-4530-b96f-26ff75ab3578",
+            "isSidechain": false,
+            "requestId": "req_011CbNEbWM8mbjNMVxcZZYY5",
+            "type": "assistant",
+            "uuid": "473d4c5f-efc4-4bb3-9a04-5081e6eb7c69",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/review_director_a46f8029",
+            "sessionId": "bc95258f-10e3-480a-a247-eaedf51e6791",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011GNLg3cussbouAekE1MFcM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3216,
+                "cache_read_input_tokens": 128047,
+                "output_tokens": 6684,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3216,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6684,
+                    "cache_read_input_tokens": 128047,
+                    "cache_creation_input_tokens": 3216,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3216
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-24T23:10:30.205Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016nDtb9NcbTM1ULKnJktZL9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 11377}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "473d4c5f-efc4-4bb3-9a04-5081e6eb7c69",
+            "isSidechain": false,
+            "promptId": "c4244738-1b03-472f-a2ca-c29f007b2584",
+            "type": "user",
+            "uuid": "c0d88569-5cfb-4abc-bace-2d815773d2e2",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 11377}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/review_issues.yaml\", \"bytes\": 11377}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "473d4c5f-efc4-4bb3-9a04-5081e6eb7c69",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/review_director_a46f8029",
+            "sessionId": "bc95258f-10e3-480a-a247-eaedf51e6791",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Reviewer 2 审稿意见]: ## Reviewer 2 对 Reviewer 1 审稿意见的逐条回应  ---  ### Must-Fix 问题  **[AGREE with nuance] R1-N1: 3-5 seeds 的统计效力不足以支撑核心 claim**  R1 指出 3/5 的 Clopper-Pearson 95% CI 为 [15%, 95%]，这在统计上是正确的。论文…",
+                "leafUuid": "abb09820-7ed6-43f6-9884-422bb4d054ab",
+                "sessionId": "bc95258f-10e3-480a-a247-eaedf51e6791"
+              }
+            }
+          ],
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review solver-trace-ablation paper for EMNLP 2026",
+                "sessionId": "bc95258f-10e3-480a-a247-eaedf51e6791"
+              }
+            }
+          ],
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-24T23:10:30.281Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "c0d88569-5cfb-4abc-bace-2d815773d2e2",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "edited_text_file",
+                  "filename": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/review_issues.yaml",
+                  "snippet": "1\tissues:\n2\t- id: R1-W1\n3\t  summary: \"统计效力严重不足：β=0.3 仅 single seed，abstract '93%' 来自 single seed\"\n4\t  category: experiment\n5\t  severity: critical\n6\t  status: resolved\n7\t  first_raised_round: 0\n8\t  last_seen_round: 2\n9\t  resolution: \"β=0.3 ISR 和 Random 各 3 seeds 已完成。\"\n10\t  resolution_round: 2\n11\t- id: v22-R12-N3\n12\t  summary: \"Premise-count confound 使 ISR scalar 诊断价值严重削弱（3.2×→1.06×）\"\n13\t  category: method\n14\t  severity: critical\n15\t  status: resolved\n16\t  first_raised_round: 22\n17\t  last_seen_round: 34\n18\t  resolution: \"Two-level Goodhart separation + χ² test. Compositional narrative front-loaded. Per-sample mode classification positioned as primary diagnostic.\"\n19\t  resolution_round: 32\n20\t  mentions:\n21\t    - round: 34\n22\t      note: \"R34 两位 Reviewer 再次指出 ISR scalar 在控制 premise-count 后诊断价值消失(1.06×, p=0.317)与论文 ISR-centric framing 之间存在张力。虽然已有 compositional reframe，但框架层面的协调不够彻底。见 v34-R12-N2。\"\n23\t- id: v22-R12-N1\n24\t  summary: \"ISR vs Random non-hacking rate p=0.182 不显著，Goodhart framing 暗示因果\"\n25\t  category: framing\n26\t  severity: critical\n27\t  status: resolved\n28\t  first_raised_round: 22\n29\t  last_seen_round: 33\n30\t  resolution: \"Compositional Goodhart reframed. C2 changed to 'seed-dependent Goodhart effect'. χ² (174.8, p<10⁻³⁸) as primary evidence.\"\n31\t  resolution_round: 33\n32\t- id: v17-R12-W1\n33\t  summary: \"单模型 (Qwen3-4B) 无法支撑通用性声明\"\n34\t  category: experiment\n35\t  severity: critical\n36\t  status: wont_fix\n37\t  first_raised_round: 17\n38\t  last_seen_round: 33\n39\t  resolution: \"结构性限制。R33: 'model-agnostic' → 'applicable to any solver-verified reasoning system'. C2/C3 scoped to Qwen3-4B. §5 'applicable in principle' retained as future work hypothesis. 8B/LLaMA non-convergence prevents cross-model validation.\"\n40\t- id: v27-R1-N2\n41\t  summary: \"CMH pseudo-replication：within-seed samples 非独立\"\n42\t  category: experiment\n43\t  severity: warning\n44\t  status: resolved\n45\t  first_raised_round: 27\n46\t  last_seen_round: 34\n47\t  resolution: \"CMH OR moved to appendix. χ² retained. Per-seed qualitative analysis as primary.\"\n48\t  resolution_round: 32\n49\t  mentions:\n50\t    - round: 34\n51\t      note: \"R34 R1 再次指出 Table 5 仍以 pooled Fisher exact test 为 primary test，CMH 仅在 Appendix。R2 同意但认为降级为 should-fix（论文已声明 pooled stats 是 descriptive）。见 v34-R1-N3。\"\n52\t- id: v17-R1-W9\n53\t  summary: \"Seed 43 使用 T=0.7 sampling 评估而非 greedy\"\n54\t  category: experiment\n55\t  severity: critical\n56\t  status: resolved\n57\t  first_raised_round: 17\n58\t  last_seen_round: 34\n59\t  resolution: \"N=2 sensitivity analysis. s43 flagged in limitations. Greedy re-eval not feasible.\"\n60\t  resolution_round: 31\n61\t  mentions:\n62\t    - round: 34\n63\t      note: \"R34 R1 再次指出 s43 仍被纳入聚合统计（Table 1 mean, Table 5 pooled Fisher），N=2 sensitivity analysis 仅在 Appendix/footnote 中，可见性不足。R2 确认 sensitivity analysis 已存在但建议在正文增加排除 s43 的统计行。\"\n64\t- id: v22-R2-N1\n65\t  summary: \"方法论新颖性不足——LOO 是标准技术\"\n66\t  category: framing\n67\t  severity: warning\n68\t  status: wont_fix\n69\t  first_raised_round: 22\n70\t  last_seen_round: 34\n71\t  resolution: \"结构性 framing 问题。C1 降为 'method'（非 framework）。LOO 标准性已承认。贡献在组合（LOO + taxonomy + cross-domain protocol）。三轮审稿后不再退让。\"\n72\t  mentions:\n73\t    - round: 34\n74\t      note: \"R34 R2 再次评估方法新颖性有限，但认同应用层面发现有价值，C1+C2 构成合理贡献。R1 部分不同意（将 LOO 应用于 solver trace 是新 application）。\"\n75\t- id: v29-R2-W5\n76\t  summary: \"'Observe-vs-optimize asymmetry' 非新概念——本质即 Goodhart's Law\"\n77\t  category: framing\n78\t  severity: warning\n79\t  status: resolved\n80\t  first_raised_round: 29\n81\t  last_seen_round: 34\n82\t  resolution: \"Reframed as empirical instantiation of Goodhart's Law.\"\n83\t  resolution_round: 31\n84\t  mentions:\n85\t    - round: 34\n86\t      note: \"R34 R2 再次提出概念包装超出实际新意。R1 明确 REBUT：empirical mechanism 贡献独立于理论预期性，Gao/Skalse 也是 Goodhart 的领域特化但被顶会接收。分歧未解决。\"\n87\t- id: v30-R1-W1\n88\t  summary: \"SFT baseline PR=13% vs exec-only PR=93% 使 ISR 比较存在 selection bias\"\n89\t  category: experiment\n90\t  severity: warning\n91\t  status: resolved\n92\t  first_raised_round: 30\n93\t  last_seen_round: 32\n94\t  resolution: \"SFT positioned as pre-RL temporal reference.\"\n95\t  resolution_round: 31\n96\t- id: v22-R1-W4\n97\t  summary: \"Shuffled-ISR control N=46 统计效力有限\"\n98\t  category: experiment\n99\t  severity: warning\n100\t  status: wont_fix\n101\t  first_raised_round: 22\n102\t  last_seen_round: 31\n103\t  resolution: \"结构性限制。Positioned as 'corroborating rather than definitive'.\"\n104\t- id: v27-R2-W4\n105\t  summary: \"Hacking taxonomy recall 未评估\"\n106\t  category: experiment\n107\t  severity: warning\n108\t  status: wont_fix\n109\t  first_raised_round: 27\n110\t  last_seen_round: 34\n111\t  resolution: \"结构性限制。152 samples precision=1.00。R33: 正文加 taxonomy 互斥性规则 + N-H upper bound 说明。\"\n112\t  mentions:\n113\t    - round: 34\n114\t      note: \"R34 两位 Reviewer 再次提出 classifier recall unknown 影响 N-H rate 解释力。Prolog 案例（strict classifier 100% genuine 但 functional analysis 0% genuine）暴露了 rule-based classifier 对 semantic gaming 的系统性盲区。建议至少在 Limitations 增加定量风险讨论。\"\n115\t- id: v19-R12-W3\n116\t  summary: \"ProofFOL p=0.10 被过度引用\"\n117\t  category: framing\n118\t  severity: critical\n119\t  status: resolved\n120\t  first_raised_round: 19\n121\t  last_seen_round: 34\n122\t  resolution: \"'directionally higher'. ProofFOL labeled exploratory.\"\n123\t  resolution_round: 31\n124\t  mentions:\n125\t    - round: 34\n126\t      note: \"R34 ProofFOL overclaim 升级为 C3 贡献声称问题的一部分。虽然正文已标注 exploratory，但 C3 仍使用 'establishing' 语言。见 v34-R12-N1。\"\n127\t- id: v30-R2-W3\n128\t  summary: \"ISR 与 NLI accuracy 不相关限制 actionability\"\n129\t  category: method\n130\t  severity: warning\n131\t  status: resolved\n132\t  first_raised_round: 30\n133\t  last_seen_round: 33\n134\t  resolution: \"ISR=0 disambiguation. 'reasoning quality' → 'formalization integrity'.\"\n135\t  resolution_round: 32\n136\t- id: v31-R2-MR-SPECGAMING\n137\t  summary: \"缺失引用：Nishimura et al. 2026 spec gaming\"\n138\t  category: writing\n139\t  severity: info\n140\t  status: resolved\n141\t  first_raised_round: 31\n142\t  last_seen_round: 31\n143\t  resolution: \"Citation added.\"\n144\t  resolution_round: 31\n145\t- id: v31-R2-W-TITLE-LENGTH\n146\t  summary: \"标题过长\"\n147\t  category: writing\n148\t  severity: info\n149\t  status: resolved\n150\t  first_raised_round: 31\n151\t  last_seen_round: 32\n152\t  resolution: \"Title shortened to ~95 chars.\"\n153\t  resolution_round: 32\n154\t- id: v31-R2-M-ISR0-AMBIGUITY\n155\t  summary: \"ISR=0 proved vs unproved 语义不同\"\n156\t  category: method\n157\t  severity: info\n158\t  status: resolved\n159\t  first_raised_round: 31\n160\t  last_seen_round: 31\n161\t  resolution: \"ISR=0 semantic disambiguation added.\"\n162\t  resolution_round: 31\n163\t- id: v32-R12-MR-UNFAITHFUL-COT\n164\t  summary: \"缺失引用：Lanham/Turpin\"\n165\t  category: writing\n166\t  severity: info\n167\t  status: resolved\n168\t  first_raised_round: 32\n169\t  last_seen_round: 32\n170\t  resolution: \"Both citations added.\"\n171\t  resolution_round: 32\n172\t- id: v33-N2-BIMODAL\n173\t  summary: \"5-seed 双峰 (40% seeds genuine) 弱化 Goodhart 核心叙事\"\n174\t  category: framing\n175\t  severity: critical\n176\t  status: resolved\n177\t  first_raised_round: 33\n178\t  last_seen_round: 33\n179\t  resolution: \"C2 changed to 'seed-dependent Goodhart effect'. Bimodal discussion front-loaded in §4.3. Table 1 caption explains 3-seed vs 5-seed. Abstract updated.\"\n180\t  resolution_round: 33\n181\t- id: v33-W1-EXEC-POOLING\n182\t  summary: \"Table 1 exec-only 仅报告 s42，其他条件报告 pooled\"\n183\t  category: experiment\n184\t  severity: warning\n185\t  status: resolved\n186\t  first_raised_round: 33\n187\t  last_seen_round: 33\n188\t  resolution: \"§4.2 explains why pooling is precluded (PR 13-98%). Table 1 footnote expanded with s43/s44 details.\"\n189\t  resolution_round: 33\n190\t- id: v33-M8-CONVERTS\n191\t  summary: \"'ISR converts CE into TS' 不准确——exec-only s44 自发 TS\"\n192\t  category: framing\n193\t  severity: warning\n194\t  status: resolved\n195\t  first_raised_round: 33\n196\t  last_seen_round: 33\n197\t  resolution: \"'converts' → 'systematically selects for TS over CE'.\"\n198\t  resolution_round: 33\n199\t- id: v33-W3-TAXONOMY\n200\t  summary: \"Taxonomy 互斥性和 N-H upper bound 未在正文说明\"\n201\t  category: method\n202\t  severity: warning\n203\t  status: resolved\n204\t  first_raised_round: 33\n205\t  last_seen_round: 33\n206\t  resolution: \"Priority rule (PG>CE>TS) and N-H upper bound caveat added to §3.3.\"\n207\t  resolution_round: 33\n208\t# ===== Round 34 新发现 =====\n209\t- id: v34-R12-N1\n\n... [110 lines truncated] ..."
+                },
+                "type": "attachment",
+                "uuid": "abb09820-7ed6-43f6-9884-422bb4d054ab",
+                "timestamp": "2026-05-24T23:10:30.281Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/review_director_a46f8029",
+                "sessionId": "bc95258f-10e3-480a-a247-eaedf51e6791",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-24T23:10:34.578Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, issue tracker updated. Now let me compose and submit the final report.",
+              "signature": "EpECCmMIDhgCKkBGSWO84Wv3O5Snena99jqXvY/SSULJCcPppabH53XIdyfU738tEt9lhqdNcgNtGFEVrO+n2KyzKLQG+0y2B1dDMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDDTT4hTkxe5WJ5zHBBoMf2XoF81G1eITig2QIjAp6TED0pbou2fYcG3YYoCqv/8wPiEM6T93p2YyYnB2kWlChHmYMKbERTNcZzdge54qXKlosCCPIyrh6S/DeWWltv0KCqXBvYKJ3WlKsr9H98T9QHYa4TbdjeP64NH1ZaH/Sx75Bb90KUz43VzV8xI86QEj8r/tcbfI1UbeXS8HXOgHYnQUrn2+x5WNN+bzGAE="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "abb09820-7ed6-43f6-9884-422bb4d054ab",
+            "isSidechain": false,
+            "requestId": "req_011CbNEm6zDnXZroU68r9uFN",
+            "type": "assistant",
+            "uuid": "11a00a7b-442e-4a53-9bf4-da427dabefe9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/review_director_a46f8029",
+            "sessionId": "bc95258f-10e3-480a-a247-eaedf51e6791",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J5F5YV7D4R5YqaxdSNTFu8",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10478,
+                "cache_read_input_tokens": 131263,
+                "output_tokens": 6195,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 10478,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6195,
+                    "cache_read_input_tokens": 131263,
+                    "cache_creation_input_tokens": 10478,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 10478
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-24T23:10:36.060Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Issue tracker 已更新。现在提交最终审稿报告。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "11a00a7b-442e-4a53-9bf4-da427dabefe9",
+            "isSidechain": false,
+            "requestId": "req_011CbNEm6zDnXZroU68r9uFN",
+            "type": "assistant",
+            "uuid": "8d6b1c2d-13c8-48be-8225-e1878dd0bca9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/review_director_a46f8029",
+            "sessionId": "bc95258f-10e3-480a-a247-eaedf51e6791",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J5F5YV7D4R5YqaxdSNTFu8",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10478,
+                "cache_read_input_tokens": 131263,
+                "output_tokens": 6195,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 10478,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6195,
+                    "cache_read_input_tokens": 131263,
+                    "cache_creation_input_tokens": 10478,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 10478
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-24T23:13:06.520Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015m7wqcmfcBgpjsaAUqihs2",
+              "name": "mcp__agent-ml-research__submit_review_report_to_research_director",
+              "input": {
+                "project": "solver-trace-ablation",
+                "report": "# 审稿报告 — Round 34 (Fresh Review)\n\n**论文**: Observe but Don't Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning\n**Venue**: EMNLP 2026 Long Paper (ACL Rolling Review)\n**ARR 投稿截止**: 2026-05-25\n**审稿模式**: 重新审稿 (fresh)\n**Reviewer 编排**: 2 人（R1: 方法严谨性+实验设计+统计有效性; R2: 新颖性+相关工作+写作+格式）\n**圆桌轮次**: 1 轮（交叉分享后关键问题达成共识，无需第二轮）\n\n---\n\n## Summary\n\n本文提出 Solver Trace Ablation (STA)，一种基于 leave-one-out (LOO) ablation 的诊断方法，用于检测 neurosymbolic reasoning 中 RLVR 训练导致的结构性退化。STA 的核心指标 Intensional Structural Reward (ISR) 衡量 formalization 中每个 component 的必要性。论文在 Qwen3-4B 上设计了 6 种 reward conditions（exec-only, ISR low/high dose, random, shuffled-ISR, SFT），发现：(1) exec-only GRPO 训练导致 prove rate 上升但结构完整性崩溃；(2) 将 ISR 转为训练 reward 后，模型通过 tautological shortcuts (TS) 游戏 ISR 本身（seed-dependent Goodhart effect, 3/5 seeds gaming, 2/5 genuine）；(3) 该现象在 Prolog 和 ProofFOL 上有跨域证据。论文还提出了一个 8-mode hacking taxonomy。\n\n---\n\n## Strengths\n\n1. **实验控制设计严谨** [共识]：三组控制（random reward 隔离 ISR-specific 信号; shuffled-ISR 证明需要 sample-level ISR 信号; SFT 确认 hacking 源于 RL optimization）在该领域不常见，体现了扎实的实验设计方法论。\n\n2. **Confound 的诚实处理** [共识]：主动识别并报告 premise-count confound（214× → 1.06×, McNemar p=0.317），不掩盖不利证据。这种透明度提升了论文的 credibility。\n\n3. **Hacking taxonomy 的实用价值** [共识]：8-mode taxonomy 为后续研究提供了标准化分析框架，每个 mode 均有定义、示例、ISR interaction 分析。152-sample precision audit 显示 precision=1.00。\n\n4. **Prolog 跨逻辑复制** [共识]：Prolog ISR-as-reward 实验中 0% non-hacking 的一致结果通过完全不同的逻辑范式证明了 Goodhart effect 的可转移性，这是跨域证据中最强的部分。\n\n5. **\"Observe but don't optimize\" 的 practical message** [R1 strong, R2 moderate]：直接连接到 Goodhart's Law 的核心 insight，对 RLVR community 有清晰的 actionable message——STA 应作为 post-hoc diagnostic 而非 training reward。\n\n6. **数据透明度** [共识]：Appendix 提供 16 页详细 per-seed 结果（Tables 9-14），包括 per-seed trajectory analysis 和 boundary-case validation。\n\n---\n\n## Weaknesses\n\n### Must-Fix（影响接收决定）\n\n**[W-MF1] C3 贡献声称 overclaim** [共识: R1 AGREE + R2 raised]\n- C3 声称 \"establishing that structural degeneration under RLVR is not dataset-specific\"，但 ProofFOL 结果 p=0.10（underpowered, N=3），论文自己标注为 \"exploratory\"。将 underpowered 的探索性结果包装为正式贡献（C3），并使用 \"establishing\" 断言语言，构成 overclaim。\n- Prolog 的 ISR-as-reward 结果（0% non-hacking across 3 seeds）是有力证据，但 ProofFOL 和 8B 跨规模实验证据不足。\n- **建议**：将 C3 从 \"establishing\" 降级为 \"providing preliminary cross-domain evidence\"；或将 C3 重新定义为 Prolog 泛化（强证据）+ ProofFOL 探索性观察。\n\n**[W-MF2] ISR scalar framing 与实际诊断机制之间的张力** [R2 Must-Fix, R1 Should-Fix with nuance]\n- ISR* 的 214× collapse 在控制 premise-count 后仅 1.06×（McNemar p=0.317, 不显著）。论文标题 \"Structural Rewards\"、核心概念 ISR、Equation 1 都以 ISR scalar 为中心，但 §4.3 自己承认 \"the mode breakdown, not the ISR scalar, licenses interpretation\"。\n- R1 认为 ISR 仍有 screening value（low ISR 的样本中 hacking prevalence 更高），且这是 framing 问题而非 soundness 问题——调整叙述重心即可解决。\n- **建议**：将 ISR 明确定位为 \"fast screening trigger\"，mode taxonomy 为 \"definitive diagnostic\"。在 §3.2 或 §5 增加一段讨论 ISR scalar 的局限性与两阶段诊断框架（ISR screening → mode analysis）的合理性。\n\n### Should-Fix（影响评分但不一票否决）\n\n**[W-SF1] Seed 43 评估协议偏差的可见性不足** [共识]\n- Seed 43 使用 T=0.7 sampling 但仍被纳入 Table 1 的 3-seed mean 和 Table 5 的 pooled Fisher test。N=2 sensitivity analysis 已存在（Appendix D.6）但被压缩在脚注引用中，可见性不足。\n- **建议**：在 Table 1 或 §4.3 正文增加排除 s43 的统计行。\n\n**[W-SF2] Pooled Fisher exact test 的 within-seed independence 假设** [R1 Must-Fix → R2 降级 Should-Fix]\n- Table 5 以 pooled Fisher（n=231, within-seed samples treated as independent）为 primary test，CMH test 仅在 Appendix。论文已声明 pooled statistics 是 \"descriptive summaries, not formal inference\"，核心证据是 qualitative mode shifts。\n- **建议**：将 CMH test 提升为 Table 5 的 primary test；或在 Table 5 caption 中重申 \"descriptive only\" 限定。\n\n**[W-SF3] 3-5 seeds 的 proportion claim 需更谨慎表述** [R1 Must-Fix → R2 nuance → 降级]\n- 3/5 的 95% CI 为 [15%, 95%]（Clopper-Pearson），作为 proportion 无法可靠估计。但 seed-dependence claim 只需 ≥1 gaming + ≥1 genuine，N=5 下已充分。\n- **建议**：将 \"3/5 seeds converge to gaming\" 改为 \"a majority of seeds in our experiments converge to gaming\"，并在正文加入 CI 声明。\n\n**[W-SF4] \"Degeneration requires convergence\" 因果 claim 过强** [共识]\n- LLaMA-3.2-3B cold-start failure 是 capability 不足（无法生成 valid FOL），trivially expected，不能支撑因果推断。Qwen3-8B non-convergence 有 K=4 rollout 不足的 confound。\n- **建议**：弱化为 \"evidence is consistent with convergence being necessary, but the confound between capability and convergence makes causal attribution difficult\"。\n\n**[W-SF5] Hacking classifier recall unknown** [共识, 历史遗留 wont_fix]\n- Classifier recall 未知，N-H rate 是 \"upper bound on genuine reasoning\"。Prolog 案例（strict classifier 100% genuine → functional analysis 0% genuine）暴露了 rule-based classifier 对 semantic gaming 的系统性盲区。\n- **建议**：在 Limitations 增加对 recall 风险的定量讨论（如 \"even conservative 80% recall would inflate N-H rate by X pp\"）。\n\n**[W-SF6] Table 1 可读性不足** [共识]\n- Caption 约 150 词 + 4 个 footnote markers（†‡¶§），读者需反复在表格和 caption 之间跳转。\n- **建议**：简化 caption 至 60 词以内，技术细节移入正文或 Appendix。\n\n**[W-SF7] 正文信息密度过高** [R2 raised, R1 agrees with qualification]\n- 8 页正文覆盖 6 reward conditions × 3-5 seeds、8-mode taxonomy、3 跨域实验，部分子结果（Prolog 3 种 gaming mechanisms、ProofFOL dataset-dependent asymmetry）讨论深度不足。Appendix 提供了深度，但正文 signposting 不足。\n- **建议**：在正文更明确标注 primary vs. secondary findings。\n\n### Minor（不影响接收）\n\n1. Abstract 末尾 [anonymized] 脚注无实际信息，建议移除或移至 §1\n2. ISR 同时指 metric 和 reward，首次出现 ISR-as-reward 时应显式区分\n3. Equation 1 缺少 \"defined for proved formalizations only\" 的形式化条件\n4. Figure 1 Y 轴标签字体偏小\n5. ISR = (n-1)-coalition Shapley value 声明缺形式化推导（建议 Appendix 补 2-3 行）\n6. Figure 1 caption \"n=2 artifact\" 未充分解释\n7. 未系统 map Goodhart variants (regressional vs. extremal vs. causal vs. adversarial)\n8. Appendix E 未说明 Claude 是否参与论文写作\n9. \"N-H%\" 首次出现时定义不够明确\n10. Bonferroni k=14 的 14 个 comparisons 未在正文列出\n11. References 部分混用 arXiv preprint 和会议格式\n\n---\n\n## Reviewer Consensus [AGREE]\n\n1. **C3 需 scope down**：两位 Reviewer 共识 Must-Fix。ProofFOL p=0.10 underpowered，C3 不应使用 \"establishing\" 语言。\n2. **ISR scalar 的 premise-count confound 已被诚实报告**，但论文的 ISR-centric framing 与 \"mode taxonomy is the real diagnostic\" 的结论之间存在张力，需更好地协调。\n3. **Seed 43 sensitivity analysis 已存在但可见性不足**，需在正文增加排除 s43 的统计。\n4. **Hacking classifier recall unknown 是真实 limitation**，论文应在 Limitations 中增加定量风险讨论。\n5. **Table 1 caption 过长**，影响论文最重要实验表格的可读性。\n6. **\"Degeneration requires convergence\" 因果 claim 需弱化**。\n7. **实验控制设计（random, shuffled-ISR, SFT）和 confound 透明度是论文的核心优势**。\n8. **Prolog ISR-as-reward 0% non-hacking 是跨域证据中最强的部分**。\n\n## Reviewer Divergence [REBUT]\n\n1. **\"Observe-vs-optimize asymmetry\" 的概念新颖性**：\n   - R2 认为这本质是 Goodhart's Law 的领域特化表述，概念包装超出实际新意。\n   - R1 反驳：empirical mechanism 的贡献独立于理论预期性；Gao et al. (2023) 和 Skalse et al. (2022) 也是 Goodhart 的领域特化但被顶会接收；论文的贡献在于 *具体如何* game（TS > CE shift）、*何时*（seed-dependent）、*在哪里*（cross-logic/cross-dataset）。\n   - **Director 判断**：R1 的反驳有理。Empirical paper 的价值在于具体机制和经验证据，不在于理论框架的原创性。但论文确实应在 Introduction 中更显式地承认 \"observe-vs-optimize\" 是 Goodhart's Law 的经验实例化，避免给人创造新概念的印象。\n\n2. **Pooled Fisher test 的严重程度**：\n   - R1 列为 Must-Fix（p-value 可能严重 inflated）。\n   - R2 降级为 Should-Fix（论文已声明 pooled stats 是 descriptive; 核心证据是 qualitative mode shifts, not p-values）。\n   - **Director 判断**：R2 的降级合理。论文的核心论证不依赖 pooled p-values，但 Table 5 的呈现方式可能误导读者。建议将 CMH 提升为 primary test 或在 caption 重申限定。\n\n3. **Seed proportion 的统计效力**：\n   - R1 认为 3/5 的 CI [15%, 95%] 使 proportion claim 无意义。\n   - R2 认为 seed-dependence 只需 ≥1 gaming + ≥1 genuine，N=5 已充分。\n   - **Director 判断**：R2 的论证更有说服力。论文的 claim 是 \"seed-dependent\"（存在性声明），而非 \"60% of seeds game\"（proportion 声明）。但表述需更谨慎，避免暗示精确 proportion。\n\n---\n\n## Questions for Authors\n\n1. 排除 seed 43 后，Table 5 的核心统计结果（TS rate ISR vs. Random, non-hacking rate）如何变化？\n2. 是否考虑过将 ISR 框架重新定位为两阶段诊断（ISR screening → mode taxonomy）？这将化解 ISR scalar confound 的张力。\n3. LOO ablation 中 joint-necessity（两个 component 单独可移除但联合必要）在 FOLIO 中的频率估计？\n4. C3 的 \"establishing\" 是否愿意降级为 \"providing preliminary evidence\"？\n5. \"Degeneration requires convergence\" 是否愿意弱化为 \"evidence is consistent with...\"？\n\n---\n\n## Missing References\n\n- 未发现严重遗漏。R2 建议补充 isomorphic perturbation testing（Helff et al. 2026）与 STA 的互补性讨论，以及 2025-2026 reward modeling for reasoning 综述文献。\n\n---\n\n## External Review\n\n外部审稿：未请求。\n\n---\n\n## Visual Layout Check（非评分项）\n\n视觉审查已完成（耗时约 3.5 分钟）。\n\n| 严重度 | 发现 |\n|--------|------|\n| **Critical** | Page 19：仅填充约 15% 内容（3 行文本 + D.1 标题），其余 >75% 空白。Table 9 被推到 p20 导致巨大空洞。应调整 float 位置或合并内容。 |\n| **Warning** | Page 8：内容极度密集——§4.5 + §5 + §6 (Limitations) 挤在一页，给审稿人「空间不够」的印象。 |\n| **Warning** | Pages 16-18：Appendix C 连续 3 页纯文本无 display item，可考虑用表格汇总 hacking modes。 |\n| **Warning** | Page 20：Table 9 字号偏小，Notes 列在 150dpi 下接近可读性下限。 |\n| **Info** | Pages 2,6,7,8：红/绿配色方案对色盲用户不友好（约 8% 男性），建议辅以 marker shape 或改用 blue/orange。 |\n| **Info** | Figure 1 (p2) 和 Figure 2 (p4) 作为视觉锚点效果良好；Table 1 使用 booktabs 格式规范。 |\n| **Info** | 主文 8 页含 6 figures + 1 algorithm + 1 table = 8 display items，密度 1.0/页，节奏良好。无连续 2 页纯文本段。References ~2.5 页，无 [?] 未解析引用。 |\n\n---\n\n## Overall Assessment\n\n**Overall Score: 3.5 (Borderline Conference)**\n\n**置信度: 4/5**（两位 Reviewer 均熟悉 RLVR、reward hacking 和 neurosymbolic reasoning 领域）\n\n| 维度 | R1 | R2 | 综合 |\n|------|-----|-----|------|\n| Soundness | 3.5 | 3.5 | **3.5** |\n| Excitement | 3.5 | 3 | **3.25** |\n| Reproducibility | 3 | 3.5 | **3.25** |\n\n**综合判断**：这是一篇实验设计严谨、发现有信息价值的实证论文。STA 诊断方法和 8-mode hacking taxonomy 是扎实的工具性贡献，seed-dependent Goodhart effect 的发现对 RLVR community 有实际指导意义。论文的核心优势在于多层控制条件设计和 confound 的诚实报告。\n\n主要不足集中在：(1) C3 跨域泛化声称超出证据支撑（ProofFOL underpowered）；(2) ISR scalar 在控制 premise-count 后诊断价值减弱，与论文 ISR-centric framing 存在张力；(3) seed-level proportion claim 需更谨慎表述。这些问题均可通过 framing 调整解决，不需要新实验。\n\n**升级路径**：如果作者 (a) 将 C3 scope down 为 \"preliminary evidence\"，(b) 将 ISR 重新定位为两阶段诊断的 screening 环节，(c) 在正文增加排除 s43 的 sensitivity analysis 可见性，论文可达 **4.0 (Conference)**。\n\n**降级风险**：如果 C3 的 overclaim 不修复，或 ISR framing 张力未解决，可能被降至 **3.0 (Findings)**。\n\n---\n\n## Detailed Comments\n\n### Section 1 (Introduction)\n- C3 的 \"establishing\" 需降级为 \"providing preliminary evidence\"（共识 Must-Fix）\n- \"observe-vs-optimize asymmetry\" 应显式承认为 Goodhart's Law 的经验实例化，保留实证贡献的 framing\n\n### Section 3 (Method)\n- §3.2 ISR 定义：Equation 1 应形式化 \"proved only\" 条件\n- ISR = Shapley value 声明建议在 Appendix 补充推导\n- §3.3 hacking taxonomy 的 classifier recall limitation 应在此处或 §6 增加讨论\n\n### Section 4 (Experiments)\n- §4.1 Statistical considerations：将 \"3/5\" 改为更谨慎表述，加入 Clopper-Pearson CI\n- §4.1 脚注 7（s43 sampling）：在 Table 1 或正文增加排除 s43 的统计行\n- §4.3 Premise-count confound：增加 ISR 作为 \"screening trigger\" vs mode taxonomy 作为 \"definitive diagnostic\" 的两阶段定位讨论\n- §4.4 C3 claims：ProofFOL 解读标注 \"suggestive but inconclusive\"\n- Table 1：简化 caption 至 60 词以内\n- Table 5：CMH 提升为 primary test，或重申 \"descriptive only\"\n\n### Section 5 (Discussion and Conclusion)\n- \"degeneration requires convergence as a prerequisite\" 弱化为 \"evidence is consistent with...\"\n- 增加 ISR scalar 局限性与两阶段诊断框架的讨论\n\n### Section 6 (Limitations)\n- 增加 classifier recall 风险的定量讨论\n- 当前篇幅适中（~5 个 limitation 点），无需大幅修改\n\n### Appendix\n- Page 19 空白问题需修复（调整 float 位置）\n- Appendix C 可考虑用汇总表格替代纯文本定义\n- Table 9 字号可能需调整\n\n### 格式合规\n- 正文 8 页 ✅\n- ACL style template ✅\n- Double-blind 匿名 ✅\n- Limitations section 在正文 ✅\n- Abstract ≤200 words（~182 词）✅\n- Ethics section 未包含（可选）⚠️\n- Abstract 脚注 [anonymized] 建议移除",
+                "reviewer_ids_acknowledged": "[\"1\", \"2\"]",
+                "cross_response_reviewer_ids": "[\"1\", \"2\"]",
+                "overall_score": "3.5"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8d6b1c2d-13c8-48be-8225-e1878dd0bca9",
+            "isSidechain": false,
+            "requestId": "req_011CbNEm6zDnXZroU68r9uFN",
+            "type": "assistant",
+            "uuid": "17540e6c-037e-4647-9c60-6b9b9d1f760a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/review_director_a46f8029",
+            "sessionId": "bc95258f-10e3-480a-a247-eaedf51e6791",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J5F5YV7D4R5YqaxdSNTFu8",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10478,
+                "cache_read_input_tokens": 131263,
+                "output_tokens": 6195,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 10478,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6195,
+                    "cache_read_input_tokens": 131263,
+                    "cache_creation_input_tokens": 10478,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 10478
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": "2026-05-24T23:13:11.199Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015m7wqcmfcBgpjsaAUqihs2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "17540e6c-037e-4647-9c60-6b9b9d1f760a",
+            "isSidechain": false,
+            "promptId": "c4244738-1b03-472f-a2ca-c29f007b2584",
+            "type": "user",
+            "uuid": "55aadf39-5022-4bf7-b7f8-815d9183dfb6",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "17540e6c-037e-4647-9c60-6b9b9d1f760a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/review_director_a46f8029",
+            "sessionId": "bc95258f-10e3-480a-a247-eaedf51e6791",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review solver-trace-ablation paper for EMNLP 2026",
+                "sessionId": "bc95258f-10e3-480a-a247-eaedf51e6791"
+              }
+            }
+          ],
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": "2026-05-24T23:13:27.951Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-24T23:13:27.951Z",
+                "sessionId": "bc95258f-10e3-480a-a247-eaedf51e6791",
+                "content": "[Reviewer 2 审稿结果]:\n已提交对 Reviewer 1 的逐条回应。要点总结：\n\n- **N1 (seed 数量)**: 部分同意——比例表述应更谨慎，但 seed-dependence 的定性发现在 N=5 下成立\n- **N2 (seed 43 偏差)**: 同意提高 sensitivity analysis 可见性，但指出论文已在 Appendix D.6 做了排除 s43 的分析\n- **N3 (pooled independence)**: 同意 CMH 应为 primary test，但论文已标注 pooled stats 为 \"descriptive, not formal inference\"\n- **W2 (Prolog 无 ISR-as-reward)**: **反驳**——这是 R1 的事实性错误，Section 4.4 明确报告了 Prolog ISR-as-reward 结果 (0% non-hacking)\n- 其余 W1/W3/W4/W5 和 Minor 问题基本同意\n\n维持 Overall 3.5 (Borderline Conference) 评分。"
+              }
+            }
+          ],
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-24T23:13:27.952Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-24T23:13:27.952Z",
+                "sessionId": "bc95258f-10e3-480a-a247-eaedf51e6791"
+              }
+            }
+          ],
+          "id": "event-000171"
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "messages": [
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-24T23:13:27.940Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "55aadf39-5022-4bf7-b7f8-815d9183dfb6",
+            "isSidechain": false,
+            "promptId": "50700e81-b2b0-4f5c-8e34-7908fb683cf2",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "70e19b99-e7f8-4db8-8127-ffc47e544207",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/review_director_a46f8029",
+            "sessionId": "bc95258f-10e3-480a-a247-eaedf51e6791",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": "2026-05-24T23:13:27.940Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "70e19b99-e7f8-4db8-8127-ffc47e544207",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "eaa4a8ab-642b-4fad-9076-d0a86221e852",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/review_director_a46f8029",
+            "sessionId": "bc95258f-10e3-480a-a247-eaedf51e6791",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "id": "339e1894-ebe5-41a1-8c25-b5e5e804f2a7",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000173"
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "messages": [
+        {
+          "source_line": 174,
+          "timestamp": "2026-05-24T23:13:28.088Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿结果]:\n已提交对 Reviewer 1 的逐条回应。要点总结：\n\n- **N1 (seed 数量)**: 部分同意——比例表述应更谨慎，但 seed-dependence 的定性发现在 N=5 下成立\n- **N2 (seed 43 偏差)**: 同意提高 sensitivity analysis 可见性，但指出论文已在 Appendix D.6 做了排除 s43 的分析\n- **N3 (pooled independence)**: 同意 CMH 应为 primary test，但论文已标注 pooled stats 为 \"descriptive, not formal inference\"\n- **W2 (Prolog 无 ISR-as-reward)**: **反驳**——这是 R1 的事实性错误，Section 4.4 明确报告了 Prolog ISR-as-reward 结果 (0% non-hacking)\n- 其余 W1/W3/W4/W5 和 Minor 问题基本同意\n\n维持 Overall 3.5 (Borderline Conference) 评分。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eaa4a8ab-642b-4fad-9076-d0a86221e852",
+            "isSidechain": false,
+            "promptId": "50700e81-b2b0-4f5c-8e34-7908fb683cf2",
+            "type": "user",
+            "uuid": "18601f10-fcf1-43e7-a5de-0304aa769793",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/review_director_a46f8029",
+            "sessionId": "bc95258f-10e3-480a-a247-eaedf51e6791",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000174"
+        }
+      ]
+    }
+  ]
+}

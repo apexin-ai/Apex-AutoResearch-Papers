@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "id": "d2ef559a51ae8ee07656",
+  "project": "solver-trace-ablation--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: structfuse-context ## 运行环境 - 服务器名: westd-pro6000 - SSH 账户: root（调用 ssh_execute / submit_training",
+  "task_key": "bf21aa86-bdab-4170-bd0e-acbfd1367c97",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/bf21aa86-bdab-4170-bd0e-acbfd1367c97.jsonl",
+    "occurrence": 1,
+    "bytes": 1330473,
+    "sha256": "2e770f7c6e243f7b411fba98c1b3c738e3eaf095d67c829f2385d7087e51eb97"
+  },
+  "statistics": {
+    "messages": 673,
+    "user_turns": 1,
+    "tool_calls": 207,
+    "roles": {
+      "record": 108,
+      "user": 1,
+      "assistant": 150,
+      "tool_call": 207,
+      "tool_result": 207
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d2ef559a51ae8ee07656-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 671,
+      "chunks": [
+        {
+          "path": "d2ef559a51ae8ee07656-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "d2ef559a51ae8ee07656-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d2ef559a51ae8ee07656-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d2ef559a51ae8ee07656-part-0004.json",
+          "message_count": 133
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-structfuse-context-westd-pro6000-ssh-root-ssh-execute-submit-t-copy-3.md"
+}

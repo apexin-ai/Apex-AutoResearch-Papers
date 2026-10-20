@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.0",
+  "id": "5893bfdac240a7c18d14",
+  "project": "solver-trace-ablation--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [Director 指令] [Full Draft] 写一篇 EMNLP 2026 Findings 论文，ARR DDL 2026-05-25（剩余 12 天）。 **标题**: Why Cross-Method Consensus Fa",
+  "task_key": "372f9b3c-3963-478f-9580-0a87e416f1a7",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/372f9b3c-3963-478f-9580-0a87e416f1a7.jsonl",
+    "occurrence": 1,
+    "bytes": 613303,
+    "sha256": "36e1ac5ae7a669d682d0fc55b07273f513f990b8e09b573bb50edd8ec214dfc2"
+  },
+  "statistics": {
+    "messages": 215,
+    "user_turns": 8,
+    "tool_calls": 51,
+    "roles": {
+      "record": 50,
+      "user": 8,
+      "assistant": 57,
+      "tool_call": 51,
+      "tool_result": 49
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "5893bfdac240a7c18d14-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 67,
+      "chunks": [
+        {
+          "path": "5893bfdac240a7c18d14-part-0001.json",
+          "message_count": 67
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "5893bfdac240a7c18d14-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "5893bfdac240a7c18d14-part-0001.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "5893bfdac240a7c18d14-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 60,
+      "chunks": [
+        {
+          "path": "5893bfdac240a7c18d14-part-0001.json",
+          "message_count": 60
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 51,
+      "chunks": [
+        {
+          "path": "5893bfdac240a7c18d14-part-0001.json",
+          "message_count": 33
+        },
+        {
+          "path": "5893bfdac240a7c18d14-part-0002.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "5893bfdac240a7c18d14-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "5893bfdac240a7c18d14-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-director-full-draft-emnlp-2026-findings-arr-ddl-2026-05-25-12-why-cross-method.md"
+}
