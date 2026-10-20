@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47397015c689737b06a0",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "diagnosis qwen8b watcher bug check",
+  "task_key": "worker_diagnosis_qwen8b_watcher_bug_check_20260521T135406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_qwen8b_watcher_bug_check_20260521T135406_result.json",
+    "occurrence": 1,
+    "bytes": 539,
+    "sha256": "f08e89e328dce1cdc5081cd510b92677450b9d1a09a5e1560c13ab8cfd75da20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本都**没有** pgrep 自匹配 bug：\n\n- **start_qwen8b_on_free_gpu.sh** (PID 356867, 存活中，已运行 1h46m)：用 `nvidia-smi --query-compute-apps` 查 GPU 占用，bash watcher 不会出现在 nvidia-smi 的 compute app 列表中，无自匹配风险。当前 GPU 0/1/2 全忙，watcher 每 60s 轮询，行为正常。\n- **start_cuda3_chain_v2.sh**：用 `kill -0 $PID` 等待特定 PID，纯 PID 检测，无进程名匹配。\n\n报告已写入 `artifacts/_project/analysis/watcher_bug_check.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-qwen8b-watcher-bug-check.md"
+}

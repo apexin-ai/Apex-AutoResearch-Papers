@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb2fde34a0deeef43d59",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "gen plan 016 llama32 3b rp11",
+  "task_key": "worker_gen_plan-016-llama32-3b-rp11_20260516T091821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gen_plan-016-llama32-3b-rp11_20260516T091821_result.json",
+    "occurrence": 1,
+    "bytes": 631,
+    "sha256": "d0358f27c90da49ef9ae82f67c3d6f664bc1d872fb6c0fb1dc11eb0c00d440f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "rp=1.1 效果明确——对比 rp=1.0 的退化循环，rp=1.1 生成内容连贯且多样，没有重复退化。\n\n生成已在 cuda:3 (CUDA_VISIBLE_DEVICES=3) 上后台运行：\n- **PID**: 295439\n- **输出**: `/root/gen-depth-fingerprint/data/llama-3.2-3b-rp11/generations_shard0.jsonl`\n- **速度**: ~6s/seed，995 seeds 预计约 1.5-2 小时\n- **已跳过**: dry-run 阶段完成的 2 个 seed（自动恢复）\n- **日志**: `/tmp/llama_rp11.log`\n\n质量确认：depth-2/3/4 的文本内容丰富、无循环退化，repetition_penalty=1.1 有效抑制了 rp=1.0 版本中观察到的重复问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gen-plan-016-llama32-3b-rp11.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "212965076d3182561168",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "research arr checklist",
+  "task_key": "worker_research_arr-checklist_20260517T205022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_arr-checklist_20260517T205022_result.json",
+    "occurrence": 1,
+    "bytes": 837,
+    "sha256": "b7f98c589463640eafc95cdc736184b7aaeb322b0a7409e600769468de20d506"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Checklist 已写入 `artifacts/arr_submission_checklist.md` 并注册。\n\n**概要**:\n\n论文格式层面大部分已满足: review 模式、行号、匿名化、8 页限制、limitations/ethics/appendix 均到位，61 条引用。\n\n**需要行动的关键项** (按优先级):\n\n1. **Preferred Venue = EMNLP 2026** (binding，必须在提交时选定)\n2. **acl.sty 版本校验** (对比 GitHub master 最新版)\n3. **OpenReview 表单**: TL;DR、Area 选择、Preprint 决策\n4. **Responsible NLP Checklist 逐项填写** (B3/C2/C3/E1 需补充; E1 AI assistant 披露自 2024.12 起严格执行 desk reject)\n5. **匿名化代码/数据压缩包** (各 ≤200MB)\n6. **所有作者 May 27 前完成 OpenReview 注册 + 审稿人注册** (不合规将被禁止投稿)\n7. **编译最终 PDF** 确认无 warning"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-arr-checklist.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1cf1ec2559d96be7d5e5",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "infra download models qwen",
+  "task_key": "worker_infra_download-models-qwen_20260514T182627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download-models-qwen_20260514T182627_result.json",
+    "occurrence": 1,
+    "bytes": 81,
+    "sha256": "58f4bddc306df13917044c1f72ef4bbb0538bb583c0c408b4eeea10d556d2d33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台轮询任务也确认下载完成。任务已全部结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-download-models-qwen.md"
+}

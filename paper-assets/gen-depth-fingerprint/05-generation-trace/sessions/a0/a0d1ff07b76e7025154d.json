@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0d1ff07b76e7025154d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper binary headline update",
+  "task_key": "worker_paper_binary-headline-update_20260515T185211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_binary-headline-update_20260515T185211_result.json",
+    "occurrence": 1,
+    "bytes": 1269,
+    "sha256": "f86e80e9d141afd34934296e85152dbc112d2bf0efad369d96e7844892d7249f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass. Here's the summary:\n\n**Task 1 (abstract)**: Added gen-0 shared-seed exclusion caveat (\"---excluding gen-0 to avoid shared-seed overlap---\") to both `artifacts/_project/paper/abstract.tex` and `docs/paper/abstract.tex`. Binary F1=0.723 was already the headline.\n\n**Task 2 (introduction)**: No changes needed — binary F1=0.723 was already the headline in both the main paragraph (line 25) and contribution list (line 34). No stale 0.789-as-headline usage found.\n\n**Task 3 (results P1-E ordinal)**: Already written at `results.tex:53-58`. CORAL 0.771, Frank-Hall 0.793, XGBoost 0.789 (3-class); XGBoost 0.721, CORAL 0.728 (binary); concordance all CIs overlapping. Conclusion already states standard XGBoost suffices.\n\n**Task 4 (related_work CI fix)**: No CI/confidence-interval mentions exist in `related_work.tex`. Non-issue.\n\n**Task 5 (consistency check)**: 0.789 appears only in appropriate 3-class contexts (results tables, ablation, supplementary, discussion comparisons). 0.723 is the primary metric in abstract, intro, conclusion, discussion, and results baseline section. No stale headline usage.\n\n**Task 6 (docs/paper sync)**: Abstract synced. Introduction and results were already identical across both locations."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-binary-headline-update.md"
+}

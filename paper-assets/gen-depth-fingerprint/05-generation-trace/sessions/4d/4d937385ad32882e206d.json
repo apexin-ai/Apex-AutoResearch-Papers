@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d937385ad32882e206d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "check qwen data status",
+  "task_key": "worker_check_qwen-data-status_20260514T222818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_qwen-data-status_20260514T222818_result.json",
+    "occurrence": 1,
+    "bytes": 1920,
+    "sha256": "2f7b7625caba614273bc3995915121a6fa63174add9dfdf27e2dc03892f2f970"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### 进程状态\n\n| PID | 模型 | Shard | 状态 | 运行时间 |\n|-----|------|-------|------|---------|\n| 117855 | qwen3-0.6b | 0 | **Rl (运行中)** | 1h03m |\n| 118126 | qwen3-0.6b | 1 | **Rl (运行中)** | 1h03m |\n| 120617 | qwen3-1.7b | 0 | **Rl (运行中)** | 30m |\n| 120694 | qwen3-1.7b | 1 | **Rl (运行中)** | 30m |\n\n### GPU 使用率\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|---------|\n| 0 | 40% | 3977 MiB |\n| 1 | 44% | 3977 MiB |\n| 2 | 34% | 1825 MiB |\n| 3 | 33% | 1825 MiB |\n\nGPU 0-1 跑 Qwen3-1.7B（显存更大），GPU 2-3 跑 Qwen3-0.6B。全部活跃计算中。\n\n### 数据进度\n\n**已完成模型：**\n\n| 模型 | 行数 | 已合并 | 状态 |\n|------|------|--------|------|\n| pythia-1b | 4555 | ✅ generations.jsonl | 完整（seed 0-999, depth 0-4, 804 seeds 达到 depth 4） |\n| olmo-2-1b | 4713 | ✅ generations.jsonl | 完整 |\n\n**进行中模型：**\n\n| 模型 | Shard | 行数 | 最后 seed_id | 最后 depth | Seed 进度 | 预估完成度 |\n|------|-------|------|-------------|-----------|----------|-----------|\n| qwen3-0.6b | 0 | 1593 | 350 | 0 | 350/500 (70%) | ~70% |\n| qwen3-0.6b | 1 | 1542 | 840 | 3 | 340/500 (68%) | ~68% |\n| qwen3-1.7b | 0 | 1331 | 289 | 3 | 289/500 (58%) | ~58% |\n| qwen3-1.7b | 1 | 1384 | 795 | 0 | 295/500 (59%) | ~59% |\n\n**均未合并**（无 generations.jsonl，只有 shard 文件）。\n\n### 预估剩余时间\n\n- **Qwen3-0.6b**：3135 行 / 63 min ≈ 50 行/min，预计总量 ~4600 行，剩余 ~30 min\n- **Qwen3-1.7b**：2715 行 / 30 min ≈ 90 行/min，预计总量 ~4600 行，剩余 ~20 min\n\n### 结论\n\n- 4 个进程全部存活运行中，tmux session 死亡后进程仍在以 orphan 方式继续执行，数据在正常写入\n- **无需重跑**，等待 ~30 min 即可全部完成\n- 完成后需要合并 shard 文件为 `generations.jsonl`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-qwen-data-status.md"
+}

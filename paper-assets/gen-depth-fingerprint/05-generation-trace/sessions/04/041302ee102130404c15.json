@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "041302ee102130404c15",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper 8gen lofo compute",
+  "task_key": "worker_paper_8gen-lofo-compute_20260522T065652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_8gen-lofo-compute_20260522T065652_result.json",
+    "occurrence": 1,
+    "bytes": 800,
+    "sha256": "db95005fffe06badef0fff8b53bf661a701b4970e5f289537c49ef7e9d15d446"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。8-gen LOFO 结果（37,058 samples, 10-fold stratified CV）：\n\n**Full 7-feature baseline: F1 = 0.7707 ± 0.0081**\n\n| Dropped Feature | LOFO F1 | Δ (importance) |\n|---|---|---|\n| entropy_max | 0.7522 ± 0.0079 | **−0.0185** |\n| entropy_mean | 0.7590 ± 0.0069 | **−0.0117** |\n| entropy_std | 0.7634 ± 0.0062 | −0.0073 |\n| ttr | 0.7635 ± 0.0088 | −0.0072 |\n| hapax_ratio | 0.7653 ± 0.0072 | −0.0054 |\n| entropy_min | 0.7659 ± 0.0086 | −0.0048 |\n| tail_decay | 0.7669 ± 0.0074 | −0.0038 |\n\n与 6-gen 结果一致：`entropy_max` 仍是最重要特征（Δ = −0.0185），`entropy_mean` 次之。所有特征移除后 F1 均下降，说明 7 个特征都有贡献。\n\nJSON 已保存至 `artifacts/_project/results/8gen_lofo_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-8gen-lofo-compute.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7280f151af6463d0cea",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis p1c instruct logo f1",
+  "task_key": "worker_analysis_p1c-instruct-logo-f1_20260515T154858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_p1c-instruct-logo-f1_20260515T154858_result.json",
+    "occurrence": 1,
+    "bytes": 916,
+    "sha256": "234718af0340b1238949e4b34badb446c3c4ede4b33db7a30f4ca3e3bc937c57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `results/p1c_instruct_logo_f1.json`。\n\n**关键发现：**\n\n| 指标 | 值 |\n|------|-----|\n| 7-gen LOGO avg F1 | **0.7498** (vs 6-gen base 0.789, 下降 0.039) |\n| 7-gen binary F1 | **0.768** (vs 6-gen base 0.723, 上升 0.045) |\n\n**Instruct vs Base 对比：**\n\n| Generator | 3-class F1 | Binary F1 |\n|-----------|-----------|-----------|\n| qwen3-1.7b-instruct (held out) | **0.5434** | 0.6582 |\n| qwen3-1.7b-base (held out) | **0.8023** | 0.8208 |\n| **Delta** | **-0.2589** | -0.1626 |\n\nInstruct held-out F1 大幅低于 base（0.543 vs 0.802）。方向反转使得 base 训练的分类器难以泛化到 instruct 数据——6 个 base model 学到的 \"depth 越深 diversity 越低\" 模式在 instruct 上完全反转，导致预测失败。XGBoost 虽然不假设方向，但训练数据中 6/7 都是同一方向，held-out 时自然偏向 base 模式。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-p1c-instruct-logo-f1.md"
+}

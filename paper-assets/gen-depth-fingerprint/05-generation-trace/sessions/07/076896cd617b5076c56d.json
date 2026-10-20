@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "076896cd617b5076c56d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops quick 014 check",
+  "task_key": "worker_ops_quick-014-check_20260515T032019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_quick-014-check_20260515T032019_result.json",
+    "occurrence": 1,
+    "bytes": 186,
+    "sha256": "082ebc9e74b8857c554ca4205600767a30fcd6c86a07296300ac9991a46016fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ssh_read_only 不允许 `;` `||` `|` 等 shell 元字符。需要拆成多条单独命令，或者改用 ssh_execute。要我用 ssh_execute 执行这条组合命令吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-quick-014-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e050f0d8adfabe96dd03",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "diag bjb2 urgent check and run",
+  "task_key": "worker_diag_bjb2-urgent-check-and-run_20260518T075430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_bjb2-urgent-check-and-run_20260518T075430_result.json",
+    "occurrence": 1,
+    "bytes": 2474,
+    "sha256": "57317e9055df0e7016d9d048723c1b5fd2367a4a4d4e016d3c72479e70125d85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据收集完毕。汇总如下：\n\n---\n\n## 状态总览\n\n| tmux session | 状态 | 内容 |\n|---|---|---|\n| `tc_phase3` | **已完成** | Qwen t=0.9 特征提取 (4558 条) |\n| `exp054_resume` | **已完成** | Llama instruct 特征提取 + 评估 |\n| `feat_qwen_t09` | **已完成** | Qwen t=0.9 特征提取 (shard, 2413 条, 被 tc_phase3 覆盖) |\n| `feat_t05` | **已完成** | Pythia t=0.9 特征提取 (4536 条) |\n\nGPU 全部空闲，无运行进程。\n\n## 数据行数\n\n| 文件 | 行数 (含 header) |\n|---|---|\n| `features_qwen3-1.7b-t09.csv` | 4559 (4558 条记录) |\n| `features_llama-3.2-3b-instruct.csv` | 4975 (4974 条记录) |\n| `features_pythia-2.8b-t09.csv` | 4537 (4536 条记录) |\n\n## Llama-3.2-3B Instruct 评估结果\n\n**分类性能** (Instruct vs Base):\n\n| 指标 | Instruct | Base | Delta |\n|---|---|---|---|\n| Binary F1 | 0.8381 [0.828, 0.847] | 0.8488 [0.839, 0.859] | -0.011 |\n| 3-class F1 | 0.5437 [0.530, 0.558] | 0.7424 [0.728, 0.755] | -0.199 |\n\n**Spearman ρ (Instruct)**:\n\n| Feature | ρ | p-value |\n|---|---|---|\n| entropy_mean | +0.2299 | 1.09e-60 |\n| entropy_std | +0.2623 | 4.54e-79 |\n| entropy_min | -0.0027 | 8.47e-01 |\n| entropy_max | +0.2036 | 1.07e-47 |\n| tail_decay | +0.1198 | 2.33e-17 |\n| ttr | -0.1411 | 1.55e-23 |\n| hapax_ratio | -0.1157 | 2.65e-16 |\n\n**Spearman ρ (Base)**:\n\n| Feature | ρ | p-value |\n|---|---|---|\n| entropy_mean | -0.6270 | 0.00 |\n| entropy_std | -0.1597 | 4.09e-28 |\n| entropy_min | -0.3981 | 1.58e-177 |\n| entropy_max | +0.0859 | 3.90e-09 |\n| tail_decay | -0.0631 | 1.55e-05 |\n| ttr | -0.6856 | 0.00 |\n| hapax_ratio | -0.6975 | 0.00 |\n\n**方向反转**: 3/7 特征 (entropy_mean, entropy_std, tail_decay)\n\n## Qwen t=0.9 温度评估\n\n**LOGO Binary F1** (重跑，使用完整 4558 条数据):\n\n| Model | t=0.5 | t=0.7 | t=0.9 | t=1.0 |\n|---|---|---|---|---|\n| pythia-2.8b | 0.8136 | 0.7395 | 0.4804 | — |\n| qwen3-1.7b | 0.7506 | 0.7505 | **0.5659** | 0.3670 |\n\n**Qwen t=0.9 Spearman ρ** (4558 条, depth 分布: {0:996, 1:984, 2:946, 3:860, 4:772}):\n\n| Feature | ρ | p-value |\n|---|---|---|\n| entropy_mean | -0.3739 | 3.46e-151 |\n| entropy_std | -0.0443 | 2.75e-03 |\n| entropy_min | -0.2119 | 1.92e-47 |\n| entropy_max | +0.0888 | 1.94e-09 |\n| tail_decay | -0.0862 | 5.52e-09 |\n| ttr | -0.5141 | 5.46e-306 |\n| hapax_ratio | -0.5352 | 0.00 |\n\n## 错误\n\n无错误。所有任务正常完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-bjb2-urgent-check-and-run.md"
+}

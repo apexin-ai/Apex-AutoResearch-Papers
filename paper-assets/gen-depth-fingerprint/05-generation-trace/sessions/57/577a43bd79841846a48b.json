@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "577a43bd79841846a48b",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code exp 058 ddr causality",
+  "task_key": "worker_code_exp_058_ddr_causality_20260520T070624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_058_ddr_causality_20260520T070624_result.json",
+    "occurrence": 1,
+    "bytes": 1587,
+    "sha256": "436d7e5ca288fb27964283558ced541fb640b46073002642bb2accd463eb1eda"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here's the summary:\n\n---\n\n**Script deployed and validated on bjb2-18868 (cuda:1)**\n\n| Item | Status |\n|------|--------|\n| Script | `/root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py` — 444 lines, 3 modules implemented |\n| Data | `/root/gen-depth-fingerprint/data/features_8gen.csv` — 37,058 rows, 8 generators, depths 0-4 |\n| Dependencies | xgboost 3.2.0, sklearn 1.8.0, statsmodels, scipy — all installed |\n| Dry-run permutation | passed (75 rows, 8 folds, no errors/warnings) |\n| Dry-run granger | passed (59 panel obs, F-test + Fisher's method working) |\n\n**Execution commands** (full run, waiting for approval):\n\n```bash\n# Permutation importance (~15 min, CPU-only, n_repeats=50)\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/gen-depth-fingerprint\nnohup python scripts/ddr_causal_analysis.py --module permutation --n-repeats 50 \\\n  --output results/ddr_causal_permutation.json > /tmp/ddr_perm.log 2>&1 &\n\n# Granger causality (~2 min, CPU-only)\nnohup python scripts/ddr_causal_analysis.py --module granger \\\n  --output results/ddr_causal_granger.json > /tmp/ddr_granger.log 2>&1 &\n\n# Feature intervention (~45 min, CPU-only, n_repeats=30, trains 8×7×30=1680 XGB models)\nnohup python scripts/ddr_causal_analysis.py --module intervention --n-repeats 30 \\\n  --output results/ddr_causal_intervention.json > /tmp/ddr_intervention.log 2>&1 &\n```\n\n**Estimated time**: Granger ~2min, Permutation ~15min, Intervention ~45min. All CPU-bound (no GPU needed). Can run all 3 in parallel."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-058-ddr-causality.md"
+}

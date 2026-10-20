@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba1afb244167e1bc7b3b",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_9_1778897884.md",
+  "task_key": "loop_9_1778897884",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778897884.md",
+    "occurrence": 1,
+    "bytes": 3453,
+    "sha256": "77cd0c00af5be07ab6749a6aee6bdfaaa666b2491a2e2cbbb8725b98534b098e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-16T02:15:33+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 cuda:0-3，共 4 张 RTX 5090。白名单外的 GPU 必须 push back Director\n- 7-gen vs 6-gen 数字禁止直接对比（D017 约束）：7-gen binary F1=0.768 不可与 6-gen binary F1=0.723 做 apple-to-apple 比较\n- Instruct 方向反转已确认为长度伪影，不可 claim 方向反转（Reviewer CRITICAL 已验证）\n- Primary metric 是 binary F1=0.723（gen-1 vs gen-2+, leak-free），3-class F1=0.789 仅 supplementary\n- EMNLP 2026 ARR DDL: 2026-05-25，剩 9 天\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090，工作目录 /root/gen-depth-fingerprint\n- Python：/root/miniconda3/bin/python（conda base 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- AutoDL 特性：根分区 30GB，大文件放 /root/autodl-tmp/；pip 前 `source /etc/network_turbo`；HF 下载设 `HF_HUB_DISABLE_XET=1`\n- 活跃进程：plan-012-qwen06b RUNNING on cuda:0（QLoRA fine-tuned Qwen3-0.6B-Base 5-class depth classifier）\n- cuda:1/2/3 空闲\n\n### 3. 📊 当前状态\n**刚触发**：plan-006-paraphrastic 实验失败回调（process dead 5× with no sentinel/W&B）。已派诊断 Worker `worker_diagnose_plan-006-paraphrastic_20260515T231423` SSH 查日志 /tmp/plan006_full.log，**尚未返回结果**。\n\n**Registry 概览**：\n- RUNNING: plan-012-qwen06b（cuda:0，QLoRA depth classifier vs XGBoost baseline）\n- PREPARING: plan-004-prep, plan-001-restore, mvp-001-gen-s0/s1/s2/s3\n- DONE: 53 个（success 39, negative 4, failed 9, killed 1）\n\n**等待中**：\n- Worker 回调：诊断 Worker 结果 → 需更新 registry notes + 汇报 Director\n- plan-012-qwen06b cron 回调 → 分析 QLoRA vs XGBoost 结果\n\n### 4. 📋 待办\n- 诊断 Worker 返回 → 按 error_type 分叉：infrastructure 可自修重试；resource/data 汇报 Director 决策；更新 registry notes + 发飞书结果卡片\n- plan-012-qwen06b 完成回调 → 分析 QLoRA 5-class accuracy vs 7-feature XGBoost baseline，汇报 Director\n- cuda:1/2/3 空闲 → 应向 Director 汇报资源闲置，建议分配任务（ROADMAP 待办：abstract+intro 数字更新、related_work CI 残留修复、P1-E ordinal 写入论文、bib 年份验证、全文一致性验证）\n- Round 2 修复全部完成 → post_to_reviewer 一致性检查 → submit_paper_to_review Round 3\n- Round 3 通过 → EMNLP ARR 提交材料准备\n\n### 5. 🎯 战略上下文\n- 核心结论：递归 LLM 生成链的 central-tendency/diversity 特征随深度漂移，shape 特征近稳态。7-feature ensemble 跨 6 base-model / 3 families 验证，binary LOGO F1=0.723\n- Claim 3 (Downstream Utility) 已确认 negative (D023)，reframe 为 \"diagnostic-not-curative\"\n- D025: Director 批准重跑 plan-006 paraphrastic with matched generation，现在这个重跑也 failed，需要决定是否再试或放弃这个方向\n- D019: 撤回 instruct inverted DDR 叙事，instruct 写入 discussion 作为 method boundary\n- 易错点：plan-006 是 paraphrastic chains 实验（用 Pythia-2.8B 做 paraphrase 链 vs continuation 链对比），不是核心 claim 实验，失败不影响主 story，但如果能救回来可以丰富 discussion\n- 当前最大风险：离 DDL 9 天，论文 abstract/intro 数字更新还没完成，Round 3 审查还没开始。GPU 资源 3/4 空闲是浪费\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778897884.md"
+}

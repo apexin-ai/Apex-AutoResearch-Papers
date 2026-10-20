@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "1331cc98df9aa927bf9c",
+  "project": "gen-depth-fingerprint",
+  "kind": "conversation",
+  "title": "run plan 004 training",
+  "task_key": "worker_run_plan-004-training_20260515T002016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_run_plan-004-training_20260515T002016.jsonl",
+    "occurrence": 1,
+    "bytes": 280,
+    "sha256": "6d228889cabcf11f6eeaada435d6790d72a8e02b81114fe9ac8c9e4cf4905bf3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T00:20:26.464530+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 500 Internal server error. This is a server-side issue, usually temporary — try again in a moment. If it persists, check status.claude.com."
+            }
+          ],
+          "metadata": {
+            "session": "worker_run_plan-004-training_20260515T002016"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/run-plan-004-training.md"
+}

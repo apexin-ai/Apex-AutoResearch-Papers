@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "325a9a0d626e0ca0518a",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "exp review exp c overall ci v2",
+  "task_key": "worker_exp_review-exp-c-overall-ci-v2_20260515T123124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_review-exp-c-overall-ci-v2_20260515T123124_result.json",
+    "occurrence": 1,
+    "bytes": 431,
+    "sha256": "11206bd51344645c3644e186187267b9db0037f0a03032253ccdd5884ed98bb5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n| 指标 | 值 |\n|------|-----|\n| **Overall 6-gen F1** | 0.7878 |\n| **95% CI** | [0.783, 0.792] |\n| **CI width** | 0.009 |\n| Pipeline | bootstrap_ci_v2.py (class-balanced downsample) |\n| Bootstrap n | 1000 |\n\nPer-gen sanity check 全部通过，与 Table 1 registry 值最大偏差仅 0.0032pp。结果已保存至 `results/review_overall_ci_v2_results.json` 并更新 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-review-exp-c-overall-ci-v2.md"
+}

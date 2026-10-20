@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "id": "c4e8aeaa9928d40403d2",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "code supplementary anonymize",
+  "task_key": "worker_code_supplementary-anonymize_20260517T211543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_supplementary-anonymize_20260517T211543.log",
+    "occurrence": 1,
+    "bytes": 807582,
+    "sha256": "7d34bb60c4a16b98ed5e44f709f05113b5149f6bda4d81be248228f1e21980c6"
+  },
+  "statistics": {
+    "messages": 298,
+    "user_turns": 3,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 76,
+      "record": 1,
+      "assistant": 16,
+      "tool_call": 100,
+      "user": 3,
+      "tool_result": 100,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "c4e8aeaa9928d40403d2-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "c4e8aeaa9928d40403d2-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 161,
+      "chunks": [
+        {
+          "path": "c4e8aeaa9928d40403d2-part-0001.json",
+          "message_count": 161
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 125,
+      "chunks": [
+        {
+          "path": "c4e8aeaa9928d40403d2-part-0001.json",
+          "message_count": 7
+        },
+        {
+          "path": "c4e8aeaa9928d40403d2-part-0002.json",
+          "message_count": 118
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-supplementary-anonymize.md"
+}

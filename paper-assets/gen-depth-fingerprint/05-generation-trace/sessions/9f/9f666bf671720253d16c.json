@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f666bf671720253d16c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper push appendix xrefs",
+  "task_key": "worker_paper_push-appendix-xrefs_20260524T050636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_push-appendix-xrefs_20260524T050636_result.json",
+    "occurrence": 1,
+    "bytes": 124,
+    "sha256": "c055c808d315183adf76def38a434bc23d7c52c4132d32f1da6c8a96b49c3ec0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- Push 成功\n- Commit hash: `c73e823`\n- 作者: `Anonymous <anonymous@example.com>`\n- 匿名检查: CLEAN"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-push-appendix-xrefs.md"
+}

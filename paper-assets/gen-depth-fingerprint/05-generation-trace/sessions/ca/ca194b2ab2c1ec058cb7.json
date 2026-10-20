@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca194b2ab2c1ec058cb7",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "writing r36 r37 tweaks",
+  "task_key": "worker_writing_r36_r37_tweaks_20260521T071634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_r36_r37_tweaks_20260521T071634_result.json",
+    "occurrence": 1,
+    "bytes": 861,
+    "sha256": "411eed3cffca49b78852a7c68541fb0278f3cab169c6d1febbd9894556a01ad0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，35 页，0 warnings，无 undefined citations。\n\n**修改摘要：**\n\n| 任务 | 状态 | 详情 |\n|------|------|------|\n| **3a** Discussion 术语修正 | 已是最新 | `non-autoregressive` 已不存在，当前文本已经是 `alternative decoding strategies (greedy, top-$k$)` |\n| **3b-1** Tulchinskii et al. | 已存在 | `intrinsic_dim_detection` 已在 bib 中（NeurIPS **2023**，非 2024），且已在 §2.1 引用 |\n| **3b-2** Briesch et al. | **已添加** | `briesch_self_consuming` 加入 references.bib（arXiv:2311.16822, 2023），在 §2.2 第一句 model collapse 引用列表中引用 |\n| **3c** Figure 3 caption | **已添加** | 末尾追加 \"Inference costs measured on a single NVIDIA RTX 5090.\" |\n\n修改文件已同步至 `docs/paper/`（references.bib, related_work.tex, results.tex）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-r36-r37-tweaks.md"
+}

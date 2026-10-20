@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "2e3b71413cf5f37a68d1",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "code table3 unified direct",
+  "task_key": "worker_code_table3-unified-direct_20260516T182922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_table3-unified-direct_20260516T182922.log",
+    "occurrence": 1,
+    "bytes": 533466,
+    "sha256": "ad7b8e30717f23e53840baa702e97abc0809c79a473d9613c4f40be802644d53"
+  },
+  "statistics": {
+    "messages": 307,
+    "user_turns": 0,
+    "tool_calls": 128,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 48,
+      "tool_call": 128,
+      "tool_result": 128
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 307,
+      "chunks": [
+        {
+          "path": "2e3b71413cf5f37a68d1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2e3b71413cf5f37a68d1-part-0002.json",
+          "message_count": 127
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-table3-unified-direct.md"
+}

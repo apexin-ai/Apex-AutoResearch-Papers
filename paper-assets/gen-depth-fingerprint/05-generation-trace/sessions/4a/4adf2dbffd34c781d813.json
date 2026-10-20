@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4adf2dbffd34c781d813",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "exp plan008 multi domain seeds",
+  "task_key": "worker_exp_plan008-multi-domain-seeds_20260515T181516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan008-multi-domain-seeds_20260515T181516_result.json",
+    "occurrence": 1,
+    "bytes": 1200,
+    "sha256": "210fe792017e3650fe69af8d182dd23ef06447d50b14601992b00414fd0f13b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动，总结如下：\n\n**Plan 008 Multi-Domain Seeds 实验状态**\n\n| 阶段 | 状态 | 详情 |\n|------|------|------|\n| Phase 1: Seeds | ✅ 完成 | news 500, scientific 500, creative 500 |\n| Phase 2: Generation | 🔄 运行中 | Pythia-2.8B on cuda:0, PID 234061 |\n| Phase 3: Features | ⏳ 待执行 | 生成完成后自动开始 |\n| Phase 4: Evaluation | ⏳ 待执行 | 特征提取后自动开始 |\n\n**数据源**:\n- news: CNN/DailyMail (`abisee/cnn_dailymail`)\n- scientific: arXiv abstracts (`ccdv/arxiv-summarization`)\n- creative: WritingPrompts (`euclaise/writingprompts`)\n\n**预计总时长**: ~6.5 小时（generation ~5.5h + features/eval ~1h）\n\n**监控命令**:\n```bash\n# 查看各域生成进度 (目标每域 2500 records)\nwc -l /root/gen-depth-fingerprint/data/pythia-2.8b-{news,scientific,creative}/generations_shard0.jsonl\n\n# 查看日志\ntail -20 /tmp/plan008_full.log\n\n# 检查进程\nps -p 234061 -o pid=\n```\n\n脚本支持断点续传，即使中断也可重新运行 `python multi_domain_seeds.py --phase all` 从断点继续。最终结果输出到 `/root/gen-depth-fingerprint/results/multi_domain_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-plan008-multi-domain-seeds.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0008c1871a03f4d5b04c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "fix kill duplicate qwen3",
+  "task_key": "worker_fix_kill-duplicate-qwen3_20260514T205651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_kill-duplicate-qwen3_20260514T205651_result.json",
+    "occurrence": 1,
+    "bytes": 632,
+    "sha256": "61bc2bf3761d0cca66110f8803accc5442a14e9a01d44ad9cebeef14789f842c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**Kill 结果**：成功。112184 和 112269 均已 SIGTERM 终止，无对应 tmux session。\n\n**数据完整性**：干净。\n- shard0: 90 行，0 bad lines，0 重复 (seed_id, depth)\n- shard1: 84 行，0 bad lines，0 重复 (seed_id, depth)\n- 两组进程虽写同一文件，但未发生行交错或重复写入。\n\n**第1组状态**：正常运行中。\n- PID 111538 (shard0): 运行 4h41m，RSS ~3.7GB，GPU 3968 MiB\n- PID 111651 (shard1): 运行 4h39m，RSS ~3.7GB，GPU 3968 MiB\n- 分别占用两块 GPU，互不干扰\n\n**结论**：无需重新提交，第1组继续跑完即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-duplicate-qwen3.md"
+}

@@ -1,0 +1,1356 @@
+{
+  "schema_version": "1.0",
+  "id": "ed8102ebee5961029e23",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "compute cohens d",
+  "task_key": "worker_compute_cohens-d_20260518T084239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compute_cohens-d_20260518T084239.log",
+    "occurrence": 1,
+    "bytes": 58260,
+    "sha256": "eb8c00a8b4364183e8261712b12c1ac0e7c51f803a469d1a1a65d228da3dbb85"
+  },
+  "statistics": {
+    "messages": 32,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 10,
+      "tool_result": 10,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+                "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "0571fd2f-216a-4e38-b804-0c5b01fc93c0",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779096600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "5d04c681-12ae-44c2-87fc-1b0ecccf59b0",
+                "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll connect to the server and compute the pooled Cohen's d for the 7 features."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "0d481c8b-e453-4f33-84a7-dc4834572c62",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FZYUBkWzSuaDpAo2DQHZD2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14610,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14610
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012eptCqwLQ5poXFSMqgAtGE",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "4ad17264-1fc0-4abf-ab72-63ff76582fb7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FZYUBkWzSuaDpAo2DQHZD2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14610,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14610
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T08:42:53.732Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_012eptCqwLQ5poXFSMqgAtGE",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "6197835c-df5b-4f31-a53b-96f2ba3c4ab3",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Bd7a88voo15M65Pfj2Etmz",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "bf973740-7c50-467d-af77-e8a27532b9ff",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FZYUBkWzSuaDpAo2DQHZD2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14610,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14610
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T08:42:53.890Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Bd7a88voo15M65Pfj2Etmz",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "4f6498c5-8f5d-42fa-80d7-b7b0fc322304",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me first check what data files exist and their column names before running the full script.",
+              "signature": "EpoCClkIDRgCKkCX+pb8gvOWnss5nmshInfBODbqNTBYak7A4zkEycmLD3HYJSYyBJ4QxyngvDCbGxB3sVAzHlXRExxmwLjlibk1Mg9jbGF1ZGUtb3B1cy00LTY4ABIM1hqGJcM0KJMJJBUBGgwreusLM+t0vdCfo5IiMOWZ5MUqjutfOPbZS1RMdgcnRo1rcKDCoNMgMqqAiINJH+qHD42jLg/uLvW1B1YHKSpvfBI2VVYWepLRTqqB85JAkwlRidONXu7UtV0kidJMJuy9q+yA22BOqqIJdWomgFa5bkcog8jUIqR0HY33S3L48H3TDCuVYg5Krof240Oqh2RhceCQaowTxZF1vnSozODjjrzChxg5aZackK+1gDv8GAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "70ea0487-771a-4d91-bae2-f615ca95527a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N43GfJAY6tc3U5jv1KyY5R",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 795,
+                "cache_read_input_tokens": 26451,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 795
+                },
+                "output_tokens": 18,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "First, let me check the data file and column names."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "ce3e7f88-71eb-4cf7-b0bb-4536657ceb86",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N43GfJAY6tc3U5jv1KyY5R",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 795,
+                "cache_read_input_tokens": 26451,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 795
+                },
+                "output_tokens": 18,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ScFhFQd2Zs8FzrF9hztYn5",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "ls /root/gen-depth-fingerprint/data/features*.csv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "e460a974-d436-465a-82a2-0ea453dfb59c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N43GfJAY6tc3U5jv1KyY5R",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 795,
+                "cache_read_input_tokens": 26451,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 795
+                },
+                "output_tokens": 18,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T08:42:59.285Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ScFhFQd2Zs8FzrF9hztYn5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gen-depth-fingerprint/data/features.csv\\\\n/root/gen-depth-fingerprint/data/features_8gen.csv\\\\n/root/gen-depth-fingerprint/data/features_all.csv\\\\n/root/gen-depth-fingerprint/data/features_all_models.csv\\\\n/root/gen-depth-fingerprint/data/features_indep_olmo-2-1b.csv\\\\n/root/gen-depth-fingerprint/data/features_indep_pythia-2.8b.csv\\\\n/root/gen-depth-fingerprint/data/features_llama-3.2-3b-instruct.csv\\\\n/root/gen-depth-fingerprint/data/features_olmo-2-0425-1b-instruct.csv\\\\n/root/gen-depth-fingerprint/data/features_olmo-2-1b.csv\\\\n/root/gen-depth-fingerprint/data/features_pythia-1b.csv\\\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-creative.csv\\\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-news.csv\\\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-scientific.csv\\\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-t05.csv\\\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-t09.csv\\\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen3-0.6b-instruct.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen3-0.6b.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen3-1.7b-high-temp.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen3-1.7b-instruct.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen3-1.7b-low-temp.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen3-1.7b-t09.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen3-1.7b.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen8b_ref_olmo.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen8b_ref_qwen.csv\\\\n/root/gen-depth-fingerprint/data/features_ref_olmo.csv\\\\n/root/gen-depth-fingerprint/data/features_ref_qwen.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "20416afe-9728-4e40-a267-1a89f9d7ce03",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gen-depth-fingerprint/data/features.csv\\\\n/root/gen-depth-fingerprint/data/features_8gen.csv\\\\n/root/gen-depth-fingerprint/data/features_all.csv\\\\n/root/gen-depth-fingerprint/data/features_all_models.csv\\\\n/root/gen-depth-fingerprint/data/features_indep_olmo-2-1b.csv\\\\n/root/gen-depth-fingerprint/data/features_indep_pythia-2.8b.csv\\\\n/root/gen-depth-fingerprint/data/features_llama-3.2-3b-instruct.csv\\\\n/root/gen-depth-fingerprint/data/features_olmo-2-0425-1b-instruct.csv\\\\n/root/gen-depth-fingerprint/data/features_olmo-2-1b.csv\\\\n/root/gen-depth-fingerprint/data/features_pythia-1b.csv\\\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-creative.csv\\\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-news.csv\\\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-scientific.csv\\\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-t05.csv\\\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-t09.csv\\\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen3-0.6b-instruct.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen3-0.6b.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen3-1.7b-high-temp.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen3-1.7b-instruct.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen3-1.7b-low-temp.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen3-1.7b-t09.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen3-1.7b.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen8b_ref_olmo.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen8b_ref_qwen.csv\\\\n/root/gen-depth-fingerprint/data/features_ref_olmo.csv\\\\n/root/gen-depth-fingerprint/data/features_ref_qwen.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/data/features.csv\\n/root/gen-depth-fingerprint/data/features_8gen.csv\\n/root/gen-depth-fingerprint/data/features_all.csv\\n/root/gen-depth-fingerprint/data/features_all_models.csv\\n/root/gen-depth-fingerprint/data/features_indep_olmo-2-1b.csv\\n/root/gen-depth-fingerprint/data/features_indep_pythia-2.8b.csv\\n/root/gen-depth-fingerprint/data/features_llama-3.2-3b-instruct.csv\\n/root/gen-depth-fingerprint/data/features_olmo-2-0425-1b-instruct.csv\\n/root/gen-depth-fingerprint/data/features_olmo-2-1b.csv\\n/root/gen-depth-fingerprint/data/features_pythia-1b.csv\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-creative.csv\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-news.csv\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-scientific.csv\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-t05.csv\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-t09.csv\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b.csv\\n/root/gen-depth-fingerprint/data/features_qwen3-0.6b-instruct.csv\\n/root/gen-depth-fingerprint/data/features_qwen3-0.6b.csv\\n/root/gen-depth-fingerprint/data/features_qwen3-1.7b-high-temp.csv\\n/root/gen-depth-fingerprint/data/features_qwen3-1.7b-instruct.csv\\n/root/gen-depth-fingerprint/data/features_qwen3-1.7b-low-temp.csv\\n/root/gen-depth-fingerprint/data/features_qwen3-1.7b-t09.csv\\n/root/gen-depth-fingerprint/data/features_qwen3-1.7b.csv\\n/root/gen-depth-fingerprint/data/features_qwen8b_ref_olmo.csv\\n/root/gen-depth-fingerprint/data/features_qwen8b_ref_qwen.csv\\n/root/gen-depth-fingerprint/data/features_ref_olmo.csv\\n/root/gen-depth-fingerprint/data/features_ref_qwen.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Hh2hL2bQvZK2LVwkJwoYby",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "head -1 /root/gen-depth-fingerprint/data/features_all_models.csv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "000c1ff8-4e95-49fb-a0d0-1791c584c7d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015XhDyt2fFKaPhmy16khV1C",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 923,
+                "cache_read_input_tokens": 27246,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 923
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T08:43:02.896Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Hh2hL2bQvZK2LVwkJwoYby",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"model_name,seed_id,depth,entropy_mean,entropy_std,entropy_min,entropy_max,tail_decay,ttr,hapax_ratio\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "3814e174-be09-41d3-80db-33e44869dee3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"model_name,seed_id,depth,entropy_mean,entropy_std,entropy_min,entropy_max,tail_decay,ttr,hapax_ratio\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"model_name,seed_id,depth,entropy_mean,entropy_std,entropy_min,entropy_max,tail_decay,ttr,hapax_ratio\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "File exists with exactly the expected columns. Now running the full computation."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "0c40ba75-4d64-40c8-b926-e753a92ad165",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014xY3VW7UnyfvmUKRdrq7pW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 220,
+                "cache_read_input_tokens": 28169,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 220
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013AhoehHRsKmzNrf9ea1mou",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "cd /root/gen-depth-fingerprint && python3 -c \"\nimport pandas as pd\nimport numpy as np\n\n# 1. Read data\ndf = pd.read_csv('data/features_all_models.csv')\nprint(f'Total rows: {len(df)}')\nprint(f'Columns: {list(df.columns)}')\nprint(f'Depth distribution:')\nprint(df['depth'].value_counts().sort_index())\nprint(f'Models: {df[\\\"model_name\\\"].nunique()} unique')\nprint(df['model_name'].value_counts())\n\n# 2. Exclude gen-0, group gen-1 vs gen-2+\ndf = df[df['depth'] > 0].copy()\ndf['group'] = (df['depth'] == 1).astype(int)  # 1 = gen-1, 0 = gen-2+\nprint(f'\\nAfter excluding gen-0: {len(df)} rows')\nprint(f'gen-1: {(df[\\\"group\\\"]==1).sum()}, gen-2+: {(df[\\\"group\\\"]==0).sum()}')\n\n# 3. Class balancing: downsample to equal size\ngen1 = df[df['group'] == 1]\ngen2plus = df[df['group'] == 0]\nn_min = min(len(gen1), len(gen2plus))\nnp.random.seed(42)\ngen1_bal = gen1.sample(n=n_min, random_state=42)\ngen2plus_bal = gen2plus.sample(n=n_min, random_state=42)\ndf_bal = pd.concat([gen1_bal, gen2plus_bal])\nprint(f'Class-balanced: {len(df_bal)} rows ({n_min} per class)')\n\n# 4. Compute pooled Cohen's d with bootstrap CI\nfeatures = ['entropy_mean', 'entropy_std', 'entropy_min', 'entropy_max', 'tail_decay', 'ttr', 'hapax_ratio']\n\ndef cohens_d_pooled(group1, group2):\n    n1, n2 = len(group1), len(group2)\n    var1, var2 = group1.var(ddof=1), group2.var(ddof=1)\n    pooled_std = np.sqrt(((n1-1)*var1 + (n2-1)*var2) / (n1+n2-2))\n    if pooled_std == 0:\n        return 0.0\n    return (group1.mean() - group2.mean()) / pooled_std\n\nn_boot = 1000\nresults = []\n\nfor feat in features:\n    g1 = df_bal[df_bal['group'] == 1][feat].values  # gen-1\n    g2 = df_bal[df_bal['group'] == 0][feat].values  # gen-2+\n    \n    # Point estimate\n    d = cohens_d_pooled(pd.Series(g1), pd.Series(g2))\n    \n    # Bootstrap CI\n    boot_ds = []\n    for b in range(n_boot):\n        idx1 = np.random.choice(len(g1), size=len(g1), replace=True)\n        idx2 = np.random.choice(len(g2), size=len(g2), replace=True)\n        boot_d = cohens_d_pooled(pd.Series(g1[idx1]), pd.Series(g2[idx2]))\n        boot_ds.append(boot_d)\n    \n    ci_lo = np.percentile(boot_ds, 2.5)\n    ci_hi = np.percentile(boot_ds, 97.5)\n    \n    results.append({\n        'feature': feat,\n        'cohens_d': d,\n        'ci_lo': ci_lo,\n        'ci_hi': ci_hi,\n        'abs_d': abs(d)\n    })\n\nprint('\\n=== Summary ===')\nprint(f'{\\\"Feature\\\":20s} {\\\"Cohen d\\\":>10s} {\\\"95% CI\\\":>20s} {\\\"|d|\\\":>8s} {\\\"Category\\\":>12s}')\nprint('-' * 75)\nfor r in sorted(results, key=lambda x: -x['abs_d']):\n    cat = 'drifting' if r['abs_d'] > 0.5 else ('intermediate' if r['abs_d'] > 0.2 else 'stationary')\n    print(f\\\"{r['feature']:20s} {r['cohens_d']:+10.4f} [{r['ci_lo']:+.4f}, {r['ci_hi']:+.4f}] {r['abs_d']:8.4f} {cat:>12s}\\\")\n\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "282d749e-6cc6-4f0e-a46b-95404f52a480",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014xY3VW7UnyfvmUKRdrq7pW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 220,
+                "cache_read_input_tokens": 28169,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 220
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T08:43:21.519Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013AhoehHRsKmzNrf9ea1mou",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/gen-depth-fingerprint && python3 -c \\\\\\\"\\\\\\\\nimport pandas as pd\\\\\\\\nimport numpy as np\\\\\\\\n\\\\\\\\n# 1. Read data\\\\\\\\ndf = pd.read_csv(\\\\\\\\'data/features_all_models.csv\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'Total rows: {len(df)}\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'Columns: {list(df.columns)}\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'Depth distribution:\\\\\\\\')\\\\\\\\nprint(df[\\\\\\\\'depth\\\\\\\\'].value_counts().sort_index())\\\\\\\\nprint(f\\\\\\\\'Models: {df[\\\\\\\\\\\\\\\\\\\\\\\"model_name\\\\\\\\\\\\\\\\\\\\\\\"].nunique()} unique\\\\\\\\')\\\\\\\\nprint(df[\\\\\\\\'model_name\\\\\\\\'].value_counts())\\\\\\\\n\\\\\\\\n# 2. Exclude gen-0, group gen-1 vs gen-2+\\\\\\\\ndf = df[df[\\\\\\\\'depth\\\\\\\\'] > 0].copy()\\\\\\\\ndf[\\\\\\\\'group\\\\\\\\'] = (df[\\\\\\\\'depth\\\\\\\\'] == 1).astype(int)  # 1 = gen-1, 0 = gen-2+\\\\\\\\nprint(f\\\\\\\\'\\\\\\\\\\\\\\\\nAfter excluding gen-0: {len(df)} rows\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'gen-1: {(df[\\\\\\\\\\\\\\\\\\\\\\\"group\\\\\\\\\\\\\\\\\\\\\\\"]==1).sum()}, gen-2+: {(df[\\\\\\\\\\\\\\\\\\\\\\\"group\\\\\\\\\\\\\\\\\\\\\\\"]==0).sum()}\\\\\\\\')\\\\\\\\n\\\\\\\\n# 3. Class balancing: downsample to equal size\\\\\\\\ngen1 = df[df[\\\\\\\\'group\\\\\\\\'] == 1]\\\\\\\\ngen2plus = df[df[\\\\\\\\'group\\\\\\\\'] == 0]\\\\\\\\nn_min = min(len(gen1), len(gen2plus))\\\\\\\\nnp.random.seed(42)\\\\\\\\ngen1_bal = gen1.sample(n=n_min, random_state=42)\\\\\\\\ngen2plus_bal = gen2plus.sample(n=n_min, random_state=42)\\\\\\\\ndf_bal = pd.concat([gen1_bal, gen2plus_bal])\\\\\\\\nprint(f\\\\\\\\'Class-balanced: {len(df_bal)} rows ({n_min} per class)\\\\\\\\')\\\\\\\\n\\\\\\\\n# 4. Compute pooled Cohen\\\\\\\\'s d with bootstrap CI\\\\\\\\nfeatures = [\\\\\\\\'entropy_mean\\\\\\\\', \\\\\\\\'entropy_std\\\\\\\\', \\\\\\\\'entropy_min\\\\\\\\', \\\\\\\\'entropy_max\\\\\\\\', \\\\\\\\'tail_decay\\\\\\\\', \\\\\\\\'ttr\\\\\\\\', \\\\\\\\'hapax_ratio\\\\\\\\']\\\\\\\\n\\\\\\\\ndef cohens_d_pooled(group1, group2):\\\\\\\\n    n1, n2 = len(group1), len(group2)\\\\\\\\n    var1, var2 = group1.var(ddof=1), group2.var(ddof=1)\\\\\\\\n    pooled_std = np.sqrt(((n1-1)*var1 + (n2-1)*var2) / (n1+n2-2))\\\\\\\\n    if pooled_std == 0:\\\\\\\\n        return 0.0\\\\\\\\n    return (group1.mean() - group2.mean()) / pooled_std\\\\\\\\n\\\\\\\\nn_boot = 1000\\\\\\\\nresults = []\\\\\\\\n\\\\\\\\nfor feat in features:\\\\\\\\n    g1 = df_bal[df_bal[\\\\\\\\'group\\\\\\\\'] == 1][feat].values  # gen-1\\\\\\\\n    g2 = df_bal[df_bal[\\\\\\\\'group\\\\\\\\'] == 0][feat].values  # gen-2+\\\\\\\\n    \\\\\\\\n    # Point estimate\\\\\\\\n    d = cohens_d_pooled(pd.Series(g1), pd.Series(g2))\\\\\\\\n    \\\\\\\\n    # Bootstrap CI\\\\\\\\n    boot_ds = []\\\\\\\\n    for b in range(n_boot):\\\\\\\\n        idx1 = np.random.choice(len(g1), size=len(g1), replace=True)\\\\\\\\n        idx2 = np.random.choice(len(g2), size=len(g2), replace=True)\\\\\\\\n        boot_d = cohens_d_pooled(pd.Series(g1[idx1]), pd.Series(g2[idx2]))\\\\\\\\n        boot_ds.append(boot_d)\\\\\\\\n    \\\\\\\\n    ci_lo = np.percentile(boot_ds, 2.5)\\\\\\\\n    ci_hi = np.percentile(boot_ds, 97.5)\\\\\\\\n    \\\\\\\\n    results.append({\\\\\\\\n        \\\\\\\\'feature\\\\\\\\': feat,\\\\\\\\n        \\\\\\\\'cohens_d\\\\\\\\': d,\\\\\\\\n        \\\\\\\\'ci_lo\\\\\\\\': ci_lo,\\\\\\\\n        \\\\\\\\'ci_hi\\\\\\\\': ci_hi,\\\\\\\\n        \\\\\\\\'abs_d\\\\\\\\': abs(d)\\\\\\\\n    })\\\\\\\\n\\\\\\\\nprint(\\\\\\\\'\\\\\\\\\\\\\\\\n=== Summary ===\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'{\\\\\\\\\\\\\\\\\\\\\\\"Feature\\\\\\\\\\\\\\\\\\\\\\\":20s} {\\\\\\\\\\\\\\\\\\\\\\\"Cohen d\\\\\\\\\\\\\\\\\\\\\\\":>10s} {\\\\\\\\\\\\\\\\\\\\\\\"95% CI\\\\\\\\\\\\\\\\\\\\\\\":>20s} {\\\\\\\\\\\\\\\\\\\\\\\"|d|\\\\\\\\\\\\\\\\\\\\\\\":>8s} {\\\\\\\\\\\\\\\\\\\\\\\"Category\\\\\\\\\\\\\\\\\\\\\\\":>12s}\\\\\\\\')\\\\\\\\nprint(\\\\\\\\'-\\\\\\\\' * 75)\\\\\\\\nfor r in sorted(results, key=lambda x: -x[\\\\\\\\'abs_d\\\\\\\\']):\\\\\\\\n    cat = \\\\\\\\'drifting\\\\\\\\' if r[\\\\\\\\'abs_d\\\\\\\\'] > 0.5 else (\\\\\\\\'intermediate\\\\\\\\' if r[\\\\\\\\'abs_d\\\\\\\\'] > 0.2 else \\\\\\\\'stationary\\\\\\\\')\\\\\\\\n    print(f\\\\\\\\\\\\\\\\\\\\\\\"{r[\\\\\\\\'feature\\\\\\\\']:20s} {r[\\\\\\\\'cohens_d\\\\\\\\']:+10.4f} [{r[\\\\\\\\'ci_lo\\\\\\\\']:+.4f}, {r[\\\\\\\\'ci_hi\\\\\\\\']:+.4f}] {r[\\\\\\\\'abs_d\\\\\\\\']:8.4f} {cat:>12s}\\\\\\\\\\\\\\\\\\\\\\\")\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 2, in <module>\\\\nModuleNotFoundError: No module named 'pandas'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "ba03eea1-6e7e-4559-ac25-b9c0eac93f92",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/gen-depth-fingerprint && python3 -c \\\\\\\"\\\\\\\\nimport pandas as pd\\\\\\\\nimport numpy as np\\\\\\\\n\\\\\\\\n# 1. Read data\\\\\\\\ndf = pd.read_csv(\\\\\\\\'data/features_all_models.csv\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'Total rows: {len(df)}\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'Columns: {list(df.columns)}\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'Depth distribution:\\\\\\\\')\\\\\\\\nprint(df[\\\\\\\\'depth\\\\\\\\'].value_counts().sort_index())\\\\\\\\nprint(f\\\\\\\\'Models: {df[\\\\\\\\\\\\\\\\\\\\\\\"model_name\\\\\\\\\\\\\\\\\\\\\\\"].nunique()} unique\\\\\\\\')\\\\\\\\nprint(df[\\\\\\\\'model_name\\\\\\\\'].value_counts())\\\\\\\\n\\\\\\\\n# 2. Exclude gen-0, group gen-1 vs gen-2+\\\\\\\\ndf = df[df[\\\\\\\\'depth\\\\\\\\'] > 0].copy()\\\\\\\\ndf[\\\\\\\\'group\\\\\\\\'] = (df[\\\\\\\\'depth\\\\\\\\'] == 1).astype(int)  # 1 = gen-1, 0 = gen-2+\\\\\\\\nprint(f\\\\\\\\'\\\\\\\\\\\\\\\\nAfter excluding gen-0: {len(df)} rows\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'gen-1: {(df[\\\\\\\\\\\\\\\\\\\\\\\"group\\\\\\\\\\\\\\\\\\\\\\\"]==1).sum()}, gen-2+: {(df[\\\\\\\\\\\\\\\\\\\\\\\"group\\\\\\\\\\\\\\\\\\\\\\\"]==0).sum()}\\\\\\\\')\\\\\\\\n\\\\\\\\n# 3. Class balancing: downsample to equal size\\\\\\\\ngen1 = df[df[\\\\\\\\'group\\\\\\\\'] == 1]\\\\\\\\ngen2plus = df[df[\\\\\\\\'group\\\\\\\\'] == 0]\\\\\\\\nn_min = min(len(gen1), len(gen2plus))\\\\\\\\nnp.random.seed(42)\\\\\\\\ngen1_bal = gen1.sample(n=n_min, random_state=42)\\\\\\\\ngen2plus_bal = gen2plus.sample(n=n_min, random_state=42)\\\\\\\\ndf_bal = pd.concat([gen1_bal, gen2plus_bal])\\\\\\\\nprint(f\\\\\\\\'Class-balanced: {len(df_bal)} rows ({n_min} per class)\\\\\\\\')\\\\\\\\n\\\\\\\\n# 4. Compute pooled Cohen\\\\\\\\'s d with bootstrap CI\\\\\\\\nfeatures = [\\\\\\\\'entropy_mean\\\\\\\\', \\\\\\\\'entropy_std\\\\\\\\', \\\\\\\\'entropy_min\\\\\\\\', \\\\\\\\'entropy_max\\\\\\\\', \\\\\\\\'tail_decay\\\\\\\\', \\\\\\\\'ttr\\\\\\\\', \\\\\\\\'hapax_ratio\\\\\\\\']\\\\\\\\n\\\\\\\\ndef cohens_d_pooled(group1, group2):\\\\\\\\n    n1, n2 = len(group1), len(group2)\\\\\\\\n    var1, var2 = group1.var(ddof=1), group2.var(ddof=1)\\\\\\\\n    pooled_std = np.sqrt(((n1-1)*var1 + (n2-1)*var2) / (n1+n2-2))\\\\\\\\n    if pooled_std == 0:\\\\\\\\n        return 0.0\\\\\\\\n    return (group1.mean() - group2.mean()) / pooled_std\\\\\\\\n\\\\\\\\nn_boot = 1000\\\\\\\\nresults = []\\\\\\\\n\\\\\\\\nfor feat in features:\\\\\\\\n    g1 = df_bal[df_bal[\\\\\\\\'group\\\\\\\\'] == 1][feat].values  # gen-1\\\\\\\\n    g2 = df_bal[df_bal[\\\\\\\\'group\\\\\\\\'] == 0][feat].values  # gen-2+\\\\\\\\n    \\\\\\\\n    # Point estimate\\\\\\\\n    d = cohens_d_pooled(pd.Series(g1), pd.Series(g2))\\\\\\\\n    \\\\\\\\n    # Bootstrap CI\\\\\\\\n    boot_ds = []\\\\\\\\n    for b in range(n_boot):\\\\\\\\n        idx1 = np.random.choice(len(g1), size=len(g1), replace=True)\\\\\\\\n        idx2 = np.random.choice(len(g2), size=len(g2), replace=True)\\\\\\\\n        boot_d = cohens_d_pooled(pd.Series(g1[idx1]), pd.Series(g2[idx2]))\\\\\\\\n        boot_ds.append(boot_d)\\\\\\\\n    \\\\\\\\n    ci_lo = np.percentile(boot_ds, 2.5)\\\\\\\\n    ci_hi = np.percentile(boot_ds, 97.5)\\\\\\\\n    \\\\\\\\n    results.append({\\\\\\\\n        \\\\\\\\'feature\\\\\\\\': feat,\\\\\\\\n        \\\\\\\\'cohens_d\\\\\\\\': d,\\\\\\\\n        \\\\\\\\'ci_lo\\\\\\\\': ci_lo,\\\\\\\\n        \\\\\\\\'ci_hi\\\\\\\\': ci_hi,\\\\\\\\n        \\\\\\\\'abs_d\\\\\\\\': abs(d)\\\\\\\\n    })\\\\\\\\n\\\\\\\\nprint(\\\\\\\\'\\\\\\\\\\\\\\\\n=== Summary ===\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'{\\\\\\\\\\\\\\\\\\\\\\\"Feature\\\\\\\\\\\\\\\\\\\\\\\":20s} {\\\\\\\\\\\\\\\\\\\\\\\"Cohen d\\\\\\\\\\\\\\\\\\\\\\\":>10s} {\\\\\\\\\\\\\\\\\\\\\\\"95% CI\\\\\\\\\\\\\\\\\\\\\\\":>20s} {\\\\\\\\\\\\\\\\\\\\\\\"|d|\\\\\\\\\\\\\\\\\\\\\\\":>8s} {\\\\\\\\\\\\\\\\\\\\\\\"Category\\\\\\\\\\\\\\\\\\\\\\\":>12s}\\\\\\\\')\\\\\\\\nprint(\\\\\\\\'-\\\\\\\\' * 75)\\\\\\\\nfor r in sorted(results, key=lambda x: -x[\\\\\\\\'abs_d\\\\\\\\']):\\\\\\\\n    cat = \\\\\\\\'drifting\\\\\\\\' if r[\\\\\\\\'abs_d\\\\\\\\'] > 0.5 else (\\\\\\\\'intermediate\\\\\\\\' if r[\\\\\\\\'abs_d\\\\\\\\'] > 0.2 else \\\\\\\\'stationary\\\\\\\\')\\\\\\\\n    print(f\\\\\\\\\\\\\\\\\\\\\\\"{r[\\\\\\\\'feature\\\\\\\\']:20s} {r[\\\\\\\\'cohens_d\\\\\\\\']:+10.4f} [{r[\\\\\\\\'ci_lo\\\\\\\\']:+.4f}, {r[\\\\\\\\'ci_hi\\\\\\\\']:+.4f}] {r[\\\\\\\\'abs_d\\\\\\\\']:8.4f} {cat:>12s}\\\\\\\\\\\\\\\\\\\\\\\")\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 2, in <module>\\\\nModuleNotFoundError: No module named 'pandas'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/gen-depth-fingerprint && python3 -c \\\"\\\\nimport pandas as pd\\\\nimport numpy as np\\\\n\\\\n# 1. Read data\\\\ndf = pd.read_csv(\\\\'data/features_all_models.csv\\\\')\\\\nprint(f\\\\'Total rows: {len(df)}\\\\')\\\\nprint(f\\\\'Columns: {list(df.columns)}\\\\')\\\\nprint(f\\\\'Depth distribution:\\\\')\\\\nprint(df[\\\\'depth\\\\'].value_counts().sort_index())\\\\nprint(f\\\\'Models: {df[\\\\\\\\\\\"model_name\\\\\\\\\\\"].nunique()} unique\\\\')\\\\nprint(df[\\\\'model_name\\\\'].value_counts())\\\\n\\\\n# 2. Exclude gen-0, group gen-1 vs gen-2+\\\\ndf = df[df[\\\\'depth\\\\'] > 0].copy()\\\\ndf[\\\\'group\\\\'] = (df[\\\\'depth\\\\'] == 1).astype(int)  # 1 = gen-1, 0 = gen-2+\\\\nprint(f\\\\'\\\\\\\\nAfter excluding gen-0: {len(df)} rows\\\\')\\\\nprint(f\\\\'gen-1: {(df[\\\\\\\\\\\"group\\\\\\\\\\\"]==1).sum()}, gen-2+: {(df[\\\\\\\\\\\"group\\\\\\\\\\\"]==0).sum()}\\\\')\\\\n\\\\n# 3. Class balancing: downsample to equal size\\\\ngen1 = df[df[\\\\'group\\\\'] == 1]\\\\ngen2plus = df[df[\\\\'group\\\\'] == 0]\\\\nn_min = min(len(gen1), len(gen2plus))\\\\nnp.random.seed(42)\\\\ngen1_bal = gen1.sample(n=n_min, random_state=42)\\\\ngen2plus_bal = gen2plus.sample(n=n_min, random_state=42)\\\\ndf_bal = pd.concat([gen1_bal, gen2plus_bal])\\\\nprint(f\\\\'Class-balanced: {len(df_bal)} rows ({n_min} per class)\\\\')\\\\n\\\\n# 4. Compute pooled Cohen\\\\'s d with bootstrap CI\\\\nfeatures = [\\\\'entropy_mean\\\\', \\\\'entropy_std\\\\', \\\\'entropy_min\\\\', \\\\'entropy_max\\\\', \\\\'tail_decay\\\\', \\\\'ttr\\\\', \\\\'hapax_ratio\\\\']\\\\n\\\\ndef cohens_d_pooled(group1, group2):\\\\n    n1, n2 = len(group1), len(group2)\\\\n    var1, var2 = group1.var(ddof=1), group2.var(ddof=1)\\\\n    pooled_std = np.sqrt(((n1-1)*var1 + (n2-1)*var2) / (n1+n2-2))\\\\n    if pooled_std == 0:\\\\n        return 0.0\\\\n    return (group1.mean() - group2.mean()) / pooled_std\\\\n\\\\nn_boot = 1000\\\\nresults = []\\\\n\\\\nfor feat in features:\\\\n    g1 = df_bal[df_bal[\\\\'group\\\\'] == 1][feat].values  # gen-1\\\\n    g2 = df_bal[df_bal[\\\\'group\\\\'] == 0][feat].values  # gen-2+\\\\n    \\\\n    # Point estimate\\\\n    d = cohens_d_pooled(pd.Series(g1), pd.Series(g2))\\\\n    \\\\n    # Bootstrap CI\\\\n    boot_ds = []\\\\n    for b in range(n_boot):\\\\n        idx1 = np.random.choice(len(g1), size=len(g1), replace=True)\\\\n        idx2 = np.random.choice(len(g2), size=len(g2), replace=True)\\\\n        boot_d = cohens_d_pooled(pd.Series(g1[idx1]), pd.Series(g2[idx2]))\\\\n        boot_ds.append(boot_d)\\\\n    \\\\n    ci_lo = np.percentile(boot_ds, 2.5)\\\\n    ci_hi = np.percentile(boot_ds, 97.5)\\\\n    \\\\n    results.append({\\\\n        \\\\'feature\\\\': feat,\\\\n        \\\\'cohens_d\\\\': d,\\\\n        \\\\'ci_lo\\\\': ci_lo,\\\\n        \\\\'ci_hi\\\\': ci_hi,\\\\n        \\\\'abs_d\\\\': abs(d)\\\\n    })\\\\n\\\\nprint(\\\\'\\\\\\\\n=== Summary ===\\\\')\\\\nprint(f\\\\'{\\\\\\\\\\\"Feature\\\\\\\\\\\":20s} {\\\\\\\\\\\"Cohen d\\\\\\\\\\\":>10s} {\\\\\\\\\\\"95% CI\\\\\\\\\\\":>20s} {\\\\\\\\\\\"|d|\\\\\\\\\\\":>8s} {\\\\\\\\\\\"Category\\\\\\\\\\\":>12s}\\\\')\\\\nprint(\\\\'-\\\\' * 75)\\\\nfor r in sorted(results, key=lambda x: -x[\\\\'abs_d\\\\']):\\\\n    cat = \\\\'drifting\\\\' if r[\\\\'abs_d\\\\'] > 0.5 else (\\\\'intermediate\\\\' if r[\\\\'abs_d\\\\'] > 0.2 else \\\\'stationary\\\\')\\\\n    print(f\\\\\\\\\\\"{r[\\\\'feature\\\\']:20s} {r[\\\\'cohens_d\\\\']:+10.4f} [{r[\\\\'ci_lo\\\\']:+.4f}, {r[\\\\'ci_hi\\\\']:+.4f}] {r[\\\\'abs_d\\\\']:8.4f} {cat:>12s}\\\\\\\\\\\")\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"<string>\\\", line 2, in <module>\\nModuleNotFoundError: No module named 'pandas'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "pandas is not installed. Let me write a script file instead and install pandas first, or use the script file approach.",
+              "signature": "ErICClkIDRgCKkDH9PjuVkaOo42vkfUul39pU1jl8DBmR24ubOKztnhM75nlahWj3HOI2lBykAU/fNjuIpW70fumWJ4LOg0kcIRqMg9jbGF1ZGUtb3B1cy00LTY4ABIMs4akPJAPuYWHn5H8Ggw8F0EGY+SiHqabL1EiMJ9PEPKqzn0G1r8DeC4oKxKPjfyH2fj5CYvqsTlPKDQBCRRKkmQcsEk5k4/TzItQqSqGAWWwJLYM7cQwn+ifrB5NgHjhavLya+3iY18EwwEYozT5D4eQnc855Y2g/dnCrhp2oLlMjUU8trTdy8mYsQXgquhx/GD8K7aBkZa69Rqg4eg+f1NTmmJKKB5aoECbrX8XSuiXyvnbutDsNPWdVVKLij5OK1yGabM/1sTUetHXcNDlN7t/UrS8GAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "10a8daaf-3530-4e20-8406-e9c92c732bb1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AmhKJ3QwUF9ez6Z1UmWMeG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3060,
+                "cache_read_input_tokens": 28389,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3060
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "pandas not installed. Let me write a script file and install the dependency."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "fe2df021-cfed-41d5-a6c0-b9ee5990d046",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AmhKJ3QwUF9ez6Z1UmWMeG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3060,
+                "cache_read_input_tokens": 28389,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3060
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012p9XxwgwSLXMwZUSa55WC3",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "pip install pandas -q 2>&1 | tail -1"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "5ff5da27-6d11-4981-9743-a2d0809c11a4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AmhKJ3QwUF9ez6Z1UmWMeG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3060,
+                "cache_read_input_tokens": 28389,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3060
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T08:43:27.517Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012p9XxwgwSLXMwZUSa55WC3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bash: line 1: pip: command not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "e9509f0c-d9cf-4a5a-8377-0dfc8c43316e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bash: line 1: pip: command not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: pip: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017augafdiag5wnxweWAPBtm",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "which python3 && python3 --version && python3 -m pip install pandas numpy -q 2>&1 | tail -3"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "a7228667-b9b1-4a9a-b044-b3b66a538250",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011KBgdsToq9S5RYbTFmrAn5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 341,
+                "cache_read_input_tokens": 31449,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 341
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T08:43:31.091Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017augafdiag5wnxweWAPBtm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/usr/bin/python3\\\\nPython 3.10.12\\\\n/usr/bin/python3: No module named pip\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "bf9704e1-5430-4eda-8266-1049407ac669",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/usr/bin/python3\\\\nPython 3.10.12\\\\n/usr/bin/python3: No module named pip\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/usr/bin/python3\\nPython 3.10.12\\n/usr/bin/python3: No module named pip\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017h7b8dDG2zue5o2q4qM41i",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "ls /root/gen-depth-fingerprint/venv/bin/python3 2>/dev/null || ls /root/gen-depth-fingerprint/.venv/bin/python3 2>/dev/null || conda run -n base python3 -c \"import pandas\" 2>&1 || find /root -maxdepth 3 -name \"python3\" -type f 2>/dev/null | head -5"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "80bac813-f20d-4287-b117-f4062440c582",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M3n67FdTLMTBbBcFcr6eV2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 220,
+                "cache_read_input_tokens": 31790,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 220
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T08:43:36.005Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017h7b8dDG2zue5o2q4qM41i",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bash: line 1: conda: command not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "30da5554-ef9f-40c2-92a9-5c8836d4fb5e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bash: line 1: conda: command not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: conda: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U7HAqbgaWsWKnhhsNj7XLJ",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "apt-get update -qq && apt-get install -y -qq python3-pip > /dev/null 2>&1 && pip3 install pandas numpy -q 2>&1 | tail -3"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "bc1312be-8c89-4627-86be-850fcb5e18b7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FcV1Habrqv8KWyvzVkfMtQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 269,
+                "cache_read_input_tokens": 32010,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 269
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T08:43:54.780Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01U7HAqbgaWsWKnhhsNj7XLJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 14.96}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "2bf28489-f8c8-490c-a4bb-b94fcf8ff7fa",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 14.96}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 14.96}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, pandas and numpy installed. Now let me write the script to a file and run it to avoid quoting issues."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "bfecd2dc-c2a0-4a3e-8baf-047608e591f0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LMTun3o1s2EatbdgVLgqpn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 254,
+                "cache_read_input_tokens": 32279,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 254
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KJuqSNCmb7K1uf3goKq4jo",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "cat > /tmp/cohens_d.py << 'PYEOF'\nimport pandas as pd\nimport numpy as np\n\ndf = pd.read_csv('/root/gen-depth-fingerprint/data/features_all_models.csv')\nprint(f\"Total rows: {len(df)}\")\nprint(f\"Depth distribution:\\n{df['depth'].value_counts().sort_index()}\")\nprint(f\"Models: {df['model_name'].nunique()} unique: {list(df['model_name'].unique())}\")\n\ndf = df[df['depth'] > 0].copy()\ndf['group'] = (df['depth'] == 1).astype(int)\nn_gen1 = (df['group']==1).sum()\nn_gen2p = (df['group']==0).sum()\nprint(f\"\\nAfter excluding gen-0: {len(df)} rows\")\nprint(f\"gen-1: {n_gen1}, gen-2+: {n_gen2p}\")\n\ngen1 = df[df['group'] == 1]\ngen2plus = df[df['group'] == 0]\nn_min = min(len(gen1), len(gen2plus))\ngen1_bal = gen1.sample(n=n_min, random_state=42)\ngen2plus_bal = gen2plus.sample(n=n_min, random_state=42)\ndf_bal = pd.concat([gen1_bal, gen2plus_bal])\nprint(f\"Class-balanced: {len(df_bal)} rows ({n_min} per class)\")\n\nfeatures = ['entropy_mean', 'entropy_std', 'entropy_min', 'entropy_max', 'tail_decay', 'ttr', 'hapax_ratio']\n\ndef cohens_d_pooled(g1, g2):\n    n1, n2 = len(g1), len(g2)\n    var1, var2 = g1.var(ddof=1), g2.var(ddof=1)\n    pooled_std = np.sqrt(((n1-1)*var1 + (n2-1)*var2) / (n1+n2-2))\n    if pooled_std == 0:\n        return 0.0\n    return (g1.mean() - g2.mean()) / pooled_std\n\nn_boot = 1000\nnp.random.seed(42)\nresults = []\n\nfor feat in features:\n    g1 = df_bal[df_bal['group'] == 1][feat].values\n    g2 = df_bal[df_bal['group'] == 0][feat].values\n    \n    d = cohens_d_pooled(pd.Series(g1), pd.Series(g2))\n    \n    boot_ds = []\n    for b in range(n_boot):\n        idx1 = np.random.choice(len(g1), size=len(g1), replace=True)\n        idx2 = np.random.choice(len(g2), size=len(g2), replace=True)\n        boot_d = cohens_d_pooled(pd.Series(g1[idx1]), pd.Series(g2[idx2]))\n        boot_ds.append(boot_d)\n    \n    ci_lo = np.percentile(boot_ds, 2.5)\n    ci_hi = np.percentile(boot_ds, 97.5)\n    \n    results.append({\n        'feature': feat,\n        'cohens_d': d,\n        'ci_lo': ci_lo,\n        'ci_hi': ci_hi,\n        'abs_d': abs(d)\n    })\n\nprint(\"\\n=== Pooled Cohen's d: gen-1 vs gen-2+ (class-balanced) ===\")\nprint(f\"{'Feature':20s} {'Cohen d':>10s} {'95% CI':>24s} {'|d|':>8s} {'Category':>14s}\")\nprint(\"-\" * 80)\nfor r in sorted(results, key=lambda x: -x['abs_d']):\n    if r['abs_d'] > 0.5:\n        cat = 'drifting'\n    elif r['abs_d'] > 0.2:\n        cat = 'intermediate'\n    else:\n        cat = 'stationary'\n    print(f\"{r['feature']:20s} {r['cohens_d']:+10.4f}   [{r['ci_lo']:+.4f}, {r['ci_hi']:+.4f}]   {r['abs_d']:8.4f}   {cat:>12s}\")\nPYEOF\npython3 /tmp/cohens_d.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "cfc1a5c4-7441-4855-b03d-e9a4e6b88176",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LMTun3o1s2EatbdgVLgqpn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 254,
+                "cache_read_input_tokens": 32279,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 254
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-18T08:44:17.125Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KJuqSNCmb7K1uf3goKq4jo",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total rows: 27529\\\\nDepth distribution:\\\\ndepth\\\\n0    5972\\\\n1    5918\\\\n2    5599\\\\n3    5181\\\\n4    4859\\\\nName: count, dtype: int64\\\\nModels: 6 unique: ['pythia-2.8b', 'pythia-1b', 'olmo-2-1b', 'qwen3-0.6b', 'qwen3-1.7b', 'qwen3-8b']\\\\n\\\\nAfter excluding gen-0: 21557 rows\\\\ngen-1: 5918, gen-2+: 15639\\\\nClass-balanced: 11836 rows (5918 per class)\\\\n\\\\n=== Pooled Cohen's d: gen-1 vs gen-2+ (class-balanced) ===\\\\nFeature                 Cohen d                   95% CI      |d|       Category\\\\n--------------------------------------------------------------------------------\\\\nentropy_mean            +1.1690   [+1.1161, +1.2200]     1.1690       drifting\\\\nttr                     +0.8765   [+0.8338, +0.9230]     0.8765       drifting\\\\nhapax_ratio             +0.7559   [+0.7101, +0.7996]     0.7559       drifting\\\\nentropy_std             +0.5453   [+0.5058, +0.5845]     0.5453       drifting\\\\nentropy_max             +0.0795   [+0.0434, +0.1145]     0.0795     stationary\\\\ntail_decay              +0.0745   [+0.0396, +0.1086]     0.0745     stationary\\\\nentropy_min             -0.0247   [-0.0584, +0.0127]     0.0247     stationary\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.23}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "0b503c8e-14c8-4d1e-9760-d5a5edb09c7b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total rows: 27529\\\\nDepth distribution:\\\\ndepth\\\\n0    5972\\\\n1    5918\\\\n2    5599\\\\n3    5181\\\\n4    4859\\\\nName: count, dtype: int64\\\\nModels: 6 unique: ['pythia-2.8b', 'pythia-1b', 'olmo-2-1b', 'qwen3-0.6b', 'qwen3-1.7b', 'qwen3-8b']\\\\n\\\\nAfter excluding gen-0: 21557 rows\\\\ngen-1: 5918, gen-2+: 15639\\\\nClass-balanced: 11836 rows (5918 per class)\\\\n\\\\n=== Pooled Cohen's d: gen-1 vs gen-2+ (class-balanced) ===\\\\nFeature                 Cohen d                   95% CI      |d|       Category\\\\n--------------------------------------------------------------------------------\\\\nentropy_mean            +1.1690   [+1.1161, +1.2200]     1.1690       drifting\\\\nttr                     +0.8765   [+0.8338, +0.9230]     0.8765       drifting\\\\nhapax_ratio             +0.7559   [+0.7101, +0.7996]     0.7559       drifting\\\\nentropy_std             +0.5453   [+0.5058, +0.5845]     0.5453       drifting\\\\nentropy_max             +0.0795   [+0.0434, +0.1145]     0.0795     stationary\\\\ntail_decay              +0.0745   [+0.0396, +0.1086]     0.0745     stationary\\\\nentropy_min             -0.0247   [-0.0584, +0.0127]     0.0247     stationary\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.23}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Total rows: 27529\\nDepth distribution:\\ndepth\\n0    5972\\n1    5918\\n2    5599\\n3    5181\\n4    4859\\nName: count, dtype: int64\\nModels: 6 unique: ['pythia-2.8b', 'pythia-1b', 'olmo-2-1b', 'qwen3-0.6b', 'qwen3-1.7b', 'qwen3-8b']\\n\\nAfter excluding gen-0: 21557 rows\\ngen-1: 5918, gen-2+: 15639\\nClass-balanced: 11836 rows (5918 per class)\\n\\n=== Pooled Cohen's d: gen-1 vs gen-2+ (class-balanced) ===\\nFeature                 Cohen d                   95% CI      |d|       Category\\n--------------------------------------------------------------------------------\\nentropy_mean            +1.1690   [+1.1161, +1.2200]     1.1690       drifting\\nttr                     +0.8765   [+0.8338, +0.9230]     0.8765       drifting\\nhapax_ratio             +0.7559   [+0.7101, +0.7996]     0.7559       drifting\\nentropy_std             +0.5453   [+0.5058, +0.5845]     0.5453       drifting\\nentropy_max             +0.0795   [+0.0434, +0.1145]     0.0795     stationary\\ntail_decay              +0.0745   [+0.0396, +0.1086]     0.0745     stationary\\nentropy_min             -0.0247   [-0.0584, +0.0127]     0.0247     stationary\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.23}}"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n### 数据概况\n- 总行数: 27,529 (6 个模型, depth 0-4)\n- 排除 gen-0 后: 21,557 行 (gen-1: 5,918, gen-2+: 15,639)\n- Class-balanced 后: 11,836 行 (每组 5,918)\n\n### Pooled Cohen's d: gen-1 vs gen-2+ (class-balanced)\n\n| Feature | Cohen's d | 95% CI | \\|d\\| | Category |\n|---|---|---|---|---|\n| entropy_mean | +1.1690 | [+1.1161, +1.2200] | 1.1690 | drifting |\n| ttr | +0.8765 | [+0.8338, +0.9230] | 0.8765 | drifting |\n| hapax_ratio | +0.7559 | [+0.7101, +0.7996] | 0.7559 | drifting |\n| entropy_std | +0.5453 | [+0.5058, +0.5845] | 0.5453 | drifting |\n| entropy_max | +0.0795 | [+0.0434, +0.1145] | 0.0795 | stationary |\n| tail_decay | +0.0745 | [+0.0396, +0.1086] | 0.0745 | stationary |\n| entropy_min | -0.0247 | [-0.0584, +0.0127] | 0.0247 | stationary |\n\n4 个特征 drifting (\\|d\\| > 0.5): entropy_mean (大效应, d=1.17), ttr, hapax_ratio, entropy_std。3 个特征 stationary (\\|d\\| < 0.2): entropy_max, tail_decay, entropy_min。没有 intermediate 类 (0.2 < \\|d\\| < 0.5)。所有正 d 值表示 gen-1 均值高于 gen-2+，即这些特征随生成深度递减。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "uuid": "11eb2c67-fec7-473b-ba3c-243ef68cab47",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GCJFnvGLeatZUQ4UJsxRAy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1799,
+                "cache_read_input_tokens": 32533,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1799
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n### 数据概况\n- 总行数: 27,529 (6 个模型, depth 0-4)\n- 排除 gen-0 后: 21,557 行 (gen-1: 5,918, gen-2+: 15,639)\n- Class-balanced 后: 11,836 行 (每组 5,918)\n\n### Pooled Cohen's d: gen-1 vs gen-2+ (class-balanced)\n\n| Feature | Cohen's d | 95% CI | \\|d\\| | Category |\n|---|---|---|---|---|\n| entropy_mean | +1.1690 | [+1.1161, +1.2200] | 1.1690 | drifting |\n| ttr | +0.8765 | [+0.8338, +0.9230] | 0.8765 | drifting |\n| hapax_ratio | +0.7559 | [+0.7101, +0.7996] | 0.7559 | drifting |\n| entropy_std | +0.5453 | [+0.5058, +0.5845] | 0.5453 | drifting |\n| entropy_max | +0.0795 | [+0.0434, +0.1145] | 0.0795 | stationary |\n| tail_decay | +0.0745 | [+0.0396, +0.1086] | 0.0745 | stationary |\n| entropy_min | -0.0247 | [-0.0584, +0.0127] | 0.0247 | stationary |\n\n4 个特征 drifting (\\|d\\| > 0.5): entropy_mean (大效应, d=1.17), ttr, hapax_ratio, entropy_std。3 个特征 stationary (\\|d\\| < 0.2): entropy_max, tail_decay, entropy_min。没有 intermediate 类 (0.2 < \\|d\\| < 0.5)。所有正 d 值表示 gen-1 均值高于 gen-2+，即这些特征随生成深度递减。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 97619,
+            "duration_api_ms": 78844,
+            "num_turns": 11,
+            "stop_reason": "end_turn",
+            "session_id": "b220d34a-60ee-4b80-9aec-7fa2007e27cc",
+            "total_cost_usd": 0.38686625,
+            "usage": {
+              "input_tokens": 14,
+              "cache_creation_input_tokens": 22491,
+              "cache_read_input_tokens": 282157,
+              "output_tokens": 4116,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 22491,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 555,
+                  "cache_read_input_tokens": 32533,
+                  "cache_creation_input_tokens": 1799,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1799
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2164,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002249,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 14,
+                "outputTokens": 4116,
+                "cacheReadInputTokens": 282157,
+                "cacheCreationInputTokens": 22491,
+                "webSearchRequests": 0,
+                "costUSD": 0.38461725,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "15fb84ca-d827-4499-affb-ed26364793cd"
+          },
+          "id": "event-000032"
+        }
+      ],
+      "message_count": 32
+    }
+  ],
+  "readable_path": "readable/worker-executions/compute-cohens-d.md"
+}

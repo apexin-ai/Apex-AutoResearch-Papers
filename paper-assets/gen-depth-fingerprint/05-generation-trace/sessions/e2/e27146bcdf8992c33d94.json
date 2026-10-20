@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e27146bcdf8992c33d94",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_2_1778804992.md",
+  "task_key": "loop_2_1778804992",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778804992.md",
+    "occurrence": 1,
+    "bytes": 4594,
+    "sha256": "a371d95499c2dc03df04b84a8eb7b7b7ed221f389b944b28fbcea7d52aa9639e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-15T00:29:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0, cuda:1, cuda:2, cuda:3（autodl-5090），不可用其他卡\n- submit_training_job 的 command 必须用 `bash -c \"...\"` 包裹（tmux 用 sh 执行，不包裹 source/conda activate 会 EXIT_CODE=127）\n- GPU 编号始终从 cuda:0 开始（框架注入 CUDA_VISIBLE_DEVICES 映射物理 GPU）\n- Qwen3 重跑时不要同时提交同名 exp_id（上次 plan-002-qwen17b 和 plan-002-qwen3-1_7b 重复提交导致 GPU 争抢 + 清理 Worker 误杀真进程）\n- AutoDL 必须 `source /etc/network_turbo` 才能 pip install / git clone；HF 下载设 `HF_HUB_DISABLE_XET=1`\n\n### 2. 🖥️ 基础设施快照\n- 服务器: autodl-5090, 账号 root, 4× RTX 5090 32GB\n- 工作目录: `/root/gen-depth-fingerprint`\n- Python: `/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- 激活命令: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- HF cache: `/root/autodl-tmp/.hf_cache`\n- 数据: `/root/gen-depth-fingerprint/data/` 下按模型名分子目录（pythia-1b/, olmo-2-1b/, qwen3-1.7b/, qwen3-0.6b/）\n- 种子数据: `/root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl`（1000 seeds）\n- 评估脚本已就绪: `extract_features_multi.py`（多模型特征提取）+ `cross_generator_eval.py`（Leave-one-generator-out CV）\n- 模型已下载: Pythia-410m（参考模型）、Pythia-2.8B、Pythia-1B、OLMo-2-0425-1B、Qwen3-1.7B-Base、Qwen3-0.6B-Base\n- W&B: 未配置（本项目数据生成不用 W&B）\n\n### 3. 📊 当前状态\n**刚做完**: 收到 plan-002-olmo2-s0 的 CRON 完成回调，reconcile 同时捕获 s1 也完成。派了两个 Worker：\n\n| Worker | 任务 | 状态 |\n|--------|------|------|\n| worker_analysis_plan-002-olmo2_20260514T211856 | 分析 OLMo-2 两个 shard 的输出数据，更新 registry | 等待回调 |\n| worker_code_plan-002-qwen-retry-and-start_20260514T212136 | 修复 generate_chain.py（加 f.flush()）+ 提交 Qwen3-1.7B 重跑(cuda:0,1) + Qwen3-0.6B 首跑(cuda:2,3) | 等待回调 |\n\n**Registry 关键状态**:\n- plan-002（父实验）: RUNNING\n- plan-002-olmo2-s0: ANALYZING\n- plan-002-olmo2-s1: ANALYZING（reconcile 刚转）\n- plan-002-pythia1b-s0/s1: DONE (success)\n- plan-002-qwen3-1_7b-s0/s1: DONE (failed, SIGHUP 误杀)\n- Qwen3 重跑的新 exp_id: plan-002-qwen17b-retry-s0/s1（Worker 正在提交）\n- Qwen3-0.6B: plan-002-qwen06b-s0/s1（Worker 正在提交）\n\n**已向 Director 汇报**: plan-002 进度，预计今晚内出全部结果。\n\n### 4. 📋 待办（条件触发式）\n- OLMo-2 分析 Worker 回调 → 检查 conclusion，success 则 registry 已更新；failed 则诊断\n- Qwen3 提交 Worker 回调 → 确认 4 个任务均已提交成功，检查 registry 状态\n- Qwen3-1.7B s0/s1 CRON 完成 → spawn Worker 分析数据质量，更新 registry\n- Qwen3-0.6B s0/s1 CRON 完成 → spawn Worker 分析数据质量，更新 registry\n- **全部 5 个模型数据到齐** → spawn Worker 运行 `python extract_features_multi.py --device cuda:0` 提取全量特征 → `python cross_generator_eval.py` 执行跨模型评估 → 结果写 registry + 汇报 Director\n- plan-002 评估结果出炉 → 按 on-experiment-done skill 分叉处理（success/negative），反思实验计划，建议下一批（plan-003 跨家族参考模型 / plan-004 下游效用）\n- plan-001-restore 仍在 PREPARING 状态 → 可忽略（plan-001-fix 已成功完成 ablation，restore 是残留条目）\n\n### 5. 🎯 战略上下文\n- **核心假设**: 非释义生成链的分布漂移随深度累积，留下可检测的\"分布指纹\"。MVP 验证 Pythia-2.8B 单模型场景 macro-F1=0.84\n- **plan-002 是关键**: 验证 Claim 1（跨模型泛化）。如果 Leave-one-generator-out F1 显著低于单模型 → Claim 1 需降级或重新 framing\n- **Claim 2 已有支撑**: plan-001-fix 显示参考模型特征(F1=0.72) vs 表面特征(F1=0.76) 有独立贡献，但表面特征略强。D004/D005 将叙事调为\"dual dynamics\"（H1 shape 特征收敛 + H2 level 特征漂移）\n- **Venue**: AAAI 2027 (DDL Aug 2) primary, EMNLP 2026 ARR (May 25) stretch\n- **易错点**: Pythia 家族有 2 个模型（2.8B + 1B），Leave-one-generator-out 可能因家族内相似性虚高——需要做 Leave-one-family-out 评估（cross_generator_eval.py 已支持）\n- **决策链**: D001(MVP 方案) → D002(MVP 通过) → D003(Claim 2 Plan B) → D004(Claim 2 framing 调整) → D005(H1/H2 dual dynamics)\n- **GPU 预算**: 已用 ~3h / 200h，充裕\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778804992.md"
+}

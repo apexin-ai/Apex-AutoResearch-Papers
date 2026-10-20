@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29317545a4655752226b",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper revert ddr trajectory",
+  "task_key": "worker_paper_revert-ddr-trajectory_20260523T043331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_revert-ddr-trajectory_20260523T043331_result.json",
+    "occurrence": 1,
+    "bytes": 373,
+    "sha256": "c812aa356bce1345fb8e6f3549d6620fc2938d9d506848afbbaea4ace9ee004c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **编译**: 成功，无错误\n- **Conclusion**: 第 8 页（pdftotext 从 0 计页，报告 page 7 = 实际第 8 页）\n- **总页数**: 37\n- **MD5**: `887eec8bc3963d74008a88855b92b66a`\n\nfig_ddr_trajectory 已从 introduction.tex 移回 results.tex（`\\section{Results}` 与 `\\subsection{Depth Classification Performance}` 之间）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-revert-ddr-trajectory.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14bf85a3c43826cfef0c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code mistral filter and extract",
+  "task_key": "worker_code_mistral-filter-and-extract_20260516T113839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mistral-filter-and-extract_20260516T113839_result.json",
+    "occurrence": 1,
+    "bytes": 735,
+    "sha256": "c97e814a21d44d7dd196559024556bf238d67179ef3bc3389eb1bbb900df56f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已启动并设置监控。汇总：\n\n**Phase 1 过滤统计（Mistral-7B rp=1.0）**：\n\n| Depth | 原始 | 保留 | 过滤 | 过滤率 |\n|-------|------|------|------|--------|\n| 0 | 996 | 996 | 0 | 0.0% |\n| 1 | 994 | 924 | 70 | 7.0% |\n| 2 | 970 | 734 | 236 | 24.3% |\n| 3 | 952 | 559 | 393 | 41.3% |\n| 4 | 937 | 452 | 485 | 51.8% |\n| **Total** | **4849** | **3665** | **1184** | **24.4%** |\n\n**Phase 2 进度**：\n- Pythia-410M ✅ 完成（20s）\n- OLMo-2-1B 🔄 加载中\n- Qwen3-0.6B ⏳ 待执行\n\n**PID**: 303414 | **日志**: `/tmp/mistral_filter_extract.log`\n\nMistral 退化模式明显——depth 4 过半被过滤，比 Llama 退化更严重。Cron 每 3 分钟检查完成状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mistral-filter-and-extract.md"
+}

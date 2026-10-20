@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "125c6dbad7dca554c644",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops kill llama rp10",
+  "task_key": "worker_ops_kill-llama-rp10_20260516T101502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-llama-rp10_20260516T101502_result.json",
+    "occurrence": 1,
+    "bytes": 342,
+    "sha256": "b95a905417df44ca510100ac73686b8cba611876be4e20d2fa5c5cbd244bb9a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 291137 已终止，cuda:0 内存已完全释放（0 MiB）。其他 GPU 进程不受影响：\n\n| GPU | 占用 | 进程 |\n|-----|------|------|\n| cuda:0 | **0 MiB** | 已释放 |\n| cuda:1 | 5865 MiB | Gemma (PID 286895) |\n| cuda:2 | 14645 MiB | Mistral (PID 288995) |\n| cuda:3 | 6859 MiB | Llama rp=1.1 (PID 295439) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-llama-rp10.md"
+}

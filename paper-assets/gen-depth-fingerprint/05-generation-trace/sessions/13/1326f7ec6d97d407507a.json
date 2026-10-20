@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "id": "1326f7ec6d97d407507a",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "submit rebuild supplement",
+  "task_key": "worker_submit_rebuild-supplement_20260520T095358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_rebuild-supplement_20260520T095358.log",
+    "occurrence": 1,
+    "bytes": 2120567,
+    "sha256": "3ffa63b24bebab78bc67ab7c7fd0aaaa39a0f99bf642f5403bdbd2ca3ae6fca0"
+  },
+  "statistics": {
+    "messages": 710,
+    "user_turns": 3,
+    "tool_calls": 236,
+    "roles": {
+      "log": 1,
+      "system": 180,
+      "record": 1,
+      "assistant": 52,
+      "tool_call": 236,
+      "tool_result": 236,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 109,
+      "chunks": [
+        {
+          "path": "1326f7ec6d97d407507a-part-0001.json",
+          "message_count": 100
+        },
+        {
+          "path": "1326f7ec6d97d407507a-part-0002.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 462,
+      "chunks": [
+        {
+          "path": "1326f7ec6d97d407507a-part-0002.json",
+          "message_count": 171
+        },
+        {
+          "path": "1326f7ec6d97d407507a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "1326f7ec6d97d407507a-part-0004.json",
+          "message_count": 111
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 120,
+      "chunks": [
+        {
+          "path": "1326f7ec6d97d407507a-part-0004.json",
+          "message_count": 69
+        },
+        {
+          "path": "1326f7ec6d97d407507a-part-0005.json",
+          "message_count": 51
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "1326f7ec6d97d407507a-part-0005.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/submit-rebuild-supplement.md"
+}

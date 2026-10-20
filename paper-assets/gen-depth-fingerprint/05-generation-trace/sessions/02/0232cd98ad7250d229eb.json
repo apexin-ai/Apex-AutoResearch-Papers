@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0232cd98ad7250d229eb",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper push ai disclosure",
+  "task_key": "worker_paper_push-ai-disclosure_20260523T190310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_push-ai-disclosure_20260523T190310_result.json",
+    "occurrence": 1,
+    "bytes": 351,
+    "sha256": "b6e2a966da6f3197a2dc3301b21a951f890f12cca7db10add1e4a302a37a8f5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Push 成功。\n\n- **Commit**: `03b30d9` — Add AI assistant disclosure (ARR E1)\n- **变更**: 新增 `paper/appendix_ai_assistants.tex`，`paper/main.tex` 第197行插入 `\\section{Use of AI Assistants}` + `\\input{appendix_ai_assistants}`\n- **仓库总 tex 文件**: 50 个\n- **远程已同步**: `85d2558..03b30d9 main -> main`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-push-ai-disclosure.md"
+}

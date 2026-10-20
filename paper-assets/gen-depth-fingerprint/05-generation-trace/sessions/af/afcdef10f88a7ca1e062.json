@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afcdef10f88a7ca1e062",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan006 paraphrastic",
+  "task_key": "worker_code_plan006-paraphrastic_20260515T212334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan006-paraphrastic_20260515T212334_result.json",
+    "occurrence": 1,
+    "bytes": 881,
+    "sha256": "ae9fdece242ef0af9a6b022ce2559407cc3a3c1ab539909dbd010c0791993e50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动。\n\n**状态总结：**\n- **脚本**: `autodl-5090:/root/gen-depth-fingerprint/paraphrastic_chains.py` — 3 阶段 all-in-one pipeline\n- **运行**: PID 246021，`--phase all --device cuda:1`，日志 `/tmp/plan006_full.log`\n- **Dry-run 验证通过**: repetition_penalty=1.3 解决了 base model 的重复退化问题，paraphrastic chains 在每个 depth 产生主题相关但语义漂移的文本（符合 attractor convergence 预期）\n- **进度**: generate 阶段运行中（~995 seeds, 预计 ~80 min），之后自动进入 extract → evaluate\n- **生成参数**: Pythia-2.8B, temp=0.7, top_p=0.9, repetition_penalty=1.3, max_new_tokens=200\n- **对比数据**: 将与 `data/prompt_type_features.csv` 中的 continuation 数据自动对比\n\n预计总运行时间 ~2 小时（generate ~80min + extract ~20min + evaluate <1min）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan006-paraphrastic.md"
+}

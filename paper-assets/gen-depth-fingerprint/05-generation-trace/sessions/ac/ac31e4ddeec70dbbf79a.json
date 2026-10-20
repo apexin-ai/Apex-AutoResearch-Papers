@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac31e4ddeec70dbbf79a",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code temp pipeline monitor",
+  "task_key": "worker_code_temp-pipeline-monitor_20260518T152959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_temp-pipeline-monitor_20260518T152959_result.json",
+    "occurrence": 1,
+    "bytes": 1008,
+    "sha256": "db6c76f332049aad025d6fe245b69c19fb26d692320371aebbfdddc5f683caea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "监控脚本已部署并正常运行。\n\n**当前状态：**\n\n| Target | 数据目录 | 当前 seeds | 目标 | GPU | 状态 |\n|--------|----------|-----------|------|-----|------|\n| olmo_t05 | olmo-2-1b-t05 | 276/990 | GPU 2 | 生成中 |\n| qwen06_t05 | qwen3-0.6b-t05 | 189/990 | GPU 3 | 生成中 |\n| olmo_t09 | olmo-2-1b-t09 | 0/990 | GPU 2 | 等待 t05 完成 |\n| qwen06_t09 | qwen3-0.6b-t09 | 0/990 | GPU 3 | 等待 t05 完成 |\n\n**产出：**\n1. `/root/gen-depth-fingerprint/scripts/monitor_temp_pipeline.py` — 已部署\n2. `tmux session temp_monitor` — 运行中，每 120s 检查一次\n3. 当 seeds >= 990 时自动触发：\n   - Feature extraction（`extract_features.py`，Pythia-410M ref model）→ `data/features_{model}-t{temp}.csv`\n   - LOGO classification（binary F1 + 3-class F1 + bootstrap CI + Spearman ρ）→ `results/temp_{model}_t{temp}_eval.json`\n4. GPU 调度：olmo 用 GPU 2，qwen 用 GPU 3；同 GPU 内 t=0.5 必须完成后才触发 t=0.9"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-temp-pipeline-monitor.md"
+}

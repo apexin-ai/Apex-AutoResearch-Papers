@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2329a4353f3b5cc7b42d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan 004 launch",
+  "task_key": "worker_code_plan-004-launch_20260515T002637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-004-launch_20260515T002637_result.json",
+    "occurrence": 1,
+    "bytes": 1220,
+    "sha256": "0b97f27044be8bc7b90d8385841eb9f67a56b75dec3eef362052d67048bedfa9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 GPU 都在正常训练：\n\n**GPU 3** (PID 143197) — depth0_only_seed42 正在评估阶段，73/785 步\n**GPU 1** (PID 143765) — size_matched_seed42 训练中，43/741 步，~1.73 it/s\n\n## 状态汇总\n\n| GPU | Bash PID | Python PID | Variants | 日志路径 |\n|-----|----------|------------|----------|----------|\n| cuda:3 | 143189 | 143197 | depth0_only, depth01, all (9 runs) | /tmp/plan004_gpu3.log |\n| cuda:1 | 143757 | 143765 | size_matched, binary_filtered (6 runs) | /tmp/plan004_gpu1.log |\n\n## 修改记录\n- 删除旧 worker 遗留的 `outputs/plan-004/`（22GB 检查点），释放磁盘至 20GB 可用\n- 修改 `finetune_downstream.py`：`save_strategy=\"no\"`, `load_best_model_at_end=False`，避免写大检查点\n- 修改 `run_downstream.sh`：VARIANTS 支持环境变量覆盖\n\n## 预估完成时间\n- **GPU 1**（6 runs）：每 run ~12 min → ~74 min → **约 09:55 CST**\n- **GPU 3**（9 runs）：depth0_only ~10 min + depth01 ~37 min + all ~111 min → ~158 min → **约 11:20 CST**\n\n## 初始训练指标\n- GPU 1 size_matched_seed42：Training at 1.73 it/s\n- GPU 3 depth0_only_seed42 参考（旧 worker 结果）：eval_loss=0.986, eval_ppl=2.68"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-004-launch.md"
+}

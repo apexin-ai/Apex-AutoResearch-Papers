@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "865635cdb695dce99f31",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops check olmo instruct final",
+  "task_key": "worker_ops_check-olmo-instruct-final_20260515T160027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-olmo-instruct-final_20260515T160027_result.json",
+    "occurrence": 1,
+    "bytes": 765,
+    "sha256": "75eb6aca0958904294ed019b3d452be220a2658fcb784a4b40782f1d099903f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**OLMo instruct pipeline 状态：Step 1 仍在运行，约 28% 完成。**\n\n| 指标 | 值 |\n|------|-----|\n| **generations_shard0.jsonl** | ~1407 行（目标 ~4963 行，参考 qwen3-1.7b-instruct） |\n| **features 文件** | 尚未生成（Step 2 未开始） |\n| **结果文件** | 尚未生成（Step 3 未开始） |\n| **GPU 0** | python 进程占用 3638MiB，50% 利用率（正在跑生成） |\n| **文件仍在增长** | 两次检查间从 1391→1407 行 |\n\n**进度估算**：文件创建于 23:30 UTC+8，31 分钟生成 ~1407 行，速率 ~45 行/分。剩余 ~3556 行需 ~79 分钟。\n\n- **Step 1 ETA**: ~01:20 UTC+8（17:20 UTC）\n- **Step 2+3 (~30min)**: ~01:50 UTC+8（17:50 UTC）\n- **全部完成 ETA**: ~17:50 UTC"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-olmo-instruct-final.md"
+}

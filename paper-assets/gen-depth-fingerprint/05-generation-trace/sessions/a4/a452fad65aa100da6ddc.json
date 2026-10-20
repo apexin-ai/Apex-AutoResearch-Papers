@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a452fad65aa100da6ddc",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code exp 057 gemma feats",
+  "task_key": "worker_code_exp_057_gemma_feats_20260520T073357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_057_gemma_feats_20260520T073357_result.json",
+    "occurrence": 1,
+    "bytes": 416,
+    "sha256": "f9f2a29c4b728395588e4a801592e46b9b555cd321d87cba39d2b1a225d985ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`eval_9gen_logo.py` 直接读取 `data/gemma-2-2b/features_pythia410m.jsonl`，格式兼容，无需额外转换。\n\n**任务完成：**\n- 特征提取已重跑，输出 4957 行（之前仅 1061 行）\n- depth 分布均匀：每个 depth 约 990-994 条\n- `eval_9gen_logo.py` 直接从 JSONL 读取 gemma-2-2b 特征，无需合并到 CSV\n- 旧文件已备份为 `features_pythia410m.jsonl.bak`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-057-gemma-feats.md"
+}

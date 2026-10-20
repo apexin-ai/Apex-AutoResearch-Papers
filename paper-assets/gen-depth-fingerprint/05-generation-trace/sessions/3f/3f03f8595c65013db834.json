@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "3f03f8595c65013db834",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "paper entropy std d trace",
+  "task_key": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_entropy-std-d-trace_20260523T103849.log",
+    "occurrence": 1,
+    "bytes": 638621,
+    "sha256": "8f440e1a5f3dc2d9de8b7d7f92c735e129a4d6a337fcbf8047030f56ed279c7e"
+  },
+  "statistics": {
+    "messages": 184,
+    "user_turns": 0,
+    "tool_calls": 73,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 33,
+      "tool_call": 73,
+      "tool_result": 73,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 184,
+      "chunks": [
+        {
+          "path": "3f03f8595c65013db834-part-0001.json",
+          "message_count": 175
+        },
+        {
+          "path": "3f03f8595c65013db834-part-0002.json",
+          "message_count": 9
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-entropy-std-d-trace.md"
+}

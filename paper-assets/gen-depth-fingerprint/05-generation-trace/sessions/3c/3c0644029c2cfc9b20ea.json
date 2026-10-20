@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c0644029c2cfc9b20ea",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper writing abstract",
+  "task_key": "worker_paper_writing_abstract_20260515T044821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_abstract_20260515T044821_result.json",
+    "occurrence": 1,
+    "bytes": 806,
+    "sha256": "051d7ca1d789cf28c93fa5c5193ac76908332557b74e378a0feeac9a14e297c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Abstract 已写入 `artifacts/_project/paper/abstract.tex` 并注册。\n\n结构遵循 Farquhar 五句法：\n1. **问题**：web 语料中递归生成文本的深度未知\n2. **难点**：现有检测器仅提供二分类，跨生成器方差大（CI 0.41–0.82）\n3. **方法**：differential depth response — 中心趋势/多样性特征漂移 + 形状特征稳态 → 7 特征互补集成\n4. **证据**：6-gen LOGO F1=0.79 [0.786, 0.799]，p<0.001；per-generator 0.68–0.86\n5. **负面结果**：depth-aware curation 不优于随机抽样，depth fingerprinting 是诊断工具而非治疗工具\n\n所有数字均从 registry 核实：plan-014（6-gen LOGO 0.7893）、plan-015-v2（CI/p值）、plan-004-v2（downstream ppl）、plan-002-eval（ablation 0.80/0.75/0.75）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-abstract.md"
+}

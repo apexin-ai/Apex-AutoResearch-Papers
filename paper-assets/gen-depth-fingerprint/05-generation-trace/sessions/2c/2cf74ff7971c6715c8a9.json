@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2cf74ff7971c6715c8a9",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code 8gen classifier comparison",
+  "task_key": "worker_code_8gen-classifier-comparison_20260516T145918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_8gen-classifier-comparison_20260516T145918_result.json",
+    "occurrence": 1,
+    "bytes": 727,
+    "sha256": "7bdfc2cc68e0236275b54d3d4020a5a97b6fc19cd88f6a62ab11ce11d8fdbddf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果已保存到 `results/8gen_classifier_comparison.json`。\n\n**结果摘要：**\n\n| Classifier | 3-class F1 | 95% CI | Binary F1 | 95% CI |\n|---|---|---|---|---|\n| **XGBoost** | **0.7698** | [0.7636, 0.7715] | **0.7014** | [0.6943, 0.7057] |\n| RandomForest | 0.7244 | [0.7168, 0.7258] | 0.6965 | [0.6902, 0.7008] |\n| LogisticRegression | 0.7081 | [0.7014, 0.7108] | 0.7009 | [0.6951, 0.7058] |\n\n- Best classifier: **XGBoost**（3-class 比 RF 高 +4.5pp，比 LR 高 +6.2pp）\n- XGBoost 3-class F1 = 0.7698，在预期范围（0.75–0.78）内\n- Binary 任务中三者差距缩小（XGBoost 仅微弱领先 LR +0.05pp），说明 XGBoost 的优势主要来自多类别分离能力"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-8gen-classifier-comparison.md"
+}

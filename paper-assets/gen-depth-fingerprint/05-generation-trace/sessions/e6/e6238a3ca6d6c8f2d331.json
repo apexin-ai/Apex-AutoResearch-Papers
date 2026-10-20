@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6238a3ca6d6c8f2d331",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "diagnosis exp062 progress readonly",
+  "task_key": "worker_diagnosis_exp062_progress_readonly_20260521T111438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_exp062_progress_readonly_20260521T111438_result.json",
+    "occurrence": 1,
+    "bytes": 1061,
+    "sha256": "92120e3a60115f5978a6891255ab1ea3714bfe80e7fee45eb34fd5f4be5b7992"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_062 进度汇总\n\n| GPU | 模型 | 阶段 | 进度 | 预计剩余 |\n|-----|------|------|------|---------|\n| 0 | **pythia-2.8b** | topk | 816/995 (82%) | ~45 min |\n| 0 | **llama-3.2-3b** | greedy | 384/995 (39%) | ~2h40 (greedy) + ~4.4h (topk) |\n| 1 | **olmo-2-1b** | topk | 949/995 (95%) | ~7 min |\n| 1 | **qwen3-1.7b** | greedy | 773/996 (78%) | ~58 min (greedy) + ~4h (topk) |\n| 2 | **mistral-7b-v0.3** | greedy | 365/996 (37%) | ~2h24 (greedy) + ~3.8h (topk) |\n| 3 | **pythia-1b** | greedy | 989/995 (99%) | ~30s |\n\n**GPU 利用率**: 0=91%, 1=86%, 2=87%, 3=49%（pythia-1b 小模型所以低）\n\n**关键状态**:\n- **olmo-2-1b** 和 **pythia-1b** 马上完成（两者各自 greedy+topk 中最后一段）\n- **pythia-2.8b** topk 阶段也接近尾声\n- 有链式启动脚本在后台等待：`extract_after_pythia.sh`、`start_mistral_after_olmo.sh`、`start_cuda3_chain.sh`\n- `qwen8b` / `qwen06b` 的日志不存在，未启动\n- 最晚完成的是 **llama-3.2-3b**（GPU 0），预计 ~7h 后（约凌晨 02:00）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-exp062-progress-readonly.md"
+}

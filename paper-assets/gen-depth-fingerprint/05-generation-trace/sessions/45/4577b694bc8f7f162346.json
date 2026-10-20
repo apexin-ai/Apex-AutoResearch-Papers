@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4577b694bc8f7f162346",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "exp review exp c overall ci",
+  "task_key": "worker_exp_review-exp-c-overall-ci_20260515T122440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_review-exp-c-overall-ci_20260515T122440_result.json",
+    "occurrence": 1,
+    "bytes": 971,
+    "sha256": "cca371e30073c528d9ad8c8895ede9adf1a9d28f4b92d9ce35c914efa412ae61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果摘要：\n\n**6-gen Overall LOGO**\n- F1 = **0.7879**, 95% CI = **[0.783, 0.793]** (n_boot=1000)\n\n**Per-generator F1**: olmo-2-1b(0.786), pythia-1b(0.828), pythia-2.8b(0.817), qwen3-0.6b(0.800), qwen3-1.7b(0.793), qwen3-8b(0.708)\n\n**Spearman ρ (depth 0–4, 6-gen, all p < 1e-10)**\n\n| Feature | ρ |\n|---------|------|\n| hapax_ratio | **−0.647** |\n| ttr | **−0.630** |\n| entropy_mean | **−0.610** |\n| entropy_min | **−0.406** |\n| entropy_std | −0.200 |\n| entropy_max | 0.050 |\n| tail_decay | −0.040 |\n\n注意：这些 Spearman ρ 用原始 5 级 depth (0–4) 计算，比 plan-014 用 3-class 的值（hapax −0.558, ttr −0.542）更强，因为保留了更细粒度的序数信息。entropy_min (ρ=−0.406) 有中等负相关，entropy_max (ρ=0.050) 接近零。\n\n脚本：`scripts/review_overall_ci.py`，结果：`results/review_overall_ci_results.json`，registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-review-exp-c-overall-ci.md"
+}

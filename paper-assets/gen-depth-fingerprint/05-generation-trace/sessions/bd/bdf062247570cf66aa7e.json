@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "bdf062247570cf66aa7e",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "diagnose tmux death root cause",
+  "task_key": "worker_diagnose_tmux-death-root-cause_20260514T220718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_tmux-death-root-cause_20260514T220718.log",
+    "occurrence": 1,
+    "bytes": 746296,
+    "sha256": "e7691e330277848ca7670bc2a8e562157d7ad3849b52c6afb8701b40b44c9b48"
+  },
+  "statistics": {
+    "messages": 195,
+    "user_turns": 1,
+    "tool_calls": 68,
+    "roles": {
+      "log": 1,
+      "system": 23,
+      "record": 1,
+      "assistant": 32,
+      "tool_call": 68,
+      "tool_result": 68,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 91,
+      "chunks": [
+        {
+          "path": "bdf062247570cf66aa7e-part-0001.json",
+          "message_count": 91
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 104,
+      "chunks": [
+        {
+          "path": "bdf062247570cf66aa7e-part-0001.json",
+          "message_count": 89
+        },
+        {
+          "path": "bdf062247570cf66aa7e-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-tmux-death-root-cause.md"
+}

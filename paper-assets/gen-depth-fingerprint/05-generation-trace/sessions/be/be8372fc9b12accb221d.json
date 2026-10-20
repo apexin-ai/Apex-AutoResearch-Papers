@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be8372fc9b12accb221d",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_7_1779386268.md",
+  "task_key": "loop_7_1779386268",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1779386268.md",
+    "occurrence": 1,
+    "bytes": 3801,
+    "sha256": "ccdc105dd0603a5f1d648c44997b2fdecf60bb3c407c1516aee265cb200ac1a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: max_wall_time\nupdated: '2026-05-17T21:11:36+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: autodl-5090 cuda:0-3 only，其他设备号/服务器禁止\n- 服务器 features_all_models.csv 是 6-gen (27,529 rows)，supplement 版是 8-gen merged (37,058 rows)——两个版本不同，不要搞混\n- 服务器 eval_8gen_logo.py 用 JSONL concat 加载 Llama+Mistral，supplement 版直接读 merged CSV——两个版本故意不同，都能正确产出 8-gen 结果，不要\"统一\"\n- TOST claim 尚未修正：论文写 \"±2% for all comparisons\" 但 all_vs_depth01 需 ±3%（diff=0.052 > margin=0.047）。Director 已知但未下达修复指令\n- 论文定位是 **Findings paper**（非 main conference），framing 不要越界\n\n### 2. 🖥️ 基础设施快照\n- 服务器: autodl-5090, 4× RTX 5090 32GB\n- 工作目录: `/root/gen-depth-fingerprint/`\n- Python: 服务器上用 `source /root/miniconda3/bin/activate` 或检测 aml-train 镜像\n- 本地论文目录: `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/`\n- Supplement code: `artifacts/_project/supplement/code/` (21 scripts)\n- Supplement data: `artifacts/_project/supplement/data/` (features_all_models.csv 8-gen merged, 37,058 rows)\n- 活跃进程: 无。全部 GPU 空闲，无 cron，无 tmux session\n- 已消耗 GPU-hours: ~62h / 200h budget\n\n### 3. 📊 当前状态\n**刚做完**: Round 12-14 minor fixes（共 ~60 处文本编辑 + 3 新引用 + 47 处 -ing 清理 + bib 补全）。PDF 编译通过 24 页 0 errors。\n\n**正在等待 2 个 Worker 回调**:\n- `worker_compute_feature-correlation_20260517T211035` — 服务器计算 7-feature Pearson 相关矩阵 + 写 appendix_feature_correlation.tex\n- `worker_paper_framing-sync_20260517T211046` — 同步 paper_framing.md 到当前论文状态\n\n**Registry**: 50 experiments, 全部 DONE（exp_048 最后一个，已修正 RUNNING→DONE）。无 RUNNING/PREPARING 有意义的实验（几个 PREPARING 是历史遗留空壳）。\n\n**等待 Director 决策**:\n- Round 15 审稿结果\n- entropy_std 分类问题（variance ratio=2.07，表现像 drifting 而非 shape）\n- Figure 2 H_max/Tail Dec. 标签拥挤是否需修复\n\n### 4. 📋 待办\n- Worker feature-correlation 回调 → 检查 appendix_feature_correlation.tex 写入 + main.tex include → 编译验证\n- Worker framing-sync 回调 → 确认 paper_framing.md 更新内容合理\n- 两个 Worker 都完成后 → 向 Director 汇报任务 A/B/C 全部结果\n- Round 15 审稿结果到达 → 按 on-experiment-done 流程处理\n- Director 下达 TOST 修正指令 → 编辑 results.tex/appendix_downstream.tex 中 ±2% claim\n- 提交前 → 按 arr_submission_checklist.md 逐项核对（E1 AI assistant 披露必须填，否则 desk reject）\n\n### 5. 🎯 战略上下文\n- **投稿目标**: EMNLP 2026 ARR May cycle, DDL 2026-05-25（距今 8 天）\n- **核心结论**: 递归 LLM 生成链展现 DDR（differential depth response），7-feature ensemble 跨 8 generators / 5 families 可检测。Findings 级别贡献。\n- **Headline metrics**: LOGO binary 0.694, cross-model 3-class 0.809 (或 0.764，检查论文实际用的)\n- **负向结果已 reframe**: downstream utility 无提升 → diagnostic-not-curative (D009)\n- **易错点**:\n  - 论文中 cross-model F1 有多个数字（0.809 是 5-gen cross-model chains, 0.764 可能是 8-gen LOGO 3-class）——引用时区分清楚\n  - Alikhanov et al. 2025 实际作者是 **Abburi** et al.（已修正入 bib）\n  - CORN loss 正式发表年份是 2023 非 2021（已修正入 bib）\n  - 编译用 `pdflatex + bibtex + 2× pdflatex`（新引用需要 bibtex pass）\n  - 1 个已知 overfull hbox (appendix_error_analysis.tex L20-34, 23.8pt) 一直存在\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1779386268.md"
+}

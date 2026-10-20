@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2eeea6aac0a539c6b72b",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "exp review exp a baseline ensemble",
+  "task_key": "worker_exp_review-exp-a-baseline-ensemble_20260515T122341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_review-exp-a-baseline-ensemble_20260515T122341_result.json",
+    "occurrence": 1,
+    "bytes": 1153,
+    "sha256": "652f8c73368cb88d6cba1994603306faac0c3b13d84e15656e39c08a380b083c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment `review-exp-a-baseline-ensemble` 完成。结果摘要：\n\n| Group | Features | Avg F1 | 95% CI |\n|-------|----------|--------|--------|\n| **(a) 4-baseline** | AvgLogProb, LD, FDG, Bino | **0.7964** | [0.7921, 0.8007] |\n| **(b) 4-baseline+surface** | 上述 + ttr, hapax | **0.8049** | [0.8003, 0.8092] |\n| **(c) 7-feature unified** | 7 depth features | 0.7887 | [0.7839, 0.7930] |\n| **(d) 7-feature original** | 同上 (sanity check) | 0.7887 | [0.7839, 0.7930] |\n\n关键发现：\n\n1. **Sanity check 通过**: (c) = (d) = 0.7887，完全复现 bootstrap_ci_v2 的参考结果\n2. **4-baseline ensemble 反超 7-feature**: 0.7964 vs 0.7887，CI 不重叠 → 统计显著\n3. **加 surface features 后更强**: 0.8049，比 7-feature 高 1.6 个百分点\n4. **对 reviewer 的回应**: 统一超参后 baseline 不仅不弱，反而更强。reviewer 关于\"不公平比较\"的担忧不成立——用相同超参，4-detector ensemble 的泛化能力优于 7 depth features\n\nPer-generator 最弱点仍是 qwen3-8b (4-baseline: 0.7133 vs 7-feature: 0.6815)，但 4-baseline 对 qwen3-8b 也有 +3.2 pp 改善。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-review-exp-a-baseline-ensemble.md"
+}

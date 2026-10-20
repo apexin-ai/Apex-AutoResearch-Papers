@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aeffc108f861de59a68b",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "exp review p1c instruct",
+  "task_key": "worker_exp_review-p1c-instruct_20260515T134100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_review-p1c-instruct_20260515T134100_result.json",
+    "occurrence": 1,
+    "bytes": 467,
+    "sha256": "174702d586f99e39c13cb3a21cae8324b51ace22c2ab9982cd52c4a6db1756ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "P1-C instruct 实验已启动：\n\n- **模型**: Qwen3-1.7B (Instruct，从 ModelScope 下载)\n- **脚本**: `generate_chain_instruct.py` — 使用 `apply_chat_template` + `enable_thinking=False`\n- **Pipeline**: 生成 → 特征提取 (Pythia-410M ref model) → 分析 (Spearman ρ + base model 对比)\n- **GPU**: cuda:1, PID 211197\n- **预计耗时**: ~80-90 分钟（生成 ~70min + 特征提取 ~15min）\n\n20 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-review-p1c-instruct.md"
+}

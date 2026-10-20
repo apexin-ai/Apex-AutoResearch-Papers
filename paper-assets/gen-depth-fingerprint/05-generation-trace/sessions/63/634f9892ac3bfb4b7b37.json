@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "634f9892ac3bfb4b7b37",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ssh plan 004 v2 gpu2 check",
+  "task_key": "worker_ssh_plan-004-v2-gpu2-check_20260515T030419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan-004-v2-gpu2-check_20260515T030419_result.json",
+    "occurrence": 1,
+    "bytes": 485,
+    "sha256": "ceb1ce925524c220d320319469aba2c36786c290afdbe874ffaf96200a230351"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU2 正常完成**，日志末尾 `GPU2 ALL DONE`。\n\n**14/15 results.json 已就绪**，缺失：`depth01_seed123`（应在 GPU1 或 GPU3 上）。\n\n各组平均结果（eval_loss / ppl）：\n\n| 数据集 | eval_loss | perplexity |\n|--------|-----------|------------|\n| **all** | 0.8480 | 2.335 |\n| size_matched | 0.8617 | 2.367 |\n| depth01 | 0.8701 | 2.387 |\n| binary_filtered | 0.8709 | 2.389 |\n| depth0_only | 0.9864 | 2.682 |\n\nRegistry 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-plan-004-v2-gpu2-check.md"
+}

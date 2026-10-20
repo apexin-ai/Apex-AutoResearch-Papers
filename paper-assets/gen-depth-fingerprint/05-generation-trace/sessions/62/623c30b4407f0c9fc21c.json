@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "623c30b4407f0c9fc21c",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "exp plan008 multi domain seeds",
+  "task_key": "worker_exp_plan008-multi-domain-seeds_20260515T181516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan008-multi-domain-seeds_20260515T181516.log",
+    "occurrence": 1,
+    "bytes": 785288,
+    "sha256": "01016a02f6570e7fa15ba8ca083dd03990fc4ab0401490588203af026337c39e"
+  },
+  "statistics": {
+    "messages": 316,
+    "user_turns": 1,
+    "tool_calls": 107,
+    "roles": {
+      "log": 1,
+      "system": 36,
+      "record": 1,
+      "assistant": 62,
+      "tool_call": 107,
+      "user": 1,
+      "tool_result": 107,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "623c30b4407f0c9fc21c-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 309,
+      "chunks": [
+        {
+          "path": "623c30b4407f0c9fc21c-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "623c30b4407f0c9fc21c-part-0002.json",
+          "message_count": 136
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-plan008-multi-domain-seeds.md"
+}

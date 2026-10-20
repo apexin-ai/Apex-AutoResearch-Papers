@@ -1,0 +1,1325 @@
+{
+  "schema_version": "1.0",
+  "id": "ec0e1fc752937673484e",
+  "project": "gen-depth-fingerprint",
+  "kind": "conversation",
+  "title": "paper rd3 w1 table captions",
+  "task_key": "worker_paper_rd3-w1-table-captions_20260516T051618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_rd3-w1-table-captions_20260516T051618.jsonl",
+    "occurrence": 1,
+    "bytes": 55087,
+    "sha256": "e5cf70711423c33609511289400b8a32b3983cb9627dd1b014386afdeb4b6bda"
+  },
+  "statistics": {
+    "messages": 65,
+    "user_turns": 0,
+    "tool_calls": 32,
+    "roles": {
+      "tool_call": 32,
+      "tool_result": 32,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T05:20:50.838887+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T05:20:50.839270+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\tWe evaluate depth fingerprinting along four axes: cross-generator classification (\\S\\ref{sec:results-classification}), differential depth response of individual features (\\S\\ref{sec:results-differential}), comparison with existing detection baselines (\\S\\ref{sec:results-baselines}), and downstream utility for data curation (\\S\\ref{sec:results-downstream}).\n5\t\n6\t\\subsection{Depth Classification Performance}\n7\t\\label{sec:results-classification}\n8\t\n9\tTable~\\ref{tab:logo-results} reports leave-one-generator-out (LOGO) macro-F1 for 3-class depth estimation (gen-0\\,/\\,gen-1\\,/\\,gen-2+) across six generators spanning three model families and parameter counts from 0.6B to 8.2B.\n10\t\n11\tThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.789 (Table~\\ref{tab:logo-results}). Because gen-0 seed texts are shared across generators (\\S\\ref{sec:generation}), the gen-0 class F1 (0.94) may be inflated; we therefore report a leak-free binary evaluation (gen-1 vs.\\ gen-2+, F1\\,=\\,0.723) as the primary metric in \\S\\ref{sec:results-baselines}.\n12\tPer-generator held-out F1 ranges from 0.683 (Qwen3-8B) to 0.856 (Pythia-1B).\n13\tPer-class F1 varies by depth: gen-0\\,=\\,0.94, gen-2+\\,=\\,0.80, gen-1\\,=\\,0.64; the primary difficulty lies in distinguishing gen-1 from gen-2+, where feature margins narrow.\n14\t\n15\t\\paragraph{Cross-scale transfer.}\n16\tThe six-generator evaluation includes Qwen3-8B (8.2B parameters), confirming that depth signal persists beyond the $\\leq$2.8B training generators, though with a moderate gap: Qwen3-8B held-out F1\\,=\\,0.683 (CI [0.668, 0.694]) vs.\\ 0.76--0.86 for smaller generators.\n17\tAdding Qwen3-8B data improves classification on the original five generators (+0.8\\,pp to 0.810); a volume-matched control confirms 94\\% of this gain is attributable to generator diversity rather than data quantity.\n18\t\n19\t\\paragraph{Cross-family generalization.}\n20\tLeave-one-family-out (LOFO) evaluation---holding out an entire model family a\n…[truncated 9482 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T05:20:50.839466+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/table4.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T05:20:50.839644+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{table}[t]\n2\t\\centering\n3\t\\small\n4\t\\begin{tabular}{llccc}\n5\t\\toprule\n6\t\\textbf{Reference Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{LOGO F1} & \\textbf{Entropy Drift Range} \\\\\n7\t\\midrule\n8\tPythia-410M & Pythia & 410M & 0.803 & [$-$1.19, $-$1.40] \\\\\n9\tOLMo-2-1B  & OLMo   & 1.5B & 0.807 & [$-$0.61, $-$0.91] \\\\\n10\tQwen3-0.6B & Qwen   & 0.6B & 0.816 & [$-$0.96, $-$1.35] \\\\\n11\t\\bottomrule\n12\t\\end{tabular}\n13\t\\caption{Cross-family reference model validation (6-gen LOGO).\n14\tDrift direction is consistent (negative) across all three reference models;\n15\tmagnitude varies with reference model capacity.}\n16\t\\label{tab:cross-ref}\n17\t\\end{table}\n18\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T05:20:50.839794+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T05:20:50.839987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Task Formulation}\n5\t\\label{sec:task}\n6\t\n7\tGiven a text $x$, the goal is to predict its \\emph{generation depth} $d \\in \\{0, 1, 2{+}\\}$, where $d{=}0$ denotes human-written text, $d{=}1$ denotes first-generation LLM output conditioned on human text, and $d{=}2{+}$ denotes text produced by recursively conditioning an LLM on its own prior output at least twice.\n8\tFormally, let $\\mathcal{C}_0$ be a reference corpus of human-written text.\n9\tA generation chain of depth $k$ is defined recursively: $x^{(0)} \\sim \\mathcal{C}_0$, and $x^{(k)} = G(x^{(k-1)})$ for $k \\geq 1$, where $G$ denotes stochastic LLM generation conditioned on its input.\n10\tWe frame depth estimation as an ordinal classification task over three classes rather than binary real-vs-synthetic detection, enabling finer-grained provenance characterization.\n11\tDepths beyond 2 are merged into a single $2{+}$ class, consistent with monotonic feature convergence that compresses inter-class margins beyond depth 2 (\\S\\ref{sec:results-differential}).\n12\t\n13\t\\subsection{Generation Chain Construction}\n14\t\\label{sec:generation}\n15\t\n16\tWe construct generation chains using six generators spanning three model families: \\textbf{Pythia} (2.8B, 1B) \\cite{pythia}, \\textbf{OLMo} (OLMo-2-1B) \\cite{olmo}, and \\textbf{Qwen} (Qwen3-1.7B, Qwen3-0.6B, Qwen3-8B-Base) \\cite{qwen3}.\n17\tThis selection covers parameter scales from 0.6B to 8.2B and diverse pretraining corpora, enabling evaluation of cross-generator and cross-scale generalization.\n18\t\n19\tFor each generator, we sample approximately 1{,}000 seed passages from English Wikipedia as $\\mathcal{C}_0$.\n20\tThe same pool of seed passages serves as gen-0 for all generators.\n21\tIn LOGO evaluation, gen-0 samples from the held-out generator's chains also appear (with the same text) in the training generators' chains, creating a potential train--test overlap for the gen-0 class.\n22\tWe address this with a supplementary binary evaluatio\n…[truncated 8321 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T05:20:50.840148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T05:20:50.840291+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tTo verify that the depth signal resides in the features rather than the classifier,\n2\twe repeat the 6-generator LOGO evaluation using Logistic Regression and Random Forest\n3\tin place of XGBoost (Table~\\ref{tab:alt-classifier}).\n4\tAll other settings---the same 7 features, 3-class labels, and class-balanced downsampling---are\n5\tkept identical. For Logistic Regression we apply standard scaling to the features.\n6\t\n7\t\\begin{table}[h]\n8\t\\centering\n9\t\\caption{LOGO macro-F1 across three classifiers (6-gen split). Each column shows the held-out generator F1.}\n10\t\\label{tab:alt-classifier}\n11\t\\small\n12\t\\begin{tabular}{lc cccccc}\n13\t\\toprule\n14\tClassifier & Avg F1 & OLMo-2 & Py-1B & Py-2.8B & Qw-0.6B & Qw-1.7B & Qw-8B \\\\\n15\t\\midrule\n16\tXGBoost          & 0.789 & 0.764 & 0.856 & 0.804 & 0.824 & 0.806 & 0.683 \\\\\n17\tRandom Forest    & 0.790 & 0.764 & 0.856 & 0.804 & 0.825 & 0.807 & 0.684 \\\\\n18\tLogistic Regr.   & 0.725 & 0.719 & 0.781 & 0.740 & 0.745 & 0.743 & 0.624 \\\\\n19\t\\bottomrule\n20\t\\end{tabular}\n21\t\\end{table}\n22\t\n23\tBoth tree-based classifiers achieve LOGO F1 $\\approx 0.79$,\n24\tand even a linear model reaches $0.725$---well above the $0.33$ chance baseline for\n25\tthree classes.\n26\tThe per-generator ranking is also consistent across classifiers\n27\t(Pythia-1B easiest, Qwen3-8B hardest),\n28\tconfirming that discriminative power originates in the entropy and lexical features,\n29\tnot in classifier capacity.\n30\t\n31\t\\subsection*{Sampling Sensitivity Analysis}\n32\t\\label{app:sampling-sensitivity}\n33\t\n34\tTo assess robustness to decoding hyperparameters, we regenerate the full chain set under three sampling configurations and re-evaluate the 3-class LOGO pipeline (Table~\\ref{tab:sampling-ablation}).\n35\t\n36\t\\begin{table}[h]\n37\t\\centering\n38\t\\caption{Depth classification under varying sampling parameters (6-gen LOGO). All other settings match the default pipeline.}\n39\t\\label{tab:sampling-ablation}\n40\t\\small\n41\t\\begin{tabular}{lcc ccc}\n42\t\\toprule\n43\tConfig & Temp.\\ & Top-$p$ & 3-class F\n…[truncated 1166 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T05:20:50.840436+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T05:20:50.840597+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tCan depth-aware data curation improve downstream language model quality?\n2\tWe fine-tune OLMo-2-0425-1B on five data variants (3 seeds each) and evaluate perplexity on a held-out test set (Table~\\ref{tab:downstream}).\n3\t\n4\t\\begin{table}[h]\n5\t\\centering\n6\t\\small\n7\t\\begin{tabular}{lrc}\n8\t\\toprule\n9\t\\textbf{Variant} & \\textbf{$n$} & \\textbf{Test PPL} \\\\\n10\t\\midrule\n11\tAll depths            & 12{,}299 & 2.335 $\\pm$ 0.000 \\\\\n12\tSize-matched (random) & 3{,}951  & 2.367 $\\pm$ 0.000 \\\\\n13\tDepth 0--1 only       & 3{,}951  & 2.387 $\\pm$ 0.001 \\\\\n14\tBinary-filtered       & 3{,}951  & 2.389 $\\pm$ 0.000 \\\\\n15\tDepth 0 only          & 797      & 2.681 $\\pm$ 0.001 \\\\\n16\t\\bottomrule\n17\t\\end{tabular}\n18\t\\caption{Downstream fine-tuning perplexity (OLMo-2-0425-1B, mean $\\pm$ std across 3 seeds). At equal sample count, random subsampling (2.367) outperforms depth-aware curation (depth 0--1: 2.387, binary-filtered: 2.389).}\n19\t\\label{tab:downstream}\n20\t\\end{table}\n21\t\n22\tThe results are unambiguous: data quantity dominates depth composition.\n23\tTraining on all 12{,}299 samples yields the lowest perplexity (2.335).\n24\tAt equal sample count ($n$\\,=\\,3{,}951), random subsampling (2.367) \\emph{outperforms} both depth-stratified selection (depth 0--1: 2.387) and binary detection filtering (2.389).\n25\tCross-seed variance is below 0.002 across all variants, confirming the robustness of this null result.\n26\t\n27\tRestricting training to human-only text (depth 0, $n$\\,=\\,797) produces a sharp perplexity increase to 2.681, driven primarily by the 5$\\times$ reduction in data volume rather than depth composition per se.\n28\t\n29\tBootstrap analysis (10{,}000 resamples over 3 seeds) yields a 95\\% CI for the ppl difference between size-matched and depth 0--1 of [0.019, 0.020], with permutation-test $p = 0.25$ (exact; $n$\\,=\\,3 limits resolution to $p_{\\min}$\\,=\\,0.25) and Cohen's $d = 34.8$.\n30\tThe analogous comparison with binary-filtered gives CI [0.021, 0.023], $p = 0.25$, $d = 41.2$.\n31\tThe inflated $\n…[truncated 265 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T05:20:50.840766+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_finer_depth.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T05:20:50.840916+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWe evaluate finer-grained 5-class depth classification (gen-0 through gen-4) using the same 7-feature ensemble and LOGO protocol described in \\S\\ref{sec:method}.\n2\t\n3\t\\begin{table}[h]\n4\t\\centering\n5\t\\small\n6\t\\begin{tabular}{lcccc}\n7\t\\toprule\n8\t\\textbf{Held-out Generator} & \\textbf{Macro F1} & \\textbf{Weighted F1} & \\textbf{Accuracy} \\\\\n9\t\\midrule\n10\tOLMo-2-1B       & 0.484 & 0.506 & 0.524 \\\\\n11\tPythia-1B        & 0.543 & 0.568 & 0.575 \\\\\n12\tPythia-2.8B      & 0.523 & 0.540 & 0.560 \\\\\n13\tQwen3-0.6B      & 0.513 & 0.521 & 0.546 \\\\\n14\tQwen3-1.7B      & 0.510 & 0.536 & 0.548 \\\\\n15\tQwen3-8B        & 0.434 & 0.455 & 0.493 \\\\\n16\t\\midrule\n17\t\\textbf{Average} & \\textbf{0.501 $\\pm$ 0.038} & \\textbf{0.521} & \\textbf{0.541} \\\\\n18\t\\bottomrule\n19\t\\end{tabular}\n20\t\\caption{5-class LOGO evaluation (6-gen split). Each row holds out one generator for testing, training on the remaining five.}\n21\t\\label{tab:5class-logo}\n22\t\\end{table}\n23\t\n24\t\\begin{table}[h]\n25\t\\centering\n26\t\\small\n27\t\\begin{tabular}{lccccc}\n28\t\\toprule\n29\t\\textbf{Metric} & \\textbf{Gen-0} & \\textbf{Gen-1} & \\textbf{Gen-2} & \\textbf{Gen-3} & \\textbf{Gen-4} \\\\\n30\t\\midrule\n31\tAvg F1      & 0.921 & 0.634 & 0.268 & 0.259 & 0.423 \\\\\n32\t\\bottomrule\n33\t\\end{tabular}\n34\t\\caption{Per-class F1 averaged across all six LOGO folds.}\n35\t\\label{tab:5class-perclass}\n36\t\\end{table}\n37\t\n38\t\\paragraph{Analysis.}\n39\tMoving from 3-class (gen-0 / gen-1 / gen-2+) to 5-class classification reduces LOGO macro F1 from 0.789 to 0.501, a drop of 0.288.\n40\tThe degradation is concentrated in the middle depths: gen-2 and gen-3 achieve only 0.268 and 0.259 F1, respectively.\n41\tThe aggregated confusion matrix reveals that 36.5\\% of true gen-2 samples are misclassified as gen-1, while 37.8\\% of true gen-3 samples are predicted as gen-4.\n42\tAdjacent depths (gen-2$\\leftrightarrow$gen-3, gen-3$\\leftrightarrow$gen-4) account for the majority of errors, consistent with the intuition that deeper recursive generations converge in surface-level statistical fi\n…[truncated 1727 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T05:20:50.841082+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "appendix_*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T05:20:50.841204+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/appendix_length.tex\nartifacts/_project/paper/appendix_prompt_type.tex\nartifacts/_project/paper/appendix_confusion_matrix.tex\nartifacts/_project/paper/appendix_lofo.tex\nartifacts/_project/paper/appendix_human_edit.tex\nartifacts/_project/paper/appendix_classifier.tex\nartifacts/_project/paper/appendix_finer_depth.tex\nartifacts/_project/paper/appendix_qlora.tex\nartifacts/_project/paper/appendix_downstream.tex\nartifacts/_project/paper/appendix_dataset_stats.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T05:20:50.841319+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\caption\\{",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+              "glob": "appendix_*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T05:20:50.841445+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/appendix_dataset_stats.tex:21:\\caption{Sample counts per generator and generation depth after removing failures, duplicates, and passages shorter than 50 tokens. Attrition increases with depth due to generation failures and length filtering.}\nartifacts/_project/paper/appendix_qlora.tex:11:\\caption{QLoRA end-to-end depth classification vs.\\ XGBoost on handcrafted features, under 6-gen LOGO evaluation.}\nartifacts/_project/paper/appendix_confusion_matrix.tex:15:\\caption{Aggregated 3-class confusion matrix from 6-generator LOGO evaluation ($N=27{,}529$). Each cell shows count and row-normalized percentage. Gen-0 is near-perfectly identified. Gen-1 errors are asymmetric: misclassification as gen-2+ (18.8\\%) is 3$\\times$ more frequent than as gen-0 (6.2\\%), indicating that gen-1 text already carries detectable recursive distortion.}\nartifacts/_project/paper/appendix_downstream.tex:18:\\caption{Downstream fine-tuning perplexity (OLMo-2-0425-1B, mean $\\pm$ std across 3 seeds). At equal sample count, random subsampling (2.367) outperforms depth-aware curation (depth 0--1: 2.387, binary-filtered: 2.389).}\nartifacts/_project/paper/appendix_human_edit.tex:16:\\caption{Human-edit robustness under 6-gen LOGO evaluation. Baseline uses unmodified generation chains.}\nartifacts/_project/paper/appendix_lofo.tex:21:\\caption{Leave-one-feature-out ablation (6-gen LOGO). Each row drops one feature and re-evaluates with the LOGO protocol. Sorted by impact magnitude.}\nartifacts/_project/paper/appendix_classifier.tex:9:\\caption{LOGO macro-F1 across three classifiers (6-gen split). Each column shows the held-out generator F1.}\nartifacts/_project/paper/appendix_classifier.tex:38:\\caption{Depth classification under varying sampling parameters (6-gen LOGO). All other settings match the default pipeline.}\nartifacts/_project/paper/appendix_finer_depth.tex:20:\\caption{5-class LOGO evaluation (6-gen split). Each row holds out one generator for testing, training on the remainin\n…[truncated 120 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T05:20:50.841635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_length.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T05:20:50.841794+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Appendix A — Length Confound Analysis\n2\t% Data source: plan-013 (23,032 samples, 5 generators)\n3\t\n4\tSurface diversity features (TTR, hapax ratio) mechanically depend on text length:\n5\tshorter texts yield higher type-token ratios by construction.\n6\tIf generation depth systematically shortens text, observed depth trends could be length artifacts rather than genuine distributional shifts.\n7\tWe rule this out with three complementary analyses.\n8\t\n9\t\\paragraph{(a) Length--depth correlation.}\n10\tWe compute Spearman rank correlation between word count and depth across all five generators.\n11\tCorrelations are weak and inconsistent in sign:\n12\t$\\rho$ ranges from $-0.066$ (Pythia-1B) to $+0.134$ (OLMo-2-1B), with $|\\rho| < 0.14$ in every case.\n13\tOne generator (Qwen3-0.6B) shows no significant correlation ($\\rho = 0.012$, $p = 0.43$).\n14\tLength and depth are thus near-independent in our corpus.\n15\t\n16\t\\paragraph{(b) Length-normalized feature trends.}\n17\tTo eliminate residual length effects, we recompute TTR and hapax ratio on fixed 200-word windows.\n18\tAfter normalization, monotonic depth trends are fully preserved for all generators; moreover, Spearman correlations between normalized features and depth \\emph{increase} in absolute value (e.g., Pythia-2.8B TTR: $\\rho = -0.633 \\to -0.715$).\n19\tLength removal sharpens the depth signal rather than diminishing it, confirming that the signal is not a length artifact.\n20\t\n21\t\\paragraph{(c) Length-matched classification.}\n22\tWe subsample the dataset so that word-count distributions are equalized across depth classes, then retrain the 3-class XGBoost classifier (\\S\\ref{sec:results-classification}).\n23\tMacro-F1 changes by $\\Delta = +0.041$ relative to the unmatched baseline---performance \\emph{improves} when length variance is removed.\n24\tThis is consistent with length acting as noise rather than signal.\n25\t\n26\t\\paragraph{Conclusion.}\n27\tWe observe a dropout bias: shorter texts are more likely to fall below the minimum-length thresh\n…[truncated 242 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T05:20:50.841944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_prompt_type.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T05:20:50.842068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWe evaluate depth fingerprinting under three prompt types using Pythia-2.8B: \\emph{continuation} (``Continue the following text''), \\emph{elaboration} (``Elaborate on the following text''), and \\emph{inspired rewriting} (``Write a new passage inspired by the following text''). Each uses 995 seeds $\\times$ 5 depths.\n2\t\n3\t\\paragraph{Within-prompt-type classification.}\n4\t5-fold CV macro-F1: continuation 0.78, rewriting 0.74, elaboration 0.73. All three prompt types exhibit the same differential depth response pattern: drifting features (hapax ratio, TTR, entropy mean) show consistent monotonic trends, while stationary features (entropy std, tail decay) change by less than 5\\%.\n5\t\n6\t\\paragraph{Cross-prompt-type transfer (LOPTO).}\n7\tLeave-one-prompt-type-out evaluation yields average F1\\,=\\,0.753, confirming that depth signal transfers across prompt types. Feature decay rates differ: continuation shows the strongest drift (16.9\\% per depth step), followed by rewriting (6.1\\%) and elaboration (1.4\\%), consistent with continuation chains applying less semantic constraint on the output.\n8\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T05:20:50.842187+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_lofo.tex"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T05:20:50.842314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWe complement the permutation importance analysis (\\S\\ref{sec:results-differential}) with a leave-one-feature-out ablation. Each row drops one of the seven features and re-evaluates the full 6-gen LOGO protocol; $\\Delta$ is the change relative to the full 7-feature ensemble (F1\\,=\\,0.789).\n2\t\n3\t\\begin{table}[h]\n4\t\\centering\n5\t\\small\n6\t\\begin{tabular}{lcc}\n7\t\\toprule\n8\t\\textbf{Dropped feature} & \\textbf{LOGO F1} & $\\boldsymbol{\\Delta}$ \\textbf{vs Full} \\\\\n9\t\\midrule\n10\tentropy\\_max    & 0.774 & $-$1.50\\,pp \\\\\n11\tentropy\\_mean   & 0.783 & $-$0.63\\,pp \\\\\n12\tttr             & 0.784 & $-$0.55\\,pp \\\\\n13\thapax\\_ratio    & 0.785 & $-$0.42\\,pp \\\\\n14\ttail\\_decay     & 0.786 & $-$0.33\\,pp \\\\\n15\tentropy\\_std    & 0.786 & $-$0.29\\,pp \\\\\n16\tentropy\\_min    & 0.789 & $+$0.01\\,pp \\\\\n17\t\\midrule\n18\tFull (7 features) & 0.789 & --- \\\\\n19\t\\bottomrule\n20\t\\end{tabular}\n21\t\\caption{Leave-one-feature-out ablation (6-gen LOGO). Each row drops one feature and re-evaluates with the LOGO protocol. Sorted by impact magnitude.}\n22\t\\label{tab:lofo}\n23\t\\end{table}\n24\t\n25\t\\paragraph{Analysis.}\n26\tEntropy\\_max causes the largest degradation when removed ($-$1.5\\,pp), despite ranking only fourth in permutation importance (split frequency 0.063). This indicates that entropy\\_max provides unique signal---capturing the most surprising token under the reference model---that is not redundant with other features.\n27\tConversely, entropy\\_min is fully redundant ($\\Delta$\\,=\\,+0.01\\,pp), consistent with its near-zero permutation importance (0.015).\n28\tSix of seven features contribute positively to the ensemble, confirming that the 7-feature design is not over-specified.\n29\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T05:20:50.842437+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T05:20:50.842590+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tTo assess whether depth features are robust to post-generation human editing, we simulate two editing scenarios on the full generation chain dataset and re-evaluate the 6-generator LOGO pipeline (Table~\\ref{tab:human-edit}).\n2\t\n3\t\\paragraph{Random token replacement.}\n4\tWe randomly replace 5\\%, 10\\%, or 20\\% of tokens in each text with uniformly sampled vocabulary items, simulating unstructured human edits (typo corrections, word substitutions).\n5\tClassification degrades gracefully: 3-class F1 drops by 3.5\\,pp at 5\\% replacement and 6.0\\,pp at 20\\%, while binary F1 (gen-1 vs.\\ gen-2+) remains nearly unchanged ($\\Delta \\leq 0.8$\\,pp).\n6\tThe asymmetry is expected---random edits primarily disrupt human-vs-machine separation (gen-0 classification) by injecting noise into surface features, but the depth-discriminative distributional signal between gen-1 and gen-2+ is distributed across enough tokens to survive moderate perturbation.\n7\t\n8\t\\paragraph{LLM rephrase.}\n9\tWe rephrase each text using an instruction-tuned LLM, simulating the common scenario where users lightly edit LLM-generated text with LLM assistance.\n10\tThree-class F1 drops modestly ($-3.4$\\,pp), comparable to 5\\% random replacement.\n11\tHowever, binary F1 drops substantially ($-6.3$\\,pp), indicating that LLM rephrasing specifically erodes the distributional differences between generation depths---consistent with the rephraser imposing its own distributional signature that partially overwrites the depth fingerprint.\n12\t\n13\t\\begin{table}[h]\n14\t\\centering\n15\t\\small\n16\t\\caption{Human-edit robustness under 6-gen LOGO evaluation. Baseline uses unmodified generation chains.}\n17\t\\label{tab:human-edit}\n18\t\\begin{tabular}{lcccc}\n19\t\\toprule\n20\t\\textbf{Condition} & \\textbf{3-class F1} & \\textbf{Binary F1} & \\textbf{$\\Delta$ 3-class} & \\textbf{$\\Delta$ binary} \\\\\n21\t\\midrule\n22\tBaseline          & 0.789 & 0.724 & ---       & ---       \\\\\n23\tRandom 5\\%        & 0.754 & 0.718 & $-3.5$\\,pp & $-0.6$\\,pp \\\\\n24\tRandom 10\\%   \n…[truncated 1013 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T05:20:50.842737+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_qlora.tex"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T05:20:50.842873+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tTo assess whether depth signal extends beyond handcrafted features, we fine-tune a pretrained language model end-to-end as a depth classifier using QLoRA \\cite{qlora}.\n2\t\n3\t\\paragraph{Setup.}\n4\tWe fine-tune Qwen3-0.6B-Base with LoRA rank 16, learning rate $2 \\times 10^{-4}$, and 3 epochs on the same 6-generator dataset used throughout, framing depth estimation as 5-class sequence classification (gen-0 through gen-4).\n5\tFor 3-class evaluation, we collapse predictions into gen-0\\,/\\,gen-1\\,/\\,gen-2+ post hoc.\n6\tAll results use the same LOGO protocol as the main experiments.\n7\t\n8\t\\begin{table}[h]\n9\t\\centering\n10\t\\small\n11\t\\caption{QLoRA end-to-end depth classification vs.\\ XGBoost on handcrafted features, under 6-gen LOGO evaluation.}\n12\t\\label{tab:qlora}\n13\t\\begin{tabular}{lccc}\n14\t\\toprule\n15\t\\textbf{Method} & \\textbf{5-class F1} & \\textbf{3-class F1} & \\textbf{Per-class F1 (5-class)} \\\\\n16\t\\midrule\n17\tXGBoost (7 features) & 0.501 $\\pm$ 0.038 & 0.789 & --- \\\\\n18\tQLoRA (Qwen3-0.6B)   & 0.583 $\\pm$ 0.010 & 0.905 $\\pm$ 0.003 & 0.999\\,/\\,0.796\\,/\\,0.413\\,/\\,0.259\\,/\\,0.447 \\\\\n19\t\\bottomrule\n20\t\\end{tabular}\n21\t\\end{table}\n22\t\n23\t\\paragraph{Results.}\n24\tQLoRA achieves 3-class LOGO F1\\,=\\,0.905 ($\\pm$0.003), a +11.6\\,pp improvement over the XGBoost baseline (0.789).\n25\tOn 5-class evaluation, QLoRA reaches F1\\,=\\,0.583 ($\\pm$0.010) vs.\\ 0.501 for XGBoost (+8.2\\,pp), with the largest gains at gen-1 (0.796 vs.\\ 0.634) and gen-2 (0.413 vs.\\ 0.268).\n26\tThe gen-2/gen-3 boundary remains the primary failure mode (gen-3 F1\\,=\\,0.259), consistent with the feature-level analysis in \\S\\ref{sec:discussion}.\n27\t\n28\t\\paragraph{Hyperparameter robustness.}\n29\tA second run with LoRA rank 32 and seed 123 yields 5-class F1\\,=\\,0.587 ($\\pm$0.005) and 3-class F1\\,=\\,0.905 ($\\pm$0.004), confirming stability across hyperparameter and seed variation ($\\Delta < 1$\\,pp on both metrics).\n30\t\n31\t\\paragraph{Implications.}\n32\tThe substantial 3-class improvement demonstrates that raw token embeddings c\n…[truncated 670 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T05:20:50.843013+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_dataset_stats.tex"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T05:20:50.843139+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Dataset Statistics}\n2\t\\label{app:dataset-stats}\n3\t\n4\tTable~\\ref{tab:dataset-stats} reports the number of samples per generator and generation depth after filtering.\n5\t\n6\t\\begin{table}[h]\n7\t\\centering\n8\t\\small\n9\t\\begin{tabular}{lccccc}\n10\t\\toprule\n11\t\\textbf{Generator} & \\textbf{gen-0} & \\textbf{gen-1} & \\textbf{gen-2} & \\textbf{gen-3} & \\textbf{gen-4} \\\\\n12\t\\midrule\n13\tPythia-1B   & 995 & 993 & 912 & 851 & 804 \\\\\n14\tPythia-2.8B & 995 & 989 & 924 & 879 & 822 \\\\\n15\tOLMo-2-1B  & 995 & 988 & 947 & 905 & 878 \\\\\n16\tQwen3-0.6B & 996 & 986 & 938 & 840 & 778 \\\\\n17\tQwen3-1.7B & 996 & 983 & 941 & 875 & 822 \\\\\n18\tQwen3-8B   & 995 & 979 & 937 & 831 & 755 \\\\\n19\t\\bottomrule\n20\t\\end{tabular}\n21\t\\caption{Sample counts per generator and generation depth after removing failures, duplicates, and passages shorter than 50 tokens. Attrition increases with depth due to generation failures and length filtering.}\n22\t\\label{tab:dataset-stats}\n23\t\\end{table}\n24\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T05:20:50.843289+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_confusion_matrix.tex"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T05:20:50.843411+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tTable~\\ref{tab:confusion} reports the aggregated confusion matrix from 6-generator leave-one-generator-out (LOGO) evaluation, collapsed to three ordinal classes: gen-0 (human), gen-1 (first-generation), and gen-2+ (depth $\\geq$ 2).\n2\t\n3\t\\begin{table}[h]\n4\t\\centering\n5\t\\small\n6\t\\begin{tabular}{lccc}\n7\t\\toprule\n8\t& \\textbf{Pred gen-0} & \\textbf{Pred gen-1} & \\textbf{Pred gen-2+} \\\\\n9\t\\midrule\n10\t\\textbf{True gen-0} & 5{,}937 (99.4\\%) & 35 (0.6\\%) & 0 (0.0\\%) \\\\\n11\t\\textbf{True gen-1} & 368 (6.2\\%) & 4{,}437 (75.0\\%) & 1{,}113 (18.8\\%) \\\\\n12\t\\textbf{True gen-2+} & 464 (3.0\\%) & 3{,}646 (23.3\\%) & 11{,}529 (73.7\\%) \\\\\n13\t\\bottomrule\n14\t\\end{tabular}\n15\t\\caption{Aggregated 3-class confusion matrix from 6-generator LOGO evaluation ($N=27{,}529$). Each cell shows count and row-normalized percentage. Gen-0 is near-perfectly identified. Gen-1 errors are asymmetric: misclassification as gen-2+ (18.8\\%) is 3$\\times$ more frequent than as gen-0 (6.2\\%), indicating that gen-1 text already carries detectable recursive distortion.}\n16\t\\label{tab:confusion}\n17\t\\end{table}\n18\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T05:20:50.843683+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+              "old_string": "\\caption{6-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Gen-0 samples are shared across generators (\\S\\ref{sec:generation}); 3-class results are supplementary. Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric.}",
+              "new_string": "\\caption{6-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Gen-0 samples are shared across generators (\\S\\ref{sec:generation}); 3-class results are supplementary. Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric. (6-generator LOGO; 3-class and binary.)}"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T05:20:50.843870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T05:20:50.843995+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+              "old_string": "\\caption{Feature ablation (6-gen LOGO). Full $>$ surface = reference confirms complementarity between surface diversity features and reference-model distributional features.}",
+              "new_string": "\\caption{Feature ablation. Full $>$ surface = reference confirms complementarity between surface diversity features and reference-model distributional features. (6-generator LOGO; 3-class.)}"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T05:20:50.844149+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T05:20:50.844270+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+              "old_string": "\\caption{Depth classification under unified 6-gen LOGO evaluation. \\textbf{3-class}: gen-0/gen-1/gen-2+ (gen-0 samples shared across generators; see \\S\\ref{sec:generation}). \\textbf{Binary}: gen-1 vs.\\ gen-2+ only, eliminating the gen-0 train--test overlap. Per-gen std measures cross-generator consistency of the binary metric. The 7-feature ensemble matches the multi-detector ensemble on binary F1 (0.723 vs.\\ 0.724); the contribution is simplicity (7 summary statistics from one reference model) rather than performance superiority.}",
+              "new_string": "\\caption{Depth classification under unified LOGO evaluation. \\textbf{3-class}: gen-0/gen-1/gen-2+ (gen-0 samples shared across generators; see \\S\\ref{sec:generation}). \\textbf{Binary}: gen-1 vs.\\ gen-2+ only, eliminating the gen-0 train--test overlap. Per-gen std measures cross-generator consistency of the binary metric. The 7-feature ensemble matches the multi-detector ensemble on binary F1 (0.723 vs.\\ 0.724); the contribution is simplicity (7 summary statistics from one reference model) rather than performance superiority. (6-generator LOGO; 3-class and binary.)}"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T05:20:50.844433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T05:20:50.844559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/table4.tex",
+              "old_string": "\\caption{Cross-family reference model validation (6-gen LOGO).\nDrift direction is consistent (negative) across all three reference models;\nmagnitude varies with reference model capacity.}",
+              "new_string": "\\caption{Cross-family reference model validation.\nDrift direction is consistent (negative) across all three reference models;\nmagnitude varies with reference model capacity. (6-generator LOGO; 3-class.)}"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T05:20:50.844714+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/table4.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T05:20:50.844830+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex",
+              "old_string": "\\caption{LOGO macro-F1 across three classifiers (6-gen split). Each column shows the held-out generator F1.}",
+              "new_string": "\\caption{LOGO macro-F1 across three classifiers. Each column shows the held-out generator F1. (6-generator LOGO; 3-class.)}"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T05:20:50.844960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T05:20:50.845074+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex",
+              "old_string": "\\caption{Depth classification under varying sampling parameters (6-gen LOGO). All other settings match the default pipeline.}",
+              "new_string": "\\caption{Depth classification under varying sampling parameters. All other settings match the default pipeline. (6-generator LOGO; 3-class and binary.)}"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T05:20:50.845204+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T05:20:50.845355+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex",
+              "old_string": "\\caption{Downstream fine-tuning perplexity (OLMo-2-0425-1B, mean $\\pm$ std across 3 seeds). At equal sample count, random subsampling (2.367) outperforms depth-aware curation (depth 0--1: 2.387, binary-filtered: 2.389).}",
+              "new_string": "\\caption{Downstream fine-tuning perplexity (OLMo-2-0425-1B, mean $\\pm$ std across 3 seeds). At equal sample count, random subsampling (2.367) outperforms depth-aware curation (depth 0--1: 2.387, binary-filtered: 2.389). (6-generator data; fine-tuning evaluation.)}"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T05:20:50.845546+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T05:20:50.845758+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_finer_depth.tex",
+              "old_string": "\\caption{5-class LOGO evaluation (6-gen split). Each row holds out one generator for testing, training on the remaining five.}",
+              "new_string": "\\caption{5-class LOGO evaluation. Each row holds out one generator for testing, training on the remaining five. (6-generator LOGO; 5-class: gen-0 through gen-4.)}"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T05:20:50.845968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_finer_depth.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T05:20:50.846140+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_finer_depth.tex",
+              "old_string": "\\caption{Per-class F1 averaged across all six LOGO folds.}",
+              "new_string": "\\caption{Per-class F1 averaged across all six LOGO folds. (6-generator LOGO; 5-class.)}"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T05:20:50.846335+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_finer_depth.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T05:20:50.846497+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex",
+              "limit": "20",
+              "offset": "15"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T05:20:50.846701+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "15\tDepth 0 only          & 797      & 2.681 $\\pm$ 0.001 \\\\\n16\t\\bottomrule\n17\t\\end{tabular}\n18\t\\caption{Downstream fine-tuning perplexity (OLMo-2-0425-1B, mean $\\pm$ std across 3 seeds). At equal sample count, random subsampling (2.367) outperforms depth-aware curation (depth 0--1: 2.387, binary-filtered: 2.389).}\n19\t\\label{tab:downstream}\n20\t\\end{table}\n21\t\n22\tThe results are unambiguous: data quantity dominates depth composition.\n23\tTraining on all 12{,}299 samples yields the lowest perplexity (2.335).\n24\tAt equal sample count ($n$\\,=\\,3{,}951), random subsampling (2.367) \\emph{outperforms} both depth-stratified selection (depth 0--1: 2.387) and binary detection filtering (2.389).\n25\tCross-seed variance is below 0.002 across all variants, confirming the robustness of this null result.\n26\t\n27\tRestricting training to human-only text (depth 0, $n$\\,=\\,797) produces a sharp perplexity increase to 2.681, driven primarily by the 5$\\times$ reduction in data volume rather than depth composition per se.\n28\t\n29\tA paired sign-flip test over 3 seeds yields $p = 0.25$ for size-matched vs.\\ depth 0--1 ($\\Delta$\\,ppl\\,=\\,0.020); the test is severely underpowered (minimum achievable $p$-value with $n$\\,=\\,3 is $1/2^3 = 0.125$).\n30\tAll three seeds show size-matched $<$ depth 0--1 (cross-seed variance $< 0.001$), providing consistent directional evidence despite insufficient statistical power.\n31\tCohen's $d = 34.8$ reflects the near-zero cross-seed variance, not practical importance: the absolute PPL difference is 0.020 on a baseline of 2.367.\n32\t\n33\tKnowing the generation depth of a document does not, by itself, make it more or less useful for training.\n34\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T05:20:50.846897+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex",
+              "old_string": "\\caption{Downstream fine-tuning perplexity (OLMo-2-0425-1B, mean $\\pm$ std across 3 seeds). At equal sample count, random subsampling (2.367) outperforms depth-aware curation (depth 0--1: 2.387, binary-filtered: 2.389).}",
+              "new_string": "\\caption{Downstream fine-tuning perplexity (OLMo-2-0425-1B, mean $\\pm$ std across 3 seeds). At equal sample count, random subsampling (2.367) outperforms depth-aware curation (depth 0--1: 2.387, binary-filtered: 2.389). (6-generator data; fine-tuning evaluation.)}"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T05:20:50.847090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T05:20:50.847274+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_lofo.tex",
+              "old_string": "\\caption{Leave-one-feature-out ablation (6-gen LOGO). Each row drops one feature and re-evaluates with the LOGO protocol. Sorted by impact magnitude.}",
+              "new_string": "\\caption{Leave-one-feature-out ablation. Each row drops one feature and re-evaluates with the LOGO protocol. Sorted by impact magnitude. (6-generator LOGO; 3-class.)}"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T05:20:50.847462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_lofo.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T05:20:50.847665+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex",
+              "old_string": "\\caption{Human-edit robustness under 6-gen LOGO evaluation. Baseline uses unmodified generation chains.}",
+              "new_string": "\\caption{Human-edit robustness. Baseline uses unmodified generation chains. (6-generator LOGO; 3-class and binary.)}"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T05:20:50.847853+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T05:20:50.848020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_qlora.tex",
+              "old_string": "\\caption{QLoRA end-to-end depth classification vs.\\ XGBoost on handcrafted features, under 6-gen LOGO evaluation.}",
+              "new_string": "\\caption{QLoRA end-to-end depth classification vs.\\ XGBoost on handcrafted features. (6-generator LOGO; 5-class and 3-class.)}"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T05:20:50.848170+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_qlora.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T05:20:50.848292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_confusion_matrix.tex",
+              "old_string": "\\caption{Aggregated 3-class confusion matrix from 6-generator LOGO evaluation ($N=27{,}529$). Each cell shows count and row-normalized percentage. Gen-0 is near-perfectly identified. Gen-1 errors are asymmetric: misclassification as gen-2+ (18.8\\%) is 3$\\times$ more frequent than as gen-0 (6.2\\%), indicating that gen-1 text already carries detectable recursive distortion.}",
+              "new_string": "\\caption{Aggregated confusion matrix ($N=27{,}529$). Each cell shows count and row-normalized percentage. Gen-0 is near-perfectly identified. Gen-1 errors are asymmetric: misclassification as gen-2+ (18.8\\%) is 3$\\times$ more frequent than as gen-0 (6.2\\%), indicating that gen-1 text already carries detectable recursive distortion. (6-generator LOGO; 3-class: gen-0/gen-1/gen-2+.)}"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T05:20:50.848425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_confusion_matrix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T05:20:50.848538+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_dataset_stats.tex",
+              "old_string": "\\caption{Sample counts per generator and generation depth after removing failures, duplicates, and passages shorter than 50 tokens. Attrition increases with depth due to generation failures and length filtering.}",
+              "new_string": "\\caption{Sample counts per generator and generation depth after removing failures, duplicates, and passages shorter than 50 tokens. Attrition increases with depth due to generation failures and length filtering. (6-generator dataset.)}"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T05:20:50.848706+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_dataset_stats.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T05:20:50.848836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\(6-generator",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-16T05:20:50.848966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/appendix_dataset_stats.tex:21:\\caption{Sample counts per generator and generation depth after removing failures, duplicates, and passages shorter than 50 tokens. Attrition increases with depth due to generation failures and length filtering. (6-generator dataset.)}\nartifacts/_project/paper/appendix_qlora.tex:11:\\caption{QLoRA end-to-end depth classification vs.\\ XGBoost on handcrafted features. (6-generator LOGO; 5-class and 3-class.)}\nartifacts/_project/paper/appendix_confusion_matrix.tex:15:\\caption{Aggregated confusion matrix ($N=27{,}529$). Each cell shows count and row-normalized percentage. Gen-0 is near-perfectly identified. Gen-1 errors are asymmetric: misclassification as gen-2+ (18.8\\%) is 3$\\times$ more frequent than as gen-0 (6.2\\%), indicating that gen-1 text already carries detectable recursive distortion. (6-generator LOGO; 3-class: gen-0/gen-1/gen-2+.)}\nartifacts/_project/paper/appendix_downstream.tex:18:\\caption{Downstream fine-tuning perplexity (OLMo-2-0425-1B, mean $\\pm$ std across 3 seeds). At equal sample count, random subsampling (2.367) outperforms depth-aware curation (depth 0--1: 2.387, binary-filtered: 2.389). (6-generator data; fine-tuning evaluation.)}\nartifacts/_project/paper/appendix_human_edit.tex:16:\\caption{Human-edit robustness. Baseline uses unmodified generation chains. (6-generator LOGO; 3-class and binary.)}\nartifacts/_project/paper/appendix_lofo.tex:21:\\caption{Leave-one-feature-out ablation. Each row drops one feature and re-evaluates with the LOGO protocol. Sorted by impact magnitude. (6-generator LOGO; 3-class.)}\nartifacts/_project/paper/table4.tex:15:magnitude varies with reference model capacity. (6-generator LOGO; 3-class.)}\nartifacts/_project/paper/appendix_classifier.tex:9:\\caption{LOGO macro-F1 across three classifiers. Each column shows the held-out generator F1. (6-generator LOGO; 3-class.)}\nartifacts/_project/paper/appendix_classifier.tex:38:\\caption{Depth classification under varying sampli\n…[truncated 1097 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-16T05:20:50.849140+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 14 tables now have consistent `(6-generator LOGO; ...)` or `(6-generator data/dataset)` annotations at the end of their captions.\n\nSummary of changes across 10 files:\n- **results.tex**: Tables 1 (logo-results), 2 (ablation), 3 (baselines) — added `(6-generator LOGO; 3-class and binary.)` or `(6-generator LOGO; 3-class.)`\n- **table4.tex**: Table 4 (cross-ref) — `(6-generator LOGO; 3-class.)`\n- **appendix_classifier.tex**: alt-classifier + sampling-ablation tables\n- **appendix_downstream.tex**: `(6-generator data; fine-tuning evaluation.)`\n- **appendix_finer_depth.tex**: 5-class tables — `(6-generator LOGO; 5-class: gen-0 through gen-4.)`\n- **appendix_lofo.tex, appendix_human_edit.tex, appendix_qlora.tex, appendix_confusion_matrix.tex, appendix_dataset_stats.tex**: each annotated with appropriate scheme\n\nFormat is now uniform: parenthetical at end of every caption specifying generator split and class scheme."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_rd3-w1-table-captions_20260516T051618"
+          },
+          "id": "event-000065"
+        }
+      ],
+      "message_count": 65
+    }
+  ],
+  "readable_path": "readable/conversations/paper-rd3-w1-table-captions.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f70cb5d009393a2d1e7",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper method results polish",
+  "task_key": "worker_paper_method-results-polish_20260522T024801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_method-results-polish_20260522T024801_result.json",
+    "occurrence": 1,
+    "bytes": 3712,
+    "sha256": "a947e90ef60885dc8176d115d5bf4c9da2181440fcee388b55f8b437176864c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有约束完好。以下是改动汇总：\n\n---\n\n## Method.tex — 3 处改动\n\n**1. Generator 选择论证** (L36)\n- **前**: \"This selection spans parameter scales from 0.6B to 8B and diverse pretraining corpora, enabling evaluation of cross-generator and cross-scale generalization.\"\n- **后**: \"These generators span five distinct architectures with a 13$\\times$ parameter range (0.6B--8B), trained on heterogeneous corpora, ensuring that observed depth patterns reflect properties of recursive generation rather than idiosyncrasies of any single model family or training distribution.\"\n- **变化**: 明确了\"五种不同架构\"、\"13倍参数范围\"、论证指向 generality（排除 single family/distribution 的特异性）。\n\n**2. Feature 选择论证** (L51)\n- **前**: \"...reference-model features capture how the token-level NLL distribution shifts relative to a fixed model (location and shape statistics), while surface features capture how lexical diversity contracts under recursive generation (type-token statistics).\"\n- **后**: \"...five reference-model features systematically cover location, spread, extremes, and tail structure of the token-level NLL distribution relative to a fixed model, while two surface features capture lexical diversity contraction without requiring any reference model, providing a model-free cross-check on depth signal.\"\n- **变化**: 从泛述变为精确分拆（5+2），强调 surface features 是 model-free cross-check。\n\n**3. LOGO 协议论证** (L76)\n- **前**: \"To evaluate generalization, we use **LOGO** cross-validation over all eight generators. LOGO holds out individual generators but does not isolate family effects;\"\n- **后**: \"We evaluate generalization via **LOGO** cross-validation: each fold holds out one generator entirely, so the classifier must generalize to a generator absent from training---the strictest per-model protocol for assessing deployment against previously unseen generators. LOGO does not isolate family-level effects;\"\n- **变化**: 冒号引出协议含义，显式说明 test generator 从未出现在训练中，强调\"最严格的 per-model 协议\"。\n\n## Results.tex — 2 处改动\n\n**4. Section 4.1→4.2 过渡** (L65)\n- **前**: \"Recursive generation does not affect all distributional properties uniformly. Figure~\\ref{fig:ddr-trajectory} **exposes** a consistent dichotomy...\"\n- **后**: \"The classification results above establish *that* depth is distinguishable; we now ask *why* by examining which features respond to recursive generation. Figure~\\ref{fig:ddr-trajectory} **reveals** a consistent dichotomy...\"\n- **变化**: 用 that/why 对比建立从 classification → decomposition 的叙事桥梁，替换了泛泛的 opening statement。\n\n**5. Section 4.2→4.3 过渡** (L114-116)\n- **前**: \"Existing detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode generation depth... **Note that** FastDetectGPT and Binoculars were **designed** for...\"\n- **后**: \"Having identified which features carry depth signal, we ask whether existing detection methods---designed for binary real-vs-synthetic classification---incidentally capture the same structure. We repurpose four detection scores... FastDetectGPT and Binoculars **target** binary real/fake detection...\"\n- **变化**: \"Having identified... we ask whether\" 承接 DDR 分析，\"Note that\" 删除（更精炼），\"designed\"→\"target\"（更主动）。\n\n所有改动均为 rephrase，未增加行数，未改任何数字/引用。四个文件（artifacts/ + docs/）均已同步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-method-results-polish.md"
+}

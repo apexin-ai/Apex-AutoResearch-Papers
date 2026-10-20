@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa74171477e707bcf3ff",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper paperbanana framework v2",
+  "task_key": "worker_paper_paperbanana-framework-v2_20260523T054240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_paperbanana-framework-v2_20260523T054240_result.json",
+    "occurrence": 1,
+    "bytes": 587,
+    "sha256": "0e6fecc8198eae20fdabb81f8f4e5239dce9d32aae47b165da99b4f6e40b258e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**失败：Gemini API 不可达。**\n\n服务器 bjb2-18868 (AutoDL) 无法连接 `generativelanguage.googleapis.com`，即使启用 `network_turbo` 代理加速后仍然超时（curl exit code 28，HTTP 000）。AutoDL 的代理仅加速 GitHub/HuggingFace，不覆盖 Google API。\n\nPaperBanana 依赖 Gemini API，无法在该服务器上运行。\n\n**可选替代方案：**\n1. 在能访问 Google API 的海外服务器上运行 PaperBanana\n2. 改用 `draw-paper-figure` skill 手写 matplotlib 代码生成 framework 图（完全离线，不依赖外部 API）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-paperbanana-framework-v2.md"
+}

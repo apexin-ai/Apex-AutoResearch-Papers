@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c426ac0f0c2d3f69fe24",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "diagnose plan 012 qwen06b",
+  "task_key": "worker_diagnose_plan-012-qwen06b_20260516T011516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan-012-qwen06b_20260516T011516_result.json",
+    "occurrence": 1,
+    "bytes": 600,
+    "sha256": "11af98c978273dd1f1a4687560b537f8fa9b20087a9ed36bbd63f44976eb1a9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论：假阳性失败。** 实验实际成功完成，5 fold 全部跑完，结果 JSON 已写入。\n\n**根因：** `end_to_end_classifier.py` 没有写 sentinel 文件也没有 W&B 集成，cron 监控连续 5 次检测不到信号后自动判定为失败。\n\n**实验结果：**\n- 5-class macro F1: 0.5828 ± 0.010（XGBoost baseline: 0.5028，**+0.08**）\n- 3-class macro F1: 0.9052 ± 0.003（XGBoost baseline: 0.7815，**+0.12**）\n- 运行时间: 115.5 min\n\nRegistry 已更新：conclusion 改为 success，failure_reason 记录了误判原因。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan-012-qwen06b.md"
+}

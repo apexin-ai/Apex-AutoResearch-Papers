@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "271adc6c7761debfd686",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "research markovian chains comparison",
+  "task_key": "worker_research_markovian_chains_comparison_20260521T030007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_markovian_chains_comparison_20260521T030007_result.json",
+    "occurrence": 1,
+    "bytes": 975,
+    "sha256": "b383be30481b5197a51973c5f5d9c75f602c875c9c6cc9bc946249248932dad8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入。关键区分点：\n\n| 维度 | Broken Telephone (ACL 2025) | Markovian Chains (arXiv 2026) | Ours |\n|---|---|---|---|\n| **Chain operator** | 保义改写（back-translation） | 保义改写（rephrasing + translation） | 开放续写（无语义保持约束） |\n| **分析视角** | 事实准确性衰减速率 | 收敛行为 / 循环态 | 深度分类 + DDR分解 |\n| **互补性** | 关注\"丢了什么信息\" | 关注\"稳态长什么样\" | 关注\"统计指纹如何随深度变化\" |\n\n三篇出自两个独立团队（Broken Telephone 和 Markovian Chains 共享作者），研究同一现象的不同侧面。我们的 continuation chain 设定与它们的 meaning-preserving chain 形成方法论互补——它们固定语义观察形式漂移，我们固定形式（续写 prompt）观察语义统计漂移。\n\n`\\citet` 引用键 `mohamed2025broken` 和 `geng2026markovian` 需要在 `.bib` 中补充对应条目。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-markovian-chains-comparison.md"
+}

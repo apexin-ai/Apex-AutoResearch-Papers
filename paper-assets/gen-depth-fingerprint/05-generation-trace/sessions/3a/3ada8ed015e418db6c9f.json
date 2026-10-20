@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ada8ed015e418db6c9f",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "exp exp 060 14b ddr",
+  "task_key": "worker_exp_exp_060_14b_ddr_20260520T115545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_exp_060_14b_ddr_20260520T115545_result.json",
+    "occurrence": 1,
+    "bytes": 199,
+    "sha256": "2ff8297db9fbe9fc2b5d73328ccdaa98c132ec0d55b05ffc2bcc05be60c7d80e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Generation is ~21% done (104/498 seeds). Running at ~19s/seed on the 14B model. ETA ~2 hours. I'll keep polling and proceed to feature extraction + DDR analysis as soon as it finishes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-exp-060-14b-ddr.md"
+}

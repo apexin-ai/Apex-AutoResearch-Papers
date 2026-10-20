@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e5ac6035489b04cc934",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_3_1778819402.md",
+  "task_key": "loop_3_1778819402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778819402.md",
+    "occurrence": 1,
+    "bytes": 5097,
+    "sha256": "a97ebec3a7469b50c79b0ade0e62aa58a5b4b69bf928c7b7ff504aac3a05b61a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-15T04:29:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: autodl-5090 上 cuda:0/1/2/3，config 已写死，Director 指令也不能越界\n- Claim 3 已确认 negative (D009)，framing = diagnostic-not-curative，**不得**重跑 downstream utility 试图翻盘，也不得在 paper 中暗示 depth filtering 有效\n- D012: EMNLP 2026 ARR (5/25) 是主投稿目标，D010 放弃 EMNLP 已被撤回——**不要建议降级 venue**\n- plan-014 最终数字已锁定（RC9 confirmed, 6-gen LOGO 0.7897, held-out 0.6849），不要再重算或质疑\n- submit_training_job 注入 CUDA_VISIBLE_DEVICES 后脚本只能看到 cuda:0，--device 参数必须写 cuda:0（多次踩坑）\n- 不要用 H1/H2 术语（D007 共识），用 \"drifting\" vs \"stationary\" 或 \"differential depth response\"\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090 (4× RTX 5090 32GB)\n- 工作目录：/root/gen-depth-fingerprint\n- Python：/root/miniconda3/bin/python（conda base，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型路径：\n  - Pythia-410M: /root/autodl-tmp/models/pythia-410m/models--EleutherAI--pythia-410m/snapshots/\n  - Pythia-2.8B: HF cache\n  - Qwen3-8B-Base: /root/autodl-tmp/models/Qwen/Qwen3-8B-Base/Qwen/Qwen3-8B-Base/\n  - Qwen3-1.7B: /root/autodl-tmp/models/Qwen/Qwen3-1___7B-Base\n  - Qwen3-0.6B: /root/autodl-tmp/models/Qwen/Qwen3-0___6B-Base\n  - OLMo-2-1B: /root/autodl-tmp/models/olmo-2-1b-hf/allenai/OLMo-2-0425-1B\n- 数据：/root/gen-depth-fingerprint/data/（features_all_models.csv = 23032 records, 5 generators）\n- 大文件盘：/root/autodl-tmp/，HF_HOME=/root/autodl-tmp/.hf_cache\n- 活跃进程：\n  - plan-005-cont: PID 164658, tmux=plan-005-cont, cuda:1\n  - plan-005-elab: PID 164737, tmux=plan-005-elab, cuda:2\n  - plan-005-rewrite: PID 164881, tmux=plan-005-rewrite, cuda:3\n- Cron：3 个活跃（plan-005-cont, plan-005-elab, plan-005-rewrite），自动监控进程存活\n- cuda:0 当前空闲\n- 1 个 Worker 仍标记 running：worker_analysis_plan-014-revalidation-v3（实际已 done，产出了最终确认数字）\n\n### 3. 📊 当前状态\n**刚完成**：plan-014 完整数据重算 + 最终 RC9 确认（6-gen LOGO 0.7897，Qwen3-8B held-out 0.6849）。Paper Agent 已启动（writing_plan 已审批），fig1（differential response）和 fig2 已生成。bib 同步已完成。\n\n**正在跑**：plan-005（prompt type comparison: continuation/elaboration/inspired_rewriting, Pythia-2.8B, cuda:1/2/3）。上次检查 04:20 UTC 约 35% 完成，ETA ~05:50 UTC。初步发现：continuation depth 衰减 15% vs elaboration 仅 1.5%。\n\n**Registry 摘要**：\n- RUNNING: plan-005（含子实验 plan-005-cont/elab/rewrite）\n- DONE(success): mvp-001, plan-001, plan-002, plan-003, plan-013, plan-014, plan-015/v2, 及多个子实验\n- DONE(negative): plan-004-v2（Claim 3, D009 reframed）\n- DONE(failed): plan-004 (OOM), 多个早期 Qwen/tmux 失败（历史遗留，已由后续实验覆盖）\n- PREPARING: plan-004-prep, plan-001-restore, mvp-001-gen-s0/s1/s2/s3（全部历史遗留，可忽略）\n\n**等待中**：plan-005 cron 完成回调（3 个子实验各自独立回调）\n\n### 4. 📋 待办（条件触发式）\n- plan-005 任一子实验 cron 回调 → spawn worker 做 prompt-type 对比分析（跨 3 prompt type 的 depth signal 强度差异、LOGO 分类、特征漂移对比）\n- plan-005 全部完成 → 汇总分析 → patch 结论入 paper（Section 4/5）→ 向 Director 汇报\n- Paper Agent 初稿交付 → 启动 Review cycle（先 red-section 合规检查，再 Reviewer 全文审查）\n- cuda:0 空闲 → 如果 Director 审批额外实验（plan-006 paraphrastic / plan-007 cross-model / plan-008 multi-domain），可立即启动\n- 若 plan-005 显示 elaboration depth signal 显著弱于 continuation → 需更新 paper_framing.md 的 RC6 部分\n- 论文完成后 → reference-audit skill 检查引用 → 提交前 paper-visual-review\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D005: dual dynamics = level/diversity drift vs shape stationarity\n- D006+D007: 定位为 empirical/conceptual contribution，不 overclaim\n- D008: ensemble 跨生成器一致性优势（narrative 调整）\n- D009: Claim 3 negative → diagnostic-not-curative\n- D011: RC9 scale 验证通过（8B depth signal 存在，但迁移有 gap）\n- D012: 恢复 EMNLP 2026 ARR 为主投（撤回 D010）\n\n**易错点**：\n- 不要把 6-gen LOGO (0.79) 和 5-gen LOGO (0.80) 混淆——加入 8B 后平均略降是正常的\n- plan-005 的 prompt type 数据是 Pythia-2.8B only（不是全部 6 generators），分析时注意 scope\n- paper 中 \"significantly\" 必须有 bootstrap p-value 支撑，不能只凭点估计差异\n- autodl-5090 的 tmux session 曾因系统性问题被 kill（plan-002 时期），如果 plan-005 回调报 SIGHUP 失败，先检查 partial data 是否可恢复（看 /proc/pid/fd 技巧在 memory.md 有记录）\n- 距 EMNLP DDL 还有 10 天，plan-005 是最后一个数据实验，之后全力写论文\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778819402.md"
+}

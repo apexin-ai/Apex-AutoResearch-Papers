@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5179491815480e46ca15",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper abstract intro headline",
+  "task_key": "worker_paper_abstract-intro-headline_20260515T222641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_abstract-intro-headline_20260515T222641_result.json",
+    "occurrence": 1,
+    "bytes": 1203,
+    "sha256": "b0e4b3d57dd903eb2e0e0a27c7d1e7839c07527e525b91d48bb54ac8ad88c026"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "改动汇总：\n\n| 位置 | 改前 | 改后 |\n|------|------|------|\n| `abstract.tex:6` | `(95\\% CI: [0.717, 0.729])...with per-generator consistency (std=0.051)` | 删除 CI，改为 `with per-generator F1 ranging from 0.68 to 0.86` |\n| `introduction.tex:25` | `(95\\% CI: [0.717, 0.729])...with per-generator consistency (std=0.051)` | 删除 CI，改为 `with per-generator F1 ranging from 0.68 (Qwen3-8B) to 0.86 (Pythia-1B)` |\n| `introduction.tex:34` | `(95\\% CI: [0.717, 0.729])...with per-generator consistency (std=0.051)` | 删除 CI，改为 `with per-generator F1 ranging from 0.68 to 0.86` |\n\n验证项：\n- **Rd2-N1** (CI 误用): 3 处 CI 全部替换为 per-generator F1 range，不再有 ± 格式\n- **Rd2-N2** (Gen-0 泄露): headline 已是 binary F1 = 0.723 (gen-1 vs gen-2+)，无需改动\n- **D019** (instruct 反转): 两文件均无 \"inverted DDR\" claim，line 20 仅声明 instruct 模型 untested\n- **数字一致性**: abstract 和 intro 三处均为 F1 = 0.723, range 0.68–0.86\n- **3-class F1**: 两文件均未出现，无需处理\n- **写作规范**: range 同时报 worst (0.68) 和 best (0.86)，intro 正文标注了对应 generator 名"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-abstract-intro-headline.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6eebaa2640578399696",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan006 confound data fix",
+  "task_key": "worker_code_plan006-confound-data-fix_20260516T021050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan006-confound-data-fix_20260516T021050_result.json",
+    "occurrence": 1,
+    "bytes": 1508,
+    "sha256": "1ad3a429d2fc281b707b0678cd57277809cc729d6701cd71f3a5f2ae969c89dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。**新旧对比**：\n\n| 指标 | 旧（污染，9666条） | 新（clean rp=1.0，4912条） | 变化 |\n|------|------|------|------|\n| n_records | 9666 | **4912** | 去掉 4754 条 rp=1.3 污染 |\n| 3-class F1 | 0.680 | **0.742** | **+0.062 ↑** |\n| Binary F1 | 0.539 | **0.671** | **+0.132 ↑** |\n| entropy_mean rho | **+0.394** | **−0.533** | **方向反转！** |\n| Depth retention (d4/d0) | — | 0.970 | — |\n\n**关键发现**：\n\n1. **entropy_mean Spearman rho 从 +0.394 翻转为 −0.533**。这证实了 feature reversal 完全是 rp=1.3 confound 导致的 artifact。去掉污染后，paraphrase 的 entropy 方向与 continuation (rho=−0.675) 一致——都是负相关（深度越深，entropy 越低），符合理论预期。\n\n2. **分类性能大幅提升**：3-class F1 从 0.68 → 0.742，binary F1 从 0.539 → 0.671。rp=1.3 数据引入的 confound 不仅搞乱了特征方向，还严重拖累了分类器。\n\n3. **Paraphrase vs Continuation 对比**：\n   - 3-class F1：para 0.742 vs cont 0.788（差距 −0.045，比之前 −0.11 缩小很多）\n   - Cross-transfer：para→cont 0.770, cont→para 0.743（跨域泛化良好）\n   - 结论仍为 \"similar\"——paraphrastic chains 保留了与 continuation 相当的 depth signal\n\n污染文件已移至 `/root/gen-depth-fingerprint/data/pythia-2.8b-paraphrase_backup/`，新结果保存在 `/root/gen-depth-fingerprint/results/plan006_paraphrastic_comparison.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan006-confound-data-fix.md"
+}

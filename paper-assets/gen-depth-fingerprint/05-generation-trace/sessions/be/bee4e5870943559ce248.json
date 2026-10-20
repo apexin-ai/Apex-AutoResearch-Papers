@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "bee4e5870943559ce248",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "exp independent seed control",
+  "task_key": "worker_exp_independent-seed-control_20260517T223544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_independent-seed-control_20260517T223544.log",
+    "occurrence": 1,
+    "bytes": 996045,
+    "sha256": "138a28f91ec21b9e4bf7ee1b2baf4cd6b6e688c733901ca395f76aa8b7d0e28a"
+  },
+  "statistics": {
+    "messages": 673,
+    "user_turns": 0,
+    "tool_calls": 229,
+    "roles": {
+      "log": 1,
+      "system": 54,
+      "record": 2,
+      "assistant": 115,
+      "tool_call": 229,
+      "tool_result": 229,
+      "result": 43
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 673,
+      "chunks": [
+        {
+          "path": "bee4e5870943559ce248-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bee4e5870943559ce248-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "bee4e5870943559ce248-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "bee4e5870943559ce248-part-0004.json",
+          "message_count": 133
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-independent-seed-control.md"
+}

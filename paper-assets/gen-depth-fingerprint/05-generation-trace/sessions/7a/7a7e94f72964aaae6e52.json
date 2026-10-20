@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a7e94f72964aaae6e52",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops check orphan pid",
+  "task_key": "worker_ops_check-orphan-pid_20260520T060234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-orphan-pid_20260520T060234_result.json",
+    "occurrence": 1,
+    "bytes": 343,
+    "sha256": "799c2fb413e811fb7027b3435d45e0f3c1596fe26d44dc55dc32d4f3724c2cd6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已清理完毕。\n\n| 项目 | 详情 |\n|------|------|\n| 进程 | `python3 generate_chain_instruct.py --model-name mistral-7b-instruct` |\n| PID | 165958, PPID=1（孤儿进程） |\n| 运行时长 | 2h48m |\n| GPU 占用 | 14660 MiB (GPU 0) |\n| 处理 | 已 kill，GPU 显存已完全释放，当前无任何 GPU 进程 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-orphan-pid.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "479f50d314ccb5a726b8",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "writing review r2 edits",
+  "task_key": "worker_writing_review-r2-edits_20260515T135024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_review-r2-edits_20260515T135024_result.json",
+    "occurrence": 1,
+    "bytes": 1912,
+    "sha256": "3e66e85cc656fdc36a0dd5bf5498a6e6ff52011ecf33e50e75d0b3d8dbe445eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits complete. Summary of changes across 9 files:\n\n**abstract.tex** — Rewrote to ~100 words. Removed CI width comparison, added per-generator F1 range, added \"In our setting\" qualifier, cut redundant detail.\n\n**introduction.tex** — (1) Deleted CI width sentence (C1), (2) trimmed \"not just average performance\", (3) added scope qualifier re instruction-tuned models (C4), (4) \"Our central empirical finding is\" → \"We characterize a\" (M1), (5) added \"In our experimental setting\" to M2 claim, (6) rewrote Contribution 2 with per-gen F1 range instead of CI width, (7) fixed sec:discussion reference (m8), (8) added depth fingerprinting terminology definition (m4).\n\n**method.tex** — (1) Added gen-0 train-test overlap explanation + binary eval reference (C2), (2) entropy_min retention rationale (m1), (3) tail_decay 90th percentile justification + sensitivity analysis reference (m2), (4) Bonferroni correction note (m3).\n\n**results.tex** — (1) \"single-detector\" → \"individual detection\" baselines, (2) figure caption rewritten without CI width, (3) reliability paragraph rewritten with per-gen F1 std instead of CI width comparison, (4) bootstrap CI clarified as sampling precision, (5) volume-matched control result added (P0-B).\n\n**discussion.tex** — (1) Practical implications rewritten to remove speculation about curation (C4), (2) added same-family reference bias paragraph (P2-F).\n\n**conclusion.tex** — (1) M2 qualified with \"in our experimental setting\", (2) added instruction-tuned/RLHF to future work (C4).\n\n**limitations.tex** — Added instruction-tuned models paragraph as new first paragraph (C3).\n\n**related_work.tex** — Updated survey citation to wu_survey_2025 primary, jawahar_survey secondary (m6).\n\n**references.bib** — Added wu_survey_2025 entry. diveye (2026) and strong_model_collapse (2025) years verified correct."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-review-r2-edits.md"
+}

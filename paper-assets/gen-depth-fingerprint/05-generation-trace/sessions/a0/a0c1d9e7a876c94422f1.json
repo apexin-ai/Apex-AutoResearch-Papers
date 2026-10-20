@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0c1d9e7a876c94422f1",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code entropy only degradation",
+  "task_key": "worker_code_entropy-only-degradation_20260516T221023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_entropy-only-degradation_20260516T221023_result.json",
+    "occurrence": 1,
+    "bytes": 1146,
+    "sha256": "4c357a67f75653553e73caeca7633b6b592136d33e1f58de3f1566942a917cc9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果：\n\n**Entropy-only (5 features) vs 7-feature 退化对比：**\n\n| Rate | Entropy Binary F1 | 7-feat Binary F1 | Entropy Multi F1 | 7-feat Multi F1 |\n|------|-------------------|-------------------|-------------------|-----------------|\n| 0% | **0.8325** | 0.6953 | 0.6875 | **0.7371** |\n| 5% | 0.7380 | 0.6496 | 0.5389 | 0.6407 |\n| 10% | 0.6670 | 0.6139 | 0.4270 | 0.4916 |\n| 20% | 0.5690 | 0.5912 | 0.3139 | 0.3669 |\n\n**Binary 退化斜率：**\n- Entropy-only: -0.095 / -0.166 / **-0.264**\n- 7-feature: -0.046 / -0.081 / -0.104\n\n**结论：与预期相反。** Entropy-only 退化更严重（约 2.5× 大于 7-feature）。原因：随机词替换大幅改变 token 上下文，Pythia-410M 的 surprisal 对此极度敏感。相反，lexical features（ttr/hapax）虽然有 systematic bias，但作为 summary statistics 对噪声更稳定。\n\n7-feature multiclass 在 20% 的 0.37 并非主要由 lexical artifact 导致，entropy-only 在 20% 甚至更低（0.31）。\n\n结果已保存至 `/root/gen-depth-fingerprint/experiments/human_edit_robustness/entropy_only_degradation.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-entropy-only-degradation.md"
+}

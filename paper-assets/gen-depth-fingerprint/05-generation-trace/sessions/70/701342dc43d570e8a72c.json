@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0",
+  "id": "701342dc43d570e8a72c",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "paper research bib complete",
+  "task_key": "worker_paper_research_bib_complete_20260515T043737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_bib_complete_20260515T043737.log",
+    "occurrence": 1,
+    "bytes": 804816,
+    "sha256": "a117d8eb72abfbb4e0afb9ad4571699bbd505ca78596695228b1670722325463"
+  },
+  "statistics": {
+    "messages": 291,
+    "user_turns": 6,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 70,
+      "record": 1,
+      "assistant": 12,
+      "tool_call": 100,
+      "tool_result": 100,
+      "user": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "701342dc43d570e8a72c-part-0001.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "701342dc43d570e8a72c-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "701342dc43d570e8a72c-part-0001.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "701342dc43d570e8a72c-part-0001.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 28,
+      "chunks": [
+        {
+          "path": "701342dc43d570e8a72c-part-0001.json",
+          "message_count": 28
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "701342dc43d570e8a72c-part-0001.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 194,
+      "chunks": [
+        {
+          "path": "701342dc43d570e8a72c-part-0001.json",
+          "message_count": 83
+        },
+        {
+          "path": "701342dc43d570e8a72c-part-0002.json",
+          "message_count": 111
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-research-bib-complete.md"
+}

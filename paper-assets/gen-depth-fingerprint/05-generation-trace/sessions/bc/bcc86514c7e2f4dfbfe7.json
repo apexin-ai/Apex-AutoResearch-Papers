@@ -1,0 +1,896 @@
+{
+  "schema_version": "1.0",
+  "id": "bcc86514c7e2f4dfbfe7",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "paper appendix tost bootstrap",
+  "task_key": "worker_paper_appendix_tost_bootstrap_20260520T082345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix_tost_bootstrap_20260520T082345.log",
+    "occurrence": 1,
+    "bytes": 54467,
+    "sha256": "2fc972ab2e199f6375e68c1d88d1ae95c7dc6e176e8dc85eb94eb88da72d4567"
+  },
+  "statistics": {
+    "messages": 18,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 5,
+      "tool_result": 5,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+                "session_id": "85e750b3-0a68-4726-ac10-d4b1e84b59de",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__allocate_and_submit",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__approve_worker",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__backup_project_to_s3",
+                  "mcp__agent-ml-research__cancel_worker",
+                  "mcp__agent-ml-research__check_job_status",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__distill_papers",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                  "mcp__agent-ml-research__feishu_send_alert",
+                  "mcp__agent-ml-research__feishu_send_approval_card",
+                  "mcp__agent-ml-research__feishu_send_result_card",
+                  "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                  "mcp__agent-ml-research__fetch_wandb_metrics",
+                  "mcp__agent-ml-research__get_baseline_metrics",
+                  "mcp__agent-ml-research__get_distill_status",
+                  "mcp__agent-ml-research__get_gpu_health",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_matrix_value",
+                  "mcp__agent-ml-research__get_project_resource_usage",
+                  "mcp__agent-ml-research__get_tum_config",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__impact_analysis",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_available_gpus",
+                  "mcp__agent-ml-research__list_constraints",
+                  "mcp__agent-ml-research__list_s3_backups",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__main_agent_post_to_director",
+                  "mcp__agent-ml-research__matrix_gap_analysis",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__poll_cron",
+                  "mcp__agent-ml-research__poll_secret_request",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_matrix",
+                  "mcp__agent-ml-research__read_mistakes",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__reconcile_crons",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__register_cron",
+                  "mcp__agent-ml-research__request_secret",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__submit_on_allocated",
+                  "mcp__agent-ml-research__submit_training_job",
+                  "mcp__agent-ml-research__sync_matrix_status",
+                  "mcp__agent-ml-research__tail_training_logs",
+                  "mcp__agent-ml-research__update_baseline",
+                  "mcp__agent-ml-research__update_matrix",
+                  "mcp__agent-ml-research__update_registry",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "c0812c4b-a00b-47a2-9214-ed03397877a0",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779268800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "9f9f2565-4d5c-40f4-941e-8cb4743ae549",
+                "session_id": "85e750b3-0a68-4726-ac10-d4b1e84b59de"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the relevant files first to understand the existing style and context.",
+              "signature": "Eo0CClkIDRgCKkDR0vhUHs6SfYb07DQIlgA8/J/sKhgDq47lRSjxTSBYnLYj3IGL8600ic1lLw0S15slu0VQPdFfeh4GvwKzw3TGMg9jbGF1ZGUtb3B1cy00LTY4ABIMH+zTFPS1GceS+zTVGgysB9AnRUzSzSlmbJYiMK5iIlS808IQIguJmMQgTXGkF1HKLQtMtDYp+PgL3YSFk71urpPoLQ/NuIxhbJoQFypiC52uUx3m49vPJ6GV5GTd8ohUXLu4bKLMQV+XA6bli6wfYecwd53+MsHKcV8kyLDFSbP62gl73OzPFgTfOLRC/PNcHFL7MH540SyR9fyW4fKhi/NEk1jwn5RpNqlSDBH4TY8YAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85e750b3-0a68-4726-ac10-d4b1e84b59de",
+            "uuid": "ea83458e-2076-4642-a399-b42bcd4d485b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B2hutPZBa69DnmFWoBAoXm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14131,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14131
+                },
+                "output_tokens": 30,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the existing files to match style."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85e750b3-0a68-4726-ac10-d4b1e84b59de",
+            "uuid": "d1d447a5-4878-488a-b6c5-8916fef80bcd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B2hutPZBa69DnmFWoBAoXm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14131,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14131
+                },
+                "output_tokens": 30,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01M9HqkbMJvGeQAXHGsZE1tj",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+                "offset": 70,
+                "limit": 20
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85e750b3-0a68-4726-ac10-d4b1e84b59de",
+            "uuid": "66520bbb-3290-4fcf-b7eb-367367732f16",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B2hutPZBa69DnmFWoBAoXm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14131,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14131
+                },
+                "output_tokens": 30,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T08:23:57.731Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01M9HqkbMJvGeQAXHGsZE1tj",
+              "type": "tool_result",
+              "content": "70\tThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and near-stationary features ($|\\rho| < 0.10$) defines the DDR partition, with entropy std ($|\\rho| = 0.16$, $d{=}0.55$) as the sole intermediate member.\n71\tThe 3/1/3 partition is stable across $d$ thresholds in $[0.56, 0.75]$; data-driven clustering confirms the primary drifting/non-drifting split ($k{=}2$, silhouette\\,=\\,0.632; Appendix~\\ref{app:ddr-validation}).\n72\t\n73\t\\paragraph{Distributional shift quantification.}\n74\tTwo-sample KS tests confirm the split: drifting-feature statistics (0.516--0.537) are ${\\sim}10\\times$ larger than shape-feature statistics (0.043--0.052; all $p \\approx 0$ after Bonferroni correction).\n75\tCohen's $d$ \\cite{cohen1988statistical} (pooled, class-balanced) converges with $\\rho$: drifting features show large effects (entropy mean $d{=}1.17$, TTR $d{=}0.88$, hapax ratio $d{=}0.76$), while shape features are near zero (entropy max $d{=}0.08$, tail decay $d{=}0.08$).\n76\tLevene tests reject strict equal-variance ($p < 10^{-10}$); Glass's $\\Delta$ (using gen-1 SD) amplifies drifting effects (entropy mean $\\Delta{=}1.41$, hapax $\\Delta{=}0.94$) while near-stationary features remain negligible ($\\Delta \\leq 0.10$), yielding a ${\\geq}9.5\\times$ gap. Cliff's $\\delta$ corroborates the partition (Appendix~\\ref{app:ddr-validation}).\n77\tShape-feature CV shift ($<$3\\% vs.\\ $>$15\\% for drifting features) supports ``near-stationary'' as a practical characterization.\n78\tFive features fall cleanly into the drifting or near-stationary groups under both $\\rho$ and $d$; the remaining two require qualification: entropy min's pooled $|\\rho|$ (0.40) reflects change concentrated at the gen-0/gen-1 boundary, but for gen-1 vs.\\ gen-2+ it is near-stationary ($d{=}0.03$), placing it in the near-stationary group; entropy std shows a substantial level shift ($d{=}0.55$) despite low monotonicity ($|\\rho|{=}0.16$), making it the sole intermediate feature.\n79\tEntropy min exhibits a discrepancy between location-based (Cohen's $d$\\,=\\,0.016) and rank-based (Cliff's $\\delta$\\,=\\,0.354) effect sizes, indicating distributional shape change without location shift: recursive generation produces more extreme minimum-entropy tokens while preserving the mean. The near-stationary label refers specifically to location stability; rank-order sensitivity is documented in Appendix~\\ref{app:ddr-validation}.\n80\tThe location/shape decomposition rests on the convergence of $\\rho$, Levene, CV shift, and $d$, not the omnibus KS statistic alone.\n81\tPer-generator TOST equivalence testing confirms the partition is not a pooling artifact; holdout generator validation confirms stability across two 4/4 splits (Appendix~\\ref{app:tost}).\n82\tTail decay shows generator-dependent variation ($d{=}0.15$--$0.22$), but reclassifying it as intermediate preserves the core split and classification performance.\n83\t\n84\t\\paragraph{Feature complementarity.}\n85\tThe full 7-feature set (F1\\,=\\,0.773) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\n86\tPermutation importance: hapax ratio (0.35), entropy mean (0.23), TTR (0.18).\n87\tPCA confirms the three drifting features share a single latent dimension (92.3\\% variance, loadings 0.56--0.59; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp binary F1, and retaining any single drifting feature with the four non-drifting features yields F1\\,=\\,0.692 (vs.\\ 0.701 full).\n88\tDDR's contribution is identifying which distributional properties (NLL location vs.\\ shape) are depth-sensitive; PC scores achieve equivalent classification but obscure which specific properties drift.\n89\tTTR and hapax ratio ($r = 0.97$) show permutation importance differences (0.35 vs.\\ 0.18) due to feature masking \\cite{strobl_conditional_2008}; all three are retained for marginal LOFO gains (Appendix~\\ref{app:lofo})."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "85e750b3-0a68-4726-ac10-d4b1e84b59de",
+            "uuid": "d9594a49-fffa-41f8-ba19-bad417b208ec",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+                "content": "The six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and near-stationary features ($|\\rho| < 0.10$) defines the DDR partition, with entropy std ($|\\rho| = 0.16$, $d{=}0.55$) as the sole intermediate member.\nThe 3/1/3 partition is stable across $d$ thresholds in $[0.56, 0.75]$; data-driven clustering confirms the primary drifting/non-drifting split ($k{=}2$, silhouette\\,=\\,0.632; Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Distributional shift quantification.}\nTwo-sample KS tests confirm the split: drifting-feature statistics (0.516--0.537) are ${\\sim}10\\times$ larger than shape-feature statistics (0.043--0.052; all $p \\approx 0$ after Bonferroni correction).\nCohen's $d$ \\cite{cohen1988statistical} (pooled, class-balanced) converges with $\\rho$: drifting features show large effects (entropy mean $d{=}1.17$, TTR $d{=}0.88$, hapax ratio $d{=}0.76$), while shape features are near zero (entropy max $d{=}0.08$, tail decay $d{=}0.08$).\nLevene tests reject strict equal-variance ($p < 10^{-10}$); Glass's $\\Delta$ (using gen-1 SD) amplifies drifting effects (entropy mean $\\Delta{=}1.41$, hapax $\\Delta{=}0.94$) while near-stationary features remain negligible ($\\Delta \\leq 0.10$), yielding a ${\\geq}9.5\\times$ gap. Cliff's $\\delta$ corroborates the partition (Appendix~\\ref{app:ddr-validation}).\nShape-feature CV shift ($<$3\\% vs.\\ $>$15\\% for drifting features) supports ``near-stationary'' as a practical characterization.\nFive features fall cleanly into the drifting or near-stationary groups under both $\\rho$ and $d$; the remaining two require qualification: entropy min's pooled $|\\rho|$ (0.40) reflects change concentrated at the gen-0/gen-1 boundary, but for gen-1 vs.\\ gen-2+ it is near-stationary ($d{=}0.03$), placing it in the near-stationary group; entropy std shows a substantial level shift ($d{=}0.55$) despite low monotonicity ($|\\rho|{=}0.16$), making it the sole intermediate feature.\nEntropy min exhibits a discrepancy between location-based (Cohen's $d$\\,=\\,0.016) and rank-based (Cliff's $\\delta$\\,=\\,0.354) effect sizes, indicating distributional shape change without location shift: recursive generation produces more extreme minimum-entropy tokens while preserving the mean. The near-stationary label refers specifically to location stability; rank-order sensitivity is documented in Appendix~\\ref{app:ddr-validation}.\nThe location/shape decomposition rests on the convergence of $\\rho$, Levene, CV shift, and $d$, not the omnibus KS statistic alone.\nPer-generator TOST equivalence testing confirms the partition is not a pooling artifact; holdout generator validation confirms stability across two 4/4 splits (Appendix~\\ref{app:tost}).\nTail decay shows generator-dependent variation ($d{=}0.15$--$0.22$), but reclassifying it as intermediate preserves the core split and classification performance.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nPermutation importance: hapax ratio (0.35), entropy mean (0.23), TTR (0.18).\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance, loadings 0.56--0.59; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp binary F1, and retaining any single drifting feature with the four non-drifting features yields F1\\,=\\,0.692 (vs.\\ 0.701 full).\nDDR's contribution is identifying which distributional properties (NLL location vs.\\ shape) are depth-sensitive; PC scores achieve equivalent classification but obscure which specific properties drift.\nTTR and hapax ratio ($r = 0.97$) show permutation importance differences (0.35 vs.\\ 0.18) due to feature masking \\cite{strobl_conditional_2008}; all three are retained for marginal LOFO gains (Appendix~\\ref{app:lofo}).",
+                "numLines": 20,
+                "startLine": 70,
+                "totalLines": 132
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FADeQxTpV7iDTnENRf7JEJ",
+              "name": "Glob",
+              "input": {
+                "pattern": "artifacts/_project/paper/appendix_tost*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85e750b3-0a68-4726-ac10-d4b1e84b59de",
+            "uuid": "9743291b-75c6-4d40-a2fc-355781ec5a01",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B2hutPZBa69DnmFWoBAoXm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14131,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14131
+                },
+                "output_tokens": 30,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T08:23:58.474Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FADeQxTpV7iDTnENRf7JEJ",
+              "type": "tool_result",
+              "content": "artifacts/_project/paper/appendix_tost.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "85e750b3-0a68-4726-ac10-d4b1e84b59de",
+            "uuid": "621db72c-a6ba-438e-a8b5-d109fe99fd5c",
+            "tool_use_result": {
+              "filenames": [
+                "artifacts/_project/paper/appendix_tost.tex"
+              ],
+              "durationMs": 17,
+              "numFiles": 1,
+              "truncated": false
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TCbBJ1rs5HYdTEUCYrxK2r",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85e750b3-0a68-4726-ac10-d4b1e84b59de",
+            "uuid": "7b49f9df-5372-448a-babe-ebb1b88c37a2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013XfZkVMFNCyWZr9zjEUU24",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1609,
+                "cache_read_input_tokens": 25972,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1609
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T08:24:02.146Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TCbBJ1rs5HYdTEUCYrxK2r",
+              "type": "tool_result",
+              "content": "1\t\\section{Per-Generator Equivalence Testing}\n2\t\\label{app:tost}\n3\t\n4\tTo confirm that the near-stationary classification is not a pooling artifact, we apply two one-sided $t$-tests (TOST) \\cite{lakens_equivalence} for each feature within each generator separately (gen-1 vs.\\ gen-2+, equivalence bound $|d| < 0.20$).\n5\tWe adopt Cohen's conventional small effect size ($d{=}0.20$) \\cite{cohen1988statistical} as the smallest effect of practical significance (SESOI): effects below this threshold are unlikely to be practically meaningful for depth discrimination.\n6\tLOFO analysis independently supports this choice: removing any near-stationary feature changes classification F1 by $\\leq$1.5\\,pp (Appendix~\\ref{app:lofo}), linking the statistical threshold to classification irrelevance.\n7\tSensitivity analysis at $\\varepsilon \\in \\{0.15, 0.20, 0.25\\}$ confirms the partition is robust to the bound choice (see DDR Validation appendix).\n8\tTable~\\ref{tab:tost-per-gen} reports observed $|d|$; \\checkmark{} marks features for which the TOST null hypothesis (non-equivalence) is rejected at $\\alpha = 0.05$.\n9\t\n10\tEntropy min passes equivalence for all eight generators; entropy max passes for six of eight (exceeding $\\varepsilon$ only for Pythia-1B and Pythia-2.8B, where $|d| \\approx 0.21$--$0.25$); tail decay passes for four of eight.\n11\tAll drifting and intermediate features fail equivalence uniformly, with $|d|$ ranging from 0.23 (entropy std, Mistral) to 1.40 (entropy mean, Pythia-1B).\n12\tThe partition is robust at the individual-generator level, with entropy min as the most consistently stationary feature.\n13\tFigure~\\ref{fig:ddr-scatter} visualizes the DDR partition in ($|\\rho|$, $d$) space, showing a clear gap between the three groups.\n14\t\n15\t\\begin{table}[h]\n16\t\\centering\n17\t\\footnotesize\n18\t\\caption{Per-generator TOST equivalence ($\\varepsilon{=}|d|{<}0.20$, gen-1 vs.\\ gen-2+). Observed $|d|$; \\checkmark{} = equivalent ($p_{\\mathrm{TOST}} < 0.05$). Features grouped by DDR partition.}\n19\t\\label{tab:tost-per-gen}\n20\t\\resizebox{\\columnwidth}{!}{%\n21\t\\begin{tabular}{l ccc c ccc}\n22\t\\toprule\n23\t& \\multicolumn{3}{c}{\\textbf{Drifting}} & \\textbf{Int.} & \\multicolumn{3}{c}{\\textbf{Near-stationary}} \\\\\n24\t\\cmidrule(lr){2-4} \\cmidrule(lr){5-5} \\cmidrule(lr){6-8}\n25\t\\textbf{Generator} & $\\bar{H}$ & TTR & hapax & $\\sigma_H$ & $H_{\\max}$ & tail & $H_{\\min}$ \\\\\n26\t\\midrule\n27\tPythia-2.8B  & 1.20 & 0.77 & 0.67 & 0.39 & 0.25          & 0.07\\,\\checkmark & 0.03\\,\\checkmark \\\\\n28\tPythia-1B    & 1.40 & 0.80 & 0.65 & 0.53 & 0.21          & 0.08\\,\\checkmark & 0.02\\,\\checkmark \\\\\n29\tQwen3-1.7B  & 1.12 & 0.93 & 0.83 & 0.52 & 0.02\\,\\checkmark & 0.09\\,\\checkmark & 0.05\\,\\checkmark \\\\\n30\tLlama-3.2-3B & 1.15 & 1.04 & 0.98 & 0.50 & 0.01\\,\\checkmark & 0.19          & 0.01\\,\\checkmark \\\\\n31\tOLMo-2-1B   & 1.19 & 1.08 & 1.00 & 0.61 & 0.06\\,\\checkmark & 0.22          & 0.07\\,\\checkmark \\\\\n32\tQwen3-8B    & 0.86 & 0.71 & 0.66 & 0.37 & 0.04\\,\\checkmark & 0.15          & 0.01\\,\\checkmark \\\\\n33\tQwen3-0.6B  & 0.92 & 0.63 & 0.50 & 0.56 & 0.01\\,\\checkmark & 0.08\\,\\checkmark & 0.10\\,\\checkmark \\\\\n34\tMistral-7B   & 0.89 & 0.82 & 0.82 & 0.23 & 0.00\\,\\checkmark & 0.16          & 0.04\\,\\checkmark \\\\\n35\t\\midrule\n36\t\\textbf{Equiv.\\ count} & 0/8 & 0/8 & 0/8 & 0/8 & 6/8 & 4/8 & 8/8 \\\\\n37\t\\bottomrule\n38\t\\end{tabular}}\n39\t\\end{table}\n40\t\n41\t\\begin{figure}[h]\n42\t\\centering\n43\t\\includegraphics[width=0.85\\columnwidth]{fig_ddr_scatter.pdf}\n44\t\\caption{DDR partition in pooled ($|\\rho|$, Cohen's $d$) space. Drifting features (green) cluster at high $|\\rho|$ and $d$; near-stationary features (orange) cluster near the origin; entropy std (purple) occupies a sole intermediate position. Dashed lines: TOST equivalence bound ($d{=}0.20$) and $|\\rho|{=}0.30$. Diamond marker: entropy min (pooled $|\\rho|{=}0.40$ reflects the gen-0/gen-1 boundary; gen-1 vs.\\ gen-2+ $d{=}0.03$).}\n45\t\\label{fig:ddr-scatter}\n46\t\\end{figure}\n47\t\n48\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "85e750b3-0a68-4726-ac10-d4b1e84b59de",
+            "uuid": "0c71c810-f9d3-4088-9a1e-fb88e0a01938",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost.tex",
+                "content": "\\section{Per-Generator Equivalence Testing}\n\\label{app:tost}\n\nTo confirm that the near-stationary classification is not a pooling artifact, we apply two one-sided $t$-tests (TOST) \\cite{lakens_equivalence} for each feature within each generator separately (gen-1 vs.\\ gen-2+, equivalence bound $|d| < 0.20$).\nWe adopt Cohen's conventional small effect size ($d{=}0.20$) \\cite{cohen1988statistical} as the smallest effect of practical significance (SESOI): effects below this threshold are unlikely to be practically meaningful for depth discrimination.\nLOFO analysis independently supports this choice: removing any near-stationary feature changes classification F1 by $\\leq$1.5\\,pp (Appendix~\\ref{app:lofo}), linking the statistical threshold to classification irrelevance.\nSensitivity analysis at $\\varepsilon \\in \\{0.15, 0.20, 0.25\\}$ confirms the partition is robust to the bound choice (see DDR Validation appendix).\nTable~\\ref{tab:tost-per-gen} reports observed $|d|$; \\checkmark{} marks features for which the TOST null hypothesis (non-equivalence) is rejected at $\\alpha = 0.05$.\n\nEntropy min passes equivalence for all eight generators; entropy max passes for six of eight (exceeding $\\varepsilon$ only for Pythia-1B and Pythia-2.8B, where $|d| \\approx 0.21$--$0.25$); tail decay passes for four of eight.\nAll drifting and intermediate features fail equivalence uniformly, with $|d|$ ranging from 0.23 (entropy std, Mistral) to 1.40 (entropy mean, Pythia-1B).\nThe partition is robust at the individual-generator level, with entropy min as the most consistently stationary feature.\nFigure~\\ref{fig:ddr-scatter} visualizes the DDR partition in ($|\\rho|$, $d$) space, showing a clear gap between the three groups.\n\n\\begin{table}[h]\n\\centering\n\\footnotesize\n\\caption{Per-generator TOST equivalence ($\\varepsilon{=}|d|{<}0.20$, gen-1 vs.\\ gen-2+). Observed $|d|$; \\checkmark{} = equivalent ($p_{\\mathrm{TOST}} < 0.05$). Features grouped by DDR partition.}\n\\label{tab:tost-per-gen}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{l ccc c ccc}\n\\toprule\n& \\multicolumn{3}{c}{\\textbf{Drifting}} & \\textbf{Int.} & \\multicolumn{3}{c}{\\textbf{Near-stationary}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-5} \\cmidrule(lr){6-8}\n\\textbf{Generator} & $\\bar{H}$ & TTR & hapax & $\\sigma_H$ & $H_{\\max}$ & tail & $H_{\\min}$ \\\\\n\\midrule\nPythia-2.8B  & 1.20 & 0.77 & 0.67 & 0.39 & 0.25          & 0.07\\,\\checkmark & 0.03\\,\\checkmark \\\\\nPythia-1B    & 1.40 & 0.80 & 0.65 & 0.53 & 0.21          & 0.08\\,\\checkmark & 0.02\\,\\checkmark \\\\\nQwen3-1.7B  & 1.12 & 0.93 & 0.83 & 0.52 & 0.02\\,\\checkmark & 0.09\\,\\checkmark & 0.05\\,\\checkmark \\\\\nLlama-3.2-3B & 1.15 & 1.04 & 0.98 & 0.50 & 0.01\\,\\checkmark & 0.19          & 0.01\\,\\checkmark \\\\\nOLMo-2-1B   & 1.19 & 1.08 & 1.00 & 0.61 & 0.06\\,\\checkmark & 0.22          & 0.07\\,\\checkmark \\\\\nQwen3-8B    & 0.86 & 0.71 & 0.66 & 0.37 & 0.04\\,\\checkmark & 0.15          & 0.01\\,\\checkmark \\\\\nQwen3-0.6B  & 0.92 & 0.63 & 0.50 & 0.56 & 0.01\\,\\checkmark & 0.08\\,\\checkmark & 0.10\\,\\checkmark \\\\\nMistral-7B   & 0.89 & 0.82 & 0.82 & 0.23 & 0.00\\,\\checkmark & 0.16          & 0.04\\,\\checkmark \\\\\n\\midrule\n\\textbf{Equiv.\\ count} & 0/8 & 0/8 & 0/8 & 0/8 & 6/8 & 4/8 & 8/8 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=0.85\\columnwidth]{fig_ddr_scatter.pdf}\n\\caption{DDR partition in pooled ($|\\rho|$, Cohen's $d$) space. Drifting features (green) cluster at high $|\\rho|$ and $d$; near-stationary features (orange) cluster near the origin; entropy std (purple) occupies a sole intermediate position. Dashed lines: TOST equivalence bound ($d{=}0.20$) and $|\\rho|{=}0.30$. Diamond marker: entropy min (pooled $|\\rho|{=}0.40$ reflects the gen-0/gen-1 boundary; gen-1 vs.\\ gen-2+ $d{=}0.03$).}\n\\label{fig:ddr-scatter}\n\\end{figure}\n\n",
+                "numLines": 48,
+                "startLine": 1,
+                "totalLines": 48
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the style context. Let me create both files."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85e750b3-0a68-4726-ac10-d4b1e84b59de",
+            "uuid": "548b422e-7aeb-45c2-9467-26b8e26bfaf5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V8UJq7KvZeNWGZg3Pd72gn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1798,
+                "cache_read_input_tokens": 27581,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1798
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CpXPPzsr5aGMNehJ3zzpW5",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost_bootstrap.tex",
+                "content": "\\section{TOST Bootstrap Stability}\\label{app:tost-bootstrap}\n\nTo verify that the equivalence conclusions in \\S\\ref{app:tost} are not sensitive to sample composition, we assess their stability under bootstrap resampling.\nFor each of four representative features, we run 1{,}000 bootstrap iterations (base seed\\,=\\,42): each iteration independently resamples with replacement from the gen-1 and gen-2+ pools, recomputes Cohen's $d$ and the TOST $p$-value (equivalence margin $|d| < 0.20$).\n\n\\begin{table}[h]\n\\centering\n\\footnotesize\n\\caption{Bootstrap stability of TOST equivalence ($B{=}1{,}000$, margin $|d|{<}0.20$). Rejection rate = fraction of bootstrap iterations where TOST rejects non-equivalence at $\\alpha{=}0.05$.}\n\\label{tab:tost-bootstrap}\n\\begin{tabular}{l c c c}\n\\toprule\n\\textbf{Feature} & \\textbf{Rejection rate} & \\textbf{Median $d$} & \\textbf{$d$ 95\\% CI} \\\\\n\\midrule\nentropy\\_max  & 100\\% (1000/1000) & 0.062  & [0.037, 0.088] \\\\\nentropy\\_min  & 100\\% (1000/1000) & $-$0.016 & [$-$0.042, 0.011] \\\\\ntail\\_decay   & 100\\% (1000/1000) & 0.088  & [0.065, 0.111] \\\\\n\\midrule\nentropy\\_std  & 0\\% (0/1000)      & 0.458  & [0.435, 0.479] \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAll three near-stationary features achieve a 100\\% rejection rate across 1{,}000 bootstrap iterations, and their effect-size 95\\% CIs fall entirely within the $\\pm 0.20$ equivalence margin.\nEntropy std, included as an intermediate control, is never rejected (0\\%), with its CI $[0.435, 0.479]$ lying entirely outside the margin.\nNo feature exhibits boundary-crossing---the classification of each feature is unanimous across all bootstrap samples, confirming that the equivalence conclusions are robust to resampling variability.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85e750b3-0a68-4726-ac10-d4b1e84b59de",
+            "uuid": "e4bb9218-823f-4bbc-a284-99984fc1795d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V8UJq7KvZeNWGZg3Pd72gn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1798,
+                "cache_read_input_tokens": 27581,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1798
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T08:24:16.267Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CpXPPzsr5aGMNehJ3zzpW5",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost_bootstrap.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "85e750b3-0a68-4726-ac10-d4b1e84b59de",
+            "uuid": "7ebf5ad8-3bba-40e6-9ca4-b8f0251d53f0",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost_bootstrap.tex",
+              "content": "\\section{TOST Bootstrap Stability}\\label{app:tost-bootstrap}\n\nTo verify that the equivalence conclusions in \\S\\ref{app:tost} are not sensitive to sample composition, we assess their stability under bootstrap resampling.\nFor each of four representative features, we run 1{,}000 bootstrap iterations (base seed\\,=\\,42): each iteration independently resamples with replacement from the gen-1 and gen-2+ pools, recomputes Cohen's $d$ and the TOST $p$-value (equivalence margin $|d| < 0.20$).\n\n\\begin{table}[h]\n\\centering\n\\footnotesize\n\\caption{Bootstrap stability of TOST equivalence ($B{=}1{,}000$, margin $|d|{<}0.20$). Rejection rate = fraction of bootstrap iterations where TOST rejects non-equivalence at $\\alpha{=}0.05$.}\n\\label{tab:tost-bootstrap}\n\\begin{tabular}{l c c c}\n\\toprule\n\\textbf{Feature} & \\textbf{Rejection rate} & \\textbf{Median $d$} & \\textbf{$d$ 95\\% CI} \\\\\n\\midrule\nentropy\\_max  & 100\\% (1000/1000) & 0.062  & [0.037, 0.088] \\\\\nentropy\\_min  & 100\\% (1000/1000) & $-$0.016 & [$-$0.042, 0.011] \\\\\ntail\\_decay   & 100\\% (1000/1000) & 0.088  & [0.065, 0.111] \\\\\n\\midrule\nentropy\\_std  & 0\\% (0/1000)      & 0.458  & [0.435, 0.479] \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAll three near-stationary features achieve a 100\\% rejection rate across 1{,}000 bootstrap iterations, and their effect-size 95\\% CIs fall entirely within the $\\pm 0.20$ equivalence margin.\nEntropy std, included as an intermediate control, is never rejected (0\\%), with its CI $[0.435, 0.479]$ lying entirely outside the margin.\nNo feature exhibits boundary-crossing---the classification of each feature is unanimous across all bootstrap samples, confirming that the equivalence conclusions are robust to resampling variability.\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017BgABK6Db3uhWCWGbTSNn4",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+                "old_string": "Per-generator TOST equivalence testing confirms the partition is not a pooling artifact; holdout generator validation confirms stability across two 4/4 splits (Appendix~\\ref{app:tost}).",
+                "new_string": "Per-generator TOST equivalence testing confirms the partition is not a pooling artifact; holdout generator validation confirms stability across two 4/4 splits (Appendix~\\ref{app:tost}).\nBootstrap resampling (1{,}000 iterations) confirms these equivalence conclusions are robust: all three near-stationary features achieve 100\\% rejection rate, with effect-size CIs well within the $d{=}0.20$ margin (Appendix~\\ref{app:tost-bootstrap})."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85e750b3-0a68-4726-ac10-d4b1e84b59de",
+            "uuid": "e70e22f2-8463-4ea3-8dca-eb4fef160260",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V8UJq7KvZeNWGZg3Pd72gn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1798,
+                "cache_read_input_tokens": 27581,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1798
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T08:24:18.345Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017BgABK6Db3uhWCWGbTSNn4",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "85e750b3-0a68-4726-ac10-d4b1e84b59de",
+            "uuid": "669884fa-8a18-4f52-aa12-af10a785b7af",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+              "oldString": "Per-generator TOST equivalence testing confirms the partition is not a pooling artifact; holdout generator validation confirms stability across two 4/4 splits (Appendix~\\ref{app:tost}).",
+              "newString": "Per-generator TOST equivalence testing confirms the partition is not a pooling artifact; holdout generator validation confirms stability across two 4/4 splits (Appendix~\\ref{app:tost}).\nBootstrap resampling (1{,}000 iterations) confirms these equivalence conclusions are robust: all three near-stationary features achieve 100\\% rejection rate, with effect-size CIs well within the $d{=}0.20$ margin (Appendix~\\ref{app:tost-bootstrap}).",
+              "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nGeneration depth is classifiable across diverse architectures: the 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}).\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94) and the 3-class metric is inflated by this overlap.\nWe therefore adopt leak-free binary F1 (gen-1 vs.\\ gen-2+)\\,=\\,0.694, CI [0.688, 0.700], as the primary metric throughout; it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B), with the primary difficulty being gen-1 vs.\\ gen-2+ discrimination (Appendix~\\ref{app:confusion}).\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]) under generator-level leave-one-out evaluation on the 5-generator subset for which cross-model chains were available (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B).\\footnote{We corrected the cross-model chain evaluation from sample-level CV to generator-level LOGO for consistency with our main evaluation protocol. CIs are case-level bootstrap ($n$\\,=\\,2{,}000). The 5-generator result is not directly comparable to the 8-generator LOGO (binary F1\\,=\\,0.694) due to differing generator subsets.}\nThe higher cross-model binary F1 relative to the 8-generator LOGO (0.694) is not directly comparable: the cross-model evaluation uses a 5-generator subset, and generator heterogeneity in mixed chains may amplify depth-correlated distributional shifts.\nA single-generator transfer analysis (Appendix~\\ref{app:transfer}) provides evidence against this confound: classifiers trained on one generator transfer to all seven others with mean binary F1\\,=\\,0.810 (95\\% CI [0.796, 0.822]), significantly above chance.\nLeave-one-family-out (LOFO) evaluation yields binary F1\\,=\\,0.686, consistent with cross-family transfer.\nA scale effect emerges: Pythia generators achieve the highest binary F1 (0.718--0.724), while larger models show degradation (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference model (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}).\nPreliminary cross-domain evaluation suggests the signal persists with variation, though a domain$\\times$temperature interaction exists (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 (6-generator LOGO; $+$11.6\\,pp; Appendix~\\ref{app:qlora}), which indicates that richer representations capture additional depth signal beyond the 7-feature set; on instruct data, QLoRA recovers to 0.89--0.91 (Appendix~\\ref{app:instruct}).\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control confirms the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both confirm the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-cl F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\nFeatures exhibit a continuous gradient of depth sensitivity, with a data-driven binary partition as the strongest structure: $k{=}2$ clustering in standardized $(|\\rho|, d)$ space yields silhouette\\,=\\,0.632 (Appendix~\\ref{app:ddr-validation}), separating \\emph{drifting} features (entropy mean, TTR, hapax ratio; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) from \\emph{non-drifting} ones.\nWe use the shorthand \\emph{differential depth response} (DDR) for this partition and further resolve a 3/1/3 characterization using domain-informed criteria: entropy std occupies a sole \\emph{intermediate} position (large level shift $d{=}0.55$, low monotonicity $|\\rho|{=}0.16$); the remaining three \\emph{near-stationary} features (entropy max, tail decay, entropy min) show negligible depth effects ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting).\nThis partition is robust under heteroscedasticity-corrected metrics (below).\nThe partition is demonstrated for this seven-feature set; alternative features (e.g., syntactic complexity, n-gram frequencies) may yield different groupings, though the convergence of five independent effect-size metrics suggests the location/shape asymmetry reflects distributional structure rather than feature-selection artifact.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response: Spearman correlations between individual features and generation depth. Drifting features (hapax ratio, TTR, entropy mean) show $|\\rho| > 0.60$; entropy std ($|\\rho|{=}0.16$, $d{=}0.55$) is the sole intermediate feature; near-stationary features (entropy max, tail decay, entropy min) show $d < 0.10$ for gen-1 vs.\\ gen-2+ (entropy min's elevated pooled $|\\rho|$ reflects the gen-0/gen-1 boundary; \\S\\ref{sec:results-differential}).}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth confirm the split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile shape features remain near-stationary (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and near-stationary features ($|\\rho| < 0.10$) defines the DDR partition, with entropy std ($|\\rho| = 0.16$, $d{=}0.55$) as the sole intermediate member.\nThe 3/1/3 partition is stable across $d$ thresholds in $[0.56, 0.75]$; data-driven clustering confirms the primary drifting/non-drifting split ($k{=}2$, silhouette\\,=\\,0.632; Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Distributional shift quantification.}\nTwo-sample KS tests confirm the split: drifting-feature statistics (0.516--0.537) are ${\\sim}10\\times$ larger than shape-feature statistics (0.043--0.052; all $p \\approx 0$ after Bonferroni correction).\nCohen's $d$ \\cite{cohen1988statistical} (pooled, class-balanced) converges with $\\rho$: drifting features show large effects (entropy mean $d{=}1.17$, TTR $d{=}0.88$, hapax ratio $d{=}0.76$), while shape features are near zero (entropy max $d{=}0.08$, tail decay $d{=}0.08$).\nLevene tests reject strict equal-variance ($p < 10^{-10}$); Glass's $\\Delta$ (using gen-1 SD) amplifies drifting effects (entropy mean $\\Delta{=}1.41$, hapax $\\Delta{=}0.94$) while near-stationary features remain negligible ($\\Delta \\leq 0.10$), yielding a ${\\geq}9.5\\times$ gap. Cliff's $\\delta$ corroborates the partition (Appendix~\\ref{app:ddr-validation}).\nShape-feature CV shift ($<$3\\% vs.\\ $>$15\\% for drifting features) supports ``near-stationary'' as a practical characterization.\nFive features fall cleanly into the drifting or near-stationary groups under both $\\rho$ and $d$; the remaining two require qualification: entropy min's pooled $|\\rho|$ (0.40) reflects change concentrated at the gen-0/gen-1 boundary, but for gen-1 vs.\\ gen-2+ it is near-stationary ($d{=}0.03$), placing it in the near-stationary group; entropy std shows a substantial level shift ($d{=}0.55$) despite low monotonicity ($|\\rho|{=}0.16$), making it the sole intermediate feature.\nEntropy min exhibits a discrepancy between location-based (Cohen's $d$\\,=\\,0.016) and rank-based (Cliff's $\\delta$\\,=\\,0.354) effect sizes, indicating distributional shape change without location shift: recursive generation produces more extreme minimum-entropy tokens while preserving the mean. The near-stationary label refers specifically to location stability; rank-order sensitivity is documented in Appendix~\\ref{app:ddr-validation}.\nThe location/shape decomposition rests on the convergence of $\\rho$, Levene, CV shift, and $d$, not the omnibus KS statistic alone.\nPer-generator TOST equivalence testing confirms the partition is not a pooling artifact; holdout generator validation confirms stability across two 4/4 splits (Appendix~\\ref{app:tost}).\nTail decay shows generator-dependent variation ($d{=}0.15$--$0.22$), but reclassifying it as intermediate preserves the core split and classification performance.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nPermutation importance: hapax ratio (0.35), entropy mean (0.23), TTR (0.18).\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance, loadings 0.56--0.59; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp binary F1, and retaining any single drifting feature with the four non-drifting features yields F1\\,=\\,0.692 (vs.\\ 0.701 full).\nDDR's contribution is identifying which distributional properties (NLL location vs.\\ shape) are depth-sensitive; PC scores achieve equivalent classification but obscure which specific properties drift.\nTTR and hapax ratio ($r = 0.97$) show permutation importance differences (0.35 vs.\\ 0.18) due to feature masking \\cite{strobl_conditional_2008}; all three are retained for marginal LOFO gains (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Table~\\ref{tab:cross-ref} in Appendix~\\ref{app:cross-ref}), with consistently negative entropy drift.\nPythia generators' highest F1 (0.718--0.724) may partly reflect same-family affinity with the Pythia-410M reference model, but the 0.013 cross-reference spread bounds this effect; depth features are robust to reference model choice, though this does not alone establish DDR as a fundamental property of recursive generation.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nThe depth signal is modulated by decoding parameters and prompt type (Appendices~\\ref{app:sampling-sensitivity},~\\ref{app:prompt-type}).\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is model-family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen).\nContinuation chains show the strongest drift (binary F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753).\nPer-feature convergence trajectories confirm this ordering (Appendix~\\ref{app:convergence}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nDo existing detection methods already capture depth signal?\nTo contextualize depth discrimination ability rather than claim competitive advantage, we repurpose four detection scores as ordinal depth predictors using the same XGBoost framework and LOGO splits (Table~\\ref{tab:baselines}).\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; slightly higher than per-generator macro average in Table~\\ref{tab:logo-results}). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\nThe 7-feature ensemble exceeds all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--36.3\\,pp; Figure~\\ref{fig:baseline-ci}).\nMulti-detector ensembles achieve marginally higher binary F1 (0.708 vs.\\ 0.705) at 2.4$\\times$ inference cost, suggesting depth information is implicitly encoded in distributional divergence measures.\nDDR's contribution is not classification performance but decomposing depth signal into location-sensitive and shape-stable components, a distinction absent from both binary detection methods and model collapse analyses (\\S\\ref{sec:discussion}).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 79,
+                  "oldLines": 6,
+                  "newStart": 79,
+                  "newLines": 7,
+                  "lines": [
+                    " Entropy min exhibits a discrepancy between location-based (Cohen's $d$\\,=\\,0.016) and rank-based (Cliff's $\\delta$\\,=\\,0.354) effect sizes, indicating distributional shape change without location shift: recursive generation produces more extreme minimum-entropy tokens while preserving the mean. The near-stationary label refers specifically to location stability; rank-order sensitivity is documented in Appendix~\\ref{app:ddr-validation}.",
+                    " The location/shape decomposition rests on the convergence of $\\rho$, Levene, CV shift, and $d$, not the omnibus KS statistic alone.",
+                    " Per-generator TOST equivalence testing confirms the partition is not a pooling artifact; holdout generator validation confirms stability across two 4/4 splits (Appendix~\\ref{app:tost}).",
+                    "+Bootstrap resampling (1{,}000 iterations) confirms these equivalence conclusions are robust: all three near-stationary features achieve 100\\% rejection rate, with effect-size CIs well within the $d{=}0.20$ margin (Appendix~\\ref{app:tost-bootstrap}).",
+                    " Tail decay shows generator-dependent variation ($d{=}0.15$--$0.22$), but reclassifying it as intermediate preserves the core split and classification performance.",
+                    " ",
+                    " \\paragraph{Feature complementarity.}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n1. **新建 `appendix_tost_bootstrap.tex`** — 包含 section 标题、bootstrap 方法说明、booktabs 风格表格（4 features × rejection rate / median d / d 95% CI）、总结段落。\n2. **`results.tex` 第 81 行** — 在 `(Appendix~\\ref{app:tost}).` 后添加了 bootstrap 引用句。\n\n你需要在 `main.tex` 中添加 `\\input{appendix_tost_bootstrap}` 行。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85e750b3-0a68-4726-ac10-d4b1e84b59de",
+            "uuid": "a6c95e15-9c19-45a7-9b6d-e212cd54ac3e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BhHeZji4xyYD2VkfraS5LF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1174,
+                "cache_read_input_tokens": 29379,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1174
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n1. **新建 `appendix_tost_bootstrap.tex`** — 包含 section 标题、bootstrap 方法说明、booktabs 风格表格（4 features × rejection rate / median d / d 95% CI）、总结段落。\n2. **`results.tex` 第 81 行** — 在 `(Appendix~\\ref{app:tost}).` 后添加了 bootstrap 引用句。\n\n你需要在 `main.tex` 中添加 `\\input{appendix_tost_bootstrap}` 行。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 29505,
+            "duration_api_ms": 31302,
+            "num_turns": 6,
+            "stop_reason": "end_turn",
+            "session_id": "85e750b3-0a68-4726-ac10-d4b1e84b59de",
+            "total_cost_usd": 0.20365749999999996,
+            "usage": {
+              "input_tokens": 6,
+              "cache_creation_input_tokens": 18712,
+              "cache_read_input_tokens": 94773,
+              "output_tokens": 1507,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 18712,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 153,
+                  "cache_read_input_tokens": 29379,
+                  "cache_creation_input_tokens": 1174,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1174
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1521,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001616,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 6,
+                "outputTokens": 1507,
+                "cacheReadInputTokens": 94773,
+                "cacheCreationInputTokens": 18712,
+                "webSearchRequests": 0,
+                "costUSD": 0.20204149999999996,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "175acb3e-8437-4416-bc5b-4e9464012248"
+          },
+          "id": "event-000018"
+        }
+      ],
+      "message_count": 18
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-appendix-tost-bootstrap.md"
+}

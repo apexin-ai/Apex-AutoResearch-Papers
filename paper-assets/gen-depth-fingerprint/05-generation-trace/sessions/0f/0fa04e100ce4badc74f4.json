@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0fa04e100ce4badc74f4",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper rd3 captions refs",
+  "task_key": "worker_paper_rd3-captions-refs_20260516T050229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_rd3-captions-refs_20260516T050229_result.json",
+    "occurrence": 1,
+    "bytes": 1514,
+    "sha256": "ea234535438a789e51c5a3b6565fae5e727a9d11bbb7900dfeae80850b423cf4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits complete. Here's the summary:\n\n### 修改清单\n\n**Task 1 — 表格 caption 标注 generator split:**\n\n| 文件 | 表格 | 改动 |\n|------|------|------|\n| `table4.tex` | tab:cross-ref | 加 \"(6-gen LOGO)\" |\n| `appendix_classifier.tex` | tab:alt-classifier | 加 \"(6-gen split)\" |\n| `appendix_classifier.tex` | tab:sampling-ablation | 加 \"(6-gen LOGO)\" |\n| `appendix_finer_depth.tex` | tab:5class-logo | 加 \"(6-gen split)\" |\n| `appendix_qlora.tex` | tab:qlora | 加 \"6-gen\" |\n\n已有标注无需修改：tab:logo-results, tab:ablation, tab:baselines, tab:human-edit, tab:lofo, tab:confusion（均已含 \"6-gen\" 或 \"6-generator\"）。\n\n**Task 2 — Qwen3-0.6B self-referencing bias:**\n\n`discussion.tex`: 在 \"Comparison with detector ensembles\" 段后、\"Prompt-type dependence\" 段前插入 `\\paragraph{Reference model choice.}`，说明 Qwen3-0.6B 双重角色的偏差有限 (+1.3pp)，主实验默认用 Pythia-410M 避免重叠。数字与 results.tex §4.2 和 limitations.tex 一致。\n\n**Task 3 — MR verified: all references present.** energy_ood (Liu 2020), mahalanobis_ood (Lee 2018), fineweb (Penedo 2024), dolma (Soldaini 2024), model_collapse_avoidable (Gerstgrasser 2024) 均在 references.bib 中。\n\n**Task 4 — main.tex appendix 完整性:** 9 个 appendix \\input 均存在。`appendix_dataset_stats.tex` 仅存在于 `docs/paper/`，尚未出现在 `artifacts/_project/paper/`，待另一 Worker 完成后添加 \\input。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-rd3-captions-refs.md"
+}

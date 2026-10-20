@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03b66b965b3fa4ec2338",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops plan007 completion check",
+  "task_key": "worker_ops_plan007-completion-check_20260515T220649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan007-completion-check_20260515T220649_result.json",
+    "occurrence": 1,
+    "bytes": 1181,
+    "sha256": "38a4b8825ba84f267ededb2b89e95fafa6695bd192699b3d2bd3355371b8fa8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有活跃的 cron 任务，无需删除。\n\n---\n\n**plan-007 cross-model chains 实验：成功完成。**\n\n三阶段（generate → extract → evaluate）全部正常退出。关键结果：\n\n| 指标 | 值 |\n|------|-----|\n| **3-class macro-F1** | **0.8089 ± 0.0166** |\n| binary F1 (gen-1 vs gen-2+) | 0.7635 |\n| binary F1 (gen-0 vs gen-2+) | 0.8372 |\n| gen-0 F1 | 0.9285 |\n| gen-1 F1 | 0.7367 |\n| gen-2+ F1 | 0.7614 |\n| 样本数 | 4773 (995 seeds × 5 depths, 自然衰减) |\n| 平均每链使用生成器数 | 3.0 ± 0.67 |\n\n**对比 single-model baselines：**\n\n| Generator | macro-F1 |\n|-----------|----------|\n| pythia-1b | 0.8622 |\n| qwen3-0.6b | 0.8354 |\n| pythia-2.8b | 0.8156 |\n| qwen3-1.7b | 0.8106 |\n| olmo-2-1b | 0.7801 |\n| **cross-model** | **0.8089** |\n\nCross-model F1 (0.809) 略低于多数 single-model baselines，但仍处于可分类水平——depth fingerprint 在跨模型链场景下保持有效，只是信号略弱。Feature importance 排序：hapax_ratio (0.357) > entropy_mean (0.204) > ttr (0.202)。\n\n结果已保存至 `results/cross_model_chains_results.json`，registry 已更新为 success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan007-completion-check.md"
+}

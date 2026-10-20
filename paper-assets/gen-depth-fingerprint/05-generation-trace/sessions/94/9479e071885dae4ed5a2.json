@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9479e071885dae4ed5a2",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops verify mistral final",
+  "task_key": "worker_ops_verify-mistral-final_20260516T113557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-mistral-final_20260516T113557_result.json",
+    "occurrence": 1,
+    "bytes": 514,
+    "sha256": "2b3955a8b2febc692587fbd3e5f1c8b861fcc005ee56101f202bbdcd582e30dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan-016-mistral-7b 已正常完成。**\n\n| 指标 | 值 |\n|------|-----|\n| 总条数 | 4849 |\n| 跳过（degenerate） | 59 |\n| 耗时 | 13112.7s (~3.6h) |\n\n**Depth 分布：**\n- depth 0: 996\n- depth 1: 994\n- depth 2: 970\n- depth 3: 952\n- depth 4: 937\n\n最后一条记录 seed_id=999，全部 996 seeds 处理完毕。131 条因 empty output 被跳过（分布在 depth 1-4，符合预期——越深越容易 degenerate）。\n\nRegistry 已标记 DONE/success，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-mistral-final.md"
+}

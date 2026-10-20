@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "4e7b7cb45db04e79b62c",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "exp review sampling ablation",
+  "task_key": "worker_exp_review-sampling-ablation_20260515T155153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_review-sampling-ablation_20260515T155153.log",
+    "occurrence": 1,
+    "bytes": 836886,
+    "sha256": "96ade621902e43c6bd221807a92d4325a96a063eaa3f879da47527c0fb811746"
+  },
+  "statistics": {
+    "messages": 388,
+    "user_turns": 2,
+    "tool_calls": 129,
+    "roles": {
+      "log": 1,
+      "system": 101,
+      "record": 1,
+      "assistant": 24,
+      "tool_call": 129,
+      "user": 2,
+      "tool_result": 129,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "4e7b7cb45db04e79b62c-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 155,
+      "chunks": [
+        {
+          "path": "4e7b7cb45db04e79b62c-part-0001.json",
+          "message_count": 155
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 226,
+      "chunks": [
+        {
+          "path": "4e7b7cb45db04e79b62c-part-0001.json",
+          "message_count": 18
+        },
+        {
+          "path": "4e7b7cb45db04e79b62c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4e7b7cb45db04e79b62c-part-0003.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-review-sampling-ablation.md"
+}

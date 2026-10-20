@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a65dcd401234a73ab523",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "exp decoding strategy shape",
+  "task_key": "worker_exp_decoding_strategy_shape_20260521T062400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_decoding_strategy_shape_20260521T062400_result.json",
+    "occurrence": 1,
+    "bytes": 1189,
+    "sha256": "1fcdbfc34134f337547aa3d12afee1e2079d2222be7e5f4bc7e6e54f39be3e59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部自动化管线已就绪。当前状态总结：\n\n**正在运行的任务：**\n- `cuda:0`: Pythia-2.8B greedy→topk (~9.5h)\n- `cuda:1`: OLMo-2-1B greedy→topk (~6h)\n\n**自动后续链：**\n- OLMo 完成 → Qwen3-1.7B (cuda:1) → 全部 feature 提取 → 分析\n- Pythia 完成 → Pythia feature 提取 (cuda:0)\n\n**Nucleus 基线已计算（对照用）：**\n\n| Model | entropy_min d | entropy_max d | tail_decay d | Silhouette |\n|-------|:---:|:---:|:---:|:---:|\n| Pythia-2.8B | 0.035 | 0.259 | 0.070 | 0.598 |\n| OLMo-2-1B | 0.061 | 0.060 | 0.226 | 0.686 |\n| Qwen3-1.7B | 0.052 | 0.020 | 0.092 | 0.672 |\n\n**已上传文件：**\n- `/root/gen-depth-fingerprint/generate_chain_decoding.py` — 生成脚本\n- `/root/gen-depth-fingerprint/analyze_decoding_strategy.py` — 分析脚本\n- `/root/gen-depth-fingerprint/start_qwen_after_olmo.sh` — 自动链\n- `appendix_decoding_strategy.tex` — 模板（待填数据）\n\n预计全部完成时间约 11 小时。管线完成后需要：填入 tex 实际数值、写分析文字、保存结果到 artifacts。可以随时 `tail /tmp/gen_pythia.log` 或 `tail /tmp/gen_olmo.log` 查看进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-decoding-strategy-shape.md"
+}

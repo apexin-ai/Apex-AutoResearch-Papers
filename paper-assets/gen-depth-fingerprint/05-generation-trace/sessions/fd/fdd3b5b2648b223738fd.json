@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fdd3b5b2648b223738fd",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "gen plan 016 mistral 7b",
+  "task_key": "worker_gen_plan-016-mistral-7b_20260516T071857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gen_plan-016-mistral-7b_20260516T071857_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "0344c8475a97cb7359b10b1136a85709b66d65299f5a29a752dc40bc2f7a0a90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Generation job is running successfully:\n- Model loaded on cuda:0 (physical cuda:2), FP16, 32768 vocab\n- 996 seeds loaded from wiki_seed_1000.jsonl\n- Processing shard 0/1: all 996 seeds\n- First seed took ~14.5s (includes warmup; subsequent seeds should be faster)\n- Attention mask warning is benign (Mistral uses EOS as pad token)\n\nAt ~14.5s/seed × 996 seeds = ~4 hours ETA. Each seed generates 5 depths, so ~5000 output lines total.\n\nOutput will be at `/root/gen-depth-fingerprint/data/mistral-7b-v0.3/generations_shard0.jsonl`.\n\nGeneration job is running — PID 288995 on cuda:2, log at `/tmp/mistral_generate.log`. ETA ~4-6 hours for all 996 seeds × 5 depths."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gen-plan-016-mistral-7b.md"
+}

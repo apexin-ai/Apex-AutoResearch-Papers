@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7341c9e6ad522092f60d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "figure ddr trajectory v3",
+  "task_key": "worker_figure_ddr_trajectory_v3_20260520T144720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_ddr_trajectory_v3_20260520T144720_result.json",
+    "occurrence": 1,
+    "bytes": 321,
+    "sha256": "aca6638da8c9365654ea0b9a935b41e9b30c05fefcf954e2a0077f6ab1047d72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。PDF (42.6 KB) 和 PNG (351.6 KB) 已生成到 `artifacts/_project/chart/fig_ddr_trajectory.{pdf,png}`。\n\nSpearman ρ 值：\n- entropy_mean: ρ = −0.5978 (p ≈ 0)\n- hapax_ratio: ρ = −0.6405 (p ≈ 0)\n- entropy_max: ρ = 0.0608 (p = 1.06e-31)\n- tail_decay: ρ = −0.0413 (p = 1.84e-15)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-ddr-trajectory-v3.md"
+}

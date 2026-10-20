@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cabb625fe7157470362a",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper round3 abstract refs",
+  "task_key": "worker_paper_round3-abstract-refs_20260516T044746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_round3-abstract-refs_20260516T044746_result.json",
+    "occurrence": 1,
+    "bytes": 1677,
+    "sha256": "6e8450f90b2c7bae3bbc5ea1a595c1d8dcc59f47fc20c0ea67533ae728b9f108"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits applied to both `artifacts/_project/paper/` and `docs/paper/`. Summary of changes:\n\n### M7: Abstract 精简\n- Shortened ordinal depth description: removed verbose gen-0/gen-1/gen-2+ parenthetical, replaced with \"by generation depth rather than a binary real-vs-synthetic label\"\n- Removed `$p < 0.001$ vs.\\ all baselines` → \"significantly outperforming all individual detection baselines\"\n- Simplified \"consistent with recursive generation inducing a location shift...without altering\" → \"consistent with a location shift...that preserves\"\n- Intro: `0.6B--8.2B parameters` → `spanning multiple scales`\n\n### W4: Hypothesis framing\n- Intro line 20: removed assertive \"reflects\" — changed from \"We hypothesize that this pattern reflects recursive generation inducing...\" to \"We hypothesize that recursive generation induces...; under this account, the sampling mechanism governs...\"\n- Abstract was already hedged with \"consistent with\"\n\n### MR: 补引用 (5 references)\n- **energy_ood** (Liu et al., NeurIPS 2020) + **mahalanobis_ood** (Lee et al., NeurIPS 2018): added to bib; cited in intro line 12 alongside existing detectors, drawing OOD parallel\n- **fineweb** (Penedo et al., NeurIPS 2024) + **dolma** (Soldaini et al., ACL 2024): added to bib; cited in intro line 24 (negative finding context) and related_work.tex data quality section\n- **Gerstgrasser et al. 2024**: already in bib as `model_collapse_avoidable`, already cited in `related_work.tex` line 21 — no additional citation needed\n\nAll `\\cite{}` keys match bib entries. All bib entries have matched braces. All references verified via WebSearch."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-round3-abstract-refs.md"
+}

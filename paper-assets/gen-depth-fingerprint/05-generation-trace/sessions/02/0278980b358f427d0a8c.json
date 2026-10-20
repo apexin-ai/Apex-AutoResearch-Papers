@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0278980b358f427d0a8c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code distributional tests",
+  "task_key": "worker_code_distributional-tests_20260517T142156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_distributional-tests_20260517T142156_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "13a9746f690a6740494979c8f72a82d21b4866741aab46347bffec627787f3af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n**所有 7 个特征的 KS 检验全部显著**（Bonferroni 校正后 p ≈ 0），确认 depth 维度上存在 location shift。\n\n**Levene 检验也全部显著**（p < 1e-10），说明方差也随 depth 变化。\n\n**分类汇总：**\n- Location shift + shape preserved: **无**（预期的 entropy_mean/ttr/hapax_ratio 没有出现在这里）\n- Location shift + shape shift: **全部 7 个特征**\n- No shift: **无**\n\n这意味着 depth 不仅移动分布中心，还改变分布形状（方差）。所有特征都呈现全面漂移，而非简单的 location-only shift。结果已写入 `/root/gen-depth-fingerprint/results/distributional_tests.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-distributional-tests.md"
+}

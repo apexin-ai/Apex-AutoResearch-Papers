@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fd39096a340e09bf419",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "diagnose dead experiments",
+  "task_key": "worker_diagnose_dead-experiments_20260516T015143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_dead-experiments_20260516T015143_result.json",
+    "occurrence": 1,
+    "bytes": 1135,
+    "sha256": "c01cfd98ef6f9b700347967966890c6bf84272f8a7dd677ac427967fed627c3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已全部更新。诊断总结：\n\n---\n\n## 诊断结果\n\n### plan-006-confound-fix — SUCCESS\n匹配生成参数后（rp=1.0, max_tokens=256），paraphrastic chains 仍然比 continuation 更快丢失 depth signal，确认结论非参数混淆所致：\n- **3-class F1**: para 0.727 vs cont 0.788, delta **-0.061**\n- **Binary F1**: para 0.613 vs cont 0.749\n- **Depth retention**: para 0.995 vs cont 0.826（para 几乎不丢样本但分类更难，cont 丢更多样本但剩余样本 signal 更强）\n- **Cross-transfer**: para→cont 0.769, cont→para 0.606（不对称，说明 continuation 的 depth features 更具判别力）\n\n### plan-012-qwen06b-v2 — SUCCESS（此前被误判为 failed）\n进程正常退出并写出完整结果文件，但因无 sentinel/W&B 被自动标记为 failed。实际结果：\n- **5-class F1**: 0.5873 ± 0.0047（原版 0.5828, delta **+0.0045**）\n- **3-class F1**: 0.9054 ± 0.0037（原版 0.9052, delta **+0.0002**）\n- seed 42→123、LoRA r 16→32 的变化对性能影响可忽略（<0.5%），**确认 QLoRA depth classifier 对超参不敏感**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-dead-experiments.md"
+}

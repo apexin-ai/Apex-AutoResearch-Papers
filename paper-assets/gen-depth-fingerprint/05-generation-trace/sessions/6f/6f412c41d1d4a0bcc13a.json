@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f412c41d1d4a0bcc13a",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops kill 148428 check 014",
+  "task_key": "worker_ops_kill-148428-check-014_20260515T031323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-148428-check-014_20260515T031323_result.json",
+    "occurrence": 1,
+    "bytes": 435,
+    "sha256": "dd932f6cee1c2e8866c42c1589f9d17a5ce39bc70de044fbae8e6bbad4735ec0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇报\n\n**任务 1：Kill PID 148428**\n- 进程已不存在（无需 kill）\n- GPU2 已释放：0 MiB 占用（GPU 1/2/3 均空闲，仅 GPU0 占用 16473 MiB）\n\n**任务 2：plan-014 进度（PID 134817）**\n- 进程存活，已运行 2h54m\n- `generations_shard0.jsonl` 当前 **416 行**\n- 目标 ~600+ 行，当前约 **69%** 完成，与 Director 估计的 64% 基本吻合，仍在正常推进中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-148428-check-014.md"
+}

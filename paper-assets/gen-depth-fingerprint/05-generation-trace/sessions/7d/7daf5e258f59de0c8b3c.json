@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "7daf5e258f59de0c8b3c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "submit rebuild supplement",
+  "task_key": "worker_submit_rebuild-supplement_20260520T095358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_rebuild-supplement_20260520T095358_result.json",
+    "occurrence": 1,
+    "bytes": 2268322,
+    "sha256": "11cdf7ad7c2252ee5f5f077d09ad353556d6bb7263bfd97d8318d5d8545d4f27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2268342,
+                "serialized_sha256": "0376dd07a96c28803d31d0c00741e686a5a4a3d51da6b869eac5619e06f44802",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-rebuild-supplement.md"
+}

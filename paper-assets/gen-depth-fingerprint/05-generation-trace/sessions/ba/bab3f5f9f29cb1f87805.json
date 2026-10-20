@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bab3f5f9f29cb1f87805",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops verify table1 N",
+  "task_key": "worker_ops_verify-table1-N_20260516T232301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-table1-N_20260516T232301_result.json",
+    "occurrence": 1,
+    "bytes": 491,
+    "sha256": "2d06404322048fcdc9c0ab470ed2933d2636641b66ae3135a4fd856c7304d844"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Table 1 LOGO 评估的实际 N：**\n\n- **3-class (8 generators)**: **37,058** samples\n- **binary**: **29,095** samples\n\n数据来源：\n- `features_all_models.csv`: 27,529 rows (pythia-2.8b, pythia-1b, olmo-2-1b, qwen3-0.6b, qwen3-1.7b, qwen3-8b)\n- `llama-3.2-3b`: 4,680 rows\n- `mistral-7b-v0.3`: 4,849 rows\n- 合计: 37,058 (= 27,529 + 4,680 + 4,849)\n\nBinary 的 29,095 是因为 3-class 中 human 类只保留部分或过滤了某个 depth 类别后的子集。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-table1-n.md"
+}

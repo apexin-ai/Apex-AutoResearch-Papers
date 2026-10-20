@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c96a531d9aacd3ec0c8",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "gpu round2 submit all",
+  "task_key": "worker_gpu_round2-submit-all_20260514T215413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_round2-submit-all_20260514T215413_result.json",
+    "occurrence": 1,
+    "bytes": 983,
+    "sha256": "a9f1205587b13e2effb2e1fd451053d9793636d3120a170f023c1f6d992cf117"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0.6b 进程仍在运行（tmux session 丢失但进程存活为孤儿进程，不影响执行）。4 卡全部在跑。\n\n## 状态汇报\n\n| 任务 | GPU | tmux session | PID | 状态 |\n|------|-----|-------------|-----|------|\n| Qwen3-1.7B shard 0 | cuda:0 | plan-002-qwen17b-r2-s0 | 120612 | **新提交** - resume 跳过 154 seeds，从 155/498 继续 |\n| Qwen3-1.7B shard 1 | cuda:1 | plan-002-qwen17b-r2-s1 | 120689 | **新提交** - resume 跳过 143 seeds |\n| Qwen3-0.6B shard 0 | cuda:2 | *(session丢失，进程在跑)* | 117855 | 运行中，782+ 行已写入 |\n| Qwen3-0.6B shard 1 | cuda:3 | *(session丢失，进程在跑)* | 118126 | 运行中，727+ 行已写入 |\n\n**关键修复**：发现 1.7B 旧进程在写入**已删除的文件**（inode 被 `rm` 删除但 fd 仍打开），从 `/proc/PID/fd/` 恢复了 shard0=699 行(154 seeds)、shard1=669 行(143 seeds)，杀旧进程后重新提交，resume 逻辑自动跳过已完成 seeds。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-round2-submit-all.md"
+}

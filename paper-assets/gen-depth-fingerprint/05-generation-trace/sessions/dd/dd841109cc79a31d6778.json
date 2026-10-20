@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd841109cc79a31d6778",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code llm rephrase fix resume",
+  "task_key": "worker_code_llm-rephrase-fix-resume_20260517T005911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llm-rephrase-fix-resume_20260517T005911_result.json",
+    "occurrence": 1,
+    "bytes": 813,
+    "sha256": "5170d05a3c29021823b5c22fadcf793e898a0596196aaa4c27928d33e440cd8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果：\n\n| Condition | Binary F1 | CI | Multiclass F1 |\n|-----------|-----------|-----|---------------|\n| Original | 0.9343 | [0.926, 0.942] | 0.4739 |\n| LLM Rephrased | 0.7118 | [0.694, 0.730] | 0.3301 |\n\n**关键发现**：\n- Binary F1 下降 -0.2225 (23.8% 相对下降)\n- LLM rephrase binary F1 = 0.7118 > random 5% replacement 的 0.6496\n- 但 LLM rephrase 造成的绝对下降（-0.2225）远大于 5% random replacement（-0.0457）\n\n这和预期相反：LLM rephrase 虽然保持了更高的绝对 F1（0.712 vs 0.650），但因为 edit distance 更大（avg ratio = 0.507，即改了约 50% 的文本），实际扰动量远超 5% random replacement。这说明 LLM rephrase 是更激进的攻击，但 depth fingerprint 仍保持了 0.71+ 的检测能力。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llm-rephrase-fix-resume.md"
+}

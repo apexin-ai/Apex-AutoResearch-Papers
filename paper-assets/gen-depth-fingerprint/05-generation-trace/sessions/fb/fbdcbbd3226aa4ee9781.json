@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbdcbbd3226aa4ee9781",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis roc auc baselines",
+  "task_key": "worker_analysis_roc-auc-baselines_20260518T000939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_roc-auc-baselines_20260518T000939_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "e3e8ded63b81cf6df141c4fccf1733acd523ed042e8738ac81ebae63af6f7d37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n| Method | Binary F1 | ROC-AUC | 95% CI |\n| --- | --- | --- | --- |\n| FastDetectGPT | 0.5805 | 0.5796 | [0.5717, 0.5873] |\n| Binoculars | 0.5327 | 0.6203 | [0.6133, 0.6271] |\n| AvgLogProb | 0.6785 | 0.7844 | [0.7780, 0.7906] |\n| LD-Score | 0.6758 | 0.7507 | [0.7422, 0.7584] |\n| 4-Det Ensemble | 0.6983 | 0.8175 | [0.8116, 0.8234] |\n| 7-Feature (Ours) | 0.6935 | 0.8111 | [0.8050, 0.8169] |\n| Combined (4-Det + 7-Feature) | 0.7127 | **0.8304** | [0.8248, 0.8358] |\n\n7-Feature (Ours) 的 AUC 0.811 与 4-Det Ensemble 的 0.818 差距很小（CI 重叠），且不依赖外部检测器分数。Combined 达到最优 0.830。\n\n输出已保存：\n- 远程：`results/roc_auc_baselines.json`\n- 本地：`artifacts/_project/analysis/roc_auc_baselines.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-roc-auc-baselines.md"
+}

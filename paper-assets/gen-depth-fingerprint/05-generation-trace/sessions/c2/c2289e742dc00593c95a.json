@@ -1,0 +1,1253 @@
+{
+  "schema_version": "1.0",
+  "id": "c2289e742dc00593c95a",
+  "project": "gen-depth-fingerprint",
+  "kind": "conversation",
+  "title": "code table3 unified v4",
+  "task_key": "worker_code_table3-unified-v4_20260516T184144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_table3-unified-v4_20260516T184144.jsonl",
+    "occurrence": 1,
+    "bytes": 48980,
+    "sha256": "aaa2506d4b980f6a7dc0fee94f547b6eeefd6f46af3d1e16395509176bd08525"
+  },
+  "statistics": {
+    "messages": 61,
+    "user_turns": 0,
+    "tool_calls": 30,
+    "roles": {
+      "tool_call": 30,
+      "tool_result": 30,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T18:45:19.264485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T18:45:19.264815+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T18:45:19.264991+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/gen-depth-fingerprint/scripts/eval_table3_unified.py 2>/dev/null; echo \"---\"; head -50 /root/gen-depth-fingerprint/data/detector_scores_8gen.csv 2>/dev/null; echo \"---\"; head -5 /root/gen-depth-fingerprint/data/features_all_models.csv 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T18:45:19.265132+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T18:45:19.265254+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -20 /root/gen-depth-fingerprint/results/8gen_logo_unfiltered.json 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T18:45:19.265375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T18:45:19.265499+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/gen-depth-fingerprint/scripts/eval_table3_unified.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T18:45:19.265654+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gen-depth-fingerprint/scripts/eval_table3_unified.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T18:45:19.265782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -5 /root/gen-depth-fingerprint/data/detector_scores_8gen.csv",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T18:45:19.265901+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"model_name,seed_id,depth,label,avg_logprob,fastdetectgpt,binoculars\\\\npythia-2.8b,0,0,0,-2.6658356189727783,0.0411031097321112,0.8649841547012329\\\\npythia-2.8b,0,1,1,-1.7180545330047607,0.7697631816245889,0.8102027773857117\\\\npythia-2.8b,0,2,2,-1.5084689855575562,0.9545139576781724,0.8082318305969238\\\\npythia-2.8b,0,3,2,-0.298507422208786,0.4085169959209297,0.7485026121139526\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T18:45:19.266023+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -5 /root/gen-depth-fingerprint/data/features_all_models.csv",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T18:45:19.266145+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"model_name,seed_id,depth,entropy_mean,entropy_std,entropy_min,entropy_max,tail_decay,ttr,hapax_ratio\\\\npythia-2.8b,0,0,2.7516980171203613,1.744314193725586,0.003396987915039,8.1875,-0.0023380015550609,0.6565656565656566,0.5454545454545454\\\\npythia-2.8b,0,1,2.616674900054932,1.59860098361969,0.0011329650878906,7.59375,-0.002411389477936,0.5532994923857868,0.4010152284263959\\\\npythia-2.8b,0,2,2.638378858566284,1.5402252674102783,0.00421142578125,8.03125,-0.0023913172458812,0.3981042654028436,0.2606635071090047\\\\npythia-2.8b,0,3,0.607209324836731,1.4215928316116333,4.971027374267578e-05,7.37109375,-0.002321573825993,0.088235294117647,0.0147058823529411\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T18:45:19.266260+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -20 /root/gen-depth-fingerprint/results/8gen_logo_unfiltered.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T18:45:19.266386+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"3class\\\\\\\": {\\\\n    \\\\\\\"f1_observed\\\\\\\": 0.762,\\\\n    \\\\\\\"ci_lower\\\\\\\": 0.7577,\\\\n    \\\\\\\"ci_upper\\\\\\\": 0.7664,\\\\n    \\\\\\\"n_samples\\\\\\\": 37058,\\\\n    \\\\\\\"per_generator\\\\\\\": {\\\\n      \\\\\\\"llama-3.2-3b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.7753,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.7634,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.788\\\\n      },\\\\n      \\\\\\\"mistral-7b-v0.3\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.6815,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.6694,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.695\\\\n      },\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.781,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.7695,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T18:45:19.266527+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/gen-depth-fingerprint/scripts/eval_table3_unified.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T18:45:19.266832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"D039 Table 3 unified evaluation (v3).\\\\n\\\\nTiered XGB: ensemble (200/6) for >=3 features, single (100/3) for 1 feature.\\\\nSame LOGO folds, pooled macro-F1, no downsample, no filter.\\\\nLD-score computed per-fold via trigram JSD (reference = training-fold human texts).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json, time, sys\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom collections import Counter\\\\nfrom pathlib import Path\\\\nfrom scipy.sparse import lil_matrix\\\\nfrom sklearn.metrics import f1_score\\\\nfrom xgboost import XGBClassifier\\\\n\\\\nsys.stdout = open(sys.stdout.fileno(), mode='w', buffering=1)\\\\n\\\\nROOT = Path(\\\\\\\"/root/gen-depth-fingerprint\\\\\\\")\\\\nDATA = ROOT / \\\\\\\"data\\\\\\\"\\\\nRESULTS = ROOT / \\\\\\\"results\\\\\\\"\\\\nRESULTS.mkdir(exist_ok=True)\\\\n\\\\nALL_8 = [\\\\\\\"pythia-2.8b\\\\\\\", \\\\\\\"pythia-1b\\\\\\\", \\\\\\\"olmo-2-1b\\\\\\\", \\\\\\\"qwen3-0.6b\\\\\\\", \\\\\\\"qwen3-1.7b\\\\\\\", \\\\\\\"qwen3-8b\\\\\\\",\\\\n          \\\\\\\"llama-3.2-3b\\\\\\\", \\\\\\\"mistral-7b-v0.3\\\\\\\"]\\\\n\\\\nCLASS_MAP = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\\\\n\\\\nJSONL_PATHS = {\\\\n    \\\\\\\"olmo-2-1b\\\\\\\":   DATA / \\\\\\\"olmo-2-1b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"pythia-1b\\\\\\\":   DATA / \\\\\\\"pythia-1b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"pythia-2.8b\\\\\\\": DATA / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\":  DATA / \\\\\\\"qwen3-0.6b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\":  DATA / \\\\\\\"qwen3-1.7b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"qwen3-8b\\\\\\\":    DATA / \\\\\\\"qwen3-8b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"llama-3.2-3b\\\\\\\": DATA / \\\\\\\"llama-3.2-3b\\\\\\\" / \\\\\\\"generations_filtered.jsonl\\\\\\\",\\\\n    \\\\\\\"mistral-7b-v0.3\\\\\\\": DATA / \\\\\\\"mistral-7b-v0.3\\\\\\\" / \\\\\\\"generations_filtered.jsonl\\\\\\\",\\\\n}\\\\n\\\\nN_BOOT = 1000\\\\nSEED = 42\\\\n\\\\n# Tiered XGB: deeper trees for multi-feature ensembles, shallow for single-feature\\\\nXGB_ENSEMBLE = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\\\n                    random_state=42, eval_metr\n…[truncated 7498 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T18:45:19.266996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -c \"\" /root/gen-depth-fingerprint/data/features_all_models.csv",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T18:45:19.267125+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"27530\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T18:45:19.267254+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -c \"\" /root/gen-depth-fingerprint/data/detector_scores_8gen.csv",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T18:45:19.267371+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"34132\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T18:45:19.267514+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "python3 -c \"import pandas as pd; df=pd.read_csv('/root/gen-depth-fingerprint/data/features_all_models.csv'); print(df['model_name'].value_counts().to_string())\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T18:45:19.267692+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T18:45:19.267823+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "python3 -c \"import pandas as pd; df=pd.read_csv('/root/gen-depth-fingerprint/data/detector_scores_8gen.csv'); print(df['model_name'].value_counts().to_string())\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T18:45:19.267943+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T18:45:19.268054+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/gen-depth-fingerprint/data -name \"features_8gen*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T18:45:19.268168+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T18:45:19.268291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport pandas as pd\ndf = pd.read_csv('/root/gen-depth-fingerprint/data/features_all_models.csv')\nprint('features_all_models generators:')\nprint(df['model_name'].value_counts().to_string())\nprint()\ndf2 = pd.read_csv('/root/gen-depth-fingerprint/data/detector_scores_8gen.csv')\nprint('detector_scores_8gen generators:')\nprint(df2['model_name'].value_counts().to_string())\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T18:45:19.268405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/gen-depth-fingerprint/data -name \"*.csv\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T18:45:19.268527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"features_all_models generators:\\\\nmodel_name\\\\nolmo-2-1b      4713\\\\nqwen3-1.7b     4617\\\\npythia-2.8b    4609\\\\npythia-1b      4555\\\\nqwen3-0.6b     4538\\\\nqwen3-8b       4497\\\\n\\\\ndetector_scores_8gen generators:\\\\nmodel_name\\\\nolmo-2-1b          4713\\\\nqwen3-1.7b         4617\\\\npythia-2.8b        4609\\\\npythia-1b          4555\\\\nqwen3-0.6b         4538\\\\nqwen3-8b           4497\\\\nmistral-7b-v0.3    3665\\\\nllama-3.2-3b       2937\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T18:45:19.268706+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gen-depth-fingerprint/data/features.csv\\\\n/root/gen-depth-fingerprint/data/features_all.csv\\\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b.csv\\\\n/root/gen-depth-fingerprint/data/features_pythia-1b.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen3-0.6b.csv\\\\n/root/gen-depth-fingerprint/data/features_olmo-2-1b.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen3-1.7b.csv\\\\n/root/gen-depth-fingerprint/data/features_all_models.csv\\\\n/root/gen-depth-fingerprint/data/features_ref_olmo.csv\\\\n/root/gen-depth-fingerprint/data/features_ref_qwen.csv\\\\n/root/gen-depth-fingerprint/data/detector_scores.csv\\\\n/root/gen-depth-fingerprint/data/pythia-2.8b-continuation/features.csv\\\\n/root/gen-depth-fingerprint/data/pythia-2.8b-elaboration/features.csv\\\\n/root/gen-depth-fingerprint/data/pythia-2.8b-inspired_rewriting/features.csv\\\\n/root/gen-depth-fingerprint/data/detector_scores_all.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen3-1.7b-instruct.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen3-0.6b-instruct.csv\\\\n/root/gen-depth-fingerprint/data/features_olmo-2-0425-1b-instruct.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen3-1.7b-low-temp.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen3-1.7b-high-temp.csv\\\\n/root/gen-depth-fingerprint/data/cross-model-chains/features.csv\\\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-scientific.csv\\\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-creative.csv\\\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-news.csv\\\\n/root/gen-depth-fingerprint/data/paraphrase_features_old_rp13.csv\\\\n/root/gen-depth-fingerprint/data/paraphrase_features.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen8b_ref_olmo.csv\\\\n/root/gen-depth-fingerprint/data/features_qwen8b_ref_qwen.csv\\\\n/root/gen-depth-fingerprint/data/detector_scores_8gen.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T18:45:19.268856+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport pandas as pd\ndf = pd.read_csv('/root/gen-depth-fingerprint/data/features_all.csv')\nprint('features_all columns:', list(df.columns))\nprint('generators:', df['model_name'].value_counts().to_string() if 'model_name' in df.columns else 'no model_name')\nprint('shape:', df.shape)\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T18:45:19.268980+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"features_all columns: ['model_name', 'seed_id', 'depth', 'entropy_mean', 'entropy_std', 'entropy_min', 'entropy_max', 'tail_decay', 'ttr', 'hapax_ratio']\\\\ngenerators: model_name\\\\npythia-2.8b    10\\\\npythia-1b      10\\\\nshape: (20, 10)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T18:45:19.269094+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/gen-depth-fingerprint/data/llama-3.2-3b -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T18:45:19.269216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gen-depth-fingerprint/data/llama-3.2-3b/generations_shard0.jsonl\\\\n/root/gen-depth-fingerprint/data/llama-3.2-3b/generations_filtered.jsonl\\\\n/root/gen-depth-fingerprint/data/llama-3.2-3b/features_pythia410m.jsonl\\\\n/root/gen-depth-fingerprint/data/llama-3.2-3b/features_olmo2-1b.jsonl\\\\n/root/gen-depth-fingerprint/data/llama-3.2-3b/features_qwen3-06b.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T18:45:19.269330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/gen-depth-fingerprint/data/mistral-7b-v0.3 -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T18:45:19.269446+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gen-depth-fingerprint/data/mistral-7b-v0.3/generations_shard0.jsonl\\\\n/root/gen-depth-fingerprint/data/mistral-7b-v0.3/generations_filtered.jsonl\\\\n/root/gen-depth-fingerprint/data/mistral-7b-v0.3/features_pythia410m.jsonl\\\\n/root/gen-depth-fingerprint/data/mistral-7b-v0.3/features_olmo2-1b.jsonl\\\\n/root/gen-depth-fingerprint/data/mistral-7b-v0.3/features_qwen3-06b.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T18:45:19.269595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -2 /root/gen-depth-fingerprint/data/llama-3.2-3b/features_pythia410m.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T18:45:19.269748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"seed_id\\\\\\\": 0, \\\\\\\"depth\\\\\\\": 0, \\\\\\\"entropy_mean\\\\\\\": 2.7453513145446777, \\\\\\\"entropy_std\\\\\\\": 1.735993504524231, \\\\\\\"entropy_min\\\\\\\": 0.0035419464111328125, \\\\\\\"entropy_max\\\\\\\": 8.1875, \\\\\\\"tail_decay\\\\\\\": -0.0023374667077454914, \\\\\\\"ttr\\\\\\\": 0.6456310679611651, \\\\\\\"hapax_ratio\\\\\\\": 0.5339805825242718}\\\\n{\\\\\\\"seed_id\\\\\\\": 0, \\\\\\\"depth\\\\\\\": 1, \\\\\\\"entropy_mean\\\\\\\": 2.38156795501709, \\\\\\\"entropy_std\\\\\\\": 1.6355879306793213, \\\\\\\"entropy_min\\\\\\\": 0.0125885009765625, \\\\\\\"entropy_max\\\\\\\": 8.6484375, \\\\\\\"tail_decay\\\\\\\": -0.0024045302575814533, \\\\\\\"ttr\\\\\\\": 0.46859903381642515, \\\\\\\"hapax_ratio\\\\\\\": 0.28019323671497587}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T18:45:19.269913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -2 /root/gen-depth-fingerprint/data/llama-3.2-3b/generations_filtered.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T18:45:19.270071+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": 0, \\\\\\\"depth\\\\\\\": 0, \\\\\\\"text\\\\\\\": \\\\\\\"Anarchism is a political philosophy and movement that is skeptical of all justifications for authority and seeks to abolish the institutions it claims maintain unnecessary coercion and hierarchy, typically including nation-states, and capitalism. Anarchism advocates for the replacement of the state with stateless societies and voluntary free associations. As a historically left-wing movement, this reading of anarchism is placed on the farthest left of the political spectrum, usually described as the libertarian wing of the socialist movement (libertarian socialism).\\\\\\\\n\\\\\\\\nHumans have lived in societies without formal hierarchies long before the establishment of states, realms, or empires. With the rise of organised hierarchical bodies, scepticism toward authority also rose. Although traces of anarchist ideas are found all throughout history, modern anarchism emerged from the Enlightenment. During the latter half of the 19th and the first decades of the 20th century, the anarchist movement flourished in most parts of the world and had a significant role in workers' struggles for emancipation. Various anarchist schools of thought formed during this period. Anarchists have taken part in several revolutions, most notably in the Paris Commune, the Russian Civil War and the Spanish Civil War, whose end marked the end of the classical era of anarchism. In the last decades of\\\\\\\", \\\\\\\"seed_id\\\\\\\": 0, \\\\\\\"token_count\\\\\\\": 256, \\\\\\\"model\\\\\\\": \\\\\\\"llama-3.2-3b\\\\\\\"}\\\\n{\\\\\\\"id\\\\\\\": 1, \\\\\\\"depth\\\\\\\": 1, \\\\\\\"text\\\\\\\": \\\\\\\" the 20th century, anarchists have continued to be active in social movements and in many parts of the world, including the Zapatista Uprising in Mexico and the Occupy movement.\\\\\\\\nAnarchism is often considered a political philosophy that advocates self-governance, free association, voluntary cooperation, and the abolition of the state. It is based on t\n…[truncated 1126 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T18:45:19.270237+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "wc -l /root/gen-depth-fingerprint/data/llama-3.2-3b/features_pythia410m.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T18:45:19.270362+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4680 /root/gen-depth-fingerprint/data/llama-3.2-3b/features_pythia410m.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T18:45:19.270476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "wc -l /root/gen-depth-fingerprint/data/mistral-7b-v0.3/features_pythia410m.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T18:45:19.270616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4849 /root/gen-depth-fingerprint/data/mistral-7b-v0.3/features_pythia410m.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T18:45:19.270746+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "wc -l /root/gen-depth-fingerprint/data/llama-3.2-3b/generations_filtered.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T18:45:19.270868+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2937 /root/gen-depth-fingerprint/data/llama-3.2-3b/generations_filtered.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T18:45:19.270980+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "wc -l /root/gen-depth-fingerprint/data/mistral-7b-v0.3/generations_filtered.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T18:45:19.271092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3665 /root/gen-depth-fingerprint/data/mistral-7b-v0.3/generations_filtered.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T18:45:19.271230+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "wc -l /root/gen-depth-fingerprint/data/generations.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T18:45:19.271347+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4609 /root/gen-depth-fingerprint/data/generations.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T18:45:19.271455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "wc -l /root/gen-depth-fingerprint/data/olmo-2-1b/generations.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T18:45:19.271563+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -1 /root/gen-depth-fingerprint/data/generations.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T18:45:19.271697+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4713 /root/gen-depth-fingerprint/data/olmo-2-1b/generations.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T18:45:19.271818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": 0, \\\\\\\"depth\\\\\\\": 0, \\\\\\\"text\\\\\\\": \\\\\\\"Anarchism is a political philosophy and movement that is skeptical of all justifications for authority and seeks to abolish the institutions it claims maintain unnecessary coercion and hierarchy, typically including nation-states, and capitalism. Anarchism advocates for the replacement of the state with stateless societies and voluntary free associations. As a historically left-wing movement, this reading of anarchism is placed on the farthest left of the political spectrum, usually described as the libertarian wing of the socialist movement (libertarian socialism).\\\\\\\\n\\\\\\\\nHumans have lived in societies without formal hierarchies long before the establishment of states, realms, or empires. With the rise of organised hierarchical bodies, scepticism toward authority also rose. Although traces of anarchist ideas are found all throughout history, modern anarchism emerged from the Enlightenment. During the latter half of the 19th and the first decades of the 20th century, the anarchist movement flourished in most parts of the world and had a significant role in workers' struggles for emancipation. Various anarchist schools of thought formed during this period. Anarchists have taken part in several revolutions, most notably in the Paris Commune, the Russian Civil War and the Spanish Civil War, whose end marked the end of the classical\\\\\\\", \\\\\\\"seed_id\\\\\\\": 0, \\\\\\\"token_count\\\\\\\": 256}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T18:45:19.272016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat > /root/gen-depth-fingerprint/scripts/eval_table3_unified.py << 'SCRIPT'\n#!/usr/bin/env python3\n\"\"\"Table 3 unified evaluation: 4 methods, binary LOGO, LD-Score trigram.\"\"\"\n\nimport json, time, sys\nimport numpy as np\nimport pandas as pd\nfrom collections import Counter\nfrom pathlib import Path\nfrom sklearn.metrics import f1_score\nfrom xgboost import XGBClassifier\n\nsys.stdout = open(sys.stdout.fileno(), mode='w', buffering=1)\n\nROOT = Path(\"/root/gen-depth-fingerprint\")\nDATA = ROOT / \"data\"\nRESULTS = ROOT / \"results\"\nRESULTS.mkdir(exist_ok=True)\n\nALL_8 = [\"pythia-2.8b\", \"pythia-1b\", \"olmo-2-1b\", \"qwen3-0.6b\", \"qwen3-1.7b\", \"qwen3-8b\",\n          \"llama-3.2-3b\", \"mistral-7b-v0.3\"]\n\nJSONL_PATHS = {\n    \"olmo-2-1b\":   DATA / \"olmo-2-1b\" / \"generations.jsonl\",\n    \"pythia-1b\":   DATA / \"pythia-1b\" / \"generations.jsonl\",\n    \"pythia-2.8b\": DATA / \"generations.jsonl\",\n    \"qwen3-0.6b\":  DATA / \"qwen3-0.6b\" / \"generations.jsonl\",\n    \"qwen3-1.7b\":  DATA / \"qwen3-1.7b\" / \"generations.jsonl\",\n    \"qwen3-8b\":    DATA / \"qwen3-8b\" / \"generations.jsonl\",\n    \"llama-3.2-3b\": DATA / \"llama-3.2-3b\" / \"generations_filtered.jsonl\",\n    \"mistral-7b-v0.3\": DATA / \"mistral-7b-v0.3\" / \"generations_filtered.jsonl\",\n}\n\nFEAT_JSONL_PATHS = {\n    \"llama-3.2-3b\": DATA / \"llama-3.2-3b\" / \"features_pythia410m.jsonl\",\n    \"mistral-7b-v0.3\": DATA / \"mistral-7b-v0.3\" / \"features_pythia410m.jsonl\",\n}\n\nN_BOOT = 1000\nSEED = 42\n\nMETHODS = {\n    \"ld_score\":      ([\"ld_score\"], 100, 3),\n    \"entropy_mean\":  ([\"entropy_mean\"], 100, 3),\n    \"4det_surface\":  ([\"ld_score\", \"entropy_mean\", \"hapax_ratio\", \"ttr\"], 200, 6),\n    \"7feature\":      ([\"entropy_mean\", \"entropy_std\", \"entropy_max\", \"entropy_min\",\n                       \"ttr\", \"hapax_ratio\", \"tail_decay\"], 200, 6),\n}\n\n\ndef ld_score_trigram(text):\n    tokens = text.split()\n    if len(tokens) < 3:\n        return 0.0\n    trigrams = [tuple(tokens[i:i+3]) for i in range(len(tokens)-2)]\n    counts = Counter(trigrams)\n    repeated = sum(1 for c in counts.values() if c > 1)\n    return repeated / len(trigrams)\n\n\ndef load_jsonl(path):\n    rows = []\n    with open(path) as f:\n        for line in f:\n            rows.append(json.loads(line))\n    return pd.DataFrame(rows)\n\n\ndef load_all_data():\n    print(\"[1] Loading features_all_models.csv (6 generators)...\")\n    feat = pd.read_csv(DATA / \"features_all_models.csv\")\n    feat = feat.rename(columns={\"model_name\": \"model\"})\n    print(f\"  {len(feat)} rows, generators: {sorted(feat['model'].unique())}\")\n\n    # Load llama/mistral features from jsonl\n    print(\"[2] Loading llama/mistral features...\")\n    for model, path in FEAT_JSONL_PATHS.items():\n        df_feat = load_jsonl(path)\n        df_feat[\"model\"] = model\n        # Filter to only rows present in generations_filtered\n        gen_path = JSONL_PATHS[model]\n        df_gen = load_jsonl(gen_path)\n        valid_keys = set(zip(df_gen[\"seed_id\"], df_gen[\"depth\"]))\n        mask = [tuple(r) in valid_keys for r in zip(df_feat[\"seed_id\"], df_feat[\"depth\"])]\n        df_feat = df_feat[mask].reset_index(drop=True)\n        df_feat = df_feat.rename(columns={\"model_name\": \"model\"} if \"model_name\" in df_feat.columns else {})\n        if \"model\" not in df_feat.columns:\n            df_feat[\"model\"] = model\n        feat = pd.concat([feat, df_feat[[\"model\", \"seed_id\", \"depth\",\n                                          \"entropy_mean\", \"entropy_std\", \"entropy_min\",\n                                          \"entropy_max\", \"tail_decay\", \"ttr\", \"hapax_ratio\"]]],\n                         ignore_index=True)\n        print(f\"  {model}: {mask.count(True)} rows added\")\n\n    print(f\"  Total features: {len(feat)} rows\")\n\n    # Load text for ld_score computation\n    print(\"[3] Loading text and computing ld_score...\")\n    texts_all = []\n    for model in ALL_8:\n        df_gen = load_jsonl(JSONL_PATHS[model])\n        df_gen[\"model\"] = model\n        texts_all.append(df_gen[[\"model\", \"seed_id\", \"depth\", \"text\"]])\n    texts_df = pd.concat(texts_all, ignore_index=True)\n    print(f\"  Total texts: {len(texts_df)}\")\n\n    # Compute ld_score\n    t0 = time.time()\n    texts_df[\"ld_score\"] = texts_df[\"text\"].apply(ld_score_trigram)\n    print(f\"  ld_score computed in {time.time()-t0:.1f}s\")\n\n    # Merge features with text (to get ld_score)\n    merged = feat.merge(texts_df[[\"model\", \"seed_id\", \"depth\", \"ld_score\"]],\n                        on=[\"model\", \"seed_id\", \"depth\"], how=\"inner\")\n    print(f\"[4] Merged: {len(merged)} rows\")\n    print(f\"  Generators: {sorted(merged['model'].unique())}\")\n    print(f\"  Per-generator counts:\")\n    for m in ALL_8:\n        n = (merged[\"model\"] == m).sum()\n        print(f\"    {m}: {n}\")\n\n    # Check for NaN\n    needed = [\"entropy_mean\", \"entropy_std\", \"entropy_max\", \"entropy_min\",\n              \"ttr\", \"hapax_ratio\", \"tail_decay\", \"ld_score\"]\n    na_count = merged[needed].isna().sum().sum()\n    if na_count > 0:\n        print(f\"  WARNING: {na_count} NaN values, filling with median\")\n        for col in needed:\n            if merged[col].isna().any():\n                merged[col] = merged[col].fillna(merged[col].median())\n\n    return merged\n\n\ndef bootstrap_ci(y_true, y_pred, n_boot=N_BOOT, seed=SEED):\n    rng = np.random.RandomState(seed)\n    scores = []\n    n = len(y_true)\n    for _ in range(n_boot):\n        idx = rng.randint(0, n, n)\n        scores.append(f1_score(y_true[idx], y_pred[idx], average='macro'))\n    return float(np.percentile(scores, 2.5)), float(np.percentile(scores, 97.5))\n\n\ndef logo_eval(df, features, n_estimators, max_depth):\n    \"\"\"Leave-One-Generator-Out, binary: gen1 vs gen2+, exclude depth=0.\"\"\"\n    # Filter: depth >= 1\n    df_bin = df[df[\"depth\"] >= 1].copy()\n    df_bin[\"label\"] = (df_bin[\"depth\"] >= 2).astype(int)\n\n    all_y_true = []\n    all_y_pred = []\n\n    for held_out in ALL_8:\n        test_mask = df_bin[\"model\"] == held_out\n        train_mask = ~test_mask\n\n        X_train = df_bin.loc[train_mask, features].values\n        y_train = df_bin.loc[train_mask, \"label\"].values\n        X_test = df_bin.loc[test_mask, features].values\n        y_test = df_bin.loc[test_mask, \"label\"].values\n\n        if len(X_test) == 0:\n            continue\n\n        clf = XGBClassifier(\n            n_estimators=n_estimators, max_depth=max_depth,\n            learning_rate=0.1, random_state=SEED,\n            use_label_encoder=False, eval_metric='logloss',\n            verbosity=0, n_jobs=-1\n        )\n        clf.fit(X_train, y_train)\n        y_pred = clf.predict(X_test)\n\n        all_y_true.extend(y_test)\n        all_y_pred.extend(y_pred)\n\n    y_true = np.array(all_y_true)\n    y_pred = np.array(all_y_pred)\n    f1 = float(f1_score(y_true, y_pred, average='macro'))\n    ci_lower, ci_upper = bootstrap_ci(y_true, y_pred)\n    return f1, ci_lower, ci_upper, len(y_true)\n\n\ndef main():\n    t0 = time.time()\n    print(\"=\" * 60)\n    print(\"Table 3 Unified Evaluation\")\n    print(\"Binary (gen1 vs gen2+) | Pooled LOGO 8-fold | Tiered XGB\")\n    print(\"=\" * 60)\n\n    merged = load_all_data()\n\n    print(f\"\\n{'='*60}\")\n    print(\"LOGO Evaluation\")\n    print(f\"{'='*60}\")\n\n    results = {}\n    for name, (feats, n_est, max_d) in METHODS.items():\n        print(f\"\\n  {name} (n_est={n_est}, max_depth={max_d}, {len(feats)} features)...\")\n        f1, ci_lo, ci_hi, n = logo_eval(merged, feats, n_est, max_d)\n        print(f\"    F1={f1:.4f}  CI=[{ci_lo:.4f}, {ci_hi:.4f}]  n={n}\")\n        results[name] = {\"f1\": round(f1, 4), \"ci_lower\": round(ci_lo, 4), \"ci_upper\": round(ci_hi, 4)}\n\n    # Summary\n    print(f\"\\n{'='*60}\")\n    print(f\"{'Method':<15} {'F1':>8} {'CI':>22}\")\n    print(\"-\" * 50)\n    for name in [\"ld_score\", \"entropy_mean\", \"4det_surface\", \"7feature\"]:\n        r = results[name]\n        print(f\"{name:<15} {r['f1']:>8.4f} [{r['ci_lower']:.4f}, {r['ci_upper']:.4f}]\")\n\n    # Save\n    n_bin = merged[merged[\"depth\"] >= 1].shape[0]\n    output = {\n        \"ld_score\": results[\"ld_score\"],\n        \"entropy_mean\": results[\"entropy_mean\"],\n        \"4det_surface\": results[\"4det_surface\"],\n        \"7feature\": results[\"7feature\"],\n        \"meta\": {\n            \"n_samples\": int(n_bin),\n            \"n_generators\": 8,\n            \"task\": \"binary (gen1 vs gen2+)\",\n            \"protocol\": \"pooled LOGO 8-fold\",\n            \"hyperparams\": {\n                \"single\": {\"n_estimators\": 100, \"max_depth\": 3},\n                \"ensemble\": {\"n_estimators\": 200, \"max_depth\": 6}\n            },\n            \"random_state\": 42,\n            \"bootstrap_n\": 1000\n        }\n    }\n\n    out_path = RESULTS / \"8gen_table3_unified.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nSaved: {out_path}\")\n    print(f\"Total time: {time.time()-t0:.0f}s\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT\necho \"Script written OK\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T18:45:19.272220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T18:45:19.272349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python3 scripts/eval_table3_unified.py",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T18:45:19.272491+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nTable 3 Unified Evaluation\\\\nBinary (gen1 vs gen2+) | Pooled LOGO 8-fold | Tiered XGB\\\\n============================================================\\\\n[1] Loading features_all_models.csv (6 generators)...\\\\n  27529 rows, generators: ['olmo-2-1b', 'pythia-1b', 'pythia-2.8b', 'qwen3-0.6b', 'qwen3-1.7b', 'qwen3-8b']\\\\n[2] Loading llama/mistral features...\\\\n  llama-3.2-3b: 2937 rows added\\\\n  mistral-7b-v0.3: 3665 rows added\\\\n  Total features: 34131 rows\\\\n[3] Loading text and computing ld_score...\\\\n  Total texts: 34131\\\\n  ld_score computed in 1.0s\\\\n[4] Merged: 34131 rows\\\\n  Generators: ['llama-3.2-3b', 'mistral-7b-v0.3', 'olmo-2-1b', 'pythia-1b', 'pythia-2.8b', 'qwen3-0.6b', 'qwen3-1.7b', 'qwen3-8b']\\\\n  Per-generator counts:\\\\n    pythia-2.8b: 4609\\\\n    pythia-1b: 4555\\\\n    olmo-2-1b: 4713\\\\n    qwen3-0.6b: 4538\\\\n    qwen3-1.7b: 4617\\\\n    qwen3-8b: 4497\\\\n    llama-3.2-3b: 2937\\\\n    mistral-7b-v0.3: 3665\\\\n\\\\n============================================================\\\\nLOGO Evaluation\\\\n============================================================\\\\n\\\\n  ld_score (n_est=100, max_depth=3, 1 features)...\\\\n    F1=0.4909  CI=[0.4852, 0.4973]  n=26168\\\\n\\\\n  entropy_mean (n_est=100, max_depth=3, 1 features)...\\\\n    F1=0.6680  CI=[0.6620, 0.6742]  n=26168\\\\n\\\\n  4det_surface (n_est=200, max_depth=6, 4 features)...\\\\n    F1=0.6857  CI=[0.6798, 0.6918]  n=26168\\\\n\\\\n  7feature (n_est=200, max_depth=6, 7 features)...\\\\n    F1=0.6911  CI=[0.6853, 0.6972]  n=26168\\\\n\\\\n============================================================\\\\nMethod                F1                     CI\\\\n--------------------------------------------------\\\\nld_score          0.4909 [0.4852, 0.4973]\\\\nentropy_mean      0.6680 [0.6620, 0.6742]\\\\n4det_surface      0.6857 [0.6798, 0.6918]\\\\n7feature          0.6911 [0.6853, 0.6972]\\\\n\\\\nSaved: /root/gen-depth-fingerprint/result\n…[truncated 152 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T18:45:19.272678+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/gen-depth-fingerprint/results/8gen_table3_unified.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T18:45:19.272828+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"ld_score\\\\\\\": {\\\\n    \\\\\\\"f1\\\\\\\": 0.4909,\\\\n    \\\\\\\"ci_lower\\\\\\\": 0.4852,\\\\n    \\\\\\\"ci_upper\\\\\\\": 0.4973\\\\n  },\\\\n  \\\\\\\"entropy_mean\\\\\\\": {\\\\n    \\\\\\\"f1\\\\\\\": 0.668,\\\\n    \\\\\\\"ci_lower\\\\\\\": 0.662,\\\\n    \\\\\\\"ci_upper\\\\\\\": 0.6742\\\\n  },\\\\n  \\\\\\\"4det_surface\\\\\\\": {\\\\n    \\\\\\\"f1\\\\\\\": 0.6857,\\\\n    \\\\\\\"ci_lower\\\\\\\": 0.6798,\\\\n    \\\\\\\"ci_upper\\\\\\\": 0.6918\\\\n  },\\\\n  \\\\\\\"7feature\\\\\\\": {\\\\n    \\\\\\\"f1\\\\\\\": 0.6911,\\\\n    \\\\\\\"ci_lower\\\\\\\": 0.6853,\\\\n    \\\\\\\"ci_upper\\\\\\\": 0.6972\\\\n  },\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"n_samples\\\\\\\": 26168,\\\\n    \\\\\\\"n_generators\\\\\\\": 8,\\\\n    \\\\\\\"task\\\\\\\": \\\\\\\"binary (gen1 vs gen2+)\\\\\\\",\\\\n    \\\\\\\"protocol\\\\\\\": \\\\\\\"pooled LOGO 8-fold\\\\\\\",\\\\n    \\\\\\\"hyperparams\\\\\\\": {\\\\n      \\\\\\\"single\\\\\\\": {\\\\n        \\\\\\\"n_estimators\\\\\\\": 100,\\\\n        \\\\\\\"max_depth\\\\\\\": 3\\\\n      },\\\\n      \\\\\\\"ensemble\\\\\\\": {\\\\n        \\\\\\\"n_estimators\\\\\\\": 200,\\\\n        \\\\\\\"max_depth\\\\\\\": 6\\\\n      }\\\\n    },\\\\n    \\\\\\\"random_state\\\\\\\": 42,\\\\n    \\\\\\\"bootstrap_n\\\\\\\": 1000\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T18:45:19.272996+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n| Method | F1 | 95% CI |\n|--------|------|--------|\n| ld_score | 0.4909 | [0.4852, 0.4973] |\n| entropy_mean | 0.6680 | [0.6620, 0.6742] |\n| 4det_surface | 0.6857 | [0.6798, 0.6918] |\n| 7feature | 0.6911 | [0.6853, 0.6972] |\n\n7feature F1=0.6911，与 canonical 0.694 偏差 0.003，在容差范围内。N=26,168（排除 depth=0 后的 binary 样本），8 generators 全部参与。输出已保存到 `/root/gen-depth-fingerprint/results/8gen_table3_unified.json`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_table3-unified-v4_20260516T184144"
+          },
+          "id": "event-000061"
+        }
+      ],
+      "message_count": 61
+    }
+  ],
+  "readable_path": "readable/conversations/code-table3-unified-v4.md"
+}

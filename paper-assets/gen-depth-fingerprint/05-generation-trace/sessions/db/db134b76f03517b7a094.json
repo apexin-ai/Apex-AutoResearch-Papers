@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db134b76f03517b7a094",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper restore fig3 compress",
+  "task_key": "worker_paper_restore-fig3-compress_20260522T041531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_restore-fig3-compress_20260522T041531_result.json",
+    "occurrence": 1,
+    "bytes": 597,
+    "sha256": "5ab18875342f7f13ce801c17027fe2a3a9de1adef3c49e9aec3bc439d750e163"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All tasks complete.\n\n**Summary:**\n- **Task 1**: Figure 3 restored to §4.3 results (after Table 3), reference updated from `Appendix~\\ref{app:baselines}` to `Figure~\\ref{fig:baseline-ci}`\n- **Task 2**: ~15 lines compressed across results.tex and discussion.tex — validation paragraph, cross-model, QLoRA, cross-family, temperature, §4.3 intro/conclusion, discussion P1 mechanism, discussion P3 scope\n- **Verification**: Conclusion on p.8, Limitations on p.9, 0 undefined refs\n- **PDF**: 2.6MB, written to both `artifacts/_project/paper/main.pdf` and `docs/paper/main.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-restore-fig3-compress.md"
+}

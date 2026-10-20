@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94a8de54299a9a14f99f",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper intro rewrite",
+  "task_key": "worker_paper_intro-rewrite_20260522T024653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_intro-rewrite_20260522T024653_result.json",
+    "occurrence": 1,
+    "bytes": 1326,
+    "sha256": "b66073eab23352d27653a4e99a71c1be00982a3da3f874c241b1acdfa42d0a00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No \"Boundary mapping\" references in actual paper tex files (only in logs). Both copies are updated and consistent.\n\n**Report:**\n\n| | Before | After |\n|---|---|---|\n| File lines | 21 | 19 |\n| P1 approach | \"AI text detection asks a single binary question\" (methodological framing) | \"An estimated 7-17% of recent scientific publications...\" (urgency-first, contamination numbers) |\n| P1 structure | 4 sentences: binary question → web contamination → drift → provenance need | 4 sentences: contamination stat → depth accumulation → detector gap → DDR preview |\n| C1 length | ~3.5 rendered lines (includes \"per-generator split analysis and convergent effect-size measures confirm this partition\") | ~2 rendered lines (cut intermediate evidence, kept \"what converges vs what is preserved\" core) |\n| C3 name | \"Boundary mapping\" | \"Scope characterization\" |\n| C3 scope | \"establishes where DDR-based detection succeeds and fails\" | \"maps the operational envelope... and provides a concrete roadmap for extending depth fingerprinting to instruction-tuned models, cross-domain transfer, and perturbation-robust deployment\" |\n\nAll numbers, citations, and hard constraints preserved. Net character count slightly shorter (C1 savings offset C3 expansion + DDR preview addition)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-intro-rewrite.md"
+}

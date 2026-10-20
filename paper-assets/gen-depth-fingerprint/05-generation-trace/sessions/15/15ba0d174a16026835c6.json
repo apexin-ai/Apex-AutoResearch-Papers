@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15ba0d174a16026835c6",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "prep check tost instruct scripts",
+  "task_key": "worker_prep_check-tost-instruct-scripts_20260520T025814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_check-tost-instruct-scripts_20260520T025814_result.json",
+    "occurrence": 1,
+    "bytes": 3009,
+    "sha256": "47396862a44e0b1cf530f8f8c64c87369e81daa7a68c0c74fb0c2a459d5f32d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。汇报如下：\n\n---\n\n## P5: TOST 脚本\n\n### 修改前状态\n\n| 脚本 | Seed | Equivalence Margin | 状态 |\n|------|------|--------------------|------|\n| `scripts/tost_equivalence.py` | 无（统计测试，不涉及seed） | `d_bound = 0.20` hardcoded | ❌ |\n| `scripts/tost_per_generator.py` | 无 | `d_bound = 0.20` hardcoded | ❌ |\n| `tost_multi_margin.py` | 无 | `MARGINS_PCT = [1,2,3,5]` hardcoded（by design，专测多margin） | 设计如此 |\n| `bootstrap_downstream_ci.py` | `[42, 123, 456]` hardcoded（5个variant全用同一组） | N/A | ❌ |\n| `run_downstream.sh` | `SEEDS=\"42 123 456\"` hardcoded | N/A | ❌ |\n| `finetune_downstream.py` | `--seed` argparse | N/A | ✅ 已参数化 |\n\n### 修改详情\n\n1. **`scripts/tost_equivalence.py`** — 添加 argparse: `--data-path`, `--margin`(default=0.20), `--alpha`(default=0.05), `--output`\n2. **`scripts/tost_per_generator.py`** — 同上: `--data-path`, `--margin`, `--alpha`, `--output`\n3. **`bootstrap_downstream_ci.py`** — 添加 argparse: `--seeds`(default=[42,123,456]), `--base-dir`, `--n-boot`, `--random-seed`\n4. **`run_downstream.sh`** — `SEEDS` 改为 `${2:-42 123 456}`，可通过第2个位置参数覆盖\n\n所有修改已验证 `--help` 正常运行。\n\n---\n\n## P6: Instruct LOGO 脚本\n\n### 脚本路径\n- `scripts/p1c_instruct_logo_f1.py` — hardcoded 版本（7-gen LOGO，instruct 模型写死）\n- `analyze_7gen_logo.py` — **已参数化**版本（argparse: `--base-features`, `--instruct-features`, `--instruct-model-name`, `--output`）\n\n### Generator 列表状态\n\n**`p1c_instruct_logo_f1.py`**: hardcoded\n- base 6-gen 从 `data/features_all_models.csv` 加载（olmo-2-1b, pythia-1b, pythia-2.8b, qwen3-0.6b, qwen3-1.7b, qwen3-8b）\n- instruct 模型写死为 `\"qwen3-1.7b-instruct\"`，文件路径写死为 `data/features_qwen3-1.7b-instruct.csv`\n- 比较逻辑写死 `\"qwen3-1.7b-instruct\"` vs `\"qwen3-1.7b\"`\n\n**`analyze_7gen_logo.py`**: 已参数化\n- `--base-features`（base CSV 路径）\n- `--instruct-features`（instruct CSV 路径）\n- `--instruct-model-name`（instruct 模型名）\n\n### 当前支持 generators\n7 个：olmo-2-1b, pythia-1b, pythia-2.8b, qwen3-0.6b, qwen3-1.7b, qwen3-8b + qwen3-1.7b-instruct\n\n### 扩展到 5+ generators 需要的修改\n`analyze_7gen_logo.py` 已经足够灵活——只需将更多 instruct CSV concat 到 base CSV 即可。具体：\n- 数据层面：将多个 instruct 模型的 features CSV 合并到一个 CSV（或修改脚本接受多个 `--instruct-features` 路径）\n- 现有代码结构中 `logo_3class()` 和 `binary_f1_logo()` 按 `model_name` 自动 LOGO，无需改核心逻辑\n- `vs_base_comparison` 部分（instruct vs base 对比）目前只支持单对对比，多 instruct 模型时需改为循环\n- 已有 instruct CSV：`qwen3-0.6b-instruct`, `qwen3-1.7b-instruct`, `olmo-2-0425-1b-instruct`, `llama-3.2-3b-instruct`，共 4 个可用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-check-tost-instruct-scripts.md"
+}

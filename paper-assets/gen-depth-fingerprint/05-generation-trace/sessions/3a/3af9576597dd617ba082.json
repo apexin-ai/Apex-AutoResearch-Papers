@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3af9576597dd617ba082",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "eval plan 016 crossref qwen8b",
+  "task_key": "worker_eval_plan-016-crossref-qwen8b_20260516T083031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan-016-crossref-qwen8b_20260516T083031_result.json",
+    "occurrence": 1,
+    "bytes": 1233,
+    "sha256": "f5f0ab8aaa3b0912d2b3c891ae555179db0881415cbaf76616b46bde436fb966"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 结果汇总\n\n### Table 4: Cross-Ref LOGO macro-F1（6-gen × 3 ref）\n\n| Generator | Pythia-410M | OLMo-2-1B | Qwen3-0.6B |\n|-----------|------------|-----------|------------|\n| olmo-2-1b | 0.7657 | 0.7775 | 0.7773 |\n| pythia-1b | 0.8515 | 0.8432 | 0.8468 |\n| pythia-2.8b | 0.8019 | 0.7967 | 0.7997 |\n| qwen3-0.6b | 0.8240 | 0.8354 | 0.8446 |\n| qwen3-1.7b | 0.8063 | 0.8195 | 0.8556 |\n| **qwen3-8b** | **0.6854** | **0.6962** | **0.7568** |\n| **Avg** | **0.7891** | **0.7948** | **0.8135** |\n| 95% CI | [0.747, 0.824] | [0.757, 0.828] | [0.785, 0.842] |\n\n### 一致性验证\n- 所有 3 个 reference model 下，6/6 generators 的 entropy drift 方向一致（均为负），确认 depth signal 与 reference model 无关。\n\n### 产出文件\n- `data/features_qwen8b_ref_olmo.csv` — qwen3-8b × OLMo ref features (4497 rows)\n- `data/features_qwen8b_ref_qwen.csv` — qwen3-8b × Qwen ref features (4497 rows)\n- `data/features_ref_olmo.csv` — 已更新为 6 generators (27529 rows)\n- `data/features_ref_qwen.csv` — 已更新为 6 generators (27529 rows)\n- `data/cross_ref_results.json` — 完整分析结果\n- `results/table4_cross_ref_logo.json` — Table 4 数字"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan-016-crossref-qwen8b.md"
+}

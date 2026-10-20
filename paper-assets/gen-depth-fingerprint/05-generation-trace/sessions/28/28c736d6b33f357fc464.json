@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28c736d6b33f357fc464",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "figure nll distribution appendix",
+  "task_key": "worker_figure_nll_distribution_appendix_20260520T184712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_nll_distribution_appendix_20260520T184712_result.json",
+    "occurrence": 1,
+    "bytes": 1002,
+    "sha256": "300708d3865e01777b497b13e934eb1a31be8a382c5ac4754b98240e4225bd65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出清单：\n\n| # | 文件 | 位置 |\n|---|------|------|\n| 1 | `extract_token_nll.py` | 服务器 `/root/gen-depth-fingerprint/scripts/` |\n| 2 | `plot_nll_distribution.py` | 服务器 `/root/gen-depth-fingerprint/scripts/` |\n| 3 | `token_nll_by_depth.json` (3.8MB, 1000 records, 236k tokens) | 服务器 `/root/gen-depth-fingerprint/results/` |\n| 4 | `fig_appendix_nll_distribution.pdf` (16KB) + `.png` (104KB) | 服务器 `/root/gen-depth-fingerprint/results/` |\n| 5 | `appendix_nll_distribution.tex` | 本地 `artifacts/_project/paper/` |\n\n关键数据：\n\n| Depth | Median NLL | Mean NLL |\n|-------|-----------|----------|\n| 0 | 1.688 | 2.610 |\n| 1 | 0.671 | 1.506 |\n| 2 | 0.115 | 1.021 |\n| 3 | 0.028 | 0.814 |\n| 4 | 0.012 | 0.626 |\n\nNLL 从 depth 0 的 1.69 nats 单调下降到 depth 4 的 0.01 nats，确认递归生成文本对参考模型越来越可预测。图和 PDF 已就绪，`main.tex` 中的 `\\input` 引用需要你自己添加。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-nll-distribution-appendix.md"
+}

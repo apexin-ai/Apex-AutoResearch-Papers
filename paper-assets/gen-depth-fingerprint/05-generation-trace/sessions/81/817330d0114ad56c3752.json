@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "817330d0114ad56c3752",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan 014 analysis prep",
+  "task_key": "worker_code_plan-014-analysis-prep_20260515T012740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-014-analysis-prep_20260515T012740_result.json",
+    "occurrence": 1,
+    "bytes": 381,
+    "sha256": "35df6a1aca8d7d9156f01e42da1a79e6b38b56d43e4fd6be5238c4b20b0203c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `/root/gen-depth-fingerprint/plan014_analysis_prep.md`。\n\n**总结：**\n\n- Plan-014 进度 42% (416/996)，预计还需 ~2.4h\n- 完成后需修改 2 处：`extract_features_crossref.py` 加 `\"qwen3-8b\"` 到 `ALL_GENERATORS`，`cross_generator_eval.py` 加到 `non_pythia` 列表\n- 特征提取+评估总共 ~20 min，无其他兼容性问题"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-014-analysis-prep.md"
+}

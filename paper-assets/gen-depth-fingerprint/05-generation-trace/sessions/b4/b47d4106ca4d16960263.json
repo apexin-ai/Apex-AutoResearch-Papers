@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b47d4106ca4d16960263",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "infra gpu verify",
+  "task_key": "worker_infra_gpu-verify_20260517T233931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-verify_20260517T233931_result.json",
+    "occurrence": 1,
+    "bytes": 1732,
+    "sha256": "f7df3db51f95a934fa37f22e677494fa84f7cd95bc5121e3d21d847242aae2d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. nvidia-smi 完整输出\n\n```\nGPU 0: NVIDIA GeForce RTX 5090 (32607 MiB)\n  - 57°C, 351W/575W, 92% utilization\n  - 12382MiB / 32607MiB 使用中\n```\n\n只列出 **1 块 GPU**。`nvidia-smi -L` 也只报告 1 块。\n\n### 2. torch.cuda.device_count() = 1\n\n### 3. CUDA_VISIBLE_DEVICES 设置来源\n\n**没有在任何地方找到 CUDA_VISIBLE_DEVICES 限制**：\n- `~/.bashrc` — 无\n- `~/.bash_profile` — 无\n- `/etc/environment` — 无\n- conda activate.d 脚本 — 无\n- 进程环境 — 无法读取（权限）\n\n**真实原因是容器层面限制**：`/dev/` 下只有 `/dev/nvidia2`（没有 nvidia0、nvidia1、nvidia3），说明 AutoDL 平台在容器创建时只分配了宿主机的 1 块 GPU（宿主机 GPU #2）映射进来。这不是环境变量问题，而是 Docker/容器配置层面的硬限制。\n\n### 4. 当前 GPU 进程\n\n| PID | 进程 | 显存 |\n|-----|------|------|\n| 27142 | `python generate_chain.py --model-name pythia-2.8b-t05 --temperature 0.5 ...` | 6184 MiB |\n| 27678 | `python generate_chain.py --model-name pythia-2.8b-indepA --temperature 0.7 ...` | 6184 MiB |\n\n两个进程共享同一块 GPU。\n\n### 5. 当前实验进度\n\n| tmux session | 任务 | 进度 |\n|---|---|---|\n| `tc_fix` | pythia-2.8b-t05 生成 (995 seeds) | **31%** (311/995), ~2h45m 剩余 |\n| `indep_seed` | pythia-2.8b-indepA 独立种子生成 (500 seeds) | **56%** (281/500), ~44min 剩余 |\n\n### 结论\n\n**容器确实只有 1 块 GPU。** 这是 AutoDL 平台分配的硬件限制（容器只挂载了宿主机 GPU #2），不是 CUDA_VISIBLE_DEVICES 软件配置的问题。如果需要 4 卡，需要在 AutoDL 平台重新创建/升级实例。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-verify.md"
+}

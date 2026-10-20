@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3eaead80ae4e41fab418",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis plan 014 revalidation v3",
+  "task_key": "worker_analysis_plan-014-revalidation-v3_20260515T041839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-014-revalidation-v3_20260515T041839_result.json",
+    "occurrence": 1,
+    "bytes": 2054,
+    "sha256": "31d528a8e5d9e68df21a34292b8697710b7684d732e58bcd704099c6bd5da262"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n---\n\n## Plan-014 完整数据重算结果\n\n### 1. 数据量\n\n| | 之前 (82% 快照) | 现在 (完整) | 变化 |\n|---|---|---|---|\n| 总记录数 | 3702 | 4409 | +707 (+19.1%) |\n| depth 分布 | — | 0:977, 1:960, 2:918, 3:815, 4:739 | 各 depth 均增长 |\n\n### 2. 6-gen LOGO macro-F1（3-class: gen-0/gen-1/gen-2+）\n\n| Held-out generator | macro_f1 |\n|---|---|\n| olmo-2-1b | 0.7619 |\n| pythia-1b | **0.8553** |\n| pythia-2.8b | 0.8038 |\n| qwen3-0.6b | 0.8233 |\n| qwen3-1.7b | 0.8092 |\n| qwen3-8b | 0.6849 |\n| **Mean** | **0.7897** |\n\n**vs 之前 0.7886 → +0.0011**，几乎无变化。\n\n### 3. qwen3-8b held-out F1\n\n**0.6849 vs 之前 0.6886 → -0.0037**，微降，在 bootstrap CI 范围内（CI: 0.672–0.698）。\n\n### 4. Feature importance（permutation）\n\n| Rank | Feature | Importance |\n|---|---|---|\n| 1 | hapax_ratio | 0.2652 |\n| 2 | entropy_mean | 0.1522 |\n| 3 | ttr | 0.1477 |\n| 4 | entropy_max | 0.0657 |\n| 5 | entropy_std | 0.0474 |\n| 6 | entropy_min | 0.0167 |\n| 7 | tail_decay | 0.0127 |\n\nentropy_std 的 LOFO delta: 去掉后 LOGO F1 仅降 0.0031（0.7897→0.7866），确认对泛化贡献极小。\n\n### 5. Spearman ρ（qwen3-8b）\n\n| Feature | ρ | p |\n|---|---|---|\n| **hapax_ratio** | **-0.5584** | 0.0 |\n| **ttr** | **-0.5429** | 0.0 |\n| entropy_mean | -0.4757 | 1.09e-248 |\n| entropy_min | -0.2994 | 2.41e-92 |\n| entropy_max | +0.0980 | 6.52e-11 |\n| tail_decay | -0.0872 | 6.14e-09 |\n| entropy_std | -0.0762 | 3.89e-07 |\n\n### 6. 差异总结：完整数据 vs 82% 快照\n\n**结论：完整数据与 82% 快照结果高度一致，差异在统计噪声范围内。**\n\n- LOGO mean F1: 0.7897 vs 0.7886（**+0.0011**）\n- qwen3-8b held-out F1: 0.6849 vs 0.6886（**-0.0037**）\n- Feature importance 排序不变（hapax_ratio > entropy_mean > ttr）\n- 新增 707 条数据未改变任何实质性结论\n- classify_multi.py 5-depth 分类 LOGO F1 = 0.5051±0.0345（5 类细分度过高，效果弱于 3-class）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-014-revalidation-v3.md"
+}

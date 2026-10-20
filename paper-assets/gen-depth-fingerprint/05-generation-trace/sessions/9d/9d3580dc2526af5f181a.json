@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d3580dc2526af5f181a",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper d019 compliance consistency",
+  "task_key": "worker_paper_d019-compliance-consistency_20260515T165650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d019-compliance-consistency_20260515T165650_result.json",
+    "occurrence": 1,
+    "bytes": 3261,
+    "sha256": "1cdfb586f0c3b8f47afe5ca105d85401314b5a72d9a5af7efcf27864bcaf4651"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits complete. Here's the full report:\n\n---\n\n## 任务 A: D019 合规检查\n\n**结果: 全部通过 ✓**\n\n检查了 7 个论文文件中所有涉及 instruct 的段落（共 5 处）：\n\n| 文件 | 行 | 内容 | 合规 |\n|------|-----|------|------|\n| introduction.tex | 20 | \"base (pretrained) models; instruction-tuned and RLHF models...remain untested (Limitations)\" | ✓ scope 限定 |\n| limitations.tex | 5-6 | \"All six generators are base (pretrained) models...instruction tuning is a critical direction for future work\" | ✓ limitation |\n| limitations.tex | 13 | \"instruction following\" 作为未测试的 prompt type | ✓ limitation |\n| limitations.tex | 23 | \"instruction following\" 作为未测试的下游任务 | ✓ limitation |\n| conclusion.tex | 9 | \"extend evaluation to instruction-tuned and RLHF models\" | ✓ future work |\n\n- \"inverted DDR\" / \"方向反转\" 相关表述：**零残留** ✓\n- 主要 claims（abstract/intro/results/conclusion）均限定为 base model ✓\n\n---\n\n## 任务 B: 全文数字一致性验证\n\n| 数字 | Registry | 论文 | 状态 |\n|------|----------|------|------|\n| Binary LOGO F1 | 0.723 | 0.723 | ✓ |\n| Binary CI | [0.717, 0.729] | [0.717, 0.729] | ✓ |\n| 3-class LOGO F1 | 0.789 | 0.789 | ✓ |\n| 6 generators, 3 families, 0.6B–8.2B | — | — | ✓ |\n| Per-gen: Pythia-1B | 0.8562 → 0.856 | 0.856 | ✓ |\n| Per-gen: Pythia-2.8B | 0.8041 → 0.804 | 0.804 | ✓ |\n| Per-gen: OLMo-2-1B | 0.7635 → 0.764 | 0.764 | ✓ |\n| Per-gen: Qwen3-0.6B | 0.8243 → 0.824 | 0.824 | ✓ |\n| **Per-gen: Qwen3-1.7B** | **0.8064 → 0.806** | **0.805 → 已修复为 0.806** | **已修复** |\n| Per-gen: Qwen3-8B | 0.6832 → 0.683 | 0.683 | ✓ |\n| Per-gen std | 0.051 | 0.051 | ✓ |\n| 4-baseline ensemble (3-class) | 0.796 | 0.796 | ✓ |\n| 4-baseline ensemble (binary) | 0.712 | 0.712 | ✓ |\n| 4-baseline+surface | 0.805 | 0.805 | ✓ |\n| 7-feature unified (3-class) | 0.789 | 0.789 | ✓ |\n| CORAL (3-class) | 0.771 | 0.771 | ✓ |\n| Frank-Hall (3-class) | 0.793 | 0.793 | ✓ |\n| Concordance: XGBoost | 0.821 | 0.821 | ✓ |\n| Concordance: CORAL | 0.810 | 0.810 | ✓ |\n| Concordance: Frank-Hall | 0.825 | 0.825 | ✓ |\n| Volume-matched diversity | 94% | 94% | ✓ |\n| LOPTO avg F1 | 0.7525 → 0.753 | 0.753 | ✓ |\n| Prompt type CV (continuation) | 0.781 → 0.78 | 0.78 | ✓ (2dp) |\n| Prompt type CV (rewriting) | 0.737 → 0.74 | 0.74 | ✓ (2dp) |\n| Prompt type CV (elaboration) | 0.730 → 0.73 | 0.73 | ✓ (2dp) |\n| Baseline diffs (+1.1/+2.2/+10.7/+19.9pp) | — | — | ✓ (算术验证) |\n\n### 修改的文件\n\n| 文件 | 变更 |\n|------|------|\n| `artifacts/_project/paper/results.tex` | Table 1: Qwen3-1.7B 0.805 → 0.806 |\n| `artifacts/_project/paper/appendix_classifier.tex` | XGBoost 行: Qw-1.7B 0.805 → 0.806 |\n| `docs/paper/results.tex` | 同步: Qwen3-1.7B 0.805 → 0.806 |\n| `docs/paper/table1.tex` | 同步: Qwen3-1.7B 0.805 → 0.806 |\n| `docs/paper/appendix_classifier.tex` | 同步: XGBoost 行 0.805 → 0.806 |\n\n唯一的数字不一致是 Qwen3-1.7B held-out F1（registry 0.8064 应四舍五入为 0.806，论文误写为 0.805），已在全部 5 个文件中修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d019-compliance-consistency.md"
+}

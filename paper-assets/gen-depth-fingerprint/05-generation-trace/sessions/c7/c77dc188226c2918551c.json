@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c77dc188226c2918551c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code 8gen cross model chains",
+  "task_key": "worker_code_8gen-cross-model-chains_20260516T170907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_8gen-cross-model-chains_20260516T170907_result.json",
+    "occurrence": 1,
+    "bytes": 825,
+    "sha256": "904bfbd50a2e721370d19f87822488181ae97d4fa770dc3b4e02bcc461289b59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已保存到 `results/8gen_cross_model_chains.json`。\n\n**关键发现：**\n\n| 指标 | 5-gen 混合链 | 8-gen Pooled CV | 8-gen LOGO |\n|------|-------------|-----------------|------------|\n| 3-class F1 | 0.809 | **0.814** (+0.005) | 0.768 (−0.041) |\n| Binary F1 | 0.764 | 0.744 (−0.020) | **0.776** (+0.012) |\n\n- **Pooled CV**（类比混合链评估）：8 gen 扩展后 3-class 略有提升，说明更多生成器的多样性训练数据有益\n- **LOGO**（真正的跨模型泛化）：3-class 下降 4 点，主要被 mistral-7b（0.616）和 qwen3-8b（0.701）拖低——这两个模型在规模/架构上与其余 6 个差异最大\n- **说明**：真正的 8-gen 混合链数据未生成（需要频繁加载 7B/8B 模型，不可行），结果基于单模型链数据"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-8gen-cross-model-chains.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d0f1148b20fb013fde0",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper merge paragraphs",
+  "task_key": "worker_paper_merge-paragraphs_20260525T065530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_merge-paragraphs_20260525T065530_result.json",
+    "occurrence": 1,
+    "bytes": 1817,
+    "sha256": "9606c1ab74a738c8c1cae3445f2cc8261d647fd22ebbc9c379b4056e6c58c7e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "TaskOutput 用于读取后台任务输出，不适用于提交报告。直接汇报结果：\n\n---\n\n## 合并报告\n\n### 修改汇总\n\n| 文件 | 修改前 | 修改后 | 删减数 |\n|------|--------|--------|--------|\n| method.tex | 9 | 4 | 5 |\n| results.tex | 9 | 3 | 6 |\n| discussion.tex | 4 | 2 | 2 |\n| related_work.tex | 3 | 3 | 0 (不同研究方向，保留) |\n| introduction.tex | 0 | 0 | — |\n| conclusion.tex | 0 | 0 | — |\n| **总计** | **25** | **12** | **13** |\n\n### 删除的 \\paragraph{} 标题\n\n**method.tex (5 个):**\n- `\\paragraph{Terminology.}` → 去掉标题，内容保留为普通文本\n- `\\paragraph{Surface features.}` → 与 Feature complementarity 合并为连续文本\n- `\\paragraph{Feature complementarity.}` → 同上\n- `\\paragraph{Metrics and statistical testing.}` → 合入 `\\paragraph{Classifier and metrics.}`\n- `\\paragraph{Length confound control.}` → 合入 `\\paragraph{Baselines.}`\n\n**results.tex (6 个):**\n- `\\paragraph{Confound controls.}` → 去掉标题，内容保留\n- `\\paragraph{Error analysis.}` → 去掉标题，内容保留\n- `\\paragraph{Quantification.}` → 与 Formal definition 后文自然衔接\n- `\\paragraph{Validation.}` → 与 Quantification 内容合并为连续文本\n- `\\paragraph{Cross-family reference models.}` → 与温度敏感性合并\n- `\\paragraph{Temperature and prompt-type sensitivity.}` → 同上\n\n**discussion.tex (2 个):**\n- `\\paragraph{Temperature sensitivity.}` → 与 Error structure 合并为连续文本\n- `\\paragraph{Error structure.}` → 同上\n\n### 编译结果\n- 编译成功，无错误，37 页（含 appendix）\n- Conclusion 在第 9 页，主文仍超 8 页限制（修改前即如此，合并 `\\paragraph{}` 仅节省少量垂直空间）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-merge-paragraphs.md"
+}

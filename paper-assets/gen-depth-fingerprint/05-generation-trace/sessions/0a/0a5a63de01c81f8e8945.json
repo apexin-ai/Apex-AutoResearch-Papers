@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a5a63de01c81f8e8945",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis feature importance kendall",
+  "task_key": "worker_analysis_feature-importance-kendall_20260517T231929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_feature-importance-kendall_20260517T231929_result.json",
+    "occurrence": 1,
+    "bytes": 491,
+    "sha256": "ed734c2ee4f636219a9b1f0a7d6265ebd4cb884159c5c8aec7f81e7125a59c42"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n**Kendall W = 0.9632** (p = 2.66e-08), feature importance 在 8 个 LOGO fold 之间极其稳定。\n\n关键发现：\n- `hapax_ratio` 在全部 8 个 fold 中均排名 #1\n- `entropy_mean` 和 `ttr` 稳定占据 #2-3（偶有交换）\n- `entropy_min` 和 `tail_decay` 固定在最后两位\n\n输出已保存：\n- 服务器: `results/feature_importance_stability.json`\n- 本地 artifact: `artifacts/_project/analysis/feature_importance_stability.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-feature-importance-kendall.md"
+}

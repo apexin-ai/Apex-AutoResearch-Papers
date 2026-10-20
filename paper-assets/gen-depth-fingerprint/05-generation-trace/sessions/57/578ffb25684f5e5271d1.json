@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "578ffb25684f5e5271d1",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis transfer ablation B",
+  "task_key": "worker_analysis_transfer_ablation_B_20260519T072523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_transfer_ablation_B_20260519T072523_result.json",
+    "occurrence": 1,
+    "bytes": 430,
+    "sha256": "67f20d2416c4ceff56978cc2060d063d6d68117da62740ae80503f65224d7d95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个文件全部生成。结果摘要：\n\n- **Mean cross-generator transfer F1 = 0.810** [95% CI: 0.796, 0.822]，远超 chance (0.5)，t=46.58, p<1e-10\n- **对角线 (within-gen) 平均 F1 = 0.985**，off-diagonal 平均 = 0.810\n- 最强 transfer: Py-2.8B → Py-1B (0.87)；最弱: Py-1B → Mi-7B (0.62)，仍超过 baseline\n- 结论：depth signal 跨 generator 泛化，不是 generator identity confound"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-transfer-ablation-b.md"
+}

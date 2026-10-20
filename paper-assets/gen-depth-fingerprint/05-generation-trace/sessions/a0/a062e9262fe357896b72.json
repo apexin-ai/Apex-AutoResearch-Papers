@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a062e9262fe357896b72",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ssh plan 004 v2 pid check",
+  "task_key": "worker_ssh_plan-004-v2-pid-check_20260515T004804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan-004-v2-pid-check_20260515T004804_result.json",
+    "occurrence": 1,
+    "bytes": 729,
+    "sha256": "bcec49aeac379ed705902ebd49c1424b4334b60cee92818611b0102fbeaff977"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**Plan-004-v2 进程（全部活跃）：**\n\n| GPU | Wrapper PID | Python PID | 当前任务 |\n|-----|-------------|------------|----------|\n| GPU2 | 142675 | 142680 | size_matched_seed42 (bs2×ga8) |\n| GPU1 | 143757 | 143765 | size_matched_seed42 (bs4×ga4, via run_downstream.sh) |\n| GPU3 | **145799** | 145805 | size_matched_seed123 (40%, 后续还有 4 个任务) |\n\nRegistry 已更新 `spec.pid = 145799`（GPU3 wrapper，最慢进程）。\n\n**Plan-014：**\n- PID 134817: ALIVE\n- PID 134823: ALIVE（在 GPU0 上运行）\n\n**注意：** 没有 \"all\" variant 在运行。`run_gpu3.sh` 只跑 `size_matched`（seed 123, 456）和 `binary_filtered`（seed 42, 123, 456）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-plan-004-v2-pid-check.md"
+}

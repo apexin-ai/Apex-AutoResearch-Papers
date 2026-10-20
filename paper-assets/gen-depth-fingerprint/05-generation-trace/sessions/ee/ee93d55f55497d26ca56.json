@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee93d55f55497d26ca56",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops kill base qlora",
+  "task_key": "worker_ops_kill_base_qlora_20260519T094849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_base_qlora_20260519T094849_result.json",
+    "occurrence": 1,
+    "bytes": 672,
+    "sha256": "c44b85c3224c09a851166ab843b5033e25b926b54479cc2543ec0ab69b1ea767"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**2 个 base 任务** — 已终止（进程和 tmux session 均已不存在，之前可能已自行结束）\n\n**2 个 instruct 任务** — **也已完成运行**，进程 71920/72065 不再存活。日志显示两个任务均已跑完全部 fold 并保存了结果：\n\n| 任务 | 结果文件 | 运行时间 | 3-class F1 (gen0/gen1/gen2+) |\n|---|---|---|---|\n| OLMo-instruct | `qlora_olmo-2-0425-1b-instruct.json` | 28.2 min | 0.99 / 0.77 / 0.91 |\n| Qwen3-instruct | `qlora_qwen3-1.7b-instruct.json` | 31.3 min | 0.99 / 0.80 / 0.93 |\n\n**GPU 状态** — 4× RTX 5090 全部空闲（0MiB / 0% utilization），cuda:0-3 均已释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-base-qlora.md"
+}

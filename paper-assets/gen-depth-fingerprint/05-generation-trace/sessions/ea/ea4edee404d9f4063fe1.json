@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea4edee404d9f4063fe1",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops verify gemma rp10 final",
+  "task_key": "worker_ops_verify-gemma-rp10-final_20260516T120707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-gemma-rp10-final_20260516T120707_result.json",
+    "occurrence": 1,
+    "bytes": 395,
+    "sha256": "5ca8886e581049952fd99a3d84383d526f5f6573ea2ed093e0360b7931543342"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan-016-gemma2-2b 完成确认：**\n\n- **条数**：4957 / 4970（99.7%）\n- **Depth 分布**：{0: 994, 1: 993, 2: 990, 3: 990, 4: 990}\n- **缺失原因**：4 个 seed（4, 728, 837, 852）产生 empty output 后级联跳过，共缺 13 条\n- **耗时**：4h 22m\n- **结论**：success，registry 已标记 DONE，cron 已删除\n\n可以启动 Gemma rp=1.1 生成了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-gemma-rp10-final.md"
+}

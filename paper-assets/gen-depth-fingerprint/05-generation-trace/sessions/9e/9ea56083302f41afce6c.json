@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ea56083302f41afce6c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "compute tost d020",
+  "task_key": "worker_compute_tost-d020_20260518T123736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compute_tost-d020_20260518T123736_result.json",
+    "occurrence": 1,
+    "bytes": 1242,
+    "sha256": "baf76a834e10780becf5424b61bad4896077a49eeb6cf728479a12045cff8546"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### TOST 等价性检验摘要 (|d| < 0.20, α = 0.05)\n\n| Feature | Group | Cohen's d | p_TOST | 等价? |\n|---|---|---|---|---|\n| entropy_mean | drifting | +1.0544 | 1.00 | NOT |\n| entropy_std | intermediate | +0.4571 | 1.00 | NOT |\n| **entropy_max** | near-stationary | +0.0622 | 7.97e-26 | **EQUIV** |\n| **entropy_min** | intermediate | -0.0157 | 3.39e-60 | **EQUIV** |\n| **tail_decay** | near-stationary | +0.0873 | 6.67e-18 | **EQUIV** |\n| ttr | drifting | +0.8142 | 1.00 | NOT |\n| hapax_ratio | drifting | +0.7346 | 1.00 | NOT |\n\n**样本量:** gen-1 = 7,896; gen-2+ = 21,199\n\n**关键发现:**\n- 3/7 特征通过等价性检验 (entropy_max, entropy_min, tail_decay)，均为 near-stationary 或 intermediate 组，observed |d| < 0.09\n- 4/7 特征拒绝等价 (entropy_mean, entropy_std, ttr, hapax_ratio)，均为 drifting 或 intermediate 组，observed |d| 在 0.46~1.05 之间，远超 0.20 阈值\n- 与论文中 \"drifting vs near-stationary\" 分类高度一致：drifting 特征确实在代际间有大效应量差异，near-stationary 特征统计等价\n\n**JSON 已保存:** `/root/gen-depth-fingerprint/results/tost_equivalence.json`\n\n**tmux:** 已清理，无残留 session。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/compute-tost-d020.md"
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "0e885d9cbd51e503d10c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops emnlp submission checklist",
+  "task_key": "worker_ops_emnlp-submission-checklist_20260516T230116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_emnlp-submission-checklist_20260516T230116_result.json",
+    "occurrence": 1,
+    "bytes": 2102325,
+    "sha256": "ba9fc6ac32048f46798bf62e3d541cb654efe4e4df5a988570212c062f7f66d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2102345,
+                "serialized_sha256": "8c4b86f413aa2e4b51d6e199848e4bfea94eea6bb0e52a64af87896a72615208",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-emnlp-submission-checklist.md"
+}

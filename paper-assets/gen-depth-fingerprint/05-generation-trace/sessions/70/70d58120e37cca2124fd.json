@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70d58120e37cca2124fd",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan002 feature pipeline",
+  "task_key": "worker_code_plan002-feature-pipeline_20260514T205746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan002-feature-pipeline_20260514T205746_result.json",
+    "occurrence": 1,
+    "bytes": 1900,
+    "sha256": "6ef652aa5c5180bb70005e03fead81d32bf8ef57880f4bace87f798abc4c1166"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过。Pipeline 端到端验证成功。\n\n---\n\n## 产出总结\n\n### 1. 现有 Pipeline 架构\n\n```\ngenerate_chain.py  →  merge_shards.py  →  extract_features.py (单模型)\n                                       →  extract_features_multi.py (多模型, plan-002 ready)\n                                       →  classify_and_eval.py (单模型, 3-class)\n                                       →  ablation_analysis.py (消融+趋势+PPL)\n```\n\n### 2. plan-002 所需变更清单\n\n| 组件 | 状态 | 需要做什么 |\n|---|---|---|\n| `generate_chain.py` | 已支持多模型 | 无需改动 |\n| `merge_shards.py` | 已支持 `--model-name` | 无需改动 |\n| `extract_features_multi.py` | 已存在，支持增量 | 无需改动 |\n| `classify_multi.py` | **新建** | ✅ 已完成 |\n\n### 3. 已完成代码\n\n**`classify_multi.py`** — 三种评估模式：\n- **Leave-one-generator-out**: 每轮 hold out 1 个生成器，4 个训练\n- **Leave-one-family-out**: hold out 整个模型族（pythia/olmo/qwen）\n- **Pooled stratified 5-fold CV**: 混合全部数据的 baseline\n- 输出 generalization gap（pooled vs leave-out 的 F1 差距）\n- 结果保存为 JSON + CSV\n\n### 4. 数据生成后的执行顺序\n\n```bash\n# 1. 各模型 merge shards\npython merge_shards.py --model-name olmo-2-1b --num-shards 2\npython merge_shards.py --model-name qwen3-1.7b --num-shards 2\npython merge_shards.py --model-name qwen3-0.6b --num-shards 2\n\n# 2. 多模型特征提取\npython extract_features_multi.py --device cuda:0\n\n# 3. 多模型分类评估\npython classify_multi.py --input data/features_all.csv\n```\n\n**注意**：qwen3-0.6b 数据尚未开始生成，olmo-2-1b 和 qwen3-1.7b 仍在生成中。当前 pythia-1b 已就绪（4555 条），可以先对 pythia-2.8b + pythia-1b 两个模型跑完整 pipeline 做早期验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan002-feature-pipeline.md"
+}

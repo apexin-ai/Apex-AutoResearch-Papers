@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7cba5b7e09af6ec547d2",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_7_1778883071.md",
+  "task_key": "loop_7_1778883071",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778883071.md",
+    "occurrence": 1,
+    "bytes": 4808,
+    "sha256": "8c246ddd3bcb3722b48a77301755594be9749d153875acfde6157f85310c8e7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: max_messages\nupdated: '2026-05-15T20:31:33+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 autodl-5090 的 cuda:0/1/2/3，其他设备号必须 push back Director\n- **7-gen vs 6-gen 数字禁止直接对比**（D019 + Director 硬约束）：7-gen binary F1=0.768 包含 instruct 数据，不可与 6-gen F1=0.723 做 apple-to-apple 比较\n- **Instruct 方向反转是长度伪影**（Reviewer CRITICAL 已验证）：instruct 输出极短导致 length-depth ρ>0.5，length-matched 后 surface feature ρ 降至 ~0。论文只能写 \"method boundary\" 叙事，不可 claim 方向反转\n- Primary metric 是 **binary LOGO F1=0.723**（gen-1 vs gen-2+，排除 gen-0 shared-seed leakage），3-class 0.789 仅作 supplementary 带 caveat\n- EMNLP 2026 ARR DDL **2026-05-25**，距今 10 天\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**autodl-5090**，工作目录 `/root/gen-depth-fingerprint`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- W&B / HF cache：未确认，需 Worker SSH 探查\n- 活跃进程：\n  - `plan-008-multi-domain`：PID 234066，autodl-5090，cron 监控中（multi-domain seeds: news/scientific/creative 三域 robustness）\n  - `plan-010-human-edit`：PID 228872，autodl-5090，cron 监控中（human edit robustness: word replacement 5/10/20% + LLM rephrasing）\n- 活跃 Worker：\n  - `worker_paper_sampling-ablation-appendix`（running）— 写 sampling ablation appendix 到论文\n  - `worker_code_plan007-cross-model-chains`（running）— 写 plan-007 cross-model chains 代码\n\n### 3. 📊 当前状态\n**刚完成的：**\n- `review-sampling-ablation`（success）— sampling strategy ablation 完成，低温/高温配置对 depth signal robust\n- `review-p1c-olmo-instruct`（negative）— OLMo instruct 无 depth signal，确认 instruct 是 method boundary\n- `review-p2f-cross-ref-bias`（success）— Pythia-1B 在所有 ref model 下均 #1，same-family bias 不成立\n\n**Registry 总况：** 56 实验 — 36 success / 3 negative / 8 failed / 1 killed / 2 RUNNING / 6 PREPARING（4 个 mvp-001-* 和 plan-001-restore 是历史残留）\n\n**等待中：**\n- plan-008-multi-domain cron 回调 → 分析三域 depth signal 一致性\n- plan-010-human-edit cron 回调 → 分析 edit robustness 存活率\n- 2 个 Worker 完成回调（sampling-ablation appendix 写入 + plan-007 代码）\n- plan-004-prep（PREPARING）等 Director 确认是否开跑 downstream utility\n\n### 4. 📋 待办（条件触发式）\n- plan-008-multi-domain cron 回调 → spawn Worker 分析三域 F1，success 则写入 paper discussion（domain robustness evidence）；negative 则产 Framing 提案\n- plan-010-human-edit cron 回调 → 分析 edit 存活率，success 则加入 appendix（robustness evidence）；negative 则评估是否影响 core claims\n- worker_paper_sampling-ablation-appendix 完成 → 检查 appendix 写入质量，更新 registry\n- worker_code_plan007-cross-model-chains 完成 → review 代码，提交 plan-007 实验审批（需 GPU）\n- **论文冲刺（不依赖回调，应立即推进）：**\n  - abstract + intro 数字更新 → binary F1=0.723 headline（ROADMAP 标记 \"Agent 处理中\"）\n  - related_work CI width 残留修复\n  - P1-E ordinal regression 结论写入论文（CORAL/Frank-Hall 无显著优势）\n  - Rd2-M7 bib 年份验证（用 reference-audit skill）\n  - 全文数字一致性最终验证\n  - Round 3 提交 Reviewer 审查\n\n### 5. 🎯 战略上下文\n**核心结论链：** D017（binary F1 为 primary metric）→ D019（instruct 是 length artifact，scope narrowed to base models）→ D016（Round 2 修复）→ D015（4-baseline 在 binary 下反而弱于 7-feature）→ D012（恢复 EMNLP 为主投）\n\n**最容易判断错的事：**\n- plan-008/010 是 supplementary evidence（domain robustness + edit robustness），**不阻塞论文提交**。即使这两个实验还没出结果，论文核心 claims 已有足够支撑。不要因为等这两个实验而延误论文冲刺\n- 6 个 PREPARING 实验中，只有 plan-004-prep 是活跃的（等 Director 确认 downstream utility），其余 4 个 mvp-001-* 和 plan-001-restore 是早期残留，可忽略\n- Claim 3（Downstream Utility）已是 **confirmed negative**（D009），论文中以 \"diagnostic not curative\" 诚实报告，不需要额外实验来救\n- **论文写作任务是瓶颈**，不是实验。abstract/intro 数字更新、ordinal 结论写入、bib 审计、全文一致性检查——这些全应并行派 Worker 立即推进，10 天 DDL 不等人\n- cuda:0/2/3 当前空闲，plan-007（cross-model chains）代码写完后可立即提交，不要浪费 GPU 空窗\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778883071.md"
+}

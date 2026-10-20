@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd92f22f80acd0703d72",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis 5gen logo average",
+  "task_key": "worker_analysis_5gen-logo-average_20260518T000929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_5gen-logo-average_20260518T000929_result.json",
+    "occurrence": 1,
+    "bytes": 688,
+    "sha256": "5dcb3c3bcc3c7509e3319ff776c5d7f7944b61be7d7606fbe015c442b2af637a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n| Generator (held-out) | Binary F1 | 95% CI |\n| --- | --- | --- |\n| OLMo-2-1B | 0.6754 | [0.6601, 0.6905] |\n| Pythia-1B | 0.7833 | [0.7688, 0.7971] |\n| Pythia-2.8B | 0.7149 | [0.6999, 0.7305] |\n| Qwen3-0.6B | 0.7439 | [0.7285, 0.7583] |\n| Qwen3-1.7B | 0.7499 | [0.7348, 0.7644] |\n| **Average** | **0.7335** | **[0.7184, 0.7482]** |\n| 8-gen LOGO (ref) | 0.694 | — |\n| Cross-model chains (ref) | 0.764 | — |\n\n5-gen LOGO baseline (0.734) 与 cross-model chains (0.764) 的差距为 +0.031，确认跨模型链提供了超越单生成器 LOGO 的额外判别信号。输出已保存至 `results/5gen_logo_average.json` 和本地 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-5gen-logo-average.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "8ed1a244e2a47c4a551d",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "code ldscore sparse fix",
+  "task_key": "worker_code_ldscore-sparse-fix_20260516T200237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ldscore-sparse-fix_20260516T200237.log",
+    "occurrence": 1,
+    "bytes": 686187,
+    "sha256": "3f9d72e4211eaf93ced77eff748a54e5bea390387f3f873cb07d55f779787ea5"
+  },
+  "statistics": {
+    "messages": 368,
+    "user_turns": 0,
+    "tool_calls": 145,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 74,
+      "tool_call": 145,
+      "tool_result": 145,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 368,
+      "chunks": [
+        {
+          "path": "8ed1a244e2a47c4a551d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8ed1a244e2a47c4a551d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8ed1a244e2a47c4a551d-part-0003.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-ldscore-sparse-fix.md"
+}

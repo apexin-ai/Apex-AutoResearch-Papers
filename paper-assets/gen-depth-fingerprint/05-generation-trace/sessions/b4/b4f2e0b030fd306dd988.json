@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4f2e0b030fd306dd988",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "submit rebuild supplement tgz",
+  "task_key": "worker_submit_rebuild-supplement-tgz_20260520T064518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_rebuild-supplement-tgz_20260520T064518_result.json",
+    "occurrence": 1,
+    "bytes": 2585,
+    "sha256": "c050ca5cea1c5b4d8573beda5364db5962996df48889954888a42427c1ec7f3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "False positive on the earlier grep (likely matched the `-r` traversal before the old tgz was removed). No actual path leaks found.\n\nAnonymity check passed. Here's the summary:\n\n**File**: `artifacts/_project/anonymous_supplement.tgz`  \n**Size**: 19 MB\n\n**Complete file list (68 files)**:\n\n```\nsupplement/\n├── verification_report.md\n├── data/                          (30 CSV/JSONL files)\n│   ├── README.md\n│   ├── cross-model-chains/features.csv\n│   ├── detector_scores_8gen.csv\n│   ├── features_all_models.csv\n│   ├── features_indep_olmo-2-1b.csv\n│   ├── features_indep_pythia-2.8b.csv\n│   ├── features_llama-3.2-3b-instruct.csv\n│   ├── features_olmo-2-0425-1b-instruct.csv\n│   ├── features_olmo-2-1b-t05.csv\n│   ├── features_olmo-2-1b-t09.csv\n│   ├── features_pythia-2.8b-{creative,news,scientific,t05,t09}.csv\n│   ├── features_qwen3-0.6b-{instruct,t05,t09}.csv\n│   ├── features_qwen3-1.7b-{high-temp,low-temp,instruct,t09}.csv\n│   ├── features_qwen8b_ref_{olmo,qwen}.csv\n│   ├── features_ref_{olmo,qwen}.csv\n│   ├── paraphrase_features.csv\n│   ├── transfer_matrix.csv\n│   ├── wiki_seed_1000.jsonl\n│   └── seeds/{creative,news,scientific}_seed_500.jsonl\n└── code/                          (34 .py files + README + requirements.txt)\n    ├── README.md, requirements.txt\n    ├── 8gen_length_confound.py\n    ├── analyze_instruct.py, analyze_prompt_types.py\n    ├── benchmark_efficiency.py, bootstrap_downstream_ci.py\n    ├── classify_and_eval.py, compute_dataset_stats.py\n    ├── cross_model_logo.py, cross_ref_analysis.py, cross_temp_transfer.py\n    ├── ddr_temp_analysis.py, distributional_tests.py\n    ├── end_to_end_classifier.py\n    ├── eval_8gen_{baselines_pooled,finer_depth,logo,sampling_ablation}.py\n    ├── eval_exp052_instruct.py, eval_independent_seed.py\n    ├── extract_features.py, extract_features_jsonl.py\n    ├── finetune_downstream.py, generate_chain.py\n    ├── prepare_downstream_data.py, seed_demeaning_logo.py\n    ├── transfer_ablation.py\n    ├── scripts/{alt_classifier_eval,bootstrap_ci_v2,lofo_ablation,plot_fig1_strip,plot_fig2,plot_fig3,tost_equivalence}.py\n    └── experiments/human_edit_robustness/run_robustness.py\n```\n\nNo anonymity issues detected — no author names, institution names, or server paths in the packaged files."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-rebuild-supplement-tgz.md"
+}

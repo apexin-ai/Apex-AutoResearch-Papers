@@ -1,0 +1,1352 @@
+{
+  "schema_version": "1.0",
+  "id": "69bf257242c0bcd031bf",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "paper data fix reviewer corrections",
+  "task_key": "worker_paper_data-fix-reviewer-corrections_20260522T043608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_data-fix-reviewer-corrections_20260522T043608.log",
+    "occurrence": 1,
+    "bytes": 103193,
+    "sha256": "0177ddd8076092bf7112894c0a71ac6f02f5d009cba9d24930db4d37606b77af"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+                "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__allocate_and_submit",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__approve_worker",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__backup_project_to_s3",
+                  "mcp__agent-ml-research__cancel_worker",
+                  "mcp__agent-ml-research__check_job_status",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__distill_papers",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                  "mcp__agent-ml-research__feishu_send_alert",
+                  "mcp__agent-ml-research__feishu_send_approval_card",
+                  "mcp__agent-ml-research__feishu_send_result_card",
+                  "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                  "mcp__agent-ml-research__fetch_wandb_metrics",
+                  "mcp__agent-ml-research__get_baseline_metrics",
+                  "mcp__agent-ml-research__get_distill_status",
+                  "mcp__agent-ml-research__get_gpu_health",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_matrix_value",
+                  "mcp__agent-ml-research__get_project_resource_usage",
+                  "mcp__agent-ml-research__get_tum_config",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__impact_analysis",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_available_gpus",
+                  "mcp__agent-ml-research__list_constraints",
+                  "mcp__agent-ml-research__list_s3_backups",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__main_agent_post_to_director",
+                  "mcp__agent-ml-research__matrix_gap_analysis",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__poll_cron",
+                  "mcp__agent-ml-research__poll_secret_request",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_matrix",
+                  "mcp__agent-ml-research__read_mistakes",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__reconcile_crons",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__register_cron",
+                  "mcp__agent-ml-research__request_secret",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__submit_on_allocated",
+                  "mcp__agent-ml-research__submit_training_job",
+                  "mcp__agent-ml-research__sync_matrix_status",
+                  "mcp__agent-ml-research__tail_training_logs",
+                  "mcp__agent-ml-research__update_baseline",
+                  "mcp__agent-ml-research__update_matrix",
+                  "mcp__agent-ml-research__update_registry",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "a13af5a4-ffb8-46ae-ba42-316d53194433",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779437400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "ee0e786c-545b-435e-8032-687b8978b1a7",
+                "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read both copies of the file to understand the current state and make the required changes.",
+              "signature": "EqcCCmMIDRgCKkCb5CPcBQdFkLTURR5hpp7VPzORgYRJchL0CXDOqfYWjsXJVFrqSsWf4kyKp9evLUDxhMlJLqvMMcbdrOEqoH0aMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDC1oocsQDPIZcnwvxhoMt1N9niRQ8nxFMVuMIjCdU3hMNsEpnLhANsDdHEZVh0XHUGBLJSjAcJZxZf5tXNy5Cgad3725YAaCKvFkfkIqcj3VKGuKbP8yNPBfNHCHeIB7RD4wL3ylj1XQpFB/IM110dwGOUXFlBPwL3HnZUPpYL1y9QzY+AZoxCxjSHILJyMPLJ9GS6NnU/02ztnwbJ2pxklQDnMcCxz42h+EdjGHDw69ns3gOE2yyreIwe9Em+WqWhgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "b40209b2-9108-4892-b8eb-79a99eac5866",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GG3XupLMSXGNu1AYKxHcMP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14455,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14455
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RrrUM4StMwHFa5dXJbtm8k",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "61417b8b-40e0-472f-8b84-7aeaff3f949c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GG3XupLMSXGNu1AYKxHcMP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14455,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14455
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T04:36:25.648Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RrrUM4StMwHFa5dXJbtm8k",
+              "type": "tool_result",
+              "content": "1\tWe assess robustness to post-generation text modification by randomly replacing words at varying rates and re-evaluating the 8-generator LOGO pipeline (Table~\\ref{tab:human-edit}).\n2\tRandom word replacement represents a worst-case perturbation: real human editing preserves semantic coherence, so practical degradation is expected to be substantially lower than these estimates.\n3\t\n4\t\\begin{table}[ht]\n5\t\\centering\n6\t\\small\n7\t\\caption{Robustness to random word replacement under 8-gen LOGO evaluation (binary: gen-1 vs.\\ gen-2+). Bootstrap 95\\% CIs on binary F1 ($n$\\,=\\,1000).}\n8\t\\label{tab:human-edit}\n9\t\\resizebox{\\linewidth}{!}{%\n10\t\\begin{tabular}{lccc}\n11\t\\toprule\n12\t\\textbf{Perturbation rate} & \\textbf{Binary F1} & \\textbf{95\\% CI} & \\textbf{3-class F1} \\\\\n13\t\\midrule\n14\t0\\% (baseline) & 0.695 & [0.680, 0.710] & 0.737 \\\\\n15\t5\\%            & 0.650 & [0.635, 0.666] & 0.641 \\\\\n16\t10\\%           & 0.614 & [0.599, 0.629] & 0.492 \\\\\n17\t20\\%           & 0.591 & [0.576, 0.605] & 0.367 \\\\\n18\t\\bottomrule\n19\t\\end{tabular}}\n20\t\\end{table}\n21\t\n22\tBinary depth discrimination (gen-1 vs.\\ gen-2+) degrades sublinearly: the first 5\\% replacement causes the largest drop ($-$4.6\\,pp), with diminishing marginal impact thereafter ($-$3.6\\,pp for 5\\%$\\to$10\\%, $-$2.3\\,pp for 10\\%$\\to$20\\%).\n23\tAt 10\\% replacement, binary F1 remains 0.614, well above the 0.50 random baseline, which indicates that depth signal survives moderate perturbation.\n24\t\n25\tThree-class classification is more sensitive (0.737$\\to$0.367 at 20\\%), because distinguishing gen-0 from gen-1 relies heavily on lexical diversity features (TTR, hapax ratio) that are directly disrupted by word replacement.\n26\tThe binary metric, which excludes gen-0, is inherently more robust since it depends primarily on reference-model entropy features distributed across many tokens.\n27\t\n28\t\\paragraph{Feature subset degradation.}\n29\tTable~\\ref{tab:feature-degrade} compares perturbation robustness of the full 7-feature ensemble against an entropy-only subset (5 reference-model features).\n30\tThe higher unperturbed binary F1 of the entropy-only subset (0.833 vs.\\ 0.695) reflects the strong discriminability of reference-model features for the coarse binary task (gen-1 vs.\\ gen-2+); however, lexical features are essential for the finer-grained ordinal task (3-class F1: 0.737 vs.\\ 0.688) and provide greater robustness under perturbation.\n31\tAt 20\\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\\ 0.569), despite starting from a lower baseline.\n32\tRandom word replacement drastically alters per-token context and makes entropy features (computed over the full token sequence) extremely sensitive to noise.\n33\tLexical features (TTR, hapax ratio), as document-level summary statistics, are more stable under per-word perturbation and act as stabilizers in the full ensemble.\n34\tThe crossover confirms that degradation in the full feature set reflects genuine signal disruption rather than a lexical-feature artifact.\n35\t\n36\t\\begin{table}[ht]\n37\t\\centering\n38\t\\small\n39\t\\caption{Feature subset degradation under random word replacement (8-gen LOGO). Entropy-only: 5 reference-model features; 7-feature: full ensemble including lexical features.}\n40\t\\label{tab:feature-degrade}\n41\t\\resizebox{\\linewidth}{!}{%\n42\t\\begin{tabular}{lcccc}\n43\t\\toprule\n44\t\\textbf{Perturb.} & \\textbf{Ent-only Bin} & \\textbf{7-feat Bin} & \\textbf{Ent-only 3-cl} & \\textbf{7-feat 3-cl} \\\\\n45\t\\midrule\n46\t0\\%  & 0.833 & 0.695 & 0.688 & 0.737 \\\\\n47\t5\\%  & 0.738 & 0.650 & 0.539 & 0.641 \\\\\n48\t10\\% & 0.667 & 0.614 & 0.427 & 0.492 \\\\\n49\t20\\% & 0.569 & 0.591 & 0.314 & 0.367 \\\\\n50\t\\bottomrule\n51\t\\end{tabular}}\n52\t\\end{table}\n53\t\n54\t\\paragraph{Baseline comparison.}\n55\tTable~\\ref{tab:baseline-robustness} compares robustness across detection methods under identical perturbation conditions (8-gen LOGO, binary: gen-1 vs.\\ gen-2+).\n56\t\n57\t\\begin{table}[ht]\n58\t\\centering\n59\t\\small\n60\t\\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate.}\n61\t\\label{tab:baseline-robustness}\n62\t\\begin{tabular}{lcccc}\n63\t\\toprule\n64\t\\textbf{Method} & \\textbf{0\\%} & \\textbf{5\\%} & \\textbf{10\\%} & \\textbf{20\\%} \\\\\n65\t\\midrule\n66\t7-feature ensemble & \\textbf{0.695} & 0.650 & 0.614 & 0.591 \\\\\n67\tLD-Score           & 0.677 & \\textbf{0.673} & \\textbf{0.677} & \\textbf{0.671} \\\\\n68\tAvg-LogProb        & 0.682 & 0.419 & 0.335 & 0.375 \\\\\n69\tFastDetectGPT      & 0.571 & 0.437 & 0.468 & 0.514 \\\\\n70\tBinoculars\\textsuperscript{\\dag}         & 0.500 & 0.461 & 0.446 & 0.425 \\\\\n71\t\\bottomrule\n72\t\\end{tabular}\n73\t\n74\t\\vspace{2pt}\n75\t{\\footnotesize \\textsuperscript{\\dag}Binoculars operates at chance level on this binary task; its degradation figures are not meaningful.}\n76\t\\end{table}\n77\t\n78\tThe 7-feature ensemble achieves the highest unperturbed binary F1 (0.695), but LD-Score surpasses it under perturbation due to near-zero degradation ($-$0.6\\,pp across the full 0\\%$\\to$20\\% range).\n79\tFastDetectGPT and Avg-LogProb exhibit non-monotonic degradation at higher perturbation rates, likely because severe perturbation introduces distributional artifacts that these token-level methods detect as anomalous.\n80\tAvg-LogProb is the most fragile overall ($-$34.7\\,pp at 10\\%), while FastDetectGPT drops sharply at 5\\% ($-$13.4\\,pp) before partially recovering.\n81\tLD-Score is nearly invariant to perturbation, consistent with its reliance on corpus-level distributional divergence rather than per-token likelihoods.\n82\tThe 7-feature ensemble offers the highest starting performance among single-reference methods, with sublinear degradation ($-$10.4\\,pp at 20\\%).\n83\t\n84\t\\paragraph{LLM-simulated sentence regeneration.}\n85\tTo test robustness under semantically coherent editing, we use Qwen3-0.6B-Base to randomly regenerate 1--3 sentences per passage (avg 1.69 sentences, ${\\sim}$50\\% edit distance) and re-evaluate the 8-gen LOGO pipeline.\n86\tBinary F1 drops from 0.692 to 0.647 ($-$4.5\\,pp, 6.5\\% relative); 3-class F1 drops from 0.739 to 0.667 ($-$7.1\\,pp, 9.7\\% relative).\n87\tThe binary degradation ($-$4.5\\,pp) is nearly identical to that caused by 5\\% random word replacement ($-$4.6\\,pp), despite the LLM rephrase altering ${\\sim}$50\\% of characters.\n88\tThis asymmetry arises because LLM-generated replacements preserve the underlying statistical signature of the generation process (entropy dynamics, depth-accumulated distributional drift), whereas random word substitution directly destroys local statistical signals.\n89\tDepth profiling thus captures deep generative structure that survives semantic-preserving edits.\n90\t\n91\t\\paragraph{Seed complexity.}\n92\tPerformance is stable across seed text complexity: stratifying seeds by vocabulary richness (TTR terciles) yields maximum F1 variation of 1.1\\,pp across groups.\n93\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "a591a99f-c6ab-4c45-8685-2f0c24452f10",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex",
+                "content": "We assess robustness to post-generation text modification by randomly replacing words at varying rates and re-evaluating the 8-generator LOGO pipeline (Table~\\ref{tab:human-edit}).\nRandom word replacement represents a worst-case perturbation: real human editing preserves semantic coherence, so practical degradation is expected to be substantially lower than these estimates.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Robustness to random word replacement under 8-gen LOGO evaluation (binary: gen-1 vs.\\ gen-2+). Bootstrap 95\\% CIs on binary F1 ($n$\\,=\\,1000).}\n\\label{tab:human-edit}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Perturbation rate} & \\textbf{Binary F1} & \\textbf{95\\% CI} & \\textbf{3-class F1} \\\\\n\\midrule\n0\\% (baseline) & 0.695 & [0.680, 0.710] & 0.737 \\\\\n5\\%            & 0.650 & [0.635, 0.666] & 0.641 \\\\\n10\\%           & 0.614 & [0.599, 0.629] & 0.492 \\\\\n20\\%           & 0.591 & [0.576, 0.605] & 0.367 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nBinary depth discrimination (gen-1 vs.\\ gen-2+) degrades sublinearly: the first 5\\% replacement causes the largest drop ($-$4.6\\,pp), with diminishing marginal impact thereafter ($-$3.6\\,pp for 5\\%$\\to$10\\%, $-$2.3\\,pp for 10\\%$\\to$20\\%).\nAt 10\\% replacement, binary F1 remains 0.614, well above the 0.50 random baseline, which indicates that depth signal survives moderate perturbation.\n\nThree-class classification is more sensitive (0.737$\\to$0.367 at 20\\%), because distinguishing gen-0 from gen-1 relies heavily on lexical diversity features (TTR, hapax ratio) that are directly disrupted by word replacement.\nThe binary metric, which excludes gen-0, is inherently more robust since it depends primarily on reference-model entropy features distributed across many tokens.\n\n\\paragraph{Feature subset degradation.}\nTable~\\ref{tab:feature-degrade} compares perturbation robustness of the full 7-feature ensemble against an entropy-only subset (5 reference-model features).\nThe higher unperturbed binary F1 of the entropy-only subset (0.833 vs.\\ 0.695) reflects the strong discriminability of reference-model features for the coarse binary task (gen-1 vs.\\ gen-2+); however, lexical features are essential for the finer-grained ordinal task (3-class F1: 0.737 vs.\\ 0.688) and provide greater robustness under perturbation.\nAt 20\\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\\ 0.569), despite starting from a lower baseline.\nRandom word replacement drastically alters per-token context and makes entropy features (computed over the full token sequence) extremely sensitive to noise.\nLexical features (TTR, hapax ratio), as document-level summary statistics, are more stable under per-word perturbation and act as stabilizers in the full ensemble.\nThe crossover confirms that degradation in the full feature set reflects genuine signal disruption rather than a lexical-feature artifact.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Feature subset degradation under random word replacement (8-gen LOGO). Entropy-only: 5 reference-model features; 7-feature: full ensemble including lexical features.}\n\\label{tab:feature-degrade}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Perturb.} & \\textbf{Ent-only Bin} & \\textbf{7-feat Bin} & \\textbf{Ent-only 3-cl} & \\textbf{7-feat 3-cl} \\\\\n\\midrule\n0\\%  & 0.833 & 0.695 & 0.688 & 0.737 \\\\\n5\\%  & 0.738 & 0.650 & 0.539 & 0.641 \\\\\n10\\% & 0.667 & 0.614 & 0.427 & 0.492 \\\\\n20\\% & 0.569 & 0.591 & 0.314 & 0.367 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Baseline comparison.}\nTable~\\ref{tab:baseline-robustness} compares robustness across detection methods under identical perturbation conditions (8-gen LOGO, binary: gen-1 vs.\\ gen-2+).\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate.}\n\\label{tab:baseline-robustness}\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{0\\%} & \\textbf{5\\%} & \\textbf{10\\%} & \\textbf{20\\%} \\\\\n\\midrule\n7-feature ensemble & \\textbf{0.695} & 0.650 & 0.614 & 0.591 \\\\\nLD-Score           & 0.677 & \\textbf{0.673} & \\textbf{0.677} & \\textbf{0.671} \\\\\nAvg-LogProb        & 0.682 & 0.419 & 0.335 & 0.375 \\\\\nFastDetectGPT      & 0.571 & 0.437 & 0.468 & 0.514 \\\\\nBinoculars\\textsuperscript{\\dag}         & 0.500 & 0.461 & 0.446 & 0.425 \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{2pt}\n{\\footnotesize \\textsuperscript{\\dag}Binoculars operates at chance level on this binary task; its degradation figures are not meaningful.}\n\\end{table}\n\nThe 7-feature ensemble achieves the highest unperturbed binary F1 (0.695), but LD-Score surpasses it under perturbation due to near-zero degradation ($-$0.6\\,pp across the full 0\\%$\\to$20\\% range).\nFastDetectGPT and Avg-LogProb exhibit non-monotonic degradation at higher perturbation rates, likely because severe perturbation introduces distributional artifacts that these token-level methods detect as anomalous.\nAvg-LogProb is the most fragile overall ($-$34.7\\,pp at 10\\%), while FastDetectGPT drops sharply at 5\\% ($-$13.4\\,pp) before partially recovering.\nLD-Score is nearly invariant to perturbation, consistent with its reliance on corpus-level distributional divergence rather than per-token likelihoods.\nThe 7-feature ensemble offers the highest starting performance among single-reference methods, with sublinear degradation ($-$10.4\\,pp at 20\\%).\n\n\\paragraph{LLM-simulated sentence regeneration.}\nTo test robustness under semantically coherent editing, we use Qwen3-0.6B-Base to randomly regenerate 1--3 sentences per passage (avg 1.69 sentences, ${\\sim}$50\\% edit distance) and re-evaluate the 8-gen LOGO pipeline.\nBinary F1 drops from 0.692 to 0.647 ($-$4.5\\,pp, 6.5\\% relative); 3-class F1 drops from 0.739 to 0.667 ($-$7.1\\,pp, 9.7\\% relative).\nThe binary degradation ($-$4.5\\,pp) is nearly identical to that caused by 5\\% random word replacement ($-$4.6\\,pp), despite the LLM rephrase altering ${\\sim}$50\\% of characters.\nThis asymmetry arises because LLM-generated replacements preserve the underlying statistical signature of the generation process (entropy dynamics, depth-accumulated distributional drift), whereas random word substitution directly destroys local statistical signals.\nDepth profiling thus captures deep generative structure that survives semantic-preserving edits.\n\n\\paragraph{Seed complexity.}\nPerformance is stable across seed text complexity: stratifying seeds by vocabulary richness (TTR terciles) yields maximum F1 variation of 1.1\\,pp across groups.\n",
+                "numLines": 93,
+                "startLine": 1,
+                "totalLines": 93
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YMC8vPpNQMPX4vqHNVkzGF",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_human_edit.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "396272dc-415b-421e-9bba-cb8259c671f5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GG3XupLMSXGNu1AYKxHcMP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14455,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14455
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T04:36:26.648Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YMC8vPpNQMPX4vqHNVkzGF",
+              "type": "tool_result",
+              "content": "1\tWe assess robustness to post-generation text modification by randomly replacing words at varying rates and re-evaluating the 8-generator LOGO pipeline (Table~\\ref{tab:human-edit}).\n2\tRandom word replacement represents a worst-case perturbation: real human editing preserves semantic coherence, so practical degradation is expected to be substantially lower than these estimates.\n3\t\n4\t\\begin{table}[ht]\n5\t\\centering\n6\t\\small\n7\t\\caption{Robustness to random word replacement under 8-gen LOGO evaluation (binary: gen-1 vs.\\ gen-2+). Bootstrap 95\\% CIs on binary F1 ($n$\\,=\\,1000).}\n8\t\\label{tab:human-edit}\n9\t\\resizebox{\\linewidth}{!}{%\n10\t\\begin{tabular}{lccc}\n11\t\\toprule\n12\t\\textbf{Perturbation rate} & \\textbf{Binary F1} & \\textbf{95\\% CI} & \\textbf{3-class F1} \\\\\n13\t\\midrule\n14\t0\\% (baseline) & 0.695 & [0.680, 0.710] & 0.737 \\\\\n15\t5\\%            & 0.650 & [0.635, 0.666] & 0.641 \\\\\n16\t10\\%           & 0.614 & [0.599, 0.629] & 0.492 \\\\\n17\t20\\%           & 0.591 & [0.576, 0.605] & 0.367 \\\\\n18\t\\bottomrule\n19\t\\end{tabular}}\n20\t\\end{table}\n21\t\n22\tBinary depth discrimination (gen-1 vs.\\ gen-2+) degrades sublinearly: the first 5\\% replacement causes the largest drop ($-$4.6\\,pp), with diminishing marginal impact thereafter ($-$3.6\\,pp for 5\\%$\\to$10\\%, $-$2.3\\,pp for 10\\%$\\to$20\\%).\n23\tAt 10\\% replacement, binary F1 remains 0.614, well above the 0.50 random baseline, which indicates that depth signal survives moderate perturbation.\n24\t\n25\tThree-class classification is more sensitive (0.737$\\to$0.367 at 20\\%), because distinguishing gen-0 from gen-1 relies heavily on lexical diversity features (TTR, hapax ratio) that are directly disrupted by word replacement.\n26\tThe binary metric, which excludes gen-0, is inherently more robust since it depends primarily on reference-model entropy features distributed across many tokens.\n27\t\n28\t\\paragraph{Feature subset degradation.}\n29\tTable~\\ref{tab:feature-degrade} compares perturbation robustness of the full 7-feature ensemble against an entropy-only subset (5 reference-model features).\n30\tThe higher unperturbed binary F1 of the entropy-only subset (0.833 vs.\\ 0.695) reflects the strong discriminability of reference-model features for the coarse binary task (gen-1 vs.\\ gen-2+); however, lexical features are essential for the finer-grained ordinal task (3-class F1: 0.737 vs.\\ 0.688) and provide greater robustness under perturbation.\n31\tAt 20\\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\\ 0.569), despite starting from a lower baseline.\n32\tRandom word replacement drastically alters per-token context and makes entropy features (computed over the full token sequence) extremely sensitive to noise.\n33\tLexical features (TTR, hapax ratio), as document-level summary statistics, are more stable under per-word perturbation and act as stabilizers in the full ensemble.\n34\tThe crossover confirms that degradation in the full feature set reflects genuine signal disruption rather than a lexical-feature artifact.\n35\t\n36\t\\begin{table}[ht]\n37\t\\centering\n38\t\\small\n39\t\\caption{Feature subset degradation under random word replacement (8-gen LOGO). Entropy-only: 5 reference-model features; 7-feature: full ensemble including lexical features.}\n40\t\\label{tab:feature-degrade}\n41\t\\resizebox{\\linewidth}{!}{%\n42\t\\begin{tabular}{lcccc}\n43\t\\toprule\n44\t\\textbf{Perturb.} & \\textbf{Ent-only Bin} & \\textbf{7-feat Bin} & \\textbf{Ent-only 3-cl} & \\textbf{7-feat 3-cl} \\\\\n45\t\\midrule\n46\t0\\%  & 0.833 & 0.695 & 0.688 & 0.737 \\\\\n47\t5\\%  & 0.738 & 0.650 & 0.539 & 0.641 \\\\\n48\t10\\% & 0.667 & 0.614 & 0.427 & 0.492 \\\\\n49\t20\\% & 0.569 & 0.591 & 0.314 & 0.367 \\\\\n50\t\\bottomrule\n51\t\\end{tabular}}\n52\t\\end{table}\n53\t\n54\t\\paragraph{Baseline comparison.}\n55\tTable~\\ref{tab:baseline-robustness} compares robustness across detection methods under identical perturbation conditions (8-gen LOGO, binary: gen-1 vs.\\ gen-2+).\n56\t\n57\t\\begin{table}[ht]\n58\t\\centering\n59\t\\small\n60\t\\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate.}\n61\t\\label{tab:baseline-robustness}\n62\t\\begin{tabular}{lcccc}\n63\t\\toprule\n64\t\\textbf{Method} & \\textbf{0\\%} & \\textbf{5\\%} & \\textbf{10\\%} & \\textbf{20\\%} \\\\\n65\t\\midrule\n66\t7-feature ensemble & \\textbf{0.695} & 0.650 & 0.614 & 0.591 \\\\\n67\tLD-Score           & 0.677 & \\textbf{0.673} & \\textbf{0.677} & \\textbf{0.671} \\\\\n68\tAvg-LogProb        & 0.682 & 0.419 & 0.335 & 0.375 \\\\\n69\tFastDetectGPT      & 0.571 & 0.437 & 0.468 & 0.514 \\\\\n70\tBinoculars\\textsuperscript{\\dag}         & 0.500 & 0.461 & 0.446 & 0.425 \\\\\n71\t\\bottomrule\n72\t\\end{tabular}\n73\t\n74\t\\vspace{2pt}\n75\t{\\footnotesize \\textsuperscript{\\dag}Binoculars operates at chance level on this binary task; its degradation figures are not meaningful.}\n76\t\\end{table}\n77\t\n78\tThe 7-feature ensemble achieves the highest unperturbed binary F1 (0.695), but LD-Score surpasses it under perturbation due to near-zero degradation ($-$0.6\\,pp across the full 0\\%$\\to$20\\% range).\n79\tFastDetectGPT and Avg-LogProb exhibit non-monotonic degradation at higher perturbation rates, likely because severe perturbation introduces distributional artifacts that these token-level methods detect as anomalous.\n80\tAvg-LogProb is the most fragile overall ($-$34.7\\,pp at 10\\%), while FastDetectGPT drops sharply at 5\\% ($-$13.4\\,pp) before partially recovering.\n81\tLD-Score is nearly invariant to perturbation, consistent with its reliance on corpus-level distributional divergence rather than per-token likelihoods.\n82\tThe 7-feature ensemble offers the highest starting performance among single-reference methods, with sublinear degradation ($-$10.4\\,pp at 20\\%).\n83\t\n84\t\\paragraph{LLM-simulated sentence regeneration.}\n85\tTo test robustness under semantically coherent editing, we use Qwen3-0.6B-Base to randomly regenerate 1--3 sentences per passage (avg 1.69 sentences, ${\\sim}$50\\% edit distance) and re-evaluate the 8-gen LOGO pipeline.\n86\tBinary F1 drops from 0.692 to 0.647 ($-$4.5\\,pp, 6.5\\% relative); 3-class F1 drops from 0.739 to 0.667 ($-$7.1\\,pp, 9.7\\% relative).\n87\tThe binary degradation ($-$4.5\\,pp) is nearly identical to that caused by 5\\% random word replacement ($-$4.6\\,pp), despite the LLM rephrase altering ${\\sim}$50\\% of characters.\n88\tThis asymmetry arises because LLM-generated replacements preserve the underlying statistical signature of the generation process (entropy dynamics, depth-accumulated distributional drift), whereas random word substitution directly destroys local statistical signals.\n89\tDepth profiling thus captures deep generative structure that survives semantic-preserving edits.\n90\t\n91\t\\paragraph{Seed complexity.}\n92\tPerformance is stable across seed text complexity: stratifying seeds by vocabulary richness (TTR terciles) yields maximum F1 variation of 1.1\\,pp across groups.\n93\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "e8217212-c4fe-4918-b7dd-524aacf7947d",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_human_edit.tex",
+                "content": "We assess robustness to post-generation text modification by randomly replacing words at varying rates and re-evaluating the 8-generator LOGO pipeline (Table~\\ref{tab:human-edit}).\nRandom word replacement represents a worst-case perturbation: real human editing preserves semantic coherence, so practical degradation is expected to be substantially lower than these estimates.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Robustness to random word replacement under 8-gen LOGO evaluation (binary: gen-1 vs.\\ gen-2+). Bootstrap 95\\% CIs on binary F1 ($n$\\,=\\,1000).}\n\\label{tab:human-edit}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Perturbation rate} & \\textbf{Binary F1} & \\textbf{95\\% CI} & \\textbf{3-class F1} \\\\\n\\midrule\n0\\% (baseline) & 0.695 & [0.680, 0.710] & 0.737 \\\\\n5\\%            & 0.650 & [0.635, 0.666] & 0.641 \\\\\n10\\%           & 0.614 & [0.599, 0.629] & 0.492 \\\\\n20\\%           & 0.591 & [0.576, 0.605] & 0.367 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nBinary depth discrimination (gen-1 vs.\\ gen-2+) degrades sublinearly: the first 5\\% replacement causes the largest drop ($-$4.6\\,pp), with diminishing marginal impact thereafter ($-$3.6\\,pp for 5\\%$\\to$10\\%, $-$2.3\\,pp for 10\\%$\\to$20\\%).\nAt 10\\% replacement, binary F1 remains 0.614, well above the 0.50 random baseline, which indicates that depth signal survives moderate perturbation.\n\nThree-class classification is more sensitive (0.737$\\to$0.367 at 20\\%), because distinguishing gen-0 from gen-1 relies heavily on lexical diversity features (TTR, hapax ratio) that are directly disrupted by word replacement.\nThe binary metric, which excludes gen-0, is inherently more robust since it depends primarily on reference-model entropy features distributed across many tokens.\n\n\\paragraph{Feature subset degradation.}\nTable~\\ref{tab:feature-degrade} compares perturbation robustness of the full 7-feature ensemble against an entropy-only subset (5 reference-model features).\nThe higher unperturbed binary F1 of the entropy-only subset (0.833 vs.\\ 0.695) reflects the strong discriminability of reference-model features for the coarse binary task (gen-1 vs.\\ gen-2+); however, lexical features are essential for the finer-grained ordinal task (3-class F1: 0.737 vs.\\ 0.688) and provide greater robustness under perturbation.\nAt 20\\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\\ 0.569), despite starting from a lower baseline.\nRandom word replacement drastically alters per-token context and makes entropy features (computed over the full token sequence) extremely sensitive to noise.\nLexical features (TTR, hapax ratio), as document-level summary statistics, are more stable under per-word perturbation and act as stabilizers in the full ensemble.\nThe crossover confirms that degradation in the full feature set reflects genuine signal disruption rather than a lexical-feature artifact.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Feature subset degradation under random word replacement (8-gen LOGO). Entropy-only: 5 reference-model features; 7-feature: full ensemble including lexical features.}\n\\label{tab:feature-degrade}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Perturb.} & \\textbf{Ent-only Bin} & \\textbf{7-feat Bin} & \\textbf{Ent-only 3-cl} & \\textbf{7-feat 3-cl} \\\\\n\\midrule\n0\\%  & 0.833 & 0.695 & 0.688 & 0.737 \\\\\n5\\%  & 0.738 & 0.650 & 0.539 & 0.641 \\\\\n10\\% & 0.667 & 0.614 & 0.427 & 0.492 \\\\\n20\\% & 0.569 & 0.591 & 0.314 & 0.367 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Baseline comparison.}\nTable~\\ref{tab:baseline-robustness} compares robustness across detection methods under identical perturbation conditions (8-gen LOGO, binary: gen-1 vs.\\ gen-2+).\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate.}\n\\label{tab:baseline-robustness}\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{0\\%} & \\textbf{5\\%} & \\textbf{10\\%} & \\textbf{20\\%} \\\\\n\\midrule\n7-feature ensemble & \\textbf{0.695} & 0.650 & 0.614 & 0.591 \\\\\nLD-Score           & 0.677 & \\textbf{0.673} & \\textbf{0.677} & \\textbf{0.671} \\\\\nAvg-LogProb        & 0.682 & 0.419 & 0.335 & 0.375 \\\\\nFastDetectGPT      & 0.571 & 0.437 & 0.468 & 0.514 \\\\\nBinoculars\\textsuperscript{\\dag}         & 0.500 & 0.461 & 0.446 & 0.425 \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{2pt}\n{\\footnotesize \\textsuperscript{\\dag}Binoculars operates at chance level on this binary task; its degradation figures are not meaningful.}\n\\end{table}\n\nThe 7-feature ensemble achieves the highest unperturbed binary F1 (0.695), but LD-Score surpasses it under perturbation due to near-zero degradation ($-$0.6\\,pp across the full 0\\%$\\to$20\\% range).\nFastDetectGPT and Avg-LogProb exhibit non-monotonic degradation at higher perturbation rates, likely because severe perturbation introduces distributional artifacts that these token-level methods detect as anomalous.\nAvg-LogProb is the most fragile overall ($-$34.7\\,pp at 10\\%), while FastDetectGPT drops sharply at 5\\% ($-$13.4\\,pp) before partially recovering.\nLD-Score is nearly invariant to perturbation, consistent with its reliance on corpus-level distributional divergence rather than per-token likelihoods.\nThe 7-feature ensemble offers the highest starting performance among single-reference methods, with sublinear degradation ($-$10.4\\,pp at 20\\%).\n\n\\paragraph{LLM-simulated sentence regeneration.}\nTo test robustness under semantically coherent editing, we use Qwen3-0.6B-Base to randomly regenerate 1--3 sentences per passage (avg 1.69 sentences, ${\\sim}$50\\% edit distance) and re-evaluate the 8-gen LOGO pipeline.\nBinary F1 drops from 0.692 to 0.647 ($-$4.5\\,pp, 6.5\\% relative); 3-class F1 drops from 0.739 to 0.667 ($-$7.1\\,pp, 9.7\\% relative).\nThe binary degradation ($-$4.5\\,pp) is nearly identical to that caused by 5\\% random word replacement ($-$4.6\\,pp), despite the LLM rephrase altering ${\\sim}$50\\% of characters.\nThis asymmetry arises because LLM-generated replacements preserve the underlying statistical signature of the generation process (entropy dynamics, depth-accumulated distributional drift), whereas random word substitution directly destroys local statistical signals.\nDepth profiling thus captures deep generative structure that survives semantic-preserving edits.\n\n\\paragraph{Seed complexity.}\nPerformance is stable across seed text complexity: stratifying seeds by vocabulary richness (TTR terciles) yields maximum F1 variation of 1.1\\,pp across groups.\n",
+                "numLines": 93,
+                "startLine": 1,
+                "totalLines": 93
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both files are identical. Now I'll apply the edits to both copies.\n\n**Task 1**: Fix tab:feature-degrade — lines 47-49, changing \"Ent-only Bin\" column values.\n**Task 2**: Add note to tab:baseline-robustness caption — line 60."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "1a785b11-ea1e-4212-9169-38407d9e6d15",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016xvF1Cw37pVjX1FD4ijbwD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5185,
+                "cache_read_input_tokens": 26296,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5185
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LXCy2bDYqJ2rFxESDYKASp",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex",
+                "old_string": "5\\%  & 0.738 & 0.650 & 0.539 & 0.641 \\\\\n10\\% & 0.667 & 0.614 & 0.427 & 0.492 \\\\\n20\\% & 0.569 & 0.591 & 0.314 & 0.367 \\\\",
+                "new_string": "5\\%  & 0.736 & 0.650 & 0.539 & 0.641 \\\\\n10\\% & 0.657 & 0.614 & 0.427 & 0.492 \\\\\n20\\% & 0.566 & 0.591 & 0.314 & 0.367 \\\\"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "57be7e6c-bd6a-4c94-9fb9-5e355d2f0e7d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016xvF1Cw37pVjX1FD4ijbwD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5185,
+                "cache_read_input_tokens": 26296,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5185
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T04:36:35.953Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LXCy2bDYqJ2rFxESDYKASp",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "201f3ecf-4d07-4b91-8e87-fe858eb9216a",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex",
+              "oldString": "5\\%  & 0.738 & 0.650 & 0.539 & 0.641 \\\\\n10\\% & 0.667 & 0.614 & 0.427 & 0.492 \\\\\n20\\% & 0.569 & 0.591 & 0.314 & 0.367 \\\\",
+              "newString": "5\\%  & 0.736 & 0.650 & 0.539 & 0.641 \\\\\n10\\% & 0.657 & 0.614 & 0.427 & 0.492 \\\\\n20\\% & 0.566 & 0.591 & 0.314 & 0.367 \\\\",
+              "originalFile": "We assess robustness to post-generation text modification by randomly replacing words at varying rates and re-evaluating the 8-generator LOGO pipeline (Table~\\ref{tab:human-edit}).\nRandom word replacement represents a worst-case perturbation: real human editing preserves semantic coherence, so practical degradation is expected to be substantially lower than these estimates.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Robustness to random word replacement under 8-gen LOGO evaluation (binary: gen-1 vs.\\ gen-2+). Bootstrap 95\\% CIs on binary F1 ($n$\\,=\\,1000).}\n\\label{tab:human-edit}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Perturbation rate} & \\textbf{Binary F1} & \\textbf{95\\% CI} & \\textbf{3-class F1} \\\\\n\\midrule\n0\\% (baseline) & 0.695 & [0.680, 0.710] & 0.737 \\\\\n5\\%            & 0.650 & [0.635, 0.666] & 0.641 \\\\\n10\\%           & 0.614 & [0.599, 0.629] & 0.492 \\\\\n20\\%           & 0.591 & [0.576, 0.605] & 0.367 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nBinary depth discrimination (gen-1 vs.\\ gen-2+) degrades sublinearly: the first 5\\% replacement causes the largest drop ($-$4.6\\,pp), with diminishing marginal impact thereafter ($-$3.6\\,pp for 5\\%$\\to$10\\%, $-$2.3\\,pp for 10\\%$\\to$20\\%).\nAt 10\\% replacement, binary F1 remains 0.614, well above the 0.50 random baseline, which indicates that depth signal survives moderate perturbation.\n\nThree-class classification is more sensitive (0.737$\\to$0.367 at 20\\%), because distinguishing gen-0 from gen-1 relies heavily on lexical diversity features (TTR, hapax ratio) that are directly disrupted by word replacement.\nThe binary metric, which excludes gen-0, is inherently more robust since it depends primarily on reference-model entropy features distributed across many tokens.\n\n\\paragraph{Feature subset degradation.}\nTable~\\ref{tab:feature-degrade} compares perturbation robustness of the full 7-feature ensemble against an entropy-only subset (5 reference-model features).\nThe higher unperturbed binary F1 of the entropy-only subset (0.833 vs.\\ 0.695) reflects the strong discriminability of reference-model features for the coarse binary task (gen-1 vs.\\ gen-2+); however, lexical features are essential for the finer-grained ordinal task (3-class F1: 0.737 vs.\\ 0.688) and provide greater robustness under perturbation.\nAt 20\\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\\ 0.569), despite starting from a lower baseline.\nRandom word replacement drastically alters per-token context and makes entropy features (computed over the full token sequence) extremely sensitive to noise.\nLexical features (TTR, hapax ratio), as document-level summary statistics, are more stable under per-word perturbation and act as stabilizers in the full ensemble.\nThe crossover confirms that degradation in the full feature set reflects genuine signal disruption rather than a lexical-feature artifact.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Feature subset degradation under random word replacement (8-gen LOGO). Entropy-only: 5 reference-model features; 7-feature: full ensemble including lexical features.}\n\\label{tab:feature-degrade}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Perturb.} & \\textbf{Ent-only Bin} & \\textbf{7-feat Bin} & \\textbf{Ent-only 3-cl} & \\textbf{7-feat 3-cl} \\\\\n\\midrule\n0\\%  & 0.833 & 0.695 & 0.688 & 0.737 \\\\\n5\\%  & 0.738 & 0.650 & 0.539 & 0.641 \\\\\n10\\% & 0.667 & 0.614 & 0.427 & 0.492 \\\\\n20\\% & 0.569 & 0.591 & 0.314 & 0.367 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Baseline comparison.}\nTable~\\ref{tab:baseline-robustness} compares robustness across detection methods under identical perturbation conditions (8-gen LOGO, binary: gen-1 vs.\\ gen-2+).\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate.}\n\\label{tab:baseline-robustness}\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{0\\%} & \\textbf{5\\%} & \\textbf{10\\%} & \\textbf{20\\%} \\\\\n\\midrule\n7-feature ensemble & \\textbf{0.695} & 0.650 & 0.614 & 0.591 \\\\\nLD-Score           & 0.677 & \\textbf{0.673} & \\textbf{0.677} & \\textbf{0.671} \\\\\nAvg-LogProb        & 0.682 & 0.419 & 0.335 & 0.375 \\\\\nFastDetectGPT      & 0.571 & 0.437 & 0.468 & 0.514 \\\\\nBinoculars\\textsuperscript{\\dag}         & 0.500 & 0.461 & 0.446 & 0.425 \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{2pt}\n{\\footnotesize \\textsuperscript{\\dag}Binoculars operates at chance level on this binary task; its degradation figures are not meaningful.}\n\\end{table}\n\nThe 7-feature ensemble achieves the highest unperturbed binary F1 (0.695), but LD-Score surpasses it under perturbation due to near-zero degradation ($-$0.6\\,pp across the full 0\\%$\\to$20\\% range).\nFastDetectGPT and Avg-LogProb exhibit non-monotonic degradation at higher perturbation rates, likely because severe perturbation introduces distributional artifacts that these token-level methods detect as anomalous.\nAvg-LogProb is the most fragile overall ($-$34.7\\,pp at 10\\%), while FastDetectGPT drops sharply at 5\\% ($-$13.4\\,pp) before partially recovering.\nLD-Score is nearly invariant to perturbation, consistent with its reliance on corpus-level distributional divergence rather than per-token likelihoods.\nThe 7-feature ensemble offers the highest starting performance among single-reference methods, with sublinear degradation ($-$10.4\\,pp at 20\\%).\n\n\\paragraph{LLM-simulated sentence regeneration.}\nTo test robustness under semantically coherent editing, we use Qwen3-0.6B-Base to randomly regenerate 1--3 sentences per passage (avg 1.69 sentences, ${\\sim}$50\\% edit distance) and re-evaluate the 8-gen LOGO pipeline.\nBinary F1 drops from 0.692 to 0.647 ($-$4.5\\,pp, 6.5\\% relative); 3-class F1 drops from 0.739 to 0.667 ($-$7.1\\,pp, 9.7\\% relative).\nThe binary degradation ($-$4.5\\,pp) is nearly identical to that caused by 5\\% random word replacement ($-$4.6\\,pp), despite the LLM rephrase altering ${\\sim}$50\\% of characters.\nThis asymmetry arises because LLM-generated replacements preserve the underlying statistical signature of the generation process (entropy dynamics, depth-accumulated distributional drift), whereas random word substitution directly destroys local statistical signals.\nDepth profiling thus captures deep generative structure that survives semantic-preserving edits.\n\n\\paragraph{Seed complexity.}\nPerformance is stable across seed text complexity: stratifying seeds by vocabulary richness (TTR terciles) yields maximum F1 variation of 1.1\\,pp across groups.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 44,
+                  "oldLines": 9,
+                  "newStart": 44,
+                  "newLines": 9,
+                  "lines": [
+                    " \\textbf{Perturb.} & \\textbf{Ent-only Bin} & \\textbf{7-feat Bin} & \\textbf{Ent-only 3-cl} & \\textbf{7-feat 3-cl} \\\\",
+                    " \\midrule",
+                    " 0\\%  & 0.833 & 0.695 & 0.688 & 0.737 \\\\",
+                    "-5\\%  & 0.738 & 0.650 & 0.539 & 0.641 \\\\",
+                    "-10\\% & 0.667 & 0.614 & 0.427 & 0.492 \\\\",
+                    "-20\\% & 0.569 & 0.591 & 0.314 & 0.367 \\\\",
+                    "+5\\%  & 0.736 & 0.650 & 0.539 & 0.641 \\\\",
+                    "+10\\% & 0.657 & 0.614 & 0.427 & 0.492 \\\\",
+                    "+20\\% & 0.566 & 0.591 & 0.314 & 0.367 \\\\",
+                    " \\bottomrule",
+                    " \\end{tabular}}",
+                    " \\end{table}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GSNxPGb4uoqkKmGXX7rrMS",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex",
+                "old_string": "\\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate.}",
+                "new_string": "\\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate. (Baseline scores use default XGBoost settings; trends are consistent with the unified configuration in Table~\\ref{tab:baselines}.)}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "a95bc664-0b74-4573-a0fc-b399d2bed9ff",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016xvF1Cw37pVjX1FD4ijbwD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5185,
+                "cache_read_input_tokens": 26296,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5185
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T04:36:38.111Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GSNxPGb4uoqkKmGXX7rrMS",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "bcc2edd2-ea15-4834-bfe9-c9eac2598dec",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex",
+              "oldString": "\\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate.}",
+              "newString": "\\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate. (Baseline scores use default XGBoost settings; trends are consistent with the unified configuration in Table~\\ref{tab:baselines}.)}",
+              "originalFile": "We assess robustness to post-generation text modification by randomly replacing words at varying rates and re-evaluating the 8-generator LOGO pipeline (Table~\\ref{tab:human-edit}).\nRandom word replacement represents a worst-case perturbation: real human editing preserves semantic coherence, so practical degradation is expected to be substantially lower than these estimates.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Robustness to random word replacement under 8-gen LOGO evaluation (binary: gen-1 vs.\\ gen-2+). Bootstrap 95\\% CIs on binary F1 ($n$\\,=\\,1000).}\n\\label{tab:human-edit}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Perturbation rate} & \\textbf{Binary F1} & \\textbf{95\\% CI} & \\textbf{3-class F1} \\\\\n\\midrule\n0\\% (baseline) & 0.695 & [0.680, 0.710] & 0.737 \\\\\n5\\%            & 0.650 & [0.635, 0.666] & 0.641 \\\\\n10\\%           & 0.614 & [0.599, 0.629] & 0.492 \\\\\n20\\%           & 0.591 & [0.576, 0.605] & 0.367 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nBinary depth discrimination (gen-1 vs.\\ gen-2+) degrades sublinearly: the first 5\\% replacement causes the largest drop ($-$4.6\\,pp), with diminishing marginal impact thereafter ($-$3.6\\,pp for 5\\%$\\to$10\\%, $-$2.3\\,pp for 10\\%$\\to$20\\%).\nAt 10\\% replacement, binary F1 remains 0.614, well above the 0.50 random baseline, which indicates that depth signal survives moderate perturbation.\n\nThree-class classification is more sensitive (0.737$\\to$0.367 at 20\\%), because distinguishing gen-0 from gen-1 relies heavily on lexical diversity features (TTR, hapax ratio) that are directly disrupted by word replacement.\nThe binary metric, which excludes gen-0, is inherently more robust since it depends primarily on reference-model entropy features distributed across many tokens.\n\n\\paragraph{Feature subset degradation.}\nTable~\\ref{tab:feature-degrade} compares perturbation robustness of the full 7-feature ensemble against an entropy-only subset (5 reference-model features).\nThe higher unperturbed binary F1 of the entropy-only subset (0.833 vs.\\ 0.695) reflects the strong discriminability of reference-model features for the coarse binary task (gen-1 vs.\\ gen-2+); however, lexical features are essential for the finer-grained ordinal task (3-class F1: 0.737 vs.\\ 0.688) and provide greater robustness under perturbation.\nAt 20\\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\\ 0.569), despite starting from a lower baseline.\nRandom word replacement drastically alters per-token context and makes entropy features (computed over the full token sequence) extremely sensitive to noise.\nLexical features (TTR, hapax ratio), as document-level summary statistics, are more stable under per-word perturbation and act as stabilizers in the full ensemble.\nThe crossover confirms that degradation in the full feature set reflects genuine signal disruption rather than a lexical-feature artifact.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Feature subset degradation under random word replacement (8-gen LOGO). Entropy-only: 5 reference-model features; 7-feature: full ensemble including lexical features.}\n\\label{tab:feature-degrade}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Perturb.} & \\textbf{Ent-only Bin} & \\textbf{7-feat Bin} & \\textbf{Ent-only 3-cl} & \\textbf{7-feat 3-cl} \\\\\n\\midrule\n0\\%  & 0.833 & 0.695 & 0.688 & 0.737 \\\\\n5\\%  & 0.736 & 0.650 & 0.539 & 0.641 \\\\\n10\\% & 0.657 & 0.614 & 0.427 & 0.492 \\\\\n20\\% & 0.566 & 0.591 & 0.314 & 0.367 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Baseline comparison.}\nTable~\\ref{tab:baseline-robustness} compares robustness across detection methods under identical perturbation conditions (8-gen LOGO, binary: gen-1 vs.\\ gen-2+).\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate.}\n\\label{tab:baseline-robustness}\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{0\\%} & \\textbf{5\\%} & \\textbf{10\\%} & \\textbf{20\\%} \\\\\n\\midrule\n7-feature ensemble & \\textbf{0.695} & 0.650 & 0.614 & 0.591 \\\\\nLD-Score           & 0.677 & \\textbf{0.673} & \\textbf{0.677} & \\textbf{0.671} \\\\\nAvg-LogProb        & 0.682 & 0.419 & 0.335 & 0.375 \\\\\nFastDetectGPT      & 0.571 & 0.437 & 0.468 & 0.514 \\\\\nBinoculars\\textsuperscript{\\dag}         & 0.500 & 0.461 & 0.446 & 0.425 \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{2pt}\n{\\footnotesize \\textsuperscript{\\dag}Binoculars operates at chance level on this binary task; its degradation figures are not meaningful.}\n\\end{table}\n\nThe 7-feature ensemble achieves the highest unperturbed binary F1 (0.695), but LD-Score surpasses it under perturbation due to near-zero degradation ($-$0.6\\,pp across the full 0\\%$\\to$20\\% range).\nFastDetectGPT and Avg-LogProb exhibit non-monotonic degradation at higher perturbation rates, likely because severe perturbation introduces distributional artifacts that these token-level methods detect as anomalous.\nAvg-LogProb is the most fragile overall ($-$34.7\\,pp at 10\\%), while FastDetectGPT drops sharply at 5\\% ($-$13.4\\,pp) before partially recovering.\nLD-Score is nearly invariant to perturbation, consistent with its reliance on corpus-level distributional divergence rather than per-token likelihoods.\nThe 7-feature ensemble offers the highest starting performance among single-reference methods, with sublinear degradation ($-$10.4\\,pp at 20\\%).\n\n\\paragraph{LLM-simulated sentence regeneration.}\nTo test robustness under semantically coherent editing, we use Qwen3-0.6B-Base to randomly regenerate 1--3 sentences per passage (avg 1.69 sentences, ${\\sim}$50\\% edit distance) and re-evaluate the 8-gen LOGO pipeline.\nBinary F1 drops from 0.692 to 0.647 ($-$4.5\\,pp, 6.5\\% relative); 3-class F1 drops from 0.739 to 0.667 ($-$7.1\\,pp, 9.7\\% relative).\nThe binary degradation ($-$4.5\\,pp) is nearly identical to that caused by 5\\% random word replacement ($-$4.6\\,pp), despite the LLM rephrase altering ${\\sim}$50\\% of characters.\nThis asymmetry arises because LLM-generated replacements preserve the underlying statistical signature of the generation process (entropy dynamics, depth-accumulated distributional drift), whereas random word substitution directly destroys local statistical signals.\nDepth profiling thus captures deep generative structure that survives semantic-preserving edits.\n\n\\paragraph{Seed complexity.}\nPerformance is stable across seed text complexity: stratifying seeds by vocabulary richness (TTR terciles) yields maximum F1 variation of 1.1\\,pp across groups.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 57,
+                  "oldLines": 7,
+                  "newStart": 57,
+                  "newLines": 7,
+                  "lines": [
+                    " \\begin{table}[ht]",
+                    " \\centering",
+                    " \\small",
+                    "-\\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate.}",
+                    "+\\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate. (Baseline scores use default XGBoost settings; trends are consistent with the unified configuration in Table~\\ref{tab:baselines}.)}",
+                    " \\label{tab:baseline-robustness}",
+                    " \\begin{tabular}{lcccc}",
+                    " \\toprule"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014ueR4jtgvhJ7YuiQZTb3E5",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_human_edit.tex",
+                "old_string": "5\\%  & 0.738 & 0.650 & 0.539 & 0.641 \\\\\n10\\% & 0.667 & 0.614 & 0.427 & 0.492 \\\\\n20\\% & 0.569 & 0.591 & 0.314 & 0.367 \\\\",
+                "new_string": "5\\%  & 0.736 & 0.650 & 0.539 & 0.641 \\\\\n10\\% & 0.657 & 0.614 & 0.427 & 0.492 \\\\\n20\\% & 0.566 & 0.591 & 0.314 & 0.367 \\\\"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "d6a0a988-2b8f-492f-982d-f45b3e8b11b5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016xvF1Cw37pVjX1FD4ijbwD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5185,
+                "cache_read_input_tokens": 26296,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5185
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T04:36:40.786Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014ueR4jtgvhJ7YuiQZTb3E5",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_human_edit.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "c9537c93-40d8-4dce-9f00-291229ced476",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_human_edit.tex",
+              "oldString": "5\\%  & 0.738 & 0.650 & 0.539 & 0.641 \\\\\n10\\% & 0.667 & 0.614 & 0.427 & 0.492 \\\\\n20\\% & 0.569 & 0.591 & 0.314 & 0.367 \\\\",
+              "newString": "5\\%  & 0.736 & 0.650 & 0.539 & 0.641 \\\\\n10\\% & 0.657 & 0.614 & 0.427 & 0.492 \\\\\n20\\% & 0.566 & 0.591 & 0.314 & 0.367 \\\\",
+              "originalFile": "We assess robustness to post-generation text modification by randomly replacing words at varying rates and re-evaluating the 8-generator LOGO pipeline (Table~\\ref{tab:human-edit}).\nRandom word replacement represents a worst-case perturbation: real human editing preserves semantic coherence, so practical degradation is expected to be substantially lower than these estimates.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Robustness to random word replacement under 8-gen LOGO evaluation (binary: gen-1 vs.\\ gen-2+). Bootstrap 95\\% CIs on binary F1 ($n$\\,=\\,1000).}\n\\label{tab:human-edit}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Perturbation rate} & \\textbf{Binary F1} & \\textbf{95\\% CI} & \\textbf{3-class F1} \\\\\n\\midrule\n0\\% (baseline) & 0.695 & [0.680, 0.710] & 0.737 \\\\\n5\\%            & 0.650 & [0.635, 0.666] & 0.641 \\\\\n10\\%           & 0.614 & [0.599, 0.629] & 0.492 \\\\\n20\\%           & 0.591 & [0.576, 0.605] & 0.367 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nBinary depth discrimination (gen-1 vs.\\ gen-2+) degrades sublinearly: the first 5\\% replacement causes the largest drop ($-$4.6\\,pp), with diminishing marginal impact thereafter ($-$3.6\\,pp for 5\\%$\\to$10\\%, $-$2.3\\,pp for 10\\%$\\to$20\\%).\nAt 10\\% replacement, binary F1 remains 0.614, well above the 0.50 random baseline, which indicates that depth signal survives moderate perturbation.\n\nThree-class classification is more sensitive (0.737$\\to$0.367 at 20\\%), because distinguishing gen-0 from gen-1 relies heavily on lexical diversity features (TTR, hapax ratio) that are directly disrupted by word replacement.\nThe binary metric, which excludes gen-0, is inherently more robust since it depends primarily on reference-model entropy features distributed across many tokens.\n\n\\paragraph{Feature subset degradation.}\nTable~\\ref{tab:feature-degrade} compares perturbation robustness of the full 7-feature ensemble against an entropy-only subset (5 reference-model features).\nThe higher unperturbed binary F1 of the entropy-only subset (0.833 vs.\\ 0.695) reflects the strong discriminability of reference-model features for the coarse binary task (gen-1 vs.\\ gen-2+); however, lexical features are essential for the finer-grained ordinal task (3-class F1: 0.737 vs.\\ 0.688) and provide greater robustness under perturbation.\nAt 20\\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\\ 0.569), despite starting from a lower baseline.\nRandom word replacement drastically alters per-token context and makes entropy features (computed over the full token sequence) extremely sensitive to noise.\nLexical features (TTR, hapax ratio), as document-level summary statistics, are more stable under per-word perturbation and act as stabilizers in the full ensemble.\nThe crossover confirms that degradation in the full feature set reflects genuine signal disruption rather than a lexical-feature artifact.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Feature subset degradation under random word replacement (8-gen LOGO). Entropy-only: 5 reference-model features; 7-feature: full ensemble including lexical features.}\n\\label{tab:feature-degrade}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Perturb.} & \\textbf{Ent-only Bin} & \\textbf{7-feat Bin} & \\textbf{Ent-only 3-cl} & \\textbf{7-feat 3-cl} \\\\\n\\midrule\n0\\%  & 0.833 & 0.695 & 0.688 & 0.737 \\\\\n5\\%  & 0.738 & 0.650 & 0.539 & 0.641 \\\\\n10\\% & 0.667 & 0.614 & 0.427 & 0.492 \\\\\n20\\% & 0.569 & 0.591 & 0.314 & 0.367 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Baseline comparison.}\nTable~\\ref{tab:baseline-robustness} compares robustness across detection methods under identical perturbation conditions (8-gen LOGO, binary: gen-1 vs.\\ gen-2+).\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate.}\n\\label{tab:baseline-robustness}\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{0\\%} & \\textbf{5\\%} & \\textbf{10\\%} & \\textbf{20\\%} \\\\\n\\midrule\n7-feature ensemble & \\textbf{0.695} & 0.650 & 0.614 & 0.591 \\\\\nLD-Score           & 0.677 & \\textbf{0.673} & \\textbf{0.677} & \\textbf{0.671} \\\\\nAvg-LogProb        & 0.682 & 0.419 & 0.335 & 0.375 \\\\\nFastDetectGPT      & 0.571 & 0.437 & 0.468 & 0.514 \\\\\nBinoculars\\textsuperscript{\\dag}         & 0.500 & 0.461 & 0.446 & 0.425 \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{2pt}\n{\\footnotesize \\textsuperscript{\\dag}Binoculars operates at chance level on this binary task; its degradation figures are not meaningful.}\n\\end{table}\n\nThe 7-feature ensemble achieves the highest unperturbed binary F1 (0.695), but LD-Score surpasses it under perturbation due to near-zero degradation ($-$0.6\\,pp across the full 0\\%$\\to$20\\% range).\nFastDetectGPT and Avg-LogProb exhibit non-monotonic degradation at higher perturbation rates, likely because severe perturbation introduces distributional artifacts that these token-level methods detect as anomalous.\nAvg-LogProb is the most fragile overall ($-$34.7\\,pp at 10\\%), while FastDetectGPT drops sharply at 5\\% ($-$13.4\\,pp) before partially recovering.\nLD-Score is nearly invariant to perturbation, consistent with its reliance on corpus-level distributional divergence rather than per-token likelihoods.\nThe 7-feature ensemble offers the highest starting performance among single-reference methods, with sublinear degradation ($-$10.4\\,pp at 20\\%).\n\n\\paragraph{LLM-simulated sentence regeneration.}\nTo test robustness under semantically coherent editing, we use Qwen3-0.6B-Base to randomly regenerate 1--3 sentences per passage (avg 1.69 sentences, ${\\sim}$50\\% edit distance) and re-evaluate the 8-gen LOGO pipeline.\nBinary F1 drops from 0.692 to 0.647 ($-$4.5\\,pp, 6.5\\% relative); 3-class F1 drops from 0.739 to 0.667 ($-$7.1\\,pp, 9.7\\% relative).\nThe binary degradation ($-$4.5\\,pp) is nearly identical to that caused by 5\\% random word replacement ($-$4.6\\,pp), despite the LLM rephrase altering ${\\sim}$50\\% of characters.\nThis asymmetry arises because LLM-generated replacements preserve the underlying statistical signature of the generation process (entropy dynamics, depth-accumulated distributional drift), whereas random word substitution directly destroys local statistical signals.\nDepth profiling thus captures deep generative structure that survives semantic-preserving edits.\n\n\\paragraph{Seed complexity.}\nPerformance is stable across seed text complexity: stratifying seeds by vocabulary richness (TTR terciles) yields maximum F1 variation of 1.1\\,pp across groups.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 44,
+                  "oldLines": 9,
+                  "newStart": 44,
+                  "newLines": 9,
+                  "lines": [
+                    " \\textbf{Perturb.} & \\textbf{Ent-only Bin} & \\textbf{7-feat Bin} & \\textbf{Ent-only 3-cl} & \\textbf{7-feat 3-cl} \\\\",
+                    " \\midrule",
+                    " 0\\%  & 0.833 & 0.695 & 0.688 & 0.737 \\\\",
+                    "-5\\%  & 0.738 & 0.650 & 0.539 & 0.641 \\\\",
+                    "-10\\% & 0.667 & 0.614 & 0.427 & 0.492 \\\\",
+                    "-20\\% & 0.569 & 0.591 & 0.314 & 0.367 \\\\",
+                    "+5\\%  & 0.736 & 0.650 & 0.539 & 0.641 \\\\",
+                    "+10\\% & 0.657 & 0.614 & 0.427 & 0.492 \\\\",
+                    "+20\\% & 0.566 & 0.591 & 0.314 & 0.367 \\\\",
+                    " \\bottomrule",
+                    " \\end{tabular}}",
+                    " \\end{table}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GvoiyidG3CiUWM1cwJdkPZ",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_human_edit.tex",
+                "old_string": "\\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate.}",
+                "new_string": "\\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate. (Baseline scores use default XGBoost settings; trends are consistent with the unified configuration in Table~\\ref{tab:baselines}.)}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "6ff7d13e-c5c7-4361-9278-660f695c0bd9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016xvF1Cw37pVjX1FD4ijbwD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5185,
+                "cache_read_input_tokens": 26296,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5185
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T04:36:42.040Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GvoiyidG3CiUWM1cwJdkPZ",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_human_edit.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "eae87afa-c93b-42c7-b529-40d216f01310",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_human_edit.tex",
+              "oldString": "\\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate.}",
+              "newString": "\\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate. (Baseline scores use default XGBoost settings; trends are consistent with the unified configuration in Table~\\ref{tab:baselines}.)}",
+              "originalFile": "We assess robustness to post-generation text modification by randomly replacing words at varying rates and re-evaluating the 8-generator LOGO pipeline (Table~\\ref{tab:human-edit}).\nRandom word replacement represents a worst-case perturbation: real human editing preserves semantic coherence, so practical degradation is expected to be substantially lower than these estimates.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Robustness to random word replacement under 8-gen LOGO evaluation (binary: gen-1 vs.\\ gen-2+). Bootstrap 95\\% CIs on binary F1 ($n$\\,=\\,1000).}\n\\label{tab:human-edit}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Perturbation rate} & \\textbf{Binary F1} & \\textbf{95\\% CI} & \\textbf{3-class F1} \\\\\n\\midrule\n0\\% (baseline) & 0.695 & [0.680, 0.710] & 0.737 \\\\\n5\\%            & 0.650 & [0.635, 0.666] & 0.641 \\\\\n10\\%           & 0.614 & [0.599, 0.629] & 0.492 \\\\\n20\\%           & 0.591 & [0.576, 0.605] & 0.367 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nBinary depth discrimination (gen-1 vs.\\ gen-2+) degrades sublinearly: the first 5\\% replacement causes the largest drop ($-$4.6\\,pp), with diminishing marginal impact thereafter ($-$3.6\\,pp for 5\\%$\\to$10\\%, $-$2.3\\,pp for 10\\%$\\to$20\\%).\nAt 10\\% replacement, binary F1 remains 0.614, well above the 0.50 random baseline, which indicates that depth signal survives moderate perturbation.\n\nThree-class classification is more sensitive (0.737$\\to$0.367 at 20\\%), because distinguishing gen-0 from gen-1 relies heavily on lexical diversity features (TTR, hapax ratio) that are directly disrupted by word replacement.\nThe binary metric, which excludes gen-0, is inherently more robust since it depends primarily on reference-model entropy features distributed across many tokens.\n\n\\paragraph{Feature subset degradation.}\nTable~\\ref{tab:feature-degrade} compares perturbation robustness of the full 7-feature ensemble against an entropy-only subset (5 reference-model features).\nThe higher unperturbed binary F1 of the entropy-only subset (0.833 vs.\\ 0.695) reflects the strong discriminability of reference-model features for the coarse binary task (gen-1 vs.\\ gen-2+); however, lexical features are essential for the finer-grained ordinal task (3-class F1: 0.737 vs.\\ 0.688) and provide greater robustness under perturbation.\nAt 20\\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\\ 0.569), despite starting from a lower baseline.\nRandom word replacement drastically alters per-token context and makes entropy features (computed over the full token sequence) extremely sensitive to noise.\nLexical features (TTR, hapax ratio), as document-level summary statistics, are more stable under per-word perturbation and act as stabilizers in the full ensemble.\nThe crossover confirms that degradation in the full feature set reflects genuine signal disruption rather than a lexical-feature artifact.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Feature subset degradation under random word replacement (8-gen LOGO). Entropy-only: 5 reference-model features; 7-feature: full ensemble including lexical features.}\n\\label{tab:feature-degrade}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Perturb.} & \\textbf{Ent-only Bin} & \\textbf{7-feat Bin} & \\textbf{Ent-only 3-cl} & \\textbf{7-feat 3-cl} \\\\\n\\midrule\n0\\%  & 0.833 & 0.695 & 0.688 & 0.737 \\\\\n5\\%  & 0.736 & 0.650 & 0.539 & 0.641 \\\\\n10\\% & 0.657 & 0.614 & 0.427 & 0.492 \\\\\n20\\% & 0.566 & 0.591 & 0.314 & 0.367 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Baseline comparison.}\nTable~\\ref{tab:baseline-robustness} compares robustness across detection methods under identical perturbation conditions (8-gen LOGO, binary: gen-1 vs.\\ gen-2+).\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate.}\n\\label{tab:baseline-robustness}\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{0\\%} & \\textbf{5\\%} & \\textbf{10\\%} & \\textbf{20\\%} \\\\\n\\midrule\n7-feature ensemble & \\textbf{0.695} & 0.650 & 0.614 & 0.591 \\\\\nLD-Score           & 0.677 & \\textbf{0.673} & \\textbf{0.677} & \\textbf{0.671} \\\\\nAvg-LogProb        & 0.682 & 0.419 & 0.335 & 0.375 \\\\\nFastDetectGPT      & 0.571 & 0.437 & 0.468 & 0.514 \\\\\nBinoculars\\textsuperscript{\\dag}         & 0.500 & 0.461 & 0.446 & 0.425 \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{2pt}\n{\\footnotesize \\textsuperscript{\\dag}Binoculars operates at chance level on this binary task; its degradation figures are not meaningful.}\n\\end{table}\n\nThe 7-feature ensemble achieves the highest unperturbed binary F1 (0.695), but LD-Score surpasses it under perturbation due to near-zero degradation ($-$0.6\\,pp across the full 0\\%$\\to$20\\% range).\nFastDetectGPT and Avg-LogProb exhibit non-monotonic degradation at higher perturbation rates, likely because severe perturbation introduces distributional artifacts that these token-level methods detect as anomalous.\nAvg-LogProb is the most fragile overall ($-$34.7\\,pp at 10\\%), while FastDetectGPT drops sharply at 5\\% ($-$13.4\\,pp) before partially recovering.\nLD-Score is nearly invariant to perturbation, consistent with its reliance on corpus-level distributional divergence rather than per-token likelihoods.\nThe 7-feature ensemble offers the highest starting performance among single-reference methods, with sublinear degradation ($-$10.4\\,pp at 20\\%).\n\n\\paragraph{LLM-simulated sentence regeneration.}\nTo test robustness under semantically coherent editing, we use Qwen3-0.6B-Base to randomly regenerate 1--3 sentences per passage (avg 1.69 sentences, ${\\sim}$50\\% edit distance) and re-evaluate the 8-gen LOGO pipeline.\nBinary F1 drops from 0.692 to 0.647 ($-$4.5\\,pp, 6.5\\% relative); 3-class F1 drops from 0.739 to 0.667 ($-$7.1\\,pp, 9.7\\% relative).\nThe binary degradation ($-$4.5\\,pp) is nearly identical to that caused by 5\\% random word replacement ($-$4.6\\,pp), despite the LLM rephrase altering ${\\sim}$50\\% of characters.\nThis asymmetry arises because LLM-generated replacements preserve the underlying statistical signature of the generation process (entropy dynamics, depth-accumulated distributional drift), whereas random word substitution directly destroys local statistical signals.\nDepth profiling thus captures deep generative structure that survives semantic-preserving edits.\n\n\\paragraph{Seed complexity.}\nPerformance is stable across seed text complexity: stratifying seeds by vocabulary richness (TTR terciles) yields maximum F1 variation of 1.1\\,pp across groups.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 57,
+                  "oldLines": 7,
+                  "newStart": 57,
+                  "newLines": 7,
+                  "lines": [
+                    " \\begin{table}[ht]",
+                    " \\centering",
+                    " \\small",
+                    "-\\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate.}",
+                    "+\\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate. (Baseline scores use default XGBoost settings; trends are consistent with the unified configuration in Table~\\ref{tab:baselines}.)}",
+                    " \\label{tab:baseline-robustness}",
+                    " \\begin{tabular}{lcccc}",
+                    " \\toprule"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I also need to update the prose that references the old 0.569 value (line 31 mentions \"0.591 vs.\\ 0.569\")."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "4221d858-e21d-48e3-8204-38251d8b494e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BsCU9kfxLHGQ9brP8vjByT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1480,
+                "cache_read_input_tokens": 31481,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1480
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CVzxDnk5Y2xiUp5LpZKsU4",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex",
+                "old_string": "At 20\\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\\ 0.569), despite starting from a lower baseline.",
+                "new_string": "At 20\\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\\ 0.566), despite starting from a lower baseline."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "ce08624a-0dcc-4385-960f-8ded38fab0f4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BsCU9kfxLHGQ9brP8vjByT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1480,
+                "cache_read_input_tokens": 31481,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1480
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T04:36:47.465Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CVzxDnk5Y2xiUp5LpZKsU4",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "e7f29ab1-a02f-4858-b87f-4599c8f47486",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex",
+              "oldString": "At 20\\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\\ 0.569), despite starting from a lower baseline.",
+              "newString": "At 20\\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\\ 0.566), despite starting from a lower baseline.",
+              "originalFile": "We assess robustness to post-generation text modification by randomly replacing words at varying rates and re-evaluating the 8-generator LOGO pipeline (Table~\\ref{tab:human-edit}).\nRandom word replacement represents a worst-case perturbation: real human editing preserves semantic coherence, so practical degradation is expected to be substantially lower than these estimates.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Robustness to random word replacement under 8-gen LOGO evaluation (binary: gen-1 vs.\\ gen-2+). Bootstrap 95\\% CIs on binary F1 ($n$\\,=\\,1000).}\n\\label{tab:human-edit}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Perturbation rate} & \\textbf{Binary F1} & \\textbf{95\\% CI} & \\textbf{3-class F1} \\\\\n\\midrule\n0\\% (baseline) & 0.695 & [0.680, 0.710] & 0.737 \\\\\n5\\%            & 0.650 & [0.635, 0.666] & 0.641 \\\\\n10\\%           & 0.614 & [0.599, 0.629] & 0.492 \\\\\n20\\%           & 0.591 & [0.576, 0.605] & 0.367 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nBinary depth discrimination (gen-1 vs.\\ gen-2+) degrades sublinearly: the first 5\\% replacement causes the largest drop ($-$4.6\\,pp), with diminishing marginal impact thereafter ($-$3.6\\,pp for 5\\%$\\to$10\\%, $-$2.3\\,pp for 10\\%$\\to$20\\%).\nAt 10\\% replacement, binary F1 remains 0.614, well above the 0.50 random baseline, which indicates that depth signal survives moderate perturbation.\n\nThree-class classification is more sensitive (0.737$\\to$0.367 at 20\\%), because distinguishing gen-0 from gen-1 relies heavily on lexical diversity features (TTR, hapax ratio) that are directly disrupted by word replacement.\nThe binary metric, which excludes gen-0, is inherently more robust since it depends primarily on reference-model entropy features distributed across many tokens.\n\n\\paragraph{Feature subset degradation.}\nTable~\\ref{tab:feature-degrade} compares perturbation robustness of the full 7-feature ensemble against an entropy-only subset (5 reference-model features).\nThe higher unperturbed binary F1 of the entropy-only subset (0.833 vs.\\ 0.695) reflects the strong discriminability of reference-model features for the coarse binary task (gen-1 vs.\\ gen-2+); however, lexical features are essential for the finer-grained ordinal task (3-class F1: 0.737 vs.\\ 0.688) and provide greater robustness under perturbation.\nAt 20\\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\\ 0.569), despite starting from a lower baseline.\nRandom word replacement drastically alters per-token context and makes entropy features (computed over the full token sequence) extremely sensitive to noise.\nLexical features (TTR, hapax ratio), as document-level summary statistics, are more stable under per-word perturbation and act as stabilizers in the full ensemble.\nThe crossover confirms that degradation in the full feature set reflects genuine signal disruption rather than a lexical-feature artifact.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Feature subset degradation under random word replacement (8-gen LOGO). Entropy-only: 5 reference-model features; 7-feature: full ensemble including lexical features.}\n\\label{tab:feature-degrade}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Perturb.} & \\textbf{Ent-only Bin} & \\textbf{7-feat Bin} & \\textbf{Ent-only 3-cl} & \\textbf{7-feat 3-cl} \\\\\n\\midrule\n0\\%  & 0.833 & 0.695 & 0.688 & 0.737 \\\\\n5\\%  & 0.736 & 0.650 & 0.539 & 0.641 \\\\\n10\\% & 0.657 & 0.614 & 0.427 & 0.492 \\\\\n20\\% & 0.566 & 0.591 & 0.314 & 0.367 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Baseline comparison.}\nTable~\\ref{tab:baseline-robustness} compares robustness across detection methods under identical perturbation conditions (8-gen LOGO, binary: gen-1 vs.\\ gen-2+).\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate. (Baseline scores use default XGBoost settings; trends are consistent with the unified configuration in Table~\\ref{tab:baselines}.)}\n\\label{tab:baseline-robustness}\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{0\\%} & \\textbf{5\\%} & \\textbf{10\\%} & \\textbf{20\\%} \\\\\n\\midrule\n7-feature ensemble & \\textbf{0.695} & 0.650 & 0.614 & 0.591 \\\\\nLD-Score           & 0.677 & \\textbf{0.673} & \\textbf{0.677} & \\textbf{0.671} \\\\\nAvg-LogProb        & 0.682 & 0.419 & 0.335 & 0.375 \\\\\nFastDetectGPT      & 0.571 & 0.437 & 0.468 & 0.514 \\\\\nBinoculars\\textsuperscript{\\dag}         & 0.500 & 0.461 & 0.446 & 0.425 \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{2pt}\n{\\footnotesize \\textsuperscript{\\dag}Binoculars operates at chance level on this binary task; its degradation figures are not meaningful.}\n\\end{table}\n\nThe 7-feature ensemble achieves the highest unperturbed binary F1 (0.695), but LD-Score surpasses it under perturbation due to near-zero degradation ($-$0.6\\,pp across the full 0\\%$\\to$20\\% range).\nFastDetectGPT and Avg-LogProb exhibit non-monotonic degradation at higher perturbation rates, likely because severe perturbation introduces distributional artifacts that these token-level methods detect as anomalous.\nAvg-LogProb is the most fragile overall ($-$34.7\\,pp at 10\\%), while FastDetectGPT drops sharply at 5\\% ($-$13.4\\,pp) before partially recovering.\nLD-Score is nearly invariant to perturbation, consistent with its reliance on corpus-level distributional divergence rather than per-token likelihoods.\nThe 7-feature ensemble offers the highest starting performance among single-reference methods, with sublinear degradation ($-$10.4\\,pp at 20\\%).\n\n\\paragraph{LLM-simulated sentence regeneration.}\nTo test robustness under semantically coherent editing, we use Qwen3-0.6B-Base to randomly regenerate 1--3 sentences per passage (avg 1.69 sentences, ${\\sim}$50\\% edit distance) and re-evaluate the 8-gen LOGO pipeline.\nBinary F1 drops from 0.692 to 0.647 ($-$4.5\\,pp, 6.5\\% relative); 3-class F1 drops from 0.739 to 0.667 ($-$7.1\\,pp, 9.7\\% relative).\nThe binary degradation ($-$4.5\\,pp) is nearly identical to that caused by 5\\% random word replacement ($-$4.6\\,pp), despite the LLM rephrase altering ${\\sim}$50\\% of characters.\nThis asymmetry arises because LLM-generated replacements preserve the underlying statistical signature of the generation process (entropy dynamics, depth-accumulated distributional drift), whereas random word substitution directly destroys local statistical signals.\nDepth profiling thus captures deep generative structure that survives semantic-preserving edits.\n\n\\paragraph{Seed complexity.}\nPerformance is stable across seed text complexity: stratifying seeds by vocabulary richness (TTR terciles) yields maximum F1 variation of 1.1\\,pp across groups.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 28,
+                  "oldLines": 7,
+                  "newStart": 28,
+                  "newLines": 7,
+                  "lines": [
+                    " \\paragraph{Feature subset degradation.}",
+                    " Table~\\ref{tab:feature-degrade} compares perturbation robustness of the full 7-feature ensemble against an entropy-only subset (5 reference-model features).",
+                    " The higher unperturbed binary F1 of the entropy-only subset (0.833 vs.\\ 0.695) reflects the strong discriminability of reference-model features for the coarse binary task (gen-1 vs.\\ gen-2+); however, lexical features are essential for the finer-grained ordinal task (3-class F1: 0.737 vs.\\ 0.688) and provide greater robustness under perturbation.",
+                    "-At 20\\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\\ 0.569), despite starting from a lower baseline.",
+                    "+At 20\\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\\ 0.566), despite starting from a lower baseline.",
+                    " Random word replacement drastically alters per-token context and makes entropy features (computed over the full token sequence) extremely sensitive to noise.",
+                    " Lexical features (TTR, hapax ratio), as document-level summary statistics, are more stable under per-word perturbation and act as stabilizers in the full ensemble.",
+                    " The crossover confirms that degradation in the full feature set reflects genuine signal disruption rather than a lexical-feature artifact."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U8HHGaUqGQU3zzxCoUEzmD",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_human_edit.tex",
+                "old_string": "At 20\\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\\ 0.569), despite starting from a lower baseline.",
+                "new_string": "At 20\\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\\ 0.566), despite starting from a lower baseline."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "52f179a7-e8f0-43fb-8465-7c54a191a8a4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BsCU9kfxLHGQ9brP8vjByT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1480,
+                "cache_read_input_tokens": 31481,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1480
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T04:36:48.718Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01U8HHGaUqGQU3zzxCoUEzmD",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_human_edit.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "6f8a5bc9-1997-4c3c-80a4-9919a718783e",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_human_edit.tex",
+              "oldString": "At 20\\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\\ 0.569), despite starting from a lower baseline.",
+              "newString": "At 20\\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\\ 0.566), despite starting from a lower baseline.",
+              "originalFile": "We assess robustness to post-generation text modification by randomly replacing words at varying rates and re-evaluating the 8-generator LOGO pipeline (Table~\\ref{tab:human-edit}).\nRandom word replacement represents a worst-case perturbation: real human editing preserves semantic coherence, so practical degradation is expected to be substantially lower than these estimates.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Robustness to random word replacement under 8-gen LOGO evaluation (binary: gen-1 vs.\\ gen-2+). Bootstrap 95\\% CIs on binary F1 ($n$\\,=\\,1000).}\n\\label{tab:human-edit}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Perturbation rate} & \\textbf{Binary F1} & \\textbf{95\\% CI} & \\textbf{3-class F1} \\\\\n\\midrule\n0\\% (baseline) & 0.695 & [0.680, 0.710] & 0.737 \\\\\n5\\%            & 0.650 & [0.635, 0.666] & 0.641 \\\\\n10\\%           & 0.614 & [0.599, 0.629] & 0.492 \\\\\n20\\%           & 0.591 & [0.576, 0.605] & 0.367 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nBinary depth discrimination (gen-1 vs.\\ gen-2+) degrades sublinearly: the first 5\\% replacement causes the largest drop ($-$4.6\\,pp), with diminishing marginal impact thereafter ($-$3.6\\,pp for 5\\%$\\to$10\\%, $-$2.3\\,pp for 10\\%$\\to$20\\%).\nAt 10\\% replacement, binary F1 remains 0.614, well above the 0.50 random baseline, which indicates that depth signal survives moderate perturbation.\n\nThree-class classification is more sensitive (0.737$\\to$0.367 at 20\\%), because distinguishing gen-0 from gen-1 relies heavily on lexical diversity features (TTR, hapax ratio) that are directly disrupted by word replacement.\nThe binary metric, which excludes gen-0, is inherently more robust since it depends primarily on reference-model entropy features distributed across many tokens.\n\n\\paragraph{Feature subset degradation.}\nTable~\\ref{tab:feature-degrade} compares perturbation robustness of the full 7-feature ensemble against an entropy-only subset (5 reference-model features).\nThe higher unperturbed binary F1 of the entropy-only subset (0.833 vs.\\ 0.695) reflects the strong discriminability of reference-model features for the coarse binary task (gen-1 vs.\\ gen-2+); however, lexical features are essential for the finer-grained ordinal task (3-class F1: 0.737 vs.\\ 0.688) and provide greater robustness under perturbation.\nAt 20\\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\\ 0.569), despite starting from a lower baseline.\nRandom word replacement drastically alters per-token context and makes entropy features (computed over the full token sequence) extremely sensitive to noise.\nLexical features (TTR, hapax ratio), as document-level summary statistics, are more stable under per-word perturbation and act as stabilizers in the full ensemble.\nThe crossover confirms that degradation in the full feature set reflects genuine signal disruption rather than a lexical-feature artifact.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Feature subset degradation under random word replacement (8-gen LOGO). Entropy-only: 5 reference-model features; 7-feature: full ensemble including lexical features.}\n\\label{tab:feature-degrade}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Perturb.} & \\textbf{Ent-only Bin} & \\textbf{7-feat Bin} & \\textbf{Ent-only 3-cl} & \\textbf{7-feat 3-cl} \\\\\n\\midrule\n0\\%  & 0.833 & 0.695 & 0.688 & 0.737 \\\\\n5\\%  & 0.736 & 0.650 & 0.539 & 0.641 \\\\\n10\\% & 0.657 & 0.614 & 0.427 & 0.492 \\\\\n20\\% & 0.566 & 0.591 & 0.314 & 0.367 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Baseline comparison.}\nTable~\\ref{tab:baseline-robustness} compares robustness across detection methods under identical perturbation conditions (8-gen LOGO, binary: gen-1 vs.\\ gen-2+).\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate. (Baseline scores use default XGBoost settings; trends are consistent with the unified configuration in Table~\\ref{tab:baselines}.)}\n\\label{tab:baseline-robustness}\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{0\\%} & \\textbf{5\\%} & \\textbf{10\\%} & \\textbf{20\\%} \\\\\n\\midrule\n7-feature ensemble & \\textbf{0.695} & 0.650 & 0.614 & 0.591 \\\\\nLD-Score           & 0.677 & \\textbf{0.673} & \\textbf{0.677} & \\textbf{0.671} \\\\\nAvg-LogProb        & 0.682 & 0.419 & 0.335 & 0.375 \\\\\nFastDetectGPT      & 0.571 & 0.437 & 0.468 & 0.514 \\\\\nBinoculars\\textsuperscript{\\dag}         & 0.500 & 0.461 & 0.446 & 0.425 \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{2pt}\n{\\footnotesize \\textsuperscript{\\dag}Binoculars operates at chance level on this binary task; its degradation figures are not meaningful.}\n\\end{table}\n\nThe 7-feature ensemble achieves the highest unperturbed binary F1 (0.695), but LD-Score surpasses it under perturbation due to near-zero degradation ($-$0.6\\,pp across the full 0\\%$\\to$20\\% range).\nFastDetectGPT and Avg-LogProb exhibit non-monotonic degradation at higher perturbation rates, likely because severe perturbation introduces distributional artifacts that these token-level methods detect as anomalous.\nAvg-LogProb is the most fragile overall ($-$34.7\\,pp at 10\\%), while FastDetectGPT drops sharply at 5\\% ($-$13.4\\,pp) before partially recovering.\nLD-Score is nearly invariant to perturbation, consistent with its reliance on corpus-level distributional divergence rather than per-token likelihoods.\nThe 7-feature ensemble offers the highest starting performance among single-reference methods, with sublinear degradation ($-$10.4\\,pp at 20\\%).\n\n\\paragraph{LLM-simulated sentence regeneration.}\nTo test robustness under semantically coherent editing, we use Qwen3-0.6B-Base to randomly regenerate 1--3 sentences per passage (avg 1.69 sentences, ${\\sim}$50\\% edit distance) and re-evaluate the 8-gen LOGO pipeline.\nBinary F1 drops from 0.692 to 0.647 ($-$4.5\\,pp, 6.5\\% relative); 3-class F1 drops from 0.739 to 0.667 ($-$7.1\\,pp, 9.7\\% relative).\nThe binary degradation ($-$4.5\\,pp) is nearly identical to that caused by 5\\% random word replacement ($-$4.6\\,pp), despite the LLM rephrase altering ${\\sim}$50\\% of characters.\nThis asymmetry arises because LLM-generated replacements preserve the underlying statistical signature of the generation process (entropy dynamics, depth-accumulated distributional drift), whereas random word substitution directly destroys local statistical signals.\nDepth profiling thus captures deep generative structure that survives semantic-preserving edits.\n\n\\paragraph{Seed complexity.}\nPerformance is stable across seed text complexity: stratifying seeds by vocabulary richness (TTR terciles) yields maximum F1 variation of 1.1\\,pp across groups.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 28,
+                  "oldLines": 7,
+                  "newStart": 28,
+                  "newLines": 7,
+                  "lines": [
+                    " \\paragraph{Feature subset degradation.}",
+                    " Table~\\ref{tab:feature-degrade} compares perturbation robustness of the full 7-feature ensemble against an entropy-only subset (5 reference-model features).",
+                    " The higher unperturbed binary F1 of the entropy-only subset (0.833 vs.\\ 0.695) reflects the strong discriminability of reference-model features for the coarse binary task (gen-1 vs.\\ gen-2+); however, lexical features are essential for the finer-grained ordinal task (3-class F1: 0.737 vs.\\ 0.688) and provide greater robustness under perturbation.",
+                    "-At 20\\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\\ 0.569), despite starting from a lower baseline.",
+                    "+At 20\\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\\ 0.566), despite starting from a lower baseline.",
+                    " Random word replacement drastically alters per-token context and makes entropy features (computed over the full token sequence) extremely sensitive to noise.",
+                    " Lexical features (TTR, hapax ratio), as document-level summary statistics, are more stable under per-word perturbation and act as stabilizers in the full ensemble.",
+                    " The crossover confirms that degradation in the full feature set reflects genuine signal disruption rather than a lexical-feature artifact."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证两份副本一致："
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "1c164895-63fb-4f3a-9c74-ddd9bf809cb4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U8A2P3meST4ZKhD7qcMwCG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 750,
+                "cache_read_input_tokens": 32961,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 750
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015YbAhwMWUNDDgX2xiKF25Q",
+              "name": "Bash",
+              "input": {
+                "command": "diff /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_human_edit.tex",
+                "description": "Diff the two copies to verify they are identical"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "6cadf8b0-7b79-4cc2-906c-80013d964f08",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U8A2P3meST4ZKhD7qcMwCG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 750,
+                "cache_read_input_tokens": 32961,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 750
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T04:36:53.241Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015YbAhwMWUNDDgX2xiKF25Q",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "94a2b212-0e31-4000-8dd0-ebce68c014af",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两份副本完全一致。修改总结：\n\n1. **tab:feature-degrade \"Ent-only Bin\" 列**：0.738→0.736, 0.667→0.657, 0.569→0.566\n2. **tab:baseline-robustness caption**：追加了 XGBoost 配置说明\n3. **正文引用**：同步更新了引用 0.569 的文字为 0.566"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "uuid": "a2e34beb-e660-407b-a0ba-19697f7791c9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0156JoFGUKbZ8kERNEZJQMrf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 190,
+                "cache_read_input_tokens": 33711,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 190
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两份副本完全一致。修改总结：\n\n1. **tab:feature-degrade \"Ent-only Bin\" 列**：0.738→0.736, 0.667→0.657, 0.569→0.566\n2. **tab:baseline-robustness caption**：追加了 XGBoost 配置说明\n3. **正文引用**：同步更新了引用 0.569 的文字为 0.566"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 40559,
+            "duration_api_ms": 41581,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "f65d9f5e-9273-40fe-a733-2c82fe883bf9",
+            "total_cost_usd": 0.258804,
+            "usage": {
+              "input_tokens": 6,
+              "cache_creation_input_tokens": 22060,
+              "cache_read_input_tokens": 136290,
+              "output_tokens": 2060,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 22060,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 122,
+                  "cache_read_input_tokens": 33711,
+                  "cache_creation_input_tokens": 190,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 190
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1174,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001254,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 6,
+                "outputTokens": 2060,
+                "cacheReadInputTokens": 136290,
+                "cacheCreationInputTokens": 22060,
+                "webSearchRequests": 0,
+                "costUSD": 0.25755,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "1cd9e40f-d0e7-47ce-8f1e-205a1b7a3a94"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-data-fix-reviewer-corrections.md"
+}

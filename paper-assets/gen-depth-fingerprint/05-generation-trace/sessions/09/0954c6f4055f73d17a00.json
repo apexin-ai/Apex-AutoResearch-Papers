@@ -1,0 +1,451 @@
+{
+  "schema_version": "1.0",
+  "id": "0954c6f4055f73d17a00",
+  "project": "gen-depth-fingerprint",
+  "kind": "conversation",
+  "title": "paper d031 results appendix",
+  "task_key": "worker_paper_d031-results-appendix_20260520T112522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_d031-results-appendix_20260520T112522.jsonl",
+    "occurrence": 1,
+    "bytes": 22635,
+    "sha256": "cdcc217ae686716777acdc88ec340d45d72a614062aff431ea9dd19ec6386893"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T11:29:23.499495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d031-results-appendix_20260520T112522",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T11:29:23.499928+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\t\\subsection{Depth Classification Performance}\n5\t\\label{sec:results-classification}\n6\t\n7\tGeneration depth is classifiable across diverse architectures: the 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}).\n8\tBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94) and the 3-class metric is inflated by this overlap.\n9\tWe therefore adopt leak-free binary F1 (gen-1 vs.\\ gen-2+)\\,=\\,0.694, CI [0.688, 0.700], as the primary metric throughout; it excludes gen-0 entirely and is unaffected by seed sharing.\n10\tPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B), with the primary difficulty being gen-1 vs.\\ gen-2+ discrimination (Appendix~\\ref{app:confusion}).\n11\t\n12\t\\paragraph{Cross-model generalization.}\n13\tCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]) under generator-level leave-one-out evaluation on the 5-generator subset for which cross-model chains were available (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B).\\footnote{We corrected the cross-model chain evaluation from sample-level CV to generator-level LOGO for consistency with our main evaluation protocol. CIs are case-level bootstrap ($n$\\,=\\,2{,}000). The 5-generator result is not directly comparable to the 8-generator LOGO (binary F1\\,=\\,0.694) due to differing generator subsets.}\n14\tThe higher cross-model binary F1 relative to the 8-generator LOGO (0.694) is not directly comparable: the cross-model evaluation uses a 5-generator subset, and generator heterogeneity in mixed chains may amplify depth-correlated distributional shifts.\n15\tA single-generator transfer analysis (Appendix~\\ref{app:transfer}) provides evidence against this confound: classifiers trained on one generator trans\n…[truncated 13081 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d031-results-appendix_20260520T112522",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T11:29:23.500106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d031-results-appendix_20260520T112522",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_9gen_scale.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T11:29:23.500265+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\subsection{9-Generator Scale Evaluation}\\label{app:9gen-scale}\n2\t\n3\tThis analysis extends the 8-generator LOGO evaluation to nine generators by adding Gemma-2-2B, a model from a previously unrepresented architecture family (Gemma).\n4\tAll results use class-balanced LOGO; the 8-gen averages here (0.770/0.701) differ slightly from Table~\\ref{tab:logo-results} (0.762/0.694), which uses an unfiltered protocol.\n5\tTable~\\ref{tab:9gen-logo} reports per-generator LOGO performance under this expanded set.\n6\t\n7\t\\begin{table}[h]\n8\t\\centering\n9\t\\caption{9-generator LOGO evaluation. Each row holds out the listed generator at test time. 3-class: gen-0\\,/\\,gen-1\\,/\\,gen-2+; binary: gen-1 vs.\\ gen-2+. 95\\% bootstrap CIs in brackets.}\n10\t\\label{tab:9gen-logo}\n11\t\\small\n12\t\\resizebox{\\linewidth}{!}{%\n13\t\\begin{tabular}{llr cc cc}\n14\t\\toprule\n15\t\\textbf{Generator} & \\textbf{Family} & \\textbf{Params} & \\textbf{3-class F1} & \\textbf{95\\% CI} & \\textbf{Binary F1} & \\textbf{95\\% CI} \\\\\n16\t\\midrule\n17\tPythia-1B       & Pythia  & 1.0B & 0.857 & [0.848, 0.866] & 0.785 & --- \\\\\n18\tQwen3-0.6B      & Qwen    & 0.6B & 0.819 & [0.807, 0.830] & 0.743 & --- \\\\\n19\tPythia-2.8B     & Pythia  & 2.8B & 0.812 & [0.801, 0.822] & 0.728 & --- \\\\\n20\tQwen3-1.7B      & Qwen    & 1.7B & 0.811 & [0.800, 0.823] & 0.746 & --- \\\\\n21\tOLMo-2-1B       & OLMo    & 1.5B & 0.773 & [0.762, 0.784] & 0.692 & --- \\\\\n22\tLlama-3.2-3B    & Llama   & 3.2B & 0.759 & [0.748, 0.770] & 0.680 & --- \\\\\n23\tQwen3-8B        & Qwen    & 8.2B & 0.696 & [0.683, 0.709] & 0.647 & [0.631, 0.664] \\\\\n24\tGemma-2-2B      & Gemma   & 2.6B & 0.628 & [0.622, 0.634] & 0.440 & [0.432, 0.449] \\\\\n25\tMistral-7B      & Mistral & 7.0B & 0.605 & [0.593, 0.617] & 0.534 & --- \\\\\n26\t\\midrule\n27\t\\textbf{Average (9-gen)} & & & \\textbf{0.751} & & \\textbf{0.666} & \\\\\n28\t\\textbf{Average (8-gen)} & & & \\textbf{0.770} & & \\textbf{0.701} & \\\\\n29\t\\bottomrule\n30\t\\end{tabular}}\n31\t\\end{table}\n32\t\n33\t\\paragraph{Overall comparison.}\n34\tAdding Gemma-2-2B reduces the mean 3\n…[truncated 1701 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d031-results-appendix_20260520T112522",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T11:29:23.500418+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d031-results-appendix_20260520T112522",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T11:29:23.500642+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\subsection*{Data-Driven Clustering}\n2\t\n3\tTo assess whether the 3/1/3 DDR partition emerges from the data rather than post-hoc grouping, we apply $k$-means clustering ($k \\in \\{2,3,4,5\\}$) to the seven features in standardized $(|\\rho|, d)$ space (Table~\\ref{tab:clustering}).\n4\t\n5\t\\begin{table}[h]\n6\t\\centering\n7\t\\small\n8\t\\caption{$k$-means clustering of 7 features in $(|\\rho|, d)$ space.}\n9\t\\label{tab:clustering}\n10\t\\begin{tabular}{ccp{5.5cm}}\n11\t\\toprule\n12\t$k$ & Silhouette & Clusters \\\\\n13\t\\midrule\n14\t2 & \\textbf{0.632} & \\{$\\bar{H}$, TTR, hapax\\} $\\mid$ \\{$\\sigma_H$, $H_{\\min}$, $H_{\\max}$, tail\\} \\\\\n15\t3 & 0.499 & \\{$\\bar{H}$, TTR, hapax\\} $\\mid$ \\{$\\sigma_H$, $H_{\\max}$, tail\\} $\\mid$ \\{$H_{\\min}$\\} \\\\\n16\t4 & 0.571 & \\{$\\bar{H}$, TTR, hapax\\} $\\mid$ \\{$H_{\\max}$, tail\\} $\\mid$ \\{$\\sigma_H$\\} $\\mid$ \\{$H_{\\min}$\\} \\\\\n17\t\\bottomrule\n18\t\\end{tabular}\n19\t\\end{table}\n20\t\n21\tThe primary drifting/non-drifting split ($k{=}2$, silhouette\\,=\\,0.632) is the strongest cluster structure.\n22\tAt $k{=}3$, entropy min forms its own cluster rather than joining the near-stationary group because its pooled $|\\rho|{=}0.40$ (driven by the gen-0/gen-1 boundary) places it far from other near-stationary features in $\\rho$ space.\n23\tThe 3/1/3 DDR partition resolves this by using the gen-1 vs.\\ gen-2+ Cohen's $d$ ($d{=}0.03$) to place entropy min in the near-stationary group, a domain-informed refinement that unsupervised clustering cannot recover from pooled statistics alone.\n24\tAt $k{=}4$ (silhouette\\,=\\,0.571), entropy std separates from the near-stationary group, consistent with its intermediate DDR classification.\n25\t\n26\t\\subsection*{TOST Equivalence Bound Sensitivity}\n27\t\\label{app:tost-sensitivity}\n28\t\n29\tTable~\\ref{tab:tost-sensitivity} shows the fraction of generators for which each feature passes the TOST equivalence test (gen-1 vs.\\ gen-2+, $\\alpha{=}0.05$) at three equivalence bounds $\\varepsilon$.\n30\t\n31\t\\begin{table}[h]\n32\t\\centering\n33\t\\small\n34\t\\caption{TOST equivalence\n…[truncated 7654 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d031-results-appendix_20260520T112522",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T11:29:23.500938+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d031-results-appendix_20260520T112522",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+              "old_string": "Cross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830",
+              "new_string": "Cross-model chains (randomly selected generator per step) provide an exploratory evaluation of depth signal under generator heterogeneity, yielding binary F1\\,=\\,0.830"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T11:29:23.501143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d031-results-appendix_20260520T112522",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T11:29:23.501274+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d031-results-appendix_20260520T112522",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+              "old_string": "on instruct data, QLoRA recovers to 0.89--0.91 (Appendix~\\ref{app:instruct}).",
+              "new_string": "on instruct data, QLoRA recovers to 0.89--0.91 (Appendix~\\ref{app:instruct}).\nThe 7-feature ensemble serves as an interpretable baseline; the 14.3\\,pp gap relative to the 8-gen average (Appendix~\\ref{app:qlora}) confirms that DDR's primary contribution is the empirical decomposition rather than the specific classifier."
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T11:29:23.501449+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d031-results-appendix_20260520T112522",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T11:29:23.501585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d031-results-appendix_20260520T112522",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_9gen_scale.tex",
+              "old_string": "This constitutes an architecture-specific generalization limitation rather than a systemic failure of the depth fingerprinting approach.",
+              "new_string": "This constitutes an architecture-specific generalization limitation rather than a systemic failure of the depth fingerprinting approach.\nSeveral architectural differences may explain this behavior: (a)~Gemma-2's distinct attention mechanism and SentencePiece tokenizer with a larger vocabulary may produce first-generation continuations whose feature-space signature closely resembles human text, causing systematic gen-0/gen-1 confusion; (b)~this anomaly does not affect DDR's validity for the remaining eight generators, where per-generator F1 shifts by at most 0.011 upon Gemma inclusion."
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T11:29:23.501739+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_9gen_scale.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d031-results-appendix_20260520T112522",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T11:29:23.501884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d031-results-appendix_20260520T112522",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex",
+              "old_string": "Entropy max is stable across all three bounds (6/8), with the two failures (Pythia-1B $d{=}0.21$, Pythia-2.8B $d{=}0.25$) reflecting same-family reference affinity with the Pythia-410M reference model.\n\n\\subsection*{Holdout Generator Split Validation}",
+              "new_string": "Entropy max is stable across all three bounds (6/8), with the two failures (Pythia-1B $d{=}0.21$, Pythia-2.8B $d{=}0.25$) reflecting same-family reference affinity with the Pythia-410M reference model.\n\n\\paragraph{Partition stability across $\\varepsilon$ thresholds.}\n\\label{app:epsilon-sweep}\n\nThe DDR partition classifies features as non-stationary ($d \\geq \\varepsilon$) or stationary ($d < \\varepsilon$) based on pooled Cohen's $d$ (\\S\\ref{sec:results-differential}).\nTable~\\ref{tab:epsilon-sweep} reports the critical $\\varepsilon$ at which each feature's classification changes; the three drifting and three near-stationary features maintain their classification for all $\\varepsilon \\in [0.10, 0.75]$.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Partition stability under varying $\\varepsilon$. Critical threshold: the $\\varepsilon$ above which a feature is reclassified as stationary. The drifting/near-stationary split is invariant for $\\varepsilon \\in [0.10, 0.75]$; only entropy std ($d{=}0.55$) changes at $\\varepsilon > 0.55$.}\n\\label{tab:epsilon-sweep}\n\\begin{tabular}{llcc}\n\\toprule\n\\textbf{DDR Zone} & \\textbf{Feature} & \\textbf{Pooled $d$} & \\textbf{Stationary at $\\varepsilon >$} \\\\\n\\midrule\n\\multirow{3}{*}{Drifting} & $\\bar{H}$ (ent.\\ mean) & 1.17 & 1.17 \\\\\n & TTR & 0.88 & 0.88 \\\\\n & hapax ratio & 0.76 & 0.76 \\\\\n\\midrule\nIntermediate & $\\sigma_H$ (ent.\\ std) & 0.55 & 0.55 \\\\\n\\midrule\n\\multirow{3}{*}{Near-stat.} & $H_{\\max}$ (ent.\\ max) & 0.08 & 0.08 \\\\\n & tail decay & 0.08 & 0.08 \\\\\n & $H_{\\min}$ (ent.\\ min) & 0.016 & 0.016 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\noindent The 3/1/3 partition is stable across $\\varepsilon \\in [0.10, 0.75]$: the three drifting features remain non-stationary at all $\\varepsilon < 0.76$, the three near-stationary features remain stationary at all $\\varepsilon > 0.08$, and only entropy std changes classification (becoming stationary at $\\varepsilon > 0.55$), confirming it as the sole boundary feature.\nThe minimum gap between adjacent zone boundaries ($d_{\\text{hapax}} - d_{\\sigma_H} = 0.21$) exceeds typical effect-size estimation uncertainty, providing a margin against sampling noise.\n\n\\subsection*{Holdout Generator Split Validation}"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T11:29:23.502083+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d031-results-appendix_20260520T112522",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T11:29:23.502220+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d031-results-appendix_20260520T112522",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+              "offset": "11",
+              "limit": "12"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T11:29:23.502359+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "11\t\n12\t\\paragraph{Cross-model generalization.}\n13\tCross-model chains (randomly selected generator per step) provide an exploratory evaluation of depth signal under generator heterogeneity, yielding binary F1\\,=\\,0.830 (95\\% CI [.818, .841]) under generator-level leave-one-out evaluation on the 5-generator subset for which cross-model chains were available (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B).\\footnote{We corrected the cross-model chain evaluation from sample-level CV to generator-level LOGO for consistency with our main evaluation protocol. CIs are case-level bootstrap ($n$\\,=\\,2{,}000). The 5-generator result is not directly comparable to the 8-generator LOGO (binary F1\\,=\\,0.694) due to differing generator subsets.}\n14\tThe higher cross-model binary F1 relative to the 8-generator LOGO (0.694) is not directly comparable: the cross-model evaluation uses a 5-generator subset, and generator heterogeneity in mixed chains may amplify depth-correlated distributional shifts.\n15\tA single-generator transfer analysis (Appendix~\\ref{app:transfer}) provides evidence against this confound: classifiers trained on one generator transfer to all seven others with mean binary F1\\,=\\,0.810 (95\\% CI [0.796, 0.822]), significantly above chance.\n16\tLeave-one-family-out (LOFO) evaluation yields binary F1\\,=\\,0.686, consistent with cross-family transfer.\n17\tA scale effect emerges: Pythia generators achieve the highest binary F1 (0.718--0.724), while larger models show degradation (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference model (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}).\n18\tPreliminary cross-domain evaluation suggests the signal persists with variation, though a domain$\\times$temperature interaction exists (Appendix~\\ref{app:domain}).\n19\tAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 (6-generator LOGO; $+$11.6\\,pp; Appendix~\\ref{app:qlora}), which indicates that richer representations capture \n…[truncated 417 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d031-results-appendix_20260520T112522",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T11:29:23.502503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d031-results-appendix_20260520T112522",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_9gen_scale.tex",
+              "offset": "36",
+              "limit": "10"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T11:29:23.502651+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "36\t\n37\t\\paragraph{Gemma-2-2B anomaly.}\n38\tGemma-2-2B is the weakest held-out generator: 3-class F1\\,=\\,0.628, binary F1\\,=\\,0.440.\n39\tPer-class breakdown reveals a striking asymmetry: gen-0 F1\\,=\\,0.991 and gen-2+ F1\\,=\\,0.856, but gen-1 F1\\,=\\,0.036---the classifier almost entirely fails to identify first-generation Gemma continuations.\n40\tThis is not a data-quality artifact: the Gemma-2-2B partition contains 4{,}957 instances with a balanced depth distribution ($\\sim$990 per level).\n41\tA plausible explanation is that Gemma-2's first-generation continuations occupy a region of feature space highly similar to human-written text (gen-0), causing systematic misclassification of gen-1 as gen-0 or gen-2+.\n42\tThis constitutes an architecture-specific generalization limitation rather than a systemic failure of the depth fingerprinting approach.\n43\tSeveral architectural differences may explain this behavior: (a)~Gemma-2's distinct attention mechanism and SentencePiece tokenizer with a larger vocabulary may produce first-generation continuations whose feature-space signature closely resembles human text, causing systematic gen-0/gen-1 confusion; (b)~this anomaly does not affect DDR's validity for the remaining eight generators, where per-generator F1 shifts by at most 0.011 upon Gemma inclusion.\n44\t\n45\t\\paragraph{Scale effect.}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d031-results-appendix_20260520T112522",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T11:29:23.502781+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d031-results-appendix_20260520T112522",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex",
+              "offset": "53",
+              "limit": "40"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T11:29:23.502923+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "53\tThe partition is robust to the equivalence bound: drifting features reject equivalence at all $\\varepsilon$ for all generators, while entropy min passes even at the stricter bound $\\varepsilon{=}0.15$ (7/8 generators).\n54\tTail decay is the most $\\varepsilon$-sensitive near-stationary feature, passing 4/8 at $\\varepsilon{=}0.20$ but 7/8 at $\\varepsilon{=}0.25$; the four non-passing generators show $|d|{=}0.15$--$0.22$, still well below the drifting threshold ($d > 0.50$).\n55\tEntropy max is stable across all three bounds (6/8), with the two failures (Pythia-1B $d{=}0.21$, Pythia-2.8B $d{=}0.25$) reflecting same-family reference affinity with the Pythia-410M reference model.\n56\t\n57\t\\paragraph{Partition stability across $\\varepsilon$ thresholds.}\n58\t\\label{app:epsilon-sweep}\n59\t\n60\tThe DDR partition classifies features as non-stationary ($d \\geq \\varepsilon$) or stationary ($d < \\varepsilon$) based on pooled Cohen's $d$ (\\S\\ref{sec:results-differential}).\n61\tTable~\\ref{tab:epsilon-sweep} reports the critical $\\varepsilon$ at which each feature's classification changes; the three drifting and three near-stationary features maintain their classification for all $\\varepsilon \\in [0.10, 0.75]$.\n62\t\n63\t\\begin{table}[h]\n64\t\\centering\n65\t\\small\n66\t\\caption{Partition stability under varying $\\varepsilon$. Critical threshold: the $\\varepsilon$ above which a feature is reclassified as stationary. The drifting/near-stationary split is invariant for $\\varepsilon \\in [0.10, 0.75]$; only entropy std ($d{=}0.55$) changes at $\\varepsilon > 0.55$.}\n67\t\\label{tab:epsilon-sweep}\n68\t\\begin{tabular}{llcc}\n69\t\\toprule\n70\t\\textbf{DDR Zone} & \\textbf{Feature} & \\textbf{Pooled $d$} & \\textbf{Stationary at $\\varepsilon >$} \\\\\n71\t\\midrule\n72\t\\multirow{3}{*}{Drifting} & $\\bar{H}$ (ent.\\ mean) & 1.17 & 1.17 \\\\\n73\t & TTR & 0.88 & 0.88 \\\\\n74\t & hapax ratio & 0.76 & 0.76 \\\\\n75\t\\midrule\n76\tIntermediate & $\\sigma_H$ (ent.\\ std) & 0.55 & 0.55 \\\\\n77\t\\midrule\n78\t\\multirow{3}{*}{Near-stat.} & $H_{\\max}$ \n…[truncated 1195 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d031-results-appendix_20260520T112522",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T11:29:23.503121+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All four edits complete:\n\n1. **results.tex W2** (L13): Added \"exploratory evaluation\" framing to cross-model chains sentence. Transfer evidence at L15 already existed — no duplication.\n\n2. **results.tex N4** (L20): Added sentence positioning 7-feature ensemble as interpretable baseline with 14.3pp QLoRA gap and DDR's contribution as empirical decomposition.\n\n3. **appendix_9gen_scale.tex W1** (L43): Extended Gemma anomaly with (a) architectural mechanism hypothesis (attention + tokenizer) and (b) bounded impact (≤0.011 shift). Omitted (c) Qwen3-14B point since exp_060 status is unverified.\n\n4. **appendix_ddr_validation.tex W4** (L57–86): Added ε sensitivity analysis — compact table of critical thresholds per feature + summary paragraph confirming 3/1/3 partition stability across ε ∈ [0.10, 0.75] with entropy std as sole boundary feature (gap = 0.21 between adjacent zones)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d031-results-appendix_20260520T112522"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/paper-d031-results-appendix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40266eedb4b24c55ffc9",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan001 fix rerun",
+  "task_key": "worker_code_plan001-fix-rerun_20260514T184556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-fix-rerun_20260514T184556_result.json",
+    "occurrence": 1,
+    "bytes": 1212,
+    "sha256": "7885d49e51bc1a5bb4c61706a62aed801bd53f0b8a85a50b937dd648a1359493"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。修改摘要：\n\n**Part A — Bootstrap CI（新增）**\n- 对每组 feature set 的 5-fold macro-F1 scores 做 1000 次 bootstrap，报告 95% CI\n- 保留 paired t-test 作为对照\n\n**Part B — H1/H2 Trend Analysis（重写）**\n- `linregress` → `spearmanr`，用 Spearman ρ 和 p-value 判定趋势\n- 新增 `cohens_d()` 计算每对相邻深度的 effect size（d_01 ~ d_34）\n- 检查 effect size 序列是否递减（attractor/convergence 证据）\n- 删除 R²<0.3→H1 硬判定，新逻辑：|ρ|>0.5 且 p<0.05 → H2 (drift)，否则 H1 (near-stationary)\n- 图表改用 std error bars，标注 ρ 和 p-value（不再标 R²）\n- JSON 输出格式按要求更新\n\n**Part C — Perplexity 补充分析（增强）**\n- 新增 per-depth median PPL\n- 新增 PPL>100 样本占比 (high_ppl_ratio)\n- 新增退化文本检测（重复 token >50% 或长度 <20 tokens）\n- 新增 clean PPL 统计（过滤退化样本后的 mean/median/n）\n- 新增 Kruskal-Wallis clean 版本\n- 打印前 5 个退化样本预览\n- JSON 输出格式按要求更新\n\n**运行状态**\n- PID 101585，日志 `/tmp/plan-001-fix.log`\n- Cron 每 3 分钟自动检查进度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan001-fix-rerun.md"
+}

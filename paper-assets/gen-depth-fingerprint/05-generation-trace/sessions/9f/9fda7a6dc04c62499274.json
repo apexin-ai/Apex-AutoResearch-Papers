@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fda7a6dc04c62499274",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "research bib full audit",
+  "task_key": "worker_research_bib-full-audit_20260515T183544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_bib-full-audit_20260515T183544_result.json",
+    "occurrence": 1,
+    "bytes": 1135,
+    "sha256": "5330ba6460b616ff1e3333c943c3c2941112a1cd61cd133a536776d361abf5a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全量审计完成。\n\n## 汇总\n\n| 指标 | 数值 |\n|------|------|\n| 总条目 | 48 |\n| 已审计 | 48 (100%) |\n| 发现错误 | **3** |\n| 已修正 | **3** |\n| 元数据补充 | 5 条 |\n\n### 修正的 3 个错误\n\n1. **`curse_of_recursion`** — 作者顺序错误：Gal 应为末位作者，非第4位。已按 Nature 原文修正为 `Shumailov, Shumaylov, Zhao, Papernot, Anderson, Gal`\n2. **`reliable_detection`** — 标题不完整：TMLR 正式版标题为 `\"...Reliably Detected? Stress Testing AI Text Detectors Under Various Attacks\"`，已补全\n3. **`model_collapse_avoidable`** — 还标注为 arXiv preprint，实际已在 ICML 2024 发表。已改为 `@inproceedings`\n\n### 先前标记条目确认\n\n- `wu_survey_2025` ✅ 当前6位作者正确（之前虚构的已修复）\n- `munir_looking_glass` ✅ 当前5位作者正确（之前错误的已修复）\n- `diveye` ✅ 年份 2026 正确（TMLR '26）\n- `strong_model_collapse` ✅ 年份 2025 正确（ICLR 2025 Spotlight）\n- `aaronson_watermark` ✅ URL 正确\n\n审计报告已写入 `artifacts/bib_audit_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-bib-full-audit.md"
+}

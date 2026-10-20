@@ -1,0 +1,612 @@
+{
+  "schema_version": "1.0",
+  "id": "0ef1e294ba404005cd55",
+  "project": "gen-depth-fingerprint",
+  "kind": "conversation",
+  "title": "code plan 013 text length",
+  "task_key": "worker_code_plan-013-text-length_20260514T234122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_plan-013-text-length_20260514T234122.jsonl",
+    "occurrence": 1,
+    "bytes": 50357,
+    "sha256": "a6802d121451a1cddfec4141b28d385717043b7c5abdb065c56ef5e9574e036e"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "tool_call": 14,
+      "tool_result": 14,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T23:45:12.040736+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T23:45:12.041017+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T23:45:12.041182+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__detect_image"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__detect_image",
+            "tool_args": {
+              "server": "autodl-5090",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T23:45:12.041316+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\n  \\\"detected\\\": false,\\n  \\\"status\\\": \\\"unknown\\\",\\n  \\\"skip_base_setup\\\": false,\\n  \\\"message\\\": \\\"No image marker file found. Use traditional env-setup flow.\\\"\\n}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__detect_image",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T23:45:12.041435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -1 /root/gen-depth-fingerprint/data/generations.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T23:45:12.041569+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": 0, \\\\\\\"depth\\\\\\\": 0, \\\\\\\"text\\\\\\\": \\\\\\\"Anarchism is a political philosophy and movement that is skeptical of all justifications for authority and seeks to abolish the institutions it claims maintain unnecessary coercion and hierarchy, typically including nation-states, and capitalism. Anarchism advocates for the replacement of the state with stateless societies and voluntary free associations. As a historically left-wing movement, this reading of anarchism is placed on the farthest left of the political spectrum, usually described as the libertarian wing of the socialist movement (libertarian socialism).\\\\\\\\n\\\\\\\\nHumans have lived in societies without formal hierarchies long before the establishment of states, realms, or empires. With the rise of organised hierarchical bodies, scepticism toward authority also rose. Although traces of anarchist ideas are found all throughout history, modern anarchism emerged from the Enlightenment. During the latter half of the 19th and the first decades of the 20th century, the anarchist movement flourished in most parts of the world and had a significant role in workers' struggles for emancipation. Various anarchist schools of thought formed during this period. Anarchists have taken part in several revolutions, most notably in the Paris Commune, the Russian Civil War and the Spanish Civil War, whose end marked the end of the classical\\\\\\\", \\\\\\\"seed_id\\\\\\\": 0, \\\\\\\"token_count\\\\\\\": 256}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T23:45:12.041734+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -1 /root/gen-depth-fingerprint/data/pythia-1b/generations.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T23:45:12.041863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": 0, \\\\\\\"depth\\\\\\\": 0, \\\\\\\"text\\\\\\\": \\\\\\\"Anarchism is a political philosophy and movement that is skeptical of all justifications for authority and seeks to abolish the institutions it claims maintain unnecessary coercion and hierarchy, typically including nation-states, and capitalism. Anarchism advocates for the replacement of the state with stateless societies and voluntary free associations. As a historically left-wing movement, this reading of anarchism is placed on the farthest left of the political spectrum, usually described as the libertarian wing of the socialist movement (libertarian socialism).\\\\\\\\n\\\\\\\\nHumans have lived in societies without formal hierarchies long before the establishment of states, realms, or empires. With the rise of organised hierarchical bodies, scepticism toward authority also rose. Although traces of anarchist ideas are found all throughout history, modern anarchism emerged from the Enlightenment. During the latter half of the 19th and the first decades of the 20th century, the anarchist movement flourished in most parts of the world and had a significant role in workers' struggles for emancipation. Various anarchist schools of thought formed during this period. Anarchists have taken part in several revolutions, most notably in the Paris Commune, the Russian Civil War and the Spanish Civil War, whose end marked the end of the classical\\\\\\\", \\\\\\\"seed_id\\\\\\\": 0, \\\\\\\"token_count\\\\\\\": 256, \\\\\\\"model\\\\\\\": \\\\\\\"pythia-1b\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T23:45:12.041997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -1 /root/gen-depth-fingerprint/data/features_all_models.csv",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T23:45:12.042120+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"model_name,seed_id,depth,entropy_mean,entropy_std,entropy_min,entropy_max,tail_decay,ttr,hapax_ratio\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T23:45:12.042263+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "python3 -c \"import json; depths=set(); f=open('/root/gen-depth-fingerprint/data/generations.jsonl'); [depths.add(json.loads(l)['depth']) for l in f]; print(sorted(depths))\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T23:45:12.042382+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T23:45:12.042492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -d /root/gen-depth-fingerprint/data/*/generations.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T23:45:12.042625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gen-depth-fingerprint/data/olmo-2-1b/generations.jsonl\\\\n/root/gen-depth-fingerprint/data/pythia-1b/generations.jsonl\\\\n/root/gen-depth-fingerprint/data/qwen3-0.6b/generations.jsonl\\\\n/root/gen-depth-fingerprint/data/qwen3-1.7b/generations.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T23:45:12.042766+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -o '\"depth\": [0-9]*' /root/gen-depth-fingerprint/data/generations.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T23:45:12.043269+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"depth\\\\\\\": 0\\\\n\\\\\\\"depth\\\\\\\": 1\\\\n\\\\\\\"depth\\\\\\\": 2\\\\n\\\\\\\"depth\\\\\\\": 3\\\\n\\\\\\\"depth\\\\\\\": 4\\\\n\\\\\\\"depth\\\\\\\": 0\\\\n\\\\\\\"depth\\\\\\\": 1\\\\n\\\\\\\"depth\\\\\\\": 2\\\\n\\\\\\\"depth\\\\\\\": 3\\\\n\\\\\\\"depth\\\\\\\": 4\\\\n\\\\\\\"depth\\\\\\\": 0\\\\n\\\\\\\"depth\\\\\\\": 1\\\\n\\\\\\\"depth\\\\\\\": 2\\\\n\\\\\\\"depth\\\\\\\": 3\\\\n\\\\\\\"depth\\\\\\\": 4\\\\n\\\\\\\"depth\\\\\\\": 0\\\\n\\\\\\\"depth\\\\\\\": 1\\\\n\\\\\\\"depth\\\\\\\": 2\\\\n\\\\\\\"depth\\\\\\\": 3\\\\n\\\\\\\"depth\\\\\\\": 4\\\\n\\\\\\\"depth\\\\\\\": 0\\\\n\\\\\\\"depth\\\\\\\": 1\\\\n\\\\\\\"depth\\\\\\\": 2\\\\n\\\\\\\"depth\\\\\\\": 3\\\\n\\\\\\\"depth\\\\\\\": 4\\\\n\\\\\\\"depth\\\\\\\": 0\\\\n\\\\\\\"depth\\\\\\\": 1\\\\n\\\\\\\"depth\\\\\\\": 2\\\\n\\\\\\\"depth\\\\\\\": 3\\\\n\\\\\\\"depth\\\\\\\": 4\\\\n\\\\\\\"depth\\\\\\\": 0\\\\n\\\\\\\"depth\\\\\\\": 1\\\\n\\\\\\\"depth\\\\\\\": 2\\\\n\\\\\\\"depth\\\\\\\": 3\\\\n\\\\\\\"depth\\\\\\\": 4\\\\n\\\\\\\"depth\\\\\\\": 0\\\\n\\\\\\\"depth\\\\\\\": 1\\\\n\\\\\\\"depth\\\\\\\": 2\\\\n\\\\\\\"depth\\\\\\\": 3\\\\n\\\\\\\"depth\\\\\\\": 4\\\\n\\\\\\\"depth\\\\\\\": 0\\\\n\\\\\\\"depth\\\\\\\": 1\\\\n\\\\\\\"depth\\\\\\\": 2\\\\n\\\\\\\"depth\\\\\\\": 3\\\\n\\\\\\\"depth\\\\\\\": 4\\\\n\\\\\\\"depth\\\\\\\": 0\\\\n\\\\\\\"depth\\\\\\\": 1\\\\n\\\\\\\"depth\\\\\\\": 2\\\\n\\\\\\\"depth\\\\\\\": 3\\\\n\\\\\\\"depth\\\\\\\": 4\\\\n\\\\\\\"depth\\\\\\\": 0\\\\n\\\\\\\"depth\\\\\\\": 1\\\\n\\\\\\\"depth\\\\\\\": 2\\\\n\\\\\\\"depth\\\\\\\": 3\\\\n\\\\\\\"depth\\\\\\\": 4\\\\n\\\\\\\"depth\\\\\\\": 0\\\\n\\\\\\\"depth\\\\\\\": 1\\\\n\\\\\\\"depth\\\\\\\": 2\\\\n\\\\\\\"depth\\\\\\\": 3\\\\n\\\\\\\"depth\\\\\\\": 4\\\\n\\\\\\\"depth\\\\\\\": 0\\\\n\\\\\\\"depth\\\\\\\": 1\\\\n\\\\\\\"depth\\\\\\\": 2\\\\n\\\\\\\"depth\\\\\\\": 3\\\\n\\\\\\\"depth\\\\\\\": 4\\\\n\\\\\\\"depth\\\\\\\": 0\\\\n\\\\\\\"depth\\\\\\\": 1\\\\n\\\\\\\"depth\\\\\\\": 2\\\\n\\\\\\\"depth\\\\\\\": 3\\\\n\\\\\\\"depth\\\\\\\": 4\\\\n\\\\\\\"depth\\\\\\\": 0\\\\n\\\\\\\"depth\\\\\\\": 1\\\\n\\\\\\\"depth\\\\\\\": 2\\\\n\\\\\\\"depth\\\\\\\": 3\\\\n\\\\\\\"depth\\\\\\\": 4\\\\n\\\\\\\"depth\\\\\\\": 0\\\\n\\\\\\\"depth\\\\\\\": 1\\\\n\\\\\\\"depth\\\\\\\": 2\\\\n\\\\\\\"depth\\\\\\\": 0\\\\n\\\\\\\"depth\\\\\\\": 1\\\\n\\\\\\\"depth\\\\\\\": 2\\\\n\\\\\\\"depth\\\\\\\": 3\\\\n\\\\\\\"depth\\\\\\\": 4\\\\n\\\\\\\"depth\\\\\\\": 0\\\\n\\\\\\\"depth\\\\\\\": 1\\\\n\\\\\\\"depth\\\\\\\": 2\\\\n\\\\\\\"depth\\\\\\\": 3\\\\n\\\\\\\"depth\\\\\\\": 4\\\\n\\\\\\\"depth\\\\\\\": 0\\\\n\\\\\\\"depth\\\\\\\": 1\\\\n\\\\\\\"depth\\\\\\\": 2\\\\n\\\\\\\"depth\\\\\\\": 3\\\\n\\\\\\\"depth\\\\\\\": 4\\\\n\\\\\\\"depth\\\\\\\": 0\\\\n\\\\\\\"depth\\\\\\\": 1\\\\n\\\\\\\"depth\\\\\\\": 2\\\\n\\\\\\\"depth\\\\\\\": 3\\\\n\\\\\\\"depth\\\\\\\": 4\\\\n\\\\\\\"depth\\\\\\\": 0\\\\n\\\\\\\"depth\\\\\\\": 1\\\\n\\\\\\\"depth\\\\\\\": 2\\\\n\\\\\\\"depth\\\\\\\": 3\\\\n\\\\\\\"de\n…[truncated 12021 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T23:45:12.043507+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/text_length_analysis.py",
+              "content": "\"\"\"\ntext_length_analysis.py — plan-013 文本长度混淆控制\n输入: data/*/generations.jsonl (原始文本) + data/features_all_models.csv (特征)\n输出: data/text_length_analysis.json, data/text_length_boxplot.png\n分析: 长度分布/相关性/归一化特征/长度匹配分类/dropout分析\n\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport json, os, sys\nimport numpy as np\nimport pandas as pd\nfrom collections import Counter\nfrom scipy.stats import spearmanr\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import f1_score\nimport xgboost as xgb\n\nBASE = '/root/gen-depth-fingerprint'\n\nMODEL_PATHS = {\n    'pythia-2.8b': f'{BASE}/data/generations.jsonl',\n    'pythia-1b':   f'{BASE}/data/pythia-1b/generations.jsonl',\n    'olmo-2-1b':   f'{BASE}/data/olmo-2-1b/generations.jsonl',\n    'qwen3-0.6b':  f'{BASE}/data/qwen3-0.6b/generations.jsonl',\n    'qwen3-1.7b':  f'{BASE}/data/qwen3-1.7b/generations.jsonl',\n}\n\nMODEL_ORDER = ['pythia-2.8b', 'pythia-1b', 'olmo-2-1b', 'qwen3-0.6b', 'qwen3-1.7b']\n\ndef load_generations():\n    rows = []\n    for model, path in MODEL_PATHS.items():\n        with open(path) as f:\n            for line in f:\n                d = json.loads(line)\n                text = d['text']\n                words = text.split()\n                rows.append({\n                    'model': model,\n                    'seed_id': d['seed_id'],\n                    'depth': d['depth'],\n                    'text': text,\n                    'char_count': len(text),\n                    'word_count': len(words),\n                    'token_count': d.get('token_count', None),\n                })\n    return pd.DataFrame(rows)\n\ndef load_features():\n    return pd.read_csv(f'{BASE}/data/features_all_models.csv')\n\n# ── 1. 长度分布 ──\ndef analyze_length_distribution(df):\n    print('='*60)\n    print('1. LENGTH DISTRIBUTION (mean ± std)')\n    print('='*60)\n    results = {}\n    for model in MODEL_ORDER:\n        mdf = df[df['model'] == model]\n        print(f'\\n  {model}:')\n        model_res = {}\n        for d in sorted(mdf['depth'].unique()):\n            sub = mdf[mdf['depth'] == d]\n            cm, cs = sub['char_count'].mean(), sub['char_count'].std()\n            wm, ws = sub['word_count'].mean(), sub['word_count'].std()\n            print(f'    depth {d}: chars={cm:.0f}±{cs:.0f}  words={wm:.1f}±{ws:.1f}  n={len(sub)}')\n            model_res[int(d)] = {'n': len(sub), 'char_mean': round(cm,1), 'char_std': round(cs,1),\n                                  'word_mean': round(wm,1), 'word_std': round(ws,1)}\n        results[model] = model_res\n    return results\n\ndef plot_boxplot(df):\n    fig, axes = plt.subplots(1, 5, figsize=(20, 4), sharey=True)\n    fig.subplots_adjust(wspace=0.08)\n    for i, model in enumerate(MODEL_ORDER):\n        ax = axes[i]\n        mdf = df[df['model'] == model]\n        depths = sorted(mdf['depth'].unique())\n        data = [mdf[mdf['depth'] == d]['word_count'].values for d in depths]\n        bp = ax.boxplot(data, labels=[str(d) for d in depths], widths=0.6,\n                        patch_artist=True, medianprops=dict(color='black', linewidth=1.5))\n        colors = plt.cm.Blues(np.linspace(0.3, 0.85, len(depths)))\n        for patch, c in zip(bp['boxes'], colors):\n            patch.set_facecolor(c)\n        ax.set_xlabel('Generation Depth', fontsize=11)\n        ax.set_title(model, fontsize=12, fontweight='bold')\n        if i == 0:\n            ax.set_ylabel('Word Count', fontsize=11)\n        ax.tick_params(labelsize=10)\n        ax.grid(axis='y', alpha=0.3)\n    fig.suptitle('Text Length Distribution by Generation Depth', fontsize=14, fontweight='bold', y=1.02)\n    plt.tight_layout()\n    out = f'{BASE}/data/text_length_boxplot.png'\n    plt.savefig(out, dpi=150, bbox_inches='tight')\n    print(f'\\n  Box plot saved: {out}')\n\n# ── 2. 长度与深度相关性 ──\ndef analyze_correlation(df):\n    print('\\n' + '='*60)\n    print('2. SPEARMAN CORRELATION (word_count vs depth)')\n    print('='*60)\n    results = {}\n    print(f'  {\"Model\":<15} {\"ρ\":>8} {\"p-value\":>12} {\"Significant\":>12}')\n    print(f'  {\"-\"*47}')\n    for model in MODEL_ORDER:\n        mdf = df[df['model'] == model]\n        rho, pval = spearmanr(mdf['word_count'], mdf['depth'])\n        sig = 'Yes' if pval < 0.05 else 'No'\n        print(f'  {model:<15} {rho:>8.4f} {pval:>12.2e} {sig:>12}')\n        results[model] = {'rho': round(rho, 4), 'p_value': float(f'{pval:.4e}'), 'significant': pval < 0.05}\n    return results\n\n# ── 3. 长度归一化特征 ──\ndef normalized_ttr(text, window=200):\n    words = text.split()[:window]\n    if len(words) < 10:\n        return None\n    return len(set(words)) / len(words)\n\ndef normalized_hapax(text, window=200):\n    words = text.split()[:window]\n    if len(words) < 10:\n        return None\n    freq = Counter(words)\n    return sum(1 for w, c in freq.items() if c == 1) / len(set(words))\n\ndef analyze_normalized_features(df, feat_df):\n    print('\\n' + '='*60)\n    print('3. LENGTH-NORMALIZED FEATURES (window=200 words)')\n    print('='*60)\n\n    df = df.copy()\n    df['norm_ttr'] = df['text'].apply(lambda t: normalized_ttr(t, 200))\n    df['norm_hapax'] = df['text'].apply(lambda t: normalized_hapax(t, 200))\n\n    results = {}\n    for model in MODEL_ORDER:\n        mdf = df[df['model'] == model].dropna(subset=['norm_ttr', 'norm_hapax'])\n        fdf = feat_df[feat_df['model_name'] == model]\n\n        print(f'\\n  {model}:')\n        print(f'    {\"Depth\":<8} {\"TTR_orig\":>10} {\"TTR_norm\":>10} {\"Δ\":>8} {\"Hapax_orig\":>12} {\"Hapax_norm\":>12} {\"Δ\":>8}')\n        model_res = {}\n        for d in sorted(mdf['depth'].unique()):\n            orig_ttr = fdf[fdf['depth'] == d]['ttr'].mean()\n            norm_ttr_val = mdf[mdf['depth'] == d]['norm_ttr'].mean()\n            orig_hap = fdf[fdf['depth'] == d]['hapax_ratio'].mean()\n            norm_hap_val = mdf[mdf['depth'] == d]['norm_hapax'].mean()\n            d_ttr = norm_ttr_val - orig_ttr\n            d_hap = norm_hap_val - orig_hap\n            print(f'    {d:<8} {orig_ttr:>10.4f} {norm_ttr_val:>10.4f} {d_ttr:>+8.4f} {orig_hap:>12.4f} {norm_hap_val:>12.4f} {d_hap:>+8.4f}')\n            model_res[int(d)] = {\n                'ttr_orig': round(orig_ttr, 4), 'ttr_norm': round(norm_ttr_val, 4),\n                'hapax_orig': round(orig_hap, 4), 'hapax_norm': round(norm_hap_val, 4),\n            }\n        results[model] = model_res\n\n        # Spearman on normalized\n        rho_ttr, p_ttr = spearmanr(mdf['depth'], mdf['norm_ttr'])\n        rho_hap, p_hap = spearmanr(mdf['depth'], mdf['norm_hapax'])\n        print(f'    Spearman norm_ttr~depth: ρ={rho_ttr:.4f}, p={p_ttr:.2e}')\n        print(f'    Spearman norm_hapax~depth: ρ={rho_hap:.4f}, p={p_hap:.2e}')\n        results[model]['spearman_norm_ttr'] = {'rho': round(rho_ttr, 4), 'p': float(f'{p_ttr:.4e}')}\n        results[model]['spearman_norm_hapax'] = {'rho': round(rho_hap, 4), 'p': float(f'{p_hap:.4e}')}\n\n    # Compare original vs normalized Spearman across models\n    print('\\n  CONCLUSION:')\n    for model in MODEL_ORDER:\n        fdf = feat_df[feat_df['model_name'] == model]\n        mdf = df[df['model'] == model].dropna(subset=['norm_ttr'])\n        rho_orig, _ = spearmanr(fdf['depth'], fdf['ttr'])\n        rho_norm = results[model]['spearman_norm_ttr']['rho']\n        verdict = 'trend preserved' if abs(rho_norm) > 0.05 and results[model]['spearman_norm_ttr']['p'] < 0.05 else 'trend weakened/gone'\n        print(f'    {model}: orig_ρ={rho_orig:.4f} → norm_ρ={rho_norm:.4f}  ({verdict})')\n\n    return results\n\n# ── 4. 长度匹配分类器 ──\ndef length_matched_classifier(df, feat_df):\n    print('\\n' + '='*60)\n    print('4. LENGTH-MATCHED CLASSIFIER (XGBoost 3-class)')\n    print('='*60)\n\n    feat_df = feat_df.copy()\n    feat_df['depth_class'] = feat_df['depth'].apply(lambda d: min(d, 2))\n    feature_cols = ['entropy_mean', 'entropy_std', 'entropy_min', 'entropy_max', 'tail_decay', 'ttr', 'hapax_ratio']\n\n    # Merge word_count into features\n    wc = df.groupby(['model', 'seed_id', 'depth'])['word_count'].first().reset_index()\n    wc.columns = ['model_name', 'seed_id', 'depth', 'word_count']\n    feat_merged = feat_df.merge(wc, on=['model_name', 'seed_id', 'depth'], how='left')\n\n    results = {}\n\n    for model in MODEL_ORDER:\n        mdf = feat_merged[feat_merged['model_name'] == model].dropna(subset=['word_count']).copy()\n\n        # Original (unmatched) CV\n        X = mdf[feature_cols].values\n        y = mdf['depth_class'].values\n        f1_orig = _cv_f1(X, y)\n\n        # Length-matched subsample\n        n_bins = 10\n        mdf['wc_bin'] = pd.qcut(mdf['word_count'], q=n_bins, labels=False, duplicates='drop')\n        matched_idx = []\n        for b in mdf['wc_bin'].unique():\n            bin_df = mdf[mdf['wc_bin'] == b]\n            counts_per_class = bin_df.groupby('depth_class').size()\n            if len(counts_per_class) < 3:\n                continue\n            min_count = counts_per_class.min()\n            if min_count == 0:\n                continue\n            for cls in counts_per_class.index:\n                cls_rows = bin_df[bin_df['depth_class'] == cls]\n                matched_idx.extend(cls_rows.sample(n=min_count, random_state=42).index.tolist())\n        matched = mdf.loc[matched_idx]\n\n        if len(matched) < 30:\n            print(f'  {model}: insufficient matched samples ({len(matched)}), skipping')\n            results[model] = {'original_f1': round(f1_orig, 4), 'matched_f1': None, 'delta': None, 'matched_n': len(matched)}\n            continue\n\n        X_m = matched[feature_cols].values\n        y_m = matched['depth_class'].values\n        f1_matched = _cv_f1(X_m, y_m)\n\n        delta = f1_matched - f1_orig\n        print(f'  {model}: orig_F1={f1_orig:.4f}  matched_F1={f1_matched:.4f}  Δ={delta:+.4f}  (n_orig={len(mdf)}, n_matched={len(matched)})')\n        results[model] = {\n            'original_f1': round(f1_orig, 4), 'matched_f1': round(f1_matched, 4),\n            'delta': round(delta, 4), 'original_n': len(mdf), 'matched_n': len(matched),\n        }\n\n    deltas = [v['delta'] for v in results.values() if v['delta'] is not None]\n    avg_delta = np.mean(deltas) if deltas else 0\n    print(f'\\n  Average Δ F1: {avg_delta:+.4f}')\n    if abs(avg_delta) < 0.05:\n        print('  CONCLUSION: Length is NOT a major confound (|avg Δ| < 0.05)')\n    else:\n        print('  CONCLUSION: Length may be a confound (|avg Δ| >= 0.05)')\n    results['avg_delta'] = round(avg_delta, 4)\n    return results\n\ndef _cv_f1(X, y, n_splits=5):\n    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)\n    scores = []\n    for tr, te in skf.split(X, y):\n        clf = xgb.XGBClassifier(n_estimators=200, max_depth=6, learning_rate=0.1,\n                                 random_state=42, eval_metric='mlogloss',\n                                 use_label_encoder=False, verbosity=0)\n        clf.fit(X[tr], y[tr])\n        pred = clf.predict(X[te])\n        scores.append(f1_score(y[te], pred, average='macro'))\n    return np.mean(scores)\n\n# ── 5. Dropout 分析 ──\ndef analyze_dropout(df):\n    print('\\n' + '='*60)\n    print('5. DROPOUT ANALYSIS')\n    print('='*60)\n\n    results = {}\n    for model in MODEL_ORDER:\n        mdf = df[df['model'] == model]\n        depths = sorted(mdf['depth'].unique())\n        print(f'\\n  {model}:')\n        model_res = {}\n        for i in range(len(depths) - 1):\n            d, d1 = depths[i], depths[i+1]\n            seeds_d = set(mdf[mdf['depth'] == d]['seed_id'])\n            seeds_d1 = set(mdf[mdf['depth'] == d1]['seed_id'])\n            dropped = seeds_d - seeds_d1\n            dropout_rate = len(dropped) / len(seeds_d) if len(seeds_d) > 0 else 0\n\n            # Length comparison\n            kept = mdf[(mdf['depth'] == d) & (mdf['seed_id'].isin(seeds_d1))]\n            lost = mdf[(mdf['depth'] == d) & (mdf['seed_id'].isin(dropped))]\n            kept_wc = kept['word_count'].mean() if len(kept) > 0 else 0\n            lost_wc = lost['word_count'].mean() if len(lost) > 0 else 0\n\n            print(f'    {d}→{d1}: dropout={len(dropped)}/{len(seeds_d)} ({dropout_rate:.1%}), '\n                  f'lost_avg_wc={lost_wc:.0f}, kept_avg_wc={kept_wc:.0f}')\n            model_res[f'{d}->{d1}'] = {\n                'dropped': len(dropped), 'total': len(seeds_d),\n                'dropout_rate': round(dropout_rate, 4),\n                'lost_avg_wordcount': round(lost_wc, 1),\n                'kept_avg_wordcount': round(kept_wc, 1),\n            }\n        results[model] = model_res\n\n    # Summary: are shorter texts more likely to dropout?\n    print('\\n  CONCLUSION:')\n    shorter_dropout_count = 0\n    total_transitions = 0\n    for model, transitions in results.items():\n        for t, v in transitions.items():\n            if v['dropped'] > 0:\n                total_transitions += 1\n                if v['lost_avg_wordcount'] < v['kept_avg_wordcount']:\n                    shorter_dropout_count += 1\n    if total_transitions > 0:\n        frac = shorter_dropout_count / total_transitions\n        if frac > 0.7:\n            print(f'    Shorter texts dropout more often ({shorter_dropout_count}/{total_transitions} transitions)')\n        elif frac < 0.3:\n            print(f'    Longer texts dropout more often ({total_transitions - shorter_dropout_count}/{total_transitions} transitions)')\n        else:\n            print(f'    No clear length-dropout pattern ({shorter_dropout_count}/{total_transitions} shorter-dropout)')\n\n    return results\n\n# ── Main ──\nif __name__ == '__main__':\n    print('Loading data...')\n    df = load_generations()\n    feat_df = load_features()\n    print(f'  Generations: {len(df)} rows, Features: {len(feat_df)} rows')\n\n    all_results = {}\n\n    all_results['length_distribution'] = analyze_length_distribution(df)\n    plot_boxplot(df)\n    all_results['correlation'] = analyze_correlation(df)\n    all_results['normalized_features'] = analyze_normalized_features(df, feat_df)\n    all_results['length_matched_classifier'] = length_matched_classifier(df, feat_df)\n    all_results['dropout'] = analyze_dropout(df)\n\n    out_path = f'{BASE}/data/text_length_analysis.json'\n    with open(out_path, 'w') as f:\n        json.dump(all_results, f, indent=2, ensure_ascii=False)\n    print(f'\\nResults saved: {out_path}')\n"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T23:45:12.043849+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/text_length_analysis.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T23:45:12.044036+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat > /root/gen-depth-fingerprint/text_length_analysis.py << 'SCRIPT_EOF'\n\"\"\"\ntext_length_analysis.py — plan-013 文本长度混淆控制\n输入: data/*/generations.jsonl (原始文本) + data/features_all_models.csv (特征)\n输出: data/text_length_analysis.json, data/text_length_boxplot.png\n分析: 长度分布/相关性/归一化特征/长度匹配分类/dropout分析\n\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport json, os, sys\nimport numpy as np\nimport pandas as pd\nfrom collections import Counter\nfrom scipy.stats import spearmanr\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import f1_score\nimport xgboost as xgb\n\nBASE = '/root/gen-depth-fingerprint'\n\nMODEL_PATHS = {\n    'pythia-2.8b': f'{BASE}/data/generations.jsonl',\n    'pythia-1b':   f'{BASE}/data/pythia-1b/generations.jsonl',\n    'olmo-2-1b':   f'{BASE}/data/olmo-2-1b/generations.jsonl',\n    'qwen3-0.6b':  f'{BASE}/data/qwen3-0.6b/generations.jsonl',\n    'qwen3-1.7b':  f'{BASE}/data/qwen3-1.7b/generations.jsonl',\n}\n\nMODEL_ORDER = ['pythia-2.8b', 'pythia-1b', 'olmo-2-1b', 'qwen3-0.6b', 'qwen3-1.7b']\n\ndef load_generations():\n    rows = []\n    for model, path in MODEL_PATHS.items():\n        with open(path) as f:\n            for line in f:\n                d = json.loads(line)\n                text = d['text']\n                words = text.split()\n                rows.append({\n                    'model': model,\n                    'seed_id': d['seed_id'],\n                    'depth': d['depth'],\n                    'text': text,\n                    'char_count': len(text),\n                    'word_count': len(words),\n                    'token_count': d.get('token_count', None),\n                })\n    return pd.DataFrame(rows)\n\ndef load_features():\n    return pd.read_csv(f'{BASE}/data/features_all_models.csv')\n\ndef analyze_length_distribution(df):\n    print('='*60)\n    print('1. LENGTH DISTRIBUTION (mean +/- std)')\n    print('='*60)\n    results = {}\n    for model in MODEL_ORDER:\n        mdf = df[df['model'] == model]\n        print(f'\\n  {model}:')\n        model_res = {}\n        for d in sorted(mdf['depth'].unique()):\n            sub = mdf[mdf['depth'] == d]\n            cm, cs = sub['char_count'].mean(), sub['char_count'].std()\n            wm, ws = sub['word_count'].mean(), sub['word_count'].std()\n            print(f'    depth {d}: chars={cm:.0f}+/-{cs:.0f}  words={wm:.1f}+/-{ws:.1f}  n={len(sub)}')\n            model_res[int(d)] = {'n': len(sub), 'char_mean': round(cm,1), 'char_std': round(cs,1),\n                                  'word_mean': round(wm,1), 'word_std': round(ws,1)}\n        results[model] = model_res\n    return results\n\ndef plot_boxplot(df):\n    fig, axes = plt.subplots(1, 5, figsize=(20, 4), sharey=True)\n    fig.subplots_adjust(wspace=0.08)\n    for i, model in enumerate(MODEL_ORDER):\n        ax = axes[i]\n        mdf = df[df['model'] == model]\n        depths = sorted(mdf['depth'].unique())\n        data = [mdf[mdf['depth'] == d]['word_count'].values for d in depths]\n        bp = ax.boxplot(data, labels=[str(d) for d in depths], widths=0.6,\n                        patch_artist=True, medianprops=dict(color='black', linewidth=1.5))\n        colors = plt.cm.Blues(np.linspace(0.3, 0.85, len(depths)))\n        for patch, c in zip(bp['boxes'], colors):\n            patch.set_facecolor(c)\n        ax.set_xlabel('Generation Depth', fontsize=11)\n        ax.set_title(model, fontsize=12, fontweight='bold')\n        if i == 0:\n            ax.set_ylabel('Word Count', fontsize=11)\n        ax.tick_params(labelsize=10)\n        ax.grid(axis='y', alpha=0.3)\n    fig.suptitle('Text Length Distribution by Generation Depth', fontsize=14, fontweight='bold', y=1.02)\n    plt.tight_layout()\n    out = f'{BASE}/data/text_length_boxplot.png'\n    plt.savefig(out, dpi=150, bbox_inches='tight')\n    print(f'\\n  Box plot saved: {out}')\n\ndef analyze_correlation(df):\n    print('\\n' + '='*60)\n    print('2. SPEARMAN CORRELATION (word_count vs depth)')\n    print('='*60)\n    results = {}\n    print(f'  {\"Model\":<15} {\"rho\":>8} {\"p-value\":>12} {\"Significant\":>12}')\n    print(f'  {\"-\"*47}')\n    for model in MODEL_ORDER:\n        mdf = df[df['model'] == model]\n        rho, pval = spearmanr(mdf['word_count'], mdf['depth'])\n        sig = 'Yes' if pval < 0.05 else 'No'\n        print(f'  {model:<15} {rho:>8.4f} {pval:>12.2e} {sig:>12}')\n        results[model] = {'rho': round(rho, 4), 'p_value': float(f'{pval:.4e}'), 'significant': pval < 0.05}\n    return results\n\ndef normalized_ttr(text, window=200):\n    words = text.split()[:window]\n    if len(words) < 10:\n        return None\n    return len(set(words)) / len(words)\n\ndef normalized_hapax(text, window=200):\n    words = text.split()[:window]\n    if len(words) < 10:\n        return None\n    freq = Counter(words)\n    return sum(1 for w, c in freq.items() if c == 1) / len(set(words))\n\ndef analyze_normalized_features(df, feat_df):\n    print('\\n' + '='*60)\n    print('3. LENGTH-NORMALIZED FEATURES (window=200 words)')\n    print('='*60)\n\n    df = df.copy()\n    df['norm_ttr'] = df['text'].apply(lambda t: normalized_ttr(t, 200))\n    df['norm_hapax'] = df['text'].apply(lambda t: normalized_hapax(t, 200))\n\n    results = {}\n    for model in MODEL_ORDER:\n        mdf = df[df['model'] == model].dropna(subset=['norm_ttr', 'norm_hapax'])\n        fdf = feat_df[feat_df['model_name'] == model]\n\n        print(f'\\n  {model}:')\n        print(f'    {\"Depth\":<8} {\"TTR_orig\":>10} {\"TTR_norm\":>10} {\"delta\":>8} {\"Hapax_orig\":>12} {\"Hapax_norm\":>12} {\"delta\":>8}')\n        model_res = {}\n        for d in sorted(mdf['depth'].unique()):\n            orig_ttr = fdf[fdf['depth'] == d]['ttr'].mean()\n            norm_ttr_val = mdf[mdf['depth'] == d]['norm_ttr'].mean()\n            orig_hap = fdf[fdf['depth'] == d]['hapax_ratio'].mean()\n            norm_hap_val = mdf[mdf['depth'] == d]['norm_hapax'].mean()\n            d_ttr = norm_ttr_val - orig_ttr\n            d_hap = norm_hap_val - orig_hap\n            print(f'    {d:<8} {orig_ttr:>10.4f} {norm_ttr_val:>10.4f} {d_ttr:>+8.4f} {orig_hap:>12.4f} {norm_hap_val:>12.4f} {d_hap:>+8.4f}')\n            model_res[int(d)] = {\n                'ttr_orig': round(orig_ttr, 4), 'ttr_norm': round(norm_ttr_val, 4),\n                'hapax_orig': round(orig_hap, 4), 'hapax_norm': round(norm_hap_val, 4),\n            }\n        results[model] = model_res\n\n        rho_ttr, p_ttr = spearmanr(mdf['depth'], mdf['norm_ttr'])\n        rho_hap, p_hap = spearmanr(mdf['depth'], mdf['norm_hapax'])\n        print(f'    Spearman norm_ttr~depth: rho={rho_ttr:.4f}, p={p_ttr:.2e}')\n        print(f'    Spearman norm_hapax~depth: rho={rho_hap:.4f}, p={p_hap:.2e}')\n        results[model]['spearman_norm_ttr'] = {'rho': round(rho_ttr, 4), 'p': float(f'{p_ttr:.4e}')}\n        results[model]['spearman_norm_hapax'] = {'rho': round(rho_hap, 4), 'p': float(f'{p_hap:.4e}')}\n\n    print('\\n  CONCLUSION:')\n    for model in MODEL_ORDER:\n        fdf = feat_df[feat_df['model_name'] == model]\n        mdf = df[df['model'] == model].dropna(subset=['norm_ttr'])\n        rho_orig, _ = spearmanr(fdf['depth'], fdf['ttr'])\n        rho_norm = results[model]['spearman_norm_ttr']['rho']\n        verdict = 'trend preserved' if abs(rho_norm) > 0.05 and results[model]['spearman_norm_ttr']['p'] < 0.05 else 'trend weakened/gone'\n        print(f'    {model}: orig_rho={rho_orig:.4f} -> norm_rho={rho_norm:.4f}  ({verdict})')\n\n    return results\n\ndef length_matched_classifier(df, feat_df):\n    print('\\n' + '='*60)\n    print('4. LENGTH-MATCHED CLASSIFIER (XGBoost 3-class)')\n    print('='*60)\n\n    feat_df = feat_df.copy()\n    feat_df['depth_class'] = feat_df['depth'].apply(lambda d: min(d, 2))\n    feature_cols = ['entropy_mean', 'entropy_std', 'entropy_min', 'entropy_max', 'tail_decay', 'ttr', 'hapax_ratio']\n\n    wc = df.groupby(['model', 'seed_id', 'depth'])['word_count'].first().reset_index()\n    wc.columns = ['model_name', 'seed_id', 'depth', 'word_count']\n    feat_merged = feat_df.merge(wc, on=['model_name', 'seed_id', 'depth'], how='left')\n\n    results = {}\n\n    for model in MODEL_ORDER:\n        mdf = feat_merged[feat_merged['model_name'] == model].dropna(subset=['word_count']).copy()\n\n        X = mdf[feature_cols].values\n        y = mdf['depth_class'].values\n        f1_orig = _cv_f1(X, y)\n\n        n_bins = 10\n        mdf['wc_bin'] = pd.qcut(mdf['word_count'], q=n_bins, labels=False, duplicates='drop')\n        matched_idx = []\n        for b in mdf['wc_bin'].unique():\n            bin_df = mdf[mdf['wc_bin'] == b]\n            counts_per_class = bin_df.groupby('depth_class').size()\n            if len(counts_per_class) < 3:\n                continue\n            min_count = counts_per_class.min()\n            if min_count == 0:\n                continue\n            for cls in counts_per_class.index:\n                cls_rows = bin_df[bin_df['depth_class'] == cls]\n                matched_idx.extend(cls_rows.sample(n=min_count, random_state=42).index.tolist())\n        matched = mdf.loc[matched_idx]\n\n        if len(matched) < 30:\n            print(f'  {model}: insufficient matched samples ({len(matched)}), skipping')\n            results[model] = {'original_f1': round(f1_orig, 4), 'matched_f1': None, 'delta': None, 'matched_n': len(matched)}\n            continue\n\n        X_m = matched[feature_cols].values\n        y_m = matched['depth_class'].values\n        f1_matched = _cv_f1(X_m, y_m)\n\n        delta = f1_matched - f1_orig\n        print(f'  {model}: orig_F1={f1_orig:.4f}  matched_F1={f1_matched:.4f}  delta={delta:+.4f}  (n_orig={len(mdf)}, n_matched={len(matched)})')\n        results[model] = {\n            'original_f1': round(f1_orig, 4), 'matched_f1': round(f1_matched, 4),\n            'delta': round(delta, 4), 'original_n': len(mdf), 'matched_n': len(matched),\n        }\n\n    deltas = [v['delta'] for v in results.values() if isinstance(v, dict) and v.get('delta') is not None]\n    avg_delta = np.mean(deltas) if deltas else 0\n    print(f'\\n  Average delta F1: {avg_delta:+.4f}')\n    if abs(avg_delta) < 0.05:\n        print('  CONCLUSION: Length is NOT a major confound (|avg delta| < 0.05)')\n    else:\n        print('  CONCLUSION: Length may be a confound (|avg delta| >= 0.05)')\n    results['avg_delta'] = round(avg_delta, 4)\n    return results\n\ndef _cv_f1(X, y, n_splits=5):\n    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)\n    scores = []\n    for tr, te in skf.split(X, y):\n        clf = xgb.XGBClassifier(n_estimators=200, max_depth=6, learning_rate=0.1,\n                                 random_state=42, eval_metric='mlogloss',\n                                 use_label_encoder=False, verbosity=0)\n        clf.fit(X[tr], y[tr])\n        pred = clf.predict(X[te])\n        scores.append(f1_score(y[te], pred, average='macro'))\n    return np.mean(scores)\n\ndef analyze_dropout(df):\n    print('\\n' + '='*60)\n    print('5. DROPOUT ANALYSIS')\n    print('='*60)\n\n    results = {}\n    for model in MODEL_ORDER:\n        mdf = df[df['model'] == model]\n        depths = sorted(mdf['depth'].unique())\n        print(f'\\n  {model}:')\n        model_res = {}\n        for i in range(len(depths) - 1):\n            d, d1 = depths[i], depths[i+1]\n            seeds_d = set(mdf[mdf['depth'] == d]['seed_id'])\n            seeds_d1 = set(mdf[mdf['depth'] == d1]['seed_id'])\n            dropped = seeds_d - seeds_d1\n            dropout_rate = len(dropped) / len(seeds_d) if len(seeds_d) > 0 else 0\n\n            kept = mdf[(mdf['depth'] == d) & (mdf['seed_id'].isin(seeds_d1))]\n            lost = mdf[(mdf['depth'] == d) & (mdf['seed_id'].isin(dropped))]\n            kept_wc = kept['word_count'].mean() if len(kept) > 0 else 0\n            lost_wc = lost['word_count'].mean() if len(lost) > 0 else 0\n\n            print(f'    {d}->{d1}: dropout={len(dropped)}/{len(seeds_d)} ({dropout_rate:.1%}), '\n                  f'lost_avg_wc={lost_wc:.0f}, kept_avg_wc={kept_wc:.0f}')\n            model_res[f'{d}->{d1}'] = {\n                'dropped': len(dropped), 'total': len(seeds_d),\n                'dropout_rate': round(dropout_rate, 4),\n                'lost_avg_wordcount': round(lost_wc, 1),\n                'kept_avg_wordcount': round(kept_wc, 1),\n            }\n        results[model] = model_res\n\n    print('\\n  CONCLUSION:')\n    shorter_dropout_count = 0\n    total_transitions = 0\n    for model, transitions in results.items():\n        for t, v in transitions.items():\n            if v['dropped'] > 0:\n                total_transitions += 1\n                if v['lost_avg_wordcount'] < v['kept_avg_wordcount']:\n                    shorter_dropout_count += 1\n    if total_transitions > 0:\n        frac = shorter_dropout_count / total_transitions\n        if frac > 0.7:\n            print(f'    Shorter texts dropout more often ({shorter_dropout_count}/{total_transitions} transitions)')\n        elif frac < 0.3:\n            print(f'    Longer texts dropout more often ({total_transitions - shorter_dropout_count}/{total_transitions} transitions)')\n        else:\n            print(f'    No clear length-dropout pattern ({shorter_dropout_count}/{total_transitions} shorter-dropout)')\n\n    return results\n\nif __name__ == '__main__':\n    print('Loading data...')\n    df = load_generations()\n    feat_df = load_features()\n    print(f'  Generations: {len(df)} rows, Features: {len(feat_df)} rows')\n\n    all_results = {}\n\n    all_results['length_distribution'] = analyze_length_distribution(df)\n    plot_boxplot(df)\n    all_results['correlation'] = analyze_correlation(df)\n    all_results['normalized_features'] = analyze_normalized_features(df, feat_df)\n    all_results['length_matched_classifier'] = length_matched_classifier(df, feat_df)\n    all_results['dropout'] = analyze_dropout(df)\n\n    out_path = f'{BASE}/data/text_length_analysis.json'\n    with open(out_path, 'w') as f:\n        json.dump(all_results, f, indent=2, ensure_ascii=False)\n    print(f'\\nResults saved: {out_path}')\nSCRIPT_EOF\necho \"UPLOAD_OK\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T23:45:12.044309+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"UPLOAD_OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T23:45:12.044437+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python text_length_analysis.py 2>&1",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T23:45:12.044660+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gen-depth-fingerprint/text_length_analysis.py:80: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.\\\\n  bp = ax.boxplot(data, labels=[str(d) for d in depths], widths=0.6,\\\\n/root/gen-depth-fingerprint/text_length_analysis.py:80: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.\\\\n  bp = ax.boxplot(data, labels=[str(d) for d in depths], widths=0.6,\\\\n/root/gen-depth-fingerprint/text_length_analysis.py:80: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.\\\\n  bp = ax.boxplot(data, labels=[str(d) for d in depths], widths=0.6,\\\\n/root/gen-depth-fingerprint/text_length_analysis.py:80: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.\\\\n  bp = ax.boxplot(data, labels=[str(d) for d in depths], widths=0.6,\\\\n/root/gen-depth-fingerprint/text_length_analysis.py:80: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.\\\\n  bp = ax.boxplot(data, labels=[str(d) for d in depths], widths=0.6,\\\\nLoading data...\\\\n  Generations: 23032 rows, Features: 23032 rows\\\\n============================================================\\\\n1. LENGTH DISTRIBUTION (mean +/- std)\\\\n============================================================\\\\n\\\\n  pythia-2.8b:\\\\n    depth 0: chars=1114+/-171  words=177.9+/-26.6  n=995\\\\n    depth 1: chars=991+/-271  words=165.4+/-50.2  n=989\\\\n    depth 2: chars=948+/-335  words=157.6+/-60.7  n=924\\\\n    depth 3: chars=929+/\n…[truncated 6558 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T23:45:12.044857+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python -c \"\nimport json, numpy as np\n\nclass NpEncoder(json.JSONEncoder):\n    def default(self, obj):\n        if isinstance(obj, (np.bool_,)):\n            return bool(obj)\n        if isinstance(obj, (np.integer,)):\n            return int(obj)\n        if isinstance(obj, (np.floating,)):\n            return float(obj)\n        if isinstance(obj, np.ndarray):\n            return obj.tolist()\n        return super().default(obj)\n\n# Re-run and save\nexec(open('text_length_analysis.py').read().replace(\n    'json.dump(all_results, f, indent=2, ensure_ascii=False)',\n    'json.dump(all_results, f, indent=2, ensure_ascii=False, cls=NpEncoder)'\n))\n\" 2>&1 | tail -5",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T23:45:12.045001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n  CONCLUSION:\\\\n    Shorter texts dropout more often (20/20 transitions)\\\\n\\\\nResults saved: /root/gen-depth-fingerprint/data/text_length_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 23.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T23:45:12.045138+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cd /root/gen-depth-fingerprint && sed -i \"s/json.dump(all_results, f, indent=2, ensure_ascii=False)/json.dump(all_results, f, indent=2, ensure_ascii=False, default=lambda o: bool(o) if hasattr(o, 'item') and isinstance(o.item(), bool) else int(o) if hasattr(o, 'item') else o)/\" text_length_analysis.py && echo \"PATCHED\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T23:45:12.045262+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PATCHED\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T23:45:12.045375+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/gen-depth-fingerprint/data/text_length_analysis.json /root/gen-depth-fingerprint/data/text_length_boxplot.png",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T23:45:12.045499+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root  13257 May 15 07:44 /root/gen-depth-fingerprint/data/text_length_analysis.json\\\\n-rw-r--r-- 1 root root 102006 May 15 07:44 /root/gen-depth-fingerprint/data/text_length_boxplot.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T23:45:12.045669+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。输出文件已生成：\n- `data/text_length_analysis.json` (13KB)\n- `data/text_length_boxplot.png` (102KB)\n\n### 结果摘要\n\n**1. 长度分布**：depth 0 的文本最长（~175-181 词），随深度增加略有下降，但方差增大（std 从 ~27 增至 ~55-65）。olmo-2-1b 是例外，深度越大反而越长。\n\n**2. Spearman 相关性**（word_count vs depth）：\n\n| Model | ρ | p-value | Sig |\n|---|---|---|---|\n| pythia-2.8b | -0.057 | 9.9e-05 | Yes |\n| pythia-1b | -0.066 | 9.6e-06 | Yes |\n| olmo-2-1b | +0.134 | 2.7e-20 | Yes |\n| qwen3-0.6b | +0.012 | 0.43 | No |\n| qwen3-1.7b | +0.085 | 6.7e-09 | Yes |\n\n相关性虽统计显著但绝对值很小（|ρ| < 0.14），长度与深度弱相关。\n\n**3. 归一化特征**（窗口200词）：所有 5 个模型的 TTR/hapax 深度趋势在归一化后**完全保留**，且 Spearman ρ 绝对值反而增大（如 pythia-2.8b: -0.633 → -0.715）。**长度不是 TTR/hapax 深度趋势的混淆因素。**\n\n**4. 长度匹配分类器**：匹配后 macro-F1 反而**上升**（avg Δ = +0.041），说明移除长度变异后分类更纯净。**长度不是主要混淆因素**。\n\n**5. Dropout**：20/20 个深度转换中，dropout 样本的平均词数都低于保留样本（如 pythia-1b depth 3→4: lost=41词 vs kept=158词）。**短文本显著更容易 dropout。**"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-013-text-length_20260514T234122"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/conversations/code-plan-013-text-length.md"
+}

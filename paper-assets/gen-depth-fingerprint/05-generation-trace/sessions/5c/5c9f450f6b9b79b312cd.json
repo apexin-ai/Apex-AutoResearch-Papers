@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c9f450f6b9b79b312cd",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper table4 crossref trace",
+  "task_key": "worker_paper_table4-crossref-trace_20260523T110010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_table4-crossref-trace_20260523T110010_result.json",
+    "occurrence": 1,
+    "bytes": 2111,
+    "sha256": "b4c8ad9b389a298dfbdfd90ba191b66ed0246defa9e5a15ecbd81b566a8a0323"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "溯源完成。以下是完整报告：\n\n---\n\n## 溯源结果\n\n### 1. 两组数字的确切来源\n\n| 文件 | Generator 数 | Generators | F1 (Pythia/OLMo/Qwen ref) |\n|------|------------|-----------|---------------------------|\n| `review_p2f_cross_ref_bias.json` | **5** | olmo-2-1b, pythia-1b, pythia-2.8b, qwen3-0.6b, qwen3-1.7b | **0.803 / 0.807 / 0.816** ← 论文用的 |\n| `table4_cross_ref_logo.json` | **6** | 同上 + **qwen3-8b** | **0.789 / 0.795 / 0.813** |\n| `cross_ref_results.json` | **6** | 同上 | 同上（由 `cross_ref_analysis.py` 生成）|\n\n### 2. 差异原因\n\n`cross_ref_analysis.py` 读取 `features_all_models.csv`，该文件现在包含 **6 个 generator**（含 qwen3-8b）。qwen3-8b 是所有 generator 中最难分类的（per-fold F1 仅 0.686–0.757），包含它会拉低平均 F1 约 0.014。\n\n`review_p2f_cross_ref_bias.json` 是早期在 5-gen 子集上运行的结果（由已删除的 `run_cross_ref_bias.py` 生成），当时 qwen3-8b 尚未加入 cross-ref feature 文件。\n\n### 3. \"excluding all Pythia generators\" — **论文中不存在此描述**\n\n我搜索了所有 `.tex` 文件，**未找到** \"excluding all Pythia generators\" 这个表述。论文实际写的是：\n\n- `table4.tex` 正文：\"5-generator subset **(Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B)**\"  \n- Caption：\"5-gen LOGO subset\"\n- `appendix_generator_subsets.tex`：\"Py-2.8B/1B, OLMo, Qw-1.7B/0.6B\"\n\n这些描述**正确**——5-gen 子集包含 Pythia，排除的是 qwen3-8b、llama、mistral（后期扩展的 generator）。\n\n### 4. 应该用哪组数字\n\n**当前论文数字 (0.803/0.807/0.816) 是正确的**，与论文描述的 5-gen 子集一致。`table4_cross_ref_logo.json` 的 6-gen 数字是后期 `cross_ref_analysis.py` 意外包含了 qwen3-8b 的结果，与论文描述的子集不匹配。\n\n### 5. 需要修正的内容\n\n**无需修改论文**。Table 4 的数字、子集描述、caption 三者自洽。`table4_cross_ref_logo.json` 是一个后期产生的不一致文件，不应替换论文数字。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-table4-crossref-trace.md"
+}

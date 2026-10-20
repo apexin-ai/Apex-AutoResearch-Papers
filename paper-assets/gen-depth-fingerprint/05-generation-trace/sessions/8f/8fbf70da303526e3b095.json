@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8fbf70da303526e3b095",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper fix bib entries",
+  "task_key": "worker_paper_fix-bib-entries_20260523T083112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-bib-entries_20260523T083112_result.json",
+    "occurrence": 1,
+    "bytes": 998,
+    "sha256": "5dd8b011046b0e734865a0203dc068fd33fb33e23a90f09dbdaed2ee4f6a49c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**核对结果：10 个条目全部正确，无需修改。**\n\n| # | Key | 核对项 | 结果 |\n|---|-----|--------|------|\n| 1 | `cohen1988statistical` | 2nd ed, Lawrence Erlbaum, 1988 | ✅ 无误 |\n| 2 | `paraphrase_evades` | Krishna et al., NeurIPS 2023 | ✅ 无误 |\n| 3 | `intrinsic_dim_detection` | Tulchinskii et al., NeurIPS 2023 | ✅ 无误 |\n| 4 | `self_consuming_mad` | Alemohammad et al., ICLR 2024 | ✅ 无误 |\n| 5 | `dsir` | Xie et al., NeurIPS 2023 | ✅ 无误 |\n| 6 | `nucleus_sampling` | Holtzman et al., ICLR 2020 | ✅ 无误 |\n| 7 | `qwen3` | Qwen Team, arXiv 2505.09388, 2025 | ✅ 无误 |\n| 8 | `gutierrez_ordinal_survey` | IEEE TKDE 28(1):127-146, 2016 | ✅ 无误 |\n| 9 | `diaz_soft_labels_ordinal` | Díaz & Marathe, CVPR 2019 | ✅ 无误 |\n| 10 | `llama3` | Grattafiori et al., arXiv 2407.21783, 2024 | ✅ 无误 |\n\n**编译状态：** BibTeX 0 warning, 0 error。PDF 已下载到 `artifacts/_project/paper/main.pdf`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-bib-entries.md"
+}

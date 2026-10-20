@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da48dbb2c486b933299f",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan001 fix",
+  "task_key": "worker_code_plan001-fix_20260514T184702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-fix_20260514T184702_result.json",
+    "occurrence": 1,
+    "bytes": 1301,
+    "sha256": "4d71bc77f2e1b516b7a0e5c80b4012024fe53282afc804ba401d01fba880e6f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 处修复已完成，dry-run 验证通过。\n\n### 修复详情\n\n**修复 1: Part B — H1/H2 判定逻辑**\n- Pearson linregress → **Spearman rank correlation** 作为主判定依据（linregress 仅保留画趋势线）\n- 新增 **相邻深度间 Cohen's d** 计算（4 个 effect sizes）\n- 新增 **effect-size 趋势检验**（Spearman of effect sizes vs position）\n- 判定逻辑：es_trend_rho < 0 且 p < 0.05 → H1；|rho| > 0.5 且 p < 0.05 且 effect sizes 不递减 → H2；否则 inconclusive\n- 删除了 R² < 0.3 → H1 的硬判定\n\n**修复 2: Part A — 统计功效**\n- 5-fold → **10-fold** stratified CV\n- paired t-test → **bootstrap CI**（1000 resample, seed=42）\n- 报告格式：`diff=+0.2582 [0.1493, 0.3642], p=0.0000`\n\n**修复 3: Part A — 多重比较校正**\n- 3 对比较加 **Bonferroni 校正**，α = 0.05/3 ≈ 0.0167\n- 输出标注 `significant (Bonferroni corrected)` 或 `ns`\n\n### Dry-run 结果\n- Part A: 10-fold CV, bootstrap CI + Bonferroni 标注正常；full vs ref 显著 (p=0.0000), ref vs surf 显著 (p=0.0020), full vs surf 不显著\n- Part B: Spearman ρ + 4 个 effect sizes + H1/H2/inconclusive 判定正常；hapax_ratio 判为 H1（effect sizes 严格递减 ρ=-1.0, p=0.0）\n- Part C: 正常运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan001-fix.md"
+}

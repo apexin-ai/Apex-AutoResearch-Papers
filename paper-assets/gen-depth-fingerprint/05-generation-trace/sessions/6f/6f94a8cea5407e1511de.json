@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "6f94a8cea5407e1511de",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "code table3 v5 unified",
+  "task_key": "worker_code_table3-v5-unified_20260516T202357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_table3-v5-unified_20260516T202357.log",
+    "occurrence": 1,
+    "bytes": 509513,
+    "sha256": "fe0759b6ec4f123d26ebbb0feb4fc8c5956b574f6156cba9b7d08260407ea6ee"
+  },
+  "statistics": {
+    "messages": 310,
+    "user_turns": 0,
+    "tool_calls": 116,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 74,
+      "tool_call": 116,
+      "tool_result": 116,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 310,
+      "chunks": [
+        {
+          "path": "6f94a8cea5407e1511de-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6f94a8cea5407e1511de-part-0002.json",
+          "message_count": 130
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-table3-v5-unified.md"
+}

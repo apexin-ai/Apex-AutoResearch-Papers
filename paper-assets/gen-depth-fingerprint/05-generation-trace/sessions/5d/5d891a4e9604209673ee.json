@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d891a4e9604209673ee",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "diagnosis exp062 final4 status",
+  "task_key": "worker_diagnosis_exp062_final4_status_20260521T170621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_exp062_final4_status_20260521T170621_result.json",
+    "occurrence": 1,
+    "bytes": 1052,
+    "sha256": "f18e3087727801b0af6bc48db2ab5ad7b0075dc3590c32681f3eb7dadf496c87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态汇总：\n\n**1. Mistral-7B topk — DONE ✓**\n- 4851 chains, features 已提取, Cohen's d 已计算\n- **Shape=PASS** (entropy_max=0.064, entropy_min=0.013, tail_decay=0.123)\n- **Drift=PASS** (entropy_mean=0.697, TTR=0.644, hapax=0.668)\n- Mistral-7B 在 top-k 下仍保留完整 depth fingerprint，与 LLaMA 和 Qwen3-1.7B 一致\n\n**2. Qwen3-0.6B topk — 运行中 (40%)**\n- 1956/~4850 行，GPU 3 上运行，ETA ~05:00-06:00 CST\n\n**3. Qwen3-8B greedy — 运行中 (38%)**\n- 1833/~4850 行，GPU 1 上运行，ETA ~04:00 CST\n\n**4. Qwen3-8B topk — 排队中**\n- greedy 完成后自动启动，ETA ~08:00-09:00 CST\n\nFeature watcher 工作正常，已完成 Mistral 提取，正在等待后续 combo。\n\n**进度：13/16 combos 有 Cohen's d，最后 3 个预计 ~09:00 CST 全部完成。**\n\n已更新文件：\n- `exp062_final4_status.txt` — 完整状态报告\n- `decoding_cohens_d_all.txt` — 添加 Mistral-7B top-k 行（13/16）\n- `exp062_cohens_d_summary.txt` — 添加 Mistral-7B top-k 摘要"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-exp062-final4-status.md"
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "id": "a36ba58a34c97b71eea4",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "exp review p1c qwen06b instruct",
+  "task_key": "worker_exp_review-p1c-qwen06b-instruct_20260515T152144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_review-p1c-qwen06b-instruct_20260515T152144.log",
+    "occurrence": 1,
+    "bytes": 1548920,
+    "sha256": "def777d4142222de1e1b58b3833f910d2a3f3ae58822e950abefa3fa9a675ba8"
+  },
+  "statistics": {
+    "messages": 1037,
+    "user_turns": 2,
+    "tool_calls": 455,
+    "roles": {
+      "log": 1,
+      "system": 42,
+      "record": 1,
+      "assistant": 80,
+      "tool_call": 455,
+      "tool_result": 455,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 29,
+      "chunks": [
+        {
+          "path": "a36ba58a34c97b71eea4-part-0001.json",
+          "message_count": 29
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 827,
+      "chunks": [
+        {
+          "path": "a36ba58a34c97b71eea4-part-0001.json",
+          "message_count": 151
+        },
+        {
+          "path": "a36ba58a34c97b71eea4-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a36ba58a34c97b71eea4-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a36ba58a34c97b71eea4-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "a36ba58a34c97b71eea4-part-0005.json",
+          "message_count": 136
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 181,
+      "chunks": [
+        {
+          "path": "a36ba58a34c97b71eea4-part-0005.json",
+          "message_count": 44
+        },
+        {
+          "path": "a36ba58a34c97b71eea4-part-0006.json",
+          "message_count": 137
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-review-p1c-qwen06b-instruct.md"
+}

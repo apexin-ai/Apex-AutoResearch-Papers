@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bfb1a8386ad7a63399fe",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper exp062 version c fixes",
+  "task_key": "worker_paper_exp062-version-c-fixes_20260521T212841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_exp062-version-c-fixes_20260521T212841_result.json",
+    "occurrence": 1,
+    "bytes": 458,
+    "sha256": "7ccd4163e84277e0f190eaefff1ac65b24c75329bb55780651ae5d2f5e72a5ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两份文件 VERSION C 部分完全一致。三处修改已完成：\n\n- **W1**: greedy drift mean 0.91→0.94, top-k 0.56→0.67, nucleus 0.79→0.90，措辞改为 \"core drifting features\"\n- **W2**: 4/8 shape violations 句子替换为 model-intrinsic boundary effects 解释，含 Pythia/OLMo 具体数据\n- **W3**: 末尾新增 entropy\\_std 策略依赖性句（greedy 0.83 / nucleus 0.46 / top-k 0.23），支持 intermediate 分类"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-exp062-version-c-fixes.md"
+}

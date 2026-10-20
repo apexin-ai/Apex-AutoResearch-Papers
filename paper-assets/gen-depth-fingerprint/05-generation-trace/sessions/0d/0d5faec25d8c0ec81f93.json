@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d5faec25d8c0ec81f93",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis silhouette audit and fix",
+  "task_key": "worker_analysis_silhouette_audit_and_fix_20260521T031004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_silhouette_audit_and_fix_20260521T031004_result.json",
+    "occurrence": 1,
+    "bytes": 1159,
+    "sha256": "99661236ed50b8746cb56d37417c0ccf49559445202d1202c82a7fd57e39eca8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。关键结论：\n\n### 1. 原始 0.632 来源\n- `ablation_322_partition.py` 用 **gen-0 vs gen-1+** 基线 → 得到 k=2 silhouette = **0.7352**（不是 0.632）\n- `permutation_test_ddr.py` 用 **gen-1 vs gen-2+** 基线 → 得到 k=2 silhouette = **0.6603**（不是 0.632）\n- `plot_instruct_ddr_comparison.py:96` 纯硬编码 `0.632`\n- 穷举了所有基线 × d 公式 × 数据文件 × scaler 组合，**均无法复现 0.632**。该值来自初始 snapshot，原始数据已丢失。\n\n### 2. 正确值（features_8gen.csv, gen-1 vs gen-2+, StandardScaler）\n\n| 分区 | Silhouette | Rank |\n|------|-----------|------|\n| **k=2 binary** (drifting vs non-drifting) | **0.660** | **1/35**（最优二分法） |\n| 3/1/3 fixed (论文原始) | 0.409 | 5/301 (top 1.7%) |\n| 3/2/2 fixed (tail_decay → intermediate) | 0.253 | 13/301 |\n\n### 3. 3/2/2 vs 3/1/3\n在正确基线（gen-1 vs gen-2+）下，**3/1/3 > 3/2/2**（0.409 vs 0.253），确认论文原始选择正确。\n\n### 4. 建议\n- 论文中所有 `0.632` 替换为 `0.660`（共 5 处 tex + 1 处 py）\n- 使用 gen-1 vs gen-2+ 作为统一基线"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-silhouette-audit-and-fix.md"
+}

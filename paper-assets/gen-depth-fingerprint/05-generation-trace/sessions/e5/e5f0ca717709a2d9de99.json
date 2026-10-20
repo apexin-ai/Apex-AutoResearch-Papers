@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5f0ca717709a2d9de99",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "check qwen06b r2 s1 exit",
+  "task_key": "worker_check_qwen06b-r2-s1-exit_20260514T225952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_qwen06b-r2-s1-exit_20260514T225952_result.json",
+    "occurrence": 1,
+    "bytes": 367,
+    "sha256": "1ee7c60d6fe3d0b1f8036c15edddf371023c261c0de95b8901bdf023f9ffeade"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Qwen3-0.6B shard1 正常完成。**\n\n| 项目 | 值 |\n|------|-----|\n| 进程 | PID 118126 已退出 |\n| 总行数 | 2268 |\n| Unique seeds | ~498（seed 498–999） |\n| Depth 分布 | 0:498, 1:493, 2:470, 3:417, 4:390 |\n| 数据完整性 | 最后一行 seed_id=999 depth=4 JSON 合法 |\n\nRegistry 已标记 DONE/success，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-qwen06b-r2-s1-exit.md"
+}

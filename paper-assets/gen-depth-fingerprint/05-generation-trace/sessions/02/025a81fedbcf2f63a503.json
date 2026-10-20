@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "025a81fedbcf2f63a503",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "director / loop_3_1779399970.md",
+  "task_key": "loop_3_1779399970",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_3_1779399970.md",
+    "occurrence": 1,
+    "bytes": 3006,
+    "sha256": "05bca69d715d5d48390437e4f03233beddb7916671b18bd1bdbb104504da2742"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_messages\nupdated: '2026-05-21T01:40:19+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0-3 on bjb2-18868，不得使用其他卡\n- 论文源文件真源: `artifacts/_project/paper/`，编译目录 `docs/paper/` 是副本——改 tex 改源目录，编译前必须 sync\n- EMNLP 2026 ARR 主文硬限 8 页（不含 Limitations/Ethics/References）\n- 用户已确认投 EMNLP 2026（D034），不要再问是否提交或建议换会议\n- v38 是最终版，已上传用户——除非用户要求修改，不要再改论文内容\n\n### 2. 🖥️ 基础设施快照\n- 服务器: bjb2-18868 (connect.bjb2.seetacloud.com)，工作目录 /root/gen-depth-fingerprint\n- GPU: 4× RTX 5090 32GB，当前全部空闲，等用户确认后释放\n- 论文源: `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/`\n- 编译目录: `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/`\n- 活跃进程: 无 RUNNING 实验，无活跃 Worker，Agent 空闲 >1h\n\n### 3. 📊 当前状态\nv38 最终版已编译上传（33 页，0 warnings，主文 8 页，66 bib entries）。用户已确认投 EMNLP 2026 ARR（DDL 2026-05-25）。OpenReview 提交清单已发给用户。Reviewer 确认无实验能推 3.0→3.5（D035）。\n\nRegistry: 66 个实验，47 成功，无 RUNNING/PREPARING。15 个 pending 是 instruct QLoRA 等未启动的计划，不再需要跑。\n\n等待中: 仅等用户在 OpenReview 手动提交 + 确认 GPU 释放。无 Worker 回调、无 Cron。\n\n### 4. 📋 待办\n- 用户问 abstract 纯文本版 / keywords / responsible NLP checklist → 从 tex 提取提供\n- 用户确认 GPU 释放 → 释放 4×RTX 5090（不要主动释放，等用户确认）\n- 用户要求修改论文 → 改源目录 `artifacts/_project/paper/`，sync 到 `docs/paper/`，重新编译上传\n- 用户说\"进入审稿阶段\"或\"重新审稿\" → 调 `submit_paper_to_review`\n- 收到 Review Director 的审稿报告 → 按报告自带的强制处理协议逐条执行\n\n### 5. 🎯 战略上下文\n- 核心结论: DDR（location drift + shape stability）跨 8 generators/5 families 成立，LOGO binary F1=0.694，QLoRA 0.905\n- Reviewer 整体评估 3.0-3.25，Findings 接收概率 55-65%，Significance（2.5-3.0）是最大短板——这是结构性的（base model only + task perception），非实验可补\n- D033→D035 决策链: 确认无值得跑的实验 → 用户确认投稿 → Reviewer 再评估确认 gap 是结构性的\n- 易错点: `artifacts/_project/paper/` vs `docs/paper/` 不同步是反复出现的 bug——任何 tex 修改后必须 cp 到 docs/paper/ 再编译\n- 易错点: Discussion/Limitations 中 0.338 是 DDR silhouette 不是 F1（已修正，但下次遇到类似数字要交叉核对 Table 15）\n- 3 篇新增引用（DivEye、Schaeffer collapse position、Drayson detection prevents collapse）已通过 reference-audit，eprint 字段已补全\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1779399970.md"
+}

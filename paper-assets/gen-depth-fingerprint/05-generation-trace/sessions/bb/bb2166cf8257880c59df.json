@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb2166cf8257880c59df",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper fix type3 fonts",
+  "task_key": "worker_paper_fix-type3-fonts_20260523T005638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-type3-fonts_20260523T005638_result.json",
+    "occurrence": 1,
+    "bytes": 1628,
+    "sha256": "c85bc971e5854c2eae0b0da5b0f9342b3b50bc46cd1c66570979f1e113ec1d30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报如下：\n\n```\nPhase 1 诊断：15/16 个 PDF 含 Type 3 字体（仅 fig_appendix_ddr_trends.pdf 干净）\n  + 额外发现 paper/ 目录下 4 个旧副本也含 Type 3\n\nPhase 2 脚本映射：\n  fig1_differential_response.pdf  → charts/gen_fig1.py (远程)\n  fig2_framework.pdf              → paper/figures/gen_fig2_framework.py (远程)\n  fig3_baseline_comparison.pdf    → charts/gen_fig3.py (远程)\n  fig_appendix_cross_temp.pdf     → charts/fig_appendix_cross_temp.py (远程)\n  fig_appendix_instruct_ddr.pdf   → scripts/plot_instruct_ddr_comparison.py (远程)\n  fig_appendix_nll_distribution.pdf → scripts/plot_nll_distribution.py (远程)\n  fig_appendix_umap.pdf           → scripts/plot_umap_appendix.py (远程)\n  fig_convergence_dynamics.pdf    → 本地 → 上传 fix_convergence_dynamics.py\n  fig_ddr_scatter.pdf             → 本地 → 上传 fix_fig_ddr_scatter.py\n  fig_ddr_trajectory.pdf          → 本地 → 上传 fix_ddr_trajectory.py\n  fig_transfer_heatmap.pdf        → 本地 → 上传 fix_transfer_heatmap.py\n  fig_appendix_confusion.pdf      → 日志恢复 → fix_appendix_confusion.py\n  fig_appendix_per_gen.pdf        → 日志恢复 → fix_appendix_per_gen.py\n  fig_appendix_violin.pdf         → 日志恢复 → fix_appendix_violin.py\n  fig_ddr_holdout_split.pdf       → 日志恢复 → fix_ddr_holdout_split.py\n\nPhase 3 修复：成功 15 个，失败 0 个\n\nPhase 5 编译：0 errors, 36 pages, Conclusion 第 1615 行\n\nPhase 6 验证：Type 3 字体数量 = 0\nMD5：b6b4de0bd353470084debd07bd6e0e8b\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-type3-fonts.md"
+}

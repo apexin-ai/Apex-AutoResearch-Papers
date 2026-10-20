@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "id": "f115b1312c7781f049fe",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "paper data audit appendix",
+  "task_key": "worker_paper_data-audit-appendix_20260523T102207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_data-audit-appendix_20260523T102207.log",
+    "occurrence": 1,
+    "bytes": 1011307,
+    "sha256": "a98547ede68d57b123c2ff9dcb2bec3d0ce97ba02fa900209634b4122376a976"
+  },
+  "statistics": {
+    "messages": 290,
+    "user_turns": 4,
+    "tool_calls": 99,
+    "roles": {
+      "log": 1,
+      "system": 63,
+      "record": 1,
+      "assistant": 22,
+      "tool_call": 99,
+      "tool_result": 99,
+      "user": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "f115b1312c7781f049fe-part-0001.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "f115b1312c7781f049fe-part-0001.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 36,
+      "chunks": [
+        {
+          "path": "f115b1312c7781f049fe-part-0001.json",
+          "message_count": 36
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "f115b1312c7781f049fe-part-0001.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 173,
+      "chunks": [
+        {
+          "path": "f115b1312c7781f049fe-part-0001.json",
+          "message_count": 63
+        },
+        {
+          "path": "f115b1312c7781f049fe-part-0002.json",
+          "message_count": 96
+        },
+        {
+          "path": "f115b1312c7781f049fe-part-0003.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-data-audit-appendix.md"
+}

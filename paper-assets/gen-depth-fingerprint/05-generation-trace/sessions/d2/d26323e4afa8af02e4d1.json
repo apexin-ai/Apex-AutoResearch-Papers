@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d26323e4afa8af02e4d1",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis plan 002 qwen17b r2 s0",
+  "task_key": "worker_analysis_plan-002-qwen17b-r2-s0_20260514T231628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-002-qwen17b-r2-s0_20260514T231628_result.json",
+    "occurrence": 1,
+    "bytes": 501,
+    "sha256": "3e02d75a79d1c7ab4ad6cc5364adfe580ee64b76f63eb6f03d6abfee6268fda0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n**plan-002-qwen17b-r2-s0 结果：success**\n\n- 2291 条记录，498 个 seed，无重复，2.50 MB\n- depth 分布：`{0:498, 1:492, 2:468, 3:435, 4:398}`\n- 跳过 199 条（vs shard1 的 53 条），主要在高 depth 层——depth4 只保留 398/498 (80%)\n- 耗时 4548s (~76 min)，EXIT_CODE=0\n\n注意：shard0 的跳过率(8.0%)明显高于 shard1(2.2%)，高 depth 衰减更严重，可能是 shard0 的 seed 分布导致更多 empty output。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-002-qwen17b-r2-s0.md"
+}

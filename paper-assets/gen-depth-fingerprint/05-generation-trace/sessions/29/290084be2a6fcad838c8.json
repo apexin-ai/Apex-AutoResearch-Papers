@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "290084be2a6fcad838c8",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "compile final v2",
+  "task_key": "worker_compile_final-v2_20260519T174055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compile_final-v2_20260519T174055_result.json",
+    "occurrence": 1,
+    "bytes": 307,
+    "sha256": "b88db9bcc378d1222832666f6ce402065218a3df67c2aa63d26dedb30d985a78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译完成。\n\n| 指标 | 结果 |\n|------|------|\n| Errors (`^!`) | **0** |\n| Undefined refs | **0** |\n| 总页数 | **31** |\n| Conclusion 起始页 | **第 8 页** |\n\n3 个 multiply defined label 警告（`fig:baseline-ci`, `tab:ablation`, `tab:cross-ref`），不影响编译。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/compile-final-v2.md"
+}

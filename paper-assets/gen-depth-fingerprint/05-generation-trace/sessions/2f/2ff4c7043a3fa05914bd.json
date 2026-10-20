@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0",
+  "id": "2ff4c7043a3fa05914bd",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "verify pdf visual check",
+  "task_key": "worker_verify_pdf-visual-check_20260519T124910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_pdf-visual-check_20260519T124910.log",
+    "occurrence": 1,
+    "bytes": 33166566,
+    "sha256": "a2dd636b2672c716f9f8e1b50ea284803ac43a539a752a258dea0b3a274ec79f"
+  },
+  "statistics": {
+    "messages": 235,
+    "user_turns": 5,
+    "tool_calls": 72,
+    "roles": {
+      "log": 1,
+      "system": 64,
+      "record": 1,
+      "assistant": 19,
+      "tool_call": 72,
+      "tool_result": 72,
+      "user": 5,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 41,
+      "chunks": [
+        {
+          "path": "2ff4c7043a3fa05914bd-part-0001.json",
+          "message_count": 29
+        },
+        {
+          "path": "2ff4c7043a3fa05914bd-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "2ff4c7043a3fa05914bd-part-0003.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "2ff4c7043a3fa05914bd-part-0003.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 34,
+      "chunks": [
+        {
+          "path": "2ff4c7043a3fa05914bd-part-0003.json",
+          "message_count": 34
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "2ff4c7043a3fa05914bd-part-0003.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 41,
+      "chunks": [
+        {
+          "path": "2ff4c7043a3fa05914bd-part-0003.json",
+          "message_count": 41
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 99,
+      "chunks": [
+        {
+          "path": "2ff4c7043a3fa05914bd-part-0003.json",
+          "message_count": 74
+        },
+        {
+          "path": "2ff4c7043a3fa05914bd-part-0004.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/verify-pdf-visual-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99c3be68dc55c3f9f719",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code fig1 format fix",
+  "task_key": "worker_code_fig1-format-fix_20260516T171614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig1-format-fix_20260516T171614_result.json",
+    "occurrence": 1,
+    "bytes": 327,
+    "sha256": "2f3e7c7bb2438e5422df3b1857a3dc1460f04917a9d69cff68e9b801e0a792fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 已生成并传到本地。8 个 generator 全部显示，格式保持原 6-gen 版本的 bracket 标注、zone 背景色带、LaTeX 轴标签和 family 色组。\n\n输出文件：\n- `artifacts/_project/paper/fig1_differential_response.pdf`\n- `artifacts/_project/paper/fig1_differential_response.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig1-format-fix.md"
+}

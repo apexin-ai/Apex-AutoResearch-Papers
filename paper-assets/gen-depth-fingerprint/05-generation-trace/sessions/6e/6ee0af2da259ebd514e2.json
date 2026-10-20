@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ee0af2da259ebd514e2",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code fix tail decay and reeval",
+  "task_key": "worker_code_fix-tail-decay-and-reeval_20260516T123517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-tail-decay-and-reeval_20260516T123517_result.json",
+    "occurrence": 1,
+    "bytes": 2052,
+    "sha256": "e62f692c5b832d858d6bfcdf3e5528ad79e96ccf9200dd3893ed5e1fad3114ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 步完成。以下是完整汇总：\n\n---\n\n## RESULTS SUMMARY\n\n### tail_decay 修复确认\n\n- **原 6-gen 公式**: 排序 avg log-prob 分布在 rank 100-1000 的线性回归斜率（值域 ≈ -0.002）\n- **新代码旧公式**: NLL 超过 depth-0 第 90 百分位的 token 比例（值域 ≈ 0.098）\n- **已修复**: 3 个新数据集（Llama/Mistral/Llama-rp11）全部重新提取，tail_decay 统一为斜率公式\n- **特征文件已覆盖**: 4680 + 4849 + 4416 = 13945 条 unfiltered 数据\n\n---\n\n### 8-gen LOGO (unfiltered)\n\n| | 3-class F1 | binary F1 |\n|---|---|---|\n| **Overall** | **0.762** | **0.6944** |\n\nPer-generator (3-class, 95% CI):\n```\nPythia-2.8B:    0.7983 [0.7865, 0.8097]\nPythia-1B:      0.8064 [0.7946, 0.8177]\nOLMo-2-1B:     0.781  [0.7695, 0.7931]\nQwen3-0.6B:    0.7795 [0.7677, 0.7925]\nQwen3-1.7B:    0.7717 [0.7585, 0.7844]\nQwen3-8B:      0.7143 [0.7007, 0.7286]\nLlama-3.2-3B:  0.7753 [0.7634, 0.788]\nMistral-7B:    0.6815 [0.6694, 0.695]\n```\n\n---\n\n### rp-LOFO\n\n| Test | 3-class F1 | binary F1 |\n|---|---|---|\n| **A: Llama rp=1.1** | **0.4168** | **0.5182** |\n| **B: Llama rp=1.0 filtered** | **0.7149** | **0.6116** |\n\nTest A per-class accuracy: class_0=0.986, class_1=0.097, class_2=0.449\n\nTest A 结论：模型对 rp=1.1 数据的 class_1 几乎全部误判（仅 9.7% accuracy），说明 repetition penalty 显著改变了 depth-1 的特征分布。\n\n---\n\n### Filter diagnostic\n\n| Setting | 3-class | binary |\n|---|---|---|\n| 6-gen unfiltered | 0.7879 | 0.7215 |\n| 6-gen filtered | 0.7226 | 0.6386 |\n| 8-gen unfiltered | 0.762 | 0.6944 |\n| 8-gen filtered | 0.7108 | 0.6183 |\n\nFiltering 降低性能约 6-8 个点——被滤掉的高重复样本（depth-2+）恰恰是分类器最容易正确判断的 easy cases。\n\n---\n\n输出文件：\n- `/root/gen-depth-fingerprint/results/8gen_logo_unfiltered.json`\n- `/root/gen-depth-fingerprint/results/rp_lofo_results.json`\n- `/root/gen-depth-fingerprint/results/filter_diagnostic.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-tail-decay-and-reeval.md"
+}

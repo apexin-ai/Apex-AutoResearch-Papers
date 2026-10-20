@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f0b85eee28cd4b31a7e",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan 010 llm rephrase fix",
+  "task_key": "worker_code_plan-010-llm-rephrase-fix_20260517T010546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-010-llm-rephrase-fix_20260517T010546_result.json",
+    "occurrence": 1,
+    "bytes": 703,
+    "sha256": "c75062e7f41f3b21403402ddd5acaeb462ea37f583fa3544a153b3964eb695e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过：\n\n- **Original binary F1 = 0.6918** — 在预期 ~0.69-0.70 范围内（主实验 Table 3 的 0.7014），确认 Bug 1 已修复\n- **3-class multiclass F1 = 0.7385** — 合理范围，确认 Bug 2 已修复\n- **Binary 不是 0.93** — 证明不再是 gen-0 vs gen-1+ 的 trivial task\n\n结果：\n| Condition | Binary F1 | Multiclass F1 |\n|-----------|-----------|---------------|\n| Original  | 0.6918 [0.6749, 0.7067] | 0.7385 [0.7269, 0.7496] |\n| LLM Rephrased | 0.6471 [0.6308, 0.6619] | 0.6672 [0.6548, 0.6796] |\n| Drop | -0.0447 | -0.0713 |\n\nEdit distance ratio: 0.5071, avg 1.69 sentences replaced per text. Results saved to `llm_rephrase_results.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-010-llm-rephrase-fix.md"
+}

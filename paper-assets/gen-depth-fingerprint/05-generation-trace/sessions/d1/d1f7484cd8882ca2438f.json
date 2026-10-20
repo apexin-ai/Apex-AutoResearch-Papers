@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1f7484cd8882ca2438f",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "diagnosis exp062 restart",
+  "task_key": "worker_diagnosis_exp062_restart_20260521T065604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_exp062_restart_20260521T065604_result.json",
+    "occurrence": 1,
+    "bytes": 883,
+    "sha256": "792827e531204a6fffd0ea3cb4fda5046b6b3d2d4cce0f4113a57b943c1c72d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "qwen3-1.7b 已在 GPU 2 上成功启动并开始生成。\n\n## 状态总结\n\n| Model | GPU | Strategy | Progress | 预计剩余 |\n|-------|-----|----------|----------|-----------|\n| **pythia-2.8b** | cuda:0 | greedy 进行中 → topk 待跑 | 156/995 (16%) greedy | greedy ~2h + topk ~2h ≈ **4h** |\n| **olmo-2-1b** | cuda:1 | greedy 进行中 → topk 待跑 | 183/995 (18%) greedy | greedy ~1h50m + topk ~2h ≈ **3.5h** |\n| **qwen3-1.7b** | cuda:2 | greedy 刚启动 → topk 待跑 | 1/996 (0%) greedy | greedy ~2.5h + topk ~2.5h ≈ **5h** |\n\n- 3 张 GPU 同时在跑，GPU 3 空闲（无第 4 个模型可跑）\n- 每个进程按顺序执行 greedy → topk 两个 strategy，各 ~995 seeds × depth 0-4\n- 输出路径：`data/{model}-{strategy}/generations_shard0.jsonl`\n- 预计全部完成时间：**约 5 小时后**（~20:00 服务器时间）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-exp062-restart.md"
+}

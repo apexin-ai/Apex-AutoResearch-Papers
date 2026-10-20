@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c381ef5a46348d96889b",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper abstract intro headline",
+  "task_key": "worker_paper_abstract-intro-headline_20260515T190436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_abstract-intro-headline_20260515T190436_result.json",
+    "occurrence": 1,
+    "bytes": 726,
+    "sha256": "eec5209c5e25de5ad5f3cb7a3212d5c217b3c1ac2935ed0c3f6bc94211a362fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个文件（abstract.tex、introduction.tex、conclusion.tex）的 headline 数字**已经是 binary F1=0.723**，无需修改。\n\n具体现状：\n- **abstract.tex L6**: `binary macro-F1 of 0.723 (95\\% CI: [0.717, 0.729])` — 已是 binary metric\n- **introduction.tex L25, L34**: 同上，均为 binary F1=0.723\n- **conclusion.tex L6**: 同上\n\n检查项：\n- 无 7-gen aggregate 数字（0.768）残留 ✓\n- 3-class 0.789 仅出现在 results.tex、method.tex、appendix 等正文/附录中，作为 supplementary metric 并附有 gen-0 leakage caveat ✓\n- abstract 中未提及 3-class 0.789（空间紧凑，合理） ✓\n\n这三个文件的 D017 更新已完成，不需要额外改动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-abstract-intro-headline-copy-2.md"
+}

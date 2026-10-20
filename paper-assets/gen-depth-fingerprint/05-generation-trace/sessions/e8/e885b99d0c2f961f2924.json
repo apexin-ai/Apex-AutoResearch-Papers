@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e885b99d0c2f961f2924",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "exp temp curve expansion gpu01",
+  "task_key": "worker_exp_temp-curve-expansion-gpu01_20260518T145009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_temp-curve-expansion-gpu01_20260518T145009_result.json",
+    "occurrence": 1,
+    "bytes": 1127,
+    "sha256": "5bc229cb50a61ed37c284ca2a9d963d22f92133001430c47983fdfc901a4e9ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务均已启动并正常生成。\n\n**状态报告：**\n\n| 项目 | GPU | 模型路径 | 速度 | 预估完成 |\n|---|---|---|---|---|\n| OLMo-2-1B (t=0.5 → t=0.9) | GPU 0 | `olmo-2-1b-hf/allenai/OLMo-2-0425-1B` | ~9s/seed | ~5h (约凌晨4点) |\n| Qwen3-0.6B (t=0.5 → t=0.9) | GPU 1 | `Qwen/Qwen3-0___6B-Base` | ~14s/seed | ~8h (约凌晨7点) |\n\n**实际执行命令：**\n- GPU 0: `generate_chain.py --model-name olmo-2-1b-t05/t09 --model-path .../OLMo-2-0425-1B --temperature 0.5/0.9 --top-p 0.9 --device cuda:0`\n- GPU 1: `generate_chain.py --model-name qwen3-0.6b-t05/t09 --model-path .../Qwen3-0___6B-Base --temperature 0.5/0.9 --top-p 0.9 --device cuda:1`\n\n每个 GPU 先跑两个温度的 generation（串行），完成后自动运行 `extract_features.py` 生成特征 CSV。\n\n**注意：** OLMo-2-1B 使用的是 `allenai/OLMo-2-0425-1B`（April 2025 版），原始 `allenai/OLMo-2-1B-hf` 模型文件已被清空。两个温度条件使用同一模型，组内对比有效。\n\ntmux sessions: `temp_olmo`, `temp_qwen06`\n日志: `logs/temp_olmo.log`, `logs/temp_qwen06.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-temp-curve-expansion-gpu01.md"
+}

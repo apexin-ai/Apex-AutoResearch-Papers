@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f19dd68a7d1bfe225185",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_3_1778816397.md",
+  "task_key": "loop_3_1778816397",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778816397.md",
+    "occurrence": 1,
+    "bytes": 4910,
+    "sha256": "3236a0edaa558c4a8a2cf32c8afa3ea893903dd8cd0eb4f723d93ffa91e533da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-15T03:36:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **cuda:0/1/2/3**（autodl-5090），不可用其他设备\n- `submit_training_job` 注入 `CUDA_VISIBLE_DEVICES`，脚本内 **必须 `--device cuda:0`**，不能用物理卡号\n- 根分区仅 30GB，所有大文件（checkpoint/模型/数据）写 `/root/autodl-tmp/`，设 `HF_HOME=/root/autodl-tmp/.hf_cache`\n- plan-014 用 nohup 启动（非 submit_training_job），cron 在监控但完成后需**手动用 recovered 文件覆盖 shard0**\n- Claim 3 已判 negative（D009），**不得用 downstream utility 做 positive claim**，只能报 diagnostic-not-curative\n- EMNLP 已放弃（D010），**主投 AAAI 2027（DDL 2026-08-02）**\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: autodl-5090，工作目录 `/root/gen-depth-fingerprint`\n- **Python**: `/root/miniconda3/bin/python`（conda base，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型路径**: pythia-2.8b `/root/autodl-tmp/.hf_cache/EleutherAI/pythia-2___8b`; pythia-410m(ref) `/root/autodl-tmp/models/pythia-410m/...`; Qwen3-8B `/root/autodl-tmp/models/Qwen/Qwen3-8B-Base/Qwen/Qwen3-8B-Base/`; 其余见 memory.md 模型路径表\n- **数据**: `/root/gen-depth-fingerprint/data/`（seeds: `wiki_seed_1000.jsonl`，各模型生成数据在子目录）\n- **活跃进程**:\n  - plan-014: PID 134817, nohup, cuda:0, Qwen3-8B 生成, 767/996 seeds (~77%), log `/tmp/gen_large_model.log`, 输出 `data/qwen3-8b/generations_shard0.jsonl`（有 recovered 文件 3460 行需覆盖）\n  - plan-005-cont: PID 164658, tmux `plan-005-cont`, cuda:1, Pythia-2.8B continuation prompt\n  - plan-005-elab: PID 164737, tmux `plan-005-elab`, cuda:2, Pythia-2.8B elaboration prompt\n  - plan-005-rewrite: PID 164881, tmux `plan-005-rewrite`, cuda:3, Pythia-2.8B inspired_rewriting prompt\n- **Cron**: plan-014 有活跃 cron 监控\n\n### 3. 📊 当前状态\n**刚做完**: D010 决策（放弃 EMNLP → AAAI 2027）、plan-004-v2 完成（negative，15/15 runs）、plan-005 三路 prompt comparison 已提交\n\n**RUNNING**:\n- `plan-014` — Qwen3-8B 生成链（RC9 关键实验，验证 7B+ 规模是否保持 depth signal），~77%，ETA 从 03:28 约 50min\n- `plan-005` — 3 种 prompt type（continuation/elaboration/inspired_rewriting）× Pythia-2.8B，刚启动，子实验 plan-005-cont/elab/rewrite 在 PREPARING 但已有 PID 在跑\n\n**等待中**:\n- plan-014 cron 回调 → 需 spawn worker 做特征提取 + 6-generator LOGO 评估\n- plan-005 三路回调 → 需 spawn worker 做 prompt type 对比分析\n- **无活跃 Worker**（Worker 池 = 0，因为所有任务都是 GPU 生成任务在跑，暂无 CPU 任务可派）\n\n### 4. 📋 待办（条件触发式）\n- **plan-014 完成回调** → (1) 用 recovered 文件覆盖 `generations_shard0.jsonl`；(2) spawn worker 做特征提取（`extract_features_multi.py` 对 qwen3-8b 数据）；(3) 合并 6 个生成器特征 → 跑 LOGO 评估 → 得到 RC9 结论；(4) 若 LOGO F1 ≥ 0.75 → RC9 supported，汇报 Director 启动 Paper Agent；若 < 0.70 → 写 limitation 分析\n- **plan-005 三路完成** → spawn worker 对比 3 种 prompt type 的 depth signal 强度差异（特征漂移幅度 + 分类 F1），结论入 RC6\n- **全部 P0 完成** → 汇报 Director，请求启动 Paper Agent 写初稿；paper_framing.md headline template 需更新（去除 downstream 占位符，改为 diagnostic framing）\n- **plan-005 子实验状态异常**（PREPARING 但有 PID） → 下一轮应 poll 确认进程存活，可能需要手动推进状态到 RUNNING\n\n### 5. 🎯 战略上下文\n**核心结论链**: MVP(0.84 F1) → ablation(dual dynamics) → 5-gen 泛化(LOGO 0.80) → 跨家族 ref model(0.80-0.82) → 长度控制(non-confound) → ordinal baseline(ensemble +3.9pp) → downstream(negative→diagnostic) → 等 RC9(scale)\n\n**决策链**: D001(MVP方案) → D002(PASS进研究) → D004-D005(Claim2 framing) → D006-D007(贡献定位:实证+概念) → D008(ensemble叙事) → D009(Claim3 negative reframe) → D010(弃EMNLP→AAAI)\n\n**最容易判断错的事**:\n1. plan-014 的 recovered 文件处理——不是简单的 `generations_shard0.jsonl`，进程写入时遇到过中断，有 recovered 文件需要覆盖原始文件再做后处理，不要直接拿 shard0 分析\n2. plan-005 子实验状态是 PREPARING 但实际已在跑——不要重复提交，先确认 PID 存活\n3. Claim 3 是 negative 但**不是失败**——D009 已 reframe 为 diagnostic-not-curative，论文里要 transparently report，不要试图 rescue\n4. 不要用 H1/H2 术语（D007 禁令），用 \"drifting\" vs \"stationary\" 或 \"differential depth response\"\n5. tmux_backend 有 SIGHUP bug（已在 generate_chain.py 加 signal ignore workaround），如果 cron 报进程死了先 `ps -p PID` 确认\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778816397.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "534a518c425ba723d514",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "verify supplement package",
+  "task_key": "worker_verify_supplement-package_20260519T124851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_supplement-package_20260519T124851_result.json",
+    "occurrence": 1,
+    "bytes": 501,
+    "sha256": "b5b20520f83edc13f880d05a263a0095801aeb174ec0fe6b9a3ca1daeb8846ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成，全部 **PASS**。\n\n- **匿名化**：无 `.git`、无邮箱/姓名/GitHub URL/API key/服务器标识/中文字符/wandb 调用\n- **完整性**：47 个文件，涵盖数据处理、特征提取、分类器训练、全部消融实验、绘图脚本、两份 README，无空文件\n- **大文件**：最大的是 `wiki_seed_1000.jsonl`（23 MB），是种子文本，合理；无模型权重\n\n报告已写入 `artifacts/_project/supplement/verification_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-supplement-package.md"
+}

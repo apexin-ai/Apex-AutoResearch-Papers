@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d608366fdcfa4693e110",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper add appendix refs",
+  "task_key": "worker_paper_add-appendix-refs_20260521T215228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_add-appendix-refs_20260521T215228_result.json",
+    "occurrence": 1,
+    "bytes": 1595,
+    "sha256": "31a09c5179e7e7278dbea63079fce5ef8eab3093db46e85b91c4790298e1ceb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 12 个 label 在 artifacts 和 docs 两份中均已被引用 1 次。\n\n修改摘要：\n\n| Label | 插入位置 | 语境 |\n|---|---|---|\n| `app:9gen-scale` | discussion.tex — 跨生成器泛化句 | \"extending to a ninth generator family (Gemma-2) preserves the partition\" |\n| `app:convergence` | discussion.tex — NLL 压缩句 | \"per-feature convergence trajectories\" |\n| `app:nll-distribution` | discussion.tex — NLL 压缩句 | \"token-level distributions\" |\n| `app:ddr-supplement` | discussion.tex — DDR vs model collapse | \"comprehensive supplementary analyses\" |\n| `app:human-edit` | discussion.tex — 限制性讨论句 | \"depth signal survives moderate text perturbation\" |\n| `app:qualitative` | results.tex — DDR 定义句 | \"illustrates the pattern with a concrete generation chain\" |\n| `app:cross-model-detail` | results.tex — 跨模型链段落 | \"per-class breakdown\" |\n| `app:heteroscedasticity` | results.tex — 量化段落 | \"partition robust under heteroscedasticity\" |\n| `app:holdout-split` | results.tex — 验证段落 | \"disjoint four-generator holdout splits independently recover identical zone assignments\" |\n| `app:tost-sensitivity` | appendix_tost.tex — TOST 内部交叉引用 | \"sensitivity analysis...confirms robust to bound choice\" |\n| `app:tost-bootstrap` | appendix_tost.tex — TOST 内部交叉引用 | \"bootstrap resampling shows 100% rejection stability\" |\n| `app:epsilon-sweep` | appendix_tost.tex — TOST 内部交叉引用 | \"partition invariant across ε ∈ [0.10, 0.75]\" |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-add-appendix-refs.md"
+}

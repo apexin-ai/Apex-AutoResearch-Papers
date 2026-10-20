@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af4c9a3c7ae52e76e3bb",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis review p2f cross ref bias",
+  "task_key": "worker_analysis_review-p2f-cross-ref-bias_20260515T134152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_review-p2f-cross-ref-bias_20260515T134152_result.json",
+    "occurrence": 1,
+    "bytes": 729,
+    "sha256": "2ae542d71c301c04b07bcd35f6f5c2f6b71c12321c4a83b17e711053fbc96484"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `results/review_p2f_cross_ref_bias.json`。\n\n**核心发现：Same-family bias 不成立。**\n\n| Reference Model | Pythia-1B F1 | 其他4gen平均 | Pythia-1B偏差 | Pythia-1B排名 |\n|----------------|-------------|-------------|--------------|--------------|\n| Pythia-410M (同族) | 0.856 | 0.790 | +0.065 | **#1** |\n| OLMo-2-1B (跨族) | 0.845 | 0.798 | +0.048 | **#1** |\n| Qwen3-0.6B (跨族) | 0.848 | 0.808 | +0.041 | **#1** |\n\n- Pythia-1B 在**所有三种** reference model 下都排名第一\n- 同族→跨族 F1 下降仅 0.009（0.856→0.847），远在 CI 范围内\n- Pythia-1B 的高可检测性是其生成模式的内在特征，不是 reference model 家族偏差"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-review-p2f-cross-ref-bias.md"
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "28a592c2a8ec260052ab",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "verify pdf visual check",
+  "task_key": "worker_verify_pdf-visual-check_20260519T124910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_pdf-visual-check_20260519T124910_result.json",
+    "occurrence": 1,
+    "bytes": 2098857,
+    "sha256": "c3539e1cb8022b8f62b39f7ad1b0897a3ac697a9dc39313475231b90bc28a4ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2098877,
+                "serialized_sha256": "0e953c12c19274ca071c9c2adc79ce0241f640d8a73be360c45f1c4d2c20f225",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-pdf-visual-check.md"
+}

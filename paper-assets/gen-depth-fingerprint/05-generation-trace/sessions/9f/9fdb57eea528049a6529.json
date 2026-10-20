@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fdb57eea528049a6529",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code llm rephrase robustness",
+  "task_key": "worker_code_llm-rephrase-robustness_20260516T221100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llm-rephrase-robustness_20260516T221100_result.json",
+    "occurrence": 1,
+    "bytes": 832,
+    "sha256": "001bac0b2f752dc038df6cb9ad674bc4b3858cfaf1fccc0ba9c956071af8bfda"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script is working correctly. Progress confirmed: 50/5000 texts rephrased in ~80s (1.6s/text).\n\n**Estimated timeline:**\n- Rephrasing: 5000 texts × 1.6s ≈ 133 min\n- Feature extraction (Pythia-410M): ~15 min\n- LOGO evaluation: ~5 min\n- **Total: ~2.5 hours**\n\nThe script will:\n1. Rephrase 5000 texts using Qwen3-0.6B-Base (context continuation, 1-3 sentences replaced per text)\n2. Save intermediate `rephrased_texts.jsonl`\n3. Extract 7 depth features with Pythia-410M\n4. Run pooled LOGO XGBoost (train on original, test on rephrased)\n5. Save results to `llm_rephrase_results.json`\n\nReference baselines from Condition A:\n- Original: binary F1 = 0.6953\n- 5% random replacement: binary F1 = 0.6496 (drop = -0.0457)\n\nProcess PID 351633 is running on autodl-5090. Want me to check back on progress later?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llm-rephrase-robustness.md"
+}

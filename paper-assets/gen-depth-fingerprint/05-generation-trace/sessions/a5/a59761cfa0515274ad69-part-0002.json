@@ -1,0 +1,2550 @@
+{
+  "schema_version": "1.0",
+  "session_id": "a59761cfa0515274ad69",
+  "rounds": [
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C6VNQtcW1BQTBXpkNGLXCc",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import xgboost; print('xgb', xgboost.__version__)\" 2>&1"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "fe56ef07-ad22-4956-b36d-67f3859193fc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0162BUX5sDxedZ2CGYnFyPb7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 275,
+                "cache_read_input_tokens": 38115,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 275
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-20T07:24:54.438Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C6VNQtcW1BQTBXpkNGLXCc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"xgb 3.2.0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "8270e555-aa94-4f39-8087-42f25f924998",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"xgb 3.2.0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"xgb 3.2.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"
+              }
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good news:\n1. xgboost is installed (3.2.0)\n2. The script file exists on server but is 0 bytes (empty)\n\nLet me check the other dependencies too, and then transfer the file. I'll write the script using Python on the server side - writing it in chunks via ssh_execute.\n\nThe file is 447 lines. Let me split it into manageable chunks and write via Python heredoc on the server.\n\nActually, a better approach: I'll use `ssh_execute` with a Python command that writes the file content. But the content is large. Let me try writing it using a heredoc in bash via ssh_execute.\n \nI'm going to split the script into smaller chunks and write them sequentially using append operations, since the full content is too large for a single command. I'll break it into roughly 150-line segments and write the first chunk now.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "2a2f695d-9259-4ca2-a4a9-9405566f5cd4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0166dye4yGzD9WcbYEQr5bk1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 532,
+                "cache_read_input_tokens": 38390,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 532
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script file is empty on server (0 bytes), but xgboost is already installed. Let me check remaining deps and start the file transfer."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "efc8f6a5-e82f-4c1a-9a79-e9c711c9a54a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0166dye4yGzD9WcbYEQr5bk1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 532,
+                "cache_read_input_tokens": 38390,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 532
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Txo6zqW1bH75TnBHp8kNyF",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import sklearn; print('sklearn', sklearn.__version__); import statsmodels; print('sm', statsmodels.__version__); import scipy; print('scipy', scipy.__version__)\" 2>&1"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "3cad9d42-ed26-41bb-bbe4-8567c23e358d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0166dye4yGzD9WcbYEQr5bk1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 532,
+                "cache_read_input_tokens": 38390,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 532
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-20T07:25:08.376Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Txo6zqW1bH75TnBHp8kNyF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\\\\\"import sklearn; print(\\\\\\\\'sklearn\\\\\\\\', sklearn.__version__); import statsmodels; print(\\\\\\\\'sm\\\\\\\\', statsmodels.__version__); import scipy; print(\\\\\\\\'scipy\\\\\\\\', scipy.__version__)\\\\\\\" 2>&1'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nModuleNotFoundError: No module named 'statsmodels'\\\\nsklearn 1.8.0\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "13e410bb-2fa2-4846-baf9-cd983565a36c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\\\\\"import sklearn; print(\\\\\\\\'sklearn\\\\\\\\', sklearn.__version__); import statsmodels; print(\\\\\\\\'sm\\\\\\\\', statsmodels.__version__); import scipy; print(\\\\\\\\'scipy\\\\\\\\', scipy.__version__)\\\\\\\" 2>&1'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\nModuleNotFoundError: No module named 'statsmodels'\\\\nsklearn 1.8.0\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"import sklearn; print(\\\\'sklearn\\\\', sklearn.__version__); import statsmodels; print(\\\\'sm\\\\', statsmodels.__version__); import scipy; print(\\\\'scipy\\\\', scipy.__version__)\\\" 2>&1'\\n\\nExit code: 1\\n\\nStdout:\\n\\nTraceback (most recent call last):\\n  File \\\"<string>\\\", line 1, in <module>\\nModuleNotFoundError: No module named 'statsmodels'\\nsklearn 1.8.0\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.21}}"
+              }
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "So sklearn is installed (1.8.0), but statsmodels is not yet installed. The pip process (PID 176757) is still running. Let me check what it's installing. Wait, the error shows sklearn was imported successfully but statsmodels failed. The import order in the -c command means sklearn imported first, then statsmodels failed. So sklearn is installed.\n\nLet me check scipy separately, and install statsmodels.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "87a42b1b-d819-424b-a05f-e97e9a210749",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U89vDKJZbJZCtXjL1DJiWu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 761,
+                "cache_read_input_tokens": 38922,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 761
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "sklearn is installed, statsmodels is missing. Let me install it and start transferring the script in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "7e8a113c-23e6-487e-ba8b-416e41cb3804",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U89vDKJZbJZCtXjL1DJiWu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 761,
+                "cache_read_input_tokens": 38922,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 761
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Bs6s8ZmotowGYB3FZFFTMC",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && pip install statsmodels scipy -q 2>&1 | tail -5",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "06657bb2-3ccc-4bcf-b11b-bb84d4b0328f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U89vDKJZbJZCtXjL1DJiWu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 761,
+                "cache_read_input_tokens": 38922,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 761
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": "2026-05-20T07:25:22.837Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Bs6s8ZmotowGYB3FZFFTMC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "4e7a1a7c-81b6-4da8-8f5c-cc928966f0c2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.41}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.41}}"
+              }
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, statsmodels and scipy installed. Now let me transfer the script. I'll write it in 3 chunks using heredoc."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "4f0ac453-ed65-46cd-902d-c85628fb9d48",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NiTh4iqWxsosnKfeSWbATq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 397,
+                "cache_read_input_tokens": 39683,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 397
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0119FMdcUWby677hvSW5QAix",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "cat > /root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py << 'CHUNK1'\n#!/usr/bin/env python3\n\"\"\"DDR causal analysis: feature intervention, permutation importance, Granger causality.\n\nInvestigates whether generative depth *causally* drives feature drift,\nbeyond mere correlation.  Three analysis modules:\n\n1. Feature intervention (counterfactual): shuffle a single feature's\n   depth-association while keeping others intact, measure classifier\n   degradation -> reveals causal contribution of each feature.\n2. Permutation importance (model-free): per-feature permutation on the\n   trained classifier -> complements LOFO with a non-retraining approach.\n3. Granger-style causality: test whether depth predicts feature values\n   beyond an autoregressive baseline (pooled panel regression).\n\"\"\"\nimport argparse\nimport json\nimport os\nimport warnings\nimport numpy as np\nimport pandas as pd\nfrom pathlib import Path\n\nFEATURES = [\n    \"hapax_ratio\", \"ttr\", \"entropy_mean\", \"entropy_std\",\n    \"entropy_min\", \"entropy_max\", \"tail_decay\",\n]\nCLASS_MAP = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\n\nXGB_PARAMS = dict(\n    n_estimators=200, max_depth=6, learning_rate=0.1,\n    random_state=42, eval_metric=\"mlogloss\",\n    use_label_encoder=False,\n)\n\nDATA_DIR = Path(\"/root/gen-depth-fingerprint/data\")\nRESULTS_DIR = Path(\"/root/gen-depth-fingerprint/results\")\n\n\ndef load_data(path: str) -> pd.DataFrame:\n    df = pd.read_csv(path)\n    df[\"label\"] = df[\"depth\"].map(CLASS_MAP)\n    return df\n\n\ndef downsample(df, label_col, rng):\n    counts = df[label_col].value_counts()\n    min_n = counts.min()\n    parts = []\n    for lbl in sorted(counts.index):\n        sub = df[df[label_col] == lbl]\n        parts.append(sub.sample(n=min_n, random_state=rng, replace=False))\n    return pd.concat(parts, ignore_index=True)\n\n\n# -- Module 1: Feature intervention (counterfactual) --\n\ndef feature_intervention(df: pd.DataFrame, n_repeats: int = 30, seed: int = 42):\n    \"\"\"Shuffle one feature's values across all rows to break its\n    depth-association, retrain LOGO classifier, compare F1 to baseline.\n    \"\"\"\n    from xgboost import XGBClassifier\n    from sklearn.metrics import f1_score\n\n    rng = np.random.RandomState(seed)\n    generators = sorted(df[\"model_name\"].unique())\n\n    baseline_f1s = {}\n    for gen in generators:\n        test_df = df[df[\"model_name\"] == gen]\n        train_df = df[df[\"model_name\"] != gen]\n        train_ds = downsample(train_df, \"label\", rng)\n        clf = XGBClassifier(**XGB_PARAMS)\n        clf.fit(train_ds[FEATURES].values, train_ds[\"label\"].values)\n        y_pred = clf.predict(test_df[FEATURES].values)\n        baseline_f1s[gen] = f1_score(test_df[\"label\"].values, y_pred, average=\"macro\")\n\n    avg_baseline = float(np.mean(list(baseline_f1s.values())))\n    print(f\"  Baseline avg LOGO F1: {avg_baseline:.4f}\")\n\n    results = {}\n    for feat in FEATURES:\n        deltas = []\n        for rep in range(n_repeats):\n            rep_rng = np.random.RandomState(seed + rep)\n            df_int = df.copy()\n            df_int[feat] = rep_rng.permutation(df_int[feat].values)\n\n            fold_deltas = []\n            for gen in generators:\n                test_df = df_int[df_int[\"model_name\"] == gen]\n                train_df = df_int[df_int[\"model_name\"] != gen]\n                train_ds = downsample(train_df, \"label\", rep_rng)\n                clf = XGBClassifier(**XGB_PARAMS)\n                clf.fit(train_ds[FEATURES].values, train_ds[\"label\"].values)\n                y_pred = clf.predict(test_df[FEATURES].values)\n                int_f1 = f1_score(test_df[\"label\"].values, y_pred, average=\"macro\")\n                fold_deltas.append(baseline_f1s[gen] - int_f1)\n            deltas.append(float(np.mean(fold_deltas)))\n\n        results[feat] = {\n            \"mean_f1_drop\": round(float(np.mean(deltas)), 4),\n            \"std_f1_drop\": round(float(np.std(deltas)), 4),\n        }\n        print(f\"  {feat:15s}  dF1 = {results[feat]['mean_f1_drop']:.4f} +/- {results[feat]['std_f1_drop']:.4f}\")\n\n    results[\"_baseline_avg_f1\"] = round(avg_baseline, 4)\n    return results\nCHUNK1"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "c49cd788-8d83-4a03-af1a-a2032bff3be6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NiTh4iqWxsosnKfeSWbATq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 397,
+                "cache_read_input_tokens": 39683,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 397
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": "2026-05-20T07:25:46.842Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0119FMdcUWby677hvSW5QAix",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "6ce3695f-f2e9-4773-85a7-5b7bec100257",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Chunk 1 written. Now chunk 2 (permutation importance + granger helper)."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "42ad6ec7-fa5b-4729-a204-ab4a85b3d15b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FhDGP2o18ArNTdkXZKUdYA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1528,
+                "cache_read_input_tokens": 40080,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1528
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JtxVWHnbc8SeoeFHdfqC2o",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "cat >> /root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py << 'CHUNK2'\n\n\n# -- Module 2: Permutation importance (no retraining) --\n\ndef permutation_importance(df: pd.DataFrame, n_repeats: int = 50, seed: int = 42):\n    \"\"\"Permute each feature at test time on a trained LOGO classifier.\n    No retraining -- measures each feature's contribution to prediction.\n    \"\"\"\n    from xgboost import XGBClassifier\n    from sklearn.metrics import f1_score\n\n    rng_base = np.random.RandomState(seed)\n    generators = sorted(df[\"model_name\"].unique())\n\n    feat_importances = {f: [] for f in FEATURES}\n    fold_baselines = []\n\n    for gen in generators:\n        test_df = df[df[\"model_name\"] == gen].copy()\n        train_df = df[df[\"model_name\"] != gen]\n        train_ds = downsample(train_df, \"label\", rng_base)\n\n        clf = XGBClassifier(**XGB_PARAMS)\n        clf.fit(train_ds[FEATURES].values, train_ds[\"label\"].values)\n\n        X_test = test_df[FEATURES].values.copy()\n        y_test = test_df[\"label\"].values\n\n        baseline_f1 = f1_score(y_test, clf.predict(X_test), average=\"macro\")\n        fold_baselines.append(baseline_f1)\n\n        for feat_idx, feat in enumerate(FEATURES):\n            drop_scores = []\n            for rep in range(n_repeats):\n                rng = np.random.RandomState(seed + rep)\n                X_perm = X_test.copy()\n                X_perm[:, feat_idx] = rng.permutation(X_perm[:, feat_idx])\n                perm_f1 = f1_score(y_test, clf.predict(X_perm), average=\"macro\")\n                drop_scores.append(baseline_f1 - perm_f1)\n            feat_importances[feat].append(float(np.mean(drop_scores)))\n\n        print(f\"  Fold {gen:20s}  baseline F1={baseline_f1:.4f}\")\n\n    results = {}\n    avg_baseline = float(np.mean(fold_baselines))\n    print(f\"\\n  Avg baseline F1: {avg_baseline:.4f}\")\n    print(f\"  {'Feature':15s} {'Importance':>12s} {'Std':>10s}\")\n    print(f\"  {'-'*40}\")\n\n    for feat in FEATURES:\n        vals = feat_importances[feat]\n        mean_imp = float(np.mean(vals))\n        std_imp = float(np.std(vals))\n        results[feat] = {\n            \"mean_importance\": round(mean_imp, 4),\n            \"std_importance\": round(std_imp, 4),\n            \"per_fold\": {gen: round(v, 4) for gen, v in zip(generators, vals)},\n        }\n        print(f\"  {feat:15s} {mean_imp:12.4f} {std_imp:10.4f}\")\n\n    results[\"_baseline_avg_f1\"] = round(avg_baseline, 4)\n\n    ranked = sorted(FEATURES, key=lambda f: results[f][\"mean_importance\"], reverse=True)\n    results[\"_ranked\"] = ranked\n    print(f\"\\n  Ranked: {' > '.join(ranked)}\")\n\n    # Classify drifting vs stationary by median split\n    importances = [results[f][\"mean_importance\"] for f in FEATURES]\n    median_imp = float(np.median(importances))\n    drifting = [f for f in ranked if results[f][\"mean_importance\"] >= median_imp]\n    stationary = [f for f in ranked if results[f][\"mean_importance\"] < median_imp]\n    results[\"_drifting_features\"] = drifting\n    results[\"_stationary_features\"] = stationary\n    results[\"_median_threshold\"] = round(median_imp, 4)\n\n    print(f\"\\n  Drifting  (imp >= {median_imp:.4f}): {drifting}\")\n    print(f\"  Stationary (imp < {median_imp:.4f}): {stationary}\")\n\n    drift_avg = float(np.mean([results[f][\"mean_importance\"] for f in drifting])) if drifting else 0\n    stat_avg = float(np.mean([results[f][\"mean_importance\"] for f in stationary])) if stationary else 0\n    results[\"_group_summary\"] = {\n        \"drifting_avg_importance\": round(drift_avg, 4),\n        \"stationary_avg_importance\": round(stat_avg, 4),\n    }\n    print(f\"  Drifting avg importance:   {drift_avg:.4f}\")\n    print(f\"  Stationary avg importance: {stat_avg:.4f}\")\n\n    return results\n\n\n# -- Module 3: Granger-style causality on depth series --\n\ndef _ols_f_test(y, X_restr, X_full):\n    \"\"\"F-test for nested OLS models. Returns (F_stat, p_value, beta_full).\"\"\"\n    from scipy import stats as sp_stats\n\n    n = len(y)\n    beta_r = np.linalg.lstsq(X_restr, y, rcond=None)[0]\n    ss_r = float(np.sum((y - X_restr @ beta_r) ** 2))\n\n    beta_f = np.linalg.lstsq(X_full, y, rcond=None)[0]\n    ss_f = float(np.sum((y - X_full @ beta_f) ** 2))\n\n    df1 = X_full.shape[1] - X_restr.shape[1]\n    df2 = n - X_full.shape[1]\n\n    if df2 <= 0 or ss_f <= 0:\n        return np.nan, np.nan, beta_f\n\n    f_stat = ((ss_r - ss_f) / df1) / (ss_f / df2)\n    p_value = 1 - sp_stats.f.cdf(f_stat, df1, df2)\n\n    return float(f_stat), float(p_value), beta_f\nCHUNK2"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "807eeca5-08c2-4fe0-baf9-359cb10e4b15",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FhDGP2o18ArNTdkXZKUdYA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1528,
+                "cache_read_input_tokens": 40080,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1528
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": "2026-05-20T07:26:10.850Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JtxVWHnbc8SeoeFHdfqC2o",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "2b0641e6-3b4d-4d86-89fa-0d0771c02f07",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Chunk 2 done. Now chunk 3 (granger_causality + mediation + main)."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "acc148c2-8272-444d-884a-aff32c9e96ff",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E71JVuJXWU94n8TWHdpXDk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1876,
+                "cache_read_input_tokens": 41608,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1876
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EJGAUGeAwrUbQPC8jbk9L9",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "cat >> /root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py << 'CHUNK3'\n\n\ndef granger_causality(df: pd.DataFrame, max_lag: int = 2):\n    \"\"\"Pooled panel Granger test: does depth predict feature values\n    beyond autoregressive baseline?\n\n    Per-seed depth chains have only T=5 points -- individual Granger tests\n    are infeasible. We pool across all seeds (~995 per generator) for the\n    panel regression.\n\n    Restricted:  f_t ~ intercept + f_{t-1}\n    Full:        f_t ~ intercept + f_{t-1} + depth_t\n    \"\"\"\n    from scipy import stats as sp_stats\n\n    print(\"  WARNING: Depth chains have only T=5 points per seed.\")\n    print(\"  Per-seed Granger tests have negligible statistical power.\")\n    print(\"  Primary results use pooled panel regression across seeds.\\n\")\n\n    # Build lagged panel: for each (model, seed), sort by depth, create lags\n    records = []\n    for (model, sid), grp in df.groupby([\"model_name\", \"seed_id\"]):\n        grp = grp.sort_values(\"depth\")\n        if len(grp) < 2:\n            continue\n        depths = grp[\"depth\"].values\n        feats = grp[FEATURES].values\n        for t in range(1, len(grp)):\n            rec = {\"model_name\": model, \"seed_id\": sid, \"depth_t\": int(depths[t])}\n            for lag in range(1, min(max_lag + 1, t + 1)):\n                for fi, fname in enumerate(FEATURES):\n                    rec[f\"{fname}_lag{lag}\"] = feats[t - lag, fi]\n            for fi, fname in enumerate(FEATURES):\n                rec[f\"{fname}_t\"] = feats[t, fi]\n            records.append(rec)\n\n    panel = pd.DataFrame(records)\n    n_chains = df.groupby([\"model_name\", \"seed_id\"]).ngroups\n    print(f\"  Panel: {len(panel)} obs from {n_chains} seed chains\")\n\n    effective_lag = 1  # T=5 makes lag>1 unreliable\n    if max_lag > 1:\n        print(f\"  Requested max_lag={max_lag}, but using lag={effective_lag} (T=5 constraint)\")\n    print()\n\n    # -- Overall pooled test --\n    generators = sorted(df[\"model_name\"].unique())\n\n    print(f\"  {'Feature':15s} {'F-stat':>10s} {'p-value':>12s} {'R2_full':>8s} {'R2_rest':>8s} {'dR2':>8s} {'Sig':>5s}\")\n    print(f\"  {'-'*70}\")\n\n    results = {}\n    for feat in FEATURES:\n        y = panel[f\"{feat}_t\"].values\n        lag_col = f\"{feat}_lag1\"\n        if lag_col not in panel.columns:\n            results[feat] = {\"error\": \"missing lag column\"}\n            continue\n\n        x_lag = panel[lag_col].values\n        n = len(y)\n        X_restr = np.column_stack([np.ones(n), x_lag])\n        X_full = np.column_stack([np.ones(n), x_lag, panel[\"depth_t\"].values])\n\n        f_stat, p_value, beta_f = _ols_f_test(y, X_restr, X_full)\n\n        ss_tot = float(np.sum((y - np.mean(y)) ** 2))\n        ss_r = float(np.sum((y - X_restr @ np.linalg.lstsq(X_restr, y, rcond=None)[0]) ** 2))\n        ss_f = float(np.sum((y - X_full @ beta_f) ** 2))\n        r2_restr = 1 - ss_r / ss_tot if ss_tot > 0 else 0\n        r2_full = 1 - ss_f / ss_tot if ss_tot > 0 else 0\n\n        sig = \"***\" if p_value < 0.001 else \"**\" if p_value < 0.01 else \"*\" if p_value < 0.05 else \"\"\n\n        results[feat] = {\n            \"F_stat\": round(f_stat, 4),\n            \"p_value\": p_value,\n            \"p_value_str\": f\"{p_value:.2e}\",\n            \"r2_restricted\": round(r2_restr, 4),\n            \"r2_full\": round(r2_full, 4),\n            \"delta_r2\": round(r2_full - r2_restr, 4),\n            \"significant_005\": p_value < 0.05,\n            \"depth_coefficient\": round(float(beta_f[-1]), 6),\n            \"n_obs\": n,\n        }\n        print(f\"  {feat:15s} {f_stat:10.2f} {p_value:12.2e} {r2_full:8.4f} {r2_restr:8.4f} {r2_full - r2_restr:8.4f} {sig:>5s}\")\n\n    # -- Per-generator pooled test --\n    print(f\"\\n  Per-generator pooled Granger (lag={effective_lag}):\")\n    per_gen_results = {}\n    for gen in generators:\n        gen_panel = panel[panel[\"model_name\"] == gen]\n        gen_res = {}\n        for feat in FEATURES:\n            y = gen_panel[f\"{feat}_t\"].values\n            lag_col = f\"{feat}_lag1\"\n            if lag_col not in gen_panel.columns:\n                continue\n            x_lag = gen_panel[lag_col].values\n            n = len(y)\n            X_restr = np.column_stack([np.ones(n), x_lag])\n            X_full = np.column_stack([np.ones(n), x_lag, gen_panel[\"depth_t\"].values])\n\n            f_stat, p_value, beta_f = _ols_f_test(y, X_restr, X_full)\n            if np.isnan(f_stat):\n                continue\n            gen_res[feat] = {\n                \"F_stat\": round(f_stat, 2),\n                \"p_value\": p_value,\n                \"depth_coef\": round(float(beta_f[-1]), 6),\n            }\n        per_gen_results[gen] = gen_res\n\n    # -- Fisher's method: combine per-generator p-values --\n    print(f\"\\n  Fisher's combined p-values across {len(generators)} generators:\")\n    fisher_results = {}\n    for feat in FEATURES:\n        p_vals = []\n        for gen in generators:\n            if gen in per_gen_results and feat in per_gen_results[gen]:\n                p = per_gen_results[gen][feat][\"p_value\"]\n                p_clipped = np.clip(p, 1e-300, 1 - 1e-15)\n                p_vals.append(p_clipped)\n        if len(p_vals) >= 2:\n            chi2_stat = -2 * np.sum(np.log(p_vals))\n            combined_p = 1 - sp_stats.chi2.cdf(chi2_stat, 2 * len(p_vals))\n            fisher_results[feat] = {\n                \"chi2\": round(float(chi2_stat), 2),\n                \"combined_p\": float(combined_p),\n                \"n_generators\": len(p_vals),\n            }\n            sig = \"***\" if combined_p < 0.001 else \"**\" if combined_p < 0.01 else \"*\" if combined_p < 0.05 else \"\"\n            print(f\"    {feat:15s}  chi2={chi2_stat:8.2f}  p={combined_p:.2e}  {sig}\")\n\n    results[\"_per_generator\"] = per_gen_results\n    results[\"_fisher_combined\"] = fisher_results\n    results[\"_panel_size\"] = len(panel)\n    results[\"_effective_lag\"] = effective_lag\n    results[\"_power_warning\"] = (\n        \"Per-seed depth chains have only T=5 points. \"\n        \"Pooled panel regression aggregates across ~995 seeds per generator, \"\n        \"providing adequate power for the overall test. \"\n        \"Individual per-seed Granger tests are infeasible (df_residual ~ 1).\"\n    )\n\n    return results\n\n\n# -- Module 4: Mediation analysis --\n\ndef mediation_analysis(df: pd.DataFrame):\n    \"\"\"Test whether drifting features mediate the effect of depth on\n    classifier predictions (Baron & Kenny / bootstrap mediation).\n    \"\"\"\n    raise NotImplementedError(\"Mediation analysis not yet implemented\")\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"DDR causal analysis for gen-depth fingerprint\"\n    )\n    parser.add_argument(\n        \"--data-path\",\n        default=str(DATA_DIR / \"features_8gen.csv\"),\n    )\n    parser.add_argument(\n        \"--module\",\n        choices=[\"intervention\", \"permutation\", \"granger\", \"mediation\", \"all\"],\n        default=\"all\",\n    )\n    parser.add_argument(\"--n-repeats\", type=int, default=30)\n    parser.add_argument(\"--max-lag\", type=int, default=2)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\n        \"--output\",\n        default=str(RESULTS_DIR / \"ddr_causal_analysis.json\"),\n    )\n    parser.add_argument(\n        \"--dry-run\", action=\"store_true\",\n        help=\"Run on subset (2 seeds per generator) for quick validation\",\n    )\n    args = parser.parse_args()\n\n    df = load_data(args.data_path)\n    print(f\"Loaded {len(df)} rows, {df['model_name'].nunique()} generators\")\n    print(f\"Depths: {sorted(df['depth'].unique())}\")\n    print(f\"Features: {FEATURES}\\n\")\n\n    if args.dry_run:\n        sub_frames = []\n        for gen in df[\"model_name\"].unique():\n            gen_df = df[df[\"model_name\"] == gen]\n            seeds = sorted(gen_df[\"seed_id\"].unique())[:2]\n            sub_frames.append(gen_df[gen_df[\"seed_id\"].isin(seeds)])\n        df = pd.concat(sub_frames, ignore_index=True)\n        print(f\"[DRY RUN] Subsampled to {len(df)} rows\\n\")\n\n    results = {}\n\n    if args.module in (\"intervention\", \"all\"):\n        print(\"=== Feature Intervention ===\")\n        results[\"intervention\"] = feature_intervention(\n            df, n_repeats=args.n_repeats, seed=args.seed\n        )\n\n    if args.module in (\"permutation\", \"all\"):\n        print(\"\\n=== Permutation Importance ===\")\n        results[\"permutation\"] = permutation_importance(\n            df, n_repeats=args.n_repeats, seed=args.seed\n        )\n\n    if args.module in (\"granger\", \"all\"):\n        print(\"\\n=== Granger Causality ===\")\n        results[\"granger\"] = granger_causality(df, max_lag=args.max_lag)\n\n    if args.module in (\"mediation\", \"all\"):\n        print(\"\\n=== Mediation Analysis ===\")\n        results[\"mediation\"] = mediation_analysis(df)\n\n    os.makedirs(os.path.dirname(args.output), exist_ok=True)\n    with open(args.output, \"w\") as f:\n        json.dump(results, f, indent=2, default=str)\n    print(f\"\\nSaved: {args.output}\")\n\n\nif __name__ == \"__main__\":\n    main()\nCHUNK3"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "94d10767-a750-49d3-b65d-00bbf97b1a62",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E71JVuJXWU94n8TWHdpXDk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1876,
+                "cache_read_input_tokens": 41608,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1876
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": "2026-05-20T07:26:53.677Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EJGAUGeAwrUbQPC8jbk9L9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "566e9fa4-bff4-47f2-8a95-09aa4fb1048b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            }
+          },
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 3 chunks written. Let me verify the file."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "876fafb7-923f-4500-a232-59cb38d21527",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FRrgxAnDtZ8vy7douPfTFk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3216,
+                "cache_read_input_tokens": 43484,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3216
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012FDqtq3RVnNAhvUFoPhhRx",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "wc -l /root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "d732066c-ecf2-4e53-abe4-699c62400f45",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FRrgxAnDtZ8vy7douPfTFk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3216,
+                "cache_read_input_tokens": 43484,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3216
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000201"
+        },
+        {
+          "source_line": 202,
+          "timestamp": "2026-05-20T07:27:01.688Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012FDqtq3RVnNAhvUFoPhhRx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"447 /root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "a63a14f0-9d20-43b6-9abd-508b1f33c9fc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"447 /root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"447 /root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            }
+          },
+          "id": "event-000202"
+        },
+        {
+          "source_line": 203,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V9HF5rguGxxWGEucMB8VkN",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "head -5 /root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "1e36f2be-166a-4554-ac4a-c55e902c2cc7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FRrgxAnDtZ8vy7douPfTFk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3216,
+                "cache_read_input_tokens": 43484,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3216
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000203"
+        },
+        {
+          "source_line": 204,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UWfPv2fWcebXCeK6XzVgiC",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "tail -5 /root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "549514b3-ab79-41f5-a24b-5e42ad80494d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FRrgxAnDtZ8vy7douPfTFk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3216,
+                "cache_read_input_tokens": 43484,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3216
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000204"
+        },
+        {
+          "source_line": 205,
+          "timestamp": "2026-05-20T07:27:02.838Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V9HF5rguGxxWGEucMB8VkN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"DDR causal analysis: feature intervention, permutation importance, Granger causality.\\\\n\\\\nInvestigates whether generative depth *causally* drives feature drift,\\\\nbeyond mere correlation.  Three analysis modules:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "e8492cf3-29e6-497e-9ce6-52ef8cc877eb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"DDR causal analysis: feature intervention, permutation importance, Granger causality.\\\\n\\\\nInvestigates whether generative depth *causally* drives feature drift,\\\\nbeyond mere correlation.  Three analysis modules:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"DDR causal analysis: feature intervention, permutation importance, Granger causality.\\n\\nInvestigates whether generative depth *causally* drives feature drift,\\nbeyond mere correlation.  Three analysis modules:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            }
+          },
+          "id": "event-000205"
+        },
+        {
+          "source_line": 206,
+          "timestamp": "2026-05-20T07:27:03.216Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UWfPv2fWcebXCeK6XzVgiC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    print(f\\\\\\\"\\\\\\\\nSaved: {args.output}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "d3f07c37-be96-4db4-b623-63d094909e46",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    print(f\\\\\\\"\\\\\\\\nSaved: {args.output}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"    print(f\\\"\\\\nSaved: {args.output}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+              }
+            }
+          },
+          "id": "event-000206"
+        },
+        {
+          "source_line": 207,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "447 lines, matches exactly. Now let me verify argparse works and run dry-run validation."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "c15bb3bd-dc78-434c-9672-e98469743011",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FRvdh8kbAJPXRUoaXGkXBy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 752,
+                "cache_read_input_tokens": 46700,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 752
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000207"
+        },
+        {
+          "source_line": 208,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L6iP2Cxz1z5jdw4Rxv8qn1",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python scripts/ddr_causal_analysis.py --help 2>&1"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "46d5f353-0df1-493d-9bb8-3a57eb8ec710",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FRvdh8kbAJPXRUoaXGkXBy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 752,
+                "cache_read_input_tokens": 46700,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 752
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000208"
+        },
+        {
+          "source_line": 209,
+          "timestamp": "2026-05-20T07:27:07.980Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L6iP2Cxz1z5jdw4Rxv8qn1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: ddr_causal_analysis.py [-h] [--data-path DATA_PATH]\\\\n                              [--module {intervention,permutation,granger,mediation,all}]\\\\n                              [--n-repeats N_REPEATS] [--max-lag MAX_LAG]\\\\n                              [--seed SEED] [--output OUTPUT] [--dry-run]\\\\n\\\\nDDR causal analysis for gen-depth fingerprint\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --data-path DATA_PATH\\\\n  --module {intervention,permutation,granger,mediation,all}\\\\n  --n-repeats N_REPEATS\\\\n  --max-lag MAX_LAG\\\\n  --seed SEED\\\\n  --output OUTPUT\\\\n  --dry-run             Run on subset (2 seeds per generator) for quick\\\\n                        validation\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "dd51c7f7-fb5d-4dbe-82a8-8ff83d6a2329",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: ddr_causal_analysis.py [-h] [--data-path DATA_PATH]\\\\n                              [--module {intervention,permutation,granger,mediation,all}]\\\\n                              [--n-repeats N_REPEATS] [--max-lag MAX_LAG]\\\\n                              [--seed SEED] [--output OUTPUT] [--dry-run]\\\\n\\\\nDDR causal analysis for gen-depth fingerprint\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --data-path DATA_PATH\\\\n  --module {intervention,permutation,granger,mediation,all}\\\\n  --n-repeats N_REPEATS\\\\n  --max-lag MAX_LAG\\\\n  --seed SEED\\\\n  --output OUTPUT\\\\n  --dry-run             Run on subset (2 seeds per generator) for quick\\\\n                        validation\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: ddr_causal_analysis.py [-h] [--data-path DATA_PATH]\\n                              [--module {intervention,permutation,granger,mediation,all}]\\n                              [--n-repeats N_REPEATS] [--max-lag MAX_LAG]\\n                              [--seed SEED] [--output OUTPUT] [--dry-run]\\n\\nDDR causal analysis for gen-depth fingerprint\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --data-path DATA_PATH\\n  --module {intervention,permutation,granger,mediation,all}\\n  --n-repeats N_REPEATS\\n  --max-lag MAX_LAG\\n  --seed SEED\\n  --output OUTPUT\\n  --dry-run             Run on subset (2 seeds per generator) for quick\\n                        validation\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"
+              }
+            }
+          },
+          "id": "event-000209"
+        },
+        {
+          "source_line": 210,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Argparse verified. Now dry-run permutation first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "580f7e4e-01f8-42e2-91c2-9f194d2e616f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fzh8ywQG54SdXxcqiZdhnB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 451,
+                "cache_read_input_tokens": 47452,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 451
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000210"
+        },
+        {
+          "source_line": 211,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ce6Pd5NqC1GACF4xqnMXuQ",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && CUDA_VISIBLE_DEVICES=1 python scripts/ddr_causal_analysis.py --module permutation --dry-run --n-repeats 5 --output /tmp/ddr_dryrun_perm.json 2>&1",
+                "timeout": 120000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "ea34083f-c706-448f-9c18-ecf295a98ee5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fzh8ywQG54SdXxcqiZdhnB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 451,
+                "cache_read_input_tokens": 47452,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 451
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000211"
+        },
+        {
+          "source_line": 212,
+          "timestamp": "2026-05-20T07:27:15.831Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ce6Pd5NqC1GACF4xqnMXuQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:14] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:14] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:14] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:14] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:14] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:15] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:15] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:15] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\nLoaded 37058 rows, 8 generators\\\\nDepths: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\\\nFeatures: ['hapax_ratio', 'ttr', 'entropy_mean', 'entropy_std', 'entropy_min', 'entropy_max', 'tail_decay']\\\\n\\\\n[DRY RUN] Subsampled to 75 rows\\\\n\\\\n\\\\n=== Permutation Importance ===\\\\n  Fold llama-3.2-3b          baseline F1=0.8222\\\\n  Fold mistral-7b-v0.3       baseline F1=0.6667\\\\n  Fold olmo-2-1b             baseline F1=0.7778\\\\n  Fold pythia-1b             baseline F1=0.6190\\\\n  Fold pythia-2.8b           baseline F1=1.0000\\\\n  Fold qwen3-0.6b            baseline F1=0.7000\\\\n  Fold qwen3-1.7b            baseline F1=1.0000\\\\n  Fold qwen3-8b              baseline F1=0.7778\\\\n\\\\n  Avg baseline F1: 0.7954\\\\n  Feature           Importance        Std\\\\n  ----------------------------------------\\\\n  hapax_ratio           0.3620     0.1692\\\\n  ttr                   0.0351     0.0577\\\\n  entropy_mean          0.0689     0.0731\\\\n  entropy_std           0.0072     0.0191\\\\n  entropy_min           0.0115     0.0474\\\\n  entropy_max           0.0083     0.0220\\\\n  tail_decay            0.0734     0.0870\\\\n\\\\n  Ranked: hapax_ratio > tail_decay > entropy_mean > ttr > entropy_min > entropy_max > entropy_std\\\\n\\\\n  Drifting  (imp >= 0.0351): ['hapax_ratio', 'tail_decay', 'entropy_mean', 'ttr']\\\\n  Stationary (imp < 0.0351): ['entropy_min', 'entropy_max', 'entropy_std']\\\\n  Drifting avg importance:   0.1348\\\\n  Stationary avg importance: 0.0090\\\\n\\\\nSaved: /tmp/ddr_dryrun_perm.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "b51aeeed-8e90-47c5-b21e-99e83856d855",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:14] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:14] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:14] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:14] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:14] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:15] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:15] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:15] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\nLoaded 37058 rows, 8 generators\\\\nDepths: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\\\nFeatures: ['hapax_ratio', 'ttr', 'entropy_mean', 'entropy_std', 'entropy_min', 'entropy_max', 'tail_decay']\\\\n\\\\n[DRY RUN] Subsampled to 75 rows\\\\n\\\\n\\\\n=== Permutation Importance ===\\\\n  Fold llama-3.2-3b          baseline F1=0.8222\\\\n  Fold mistral-7b-v0.3       baseline F1=0.6667\\\\n  Fold olmo-2-1b             baseline F1=0.7778\\\\n  Fold pythia-1b             baseline F1=0.6190\\\\n  Fold pythia-2.8b           baseline F1=1.0000\\\\n  Fold qwen3-0.6b            baseline F1=0.7000\\\\n  Fold qwen3-1.7b            baseline F1=1.0000\\\\n  Fold qwen3-8b              baseline F1=0.7778\\\\n\\\\n  Avg baseline F1: 0.7954\\\\n  Feature           Importance        Std\\\\n  ----------------------------------------\\\\n  hapax_ratio           0.3620     0.1692\\\\n  ttr                   0.0351     0.0577\\\\n  entropy_mean          0.0689     0.0731\\\\n  entropy_std           0.0072     0.0191\\\\n  entropy_min           0.0115     0.0474\\\\n  entropy_max           0.0083     0.0220\\\\n  tail_decay            0.0734     0.0870\\\\n\\\\n  Ranked: hapax_ratio > tail_decay > entropy_mean > ttr > entropy_min > entropy_max > entropy_std\\\\n\\\\n  Drifting  (imp >= 0.0351): ['hapax_ratio', 'tail_decay', 'entropy_mean', 'ttr']\\\\n  Stationary (imp < 0.0351): ['entropy_min', 'entropy_max', 'entropy_std']\\\\n  Drifting avg importance:   0.1348\\\\n  Stationary avg importance: 0.0090\\\\n\\\\nSaved: /tmp/ddr_dryrun_perm.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:14] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:14] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:14] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:14] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:14] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:15] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:15] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [15:27:15] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\nLoaded 37058 rows, 8 generators\\nDepths: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\nFeatures: ['hapax_ratio', 'ttr', 'entropy_mean', 'entropy_std', 'entropy_min', 'entropy_max', 'tail_decay']\\n\\n[DRY RUN] Subsampled to 75 rows\\n\\n\\n=== Permutation Importance ===\\n  Fold llama-3.2-3b          baseline F1=0.8222\\n  Fold mistral-7b-v0.3       baseline F1=0.6667\\n  Fold olmo-2-1b             baseline F1=0.7778\\n  Fold pythia-1b             baseline F1=0.6190\\n  Fold pythia-2.8b           baseline F1=1.0000\\n  Fold qwen3-0.6b            baseline F1=0.7000\\n  Fold qwen3-1.7b            baseline F1=1.0000\\n  Fold qwen3-8b              baseline F1=0.7778\\n\\n  Avg baseline F1: 0.7954\\n  Feature           Importance        Std\\n  ----------------------------------------\\n  hapax_ratio           0.3620     0.1692\\n  ttr                   0.0351     0.0577\\n  entropy_mean          0.0689     0.0731\\n  entropy_std           0.0072     0.0191\\n  entropy_min           0.0115     0.0474\\n  entropy_max           0.0083     0.0220\\n  tail_decay            0.0734     0.0870\\n\\n  Ranked: hapax_ratio > tail_decay > entropy_mean > ttr > entropy_min > entropy_max > entropy_std\\n\\n  Drifting  (imp >= 0.0351): ['hapax_ratio', 'tail_decay', 'entropy_mean', 'ttr']\\n  Stationary (imp < 0.0351): ['entropy_min', 'entropy_max', 'entropy_std']\\n  Drifting avg importance:   0.1348\\n  Stationary avg importance: 0.0090\\n\\nSaved: /tmp/ddr_dryrun_perm.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.3}}"
+              }
+            }
+          },
+          "id": "event-000212"
+        },
+        {
+          "source_line": 213,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Permutation dry-run passed. Now dry-run granger."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "6f5470ab-0560-4053-bc50-04dcccbb735e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TXNgmWHstqgP7BCJh6Uhn6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1883,
+                "cache_read_input_tokens": 47903,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1883
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000213"
+        },
+        {
+          "source_line": 214,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KFMnqtbxM4bkmtY7W8TiTD",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && CUDA_VISIBLE_DEVICES=1 python scripts/ddr_causal_analysis.py --module granger --dry-run --output /tmp/ddr_dryrun_granger.json 2>&1",
+                "timeout": 60000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "d15a2519-117c-4590-a60e-8658104099d0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TXNgmWHstqgP7BCJh6Uhn6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1883,
+                "cache_read_input_tokens": 47903,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1883
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000214"
+        },
+        {
+          "source_line": 215,
+          "timestamp": "2026-05-20T07:27:20.658Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KFMnqtbxM4bkmtY7W8TiTD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 37058 rows, 8 generators\\\\nDepths: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\\\nFeatures: ['hapax_ratio', 'ttr', 'entropy_mean', 'entropy_std', 'entropy_min', 'entropy_max', 'tail_decay']\\\\n\\\\n[DRY RUN] Subsampled to 75 rows\\\\n\\\\n\\\\n=== Granger Causality ===\\\\n  WARNING: Depth chains have only T=5 points per seed.\\\\n  Per-seed Granger tests have negligible statistical power.\\\\n  Primary results use pooled panel regression across seeds.\\\\n\\\\n  Panel: 59 obs from 16 seed chains\\\\n  Requested max_lag=2, but using lag=1 (T=5 constraint)\\\\n\\\\n  Feature             F-stat      p-value  R2_full  R2_rest      dR2   Sig\\\\n  ----------------------------------------------------------------------\\\\n  hapax_ratio           1.41     2.40e-01   0.4577   0.4441   0.0137      \\\\n  ttr                   0.72     3.99e-01   0.5181   0.5119   0.0062      \\\\n  entropy_mean          4.72     3.40e-02   0.4294   0.3812   0.0481     *\\\\n  entropy_std           1.45     2.33e-01   0.1328   0.1103   0.0225      \\\\n  entropy_min           0.56     4.57e-01   0.0102   0.0002   0.0099      \\\\n  entropy_max           0.09     7.65e-01   0.0226   0.0210   0.0016      \\\\n  tail_decay            1.12     2.94e-01   0.1884   0.1721   0.0163      \\\\n\\\\n  Per-generator pooled Granger (lag=1):\\\\n\\\\n  Fisher's combined p-values across 8 generators:\\\\n    hapax_ratio      chi2=   14.37  p=5.71e-01  \\\\n    ttr              chi2=   16.13  p=4.44e-01  \\\\n    entropy_mean     chi2=   21.82  p=1.49e-01  \\\\n    entropy_std      chi2=   20.00  p=2.20e-01  \\\\n    entropy_min      chi2=   29.08  p=2.34e-02  *\\\\n    entropy_max      chi2=   11.81  p=7.57e-01  \\\\n    tail_decay       chi2=   13.67  p=6.23e-01  \\\\n\\\\nSaved: /tmp/ddr_dryrun_granger.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "0030fe8c-4556-4c3f-970a-9c2db7d006e4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 37058 rows, 8 generators\\\\nDepths: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\\\nFeatures: ['hapax_ratio', 'ttr', 'entropy_mean', 'entropy_std', 'entropy_min', 'entropy_max', 'tail_decay']\\\\n\\\\n[DRY RUN] Subsampled to 75 rows\\\\n\\\\n\\\\n=== Granger Causality ===\\\\n  WARNING: Depth chains have only T=5 points per seed.\\\\n  Per-seed Granger tests have negligible statistical power.\\\\n  Primary results use pooled panel regression across seeds.\\\\n\\\\n  Panel: 59 obs from 16 seed chains\\\\n  Requested max_lag=2, but using lag=1 (T=5 constraint)\\\\n\\\\n  Feature             F-stat      p-value  R2_full  R2_rest      dR2   Sig\\\\n  ----------------------------------------------------------------------\\\\n  hapax_ratio           1.41     2.40e-01   0.4577   0.4441   0.0137      \\\\n  ttr                   0.72     3.99e-01   0.5181   0.5119   0.0062      \\\\n  entropy_mean          4.72     3.40e-02   0.4294   0.3812   0.0481     *\\\\n  entropy_std           1.45     2.33e-01   0.1328   0.1103   0.0225      \\\\n  entropy_min           0.56     4.57e-01   0.0102   0.0002   0.0099      \\\\n  entropy_max           0.09     7.65e-01   0.0226   0.0210   0.0016      \\\\n  tail_decay            1.12     2.94e-01   0.1884   0.1721   0.0163      \\\\n\\\\n  Per-generator pooled Granger (lag=1):\\\\n\\\\n  Fisher's combined p-values across 8 generators:\\\\n    hapax_ratio      chi2=   14.37  p=5.71e-01  \\\\n    ttr              chi2=   16.13  p=4.44e-01  \\\\n    entropy_mean     chi2=   21.82  p=1.49e-01  \\\\n    entropy_std      chi2=   20.00  p=2.20e-01  \\\\n    entropy_min      chi2=   29.08  p=2.34e-02  *\\\\n    entropy_max      chi2=   11.81  p=7.57e-01  \\\\n    tail_decay       chi2=   13.67  p=6.23e-01  \\\\n\\\\nSaved: /tmp/ddr_dryrun_granger.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 37058 rows, 8 generators\\nDepths: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\nFeatures: ['hapax_ratio', 'ttr', 'entropy_mean', 'entropy_std', 'entropy_min', 'entropy_max', 'tail_decay']\\n\\n[DRY RUN] Subsampled to 75 rows\\n\\n\\n=== Granger Causality ===\\n  WARNING: Depth chains have only T=5 points per seed.\\n  Per-seed Granger tests have negligible statistical power.\\n  Primary results use pooled panel regression across seeds.\\n\\n  Panel: 59 obs from 16 seed chains\\n  Requested max_lag=2, but using lag=1 (T=5 constraint)\\n\\n  Feature             F-stat      p-value  R2_full  R2_rest      dR2   Sig\\n  ----------------------------------------------------------------------\\n  hapax_ratio           1.41     2.40e-01   0.4577   0.4441   0.0137      \\n  ttr                   0.72     3.99e-01   0.5181   0.5119   0.0062      \\n  entropy_mean          4.72     3.40e-02   0.4294   0.3812   0.0481     *\\n  entropy_std           1.45     2.33e-01   0.1328   0.1103   0.0225      \\n  entropy_min           0.56     4.57e-01   0.0102   0.0002   0.0099      \\n  entropy_max           0.09     7.65e-01   0.0226   0.0210   0.0016      \\n  tail_decay            1.12     2.94e-01   0.1884   0.1721   0.0163      \\n\\n  Per-generator pooled Granger (lag=1):\\n\\n  Fisher's combined p-values across 8 generators:\\n    hapax_ratio      chi2=   14.37  p=5.71e-01  \\n    ttr              chi2=   16.13  p=4.44e-01  \\n    entropy_mean     chi2=   21.82  p=1.49e-01  \\n    entropy_std      chi2=   20.00  p=2.20e-01  \\n    entropy_min      chi2=   29.08  p=2.34e-02  *\\n    entropy_max      chi2=   11.81  p=7.57e-01  \\n    tail_decay       chi2=   13.67  p=6.23e-01  \\n\\nSaved: /tmp/ddr_dryrun_granger.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"
+              }
+            }
+          },
+          "id": "event-000215"
+        },
+        {
+          "source_line": 216,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both dry-runs passed cleanly. Let me also suppress the XGBoost `use_label_encoder` warning by removing that param (deprecated in xgboost 3.x), then verify the final clean state."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "64a9bc0f-ede9-4629-8b64-26e70d06a3bc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XtjofAQfnURJL28A8zFtFa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1005,
+                "cache_read_input_tokens": 49786,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1005
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000216"
+        },
+        {
+          "source_line": 217,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VtLiMTds6ADBUapjP1Tz64",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "sed -i 's/    use_label_encoder=False,//' /root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "9a3adb27-cbb3-4264-a712-2280ae9fb9da",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XtjofAQfnURJL28A8zFtFa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1005,
+                "cache_read_input_tokens": 49786,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1005
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000217"
+        },
+        {
+          "source_line": 218,
+          "timestamp": "2026-05-20T07:27:25.409Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VtLiMTds6ADBUapjP1Tz64",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "e89f3f20-285d-45f2-9d59-25be4a0ad471",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            }
+          },
+          "id": "event-000218"
+        },
+        {
+          "source_line": 219,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HESK6Nwmme6ZgS1x8A6zph",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "grep -n \"XGB_PARAMS\" /root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "3b84ab2d-0b56-4f2b-8e0c-b96a02094381",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XxcpTFnDbtwttZtincsMHd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 243,
+                "cache_read_input_tokens": 50791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 243
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000219"
+        },
+        {
+          "source_line": 220,
+          "timestamp": "2026-05-20T07:27:28.805Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HESK6Nwmme6ZgS1x8A6zph",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"29:XGB_PARAMS = dict(\\\\n72:        clf = XGBClassifier(**XGB_PARAMS)\\\\n93:                clf = XGBClassifier(**XGB_PARAMS)\\\\n130:        clf = XGBClassifier(**XGB_PARAMS)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "1d773702-4142-4a04-89bc-e49f14a1f57e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"29:XGB_PARAMS = dict(\\\\n72:        clf = XGBClassifier(**XGB_PARAMS)\\\\n93:                clf = XGBClassifier(**XGB_PARAMS)\\\\n130:        clf = XGBClassifier(**XGB_PARAMS)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"29:XGB_PARAMS = dict(\\n72:        clf = XGBClassifier(**XGB_PARAMS)\\n93:                clf = XGBClassifier(**XGB_PARAMS)\\n130:        clf = XGBClassifier(**XGB_PARAMS)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            }
+          },
+          "id": "event-000220"
+        },
+        {
+          "source_line": 221,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017XSUE12VbkC3XSAjHcMZLV",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "head -35 /root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "a0cbc91a-de4e-4f35-922f-abe5d8b4cef8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HiRReq7dC1cLiPeMgnYTsK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 258,
+                "cache_read_input_tokens": 51034,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 258
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000221"
+        },
+        {
+          "source_line": 222,
+          "timestamp": "2026-05-20T07:27:32.208Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017XSUE12VbkC3XSAjHcMZLV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"DDR causal analysis: feature intervention, permutation importance, Granger causality.\\\\n\\\\nInvestigates whether generative depth *causally* drives feature drift,\\\\nbeyond mere correlation.  Three analysis modules:\\\\n\\\\n1. Feature intervention (counterfactual): shuffle a single feature's\\\\n   depth-association while keeping others intact, measure classifier\\\\n   degradation -> reveals causal contribution of each feature.\\\\n2. Permutation importance (model-free): per-feature permutation on the\\\\n   trained classifier -> complements LOFO with a non-retraining approach.\\\\n3. Granger-style causality: test whether depth predicts feature values\\\\n   beyond an autoregressive baseline (pooled panel regression).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport warnings\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom pathlib import Path\\\\n\\\\nFEATURES = [\\\\n    \\\\\\\"hapax_ratio\\\\\\\", \\\\\\\"ttr\\\\\\\", \\\\\\\"entropy_mean\\\\\\\", \\\\\\\"entropy_std\\\\\\\",\\\\n    \\\\\\\"entropy_min\\\\\\\", \\\\\\\"entropy_max\\\\\\\", \\\\\\\"tail_decay\\\\\\\",\\\\n]\\\\nCLASS_MAP = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\\\\n\\\\nXGB_PARAMS = dict(\\\\n    n_estimators=200, max_depth=6, learning_rate=0.1,\\\\n    random_state=42, eval_metric=\\\\\\\"mlogloss\\\\\\\",\\\\n\\\\n)\\\\n\\\\nDATA_DIR = Path(\\\\\\\"/root/gen-depth-fingerprint/data\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "b8f8fb5e-49bb-4797-9c91-e4191d968765",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"DDR causal analysis: feature intervention, permutation importance, Granger causality.\\\\n\\\\nInvestigates whether generative depth *causally* drives feature drift,\\\\nbeyond mere correlation.  Three analysis modules:\\\\n\\\\n1. Feature intervention (counterfactual): shuffle a single feature's\\\\n   depth-association while keeping others intact, measure classifier\\\\n   degradation -> reveals causal contribution of each feature.\\\\n2. Permutation importance (model-free): per-feature permutation on the\\\\n   trained classifier -> complements LOFO with a non-retraining approach.\\\\n3. Granger-style causality: test whether depth predicts feature values\\\\n   beyond an autoregressive baseline (pooled panel regression).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport warnings\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom pathlib import Path\\\\n\\\\nFEATURES = [\\\\n    \\\\\\\"hapax_ratio\\\\\\\", \\\\\\\"ttr\\\\\\\", \\\\\\\"entropy_mean\\\\\\\", \\\\\\\"entropy_std\\\\\\\",\\\\n    \\\\\\\"entropy_min\\\\\\\", \\\\\\\"entropy_max\\\\\\\", \\\\\\\"tail_decay\\\\\\\",\\\\n]\\\\nCLASS_MAP = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\\\\n\\\\nXGB_PARAMS = dict(\\\\n    n_estimators=200, max_depth=6, learning_rate=0.1,\\\\n    random_state=42, eval_metric=\\\\\\\"mlogloss\\\\\\\",\\\\n\\\\n)\\\\n\\\\nDATA_DIR = Path(\\\\\\\"/root/gen-depth-fingerprint/data\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"DDR causal analysis: feature intervention, permutation importance, Granger causality.\\n\\nInvestigates whether generative depth *causally* drives feature drift,\\nbeyond mere correlation.  Three analysis modules:\\n\\n1. Feature intervention (counterfactual): shuffle a single feature's\\n   depth-association while keeping others intact, measure classifier\\n   degradation -> reveals causal contribution of each feature.\\n2. Permutation importance (model-free): per-feature permutation on the\\n   trained classifier -> complements LOFO with a non-retraining approach.\\n3. Granger-style causality: test whether depth predicts feature values\\n   beyond an autoregressive baseline (pooled panel regression).\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nimport os\\nimport warnings\\nimport numpy as np\\nimport pandas as pd\\nfrom pathlib import Path\\n\\nFEATURES = [\\n    \\\"hapax_ratio\\\", \\\"ttr\\\", \\\"entropy_mean\\\", \\\"entropy_std\\\",\\n    \\\"entropy_min\\\", \\\"entropy_max\\\", \\\"tail_decay\\\",\\n]\\nCLASS_MAP = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\\n\\nXGB_PARAMS = dict(\\n    n_estimators=200, max_depth=6, learning_rate=0.1,\\n    random_state=42, eval_metric=\\\"mlogloss\\\",\\n\\n)\\n\\nDATA_DIR = Path(\\\"/root/gen-depth-fingerprint/data\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            }
+          },
+          "id": "event-000222"
+        },
+        {
+          "source_line": 223,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "There's a blank line where `use_label_encoder=False,` was removed. Let me clean that up. Let me also update the local copy.",
+              "signature": "ErcCClkIDRgCKkDh2kFaRGTn4T2SYFmizFhFvLTP69GWs/etPCpWGvJL/MTio41jvf4QXoC337cT/N/EFE7iVSjUq5Ynuwd9GcmWMg9jbGF1ZGUtb3B1cy00LTY4ABIM7uR7D9T4C1ilL+goGgzf6UFyf9jNLCpreg8iMPwNNEqzFnULPXjZZQm20dNAJGiABRdVR4kF2Zt69a8X1zOAFOhEWldtPgIHF2UDiiqLAbt096azOSkEgZ1P+s5LSJBd0frp28Llj+etv1OcJBT5UtSbo4QKBv88YVdhuiHUOWeS9YR89kYjbh3zN8Uz1k6d06eFdnQetjUi92MYTs3Nl7yJOe1gYvGOKlOl08j57YtoaNRGtQsUb0WHhQeyQmdzsprmStkDqq6hWzB1wTqxPN21NaatM+KXowQYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "2b5d2fbf-37fb-4082-af31-d776e1deb457",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019qMJ8eiAgAgVoUhFnMNMxC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 626,
+                "cache_read_input_tokens": 51292,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 626
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000223"
+        },
+        {
+          "source_line": 224,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "There's a blank line left from the sed removal. Let me clean it up."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "56e7ccb0-072b-4249-b963-5c112a3b54fe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019qMJ8eiAgAgVoUhFnMNMxC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 626,
+                "cache_read_input_tokens": 51292,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 626
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000224"
+        },
+        {
+          "source_line": 225,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DWpjJVhPQS83uTCsAP3gjX",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "sed -i '/^$/{ N; /^\\n)/{ s/^\\n/  /; }; }' /root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "5040b604-a26e-4402-a14c-92a7069308fd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019qMJ8eiAgAgVoUhFnMNMxC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 626,
+                "cache_read_input_tokens": 51292,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 626
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000225"
+        },
+        {
+          "source_line": 226,
+          "timestamp": "2026-05-20T07:27:37.495Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DWpjJVhPQS83uTCsAP3gjX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "e03cb517-9202-4783-aaec-dfdf210bacf6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            }
+          },
+          "id": "event-000226"
+        },
+        {
+          "source_line": 227,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011VzDFTFV9wy9bt6hfqa5nY",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "sed -n '28,33p' /root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "c03c6d4c-7e26-434a-a9c4-e2ceae26945d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QpjeVbCZJTa8dusCoip9hj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 286,
+                "cache_read_input_tokens": 51918,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 286
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000227"
+        },
+        {
+          "source_line": 228,
+          "timestamp": "2026-05-20T07:27:40.586Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011VzDFTFV9wy9bt6hfqa5nY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "a817b6e6-e4ea-4a31-9a90-815c291879c4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000228"
+        },
+        {
+          "source_line": 229,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TtYhsBnjXNidtWBhjBKjBT",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "sed -n '28,33p' /root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "0889d5c5-25fd-4b89-93ba-cfcdd3416722",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015eAmyy7xzVzJHk6wAJ199S",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 207,
+                "cache_read_input_tokens": 52204,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 207
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000229"
+        },
+        {
+          "source_line": 230,
+          "timestamp": "2026-05-20T07:27:43.824Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TtYhsBnjXNidtWBhjBKjBT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\nXGB_PARAMS = dict(\\\\n    n_estimators=200, max_depth=6, learning_rate=0.1,\\\\n    random_state=42, eval_metric=\\\\\\\"mlogloss\\\\\\\",\\\\n  )\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "30fd11dc-9558-4084-b719-eb8b4c4ae17c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\nXGB_PARAMS = dict(\\\\n    n_estimators=200, max_depth=6, learning_rate=0.1,\\\\n    random_state=42, eval_metric=\\\\\\\"mlogloss\\\\\\\",\\\\n  )\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\nXGB_PARAMS = dict(\\n    n_estimators=200, max_depth=6, learning_rate=0.1,\\n    random_state=42, eval_metric=\\\"mlogloss\\\",\\n  )\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            }
+          },
+          "id": "event-000230"
+        },
+        {
+          "source_line": 231,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The indentation got a bit messed up - the closing `)` now has `  )` instead of `)`. Let me fix this properly. I'll just rewrite the XGB_PARAMS block.",
+              "signature": "EtECClkIDRgCKkADsfQa5DRENE1Z2OQpKN7i2nT8uA3nmabw8VFNzuGf7JVipkjKaL9TFgjHyLqE06qal+qTDQ8WFKaRBF8dyjxAMg9jbGF1ZGUtb3B1cy00LTY4ABIMpLedph3arfS5mcNcGgz/TeesHCIUdSXu2HEiMEqYKje3UzhJNixksrgpdvfiV/W6yOHs7Ml13cFG4M1phra/Mz7Br0BwgqDMKny/ISqlAeUuYdH6jMIOdkc9J+131l0GGAd6EKk8axF3cWBiE0GrpQuxV+XhzwEtAya8N3J1D3cKhxrUsRtgcNYbp21w4M1EXpTXO9wEJgAVaYJjllZnRDEGqbIZG+yL1IctwHvS5oym91aJw6KZh1Iz46IafBpOtp0PphDNOEYED12SAMt8NzqyrzwolDlLSlpADTpV8CGxjLnZPNb6QNBIuMzGp6afpvd8BhgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "e40b544f-778e-46e3-8f4c-427aa96aa38b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LSmxS9ZHNoWGiUp5ysFJ1y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 352,
+                "cache_read_input_tokens": 52411,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 352
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000231"
+        },
+        {
+          "source_line": 232,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me fix the XGB_PARAMS block cleanly."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "87d5e25d-38e0-4975-a028-1467306a03b6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LSmxS9ZHNoWGiUp5ysFJ1y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 352,
+                "cache_read_input_tokens": 52411,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 352
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000232"
+        },
+        {
+          "source_line": 233,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016ucKgwuvoiDscAwdBxLGuZ",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "python3 -c \"\np = '/root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py'\nwith open(p) as f:\n    lines = f.readlines()\n# Find and fix the XGB_PARAMS block (lines around 29-32)\nnew_lines = []\nskip_blank = False\nfor i, line in enumerate(lines):\n    if 'XGB_PARAMS = dict(' in line:\n        new_lines.append('XGB_PARAMS = dict(\\n')\n        new_lines.append('    n_estimators=200, max_depth=6, learning_rate=0.1,\\n')\n        new_lines.append('    random_state=42, eval_metric=\\\"mlogloss\\\",\\n')\n        new_lines.append(')\\n')\n        # skip original lines until we see the closing )\n        skip_blank = True\n        continue\n    if skip_blank:\n        if line.strip() == ')' or line.strip() == '  )':\n            skip_blank = False\n            continue\n        if 'n_estimators' in line or 'random_state' in line or 'eval_metric' in line:\n            continue\n        if line.strip() == '':\n            continue\n        skip_blank = False\n    new_lines.append(line)\nwith open(p, 'w') as f:\n    f.writelines(new_lines)\nprint('Fixed')\n\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "e8c0d452-a737-4e2d-adf8-3e067425a864",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LSmxS9ZHNoWGiUp5ysFJ1y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 352,
+                "cache_read_input_tokens": 52411,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 352
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000233"
+        },
+        {
+          "source_line": 234,
+          "timestamp": "2026-05-20T07:27:52.795Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016ucKgwuvoiDscAwdBxLGuZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fixed\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "ea5694f4-82f6-4b34-9577-fc776fe41015",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fixed\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Fixed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            }
+          },
+          "id": "event-000234"
+        },
+        {
+          "source_line": 235,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KDa2xc9dCipRxXhCSCRvtJ",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "sed -n '27,34p' /root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "37c268a4-d48a-4a47-b040-afd3d81256fe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VqwY9UnRkkev8N2HSaRF3Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 583,
+                "cache_read_input_tokens": 52763,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 583
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000235"
+        },
+        {
+          "source_line": 236,
+          "timestamp": "2026-05-20T07:27:56.519Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KDa2xc9dCipRxXhCSCRvtJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"CLASS_MAP = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\\\\n\\\\nXGB_PARAMS = dict(\\\\n    n_estimators=200, max_depth=6, learning_rate=0.1,\\\\n    random_state=42, eval_metric=\\\\\\\"mlogloss\\\\\\\",\\\\n)\\\\n\\\\nDATA_DIR = Path(\\\\\\\"/root/gen-depth-fingerprint/data\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "61fb8fad-0793-40b1-b0e0-5bc813d5251a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"CLASS_MAP = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\\\\n\\\\nXGB_PARAMS = dict(\\\\n    n_estimators=200, max_depth=6, learning_rate=0.1,\\\\n    random_state=42, eval_metric=\\\\\\\"mlogloss\\\\\\\",\\\\n)\\\\n\\\\nDATA_DIR = Path(\\\\\\\"/root/gen-depth-fingerprint/data\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"CLASS_MAP = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\\n\\nXGB_PARAMS = dict(\\n    n_estimators=200, max_depth=6, learning_rate=0.1,\\n    random_state=42, eval_metric=\\\"mlogloss\\\",\\n)\\n\\nDATA_DIR = Path(\\\"/root/gen-depth-fingerprint/data\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            }
+          },
+          "id": "event-000236"
+        },
+        {
+          "source_line": 237,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Clean. Let me run one final dry-run of permutation to confirm no warnings."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "819f5b1a-7bf3-4b5d-8a01-4cdd499d4a79",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YBFkTTPrLUxVFEZGFRQh3N",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 308,
+                "cache_read_input_tokens": 53346,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 308
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000237"
+        },
+        {
+          "source_line": 238,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015VCfy4qDzLkWNffbJC9dRW",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && CUDA_VISIBLE_DEVICES=1 python scripts/ddr_causal_analysis.py --module permutation --dry-run --n-repeats 3 --output /tmp/ddr_dryrun_final.json 2>&1",
+                "timeout": 60000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "17db56ed-14a3-492e-bc80-f6b49dab279b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YBFkTTPrLUxVFEZGFRQh3N",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 308,
+                "cache_read_input_tokens": 53346,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 308
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000238"
+        },
+        {
+          "source_line": 239,
+          "timestamp": "2026-05-20T07:28:04.012Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015VCfy4qDzLkWNffbJC9dRW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 37058 rows, 8 generators\\\\nDepths: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\\\nFeatures: ['hapax_ratio', 'ttr', 'entropy_mean', 'entropy_std', 'entropy_min', 'entropy_max', 'tail_decay']\\\\n\\\\n[DRY RUN] Subsampled to 75 rows\\\\n\\\\n\\\\n=== Permutation Importance ===\\\\n  Fold llama-3.2-3b          baseline F1=0.8222\\\\n  Fold mistral-7b-v0.3       baseline F1=0.6667\\\\n  Fold olmo-2-1b             baseline F1=0.7778\\\\n  Fold pythia-1b             baseline F1=0.6190\\\\n  Fold pythia-2.8b           baseline F1=1.0000\\\\n  Fold qwen3-0.6b            baseline F1=0.7000\\\\n  Fold qwen3-1.7b            baseline F1=1.0000\\\\n  Fold qwen3-8b              baseline F1=0.7778\\\\n\\\\n  Avg baseline F1: 0.7954\\\\n  Feature           Importance        Std\\\\n  ----------------------------------------\\\\n  hapax_ratio           0.3481     0.1504\\\\n  ttr                   0.0327     0.0600\\\\n  entropy_mean          0.0790     0.0621\\\\n  entropy_std          -0.0067     0.0332\\\\n  entropy_min           0.0039     0.0526\\\\n  entropy_max           0.0083     0.0220\\\\n  tail_decay            0.0820     0.0895\\\\n\\\\n  Ranked: hapax_ratio > tail_decay > entropy_mean > ttr > entropy_max > entropy_min > entropy_std\\\\n\\\\n  Drifting  (imp >= 0.0327): ['hapax_ratio', 'tail_decay', 'entropy_mean', 'ttr']\\\\n  Stationary (imp < 0.0327): ['entropy_max', 'entropy_min', 'entropy_std']\\\\n  Drifting avg importance:   0.1354\\\\n  Stationary avg importance: 0.0018\\\\n\\\\nSaved: /tmp/ddr_dryrun_final.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "a6970ed0-607e-4fe0-a7c3-5148ca026190",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 37058 rows, 8 generators\\\\nDepths: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\\\nFeatures: ['hapax_ratio', 'ttr', 'entropy_mean', 'entropy_std', 'entropy_min', 'entropy_max', 'tail_decay']\\\\n\\\\n[DRY RUN] Subsampled to 75 rows\\\\n\\\\n\\\\n=== Permutation Importance ===\\\\n  Fold llama-3.2-3b          baseline F1=0.8222\\\\n  Fold mistral-7b-v0.3       baseline F1=0.6667\\\\n  Fold olmo-2-1b             baseline F1=0.7778\\\\n  Fold pythia-1b             baseline F1=0.6190\\\\n  Fold pythia-2.8b           baseline F1=1.0000\\\\n  Fold qwen3-0.6b            baseline F1=0.7000\\\\n  Fold qwen3-1.7b            baseline F1=1.0000\\\\n  Fold qwen3-8b              baseline F1=0.7778\\\\n\\\\n  Avg baseline F1: 0.7954\\\\n  Feature           Importance        Std\\\\n  ----------------------------------------\\\\n  hapax_ratio           0.3481     0.1504\\\\n  ttr                   0.0327     0.0600\\\\n  entropy_mean          0.0790     0.0621\\\\n  entropy_std          -0.0067     0.0332\\\\n  entropy_min           0.0039     0.0526\\\\n  entropy_max           0.0083     0.0220\\\\n  tail_decay            0.0820     0.0895\\\\n\\\\n  Ranked: hapax_ratio > tail_decay > entropy_mean > ttr > entropy_max > entropy_min > entropy_std\\\\n\\\\n  Drifting  (imp >= 0.0327): ['hapax_ratio', 'tail_decay', 'entropy_mean', 'ttr']\\\\n  Stationary (imp < 0.0327): ['entropy_max', 'entropy_min', 'entropy_std']\\\\n  Drifting avg importance:   0.1354\\\\n  Stationary avg importance: 0.0018\\\\n\\\\nSaved: /tmp/ddr_dryrun_final.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 37058 rows, 8 generators\\nDepths: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\nFeatures: ['hapax_ratio', 'ttr', 'entropy_mean', 'entropy_std', 'entropy_min', 'entropy_max', 'tail_decay']\\n\\n[DRY RUN] Subsampled to 75 rows\\n\\n\\n=== Permutation Importance ===\\n  Fold llama-3.2-3b          baseline F1=0.8222\\n  Fold mistral-7b-v0.3       baseline F1=0.6667\\n  Fold olmo-2-1b             baseline F1=0.7778\\n  Fold pythia-1b             baseline F1=0.6190\\n  Fold pythia-2.8b           baseline F1=1.0000\\n  Fold qwen3-0.6b            baseline F1=0.7000\\n  Fold qwen3-1.7b            baseline F1=1.0000\\n  Fold qwen3-8b              baseline F1=0.7778\\n\\n  Avg baseline F1: 0.7954\\n  Feature           Importance        Std\\n  ----------------------------------------\\n  hapax_ratio           0.3481     0.1504\\n  ttr                   0.0327     0.0600\\n  entropy_mean          0.0790     0.0621\\n  entropy_std          -0.0067     0.0332\\n  entropy_min           0.0039     0.0526\\n  entropy_max           0.0083     0.0220\\n  tail_decay            0.0820     0.0895\\n\\n  Ranked: hapax_ratio > tail_decay > entropy_mean > ttr > entropy_max > entropy_min > entropy_std\\n\\n  Drifting  (imp >= 0.0327): ['hapax_ratio', 'tail_decay', 'entropy_mean', 'ttr']\\n  Stationary (imp < 0.0327): ['entropy_max', 'entropy_min', 'entropy_std']\\n  Drifting avg importance:   0.1354\\n  Stationary avg importance: 0.0018\\n\\nSaved: /tmp/ddr_dryrun_final.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.3}}"
+              }
+            }
+          },
+          "id": "event-000239"
+        },
+        {
+          "source_line": 240,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No warnings. Also update the local copy to match."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "5215b491-01cb-438e-8d73-2c638656f5f6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0136ZPqA2Lf44JQ171UQEJR1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 896,
+                "cache_read_input_tokens": 53654,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 896
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000240"
+        },
+        {
+          "source_line": 241,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017ukApYmG3o7QDXVLJ6MMRk",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/scripts/ddr_causal_analysis.py",
+                "old_string": "XGB_PARAMS = dict(\n    n_estimators=200, max_depth=6, learning_rate=0.1,\n    random_state=42, eval_metric=\"mlogloss\",\n    use_label_encoder=False,\n)",
+                "new_string": "XGB_PARAMS = dict(\n    n_estimators=200, max_depth=6, learning_rate=0.1,\n    random_state=42, eval_metric=\"mlogloss\",\n)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "1d2cb3cc-47e1-43ba-9beb-31561730ed0d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0136ZPqA2Lf44JQ171UQEJR1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 896,
+                "cache_read_input_tokens": 53654,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 896
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000241"
+        },
+        {
+          "source_line": 242,
+          "timestamp": "2026-05-20T07:28:09.219Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017ukApYmG3o7QDXVLJ6MMRk",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/scripts/ddr_causal_analysis.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "974b19c0-a4e4-48ec-a986-e038e115e98b",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/scripts/ddr_causal_analysis.py",
+              "oldString": "XGB_PARAMS = dict(\n    n_estimators=200, max_depth=6, learning_rate=0.1,\n    random_state=42, eval_metric=\"mlogloss\",\n    use_label_encoder=False,\n)",
+              "newString": "XGB_PARAMS = dict(\n    n_estimators=200, max_depth=6, learning_rate=0.1,\n    random_state=42, eval_metric=\"mlogloss\",\n)",
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"DDR causal analysis: feature intervention, permutation importance, Granger causality.\n\nInvestigates whether generative depth *causally* drives feature drift,\nbeyond mere correlation.  Three analysis modules:\n\n1. Feature intervention (counterfactual): shuffle a single feature's\n   depth-association while keeping others intact, measure classifier\n   degradation -> reveals causal contribution of each feature.\n2. Permutation importance (model-free): per-feature permutation on the\n   trained classifier -> complements LOFO with a non-retraining approach.\n3. Granger-style causality: test whether depth predicts feature values\n   beyond an autoregressive baseline (pooled panel regression).\n\"\"\"\nimport argparse\nimport json\nimport os\nimport warnings\nimport numpy as np\nimport pandas as pd\nfrom pathlib import Path\n\nFEATURES = [\n    \"hapax_ratio\", \"ttr\", \"entropy_mean\", \"entropy_std\",\n    \"entropy_min\", \"entropy_max\", \"tail_decay\",\n]\nCLASS_MAP = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\n\nXGB_PARAMS = dict(\n    n_estimators=200, max_depth=6, learning_rate=0.1,\n    random_state=42, eval_metric=\"mlogloss\",\n    use_label_encoder=False,\n)\n\nDATA_DIR = Path(\"/root/gen-depth-fingerprint/data\")\nRESULTS_DIR = Path(\"/root/gen-depth-fingerprint/results\")\n\n\ndef load_data(path: str) -> pd.DataFrame:\n    df = pd.read_csv(path)\n    df[\"label\"] = df[\"depth\"].map(CLASS_MAP)\n    return df\n\n\ndef downsample(df, label_col, rng):\n    counts = df[label_col].value_counts()\n    min_n = counts.min()\n    parts = []\n    for lbl in sorted(counts.index):\n        sub = df[df[label_col] == lbl]\n        parts.append(sub.sample(n=min_n, random_state=rng, replace=False))\n    return pd.concat(parts, ignore_index=True)\n\n\n# ── Module 1: Feature intervention (counterfactual) ──────────────────\n\ndef feature_intervention(df: pd.DataFrame, n_repeats: int = 30, seed: int = 42):\n    \"\"\"Shuffle one feature's values across all rows to break its\n    depth-association, retrain LOGO classifier, compare F1 to baseline.\n    \"\"\"\n    from xgboost import XGBClassifier\n    from sklearn.metrics import f1_score\n\n    rng = np.random.RandomState(seed)\n    generators = sorted(df[\"model_name\"].unique())\n\n    baseline_f1s = {}\n    for gen in generators:\n        test_df = df[df[\"model_name\"] == gen]\n        train_df = df[df[\"model_name\"] != gen]\n        train_ds = downsample(train_df, \"label\", rng)\n        clf = XGBClassifier(**XGB_PARAMS)\n        clf.fit(train_ds[FEATURES].values, train_ds[\"label\"].values)\n        y_pred = clf.predict(test_df[FEATURES].values)\n        baseline_f1s[gen] = f1_score(test_df[\"label\"].values, y_pred, average=\"macro\")\n\n    avg_baseline = float(np.mean(list(baseline_f1s.values())))\n    print(f\"  Baseline avg LOGO F1: {avg_baseline:.4f}\")\n\n    results = {}\n    for feat in FEATURES:\n        deltas = []\n        for rep in range(n_repeats):\n            rep_rng = np.random.RandomState(seed + rep)\n            df_int = df.copy()\n            df_int[feat] = rep_rng.permutation(df_int[feat].values)\n\n            fold_deltas = []\n            for gen in generators:\n                test_df = df_int[df_int[\"model_name\"] == gen]\n                train_df = df_int[df_int[\"model_name\"] != gen]\n                train_ds = downsample(train_df, \"label\", rep_rng)\n                clf = XGBClassifier(**XGB_PARAMS)\n                clf.fit(train_ds[FEATURES].values, train_ds[\"label\"].values)\n                y_pred = clf.predict(test_df[FEATURES].values)\n                int_f1 = f1_score(test_df[\"label\"].values, y_pred, average=\"macro\")\n                fold_deltas.append(baseline_f1s[gen] - int_f1)\n            deltas.append(float(np.mean(fold_deltas)))\n\n        results[feat] = {\n            \"mean_f1_drop\": round(float(np.mean(deltas)), 4),\n            \"std_f1_drop\": round(float(np.std(deltas)), 4),\n        }\n        print(f\"  {feat:15s}  dF1 = {results[feat]['mean_f1_drop']:.4f} +/- {results[feat]['std_f1_drop']:.4f}\")\n\n    results[\"_baseline_avg_f1\"] = round(avg_baseline, 4)\n    return results\n\n\n# ── Module 2: Permutation importance (no retraining) ─────────────────\n\ndef permutation_importance(df: pd.DataFrame, n_repeats: int = 50, seed: int = 42):\n    \"\"\"Permute each feature at test time on a trained LOGO classifier.\n    No retraining — measures each feature's contribution to prediction.\n    \"\"\"\n    from xgboost import XGBClassifier\n    from sklearn.metrics import f1_score\n\n    rng_base = np.random.RandomState(seed)\n    generators = sorted(df[\"model_name\"].unique())\n\n    feat_importances = {f: [] for f in FEATURES}\n    fold_baselines = []\n\n    for gen in generators:\n        test_df = df[df[\"model_name\"] == gen].copy()\n        train_df = df[df[\"model_name\"] != gen]\n        train_ds = downsample(train_df, \"label\", rng_base)\n\n        clf = XGBClassifier(**XGB_PARAMS)\n        clf.fit(train_ds[FEATURES].values, train_ds[\"label\"].values)\n\n        X_test = test_df[FEATURES].values.copy()\n        y_test = test_df[\"label\"].values\n\n        baseline_f1 = f1_score(y_test, clf.predict(X_test), average=\"macro\")\n        fold_baselines.append(baseline_f1)\n\n        for feat_idx, feat in enumerate(FEATURES):\n            drop_scores = []\n            for rep in range(n_repeats):\n                rng = np.random.RandomState(seed + rep)\n                X_perm = X_test.copy()\n                X_perm[:, feat_idx] = rng.permutation(X_perm[:, feat_idx])\n                perm_f1 = f1_score(y_test, clf.predict(X_perm), average=\"macro\")\n                drop_scores.append(baseline_f1 - perm_f1)\n            feat_importances[feat].append(float(np.mean(drop_scores)))\n\n        print(f\"  Fold {gen:20s}  baseline F1={baseline_f1:.4f}\")\n\n    results = {}\n    avg_baseline = float(np.mean(fold_baselines))\n    print(f\"\\n  Avg baseline F1: {avg_baseline:.4f}\")\n    print(f\"  {'Feature':15s} {'Importance':>12s} {'Std':>10s}\")\n    print(f\"  {'-'*40}\")\n\n    for feat in FEATURES:\n        vals = feat_importances[feat]\n        mean_imp = float(np.mean(vals))\n        std_imp = float(np.std(vals))\n        results[feat] = {\n            \"mean_importance\": round(mean_imp, 4),\n            \"std_importance\": round(std_imp, 4),\n            \"per_fold\": {gen: round(v, 4) for gen, v in zip(generators, vals)},\n        }\n        print(f\"  {feat:15s} {mean_imp:12.4f} {std_imp:10.4f}\")\n\n    results[\"_baseline_avg_f1\"] = round(avg_baseline, 4)\n\n    ranked = sorted(FEATURES, key=lambda f: results[f][\"mean_importance\"], reverse=True)\n    results[\"_ranked\"] = ranked\n    print(f\"\\n  Ranked: {' > '.join(ranked)}\")\n\n    # Classify drifting vs stationary by median split\n    importances = [results[f][\"mean_importance\"] for f in FEATURES]\n    median_imp = float(np.median(importances))\n    drifting = [f for f in ranked if results[f][\"mean_importance\"] >= median_imp]\n    stationary = [f for f in ranked if results[f][\"mean_importance\"] < median_imp]\n    results[\"_drifting_features\"] = drifting\n    results[\"_stationary_features\"] = stationary\n    results[\"_median_threshold\"] = round(median_imp, 4)\n\n    print(f\"\\n  Drifting  (imp >= {median_imp:.4f}): {drifting}\")\n    print(f\"  Stationary (imp < {median_imp:.4f}): {stationary}\")\n\n    drift_avg = float(np.mean([results[f][\"mean_importance\"] for f in drifting])) if drifting else 0\n    stat_avg = float(np.mean([results[f][\"mean_importance\"] for f in stationary])) if stationary else 0\n    results[\"_group_summary\"] = {\n        \"drifting_avg_importance\": round(drift_avg, 4),\n        \"stationary_avg_importance\": round(stat_avg, 4),\n    }\n    print(f\"  Drifting avg importance:   {drift_avg:.4f}\")\n    print(f\"  Stationary avg importance: {stat_avg:.4f}\")\n\n    return results\n\n\n# ── Module 3: Granger-style causality on depth series ────────────────\n\ndef _ols_f_test(y, X_restr, X_full):\n    \"\"\"F-test for nested OLS models. Returns (F_stat, p_value, beta_full).\"\"\"\n    from scipy import stats as sp_stats\n\n    n = len(y)\n    beta_r = np.linalg.lstsq(X_restr, y, rcond=None)[0]\n    ss_r = float(np.sum((y - X_restr @ beta_r) ** 2))\n\n    beta_f = np.linalg.lstsq(X_full, y, rcond=None)[0]\n    ss_f = float(np.sum((y - X_full @ beta_f) ** 2))\n\n    df1 = X_full.shape[1] - X_restr.shape[1]\n    df2 = n - X_full.shape[1]\n\n    if df2 <= 0 or ss_f <= 0:\n        return np.nan, np.nan, beta_f\n\n    f_stat = ((ss_r - ss_f) / df1) / (ss_f / df2)\n    p_value = 1 - sp_stats.f.cdf(f_stat, df1, df2)\n\n    return float(f_stat), float(p_value), beta_f\n\n\ndef granger_causality(df: pd.DataFrame, max_lag: int = 2):\n    \"\"\"Pooled panel Granger test: does depth predict feature values\n    beyond autoregressive baseline?\n\n    Per-seed depth chains have only T=5 points — individual Granger tests\n    are infeasible. We pool across all seeds (~995 per generator) for the\n    panel regression.\n\n    Restricted:  f_t ~ intercept + f_{t-1}\n    Full:        f_t ~ intercept + f_{t-1} + depth_t\n    \"\"\"\n    from scipy import stats as sp_stats\n\n    print(\"  WARNING: Depth chains have only T=5 points per seed.\")\n    print(\"  Per-seed Granger tests have negligible statistical power.\")\n    print(\"  Primary results use pooled panel regression across seeds.\\n\")\n\n    # Build lagged panel: for each (model, seed), sort by depth, create lags\n    records = []\n    for (model, sid), grp in df.groupby([\"model_name\", \"seed_id\"]):\n        grp = grp.sort_values(\"depth\")\n        if len(grp) < 2:\n            continue\n        depths = grp[\"depth\"].values\n        feats = grp[FEATURES].values\n        for t in range(1, len(grp)):\n            rec = {\"model_name\": model, \"seed_id\": sid, \"depth_t\": int(depths[t])}\n            for lag in range(1, min(max_lag + 1, t + 1)):\n                for fi, fname in enumerate(FEATURES):\n                    rec[f\"{fname}_lag{lag}\"] = feats[t - lag, fi]\n            for fi, fname in enumerate(FEATURES):\n                rec[f\"{fname}_t\"] = feats[t, fi]\n            records.append(rec)\n\n    panel = pd.DataFrame(records)\n    n_chains = df.groupby([\"model_name\", \"seed_id\"]).ngroups\n    print(f\"  Panel: {len(panel)} obs from {n_chains} seed chains\")\n\n    effective_lag = 1  # T=5 makes lag>1 unreliable\n    if max_lag > 1:\n        print(f\"  Requested max_lag={max_lag}, but using lag={effective_lag} (T=5 constraint)\")\n    print()\n\n    # ── Overall pooled test ──\n    generators = sorted(df[\"model_name\"].unique())\n\n    print(f\"  {'Feature':15s} {'F-stat':>10s} {'p-value':>12s} {'R2_full':>8s} {'R2_rest':>8s} {'dR2':>8s} {'Sig':>5s}\")\n    print(f\"  {'-'*70}\")\n\n    results = {}\n    for feat in FEATURES:\n        y = panel[f\"{feat}_t\"].values\n        lag_col = f\"{feat}_lag1\"\n        if lag_col not in panel.columns:\n            results[feat] = {\"error\": \"missing lag column\"}\n            continue\n\n        x_lag = panel[lag_col].values\n        n = len(y)\n        X_restr = np.column_stack([np.ones(n), x_lag])\n        X_full = np.column_stack([np.ones(n), x_lag, panel[\"depth_t\"].values])\n\n        f_stat, p_value, beta_f = _ols_f_test(y, X_restr, X_full)\n\n        ss_tot = float(np.sum((y - np.mean(y)) ** 2))\n        ss_r = float(np.sum((y - X_restr @ np.linalg.lstsq(X_restr, y, rcond=None)[0]) ** 2))\n        ss_f = float(np.sum((y - X_full @ beta_f) ** 2))\n        r2_restr = 1 - ss_r / ss_tot if ss_tot > 0 else 0\n        r2_full = 1 - ss_f / ss_tot if ss_tot > 0 else 0\n\n        sig = \"***\" if p_value < 0.001 else \"**\" if p_value < 0.01 else \"*\" if p_value < 0.05 else \"\"\n\n        results[feat] = {\n            \"F_stat\": round(f_stat, 4),\n            \"p_value\": p_value,\n            \"p_value_str\": f\"{p_value:.2e}\",\n            \"r2_restricted\": round(r2_restr, 4),\n            \"r2_full\": round(r2_full, 4),\n            \"delta_r2\": round(r2_full - r2_restr, 4),\n            \"significant_005\": p_value < 0.05,\n            \"depth_coefficient\": round(float(beta_f[-1]), 6),\n            \"n_obs\": n,\n        }\n        print(f\"  {feat:15s} {f_stat:10.2f} {p_value:12.2e} {r2_full:8.4f} {r2_restr:8.4f} {r2_full - r2_restr:8.4f} {sig:>5s}\")\n\n    # ── Per-generator pooled test ──\n    print(f\"\\n  Per-generator pooled Granger (lag={effective_lag}):\")\n    per_gen_results = {}\n    for gen in generators:\n        gen_panel = panel[panel[\"model_name\"] == gen]\n        gen_res = {}\n        for feat in FEATURES:\n            y = gen_panel[f\"{feat}_t\"].values\n            lag_col = f\"{feat}_lag1\"\n            if lag_col not in gen_panel.columns:\n                continue\n            x_lag = gen_panel[lag_col].values\n            n = len(y)\n            X_restr = np.column_stack([np.ones(n), x_lag])\n            X_full = np.column_stack([np.ones(n), x_lag, gen_panel[\"depth_t\"].values])\n\n            f_stat, p_value, beta_f = _ols_f_test(y, X_restr, X_full)\n            if np.isnan(f_stat):\n                continue\n            gen_res[feat] = {\n                \"F_stat\": round(f_stat, 2),\n                \"p_value\": p_value,\n                \"depth_coef\": round(float(beta_f[-1]), 6),\n            }\n        per_gen_results[gen] = gen_res\n\n    # ── Fisher's method: combine per-generator p-values ──\n    print(f\"\\n  Fisher's combined p-values across {len(generators)} generators:\")\n    fisher_results = {}\n    for feat in FEATURES:\n        p_vals = []\n        for gen in generators:\n            if gen in per_gen_results and feat in per_gen_results[gen]:\n                p = per_gen_results[gen][feat][\"p_value\"]\n                p_clipped = np.clip(p, 1e-300, 1 - 1e-15)\n                p_vals.append(p_clipped)\n        if len(p_vals) >= 2:\n            chi2_stat = -2 * np.sum(np.log(p_vals))\n            combined_p = 1 - sp_stats.chi2.cdf(chi2_stat, 2 * len(p_vals))\n            fisher_results[feat] = {\n                \"chi2\": round(float(chi2_stat), 2),\n                \"combined_p\": float(combined_p),\n                \"n_generators\": len(p_vals),\n            }\n            sig = \"***\" if combined_p < 0.001 else \"**\" if combined_p < 0.01 else \"*\" if combined_p < 0.05 else \"\"\n            print(f\"    {feat:15s}  chi2={chi2_stat:8.2f}  p={combined_p:.2e}  {sig}\")\n\n    results[\"_per_generator\"] = per_gen_results\n    results[\"_fisher_combined\"] = fisher_results\n    results[\"_panel_size\"] = len(panel)\n    results[\"_effective_lag\"] = effective_lag\n    results[\"_power_warning\"] = (\n        \"Per-seed depth chains have only T=5 points. \"\n        \"Pooled panel regression aggregates across ~995 seeds per generator, \"\n        \"providing adequate power for the overall test. \"\n        \"Individual per-seed Granger tests are infeasible (df_residual ~ 1).\"\n    )\n\n    return results\n\n\n# ── Module 4: Mediation analysis ─────────────────────────────────────\n\ndef mediation_analysis(df: pd.DataFrame):\n    \"\"\"Test whether drifting features mediate the effect of depth on\n    classifier predictions (Baron & Kenny / bootstrap mediation).\n    \"\"\"\n    raise NotImplementedError(\"Mediation analysis not yet implemented\")\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"DDR causal analysis for gen-depth fingerprint\"\n    )\n    parser.add_argument(\n        \"--data-path\",\n        default=str(DATA_DIR / \"features_8gen.csv\"),\n    )\n    parser.add_argument(\n        \"--module\",\n        choices=[\"intervention\", \"permutation\", \"granger\", \"mediation\", \"all\"],\n        default=\"all\",\n    )\n    parser.add_argument(\"--n-repeats\", type=int, default=30)\n    parser.add_argument(\"--max-lag\", type=int, default=2)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\n        \"--output\",\n        default=str(RESULTS_DIR / \"ddr_causal_analysis.json\"),\n    )\n    parser.add_argument(\n        \"--dry-run\", action=\"store_true\",\n        help=\"Run on subset (2 seeds per generator) for quick validation\",\n    )\n    args = parser.parse_args()\n\n    df = load_data(args.data_path)\n    print(f\"Loaded {len(df)} rows, {df['model_name'].nunique()} generators\")\n    print(f\"Depths: {sorted(df['depth'].unique())}\")\n    print(f\"Features: {FEATURES}\\n\")\n\n    if args.dry_run:\n        sub_frames = []\n        for gen in df[\"model_name\"].unique():\n            gen_df = df[df[\"model_name\"] == gen]\n            seeds = sorted(gen_df[\"seed_id\"].unique())[:2]\n            sub_frames.append(gen_df[gen_df[\"seed_id\"].isin(seeds)])\n        df = pd.concat(sub_frames, ignore_index=True)\n        print(f\"[DRY RUN] Subsampled to {len(df)} rows\\n\")\n\n    results = {}\n\n    if args.module in (\"intervention\", \"all\"):\n        print(\"=== Feature Intervention ===\")\n        results[\"intervention\"] = feature_intervention(\n            df, n_repeats=args.n_repeats, seed=args.seed\n        )\n\n    if args.module in (\"permutation\", \"all\"):\n        print(\"\\n=== Permutation Importance ===\")\n        results[\"permutation\"] = permutation_importance(\n            df, n_repeats=args.n_repeats, seed=args.seed\n        )\n\n    if args.module in (\"granger\", \"all\"):\n        print(\"\\n=== Granger Causality ===\")\n        results[\"granger\"] = granger_causality(df, max_lag=args.max_lag)\n\n    if args.module in (\"mediation\", \"all\"):\n        print(\"\\n=== Mediation Analysis ===\")\n        results[\"mediation\"] = mediation_analysis(df)\n\n    os.makedirs(os.path.dirname(args.output), exist_ok=True)\n    with open(args.output, \"w\") as f:\n        json.dump(results, f, indent=2, default=str)\n    print(f\"\\nSaved: {args.output}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 29,
+                  "oldLines": 7,
+                  "newStart": 29,
+                  "newLines": 6,
+                  "lines": [
+                    " XGB_PARAMS = dict(",
+                    "     n_estimators=200, max_depth=6, learning_rate=0.1,",
+                    "     random_state=42, eval_metric=\"mlogloss\",",
+                    "-    use_label_encoder=False,",
+                    " )",
+                    " ",
+                    " DATA_DIR = Path(\"/root/gen-depth-fingerprint/data\")"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000242"
+        },
+        {
+          "source_line": 243,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here's the summary:\n\n---\n\n**Script deployed and validated on bjb2-18868 (cuda:1)**\n\n| Item | Status |\n|------|--------|\n| Script | `/root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py` — 444 lines, 3 modules implemented |\n| Data | `/root/gen-depth-fingerprint/data/features_8gen.csv` — 37,058 rows, 8 generators, depths 0-4 |\n| Dependencies | xgboost 3.2.0, sklearn 1.8.0, statsmodels, scipy — all installed |\n| Dry-run permutation | passed (75 rows, 8 folds, no errors/warnings) |\n| Dry-run granger | passed (59 panel obs, F-test + Fisher's method working) |\n\n**Execution commands** (full run, waiting for approval):\n\n```bash\n# Permutation importance (~15 min, CPU-only, n_repeats=50)\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/gen-depth-fingerprint\nnohup python scripts/ddr_causal_analysis.py --module permutation --n-repeats 50 \\\n  --output results/ddr_causal_permutation.json > /tmp/ddr_perm.log 2>&1 &\n\n# Granger causality (~2 min, CPU-only)\nnohup python scripts/ddr_causal_analysis.py --module granger \\\n  --output results/ddr_causal_granger.json > /tmp/ddr_granger.log 2>&1 &\n\n# Feature intervention (~45 min, CPU-only, n_repeats=30, trains 8×7×30=1680 XGB models)\nnohup python scripts/ddr_causal_analysis.py --module intervention --n-repeats 30 \\\n  --output results/ddr_causal_intervention.json > /tmp/ddr_intervention.log 2>&1 &\n```\n\n**Estimated time**: Granger ~2min, Permutation ~15min, Intervention ~45min. All CPU-bound (no GPU needed). Can run all 3 in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "uuid": "4164c910-dd5d-4ee4-a122-7626e8672027",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E8CqWBwSibmoqNS6q6By4c",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 323,
+                "cache_read_input_tokens": 54550,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 323
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000243"
+        },
+        {
+          "source_line": 244,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here's the summary:\n\n---\n\n**Script deployed and validated on bjb2-18868 (cuda:1)**\n\n| Item | Status |\n|------|--------|\n| Script | `/root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py` — 444 lines, 3 modules implemented |\n| Data | `/root/gen-depth-fingerprint/data/features_8gen.csv` — 37,058 rows, 8 generators, depths 0-4 |\n| Dependencies | xgboost 3.2.0, sklearn 1.8.0, statsmodels, scipy — all installed |\n| Dry-run permutation | passed (75 rows, 8 folds, no errors/warnings) |\n| Dry-run granger | passed (59 panel obs, F-test + Fisher's method working) |\n\n**Execution commands** (full run, waiting for approval):\n\n```bash\n# Permutation importance (~15 min, CPU-only, n_repeats=50)\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/gen-depth-fingerprint\nnohup python scripts/ddr_causal_analysis.py --module permutation --n-repeats 50 \\\n  --output results/ddr_causal_permutation.json > /tmp/ddr_perm.log 2>&1 &\n\n# Granger causality (~2 min, CPU-only)\nnohup python scripts/ddr_causal_analysis.py --module granger \\\n  --output results/ddr_causal_granger.json > /tmp/ddr_granger.log 2>&1 &\n\n# Feature intervention (~45 min, CPU-only, n_repeats=30, trains 8×7×30=1680 XGB models)\nnohup python scripts/ddr_causal_analysis.py --module intervention --n-repeats 30 \\\n  --output results/ddr_causal_intervention.json > /tmp/ddr_intervention.log 2>&1 &\n```\n\n**Estimated time**: Granger ~2min, Permutation ~15min, Intervention ~45min. All CPU-bound (no GPU needed). Can run all 3 in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1208251,
+            "duration_api_ms": 1119857,
+            "num_turns": 76,
+            "stop_reason": "end_turn",
+            "session_id": "76609a7c-c758-4391-9b07-38442dac04cf",
+            "total_cost_usd": 4.7987360500000005,
+            "usage": {
+              "input_tokens": 70,
+              "cache_creation_input_tokens": 197298,
+              "cache_read_input_tokens": 3947239,
+              "output_tokens": 52636,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 197298,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 555,
+                  "cache_read_input_tokens": 54550,
+                  "cache_creation_input_tokens": 323,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 323
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1586,
+                "outputTokens": 2135,
+                "cacheReadInputTokens": 76933,
+                "cacheCreationInputTokens": 41721,
+                "webSearchRequests": 0,
+                "costUSD": 0.07210555,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 7734,
+                "outputTokens": 55894,
+                "cacheReadInputTokens": 4113346,
+                "cacheCreationInputTokens": 197430,
+                "webSearchRequests": 0,
+                "costUSD": 4.7266305,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "dc4b813d-97b7-4230-a9dd-d45487cfee2c"
+          },
+          "id": "event-000244"
+        }
+      ]
+    }
+  ]
+}

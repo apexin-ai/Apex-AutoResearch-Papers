@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "6e99291bc236a0f2b061",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "paper fix type3 fonts",
+  "task_key": "worker_paper_fix-type3-fonts_20260523T005638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-type3-fonts_20260523T005638.log",
+    "occurrence": 1,
+    "bytes": 1059052,
+    "sha256": "250de565f34c266e386098dff0d705d65120838daeea305a356c5454d3fddd60"
+  },
+  "statistics": {
+    "messages": 577,
+    "user_turns": 2,
+    "tool_calls": 199,
+    "roles": {
+      "log": 1,
+      "system": 93,
+      "record": 1,
+      "assistant": 81,
+      "tool_call": 199,
+      "tool_result": 199,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 80,
+      "chunks": [
+        {
+          "path": "6e99291bc236a0f2b061-part-0001.json",
+          "message_count": 80
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 357,
+      "chunks": [
+        {
+          "path": "6e99291bc236a0f2b061-part-0001.json",
+          "message_count": 100
+        },
+        {
+          "path": "6e99291bc236a0f2b061-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6e99291bc236a0f2b061-part-0003.json",
+          "message_count": 77
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 140,
+      "chunks": [
+        {
+          "path": "6e99291bc236a0f2b061-part-0003.json",
+          "message_count": 103
+        },
+        {
+          "path": "6e99291bc236a0f2b061-part-0004.json",
+          "message_count": 37
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-fix-type3-fonts.md"
+}

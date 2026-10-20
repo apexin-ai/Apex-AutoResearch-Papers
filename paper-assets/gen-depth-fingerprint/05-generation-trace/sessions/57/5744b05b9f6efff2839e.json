@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5744b05b9f6efff2839e",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan012 qwen06b",
+  "task_key": "worker_code_plan012-qwen06b_20260515T230402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan012-qwen06b_20260515T230402_result.json",
+    "occurrence": 1,
+    "bytes": 238,
+    "sha256": "e26df1cb89b88e52387e367a37d126bd14d8a9e49dc9818019d487a49161bb70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Training PID 255081 running on autodl-5090 cuda:0, ~4.4 it/s. 18423 samples across 4 generators (pythia-1b, olmo-2-1b, qwen3-0.6b, qwen3-1.7b), 5-fold stratified CV, 3 epochs per fold. ETA ~2 hours. Will check back shortly."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan012-qwen06b.md"
+}

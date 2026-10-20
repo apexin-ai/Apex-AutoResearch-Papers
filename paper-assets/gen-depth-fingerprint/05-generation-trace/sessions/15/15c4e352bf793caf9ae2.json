@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15c4e352bf793caf9ae2",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code qlora instruct script",
+  "task_key": "worker_code_qlora_instruct_script_20260519T075021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qlora_instruct_script_20260519T075021_result.json",
+    "occurrence": 1,
+    "bytes": 2298,
+    "sha256": "e60fca86aaabf9986327e3079408b984e559b2cda811857842c159dd402c8bd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本部署完成，dry-run 通过。数据加载验证：\n\n| Generator | Samples | Depth 分布 |\n|---|---|---|\n| qwen3-1.7b-instruct | 4,963 | 均匀 (~990-996) |\n| olmo-2-0425-1b-instruct | 4,429 | 略递减 (995→768) |\n| qwen3-1.7b (base) | 2,291 | 递减 (498→398) |\n| olmo-2-1b (base) | 2,379 | 递减 (497→450) |\n\n与 base 脚本的关键差异：LoRA r=32/alpha=64 (base 用 r=16/alpha=32), seed=123, 单 generator within-model CV, 新增 binary F1。\n\n---\n\n**4 个训练命令：**\n\n```bash\n# GPU 0: OLMo instruct\nCUDA_VISIBLE_DEVICES=0 python /root/gen-depth-fingerprint/qlora_instruct.py \\\n    --generator olmo-2-0425-1b-instruct \\\n    --data_path /root/gen-depth-fingerprint/data/olmo-2-0425-1b-instruct/generations_shard0.jsonl \\\n    --backbone /root/autodl-tmp/models/qwen3-0.6b \\\n    --device cuda:0 \\\n    --output /root/gen-depth-fingerprint/results/qlora_olmo-2-0425-1b-instruct.json\n\n# GPU 1: Qwen instruct\nCUDA_VISIBLE_DEVICES=1 python /root/gen-depth-fingerprint/qlora_instruct.py \\\n    --generator qwen3-1.7b-instruct \\\n    --data_path /root/gen-depth-fingerprint/data/qwen3-1.7b-instruct/generations_shard0.jsonl \\\n    --backbone /root/autodl-tmp/models/qwen3-0.6b \\\n    --device cuda:0 \\\n    --output /root/gen-depth-fingerprint/results/qlora_qwen3-1.7b-instruct.json\n\n# GPU 2: OLMo base\nCUDA_VISIBLE_DEVICES=2 python /root/gen-depth-fingerprint/qlora_instruct.py \\\n    --generator olmo-2-1b \\\n    --data_path /root/gen-depth-fingerprint/data/olmo-2-1b/generations_shard0.jsonl \\\n    --backbone /root/autodl-tmp/models/qwen3-0.6b \\\n    --device cuda:0 \\\n    --output /root/gen-depth-fingerprint/results/qlora_olmo-2-1b.json\n\n# GPU 3: Qwen base\nCUDA_VISIBLE_DEVICES=3 python /root/gen-depth-fingerprint/qlora_instruct.py \\\n    --generator qwen3-1.7b \\\n    --data_path /root/gen-depth-fingerprint/data/qwen3-1.7b/generations_shard0.jsonl \\\n    --backbone /root/autodl-tmp/models/qwen3-0.6b \\\n    --device cuda:0 \\\n    --output /root/gen-depth-fingerprint/results/qlora_qwen3-1.7b.json\n```\n\n注意：每个命令用 `CUDA_VISIBLE_DEVICES` 绑定物理 GPU，脚本内统一用 `--device cuda:0`（即该进程可见的第一块卡）。4 个任务可并行提交到 4 张 RTX 5090 上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qlora-instruct-script.md"
+}

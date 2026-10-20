@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8270bb41debf73005227",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper artifacts sync crossmodel",
+  "task_key": "worker_paper_artifacts-sync-crossmodel_20260515T225301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_artifacts-sync-crossmodel_20260515T225301_result.json",
+    "occurrence": 1,
+    "bytes": 929,
+    "sha256": "4e70192a22908891567ff0282b78bd90cc4922e3d25ff46bb1034f12b182d433"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个任务全部完成：\n\n**任务 1 — artifacts ← docs 同步**：conclusion.tex、results.tex、discussion.tex、limitations.tex 已从 docs/paper/ 覆盖到 artifacts/_project/paper/。\n\n**任务 2 — 评估协议修正**：`docs/paper/results.tex:28` 中 cross-model chains 段落的 \"LOGO cross-validation\" 已改为 **\"5-fold stratified cross-validation\"**（同步到 artifacts 的副本也包含此修正）。\n\n**任务 3 — conclusion.tex 更新**：\n- artifacts 旧版将 \"mixed-generator chains\" 列为 future work → 已删除\n- 新增已完成结论句：`Cross-model chains---where each generation step uses a different generator---yield comparable performance (3-class F1=0.809, binary F1=0.764), confirming that depth signal persists under the generator heterogeneity typical of real-world contamination.`\n- future work 仅保留 instruct/RLHF、70B+、multilingual 三项"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-artifacts-sync-crossmodel.md"
+}

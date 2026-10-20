@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a709f956f5a17b6d53c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper bib audit m7",
+  "task_key": "worker_paper_bib-audit-m7_20260515T221406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_bib-audit-m7_20260515T221406_result.json",
+    "occurrence": 1,
+    "bytes": 2577,
+    "sha256": "6a5211a818be376623ec5a7cc70dd62d55a44660bf8449ba1ed02dadebc5c7c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。下面是完整审计报告：\n\n---\n\n## 引用审计报告\n\n**总数**: 49 条 bib 条目  \n**正文引用**: 49 unique keys, 72 次 `\\cite` 调用  \n**交叉检查**: 0 orphan, 0 missing — 完全匹配  \n**在线验证 (OpenAlex)**: 41 verified, 5 not_found (API限制), 3 mismatch\n\n---\n\n### 修复列表\n\n| # | Key | 问题 | 原始 | 修正 | 验证来源 |\n|---|-----|------|------|------|----------|\n| 1 | `curse_of_recursion` | 作者顺序错误 | `...Zhao, Yiren and Gal, Yarin and Papernot, Nicolas and Anderson, Ross` | `...Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin` | [Nature](https://www.nature.com/articles/s41586-024-07566-y) |\n| 2 | `reliable_detection` | 标题不完整（缺 TMLR 发表版副标题） | `Can AI-Generated Text be Reliably Detected?` | `Can AI-Generated Text be Reliably Detected? Stress Testing AI Text Detectors Under Various Attacks` | [OpenReview TMLR](https://openreview.net/forum?id=OOgsAZdFOt) |\n\n---\n\n### OpenAlex not_found（已人工确认无误）\n\n| Key | 原因 | 人工验证结果 |\n|-----|------|-------------|\n| `detectgpt` | API 检索限制 | [ICML 2023 confirmed](https://proceedings.mlr.press/v202/mitchell23a.html) |\n| `detection_possibilities` | API 检索限制 | [ICML 2024 confirmed](https://proceedings.mlr.press/v235/chakraborty24a.html) |\n| `pythia` | API 检索限制 | ICML 2023, authors/year correct |\n| `xgboost` | API 检索限制 | KDD 2016, authors/year correct |\n| `aaronson_watermark` | Blog post, not indexed | 技术演讲, `@misc` 类型正确 |\n\n### OpenAlex mismatch（已人工确认 bib 正确）\n\n| Key | OpenAlex 报告 | 人工结论 |\n|-----|--------------|----------|\n| `reliable_detection` | year: bib=2025 vs api=2023 | arXiv 2023→TMLR 2025 正式发表。**year=2025 正确** |\n| `self_consuming_mad` | first_author: bib=alemohammad vs api=casco-rodriguez | [ICLR 2024 proceedings](https://proceedings.iclr.cc/paper_files/paper/2024/file/ebc042e767de551803ccfcc45e2454f5-Paper-Conference.pdf) 确认 Alemohammad 为一作。**bib 正确** |\n| `qwen3` | first_author: bib=team vs api=yang | 集体署名 `{Qwen Team}` 是该技术报告的标准引用方式。**bib 正确** |\n\n---\n\n### 无 CRITICAL 级问题\n\n未发现幻觉引用（作者/标题/年份完全对不上的情况）。所有 49 条引用均为真实存在的论文，作者和标题准确。\n\n**修改文件**: `docs/paper/references.bib`（2 处修复）  \n**artifacts 版本**: 已经是正确的，无需修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-bib-audit-m7.md"
+}

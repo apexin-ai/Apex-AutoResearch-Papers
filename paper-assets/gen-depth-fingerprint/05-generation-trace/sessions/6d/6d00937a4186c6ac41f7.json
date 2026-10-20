@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d00937a4186c6ac41f7",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis plan 001 fix",
+  "task_key": "worker_analysis_plan-001-fix_20260514T185246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-001-fix_20260514T185246_result.json",
+    "occurrence": 1,
+    "bytes": 1216,
+    "sha256": "1d55fd21f24cfe014c2c795a5d68c06ff15f0fbcf46e17747a94328cbdaba751"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/plan-001-fix/analysis_report.md`。核心结论：\n\n**Part A — Feature Ablation:**\n- full (0.8204) >> surface_only (0.7628) >> reference_only (0.7187)，三者两两差异显著 (p<0.001 / p=0.031)\n- 两类特征独立有效，组合有显著增益 (+5.8 ~ +10.2 pts)\n\n**Part B — H1/H2 趋势:**\n- H2 (单调漂移) 确认：ttr (rho=-0.63)、hapax_ratio (rho=-0.66) 随 depth 单调下降\n- H1 (近平稳) 部分确认：entropy_std/max/tail_decay 平稳，但 **entropy_mean 例外** (rho=-0.68，强漂移)\n\n**Part C — Perplexity:**\n- Clean median PPL 单调下降：13.50 → 4.95 → 2.98 → 2.06 → 1.72，Kruskal-Wallis p=0.0\n\n**Claim 2 评估：** 互补性假设成立——full 显著优于任一子集。但 \"dual dynamics\" 叙事需要修正：entropy_mean 是 reference 特征却呈 H2 漂移，不符合 \"reference=stationary\" 框架。更精确的表述应区分 reference *shape* features (std/max/tail_decay, 近平稳) 和 reference *level* feature (entropy_mean, 漂移)。\n\n**注意事项：** 结果 JSON 文件未落盘（日志数据完整无损）；depth≥3 特征区分度饱和；gen-1 始终是最难分类的类别。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-001-fix.md"
+}

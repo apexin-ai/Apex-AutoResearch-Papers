@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e65e21454db19e077f87",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analyze qwen17b retry s0 check",
+  "task_key": "worker_analyze_qwen17b-retry-s0-check_20260514T215834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_qwen17b-retry-s0-check_20260514T215834_result.json",
+    "occurrence": 1,
+    "bytes": 591,
+    "sha256": "de6fd8e9eafe998da8d27b1b69006652b2374b18b9214b3911b1b99e0094ae2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结论已在 registry 中记录为 `conclusion: failed`。\n\n**汇报：**\n\n- **plan-002-qwen17b-retry-s0**：**FAILED**。进程被 SIGTERM 杀死（EXIT_CODE=129），完成 156/498 seeds (32%)，产出 721 条记录。\n- 其他 3 个 shard 同样被 SIGTERM 终止，完成度 30-38%，数据均不完整。\n- **根因**：所有 tmux session 同时被杀，大概率是 AutoDL 实例关机/重启。\n- **数据质量**：已产出部分的 depth 分布正常，可以 resume 而非从头重跑（如果脚本支持 `--resume`/append 模式）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-qwen17b-retry-s0-check.md"
+}

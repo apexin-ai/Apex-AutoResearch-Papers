@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78f0afdde516b80738e2",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper appendix ddr causality",
+  "task_key": "worker_paper_appendix_ddr_causality_20260520T082408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix_ddr_causality_20260520T082408_result.json",
+    "occurrence": 1,
+    "bytes": 677,
+    "sha256": "994e8ebd5b7363a8b2b30cb73d925becb5bd7b5632abf39b48133f088433d9c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Three changes made:\n\n1. **`appendix_ddr_causality.tex`** — new file with permutation importance table (7 features ranked), Granger causality table (combined p + significance), and 4 key findings (drifting dominance, entropy_min non-causality, entropy_max asymmetry, Mistral heterogeneity).\n\n2. **`main.tex`** — added `\\section{DDR Causality Analysis}\\label{app:ddr-causality}\\input{appendix_ddr_causality}` before `\\end{document}`.\n\n3. **`discussion.tex`** — inserted the causal summary sentence at the end of the first paragraph (before \"This asymmetry is not intrinsic to recursion...\"), referencing `Appendix~\\ref{app:ddr-causality}`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-appendix-ddr-causality.md"
+}

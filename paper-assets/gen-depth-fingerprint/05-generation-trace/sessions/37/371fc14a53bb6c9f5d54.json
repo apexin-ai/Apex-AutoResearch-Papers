@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "371fc14a53bb6c9f5d54",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper regen fig2 v2",
+  "task_key": "worker_paper_regen-fig2-v2_20260520T035403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_regen-fig2-v2_20260520T035403_result.json",
+    "occurrence": 1,
+    "bytes": 230,
+    "sha256": "e09c8008453715cd4d998633c138566156e042f5665b99193108a4fa1b30ec12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Figure 2 已在本地重新生成，cross-model 3-class F1 已更新为 0.789。\n\n- PDF: 56KB, PNG: 260KB，文件大小正常\n- 输出路径：`artifacts/_project/paper/figures/fig2_framework.{pdf,png}`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-regen-fig2-v2.md"
+}

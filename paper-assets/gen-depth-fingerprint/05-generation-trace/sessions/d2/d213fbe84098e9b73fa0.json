@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d213fbe84098e9b73fa0",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops check all gpu status",
+  "task_key": "worker_ops_check-all-gpu-status_20260515T162046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-all-gpu-status_20260515T162046_result.json",
+    "occurrence": 1,
+    "bytes": 1669,
+    "sha256": "0d404695d968c89af885724c090f01522f3747370957ac7ae3960b01ac298220"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态总览 (nvidia-smi)\n\n| GPU | 显存 | 利用率 | 进程 |\n|-----|------|--------|------|\n| cuda:0 | 3647 / 32607 MiB | 52% | PID 218484 — OLMo instruct |\n| cuda:1 | 3843 / 32607 MiB | 42% | PID 223500 — human edit robustness |\n| cuda:2 | 3 / 32607 MiB | **0%** | **空闲，无进程** |\n| cuda:3 | 3979 / 32607 MiB | 44% | PID 222783 — sampling ablation |\n\n---\n\n### 1. cuda:0 — OLMo instruct 生成 (PID 218484)\n\n- **状态**: running\n- **当前阶段**: Step 1 (chain generation)，仍在跑，Step 2/3 尚未开始\n- **进度**: **522 / 995 seeds (52.5%)**\n- **速度**: ~5.9s/it（波动 4–7s）\n- **ETA**: ~47 min 完成 Step 1\n- **输出文件**: Step 1 尚未完成，无输出文件。完成后写入 `data/` 目录下的 `generations_shard0.jsonl`\n\n---\n\n### 2. cuda:1 — plan-010 人类编辑鲁棒性 (PID 223500)\n\n- **状态**: running\n- **当前阶段**: Phase 2 LLM rephrasing (Qwen3-0.6B-Instruct)\n- **进度**: **4160 / 21557 texts (19.3%)** — 上次 ~13%，已推进 6%\n- **速度**: 4.1 texts/s\n- **ETA**: ~70 min（日志自报 70.5m）\n\n---\n\n### 3. cuda:3 — Sampling ablation (PID 222783)\n\n- **状态**: running（已运行 19 min）\n- **当前阶段**: Phase 1 generation，第 1 个配置 `low_t05_p08` (T=0.5, p=0.8)\n- **进度**: **84 / 996 seeds (8.4%)** — 仅第 1 个配置\n- **总体进度**: 84 / 2988 (3 configs × 996) = **2.8%**\n- **速度**: ~14s/it\n- **ETA**: ~11.3 hours（3 个配置全部完成）\n- **输出文件**: 尚无输出（生成阶段未结束）\n- **注意**: 有少量 empty output warnings（seed 24, 30, 62, 75），已自动跳过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-all-gpu-status.md"
+}

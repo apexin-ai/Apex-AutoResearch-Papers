@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca98e524bc5f1088829f",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "gpu expand cuda23",
+  "task_key": "worker_gpu_expand_cuda23_20260521T095138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_expand_cuda23_20260521T095138_result.json",
+    "occurrence": 1,
+    "bytes": 1029,
+    "sha256": "c4837da35252ffadd2c76e6ed34305f31bd5b0cb412baa56c3a9cc0b0f108f92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 张卡全部在跑，全部确认正常。\n\n## 最终状态\n\n| GPU | 模型 | PID | 日志 | 状态 |\n|-----|------|-----|------|------|\n| cuda:0 | pythia-2.8b | 283041 | /tmp/gen_pythia.log | 运行中 |\n| cuda:0 | llama-3.2-3b | 347968 | /tmp/gen_llama_decoding.log | 运行中 |\n| cuda:1 | olmo-2-1b | 283607 | /tmp/gen_olmo.log | 运行中 |\n| cuda:1 | qwen3-1.7b | 344399 | /tmp/gen_qwen_greedy.log | 运行中 |\n| **cuda:2** | **mistral-7b-v0.3** | **349080** | /tmp/gen_mistral_decoding.log | **~13.7s/it, ETA ~3.8h** |\n| **cuda:3** | **pythia-1b** | **349387** | /tmp/gen_pythia1b_decoding.log | **~5.2s/it, ETA ~1.4h** |\n\n### cuda:3 串行链 (watcher PID 349616)\n\n1. **pythia-1b** (当前) → 完成后自动\n2. **qwen3-0.6b** → /tmp/gen_qwen06b_decoding.log → 完成后自动\n3. **qwen3-8b** → /tmp/gen_qwen8b_decoding.log\n\nWatcher 日志: `/tmp/start_cuda3_chain_watcher.log`\n\n新增 MODEL_PATHS: `pythia-1b`, `qwen3-0.6b`, `qwen3-8b`。8/8 generator 全覆盖已启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-expand-cuda23.md"
+}

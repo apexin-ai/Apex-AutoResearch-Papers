@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20981b163265041bc18c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper check framework figure",
+  "task_key": "worker_paper_check-framework-figure_20260517T152328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_check-framework-figure_20260517T152328_result.json",
+    "occurrence": 1,
+    "bytes": 507,
+    "sha256": "d2df8c060b9c0538eed0d3e7975a71d66509cabe351ca58b4cb42f3126704b8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Framework 图表生成成功。\n\n**报告：**\n- `fig2_framework.pdf` — 42,396 bytes，生成时间 2026-05-17 23:14 (服务器时间)\n- `fig2_framework.png` — 142,417 bytes，同时间生成\n- 两个文件已下载到本地 `artifacts/_project/paper/figures/`\n- 图表内容：三栏 pipeline 示意图（Chain Construction → Feature Extraction → Classification + DDR），包含特征分类（Drifting/Shape/Intermediate）和右下角的 Differential Depth Response 折线图"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-check-framework-figure.md"
+}

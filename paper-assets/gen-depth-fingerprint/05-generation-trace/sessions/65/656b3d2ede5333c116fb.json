@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "656b3d2ede5333c116fb",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_8_1778889290.md",
+  "task_key": "loop_8_1778889290",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778889290.md",
+    "occurrence": 1,
+    "bytes": 4250,
+    "sha256": "d8944964d1ff903b442b0744f1644c656735ce2bf857b74c800e56ab7905de68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-15T22:24:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 cuda:0/1/2/3。**禁止用白名单外 GPU**，即使 Director 指令也必须 push back\n- **7-gen vs 6-gen 数字禁止直接对比**（D017 Director 硬约束）：7-gen binary F1=0.768 不可与 6-gen binary F1=0.723 apple-to-apple 比较，训练集组成不同\n- **Instruct 方向反转是长度伪影**（Reviewer CRITICAL 已验证）：length-matched 后 surface feature ρ 降至 ~0。不可 claim 方向反转，Discussion 只能用 \"method boundary\" 叙事\n- Primary metric 是 **binary LOGO F1=0.723**（gen-1 vs gen-2+, gen-0 excluded）。3-class F1=0.789 只作 supplementary + caveat\n- EMNLP 2026 ARR DDL: **2026-05-25**（剩 10 天）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**autodl-5090**，工作目录 `/root/gen-depth-fingerprint`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 数据：`/root/gen-depth-fingerprint/data/` 下各 CSV\n- W&B：项目内实验有 W&B 追踪（部分实验无 W&B）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程：**plan-006-paraphrastic** PID=246021, cuda:1, cron 监控中（reconcile 确认 still running）\n- cuda:0/2/3 **空闲**\n\n### 3. 📊 当前状态\n**正在跑**: plan-006-paraphrastic（Pythia-2.8B paraphrastic chains，测试 attractor convergence theory，cuda:1）\n\n**刚完成的关键实验**:\n- plan-008-multi-domain: success — Wiki F1=0.79, Scientific=0.70, Creative=0.63, News=0.57。Cross-domain pooled 较弱(0.48)\n- plan-007-cross-model: success — 跨模型链 3-class F1=0.81，与单模型可比\n- plan-010-human-edit: success — 5%替换仅-3.5pp，20%替换-6.0pp，graceful degradation\n\n**Round 2 审稿修复进展**:\n- Rd2-N1 CI误用 ✅ results/conclusion 已改，abstract/intro 更新中\n- Rd2-N2 Gen-0泄露 ✅ binary F1=0.723 已有\n- Rd2-N3 仅base model ✅ scope narrowing 完成，P1-C instruct 结论已出（instruct=长度伪影，不可 claim）\n- Rd2-N4/W1/W3/W5/W6/M1-M6 全部 ✅\n\n**PREPARING 但 stale**: plan-004-prep, plan-001-restore, mvp-001-gen-s0/s1/s2/s3 — 这些是早期实验残留，PID 已不活跃，可忽略\n\n**Worker 池**: 0 running（当前无活跃 Worker）\n\n### 4. 📋 待办（条件触发式）\n- plan-006-paraphrastic cron 回调到达 → spawn worker 分析结果，更新 registry，对比 continuation chain F1，汇报 Director\n- plan-006 完成后 → abstract + intro 数字更新为 binary F1 headline（ROADMAP 未完成项）\n- abstract/intro 更新完成 → related_work CI width 残留修复 + P1-E ordinal 结论写入论文\n- Rd2-M7 bib 年份验证 → spawn worker 做 reference-audit\n- 全部修复完成 → 全文数字一致性最终验证 → post_to_reviewer Round 3\n- Round 3 通过 → EMNLP ARR 提交材料准备\n- **cuda:0/2/3 空闲 = 失职** — 应考虑跑 plan_009 (finer-grained ordinal) 或其他可并行实验，但当前重心是论文修复不是新实验\n\n### 5. 🎯 战略上下文\n**核心结论链**: 递归 LLM 生成链展现 differential depth response — level/diversity 特征漂移，shape 特征稳态。7-feature ensemble binary LOGO F1=0.723 跨 6 base-model generators / 3 families 验证。Claim 3 (downstream utility) 是 honest negative（diagnostic not curative）。\n\n**关键决策**: D017 将 primary metric 改为 binary F1（排除 gen-0 leakage）；D019 撤回 instruct \"inverted DDR\" 叙事（长度伪影）；D012 恢复 EMNLP 2026 为主投目标。\n\n**最容易判断错的事**:\n1. 不要把 instruct 实验结果当成新发现 — 已定性为长度伪影，只在 Discussion 里写 scope limitation\n2. 3-class F1=0.789 看起来比 binary 0.723 好，但 3-class 有 gen-0 shared-seed 泄露，**binary 才是诚实的 headline**\n3. plan-006 paraphrastic 是验证 attractor theory 的关键实验 — 如果 paraphrastic F1 显著低于 continuation，支持 \"non-paraphrastic chains preserve more depth signal\" 叙事；如果差不多，需要调整 related work 中对 attractor cycle 理论的引用方式\n4. 距 DDL 仅 10 天，重心是论文修复+提交，不是开新实验线。GPU 空闲可以接受（除非 Director 另有指示）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778889290.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6c076264a3136b1a60b",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper abstract intro update",
+  "task_key": "worker_paper_abstract-intro-update_20260516T015157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_abstract-intro-update_20260516T015157_result.json",
+    "occurrence": 1,
+    "bytes": 807,
+    "sha256": "d71e70e8ec5ca414c7802b878a79e1eccc65e96afca2ae8a5f94fe0d0a069cd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both files are already correct. No changes needed.\n\n**abstract.tex** (line 6):\n- Headline: binary macro-F1 = 0.723, CI [0.717, 0.729] ✓\n- \"gen-1 vs. gen-2+ ... excluding gen-0 to avoid shared-seed overlap\" ✓\n- Per-generator: std = 0.051 (not old range) ✓\n\n**introduction.tex**:\n- Line 25: binary macro-F1 = 0.723, CI [0.717, 0.729], \"leak-free depth discrimination (gen-1 vs. gen-2+)\", std = 0.051 ✓\n- Line 34 (contribution list): binary F1 = 0.723, CI [0.717, 0.729], same framing ✓\n- Line 17: 0.42–0.81 range — this is **baselines** (individual detectors repurposed), not our method. Correctly used to motivate ensemble approach.\n- Line 28: perplexity 2.367 vs 2.387 — downstream experiment, not F1.\n\nNo stale 3-class headline numbers remain in either file."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-abstract-intro-update.md"
+}

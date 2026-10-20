@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1c83e271e7c0282f349",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops check 014 status",
+  "task_key": "worker_ops_check-014-status_20260515T031800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-014-status_20260515T031800_result.json",
+    "occurrence": 1,
+    "bytes": 429,
+    "sha256": "6bf6fac92615f98879d81cb556ba654801e988bea12c52d278c98c288c350405"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n```\n# 进程状态\n134817    02:59:13    (运行中，已运行约3小时)\n\n# 数据文件\n/root/gen-depth-fingerprint/data/qwen3-8b/generations.jsonl: No such file or directory\n416 /root/autodl-tmp/gen-depth-fingerprint/data/qwen3-8b/generations_shard0.jsonl\n\n# GPU\n0, 77 %, 16473 MiB\n1, 0 %, 0 MiB\n2, 0 %, 0 MiB\n3, 0 %, 0 MiB\n\n# disk\noverlay          30G  7.5G   23G  25% /\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-014-status.md"
+}

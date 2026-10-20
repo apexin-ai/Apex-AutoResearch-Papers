@@ -1,0 +1,147 @@
+{
+  "schema_version": "1.0",
+  "id": "c0ed2fc77e709568c4bd",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code exp047 read results",
+  "task_key": "worker_code_exp047-read-results_20260517T072029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp047-read-results_20260517T072029_result.json",
+    "occurrence": 1,
+    "bytes": 5915,
+    "sha256": "d73421394b60d6e15a9048803954edc3058a67893a0c39680ed68b57717e2f5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 1. multi_domain_results_t07.json\n\n```json\n{\n  \"experiment\": \"multi_domain_t07\",\n  \"generation_params\": {\n    \"temperature\": 0.7,\n    \"top_p\": 0.9\n  },\n  \"per_domain\": {\n    \"news\": {\n      \"binary_f1\": 0.7119,\n      \"binary_ci\": [0.6898, 0.7332],\n      \"3class_f1\": 0.7149,\n      \"3class_ci\": [0.6984, 0.7314],\n      \"per_generator_binary\": {\n        \"mistral-7b\": 0.7129,\n        \"pythia-1b\": 0.7606,\n        \"qwen3-1.7b\": 0.6556\n      },\n      \"per_generator_3class\": {\n        \"mistral-7b\": 0.6756,\n        \"pythia-1b\": 0.7689,\n        \"qwen3-1.7b\": 0.6993\n      },\n      \"n_samples\": 2400\n    },\n    \"academic\": {\n      \"binary_f1\": 0.6279,\n      \"binary_ci\": [0.6027, 0.6515],\n      \"3class_f1\": 0.6564,\n      \"3class_ci\": [0.6381, 0.6735],\n      \"per_generator_binary\": {\n        \"mistral-7b\": 0.6009,\n        \"pythia-1b\": 0.7383,\n        \"qwen3-1.7b\": 0.5132\n      },\n      \"per_generator_3class\": {\n        \"mistral-7b\": 0.6362,\n        \"pythia-1b\": 0.751,\n        \"qwen3-1.7b\": 0.5762\n      },\n      \"n_samples\": 2400\n    },\n    \"code\": {\n      \"binary_f1\": 0.6872,\n      \"binary_ci\": [0.6641, 0.71],\n      \"3class_f1\": 0.6729,\n      \"3class_ci\": [0.6537, 0.6918],\n      \"per_generator_binary\": {\n        \"mistral-7b\": 0.6342,\n        \"pythia-1b\": 0.7549,\n        \"qwen3-1.7b\": 0.6648\n      },\n      \"per_generator_3class\": {\n        \"mistral-7b\": 0.6463,\n        \"pythia-1b\": 0.7407,\n        \"qwen3-1.7b\": 0.634\n      },\n      \"n_samples\": 2400\n    }\n  },\n  \"overall\": {\n    \"binary_f1\": 0.6757,\n    \"3class_f1\": 0.6814\n  },\n  \"comparison_with_t10\": {\n    \"news\": {\"t07\": 0.7119, \"t10\": 0.7459, \"delta\": -0.034},\n    \"academic\": {\"t07\": 0.6279, \"t10\": 0.7386, \"delta\": -0.1107},\n    \"code\": {\"t07\": 0.6872, \"t10\": 0.7535, \"delta\": -0.0663}\n  }\n}\n```\n\n## 2. wc -l generations_t07/*.jsonl\n\n```\n    800 mistral-7b_academic.jsonl\n    800 mistral-7b_code.jsonl\n    800 mistral-7b_news.jsonl\n    800 pythia-1b_academic.jsonl\n    800 pythia-1b_code.jsonl\n    800 pythia-1b_news.jsonl\n    800 qwen3-1.7b_academic.jsonl\n    800 qwen3-1.7b_code.jsonl\n    800 qwen3-1.7b_news.jsonl\n   7200 total\n```\n\n全部 9 个文件均为 800 行。\n\n## 3. tail -30 run_t07.log\n\n```\n  --- news (n=2400) ---\n    Binary F1: 0.7119 CI: [0.6898, 0.7332]\n    3-class F1: 0.7149 CI: [0.6984, 0.7314]\n    Per-generator (bin): {'mistral-7b': 0.7129, 'pythia-1b': 0.7606, 'qwen3-1.7b': 0.6556}\n    Per-generator (3c): {'mistral-7b': 0.6756, 'pythia-1b': 0.7689, 'qwen3-1.7b': 0.6993}\n\n  --- academic (n=2400) ---\n    Binary F1: 0.6279 CI: [0.6027, 0.6515]\n    3-class F1: 0.6564 CI: [0.6381, 0.6735]\n    Per-generator (bin): {'mistral-7b': 0.6009, 'pythia-1b': 0.7383, 'qwen3-1.7b': 0.5132}\n    Per-generator (3c): {'mistral-7b': 0.6362, 'pythia-1b': 0.751, 'qwen3-1.7b': 0.5762}\n\n  --- code (n=2400) ---\n    Binary F1: 0.6872 CI: [0.6641, 0.71]\n    3-class F1: 0.6729 CI: [0.6537, 0.6918]\n    Per-generator (bin): {'mistral-7b': 0.6342, 'pythia-1b': 0.7549, 'qwen3-1.7b': 0.6648}\n    Per-generator (3c): {'mistral-7b': 0.6463, 'pythia-1b': 0.7407, 'qwen3-1.7b': 0.634}\n\n  Results saved: /root/gen-depth-fingerprint/experiments/multi_domain/multi_domain_results_t07.json\n\n=== COMPARISON t=0.7 vs t=1.0 ===\n  news: t07=0.7119, t10=0.7459, delta=-0.0340\n  academic: t07=0.6279, t10=0.7386, delta=-0.1107\n  code: t07=0.6872, t10=0.7535, delta=-0.0663\n  Overall binary F1: 0.6757\n\n============================================================\nCOMPLETE in 1.3h (79min)\n============================================================\n```\n\n实验正常完成，耗时 79 分钟。所有数据完整。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "experiment": "multi_domain_t07",
+              "generation_params": {
+                "temperature": 0.7,
+                "top_p": 0.9
+              },
+              "per_domain": {
+                "news": {
+                  "binary_f1": 0.7119,
+                  "binary_ci": [
+                    0.6898,
+                    0.7332
+                  ],
+                  "3class_f1": 0.7149,
+                  "3class_ci": [
+                    0.6984,
+                    0.7314
+                  ],
+                  "per_generator_binary": {
+                    "mistral-7b": 0.7129,
+                    "pythia-1b": 0.7606,
+                    "qwen3-1.7b": 0.6556
+                  },
+                  "per_generator_3class": {
+                    "mistral-7b": 0.6756,
+                    "pythia-1b": 0.7689,
+                    "qwen3-1.7b": 0.6993
+                  },
+                  "n_samples": 2400
+                },
+                "academic": {
+                  "binary_f1": 0.6279,
+                  "binary_ci": [
+                    0.6027,
+                    0.6515
+                  ],
+                  "3class_f1": 0.6564,
+                  "3class_ci": [
+                    0.6381,
+                    0.6735
+                  ],
+                  "per_generator_binary": {
+                    "mistral-7b": 0.6009,
+                    "pythia-1b": 0.7383,
+                    "qwen3-1.7b": 0.5132
+                  },
+                  "per_generator_3class": {
+                    "mistral-7b": 0.6362,
+                    "pythia-1b": 0.751,
+                    "qwen3-1.7b": 0.5762
+                  },
+                  "n_samples": 2400
+                },
+                "code": {
+                  "binary_f1": 0.6872,
+                  "binary_ci": [
+                    0.6641,
+                    0.71
+                  ],
+                  "3class_f1": 0.6729,
+                  "3class_ci": [
+                    0.6537,
+                    0.6918
+                  ],
+                  "per_generator_binary": {
+                    "mistral-7b": 0.6342,
+                    "pythia-1b": 0.7549,
+                    "qwen3-1.7b": 0.6648
+                  },
+                  "per_generator_3class": {
+                    "mistral-7b": 0.6463,
+                    "pythia-1b": 0.7407,
+                    "qwen3-1.7b": 0.634
+                  },
+                  "n_samples": 2400
+                }
+              },
+              "overall": {
+                "binary_f1": 0.6757,
+                "3class_f1": 0.6814
+              },
+              "comparison_with_t10": {
+                "news": {
+                  "t07": 0.7119,
+                  "t10": 0.7459,
+                  "delta": -0.034
+                },
+                "academic": {
+                  "t07": 0.6279,
+                  "t10": 0.7386,
+                  "delta": -0.1107
+                },
+                "code": {
+                  "t07": 0.6872,
+                  "t10": 0.7535,
+                  "delta": -0.0663
+                }
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp047-read-results.md"
+}

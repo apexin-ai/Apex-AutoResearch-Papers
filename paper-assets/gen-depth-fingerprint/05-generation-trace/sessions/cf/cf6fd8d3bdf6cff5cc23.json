@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf6fd8d3bdf6cff5cc23",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis bootstrap ci v2",
+  "task_key": "worker_analysis_bootstrap-ci-v2_20260515T084115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-ci-v2_20260515T084115_result.json",
+    "occurrence": 1,
+    "bytes": 476,
+    "sha256": "03d6c3d1a3e53dc9b401ee31738a80572939634b9ca8246d2f7937b2947f5fc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**修正内容：**\n- 原 `bootstrap_ci_6gen.py` 缺少训练集 downsample（类别平衡），导致 per-generator F1 偏差达 2.8pp\n- 新脚本 `bootstrap_ci_v2.py` 加入 downsample，与 registry 评估流程一致，所有 per-generator 偏差 ≤ 0.32pp\n- 结果已保存到服务器 `/root/gen-depth-fingerprint/results/bootstrap_ci_v2_results.json`\n- 论文 Table 1 CI 列和正文 Qwen3-8B CI 引用已更新，point estimates 不变"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-ci-v2.md"
+}

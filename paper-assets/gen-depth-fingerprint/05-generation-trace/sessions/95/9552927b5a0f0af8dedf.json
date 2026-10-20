@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9552927b5a0f0af8dedf",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis early feature extraction",
+  "task_key": "worker_analysis_early_feature_extraction_20260521T113626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_early_feature_extraction_20260521T113626_result.json",
+    "occurrence": 1,
+    "bytes": 1125,
+    "sha256": "73ca5ab0945641d9f8be416629ef484a55885da75fd395b9dd6d44fd988d7168"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n| Generator | Strategy | entropy_mean | entropy_std | entropy_max | entropy_min | tail_decay | TTR | hapax_ratio |\n|---|---|---|---|---|---|---|---|---|\n| OLMo-2-1B | greedy | **1.293** | **0.947** | 0.031 | 0.027 | 0.033 | **0.889** | **0.805** |\n| OLMo-2-1B | top-k | **0.729** | 0.352 | 0.011 | 0.011 | 0.222 | **0.704** | **0.690** |\n| Pythia-2.8B | greedy | **1.426** | **0.931** | 0.091 | 0.075 | 0.066 | **0.981** | **0.875** |\n| Pythia-1B | greedy | **0.983** | **0.912** | 0.123 | 0.044 | 0.039 | **0.635** | **0.529** |\n\n**Shape/drifting 二分法在全部4组条件下成立：**\n- **Shape features** (entropy_max, entropy_min, tail_decay): 15/16 个值 < 0.20，唯一例外是 OLMo-2-1B top-k 的 tail_decay=0.222（略超阈值）\n- **Drifting features** (entropy_mean, TTR, hapax_ratio): 全部 12/12 > 0.50\n\n额外发现：greedy decoding 的 effect size 普遍大于 top-k（OLMo-2-1B greedy vs top-k 对比明显），说明采样随机性会部分掩盖 depth 信号。\n\n结果已保存到 `artifacts/_project/analysis/decoding_early_cohens_d.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-early-feature-extraction.md"
+}

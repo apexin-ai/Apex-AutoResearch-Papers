@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d8fdccaf85b5d066961",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops plan012 pythia410m check",
+  "task_key": "worker_ops_plan012-pythia410m-check_20260516T005024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan012-pythia410m-check_20260516T005024_result.json",
+    "occurrence": 1,
+    "bytes": 574,
+    "sha256": "b8d44a7f5bdf85c5d890652ecdd23e43cc598108618a3c9d76a9d127339acca5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能在之前的 auto-resolve 时已被清理）。\n\n**plan-012-pythia410m 实验结果汇总：**\n\n| 指标 | QLoRA Pythia-410M | XGBoost baseline | Delta |\n|------|------------------|-----------------|-------|\n| 5-class macro F1 | 0.5564 ± 0.0158 | 0.5028 | **+0.0536** |\n| 3-class macro F1 | 0.8703 ± 0.0220 | 0.7815 | **+0.0888** |\n\nPer-class F1 (5-class): depth_0=0.991, depth_1=0.733, depth_2=0.347, depth_3=0.291, depth_4=0.420\n\nRegistry 已更新为 `DONE / success`，metrics 已写入。运行耗时 61.8 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan012-pythia410m-check.md"
+}

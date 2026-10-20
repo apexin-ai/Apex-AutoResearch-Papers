@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9aabc7514102a39d39df",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "submit compile final pdf",
+  "task_key": "worker_submit_compile-final-pdf_20260520T070726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_compile-final-pdf_20260520T070726_result.json",
+    "occurrence": 1,
+    "bytes": 442,
+    "sha256": "51757317116c6e334a087b8dcfd2b80dd376eeaf30c376a729a824ce8be3aebf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译完成，汇总：\n\n| 项目 | 结果 |\n|------|------|\n| Errors | 0 |\n| Undefined citations | 0 |\n| Undefined references | 0 |\n| Multiply defined labels | 0 |\n| 总页数 | 31 |\n| 主文（含 Limitations） | 8 页 (**≤ 8 页，符合 EMNLP 限制**) |\n| References 起始 | 第 9 页 |\n| Appendix | 第 10–31 页 |\n| 文件大小 | 2.8 MB |\n\nPDF 已拉回本地 `artifacts/_project/paper/main.pdf`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-compile-final-pdf.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e8c35350659f82b1310",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis olmo instruct results",
+  "task_key": "worker_analysis_olmo-instruct-results_20260515T165350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_olmo-instruct-results_20260515T165350_result.json",
+    "occurrence": 1,
+    "bytes": 1821,
+    "sha256": "f30b62e9b1f99d9d61d8fd9bdc5ad82ddaa62a5c45c2126a0f8ceaa3708dd773"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息已收集。汇总报告如下：\n\n---\n\n## 实验状态报告\n\n### review-p1c-olmo-instruct (cuda:0, PID 218484)\n\n**Step 1 Generation — 仍在运行，~86% 完成**\n\n| 指标 | 值 |\n|------|-----|\n| Seeds 完成 | 857 / 995 (86.1%) |\n| 剩余 | 138 seeds |\n| 总 records | 3,830 |\n| 预计 ETA | ~15 min（约 01:10 UTC） |\n\nDepth 分布：\n\n| Depth | Records | 占 seed 比 |\n|-------|---------|-----------|\n| 0 | 857 | 100% |\n| 1 | 834 | 97.3% |\n| 2 | 768 | 89.6% |\n| 3 | 706 | 82.4% |\n| 4 | 665 | 77.6% |\n| 5-6 | 0 | — |\n\ninstruct 链在 depth 4 后逐渐截断（chain 产生空输出时提前停止）。\n\n**Step 2 (feature extraction)** — 未开始，等 Step 1 完成  \n**Step 3 (LOGO analysis)** — 未开始\n\npipeline 是 `set -e` 串行执行，Step 1 完成后会自动执行 Step 2 和 3。**整个 pipeline 预计还需 ~30-40 min**（Step 1 ~15min + Step 2 ~10min + Step 3 ~5min）。\n\n---\n\n### GPU 占用状态\n\n| GPU | VRAM 使用 | 利用率 | 任务 | 进度 |\n|-----|----------|--------|------|------|\n| cuda:0 | 3,647 / 32,607 MiB | 50% | p1c_olmo: OLMo-instruct generation | 857/995 seeds (86%), ETA ~15min |\n| cuda:1 | 4,031 / 32,607 MiB | 42% | plan-010: human_edit_robustness (PID 223500) | Rephrase 12,800/21,557 (59%), ETA ~35min |\n| cuda:2 | 3,977 / 32,607 MiB | 41% | high_temp: run_high_only.py | 刚启动 ~8min |\n| cuda:3 | 3,979 / 32,607 MiB | 43% | sampling_ablation (low_t05_p08) | 237/996 (24%), ETA ~2.9h |\n\n**4 张 5090 全部在用，无空闲 GPU。**\n\n---\n\n### 下一步\n\np1c_olmo pipeline 预计 ~01:45 UTC 左右全部完成。完成后可收集 LOGO F1、特征 Spearman ρ、length-matched 分析等指标，与 base OLMo-2-1B (LOGO F1=0.7635) 对比。需要我稍后再检查一次吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-olmo-instruct-results.md"
+}

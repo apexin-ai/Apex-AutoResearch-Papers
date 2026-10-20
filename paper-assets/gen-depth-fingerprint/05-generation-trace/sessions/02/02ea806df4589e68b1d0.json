@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02ea806df4589e68b1d0",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis exp062 cohens d batch4",
+  "task_key": "worker_analysis_exp062_cohens_d_batch4_20260521T161907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp062_cohens_d_batch4_20260521T161907_result.json",
+    "occurrence": 1,
+    "bytes": 547,
+    "sha256": "cc5d266807ce121d8a79bc9b0046b8f5a959a09e5048e45cb678c1c9f0a0ab80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n| Combo | entropy_mean | entropy_std | entropy_max | entropy_min | tail_decay | TTR | hapax_ratio | Shape | Drift |\n|---|---|---|---|---|---|---|---|---|---|\n| llama-3.2-3b topk | 0.77 | 0.21 | 0.08 | 0.03 | 0.20 | 0.73 | 0.71 | YES | YES |\n| qwen3-0.6b greedy | 0.82 | 0.72 | 0.09 | 0.02 | 0.03 | 0.51 | **0.46** | YES | **NO** |\n\nqwen3-0.6b greedy 的 hapax_ratio=0.46 差 0.04 没过 drift 阈值，是 greedy 策略下首个 drift 未通过的 combo。两个文件均已更新至 12/16 combos。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp062-cohens-d-batch4.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "faddc2c3122337795f4b",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "exp independent seed control",
+  "task_key": "worker_exp_independent-seed-control_20260517T223544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_independent-seed-control_20260517T223544_result.json",
+    "occurrence": 1,
+    "bytes": 823,
+    "sha256": "51daa198cc77a95c7f211823747314534138b9bb6763e72d3c9ababb596ff714"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验全部完成。结果汇报：\n\n## exp_051_independent_seed 结果\n\n| Setting | Train→Test | Binary F1 | 95% CI |\n|---------|-----------|-----------|--------|\n| Independent seeds | Pythia→OLMo | **0.6945** | [0.6727, 0.7167] |\n| Independent seeds | OLMo→Pythia | **0.6660** | [0.6429, 0.6893] |\n| Independent seeds (avg) | bidirectional | **0.6803** | |\n| Shared seeds (ref) | LOGO avg | 0.694 | [0.688, 0.700] |\n\n**Delta vs shared-seed: -0.014**\n\n**结论：Topic fingerprint leakage 被排除。** 独立 seed 集（两个模型完全不共享 Wikipedia 文章）下的 cross-generator binary F1 (0.680) 与 shared-seed LOGO baseline (0.694) 高度可比（差异仅 -1.4%，在 CI 范围内）。这证明 classifier 学到的是 generative depth 信号，而非 topic identity。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-independent-seed-control.md"
+}

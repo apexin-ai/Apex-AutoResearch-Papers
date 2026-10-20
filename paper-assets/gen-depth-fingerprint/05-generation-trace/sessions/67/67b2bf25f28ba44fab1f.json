@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "67b2bf25f28ba44fab1f",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "code data provenance audit",
+  "task_key": "worker_code_data-provenance-audit_20260517T105358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_data-provenance-audit_20260517T105358.log",
+    "occurrence": 1,
+    "bytes": 655498,
+    "sha256": "4aeb07f60d6d7793bc2a0c2af934322ad57364fcbfa6b9f2e3f6f7dd4cec431a"
+  },
+  "statistics": {
+    "messages": 97,
+    "user_turns": 0,
+    "tool_calls": 36,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 21,
+      "tool_call": 36,
+      "tool_result": 36,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 97,
+      "chunks": [
+        {
+          "path": "67b2bf25f28ba44fab1f-part-0001.json",
+          "message_count": 93
+        },
+        {
+          "path": "67b2bf25f28ba44fab1f-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-data-provenance-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0c69d36bc974d36869d",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2.md",
+    "occurrence": 1,
+    "bytes": 4172,
+    "sha256": "413f7d297c1bfe82280586c83aec09bc4ccc4f473c25a362abcd45c877ccf929"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-15T00:04:48+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（autodl-5090），不可用白名单外的 GPU\n- 实验 ID 命名：Qwen3-1.7B 的正确 exp_id 前缀是 `plan-002-qwen3-1_7b`，不是 `plan-002-qwen17b`（后者是之前的重复提交错误命名，已 kill）\n- submit_training_job 的 GPU 编号始终从 0 开始（框架自动注入 CUDA_VISIBLE_DEVICES）\n- 数据/模型/HF cache 必须放 `/root/autodl-tmp/`，根分区只有 ~30GB\n- pip install / git clone 前必须 `source /etc/network_turbo`；HF 下载设 `HF_HUB_DISABLE_XET=1`\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090（4× RTX 5090 32GB），工作目录 `/root/gen-depth-fingerprint`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 数据：`/root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl`（1000 条 wiki seed）\n- 已完成生成数据：`data/pythia-1b/generations_shard{0,1}.jsonl`（各 ~2.5MB, ~2270 records）\n- MVP 数据：`data/features.csv`（4609 条，Pythia-2.8B 生成链）\n- 参考模型：EleutherAI/pythia-410m（所有实验共用）\n- 生成脚本：`generate_chain.py`（支持 `--model-name`, `--shard-id`, `--num-shards`）\n- 活跃进程（4 个，均 tmux backend）：\n  - plan-002-qwen3-1_7b-s0: PID 111533, cuda:0\n  - plan-002-qwen3-1_7b-s1: PID 111646, cuda:1\n  - plan-002-olmo2-s0: PID 108242, cuda:2\n  - plan-002-olmo2-s1: PID 108452, cuda:3\n- Cron 监控：4 个活跃 cron 对应上述 4 个实验\n\n### 3. 📊 当前状态\nplan-002（跨生成器评估）Round 1 进行中：\n- ✅ Pythia-1B 两 shard 完成（~2270 records/shard，gen0-gen4 深度分布正常，shard0: 497 seeds / shard1: 498 seeds）\n- 🔄 OLMo-2-1B 两 shard RUNNING（cuda:2,3，PID 108242/108452，已运行 ~10h+）\n- 🔄 Qwen3-1.7B 两 shard RUNNING（cuda:0,1，PID 111533/111646，刚启动不久）\n- ❌ plan-002-qwen17b-s0/s1 是重复提交错误，已 kill 并记录，无需处理\n\n等待中：\n- 4 个 cron 回调（OLMo-2 和 Qwen3-1.7B 完成时触发）\n- Round 2 待 Round 1 完成后启动：Qwen3-0.6B（需要两个 GPU）\n\nplan-001（feature ablation）已完成：full_macro_f1=0.82, ref_only=0.72, surface_only=0.76，确认 Claim 2。\nplan-001-restore 仍在 PREPARING 状态，是残留条目，可忽略。\n\n### 4. 📋 待办\n- OLMo-2 shard 0/1 cron 回调到达 → spawn worker 验证输出数据质量（records 数、深度分布）→ 更新 registry metrics\n- Qwen3-1.7B shard 0/1 cron 回调到达 → 同上验证\n- Round 1 全部 4 模型生成完成 → 用空出的 GPU 启动 Round 2：Qwen3-0.6B（cuda:0,1 两 shard）\n- Round 2 完成 → plan-002 所有生成数据就绪 → spawn worker 做跨模型分类实验（特征提取 + 训练分类器 + 评估 macro-F1）\n- plan-002 分类结果出来 → 与 MVP baseline (macro-F1=0.84) 对比 → 汇报 Director，确认 Claim 1 跨生成器泛化\n- 分类完成后 → 推进 plan-003（cross_family_reference_model）或 plan-004（downstream_utility），视 Director 优先级\n\n### 5. 🎯 战略上下文\n- 核心 idea：用小参考模型（Pythia-410M）的分布特征检测文本\"生成深度\"（gen-0/1/2+）\n- MVP 已验证单生成器场景（Pythia-2.8B，macro-F1=0.84），现在在验证 Claim 1 跨生成器泛化\n- plan-001 确认了 Claim 2：参考模型特征（F1=0.72）独立于表面词汇统计（F1=0.76）有区分力，但表面特征略强，framing 已调整为\"Dual Dynamics\"（H1 = level/sharpness 特征, H2 = diversity 特征）\n- Venue 目标：AAAI 2027 (DDL Aug 2) primary / EMNLP 2026 ARR (May 25) stretch\n- 易错点：\n  - OLMo-2 模型 ID 是 `allenai/OLMo-2-0425-1B`，不是旧版 OLMo\n  - Qwen3 模型是 Base 版本（`Qwen/Qwen3-1.7B-Base`），不是 Instruct\n  - generate_chain.py 的 `--model-name` 参数是短名（如 `qwen3-1.7b`），不是 HF full ID\n  - 已有 5 个 PREPARING 状态的残留实验（mvp-001-gen-s0/s1/s2/s3, plan-001-restore），都是历史遗留，不要尝试重启\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20cb5d12cecc472013de",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code exp 060 14b scale prep",
+  "task_key": "worker_code_exp_060_14b_scale_prep_20260520T104714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_060_14b_scale_prep_20260520T104714_result.json",
+    "occurrence": 1,
+    "bytes": 2308,
+    "sha256": "1a3c80b385469614018032b4631ce61ee0812cb06a5ed8e4bbaaab9538b68f1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载中，速度 ~6MB/s，预计 ~1.5h 完成。最终模型路径将是 `/root/autodl-tmp/models/Qwen2.5-14B/Qwen/Qwen2.5-14B/`。\n\n---\n\n## 报告\n\n### 1. 选定模型\n\n| 项目 | 值 |\n|------|-----|\n| 模型名称 | Qwen2.5-14B (base) |\n| HuggingFace ID | `Qwen/Qwen2.5-14B` |\n| 参数量 | 14.7B |\n| FP16 显存预估 | ~28GB |\n| 目标 GPU | RTX 5090 (32GB) — 余量 ~4GB，batch_size=1 推理足够 |\n\n确认是 **base model**（非 instruct/chat），HF 模型卡明确说明 \"not recommended for conversations\"。\n\n### 2. 下载状态\n\n- **PID**: 190263\n- **方式**: ModelScope CDN（AutoDL 国内加速）\n- **目标路径**: `/root/autodl-tmp/models/Qwen2.5-14B/Qwen/Qwen2.5-14B/`\n- **总大小**: ~29.5GB (8 shards × ~3.7GB)\n- **已下载**: ~689MB\n- **速度**: ~6MB/s（8 并行流）\n- **预估剩余**: ~80-90 分钟\n\n监控命令:\n```bash\ntail -5 /tmp/download_qwen25_14b.log\ndu -sh /root/autodl-tmp/models/Qwen2.5-14B/\n```\n\n### 3. Pipeline 兼容性\n\n`generate_chain.py` 完全兼容，支持 `--model-path` 和 `--model-name` 参数。现有参数默认值已匹配需求 (temperature=0.7, top_p=0.9)。\n\n### 4. 生成命令（待模型下载完成后执行）\n\n双卡 2-shard 并行，各处理 ~500 seeds 的一半：\n\n```bash\ncd /root/gen-depth-fingerprint\n\n# GPU 0\nnohup python generate_chain.py \\\n  --model-path /root/autodl-tmp/models/Qwen2.5-14B/Qwen/Qwen2.5-14B \\\n  --model-name qwen2.5-14b \\\n  --device cuda:0 \\\n  --shard-id 0 --num-shards 2 \\\n  --temperature 0.7 --top-p 0.9 \\\n  > /tmp/gen_qwen25_14b_shard0.log 2>&1 &\n\n# GPU 1\nnohup python generate_chain.py \\\n  --model-path /root/autodl-tmp/models/Qwen2.5-14B/Qwen/Qwen2.5-14B \\\n  --model-name qwen2.5-14b \\\n  --device cuda:1 \\\n  --shard-id 1 --num-shards 2 \\\n  --temperature 0.7 --top-p 0.9 \\\n  > /tmp/gen_qwen25_14b_shard1.log 2>&1 &\n```\n\n输出目录: `data/qwen2.5-14b/generations_shard{0,1}.jsonl`\n\n**注意**: 28GB 模型 × 2 份 = 56GB 显存，需要两张卡各自加载完整模型。如果显存不够（模型加载后 OOM），回退到单卡 1-shard 方案。\n\n### 5. 特征提取\n\n生成完成后用 `extract_features.py` 或 `extract_features_multi.py` 提取 DDR 特征，参考模型仍用 Pythia-410M。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-060-14b-scale-prep.md"
+}

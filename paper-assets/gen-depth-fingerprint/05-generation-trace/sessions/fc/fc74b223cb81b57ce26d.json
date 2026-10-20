@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc74b223cb81b57ce26d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "data fix 8gen supplement",
+  "task_key": "worker_data_fix-8gen-supplement_20260517T132315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_fix-8gen-supplement_20260517T132315_result.json",
+    "occurrence": 1,
+    "bytes": 540,
+    "sha256": "3c55a3fc62b3801f68e380f276660de8d039903b599514cc289645217d1ac79a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**合并结果：**\n- 总行数：37,058（匹配论文 Table 1 的 N=37,058）\n- 8 generators 分布：\n  - mistral-7b-v0.3: 4,849\n  - olmo-2-1b: 4,713\n  - llama-3.2-3b: 4,680\n  - qwen3-1.7b: 4,617\n  - pythia-2.8b: 4,609\n  - pythia-1b: 4,555\n  - qwen3-0.6b: 4,538\n  - qwen3-8b: 4,497\n- NaN：全部 7 个特征列均为 0\n- 文件大小：4.9 MB\n- Supplement 总大小：38 MB（远低于 200 MB 限制）\n- README.md 已更新：5 families, 8 generators, 37,058 samples, 删除了 held-out 描述"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-fix-8gen-supplement.md"
+}

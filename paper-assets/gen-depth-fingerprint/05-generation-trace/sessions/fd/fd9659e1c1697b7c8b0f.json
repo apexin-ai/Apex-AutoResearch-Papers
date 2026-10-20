@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd9659e1c1697b7c8b0f",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis seed demeaning logo",
+  "task_key": "worker_analysis_seed-demeaning-logo_20260517T234935",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_seed-demeaning-logo_20260517T234935_result.json",
+    "occurrence": 1,
+    "bytes": 1043,
+    "sha256": "cb5d3852c855cf9c9d1f5e446c661e83210fdb0408d7e593740b202e6a7b25a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact written. Here's the summary:\n\n## Results\n\n**Average Binary F1 = 0.7008** (undemeaned baseline: 0.694, Δ = +0.7pp)\n\nFalls squarely in [0.674, 0.714] -> **depth signal preserved after removing seed-level topic**.\n\n| Generator | F1 | 95% CI |\n|---|---|---|\n| pythia-1b | 0.7814 | [0.766, 0.797] |\n| qwen3-1.7b | 0.7498 | [0.734, 0.763] |\n| qwen3-0.6b | 0.7457 | [0.730, 0.761] |\n| pythia-2.8b | 0.7352 | [0.722, 0.750] |\n| olmo-2-1b | 0.6956 | [0.679, 0.711] |\n| llama-3.2-3b | 0.6893 | [0.675, 0.704] |\n| qwen3-8b | 0.6623 | [0.646, 0.679] |\n| mistral-7b-v0.3 | 0.5472 | [0.532, 0.563] |\n\nThe classifier distinguishes gen-1 from gen-2+ just as well (slightly better) after subtracting each seed's depth-0 features. This rules out the seed-sharing confound: the signal comes from generative degradation patterns, not seed-specific topic content.\n\n**Outputs**:\n- Server: `results/seed_demeaning_logo.json`, `logs/seed_demeaning_logo.log`\n- Local: `artifacts/_project/analysis/seed_demeaning_logo.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-seed-demeaning-logo.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6dafdebc9cf27f5ae85",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan012 qwen06b seed2",
+  "task_key": "worker_code_plan012-qwen06b-seed2_20260515T234601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan012-qwen06b-seed2_20260515T234601_result.json",
+    "occurrence": 1,
+    "bytes": 604,
+    "sha256": "0c3d46dadbf2e0f03a6c9a4b8ef40554016b9f6482c0255cd5cb9474b716f73b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行中。\n\n- **PID**: 257903，cuda:2\n- **数据**: 18423 样本（4 generators），5-fold stratified CV\n- **LoRA**: r=32, alpha=64, trainable 4.59M params (0.76%)\n- **速度**: ~4.4 it/s，5529 steps/fold × 3 epochs × 5 folds\n- **预估时间**: 每 fold ~21 min × 5 = ~105 min 总计\n\n配置对比 cuda:0 变体：\n\n| | cuda:0 (v1) | cuda:2 (v2) |\n|---|---|---|\n| seed | 42 | 123 |\n| LoRA r | 16 | 32 |\n| LoRA alpha | 32 | 64 |\n| alpha/r | 2 | 2 |\n\n实验已注册为 `plan-012-qwen06b-v2`，状态 RUNNING。日志在 `/tmp/plan012_qwen06b_v2.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan012-qwen06b-seed2.md"
+}

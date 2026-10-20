@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06bbf6566a1f55b8392e",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "diag qwen t09 final check",
+  "task_key": "worker_diag_qwen-t09-final-check_20260518T203408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_qwen-t09-final-check_20260518T203408_result.json",
+    "occurrence": 1,
+    "bytes": 900,
+    "sha256": "81e55f33395ba1c7ecae68c461446e9537b37dc3ddede9241e94ad047b08aeef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Qwen3-0.6B t=0.9 全部完成。** Pipeline 已自动触发并成功执行。\n\n## 结果\n\n| 指标 | 值 |\n|---|---|\n| **Binary F1** | 0.5984 |\n| Binary 95% CI | [0.5819, 0.6154] |\n| Binary N | 3490 |\n| **3-class F1** | 0.6851 |\n| 3-class 95% CI | [0.6735, 0.6974] |\n| 3-class N | 4485 |\n| **Spearman ρ (entropy_mean)** | -0.2939 (p=4.43e-90) |\n\n### Per-feature Spearman\n\n| Feature | ρ |\n|---|---|\n| hapax_ratio | -0.4902 |\n| ttr | -0.4672 |\n| entropy_mean | -0.2939 |\n| entropy_min | -0.1594 |\n| tail_decay | -0.0843 |\n| entropy_std | -0.0436 |\n| entropy_max | +0.0834 |\n\n### 服务器状态\n- Generation: 996 seeds, 4494 records, 271 skipped, 耗时 ~3h\n- GPU: 全部空闲 (0% utilization, 0 MiB used)\n- Monitor: 4个目标全部 done (olmo_t05, qwen06_t05, olmo_t09, qwen06_t09)\n- 有一个 zombie python 进程 (PID 27228)，不影响后续操作"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-qwen-t09-final-check.md"
+}

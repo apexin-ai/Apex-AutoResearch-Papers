@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58a960646934873ff67d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "supplement p1 missing scripts",
+  "task_key": "worker_supplement_p1-missing-scripts_20260520T060127",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_supplement_p1-missing-scripts_20260520T060127_result.json",
+    "occurrence": 1,
+    "bytes": 1899,
+    "sha256": "987d18e1baa82155927956240d03647ef2ae72fa6662f591fd9db9528db52853"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## 拷贝结果\n\n### 7/7 脚本成功拷贝\n\n| 文件 | 来源 | 状态 |\n|------|------|------|\n| `analyze_prompt_types.py` | `/root/gen-depth-fingerprint/analyze_prompt_types.py` | OK |\n| `analyze_instruct.py` | `/root/gen-depth-fingerprint/analyze_instruct.py` | OK |\n| `eval_exp052_instruct.py` | `/root/gen-depth-fingerprint/eval_exp052_instruct.py` | OK |\n| `cross_ref_analysis.py` | `/root/gen-depth-fingerprint/cross_ref_analysis.py` | OK |\n| `seed_demeaning_logo.py` | `/root/gen-depth-fingerprint/seed_demeaning_logo.py` | OK |\n| `eval_independent_seed.py` | `/root/gen-depth-fingerprint/eval_independent_seed.py` | OK |\n| `ddr_temp_analysis.py` | `/root/gen-depth-fingerprint/ddr_temp_analysis.py` | OK |\n\n### Llama 数据\n- `features_llama-3.2-3b-instruct.csv` — 4,974 条记录（1000 seeds × 5 depths），679KB\n\n### 匿名化修改\n\n| 脚本 | 修改项 |\n|------|--------|\n| `analyze_prompt_types.py` | `/root/autodl-tmp/models/pythia-410m/...` → 环境变量 `REF_MODEL_PATH` + 相对路径回退；`PROJECT_ROOT` 改为 `parent.parent`（指向 supplement 根） |\n| `cross_ref_analysis.py` | 中文 docstring `plan-003 跨家族参考模型分析` → 英文；`project_root` 改为 `parent.parent` |\n| `ddr_temp_analysis.py` | `DATA = \"/root/gen-depth-fingerprint/data\"` → `os.path.join(ROOT, \"..\", \"data\")` 相对路径 |\n| `eval_exp052_instruct.py` | 输出路径 `results/exp052_instruct_eval.json` → `results/instruct_eval.json`；路径改为相对引用 |\n| `seed_demeaning_logo.py` | 数据/结果路径改为 `../data/` / `../results/` 相对路径 |\n| `eval_independent_seed.py` | 同上，相对路径 |\n| `analyze_instruct.py` | 无硬编码路径，无需修改 |\n\n所有脚本均无 API key、个人信息或中文注释残留。`code/README.md` 和 `data/README.md` 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/supplement-p1-missing-scripts.md"
+}

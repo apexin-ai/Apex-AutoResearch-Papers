@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f3dc09077929b237364",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis plan 014 final check",
+  "task_key": "worker_analysis_plan-014-final-check_20260515T033520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-014-final-check_20260515T033520_result.json",
+    "occurrence": 1,
+    "bytes": 153,
+    "sha256": "afe3ea7b6d8fe3c8e681027f401587e1e1a80ae66893bfa1fbadcec205a3fe77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设定 45 分钟后（04:22）回来检查。预计届时 generation 已完成，将执行数据恢复 + 验证 + 后处理全流程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-014-final-check.md"
+}

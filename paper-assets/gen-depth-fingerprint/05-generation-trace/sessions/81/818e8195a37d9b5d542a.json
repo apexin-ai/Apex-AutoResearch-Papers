@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "818e8195a37d9b5d542a",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "ops verify baseline ci",
+  "task_key": "worker_ops_verify-baseline-ci_20260516T135801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-baseline-ci_20260516T135801.log",
+    "occurrence": 1,
+    "bytes": 743640,
+    "sha256": "5ddccf13600c295315aef98ccbc2790f0d1ddaf9f1f5a3af45676c1ca5953a50"
+  },
+  "statistics": {
+    "messages": 414,
+    "user_turns": 0,
+    "tool_calls": 174,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 61,
+      "tool_call": 174,
+      "tool_result": 174,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 414,
+      "chunks": [
+        {
+          "path": "818e8195a37d9b5d542a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "818e8195a37d9b5d542a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "818e8195a37d9b5d542a-part-0003.json",
+          "message_count": 54
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-verify-baseline-ci.md"
+}

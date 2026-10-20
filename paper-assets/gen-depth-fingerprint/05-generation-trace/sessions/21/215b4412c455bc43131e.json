@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "215b4412c455bc43131e",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "gen plan 016 gemma2 2b",
+  "task_key": "worker_gen_plan-016-gemma2-2b_20260516T071847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gen_plan-016-gemma2-2b_20260516T071847.log",
+    "occurrence": 1,
+    "bytes": 894377,
+    "sha256": "9061b17246dd5f9fcda0d0e7b504d0149775911083bf511bfded042f059d6c91"
+  },
+  "statistics": {
+    "messages": 683,
+    "user_turns": 0,
+    "tool_calls": 275,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 129,
+      "tool_call": 275,
+      "tool_result": 275,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 683,
+      "chunks": [
+        {
+          "path": "215b4412c455bc43131e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "215b4412c455bc43131e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "215b4412c455bc43131e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "215b4412c455bc43131e-part-0004.json",
+          "message_count": 143
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gen-plan-016-gemma2-2b.md"
+}

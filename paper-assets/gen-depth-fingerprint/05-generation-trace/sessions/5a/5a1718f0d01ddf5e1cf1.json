@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a1718f0d01ddf5e1cf1",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "fix delete bad eval and verify",
+  "task_key": "worker_fix_delete-bad-eval-and-verify_20260518T192928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_delete-bad-eval-and-verify_20260518T192928_result.json",
+    "occurrence": 1,
+    "bytes": 1497,
+    "sha256": "db6b6fb6210ea19a708409220e547b81c4ced9eff09d084e1d32c6d7d84c264e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n### 1. 废弃文件已删除\n`temp_olmo-2-1b_t0.5_eval.json` 已删除。剩余 OLMo 文件：\n- `temp_olmo-2-1b_t05_eval.json`\n- `temp_olmo-2-1b_t09_eval.json`\n\n### 2. Monitor eval 代码：确认使用 LOGO\n**是，使用 LOGO。** 证据：\n- 第86行：`\"\"\"Run feature extraction then LOGO classification for one target.\"\"\"`\n- 训练集构建方式（第188行）：`train_df = baseline[baseline[\"model_name\"] != model_name]` — 排除当前模型的所有数据作为训练集，用当前模型数据作为测试集，这就是 **Leave-One-Generator-Out**\n- 不是 train_test_split，分类器在其他 generator 数据上训练，在目标 generator 上测试\n\nQwen t=0.9 触发 pipeline 时会走完全相同的 `run_pipeline()` → `build_eval_script()` 路径。\n\n### 3. Qwen t=0.9 进度\n**Lines=3845, Seeds=850** — 生成仍在进行中（每个 seed 约 4.5 条，全量 seed 数取决于数据集大小）。\n\n### 4. 现存结果文件摘要\n\n| 文件 | model | binary_f1 | three_class_f1 |\n|---|---|---|---|\n| `temp_curve_binary_logo.json` | N/A (汇总格式不同) | — | — |\n| `temp_olmo-2-1b_t05_eval.json` | olmo-2-1b | 0.7826 | 0.8425 |\n| `temp_olmo-2-1b_t09_eval.json` | olmo-2-1b | 0.4532 | 0.5631 |\n| `temp_qwen3-0.6b_t05_eval.json` | qwen3-0.6b | 0.7111 | 0.8019 |\n\nQwen t=0.9 的 eval 结果尚未生成，等生成完成后 monitor 会自动触发 pipeline 产出 `temp_qwen3-0.6b_t09_eval.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-delete-bad-eval-and-verify.md"
+}

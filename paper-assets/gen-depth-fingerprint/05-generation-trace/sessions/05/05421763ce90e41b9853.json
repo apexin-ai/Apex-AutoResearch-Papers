@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05421763ce90e41b9853",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code tail decay consistency check",
+  "task_key": "worker_code_tail-decay-consistency-check_20260517T104229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_tail-decay-consistency-check_20260517T104229_result.json",
+    "occurrence": 1,
+    "bytes": 1925,
+    "sha256": "07d58c07acce0b42a7b0cdf2c1623eb20753621edccfc8fc613fa8d0a773c96c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：数据一致，无问题\n\n### 各 generator 的 tail_decay 统计\n\n| generator | n | mean | std | min | max |\n|-----------|---|------|-----|-----|-----|\n| olmo-2-1b | 4713 | -0.00233505 | 0.00022333 | -0.00368185 | 0.00000000 |\n| pythia-1b | 4555 | -0.00223633 | 0.00024162 | -0.00400735 | 0.00000000 |\n| pythia-2.8b | 4609 | -0.00224904 | 0.00024085 | -0.00336938 | 0.00000000 |\n| qwen3-0.6b | 4538 | -0.00232928 | 0.00021094 | -0.00364713 | 0.00000000 |\n| qwen3-1.7b | 4617 | -0.00232056 | 0.00023222 | -0.00650057 | 0.00000000 |\n| qwen3-8b | 4497 | -0.00231846 | 0.00022184 | -0.00655384 | 0.00000000 |\n| **llama-3.2-3b** | 4680 | -0.00230293 | 0.00021417 | -0.00464299 | -0.00172337 |\n| **mistral-7b-v0.3** | 4849 | -0.00229260 | 0.00019456 | -0.00358050 | -0.00166132 |\n| llama-3.2-3b-rp11 | 4416 | -0.00232890 | 0.00023171 | -0.00466249 | 0.00000000 |\n\n**所有 generator 的 tail_decay 值均为负数，量级一致（约 -0.0023）。** Llama 和 Mistral 已通过 `fix_tail_decay_and_eval.py` 的 step1 用 slope 实现（rank 100-1000 sorted avg log-prob 线性回归斜率）重新提取，保存在各自目录的 `features_pythia410m.jsonl` 中。\n\n### fix_tail_decay_and_eval.py 逻辑\n\n- **step1**: 对 llama-3.2-3b、mistral-7b-v0.3、llama-3.2-3b-rp11 三个 generator 用 Pythia-410M 重新提取特征（entropy + slope tail_decay + surface features），保存为 `features_pythia410m.jsonl`\n- **step2**: 加载 6-gen 的 `features_all_models.csv` + Llama/Mistral 的 `features_pythia410m.jsonl`，合并后跑 8-gen LOGO 评估\n- **step3**: rp-LOFO 实验（用 6-gen + Mistral 训练，Llama rp=1.1 / rp=1.0 filtered 做测试）\n- **step4**: filter diagnostic（对比 filtered vs unfiltered 的 6-gen/8-gen 性能）\n\n6-gen 的 `features_all_models.csv` 也是用相同的 slope 公式提取的（值域完全匹配）。两套数据定义一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-tail-decay-consistency-check.md"
+}

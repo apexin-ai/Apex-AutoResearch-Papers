@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c895a308f109190900c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "figure umap redraw",
+  "task_key": "worker_figure_umap_redraw_20260521T014839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_umap_redraw_20260521T014839_result.json",
+    "occurrence": 1,
+    "bytes": 464,
+    "sha256": "7fbfb7f7cdc57ebb05401aa50f0218edd1a96de254691ee7d1bda271887ece57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过：\n\n- **Panel (a)**：Depth 0 → 4 从浅黄到深紫渐变（`plasma_r`），sequential colormap 正确\n- **Panel (b)**：三类用蓝灰/暖橙/柔绿，区分度高且柔和\n- 无黑色边框（`edgecolors='none'`）\n- 点小（s=8）、半透明（alpha=0.55）、栅格化（`rasterized=True`）\n- 1×2 布局，标题 (a)/(b)，轴标签 UMAP-1/UMAP-2\n\nPDF 已输出到 `artifacts/_project/chart/fig_appendix_umap.pdf`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-umap-redraw.md"
+}

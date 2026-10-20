@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "68cad0410ad2758e5bea",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "analysis binary bootstrap pvalue",
+  "task_key": "worker_analysis_binary-bootstrap-pvalue_20260515T141519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_binary-bootstrap-pvalue_20260515T141519.log",
+    "occurrence": 1,
+    "bytes": 746508,
+    "sha256": "4e888e030f6b4772bc0d87adfee89a009b0eeac73f28041958fd6c3eba32f4fb"
+  },
+  "statistics": {
+    "messages": 560,
+    "user_turns": 0,
+    "tool_calls": 250,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 250,
+      "tool_result": 250,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 560,
+      "chunks": [
+        {
+          "path": "68cad0410ad2758e5bea-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "68cad0410ad2758e5bea-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "68cad0410ad2758e5bea-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "68cad0410ad2758e5bea-part-0004.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-binary-bootstrap-pvalue.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd0d5627490caaf1ed0a",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "writing sync docs paper",
+  "task_key": "worker_writing_sync-docs-paper_20260515T135741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_sync-docs-paper_20260515T135741_result.json",
+    "occurrence": 1,
+    "bytes": 111,
+    "sha256": "8f0863844e1bd44811b017389919a7a70a38abfd3986e3f202566bf04459f410"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "8 个文件已从 `artifacts/_project/paper/` 同步到 `docs/paper/`（跳过 results.tex）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-sync-docs-paper.md"
+}

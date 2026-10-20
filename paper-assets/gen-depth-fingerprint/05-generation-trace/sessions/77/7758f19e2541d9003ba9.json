@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7758f19e2541d9003ba9",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "gen plan 016 gemma2 2b",
+  "task_key": "worker_gen_plan-016-gemma2-2b_20260516T071847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gen_plan-016-gemma2-2b_20260516T071847_result.json",
+    "occurrence": 1,
+    "bytes": 797,
+    "sha256": "e56be010a4f89056fda2750c4af03d407ad7f45f2861fe474cade03dc34bcef8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "生成正常运行中：\n- 输出文件已有 13 行（2-3 seeds 完成，每 seed 5 depths）\n- 速度 ~14.6s/seed\n- 输出格式正确：`{\"id\", \"depth\", \"text\", \"seed_id\", \"token_count\", \"model\": \"gemma-2-2b\"}`\n\n任务已成功启动。生成进程将在后台运行约 4 小时完成全部 994 seeds × 5 depths = ~4970 条记录。\n\n**总结：**\n- 模型：Gemma-2-2B 从 ModelScope 下载到 `/root/autodl-tmp/models/gemma-2-2b/AI-ModelScope/gemma-2-2b`\n- 生成进程：PID 286895，`CUDA_VISIBLE_DEVICES=1`（物理 GPU 1）\n- 输出：`/root/gen-depth-fingerprint/data/gemma-2-2b/generations_shard0.jsonl`\n- 预计完成时间：~4 小时（994 seeds × 14.6s/seed）\n- 日志：`/tmp/gemma_generate.log`\n- 支持断点续传（crash-recovery）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gen-plan-016-gemma2-2b.md"
+}

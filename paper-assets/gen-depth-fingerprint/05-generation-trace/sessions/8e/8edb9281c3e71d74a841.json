@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8edb9281c3e71d74a841",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper fix overfull unreferenced",
+  "task_key": "worker_paper_fix-overfull-unreferenced_20260522T185218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-overfull-unreferenced_20260522T185218_result.json",
+    "occurrence": 1,
+    "bytes": 1214,
+    "sha256": "bf683d5d887ef1a9bdac284b3fe9d36147867c3f1d53b35e6177bd1db0c7f4d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### Issue 1: baselines 表 overfull hbox\n- `results.tex` L127 的 `\\begin{tabular}{lcccc}` 用 `\\resizebox{\\columnwidth}{!}{...}` 包裹，与 L39 的 LOGO 表写法一致\n- 编译后 overfull hbox: **0**（已消除）\n\n### Issue 2: 未引用 appendix label\n| Label | 处理 | 插入位置 |\n|---|---|---|\n| `app:convergence` | 补了引用 | results.tex L77 — \"shape features remain flat **(per-feature trajectories in Appendix~\\ref{app:convergence})**\" |\n| `app:holdout-split` | 补了引用 | results.tex L98 — \"Permutation testing confirms the split as non-random; **disjoint generator-pool splits produce identical zone assignments (Appendix~\\ref{app:holdout-split})**\" |\n| `app:ddr-causality` | 补了引用 | discussion.tex L9 — ANOVA 句后追加 \"**Granger causality and feature-intervention tests confirm the causal direction (Appendix~\\ref{app:ddr-causality})**\" |\n| `app:ddr-supplement` | 无需引用 | 父容器 section，子节已各自被引用 |\n\n### 编译结果\n- 0 errors, 0 undefined refs, 0 overfull hbox\n- 唯一 warning: `fig2_framework.pdf` 缺失（已有问题）\n- PDF 已拉回 `artifacts/_project/paper/` 和 `docs/paper/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-overfull-unreferenced.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77b54947dc3e134fd793",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ssh plan 004 v2 missing runs",
+  "task_key": "worker_ssh_plan-004-v2-missing-runs_20260515T024227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan-004-v2-missing-runs_20260515T024227_result.json",
+    "occurrence": 1,
+    "bytes": 986,
+    "sha256": "973e196ee406359fe70ba38aabf8c3b52ca53b61f8b411fbbccb4363020822b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**全部 5 个补跑完成！all_seed456 也完成了！**\n\n## Plan-004-v2 补跑结果汇总\n\n| Variant | Seed | eval_loss | perplexity |\n|---------|------|-----------|------------|\n| depth0_only | 42 | 0.9865 | 2.6818 |\n| depth0_only | 123 | 0.9863 | 2.6800 |\n| depth0_only | 456 | 0.9865 | 2.6817 |\n| depth01 | 42 | 0.8703 | 2.3877 |\n| depth01 | 123 | 0.8700 | 2.3869 |\n\n## 额外完成\n\n**all_seed456**: eval_loss=0.8482, perplexity=2.3354\n\n## 观察\n\n- **depth0_only** 三个种子结果非常一致（perplexity ~2.68），方差极小\n- **depth01** 两个种子也很一致（perplexity ~2.387），与之前已有的 seed=456 (perplexity=2.387) 完全吻合\n- **all_seed456** (perplexity=2.335) 与前两个 all seeds（如果有的话）可做对比\n- depth0_only 的 perplexity 明显高于 depth01 和 all，说明仅用 depth=0 数据训练效果确实较差\n\nplan-014 (Qwen3-8B 生成) 进度 635/996 (~64%)，仍在 GPU 0 上运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-plan-004-v2-missing-runs.md"
+}

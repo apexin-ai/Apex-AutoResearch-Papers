@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "a59761cfa0515274ad69",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "code exp 058 ddr causality",
+  "task_key": "worker_code_exp_058_ddr_causality_20260520T070624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_058_ddr_causality_20260520T070624.log",
+    "occurrence": 1,
+    "bytes": 711219,
+    "sha256": "c65109068b0f64f81ab63e1b7c58422a26500782376033d187f43923380d9aae"
+  },
+  "statistics": {
+    "messages": 244,
+    "user_turns": 2,
+    "tool_calls": 81,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 1,
+      "assistant": 64,
+      "tool_call": 81,
+      "tool_result": 81,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 50,
+      "chunks": [
+        {
+          "path": "a59761cfa0515274ad69-part-0001.json",
+          "message_count": 50
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 106,
+      "chunks": [
+        {
+          "path": "a59761cfa0515274ad69-part-0001.json",
+          "message_count": 106
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 88,
+      "chunks": [
+        {
+          "path": "a59761cfa0515274ad69-part-0001.json",
+          "message_count": 24
+        },
+        {
+          "path": "a59761cfa0515274ad69-part-0002.json",
+          "message_count": 64
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-058-ddr-causality.md"
+}

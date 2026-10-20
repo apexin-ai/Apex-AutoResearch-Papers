@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a305dd668dfe27892edc",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper final compile r49",
+  "task_key": "worker_paper_final-compile-r49_20260523T001556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_final-compile-r49_20260523T001556_result.json",
+    "occurrence": 1,
+    "bytes": 266,
+    "sha256": "7516b1ce868cc78ebbe3204d089b810579a890bdd641655600083a274b6f2046"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n编译状态：0 errors, 0 undefined refs, 0 missing citations\nConclusion 结束页：第 8 页\nLimitations 起始页：第 8 页\n总页数：36\n远程 MD5：93d8bd221354873901c42774bc2d6741\n本地 MD5：93d8bd221354873901c42774bc2d6741\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-final-compile-r49.md"
+}

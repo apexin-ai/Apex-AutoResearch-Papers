@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2af74be3948f4fe2db8",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "reviewer / loop_7_1779488000.md",
+  "task_key": "loop_7_1779488000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_7_1779488000.md",
+    "occurrence": 1,
+    "bytes": 2995,
+    "sha256": "712bb2a3dee66ad4ade49b6d4514e69aefde9a1fdbb2004df33cde961e82b3f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: max_wall_time\nupdated: '2026-05-21T21:46:06+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0-3（4× RTX 5090），越界进程立即 critical\n- 论文主文严格 8 页（EMNLP 2026 ARR）——当前 Conclusion 溢出 ~4-6 行到 page 9，**必须在提交前修复**，否则 desk rejection\n- 远程脚本 `plot_instruct_ddr_comparison.py:96` 硬编码 silhouette=0.632，论文全文用 0.660——重新生成图表前必须改\n- bib 审计硬约束：所有新增引用必须走 reference-audit skill（历史事故：LLM 幻觉作者）\n- artifacts/ 和 docs/ 双份文件必须同步——artifacts/references.bib L198 还有孤立注释 \"fineweb, dolma removed\" 未清理\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb2-18868，代码根目录 /root/gen-depth-fingerprint\n- 本地 workspace：/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/\n- 论文源码（docs）：workspace/docs/paper/；编译产出（artifacts）：workspace/artifacts/_project/paper/\n- exp_062 全部 16/16 combo 已完成（8 generators × greedy + top-k），无 RUNNING 实验\n- 无活跃训练进程 / cron / tmux session\n\n### 3. 📊 当前状态\n刚完成三项审查并已 post to Director：\n1. **PDF 视觉审查（critical）**：主文 Conclusion 溢出 page 8；附录 p14/24/25/26 大面积留白违反项目排版规则\n2. **参考文献审计（warning）**：0 条 undefined reference；artifacts bib 有 W5 孤立注释；5 条 2026 年条目需人工验证 arXiv ID\n3. **远程脚本硬编码（warning）**：plot_instruct_ddr_comparison.py:96 silhouette 0.632→应为 0.660\n\n所有 exp_062 worker 输出已审计完毕（16/16 combo + VERSION C conclusion + P0/P1 writing tasks）。无等待中的 worker 回调。\n\n### 4. 📋 待办\n- Director 确认 page overflow 修复方案 → 审查修复后的 PDF 是否回到 8 页内\n- 附录留白修复 worker 完成 → 重新渲染 PDF 检查 p14/24/25/26 是否填满\n- 如 Director 推进 P2 优先级（McNemar 检验 / 8-gen confusion matrix）→ 审查新增统计结果\n- 提交前最终 PDF 审查：确认 8 页合规 + 图表数值一致 + 无 overfull hbox\n\n### 5. 🎯 战略上下文\n- DDL 2026-05-25（剩余 ~3.5 天），无新 GPU 实验需要，全力写作/排版收尾\n- 核心结论：DDR 分解成立（drifting d=0.76-1.17 vs near-stationary d≤0.10），8/8 generators 一致，greedy/top-k/nucleus 三种策略验证完毕\n- **易错点**：top-k 下 Pythia/OLMo 的 shape 超标是 model-intrinsic（nucleus 下同样超标），不是 top-k 策略导致的——此前我自己就误判过，下一个\"你\"审查 decoding strategy 相关 claim 时务必区分\n- entropy_std 是 strategy-dependent intermediate（greedy 0.83 强漂移 / nucleus 0.46 中间 / top-k 0.23 近稳态），不能简单归入 drifting 或 stationary\n- 论文 story 已稳定：DDR 是 analytical contribution，分类器是 proof-of-concept，不是 SOTA claim\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1779488000.md"
+}

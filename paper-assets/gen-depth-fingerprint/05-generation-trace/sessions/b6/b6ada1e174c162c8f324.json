@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0",
+  "id": "b6ada1e174c162c8f324",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "paper bib full audit",
+  "task_key": "worker_paper_bib-full-audit_20260515T182852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_bib-full-audit_20260515T182852.log",
+    "occurrence": 1,
+    "bytes": 655630,
+    "sha256": "2117e199456cd2e5d7101f4800a69dadde21d567b13cf3beeb489968505587cf"
+  },
+  "statistics": {
+    "messages": 262,
+    "user_turns": 5,
+    "tool_calls": 82,
+    "roles": {
+      "log": 1,
+      "system": 74,
+      "record": 1,
+      "assistant": 16,
+      "tool_call": 82,
+      "tool_result": 82,
+      "user": 5,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "b6ada1e174c162c8f324-part-0001.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "b6ada1e174c162c8f324-part-0001.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 43,
+      "chunks": [
+        {
+          "path": "b6ada1e174c162c8f324-part-0001.json",
+          "message_count": 43
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 34,
+      "chunks": [
+        {
+          "path": "b6ada1e174c162c8f324-part-0001.json",
+          "message_count": 34
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 50,
+      "chunks": [
+        {
+          "path": "b6ada1e174c162c8f324-part-0001.json",
+          "message_count": 50
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 103,
+      "chunks": [
+        {
+          "path": "b6ada1e174c162c8f324-part-0001.json",
+          "message_count": 21
+        },
+        {
+          "path": "b6ada1e174c162c8f324-part-0002.json",
+          "message_count": 82
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-bib-full-audit.md"
+}

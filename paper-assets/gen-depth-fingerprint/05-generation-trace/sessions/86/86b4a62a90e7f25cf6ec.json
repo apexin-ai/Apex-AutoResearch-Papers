@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86b4a62a90e7f25cf6ec",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops gpu and pipeline check",
+  "task_key": "worker_ops_gpu-and-pipeline-check_20260515T174738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-and-pipeline-check_20260515T174738_result.json",
+    "occurrence": 1,
+    "bytes": 1564,
+    "sha256": "0a561c6995d643ce5c04368c79103162ac0a3e26a3c2d336f54cfd02258b35cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 状态表\n\n| GPU | 显存占用 | 利用率 | 进程/任务 |\n|-----|---------|--------|----------|\n| 0 | 3 / 32607 MiB | 0% | **空闲** |\n| 1 | 627 / 32607 MiB | 0% | PID 223500 — `human_edit_robustness.py` (1h44m) |\n| 2 | 3977 / 32607 MiB | 42% | PID 226113 — `run_high_only.py` (1h00m) |\n| 3 | 3979 / 32607 MiB | 44% | PID 222783 — `sampling_ablation.py --phase all` (1h46m) |\n\n**GPU 0 完全空闲。**\n\n---\n\n### OLMo Instruct Pipeline — 已全部完成\n\n- Step 1 generation: `generations_shard0.jsonl` — 4429 条 ✓\n- Step 2 features: `features_olmo-2-0425-1b-instruct.csv` — 4430 行 ✓\n- Step 3 evaluation: `review_p1c_olmo_instruct.json` — 已生成 ✓\n\n结论：instruct tuning 显著削弱 depth signal（instruct LOGO F1 = 0.338 vs base OLMo = 0.763，Δ = -0.425）。**无需手动启动任何步骤。**\n\n---\n\n### Human Edit 重跑\n\n- PID 223500 **仍在运行**（1h44m），当前在 Phase 4: LOGO evaluation（`/tmp/human_edit_robustness.log`）\n- PID 228872 `wait_and_rerun.sh`（运行 37min）正在等 223500 结束后自动触发重跑\n- GPU 1 利用率 0% 说明当前处于 CPU-bound 的 LOGO 评估阶段，非闲置\n\n---\n\n### Sampling Ablation 进度\n\n| GPU | 配置 | 进度 | 速率 | 预估剩余 |\n|-----|------|------|------|---------|\n| 2 | `high_t10_p095` | 301/996 (30%) | ~13s/it | ~2.5h |\n| 3 | `low_t05_p08` | 480/996 (48%) | ~14s/it | ~2h |\n\ncuda:3 跑的是 `--phase all`，`low_t05_p08` 完成后可能还有 default 配置要跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-and-pipeline-check.md"
+}

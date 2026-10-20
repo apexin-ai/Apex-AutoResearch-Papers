@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1fd077aec98f39cbc5e",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper figures gen",
+  "task_key": "worker_paper_figures-gen_20260515T043641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figures-gen_20260515T043641_result.json",
+    "occurrence": 1,
+    "bytes": 1124,
+    "sha256": "e8e789b2a928be45ee5ab03ac75fedec0a8b98268cbbed1c49d8b4dbb450ddf1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 张图全部生成完毕。\n\n### 生成的文件\n\n| 文件 | 路径 |\n|------|------|\n| Fig 1 PDF/PNG | `/root/gen-depth-fingerprint/paper/figures/fig1_differential_response.{pdf,png}` |\n| Fig 2 PDF/PNG | `/root/gen-depth-fingerprint/paper/figures/fig2_logo_performance.{pdf,png}` |\n| Fig 3 PDF/PNG | `/root/gen-depth-fingerprint/paper/figures/fig3_baseline_comparison.{pdf,png}` |\n| Fig 4 PDF/PNG | `/root/gen-depth-fingerprint/paper/figures/fig4_downstream_negative.{pdf,png}` |\n\n### 数据来源\n\n| 图 | 数据文件 |\n|----|----------|\n| Fig 1 | `data/features_all_models.csv` (27,529 rows, 6 generators incl. Qwen3-8B) |\n| Fig 2 | `data/cross_generator_results.json` (6-gen LOGO with bootstrap CI) |\n| Fig 3 | `results/ordinal_baseline_results.json` (5 methods: 7-feature, Avg-LogProb, LD-Score, FastDetectGPT, Binoculars) |\n| Fig 4 | `autodl-tmp/.../downstream/*/results.json` (5 variants × 3 seeds = 15 runs) |\n\n### 无缺失数据\n\n所有 4 张图的数据均完整可用。绘图脚本位于 `/root/gen-depth-fingerprint/paper/generate_figures.py`，可随时修改重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figures-gen.md"
+}

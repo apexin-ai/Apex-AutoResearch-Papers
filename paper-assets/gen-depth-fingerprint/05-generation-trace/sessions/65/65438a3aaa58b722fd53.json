@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65438a3aaa58b722fd53",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_1_1778797107.md",
+  "task_key": "loop_1_1778797107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1778797107.md",
+    "occurrence": 1,
+    "bytes": 4209,
+    "sha256": "98ab473148b5c328ebaaa85fad51974d34676817a7e47cea79004b893924b015"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: idle_timeout\nupdated: '2026-05-14T21:05:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- `submit_training_job` 注入 `CUDA_VISIBLE_DEVICES` 映射物理 GPU → 逻辑 cuda:0，脚本内 `--device` **必须始终 cuda:0**，不能用 shard-id 或物理编号（首轮 shard 1-3 全因此失败）\n- 本项目 GPU 白名单：autodl-5090 的 cuda:0/1/2/3，不能用其他卡\n- 数据/模型/HF cache 必须放 `/root/autodl-tmp/`，根分区只有 ~30GB\n- pip install / git clone 前必须 `source /etc/network_turbo`；HF 下载设 `HF_HUB_DISABLE_XET=1`\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090（4× RTX 5090 32GB），账号 root\n- 工作目录：`/root/gen-depth-fingerprint`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 生成脚本：`/root/gen-depth-fingerprint/generate_chain.py`\n- 输入数据：`/root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl`（1000 条 Wikipedia）\n- 模型：EleutherAI/pythia-2.8b（生成器）+ EleutherAI/pythia-410m（参考模型），具体缓存路径未确认（需 Worker 检查）\n- 日志目录：`~/runs/gen-depth-fingerprint/`\n- 活跃进程：**未确认**——分析 Worker `worker_analysis_mvp-001-datagen_20260514T180259` 已派出但尚未回报\n\n### 3. 📊 当前状态\n**刚做完**：收到 mvp-001-gen-s0 的 CRON 完成回调，派了分析 Worker 去 autodl-5090 检查所有 4 个 shard 的输出数据 + 进程状态 + 数据质量。已向 Director 汇报。\n\n**Registry 实验列表**：\n| exp_id | status | conclusion | 说明 |\n|--------|--------|-----------|------|\n| mvp-001 | RUNNING | — | 父实验（整体 MVP pipeline） |\n| mvp-001-gen-s0 | PREPARING→ANALYZING | — | shard 0，进程正常退出，待分析 |\n| mvp-001-gen-s1 | PREPARING | failed | shard 1，CUDA ordinal 失败，未确认是否重跑成功 |\n| mvp-001-gen-s2 | PREPARING | failed | shard 2，同上 |\n| mvp-001-gen-s3 | PREPARING | failed | shard 3，同上 |\n\n**等待中**：\n- Worker `worker_analysis_mvp-001-datagen_20260514T180259` 的 [WORKER DONE] 回调——它在检查 shard 0 输出 + shard 1-3 是否被成功重跑 + GPU 状态\n- 4 张 GPU 全部空闲 ⚠️\n\n### 4. 📋 待办\n- 分析 Worker 回调到达 → 按 on-datagen-done skill 执行：update_registry(metrics) → update_registry(conclusion) → save memory.md → update_registry(status=DONE) → feishu_send_result_card\n- shard 0 成功 + shard 1-3 未重跑 → 立即重新提交 shard 1-3（命令: `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python generate_chain.py --input data/wiki_seed_1000.jsonl --shard-id {1,2,3} --num-shards 4 --device cuda:0\"`，分别用 cuda:1/2/3）\n- 全部 4 shard 数据就绪 → 进入下一阶段：特征提取 pipeline（entropy stats, tail-decay, TTR, hapax）+ XGBoost 3-class 分类器训练\n- 分类器结果出来 → 按 ROADMAP 的 Pass/Fail 标准判定：macro-F1 ≥ 0.45 且 gen-0 vs gen-2+ binary F1 ≥ 0.65 = Pass\n\n### 5. 🎯 战略上下文\n- **项目核心**：估计文本\"生成深度\"（gen-0 人类 / gen-1 / gen-2+），核心洞察是非释义生成链保留更丰富的深度依赖分布特征\n- **D001**（2026-05-14）：MVP 方案确定——Pythia-2.8B continuation 链 + Pythia-410M 参考模型\n- **当前阶段**：MVP 验证，处于数据生成步骤（4 步中的第 1 步：生成 → 特征提取 → 分类器 → 评估）\n- **易错点 1**：shard 1-3 的 registry 显示 spec.command 已修正为 `--device cuda:0`，但 conclusion 仍是 failed——不确定修正后的命令是否真的跑过。必须让 Worker 在服务器上验证（检查 PID 93039/93116/93256 和日志）\n- **易错点 2**：registry 中 shard 实验的 status 字段停在 PREPARING（从未正确推进到 RUNNING/ANALYZING），状态机不干净——更新 conclusion/status 时注意状态转换校验可能报错，可能需要先修正 status\n- **易错点 3**：输出文件路径未在 registry.extra 中记录——分析 Worker 需要自己在服务器上 find 出来\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1778797107.md"
+}

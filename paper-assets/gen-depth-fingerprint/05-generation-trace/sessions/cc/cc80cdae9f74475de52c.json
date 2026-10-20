@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc80cdae9f74475de52c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper check bootstrap n",
+  "task_key": "worker_paper_check-bootstrap-n_20260520T041355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_check-bootstrap-n_20260520T041355_result.json",
+    "occurrence": 1,
+    "bytes": 267,
+    "sha256": "9b499c10842394dc6d6b2e9136c135c5fe8c6028441e71545d24bbf59928a670"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本实际 `n_boot=2000`（`cross_model_logo.py` line 142 默认值、line 188 调用值均为 2000）。已将两处论文中的 `$n$=1,000` 改为 `$n$=2,000`：\n\n- `results.tex` line 13 脚注\n- `appendix_cross_model_detail.tex` line 17 caption"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-check-bootstrap-n.md"
+}

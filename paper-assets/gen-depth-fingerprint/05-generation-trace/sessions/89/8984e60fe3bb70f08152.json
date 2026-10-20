@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8984e60fe3bb70f08152",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "monitor plan 005 elab rewrite",
+  "task_key": "worker_monitor_plan-005-elab-rewrite_20260515T055129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_plan-005-elab-rewrite_20260515T055129_result.json",
+    "occurrence": 1,
+    "bytes": 1372,
+    "sha256": "9a11ee890155e6d4552b366a43f35052cc8f6b143c8633aeba1b01a0a013a31a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## 生成数据\n| Prompt Type | Records | Skipped | Status |\n|---|---|---|---|\n| continuation | 4620 | — | ✅ |\n| elaboration | 4946 | 14 | ✅ |\n| inspired_rewriting | 4827 | 61 | ✅ |\n\n## Features 输出路径\n- `data/pythia-2.8b-continuation/features.jsonl` (4620)\n- `data/pythia-2.8b-elaboration/features.jsonl` (4946)\n- `data/pythia-2.8b-inspired_rewriting/features.jsonl` (4827)\n\n## Spearman ρ (depth vs feature)\n\n| Feature | continuation | elaboration | insp_rewrite |\n|---|---|---|---|\n| entropy_mean | **-0.665*** | **-0.583*** | **-0.564*** |\n| entropy_std | -0.151*** | +0.001 | -0.001 |\n| entropy_max | -0.023 | +0.218*** | +0.262*** |\n| entropy_min | -0.462*** | -0.457*** | -0.446*** |\n| tail_decay | +0.082*** | -0.059*** | -0.026 |\n| ttr | **-0.629*** | **-0.666*** | **-0.659*** |\n| hapax_ratio | **-0.651*** | **-0.674*** | **-0.670*** |\n\n关键发现：\n- **表面特征 (ttr, hapax_ratio)** 在三种 prompt type 中深度信号一致且最强 (|ρ| ≈ 0.63–0.67)\n- **entropy_mean** 在 continuation 中最强 (-0.665)，elab/rewrite 略弱 (-0.58/-0.56)\n- **entropy_std** 和 **tail_decay** 在非 continuation 中几乎无信号，提示这两个特征对 prompt type 敏感\n- **entropy_max** 方向在 continuation vs elab/rewrite 间反转（负→正），值得关注"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-plan-005-elab-rewrite.md"
+}

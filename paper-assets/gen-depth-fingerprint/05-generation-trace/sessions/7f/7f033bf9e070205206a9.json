@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "7f033bf9e070205206a9",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "compile paper pdf r28",
+  "task_key": "worker_compile_paper-pdf-r28_20260519T154740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compile_paper-pdf-r28_20260519T154740.log",
+    "occurrence": 1,
+    "bytes": 2818101,
+    "sha256": "d176bd72c6bd1e91d7cd36815c2734483e147e3a3c8c8b6e4a36ef99e531848f"
+  },
+  "statistics": {
+    "messages": 824,
+    "user_turns": 1,
+    "tool_calls": 280,
+    "roles": {
+      "log": 1,
+      "system": 222,
+      "record": 2,
+      "assistant": 40,
+      "tool_call": 280,
+      "tool_result": 278,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 163,
+      "chunks": [
+        {
+          "path": "7f033bf9e070205206a9-part-0001.json",
+          "message_count": 163
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 661,
+      "chunks": [
+        {
+          "path": "7f033bf9e070205206a9-part-0001.json",
+          "message_count": 17
+        },
+        {
+          "path": "7f033bf9e070205206a9-part-0002.json",
+          "message_count": 178
+        },
+        {
+          "path": "7f033bf9e070205206a9-part-0003.json",
+          "message_count": 96
+        },
+        {
+          "path": "7f033bf9e070205206a9-part-0004.json",
+          "message_count": 141
+        },
+        {
+          "path": "7f033bf9e070205206a9-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "7f033bf9e070205206a9-part-0006.json",
+          "message_count": 49
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/compile-paper-pdf-r28.md"
+}

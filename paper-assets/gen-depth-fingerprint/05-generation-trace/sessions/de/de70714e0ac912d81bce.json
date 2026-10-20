@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de70714e0ac912d81bce",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_10_1778909922.md",
+  "task_key": "loop_10_1778909922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778909922.md",
+    "occurrence": 1,
+    "bytes": 3224,
+    "sha256": "46368d8a0f1b80fdb5b392383295e1489e4f83f5c5c34d06696c45d386cabd7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-16T05:13:14+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 的 cuda:0, cuda:1, cuda:2, cuda:3（4 张 RTX 5090）\n- 论文 primary metric 是 binary LOGO F1=0.723（gen-1 vs gen-2+，排除 gen-0）。任何写作不得把 3-class 0.789 作为主指标\n- Instruct model 结果不可写入主 claim——方向反转是长度伪影（D019 撤回）\n- EMNLP 2026 ARR DDL: 2026-05-25，还剩 9 天\n- Scope 仅限 base models（D029 决策）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090，account=root，工作目录 /root/gen-depth-fingerprint\n- Python：/root/miniconda3/bin/python（conda base 环境，不是 venv）\n- 数据/模型：/root/autodl-tmp/（HF cache 等大文件）\n- wandb 项目：gen-depth-fingerprint\n- 活跃进程：无（0 个 RUNNING 实验，0 个活跃 Worker，0 个 cron）\n- 论文源码：/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/（LaTeX）\n\n### 3. 📊 当前状态\n- 全部 57 个实验 DONE（44 success / 4 negative / 8 failed + 1 killed），6 个 PREPARING（遗留，非活跃）\n- **Paper Agent 正在执行 Round 3 审稿修复冲刺（D029/D030）**：framing 重写为 \"controlled scientific study of base-model recursive generation\"\n- 论文已完成：Figure 1 strip plot 重绘（M4）、Table 1 binary F1 列（N3a+N3b）、framing 重写 commit（最近 3 个 commit）\n- 4 张 GPU 全部空闲——仅 N2a（bootstrap CI）可能需要少量 GPU 时间\n- 0 个 Worker 在跑，0 个 cron 活跃\n- 无待处理的 Worker 回调或 Director 决策\n\n### 4. 📋 待办（条件触发式）\n- Paper Agent 完成 N1 (Abstract/Intro 重写) → 检查与 paper_framing.md 一致性\n- N2a bootstrap CI 需要 GPU → spawn worker 跑 bootstrap，用 autodl-5090 cuda:0\n- 所有 Day 1-2 Critical 任务完成 → 推进 Day 2-3 Warning 任务（W1-W6, D1b）\n- Day 4-5 Minor 完成 → 触发 reference-audit（bib 审计，之前出过 hallucinated authors）\n- Day 6-7 → spawn review worker 做内部审查\n- Director 如果追问进度 → 汇报时带 `[资源] GPU 分配 4 / 实际跑 0 | Worker 池 0`，说明当前瓶颈在 paper 写作不在 GPU\n\n### 5. 🎯 战略上下文\n- **核心结论链**：递归 LLM 生成展现 differential depth response（level drift + shape stationary），7-feature ensemble binary F1=0.723 跨 6 generators / 3 families 验证。Downstream utility 是 honest negative（D023）。\n- **D029/D030 决策**：Round 3 评分 3.0/Findings，大幅重写 framing 从 \"web-crawled provenance\" 收窄为 \"base-model controlled study\"。Downstream 从 Contribution #3 移除。\n- **易错点**：\n  - 不要把 3-class F1 0.789 当主指标（gen-0 有 shared-seed leakage）\n  - 不要引用 instruct 实验结果作为 evidence（已被 D019 撤回）\n  - plan-006 paraphrastic 数据曾有 rp=1.3 污染导致 entropy 方向反转——如果需要重跑 paraphrastic 相关实验，必须先按 rp 值过滤\n  - bib 必须走 reference-audit（之前 LLM 生成的 bib 有 hallucinated authors）\n  - 当前 Worker 池 = 0，应尽快 spawn paper writing workers 推进 Day 1-2 任务\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778909922.md"
+}

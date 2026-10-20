@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83c99dbeaf4b69fd9f6e",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code exp047 check completion",
+  "task_key": "worker_code_exp047-check-completion_20260517T071847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp047-check-completion_20260517T071847_result.json",
+    "occurrence": 1,
+    "bytes": 83,
+    "sha256": "836a35e0bb37dc24f6dfc26a10dd46f00bdcc6ccdaf61c557cd65eec5e02ed42"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Registry 已更新为 success + metrics，cron 已清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp047-check-completion.md"
+}

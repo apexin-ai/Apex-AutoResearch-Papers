@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a187f142107cbb09255",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis qwen family out",
+  "task_key": "worker_analysis_qwen-family-out_20260515T094845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen-family-out_20260515T094845_result.json",
+    "occurrence": 1,
+    "bytes": 645,
+    "sha256": "1c854398e121e6d5f91d6661b34b0beaf15aade8979559bb361e90b7b0d8134f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| Family held-out | macro-F1 | 训练生成器 | 测试生成器 |\n|---|---|---|---|\n| **Qwen** | **0.7544** | pythia-1b, pythia-2.8b, olmo-2-1b | qwen3-0.6b (0.8033), qwen3-1.7b (0.7885), qwen3-8b (0.6730) |\n| Pythia | 0.7717 | olmo-2-1b, qwen3-0.6b, qwen3-1.7b, qwen3-8b | pythia-1b (0.7932), pythia-2.8b (0.7506) |\n| OLMo | 0.7616 | pythia-1b, pythia-2.8b, qwen3-0.6b, qwen3-1.7b, qwen3-8b | olmo-2-1b (0.7616) |\n\nPythia held-out 0.772 和 OLMo held-out 0.762 与预期值（0.772 / 0.761）吻合。\n\nQwen family held-out macro-F1 = **0.754**，三个家族中最低，主要被 qwen3-8b (0.673) 拖低。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen-family-out.md"
+}

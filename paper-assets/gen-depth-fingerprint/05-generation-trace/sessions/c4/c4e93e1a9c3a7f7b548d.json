@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "c4e93e1a9c3a7f7b548d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "figure instruct ddr comparison",
+  "task_key": "worker_figure_instruct_ddr_comparison_20260520T230717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_instruct_ddr_comparison_20260520T230717_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "fa5e2e02c6d309ff561c71476e382a6eb658775e709d71982485a124370d94d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Could not process image\"},\"request_id\":\"req_011CbEgpsmM3dsDpzLXuRt1Z\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "type": "invalid_request_error",
+                "message": "Could not process image"
+              },
+              "request_id": "req_011CbEgpsmM3dsDpzLXuRt1Z"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-instruct-ddr-comparison.md"
+}

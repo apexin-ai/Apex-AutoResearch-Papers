@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44214d6540a5d24f9c35",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis per generator silhouette",
+  "task_key": "worker_analysis_per_generator_silhouette_20260521T075851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_per_generator_silhouette_20260521T075851_result.json",
+    "occurrence": 1,
+    "bytes": 524,
+    "sha256": "3a59a54d2546608611da4a87c1c7431094db45edcda8515eca2a794d51c3732b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **8/8 generator 分区完全一致**：全部恢复 {entropy_mean, ttr, hapax_ratio} vs {entropy_std, entropy_max, entropy_min, tail_decay}\n- **Silhouette 范围**：0.505 (Pythia-1B) ~ 0.760 (Mistral-7B-v0.3)，均值 0.651，全部 ≥ 0.5\n- **结论**：pooled silhouette=0.660 不是 pooling artifact，每个 generator 独立复现相同分区\n\n结果已保存到 `per_generator_silhouette.txt`，LaTeX 段落已插入 `appendix_ddr_validation.tex` 的 exhaustive enumeration 之后。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-per-generator-silhouette.md"
+}

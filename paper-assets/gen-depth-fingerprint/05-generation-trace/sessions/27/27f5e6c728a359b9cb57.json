@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27f5e6c728a359b9cb57",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "verify bib years m7",
+  "task_key": "worker_verify_bib-years-m7_20260516T011614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_bib-years-m7_20260516T011614_result.json",
+    "occurrence": 1,
+    "bytes": 567,
+    "sha256": "643dcc33d9f9f62c4d8f09d19fc72881f201512beae2bbea643ddd976fead9a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。\n\n**结果**: 49 条 bib 全部通过验证 — 0 条虚构引用，0 个年份错误，0 个需要从预印本更新到正式版本的条目。\n\n**本次修正**: 1 处\n- `model_collapse_avoidable`: COLM venue 名称格式统一（去掉 \"First\" 和 \"(COLM)\"，与 `mapping_llm_science` 一致）\n\n**之前修正（Rd1, 已确认正确）**: 3 处\n- `curse_of_recursion` 作者顺序、`reliable_detection` 完整标题、`model_collapse_avoidable` arXiv→COLM\n\n审计报告已更新至 `artifacts/bib_audit_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-bib-years-m7.md"
+}

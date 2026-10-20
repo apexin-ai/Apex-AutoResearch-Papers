@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a799da14c34448ad8d9",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "data plan 002 pythia1b merge",
+  "task_key": "worker_data_plan-002-pythia1b-merge_20260514T205819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_plan-002-pythia1b-merge_20260514T205819_result.json",
+    "occurrence": 1,
+    "bytes": 393,
+    "sha256": "55d293cabfa442a1c1966dc7eeace778d9ac44688d93239ba91dfdcd56d95b7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "合并完成。\n\n| 项目 | 值 |\n|------|-----|\n| 文件路径 | `/root/gen-depth-fingerprint/data/pythia-1b/generations.jsonl` |\n| 文件大小 | 4.94MB |\n| 总记录数 | 4555 |\n| depth 分布 | `{0: 995, 1: 993, 2: 912, 3: 851, 4: 804}` |\n\nshard0 (2286) + shard1 (2269) = 4555，数量吻合。脚本对 shard2/shard3 报了 WARN（不存在），不影响结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-plan-002-pythia1b-merge.md"
+}

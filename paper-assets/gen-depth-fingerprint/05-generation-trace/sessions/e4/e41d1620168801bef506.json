@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e41d1620168801bef506",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper writing results",
+  "task_key": "worker_paper_writing_results_20260515T044341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_results_20260515T044341_result.json",
+    "occurrence": 1,
+    "bytes": 1001,
+    "sha256": "b14f32261a5e3472d1635c662d6591012c4bfcc8b845770e8b056c3d36265a8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results section written to `docs/paper/results.tex`. Four subsections covering:\n\n- **§5.1** — LOGO classification: 0.7897 avg macro-F1, Table 1 with per-generator breakdown, Qwen3-8B cross-scale gap noted, Figure 2 reference\n- **§5.2** — Differential depth response: Spearman correlations confirming drifting vs stationary features, feature ablation (Table 2) with McNemar tests, cross-family reference model validation, Figure 1 reference\n- **§5.3** — Baseline comparison (Table 4): ensemble beats all four baselines with narrower CI (0.013 vs 0.18–0.26 span), bootstrap p<0.001, length confound control, Figure 3 reference\n- **§5.4** — Negative downstream finding (Table 3): depth-aware curation does not improve fine-tuning PPL; data quantity dominates; depth fingerprinting is diagnostic, not curative, Figure 4 reference\n\nAll numbers match the confirmed values. No \"significantly\" without p-values, no \"state-of-the-art\", negative result reported honestly."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-results.md"
+}

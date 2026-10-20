@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74c5d431b7f32e65de86",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ssh exp062 status check",
+  "task_key": "worker_ssh_exp062-status-check_20260521T172440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp062-status-check_20260521T172440_result.json",
+    "occurrence": 1,
+    "bytes": 2141,
+    "sha256": "be2ef1ec8aba513935653ba645cee06895b297696d50e60ce3876e544903df32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp062 Decoding Strategy Status\n\n### GPU Utilization\n\n| GPU | Util | Mem Used / Total |\n|-----|------|-----------------|\n| 0 | 77% | 16.1 / 31.8 GB |\n| 1 | 77% | 16.1 / 31.8 GB |\n| 2 | 0% | 0 / 31.8 GB |\n| 3 | 33% | 1.8 / 31.8 GB |\n\n### Generation Progress\n\nOutput files are in `data/<model>-<strategy>/generations_shard0.jsonl`, not `chains_decoding/`.\n\n| Combo | PID | Status | Lines | Est % (~4980 target) | ETA |\n|-------|-----|--------|-------|------|-----|\n| **qwen3-8b greedy** | 369104 | ALIVE (2h) | 2,159 | **43%** | ~2.6h remaining (~18s/it) |\n| **qwen3-8b topk** | 375795 | ALIVE (5min) | 106 | **2%** | just started |\n| **qwen3-0.6b greedy** | 357811 | ALIVE (5h) | 4,872 | **~98%** (done) | greedy finished, now running topk |\n| **qwen3-0.6b topk** | 357811 | (same PID) | 2,420 | **49%** | in progress |\n\nPID 357811 runs `--strategies greedy topk` sequentially — greedy is essentially complete (4872 lines), now working through topk (2420 lines, ~49%).\n\nPID 369104 also runs `--strategies greedy topk` — still on greedy phase (458/996 seeds per log). PID 375795 is a separate topk-only process (106 lines, just started).\n\n### Feature CSVs\n\n| Combo | Exists? |\n|-------|---------|\n| qwen3-0.6b-greedy | **YES** (already extracted) |\n| qwen3-0.6b-topk | No |\n| qwen3-8b-greedy | No |\n| qwen3-8b-topk | No |\n| mistral-7b-v0.3-topk | **YES** (just extracted by watcher) |\n\n### Watchers\n\n- **PID 372588** (feature watcher): ALIVE (1.1h). Just finished extracting `mistral-7b-v0.3-topk` features. Now waiting on PID 357811 (Qwen3-0.6B) to finish.\n- **PID 376120** (anti-duplicate watcher): ALIVE (4min). Monitoring for `[greedy] Done` in qwen8b log — will kill PID 369104 when greedy completes to prevent duplicate topk (since 375795 already handles topk separately).\n\n### Summary\n\nEverything is alive and progressing. Qwen3-0.6B greedy is done (features extracted); its topk is ~49%. Qwen3-8B greedy is at ~43% with ~2.6h remaining; topk just started. The watcher pipeline is healthy and will auto-extract features as each chain completes. GPU 2 is idle/available."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp062-status-check.md"
+}

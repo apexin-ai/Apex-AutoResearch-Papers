@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ee8bb8309dad22d3c2c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ssh instant status",
+  "task_key": "worker_ssh_instant-status_20260515T023717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_instant-status_20260515T023717_result.json",
+    "occurrence": 1,
+    "bytes": 1805,
+    "sha256": "e3d336cf6f8906d8076de4b6f88b8d8d8416c70b0ad55e2b00154483b89418b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== GPU ===\n0, 80 %, 16473 MiB\n1, 0 %, 0 MiB\n2, 98 %, 21342 MiB\n3, 0 %, 0 MiB\n\n=== plan-014 ===\n134817    02:18:27\nALIVE\n\nlines:\n416 /root/gen-depth-fingerprint/data/qwen3-8b/generations_shard0.jsonl\n\n=== plan-004-v2 ===\nall_results.json\nall_seed123\nall_seed42\nall_seed456\nbinary_filtered_seed123\nbinary_filtered_seed42\nbinary_filtered_seed456\ndepth01_seed123\ndepth01_seed42\ndepth01_seed456\ndepth0_only_seed123\ndepth0_only_seed42\ndepth0_only_seed456\nsize_matched_seed123\nsize_matched_seed42\nsize_matched_seed456\n\n=== results ===\n/root/autodl-tmp/gen-depth-fingerprint/experiments/downstream/size_matched_seed123/results.json\n/root/autodl-tmp/gen-depth-fingerprint/experiments/downstream/size_matched_seed42/results.json\n/root/autodl-tmp/gen-depth-fingerprint/experiments/downstream/depth01_seed456/results.json\n/root/autodl-tmp/gen-depth-fingerprint/experiments/downstream/size_matched_seed456/results.json\n/root/autodl-tmp/gen-depth-fingerprint/experiments/downstream/all_seed42/results.json\n/root/autodl-tmp/gen-depth-fingerprint/experiments/downstream/binary_filtered_seed42/results.json\n/root/autodl-tmp/gen-depth-fingerprint/experiments/downstream/binary_filtered_seed123/results.json\n/root/autodl-tmp/gen-depth-fingerprint/experiments/downstream/binary_filtered_seed456/results.json\n/root/autodl-tmp/gen-depth-fingerprint/experiments/downstream/all_seed123/results.json\ncount: 9\n/15 total\n\n=== disk ===\noverlay          30G  7.5G   23G  25% /\n```\n\n**plan-014**: ALIVE（416 行，运行 2h18m，未完成）\n**plan-004-v2**: 9/15 results.json，未完成。缺少：all_seed456, depth01_seed123, depth01_seed42, depth0_only_seed123, depth0_only_seed42, depth0_only_seed456\n\n两个实验均未完成，无需执行额外命令。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-instant-status.md"
+}

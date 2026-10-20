@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffffab673e6bbacd8c30",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "reviewer / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_2.md",
+    "occurrence": 1,
+    "bytes": 3523,
+    "sha256": "d41f31100a2a33730d17ea9a77c86cddfbba9f27479fc585bed2634dc9e5a7f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_wall_time\nupdated: '2026-05-15T01:23:51+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0-3 全部分配给本项目，但 cuda:0 长期被 plan-014 (Qwen3-8B generation) 占用，plan-004 训练只能用 cuda:1/2/3\n- AutoDL 根分区只有 30GB，所有输出/checkpoint 必须写到 `/root/autodl-tmp/`。已用 symlink: `experiments/downstream → /root/autodl-tmp/gen-depth-fingerprint/experiments/downstream/`\n- OLMo-2-1B fine-tuning 在 5090 上必须 batch_size≤2 + grad_accum=8（batch_size=4 会 OOM，logits.float() 额外需 784MB）\n- plan-015 Binoculars 实现可能非标准（denominator 用 obs_argmax 而非 actual tokens）— 我已 WARNING 给 Director，等修复确认\n\n### 2. 🖥️ 基础设施快照\n- 服务器: autodl-5090 (4× RTX 5090 32GB)\n- 工作目录: `/root/gen-depth-fingerprint`\n- Python: `/root/miniconda3/bin/python`（conda base env，不用 venv）\n- 模型缓存: `/root/autodl-tmp/.hf_cache`\n- 模型路径: OLMo-2-1B `/root/autodl-tmp/models/olmo-2-1b-hf/allenai/OLMo-2-0425-1B`; Qwen3-8B `/root/autodl-tmp/models/Qwen/Qwen3-8B-Base/Qwen/Qwen3-8B-Base/`\n- 数据盘: `/root/autodl-tmp` (250GB, 43% used)\n- 根盘: 30GB, 25% used（刚清理过，之前爆满导致 plan-004 全军覆没）\n- 活跃进程: PID 134823 cuda:0 (plan-014 Qwen3-8B gen); PIDs on cuda:1/2/3 (plan-004-v2 fine-tuning)\n\n### 3. 📊 当前状态\n**刚完成的审查**:\n- plan-015 ordinal baseline: PASS。Bootstrap CI 已补全，7-feature 优于 avg_logprob 4pp 有统计显著性 (paired p<0.001)。Binoculars 实现非标准 WARNING 已提交。\n- plan-004: 经历 3 轮失败（1.参数缺失 2.磁盘满 3.OOM），当前 plan-004-v2 RUNNING 在 cuda:1/2/3，训练正常推进中。\n- ROADMAP: Claims 1-2 充分支撑，Claim 3 等 plan-004-v2 完成。\n\n**Registry RUNNING**:\n- `plan-014`: Qwen3-8B generation, cuda:0, ~43/996 seeds done, 估计还需 ~3.5h\n- `plan-004-v2`: downstream utility retry, cuda:1/2/3, 训练中（GPU3 刚看到 final eval 阶段）\n- `plan-015-v2`: ordinal baseline 重跑（可能修复 Binoculars），cuda:2 共享\n\n### 4. 📋 待办（条件触发式）\n- plan-004-v2 DONE → 审查 results.json 数值合理性 + 5 variants × 3 seeds 是否齐全 + bootstrap CI 是否生成\n- plan-014 DONE → 审查 Qwen3-8B depth dynamics 是否与小模型一致（entropy drift 方向/magnitude）\n- plan-015-v2 DONE → 对比 Binoculars 修正前后 F1 变化，若 >0.70 需 WARNING Director 调整叙事\n- Director 转发 Framing 提案 → Read `negative-framing-review.skill.md` 后四维度审查\n- 任何实验 RUNNING 时 → nvidia-smi 核对进程是否在白名单 GPU 上\n\n### 5. 🎯 战略上下文\n- 核心贡献: 递归 LLM 生成链展现 differential depth response（location shift + shape stability），7-feature ensemble 可做 ordinal depth classification (LOGO F1≈0.80)\n- 决策链: D001(MVP方案) → D002(MVP PASS进Research) → D005(dual dynamics H1/H2) → D006(实证/概念定位) → D007(Re-dream条件达标)\n- **最容易判断错的事**: plan-004 worker \"status=done\" 不等于训练成功——之前多次 worker 完成但零产出（磁盘满、参数缺失）。必须独立核实 results.json 存在且数值合理。\n- **Binoculars 坑**: 当前实现 denominator 用 `obs_argmax` 非标准，若修复后 >0.70 则 \"no detector exceeds 0.70\" 的 claim 需降级。这是尚未闭环的最大 narrative 风险。\n- GPU 预算充裕（119.5h/200h），不存在 deadline 风险。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-copy-3.md"
+}

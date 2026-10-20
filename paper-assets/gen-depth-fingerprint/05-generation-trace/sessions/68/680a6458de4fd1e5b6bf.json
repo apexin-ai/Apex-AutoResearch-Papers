@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "680a6458de4fd1e5b6bf",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis exp 058 ddr causality",
+  "task_key": "worker_analysis_exp_058_ddr_causality_20260520T075058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_058_ddr_causality_20260520T075058_result.json",
+    "occurrence": 1,
+    "bytes": 1617,
+    "sha256": "0bc8b4ef7ef7a2e127bacd58e2f5757604d66d39eeb397b983d31adf22f0bbf0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有更新完成。\n\n---\n\n## exp_058_ddr_causality 分析摘要\n\n**结论: SUCCESS** — Hypothesis 成立，DDR 特征对 depth 有因果预测力，超越相关性。\n\n### 1. Permutation Importance\n- Baseline F1 = 0.7714\n- **Drifting 组** avg importance = 0.158，**Stationary 组** = 0.030（**5.3x 差距**）\n- 排序: hapax_ratio (0.235) > entropy_mean (0.170) > ttr (0.156) > entropy_max (0.070) > entropy_std (0.057) > entropy_min (0.019) > tail_decay (0.014)\n- 两组均独立贡献，drifting 主导\n\n### 2. Granger Causality (panel N=29,095, lag=1)\n- **6/7 特征显著** (p < 0.05)，唯一例外 entropy_min (p=0.538)\n- 最大效应: entropy_std ΔR²=0.031 (F=1338)\n- 方向一致: hapax_ratio/ttr 随 depth **递增**，entropy 系列 **递减**\n- Fisher combined 跨 8 generator 验证: 6/7 显著，entropy_min 仍不显著 (p=0.375)\n\n### 3. Intervention\n- 所有 7 特征干预后 F1 均下降（0.6–2.0pp）\n- 最大: entropy_max (−2.0pp)，其次 entropy_mean (−1.1pp)，entropy_std (−0.95pp)\n- entropy_max 干预效果最大但 permutation importance 仅排第 4，说明其因果贡献具有特异性\n\n### 注意事项\n- entropy_min 是最弱特征：Granger 不显著、permutation 最低（0.019），但仍有干预效果（0.6pp）\n- T=5 depth chain 限制只能用 lag=1，per-seed Granger 不可行，结果依赖 pooled panel regression\n- Mistral-7B 的 per-generator Granger 在 hapax_ratio/ttr 上不显著（p>0.4），但 Fisher combined 仍显著——表明这两个特征的 Granger 信号不是所有 generator 均匀贡献的"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-058-ddr-causality.md"
+}

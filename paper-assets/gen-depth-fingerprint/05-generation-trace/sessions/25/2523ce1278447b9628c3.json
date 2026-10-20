@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2523ce1278447b9628c3",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "infra check plan001 restore",
+  "task_key": "worker_infra_check-plan001-restore_20260514T201031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check-plan001-restore_20260514T201031_result.json",
+    "occurrence": 1,
+    "bytes": 949,
+    "sha256": "4946e337fa20fdba220216fd6eb474630824a439c994111d07368314ed3b0905"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### plan-001-restore：已完成\n\n`plan-001-restore` 的 tmux session 已退出（不在列表中），4 个目标文件全部存在且非空：\n\n| 文件 | 大小 | 行数 |\n|------|------|------|\n| `ablation_results.json` | 1.5 KB | 54 |\n| `trend_analysis.json` | 6.8 KB | 261 |\n| `perplexity_by_depth.json` | 642 B | 33 |\n| `depth_trends.png` | 530 KB | — |\n\n所有文件时间戳为 May 15 03:14，恢复成功。\n\n### plan-002 generation jobs：正常运行\n\n4 个 tmux session 全部在线：\n- `plan-002-pythia1b-s0`\n- `plan-002-pythia1b-s1`\n- `plan-002-olmo2-s0`\n- `plan-002-olmo2-s1`\n\nGPU 使用情况：\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 46% | 2649 MiB |\n| 1 | 45% | 2649 MiB |\n| 2 | 48% | 3623 MiB |\n| 3 | 45% | 3623 MiB |\n\n4 卡均在工作，GPU 0-1 跑 pythia1b（显存较小），GPU 2-3 跑 olmo2（显存较大），一切正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-plan001-restore.md"
+}

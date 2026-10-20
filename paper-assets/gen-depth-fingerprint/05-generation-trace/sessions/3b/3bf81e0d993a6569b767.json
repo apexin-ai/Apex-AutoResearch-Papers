@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3bf81e0d993a6569b767",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper fig3 pdf regen",
+  "task_key": "worker_paper_fig3-pdf-regen_20260523T022546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig3-pdf-regen_20260523T022546_result.json",
+    "occurrence": 1,
+    "bytes": 239,
+    "sha256": "0715ab04a061a8483cc678f8a362415bc4fae723203e64d93a8a5996d4d9731f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。fig3_baseline_comparison 已重新生成，`pdf.fonttype=42` + `ps.fonttype=42` 已添加，字体全部为 CID TrueType，无 Type 3。PDF 和 PNG 已分别保存到 `artifacts/_project/chart/` 和 `docs/chart/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig3-pdf-regen.md"
+}

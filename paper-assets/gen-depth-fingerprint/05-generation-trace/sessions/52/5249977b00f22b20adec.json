@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5249977b00f22b20adec",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "run plan 004 training retry",
+  "task_key": "worker_run_plan-004-training-retry_20260515T002408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_plan-004-training-retry_20260515T002408_result.json",
+    "occurrence": 1,
+    "bytes": 1244,
+    "sha256": "cd8cb7daba86591dde2e460c46ca6b1c8f8ba9c7d9b2ccdbdbede5d1ee14d901"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动，当前状态：\n\n**GPU1 (PID 138847, cuda:1)**\n- depth0_only seed=42 ✅ 完成 (eval_loss=0.986)\n- depth0_only seed=123 🔄 运行中\n- 后续：depth0_only seed=456, depth01 × 3 seeds, all × 3 seeds\n\n**GPU3 (PID 139215, cuda:3)**\n- size_matched seed=42 ❌ OOM 失败\n- size_matched seed=123 🔄 运行中 (~27%, 200/741 steps, eval_loss=0.886, 1.71 it/s)\n- 后续：size_matched seed=456, binary_filtered × 3 seeds\n\n**汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| GPU1 PID | 138847 |\n| GPU3 PID | 139215 |\n| GPU1 日志 | `/tmp/plan004_gpu1.log` |\n| GPU3 日志 | `/tmp/plan004_gpu3.log` |\n| 总计 runs | 15 (14 running + 1 失败) |\n| 失败 | size_matched seed=42 (OOM) — 需后补 |\n\n**预估时间：**\n- GPU1 (9 runs)：depth0_only 快（~2min/run），depth01 中等（~5min/run），all 较慢（12299 samples，~16min/run）→ 总计约 70 min\n- GPU3 (5 runs，少了 seed=42)：~12min/run → 总计约 60 min\n- 预计全部完成时间：约 08:26 + 70min ≈ **09:36 CST**\n\nsize_matched seed=42 需在所有 run 完成后用 `CUDA_VISIBLE_DEVICES=1` 或 `3` 单独补跑（可尝试加 `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True` 避免 OOM）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-plan-004-training-retry.md"
+}

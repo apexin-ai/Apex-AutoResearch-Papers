@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0d8cc8cf760faee2e70",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "submit supplement package",
+  "task_key": "worker_submit_supplement-package_20260520T105915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_supplement-package_20260520T105915_result.json",
+    "occurrence": 1,
+    "bytes": 628,
+    "sha256": "22f2b500e0d0195e0a52130d0bc2481467eecf72c127155ca6bdadb4b7941d21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "打包完成。产出报告：\n\n| 项目 | 结果 |\n|------|------|\n| **tgz 文件** | `artifacts/_project/anonymous_supplement.tgz` |\n| **大小** | 19 MB |\n| **总文件数** | 87（含目录条目） |\n| **代码文件** | 37 个 .py + 1 个 requirements.txt + 1 个 code/README.md |\n| **数据文件** | 37 个数据文件 + 1 个 data/README.md |\n| **code/README 条目** | 37 个脚本全部有描述 |\n| **data/README 条目** | 37 个数据文件全部有描述 |\n| **匿名化** | 无 `/root/` 路径残留，无 author/affiliation 泄露（\"author\" 命中仅为 wiki 种子文本内容） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-supplement-package.md"
+}

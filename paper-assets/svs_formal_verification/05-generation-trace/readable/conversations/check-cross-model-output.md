@@ -1,0 +1,405 @@
+# check cross model output
+
+**svs formal verification** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 13
+- **Recorded user turns:** 0
+- **Tool calls:** 6
+- **Original source:** `logs/chats/worker_check_cross_model_output_20260514T113949.jsonl`
+- **Structured JSON:** [`99c4be80371e0ca18a0a.json`](../../sessions/99/99c4be80371e0ca18a0a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+13 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T11:40:28.100729+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_cross_model_output_20260514T113949",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T11:40:28.100991+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_cross_model_output_20260514T113949",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T11:40:28.101158+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ps aux | grep cross_model | grep -v grep"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_cross_model_output_20260514T113949",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ps aux | grep cross_model | grep -v grep"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-14T11:40:28.101302+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_cross_model_output_20260514T113949",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T11:40:28.101424+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -50 /tmp/cross_model_run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_cross_model_output_20260514T113949",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -50 /tmp/cross_model_run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-14T11:40:28.101540+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/svs_formal_verification/ -name \"*cross_model*\" -ls"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_cross_model_output_20260514T113949",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/autodl-tmp/svs_formal_verification/ -name \"*cross_model*\" -ls"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T11:40:28.101718+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"19:35:13 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n19:35:17 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n19:35:21 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n19:35:24 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n19:35:28 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n19:35:28 [INFO] cross_model_dry_run: Chain 2: 12/12 claims formalized\\n19:35:32 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n19:35:36 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n19:35:41 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n19:35:59 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n19:36:02 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n19:36:12 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n19:36:16 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n19:36:20 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n19:36:26 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n19:36:31 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n19:36:36 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n19:36:40 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n19:36:44 [INFO] httpx: HTTP Request:
+…[truncated 2730 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_cross_model_output_20260514T113949",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-14T11:40:28.101867+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/ -name \"*cross_model*dry*run*\" -maxdepth 3 -ls"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_cross_model_output_20260514T113949",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/ -name \"*cross_model*dry*run*\" -maxdepth 3 -ls"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T11:40:28.101992+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"30070125506      8 -rw-r--r--   1 root     root         4756 May 14 19:37 /root/autodl-tmp/svs_formal_verification/outputs_dryrun/cross_model_dry_run.json\\n24701114113     12 -rw-r--r--   1 root     root        10845 May 14 18:57 /root/autodl-tmp/svs_formal_verification/cross_model_dry_run.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_cross_model_output_20260514T113949",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T11:40:28.102110+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"24701114113     12 -rw-r--r--   1 root     root        10845 May 14 18:57 /root/autodl-tmp/svs_formal_verification/cross_model_dry_run.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_cross_model_output_20260514T113949",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T11:40:28.102238+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/svs_formal_verification/outputs_dryrun/cross_model_dry_run.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_cross_model_output_20260514T113949",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/svs_formal_verification/outputs_dryrun/cross_model_dry_run.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T11:40:28.102452+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"chain_generator\\\": \\\"Qwen2.5-14B-Instruct (vLLM localhost:8002)\\\",\\n    \\\"formalizer\\\": \\\"DeepSeek V3.2 API (OpenRouter proxy)\\\",\\n    \\\"decomposer\\\": \\\"DeepSeek V3.2 API (OpenRouter proxy)\\\",\\n    \\\"dataset\\\": \\\"ProofWriter depth-5\\\",\\n    \\\"num_problems\\\": 5,\\n    \\\"chains_per_problem\\\": 4,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"results\\\": {\\n    \\\"formalization_rate\\\": 0.9449,\\n    \\\"total_claims\\\": 272,\\n    \\\"total_formalized\\\": 257,\\n    \\\"per_problem\\\": [\\n      {\\n        \\\"problem_id\\\": \\\"pw_1309\\\",\\n        \\\"gold_label\\\": \\\"False\\\",\\n        \\\"hypothesis\\\": \\\"The lion does not chase the mouse.\\\",\\n        \\\"num_premises\\\": 25,\\n        \\\"qwen_chains_generated\\\": 4,\\n        \\\"chain_answers\\\": [\\n          \\\"Unknown\\\",\\n          \\\"Unknown\\\",\\n          \\\"Unknown\\\",\\n          \\\"Unknown\\\"\\n        ],\\n        \\\"vocab_predicates\\\": 9,\\n        \\\"vocab_constants\\\": 5,\\n        \\\"claims_total\\\": 44,\\n        \\\"claims_formalized\\\": 40,\\n        \\\"formalization_rate\\\": 0.9091,\\n        \\\"svs_answer\\\": \\\"Unknown\\\",\\n        \\\"sc_answer\\\": \\\"Unknown\\\",\\n        \\\"correct_svs\\\": false,\\n        \\\"correct_sc\\\": false,\\n        \\\"group_scores\\\": {\\n          \\\"Unknown\\\": 0.807\\n        },\\n        \\\"ic_scores\\\": [\\n          0.2,\\n          0.8571,\\n          1.0,\\n          0.5385\\n        ],\\n        \\\"z3_results_summary\\\": \\\"2/4 chains SAT\\\",\\n        \\\"elapsed_seconds\\\": 637.0\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"pw_228\\\",\\n        \\\"gold_label\\\": \\\"True\\\",\\n        \\\"hypothesis\\\": \\\"Bob is rough.\\\",\\n        \\\"num_premises\\\": 18,\\n        \\\"qwen_chains_generated\\\": 4,\\n        \\\"chain_answers\\\": [\\n         
+…[truncated 4334 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_cross_model_output_20260514T113949",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-14T11:40:28.102655+00:00_
+
+## 汇报
+
+**脚本状态：已完成** (19:37:10 结束，pipeline_status=success，无错误)
+
+**配置：**
+- Chain 生成：Qwen2.5-14B-Instruct (本地 vLLM)
+- 形式化/分解：DeepSeek V3.2 API
+- 数据集：ProofWriter depth-5，5 题，每题 4 条 chain
+
+**总体指标：**
+- 形式化率：94.5% (257/272)
+- SVS 正确：2/5，SC 正确：2/5
+
+**逐题结果：**
+
+| 问题 | Gold | SVS | SC | 形式化率 | IC scores | Z3 SAT | 耗时 |
+|------|------|-----|----|----------|-----------|--------|------|
+| pw_1309 | False | Unknown ✗ | Unknown ✗ | 91% | 0.2, 0.86, 1.0, 0.54 | 2/4 | 637s |
+| pw_228 | True | True ✓ | True ✓ | 91% | 0.91, 0.91, 0.92, 0.91 | 4/4 | 461s |
+| pw_51 | Unknown | False ✗ | Unknown ✓ | 100% | 0.87, 0.97, 0.89, 0.90 | 0/4 | 564s |
+| pw_1518 | False | Unknown ✗ | Unknown ✗ | 83% | 0.63, 0.77, 0.67, 0.62 | 0/4 | 358s |
+| pw_563 | True | True ✓ | Unknown ✗ | 100% | 1.0, 1.0, 1.0, 1.0 | 4/4 | 349s |
+
+**关键观察：**
+- SVS 在 pw_563 上胜过 SC（SVS 正确答 True，SC 错答 Unknown），验证了 cross-chain 一致性检查的价值
+- 两个 gold=False 的题目 SVS 和 SC 都答错（均为 Unknown），说明否定推理仍是瓶颈
+- pw_51 中 SVS 被高 group_score 的错误 chain 误导（False chain score=1.22 > Unknown chains score=1.01），SC 的多数投票反而更稳健
+- 产出文件：`/root/autodl-tmp/svs_formal_verification/outputs_dryrun/cross_model_dry_run.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_check_cross_model_output_20260514T113949"
+}
+```
+
+</details>
+
+---

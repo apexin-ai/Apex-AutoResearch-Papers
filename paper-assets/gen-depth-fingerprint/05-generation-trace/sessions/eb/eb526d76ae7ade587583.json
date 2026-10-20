@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "eb526d76ae7ade587583",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "review figure quality t1",
+  "task_key": "worker_review_figure-quality-t1_20260519T230537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_figure-quality-t1_20260519T230537_result.json",
+    "occurrence": 1,
+    "bytes": 2099357,
+    "sha256": "62122ffb3e1e50805739a8db3d4e62f60f40b63d7a6632f5f0e034eb0d67a893"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2099377,
+                "serialized_sha256": "b4b3d1fde16084815025a42918d2dbc8af69d07e22cc74774d194ab9cad86d1d",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-figure-quality-t1.md"
+}

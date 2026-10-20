@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dcf447645cd772b43b72",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan 005 analysis prep",
+  "task_key": "worker_code_plan-005-analysis-prep_20260515T054226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-005-analysis-prep_20260515T054226_result.json",
+    "occurrence": 1,
+    "bytes": 985,
+    "sha256": "e179c3ef4f36d72f34c4217ea471018604ac99d95842f1807d3b42c01e7f1af9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法验证通过。脚本 `analyze_prompt_types.py` 已部署到服务器，包含以下功能：\n\n| 分析模块 | 内容 |\n|----------|------|\n| **Per-type depth signal** | 每种 prompt type 内部 5-fold CV 分类 F1 + 7 个特征与 depth 的 Spearman 相关 |\n| **LOPTO** | Leave-one-prompt-type-out：用 2 种训练，测 held-out 类型的 depth 分类泛化性 |\n| **Depth decay** | 每种 prompt type 的 7 个特征随 depth 的线性衰减斜率对比 |\n| **Feature distributions** | 各特征在不同 prompt type × depth 的分布统计 |\n\n输出：`data/prompt_type_features.csv`（特征）+ `data/prompt_type_results.json`（完整结果）+ stdout summary table。\n\n用法：\n```bash\n# 全量运行（数据就绪后）\npython analyze_prompt_types.py --device cuda:0\n\n# 快速测试\npython analyze_prompt_types.py --dry-run\n\n# 跳过特征提取（已有 features CSV 时）\npython analyze_prompt_types.py --skip-extraction\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-005-analysis-prep.md"
+}

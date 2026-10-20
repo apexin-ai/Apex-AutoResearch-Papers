@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab1a6ce0b0ec8b679898",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper check remote enlargethispage",
+  "task_key": "worker_paper_check-remote-enlargethispage_20260522T232034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_check-remote-enlargethispage_20260522T232034_result.json",
+    "occurrence": 1,
+    "bytes": 170,
+    "sha256": "d79cb26d5a773d3664fb2c35e6f84bb9d9e0dd2b1b069868613c58fdc4a692d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "grep 返回码 1，无匹配。\n\n```\n远程 enlargethispage 状态：不存在\n操作：无需操作\n```\n\n远程已与本地一致，无需操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-check-remote-enlargethispage.md"
+}

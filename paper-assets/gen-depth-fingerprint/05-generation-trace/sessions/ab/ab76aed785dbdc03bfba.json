@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab76aed785dbdc03bfba",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops pre verify 014 postprocess",
+  "task_key": "worker_ops_pre-verify-014-postprocess_20260515T032425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pre-verify-014-postprocess_20260515T032425_result.json",
+    "occurrence": 1,
+    "bytes": 3199,
+    "sha256": "ca011abe3686b12343ed5e3d70937948f4af25bdf93b445c1bc6b49a4d621e57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查完毕。以下是预验证报告。\n\n---\n\n## 预验证报告：plan-014 后处理流水线\n\n### 1. 文件/路径状态\n\n| 检查项 | 状态 | 说明 |\n|--------|------|------|\n| `extract_features.py` | ✅ | 存在，单生成器特征提取 |\n| `extract_features_multi.py` | ✅ | 支持 `--model-name` 增量模式，自动合并已有CSV |\n| `cross_generator_eval.py` | ⚠️ | LOGO 存在，但 family 列表需更新 |\n| `classify_multi.py` | ⚠️ | LOGO 存在，但 `MODEL_FAMILIES` 需更新 |\n| Pythia-410M 模型 | ✅ | `/root/autodl-tmp/models/pythia-410m/models--EleutherAI--pythia-410m/snapshots/9879c...` 完整 |\n| qwen3-8b 生成数据 | ✅ | `data/qwen3-8b/generations_shard0_recovered.jsonl` — 3418 行，持续增长 |\n| 5 生成器特征文件 | ✅ | `data/features_all_models.csv` — 23032 行，5 生成器齐全 |\n| 5 生成器原始数据 | ✅ | pythia-2.8b, pythia-1b, olmo-2-1b, qwen3-1.7b, qwen3-0.6b 全在 `data/` 下 |\n\n### 2. 需修复的问题（3 处代码改动）\n\n**问题 A**：`cross_generator_eval.py` 第 130 行 — family-out 列表硬编码了 5 个生成器\n```python\n# 当前\nnon_pythia = [\"olmo-2-1b\", \"qwen3-0.6b\", \"qwen3-1.7b\"]\n# 需改为\nnon_pythia = [\"olmo-2-1b\", \"qwen3-0.6b\", \"qwen3-1.7b\", \"qwen3-8b\"]\n```\n\n**问题 B**：`classify_multi.py` 第 39-44 行 — `MODEL_FAMILIES` 缺少 qwen3-8b\n```python\n# 需添加\n\"qwen3-8b\": \"qwen\",\n```\n\n**问题 C**：`extract_features_multi.py` 第 25 行 — `ALL_GENERATORS` 缺少 qwen3-8b（仅影响全量模式，`--model-name` 增量模式不受影响）\n```python\nALL_GENERATORS = [\"pythia-2.8b\", \"pythia-1b\", \"olmo-2-1b\", \"qwen3-1.7b\", \"qwen3-0.6b\", \"qwen3-8b\"]\n```\n\n### 3. 数据注意事项\n\n- `data/qwen3-8b/` 下同时存在 `generations_shard0.jsonl`（416 行旧数据）和 `generations_shard0_recovered.jsonl`（3418 行）\n- `discover_data()` 的 glob `generations_shard*.jsonl` 会匹配两者，但 `load_records` 按 `(seed_id, depth)` 去重，不会重复\n- plan-014 完成后确认最终文件名——如果最终输出仍为 `_recovered` 后缀，不影响流水线\n\n### 4. 命令模板\n\n**Step 1：特征提取（增量模式，直接合并到 features_all_models.csv）**\n```bash\ncd /root/gen-depth-fingerprint\npython extract_features_multi.py \\\n  --model-name qwen3-8b \\\n  --output data/features_all_models.csv \\\n  --batch-size 8 \\\n  --device cuda:0\n```\n\n**Step 2：LOGO 3-class 评估（6 生成器）**\n```bash\ncd /root/gen-depth-fingerprint\npython cross_generator_eval.py\n```\n（读取 `data/features_all_models.csv`，输出 `data/cross_generator_results.json` + `data/cross_generator_report.md`）\n\n**Step 3（可选）：classify_multi.py 5-class LOGO 评估**\n```bash\ncd /root/gen-depth-fingerprint\npython classify_multi.py --input data/features_all_models.csv\n```\n\n### 5. 结论\n\n流水线基本就绪，plan-014 完成后需要先做 **3 处代码改动**（问题 A/B/C），然后按 Step 1 → Step 2 顺序执行即可。预计特征提取耗时取决于 qwen3-8b 最终数据量（当前 3418 行，每行需 GPU 推理）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-pre-verify-014-postprocess.md"
+}

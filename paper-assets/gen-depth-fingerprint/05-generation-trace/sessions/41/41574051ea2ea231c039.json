@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41574051ea2ea231c039",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis plan 005 comparative",
+  "task_key": "worker_analysis_plan-005-comparative_20260515T060035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-005-comparative_20260515T060035_result.json",
+    "occurrence": 1,
+    "bytes": 2006,
+    "sha256": "dd03920a899176d5aec0d884af18b0a9dc55ad65d51fd778a0d303b5b1570f49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "plan-005 分析全部完成。以下是完整结果：\n\n---\n\n## 1. Per-Prompt-Type 5-Fold CV (XGBoost, 3-class macro-F1)\n\n| Prompt Type | F1 mean | F1 std |\n|---|---|---|\n| continuation | **0.7806** | ±0.0120 |\n| inspired_rewriting | 0.7368 | ±0.0114 |\n| elaboration | 0.7300 | ±0.0112 |\n\nContinuation 最易区分 depth（F1 最高），因为它的特征漂移最剧烈。\n\n## 2. Leave-One-Prompt-Type-Out (LOPTO)\n\n| Held-out | F1 |\n|---|---|\n| continuation | 0.7620 |\n| elaboration | 0.7622 |\n| inspired_rewriting | 0.7334 |\n| **Average** | **0.7525** |\n\n跨 prompt type 泛化良好。Rewriting 作为 held-out 时 F1 略低，说明其 depth signal 模式与另外两种有微小差异。\n\n## 3. Depth Decay (d4 / d0 retention)\n\n| Prompt Type | d0 | d4 | Retention |\n|---|---|---|---|\n| continuation | 995 | 827 | **83.1%** |\n| inspired_rewriting | 995 | 934 | 93.9% |\n| elaboration | 995 | 981 | **98.6%** |\n\nContinuation 衰减最严重（16.9% 样本在 depth 4 丢失），elaboration 几乎无衰减。\n\n## 4. Feature Drift Rate (relative change d0→d4)\n\n| Feature | continuation | elaboration | rewriting |\n|---|---|---|---|\n| entropy_mean | -55.7% | -47.1% | -47.7% |\n| entropy_std | -4.6% | -0.5% | -1.5% |\n| entropy_max | -0.3% | +6.9% | +7.1% |\n| entropy_min | **+291.2%** | -46.9% | +79.9% |\n| tail_decay | +3.1% | -1.3% | -0.5% |\n| ttr | -60.7% | -64.1% | -61.8% |\n| hapax_ratio | -74.0% | **-82.8%** | -80.0% |\n\n关键发现：\n- **hapax_ratio** 是三种 type 中最一致的 depth 判别特征（drift -74%~-83%）\n- **ttr** 同样稳健（drift -61%~-64%）\n- **entropy_min** 在 continuation 中异常飙升 +291%，而 elaboration 反而下降 -47%，这是造成 continuation CV F1 最高的主要原因\n- **entropy_max / entropy_std / tail_decay** 跨 depth 几乎不变，判别能力弱\n\nRegistry 已更新 (`plan-005`, conclusion=success)，结果 JSON 保存在服务器 `data/prompt_type_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-005-comparative.md"
+}

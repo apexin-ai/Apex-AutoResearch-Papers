@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66df6317ff5271740be7",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_1_1778803488.md",
+  "task_key": "loop_1_1778803488",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1778803488.md",
+    "occurrence": 1,
+    "bytes": 4394,
+    "sha256": "f950f610a669e07bb93a229bc78be879fac345937b282108e6d1fae675753ef7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_wall_time\nupdated: '2026-05-14T22:26:27+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3（autodl-5090），提交前必须 `get_project_resource_usage` 确认无活跃进程\n- `--device cuda:0`（逻辑设备）：submit_training_job 注入 CUDA_VISIBLE_DEVICES，脚本只能看到 cuda:0\n- **框架 bug 未修复**：`tmux_backend.py` L178 用 PID 查 tmux session（应用 exp_id），Worker 会误判 session 死亡并 kill 活跃进程。长时间实验（>1h）高危。防御：generate_chain.py 已加 `signal.signal(signal.SIGHUP, signal.SIG_IGN)` + append+flush+resume\n- exp_id 命名必须统一（之前 `qwen3-1_7b` vs `qwen17b` 导致重复提交事故）\n- 生成参数锁定：temperature=0.7, top_p=0.9, max_new_tokens=256, seed=42\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090 (root@)，项目路径 `/root/gen-depth-fingerprint/`\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，pip/python 在 `/root/miniconda3/bin/`\n- HF cache：`/root/autodl-tmp/.hf_cache`，模型统一在 `/root/autodl-tmp/models/`\n- 参考模型：Pythia-410M（`/root/autodl-tmp/models/pythia-410m` 或 .hf_cache 下）\n- 数据：`/root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl`（995 valid seeds, 23MB）\n- 活跃进程（handoff 时刻，均为 generate_chain.py）：\n  - PID 120617 cuda:0 — qwen3-1.7b shard 0（tmux: plan-002-qwen17b-r2-s0，~40-50%）\n  - PID 120694 cuda:1 — qwen3-1.7b shard 1（tmux: plan-002-qwen17b-r2-s1，~38%）\n  - PID 117855 cuda:2 — qwen3-0.6b shard 0（orphan, PPID=1，~55%）\n  - PID 118126 cuda:3 — qwen3-0.6b shard 1（orphan, PPID=1，~52%）\n- Cron 监控：plan-002-qwen17b-retry-s0/s1（指向 r2 tmux session），plan-002-qwen06b-s0/s1（tmux session 已丢失，会持续误报）\n\n### 3. 📊 当前状态\nplan-002（跨模型泛化）数据生成进行中。已完成 2/4 模型，2/4 正在跑：\n- **Pythia-1B** ✅ DONE — 4,555 records，已合并 `data/pythia-1b/generations.jsonl`\n- **OLMo-2-1B** ✅ DONE — 4,713 records，已合并 `data/olmo-2-1b/generations.jsonl`\n- **Qwen3-1.7B** 🔄 RUNNING — r2 带 resume，shard0 ~200+/498, shard1 ~190+/498，ETA ~07:20-07:30 UTC\n- **Qwen3-0.6B** 🔄 RUNNING — shard0 ~274/498, shard1 ~260/498，ETA ~06:50-06:55 UTC\n\nRegistry 状态注意：qwen17b-retry-s0/s1 显示 conclusion=failed（是对旧进程的判断），notes 里说明 r2 进程存活。不要因为看到 failed 就重提交。\n\n等待中：4 个生成进程自然完成的 cron 回调（qwen06b 的 cron 可能持续误报因 tmux session 丢失）。Re-dream (dream_20260514T221538) 已由 Director 启动。\n\n### 4. 📋 待办（条件触发式）\n- qwen3-0.6b 两个 shard 完成 → spawn worker 合并 shards → 验证数据完整性（行数、depth 分布）→ update_registry DONE\n- qwen3-1.7b r2 两个 shard 完成 → 同上合并 + 验证\n- **4 个模型全部就绪** → spawn worker 对每个模型跑 `extract_features.py`（需 Pythia-410M GPU）→ 再跑 `classify_and_eval.py` → 一次性汇报 Director 所有模型的 macro-F1/binary-F1/depth 分布\n- qwen06b cron 误报 → 忽略（进程是 orphan，tmux session 不存在）；如果需要确认完成，SSH 检查 `ps -p 117855,118126`\n- Re-dream 回调 → 读审稿反馈 → 按 Director 指示调整 framing/plan\n- Part C 重跑（低优先）：ablation_analysis.py Part C 的 perplexity_by_depth.json 是旧版本（642 bytes），需等 GPU 空闲后重跑\n\n### 5. 🎯 战略上下文\n- **项目目标**：估计文本生成深度（gen-0/1/2+），用 Pythia-410M 参考模型的分布特征做分类。Venue: AAAI 2027 (Aug 2 DDL)\n- **3 个 Core Claims**：(1) Depth Discriminability 跨生成器 (2) Feature Complementarity & Dual Dynamics (3) Downstream Utility\n- **进展**：Claim 1 单生成器 MVP PASS (F1=0.84)，Claim 2 plan-001 confirmed。plan-002 正在验证 Claim 1 跨生成器\n- **D006 framing+plan 修改已由 Director 完成**，下一个你应该读最新的 paper_framing.md 和 experiment_plan.yaml\n- **最容易判断错的事**：(1) 看到 registry failed/killed 就重提交——必须先 SSH 确认进程是否真死 (2) cron 报 tmux 死亡就信——框架 bug 导致 false negative (3) 在有活跃进程的 GPU 上提交新任务——必须先 `ps aux | grep generate_chain` 确认\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1778803488.md"
+}

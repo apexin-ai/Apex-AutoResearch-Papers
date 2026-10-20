@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ee644486252938a866f",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper round3 method",
+  "task_key": "worker_paper_round3-method_20260516T044714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_round3-method_20260516T044714_result.json",
+    "occurrence": 1,
+    "bytes": 728,
+    "sha256": "10916edaf4e9eb11c4dc21138a329d0d71a45ce17d22b523a6d14a8816dddafe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All four issues fixed, no orphaned `\\cite{}`, LaTeX syntax correct. Summary of changes:\n\n- **M1** (line 82): replaced vague \"bootstrap CI\" with \"percentile bootstrap, resampling at the document level within each held-out fold\"\n- **M2** (line 25): replaced \"approximately 27,000\" with explicit theoretical yield formula ($6 \\times \\sim1000 \\times 5 \\approx 30{,}000$) and filtering explanation yielding 27,529\n- **M3** (line 49): removed incorrect `\\cite{ood_baseline}` and \"follows standard practice in heavy-tail analysis\" phrasing; kept only the sensitivity analysis sentence\n- **M5** (line 43): added footnote on `entropy_mean` clarifying these are point-wise NLL values, not Shannon entropy"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-round3-method.md"
+}

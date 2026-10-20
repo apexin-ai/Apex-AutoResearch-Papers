@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfb631ea980522eb8ab0",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_2_1778804980.md",
+  "task_key": "loop_2_1778804980",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778804980.md",
+    "occurrence": 1,
+    "bytes": 4971,
+    "sha256": "a9bbdfb219931bd92f62b806a458c8b3fdc1a5fe94b6ff8119f5c3ceb3fbb58e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-15T00:17:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 autodl-5090 的 cuda:0/1/2/3（4× RTX 5090）。`submit_training_job` 注入 `CUDA_VISIBLE_DEVICES` 后脚本内只用 `--device cuda:0`\n- 论文术语：禁用 \"H1/H2\"（与时间序列 unit-root 撞车），禁称 drift/stationarity 为 \"discovery\"，禁 overclaim \"dual dynamics\"。统一用 **\"differential depth response\"**、\"drifting\" vs \"stationary\"\n- 不要用 `nohup` 提交训练——一律走 `submit_training_job`。generate_chain.py 已加 `signal.SIGHUP SIG_IGN` 保护\n- Qwen3.5 系列不存在，用 Qwen3-Base。OLMo-2-1B-hf 不存在，用 OLMo-2-0425-1B\n- EMNLP 2026 ARR deadline **May 25**（10 天后），AAAI 2027 deadline **Aug 2**\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: autodl-5090（4× RTX 5090），工作目录 `/root/gen-depth-fingerprint`\n- **Python**: `/root/miniconda3/bin/python`，conda base env。激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**（均在 `/root/autodl-tmp/models/` 下）:\n  - pythia-2.8b: `/root/autodl-tmp/.hf_cache/EleutherAI/pythia-2___8b`\n  - pythia-1b: `.../pythia-1b/EleutherAI/pythia-1b`\n  - pythia-410m (ref): `.../pythia-410m/models--EleutherAI--pythia-410m/snapshots/9879c9...`\n  - olmo-2-1b: `.../olmo-2-1b-hf/allenai/OLMo-2-0425-1B`\n  - qwen3-1.7b: `.../Qwen/Qwen3-1___7B-Base`\n  - qwen3-0.6b: `.../Qwen/Qwen3-0___6B-Base`\n- **数据**: `/root/gen-depth-fingerprint/data/`（wiki_seed_1000.jsonl + 5 模型生成数据 + features_all_models.csv 23K 条）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **活跃进程**: 无 GPU 上活跃训练进程。4 个 Worker 在跑代码准备任务（不占 GPU）\n- **Cron**: reconcile 返回 0 条活跃 cron\n\n### 3. 📊 当前状态\n**刚完成**: plan-003（跨家族参考模型伪证化）——用 OLMo-2-1B 和 Qwen3-0.6B 做参考模型，LOGO F1 分别 0.81/0.82（vs Pythia ref 0.80），entropy drift 在所有参考模型下均为负，确认 differential depth response 非 Pythia 特异。plan-013（长度混淆控制）也已通过。\n\n**Registry 状态**:\n- PREPARING: plan-014（Qwen3-8B 7B+ 生成器）、plan-004-prep（downstream utility）、plan-015（ordinal baseline）+ 5 个历史遗留 PREPARING（mvp-001-gen-s0/1/2/3 + plan-001-restore，实际已完成，未清理）\n- DONE(success): 17 个 | DONE(failed/killed): 8 个\n- RUNNING: 0 个\n\n**等待中的 4 个 Worker**:\n1. `worker_code_plan-015-ordinal-baseline` — 写 ordinal baseline 代码（FastDetectGPT/LD-Score 是否提供 ordinal depth signal）\n2. `worker_code_plan-015-detector-baseline` — 同上，detector 实现\n3. `worker_code_plan-004-prep` — downstream utility 数据准备 + OLMo-1B fine-tuning 脚本\n4. `worker_code_plan-014-large-gen` — Qwen3-8B 生成链代码\n\n**GPU 全部空闲**（cuda:0-3），等 Worker 回调后提交实验。\n\n### 4. 📋 待办（条件触发式）\n- Worker plan-014 回调 → 检查 Qwen3-8B 模型路径（可能需要先下载到 autodl-tmp），dry-run → 提交 PENDING → 等 Director 审批 → submit_on_allocated\n- Worker plan-015 回调 → 检查 FastDetectGPT/LD-Score/Binoculars 依赖是否装好，dry-run → 提交。预测: LD-Score 是 level feature（H₂ drift），shape features 应近 stationary\n- Worker plan-004 回调 → 确认 OLMo-1B 下载完成 + depth-stratified 数据集生成 → 不开跑，等 Director 确认\n- plan-003 结果已写入 registry 但**尚未向 Director 汇报**（上个 session 硬限前未来得及）→ 新 session 启动后立即 `main_agent_post_to_director` 汇报 plan-003 + 整体进展\n- 清理历史遗留 PREPARING 条目（mvp-001-gen-s0/1/2/3, plan-001-restore）\n\n### 5. 🎯 战略上下文\n**决策链**: D001(MVP方案) → D002(MVP PASS) → D003/D004/D005(claim 细化) → D006(framing 重定位为实证/概念) → D007(re-dream 达标, differential depth response 定调)\n\n**核心结论**: 递归 LLM 生成链展现 differential depth response——central-tendency/diversity 特征随深度漂移，shape 特征近稳态。跨 5 生成器 / 3 家族 / 3 参考模型验证。LOGO macro-F1=0.80, family-out=0.77。\n\n**易错点**:\n1. **plan-014 是关键补强实验**（RC9 reviewer concern: 仅 ≤2.8B 生成器）。如果 7B+ 深度信号显著弱于小模型 → 必须走 red-section Framing 提案，不能默默跑下一个\n2. **plan-015 是 ordinal baseline**：如果现有检测器单特征已达 >0.70 ordinal F1 → Claim 1 的增量价值需重新论证\n3. **EMNLP May 25 极紧**（10 天），AAAI Aug 2 更从容。Director 未明确目标 venue，不要自作主张判断\"来不来得及\"\n4. **tail_decay 已确认无区分力**（跨深度跨模型恒定 ~-0.0023），论文中不要作为 key feature 讨论\n5. **Report R² on 5 depth means 没统计意义**（3 df），全文用个体级 Spearman ρ + bootstrap CI\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778804980.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f528524ca7f901fa594f",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan006 confound fix",
+  "task_key": "worker_code_plan006-confound-fix_20260515T232416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan006-confound-fix_20260515T232416_result.json",
+    "occurrence": 1,
+    "bytes": 748,
+    "sha256": "462146421fe278516230f60b250edc1d7ef82cf44ea4b3d51e16b7ae487e6448"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "速率约 18 行/分钟，总计 ~4975 行，预计 **~4.5 小时**完成。\n\n**已完成：**\n1. 进程 246021（旧 plan-006）已停\n2. `paraphrastic_chains.py` 参数已修改：`repetition_penalty=1.3→1.0`，`max_new_tokens=200→256`，与 `generate_chain.py` 完全对齐\n3. 旧数据已备份（`*_old_rp13.*`）\n4. 新实验已启动（PID 256127，nohup 后台），registry `plan-006-confound-fix` 状态 RUNNING\n\n**后续监控：**\n- 日志：`tail /tmp/plan006_confound_fix.log`\n- 进度：`wc -l data/pythia-2.8b-paraphrase/generations_shard0.jsonl`（目标 ~4975 行）\n- 跑完后 evaluate phase 会自动输出 `results/plan006_paraphrastic_comparison.json`，包含 Spearman correlation 和 F1 对比"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan006-confound-fix.md"
+}

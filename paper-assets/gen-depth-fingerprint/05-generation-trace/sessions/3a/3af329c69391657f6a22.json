@@ -1,0 +1,403 @@
+{
+  "schema_version": "1.0",
+  "id": "3af329c69391657f6a22",
+  "project": "gen-depth-fingerprint",
+  "kind": "conversation",
+  "title": "research reference search",
+  "task_key": "worker_research_reference-search_20260517T170729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_reference-search_20260517T170729.jsonl",
+    "occurrence": 1,
+    "bytes": 17381,
+    "sha256": "298c3a6b38fca5113cb2bc3bcf5deec0cb51ec2fce849d73faed8c1e0c254b61"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T17:08:46.284466+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference-search_20260517T170729",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T17:08:46.284771+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference-search_20260517T170729",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T17:08:46.284944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference-search_20260517T170729",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Hammoudeh Lowd 2024 \"training data attribution\" machine learning survey"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T17:08:46.285073+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference-search_20260517T170729",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Kumarage et al 2023 \"LLM-generated text detection\" stylometric"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T17:08:46.285241+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Hammoudeh Lowd 2024 \"training data attribution\" machine learning survey\"\n\nLinks: [{\"title\":\"Training Data Influence Analysis & Estimation Resources\",\"url\":\"https://github.com/ZaydH/influence_analysis_papers\"},{\"title\":\"[2212.04612] Training Data Influence Analysis and Estimation: A Survey\",\"url\":\"https://arxiv.org/abs/2212.04612\"},{\"title\":\"Training Data Influence Analysis and Estimation: A Survey Zayd Hammoudeh∗1,2\",\"url\":\"https://arxiv.org/pdf/2212.04612\"},{\"title\":\"[PDF] Training Data Influence Analysis and Estimation: A Survey | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Training-Data-Influence-Analysis-and-Estimation:-A-Hammoudeh-Lowd/c164ec3b73eb108f861fcd60df73b62d2482c3a6\"},{\"title\":\"(PDF) Training data influence analysis and estimation: a survey\",\"url\":\"https://www.researchgate.net/publication/379410061_Training_data_influence_analysis_and_estimation_a_survey\"},{\"title\":\"Efficient Ensembles Improve Training Data Attribution\",\"url\":\"https://arxiv.org/html/2405.17293v1\"},{\"title\":\"Training data influence analysis and estimation: a survey | Machine Language\",\"url\":\"https://dl.acm.org/doi/abs/10.1007/s10994-023-06495-7\"},{\"title\":\"Stage 2026 - Data Science et Machine Learning/AI practitionner - Sujet : Data attribution (H/F/N) – Ekimetrics – Internship in Paris\",\"url\":\"https://www.welcometothejungle.com/en/companies/ekimetrics/jobs/stage-2026-data-science-et-machine-learning-ai-practitionner-sujet-data-attribution-h-f-n_paris\"},{\"title\":\"How Data-Related AI Research can Support Technical ...\",\"url\":\"https://openreview.net/pdf?id=MuFBL4Kogc\"},{\"title\":\"Zayd Hammoudeh's research works | University of Oregon and other places\",\"url\":\"https://www.researchgate.net/scientific-contributions/Zayd-Hammoudeh-2171065948\"}]\n\nBased on the search results, I found the paper you're looking for:\n\nZayd Hammoudeh and Daniel Lowd published \"Training Data Influence Analysis and Estimation: A Survey\" in Machine Learning in 2024 (Volu\n…[truncated 846 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference-search_20260517T170729",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T17:08:46.285430+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Kumarage et al 2023 \"LLM-generated text detection\" stylometric\"\n\nLinks: [{\"title\":\"Text Authorship Attribution: Stylometric Insights into Human and LLM-Generated Text | Proceedings of the 8th International Conference on Data Science and Management of Data (12th ACM IKDD CODS and 30th COMAD)\",\"url\":\"https://dl.acm.org/doi/10.1145/3703323.3703712\"},{\"title\":\"On the Detectability of LLM-Generated Text: What Exactly Is LLM-Generated Text?\",\"url\":\"https://arxiv.org/html/2510.20810v1\"},{\"title\":\"Stylometry recognizes human and LLM-generated texts in short samples - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0957417425026181\"},{\"title\":\"Stylometry recognizes human and LLM-generated texts in short samples\",\"url\":\"https://arxiv.org/html/2507.00838v2\"},{\"title\":\"Stylometric Detection of AI-Generated Text in Twitter Timelines\",\"url\":\"https://arxiv.org/pdf/2303.03697\"},{\"title\":\"Stylometry Recognizes Human and LLM-generated Texts in Short Samples | PDF | Artificial Intelligence | Intelligence (AI) & Semantics\",\"url\":\"https://www.scribd.com/document/997061452/2507-00838v2\"},{\"title\":\"Benchmark of stylistic variation in LLM-generated texts\",\"url\":\"https://arxiv.org/html/2509.10179v2\"},{\"title\":\"(PDF) Stylometry Recognizes Human and Llm-Generated Texts in Short Samples\",\"url\":\"https://www.researchgate.net/publication/383897763_Stylometry_Recognizes_Human_and_Llm-Generated_Texts_in_Short_Samples\"},{\"title\":\"A Survey of AI-generated Text Forensic Systems: Detection, Attribution, and Characterization\",\"url\":\"https://arxiv.org/html/2403.01152v1\"},{\"title\":\"Stylometry recognizes human and LLM-generated texts in short samples | Request PDF\",\"url\":\"https://www.researchgate.net/publication/393713840_Stylometry_recognizes_human_and_LLM-generated_texts_in_short_samples\"}]\n\nI found relevant information about the Kumarage et al. 2023 work on LLM-generated text detection using stylometric analysis. Here's what I found:\n\n## Key Fi\n…[truncated 1203 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference-search_20260517T170729",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T17:08:46.285635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference-search_20260517T170729",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Hammoudeh Lowd \"Training Data Influence Analysis and Estimation: A Survey\" Machine Learning journal 2024 DOI"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T17:08:46.285780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference-search_20260517T170729",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Kumarage \"Stylometric Detection of AI-Generated Text in Twitter Timelines\" 2023 arXiv authors"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T17:08:46.285933+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Hammoudeh Lowd \"Training Data Influence Analysis and Estimation: A Survey\" Machine Learning journal 2024 DOI\"\n\nLinks: [{\"title\":\"[2212.04612] Training Data Influence Analysis and Estimation: A Survey\",\"url\":\"https://arxiv.org/abs/2212.04612\"},{\"title\":\"[PDF] Training Data Influence Analysis and Estimation: A Survey | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Training-Data-Influence-Analysis-and-Estimation:-A-Hammoudeh-Lowd/c164ec3b73eb108f861fcd60df73b62d2482c3a6\"},{\"title\":\"Training Data Influence Analysis and Estimation: A Survey Zayd Hammoudeh∗1,2\",\"url\":\"https://arxiv.org/pdf/2212.04612\"},{\"title\":\"Training Data Influence Analysis and Estimation: A Survey\",\"url\":\"https://www.researchgate.net/publication/366190340_Training_Data_Influence_Analysis_and_Estimation_A_Survey/fulltext/63969d6d095a6a7774229577/Training-Data-Influence-Analysis-and-Estimation-A-Survey.pdf\"},{\"title\":\"Training data influence analysis and estimation: a survey | Machine Learning | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s10994-023-06495-7\"},{\"title\":\"Training Data Influence Analysis & Estimation Resources\",\"url\":\"https://github.com/ZaydH/influence_analysis_papers\"},{\"title\":\"(PDF) Training data influence analysis and estimation: a survey\",\"url\":\"https://www.researchgate.net/publication/379410061_Training_data_influence_analysis_and_estimation_a_survey\"},{\"title\":\"Training data influence analysis and estimation: a survey | Machine Language\",\"url\":\"https://dl.acm.org/doi/abs/10.1007/s10994-023-06495-7\"},{\"title\":\"Zayd Hammoudeh's research works | University of Oregon and other places\",\"url\":\"https://www.researchgate.net/scientific-contributions/Zayd-Hammoudeh-2171065948\"},{\"title\":\"Journal of Machine Learning Research 24 (2023) 1-48\",\"url\":\"https://arxiv.org/pdf/2205.00359\"}]\n\nBased on the search results, I found the paper you're looking for:\n\nThe paper \"Training Data Influence Analysis and Estimation: A Survey\"\n…[truncated 1033 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference-search_20260517T170729",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T17:08:46.286107+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Kumarage \"Stylometric Detection of AI-Generated Text in Twitter Timelines\" 2023 arXiv authors\"\n\nLinks: [{\"title\":\"[2303.03697] Stylometric Detection of AI-Generated Text in Twitter Timelines\",\"url\":\"https://arxiv.org/abs/2303.03697\"},{\"title\":\"Stylometric Detection of AI-Generated Text in Twitter Timelines\",\"url\":\"https://arxiv.org/pdf/2303.03697\"},{\"title\":\"[PDF] Stylometric Detection of AI-Generated Text in Twitter Timelines | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Stylometric-Detection-of-AI-Generated-Text-in-Kumarage-Garland/18e0b11dd5b1b413d33308da0379836752aaaec1\"},{\"title\":\"Stylometric Detection of AI-Generated Text in Twitter Timelines - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2023arXiv230303697K/abstract\"},{\"title\":\"(PDF) Stylometric Detection of AI-Generated Text in Twitter Timelines\",\"url\":\"https://www.researchgate.net/publication/373898266_Stylometric_Detection_of_AI-Generated_Text_in_Twitter_Timelines\"},{\"title\":\"Paper page - Stylometric Detection of AI-Generated Text in Twitter Timelines\",\"url\":\"https://huggingface.co/papers/2303.03697\"},{\"title\":\"A Survey of AI-generated Text Forensic Systems: Detection, Attribution, and Characterization\",\"url\":\"https://arxiv.org/html/2403.01152v1\"},{\"title\":\"Beyond Perplexity: Character Distribution Signatures and the MDTA Benchmark for AI Text Detection\",\"url\":\"https://arxiv.org/html/2605.01647v1\"},{\"title\":\"AI-Writing Detection Using an Ensemble of Transformers and Stylometric Features\",\"url\":\"https://ceur-ws.org/Vol-3496/autextification-paper9.pdf\"},{\"title\":\"Machine-Generated Text Detection using Deep Learning\",\"url\":\"https://arxiv.org/html/2311.15425\"}]\n\nBased on the search results, I found the paper you're looking for. Here are the details:\n\n**Paper Title:** Stylometric Detection of AI-Generated Text in Twitter Timelines\n\n**Authors:** Tharindu Kumarage, Joshua Garland, Amrita Bhattacharjee, Kirill Trapeznikov, Scott Ruston, and Huan Liu\n\n**Publication\n…[truncated 491 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference-search_20260517T170729",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T17:08:46.286279+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference-search_20260517T170729",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Hammoudeh|Kumarage",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T17:08:46.286399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference-search_20260517T170729",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T17:08:46.286512+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference-search_20260517T170729",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/results/ 2>/dev/null || echo \"Directory does not exist\"",
+              "description": "Check results directory existence"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T17:08:46.286646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 24\ndrwxr-xr-x 2 ubuntu ubuntu 4096 May 17 15:29 .\ndrwxr-xr-x 9 ubuntu ubuntu 4096 May 17 15:28 ..\n-rw-r--r-- 1 ubuntu ubuntu 2042 May 17 15:29 cross_model_chains_per_class.json\n-rw-r--r-- 1 ubuntu ubuntu 4701 May 17 15:29 distributional_tests.json\n-rw-r--r-- 1 ubuntu ubuntu 1745 May 17 15:28 tost_multi_margin.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference-search_20260517T170729",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T17:08:46.286761+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference-search_20260517T170729",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Hammoudeh|Kumarage",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+              "glob": "*.bib",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T17:08:46.286877+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference-search_20260517T170729",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T17:08:46.287007+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference-search_20260517T170729",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/results/reference_verification.md",
+              "content": "# Reference Verification Report\n\nDate: 2025-05-17\n\n## 1. Hammoudeh & Lowd 2024\n\n- **Status**: VERIFIED (real paper)\n- **Title**: Training Data Influence Analysis and Estimation: A Survey\n- **Authors**: Zayd Hammoudeh, Daniel Lowd\n- **Year**: 2024\n- **Venue**: Machine Learning (Springer), Volume 113, pp. 2351--2403\n- **arXiv**: 2212.04612\n- **DOI**: 10.1007/s10994-023-06495-7\n\n**Summary**: First comprehensive survey of training data influence analysis and estimation. Formalizes definitions of training data influence, organizes methods into a taxonomy (retraining-based vs. gradient-based), and compares assumptions, complexities, and trade-offs.\n\n**Relevance to depth fingerprinting**: Moderate. Training data attribution quantifies how individual training instances affect model behavior, which is conceptually related to identifying generative model fingerprints. However, this is a survey of influence estimation methods (influence functions, data Shapley, etc.), not directly about text generation detection. Appropriate as background reference if the paper discusses how training data shapes generator-specific artifacts, but not a core related work for stylometric detection.\n\n**Current citation status**: Not yet cited in the paper bib files.\n\n---\n\n## 2. Kumarage et al. 2023\n\n- **Status**: VERIFIED (real paper)\n- **Title**: Stylometric Detection of AI-Generated Text in Twitter Timelines\n- **Authors**: Tharindu Kumarage, Joshua Garland, Amrita Bhattacharjee, Kirill Trapeznikov, Scott Ruston, Huan Liu\n- **Year**: 2023\n- **arXiv**: 2303.03697\n- **Venue**: arXiv preprint (cited in multiple survey papers; no formal journal/conference publication identified)\n\n**Summary**: Proposes a stylometric approach to detect AI-generated tweets, using a fusion of fine-tuned RoBERTa with lexical, syntactic, and structural stylometric features (lexical richness, readability, punctuation counts). Addresses two tasks: discriminating human vs. AI tweets, and detecting the point in a timeline when AI generation begins.\n\n**Relevance to depth fingerprinting**: High. Directly relevant as related work on LLM-generated text detection using stylometric signals. The use of linguistic features to distinguish human from AI text is closely aligned with depth fingerprinting's goal of identifying generator-specific stylistic patterns. Good candidate for the Related Work section under \"detection methods\" or \"stylometric approaches.\"\n\n**Current citation status**: Not yet cited in the paper bib files.\n\n---\n\n## Suggested BibTeX Entries\n\n```bibtex\n@article{hammoudeh2024training,\n  title={Training Data Influence Analysis and Estimation: A Survey},\n  author={Hammoudeh, Zayd and Lowd, Daniel},\n  journal={Machine Learning},\n  volume={113},\n  pages={2351--2403},\n  year={2024},\n  publisher={Springer},\n  doi={10.1007/s10994-023-06495-7}\n}\n\n@article{kumarage2023stylometric,\n  title={Stylometric Detection of {AI}-Generated Text in Twitter Timelines},\n  author={Kumarage, Tharindu and Garland, Joshua and Bhattacharjee, Amrita and Trapeznikov, Kirill and Ruston, Scott and Liu, Huan},\n  journal={arXiv preprint arXiv:2303.03697},\n  year={2023}\n}\n```\n"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T17:08:46.287149+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/results/reference_verification.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference-search_20260517T170729",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T17:08:46.287320+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两篇论文均已验证为真实存在：\n\n1. **Hammoudeh & Lowd 2024** — \"Training Data Influence Analysis and Estimation: A Survey\"，发表于 Machine Learning (Springer), Vol. 113, pp. 2351-2403, DOI: 10.1007/s10994-023-06495-7。与 depth fingerprinting 相关性中等（训练数据影响分析的综述，概念相关但非直接相关工作）。\n\n2. **Kumarage et al. 2023** — \"Stylometric Detection of AI-Generated Text in Twitter Timelines\"，arXiv:2303.03697，作者6人（Kumarage, Garland, Bhattacharjee, Trapeznikov, Ruston, Liu）。与 depth fingerprinting 相关性高（直接使用 stylometric 特征检测 AI 生成文本）。\n\n两篇论文目前均未在我们的 bib 文件中引用。验证报告和建议的 BibTeX 条目已写入 `artifacts/_project/results/reference_verification.md`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference-search_20260517T170729"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/conversations/research-reference-search.md"
+}

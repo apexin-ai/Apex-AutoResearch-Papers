@@ -1,0 +1,138 @@
+{
+  "schema_version": "1.0",
+  "id": "cc1ccbf7512d5abd0057",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "writing r34 r38 fixes",
+  "task_key": "worker_writing_r34_r38_fixes_20260521T083937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_r34_r38_fixes_20260521T083937.log",
+    "occurrence": 1,
+    "bytes": 617327,
+    "sha256": "7d26ba01bc6b051c09c94fc3a7211914499243c29843f28178cf748f43dd3f7a"
+  },
+  "statistics": {
+    "messages": 155,
+    "user_turns": 8,
+    "tool_calls": 51,
+    "roles": {
+      "log": 1,
+      "system": 21,
+      "record": 1,
+      "assistant": 21,
+      "tool_call": 51,
+      "user": 8,
+      "tool_result": 51,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "cc1ccbf7512d5abd0057-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 121,
+      "chunks": [
+        {
+          "path": "cc1ccbf7512d5abd0057-part-0001.json",
+          "message_count": 121
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "cc1ccbf7512d5abd0057-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "cc1ccbf7512d5abd0057-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "cc1ccbf7512d5abd0057-part-0001.json",
+          "message_count": 8
+        },
+        {
+          "path": "cc1ccbf7512d5abd0057-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "cc1ccbf7512d5abd0057-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "cc1ccbf7512d5abd0057-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "cc1ccbf7512d5abd0057-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 4,
+      "chunks": [
+        {
+          "path": "cc1ccbf7512d5abd0057-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/writing-r34-r38-fixes.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52ad6e3878872348a152",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis bootstrap ci",
+  "task_key": "worker_analysis_bootstrap-ci_20260515T073104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-ci_20260515T073104_result.json",
+    "occurrence": 1,
+    "bytes": 720,
+    "sha256": "ee3743ad108070ac70f3924b656891dd80cb1d76e32dd298407b482c01fdfdd6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| 设置 | macro-F1 | 95% CI |\n|------|----------|--------|\n| **6-gen LOGO** | 0.788 | [0.783, 0.793] |\n| **5-gen LOGO** | 0.803 | [0.798, 0.809] |\n\n**6-gen 每个 generator held-out：**\n\n| Generator | F1 | 95% CI |\n|-----------|-----|--------|\n| pythia-1b | 0.828 | [0.818, 0.839] |\n| pythia-2.8b | 0.817 | [0.805, 0.828] |\n| qwen3-0.6b | 0.800 | [0.788, 0.811] |\n| qwen3-1.7b | 0.793 | [0.781, 0.805] |\n| olmo-2-1b | 0.786 | [0.774, 0.797] |\n| qwen3-8b | 0.708 | [0.695, 0.722] |\n\n结果已保存至 `/root/gen-depth-fingerprint/results/bootstrap_ci_results.json`。两个目标值验证通过（差异均 < 0.005）。19.7 秒完成 1000 次 bootstrap × 11 folds。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-ci.md"
+}

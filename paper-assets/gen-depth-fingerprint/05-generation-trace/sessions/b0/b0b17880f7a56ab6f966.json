@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0b17880f7a56ab6f966",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper consistency check",
+  "task_key": "worker_paper_consistency-check_20260518T072010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_consistency-check_20260518T072010_result.json",
+    "occurrence": 1,
+    "bytes": 1945,
+    "sha256": "43782898ed5cc3483983c1ebd1dbb7236354369289492d412a561590d0189a9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，页数未变。以下是四项检查结果汇总：\n\n---\n\n### 1. Confounded 数据残留检查\n\n4 处匹配，**全部 OK，无残留**：\n\n| 文件 | 匹配内容 | 判断 |\n|------|---------|------|\n| `appendix_classifier.tex:59` | `$|\\rho| = 0.30$ at $t{=}0.9$` | OK — corrected 相关系数值 |\n| `appendix_lofo.tex:14` | `$-$0.33\\,pp` | OK — LOFO 特征消融结果 |\n| `results.tex:80` | permutation importance 0.35/0.23/0.18 | OK — 特征重要性值 |\n| `results.tex:127` | `+0.3\\,pp` | OK — ensemble vs single 对比 |\n\n无 `sampling_ablation`、`top.p 0.80`、`top.p 0.95` 匹配。\n\n### 2. LaTeX 引用完整性\n\n- **Undefined refs**: 0（所有 `\\ref{}` 都有对应 `\\label{}`）\n- **Unused labels**: 22 个，多为结构性 label（section/table/appendix），列举关键的：\n  - Sections: `sec:conclusion`, `sec:ethics`, `sec:evaluation`, `sec:features`, `sec:introduction`, `sec:limitations`, `sec:related` 及子节\n  - Tables: `tab:5class-logo`, `tab:5class-perclass`, `tab:ablation`, `tab:cross-model-perclass`, `tab:domain`, `tab:feature-ablation`, `tab:feature-corr`, `tab:lofo`, `tab:qlora`, `tab:seed-control`\n  - Appendices: `app:feature-distributions`, `app:human-edit`, `app:qlora`, `app:qualitative`\n\n这些 unused labels 不影响编译，但建议检查 `tab:ablation`、`tab:domain`、`app:qlora` 等是否应在正文中引用。\n\n### 3. Cross-temp top_p footnote\n\n已添加。在 `appendix_cross_temp.tex` 第 2 行末尾插入 footnote：\n> \"The $t{=}1.0$ data uses top-$p{=}0.95$ (vs. $p{=}0.9$ for other configurations); this difference may contribute to the observed degradation beyond the temperature effect alone.\"\n\n### 4. 编译结果\n\n| 指标 | 值 |\n|------|---|\n| 页数 | **26** |\n| Errors | **0** |\n| Undefined references | **0** |\n| Warnings | **2**（均为 `'h' float specifier changed to 'ht'`，无害） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-consistency-check.md"
+}

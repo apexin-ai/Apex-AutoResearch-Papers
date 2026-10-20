@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "efb255cf2e3eafb83c0b",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper sync fig2 compile",
+  "task_key": "worker_paper_sync-fig2-compile_20260523T053820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_sync-fig2-compile_20260523T053820_result.json",
+    "occurrence": 1,
+    "bytes": 143,
+    "sha256": "646b2ae85b073b0f3e1e98a581161b5f2b667ba0b52c135b4a707ec735c4f455"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n| 项目 | 结果 |\n|------|------|\n| 总页数 | 37 |\n| Type 3 字体 | 0 |\n| 编译 fatal error | 无 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-sync-fig2-compile.md"
+}

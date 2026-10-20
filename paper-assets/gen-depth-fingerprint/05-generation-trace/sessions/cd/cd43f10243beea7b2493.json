@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd43f10243beea7b2493",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code fix supplement paths",
+  "task_key": "worker_code_fix-supplement-paths_20260517T132607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-supplement-paths_20260517T132607_result.json",
+    "occurrence": 1,
+    "bytes": 2133,
+    "sha256": "857563ce8a0e09a84593ae35f4bf892b103f63184c97194eaf30b845b6d08c43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All paths are fixed. Here's the complete summary:\n\n### Modified files\n\n| File | Line | Change |\n|------|------|--------|\n| `eval_8gen_logo.py` | 35 | `os.path.join(ROOT, \"data\")` → `os.path.join(ROOT, \"..\", \"data\")` |\n| `eval_8gen_finer_depth.py` | 21 | same |\n| `eval_8gen_sampling_ablation.py` | 32 | `Path(os.path.join(ROOT, \"data\"))` → `Path(os.path.join(ROOT, \"..\", \"data\"))` |\n| `compute_dataset_stats.py` | 9 | `os.path.join(ROOT, \"data\")` → `os.path.join(ROOT, \"..\", \"data\")` |\n| `eval_8gen_cross_model_chains.py` | 56 | `Path(os.path.join(ROOT, \"data\"))` → `Path(os.path.join(ROOT, \"..\", \"data\"))` |\n| `8gen_length_confound.py` | 19 | `os.path.join(ROOT, \"data\")` → `os.path.join(ROOT, \"..\", \"data\")` |\n| `eval_8gen_baselines_pooled.py` | 15 | `ROOT / \"data\"` → `ROOT.parent / \"data\"` |\n| `benchmark_efficiency.py` | 17 | `ROOT / \"data\"` → `ROOT.parent / \"data\"` |\n| `scripts/bootstrap_ci_v2.py` | 14 | `ROOT / \"data\"` → `ROOT.parent / \"data\"` |\n| `scripts/plot_fig2.py` | 48 | `ROOT / 'data' / ...` → `ROOT.parent / 'data' / ...` |\n| `scripts/plot_fig3.py` | 30 | Added `DATA = ROOT.parent / 'data'`, replaced 3 inline `ROOT / 'data'` refs |\n| `scripts/lofo_ablation.py` | 7 | Added `\"..\"` before `\"data\"` in `os.path.join` |\n| `scripts/alt_classifier_eval.py` | 95 | `os.path.join(base, \"data\", ...)` → `os.path.join(base, \"..\", \"data\", ...)` |\n| `experiments/human_edit_robustness/run_robustness.py` | 37 | `PROJECT_ROOT / \"data\"` → `PROJECT_ROOT.parent / \"data\"` |\n| `generate_chain.py` | 92, 94 | argparse defaults `\"data/...\"` → `\"../data/...\"` |\n| `extract_features.py` | 172, 173 | argparse defaults `\"data/...\"` → `\"../data/...\"` |\n| `classify_and_eval.py` | 186 | argparse default `\"data/features.csv\"` → `\"../data/features.csv\"` |\n| `README.md` | 3-17, 34, 40, 43, 55-56, 65-66, 75 | Added directory structure section; updated all example paths |\n\nVerification greps confirm zero remaining `ROOT, \"data\"`, `ROOT / \"data\"`, or bare `\"data/...\"` patterns in any `.py` file."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-supplement-paths.md"
+}

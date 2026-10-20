@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d86294bf055fd4acedf8",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_3_1778816068.md",
+  "task_key": "loop_3_1778816068",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778816068.md",
+    "occurrence": 1,
+    "bytes": 4096,
+    "sha256": "ae5247e76aa50eb9736f49c59a35ee1bbde015cde8a33c916c8053258f50162c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-15T03:22:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 autodl-5090，GPU 白名单 cuda:0/1/2/3（4× RTX 5090）。不要用白名单外的卡\n- Qwen3-8B-Base 占 cuda:0 约 16.5GB VRAM，与其他任务共享 cuda:0 时容易 OOM（plan-004 首次失败根因）\n- `submit_training_job` 注入 CUDA_VISIBLE_DEVICES 后脚本内只能看到 cuda:0，`--device` 必须传 cuda:0\n- 所有 training output 写 `/root/autodl-tmp/`，根分区只有 ~30GB（已发生过磁盘满事故）\n- tmux_backend 有 bug（SIGHUP 误杀），当前用 nohup 启动，generate_chain.py 已加 SIGHUP 忽略\n- Claim 3 (Downstream Utility) 已确认 negative，D009 reframe 为 diagnostic-not-curative，**不要再跑 curation 实验**\n- EMNLP 2026 ARR deadline 2026-05-25（10 天后），AAAI 2027 deadline 2026-08-02\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090，工作目录 `/root/gen-depth-fingerprint/`\n- Python：`/root/miniconda3/bin/python`（conda base env，不要创建 venv）\n- 模型路径：`/root/autodl-tmp/models/` 下有 pythia-{410m,1b,2.8b}、olmo-2-1b、qwen3-{0.6b,1.7b}-Base、Qwen3-8B-Base\n- 数据路径：`/root/gen-depth-fingerprint/data/`（generations）+ `/root/autodl-tmp/gen-depth-fingerprint/` 用于大文件 symlink\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程：plan-014 PID 134817（Qwen3-8B generation, cuda:0），cron 监控中\n- 4 个 Worker 仍在 running（plan-014-completion 分析、diagnose-014-progress、quick-014-check、ssh-connectivity-test），可能是因 SSH 连接问题卡住\n\n### 3. 📊 当前状态\n**刚完成**：plan-004-v2（15/15 downstream runs DONE，negative 结论已写入 D009）、plan-015-v2（ordinal baseline bootstrap CI 确认 7-feat ensemble 优势）。全部 P0 实验仅剩 plan-014。\n\n**RUNNING**：\n- `plan-014`：Qwen3-8B-Base generation chain（RC9 scale 验证），PID 134817 on cuda:0。上次检查 383 lines generated（~38%），预计总时长 ~4h。cron 确认存活。\n\n**等待中**：\n- 4 个 Worker running（可能因 SSH 卡住）——新 session 应先检查是否还活着\n- plan-014 完成后需要：特征提取 → LOGO 评估 → 与现有 5 generator 结果合并\n- 全部 P0 完成后 → 启动 Paper Agent（writing_plan 尚未创建）\n\n### 4. 📋 待办（条件触发式）\n- plan-014 cron 回调（generation 完成）→ spawn Worker 跑特征提取（extract_features.py + extract_features_crossref.py 3 个 ref model）→ LOGO 评估 → 更新 registry metrics\n- plan-014 LOGO F1 结果出来 → 若 ≥0.70 → RC9 scale concern 回应充分，汇报 Director \"ready for paper\"；若 <0.60 → honest limitation，更新 paper_framing.md\n- 全部 P0 DONE → 读 paper-plan skill → spawn Worker 创建 writing_plan.yaml → 启动论文写作流水线\n- 4 个 running Worker 如果已死 → cancel 掉，不影响流程\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D001: MVP PASS (F1=0.84) → D002: 进入研究阶段 → D005: dual dynamics 细化 → D006: empirical/conceptual 定位 → D007: re-dream 通过 → D008: ensemble 一致性优势叙事 → D009: Claim 3 negative reframe\n- 3 条 Claim 状态：C1 ✅ (depth discriminability)、C2 ✅ (differential response + complementarity)、C3 ❌→reframe (diagnostic not curative)\n- 只差 RC9（scale）= plan-014 一个数据点\n\n**易错点**：\n- plan-014 的 Qwen3-8B 数据用的是 `openwebtext_seeds.jsonl` 而非 `wiki_seed_1000.jsonl`（spec 里 data_path 和实际命令不一致），特征提取时注意 seed 对齐\n- report.md 里 \"趋势：成功 20 / 负向 0\" 漏计了 plan-004-v2 的 negative 结论，应修正\n- paper_framing.md 里 headline template 还有 \"Z% downstream\" 占位符，需要改为 negative finding 的措辞\n- nohup 启动的 orphan 进程（plan-014）没有 tmux session，查状态只能 `ps -p PID` + `wc -l output_file`\n- 距 EMNLP ARR deadline 仅 10 天，Director 未明确是否冲 EMNLP——如果冲，论文写作必须立即并行启动（不等 plan-014 完成）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778816068.md"
+}

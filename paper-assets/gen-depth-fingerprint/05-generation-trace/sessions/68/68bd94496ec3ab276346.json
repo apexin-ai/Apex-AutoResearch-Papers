@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68bd94496ec3ab276346",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper d031 framing core",
+  "task_key": "worker_paper_d031-framing-core_20260520T112415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d031-framing-core_20260520T112415_result.json",
+    "occurrence": 1,
+    "bytes": 884,
+    "sha256": "a92cd8f86b5d678652ccd36309e92a9af92a6994e6f3dedeb90d3d19640e55e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 9 处修改完成：\n\n**abstract.tex (3处)**\n- **N1**: L3 — \"Recursive LLM generation\" → \"Recursive generation by base (pretrained) LLMs\"\n- **W3**: L4 — \"under standard decoding\" → \"under standard decoding (temperature $\\leq 0.7$, nucleus $p{=}0.9$)\"\n- **N2**: L6 — \"equivalence testing\" → \"preliminary equivalence testing (…; $n{=}3$ seeds)\"\n\n**introduction.tex (1处)**\n- **N4**: L19-22 — 贡献列表重排为 DDR decomposition → task formulation → interpretable baseline + evaluation; 第3条同步加入 preliminary + n=3 seeds 限定\n\n**discussion.tex (3处)**\n- **W7**: L10 — 新增两个诊断场景 (batch auditing + provenance tracing)\n- **W8**: L11 — 新增 generator-unknown 部署下的 conservative lower bound 说明\n- **N1 instruct**: L21 — 新增 ρ 反转机制假说 + QLoRA recovery 解释"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d031-framing-core.md"
+}

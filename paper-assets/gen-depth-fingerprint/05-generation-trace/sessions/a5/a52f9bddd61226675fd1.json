@@ -1,0 +1,1343 @@
+{
+  "schema_version": "1.0",
+  "id": "a52f9bddd61226675fd1",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "paper framing sync",
+  "task_key": "worker_paper_framing-sync_20260517T211046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_framing-sync_20260517T211046.log",
+    "occurrence": 1,
+    "bytes": 130722,
+    "sha256": "066d8e1a4d9e559aeaa91d1df75fd3183afca945060bf91b3dd52c414916b612"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+                "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "7c898bb1-ae3c-424e-bf60-d773902f6ff3",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779070200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "28269e02-2d87-4898-ad3c-ee4e3753ed2d",
+                "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the current paper_framing.md and the relevant paper sections in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "1c8d9c90-f30b-4a3d-bfdf-9195f2991b5c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Udc1dG5PhCFKhatWcis37M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13467,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13467
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013ExEdMNxqXJLfdyFxeXEkW",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "01c39d00-729e-4cc7-81d1-0145e5936ca2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Udc1dG5PhCFKhatWcis37M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13467,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13467
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T21:10:56.342Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_013ExEdMNxqXJLfdyFxeXEkW",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "92abf927-4814-45ed-b950-32af52bfa11a",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__read_project_file",
+                "mcp__agent-ml-research__save_project_file"
+              ],
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+              "total_deferred_tools": 22
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me read the current paper_framing.md and the paper sections in parallel.",
+              "signature": "EosCClkIDRgCKkBVe28/jr8zZTj+5d1yrfCk6fZTPGmbtS0y5ixwwUFDvETbRwuV7gBW84w4y//WfCd6fw17jw6F71F/+IlUzbPSMg9jbGF1ZGUtb3B1cy00LTY4ABIMCSVmCkpdh/WH4V3wGgwEguu9bgh/hcJzutQiMKBntQa5gFBuSU5p4zyjUhFD6FUlO/0P34QStjytoiRmtcqY8mfyVVI9+NKKKL8n9CpgrHxROSCqnsWbQW6WXCOAT6/owJcVmGYS1v0S6xCGKd86PMIX5vwxZf+3n0iswx2+zkcQmCGf0RJmI5vgrBKJnCzCotHIjmfWg4zXYH43BnU5wvVvMhQqywWeEm99T3WXGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "3040dbcb-d060-4f74-b2b5-63e69083cf9e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ME7HUqP29TYbjhe7AdcrUu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 721,
+                "cache_read_input_tokens": 25308,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 721
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FYdgWY2zUPrjhVa1EReaJv",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "gen-depth-fingerprint",
+                "file": "paper_framing.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "e30925cc-f079-4df1-b4bd-c0c26f58ab8b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ME7HUqP29TYbjhe7AdcrUu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 721,
+                "cache_read_input_tokens": 25308,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 721
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T21:11:00.004Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FYdgWY2zUPrjhVa1EReaJv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — gen-depth-fingerprint\\\\n\\\\n## Target Venue\\\\n- Primary: AAAI 2027 (deadline: August 2, 2026)\\\\n- **Primary: EMNLP 2026 ARR (deadline: May 25, 2026)** — D012: 恢复为主投稿目标\\\\n- Fallback venues: ICLR 2027 (Sep 24), NAACL 2027 ARR (Oct 16)\\\\n\\\\n## Core Insight\\\\nNon-paraphrastic LLM generation chains exhibit **differential depth response**: **central-tendency/diversity features** (entropy_mean, TTR, hapax ratio) drift monotonically with depth, while **distributional shape features** (entropy_std, tail_decay) remain near-stationary. This differential response is consistent with recursive generation inducing a **location shift** in the NLL distribution — the text becomes progressively more predictable (mean shifts) while the functional form of the distribution is preserved (shape is invariant). The genuine novelty is not the drift/stationarity split per se (which follows from location-shift properties), but: (a) the **task formulation** (ordinal depth estimation beyond binary detection), (b) **empirical validation** across 6 generators / 3 model families (including 7B+ scale) showing this pattern is robust, (c) the practical consequence that combining both feature types yields **complementary signal** for depth classification (macro-F1 0.79 cross-generator with 6 generators, 0.75--0.77 cross-family). Depth signal is scale-invariant as a phenomenon, though cross-scale classifier transfer shows a moderate gap (8B held-out F1=0.69 vs ≤2.8B 0.76-0.85).\\\\n\\\\n## Core Claims (3 条，均可证伪)\\\\n\\\\n**Claim 1 — Depth Discriminability**: Distributional features computed under a held-out reference model can classify text generation depth (gen-0 / gen-1 / gen-2+) with macro-F1 significantly above chance, generalizing across unseen generators (leave-one-generator-out evaluation).\\\\n\\\\n**Claim 2 — Differential Depth Response & Feature Complementarity**: Depth-dependent features exhibit differential response: central-tendency/diversity features (entropy_mean, TTR, hapax_ratio) drift monotonically with depth (consistent with location shift in NLL distribution), while shape features (entropy_std, tail_decay) remain near-stationary. Full feature set (cross-gen 0.80) significantly outperforms surface-only (0.75) and reference-only (0.75) — the two feature groups are complementary. Notably, reference features generalize better across generators while surface features are stronger in-distribution — demonstrating complementarity across different evaluation axes.\\\\n\\\\n**Claim 3 — Downstream Utility (Negative Finding)**: Depth-aware data curation does NOT improve downstream CLM quality compared to random subsampling. At equal data count, size_matched (random control, ppl=2.367) outperforms depth01 (depth-stratified, 2.387) and binary_filtered (2.389). The primary determinant is data quantity, not depth composition (all 12K samples → ppl=2.335). Depth fingerprinting is an effective **diagnostic** tool for characterizing provenance, but not a **curative** tool for data curation. This honest negative finding is reported transparently.\\\\n\\\\n## Story Spine\\\\n\\\\n**Problem**: Web-scraped training data increasingly contains LLM-generated text of unknown provenance depth. Current detection methods offer only binary real-vs-synthetic classification, forcing all-or-nothing filtering: discard everything flagged as synthetic (losing useful gen-1 content) or keep everything (admitting high-risk deep-generation text with compounding distributional drift).\\\\n\\\\n**Existing approaches & gaps**: Binary detectors (FastDetectGPT, SynthID-Text, LD-Score) cannot distinguish gen-1 from gen-2+. Attractor cycle theory (ACL 2025) proves paraphrasing chains converge to 2-period cycles, bounding depth signal to ~3 classes — but this result depends on the semantic-preservation constraint of paraphrasing. No existing work attempts generation depth estimation. When repurposed as ordinal depth predictors, single detector scores (Avg-LogProb 0.77, LD-Score 0.72) show moderate signal but **high cross-generator variance** (CIs spanning 0.41–0.82), making them unreliable as standalone depth estimators.\\\\n\\\\n**Our framing**: We characterize distributional drift in recursive non-paraphrastic LLM generation, revealing **differential depth response**: level/diversity features (including reference-model entropy_mean) drift monotonically with depth, while distributional shape features (entropy variance, tail decay) remain near-stationary. This split is about **what the feature measures** (central tendency vs shape), not where it comes from. The combination of drifting and stationary features yields a 7-feature ensemble (LOGO F1=0.80 [0.786, 0.799]) that **significantly and consistently** outperforms all single-detector baselines (p<0.001 vs Avg-LogProb 0.77, LD-Score 0.72, FastDetectGPT 0.63, Binoculars 0.58). Crucially, single detectors exhibit high cross-generator variance (CIs spanning 0.41–0.82), while our ensemble maintains tight consistency — the practical advantage is **reliability across unknown generators**, not just average performance.\\\\n\\\\n**Headline result template**: \\\\\\\"On multi-generator continuation chains across 6 generators from 3 model families (0.6B–8.2B), our 7-feature distributional ensemble achieves 6-gen LOGO macro-F1 of 0.79 for 3-class depth estimation (gen-0/gen-1/gen-2+), with per-generator held-out F1 ranging from 0.68 to 0.86. Depth-aware data curation does not outperform random subsampling for downstream CLM quality, establishing depth fingerprinting as a diagnostic tool for provenance characterization, not a curative tool for data selection.\\\\\\\"\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n**RC1 — \\\\\\\"Is this just vocabulary impoverishment?\\\\\\\"**: Surface features alone achieve 0.73 macro-F1, but full features achieve 0.79 (p<0.001). We don't claim reference features are \\\\\\\"better\\\\\\\" — we show they capture a **different, complementary** signal (stationary distributional shape vs drifting level/diversity). The dual dynamics finding is itself a scientific contribution. Note: \\\\\\\"fingerprint\\\\\\\" in the paper refers to the full feature vector's combination, not just reference-model features.\\\\n\\\\n**RC7 — Pre-registered prediction (LD-Score)**: LD-Score (character-distribution signature) measures character-level distributional properties. We predict it is a **level feature** (sensitive to vocabulary/character frequency shifts) and should exhibit **H₂ drift** with depth. This prediction is registered before plan_011 execution as an out-of-sample test of the level/shape framework.\\\\n\\\\n**RC2 — \\\\\\\"Does this generalize beyond Pythia?\\\\\\\"**: MVP used same-family models (Pythia-2.8B generator + Pythia-410M reference). → Cross-family experiments: Qwen/OLMo generators + non-Pythia reference models (RQ1 cross-generator evaluation).\\\\n\\\\n**RC3 — \\\\\\\"Is 3-class sufficient? Why not finer-grained?\\\\\\\"**: Attractor theory bounds paraphrasing to ~3 classes. → Secondary analysis: finer-grained ordinal classification (gen-0 through gen-4) on non-paraphrastic chains to test if more depth signal exists.\\\\n\\\\n**RC4 — \\\\\\\"How realistic are single-model chains?\\\\\\\"**: Real web contamination involves diverse generators. → Cross-model chains (different generator per depth step) as primary evaluation setting (RQ3).\\\\n\\\\n**RC5 — \\\\\\\"What about human editing / post-processing?\\\\\\\"**: Real-world synthetic text is often edited. → Robustness test with simulated human edits (random word replacement as lower-bound + LLM-simulated editing).\\\\n\\\\n**RC6 — \\\\\\\"Ecological validity — continuation vs real web content\\\\\\\"**: Lab-constructed chains may not match wild distribution. → Multi-domain seeds (news, Wikipedia, scientific, creative) + multiple prompt types (continuation, elaboration, inspired rewriting).\\\\n\\\\n**RC8 — \\\\\\\"Aren't these just OOD detection features?\\\\\\\"**: Reference-model entropy statistics are functionally NLL-based OOD scores (same signal backbone as DetectGPT/GLTR/Binoculars). Our contribution is NOT the features themselves but: (a) the problem formulation (ordinal depth estimation, not binary detection), (b) the empirical discovery that these features exhibit dual dynamics (level drift vs shape stationarity) under recursive generation, and (c) the practical application to risk-stratified data curation. Paper must explicitly connect to OOD detection + perplexity-based detection literature and position the contribution as primarily empirical/conceptual rather than methodological.\\\\n\\\\n**RC9 — \\\\\\\"Only ≤2.8B generators — does this transfer to frontier scale?\\\\\\\"**: **Answered (plan-014, D011).** Qwen3-8B (7.6B params) added as 6th generator. Depth signal IS present at 8B scale — all feature-depth Spearman correlations significant (hapax ρ=-0.568, ttr ρ=-0.553, entropy_mean ρ=-0.475, all p<1e-6), confirming depth fingerprinting is a scale-invariant phenomenon. However, cross-scale transfer shows a gap: Qwen3-8B held-out F1=0.69 vs ≤2.8B generators 0.76-0.85 (6-gen LOGO average 0.7886, -1.1pp from 5-gen 0.80). Notably, adding 8B data improves original 5-gen classification (+0.9pp to 0.8086). **Paper framing**: depth signal universality is supported (Claim 1 holds); cross-scale classifier transfer gap reported as honest limitation with analysis (8B text is more fluent → smaller feature margins → harder to distinguish from human text). The 6-gen LOGO 0.79 still significantly outperforms all single-detector baselines.\\\\n\\\\n**RC10 — \\\\\\\"Text length confound\\\\\\\"**: Hapax ratio and TTR are mechanically length-dependent. If generation chains produce texts of systematically different lengths, surface features may track length artifacts rather than distributional drift. → Length distribution analysis + length-normalized features + length-matched comparison (plan_013). Critical confound control.\\\\n\\\\n**RC11 — \\\\\\\"Downstream utility — single run, no CIs\\\\\\\"**: Depth-aware filtering advantage must be validated with multiple seeds + bootstrap CIs + sample-count-matched comparison (to control for data size confound). Must use non-Pythia model for downstream fine-tuning (OLMo-1B) to avoid reference model circularity (Pythia-410M as both feature extractor and eval model).\\\\n\\\\n## Contribution Positioning (D006+D007)\\\\nThe contribution is **primarily empirical and conceptual**, not methodological:\\\\n1. **Problem formulation**: Ordinal depth estimation as a new task beyond binary detection (genuinely novel — no prior work)\\\\n2. **Empirical characterization**: Differential depth response across 6 generators / 3 families (including 7B+ scale), with robust cross-generator generalization (6-gen LOGO 0.79, family-out 0.75--0.77). Scale-invariant phenomenon with honest cross-scale transfer gap.\\\\n3. **Negative finding**: Depth-aware data curation does NOT improve downstream CLM quality — depth fingerprinting is diagnostic, not curative (D009).\\\\n\\\\n**Framing discipline (D007 — re-dream consensus):**\\\\n- Do NOT call the drift/stationarity split a \\\\\\\"discovery\\\\\\\" — it follows from location-shift properties of the NLL distribution (means shift under distributional drift, shapes don't). Acknowledge this explicitly.\\\\n- Do NOT use H1/H2 terminology (overloads time-series unit-root convention). Use \\\\\\\"drifting\\\\\\\" vs \\\\\\\"stationary\\\\\\\" or \\\\\\\"differential response.\\\\\\\"\\\\n- Do NOT overclaim \\\\\\\"dual dynamics\\\\\\\" as a novel theoretical framework. Use \\\\\\\"differential depth response\\\\\\\" — more calibrated.\\\\n- Consider renaming \\\\\\\"distributional fingerprinting\\\\\\\" → \\\\\\\"distributional depth profiling\\\\\\\" (fingerprinting implies source identification, creates confusion with LLM attribution literature).\\\\n- Provide at least a speculative theoretical motivation for WHY shape features remain stationary (e.g., \\\\\\\"shape is determined by sampling mechanism and architecture, invariant to input content drift\\\\\\\").\\\\n- Report **realistic performance range** (0.69–0.85 per-generator held-out F1, 0.79 LOGO average across 6 generators) in abstract/conclusion, not just best-case.\\\\n- R² on 5 aggregated depth means is statistically meaningless (3 df). Use individual-level Spearman ρ with bootstrap CIs throughout.\\\\n\\\\nRelated work must expand to 30+ references covering: perplexity-based detection (DetectGPT, GLTR, DNA-GPT, Binoculars), model collapse theory (Alemohammad et al., Dohmatob et al., Gerstgrasser et al., Guo et al.), OOD detection (Hendrycks & Gimpel), data quality scoring (DSIR, QuRating, CCNet), watermarking (Kirchenbauer et al.), vocabulary diversity (Guo et al. 2024, Padmakumar & He 2024, Holtzman et al. 2020), **stylometry/authorship attribution** (Stamatatos 2009, Koppel et al. 2009 — feature set is essentially stylometric), **iterative generation** (LLM as Broken Telephone ACL 2025, Markovian Generation Chains), **membership inference** (Shi et al. 2024).\\\\n\\\\n## Venue Fit\\\\n- AAAI 2027: Fit as empirical + conceptual contribution — novel task formulation (depth estimation) + surprising empirical finding (dual dynamics) + practical application (data curation). Must position as empirical science, not methodology paper.\\\\n- EMNLP 2026: Excellent fit — directly addresses special theme \\\\\\\"New Missions for NLP Research\\\\\\\" (data contamination, synthetic data feedback loops, data governance). NLP-native venue for text-focused work. Empirical/conceptual contributions better received here than AAAI.\\\\n\\\", \\\"total_chars\\\": 13087, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "8811e17d-c5cd-4d02-82a0-24280367c3f2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — gen-depth-fingerprint\\\\n\\\\n## Target Venue\\\\n- Primary: AAAI 2027 (deadline: August 2, 2026)\\\\n- **Primary: EMNLP 2026 ARR (deadline: May 25, 2026)** — D012: 恢复为主投稿目标\\\\n- Fallback venues: ICLR 2027 (Sep 24), NAACL 2027 ARR (Oct 16)\\\\n\\\\n## Core Insight\\\\nNon-paraphrastic LLM generation chains exhibit **differential depth response**: **central-tendency/diversity features** (entropy_mean, TTR, hapax ratio) drift monotonically with depth, while **distributional shape features** (entropy_std, tail_decay) remain near-stationary. This differential response is consistent with recursive generation inducing a **location shift** in the NLL distribution — the text becomes progressively more predictable (mean shifts) while the functional form of the distribution is preserved (shape is invariant). The genuine novelty is not the drift/stationarity split per se (which follows from location-shift properties), but: (a) the **task formulation** (ordinal depth estimation beyond binary detection), (b) **empirical validation** across 6 generators / 3 model families (including 7B+ scale) showing this pattern is robust, (c) the practical consequence that combining both feature types yields **complementary signal** for depth classification (macro-F1 0.79 cross-generator with 6 generators, 0.75--0.77 cross-family). Depth signal is scale-invariant as a phenomenon, though cross-scale classifier transfer shows a moderate gap (8B held-out F1=0.69 vs ≤2.8B 0.76-0.85).\\\\n\\\\n## Core Claims (3 条，均可证伪)\\\\n\\\\n**Claim 1 — Depth Discriminability**: Distributional features computed under a held-out reference model can classify text generation depth (gen-0 / gen-1 / gen-2+) with macro-F1 significantly above chance, generalizing across unseen generators (leave-one-generator-out evaluation).\\\\n\\\\n**Claim 2 — Differential Depth Response & Feature Complementarity**: Depth-dependent features exhibit differential response: central-tendency/diversity features (entropy_mean, TTR, hapax_ratio) drift monotonically with depth (consistent with location shift in NLL distribution), while shape features (entropy_std, tail_decay) remain near-stationary. Full feature set (cross-gen 0.80) significantly outperforms surface-only (0.75) and reference-only (0.75) — the two feature groups are complementary. Notably, reference features generalize better across generators while surface features are stronger in-distribution — demonstrating complementarity across different evaluation axes.\\\\n\\\\n**Claim 3 — Downstream Utility (Negative Finding)**: Depth-aware data curation does NOT improve downstream CLM quality compared to random subsampling. At equal data count, size_matched (random control, ppl=2.367) outperforms depth01 (depth-stratified, 2.387) and binary_filtered (2.389). The primary determinant is data quantity, not depth composition (all 12K samples → ppl=2.335). Depth fingerprinting is an effective **diagnostic** tool for characterizing provenance, but not a **curative** tool for data curation. This honest negative finding is reported transparently.\\\\n\\\\n## Story Spine\\\\n\\\\n**Problem**: Web-scraped training data increasingly contains LLM-generated text of unknown provenance depth. Current detection methods offer only binary real-vs-synthetic classification, forcing all-or-nothing filtering: discard everything flagged as synthetic (losing useful gen-1 content) or keep everything (admitting high-risk deep-generation text with compounding distributional drift).\\\\n\\\\n**Existing approaches & gaps**: Binary detectors (FastDetectGPT, SynthID-Text, LD-Score) cannot distinguish gen-1 from gen-2+. Attractor cycle theory (ACL 2025) proves paraphrasing chains converge to 2-period cycles, bounding depth signal to ~3 classes — but this result depends on the semantic-preservation constraint of paraphrasing. No existing work attempts generation depth estimation. When repurposed as ordinal depth predictors, single detector scores (Avg-LogProb 0.77, LD-Score 0.72) show moderate signal but **high cross-generator variance** (CIs spanning 0.41–0.82), making them unreliable as standalone depth estimators.\\\\n\\\\n**Our framing**: We characterize distributional drift in recursive non-paraphrastic LLM generation, revealing **differential depth response**: level/diversity features (including reference-model entropy_mean) drift monotonically with depth, while distributional shape features (entropy variance, tail decay) remain near-stationary. This split is about **what the feature measures** (central tendency vs shape), not where it comes from. The combination of drifting and stationary features yields a 7-feature ensemble (LOGO F1=0.80 [0.786, 0.799]) that **significantly and consistently** outperforms all single-detector baselines (p<0.001 vs Avg-LogProb 0.77, LD-Score 0.72, FastDetectGPT 0.63, Binoculars 0.58). Crucially, single detectors exhibit high cross-generator variance (CIs spanning 0.41–0.82), while our ensemble maintains tight consistency — the practical advantage is **reliability across unknown generators**, not just average performance.\\\\n\\\\n**Headline result template**: \\\\\\\"On multi-generator continuation chains across 6 generators from 3 model families (0.6B–8.2B), our 7-feature distributional ensemble achieves 6-gen LOGO macro-F1 of 0.79 for 3-class depth estimation (gen-0/gen-1/gen-2+), with per-generator held-out F1 ranging from 0.68 to 0.86. Depth-aware data curation does not outperform random subsampling for downstream CLM quality, establishing depth fingerprinting as a diagnostic tool for provenance characterization, not a curative tool for data selection.\\\\\\\"\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n**RC1 — \\\\\\\"Is this just vocabulary impoverishment?\\\\\\\"**: Surface features alone achieve 0.73 macro-F1, but full features achieve 0.79 (p<0.001). We don't claim reference features are \\\\\\\"better\\\\\\\" — we show they capture a **different, complementary** signal (stationary distributional shape vs drifting level/diversity). The dual dynamics finding is itself a scientific contribution. Note: \\\\\\\"fingerprint\\\\\\\" in the paper refers to the full feature vector's combination, not just reference-model features.\\\\n\\\\n**RC7 — Pre-registered prediction (LD-Score)**: LD-Score (character-distribution signature) measures character-level distributional properties. We predict it is a **level feature** (sensitive to vocabulary/character frequency shifts) and should exhibit **H₂ drift** with depth. This prediction is registered before plan_011 execution as an out-of-sample test of the level/shape framework.\\\\n\\\\n**RC2 — \\\\\\\"Does this generalize beyond Pythia?\\\\\\\"**: MVP used same-family models (Pythia-2.8B generator + Pythia-410M reference). → Cross-family experiments: Qwen/OLMo generators + non-Pythia reference models (RQ1 cross-generator evaluation).\\\\n\\\\n**RC3 — \\\\\\\"Is 3-class sufficient? Why not finer-grained?\\\\\\\"**: Attractor theory bounds paraphrasing to ~3 classes. → Secondary analysis: finer-grained ordinal classification (gen-0 through gen-4) on non-paraphrastic chains to test if more depth signal exists.\\\\n\\\\n**RC4 — \\\\\\\"How realistic are single-model chains?\\\\\\\"**: Real web contamination involves diverse generators. → Cross-model chains (different generator per depth step) as primary evaluation setting (RQ3).\\\\n\\\\n**RC5 — \\\\\\\"What about human editing / post-processing?\\\\\\\"**: Real-world synthetic text is often edited. → Robustness test with simulated human edits (random word replacement as lower-bound + LLM-simulated editing).\\\\n\\\\n**RC6 — \\\\\\\"Ecological validity — continuation vs real web content\\\\\\\"**: Lab-constructed chains may not match wild distribution. → Multi-domain seeds (news, Wikipedia, scientific, creative) + multiple prompt types (continuation, elaboration, inspired rewriting).\\\\n\\\\n**RC8 — \\\\\\\"Aren't these just OOD detection features?\\\\\\\"**: Reference-model entropy statistics are functionally NLL-based OOD scores (same signal backbone as DetectGPT/GLTR/Binoculars). Our contribution is NOT the features themselves but: (a) the problem formulation (ordinal depth estimation, not binary detection), (b) the empirical discovery that these features exhibit dual dynamics (level drift vs shape stationarity) under recursive generation, and (c) the practical application to risk-stratified data curation. Paper must explicitly connect to OOD detection + perplexity-based detection literature and position the contribution as primarily empirical/conceptual rather than methodological.\\\\n\\\\n**RC9 — \\\\\\\"Only ≤2.8B generators — does this transfer to frontier scale?\\\\\\\"**: **Answered (plan-014, D011).** Qwen3-8B (7.6B params) added as 6th generator. Depth signal IS present at 8B scale — all feature-depth Spearman correlations significant (hapax ρ=-0.568, ttr ρ=-0.553, entropy_mean ρ=-0.475, all p<1e-6), confirming depth fingerprinting is a scale-invariant phenomenon. However, cross-scale transfer shows a gap: Qwen3-8B held-out F1=0.69 vs ≤2.8B generators 0.76-0.85 (6-gen LOGO average 0.7886, -1.1pp from 5-gen 0.80). Notably, adding 8B data improves original 5-gen classification (+0.9pp to 0.8086). **Paper framing**: depth signal universality is supported (Claim 1 holds); cross-scale classifier transfer gap reported as honest limitation with analysis (8B text is more fluent → smaller feature margins → harder to distinguish from human text). The 6-gen LOGO 0.79 still significantly outperforms all single-detector baselines.\\\\n\\\\n**RC10 — \\\\\\\"Text length confound\\\\\\\"**: Hapax ratio and TTR are mechanically length-dependent. If generation chains produce texts of systematically different lengths, surface features may track length artifacts rather than distributional drift. → Length distribution analysis + length-normalized features + length-matched comparison (plan_013). Critical confound control.\\\\n\\\\n**RC11 — \\\\\\\"Downstream utility — single run, no CIs\\\\\\\"**: Depth-aware filtering advantage must be validated with multiple seeds + bootstrap CIs + sample-count-matched comparison (to control for data size confound). Must use non-Pythia model for downstream fine-tuning (OLMo-1B) to avoid reference model circularity (Pythia-410M as both feature extractor and eval model).\\\\n\\\\n## Contribution Positioning (D006+D007)\\\\nThe contribution is **primarily empirical and conceptual**, not methodological:\\\\n1. **Problem formulation**: Ordinal depth estimation as a new task beyond binary detection (genuinely novel — no prior work)\\\\n2. **Empirical characterization**: Differential depth response across 6 generators / 3 families (including 7B+ scale), with robust cross-generator generalization (6-gen LOGO 0.79, family-out 0.75--0.77). Scale-invariant phenomenon with honest cross-scale transfer gap.\\\\n3. **Negative finding**: Depth-aware data curation does NOT improve downstream CLM quality — depth fingerprinting is diagnostic, not curative (D009).\\\\n\\\\n**Framing discipline (D007 — re-dream consensus):**\\\\n- Do NOT call the drift/stationarity split a \\\\\\\"discovery\\\\\\\" — it follows from location-shift properties of the NLL distribution (means shift under distributional drift, shapes don't). Acknowledge this explicitly.\\\\n- Do NOT use H1/H2 terminology (overloads time-series unit-root convention). Use \\\\\\\"drifting\\\\\\\" vs \\\\\\\"stationary\\\\\\\" or \\\\\\\"differential response.\\\\\\\"\\\\n- Do NOT overclaim \\\\\\\"dual dynamics\\\\\\\" as a novel theoretical framework. Use \\\\\\\"differential depth response\\\\\\\" — more calibrated.\\\\n- Consider renaming \\\\\\\"distributional fingerprinting\\\\\\\" → \\\\\\\"distributional depth profiling\\\\\\\" (fingerprinting implies source identification, creates confusion with LLM attribution literature).\\\\n- Provide at least a speculative theoretical motivation for WHY shape features remain stationary (e.g., \\\\\\\"shape is determined by sampling mechanism and architecture, invariant to input content drift\\\\\\\").\\\\n- Report **realistic performance range** (0.69–0.85 per-generator held-out F1, 0.79 LOGO average across 6 generators) in abstract/conclusion, not just best-case.\\\\n- R² on 5 aggregated depth means is statistically meaningless (3 df). Use individual-level Spearman ρ with bootstrap CIs throughout.\\\\n\\\\nRelated work must expand to 30+ references covering: perplexity-based detection (DetectGPT, GLTR, DNA-GPT, Binoculars), model collapse theory (Alemohammad et al., Dohmatob et al., Gerstgrasser et al., Guo et al.), OOD detection (Hendrycks & Gimpel), data quality scoring (DSIR, QuRating, CCNet), watermarking (Kirchenbauer et al.), vocabulary diversity (Guo et al. 2024, Padmakumar & He 2024, Holtzman et al. 2020), **stylometry/authorship attribution** (Stamatatos 2009, Koppel et al. 2009 — feature set is essentially stylometric), **iterative generation** (LLM as Broken Telephone ACL 2025, Markovian Generation Chains), **membership inference** (Shi et al. 2024).\\\\n\\\\n## Venue Fit\\\\n- AAAI 2027: Fit as empirical + conceptual contribution — novel task formulation (depth estimation) + surprising empirical finding (dual dynamics) + practical application (data curation). Must position as empirical science, not methodology paper.\\\\n- EMNLP 2026: Excellent fit — directly addresses special theme \\\\\\\"New Missions for NLP Research\\\\\\\" (data contamination, synthetic data feedback loops, data governance). NLP-native venue for text-focused work. Empirical/conceptual contributions better received here than AAAI.\\\\n\\\", \\\"total_chars\\\": 13087, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/paper_framing.md\", \"content\": \"# Paper Framing — gen-depth-fingerprint\\n\\n## Target Venue\\n- Primary: AAAI 2027 (deadline: August 2, 2026)\\n- **Primary: EMNLP 2026 ARR (deadline: May 25, 2026)** — D012: 恢复为主投稿目标\\n- Fallback venues: ICLR 2027 (Sep 24), NAACL 2027 ARR (Oct 16)\\n\\n## Core Insight\\nNon-paraphrastic LLM generation chains exhibit **differential depth response**: **central-tendency/diversity features** (entropy_mean, TTR, hapax ratio) drift monotonically with depth, while **distributional shape features** (entropy_std, tail_decay) remain near-stationary. This differential response is consistent with recursive generation inducing a **location shift** in the NLL distribution — the text becomes progressively more predictable (mean shifts) while the functional form of the distribution is preserved (shape is invariant). The genuine novelty is not the drift/stationarity split per se (which follows from location-shift properties), but: (a) the **task formulation** (ordinal depth estimation beyond binary detection), (b) **empirical validation** across 6 generators / 3 model families (including 7B+ scale) showing this pattern is robust, (c) the practical consequence that combining both feature types yields **complementary signal** for depth classification (macro-F1 0.79 cross-generator with 6 generators, 0.75--0.77 cross-family). Depth signal is scale-invariant as a phenomenon, though cross-scale classifier transfer shows a moderate gap (8B held-out F1=0.69 vs ≤2.8B 0.76-0.85).\\n\\n## Core Claims (3 条，均可证伪)\\n\\n**Claim 1 — Depth Discriminability**: Distributional features computed under a held-out reference model can classify text generation depth (gen-0 / gen-1 / gen-2+) with macro-F1 significantly above chance, generalizing across unseen generators (leave-one-generator-out evaluation).\\n\\n**Claim 2 — Differential Depth Response & Feature Complementarity**: Depth-dependent features exhibit differential response: central-tendency/diversity features (entropy_mean, TTR, hapax_ratio) drift monotonically with depth (consistent with location shift in NLL distribution), while shape features (entropy_std, tail_decay) remain near-stationary. Full feature set (cross-gen 0.80) significantly outperforms surface-only (0.75) and reference-only (0.75) — the two feature groups are complementary. Notably, reference features generalize better across generators while surface features are stronger in-distribution — demonstrating complementarity across different evaluation axes.\\n\\n**Claim 3 — Downstream Utility (Negative Finding)**: Depth-aware data curation does NOT improve downstream CLM quality compared to random subsampling. At equal data count, size_matched (random control, ppl=2.367) outperforms depth01 (depth-stratified, 2.387) and binary_filtered (2.389). The primary determinant is data quantity, not depth composition (all 12K samples → ppl=2.335). Depth fingerprinting is an effective **diagnostic** tool for characterizing provenance, but not a **curative** tool for data curation. This honest negative finding is reported transparently.\\n\\n## Story Spine\\n\\n**Problem**: Web-scraped training data increasingly contains LLM-generated text of unknown provenance depth. Current detection methods offer only binary real-vs-synthetic classification, forcing all-or-nothing filtering: discard everything flagged as synthetic (losing useful gen-1 content) or keep everything (admitting high-risk deep-generation text with compounding distributional drift).\\n\\n**Existing approaches & gaps**: Binary detectors (FastDetectGPT, SynthID-Text, LD-Score) cannot distinguish gen-1 from gen-2+. Attractor cycle theory (ACL 2025) proves paraphrasing chains converge to 2-period cycles, bounding depth signal to ~3 classes — but this result depends on the semantic-preservation constraint of paraphrasing. No existing work attempts generation depth estimation. When repurposed as ordinal depth predictors, single detector scores (Avg-LogProb 0.77, LD-Score 0.72) show moderate signal but **high cross-generator variance** (CIs spanning 0.41–0.82), making them unreliable as standalone depth estimators.\\n\\n**Our framing**: We characterize distributional drift in recursive non-paraphrastic LLM generation, revealing **differential depth response**: level/diversity features (including reference-model entropy_mean) drift monotonically with depth, while distributional shape features (entropy variance, tail decay) remain near-stationary. This split is about **what the feature measures** (central tendency vs shape), not where it comes from. The combination of drifting and stationary features yields a 7-feature ensemble (LOGO F1=0.80 [0.786, 0.799]) that **significantly and consistently** outperforms all single-detector baselines (p<0.001 vs Avg-LogProb 0.77, LD-Score 0.72, FastDetectGPT 0.63, Binoculars 0.58). Crucially, single detectors exhibit high cross-generator variance (CIs spanning 0.41–0.82), while our ensemble maintains tight consistency — the practical advantage is **reliability across unknown generators**, not just average performance.\\n\\n**Headline result template**: \\\"On multi-generator continuation chains across 6 generators from 3 model families (0.6B–8.2B), our 7-feature distributional ensemble achieves 6-gen LOGO macro-F1 of 0.79 for 3-class depth estimation (gen-0/gen-1/gen-2+), with per-generator held-out F1 ranging from 0.68 to 0.86. Depth-aware data curation does not outperform random subsampling for downstream CLM quality, establishing depth fingerprinting as a diagnostic tool for provenance characterization, not a curative tool for data selection.\\\"\\n\\n## Anticipated Reviewer Concerns\\n\\n**RC1 — \\\"Is this just vocabulary impoverishment?\\\"**: Surface features alone achieve 0.73 macro-F1, but full features achieve 0.79 (p<0.001). We don't claim reference features are \\\"better\\\" — we show they capture a **different, complementary** signal (stationary distributional shape vs drifting level/diversity). The dual dynamics finding is itself a scientific contribution. Note: \\\"fingerprint\\\" in the paper refers to the full feature vector's combination, not just reference-model features.\\n\\n**RC7 — Pre-registered prediction (LD-Score)**: LD-Score (character-distribution signature) measures character-level distributional properties. We predict it is a **level feature** (sensitive to vocabulary/character frequency shifts) and should exhibit **H₂ drift** with depth. This prediction is registered before plan_011 execution as an out-of-sample test of the level/shape framework.\\n\\n**RC2 — \\\"Does this generalize beyond Pythia?\\\"**: MVP used same-family models (Pythia-2.8B generator + Pythia-410M reference). → Cross-family experiments: Qwen/OLMo generators + non-Pythia reference models (RQ1 cross-generator evaluation).\\n\\n**RC3 — \\\"Is 3-class sufficient? Why not finer-grained?\\\"**: Attractor theory bounds paraphrasing to ~3 classes. → Secondary analysis: finer-grained ordinal classification (gen-0 through gen-4) on non-paraphrastic chains to test if more depth signal exists.\\n\\n**RC4 — \\\"How realistic are single-model chains?\\\"**: Real web contamination involves diverse generators. → Cross-model chains (different generator per depth step) as primary evaluation setting (RQ3).\\n\\n**RC5 — \\\"What about human editing / post-processing?\\\"**: Real-world synthetic text is often edited. → Robustness test with simulated human edits (random word replacement as lower-bound + LLM-simulated editing).\\n\\n**RC6 — \\\"Ecological validity — continuation vs real web content\\\"**: Lab-constructed chains may not match wild distribution. → Multi-domain seeds (news, Wikipedia, scientific, creative) + multiple prompt types (continuation, elaboration, inspired rewriting).\\n\\n**RC8 — \\\"Aren't these just OOD detection features?\\\"**: Reference-model entropy statistics are functionally NLL-based OOD scores (same signal backbone as DetectGPT/GLTR/Binoculars). Our contribution is NOT the features themselves but: (a) the problem formulation (ordinal depth estimation, not binary detection), (b) the empirical discovery that these features exhibit dual dynamics (level drift vs shape stationarity) under recursive generation, and (c) the practical application to risk-stratified data curation. Paper must explicitly connect to OOD detection + perplexity-based detection literature and position the contribution as primarily empirical/conceptual rather than methodological.\\n\\n**RC9 — \\\"Only ≤2.8B generators — does this transfer to frontier scale?\\\"**: **Answered (plan-014, D011).** Qwen3-8B (7.6B params) added as 6th generator. Depth signal IS present at 8B scale — all feature-depth Spearman correlations significant (hapax ρ=-0.568, ttr ρ=-0.553, entropy_mean ρ=-0.475, all p<1e-6), confirming depth fingerprinting is a scale-invariant phenomenon. However, cross-scale transfer shows a gap: Qwen3-8B held-out F1=0.69 vs ≤2.8B generators 0.76-0.85 (6-gen LOGO average 0.7886, -1.1pp from 5-gen 0.80). Notably, adding 8B data improves original 5-gen classification (+0.9pp to 0.8086). **Paper framing**: depth signal universality is supported (Claim 1 holds); cross-scale classifier transfer gap reported as honest limitation with analysis (8B text is more fluent → smaller feature margins → harder to distinguish from human text). The 6-gen LOGO 0.79 still significantly outperforms all single-detector baselines.\\n\\n**RC10 — \\\"Text length confound\\\"**: Hapax ratio and TTR are mechanically length-dependent. If generation chains produce texts of systematically different lengths, surface features may track length artifacts rather than distributional drift. → Length distribution analysis + length-normalized features + length-matched comparison (plan_013). Critical confound control.\\n\\n**RC11 — \\\"Downstream utility — single run, no CIs\\\"**: Depth-aware filtering advantage must be validated with multiple seeds + bootstrap CIs + sample-count-matched comparison (to control for data size confound). Must use non-Pythia model for downstream fine-tuning (OLMo-1B) to avoid reference model circularity (Pythia-410M as both feature extractor and eval model).\\n\\n## Contribution Positioning (D006+D007)\\nThe contribution is **primarily empirical and conceptual**, not methodological:\\n1. **Problem formulation**: Ordinal depth estimation as a new task beyond binary detection (genuinely novel — no prior work)\\n2. **Empirical characterization**: Differential depth response across 6 generators / 3 families (including 7B+ scale), with robust cross-generator generalization (6-gen LOGO 0.79, family-out 0.75--0.77). Scale-invariant phenomenon with honest cross-scale transfer gap.\\n3. **Negative finding**: Depth-aware data curation does NOT improve downstream CLM quality — depth fingerprinting is diagnostic, not curative (D009).\\n\\n**Framing discipline (D007 — re-dream consensus):**\\n- Do NOT call the drift/stationarity split a \\\"discovery\\\" — it follows from location-shift properties of the NLL distribution (means shift under distributional drift, shapes don't). Acknowledge this explicitly.\\n- Do NOT use H1/H2 terminology (overloads time-series unit-root convention). Use \\\"drifting\\\" vs \\\"stationary\\\" or \\\"differential response.\\\"\\n- Do NOT overclaim \\\"dual dynamics\\\" as a novel theoretical framework. Use \\\"differential depth response\\\" — more calibrated.\\n- Consider renaming \\\"distributional fingerprinting\\\" → \\\"distributional depth profiling\\\" (fingerprinting implies source identification, creates confusion with LLM attribution literature).\\n- Provide at least a speculative theoretical motivation for WHY shape features remain stationary (e.g., \\\"shape is determined by sampling mechanism and architecture, invariant to input content drift\\\").\\n- Report **realistic performance range** (0.69–0.85 per-generator held-out F1, 0.79 LOGO average across 6 generators) in abstract/conclusion, not just best-case.\\n- R² on 5 aggregated depth means is statistically meaningless (3 df). Use individual-level Spearman ρ with bootstrap CIs throughout.\\n\\nRelated work must expand to 30+ references covering: perplexity-based detection (DetectGPT, GLTR, DNA-GPT, Binoculars), model collapse theory (Alemohammad et al., Dohmatob et al., Gerstgrasser et al., Guo et al.), OOD detection (Hendrycks & Gimpel), data quality scoring (DSIR, QuRating, CCNet), watermarking (Kirchenbauer et al.), vocabulary diversity (Guo et al. 2024, Padmakumar & He 2024, Holtzman et al. 2020), **stylometry/authorship attribution** (Stamatatos 2009, Koppel et al. 2009 — feature set is essentially stylometric), **iterative generation** (LLM as Broken Telephone ACL 2025, Markovian Generation Chains), **membership inference** (Shi et al. 2024).\\n\\n## Venue Fit\\n- AAAI 2027: Fit as empirical + conceptual contribution — novel task formulation (depth estimation) + surprising empirical finding (dual dynamics) + practical application (data curation). Must position as empirical science, not methodology paper.\\n- EMNLP 2026: Excellent fit — directly addresses special theme \\\"New Missions for NLP Research\\\" (data contamination, synthetic data feedback loops, data governance). NLP-native venue for text-focused work. Empirical/conceptual contributions better received here than AAAI.\\n\", \"total_chars\": 13087, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Tg2Qba2HGCuwyn3j6WM583",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/abstract.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "15a64027-005a-41e9-a4c6-4e985edc532f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ME7HUqP29TYbjhe7AdcrUu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 721,
+                "cache_read_input_tokens": 25308,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 721
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T21:11:00.517Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Tg2Qba2HGCuwyn3j6WM583",
+              "type": "tool_result",
+              "content": "1\t% Abstract — Depth Fingerprinting of Recursive LLM Generation Chains\n2\t\\begin{abstract}\n3\tLLM-generated text increasingly re-enters the web and seeds subsequent generation, and the resulting recursive chains progressively diverge from human-written text.\n4\tWe ask whether this drift is structured enough to classify how many generation steps a text has undergone, framing this as \\emph{generation depth classification} (gen-0\\,/\\,gen-1\\,/\\,gen-2+ rather than binary real-vs-synthetic).\n5\tStudying eight base (pretrained) models from five families (0.6B--8B parameters), we identify a \\emph{differential depth response} (DDR): central-tendency features (mean entropy, lexical diversity) drift monotonically with generation depth, while shape features (entropy max, vocabulary tail slope) remain near-stationary, consistent with a location shift in the token-level NLL distribution that approximately preserves distributional shape.\n6\tA 7-feature ensemble achieves leak-free binary F1\\,=\\,0.694 under eight-generator leave-one-generator-out (LOGO) evaluation and 0.764 on cross-model chains (five-generator subset), using a single 410M-parameter reference model.\n7\tThe depth signal degrades substantially under instruction tuning, which restricts current applicability to base models.\n8\t\\end{abstract}\n9\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "a8cabc52-7c22-42b9-ba63-5ddb299ccb65",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/abstract.tex",
+                "content": "% Abstract — Depth Fingerprinting of Recursive LLM Generation Chains\n\\begin{abstract}\nLLM-generated text increasingly re-enters the web and seeds subsequent generation, and the resulting recursive chains progressively diverge from human-written text.\nWe ask whether this drift is structured enough to classify how many generation steps a text has undergone, framing this as \\emph{generation depth classification} (gen-0\\,/\\,gen-1\\,/\\,gen-2+ rather than binary real-vs-synthetic).\nStudying eight base (pretrained) models from five families (0.6B--8B parameters), we identify a \\emph{differential depth response} (DDR): central-tendency features (mean entropy, lexical diversity) drift monotonically with generation depth, while shape features (entropy max, vocabulary tail slope) remain near-stationary, consistent with a location shift in the token-level NLL distribution that approximately preserves distributional shape.\nA 7-feature ensemble achieves leak-free binary F1\\,=\\,0.694 under eight-generator leave-one-generator-out (LOGO) evaluation and 0.764 on cross-model chains (five-generator subset), using a single 410M-parameter reference model.\nThe depth signal degrades substantially under instruction tuning, which restricts current applicability to base models.\n\\end{abstract}\n",
+                "numLines": 9,
+                "startLine": 1,
+                "totalLines": 9
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CXBzxDH3ZuXMhLHe5VGzYh",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/introduction.tex",
+                "limit": 80
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "908732e4-5e92-46eb-9f71-e74558e6c206",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ME7HUqP29TYbjhe7AdcrUu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 721,
+                "cache_read_input_tokens": 25308,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 721
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T21:11:01.073Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CXBzxDH3ZuXMhLHe5VGzYh",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tLLM-generated text increasingly re-enters the web and seeds subsequent generation \\cite{dolma,fineweb}, with estimates suggesting that 7--17\\% of recent scientific papers and peer reviews contain substantial LLM-modified content \\cite{mapping_llm_science,monitoring_ai_review}.\n5\tThe result is recursive generation chains whose outputs progressively diverge from human-written text.\n6\tUnderstanding how distributional features evolve across recursive generation depths is a fundamental question for characterizing recursive generation dynamics, yet existing methods \\cite{fast_detectgpt,binoculars,ld_score,detectgpt} provide only binary real-vs-synthetic decisions, conflating qualitatively different material: a first-generation continuation retains much of the source distribution's lexical properties, while deeper recursive text exhibits measurably reduced vocabulary diversity and compressed perplexity.\n7\t\n8\tWe formulate \\emph{generation depth classification}, classifying text by generation depth (gen-0\\,/\\,gen-1\\,/\\,gen-2+) rather than a binary label, and refer to the overall framework as \\emph{depth fingerprinting}.\n9\tNo existing method addresses this task in non-paraphrastic continuation chains.\n10\t\n11\tThe key finding is a \\emph{differential depth response} (DDR): when we measure how eight base-model generators from five families (Pythia, OLMo, Qwen, Llama, Mistral; 0.6B--8B parameters) transform text across recursive depths, central-tendency and diversity features (reference-model mean entropy, type-token ratio, hapax ratio) drift monotonically, while shape features (entropy max, tail decay) remain near-stationary.\n12\tThis pattern is consistent with recursive generation inducing a location shift in the token-level NLL distribution while approximately preserving its shape: the softmax architecture and fixed sampling parameters constrain distributional shape under standard decoding regimes, while each successive generation compresses the location toward the model's preferred output distribution.\n13\tWe restrict to base (pretrained) models as a deliberate design choice, since instruction-tuning introduces confounds (length regulation, format constraints, safety-driven shaping) that obscure this intrinsic mechanism; preliminary experiments confirm substantially degraded depth signal under instruction tuning (\\S\\ref{sec:discussion}).\n14\t\n15\tThe combination of drifting and stationary features yields a 7-feature ensemble that, under eight-generator leave-one-generator-out (LOGO) evaluation, achieves leak-free binary F1\\,=\\,0.694 and 0.764 on cross-model chains (five-generator subset), using a single 410M-parameter reference model.\n16\tMulti-detector ensembles achieve moderately higher F1 at 2.4$\\times$ the computational cost (\\S\\ref{sec:results-baselines}).\n17\tThe signal is prompt-type dependent: continuation chains show stronger drift than elaboration or rewriting (\\S\\ref{sec:discussion}).\n18\t\n19\tOur empirical contributions are twofold:\n20\t\\begin{enumerate}[nosep,leftmargin=*]\n21\t    \\item We formulate generation depth classification, moving beyond binary real-vs-synthetic detection to classify text as gen-0\\,/\\,gen-1\\,/\\,gen-2+, and construct an evaluation suite of 37K texts from eight base-model generators spanning five families (0.6B--8B parameters).\n22\t    \\item We characterize a \\emph{differential depth response} (DDR): central-tendency features show monotonic drift under recursive generation ($|\\rho| > 0.60$) while distributional shape remains approximately stationary ($|\\rho| < 0.10$). A 7-feature ensemble exploiting this structure achieves leak-free binary F1\\,=\\,0.694 under eight-generator LOGO evaluation with a single 410M reference model.\n23\t\\end{enumerate}\n24\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "78530ecc-4a51-4cb8-bfb3-cfdcb91a78f5",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/introduction.tex",
+                "content": "\\section{Introduction}\n\\label{sec:introduction}\n\nLLM-generated text increasingly re-enters the web and seeds subsequent generation \\cite{dolma,fineweb}, with estimates suggesting that 7--17\\% of recent scientific papers and peer reviews contain substantial LLM-modified content \\cite{mapping_llm_science,monitoring_ai_review}.\nThe result is recursive generation chains whose outputs progressively diverge from human-written text.\nUnderstanding how distributional features evolve across recursive generation depths is a fundamental question for characterizing recursive generation dynamics, yet existing methods \\cite{fast_detectgpt,binoculars,ld_score,detectgpt} provide only binary real-vs-synthetic decisions, conflating qualitatively different material: a first-generation continuation retains much of the source distribution's lexical properties, while deeper recursive text exhibits measurably reduced vocabulary diversity and compressed perplexity.\n\nWe formulate \\emph{generation depth classification}, classifying text by generation depth (gen-0\\,/\\,gen-1\\,/\\,gen-2+) rather than a binary label, and refer to the overall framework as \\emph{depth fingerprinting}.\nNo existing method addresses this task in non-paraphrastic continuation chains.\n\nThe key finding is a \\emph{differential depth response} (DDR): when we measure how eight base-model generators from five families (Pythia, OLMo, Qwen, Llama, Mistral; 0.6B--8B parameters) transform text across recursive depths, central-tendency and diversity features (reference-model mean entropy, type-token ratio, hapax ratio) drift monotonically, while shape features (entropy max, tail decay) remain near-stationary.\nThis pattern is consistent with recursive generation inducing a location shift in the token-level NLL distribution while approximately preserving its shape: the softmax architecture and fixed sampling parameters constrain distributional shape under standard decoding regimes, while each successive generation compresses the location toward the model's preferred output distribution.\nWe restrict to base (pretrained) models as a deliberate design choice, since instruction-tuning introduces confounds (length regulation, format constraints, safety-driven shaping) that obscure this intrinsic mechanism; preliminary experiments confirm substantially degraded depth signal under instruction tuning (\\S\\ref{sec:discussion}).\n\nThe combination of drifting and stationary features yields a 7-feature ensemble that, under eight-generator leave-one-generator-out (LOGO) evaluation, achieves leak-free binary F1\\,=\\,0.694 and 0.764 on cross-model chains (five-generator subset), using a single 410M-parameter reference model.\nMulti-detector ensembles achieve moderately higher F1 at 2.4$\\times$ the computational cost (\\S\\ref{sec:results-baselines}).\nThe signal is prompt-type dependent: continuation chains show stronger drift than elaboration or rewriting (\\S\\ref{sec:discussion}).\n\nOur empirical contributions are twofold:\n\\begin{enumerate}[nosep,leftmargin=*]\n    \\item We formulate generation depth classification, moving beyond binary real-vs-synthetic detection to classify text as gen-0\\,/\\,gen-1\\,/\\,gen-2+, and construct an evaluation suite of 37K texts from eight base-model generators spanning five families (0.6B--8B parameters).\n    \\item We characterize a \\emph{differential depth response} (DDR): central-tendency features show monotonic drift under recursive generation ($|\\rho| > 0.60$) while distributional shape remains approximately stationary ($|\\rho| < 0.10$). A 7-feature ensemble exploiting this structure achieves leak-free binary F1\\,=\\,0.694 under eight-generator LOGO evaluation with a single 410M reference model.\n\\end{enumerate}\n",
+                "numLines": 24,
+                "startLine": 1,
+                "totalLines": 24
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me also read the discussion and results sections to check for specific numbers mentioned in the paper, particularly the cross-model F1, instruct-tuned degradation, temperature sensitivity, and downstream utility results.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "3eaf0bb1-7829-4826-8e83-c8531c6d95e8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HpBPUWnxpcotUNTDsi61PL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5399,
+                "cache_read_input_tokens": 26029,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5399
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me also check the discussion and results sections for key numbers."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "203a79ae-bf7e-4df7-8cbd-75221f8f8de5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HpBPUWnxpcotUNTDsi61PL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5399,
+                "cache_read_input_tokens": 26029,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5399
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016FKRTfnq6B48zJ2HzKdtgg",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "a1c28081-d2b1-4e06-a002-db226c7cce63",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HpBPUWnxpcotUNTDsi61PL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5399,
+                "cache_read_input_tokens": 26029,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5399
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T21:11:07.069Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016FKRTfnq6B48zJ2HzKdtgg",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\tThe near-stationarity of shape features is consistent with the softmax architecture and fixed sampling parameters constraining distributional shape while allowing location to drift.\n5\tSampling ablation supports this as a tendency rather than a guarantee ($t \\in [0.5, 0.7]$: ${\\leq}0.3$\\,pp degradation; $t = 1.0$: $-6$\\,pp; Appendix~\\ref{app:sampling-sensitivity}), and prompt-type dependence further modulates the effect (elaboration F1\\,=\\,0.730 vs.\\ continuation 0.781; Appendix~\\ref{app:prompt-type}).\n6\t\n7\tInstruction-tuned models show substantially weaker fingerprints in preliminary experiments (OLMo-Instruct LOGO F1\\,=\\,0.338 vs.\\ 0.763 base, 6-generator LOGO): alignment-imposed length regulation and format constraints compress the distributional variation that DDR exploits.\n8\tThis restricts current applicability to base models and constitutes the primary scope limitation.\n9\tAt the document level within base models, gen-1 per-class F1\\,=\\,0.63 is insufficient for automated filtering but sufficient for corpus-level flagging; the gen-1\\,/\\,gen-2+ boundary concentrates 86\\% of binary errors as false negatives, with larger generators exacerbating this (Mistral-7B error rate 45\\% vs.\\ Pythia-1B 18\\%; Appendix~\\ref{app:error-analysis}).\n10\tCross-temperature transfer degrades substantially ($t{=}0.7 \\to t{=}1.0$: Qwen3-1.7B F1 drops from 0.789 to 0.418; Appendix~\\ref{app:cross-temp}).\n11\t\n12\tThree classes represent the practical resolution ceiling: 5-class F1 drops to ${\\approx}$0.50 (Appendix~\\ref{app:finer-depth}), and ordinal-specific methods (CORAL, Frank-Hall) yield no improvement over standard XGBoost (Appendix~\\ref{app:classifier}). These results suggest that the gen-1/gen-2+ boundary rather than ordinal structure is the bottleneck.\n13\tDDR is distinct from model collapse \\cite{curse_of_recursion,strong_model_collapse}: inference-chain drift occurs with fixed parameters, is fully reversible, and approximately preserves distributional shape. This pattern suggests compression within existing capacity rather than erosion of it.\n14\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "c5ea4ca3-0f28-45e6-8364-c4681e9944f5",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex",
+                "content": "\\section{Discussion}\n\\label{sec:discussion}\n\nThe near-stationarity of shape features is consistent with the softmax architecture and fixed sampling parameters constraining distributional shape while allowing location to drift.\nSampling ablation supports this as a tendency rather than a guarantee ($t \\in [0.5, 0.7]$: ${\\leq}0.3$\\,pp degradation; $t = 1.0$: $-6$\\,pp; Appendix~\\ref{app:sampling-sensitivity}), and prompt-type dependence further modulates the effect (elaboration F1\\,=\\,0.730 vs.\\ continuation 0.781; Appendix~\\ref{app:prompt-type}).\n\nInstruction-tuned models show substantially weaker fingerprints in preliminary experiments (OLMo-Instruct LOGO F1\\,=\\,0.338 vs.\\ 0.763 base, 6-generator LOGO): alignment-imposed length regulation and format constraints compress the distributional variation that DDR exploits.\nThis restricts current applicability to base models and constitutes the primary scope limitation.\nAt the document level within base models, gen-1 per-class F1\\,=\\,0.63 is insufficient for automated filtering but sufficient for corpus-level flagging; the gen-1\\,/\\,gen-2+ boundary concentrates 86\\% of binary errors as false negatives, with larger generators exacerbating this (Mistral-7B error rate 45\\% vs.\\ Pythia-1B 18\\%; Appendix~\\ref{app:error-analysis}).\nCross-temperature transfer degrades substantially ($t{=}0.7 \\to t{=}1.0$: Qwen3-1.7B F1 drops from 0.789 to 0.418; Appendix~\\ref{app:cross-temp}).\n\nThree classes represent the practical resolution ceiling: 5-class F1 drops to ${\\approx}$0.50 (Appendix~\\ref{app:finer-depth}), and ordinal-specific methods (CORAL, Frank-Hall) yield no improvement over standard XGBoost (Appendix~\\ref{app:classifier}). These results suggest that the gen-1/gen-2+ boundary rather than ordinal structure is the bottleneck.\nDDR is distinct from model collapse \\cite{curse_of_recursion,strong_model_collapse}: inference-chain drift occurs with fixed parameters, is fully reversible, and approximately preserves distributional shape. This pattern suggests compression within existing capacity rather than erosion of it.\n",
+                "numLines": 14,
+                "startLine": 1,
+                "totalLines": 14
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KyuTGs9DpwmLd3Rg9iiXq3",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/conclusion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "034906ed-2823-476b-af66-44c93f19edd6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HpBPUWnxpcotUNTDsi61PL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5399,
+                "cache_read_input_tokens": 26029,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5399
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T21:11:07.626Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KyuTGs9DpwmLd3Rg9iiXq3",
+              "type": "tool_result",
+              "content": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe introduced generation depth classification and documented a differential depth response across eight base-model generators from five families: recursive generation is consistent with a systematic location shift in the token-level NLL distribution that approximately preserves distributional shape.\n5\tA lightweight 7-feature ensemble detects this drift with leak-free binary F1\\,=\\,0.694 under eight-generator LOGO evaluation (0.764 on cross-model chains; five-generator subset).\n6\tThe signal degrades substantially under instruction tuning and may further compress at larger scales (our largest generator is 8B); these limitations define the current scope boundaries.\n7\tAll code, data, and trained models will be released upon publication.\n8\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "cedef1cc-fb40-4bf3-bb25-39f050f00a8d",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/conclusion.tex",
+                "content": "\\section{Conclusion}\n\\label{sec:conclusion}\n\nWe introduced generation depth classification and documented a differential depth response across eight base-model generators from five families: recursive generation is consistent with a systematic location shift in the token-level NLL distribution that approximately preserves distributional shape.\nA lightweight 7-feature ensemble detects this drift with leak-free binary F1\\,=\\,0.694 under eight-generator LOGO evaluation (0.764 on cross-model chains; five-generator subset).\nThe signal degrades substantially under instruction tuning and may further compress at larger scales (our largest generator is 8B); these limitations define the current scope boundaries.\nAll code, data, and trained models will be released upon publication.\n",
+                "numLines": 8,
+                "startLine": 1,
+                "totalLines": 8
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KWtoCSiEtv1eTcPmoHdCZn",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "99c6b4d7-9870-4d05-8c7f-215a87815306",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HpBPUWnxpcotUNTDsi61PL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5399,
+                "cache_read_input_tokens": 26029,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5399
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T21:11:08.104Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KWtoCSiEtv1eTcPmoHdCZn",
+              "type": "tool_result",
+              "content": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\t\\subsection{Depth Classification Performance}\n5\t\\label{sec:results-classification}\n6\t\n7\tThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}).\n8\tBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94) and the 3-class metric is inflated by this overlap.\n9\tWe therefore adopt leak-free binary F1 (gen-1 vs.\\ gen-2+)\\,=\\,0.694, CI [0.688, 0.700], as the primary metric throughout; it excludes gen-0 entirely and is unaffected by seed sharing.\n10\tPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B); the primary difficulty is distinguishing gen-1 from gen-2+ (Appendix~\\ref{app:confusion}).\n11\tLarger generators show moderate degradation (Qwen3-8B: 0.692, Mistral-7B: 0.633) relative to the 0.694 average.\n12\tThe Pythia-1B/2.8B crossover between three-class and binary scores (0.806 vs.\\ 0.798 and 0.718 vs.\\ 0.724, respectively) reflects differences in gen-0 classification accuracy rather than in depth discrimination per se.\n13\t\n14\t\\paragraph{Cross-model generalization.}\n15\tCross-model chains (randomly selected generator per step) yield 3-class F1\\,=\\,0.809 and binary F1\\,=\\,0.764 under 5-fold CV,\\footnote{Cross-model chains use the original five-generator subset (Pythia, OLMo, Qwen); Llama and Mistral were added later for single-generator evaluation.} which confirms that depth signal persists when text passes through heterogeneous generators.\n16\tThe higher cross-model performance relative to single-generator LOGO (3-class: 0.809 vs.\\ 0.762) suggests that generator heterogeneity amplifies distributional shifts between depths and makes each recursive step more distinct.\n17\tUnder class balancing, macro F1 reaches 0.831 (per-class breakdown in Appendix~\\ref{app:cross-model-detail}).\n18\t\n19\tLeave-one-family-out (LOFO) evaluation yields average binary F1\\,=\\,0.686, which confirms transfer across architectural families.\n20\tA scale effect emerges: Pythia generators achieve the highest binary F1 (0.718--0.724), while larger models show degradation (Mistral-7B: 0.633), consistent with higher-capacity models compressing the feature margins DDR exploits.\n21\tThe signal generalizes across text domains with variation (Appendix~\\ref{app:domain}).\n22\t\n23\t\\paragraph{Length confound control.}\n24\tLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control confirms the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n25\t\n26\t\n27\t\\begin{table}[t]\n28\t\\centering\n29\t\\footnotesize\n30\t\\resizebox{\\columnwidth}{!}{%\n31\t\\begin{tabular}{llcccc}\n32\t\\toprule\n33\t\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{95\\% CI} \\\\\n34\t\\midrule\n35\tPythia-2.8B     & Pythia  & 2.8B & 0.798 & \\textbf{0.724} & [.707, .742] \\\\\n36\tPythia-1B       & Pythia  & 1.0B & \\textbf{0.806} & 0.718 & [.700, .735] \\\\\n37\tQwen3-1.7B     & Qwen    & 1.7B & 0.772 & 0.709 & [.693, .726] \\\\\n38\tLlama-3.2-3B   & Llama   & 3.2B & 0.775 & 0.697 & [.680, .713] \\\\\n39\tOLMo-2-1B      & OLMo    & 1.5B & 0.781 & 0.695 & [.679, .711] \\\\\n40\tQwen3-8B       & Qwen    & 8.2B & 0.714 & 0.692 & [.674, .708] \\\\\n41\tQwen3-0.6B     & Qwen    & 0.6B & 0.780 & 0.691 & [.673, .709] \\\\\n42\tMistral-7B     & Mistral & 7.0B & 0.682 & 0.633 & [.617, .648] \\\\\n43\t\\midrule\n44\t\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.762} & \\textbf{0.694} & [.688, .700] \\\\\n45\t\\bottomrule\n46\t\\end{tabular}}\n47\t\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric. Note: 3-class F1 may carry upward bias from gen-0 seed sharing across generators; binary F1 is leak-free. Cross-model chains (Table~\\ref{tab:cross-ref}) use sample-level CV without this issue.}\n48\t\\label{tab:logo-results}\n49\t\\end{table}\n50\t\n51\t\\subsection{Differential Depth Response}\n52\t\\label{sec:results-differential}\n53\t\n54\tFeatures exhibit \\emph{differential depth response} (DDR): central-tendency and diversity measures drift monotonically with depth, while shape measures remain near-stationary, consistent with recursive generation inducing a location shift in the NLL distribution while approximately preserving its functional form (shape-feature CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\n55\t\n56\t\\begin{figure}[t]\n57\t\\centering\n58\t\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n59\t\\caption{Differential depth response: Spearman correlations between individual features and generation depth. Central-tendency and diversity features (hapax ratio, TTR, entropy mean) show substantial monotonic drift; entropy std ($|\\rho|{=}0.17$) occupies an intermediate position; shape features (entropy max, tail decay) remain near-stationary ($|\\rho| < 0.10$).}\n60\t\\label{fig:feature-drift}\n61\t\\end{figure}\n62\t\n63\tPooled class-balanced Spearman correlations with depth confirm the split (Figure~\\ref{fig:feature-drift}):\n64\tdrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.63$, TTR $\\rho = -0.61$, entropy mean $\\rho = -0.60$),\n65\twhile shape features remain near-stationary (tail decay $|\\rho| = 0.04$).\n66\tThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and shape features ($|\\rho| < 0.10$) serves as the operative criterion for the DDR split, with entropy std occupying an intermediate position ($|\\rho| = 0.17$); shifting these descriptive thresholds by $\\pm 0.10$ does not alter feature grouping.\n67\t\n68\t\\paragraph{Distributional shift quantification.}\n69\tTwo-sample KS tests between gen-1 and gen-2+ distributions confirm the split: drifting-feature KS statistics (0.516--0.537) are ${\\sim}10\\times$ larger than shape-feature statistics (0.043--0.052; all $p \\approx 0$ after Bonferroni correction).\n70\tLevene tests reject equal variance for all features ($p < 10^{-10}$), but effect sizes differ markedly: shape-feature CV shift $<$3\\% vs.\\ $>$15\\% for drifting features, which supports ``approximately preserves'' as a practical characterization rather than a strict invariance claim.\n71\t\n72\t\\paragraph{Feature complementarity.}\n73\tUnder 10-fold stratified CV, the full 7-feature set (F1\\,=\\,0.773) outperforms surface-only (F1\\,=\\,0.688) and reference-only (F1\\,=\\,0.713; McNemar $p \\approx 0$; Table~\\ref{tab:ablation} in Appendix~\\ref{app:ablation-table}).\n74\tReference-only yields higher binary F1 (0.833 vs.\\ 0.695) since surface features introduce noise at the gen-1/gen-2+ boundary, but surface features are essential for 3-class gen-0 discrimination (Full 0.773 vs.\\ Reference-only 0.713).\n75\tPermutation importance: hapax ratio (0.35), entropy mean (0.23), TTR (0.18); leave-one-feature-out confirms 6 of 7 features contribute positively (Appendix~\\ref{app:lofo}).\n76\t\n77\t\\paragraph{Cross-family reference models.}\n78\tAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Table~\\ref{tab:cross-ref} in Appendix~\\ref{app:cross-ref}), with consistently negative entropy drift; this confirms DDR is a property of recursive generation.\n79\t\n80\t\\paragraph{Temperature sensitivity.}\n81\tThe method operates reliably within $t \\in [0.5, 0.9]$: F1 varies by at most 1\\,pp from the default $t{=}0.7$ across this range (Appendix~\\ref{app:sampling-sensitivity}).\n82\tAt $t{=}1.0$, performance degrades by ${\\sim}6$\\,pp as the primary depth signal collapses: entropy mean's Spearman correlation with depth drops from $\\rho = -0.60$ to $\\rho = -0.002$. This collapse indicates that high-temperature sampling injects sufficient token-level randomness to mask the systematic location shift that DDR exploits.\n83\t\n84\t\n85\t\\subsection{Comparison with Detection Baselines}\n86\t\\label{sec:results-baselines}\n87\t\n88\tWe repurpose four detection scores as ordinal depth predictors using the same XGBoost framework and LOGO splits (Table~\\ref{tab:baselines}, Figure~\\ref{fig:baseline-ci}).\n89\t\n90\t\\begin{figure}[t]\n91\t\\centering\n92\t\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n93\t\\caption{LOGO binary F1 with 95\\% bootstrap CIs. Per-generator variance is higher for single detectors than for the ensemble.}\n94\t\\label{fig:baseline-ci}\n95\t\\end{figure}\n96\t\n97\t\\begin{table}[t]\n98\t\\centering\n99\t\\footnotesize\n100\t\\begin{tabular}{lcccc}\n101\t\\toprule\n102\t\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n103\t\\midrule\n104\t4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n105\t4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n106\t7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n107\tAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\n108\tFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\n109\tLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\n110\tBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n111\t\\bottomrule\n112\t\\end{tabular}\n113\t\\caption{Depth classification (8-gen LOGO, pooled evaluation: predictions from all held-out folds are concatenated before computing F1, which yields slightly higher scores than the per-generator macro average in Table~\\ref{tab:logo-results}). All methods use identical XGBoost configuration ($n_\\text{estimators}{=}200$, $\\max_\\text{depth}{=}6$). Binary: gen-1 vs.\\ gen-2+. Inference cost: 7-feature requires one 410M reference model (905\\,MB); 4-det ensembles require two models totaling 1.4B parameters (2{,}868\\,MB).}\n114\t\\label{tab:baselines}\n115\t\\end{table}\n116\t\n117\tThe 7-feature ensemble exceeds all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--14.4\\,pp vs.\\ Avg-LogProb through LD-Score).\n118\tMulti-detector ensembles achieve higher 3-class F1 (0.795 vs.\\ 0.774, +2.1\\,pp) and marginally higher binary F1 (0.708 vs.\\ 0.705, +0.3\\,pp), but require 2.4$\\times$ longer inference and 3.2$\\times$ more GPU memory.\n119\t\n120\t\n121\tPreliminary downstream evaluation (fine-tuning OLMo-2-0425-1B on depth-stratified data; Appendix~\\ref{app:downstream}) finds that depth composition does not determine training utility at fixed sample count, though the evidence is limited (three seeds, single perplexity metric).\n122\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "b7575fbe-9381-4aa7-9d1b-a673497cf9f2",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+                "content": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}).\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94) and the 3-class metric is inflated by this overlap.\nWe therefore adopt leak-free binary F1 (gen-1 vs.\\ gen-2+)\\,=\\,0.694, CI [0.688, 0.700], as the primary metric throughout; it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B); the primary difficulty is distinguishing gen-1 from gen-2+ (Appendix~\\ref{app:confusion}).\nLarger generators show moderate degradation (Qwen3-8B: 0.692, Mistral-7B: 0.633) relative to the 0.694 average.\nThe Pythia-1B/2.8B crossover between three-class and binary scores (0.806 vs.\\ 0.798 and 0.718 vs.\\ 0.724, respectively) reflects differences in gen-0 classification accuracy rather than in depth discrimination per se.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield 3-class F1\\,=\\,0.809 and binary F1\\,=\\,0.764 under 5-fold CV,\\footnote{Cross-model chains use the original five-generator subset (Pythia, OLMo, Qwen); Llama and Mistral were added later for single-generator evaluation.} which confirms that depth signal persists when text passes through heterogeneous generators.\nThe higher cross-model performance relative to single-generator LOGO (3-class: 0.809 vs.\\ 0.762) suggests that generator heterogeneity amplifies distributional shifts between depths and makes each recursive step more distinct.\nUnder class balancing, macro F1 reaches 0.831 (per-class breakdown in Appendix~\\ref{app:cross-model-detail}).\n\nLeave-one-family-out (LOFO) evaluation yields average binary F1\\,=\\,0.686, which confirms transfer across architectural families.\nA scale effect emerges: Pythia generators achieve the highest binary F1 (0.718--0.724), while larger models show degradation (Mistral-7B: 0.633), consistent with higher-capacity models compressing the feature margins DDR exploits.\nThe signal generalizes across text domains with variation (Appendix~\\ref{app:domain}).\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control confirms the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{95\\% CI} \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & 0.798 & \\textbf{0.724} & [.707, .742] \\\\\nPythia-1B       & Pythia  & 1.0B & \\textbf{0.806} & 0.718 & [.700, .735] \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.772 & 0.709 & [.693, .726] \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.775 & 0.697 & [.680, .713] \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.781 & 0.695 & [.679, .711] \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.714 & 0.692 & [.674, .708] \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.780 & 0.691 & [.673, .709] \\\\\nMistral-7B     & Mistral & 7.0B & 0.682 & 0.633 & [.617, .648] \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.762} & \\textbf{0.694} & [.688, .700] \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric. Note: 3-class F1 may carry upward bias from gen-0 seed sharing across generators; binary F1 is leak-free. Cross-model chains (Table~\\ref{tab:cross-ref}) use sample-level CV without this issue.}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\nFeatures exhibit \\emph{differential depth response} (DDR): central-tendency and diversity measures drift monotonically with depth, while shape measures remain near-stationary, consistent with recursive generation inducing a location shift in the NLL distribution while approximately preserving its functional form (shape-feature CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response: Spearman correlations between individual features and generation depth. Central-tendency and diversity features (hapax ratio, TTR, entropy mean) show substantial monotonic drift; entropy std ($|\\rho|{=}0.17$) occupies an intermediate position; shape features (entropy max, tail decay) remain near-stationary ($|\\rho| < 0.10$).}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth confirm the split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.63$, TTR $\\rho = -0.61$, entropy mean $\\rho = -0.60$),\nwhile shape features remain near-stationary (tail decay $|\\rho| = 0.04$).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and shape features ($|\\rho| < 0.10$) serves as the operative criterion for the DDR split, with entropy std occupying an intermediate position ($|\\rho| = 0.17$); shifting these descriptive thresholds by $\\pm 0.10$ does not alter feature grouping.\n\n\\paragraph{Distributional shift quantification.}\nTwo-sample KS tests between gen-1 and gen-2+ distributions confirm the split: drifting-feature KS statistics (0.516--0.537) are ${\\sim}10\\times$ larger than shape-feature statistics (0.043--0.052; all $p \\approx 0$ after Bonferroni correction).\nLevene tests reject equal variance for all features ($p < 10^{-10}$), but effect sizes differ markedly: shape-feature CV shift $<$3\\% vs.\\ $>$15\\% for drifting features, which supports ``approximately preserves'' as a practical characterization rather than a strict invariance claim.\n\n\\paragraph{Feature complementarity.}\nUnder 10-fold stratified CV, the full 7-feature set (F1\\,=\\,0.773) outperforms surface-only (F1\\,=\\,0.688) and reference-only (F1\\,=\\,0.713; McNemar $p \\approx 0$; Table~\\ref{tab:ablation} in Appendix~\\ref{app:ablation-table}).\nReference-only yields higher binary F1 (0.833 vs.\\ 0.695) since surface features introduce noise at the gen-1/gen-2+ boundary, but surface features are essential for 3-class gen-0 discrimination (Full 0.773 vs.\\ Reference-only 0.713).\nPermutation importance: hapax ratio (0.35), entropy mean (0.23), TTR (0.18); leave-one-feature-out confirms 6 of 7 features contribute positively (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Table~\\ref{tab:cross-ref} in Appendix~\\ref{app:cross-ref}), with consistently negative entropy drift; this confirms DDR is a property of recursive generation.\n\n\\paragraph{Temperature sensitivity.}\nThe method operates reliably within $t \\in [0.5, 0.9]$: F1 varies by at most 1\\,pp from the default $t{=}0.7$ across this range (Appendix~\\ref{app:sampling-sensitivity}).\nAt $t{=}1.0$, performance degrades by ${\\sim}6$\\,pp as the primary depth signal collapses: entropy mean's Spearman correlation with depth drops from $\\rho = -0.60$ to $\\rho = -0.002$. This collapse indicates that high-temperature sampling injects sufficient token-level randomness to mask the systematic location shift that DDR exploits.\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nWe repurpose four detection scores as ordinal depth predictors using the same XGBoost framework and LOGO splits (Table~\\ref{tab:baselines}, Figure~\\ref{fig:baseline-ci}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 with 95\\% bootstrap CIs. Per-generator variance is higher for single detectors than for the ensemble.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation: predictions from all held-out folds are concatenated before computing F1, which yields slightly higher scores than the per-generator macro average in Table~\\ref{tab:logo-results}). All methods use identical XGBoost configuration ($n_\\text{estimators}{=}200$, $\\max_\\text{depth}{=}6$). Binary: gen-1 vs.\\ gen-2+. Inference cost: 7-feature requires one 410M reference model (905\\,MB); 4-det ensembles require two models totaling 1.4B parameters (2{,}868\\,MB).}\n\\label{tab:baselines}\n\\end{table}\n\nThe 7-feature ensemble exceeds all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--14.4\\,pp vs.\\ Avg-LogProb through LD-Score).\nMulti-detector ensembles achieve higher 3-class F1 (0.795 vs.\\ 0.774, +2.1\\,pp) and marginally higher binary F1 (0.708 vs.\\ 0.705, +0.3\\,pp), but require 2.4$\\times$ longer inference and 3.2$\\times$ more GPU memory.\n\n\nPreliminary downstream evaluation (fine-tuning OLMo-2-0425-1B on depth-stratified data; Appendix~\\ref{app:downstream}) finds that depth composition does not determine training utility at fixed sample count, though the evidence is limited (three seeds, single perplexity metric).\n",
+                "numLines": 122,
+                "startLine": 1,
+                "totalLines": 122
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a comprehensive understanding of the current paper state. Let me also check the downstream utility appendix for the TOST equivalence details.",
+              "signature": "EtQCClkIDRgCKkBbl6seahlu58795NeabBiBDWRjJ3ExwU9JVsI3e1/nITz7TLshbYQOuA0aMM+GwXj/TPbAblFy1i8lGnM72huhMg9jbGF1ZGUtb3B1cy00LTY4ABIMf3R28IvqEaXaRPU5GgzoqhS/+UYV44i2mHgiMLIygqgii4wmLwltEpWbXqG8lxX10VfvglFMkR9vKhAjQf8EMkeTbCTiiSwwv4olLSqoARZ5rTTM94OWFkvXZuHvUVU9noY6otIfZuIA5XdDFR3zCtzfaDPyyQb0dk5soSCPik7E4h5EPFMleXFrXEEC/wEhs5riDtkrKbjqtrQEqZY9TxLwn61VpujxAsAGv+j6GbjnJh7qCAu+xpQi+1Vt6U5w2AydU+0C0t676+bzWtQ2fKGofqe7RT5N5ZKikUDlhUlO/OSCmFpQk803tm1WQjLJfjo6iRR8xxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "000d4bf9-26d8-4a10-89d4-d82426b46d31",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EqdWLj9oSoAgoZuHpTcpTC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4959,
+                "cache_read_input_tokens": 31428,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4959
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the downstream appendix for the TOST equivalence details."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "252e2f45-2082-4908-b599-559fe797514d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EqdWLj9oSoAgoZuHpTcpTC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4959,
+                "cache_read_input_tokens": 31428,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4959
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Pg6M36WT5JAk3pFjPu8oY7",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "795b8d73-0d1d-4302-bdc3-f2562a87e6d3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EqdWLj9oSoAgoZuHpTcpTC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4959,
+                "cache_read_input_tokens": 31428,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4959
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T21:11:13.746Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Pg6M36WT5JAk3pFjPu8oY7",
+              "type": "tool_result",
+              "content": "1\tCan depth-aware data curation improve downstream language model quality?\n2\tWe fine-tune OLMo-2-0425-1B on five data variants (3 seeds each) and evaluate perplexity on a held-out test set (Table~\\ref{tab:downstream}).\n3\t\n4\t\\begin{table}[h]\n5\t\\centering\n6\t\\small\n7\t\\begin{tabular}{lrc}\n8\t\\toprule\n9\t\\textbf{Variant} & \\textbf{$n$} & \\textbf{Test PPL} \\\\\n10\t\\midrule\n11\tAll depths            & 12{,}299 & 2.335 $\\pm$ 0.000 \\\\\n12\tSize-matched (random) & 3{,}951  & 2.367 $\\pm$ 0.000 \\\\\n13\tDepth 0--1 only       & 3{,}951  & 2.387 $\\pm$ 0.001 \\\\\n14\tBinary-filtered       & 3{,}951  & 2.389 $\\pm$ 0.000 \\\\\n15\tDepth 0 only          & 797      & 2.681 $\\pm$ 0.001 \\\\\n16\t\\bottomrule\n17\t\\end{tabular}\n18\t\\caption{Downstream fine-tuning perplexity (OLMo-2-0425-1B, mean $\\pm$ std across 3 seeds). At equal sample count, random subsampling (2.367) outperforms depth-aware curation (depth 0--1: 2.387, binary-filtered: 2.389).}\n19\t\\label{tab:downstream}\n20\t\\end{table}\n21\t\n22\tThe results are unambiguous: data quantity dominates depth composition.\n23\tTraining on all 12{,}299 samples yields the lowest perplexity (2.335).\n24\tAt equal sample count ($n$\\,=\\,3{,}951), random subsampling (2.367) \\emph{outperforms} both depth-stratified selection (depth 0--1: 2.387) and binary detection filtering (2.389).\n25\tCross-seed variance is below 0.002 across all variants, which confirms the robustness of this null result.\n26\t\n27\tRestricting training to human-only text (depth 0, $n$\\,=\\,797) produces a sharp perplexity increase to 2.681, driven primarily by the 5$\\times$ reduction in data volume rather than depth composition per se.\n28\t\n29\t\\paragraph{Equivalence testing.}\n30\tWe apply a two one-sided $t$-test (TOST) with a $\\pm$2\\% relative margin (equivalence bounds $\\pm$0.047 on the ppl scale) to formally assess whether the depth-aware and random subsampling conditions produce practically indistinguishable perplexity.\n31\tAt equal sample count ($n$\\,=\\,3{,}951): size-matched (random) ppl\\,=\\,2.367 vs.\\ depth 0--1 ppl\\,=\\,2.387, $\\Delta$\\,=\\,0.020.\n32\tTOST confirms equivalence ($p = 1.1 \\times 10^{-4}$); the two curation strategies yield practically indistinguishable downstream quality within the $\\pm$2\\% margin.\n33\tCross-seed standard deviation is below 0.001 for both variants.\n34\t\n35\tComparing the full dataset ($n$\\,=\\,12{,}299, ppl\\,=\\,2.335) against the depth-filtered subset ($n$\\,=\\,3{,}951, ppl\\,=\\,2.387): TOST \\emph{rejects} equivalence (minimum equivalence margin\\,=\\,0.053, exceeding the $\\pm$2\\% bound), which confirms that data quantity drives perplexity reduction beyond what depth-aware selection can recover.\n36\t\n37\tKnowing the generation depth of a document does not, by itself, make it more or less useful for training; at fixed sample count, depth-aware curation is statistically equivalent to uninformed random subsampling.\n38\t\n39\t\\subsection*{Margin Sensitivity Analysis}\n40\t\n41\tTo assess the robustness of the equivalence conclusion to margin choice, we repeat the TOST procedure across multiple equivalence margins \\cite{lakens_equivalence}, following the recommendation to report sensitivity across plausible bounds rather than relying on a single threshold (Table~\\ref{tab:tost-margins}).\n42\t\n43\t\\begin{table}[h]\n44\t\\centering\n45\t\\small\n46\t\\resizebox{\\linewidth}{!}{%\n47\t\\begin{tabular}{llcc}\n48\t\\toprule\n49\t\\textbf{Comparison} & \\textbf{Margin} & \\textbf{Equiv?} & \\textbf{TOST $p$} \\\\\n50\t\\midrule\n51\tFull (12{,}299) vs.\\ Random (3{,}951) & $\\pm$1\\% & No & 1.0 \\\\\n52\t                                        & $\\pm$2\\% & Yes & $1 \\times 10^{-6}$ \\\\\n53\t                                        & $\\pm$3\\% & Yes & $< 10^{-10}$ \\\\\n54\t                                        & $\\pm$5\\% & Yes & $< 10^{-10}$ \\\\\n55\t\\midrule\n56\tFull (12{,}299) vs.\\ Depth 0--1 (3{,}951) & $\\pm$1\\% & No & 1.0 \\\\\n57\t                                            & $\\pm$2\\% & No & 1.0 \\\\\n58\t                                            & $\\pm$3\\% & Yes & $< 10^{-10}$ \\\\\n59\t                                            & $\\pm$5\\% & Yes & $< 10^{-10}$ \\\\\n60\t\\bottomrule\n61\t\\end{tabular}}\n62\t\\caption{TOST equivalence testing across multiple margins. ``Equiv?'' indicates whether equivalence is established at $\\alpha = 0.05$.}\n63\t\\label{tab:tost-margins}\n64\t\\end{table}\n65\t\n66\tThe full dataset vs.\\ random subsample comparison passes equivalence at the $\\pm$2\\% margin ($p = 10^{-6}$), while the full vs.\\ depth 0--1 comparison requires a $\\pm$3\\% margin.\n67\tIn absolute terms, perplexity differences are small: $\\Delta$\\,=\\,0.032 (full vs.\\ random, 1.4\\% of baseline) and $\\Delta$\\,=\\,0.052 (full vs.\\ depth 0--1, 2.2\\% of baseline).\n68\t\n69\tCohen's $d$ values are 86.0 (full vs.\\ random) and 119.7 (full vs.\\ depth 0--1).\n70\tThese appear large but are unreliable: with only $n$\\,=\\,3 seeds per condition, the pooled standard deviation is extremely small ($<$0.001), artificially inflating $d$.\n71\tThe inflated effect sizes reflect low seed-level variance (confirming reproducibility) rather than practically meaningful perplexity differences.\n72\tThe TOST framework with pre-specified relative margins provides a more appropriate assessment than Cohen's $d$ in this low-seed regime.\n73\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "cfe3f182-7b20-46a9-975a-3d8696b7b6df",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex",
+                "content": "Can depth-aware data curation improve downstream language model quality?\nWe fine-tune OLMo-2-0425-1B on five data variants (3 seeds each) and evaluate perplexity on a held-out test set (Table~\\ref{tab:downstream}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lrc}\n\\toprule\n\\textbf{Variant} & \\textbf{$n$} & \\textbf{Test PPL} \\\\\n\\midrule\nAll depths            & 12{,}299 & 2.335 $\\pm$ 0.000 \\\\\nSize-matched (random) & 3{,}951  & 2.367 $\\pm$ 0.000 \\\\\nDepth 0--1 only       & 3{,}951  & 2.387 $\\pm$ 0.001 \\\\\nBinary-filtered       & 3{,}951  & 2.389 $\\pm$ 0.000 \\\\\nDepth 0 only          & 797      & 2.681 $\\pm$ 0.001 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Downstream fine-tuning perplexity (OLMo-2-0425-1B, mean $\\pm$ std across 3 seeds). At equal sample count, random subsampling (2.367) outperforms depth-aware curation (depth 0--1: 2.387, binary-filtered: 2.389).}\n\\label{tab:downstream}\n\\end{table}\n\nThe results are unambiguous: data quantity dominates depth composition.\nTraining on all 12{,}299 samples yields the lowest perplexity (2.335).\nAt equal sample count ($n$\\,=\\,3{,}951), random subsampling (2.367) \\emph{outperforms} both depth-stratified selection (depth 0--1: 2.387) and binary detection filtering (2.389).\nCross-seed variance is below 0.002 across all variants, which confirms the robustness of this null result.\n\nRestricting training to human-only text (depth 0, $n$\\,=\\,797) produces a sharp perplexity increase to 2.681, driven primarily by the 5$\\times$ reduction in data volume rather than depth composition per se.\n\n\\paragraph{Equivalence testing.}\nWe apply a two one-sided $t$-test (TOST) with a $\\pm$2\\% relative margin (equivalence bounds $\\pm$0.047 on the ppl scale) to formally assess whether the depth-aware and random subsampling conditions produce practically indistinguishable perplexity.\nAt equal sample count ($n$\\,=\\,3{,}951): size-matched (random) ppl\\,=\\,2.367 vs.\\ depth 0--1 ppl\\,=\\,2.387, $\\Delta$\\,=\\,0.020.\nTOST confirms equivalence ($p = 1.1 \\times 10^{-4}$); the two curation strategies yield practically indistinguishable downstream quality within the $\\pm$2\\% margin.\nCross-seed standard deviation is below 0.001 for both variants.\n\nComparing the full dataset ($n$\\,=\\,12{,}299, ppl\\,=\\,2.335) against the depth-filtered subset ($n$\\,=\\,3{,}951, ppl\\,=\\,2.387): TOST \\emph{rejects} equivalence (minimum equivalence margin\\,=\\,0.053, exceeding the $\\pm$2\\% bound), which confirms that data quantity drives perplexity reduction beyond what depth-aware selection can recover.\n\nKnowing the generation depth of a document does not, by itself, make it more or less useful for training; at fixed sample count, depth-aware curation is statistically equivalent to uninformed random subsampling.\n\n\\subsection*{Margin Sensitivity Analysis}\n\nTo assess the robustness of the equivalence conclusion to margin choice, we repeat the TOST procedure across multiple equivalence margins \\cite{lakens_equivalence}, following the recommendation to report sensitivity across plausible bounds rather than relying on a single threshold (Table~\\ref{tab:tost-margins}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{llcc}\n\\toprule\n\\textbf{Comparison} & \\textbf{Margin} & \\textbf{Equiv?} & \\textbf{TOST $p$} \\\\\n\\midrule\nFull (12{,}299) vs.\\ Random (3{,}951) & $\\pm$1\\% & No & 1.0 \\\\\n                                        & $\\pm$2\\% & Yes & $1 \\times 10^{-6}$ \\\\\n                                        & $\\pm$3\\% & Yes & $< 10^{-10}$ \\\\\n                                        & $\\pm$5\\% & Yes & $< 10^{-10}$ \\\\\n\\midrule\nFull (12{,}299) vs.\\ Depth 0--1 (3{,}951) & $\\pm$1\\% & No & 1.0 \\\\\n                                            & $\\pm$2\\% & No & 1.0 \\\\\n                                            & $\\pm$3\\% & Yes & $< 10^{-10}$ \\\\\n                                            & $\\pm$5\\% & Yes & $< 10^{-10}$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{TOST equivalence testing across multiple margins. ``Equiv?'' indicates whether equivalence is established at $\\alpha = 0.05$.}\n\\label{tab:tost-margins}\n\\end{table}\n\nThe full dataset vs.\\ random subsample comparison passes equivalence at the $\\pm$2\\% margin ($p = 10^{-6}$), while the full vs.\\ depth 0--1 comparison requires a $\\pm$3\\% margin.\nIn absolute terms, perplexity differences are small: $\\Delta$\\,=\\,0.032 (full vs.\\ random, 1.4\\% of baseline) and $\\Delta$\\,=\\,0.052 (full vs.\\ depth 0--1, 2.2\\% of baseline).\n\nCohen's $d$ values are 86.0 (full vs.\\ random) and 119.7 (full vs.\\ depth 0--1).\nThese appear large but are unreliable: with only $n$\\,=\\,3 seeds per condition, the pooled standard deviation is extremely small ($<$0.001), artificially inflating $d$.\nThe inflated effect sizes reflect low seed-level variance (confirming reproducibility) rather than practically meaningful perplexity differences.\nThe TOST framework with pre-specified relative margins provides a more appropriate assessment than Cohen's $d$ in this low-seed regime.\n",
+                "numLines": 73,
+                "startLine": 1,
+                "totalLines": 73
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a thorough understanding of the current paper state. Let me summarize the key differences between the current paper_framing.md and the actual paper:\n\n1. **Scope**: Paper says \"eight base models from five families\" — framing says \"6 generators / 3 model families\"\n   - Paper lists: Pythia-2.8B, Pythia-1B, Qwen3-1.7B, Llama-3.2-3B, OLMo-2-1B, Qwen3-8B, Qwen3-0.6B, Mistral-7B = 8 generators, 5 families (Pythia, Qwen, Llama, OLMo, Mistral)\n   \n2. **Key metrics are significantly outdated**: The framing document has stale numbers across the board — the primary LOGO F1 score should be 0.694 (binary, leak-free), not 0.80, and the cross-model performance is actually 0.809 for 3-class and 0.764 for binary, while the 3-class LOGO result is 0.762 rather than 0.79.\n\n3. **Venue positioning needs updating**: The framing references AAAI 2027 and EMN, but the paper positions itself at a Findings level.\n\n4. **Core claims have shifted**: The primary metric is now binary F1 = 0.694 instead of 3-class, the feature complementarity breakdown shows different numbers (0.773 full, 0.688 surface-only, 0.713 reference-only), and the downstream task uses TOST equivalence at ±2% rather than ±3%.\n\n5. **Critical limitations to highlight**: Instruct-tuned models show dramatic performance drops — OLMo-Instruct plummets to 0.338 LOGO F1 compared to 0.763 for the base model — though temperature sensitivity appears manageable.\n\n6. **Trade-offs in the ensemble approach**: The 7-feature ensemble versus 4-detector+surface comparison shows the multi-detector setup is marginally better on binary F1 (0.708 vs 0.705) and 3-class (0.795 vs 0.774), but costs 2.4× more to run, and family-out LOFO binary F1 sits at 0.686.\n\n7. **Clarifying the metrics**: The user flagged that cross-model 3-class should be 0.764, but checking the paper directly shows 3-class = 0.809 and binary = 0.764 — so 0.764 is actually the binary metric, not 3-class.\n\n8. **Scope and limitations to highlight**: I'm working with base models only across t∈[0.5, 0.9], noting the instruct degradation at t=1.0, temperature sensitivity, and that the 7-feature setup isn't optimal. The study covers 8 generators and 5 families, with a key negative result being downstream TOST equivalence within ±2%/±3%.\n\n9. **Next step**: Updating the paper_framing.md file to reflect \"8 generators / 5 families\" instead of the earlier \"6 generators / 3 families\" count.\n\nNow I'm revising the entire framing document to align all metrics with what's actually in the paper, repositioning around the Findings paper's scope, updating the core claims, refreshing the headline result template, incorporating current reviewer concerns with accurate numbers, and emphasizing the key limitations while cleaning up how the contribution is positioned.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "1c8f6442-f918-408d-b873-a9bbfb5edf73",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GmkFw59G3hoLAB9oNXhCqD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2160,
+                "cache_read_input_tokens": 36387,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2160
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have a complete picture. Key discrepancies between paper_framing.md and the actual paper:\n\n- **Scope**: Paper has 8 generators / 5 families, framing says 6 / 3\n- **Primary metric**: Paper uses binary F1 = 0.694, framing uses 3-class 0.79/0.80\n- **Cross-model**: Paper says 3-class 0.809, binary 0.764 (user noted 0.764 but that's the *binary*, not 3-class)\n- **Feature ablation**: Paper says full 0.773, surface 0.688, reference 0.713 (framing has 0.79/0.75/0.75)\n- **LOFO**: Paper says binary F1 = 0.686 (framing says 0.75–0.77)\n- **Findings positioning**: Not reflected in framing\n\nLet me write the updated version."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "b199aeeb-2deb-4064-acbc-5c649ab85c4d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GmkFw59G3hoLAB9oNXhCqD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2160,
+                "cache_read_input_tokens": 36387,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2160
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MwayU4YSzo6zHAknCnvqr7",
+              "name": "mcp__agent-ml-research__save_project_file",
+              "input": {
+                "project": "gen-depth-fingerprint",
+                "file": "paper_framing.md",
+                "content": "# Paper Framing — gen-depth-fingerprint\n\n## Target Venue\n- **Primary: EMNLP 2026 Findings (ARR deadline: May 25, 2026)** — D012: 恢复为主投稿目标\n- Positioning: **Findings paper**（非 main conference long paper）\n- Fallback venues: ICLR 2027 (Sep 24), NAACL 2027 ARR (Oct 16)\n\n## Core Insight\nNon-paraphrastic LLM generation chains exhibit **differential depth response** (DDR): **central-tendency/diversity features** (entropy_mean, TTR, hapax ratio) drift monotonically with depth, while **shape features** (entropy_max, tail_decay) remain near-stationary. This is consistent with recursive generation inducing a **location shift** in the NLL distribution while approximately preserving distributional shape. The contribution is: (a) the **task formulation** (generation depth classification beyond binary detection), (b) **empirical validation** across 8 generators / 5 model families (Pythia, OLMo, Qwen, Llama, Mistral; 0.6B–8B) showing DDR is robust, (c) a lightweight 7-feature ensemble achieving leak-free binary F1 = 0.694 under 8-gen LOGO. Depth signal degrades substantially under instruction tuning, restricting current scope to base models.\n\n## Core Claims (3 条，均可证伪)\n\n**Claim 1 — Depth Discriminability**: A 7-feature distributional ensemble can classify generation depth (gen-0 / gen-1 / gen-2+) with leak-free binary F1 = 0.694 (95% CI [0.688, 0.700]) under 8-generator LOGO evaluation, generalizing across unseen generators and model families (LOFO binary F1 = 0.686). Cross-model chains yield binary F1 = 0.764. Primary metric is leak-free binary F1 (gen-1 vs gen-2+), excluding gen-0 to avoid seed-sharing leakage.\n\n**Claim 2 — Differential Depth Response & Feature Complementarity**: Features exhibit DDR: drifting features show |ρ| > 0.60 (hapax −0.63, TTR −0.61, entropy_mean −0.60), while shape features show |ρ| < 0.10 (tail_decay 0.04). KS statistics confirm: drifting 0.516–0.537 vs shape 0.043–0.052 (~10× gap). Full 7-feature set (10-fold CV F1 = 0.773) outperforms surface-only (0.688) and reference-only (0.713; McNemar p ≈ 0). Reference-only yields higher binary F1 (0.833 vs 0.695) but surface features are essential for 3-class gen-0 discrimination.\n\n**Claim 3 — Downstream Utility (Negative Finding)**: Depth-aware data curation does NOT improve downstream CLM quality. At equal sample count (n=3,951): random subsampling (ppl=2.367) outperforms depth 0–1 (2.387) and binary-filtered (2.389). TOST confirms equivalence at ±2% margin (p = 1.1×10⁻⁴). Full dataset (n=12,299, ppl=2.335) vs depth-filtered requires ±3% margin for equivalence. Depth fingerprinting is a **diagnostic** tool for provenance characterization, not a **curative** tool for data selection.\n\n## Headline Metrics Summary\n\n| Metric | Value | Context |\n|--------|-------|---------|\n| **Primary: LOGO binary F1** | **0.694** [0.688, 0.700] | 8-gen LOGO, gen-1 vs gen-2+, leak-free |\n| LOGO 3-class F1 | 0.762 [0.758, 0.766] | Inflated by gen-0 seed sharing |\n| Cross-model binary F1 | 0.764 | 5-gen subset, 5-fold CV |\n| Cross-model 3-class F1 | 0.809 | 5-gen subset, 5-fold CV |\n| LOFO binary F1 | 0.686 | Leave-one-family-out |\n| Per-gen binary F1 range | 0.633–0.724 | Mistral-7B lowest, Pythia-2.8B highest |\n| Feature ablation (10-fold CV) | Full 0.773, Surface 0.688, Ref 0.713 | McNemar p ≈ 0 |\n| Length-matched binary F1 | 0.724 vs 0.770 unmatched | Deconfounding, not sample-size effect |\n\n## Scope & Limitations (必须在论文中突出)\n\n1. **Base models only**: Instruct-tuned models show substantially degraded signal (OLMo-Instruct LOGO F1 = 0.338 vs 0.763 base). Alignment-imposed length regulation and format constraints compress the distributional variation DDR exploits. This is the **primary scope limitation**.\n2. **Temperature sensitivity**: Reliable within t ∈ [0.5, 0.9] (≤1 pp degradation from default t=0.7). At t = 1.0: −6 pp degradation; entropy_mean ρ drops from −0.60 to −0.002. Cross-temperature transfer degrades severely (t=0.7 → t=1.0: Qwen3-1.7B F1 drops 0.789 → 0.418).\n3. **7-feature ensemble is not optimal**: Multi-detector ensembles (4-det + surface) achieve 3-class 0.795 vs 0.774 (+2.1 pp) and binary 0.708 vs 0.705 (+0.3 pp), but at 2.4× inference cost and 3.2× GPU memory. 7-feature positioned on **efficiency advantage**, not absolute performance.\n4. **3-class resolution ceiling**: 5-class F1 drops to ~0.50; ordinal methods (CORAL, Frank-Hall) yield no improvement over standard XGBoost. Gen-1/gen-2+ boundary is the bottleneck (concentrates 86% of binary errors as FNs).\n5. **Scale effect**: Larger generators show moderate degradation (Mistral-7B: 0.633, Qwen3-8B: 0.692 vs average 0.694). Higher-capacity models compress feature margins.\n6. **Prompt-type dependence**: Continuation chains show stronger drift (F1 = 0.781) than elaboration (0.730).\n\n## Story Spine\n\n**Problem**: Web-scraped training data increasingly contains LLM-generated text of unknown provenance depth (7–17% of recent scientific papers). Current detection methods offer only binary real-vs-synthetic classification, conflating qualitatively different material: gen-1 retains much of the source distribution's lexical properties, while deeper text exhibits measurably reduced vocabulary diversity and compressed perplexity.\n\n**Existing approaches & gaps**: Binary detectors (FastDetectGPT, Binoculars, LD-Score) cannot distinguish gen-1 from gen-2+. Attractor cycle theory (ACL 2025) bounds paraphrasing chains to ~3 classes but depends on semantic-preservation constraints. No existing method addresses generation depth estimation in non-paraphrastic continuation chains. When repurposed as ordinal depth predictors, single detector scores show moderate signal but high cross-generator variance.\n\n**Our framing**: We formulate generation depth classification (gen-0/gen-1/gen-2+) and characterize DDR across 8 base-model generators from 5 families (0.6B–8B). Central-tendency features drift monotonically while shape features remain near-stationary, consistent with recursive generation inducing a location shift in the NLL distribution. A 7-feature ensemble achieves leak-free binary F1 = 0.694 under 8-gen LOGO with a single 410M reference model. Multi-detector ensembles achieve marginally higher F1 at 2.4× cost. The signal degrades under instruction tuning and high temperature, restricting current scope to base models at moderate temperatures.\n\n**Headline result template**: \"On 8 base-model generators from 5 families (0.6B–8B), our 7-feature ensemble achieves leak-free binary F1 = 0.694 under LOGO evaluation and 0.764 on cross-model chains, using a single 410M reference model. Depth-aware curation is statistically equivalent to random subsampling for downstream CLM quality (TOST p = 1.1×10⁻⁴ at ±2% margin), establishing depth fingerprinting as a diagnostic tool for provenance characterization.\"\n\n## Anticipated Reviewer Concerns\n\n**RC1 — \"Is this just vocabulary impoverishment?\"**: Surface features alone achieve 0.688, but full features achieve 0.773 (McNemar p ≈ 0). Reference features capture different, complementary signal. Reference-only yields higher binary F1 (0.833) but misses gen-0 discrimination. The complementarity itself is a finding.\n\n**RC2 — \"Does this generalize beyond Pythia?\"**: 8 generators from 5 families (Pythia, OLMo, Qwen, Llama, Mistral). LOFO binary F1 = 0.686 confirms cross-family transfer. Cross-model chains (heterogeneous generators per depth step) yield binary F1 = 0.764.\n\n**RC3 — \"Is 3-class sufficient?\"**: 5-class F1 drops to ~0.50. Ordinal methods (CORAL, Frank-Hall) yield no improvement. Gen-1/gen-2+ boundary is the resolution bottleneck. 3 classes represent practical ceiling.\n\n**RC4 — \"How realistic are single-model chains?\"**: Cross-model chains (different generator per step) are evaluated and yield higher F1 (0.764 binary), suggesting generator heterogeneity amplifies distributional shifts.\n\n**RC5 — \"What about human editing?\"**: Robustness test with simulated human edits (random word replacement + LLM-simulated editing). Reported in appendix.\n\n**RC6 — \"Ecological validity?\"**: Multi-domain seeds (news, Wikipedia, scientific, creative) + multiple prompt types (continuation, elaboration, rewriting). Prompt-type dependence reported transparently (continuation 0.781 vs elaboration 0.730).\n\n**RC8 — \"Aren't these just OOD detection features?\"**: Contribution is NOT the features but: (a) ordinal depth estimation formulation, (b) empirical DDR discovery (drifting vs stationary), (c) Findings-level empirical characterization. Paper explicitly connects to OOD/perplexity-based detection literature.\n\n**RC9 — \"Only base models — what about instruct?\"**: Acknowledged as primary limitation. OLMo-Instruct LOGO F1 = 0.338 vs 0.763 base. Instruction tuning compresses the distributional variation DDR exploits. Reported transparently; defines scope boundary.\n\n**RC10 — \"Text length confound\"**: Length-matched subsampling: binary F1 = 0.724 (vs 0.770 unmatched). Random-subsample control confirms drop reflects deconfounding, not sample-size reduction.\n\n**RC11 — \"Downstream — limited evidence\"**: Three seeds, single perplexity metric. TOST equivalence confirmed at ±2% margin for equal-count comparison. Margin sensitivity analysis across ±1%–5% reported. Cohen's d inflated by low seed-level variance; TOST is the appropriate test.\n\n## Contribution Positioning (Findings Level)\nThe contribution is **empirical and conceptual**, appropriate for Findings:\n1. **Problem formulation**: Generation depth classification as a new task beyond binary detection (no prior work addresses this in non-paraphrastic chains)\n2. **Empirical characterization**: DDR across 8 generators / 5 families (0.6B–8B), with cross-generator generalization (LOGO binary F1 = 0.694, LOFO 0.686, cross-model 0.764). Honest reporting of scope boundaries (instruct degradation, temperature sensitivity, scale effect).\n3. **Negative finding**: Depth-aware curation ≡ random subsampling for downstream quality (TOST confirmed). Depth fingerprinting is diagnostic, not curative.\n\n**Framing discipline:**\n- Do NOT call the drift/stationarity split a \"discovery\" — it follows from location-shift properties of the NLL distribution. Acknowledge explicitly.\n- Do NOT use H1/H2 terminology. Use \"drifting\" vs \"stationary\" or \"differential response.\"\n- Do NOT overclaim \"dual dynamics.\" Use \"differential depth response\" (DDR).\n- Report **realistic performance range** (binary F1 0.633–0.724 per-generator, 0.694 LOGO average) in abstract/conclusion, not best-case.\n- Primary metric is leak-free binary F1 (not 3-class, which is inflated by gen-0 seed sharing).\n- 7-feature ensemble is positioned on efficiency, not absolute superiority over multi-detector ensembles.\n\nRelated work must cover: perplexity-based detection (DetectGPT, GLTR, DNA-GPT, Binoculars), model collapse theory, OOD detection, data quality scoring, watermarking, vocabulary diversity, stylometry/authorship attribution, iterative generation (LLM as Broken Telephone ACL 2025), membership inference.\n\n## Venue Fit\n- EMNLP 2026 Findings: Excellent fit — directly addresses data contamination, synthetic data feedback loops, data governance. Empirical/conceptual contribution with honest scope boundaries. Findings-appropriate ambition level: novel task formulation + solid characterization, not a state-of-the-art methodology claim.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "e68ed38b-8025-4427-9158-11da5de55a66",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GmkFw59G3hoLAB9oNXhCqD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2160,
+                "cache_read_input_tokens": 36387,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2160
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T21:13:12.106Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MwayU4YSzo6zHAknCnvqr7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/paper_framing.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "ed3b64cf-fa07-4e2b-b455-7550b922b5a1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/paper_framing.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/paper_framing.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已更新 paper_framing.md。主要变更：\n\n1. **Scope**: 6-gen/3-family → **8-gen/5-family** (Pythia, OLMo, Qwen, Llama, Mistral)\n2. **Primary metric**: 3-class F1 0.79 → **leak-free binary F1 = 0.694**（排除 gen-0 seed sharing 泄漏）\n3. **Cross-model**: 0.764 是 **binary F1**（3-class 实际是 0.809，已标注清楚）\n4. **Feature ablation**: 旧 0.79/0.75/0.75 → 实际 **0.773/0.688/0.713**\n5. **LOFO**: 旧 0.75–0.77 → 实际 **binary F1 = 0.686**\n6. **Positioning**: 明确标注 **Findings paper**，贡献定位调整为 Findings 级别\n7. **Limitations**: 新增独立章节，突出 instruct 退化、温度敏感性、7-feature 非最优（efficiency advantage）、3-class 天花板、scale effect\n8. **Downstream TOST**: 补充 ±2% margin (p=1.1×10⁻⁴) 和 margin sensitivity 细节\n9. **新增 Headline Metrics Summary 表格** 集中所有关键数字，便于快速查阅"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "uuid": "76a6e777-2ef9-44b6-a41c-3a6f6df43077",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GQjcERp2399f6LxeLRiDtq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4886,
+                "cache_read_input_tokens": 38547,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4886
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已更新 paper_framing.md。主要变更：\n\n1. **Scope**: 6-gen/3-family → **8-gen/5-family** (Pythia, OLMo, Qwen, Llama, Mistral)\n2. **Primary metric**: 3-class F1 0.79 → **leak-free binary F1 = 0.694**（排除 gen-0 seed sharing 泄漏）\n3. **Cross-model**: 0.764 是 **binary F1**（3-class 实际是 0.809，已标注清楚）\n4. **Feature ablation**: 旧 0.79/0.75/0.75 → 实际 **0.773/0.688/0.713**\n5. **LOFO**: 旧 0.75–0.77 → 实际 **binary F1 = 0.686**\n6. **Positioning**: 明确标注 **Findings paper**，贡献定位调整为 Findings 级别\n7. **Limitations**: 新增独立章节，突出 instruct 退化、温度敏感性、7-feature 非最优（efficiency advantage）、3-class 天花板、scale effect\n8. **Downstream TOST**: 补充 ±2% margin (p=1.1×10⁻⁴) 和 margin sensitivity 细节\n9. **新增 Headline Metrics Summary 表格** 集中所有关键数字，便于快速查阅"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 148241,
+            "duration_api_ms": 149179,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "a42efb3b-c6fc-40bb-bdab-83cf96378f3b",
+            "total_cost_usd": 0.435755,
+            "usage": {
+              "input_tokens": 10,
+              "cache_creation_input_tokens": 31592,
+              "cache_read_input_tokens": 169540,
+              "output_tokens": 6091,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 31592,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 394,
+                  "cache_read_input_tokens": 38547,
+                  "cache_creation_input_tokens": 4886,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 4886
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1130,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00121,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 10,
+                "outputTokens": 6091,
+                "cacheReadInputTokens": 169540,
+                "cacheCreationInputTokens": 31592,
+                "webSearchRequests": 0,
+                "costUSD": 0.434545,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "401318aa-b998-419c-839a-cd10d4b57287"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-framing-sync.md"
+}

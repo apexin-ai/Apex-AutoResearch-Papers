@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87fa4ee0c9eb8c3a3f97",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code efficiency quantification",
+  "task_key": "worker_code_efficiency-quantification_20260517T115235",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_efficiency-quantification_20260517T115235_result.json",
+    "occurrence": 1,
+    "bytes": 1006,
+    "sha256": "800976a3dac987d5912f84a8160f1d7348b1f6e350101d149671a32ab1b8afb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `/root/gen-depth-fingerprint/results/efficiency_comparison.json`。\n\n核心数据：\n\n| Metric | 7-feature | 4-det+surface |\n|---|---|---|\n| Models | 1× Pythia-410M | Pythia-410M + Pythia-1B |\n| Total params | 410M | 1.41B (3.4×) |\n| Forward passes/text | 1 | 3 (naive) / 2 (optimized) |\n| GPU memory | 905 MB | 2,868 MB (3.2×) |\n| Wall-clock | 9.7 ms/text | 22.8 ms/text |\n| FLOPs/text | 1.94×10¹¹ | 6.68×10¹¹ (optimized, 3.4×) |\n| **Speedup** | — | **2.35× slower** |\n\n时间 breakdown (4-det+surface 的 2.28s/100 texts):\n- FDG+LogProb (Pythia-410M pass): 0.858s (37.6%)\n- Binoculars (410M+1B double pass): 1.359s (59.6%)\n- LD-Score (CPU trigram JSD): 0.061s (2.7%)\n- Surface features (CPU): 0.002s (<0.1%)\n\nBinoculars 的双模型 forward pass 占了近 60% 的开销。7-feature ensemble 以单次 410M forward pass 实现了与 4-det+surface 统计不可区分的 binary F1 (0.701 vs 0.707)，但速度快 2.35×、显存省 3.2×。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-efficiency-quantification.md"
+}

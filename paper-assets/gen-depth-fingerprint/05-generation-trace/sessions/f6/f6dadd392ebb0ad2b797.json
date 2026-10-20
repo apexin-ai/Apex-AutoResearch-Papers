@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6dadd392ebb0ad2b797",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis exp062 feature extraction batch2",
+  "task_key": "worker_analysis_exp062_feature_extraction_batch2_20260521T120416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp062_feature_extraction_batch2_20260521T120416_result.json",
+    "occurrence": 1,
+    "bytes": 977,
+    "sha256": "13758c7bbcfc01351e796b58ad90f9f4f62757ac9d2f701ef0c38650de1dd366"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "自动提取脚本已启动（PID 357040），会在 pythia-1b-topk 生成完成后自动提取特征。\n\n已完成的工作：\n1. **pythia-2.8b topk** — 特征提取 + Cohen's d ✅\n2. **qwen3-1.7b greedy** — 特征提取 + Cohen's d ✅\n3. **pythia-1b topk** — 生成 80%，已设置自动提取脚本等待中\n\n结果保存到：\n- `artifacts/_project/analysis/decoding_cohens_d_batch2.txt` — 新 combo 结果\n- `artifacts/_project/analysis/decoding_cohens_d_all.txt` — 汇总（batch1 + batch2）\n\n关键发现：\n\n| Combo | Shape dichotomy | Drifting signal | 备注 |\n|-------|----------------|-----------------|------|\n| pythia-2.8b topk | **FAIL** (entropy_max d=0.274) | TTR=0.46, hapax=0.41 低于阈值 | top-k 削弱了二分法 |\n| qwen3-1.7b greedy | **PASS** (max shape d=0.08) | 全部 > 0.65，强信号 | 最干净的 dichotomy |\n\npythia-1b-topk 约 15 分钟后完成，我会再回来计算并更新汇总文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp062-feature-extraction-batch2.md"
+}

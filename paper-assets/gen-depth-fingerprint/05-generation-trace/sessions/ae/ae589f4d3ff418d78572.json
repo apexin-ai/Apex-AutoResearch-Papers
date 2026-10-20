@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae589f4d3ff418d78572",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "gpu parallel generation boost",
+  "task_key": "worker_gpu_parallel_generation_boost_20260521T081901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_parallel_generation_boost_20260521T081901_result.json",
+    "occurrence": 1,
+    "bytes": 1089,
+    "sha256": "3ff82f2fed3b244496144dc923fb76aa37784e75701471e049e980565af231ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。最终状态：\n\n| GPU | PID | 模型 | 策略 | VRAM | GPU-Util |\n|-----|-----|------|------|------|----------|\n| **cuda:0** | 283041 | Pythia-2.8b | greedy → topk (自动) | 6.2GB | 68% |\n| **cuda:1** | 283607 | OLMo-2-1b | greedy → topk (自动) | 3.6GB | 87% (共) |\n| **cuda:1** | 344399 | **Qwen3-1.7B** (新) | greedy → topk | 4.0GB | |\n| cuda:2 | — | 空闲 | — | 0 | 0% |\n| cuda:3 | — | 空闲 | — | 0 | 0% |\n\n**cuda:1 合计 7.6GB/32GB，利用率从 45% 提升到 87%。**\n\n操作总结：\n- **已 kill** `start_qwen_after_olmo.sh` watcher（PID 340310/340315），避免 OLMo 结束后重复启动 Qwen\n- **已启动** Qwen3-1.7B (PID 344399) 在 cuda:1 并行运行，从 81 seeds 处 resume，~5.17 it/s\n- **未启动** Pythia topk / OLMo topk — 两个现有进程的 `--strategies greedy topk` 参数已包含 topk，greedy 完成后自动执行。单独启动会写同一个输出文件造成数据损坏\n- **不需要 watcher 脚本** — 三个进程各自按 greedy → topk 顺序执行，无需外部调度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-parallel-generation-boost.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21f7f05a5816c82cbcc0",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper paperbanana fig2 v11",
+  "task_key": "worker_paper_paperbanana-fig2-v11_20260525T071826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_paperbanana-fig2-v11_20260525T071826_result.json",
+    "occurrence": 1,
+    "bytes": 504,
+    "sha256": "69b0752651264cc15074f84affa645fe1b8d82d6ecf18d7b5a85b7ae31d5a8e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 2 v11 完成。\n\n**变更内容：**\n- Panel (a) 箭头旁新增 brain silhouette 图标（gen-0→gen-1、gen-1→gen-2+ 各一个），偏移在箭头右侧，不与箭头线重叠\n- Gen box 内部 icon 简化为纯文档图标，移除了齿轮覆盖\n- 面板背景色、其余内容均保持 v10 不变\n\n**输出文件：**\n- PNG: `artifacts/_project/paper/fig2_framework.png`\n- PDF: `artifacts/_project/paper/fig2_framework.pdf`（image-only，无嵌入字体问题）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-paperbanana-fig2-v11.md"
+}

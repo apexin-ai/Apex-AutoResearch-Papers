@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2b82e7294cf1a2dc61b",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_6_1778869921.md",
+  "task_key": "loop_6_1778869921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778869921.md",
+    "occurrence": 1,
+    "bytes": 4670,
+    "sha256": "1b22aad25724eafb91635b6f1cb414b33c908d930191adce0ae317b19f6d8386"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-15T15:50:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 cuda:0/1/2/3，无其他服务器/GPU 可用\n- Primary metric 已锁定 binary LOGO F1=0.723 (gen-1 vs gen-2+, leak-free)，D017 决策，不可再改回 3-class 作为 headline\n- Claim 3 (Downstream Utility) 是 negative 结果 (D009)，论文里按 diagnostic-not-curative framing，不可再声称 positive\n- D018: Instruct 模型展现 inverted DDR（depth signal 反向），不要把 instruct 结果当 positive evidence 用——它是 scope limitation\n- 投稿 DDL 2026-05-25 EMNLP ARR，禁止 fallback 思维（不提降级会议）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090，account: root，工作目录 /root/gen-depth-fingerprint\n- Python：/root/miniconda3/bin/python（conda base 环境，不用 venv）\n- 模型/数据：均在 /root/gen-depth-fingerprint/data/ 下，各子目录按生成器命名\n- W&B：本项目实验多为 XGBoost/特征分析，大部分结果在 registry 而非 W&B\n- 活跃进程：review-p1c-olmo-instruct 的 3-step pipeline 在 tmux session `p1c_olmo`（cuda:0），Step 1 生成 ETA 约 17:45 UTC\n- 无活跃 Cron（reconcile 返回 0）\n\n### 3. 📊 当前状态\n**刚做完**：Round 2 审稿修复大部分完成——results/conclusion 已改 binary F1 headline，Table 3 统一 6-gen LOGO，P1-E ordinal 实验完成（CI 重叠，无显著优势），P2-F cross-ref bias 排除。\n\n**正在进行**：\n- `review-p1c-olmo-instruct` (ANALYZING)：OLMo-2-0425-1B-Instruct instruct 实验，pipeline 在 autodl-5090 tmux `p1c_olmo` 运行中。notes 说\"Worker 已退出，需 spawn 新 Worker 检查完成状态\"\n- 3 个 Worker 运行中：\n  - `worker_exp_review-p1c-qwen06b-instruct`：Qwen3-0.6B Instruct 实验执行\n  - `worker_ops_check-instruct-experiments`：检查 instruct 实验状态\n  - `worker_analysis_p1c-instruct-logo-f1`：分析 P1-C instruct LOGO F1\n\n**等待中**：\n- abstract + intro 的 binary F1 headline 数字更新（论文 tex 文件）\n- related_work CI width 残留修复\n- P1-E ordinal 结论写入论文\n- Rd2-M7 bib 年份验证（review-rd2m7-bib-audit PREPARING）\n- 全文数字一致性最终验证 → Round 3 提交\n\n**Registry**: DONE 42 / ANALYZING 1 / PREPARING 9（其中多数是早期遗留的 mvp-001 系列，可忽略）\n\n### 4. 📋 待办（条件触发式）\n- Worker `p1c-instruct-logo-f1` 完成 → 更新 registry review-p1c-instruct 的 metrics，确认 D018 inverted DDR 结论是否需要修正\n- Worker `check-instruct-experiments` 完成 → 确认 OLMo instruct pipeline 进度，必要时 spawn 新 Worker 收割结果\n- Worker `review-p1c-qwen06b-instruct` 完成 → 收集 Qwen3-0.6B instruct 结果，与 Qwen3-1.7B instruct 对比，写入论文 discussion 的 instruct scope limitation 段\n- 所有 P1-C instruct 结果收齐 → 在 discussion.tex 写 instruct 段落（scope limitation, inverted DDR 现象），不改 core claims\n- P1-C + 数字更新完成 → spawn Worker 做 Rd2-M7 bib 年份验证\n- 全部修复完成 → 全文数字一致性 check → post_to_reviewer Round 3 → Round 3 通过后准备 EMNLP ARR 提交材料\n- GPU 空闲时（当前 cuda:0/2/3 空闲）→ 无新实验需要跑，全部用于 P1-C pipeline 完成后的分析\n\n### 5. 🎯 战略上下文\n**核心结论链**：D001 MVP pass → D004 dual dynamics → D005 differential depth response (level/diversity drift vs shape stationary) → D007 reframe DDR → D008 ensemble 一致性优势 → D017 binary F1 primary metric → D018 instruct inverted DDR\n\n**关键判断**：\n- 论文 story 已稳定：7-feature ensemble 提供一致的 depth estimation (binary F1=0.723, 3-class supplementary 0.789)，单检测器跨生成器不稳定\n- 4-baseline ensemble (0.712) 略低于 7-feature (0.723)，但差距不大 (D015)——论文里是\"互补\"叙事，不是\"碾压\"\n- Instruct 模型是 scope limitation 不是 failure——base model 才是 core scope，instruct 放 discussion\n\n**易踩的坑**：\n- 不要混淆 3-class F1 (0.789) 和 binary F1 (0.723)——headline 是 binary，3-class 是 supplementary（因为 gen-0 有 train-test leak caveat）\n- PREPARING 状态的 mvp-001-gen-s0/s1/s2/s3、plan-001-restore 是早期遗留实验，已经完成或 failed，不要试图恢复它们\n- review-rd2m7-bib-audit、review-p2f-cross-ref-bias 虽然 PREPARING 但 conclusion 已标 success——是 Worker 做完了但没转 DONE 状态的遗留问题，update_registry 转 DONE 即可\n- 论文 tex 文件同时存在于 `artifacts/_project/paper/` 和 `docs/paper/`，修改后需要 sync 两处\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778869921.md"
+}

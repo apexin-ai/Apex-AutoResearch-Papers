@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af783c7b1ed3bf091b52",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper rd3 int1 figure text",
+  "task_key": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_rd3-int1-figure-text_20260516T053419_result.json",
+    "occurrence": 1,
+    "bytes": 1153,
+    "sha256": "984748711c2e7e26f7abc29a2dd81d8feb138d07691e019d340c25937360e6ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits are correct and consistent. Summary of completed work:\n\n**Task 1 — Spearman ρ values confirmed:**\n- entropy_min: overall ρ = −0.303 (per-gen |ρ| range 0.30–0.51)\n- entropy_max: overall ρ = +0.095 (per-gen |ρ| range 0.005–0.095)\n- entropy_std: pooled |ρ| = 0.076, per-gen max |ρ| = 0.296 ≈ 0.30 ✓\n\n**Task 2 — Figure 1 redrawn:**\n- Drifting zone (blue): hapax, TTR, entropy_mean, entropy_min (4 features)\n- Near-stationary zone (grey): entropy_max, tail_decay, entropy_std (3 features)\n- PDF saved to both `artifacts/_project/paper/` and `docs/paper/`\n\n**Task 3 — Paper text updated (artifacts/ = docs/):**\n- 3a: Figure 1 caption — lists all 7 features with ρ values + Simpson's paradox caveat\n- 3b: §4.2 body — 4 drifting + 3 near-stationary with all ρ values\n- 3c: Method feature complementarity — updated grouping with entropy_min → drifting, entropy_max → stationary\n- 3d: Discussion — replaced \"pure location shift\" with \"lower-tail compression + upper-tail preservation\" mechanism + Simpson's paradox paragraph\n- 3e: \"near-stationary\" wording preserved throughout"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-rd3-int1-figure-text.md"
+}

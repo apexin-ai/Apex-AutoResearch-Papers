@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "403d6e1b41a4c5215efb",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analyze plan 002 qwen17b r2 s1",
+  "task_key": "worker_analyze_plan-002-qwen17b-r2-s1_20260514T231006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_plan-002-qwen17b-r2-s1_20260514T231006_result.json",
+    "occurrence": 1,
+    "bytes": 660,
+    "sha256": "4ecad1bd54395dd5f9359e1631ac5537b1d67d04fb8fe7c030ab64e58594e7ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 结果汇总\n\n### plan-002-qwen17b-r2-s1 ✓ 完成\n\n| 指标 | 值 |\n|------|-----|\n| Records | 2326 |\n| Seeds | 498 (seed 498–999) |\n| Depth 0/1/2/3/4 | 498 / 491 / 473 / 440 / 424 |\n| Skipped | 53 (empty output) |\n| 文件大小 | 2.5M |\n| 耗时 | 4228s (~70 min) |\n\n深度衰减符合预期：depth 0 全量 498，每一层因 empty output 有少量 dropout，到 depth 4 保留 85%（424/498）。\n\n### plan-002-qwen17b-r2-s0 — 仍在运行\n\n- PID 120617, 已跑 1h12m, 100% CPU\n- 进度 485/498 seeds (~97%)，约 3 分钟内完成\n- 当前 2210 行，seed 范围 0–497"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-plan-002-qwen17b-r2-s1.md"
+}

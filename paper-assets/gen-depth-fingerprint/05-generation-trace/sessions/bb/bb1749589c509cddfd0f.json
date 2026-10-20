@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb1749589c509cddfd0f",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "exp temp t09 parallel launch",
+  "task_key": "worker_exp_temp-t09-parallel-launch_20260518T165526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_temp-t09-parallel-launch_20260518T165526_result.json",
+    "occurrence": 1,
+    "bytes": 1804,
+    "sha256": "a22b5cdc0d70466f4ab56f8a181797350e198d039f1fddc1fdda654082608279"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. t=0.9 generation 成功启动\n\n| tmux session | GPU | 模型 | 进度 | 速度 | 预计总时长 |\n|---|---|---|---|---|---|\n| `temp_olmo_t09` | GPU 2 | OLMo-2-1B t=0.9 | 27/995 | ~8.67s/it | ~2.4h |\n| `temp_qwen06_t09` | GPU 3 | Qwen3-0.6B t=0.9 | 20/996 | ~11.28s/it | ~3.1h |\n\n### 2. 使用的完整命令\n\n**OLMo t=0.9 (GPU 2):**\n```bash\ntmux new-session -d -s temp_olmo_t09 \"source /root/miniconda3/bin/activate && cd /root/gen-depth-fingerprint && python generate_chain.py --model-name olmo-2-1b-t09 --model-path /root/autodl-tmp/models/olmo-2-1b-hf/allenai/OLMo-2-0425-1B --temperature 0.9 --top-p 0.9 --output-dir data/ --device cuda:2 ...\"\n```\n\n**Qwen3-0.6B t=0.9 (GPU 3):**\n```bash\ntmux new-session -d -s temp_qwen06_t09 \"source /root/miniconda3/bin/activate && cd /root/gen-depth-fingerprint && python generate_chain.py --model-name qwen3-0.6b-t09 --model-path /root/autodl-tmp/models/Qwen/Qwen3-0___6B-Base --temperature 0.9 --top-p 0.9 --output-dir data/ --device cuda:3 ...\"\n```\n\n### 3. GPU 使用情况 — 4 张全部在用\n\n| GPU | 显存占用 | 任务 |\n|---|---|---|\n| 0 | 3625/32607 MiB | OLMo t=0.5 (901/995) |\n| 1 | 1827/32607 MiB | Qwen t=0.5 (604/996) |\n| 2 | 3625/32607 MiB | OLMo t=0.9 (27/995) |\n| 3 | 1825/32607 MiB | Qwen t=0.9 (20/996) |\n\n### 4. Monitor 脚本 — 不需要修改\n\n- 32GB RTX 5090 显存充裕，extraction（~2GB）与 generation（~3.6GB）共用同一 GPU 不会 OOM\n- `can_start` 排序逻辑（t=0.5 pipeline 完成后才跑 t=0.9 pipeline）在当前场景仍然合理\n- 原脚本 t=0.5 完成后会在 GPU 0/1 尝试跑 t=0.9，与 GPU 2/3 并发写同一文件。`generate_chain.py` 的 crash recovery + append 模式保证安全（最坏情况少量重复记录，可去重）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-temp-t09-parallel-launch.md"
+}

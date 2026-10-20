@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b61a74a31715114ffc6",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code exp 057 scale 9gen",
+  "task_key": "worker_code_exp_057_scale_9gen_20260520T070611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_057_scale_9gen_20260520T070611_result.json",
+    "occurrence": 1,
+    "bytes": 1052,
+    "sha256": "8cca6d712da2f260e5c95a475eb6a8f3ff6fbe52c14fa4d0021c06cb9c52921e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Data validation passed. Here's the summary:\n\n## 状态\n\n**Feature extraction: 不需要.** qwen3-8b 的 7-feature 已在 `features_all_models.csv` 中（4497 行），8-gen LOGO 评估已完成（qwen3-8b macro_f1=0.7009）。\n\n## 9-gen LOGO 准备就绪\n\n| 来源 | Generator | 行数 | Depths |\n|------|-----------|------|--------|\n| CSV (6 gen) | pythia-2.8b, pythia-1b, olmo-2-1b, qwen3-0.6b, qwen3-1.7b, qwen3-8b | 27,529 | 0-4 |\n| JSONL | llama-3.2-3b | 4,680 | 0-4 |\n| JSONL | mistral-7b-v0.3 | 4,849 | 0-4 |\n| JSONL (新) | **gemma-2-2b** | 1,061 | 0-4 |\n| **合计** | **9 generators** | **38,119** | |\n\n## 执行命令\n\n```bash\ncd /root/gen-depth-fingerprint && python3 eval_9gen_logo.py\n```\n\n- **GPU**: 不需要（XGBoost CPU 评估）\n- **预估时间**: 2-3 分钟\n- **输出**: `results/9gen_logo_results.json`\n- **脚本位置**: `/root/gen-depth-fingerprint/eval_9gen_logo.py`\n\nvs 8-gen 基线比较: 自动从 `results/8gen_logo_results.json` 读取并计算 delta。\n\n等审批后执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-057-scale-9gen.md"
+}

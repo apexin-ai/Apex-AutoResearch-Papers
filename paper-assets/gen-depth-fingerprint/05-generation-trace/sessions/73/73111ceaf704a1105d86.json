@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73111ceaf704a1105d86",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper fix p26 whitespace",
+  "task_key": "worker_paper_fix-p26-whitespace_20260521T215236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-p26-whitespace_20260521T215236_result.json",
+    "occurrence": 1,
+    "bytes": 427,
+    "sha256": "b6b73cf09201153e4271f5960cd529c99f0cde443763a4fa629a856890cc7068"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both `artifacts/` and `docs/` copies updated. Changes:\n- `figure*[t]` → `figure[H]`: places the UMAP figure inline instead of deferring to the next page top\n- `\\textwidth` → `\\columnwidth`: matches single-column figure width (consistent with `appendix_cross_temp.tex`)\n\nThis eliminates the 40% whitespace by preventing LaTeX from pushing the figure to a new page top with insufficient surrounding text."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-p26-whitespace.md"
+}

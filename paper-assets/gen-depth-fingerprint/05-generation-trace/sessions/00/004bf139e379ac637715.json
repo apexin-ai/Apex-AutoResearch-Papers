@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "004bf139e379ac637715",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "diag temp urgent status",
+  "task_key": "worker_diag_temp-urgent-status_20260518T181202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_temp-urgent-status_20260518T181202_result.json",
+    "occurrence": 1,
+    "bytes": 1431,
+    "sha256": "6e720f61bdf7972455c45592682a738a3090c30a2a94e287aeafdb46a56d6396"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### 生成进度\n\n| 实验 | Seeds | Lines | GPU | 状态 |\n|------|-------|-------|-----|------|\n| OLMo t=0.5 | **995/995** | 4858 | GPU 0 (空闲) | **生成完成**，但进程变 zombie |\n| Qwen t=0.5 | 961/~996 | 4553 | GPU 1 (32%) | 运行中，~96% |\n| OLMo t=0.9 | 606/995 | 2861 | GPU 2 (47%) | 运行中，~61% |\n| Qwen t=0.9 | 422/996 | 1904 | GPU 3 (32%) | 运行中，~42% |\n\n### Pipeline 阻塞问题\n\n**OLMo t=0.5 生成已完成**（995 seeds，最后记录 seed_id=999，日志打印了 \"Done.\"），但进程变成了 zombie（PID 27216，`<defunct>`）。\n\nMonitor 检测到 995 seeds 数据就绪，但因为判断 olmo_t05 进程状态为 `failed`，**拒绝触发 feature extraction pipeline**。这个 \"Data ready but waiting for olmo_t05 to finish (status: failed)\" 消息从 01:33 开始每 2 分钟重复，已卡了约 40 分钟。\n\n**根因**：zombie 进程没被父 shell 回收，monitor 脚本通过进程状态判断任务是否完成，zombie 状态被识别为 failed 而非 completed。\n\n### Feature / Classification\n\n无新的温度实验 feature CSV 或 eval JSON（现有文件是 May 15-16 的旧实验）。\n\n### 需要你决定\n\n1. 是否手动清理 zombie 进程并手动触发 OLMo t=0.5 的 feature extraction pipeline？\n2. 或者修改 monitor 脚本让它识别 \"数据完整 + 进程不存在/zombie\" 为 completed？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-temp-urgent-status.md"
+}

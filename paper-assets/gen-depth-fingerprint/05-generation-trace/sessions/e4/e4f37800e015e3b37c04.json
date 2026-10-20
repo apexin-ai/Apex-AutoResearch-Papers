@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4f37800e015e3b37c04",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper compile v5 scp direct",
+  "task_key": "worker_paper_compile-v5-scp-direct_20260522T052243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile-v5-scp-direct_20260522T052243_result.json",
+    "occurrence": 1,
+    "bytes": 379,
+    "sha256": "001a353a82b1b0700b31ce3b506c1da29e7034e0ae4a420037400efe383d5400"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 编译报告\n\n| 项目 | 结果 |\n|------|------|\n| 编译状态 | 成功（无 error） |\n| Undefined references | 0 |\n| 总页数 | **34**（从 35 减至 34，目标达成） |\n| p34 | 最后一页（appendix_nll_distribution 内容 + 图） |\n| p35 | 不存在 |\n| MD5 | `0d60b15dbbed34f18ca31d4833849e03` |\n\nPDF 已放置到两个本地位置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-v5-scp-direct.md"
+}

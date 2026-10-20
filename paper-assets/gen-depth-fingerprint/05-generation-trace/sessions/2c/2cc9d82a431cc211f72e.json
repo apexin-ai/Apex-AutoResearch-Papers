@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2cc9d82a431cc211f72e",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper compile and audit",
+  "task_key": "worker_paper_compile-and-audit_20260515T045634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile-and-audit_20260515T045634_result.json",
+    "occurrence": 1,
+    "bytes": 969,
+    "sha256": "e429e74b39d1e61fc05a27928fcb6e9c9a4e1fd308f90047122647d472cf089c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。核心发现：\n\n**编译阻塞**: `acl.sty` 缺失，4 个 section 被注释掉，`references.bib` 需 build.sh 复制。图片文件均存在。\n\n**数字不一致（P0 级）**:\n- **results.tex 内联 LOGO 表**: 6/7 个数字与 registry 偏差（如 Qwen3-1.7B 写 0.809 实为 0.805，avg 写 0.790 实为 0.789）。table1.tex 有正确值但未被 \\input。\n- **Feature Importance**: results.tex 文本写 hapax 0.271/TTR 0.165/entropy_mean 0.156，registry 为 0.269/0.159/0.164。table2.tex caption 正确。\n- **Spearman 四舍五入**: TTR -0.543（应 -0.542）、entropy_mean -0.476（应 -0.475）、tail_decay 0.087（应 0.089）。\n- **introduction.tex**: per-gen range 写 \"0.69 to 0.85\"，其他位置和 registry 均为 \"0.68 to 0.86\"。\n\n**全部匹配**: baselines（5-gen LOGO）、downstream perplexity、cross-ref models 数字全部正确。\n\n报告已注册为 artifact `art_20260515_205e9a`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-and-audit.md"
+}

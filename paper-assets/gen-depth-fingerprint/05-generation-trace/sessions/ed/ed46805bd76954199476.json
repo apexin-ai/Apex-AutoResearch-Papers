@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "ed46805bd76954199476",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "writing r34 r38 fixes",
+  "task_key": "worker_writing_r34_r38_fixes_20260521T083937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_r34_r38_fixes_20260521T083937_result.json",
+    "occurrence": 1,
+    "bytes": 2126720,
+    "sha256": "4bcab0c354516835b075ebbb5deb3e39469d0d4fab151abf4f0b3a1b4796d987"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2126740,
+                "serialized_sha256": "4570cbf1ff7e4da869f46bfc9e7083c7a34cdd0f9be7da10ceb61ec3395bbbfe",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-r34-r38-fixes.md"
+}

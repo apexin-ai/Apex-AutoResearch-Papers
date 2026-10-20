@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "796eba403546ff489450",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis plan 014 full postprocess",
+  "task_key": "worker_analysis_plan-014-full-postprocess_20260515T033948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-014-full-postprocess_20260515T033948_result.json",
+    "occurrence": 1,
+    "bytes": 3290,
+    "sha256": "76e61c93a3637fea8f29b45d43869e1bc8415413a915d62fb1c5a9b4550355cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕。\n\n---\n\n## plan-014 后处理结果汇报\n\n### 1. Qwen3-8B 数据量\n\n| 指标 | 值 |\n|------|-----|\n| 总记录数 | 3702 (from fd/50 recovery, 进程 82% 时快照) |\n| 特征提取后 (去重) | 3728 rows |\n| unique seeds | 820 |\n| **depth 分布** | d0=820, d1=806, d2=774, d3=684, d4=618 |\n\n### 2. 6-gen LOGO macro-F1 (3-class: gen-0/gen-1/gen-2+)\n\n| Held-out Generator | Macro-F1 | 95% CI |\n|-------------------|----------|--------|\n| olmo-2-1b | 0.7632 | [0.752, 0.774] |\n| pythia-1b | 0.8529 | [0.843, 0.862] |\n| pythia-2.8b | 0.8010 | [0.791, 0.812] |\n| qwen3-0.6b | 0.8240 | [0.813, 0.835] |\n| qwen3-1.7b | 0.8018 | [0.791, 0.813] |\n| **qwen3-8b** | **0.6886** | **[0.675, 0.703]** |\n| **6-gen Average** | **0.7886** | |\n\n### 3. 与 5-gen baseline 对比\n\n| 指标 | 5-gen baseline | 6-gen (含 qwen3-8b) | Δ |\n|------|---------------|---------------------|------|\n| LOGO avg macro-F1 | 0.80 [0.786, 0.799] | 0.7886 | **-0.011** |\n| 原 5-gen 子集平均 | 0.80 | 0.8086 | +0.009 |\n\n关键发现：原 5 个 generator 的平均 F1 从 0.80 提升到 0.8086（因为训练集增加了 qwen3-8b 数据），但 qwen3-8b 自身作为 held-out 只有 0.6886，拉低了 6-gen 整体均值。\n\n### 4. LOFO / 特征重要性 (Permutation Importance)\n\n| Rank | Feature | Importance (F1 drop) |\n|------|---------|---------------------|\n| 1 | hapax_ratio | 0.2707 |\n| 2 | ttr | 0.1646 |\n| 3 | entropy_mean | 0.1559 |\n| 4 | entropy_max | 0.0618 |\n| 5 | entropy_std | 0.0457 |\n| 6 | entropy_min | 0.0149 |\n| 7 | tail_decay | 0.0124 |\n\nFeature Ablation: full=0.7886, surface_only=0.7293, reference_only=0.7451\n\n### 5. Qwen3-8B Spearman ρ (depth vs feature)\n\n| Feature | ρ | p-value |\n|---------|------|---------|\n| hapax_ratio | **-0.5683** | ≈0 |\n| ttr | **-0.5530** | 1.0e-297 |\n| entropy_mean | **-0.4750** | 3.6e-209 |\n| entropy_min | -0.3140 | 4.4e-86 |\n| entropy_max | +0.1018 | 4.6e-10 |\n| tail_decay | -0.0796 | 1.1e-06 |\n| entropy_std | -0.0791 | 1.3e-06 |\n\n### 6. RC9 结论：8B 模型 depth signal 是否与 ≤2.8B 一致？\n\n**部分一致，但存在显著差异。**\n\n- **信号存在**：Qwen3-8B 上 depth 与特征的 Spearman 相关性全部显著（p<1e-6），核心特征方向一致（hapax_ratio/ttr/entropy_mean 均为负相关）\n- **信号强度可比**：hapax_ratio ρ=-0.57, ttr ρ=-0.55 与小模型量级接近\n- **迁移性降低**：LOGO 中 qwen3-8b 作为 held-out 的 F1=0.6886，远低于其他 generator（0.76-0.85），说明小模型训练的分类器向 8B 迁移时存在 domain shift\n- **不拖累其他模型**：加入 qwen3-8b 训练数据后，原 5 个 generator 的 held-out F1 反而微升（0.80→0.81）\n- **结论**：depth fingerprint 是跨模型规模的 universal signal，但 8B 模型的 signal pattern 有足够差异使得从 ≤2.8B 直接迁移存在 gap。建议后续探索 scale-aware 特征或在训练集中包含 8B 数据以消除此 gap。\n\n### classify_multi.py 补充结果 (5-class depth 0-4)\n\n| 评估 | macro-F1 |\n|------|----------|\n| 6-gen LOGO 平均 | 0.5058 ± 0.035 |\n| qwen3-8b held-out | 0.4368 |\n| LOFO (family: qwen) | 0.4832 |\n| Pooled 5-fold baseline | 0.4956 ± 0.005 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-014-full-postprocess.md"
+}

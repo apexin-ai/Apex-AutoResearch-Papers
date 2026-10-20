@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15395c133017191c67db",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code sighup fix and status",
+  "task_key": "worker_code_sighup-fix-and-status_20260514T220359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sighup-fix-and-status_20260514T220359_result.json",
+    "occurrence": 1,
+    "bytes": 1409,
+    "sha256": "a3567f928dd03d94b3fc36edb393f4877d7b01dc83392105ad73b8d800df0726"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. 进程状态 — 全部存活\n\n| 任务 | PID | GPU | CPU | 状态 |\n|------|-----|-----|-----|------|\n| qwen3-1.7b r2 shard0 | 120617 | GPU 0 | 111% | **运行中** |\n| qwen3-1.7b r2 shard1 | 120694 | GPU 1 | 106% | **运行中** |\n| qwen3-0.6b shard0 | 117855 | GPU 2 | 102% | **运行中** |\n| qwen3-0.6b shard1 | 118126 | GPU 3 | 100% | **运行中** |\n\n### 2. 数据进度\n\n| 模型 | shard0 | shard1 | 总计 |\n|------|--------|--------|------|\n| qwen3-1.7b | 825 行 | 798 行 | 1623 行 |\n| qwen3-0.6b | 984 行 | 934 行 | 1918 行 |\n\n每 shard 目标 2500 行（500 seeds × 5 depths）。qwen3-0.6b 进度约 37-39%，qwen3-1.7b（r2）约 32-33%（启动更晚）。\n\n### 3. GPU 利用率\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 37% | 3977 / 32607 MiB |\n| 1 | 43% | 3977 / 32607 MiB |\n| 2 | 34% | 1825 / 32607 MiB |\n| 3 | 32% | 1825 / 32607 MiB |\n\n4 卡全部在用，显存占用正常（1.7B 模型约 4GB，0.6B 约 1.8GB）。\n\n### 4. SIGHUP 防护修改 — 成功\n\n已在服务器和本地 `generate_chain.py` 的 import 区域加入：\n```python\nimport signal\nsignal.signal(signal.SIGHUP, signal.SIG_IGN)\n```\n此修改**不影响当前运行的进程**，仅对未来启动的任务生效。\n\n### 5. 是否需要重新提交\n\n**不需要。** 所有进程正常运行，无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sighup-fix-and-status.md"
+}

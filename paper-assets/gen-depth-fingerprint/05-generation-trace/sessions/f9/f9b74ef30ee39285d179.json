@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9b74ef30ee39285d179",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan 005 setup",
+  "task_key": "worker_code_plan-005-setup_20260515T032749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-005-setup_20260515T032749_result.json",
+    "occurrence": 1,
+    "bytes": 884,
+    "sha256": "c56066cdfdd2059eba594ccbad47c4bac2d36e5508f0f4ffa940851102a1b5ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个任务已通过 `submit_training_job` 启动，tmux session 全部存在：\n\n| exp_id | prompt_type | GPU | 进度 (行数) | PID |\n|--------|-------------|-----|-----------|-----|\n| plan-005-cont | continuation | cuda:1 | 63 | 164663 |\n| plan-005-elab | elaboration | cuda:2 | 63 | 164742 |\n| plan-005-rewrite | inspired_rewriting | cuda:3 | 61 | 164886 |\n\n脚本 `generate_chain_prompt.py` 已存在且功能完整，支持 3 种 prompt type，输出含 `prompt_type` 字段。输入文件为 `data/wiki_seed_1000.jsonl`（`openwebtext_seeds.jsonl` 不存在）。\n\n输出路径为 `/root/gen-depth-fingerprint/data/pythia-2.8b-{type}/generations_shard0.jsonl`（非 autodl-tmp，但 JSONL 文件较小，~5MB/种，不会撑爆根分区）。\n\n1000 seeds × 5 depths，预计总计 ~5000 records/种，当前约完成 1.2%，刚启动约 2 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-005-setup.md"
+}

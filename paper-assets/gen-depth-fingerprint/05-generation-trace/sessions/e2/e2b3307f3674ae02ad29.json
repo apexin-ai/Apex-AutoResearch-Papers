@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e2b3307f3674ae02ad29",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "code fix baselines pooled metrics",
+  "task_key": "worker_code_fix-baselines-pooled-metrics_20260516T135916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-baselines-pooled-metrics_20260516T135916.log",
+    "occurrence": 1,
+    "bytes": 800445,
+    "sha256": "076a69f6d05f9de61459cd791f4ef2d388f61d387d31a8449611d79900187e25"
+  },
+  "statistics": {
+    "messages": 340,
+    "user_turns": 0,
+    "tool_calls": 130,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 75,
+      "tool_call": 130,
+      "tool_result": 130,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 340,
+      "chunks": [
+        {
+          "path": "e2b3307f3674ae02ad29-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e2b3307f3674ae02ad29-part-0002.json",
+          "message_count": 160
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-baselines-pooled-metrics.md"
+}

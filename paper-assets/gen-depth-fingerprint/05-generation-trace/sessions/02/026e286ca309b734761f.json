@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "026e286ca309b734761f",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper fix type3 fonts v2",
+  "task_key": "worker_paper_fix-type3-fonts-v2_20260523T054002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-type3-fonts-v2_20260523T054002_result.json",
+    "occurrence": 1,
+    "bytes": 394,
+    "sha256": "1bd57bf601947a463ffc372b5dc3bcaa3b485830d1cc057944c923039e3e2147"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "本地和远程的 main.pdf 都**没有 Type 3 字体**。所有字体都是 Type 1（LaTeX 标准）或 CID TrueType（图片中的）。\n\n图片中的 DejaVuSerif-Bold、DejaVuSerif、Cmmi10、Cmr10、Cmsy10 均已是 CID TrueType 格式，不是 Type 3。\n\nType 3 字体问题已不存在——当前的 PDF 是干净的。是否有其他版本的 main.pdf 需要检查？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-type3-fonts-v2.md"
+}

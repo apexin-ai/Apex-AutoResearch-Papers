@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "6ca88aa4a47b5fa65af4",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "prep mistral instruct download",
+  "task_key": "worker_prep_mistral-instruct-download_20260520T023642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_mistral-instruct-download_20260520T023642.log",
+    "occurrence": 1,
+    "bytes": 905909,
+    "sha256": "4f31ab5100bec2622cb1003b925db92da319f0c804a4dd6a517d8f610676cc76"
+  },
+  "statistics": {
+    "messages": 660,
+    "user_turns": 0,
+    "tool_calls": 286,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 85,
+      "tool_call": 286,
+      "tool_result": 286
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 660,
+      "chunks": [
+        {
+          "path": "6ca88aa4a47b5fa65af4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6ca88aa4a47b5fa65af4-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6ca88aa4a47b5fa65af4-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "6ca88aa4a47b5fa65af4-part-0004.json",
+          "message_count": 120
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/prep-mistral-instruct-download.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b0dccec623c2e5fc0f1",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_4_1778837787.md",
+  "task_key": "loop_4_1778837787",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778837787.md",
+    "occurrence": 1,
+    "bytes": 4145,
+    "sha256": "9b852b73ae5b68f0452fb06431c156d3ca655fd8dae0094b70ba8d38aff585c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-15T09:36:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 cuda:0/1/2/3（共 4 张 RTX 5090），不可用其他设备\n- submit_training_job 内 `--device` 始终写 `cuda:0`（框架自动注入 CUDA_VISIBLE_DEVICES 映射物理 GPU）\n- 根分区只有 ~30GB，大文件必须放 `/root/autodl-tmp/`；HF_HOME=/root/autodl-tmp/.hf_cache\n- pip install / git clone 前必须 `source /etc/network_turbo`；HF 下载设 `HF_HUB_DISABLE_XET=1`\n- conda 环境，不是 venv：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- EMNLP 2026 ARR DDL = 2026-05-25，10 天倒计时，禁止 fallback 思维\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090，工作目录 `/root/gen-depth-fingerprint/`\n- Python：`/root/miniconda3/bin/python`（conda base）\n- 模型路径：`/root/autodl-tmp/models/`（Qwen3-8B-Base, Qwen3-1.7B-Base, Qwen3-0.6B-Base, OLMo-2-1B 等）\n- 数据：`/root/gen-depth-fingerprint/data/`（各模型生成数据 + features CSV）\n- 下游实验输出：`/root/autodl-tmp/gen-depth-fingerprint/experiments/downstream/`\n- 活跃进程：**无**（4 张 GPU 全部空闲）\n- 活跃 Cron：**无**（reconcile 返回 0）\n\n### 3. 📊 当前状态\n**刚做完**：收到 plan-005-elab CRON 完成回调，执行 session-start 初始化。已将 plan-005-rewrite 推进到 DONE（success, retention 93.9%）。\n\n**正在做**：spawned 2 个 Worker 分析 plan-005 prompt type 数据：\n- `worker_analysis_plan-005-comparative_20260515T060035`（来自 rewrite 回调，可能在做 3-way 比较）\n- `worker_analysis_plan-005-elab_20260515T060053`（我刚 spawn，分析 elab 输出数据 + 更新 registry）\n\n**Registry 状态**：\n- plan-005-elab: **ANALYZING**（无 metrics，等 Worker 回填）\n- plan-005-rewrite: **DONE** success（retention 93.9%）\n- plan-005-cont: **DONE** success（retention 83.1%）\n- 6 个 PREPARING 条目（plan-004-prep, plan-001-restore, mvp-001-gen-s0/s1/s2/s3）均为历史遗留，可忽略\n\n**等待中**：两个 Worker 的 [WORKER DONE] 回调。回调到达后需完成 on-experiment-done 全流程（更新 registry → report.md → 汇报 Director）。\n\n### 4. 📋 待办\n- Worker 回调到达（plan-005-elab metrics） → 更新 registry status=DONE + conclusion → 整理 3-way prompt type 对比表 → 更新 report.md → 汇报 Director（带 [资源] 行）\n- plan-005 全部完成后 → 按 ROADMAP：\"prompt type 对比分析 → Patch 入论文\"。需要 spawn Worker 做特征提取 + 分类对比（elaboration/rewriting 的 LOGO F1 vs continuation），然后把结果整合入 Paper Agent 的稿件\n- 4 张 GPU 全部空闲 → 汇报 Director 时必须声明空闲状态，建议：a) 如有更多 P1 实验需要跑（plan-006 paraphrastic, plan-007 cross-model chains 等）请 Director 决策；b) 如论文写作优先则 GPU 暂无需求\n- Paper Agent Step 2 进行中（ROADMAP 已标记） → 确认 Paper Worker 是否还在运行，如已结束需推进 review cycle\n\n### 5. 🎯 战略上下文\n- **核心发现**：7-feature ensemble 跨 6 generators / 3 families，LOGO F1=0.79，显著优于所有单检测器 baseline（p<0.001）\n- **Decision chain**：D009 Claim 3 negative（diagnostic-not-curative）→ D011 RC9 scale 验证通过（depth signal 跨规模存在但 cross-scale gap）→ D012 恢复 EMNLP 2026 为主投\n- **plan-005 初步趋势**：continuation retention 83.1% < rewriting 93.9%，elaboration 预期更高（ROADMAP 说仅衰减 1.5%）。这说明 prompt type 显著影响 depth signal 保留——语义偏离越大（continuation），depth 信号衰减越快\n- **易错点**：\n  - plan-005 是 P1 实验，对 Claim 1 的支撑是补充性的（核心 P0 已全部完成），不要过度拖延论文进度去做更多 prompt type 分析\n  - plan-005-rewrite 的 `vs_continuation` 字段已经写了对比结论，elab 也应保持一致格式\n  - 4 GPU 空闲在 EMNLP 冲刺期不一定是失职——如果论文写作才是瓶颈，GPU 确实可以暂时无任务，但汇报时必须说明原因\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778837787.md"
+}

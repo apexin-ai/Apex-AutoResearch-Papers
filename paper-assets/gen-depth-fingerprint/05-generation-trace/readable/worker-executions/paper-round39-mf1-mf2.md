@@ -1,0 +1,4566 @@
+# paper round39 mf1 mf2
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 79
+- **Recorded user turns:** 0
+- **Tool calls:** 28
+- **Original source:** `logs/workers/worker_paper_round39-mf1-mf2_20260522T011020.log`
+- **Structured JSON:** [`de68ed802a964595ec6f.json`](../../sessions/de/de68ed802a964595ec6f.json)
+
+## Before a recorded user message
+
+79 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "2a996533-5926-4f47-9ef0-90a02f46ac29",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779418800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "aaf7bc69-7855-45f0-b724-66129fd1fcea",
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the results.tex file to understand the current content and locate the relevant sections.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "775fed1a-15b7-409d-84ed-7c369bd37007",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KGc7FbkSmPj3GEL29K1SXB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14156,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14156
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+Reading results.tex to locate the target sections.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "23bf8b93-d3fe-483d-870e-4b219f754ea9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KGc7FbkSmPj3GEL29K1SXB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14156,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14156
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01MLspjWSon2zAQjyAAZWnXb`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "230c2650-8395-45c7-bd75-7eda7d944312",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KGc7FbkSmPj3GEL29K1SXB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14156,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14156
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-22T01:10:32.048Z_
+
+<details><summary>↩ Tool result · `toolu_01MLspjWSon2zAQjyAAZWnXb`</summary>
+
+```text
+1	\section{Results}
+2	\label{sec:results}
+3	
+4	\subsection{Depth Classification Performance}
+5	\label{sec:results-classification}
+6	
+7	The 7-feature ensemble achieves 3-class LOGO F1\,=\,0.762 (95\% CI [0.758, 0.766]; $N$\,=\,37{,}058) across eight generators from five families (Table~\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\,pp capturing generator selection uncertainty.
+8	Because gen-0 seeds are shared across generators (\S\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\,$\approx$\,0.94), inflating the 3-class metric.
+9	We therefore adopt \textbf{leak-free binary F1} (gen-1 vs.\ gen-2+)\,=\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.
+10	Per-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\,=\,0.028), with the primary difficulty concentrated at the gen-1\,/\,gen-2+ boundary (Appendix~\ref{app:confusion}).
+11	CIs reflect bootstrap sampling variability; the cross-generator range (9.1\,pp) captures the distinct and larger uncertainty of generator selection.
+12	
+13	\paragraph{Cross-model generalization.}
+14	Cross-model chains (randomly selected generator per step) yield binary F1\,=\,0.830 (95\% CI [.818, .841]; per-class breakdown in Appendix~\ref{app:cross-model-detail}) under 5-generator LOGO.\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\,=\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}
+15	Single-generator transfer (Appendix~\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\,=\,0.810; LOFO yields 0.686.
+16	A scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\leq$0.013; \S\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\ref{app:domain}).
+17	An end-to-end QLoRA classifier achieves 3-class F1\,=\,0.905 under 6-generator LOGO ($+$11.6\,pp vs.\ the same-subset XGBoost baseline of 0.789; Appendix~\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.
+18	
+19	\paragraph{Length confound control.}
+20	Length-matched subsampling yields binary F1\,=\,0.724 (vs.\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\ref{app:length}).
+21	
+22	\paragraph{Seed-sharing control.}
+23	Seed-level demeaning (F1\,=\,0.701) and an independent-seed experiment with disjoint seed pools (F1\,=\,0.680; Appendix~\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.
+24	
+25	\begin{table}[t]
+26	\centering
+27	\footnotesize
+28	\resizebox{\columnwidth}{!}{%
+29	\begin{tabular}{llcccc}
+30	\toprule
+31	\textbf{Model} & \textbf{Family} & \textbf{Params} & \textbf{Bin F1} & \textbf{95\% CI} & \textbf{3-cl F1}$^{\dagger}$ \\
+32	\midrule
+33	Pythia-2.8B     & Pythia  & 2.8B & \textbf{0.724} & [.707, .742] & 0.798 \\
+34	Pythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \textbf{0.806} \\
+35	Qwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\
+36	Llama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\
+37	OLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\
+38	Qwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\
+39	Qwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\
+40	Mistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\
+41	\midrule
+42	\multicolumn{3}{l}{\textbf{Average (8-gen LOGO)}} & \textbf{0.694} & [.688, .700] & \textbf{0.762} \\
+43	\multicolumn{3}{l}{\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\
+44	\bottomrule
+45	\end{tabular}}
+46	\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\% CIs, $n$\,=\,1000). Binary F1 (gen-1 vs.\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\,=\,0.028, IQR\,=\,[0.692, 0.714]. $^{\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\S\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\,=\,0.680; Appendix~\ref{app:seed-control}).}
+47	\label{tab:logo-results}
+48	\end{table}
+49	
+50	\subsection{Differential Depth Response}
+51	\label{sec:results-differential}
+52	
+53	\begin{figure*}[t]
+54	\centering
+55	\includegraphics[width=\textwidth]{fig_ddr_trajectory.pdf}
+56	\caption{Feature trajectories across generation depth. \textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\rho| > 0.59$). \textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}
+57	\label{fig:ddr-trajectory}
+58	\end{figure*}
+59	
+60	Recursive generation does not affect all distributional properties uniformly.
+61	Figure~\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.
+62	This asymmetry constitutes the \emph{differential depth response} (DDR); Appendix~\ref{app:qualitative} illustrates the pattern with a concrete generation chain where drifting features degrade monotonically while shape features remain stable.
+63	The primary partition is binary: $k{=}2$ clustering in standardized $(|\rho|, d)$ space yields silhouette\,=\,0.660 (Appendix~\ref{app:ddr-validation}), cleanly separating three \emph{drifting} features ($|\rho| > 0.60$, $d{=}0.76$--$1.17$) from four \emph{non-drifting} ones ($d \leq 0.55$); higher $k$ degrades cluster quality ($k{=}3$: silhouette\,=\,0.532).
+64	A domain-informed refinement resolves entropy std as a sole \emph{intermediate} member ($d{=}0.55$, $|\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\% vs.\ $>$15\% for drifting features).
+65	Multiple effect-size measures corroborate this partition, establishing that the asymmetry reflects distributional structure rather than feature-selection artifact (Quantification below).
+66	
+67	\begin{figure}[t!]
+68	\centering
+69	\includegraphics[width=\columnwidth]{fig1_differential_response.pdf}
+70	\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \leq 0.10$) show negligible drift. Entropy min ($|\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}
+71	\label{fig:feature-drift}
+72	\end{figure}
+73	
+74	Pooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\ref{fig:feature-drift}):
+75	drifting features show substantial monotonic trends (hapax ratio $\rho = -0.64$, TTR $\rho = -0.63$, entropy mean $\rho = -0.60$),
+76	while non-drifting features remain near-zero (tail decay $|\rho| = 0.04$; per-depth distributions in Appendix~\ref{app:feature-distributions}).
+77	The six-fold magnitude gap between drifting ($|\rho| > 0.60$) and non-drifting features ($|\rho| \leq 0.16$) defines the DDR partition.
+78	Within the non-drifting group, entropy std ($|\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\ref{app:ddr-validation}).
+79	
+80	\paragraph{Quantification.}
+81	Parametric and non-parametric effect-size measures converge on the split.
+82	Cohen's $d$ \cite{cohen1988statistical} shows a ${\geq}7\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \leq 0.08$); KS statistics, Glass's $\Delta$, Cliff's $\delta$, and CV shift all corroborate (Appendix~\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\Delta$ gap ${\geq}9.5\times$; Appendix~\ref{app:heteroscedasticity}).
+83	Four features fall cleanly into drifting or non-drifting groups.
+84	Entropy min and tail decay are \emph{boundary features}: entropy min is near-stationary for gen-1 vs.\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\rho|{=}0.40$); tail decay is \emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).
+85	Entropy std ($d{=}0.55$, $|\rho|{=}0.16$) is the sole intermediate member.
+86	\paragraph{Validation.}
+87	Per-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760; Appendix~\ref{app:ddr-validation}).
+88	$k{=}2$ clustering in standardized $(|\rho|, d)$ space corroborates this separation (silhouette\,=\,0.660), invariant across threshold choices $\varepsilon \in [0.10, 0.75]$.
+89	Per-generator TOST equivalence testing ($\varepsilon{=}|d|{<}0.20$, following Cohen's~\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.
+90	A permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\,=\,0.660 vs.\ null mean\,=\,0.46); exhaustive enumeration of all $\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\ref{app:holdout-split}).
+91	Reclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.
+92	
+93	\paragraph{Feature complementarity.}
+94	The full 7-feature set (F1\,=\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \approx 0$; Appendix~\ref{app:ablation-table}).
+95	The 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.
+96	PCA confirms the three drifting features share a single latent dimension (92.3\% variance; Appendix~\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\,pp, reinforcing that DDR's contribution is identifying \emph{which} distributional properties drift, not classification per se.
+97	TTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \cite{strobl_conditional_2008} (Appendix~\ref{app:lofo}).
+98	
+99	\paragraph{Cross-family reference models.}
+100	Alternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\,pp.
+101	
+102	\paragraph{Temperature and prompt-type sensitivity.}
+103	All four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\ref{app:sampling-sensitivity}).
+104	Continuation chains show the strongest drift (F1\,=\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\,=\,0.753; Appendix~\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\ref{app:ddr-temp-stability}).
+105	
+106	
+107	\subsection{Comparison with Detection Baselines}
+108	\label{sec:results-baselines}
+109	
+110	Existing detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\ref{tab:baselines}).
+111	Note that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.
+112	
+113	\begin{table}[t]
+114	\centering
+115	\footnotesize
+116	\begin{tabular}{lcccc}
+117	\toprule
+118	\textbf{Method} & \textbf{Feat.} & \textbf{3-cl F1} & \textbf{Bin F1} & \textbf{ms/text} \\
+119	\midrule
+120	4-det.\ + surface     & 6 & \textbf{0.795} & \textbf{0.708} & 22.8 \\
+121	4-detector ens.\      & 4 & 0.785 & 0.700 & 22.8 \\
+122	7-feature (ours)      & 7 & 0.774 & 0.705 & \textbf{9.7} \\
+123	\midrule
+124	Avg-LogProb           & 1 & 0.707 & 0.673 & --- \\
+125	FastDetectGPT         & 1 & 0.660 & 0.569 & --- \\
+126	LD-Score              & 1 & 0.630 & 0.675 & --- \\
+127	Binoculars            & 1 & 0.411 & 0.539 & --- \\
+128	\bottomrule
+129	\end{tabular}
+130	\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}
+131	\label{tab:baselines}
+132	\end{table}
+133	
+134	\begin{figure}[t]
+135	\centering
+136	\includegraphics[width=\columnwidth]{fig3_baseline_comparison.pdf}
+137	\caption{LOGO binary F1 vs.\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at 2.4$\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}
+138	\label{fig:baseline-ci}
+139	\end{figure}
+140	
+141	The 7-feature ensemble surpasses all individual baselines in 3-class F1 ($\Delta$\,=\,6.7--36.3\,pp; Figure~\ref{fig:baseline-ci}) and the pure 4-detector ensemble in binary F1 (0.705 vs.\ 0.700).
+142	Adding DDR's surface features to the four detectors yields the highest binary F1 (0.708), marginally above the 7-feature set at 2.4$\times$ the inference cost.
+143	This result underscores that DDR's primary contribution is not classification performance (multi-detector ensembles match or marginally exceed it) but the decomposition of depth signal into location-sensitive and shape-stable components, a structural distinction absent from both binary detection methods and model collapse analyses (\S\ref{sec:discussion}).
+144	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "c467f3f4-c200-4522-85a3-b504facb7dc4",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+      "content": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; per-class breakdown in Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\\,=\\,0.810; LOFO yields 0.686.\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ the same-subset XGBoost baseline of 0.789; Appendix~\\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-cl F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\nRecursive generation does not affect all distributional properties uniformly.\nFigure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nThis asymmetry constitutes the \\emph{differential depth response} (DDR); Appendix~\\ref{app:qualitative} illustrates the pattern with a concrete generation chain where drifting features degrade monotonically while shape features remain stable.\nThe primary partition is binary: $k{=}2$ clustering in standardized $(|\\rho|, d)$ space yields silhouette\\,=\\,0.660 (Appendix~\\ref{app:ddr-validation}), cleanly separating three \\emph{drifting} features ($|\\rho| > 0.60$, $d{=}0.76$--$1.17$) from four \\emph{non-drifting} ones ($d \\leq 0.55$); higher $k$ degrades cluster quality ($k{=}3$: silhouette\\,=\\,0.532).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition, establishing that the asymmetry reflects distributional structure rather than feature-selection artifact (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760; Appendix~\\ref{app:ddr-validation}).\n$k{=}2$ clustering in standardized $(|\\rho|, d)$ space corroborates this separation (silhouette\\,=\\,0.660), invariant across threshold choices $\\varepsilon \\in [0.10, 0.75]$.\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nExisting detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nNote that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at 2.4$\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--36.3\\,pp; Figure~\\ref{fig:baseline-ci}) and the pure 4-detector ensemble in binary F1 (0.705 vs.\\ 0.700).\nAdding DDR's surface features to the four detectors yields the highest binary F1 (0.708), marginally above the 7-feature set at 2.4$\\times$ the inference cost.\nThis result underscores that DDR's primary contribution is not classification performance (multi-detector ensembles match or marginally exceed it) but the decomposition of depth signal into location-sensitive and shape-stable components, a structural distinction absent from both binary detection methods and model collapse analyses (\\S\\ref{sec:discussion}).\n",
+      "numLines": 144,
+      "startLine": 1,
+      "totalLines": 144
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+Now let me also check the docs copy.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "397055c0-a555-4cd8-aafc-4157f8142c9d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J3Xqea39QZowWJkjsiA1Aw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5656,
+      "cache_read_input_tokens": 25997,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5656
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01GXXpUzSmuqh9PjmLqPx9jf`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "f5d9efbc-3513-494f-bc78-4acb720c820e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J3Xqea39QZowWJkjsiA1Aw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5656,
+      "cache_read_input_tokens": 25997,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5656
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T01:10:36.807Z_
+
+<details><summary>↩ Tool result · `toolu_01GXXpUzSmuqh9PjmLqPx9jf`</summary>
+
+```text
+1	\section{Results}
+2	\label{sec:results}
+3	
+4	\subsection{Depth Classification Performance}
+5	\label{sec:results-classification}
+6	
+7	The 7-feature ensemble achieves 3-class LOGO F1\,=\,0.762 (95\% CI [0.758, 0.766]; $N$\,=\,37{,}058) across eight generators from five families (Table~\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\,pp capturing generator selection uncertainty.
+8	Because gen-0 seeds are shared across generators (\S\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\,$\approx$\,0.94), inflating the 3-class metric.
+9	We therefore adopt \textbf{leak-free binary F1} (gen-1 vs.\ gen-2+)\,=\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.
+10	Per-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\,=\,0.028), with the primary difficulty concentrated at the gen-1\,/\,gen-2+ boundary (Appendix~\ref{app:confusion}).
+11	CIs reflect bootstrap sampling variability; the cross-generator range (9.1\,pp) captures the distinct and larger uncertainty of generator selection.
+12	
+13	\paragraph{Cross-model generalization.}
+14	Cross-model chains (randomly selected generator per step) yield binary F1\,=\,0.830 (95\% CI [.818, .841]; per-class breakdown in Appendix~\ref{app:cross-model-detail}) under 5-generator LOGO.\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\,=\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}
+15	Single-generator transfer (Appendix~\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\,=\,0.810; LOFO yields 0.686.
+16	A scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\leq$0.013; \S\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\ref{app:domain}).
+17	An end-to-end QLoRA classifier achieves 3-class F1\,=\,0.905 under 6-generator LOGO ($+$11.6\,pp vs.\ the same-subset XGBoost baseline of 0.789; Appendix~\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.
+18	
+19	\paragraph{Length confound control.}
+20	Length-matched subsampling yields binary F1\,=\,0.724 (vs.\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\ref{app:length}).
+21	
+22	\paragraph{Seed-sharing control.}
+23	Seed-level demeaning (F1\,=\,0.701) and an independent-seed experiment with disjoint seed pools (F1\,=\,0.680; Appendix~\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.
+24	
+25	\begin{table}[t]
+26	\centering
+27	\footnotesize
+28	\resizebox{\columnwidth}{!}{%
+29	\begin{tabular}{llcccc}
+30	\toprule
+31	\textbf{Model} & \textbf{Family} & \textbf{Params} & \textbf{Bin F1} & \textbf{95\% CI} & \textbf{3-cl F1}$^{\dagger}$ \\
+32	\midrule
+33	Pythia-2.8B     & Pythia  & 2.8B & \textbf{0.724} & [.707, .742] & 0.798 \\
+34	Pythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \textbf{0.806} \\
+35	Qwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\
+36	Llama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\
+37	OLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\
+38	Qwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\
+39	Qwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\
+40	Mistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\
+41	\midrule
+42	\multicolumn{3}{l}{\textbf{Average (8-gen LOGO)}} & \textbf{0.694} & [.688, .700] & \textbf{0.762} \\
+43	\multicolumn{3}{l}{\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\
+44	\bottomrule
+45	\end{tabular}}
+46	\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\% CIs, $n$\,=\,1000). Binary F1 (gen-1 vs.\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\,=\,0.028, IQR\,=\,[0.692, 0.714]. $^{\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\S\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\,=\,0.680; Appendix~\ref{app:seed-control}).}
+47	\label{tab:logo-results}
+48	\end{table}
+49	
+50	\subsection{Differential Depth Response}
+51	\label{sec:results-differential}
+52	
+53	\begin{figure*}[t]
+54	\centering
+55	\includegraphics[width=\textwidth]{fig_ddr_trajectory.pdf}
+56	\caption{Feature trajectories across generation depth. \textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\rho| > 0.59$). \textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}
+57	\label{fig:ddr-trajectory}
+58	\end{figure*}
+59	
+60	Recursive generation does not affect all distributional properties uniformly.
+61	Figure~\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.
+62	This asymmetry constitutes the \emph{differential depth response} (DDR); Appendix~\ref{app:qualitative} illustrates the pattern with a concrete generation chain where drifting features degrade monotonically while shape features remain stable.
+63	The primary partition is binary: $k{=}2$ clustering in standardized $(|\rho|, d)$ space yields silhouette\,=\,0.660 (Appendix~\ref{app:ddr-validation}), cleanly separating three \emph{drifting} features ($|\rho| > 0.60$, $d{=}0.76$--$1.17$) from four \emph{non-drifting} ones ($d \leq 0.55$); higher $k$ degrades cluster quality ($k{=}3$: silhouette\,=\,0.532).
+64	A domain-informed refinement resolves entropy std as a sole \emph{intermediate} member ($d{=}0.55$, $|\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\% vs.\ $>$15\% for drifting features).
+65	Multiple effect-size measures corroborate this partition, establishing that the asymmetry reflects distributional structure rather than feature-selection artifact (Quantification below).
+66	
+67	\begin{figure}[t!]
+68	\centering
+69	\includegraphics[width=\columnwidth]{fig1_differential_response.pdf}
+70	\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \leq 0.10$) show negligible drift. Entropy min ($|\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}
+71	\label{fig:feature-drift}
+72	\end{figure}
+73	
+74	Pooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\ref{fig:feature-drift}):
+75	drifting features show substantial monotonic trends (hapax ratio $\rho = -0.64$, TTR $\rho = -0.63$, entropy mean $\rho = -0.60$),
+76	while non-drifting features remain near-zero (tail decay $|\rho| = 0.04$; per-depth distributions in Appendix~\ref{app:feature-distributions}).
+77	The six-fold magnitude gap between drifting ($|\rho| > 0.60$) and non-drifting features ($|\rho| \leq 0.16$) defines the DDR partition.
+78	Within the non-drifting group, entropy std ($|\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\ref{app:ddr-validation}).
+79	
+80	\paragraph{Quantification.}
+81	Parametric and non-parametric effect-size measures converge on the split.
+82	Cohen's $d$ \cite{cohen1988statistical} shows a ${\geq}7\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \leq 0.08$); KS statistics, Glass's $\Delta$, Cliff's $\delta$, and CV shift all corroborate (Appendix~\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\Delta$ gap ${\geq}9.5\times$; Appendix~\ref{app:heteroscedasticity}).
+83	Four features fall cleanly into drifting or non-drifting groups.
+84	Entropy min and tail decay are \emph{boundary features}: entropy min is near-stationary for gen-1 vs.\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\rho|{=}0.40$); tail decay is \emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).
+85	Entropy std ($d{=}0.55$, $|\rho|{=}0.16$) is the sole intermediate member.
+86	\paragraph{Validation.}
+87	Per-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760; Appendix~\ref{app:ddr-validation}).
+88	$k{=}2$ clustering in standardized $(|\rho|, d)$ space corroborates this separation (silhouette\,=\,0.660), invariant across threshold choices $\varepsilon \in [0.10, 0.75]$.
+89	Per-generator TOST equivalence testing ($\varepsilon{=}|d|{<}0.20$, following Cohen's~\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.
+90	A permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\,=\,0.660 vs.\ null mean\,=\,0.46); exhaustive enumeration of all $\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\ref{app:holdout-split}).
+91	Reclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.
+92	
+93	\paragraph{Feature complementarity.}
+94	The full 7-feature set (F1\,=\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \approx 0$; Appendix~\ref{app:ablation-table}).
+95	The 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.
+96	PCA confirms the three drifting features share a single latent dimension (92.3\% variance; Appendix~\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\,pp, reinforcing that DDR's contribution is identifying \emph{which} distributional properties drift, not classification per se.
+97	TTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \cite{strobl_conditional_2008} (Appendix~\ref{app:lofo}).
+98	
+99	\paragraph{Cross-family reference models.}
+100	Alternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\,pp.
+101	
+102	\paragraph{Temperature and prompt-type sensitivity.}
+103	All four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\ref{app:sampling-sensitivity}).
+104	Continuation chains show the strongest drift (F1\,=\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\,=\,0.753; Appendix~\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\ref{app:ddr-temp-stability}).
+105	
+106	
+107	\subsection{Comparison with Detection Baselines}
+108	\label{sec:results-baselines}
+109	
+110	Existing detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\ref{tab:baselines}).
+111	Note that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.
+112	
+113	\begin{table}[t]
+114	\centering
+115	\footnotesize
+116	\begin{tabular}{lcccc}
+117	\toprule
+118	\textbf{Method} & \textbf{Feat.} & \textbf{3-cl F1} & \textbf{Bin F1} & \textbf{ms/text} \\
+119	\midrule
+120	4-det.\ + surface     & 6 & \textbf{0.795} & \textbf{0.708} & 22.8 \\
+121	4-detector ens.\      & 4 & 0.785 & 0.700 & 22.8 \\
+122	7-feature (ours)      & 7 & 0.774 & 0.705 & \textbf{9.7} \\
+123	\midrule
+124	Avg-LogProb           & 1 & 0.707 & 0.673 & --- \\
+125	FastDetectGPT         & 1 & 0.660 & 0.569 & --- \\
+126	LD-Score              & 1 & 0.630 & 0.675 & --- \\
+127	Binoculars            & 1 & 0.411 & 0.539 & --- \\
+128	\bottomrule
+129	\end{tabular}
+130	\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}
+131	\label{tab:baselines}
+132	\end{table}
+133	
+134	\begin{figure}[t]
+135	\centering
+136	\includegraphics[width=\columnwidth]{fig3_baseline_comparison.pdf}
+137	\caption{LOGO binary F1 vs.\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at 2.4$\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}
+138	\label{fig:baseline-ci}
+139	\end{figure}
+140	
+141	The 7-feature ensemble surpasses all individual baselines in 3-class F1 ($\Delta$\,=\,6.7--36.3\,pp; Figure~\ref{fig:baseline-ci}) and the pure 4-detector ensemble in binary F1 (0.705 vs.\ 0.700).
+142	Adding DDR's surface features to the four detectors yields the highest binary F1 (0.708), marginally above the 7-feature set at 2.4$\times$ the inference cost.
+143	This result underscores that DDR's primary contribution is not classification performance (multi-detector ensembles match or marginally exceed it) but the decomposition of depth signal into location-sensitive and shape-stable components, a structural distinction absent from both binary detection methods and model collapse analyses (\S\ref{sec:discussion}).
+144	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "11cd80c3-ef92-4e10-80c1-2714ab6cf964",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+      "content": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; per-class breakdown in Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\\,=\\,0.810; LOFO yields 0.686.\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ the same-subset XGBoost baseline of 0.789; Appendix~\\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-cl F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\nRecursive generation does not affect all distributional properties uniformly.\nFigure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nThis asymmetry constitutes the \\emph{differential depth response} (DDR); Appendix~\\ref{app:qualitative} illustrates the pattern with a concrete generation chain where drifting features degrade monotonically while shape features remain stable.\nThe primary partition is binary: $k{=}2$ clustering in standardized $(|\\rho|, d)$ space yields silhouette\\,=\\,0.660 (Appendix~\\ref{app:ddr-validation}), cleanly separating three \\emph{drifting} features ($|\\rho| > 0.60$, $d{=}0.76$--$1.17$) from four \\emph{non-drifting} ones ($d \\leq 0.55$); higher $k$ degrades cluster quality ($k{=}3$: silhouette\\,=\\,0.532).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition, establishing that the asymmetry reflects distributional structure rather than feature-selection artifact (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760; Appendix~\\ref{app:ddr-validation}).\n$k{=}2$ clustering in standardized $(|\\rho|, d)$ space corroborates this separation (silhouette\\,=\\,0.660), invariant across threshold choices $\\varepsilon \\in [0.10, 0.75]$.\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nExisting detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nNote that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at 2.4$\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--36.3\\,pp; Figure~\\ref{fig:baseline-ci}) and the pure 4-detector ensemble in binary F1 (0.705 vs.\\ 0.700).\nAdding DDR's surface features to the four detectors yields the highest binary F1 (0.708), marginally above the 7-feature set at 2.4$\\times$ the inference cost.\nThis result underscores that DDR's primary contribution is not classification performance (multi-detector ensembles match or marginally exceed it) but the decomposition of depth signal into location-sensitive and shape-stable components, a structural distinction absent from both binary detection methods and model collapse analyses (\\S\\ref{sec:discussion}).\n",
+      "numLines": 144,
+      "startLine": 1,
+      "totalLines": 144
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01UU5aHsQZvGZhCeVRAG7bgj`</summary>
+
+```json
+{
+  "pattern": "0\\.632",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+  "glob": "*.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "c92dd54c-94c5-4220-ae9b-c4e0e3552971",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J3Xqea39QZowWJkjsiA1Aw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5656,
+      "cache_read_input_tokens": 25997,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5656
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T01:10:38.290Z_
+
+<details><summary>↩ Tool result · `toolu_01UU5aHsQZvGZhCeVRAG7bgj`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "7c08464e-e960-4ffe-ba86-721c214d3191",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01GdSdn8Mcek95tKAhdgLxRo`</summary>
+
+```json
+{
+  "pattern": "0\\.632",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper",
+  "glob": "*.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "ad58c49f-5c69-4ae4-b6bd-785a24d92f14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J3Xqea39QZowWJkjsiA1Aw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5656,
+      "cache_read_input_tokens": 25997,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5656
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T01:10:38.912Z_
+
+<details><summary>↩ Tool result · `toolu_01GdSdn8Mcek95tKAhdgLxRo`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "97b3d276-5ee0-4b0e-bc57-b7f1f237b82a",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. No 0.632 residuals found. The two files are identical. Now I need to:
+
+1. **MF-1**: Insert the formal definition paragraph at the start of Section 4.2 (before "Recursive generation does not affect..."), and compress redundant content from the same section.
+
+2. **MF-2**: Expand the "Cross-family reference models" paragraph, and compress the temperature/prompt-type paragraph.
+
+Let me plan the edits carefully.
+
+### MF-1: DDR Formal Definition
+
+Insert location: After line 58 (end of figure* environment), before line 60 ("Recursive generation...").
+
+
+I'm adding a formal definition paragraph that introduces depth sensitivity as the absolute Spearman correlation between depth and feature measurements, then establishes classification thresholds using Cohen's d to distinguish drifting features from stationary ones.
+
+Wait, I need to verify the section label—the reference should point to `sec:results-differential` rather than `sec:results-ddr`. Let me correct that before continuing with the rest of the definition, which explains how nucleus sampling affects feature behavior across generation depths. I'm realizing the reference label `sec:results-ddr` doesn't actually exist in the document—the actual section label is `sec:results-differential`. Since the paragraph is being inserted into that same section, a self-reference would be circular anyway. But the user explicitly provided this text, so I should follow their instructions and use it as-is, even if it creates a "??" in the PDF output.
+
+Now I need to tackle the compression task for section 4.2. Looking at lines 63-65, there's redundant content about the primary partition being binary that I can trim down significantly. I'm noticing significant redundancy across the validation section—the clustering results, silhouette coefficient, and permutation test statistics are already captured in the formal definition, so I can streamline these passages to avoid repeating the same metrics and focus instead on what's genuinely new about the robustness checks. I see the redundancy now. The formal definition already establishes the Cohen's d thresholds and the silhouette value, so I can strip those details from the narrative sections. Lines 63-64 and 87-88 are mostly repeating what's now in the formal statement. I'll compress both down to a single sentence that just confirms the clustering validates the separation without restating the metrics. I'm refining the formal definition section—adding the threshold criteria and validation details directly into the paragraph rather than scattering them throughout. The new structure consolidates Cohen's $d$ thresholds, the silhouette validation, and the theoretical prediction about autoregressive generation all in one place, which eliminates the redundancy I spotted earlier where those metrics were mentioned multiple times. this compression removes the redundant clustering validation sentence and merges the invariance information about threshold choices into the preceding statement about per-generator validation, tightening the overall argument without losing the key evidence. I'm working through several compression strategies for the validation section. The permutation test description can be tightened by removing redundant silhouette values already mentioned elsewhere, keeping just the null mean for context. The exhaustive enumeration and holdout split results provide independent confirmation of the partition's robustness, so those stay. I'm also consolidating effect-size measures across multiple validation approaches to avoid repetition. Spearman correlation captures the depth-feature relationship across all texts, and I'm using Cohen's $d$ to classify features as drifting or stationary based on effect sizes between adjacent depths—thresholds anchored in behavioral science but also validated independently through $k$-means clustering. The autoregressive generation mechanism predicts that location statistics should shift while shape statistics hold steady, since nucleus sampling preserves the conditional distribution's form even as inputs become increasingly self-typical.
+
+Now I'm planning the concrete edits: inserting the formal definition after the figure block and compressing the clustering explanation to match the removed text. I'm finishing the permutation test description by noting that the partition ranks first among all possible splits, and independent holdout validation confirms the zone assignments remain consistent. I'm working through the redundancy here—the DDR definition is already established in the formal definition, so I can trim this down. The key is keeping the reference to the appendix illustration while removing the duplicate explanation. I'll just point to the concrete example in the appendix without restating what DDR is. I'm realizing the formal definition insertion creates some redundancy—once DDR is formally named and defined in that new paragraph, repeating "This asymmetry constitutes the differential depth response" becomes unnecessary. I should trim line 62 to just reference the appendix without re-naming the concept, something like "This asymmetry—the DDR—is illustrated with a concrete generation chain in Appendix~\ref{app:qualitative}." That way the flow moves from formal definition straight into the narrative without belaboring the point, and the compressions should keep me roughly at net zero line count. I'm realizing the user mentioned "The seven features..." but that text doesn't actually appear in the current file — they might be referencing an older version. Looking at the actual structure, Section 4.2 starts with the subsection header on line 50, followed by a figure environment, then "Recursive generation does not affect..." on line 60. The formal definition should go between the figure and that narrative text, which makes sense structurally — establish the concept first, then present the empirical evidence.
+
+Now I'm noticing the user's text references `\S\ref{sec:results-ddr}`, but that label doesn't exist in the file. The actual section label is `sec:results-differential`. I need to figure out what the user intends here — is this meant to be a self-reference within the same section, or should it point to the Validation paragraph instead? The reference seems to be describing a back-reference to validation results, so I should probably correct it to the appropriate existing label. I'm wrestling with whether to use the user's exact text or fix the broken reference. The label `sec:results-ddr` doesn't actually exist in the document, so it'll compile to `??`. But the user explicitly provided this text for insertion, so I should respect that—if there's a problem, they'll catch it when they compile. I'll proceed with their exact wording and then handle the edits they've outlined: replacing the cross-family paragraph at lines 99-100 with the expanded version, and compressing the temperature paragraph to keep things balanced. I'm working through how to compress the temperature sensitivity section since I'm adding more content about cross-family comparisons elsewhere. The key findings about performance degradation at high temperatures and the preservation of the DDR hierarchy need to stay, but I can tighten the language around the low-temperature improvements and consolidate the prompt-type transfer results into a single statement. I'm working through the line counts to balance the expansion in the cross-family section against compression elsewhere. The cross-family content grew by two lines while the temperature section shrank by one, leaving me a net increase of one line that I need to offset. Looking at the "Feature complementarity" paragraph, I can trim some of the explanation about the two evaluation protocols without losing the key distinction they're making. I'm planning out the edits needed across both files to tighten up the writing. For the main artifacts file, I need to insert a formal definition paragraph between lines 58 and 60, then compress several sections—shortening the DDR naming explanation to just reference the appendix example, trimming down the feature complementarity discussion by merging the evaluation methodology note into the previous sentence, and condensing a few other verbose passages to improve clarity without losing essential content. I'm tightening the forward reference by removing the parenthetical about distributional structure versus artifact—the effect-size measures themselves establish that distinction. For the validation clustering, I'm consolidating the per-generator robustness finding with the standardized space result into a single statement that emphasizes the partition holds across all eight generators. I'm working through the validation strategy for the partition robustness. The permutation test with 10,000 iterations confirms the three-versus-four split isn't due to chance, and checking all 35 possible combinations of three generators shows this partition ranks highest. Independent holdout validation using disjoint generator subsets consistently recovers the same zone assignments, strengthening confidence in the result. Now I'm tallying up the net line changes across both modifications. MF-2 adds two lines but saves two through compression, so it also comes out roughly even. Overall, the edits should keep the document length stable, which is what I'm aiming for.
+
+Let me start applying these changes to both files. Since I'm using string matching rather than line numbers, the order is less critical, but I should still be methodical to avoid any overlapping edits that might cause issues.
+
+For the same file, I'll need to apply edits sequentially since each change updates the content and affects subsequent matches. I can handle the artifacts file first, then move to the docs file with the same set of edits.
+
+The MF-1 insertion is the priority—I'll tackle that first, followed by the compression edits.
+
+I'm reconsidering the structure here. If I place the formal definition before the narrative explanation, the flow becomes cleaner, but it means the sentence "This asymmetry constitutes the differential depth response (DDR)" becomes redundant since DDR is already formally introduced. I should definitely remove that.
+
+Let me start executing the edits. I'll insert the formal definition between the figure and the "Recursive generation" paragraph, then handle the redundant text. in \{0,1,2{+}\}$, we define its \emph{depth sensitivity} as $\text{DDR}(f) = |\rho(\text{depth}, f)|$, where $\rho$ is Spearman correlation over all per-text measurements.
+A feature is classified as \emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\,=\,0.660, $p{=}0.030$ vs.\ null; \S\ref{sec:results-ddr}).
+Under autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical—a consequence of the mixing property on finite vocabularies—predicting that location statistics should drift while shape statistics remain invariant. Recursive generation doesn't affect all distributional properties uniformly.
+
+I'm thinking through how to organize the edits across both files. Since the artifacts and docs copies are currently identical, I can apply the same edits to both in parallel when the old and new strings match. Let me start by batching the first edit across both files, then work through the remaining changes sequentially.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "b9c5652c-506f-4b58-83dc-a75527247618",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EjHdeBmdqP4iF4hf32ppAg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5939,
+      "cache_read_input_tokens": 31653,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5939
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+No `0.632` residuals. Both files are identical. I'll now execute all edits on both copies in parallel, starting with the MF-1 formal definition insertion.
+
+**Edit 1: Insert formal definition paragraph (both files)**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "12c0d1db-9e7c-41a5-986d-f60af1754209",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EjHdeBmdqP4iF4hf32ppAg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5939,
+      "cache_read_input_tokens": 31653,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5939
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01H8ZNnyYYv1Ubqd99g8fz1j`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+  "old_string": "\\end{figure*}\n\nRecursive generation does not affect all distributional properties uniformly.",
+  "new_string": "\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.\n\nRecursive generation does not affect all distributional properties uniformly."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "222ee13f-27b9-48e8-88e9-8b2e24cd409c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EjHdeBmdqP4iF4hf32ppAg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5939,
+      "cache_read_input_tokens": 31653,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5939
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T01:13:52.147Z_
+
+<details><summary>↩ Tool result · `toolu_01H8ZNnyYYv1Ubqd99g8fz1j`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "a5b95b7d-f5d7-4582-890f-7804fab6c137",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+    "oldString": "\\end{figure*}\n\nRecursive generation does not affect all distributional properties uniformly.",
+    "newString": "\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.\n\nRecursive generation does not affect all distributional properties uniformly.",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; per-class breakdown in Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\\,=\\,0.810; LOFO yields 0.686.\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ the same-subset XGBoost baseline of 0.789; Appendix~\\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-cl F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\nRecursive generation does not affect all distributional properties uniformly.\nFigure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nThis asymmetry constitutes the \\emph{differential depth response} (DDR); Appendix~\\ref{app:qualitative} illustrates the pattern with a concrete generation chain where drifting features degrade monotonically while shape features remain stable.\nThe primary partition is binary: $k{=}2$ clustering in standardized $(|\\rho|, d)$ space yields silhouette\\,=\\,0.660 (Appendix~\\ref{app:ddr-validation}), cleanly separating three \\emph{drifting} features ($|\\rho| > 0.60$, $d{=}0.76$--$1.17$) from four \\emph{non-drifting} ones ($d \\leq 0.55$); higher $k$ degrades cluster quality ($k{=}3$: silhouette\\,=\\,0.532).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition, establishing that the asymmetry reflects distributional structure rather than feature-selection artifact (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760; Appendix~\\ref{app:ddr-validation}).\n$k{=}2$ clustering in standardized $(|\\rho|, d)$ space corroborates this separation (silhouette\\,=\\,0.660), invariant across threshold choices $\\varepsilon \\in [0.10, 0.75]$.\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nExisting detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nNote that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at 2.4$\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--36.3\\,pp; Figure~\\ref{fig:baseline-ci}) and the pure 4-detector ensemble in binary F1 (0.705 vs.\\ 0.700).\nAdding DDR's surface features to the four detectors yields the highest binary F1 (0.708), marginally above the 7-feature set at 2.4$\\times$ the inference cost.\nThis result underscores that DDR's primary contribution is not classification performance (multi-detector ensembles match or marginally exceed it) but the decomposition of depth signal into location-sensitive and shape-stable components, a structural distinction absent from both binary detection methods and model collapse analyses (\\S\\ref{sec:discussion}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 57,
+        "oldLines": 6,
+        "newStart": 57,
+        "newLines": 11,
+        "lines": [
+          " \\label{fig:ddr-trajectory}",
+          " \\end{figure*}",
+          " ",
+          "+\\paragraph{Formal definition.}",
+          "+For feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.",
+          "+A feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).",
+          "+Under autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.",
+          "+",
+          " Recursive generation does not affect all distributional properties uniformly.",
+          " Figure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.",
+          " This asymmetry constitutes the \\emph{differential depth response} (DDR); Appendix~\\ref{app:qualitative} illustrates the pattern with a concrete generation chain where drifting features degrade monotonically while shape features remain stable."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01YAD1Gj2PoGZUmbbhbyeP5b`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+  "old_string": "\\end{figure*}\n\nRecursive generation does not affect all distributional properties uniformly.",
+  "new_string": "\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.\n\nRecursive generation does not affect all distributional properties uniformly."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "add636c6-18b2-470a-ae49-e70f2937ca2c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EjHdeBmdqP4iF4hf32ppAg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5939,
+      "cache_read_input_tokens": 31653,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5939
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T01:13:55.129Z_
+
+<details><summary>↩ Tool result · `toolu_01YAD1Gj2PoGZUmbbhbyeP5b`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "02091f66-9d2d-44f0-957b-4bed38db2917",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+    "oldString": "\\end{figure*}\n\nRecursive generation does not affect all distributional properties uniformly.",
+    "newString": "\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.\n\nRecursive generation does not affect all distributional properties uniformly.",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; per-class breakdown in Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\\,=\\,0.810; LOFO yields 0.686.\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ the same-subset XGBoost baseline of 0.789; Appendix~\\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-cl F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\nRecursive generation does not affect all distributional properties uniformly.\nFigure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nThis asymmetry constitutes the \\emph{differential depth response} (DDR); Appendix~\\ref{app:qualitative} illustrates the pattern with a concrete generation chain where drifting features degrade monotonically while shape features remain stable.\nThe primary partition is binary: $k{=}2$ clustering in standardized $(|\\rho|, d)$ space yields silhouette\\,=\\,0.660 (Appendix~\\ref{app:ddr-validation}), cleanly separating three \\emph{drifting} features ($|\\rho| > 0.60$, $d{=}0.76$--$1.17$) from four \\emph{non-drifting} ones ($d \\leq 0.55$); higher $k$ degrades cluster quality ($k{=}3$: silhouette\\,=\\,0.532).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition, establishing that the asymmetry reflects distributional structure rather than feature-selection artifact (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760; Appendix~\\ref{app:ddr-validation}).\n$k{=}2$ clustering in standardized $(|\\rho|, d)$ space corroborates this separation (silhouette\\,=\\,0.660), invariant across threshold choices $\\varepsilon \\in [0.10, 0.75]$.\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nExisting detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nNote that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at 2.4$\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--36.3\\,pp; Figure~\\ref{fig:baseline-ci}) and the pure 4-detector ensemble in binary F1 (0.705 vs.\\ 0.700).\nAdding DDR's surface features to the four detectors yields the highest binary F1 (0.708), marginally above the 7-feature set at 2.4$\\times$ the inference cost.\nThis result underscores that DDR's primary contribution is not classification performance (multi-detector ensembles match or marginally exceed it) but the decomposition of depth signal into location-sensitive and shape-stable components, a structural distinction absent from both binary detection methods and model collapse analyses (\\S\\ref{sec:discussion}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 57,
+        "oldLines": 6,
+        "newStart": 57,
+        "newLines": 11,
+        "lines": [
+          " \\label{fig:ddr-trajectory}",
+          " \\end{figure*}",
+          " ",
+          "+\\paragraph{Formal definition.}",
+          "+For feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.",
+          "+A feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).",
+          "+Under autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.",
+          "+",
+          " Recursive generation does not affect all distributional properties uniformly.",
+          " Figure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.",
+          " This asymmetry constitutes the \\emph{differential depth response} (DDR); Appendix~\\ref{app:qualitative} illustrates the pattern with a concrete generation chain where drifting features degrade monotonically while shape features remain stable."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+**MF-1 Compress 1: Shorten DDR naming sentence (now redundant with formal def)**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "df72ed11-8c9e-404b-b7cd-6d40584d394b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Px6BeBs8ee78tRJxC4tezP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11284,
+      "cache_read_input_tokens": 37592,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11284
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01S5tLfeYMxGhaSUuXyvxFs4`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+  "old_string": "This asymmetry constitutes the \\emph{differential depth response} (DDR); Appendix~\\ref{app:qualitative} illustrates the pattern with a concrete generation chain where drifting features degrade monotonically while shape features remain stable.",
+  "new_string": "Appendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "532c32ed-77f9-446b-9a21-caf22cd48530",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Px6BeBs8ee78tRJxC4tezP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11284,
+      "cache_read_input_tokens": 37592,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11284
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-22T01:14:01.362Z_
+
+<details><summary>↩ Tool result · `toolu_01S5tLfeYMxGhaSUuXyvxFs4`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "d2c6eb21-8484-44a6-88a1-4bb295269747",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+    "oldString": "This asymmetry constitutes the \\emph{differential depth response} (DDR); Appendix~\\ref{app:qualitative} illustrates the pattern with a concrete generation chain where drifting features degrade monotonically while shape features remain stable.",
+    "newString": "Appendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; per-class breakdown in Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\\,=\\,0.810; LOFO yields 0.686.\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ the same-subset XGBoost baseline of 0.789; Appendix~\\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-cl F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.\n\nRecursive generation does not affect all distributional properties uniformly.\nFigure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nThis asymmetry constitutes the \\emph{differential depth response} (DDR); Appendix~\\ref{app:qualitative} illustrates the pattern with a concrete generation chain where drifting features degrade monotonically while shape features remain stable.\nThe primary partition is binary: $k{=}2$ clustering in standardized $(|\\rho|, d)$ space yields silhouette\\,=\\,0.660 (Appendix~\\ref{app:ddr-validation}), cleanly separating three \\emph{drifting} features ($|\\rho| > 0.60$, $d{=}0.76$--$1.17$) from four \\emph{non-drifting} ones ($d \\leq 0.55$); higher $k$ degrades cluster quality ($k{=}3$: silhouette\\,=\\,0.532).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition, establishing that the asymmetry reflects distributional structure rather than feature-selection artifact (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760; Appendix~\\ref{app:ddr-validation}).\n$k{=}2$ clustering in standardized $(|\\rho|, d)$ space corroborates this separation (silhouette\\,=\\,0.660), invariant across threshold choices $\\varepsilon \\in [0.10, 0.75]$.\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nExisting detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nNote that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at 2.4$\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--36.3\\,pp; Figure~\\ref{fig:baseline-ci}) and the pure 4-detector ensemble in binary F1 (0.705 vs.\\ 0.700).\nAdding DDR's surface features to the four detectors yields the highest binary F1 (0.708), marginally above the 7-feature set at 2.4$\\times$ the inference cost.\nThis result underscores that DDR's primary contribution is not classification performance (multi-detector ensembles match or marginally exceed it) but the decomposition of depth signal into location-sensitive and shape-stable components, a structural distinction absent from both binary detection methods and model collapse analyses (\\S\\ref{sec:discussion}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 64,
+        "oldLines": 7,
+        "newStart": 64,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " Recursive generation does not affect all distributional properties uniformly.",
+          " Figure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.",
+          "-This asymmetry constitutes the \\emph{differential depth response} (DDR); Appendix~\\ref{app:qualitative} illustrates the pattern with a concrete generation chain where drifting features degrade monotonically while shape features remain stable.",
+          "+Appendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.",
+          " The primary partition is binary: $k{=}2$ clustering in standardized $(|\\rho|, d)$ space yields silhouette\\,=\\,0.660 (Appendix~\\ref{app:ddr-validation}), cleanly separating three \\emph{drifting} features ($|\\rho| > 0.60$, $d{=}0.76$--$1.17$) from four \\emph{non-drifting} ones ($d \\leq 0.55$); higher $k$ degrades cluster quality ($k{=}3$: silhouette\\,=\\,0.532).",
+          " A domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).",
+          " Multiple effect-size measures corroborate this partition, establishing that the asymmetry reflects distributional structure rather than feature-selection artifact (Quantification below)."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01XuPBNKhi8sz97j8TS7xPLR`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+  "old_string": "This asymmetry constitutes the \\emph{differential depth response} (DDR); Appendix~\\ref{app:qualitative} illustrates the pattern with a concrete generation chain where drifting features degrade monotonically while shape features remain stable.",
+  "new_string": "Appendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "04f242cd-1bfd-4873-b6db-69553543ea6d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Px6BeBs8ee78tRJxC4tezP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11284,
+      "cache_read_input_tokens": 37592,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11284
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-22T01:14:02.524Z_
+
+<details><summary>↩ Tool result · `toolu_01XuPBNKhi8sz97j8TS7xPLR`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "9453b29b-e5ee-4097-af55-e9845f94c97e",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+    "oldString": "This asymmetry constitutes the \\emph{differential depth response} (DDR); Appendix~\\ref{app:qualitative} illustrates the pattern with a concrete generation chain where drifting features degrade monotonically while shape features remain stable.",
+    "newString": "Appendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; per-class breakdown in Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\\,=\\,0.810; LOFO yields 0.686.\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ the same-subset XGBoost baseline of 0.789; Appendix~\\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-cl F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.\n\nRecursive generation does not affect all distributional properties uniformly.\nFigure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nThis asymmetry constitutes the \\emph{differential depth response} (DDR); Appendix~\\ref{app:qualitative} illustrates the pattern with a concrete generation chain where drifting features degrade monotonically while shape features remain stable.\nThe primary partition is binary: $k{=}2$ clustering in standardized $(|\\rho|, d)$ space yields silhouette\\,=\\,0.660 (Appendix~\\ref{app:ddr-validation}), cleanly separating three \\emph{drifting} features ($|\\rho| > 0.60$, $d{=}0.76$--$1.17$) from four \\emph{non-drifting} ones ($d \\leq 0.55$); higher $k$ degrades cluster quality ($k{=}3$: silhouette\\,=\\,0.532).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition, establishing that the asymmetry reflects distributional structure rather than feature-selection artifact (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760; Appendix~\\ref{app:ddr-validation}).\n$k{=}2$ clustering in standardized $(|\\rho|, d)$ space corroborates this separation (silhouette\\,=\\,0.660), invariant across threshold choices $\\varepsilon \\in [0.10, 0.75]$.\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nExisting detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nNote that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at 2.4$\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--36.3\\,pp; Figure~\\ref{fig:baseline-ci}) and the pure 4-detector ensemble in binary F1 (0.705 vs.\\ 0.700).\nAdding DDR's surface features to the four detectors yields the highest binary F1 (0.708), marginally above the 7-feature set at 2.4$\\times$ the inference cost.\nThis result underscores that DDR's primary contribution is not classification performance (multi-detector ensembles match or marginally exceed it) but the decomposition of depth signal into location-sensitive and shape-stable components, a structural distinction absent from both binary detection methods and model collapse analyses (\\S\\ref{sec:discussion}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 64,
+        "oldLines": 7,
+        "newStart": 64,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " Recursive generation does not affect all distributional properties uniformly.",
+          " Figure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.",
+          "-This asymmetry constitutes the \\emph{differential depth response} (DDR); Appendix~\\ref{app:qualitative} illustrates the pattern with a concrete generation chain where drifting features degrade monotonically while shape features remain stable.",
+          "+Appendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.",
+          " The primary partition is binary: $k{=}2$ clustering in standardized $(|\\rho|, d)$ space yields silhouette\\,=\\,0.660 (Appendix~\\ref{app:ddr-validation}), cleanly separating three \\emph{drifting} features ($|\\rho| > 0.60$, $d{=}0.76$--$1.17$) from four \\emph{non-drifting} ones ($d \\leq 0.55$); higher $k$ degrades cluster quality ($k{=}3$: silhouette\\,=\\,0.532).",
+          " A domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).",
+          " Multiple effect-size measures corroborate this partition, establishing that the asymmetry reflects distributional structure rather than feature-selection artifact (Quantification below)."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+**MF-1 Compress 2: Shorten clustering description (silhouette/thresholds now in formal def)**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "64efa498-a3dc-4a4d-a695-c87a54342675",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D6jnRwJ2n3PVQEt44VGeSf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 48876,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 701
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01FWGaibWm6aFtYVcYcvx2Px`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+  "old_string": "The primary partition is binary: $k{=}2$ clustering in standardized $(|\\rho|, d)$ space yields silhouette\\,=\\,0.660 (Appendix~\\ref{app:ddr-validation}), cleanly separating three \\emph{drifting} features ($|\\rho| > 0.60$, $d{=}0.76$--$1.17$) from four \\emph{non-drifting} ones ($d \\leq 0.55$); higher $k$ degrades cluster quality ($k{=}3$: silhouette\\,=\\,0.532).",
+  "new_string": "The primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "6d2c3d70-7cbe-4ddd-8a07-4267eb77f625",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D6jnRwJ2n3PVQEt44VGeSf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 48876,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 701
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T01:14:11.597Z_
+
+<details><summary>↩ Tool result · `toolu_01FWGaibWm6aFtYVcYcvx2Px`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "53b889ab-0c24-40f9-baef-86d9299927c6",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+    "oldString": "The primary partition is binary: $k{=}2$ clustering in standardized $(|\\rho|, d)$ space yields silhouette\\,=\\,0.660 (Appendix~\\ref{app:ddr-validation}), cleanly separating three \\emph{drifting} features ($|\\rho| > 0.60$, $d{=}0.76$--$1.17$) from four \\emph{non-drifting} ones ($d \\leq 0.55$); higher $k$ degrades cluster quality ($k{=}3$: silhouette\\,=\\,0.532).",
+    "newString": "The primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; per-class breakdown in Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\\,=\\,0.810; LOFO yields 0.686.\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ the same-subset XGBoost baseline of 0.789; Appendix~\\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-cl F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.\n\nRecursive generation does not affect all distributional properties uniformly.\nFigure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nAppendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.\nThe primary partition is binary: $k{=}2$ clustering in standardized $(|\\rho|, d)$ space yields silhouette\\,=\\,0.660 (Appendix~\\ref{app:ddr-validation}), cleanly separating three \\emph{drifting} features ($|\\rho| > 0.60$, $d{=}0.76$--$1.17$) from four \\emph{non-drifting} ones ($d \\leq 0.55$); higher $k$ degrades cluster quality ($k{=}3$: silhouette\\,=\\,0.532).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition, establishing that the asymmetry reflects distributional structure rather than feature-selection artifact (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760; Appendix~\\ref{app:ddr-validation}).\n$k{=}2$ clustering in standardized $(|\\rho|, d)$ space corroborates this separation (silhouette\\,=\\,0.660), invariant across threshold choices $\\varepsilon \\in [0.10, 0.75]$.\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nExisting detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nNote that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at 2.4$\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--36.3\\,pp; Figure~\\ref{fig:baseline-ci}) and the pure 4-detector ensemble in binary F1 (0.705 vs.\\ 0.700).\nAdding DDR's surface features to the four detectors yields the highest binary F1 (0.708), marginally above the 7-feature set at 2.4$\\times$ the inference cost.\nThis result underscores that DDR's primary contribution is not classification performance (multi-detector ensembles match or marginally exceed it) but the decomposition of depth signal into location-sensitive and shape-stable components, a structural distinction absent from both binary detection methods and model collapse analyses (\\S\\ref{sec:discussion}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 65,
+        "oldLines": 7,
+        "newStart": 65,
+        "newLines": 7,
+        "lines": [
+          " Recursive generation does not affect all distributional properties uniformly.",
+          " Figure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.",
+          " Appendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.",
+          "-The primary partition is binary: $k{=}2$ clustering in standardized $(|\\rho|, d)$ space yields silhouette\\,=\\,0.660 (Appendix~\\ref{app:ddr-validation}), cleanly separating three \\emph{drifting} features ($|\\rho| > 0.60$, $d{=}0.76$--$1.17$) from four \\emph{non-drifting} ones ($d \\leq 0.55$); higher $k$ degrades cluster quality ($k{=}3$: silhouette\\,=\\,0.532).",
+          "+The primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).",
+          " A domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).",
+          " Multiple effect-size measures corroborate this partition, establishing that the asymmetry reflects distributional structure rather than feature-selection artifact (Quantification below).",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_014aAfXS4zkdXyzK2ho4Cagx`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+  "old_string": "The primary partition is binary: $k{=}2$ clustering in standardized $(|\\rho|, d)$ space yields silhouette\\,=\\,0.660 (Appendix~\\ref{app:ddr-validation}), cleanly separating three \\emph{drifting} features ($|\\rho| > 0.60$, $d{=}0.76$--$1.17$) from four \\emph{non-drifting} ones ($d \\leq 0.55$); higher $k$ degrades cluster quality ($k{=}3$: silhouette\\,=\\,0.532).",
+  "new_string": "The primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "39eefb37-4c03-499f-931b-cdfe721b7cee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D6jnRwJ2n3PVQEt44VGeSf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 48876,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 701
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T01:14:13.826Z_
+
+<details><summary>↩ Tool result · `toolu_014aAfXS4zkdXyzK2ho4Cagx`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "8e8ea2f0-3cc9-4a44-8e6c-6c852700a1dc",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+    "oldString": "The primary partition is binary: $k{=}2$ clustering in standardized $(|\\rho|, d)$ space yields silhouette\\,=\\,0.660 (Appendix~\\ref{app:ddr-validation}), cleanly separating three \\emph{drifting} features ($|\\rho| > 0.60$, $d{=}0.76$--$1.17$) from four \\emph{non-drifting} ones ($d \\leq 0.55$); higher $k$ degrades cluster quality ($k{=}3$: silhouette\\,=\\,0.532).",
+    "newString": "The primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; per-class breakdown in Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\\,=\\,0.810; LOFO yields 0.686.\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ the same-subset XGBoost baseline of 0.789; Appendix~\\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-cl F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.\n\nRecursive generation does not affect all distributional properties uniformly.\nFigure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nAppendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.\nThe primary partition is binary: $k{=}2$ clustering in standardized $(|\\rho|, d)$ space yields silhouette\\,=\\,0.660 (Appendix~\\ref{app:ddr-validation}), cleanly separating three \\emph{drifting} features ($|\\rho| > 0.60$, $d{=}0.76$--$1.17$) from four \\emph{non-drifting} ones ($d \\leq 0.55$); higher $k$ degrades cluster quality ($k{=}3$: silhouette\\,=\\,0.532).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition, establishing that the asymmetry reflects distributional structure rather than feature-selection artifact (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760; Appendix~\\ref{app:ddr-validation}).\n$k{=}2$ clustering in standardized $(|\\rho|, d)$ space corroborates this separation (silhouette\\,=\\,0.660), invariant across threshold choices $\\varepsilon \\in [0.10, 0.75]$.\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nExisting detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nNote that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at 2.4$\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--36.3\\,pp; Figure~\\ref{fig:baseline-ci}) and the pure 4-detector ensemble in binary F1 (0.705 vs.\\ 0.700).\nAdding DDR's surface features to the four detectors yields the highest binary F1 (0.708), marginally above the 7-feature set at 2.4$\\times$ the inference cost.\nThis result underscores that DDR's primary contribution is not classification performance (multi-detector ensembles match or marginally exceed it) but the decomposition of depth signal into location-sensitive and shape-stable components, a structural distinction absent from both binary detection methods and model collapse analyses (\\S\\ref{sec:discussion}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 65,
+        "oldLines": 7,
+        "newStart": 65,
+        "newLines": 7,
+        "lines": [
+          " Recursive generation does not affect all distributional properties uniformly.",
+          " Figure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.",
+          " Appendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.",
+          "-The primary partition is binary: $k{=}2$ clustering in standardized $(|\\rho|, d)$ space yields silhouette\\,=\\,0.660 (Appendix~\\ref{app:ddr-validation}), cleanly separating three \\emph{drifting} features ($|\\rho| > 0.60$, $d{=}0.76$--$1.17$) from four \\emph{non-drifting} ones ($d \\leq 0.55$); higher $k$ degrades cluster quality ($k{=}3$: silhouette\\,=\\,0.532).",
+          "+The primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).",
+          " A domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).",
+          " Multiple effect-size measures corroborate this partition, establishing that the asymmetry reflects distributional structure rather than feature-selection artifact (Quantification below).",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+**MF-1 Compress 3: Shorten forward pointer**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "e7e6a230-a803-4826-a157-0877d69fd0a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nfs7L59J28pFJnp9bXpXJo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 890,
+      "cache_read_input_tokens": 49577,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 890
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01FhrFs12tExpd5aUEmVkMgw`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+  "old_string": "Multiple effect-size measures corroborate this partition, establishing that the asymmetry reflects distributional structure rather than feature-selection artifact (Quantification below).",
+  "new_string": "Multiple effect-size measures corroborate this partition (Quantification below)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "65758f56-d632-4c5d-82be-34585b571c9f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nfs7L59J28pFJnp9bXpXJo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 890,
+      "cache_read_input_tokens": 49577,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 890
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-22T01:14:19.800Z_
+
+<details><summary>↩ Tool result · `toolu_01FhrFs12tExpd5aUEmVkMgw`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "6b5fb730-edd4-44df-98aa-c5eee6bba618",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+    "oldString": "Multiple effect-size measures corroborate this partition, establishing that the asymmetry reflects distributional structure rather than feature-selection artifact (Quantification below).",
+    "newString": "Multiple effect-size measures corroborate this partition (Quantification below).",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; per-class breakdown in Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\\,=\\,0.810; LOFO yields 0.686.\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ the same-subset XGBoost baseline of 0.789; Appendix~\\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-cl F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.\n\nRecursive generation does not affect all distributional properties uniformly.\nFigure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nAppendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.\nThe primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition, establishing that the asymmetry reflects distributional structure rather than feature-selection artifact (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760; Appendix~\\ref{app:ddr-validation}).\n$k{=}2$ clustering in standardized $(|\\rho|, d)$ space corroborates this separation (silhouette\\,=\\,0.660), invariant across threshold choices $\\varepsilon \\in [0.10, 0.75]$.\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nExisting detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nNote that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at 2.4$\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--36.3\\,pp; Figure~\\ref{fig:baseline-ci}) and the pure 4-detector ensemble in binary F1 (0.705 vs.\\ 0.700).\nAdding DDR's surface features to the four detectors yields the highest binary F1 (0.708), marginally above the 7-feature set at 2.4$\\times$ the inference cost.\nThis result underscores that DDR's primary contribution is not classification performance (multi-detector ensembles match or marginally exceed it) but the decomposition of depth signal into location-sensitive and shape-stable components, a structural distinction absent from both binary detection methods and model collapse analyses (\\S\\ref{sec:discussion}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 67,
+        "oldLines": 7,
+        "newStart": 67,
+        "newLines": 7,
+        "lines": [
+          " Appendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.",
+          " The primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).",
+          " A domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).",
+          "-Multiple effect-size measures corroborate this partition, establishing that the asymmetry reflects distributional structure rather than feature-selection artifact (Quantification below).",
+          "+Multiple effect-size measures corroborate this partition (Quantification below).",
+          " ",
+          " \\begin{figure}[t!]",
+          " \\centering"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01U2A3i2WANrZbZ5bDiREHfU`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+  "old_string": "Multiple effect-size measures corroborate this partition, establishing that the asymmetry reflects distributional structure rather than feature-selection artifact (Quantification below).",
+  "new_string": "Multiple effect-size measures corroborate this partition (Quantification below)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "f86f3ddd-4c4c-4640-912d-728c52cd1238",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nfs7L59J28pFJnp9bXpXJo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 890,
+      "cache_read_input_tokens": 49577,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 890
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-22T01:14:20.999Z_
+
+<details><summary>↩ Tool result · `toolu_01U2A3i2WANrZbZ5bDiREHfU`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "99a7ec85-cfed-495b-a36c-8063d0878caf",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+    "oldString": "Multiple effect-size measures corroborate this partition, establishing that the asymmetry reflects distributional structure rather than feature-selection artifact (Quantification below).",
+    "newString": "Multiple effect-size measures corroborate this partition (Quantification below).",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; per-class breakdown in Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\\,=\\,0.810; LOFO yields 0.686.\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ the same-subset XGBoost baseline of 0.789; Appendix~\\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-cl F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.\n\nRecursive generation does not affect all distributional properties uniformly.\nFigure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nAppendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.\nThe primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition, establishing that the asymmetry reflects distributional structure rather than feature-selection artifact (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760; Appendix~\\ref{app:ddr-validation}).\n$k{=}2$ clustering in standardized $(|\\rho|, d)$ space corroborates this separation (silhouette\\,=\\,0.660), invariant across threshold choices $\\varepsilon \\in [0.10, 0.75]$.\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nExisting detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nNote that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at 2.4$\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--36.3\\,pp; Figure~\\ref{fig:baseline-ci}) and the pure 4-detector ensemble in binary F1 (0.705 vs.\\ 0.700).\nAdding DDR's surface features to the four detectors yields the highest binary F1 (0.708), marginally above the 7-feature set at 2.4$\\times$ the inference cost.\nThis result underscores that DDR's primary contribution is not classification performance (multi-detector ensembles match or marginally exceed it) but the decomposition of depth signal into location-sensitive and shape-stable components, a structural distinction absent from both binary detection methods and model collapse analyses (\\S\\ref{sec:discussion}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 67,
+        "oldLines": 7,
+        "newStart": 67,
+        "newLines": 7,
+        "lines": [
+          " Appendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.",
+          " The primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).",
+          " A domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).",
+          "-Multiple effect-size measures corroborate this partition, establishing that the asymmetry reflects distributional structure rather than feature-selection artifact (Quantification below).",
+          "+Multiple effect-size measures corroborate this partition (Quantification below).",
+          " ",
+          " \\begin{figure}[t!]",
+          " \\centering"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+**MF-1 Compress 4: Merge redundant Validation clustering sentence**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "f118d1ee-bc51-4e3d-9523-bf5391db1470",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018feD1zVWZZffVeSLSpiKJ1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 532,
+      "cache_read_input_tokens": 50467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 532
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01V4Zdtaq24SBxZL5ypL3uww`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+  "old_string": "Per-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760; Appendix~\\ref{app:ddr-validation}).\n$k{=}2$ clustering in standardized $(|\\rho|, d)$ space corroborates this separation (silhouette\\,=\\,0.660), invariant across threshold choices $\\varepsilon \\in [0.10, 0.75]$.",
+  "new_string": "Per-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760, invariant across $\\varepsilon \\in [0.10, 0.75]$; Appendix~\\ref{app:ddr-validation})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "948d16e0-8fb5-48aa-8c07-ca77a444c1be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018feD1zVWZZffVeSLSpiKJ1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 532,
+      "cache_read_input_tokens": 50467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 532
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-22T01:14:29.139Z_
+
+<details><summary>↩ Tool result · `toolu_01V4Zdtaq24SBxZL5ypL3uww`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "014e7a45-bb81-41fc-a333-3f15584873d6",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+    "oldString": "Per-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760; Appendix~\\ref{app:ddr-validation}).\n$k{=}2$ clustering in standardized $(|\\rho|, d)$ space corroborates this separation (silhouette\\,=\\,0.660), invariant across threshold choices $\\varepsilon \\in [0.10, 0.75]$.",
+    "newString": "Per-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760, invariant across $\\varepsilon \\in [0.10, 0.75]$; Appendix~\\ref{app:ddr-validation}).",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; per-class breakdown in Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\\,=\\,0.810; LOFO yields 0.686.\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ the same-subset XGBoost baseline of 0.789; Appendix~\\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-cl F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.\n\nRecursive generation does not affect all distributional properties uniformly.\nFigure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nAppendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.\nThe primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760; Appendix~\\ref{app:ddr-validation}).\n$k{=}2$ clustering in standardized $(|\\rho|, d)$ space corroborates this separation (silhouette\\,=\\,0.660), invariant across threshold choices $\\varepsilon \\in [0.10, 0.75]$.\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nExisting detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nNote that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at 2.4$\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--36.3\\,pp; Figure~\\ref{fig:baseline-ci}) and the pure 4-detector ensemble in binary F1 (0.705 vs.\\ 0.700).\nAdding DDR's surface features to the four detectors yields the highest binary F1 (0.708), marginally above the 7-feature set at 2.4$\\times$ the inference cost.\nThis result underscores that DDR's primary contribution is not classification performance (multi-detector ensembles match or marginally exceed it) but the decomposition of depth signal into location-sensitive and shape-stable components, a structural distinction absent from both binary detection methods and model collapse analyses (\\S\\ref{sec:discussion}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 89,
+        "oldLines": 8,
+        "newStart": 89,
+        "newLines": 7,
+        "lines": [
+          " Entropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).",
+          " Entropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.",
+          " \\paragraph{Validation.}",
+          "-Per-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760; Appendix~\\ref{app:ddr-validation}).",
+          "-$k{=}2$ clustering in standardized $(|\\rho|, d)$ space corroborates this separation (silhouette\\,=\\,0.660), invariant across threshold choices $\\varepsilon \\in [0.10, 0.75]$.",
+          "+Per-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760, invariant across $\\varepsilon \\in [0.10, 0.75]$; Appendix~\\ref{app:ddr-validation}).",
+          " Per-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.",
+          " A permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split}).",
+          " Reclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01UewzDv7dFdUwZCzGfjy4M2`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+  "old_string": "Per-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760; Appendix~\\ref{app:ddr-validation}).\n$k{=}2$ clustering in standardized $(|\\rho|, d)$ space corroborates this separation (silhouette\\,=\\,0.660), invariant across threshold choices $\\varepsilon \\in [0.10, 0.75]$.",
+  "new_string": "Per-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760, invariant across $\\varepsilon \\in [0.10, 0.75]$; Appendix~\\ref{app:ddr-validation})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "32d35439-b2f3-4104-886a-d000667ae69d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018feD1zVWZZffVeSLSpiKJ1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 532,
+      "cache_read_input_tokens": 50467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 532
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-22T01:14:31.505Z_
+
+<details><summary>↩ Tool result · `toolu_01UewzDv7dFdUwZCzGfjy4M2`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "b84fcbf1-759a-4667-a1e0-e7fbb7ed971a",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+    "oldString": "Per-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760; Appendix~\\ref{app:ddr-validation}).\n$k{=}2$ clustering in standardized $(|\\rho|, d)$ space corroborates this separation (silhouette\\,=\\,0.660), invariant across threshold choices $\\varepsilon \\in [0.10, 0.75]$.",
+    "newString": "Per-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760, invariant across $\\varepsilon \\in [0.10, 0.75]$; Appendix~\\ref{app:ddr-validation}).",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; per-class breakdown in Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\\,=\\,0.810; LOFO yields 0.686.\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ the same-subset XGBoost baseline of 0.789; Appendix~\\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-cl F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.\n\nRecursive generation does not affect all distributional properties uniformly.\nFigure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nAppendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.\nThe primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760; Appendix~\\ref{app:ddr-validation}).\n$k{=}2$ clustering in standardized $(|\\rho|, d)$ space corroborates this separation (silhouette\\,=\\,0.660), invariant across threshold choices $\\varepsilon \\in [0.10, 0.75]$.\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nExisting detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nNote that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at 2.4$\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--36.3\\,pp; Figure~\\ref{fig:baseline-ci}) and the pure 4-detector ensemble in binary F1 (0.705 vs.\\ 0.700).\nAdding DDR's surface features to the four detectors yields the highest binary F1 (0.708), marginally above the 7-feature set at 2.4$\\times$ the inference cost.\nThis result underscores that DDR's primary contribution is not classification performance (multi-detector ensembles match or marginally exceed it) but the decomposition of depth signal into location-sensitive and shape-stable components, a structural distinction absent from both binary detection methods and model collapse analyses (\\S\\ref{sec:discussion}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 89,
+        "oldLines": 8,
+        "newStart": 89,
+        "newLines": 7,
+        "lines": [
+          " Entropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).",
+          " Entropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.",
+          " \\paragraph{Validation.}",
+          "-Per-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760; Appendix~\\ref{app:ddr-validation}).",
+          "-$k{=}2$ clustering in standardized $(|\\rho|, d)$ space corroborates this separation (silhouette\\,=\\,0.660), invariant across threshold choices $\\varepsilon \\in [0.10, 0.75]$.",
+          "+Per-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760, invariant across $\\varepsilon \\in [0.10, 0.75]$; Appendix~\\ref{app:ddr-validation}).",
+          " Per-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.",
+          " A permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split}).",
+          " Reclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+**MF-1 Compress 5: Shorten permutation test sentence (p/silhouette now in formal def)**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "2ab8a861-840b-44a3-8fb1-ff34c069abb2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CxDErjUow99PYzxGo8iZhE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 865,
+      "cache_read_input_tokens": 50999,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 865
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01ELJruzNZXDkxtkDj9t247d`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+  "old_string": "A permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split}).",
+  "new_string": "A permutation test ($n{=}10{,}000$) establishes the split as non-random (null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint holdout splits recover identical zone assignments (Appendix~\\ref{app:holdout-split})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "be341d1c-bd59-4f52-bcf4-52e63d04edbe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CxDErjUow99PYzxGo8iZhE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 865,
+      "cache_read_input_tokens": 50999,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 865
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-22T01:14:43.534Z_
+
+<details><summary>↩ Tool result · `toolu_01ELJruzNZXDkxtkDj9t247d`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "889750f9-e7dd-40cb-9559-305724a28b5c",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+    "oldString": "A permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split}).",
+    "newString": "A permutation test ($n{=}10{,}000$) establishes the split as non-random (null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint holdout splits recover identical zone assignments (Appendix~\\ref{app:holdout-split}).",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; per-class breakdown in Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\\,=\\,0.810; LOFO yields 0.686.\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ the same-subset XGBoost baseline of 0.789; Appendix~\\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-cl F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.\n\nRecursive generation does not affect all distributional properties uniformly.\nFigure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nAppendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.\nThe primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760, invariant across $\\varepsilon \\in [0.10, 0.75]$; Appendix~\\ref{app:ddr-validation}).\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nExisting detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nNote that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at 2.4$\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--36.3\\,pp; Figure~\\ref{fig:baseline-ci}) and the pure 4-detector ensemble in binary F1 (0.705 vs.\\ 0.700).\nAdding DDR's surface features to the four detectors yields the highest binary F1 (0.708), marginally above the 7-feature set at 2.4$\\times$ the inference cost.\nThis result underscores that DDR's primary contribution is not classification performance (multi-detector ensembles match or marginally exceed it) but the decomposition of depth signal into location-sensitive and shape-stable components, a structural distinction absent from both binary detection methods and model collapse analyses (\\S\\ref{sec:discussion}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 91,
+        "oldLines": 7,
+        "newStart": 91,
+        "newLines": 7,
+        "lines": [
+          " \\paragraph{Validation.}",
+          " Per-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760, invariant across $\\varepsilon \\in [0.10, 0.75]$; Appendix~\\ref{app:ddr-validation}).",
+          " Per-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.",
+          "-A permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split}).",
+          "+A permutation test ($n{=}10{,}000$) establishes the split as non-random (null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint holdout splits recover identical zone assignments (Appendix~\\ref{app:holdout-split}).",
+          " Reclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.",
+          " ",
+          " \\paragraph{Feature complementarity.}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01CJdmEkmrebEfPwWbNzaVBw`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+  "old_string": "A permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split}).",
+  "new_string": "A permutation test ($n{=}10{,}000$) establishes the split as non-random (null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint holdout splits recover identical zone assignments (Appendix~\\ref{app:holdout-split})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "18bb4ea8-3272-4cc3-a5f9-ab251c3c1b60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CxDErjUow99PYzxGo8iZhE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 865,
+      "cache_read_input_tokens": 50999,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 865
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-22T01:14:46.524Z_
+
+<details><summary>↩ Tool result · `toolu_01CJdmEkmrebEfPwWbNzaVBw`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "eacc7442-414c-468c-94df-8d088b73bd09",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+    "oldString": "A permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split}).",
+    "newString": "A permutation test ($n{=}10{,}000$) establishes the split as non-random (null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint holdout splits recover identical zone assignments (Appendix~\\ref{app:holdout-split}).",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; per-class breakdown in Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\\,=\\,0.810; LOFO yields 0.686.\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ the same-subset XGBoost baseline of 0.789; Appendix~\\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-cl F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.\n\nRecursive generation does not affect all distributional properties uniformly.\nFigure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nAppendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.\nThe primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760, invariant across $\\varepsilon \\in [0.10, 0.75]$; Appendix~\\ref{app:ddr-validation}).\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nExisting detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nNote that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at 2.4$\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--36.3\\,pp; Figure~\\ref{fig:baseline-ci}) and the pure 4-detector ensemble in binary F1 (0.705 vs.\\ 0.700).\nAdding DDR's surface features to the four detectors yields the highest binary F1 (0.708), marginally above the 7-feature set at 2.4$\\times$ the inference cost.\nThis result underscores that DDR's primary contribution is not classification performance (multi-detector ensembles match or marginally exceed it) but the decomposition of depth signal into location-sensitive and shape-stable components, a structural distinction absent from both binary detection methods and model collapse analyses (\\S\\ref{sec:discussion}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 91,
+        "oldLines": 7,
+        "newStart": 91,
+        "newLines": 7,
+        "lines": [
+          " \\paragraph{Validation.}",
+          " Per-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760, invariant across $\\varepsilon \\in [0.10, 0.75]$; Appendix~\\ref{app:ddr-validation}).",
+          " Per-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.",
+          "-A permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split}).",
+          "+A permutation test ($n{=}10{,}000$) establishes the split as non-random (null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint holdout splits recover identical zone assignments (Appendix~\\ref{app:holdout-split}).",
+          " Reclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.",
+          " ",
+          " \\paragraph{Feature complementarity.}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+MF-1 done. Now MF-2: expanding cross-family paragraph + compressing neighbors.
+
+**MF-2 Edit 1: Replace cross-family paragraph**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "7dcacab7-247c-40fd-9268-e75acb5a3fc2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EJu1h39UTTdHa62DgQdKi4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1034,
+      "cache_read_input_tokens": 51864,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1034
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_019UXQogutvW35U1UEis7kj6`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+  "old_string": "\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp.",
+  "new_string": "\\paragraph{Cross-family reference models.}\nTo isolate reference-model bias, we evaluate on a 5-generator subset excluding all Pythia-family generators from the test set---a stricter protocol than full 8-gen LOGO, which includes same-family generators that could inflate F1.\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable performance (F1 spread\\,=\\,0.013; Table~\\ref{tab:cross-ref} in Appendix~\\ref{app:cross-ref}), with drift direction consistently negative across all three references.\nResidual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp, but the DDR partition---which features drift vs.\\ which are stable---is fully preserved regardless of reference choice."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "b325124b-1ced-4b73-aa71-aeb394d62d96",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EJu1h39UTTdHa62DgQdKi4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1034,
+      "cache_read_input_tokens": 51864,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1034
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-22T01:15:00.201Z_
+
+<details><summary>↩ Tool result · `toolu_019UXQogutvW35U1UEis7kj6`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "5c6dd753-e5f7-4154-bae2-e65928b59179",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+    "oldString": "\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp.",
+    "newString": "\\paragraph{Cross-family reference models.}\nTo isolate reference-model bias, we evaluate on a 5-generator subset excluding all Pythia-family generators from the test set---a stricter protocol than full 8-gen LOGO, which includes same-family generators that could inflate F1.\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable performance (F1 spread\\,=\\,0.013; Table~\\ref{tab:cross-ref} in Appendix~\\ref{app:cross-ref}), with drift direction consistently negative across all three references.\nResidual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp, but the DDR partition---which features drift vs.\\ which are stable---is fully preserved regardless of reference choice.",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; per-class breakdown in Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\\,=\\,0.810; LOFO yields 0.686.\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ the same-subset XGBoost baseline of 0.789; Appendix~\\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-cl F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.\n\nRecursive generation does not affect all distributional properties uniformly.\nFigure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nAppendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.\nThe primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760, invariant across $\\varepsilon \\in [0.10, 0.75]$; Appendix~\\ref{app:ddr-validation}).\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) establishes the split as non-random (null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint holdout splits recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nExisting detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nNote that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at 2.4$\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--36.3\\,pp; Figure~\\ref{fig:baseline-ci}) and the pure 4-detector ensemble in binary F1 (0.705 vs.\\ 0.700).\nAdding DDR's surface features to the four detectors yields the highest binary F1 (0.708), marginally above the 7-feature set at 2.4$\\times$ the inference cost.\nThis result underscores that DDR's primary contribution is not classification performance (multi-detector ensembles match or marginally exceed it) but the decomposition of depth signal into location-sensitive and shape-stable components, a structural distinction absent from both binary detection methods and model collapse analyses (\\S\\ref{sec:discussion}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 101,
+        "oldLines": 7,
+        "newStart": 101,
+        "newLines": 9,
+        "lines": [
+          " TTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).",
+          " ",
+          " \\paragraph{Cross-family reference models.}",
+          "-Alternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp.",
+          "+To isolate reference-model bias, we evaluate on a 5-generator subset excluding all Pythia-family generators from the test set---a stricter protocol than full 8-gen LOGO, which includes same-family generators that could inflate F1.",
+          "+Alternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable performance (F1 spread\\,=\\,0.013; Table~\\ref{tab:cross-ref} in Appendix~\\ref{app:cross-ref}), with drift direction consistently negative across all three references.",
+          "+Residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp, but the DDR partition---which features drift vs.\\ which are stable---is fully preserved regardless of reference choice.",
+          " ",
+          " \\paragraph{Temperature and prompt-type sensitivity.}",
+          " All four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity})."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01RrpsZ2rpQR8ai3nBPezYr8`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+  "old_string": "\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp.",
+  "new_string": "\\paragraph{Cross-family reference models.}\nTo isolate reference-model bias, we evaluate on a 5-generator subset excluding all Pythia-family generators from the test set---a stricter protocol than full 8-gen LOGO, which includes same-family generators that could inflate F1.\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable performance (F1 spread\\,=\\,0.013; Table~\\ref{tab:cross-ref} in Appendix~\\ref{app:cross-ref}), with drift direction consistently negative across all three references.\nResidual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp, but the DDR partition---which features drift vs.\\ which are stable---is fully preserved regardless of reference choice."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "f3124b28-8c20-4d18-be3c-07ce0262d947",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EJu1h39UTTdHa62DgQdKi4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1034,
+      "cache_read_input_tokens": 51864,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1034
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-22T01:15:03.046Z_
+
+<details><summary>↩ Tool result · `toolu_01RrpsZ2rpQR8ai3nBPezYr8`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "f13d715b-2440-419f-8e38-f9e74d4ba2c9",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+    "oldString": "\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp.",
+    "newString": "\\paragraph{Cross-family reference models.}\nTo isolate reference-model bias, we evaluate on a 5-generator subset excluding all Pythia-family generators from the test set---a stricter protocol than full 8-gen LOGO, which includes same-family generators that could inflate F1.\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable performance (F1 spread\\,=\\,0.013; Table~\\ref{tab:cross-ref} in Appendix~\\ref{app:cross-ref}), with drift direction consistently negative across all three references.\nResidual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp, but the DDR partition---which features drift vs.\\ which are stable---is fully preserved regardless of reference choice.",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; per-class breakdown in Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\\,=\\,0.810; LOFO yields 0.686.\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ the same-subset XGBoost baseline of 0.789; Appendix~\\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-cl F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.\n\nRecursive generation does not affect all distributional properties uniformly.\nFigure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nAppendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.\nThe primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760, invariant across $\\varepsilon \\in [0.10, 0.75]$; Appendix~\\ref{app:ddr-validation}).\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) establishes the split as non-random (null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint holdout splits recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nExisting detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nNote that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at 2.4$\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--36.3\\,pp; Figure~\\ref{fig:baseline-ci}) and the pure 4-detector ensemble in binary F1 (0.705 vs.\\ 0.700).\nAdding DDR's surface features to the four detectors yields the highest binary F1 (0.708), marginally above the 7-feature set at 2.4$\\times$ the inference cost.\nThis result underscores that DDR's primary contribution is not classification performance (multi-detector ensembles match or marginally exceed it) but the decomposition of depth signal into location-sensitive and shape-stable components, a structural distinction absent from both binary detection methods and model collapse analyses (\\S\\ref{sec:discussion}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 101,
+        "oldLines": 7,
+        "newStart": 101,
+        "newLines": 9,
+        "lines": [
+          " TTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).",
+          " ",
+          " \\paragraph{Cross-family reference models.}",
+          "-Alternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable LOGO F1 (spread 0.013; Appendix~\\ref{app:cross-ref}), bounding the same-family affinity effect; depth features are robust to reference model choice, though residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp.",
+          "+To isolate reference-model bias, we evaluate on a 5-generator subset excluding all Pythia-family generators from the test set---a stricter protocol than full 8-gen LOGO, which includes same-family generators that could inflate F1.",
+          "+Alternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable performance (F1 spread\\,=\\,0.013; Table~\\ref{tab:cross-ref} in Appendix~\\ref{app:cross-ref}), with drift direction consistently negative across all three references.",
+          "+Residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp, but the DDR partition---which features drift vs.\\ which are stable---is fully preserved regardless of reference choice.",
+          " ",
+          " \\paragraph{Temperature and prompt-type sensitivity.}",
+          " All four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity})."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+**MF-2 Compress 1: Shorten feature complementarity (remove meta-comment about evaluation protocols)**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "3f3cd3b8-5fba-4d4d-8bde-479ebac7b4f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NVS9RArJi7Zxcn9vjAMEZ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1063,
+      "cache_read_input_tokens": 52898,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1063
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01LWtG46cBQsVW9oZdNARw8U`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+  "old_string": "The full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.",
+  "new_string": "The full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV, complementing the LOGO protocol in Table~\\ref{tab:logo-results}) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "12851ab7-b849-44c5-8ca5-dc8fac769a38",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NVS9RArJi7Zxcn9vjAMEZ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1063,
+      "cache_read_input_tokens": 52898,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1063
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-22T01:15:13.657Z_
+
+<details><summary>↩ Tool result · `toolu_01LWtG46cBQsVW9oZdNARw8U`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "127577f1-eefb-455e-a065-26b37b29bac9",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+    "oldString": "The full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.",
+    "newString": "The full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV, complementing the LOGO protocol in Table~\\ref{tab:logo-results}) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; per-class breakdown in Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\\,=\\,0.810; LOFO yields 0.686.\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ the same-subset XGBoost baseline of 0.789; Appendix~\\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-cl F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.\n\nRecursive generation does not affect all distributional properties uniformly.\nFigure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nAppendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.\nThe primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760, invariant across $\\varepsilon \\in [0.10, 0.75]$; Appendix~\\ref{app:ddr-validation}).\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) establishes the split as non-random (null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint holdout splits recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nTo isolate reference-model bias, we evaluate on a 5-generator subset excluding all Pythia-family generators from the test set---a stricter protocol than full 8-gen LOGO, which includes same-family generators that could inflate F1.\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable performance (F1 spread\\,=\\,0.013; Table~\\ref{tab:cross-ref} in Appendix~\\ref{app:cross-ref}), with drift direction consistently negative across all three references.\nResidual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp, but the DDR partition---which features drift vs.\\ which are stable---is fully preserved regardless of reference choice.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nExisting detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nNote that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at 2.4$\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--36.3\\,pp; Figure~\\ref{fig:baseline-ci}) and the pure 4-detector ensemble in binary F1 (0.705 vs.\\ 0.700).\nAdding DDR's surface features to the four detectors yields the highest binary F1 (0.708), marginally above the 7-feature set at 2.4$\\times$ the inference cost.\nThis result underscores that DDR's primary contribution is not classification performance (multi-detector ensembles match or marginally exceed it) but the decomposition of depth signal into location-sensitive and shape-stable components, a structural distinction absent from both binary detection methods and model collapse analyses (\\S\\ref{sec:discussion}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 95,
+        "oldLines": 8,
+        "newStart": 95,
+        "newLines": 7,
+        "lines": [
+          " Reclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.",
+          " ",
+          " \\paragraph{Feature complementarity.}",
+          "-The full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).",
+          "-The 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.",
+          "+The full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV, complementing the LOGO protocol in Table~\\ref{tab:logo-results}) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).",
+          " PCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.",
+          " TTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01JMSFnL7CzWABTRxzR7xtRJ`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+  "old_string": "The full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.",
+  "new_string": "The full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV, complementing the LOGO protocol in Table~\\ref{tab:logo-results}) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "348d6e86-653c-41a8-9a8b-5d73e9f42ec3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NVS9RArJi7Zxcn9vjAMEZ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1063,
+      "cache_read_input_tokens": 52898,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1063
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-22T01:15:16.159Z_
+
+<details><summary>↩ Tool result · `toolu_01JMSFnL7CzWABTRxzR7xtRJ`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "388f4759-2db3-43ff-8141-92ebcee633bc",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+    "oldString": "The full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.",
+    "newString": "The full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV, complementing the LOGO protocol in Table~\\ref{tab:logo-results}) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; per-class breakdown in Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\\,=\\,0.810; LOFO yields 0.686.\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ the same-subset XGBoost baseline of 0.789; Appendix~\\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-cl F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.\n\nRecursive generation does not affect all distributional properties uniformly.\nFigure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nAppendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.\nThe primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760, invariant across $\\varepsilon \\in [0.10, 0.75]$; Appendix~\\ref{app:ddr-validation}).\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) establishes the split as non-random (null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint holdout splits recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nTo isolate reference-model bias, we evaluate on a 5-generator subset excluding all Pythia-family generators from the test set---a stricter protocol than full 8-gen LOGO, which includes same-family generators that could inflate F1.\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable performance (F1 spread\\,=\\,0.013; Table~\\ref{tab:cross-ref} in Appendix~\\ref{app:cross-ref}), with drift direction consistently negative across all three references.\nResidual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp, but the DDR partition---which features drift vs.\\ which are stable---is fully preserved regardless of reference choice.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nExisting detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nNote that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at 2.4$\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--36.3\\,pp; Figure~\\ref{fig:baseline-ci}) and the pure 4-detector ensemble in binary F1 (0.705 vs.\\ 0.700).\nAdding DDR's surface features to the four detectors yields the highest binary F1 (0.708), marginally above the 7-feature set at 2.4$\\times$ the inference cost.\nThis result underscores that DDR's primary contribution is not classification performance (multi-detector ensembles match or marginally exceed it) but the decomposition of depth signal into location-sensitive and shape-stable components, a structural distinction absent from both binary detection methods and model collapse analyses (\\S\\ref{sec:discussion}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 95,
+        "oldLines": 8,
+        "newStart": 95,
+        "newLines": 7,
+        "lines": [
+          " Reclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.",
+          " ",
+          " \\paragraph{Feature complementarity.}",
+          "-The full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).",
+          "-The 10-fold stratified CV assesses within-distribution feature contribution, whereas Table~\\ref{tab:logo-results} uses leave-one-generator-out evaluation to test cross-generator generalization; the two protocols answer complementary questions.",
+          "+The full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV, complementing the LOGO protocol in Table~\\ref{tab:logo-results}) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).",
+          " PCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.",
+          " TTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+**MF-2 Compress 2: Shorten temperature paragraph**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "aa95376a-71e1-46de-b388-6711b7fa3f02",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M6PBSU13TpPTr9KLbeJ4NJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 877,
+      "cache_read_input_tokens": 53961,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 877
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01V7fDAPtAfXFx9ZN2TU7pW4`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+  "old_string": "\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).",
+  "new_string": "\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-$9.3 to $-$26.0\\,pp binary F1; Appendix~\\ref{app:sampling-sensitivity}); continuation chains show the strongest drift (F1\\,=\\,0.781, LOPTO\\,=\\,0.753; Appendix~\\ref{app:prompt-type}).\nThe DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "85d12fe8-2ca7-4a55-a494-d6d0af4cca2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M6PBSU13TpPTr9KLbeJ4NJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 877,
+      "cache_read_input_tokens": 53961,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 877
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-22T01:15:29.415Z_
+
+<details><summary>↩ Tool result · `toolu_01V7fDAPtAfXFx9ZN2TU7pW4`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "2a93addb-94fd-4b67-9d6c-3272da0aa05b",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+    "oldString": "\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).",
+    "newString": "\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-$9.3 to $-$26.0\\,pp binary F1; Appendix~\\ref{app:sampling-sensitivity}); continuation chains show the strongest drift (F1\\,=\\,0.781, LOPTO\\,=\\,0.753; Appendix~\\ref{app:prompt-type}).\nThe DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; per-class breakdown in Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\\,=\\,0.810; LOFO yields 0.686.\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ the same-subset XGBoost baseline of 0.789; Appendix~\\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-cl F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.\n\nRecursive generation does not affect all distributional properties uniformly.\nFigure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nAppendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.\nThe primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760, invariant across $\\varepsilon \\in [0.10, 0.75]$; Appendix~\\ref{app:ddr-validation}).\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) establishes the split as non-random (null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint holdout splits recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV, complementing the LOGO protocol in Table~\\ref{tab:logo-results}) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nTo isolate reference-model bias, we evaluate on a 5-generator subset excluding all Pythia-family generators from the test set---a stricter protocol than full 8-gen LOGO, which includes same-family generators that could inflate F1.\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable performance (F1 spread\\,=\\,0.013; Table~\\ref{tab:cross-ref} in Appendix~\\ref{app:cross-ref}), with drift direction consistently negative across all three references.\nResidual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp, but the DDR partition---which features drift vs.\\ which are stable---is fully preserved regardless of reference choice.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nExisting detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nNote that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at 2.4$\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--36.3\\,pp; Figure~\\ref{fig:baseline-ci}) and the pure 4-detector ensemble in binary F1 (0.705 vs.\\ 0.700).\nAdding DDR's surface features to the four detectors yields the highest binary F1 (0.708), marginally above the 7-feature set at 2.4$\\times$ the inference cost.\nThis result underscores that DDR's primary contribution is not classification performance (multi-detector ensembles match or marginally exceed it) but the decomposition of depth signal into location-sensitive and shape-stable components, a structural distinction absent from both binary detection methods and model collapse analyses (\\S\\ref{sec:discussion}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 105,
+        "oldLines": 8,
+        "newStart": 105,
+        "newLines": 8,
+        "lines": [
+          " Residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp, but the DDR partition---which features drift vs.\\ which are stable---is fully preserved regardless of reference choice.",
+          " ",
+          " \\paragraph{Temperature and prompt-type sensitivity.}",
+          "-All four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).",
+          "-Continuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).",
+          "+All four tested generators degrade at $t{=}0.9$ ($-$9.3 to $-$26.0\\,pp binary F1; Appendix~\\ref{app:sampling-sensitivity}); continuation chains show the strongest drift (F1\\,=\\,0.781, LOPTO\\,=\\,0.753; Appendix~\\ref{app:prompt-type}).",
+          "+The DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).",
+          " ",
+          " ",
+          " \\subsection{Comparison with Detection Baselines}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01P5JkvmfM6nrDw7rwByWn3x`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+  "old_string": "\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).",
+  "new_string": "\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-$9.3 to $-$26.0\\,pp binary F1; Appendix~\\ref{app:sampling-sensitivity}); continuation chains show the strongest drift (F1\\,=\\,0.781, LOPTO\\,=\\,0.753; Appendix~\\ref{app:prompt-type}).\nThe DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "d1e5d49d-0398-4505-a056-d1c12587d46b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M6PBSU13TpPTr9KLbeJ4NJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 877,
+      "cache_read_input_tokens": 53961,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 877
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-22T01:15:32.535Z_
+
+<details><summary>↩ Tool result · `toolu_01P5JkvmfM6nrDw7rwByWn3x`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "ac16f9eb-f6e8-465b-9fcf-4515fedb5a28",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+    "oldString": "\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).",
+    "newString": "\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-$9.3 to $-$26.0\\,pp binary F1; Appendix~\\ref{app:sampling-sensitivity}); continuation chains show the strongest drift (F1\\,=\\,0.781, LOPTO\\,=\\,0.753; Appendix~\\ref{app:prompt-type}).\nThe DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; per-class breakdown in Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\\,=\\,0.810; LOFO yields 0.686.\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ the same-subset XGBoost baseline of 0.789; Appendix~\\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-cl F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.\n\nRecursive generation does not affect all distributional properties uniformly.\nFigure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nAppendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.\nThe primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760, invariant across $\\varepsilon \\in [0.10, 0.75]$; Appendix~\\ref{app:ddr-validation}).\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) establishes the split as non-random (null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint holdout splits recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV, complementing the LOGO protocol in Table~\\ref{tab:logo-results}) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nTo isolate reference-model bias, we evaluate on a 5-generator subset excluding all Pythia-family generators from the test set---a stricter protocol than full 8-gen LOGO, which includes same-family generators that could inflate F1.\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable performance (F1 spread\\,=\\,0.013; Table~\\ref{tab:cross-ref} in Appendix~\\ref{app:cross-ref}), with drift direction consistently negative across all three references.\nResidual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp, but the DDR partition---which features drift vs.\\ which are stable---is fully preserved regardless of reference choice.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).\nContinuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nExisting detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nNote that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-cl F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at 2.4$\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines in 3-class F1 ($\\Delta$\\,=\\,6.7--36.3\\,pp; Figure~\\ref{fig:baseline-ci}) and the pure 4-detector ensemble in binary F1 (0.705 vs.\\ 0.700).\nAdding DDR's surface features to the four detectors yields the highest binary F1 (0.708), marginally above the 7-feature set at 2.4$\\times$ the inference cost.\nThis result underscores that DDR's primary contribution is not classification performance (multi-detector ensembles match or marginally exceed it) but the decomposition of depth signal into location-sensitive and shape-stable components, a structural distinction absent from both binary detection methods and model collapse analyses (\\S\\ref{sec:discussion}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 105,
+        "oldLines": 8,
+        "newStart": 105,
+        "newLines": 8,
+        "lines": [
+          " Residual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp, but the DDR partition---which features drift vs.\\ which are stable---is fully preserved regardless of reference choice.",
+          " ",
+          " \\paragraph{Temperature and prompt-type sensitivity.}",
+          "-All four tested generators degrade at $t{=}0.9$ ($-9.3$ to $-26.0$\\,pp binary F1); low-temperature improvement is family-dependent ($+7$--$9$\\,pp for Pythia/OLMo at $t{=}0.5$, negligible for Qwen; Appendix~\\ref{app:sampling-sensitivity}).",
+          "-Continuation chains show the strongest drift (F1\\,=\\,0.781), with cross-prompt-type transfer confirming shared signal (LOPTO F1\\,=\\,0.753; Appendix~\\ref{app:prompt-type}); the DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).",
+          "+All four tested generators degrade at $t{=}0.9$ ($-$9.3 to $-$26.0\\,pp binary F1; Appendix~\\ref{app:sampling-sensitivity}); continuation chains show the strongest drift (F1\\,=\\,0.781, LOPTO\\,=\\,0.753; Appendix~\\ref{app:prompt-type}).",
+          "+The DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).",
+          " ",
+          " ",
+          " \\subsection{Comparison with Detection Baselines}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+All edits done. Verifying the final state and counting line changes.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "1ee3c235-fc42-47ca-9603-51079bb94f1a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ns6eG92smQ5jbePr3F83ge",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1110,
+      "cache_read_input_tokens": 54838,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1110
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017yuQWCXpeybmu9GggEs5hy`</summary>
+
+```json
+{
+  "command": "diff <(git show HEAD:artifacts/_project/paper/results.tex) artifacts/_project/paper/results.tex | head -120",
+  "description": "Show diff of results.tex changes"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "7b3ee2c5-3931-4ced-bf40-032f84d711e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ns6eG92smQ5jbePr3F83ge",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1110,
+      "cache_read_input_tokens": 54838,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1110
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-22T01:15:38.840Z_
+
+<details><summary>↩ Tool result · `toolu_017yuQWCXpeybmu9GggEs5hy`</summary>
+
+```text
+4,5d3
+< We evaluate depth fingerprinting along four axes: cross-generator classification (\S\ref{sec:results-classification}), differential depth response of individual features (\S\ref{sec:results-differential}), comparison with existing detection baselines (\S\ref{sec:results-baselines}), and downstream utility for data curation (\S\ref{sec:results-downstream}).
+< 
+9,23c7,17
+< Table~\ref{tab:logo-results} reports leave-one-generator-out (LOGO) macro-F1 for 3-class depth estimation (gen-0\,/\,gen-1\,/\,gen-2+) across six generators spanning three model families and parameter counts from 0.6B to 8.2B.
+< 
+< The 7-feature ensemble achieves 3-class LOGO F1\,=\,0.789 (Table~\ref{tab:logo-results}). Because gen-0 seed texts are shared across generators (\S\ref{sec:generation}), the gen-0 class F1 (0.94) may be inflated; we therefore report a leak-free binary evaluation (gen-1 vs.\ gen-2+, F1\,=\,0.723) as the primary metric in \S\ref{sec:results-baselines}.
+< Per-generator held-out F1 ranges from 0.683 (Qwen3-8B) to 0.856 (Pythia-1B).
+< Per-class F1 varies by depth: gen-0\,=\,0.94, gen-2+\,=\,0.80, gen-1\,=\,0.64; the primary difficulty lies in distinguishing gen-1 from gen-2+, where feature margins narrow.
+< 
+< \paragraph{Cross-scale transfer.}
+< The six-generator evaluation includes Qwen3-8B (8.2B parameters), confirming that depth signal persists beyond the $\leq$2.8B training generators, though with a moderate gap: Qwen3-8B held-out F1\,=\,0.683 (CI [0.668, 0.694]) vs.\ 0.76--0.86 for smaller generators.
+< Adding Qwen3-8B data improves classification on the original five generators (+0.8\,pp to 0.810); a volume-matched control confirms 94\% of this gain is attributable to generator diversity rather than data quantity.
+< 
+< \paragraph{Cross-family generalization.}
+< Leave-one-family-out (LOFO) evaluation---holding out an entire model family and training on the remaining two---yields macro-F1 of 0.772 (Pythia held out), 0.762 (OLMo held out), and 0.754 (Qwen held out), confirming that depth features transfer across architectural families with only modest degradation (average $\Delta$\,=\,$-$2.6\,pp vs.\ LOGO).
+< 
+< \paragraph{Cross-model chains.}
+< Cross-model chains---where each generation step uses a randomly selected generator---yield 3-class F1\,=\,0.809 and binary F1\,=\,0.764 under 5-fold stratified cross-validation, confirming that depth signal persists under generator heterogeneity.
+---
+> The 7-feature ensemble achieves 3-class LOGO F1\,=\,0.762 (95\% CI [0.758, 0.766]; $N$\,=\,37{,}058) across eight generators from five families (Table~\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\,pp capturing generator selection uncertainty.
+> Because gen-0 seeds are shared across generators (\S\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\,$\approx$\,0.94), inflating the 3-class metric.
+> We therefore adopt \textbf{leak-free binary F1} (gen-1 vs.\ gen-2+)\,=\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.
+> Per-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\,=\,0.028), with the primary difficulty concentrated at the gen-1\,/\,gen-2+ boundary (Appendix~\ref{app:confusion}).
+> CIs reflect bootstrap sampling variability; the cross-generator range (9.1\,pp) captures the distinct and larger uncertainty of generator selection.
+> 
+> \paragraph{Cross-model generalization.}
+> Cross-model chains (randomly selected generator per step) yield binary F1\,=\,0.830 (95\% CI [.818, .841]; per-class breakdown in Appendix~\ref{app:cross-model-detail}) under 5-generator LOGO.\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\,=\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}
+> Single-generator transfer (Appendix~\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\,=\,0.810; LOFO yields 0.686.
+> A scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\leq$0.013; \S\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\ref{app:domain}).
+> An end-to-end QLoRA classifier achieves 3-class F1\,=\,0.905 under 6-generator LOGO ($+$11.6\,pp vs.\ the same-subset XGBoost baseline of 0.789; Appendix~\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.
+26,27c20
+< Text length correlates weakly with depth (Spearman $|\rho| < 0.14$).
+< Length-normalized feature trends are preserved, and length-matched subsampling yields comparable or higher F1 ($\Delta$\,=\,+0.041), ruling out length as a confound (Appendix~\ref{app:length}).
+---
+> Length-matched subsampling yields binary F1\,=\,0.724 (vs.\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\ref{app:length}).
+28a22,23
+> \paragraph{Seed-sharing control.}
+> Seed-level demeaning (F1\,=\,0.701) and an independent-seed experiment with disjoint seed pools (F1\,=\,0.680; Appendix~\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.
+32c27,28
+< \small
+---
+> \footnotesize
+> \resizebox{\columnwidth}{!}{%
+35c31
+< \textbf{Generator} & \textbf{Family} & \textbf{Params} & \textbf{3-class F1} & \textbf{Binary F1} & \textbf{95\% CI} \\
+---
+> \textbf{Model} & \textbf{Family} & \textbf{Params} & \textbf{Bin F1} & \textbf{95\% CI} & \textbf{3-cl F1}$^{\dagger}$ \\
+37,42c33,40
+< Pythia-1B       & Pythia & 1.0B & 0.856 & \textbf{0.795} & [0.780, 0.809] \\
+< Pythia-2.8B     & Pythia & 2.8B & 0.804 & \textbf{0.723} & [0.709, 0.739] \\
+< OLMo-2-1B      & OLMo   & 1.5B & 0.764 & \textbf{0.677} & [0.660, 0.692] \\
+< Qwen3-0.6B     & Qwen   & 0.6B & 0.824 & \textbf{0.756} & [0.742, 0.772] \\
+< Qwen3-1.7B     & Qwen   & 1.7B & 0.806 & \textbf{0.748} & [0.732, 0.762] \\
+< Qwen3-8B       & Qwen   & 8.2B & 0.683 & \textbf{0.641} & [0.625, 0.657] \\
+---
+> Pythia-2.8B     & Pythia  & 2.8B & \textbf{0.724} & [.707, .742] & 0.798 \\
+> Pythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \textbf{0.806} \\
+> Qwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\
+> Llama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\
+> OLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\
+> Qwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\
+> Qwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\
+> Mistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\
+44,45c42,43
+< \multicolumn{3}{l}{Average (6-gen LOGO)} & 0.789 & \textbf{0.723} & --- \\
+< \multicolumn{3}{l}{5-gen LOGO (excl.\ Qwen3-8B)} & 0.802 & \textbf{0.740} & --- \\
+---
+> \multicolumn{3}{l}{\textbf{Average (8-gen LOGO)}} & \textbf{0.694} & [.688, .700] & \textbf{0.762} \\
+> \multicolumn{3}{l}{\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\
+47,48c45,46
+< \end{tabular}
+< \caption{6-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\% CIs, $n$\,=\,1000). Gen-0 samples are shared across generators (\S\ref{sec:generation}); 3-class results are supplementary. Binary F1 (gen-1 vs.\ gen-2+) is the primary metric.}
+---
+> \end{tabular}}
+> \caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\% CIs, $n$\,=\,1000). Binary F1 (gen-1 vs.\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\,=\,0.028, IQR\,=\,[0.692, 0.714]. $^{\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\S\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\,=\,0.680; Appendix~\ref{app:seed-control}).}
+52,56d49
+< \paragraph{Ordinal regression comparison.}
+< CORAL ordinal regression \cite{coral_ordinal} and Frank-Hall ordinal reduction \cite{frank_hall_ordinal} achieve 3-class F1 of 0.771 and 0.793 respectively, with all CIs overlapping the standard XGBoost (0.789).
+< Explicitly encoding ordinal structure does not yield a measurable gain, likely because 3-class granularity provides insufficient ordinal resolution for ranking-aware losses.
+< 
+< 
+60,61c53,70
+< Features exhibit \emph{differential depth response}: central-tendency and diversity measures drift monotonically with depth, while distributional shape measures remain near-stationary.
+< This pattern is consistent with recursive generation inducing a location shift in the token-level NLL distribution---the text becomes progressively more predictable (mean shifts), while the functional form of the distribution is preserved (shape is invariant).
+---
+> \begin{figure*}[t]
+> \centering
+> \includegraphics[width=\textwidth]{fig_ddr_trajectory.pdf}
+> \caption{Feature trajectories across generation depth. \textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\rho| > 0.59$). \textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}
+> \label{fig:ddr-trajectory}
+> \end{figure*}
+> 
+> \paragraph{Formal definition.}
+> For feature $f$ measured across depths $d \in \{0,1,2{+}\}$, we define its \emph{depth sensitivity} as $\text{DDR}(f) = |\rho(\text{depth}, f)|$, where $\rho$ is Spearman correlation over all per-text measurements.
+> A feature is classified as \emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\,=\,0.660, $p{=}0.030$ vs.\ null; \S\ref{sec:results-ddr}).
+> Under autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.
+> 
+> Recursive generation does not affect all distributional properties uniformly.
+> Figure~\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.
+> Appendix~\ref{app:qualitative} illustrates the DDR with a concrete generation chain.
+> The primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\,=\,0.532; Appendix~\ref{app:ddr-validation}).
+> A domain-informed refinement resolves entropy std as a sole \emph{intermediate} member ($d{=}0.55$, $|\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\% vs.\ $>$15\% for drifting features).
+> Multiple effect-size measures corroborate this partition (Quantification below).
+63c72
+< \begin{figure}[t]
+---
+> \begin{figure}[t!]
+66c75
+< \caption{Differential depth response: Spearman correlations between individual features and generation depth. Central-tendency and diversity features (hapax ratio, TTR, entropy mean) show strong monotonic drift, while shape features (entropy std, tail decay) remain near-stationary.}
+---
+> \caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \leq 0.10$) show negligible drift. Entropy min ($|\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}
+70,72c79,95
+< Individual-level Spearman correlations with depth confirm the split (Figure~\ref{fig:feature-drift}):
+< drifting features show strong monotonic trends (hapax ratio $\rho = -0.558$, TTR $\rho = -0.542$, entropy mean $\rho = -0.475$),
+< while shape features show weak or negligible correlations (entropy std $|\rho| = 0.076$, tail decay $|\rho| = 0.089$).
+---
+> Pooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\ref{fig:feature-drift}):
+> drifting features show substantial monotonic trends (hapax ratio $\rho = -0.64$, TTR $\rho = -0.63$, entropy mean $\rho = -0.60$),
+> while non-drifting features remain near-zero (tail decay $|\rho| = 0.04$; per-depth distributions in Appendix~\ref{app:feature-distributions}).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "e2a6ea4d-0a52-4919-9d39-1b601cd5c798",
+  "tool_use_result": {
+    "stdout": "4,5d3\n< We evaluate depth fingerprinting along four axes: cross-generator classification (\\S\\ref{sec:results-classification}), differential depth response of individual features (\\S\\ref{sec:results-differential}), comparison with existing detection baselines (\\S\\ref{sec:results-baselines}), and downstream utility for data curation (\\S\\ref{sec:results-downstream}).\n< \n9,23c7,17\n< Table~\\ref{tab:logo-results} reports leave-one-generator-out (LOGO) macro-F1 for 3-class depth estimation (gen-0\\,/\\,gen-1\\,/\\,gen-2+) across six generators spanning three model families and parameter counts from 0.6B to 8.2B.\n< \n< The 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.789 (Table~\\ref{tab:logo-results}). Because gen-0 seed texts are shared across generators (\\S\\ref{sec:generation}), the gen-0 class F1 (0.94) may be inflated; we therefore report a leak-free binary evaluation (gen-1 vs.\\ gen-2+, F1\\,=\\,0.723) as the primary metric in \\S\\ref{sec:results-baselines}.\n< Per-generator held-out F1 ranges from 0.683 (Qwen3-8B) to 0.856 (Pythia-1B).\n< Per-class F1 varies by depth: gen-0\\,=\\,0.94, gen-2+\\,=\\,0.80, gen-1\\,=\\,0.64; the primary difficulty lies in distinguishing gen-1 from gen-2+, where feature margins narrow.\n< \n< \\paragraph{Cross-scale transfer.}\n< The six-generator evaluation includes Qwen3-8B (8.2B parameters), confirming that depth signal persists beyond the $\\leq$2.8B training generators, though with a moderate gap: Qwen3-8B held-out F1\\,=\\,0.683 (CI [0.668, 0.694]) vs.\\ 0.76--0.86 for smaller generators.\n< Adding Qwen3-8B data improves classification on the original five generators (+0.8\\,pp to 0.810); a volume-matched control confirms 94\\% of this gain is attributable to generator diversity rather than data quantity.\n< \n< \\paragraph{Cross-family generalization.}\n< Leave-one-family-out (LOFO) evaluation---holding out an entire model family and training on the remaining two---yields macro-F1 of 0.772 (Pythia held out), 0.762 (OLMo held out), and 0.754 (Qwen held out), confirming that depth features transfer across architectural families with only modest degradation (average $\\Delta$\\,=\\,$-$2.6\\,pp vs.\\ LOGO).\n< \n< \\paragraph{Cross-model chains.}\n< Cross-model chains---where each generation step uses a randomly selected generator---yield 3-class F1\\,=\\,0.809 and binary F1\\,=\\,0.764 under 5-fold stratified cross-validation, confirming that depth signal persists under generator heterogeneity.\n---\n> The 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\n> Because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\n> We therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\n> Per-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\n> CIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n> \n> \\paragraph{Cross-model generalization.}\n> Cross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; per-class breakdown in Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\n> Single-generator transfer (Appendix~\\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\\,=\\,0.810; LOFO yields 0.686.\n> A scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\n> An end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ the same-subset XGBoost baseline of 0.789; Appendix~\\ref{app:qlora}), confirming that richer token-level representations capture additional depth signal; on instruct data, QLoRA recovers to 0.89--0.91 within-model (Appendix~\\ref{app:instruct}), establishing the empirical decomposition, not the specific classifier, as DDR's primary contribution.\n26,27c20\n< Text length correlates weakly with depth (Spearman $|\\rho| < 0.14$).\n< Length-normalized feature trends are preserved, and length-matched subsampling yields comparable or higher F1 ($\\Delta$\\,=\\,+0.041), ruling out length as a confound (Appendix~\\ref{app:length}).\n---\n> Length-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n28a22,23\n> \\paragraph{Seed-sharing control.}\n> Seed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n32c27,28\n< \\small\n---\n> \\footnotesize\n> \\resizebox{\\columnwidth}{!}{%\n35c31\n< \\textbf{Generator} & \\textbf{Family} & \\textbf{Params} & \\textbf{3-class F1} & \\textbf{Binary F1} & \\textbf{95\\% CI} \\\\\n---\n> \\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-cl F1}$^{\\dagger}$ \\\\\n37,42c33,40\n< Pythia-1B       & Pythia & 1.0B & 0.856 & \\textbf{0.795} & [0.780, 0.809] \\\\\n< Pythia-2.8B     & Pythia & 2.8B & 0.804 & \\textbf{0.723} & [0.709, 0.739] \\\\\n< OLMo-2-1B      & OLMo   & 1.5B & 0.764 & \\textbf{0.677} & [0.660, 0.692] \\\\\n< Qwen3-0.6B     & Qwen   & 0.6B & 0.824 & \\textbf{0.756} & [0.742, 0.772] \\\\\n< Qwen3-1.7B     & Qwen   & 1.7B & 0.806 & \\textbf{0.748} & [0.732, 0.762] \\\\\n< Qwen3-8B       & Qwen   & 8.2B & 0.683 & \\textbf{0.641} & [0.625, 0.657] \\\\\n---\n> Pythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\n> Pythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\n> Qwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\n> Llama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\n> OLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\n> Qwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\n> Qwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\n> Mistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n44,45c42,43\n< \\multicolumn{3}{l}{Average (6-gen LOGO)} & 0.789 & \\textbf{0.723} & --- \\\\\n< \\multicolumn{3}{l}{5-gen LOGO (excl.\\ Qwen3-8B)} & 0.802 & \\textbf{0.740} & --- \\\\\n---\n> \\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n> \\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n47,48c45,46\n< \\end{tabular}\n< \\caption{6-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Gen-0 samples are shared across generators (\\S\\ref{sec:generation}); 3-class results are supplementary. Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric.}\n---\n> \\end{tabular}}\n> \\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n52,56d49\n< \\paragraph{Ordinal regression comparison.}\n< CORAL ordinal regression \\cite{coral_ordinal} and Frank-Hall ordinal reduction \\cite{frank_hall_ordinal} achieve 3-class F1 of 0.771 and 0.793 respectively, with all CIs overlapping the standard XGBoost (0.789).\n< Explicitly encoding ordinal structure does not yield a measurable gain, likely because 3-class granularity provides insufficient ordinal resolution for ranking-aware losses.\n< \n< \n60,61c53,70\n< Features exhibit \\emph{differential depth response}: central-tendency and diversity measures drift monotonically with depth, while distributional shape measures remain near-stationary.\n< This pattern is consistent with recursive generation inducing a location shift in the token-level NLL distribution---the text becomes progressively more predictable (mean shifts), while the functional form of the distribution is preserved (shape is invariant).\n---\n> \\begin{figure*}[t]\n> \\centering\n> \\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n> \\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n> \\label{fig:ddr-trajectory}\n> \\end{figure*}\n> \n> \\paragraph{Formal definition.}\n> For feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\n> A feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).\n> Under autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.\n> \n> Recursive generation does not affect all distributional properties uniformly.\n> Figure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\n> Appendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.\n> The primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).\n> A domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\n> Multiple effect-size measures corroborate this partition (Quantification below).\n63c72\n< \\begin{figure}[t]\n---\n> \\begin{figure}[t!]\n66c75\n< \\caption{Differential depth response: Spearman correlations between individual features and generation depth. Central-tendency and diversity features (hapax ratio, TTR, entropy mean) show strong monotonic drift, while shape features (entropy std, tail decay) remain near-stationary.}\n---\n> \\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n70,72c79,95\n< Individual-level Spearman correlations with depth confirm the split (Figure~\\ref{fig:feature-drift}):\n< drifting features show strong monotonic trends (hapax ratio $\\rho = -0.558$, TTR $\\rho = -0.542$, entropy mean $\\rho = -0.475$),\n< while shape features show weak or negligible correlations (entropy std $|\\rho| = 0.076$, tail decay $|\\rho| = 0.089$).\n---\n> Pooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\n> drifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\n> while non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01JqESaXu6Mb1wLEM7Wmw21J`</summary>
+
+```json
+{
+  "command": "diff <(git show HEAD:artifacts/_project/paper/results.tex) artifacts/_project/paper/results.tex | grep -c '^>' && diff <(git show HEAD:artifacts/_project/paper/results.tex) artifacts/_project/paper/results.tex | grep -c '^<'",
+  "description": "Count added vs removed lines"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "c121c976-02e8-48a0-96dd-6337adebd813",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ns6eG92smQ5jbePr3F83ge",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1110,
+      "cache_read_input_tokens": 54838,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1110
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-22T01:15:39.052Z_
+
+<details><summary>↩ Tool result · `toolu_01JqESaXu6Mb1wLEM7Wmw21J`</summary>
+
+```text
+99
+101
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "f8acd179-3614-4934-9e9b-1399b1aa485b",
+  "tool_use_result": {
+    "stdout": "99\n101",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01KgCxMr8jGBuy45p14ohs1W`</summary>
+
+```json
+{
+  "command": "diff /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+  "description": "Verify artifacts and docs copies are identical"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "8edd1810-e3d0-463a-81f9-4f89341e2513",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ns6eG92smQ5jbePr3F83ge",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1110,
+      "cache_read_input_tokens": 54838,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1110
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-22T01:15:39.974Z_
+
+<details><summary>↩ Tool result · `toolu_01KgCxMr8jGBuy45p14ohs1W`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "6a7cb466-2c69-4a00-86bd-888eba946b35",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The diff is against HEAD which includes a lot of prior changes too. Let me get a cleaner count by comparing just the lines I changed. Let me count the actual file line difference.
+
+Actually the count shows 99 added vs 101 removed - but that's comparing to HEAD which has all prior changes. Since the two copies started from HEAD's version (which was already different from an older version), this diff includes old changes too. Let me compare the files before and after my edits.
+
+Actually, the git status showed these files as ` M` (modified in working tree but not staged). So the diff against HEAD includes my changes AND previous changes. I need to compare against the state before I started.
+
+
+The two copies are identical, which is good. The artifacts and docs match, there are no problematic residuals, and the edits look correct. Let me just read through the relevant section to make sure it flows well.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "cbd90507-db9b-49ff-a385-5189a7fef8d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTxzY2c6EwZ5NLgZR8Emwe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5302,
+      "cache_read_input_tokens": 55948,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5302
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+Both files are identical (verified). Let me verify the edited section reads correctly.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "c37c50ad-89d7-48f9-a41a-b4deb438efa8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTxzY2c6EwZ5NLgZR8Emwe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5302,
+      "cache_read_input_tokens": 55948,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5302
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01JzbLAfy5Qyq6iAzybG1oLA`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+  "offset": 49,
+  "limit": 70
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "356831c7-128f-4f95-88e6-3a038992d167",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTxzY2c6EwZ5NLgZR8Emwe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5302,
+      "cache_read_input_tokens": 55948,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5302
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-22T01:16:01.709Z_
+
+<details><summary>↩ Tool result · `toolu_01JzbLAfy5Qyq6iAzybG1oLA`</summary>
+
+```text
+49	
+50	\subsection{Differential Depth Response}
+51	\label{sec:results-differential}
+52	
+53	\begin{figure*}[t]
+54	\centering
+55	\includegraphics[width=\textwidth]{fig_ddr_trajectory.pdf}
+56	\caption{Feature trajectories across generation depth. \textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\rho| > 0.59$). \textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}
+57	\label{fig:ddr-trajectory}
+58	\end{figure*}
+59	
+60	\paragraph{Formal definition.}
+61	For feature $f$ measured across depths $d \in \{0,1,2{+}\}$, we define its \emph{depth sensitivity} as $\text{DDR}(f) = |\rho(\text{depth}, f)|$, where $\rho$ is Spearman correlation over all per-text measurements.
+62	A feature is classified as \emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\,=\,0.660, $p{=}0.030$ vs.\ null; \S\ref{sec:results-ddr}).
+63	Under autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.
+64	
+65	Recursive generation does not affect all distributional properties uniformly.
+66	Figure~\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.
+67	Appendix~\ref{app:qualitative} illustrates the DDR with a concrete generation chain.
+68	The primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\,=\,0.532; Appendix~\ref{app:ddr-validation}).
+69	A domain-informed refinement resolves entropy std as a sole \emph{intermediate} member ($d{=}0.55$, $|\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\% vs.\ $>$15\% for drifting features).
+70	Multiple effect-size measures corroborate this partition (Quantification below).
+71	
+72	\begin{figure}[t!]
+73	\centering
+74	\includegraphics[width=\columnwidth]{fig1_differential_response.pdf}
+75	\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \leq 0.10$) show negligible drift. Entropy min ($|\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}
+76	\label{fig:feature-drift}
+77	\end{figure}
+78	
+79	Pooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\ref{fig:feature-drift}):
+80	drifting features show substantial monotonic trends (hapax ratio $\rho = -0.64$, TTR $\rho = -0.63$, entropy mean $\rho = -0.60$),
+81	while non-drifting features remain near-zero (tail decay $|\rho| = 0.04$; per-depth distributions in Appendix~\ref{app:feature-distributions}).
+82	The six-fold magnitude gap between drifting ($|\rho| > 0.60$) and non-drifting features ($|\rho| \leq 0.16$) defines the DDR partition.
+83	Within the non-drifting group, entropy std ($|\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\ref{app:ddr-validation}).
+84	
+85	\paragraph{Quantification.}
+86	Parametric and non-parametric effect-size measures converge on the split.
+87	Cohen's $d$ \cite{cohen1988statistical} shows a ${\geq}7\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \leq 0.08$); KS statistics, Glass's $\Delta$, Cliff's $\delta$, and CV shift all corroborate (Appendix~\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\Delta$ gap ${\geq}9.5\times$; Appendix~\ref{app:heteroscedasticity}).
+88	Four features fall cleanly into drifting or non-drifting groups.
+89	Entropy min and tail decay are \emph{boundary features}: entropy min is near-stationary for gen-1 vs.\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\rho|{=}0.40$); tail decay is \emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).
+90	Entropy std ($d{=}0.55$, $|\rho|{=}0.16$) is the sole intermediate member.
+91	\paragraph{Validation.}
+92	Per-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760, invariant across $\varepsilon \in [0.10, 0.75]$; Appendix~\ref{app:ddr-validation}).
+93	Per-generator TOST equivalence testing ($\varepsilon{=}|d|{<}0.20$, following Cohen's~\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.
+94	A permutation test ($n{=}10{,}000$) establishes the split as non-random (null mean\,=\,0.46); exhaustive enumeration of all $\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\ref{app:ddr-validation}), and disjoint holdout splits recover identical zone assignments (Appendix~\ref{app:holdout-split}).
+95	Reclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.
+96	
+97	\paragraph{Feature complementarity.}
+98	The full 7-feature set (F1\,=\,0.773, 10-fold stratified CV, complementing the LOGO protocol in Table~\ref{tab:logo-results}) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \approx 0$; Appendix~\ref{app:ablation-table}).
+99	PCA confirms the three drifting features share a single latent dimension (92.3\% variance; Appendix~\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\,pp, reinforcing that DDR's contribution is identifying \emph{which} distributional properties drift, not classification per se.
+100	TTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \cite{strobl_conditional_2008} (Appendix~\ref{app:lofo}).
+101	
+102	\paragraph{Cross-family reference models.}
+103	To isolate reference-model bias, we evaluate on a 5-generator subset excluding all Pythia-family generators from the test set---a stricter protocol than full 8-gen LOGO, which includes same-family generators that could inflate F1.
+104	Alternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable performance (F1 spread\,=\,0.013; Table~\ref{tab:cross-ref} in Appendix~\ref{app:cross-ref}), with drift direction consistently negative across all three references.
+105	Residual same-family proximity may inflate Pythia-family F1 by up to 1.3\,pp, but the DDR partition---which features drift vs.\ which are stable---is fully preserved regardless of reference choice.
+106	
+107	\paragraph{Temperature and prompt-type sensitivity.}
+108	All four tested generators degrade at $t{=}0.9$ ($-$9.3 to $-$26.0\,pp binary F1; Appendix~\ref{app:sampling-sensitivity}); continuation chains show the strongest drift (F1\,=\,0.781, LOPTO\,=\,0.753; Appendix~\ref{app:prompt-type}).
+109	The DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\ref{app:ddr-temp-stability}).
+110	
+111	
+112	\subsection{Comparison with Detection Baselines}
+113	\label{sec:results-baselines}
+114	
+115	Existing detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\ref{tab:baselines}).
+116	Note that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.
+117	
+118	\begin{table}[t]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "729ac715-46aa-4d76-8518-29789e4797ab",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+      "content": "\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; \\S\\ref{sec:results-ddr}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---a consequence of the mixing property on finite vocabularies---predicting that location statistics should drift while shape statistics remain invariant.\n\nRecursive generation does not affect all distributional properties uniformly.\nFigure~\\ref{fig:ddr-trajectory} exposes a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nAppendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.\nThe primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled class-balanced Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760, invariant across $\\varepsilon \\in [0.10, 0.75]$; Appendix~\\ref{app:ddr-validation}).\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$, following Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) establishes the split as non-random (null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint holdout splits recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core drifting/non-drifting split and leaves classification unchanged.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV, complementing the LOGO protocol in Table~\\ref{tab:logo-results}) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nTo isolate reference-model bias, we evaluate on a 5-generator subset excluding all Pythia-family generators from the test set---a stricter protocol than full 8-gen LOGO, which includes same-family generators that could inflate F1.\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable performance (F1 spread\\,=\\,0.013; Table~\\ref{tab:cross-ref} in Appendix~\\ref{app:cross-ref}), with drift direction consistently negative across all three references.\nResidual same-family proximity may inflate Pythia-family F1 by up to 1.3\\,pp, but the DDR partition---which features drift vs.\\ which are stable---is fully preserved regardless of reference choice.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-$9.3 to $-$26.0\\,pp binary F1; Appendix~\\ref{app:sampling-sensitivity}); continuation chains show the strongest drift (F1\\,=\\,0.781, LOPTO\\,=\\,0.753; Appendix~\\ref{app:prompt-type}).\nThe DDR partition hierarchy is preserved across temperatures despite absolute effect-size compression (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nExisting detection methods target binary real-vs-synthetic classification; we test whether their continuous scores incidentally encode recursive depth by repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nNote that FastDetectGPT and Binoculars were designed for binary real/fake detection, not ordinal depth estimation; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]",
+      "numLines": 70,
+      "startLine": 49,
+      "totalLines": 149
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The edits look good. Let me also check for `sec:results-ddr` — this label doesn't exist in the file. I should flag this to the user.
+
+Let me also count the net line difference for my specific changes. Before my edits, the section from line 58 to the end of the section had specific content. After my edits:
+
+MF-1 changes (Section 4.2 DDR Analysis):
+- Added: 5 lines (formal definition paragraph: 4 content lines + 1 blank)
+- Removed from line 62: saved ~1.2 lines of rendered text
+
+
+- Removed from line 63: saved ~1 line of rendered text  
+- Removed from line 65: saved ~0.5 lines of rendered text
+- Removed from lines 87-88: saved 1 line
+- Removed from line 90: saved ~0.5 lines of rendered text
+
+MF-1 net: +5 - 4.2 ≈ +0.8 rendered lines
+
+MF-2 changes:
+- Cross-family expanded: +2 lines (from 1 content line to 3)
+- Feature complementarity compressed: -1 line
+- Temperature compressed: -1 line
+
+MF-2 net: +2 - 2 = 0 rendered lines
+
+Overall, my edits add about 0.8 rendered lines to the document.
+
+Now I need to verify the file is correct and check for the label issue.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "d59acaf0-c66a-43e7-b8e3-59f445e5ee60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJykKeQgXT3oAgxhw27PzT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3218,
+      "cache_read_input_tokens": 61250,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3218
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73_
+
+Section reads well. Let me do a final check for the `sec:results-ddr` label reference.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "c3dbd9c9-d251-48ae-aca2-24a184daa48f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJykKeQgXT3oAgxhw27PzT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3218,
+      "cache_read_input_tokens": 61250,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3218
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01ErtJaSPDfHApEMDFg4eVHG`</summary>
+
+```json
+{
+  "pattern": "label\\{sec:results-ddr\\}",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+  "glob": "*.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "6720f794-805e-49c2-a977-3b4e0d066e40",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJykKeQgXT3oAgxhw27PzT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3218,
+      "cache_read_input_tokens": 61250,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3218
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-22T01:16:16.851Z_
+
+<details><summary>↩ Tool result · `toolu_01ErtJaSPDfHApEMDFg4eVHG`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "78e7c763-4a8f-46e4-95c8-2f53cf27fde1",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01JeL4rJQEHdV5fjtgBhCxWM`</summary>
+
+```json
+{
+  "pattern": "label\\{sec:results-ddr\\}",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper",
+  "glob": "*.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "d65d6ff3-825f-49a9-84d1-26ce0a540684",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJykKeQgXT3oAgxhw27PzT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3218,
+      "cache_read_input_tokens": 61250,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3218
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-22T01:16:17.525Z_
+
+<details><summary>↩ Tool result · `toolu_01JeL4rJQEHdV5fjtgBhCxWM`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "816cf25f-e2c2-4ded-b7e8-74464e8c0a6a",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78_
+
+`\label{sec:results-ddr}` 不存在。正式定义段里引用了 `\S\ref{sec:results-ddr}`，编译会输出 `??`。现有的 Section 4.2 label 是 `sec:results-differential`，Validation paragraph 无独立 label。
+
+**两种修法**：
+1. 把 `\S\ref{sec:results-ddr}` 改成已有 label，如 `Appendix~\ref{app:ddr-validation}`
+2. 在 Validation paragraph 前加 `\label{sec:results-ddr}`
+
+需要我选一种修？
+
+---
+
+**已完成的修改汇总**（artifacts + docs 两份同步）：
+
+| 修改 | 操作 | 估计渲染行数 |
+|------|------|-------------|
+| MF-1 插入 formal definition | +4 句 | +4 |
+| MF-1 压缩 DDR 命名句 (L62) | 删除重复 DDR 定义 | −1 |
+| MF-1 压缩 clustering 描述 (L63) | 移除冗余 silhouette/阈值 | −1 |
+| MF-1 压缩 forward pointer (L65) | 精简前向引用 | −0.5 |
+| MF-1 压缩 Validation clustering (L87-88) | 合并冗余聚类句 | −1 |
+| MF-1 压缩 permutation test (L90) | 移除冗余 p/silhouette | −0.5 |
+| MF-2 扩展 cross-family paragraph | 1句→3句 | +2 |
+| MF-2 压缩 feature complementarity | 删元评论句 | −1 |
+| MF-2 压缩 temperature paragraph | 合并数值 | −1 |
+
+净变化约 +1 行，接近零。无 `0.632` 残留。唯一待解决：`sec:results-ddr` label 缺失。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "uuid": "0d03a39b-32ea-492b-b019-6135fa266705",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LUohtRKh9seeBfQkbBZbHP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 727,
+      "cache_read_input_tokens": 64468,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 727
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 79_
+
+`\label{sec:results-ddr}` 不存在。正式定义段里引用了 `\S\ref{sec:results-ddr}`，编译会输出 `??`。现有的 Section 4.2 label 是 `sec:results-differential`，Validation paragraph 无独立 label。
+
+**两种修法**：
+1. 把 `\S\ref{sec:results-ddr}` 改成已有 label，如 `Appendix~\ref{app:ddr-validation}`
+2. 在 Validation paragraph 前加 `\label{sec:results-ddr}`
+
+需要我选一种修？
+
+---
+
+**已完成的修改汇总**（artifacts + docs 两份同步）：
+
+| 修改 | 操作 | 估计渲染行数 |
+|------|------|-------------|
+| MF-1 插入 formal definition | +4 句 | +4 |
+| MF-1 压缩 DDR 命名句 (L62) | 删除重复 DDR 定义 | −1 |
+| MF-1 压缩 clustering 描述 (L63) | 移除冗余 silhouette/阈值 | −1 |
+| MF-1 压缩 forward pointer (L65) | 精简前向引用 | −0.5 |
+| MF-1 压缩 Validation clustering (L87-88) | 合并冗余聚类句 | −1 |
+| MF-1 压缩 permutation test (L90) | 移除冗余 p/silhouette | −0.5 |
+| MF-2 扩展 cross-family paragraph | 1句→3句 | +2 |
+| MF-2 压缩 feature complementarity | 删元评论句 | −1 |
+| MF-2 压缩 temperature paragraph | 合并数值 | −1 |
+
+净变化约 +1 行，接近零。无 `0.632` 残留。唯一待解决：`sec:results-ddr` label 缺失。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 363625,
+  "duration_api_ms": 364915,
+  "num_turns": 29,
+  "stop_reason": "end_turn",
+  "session_id": "8b217495-1443-4840-b13c-2de1929d8e9f",
+  "total_cost_usd": 1.1703550000000003,
+  "usage": {
+    "input_tokens": 17,
+    "cache_creation_input_tokens": 53354,
+    "cache_read_input_tokens": 702229,
+    "output_tokens": 19352,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 53354,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 566,
+        "cache_read_input_tokens": 64468,
+        "cache_creation_input_tokens": 727,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 727
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1783,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0018930000000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 17,
+      "outputTokens": 19352,
+      "cacheReadInputTokens": 702229,
+      "cacheCreationInputTokens": 53354,
+      "webSearchRequests": 0,
+      "costUSD": 1.1684620000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "7ef28de8-2df1-436c-b0b4-7569e3e4437d"
+}
+```
+
+</details>
+
+---

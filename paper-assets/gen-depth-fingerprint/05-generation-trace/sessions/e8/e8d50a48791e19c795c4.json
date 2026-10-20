@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8d50a48791e19c795c4",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "figure ddr partition v2",
+  "task_key": "worker_figure_ddr_partition_v2_20260520T144738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_ddr_partition_v2_20260520T144738_result.json",
+    "occurrence": 1,
+    "bytes": 553,
+    "sha256": "80a2e4dc834cce6149d81f031619119c484bc49cbca62a792fe4072187c599a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出文件：\n- `fig1_differential_response.pdf` (26 KB)\n- `fig1_differential_response.png` (85 KB)\n\n图表设计：\n- 3.4×3.5 英寸横向条形图，7 个 feature 按 |ρ| 降序排列（Hapax Ratio 最上，Tail Decay 最下）\n- 三色分区：Drifting (绿) / Intermediate (紫) / Near-stationary (橙)，灰色虚线分隔\n- 每个 bar 末端叠加 8 个灰色 jitter 点显示 per-generator 变异\n- 右侧灰色小字标注分区名，LaTeX 风格 feature 标签\n- 脚本：`scripts/plot_fig1_partition_v2.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-ddr-partition-v2.md"
+}

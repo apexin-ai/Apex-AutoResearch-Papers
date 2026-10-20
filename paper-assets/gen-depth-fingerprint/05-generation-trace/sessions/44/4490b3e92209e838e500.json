@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4490b3e92209e838e500",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops harvest running experiments",
+  "task_key": "worker_ops_harvest-running-experiments_20260515T221121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_harvest-running-experiments_20260515T221121_result.json",
+    "occurrence": 1,
+    "bytes": 1879,
+    "sha256": "c3f0bc45660a179334b01af9900140f790d071d827d9b6a867340dbe0a6b097b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总报告：\n\n---\n\n## 实验状态汇总\n\n### 1. plan-007-cross-model — ✅ DONE (已入库)\n- PIDs 241978/242205 已退出\n- 3class F1=0.8089, binary F1=0.7635\n- 无需操作\n\n### 2. plan-008-multi-domain — ✅ DONE (刚收割)\n- PID 234066 已退出，全 pipeline 跑完\n- **Per-domain 3-class F1 (in-domain LOGO)**:\n\n| Domain | 3-class F1 | Binary F1 |\n|--------|-----------|-----------|\n| wikipedia | **0.7928** | 0.8224 |\n| scientific | 0.7049 | 0.7701 |\n| creative | 0.6275 | 0.7310 |\n| news | 0.5742 | 0.6266 |\n\n- **跨域 pooled**: 3class=0.478, binary=0.674\n- **Wiki→other transfer**: 极差（0.22-0.34），分类器不跨域泛化\n- ⚠️ **dedup 未执行**——`--phase all` 直接跑完了 generate→extract→evaluate，跳过了之前要求的 dedup 步骤。前 ~45 seeds 可能有重复。如需论文级精确数字，需补跑 `dedup_generations.py → re-extract → re-evaluate`\n- Registry 已更新为 DONE/success\n\n### 3. plan-006-paraphrastic — ⏳ 仍在运行\n- PID 246021 在 cuda:1，运行 ~41min\n- **Generate 阶段 ~44%**：2111/~4975 条（当前 seed_id ~438/995）\n- 速率 ~10s/seed，剩余 ~557 seeds ≈ 93min\n- **ETA**：generate 完成 ~1.5h，加 extract+evaluate 总计 ~2h\n- 无 results 文件产出\n\n### 4. GPU 状态\n\n| GPU | 利用率 | 显存 | 状态 |\n|-----|-------|------|------|\n| 0 | 65% | 6193/32607 MiB | 残留显存（plan-008 进程已退出，CUDA 未释放） |\n| 1 | 63% | 6197/32607 MiB | plan-006 活跃（PID 246026） |\n| 2 | 0% | 3 MiB | **空闲** |\n| 3 | 0% | 3 MiB | **空闲** |\n\n### 待决事项\n1. **plan-008 dedup**：是否需要补跑 dedup→re-extract→re-evaluate 获取干净结果？GPU 0/2/3 空闲可用\n2. **plan-006**：~2h 后可收割，到时需提取 paraphrastic vs continuation 对比数据"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-harvest-running-experiments.md"
+}

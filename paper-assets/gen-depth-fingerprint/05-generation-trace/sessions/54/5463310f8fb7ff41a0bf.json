@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5463310f8fb7ff41a0bf",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper related work cleanup",
+  "task_key": "worker_paper_related-work-cleanup_20260515T175029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_related-work-cleanup_20260515T175029_result.json",
+    "occurrence": 1,
+    "bytes": 961,
+    "sha256": "1cdb9b12896b9576f639dfea0472bb4b9314f4bca452029133151971b0926415"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处修复完成，已同步到 `docs/paper/`。\n\n**问题清单：**\n\n| # | 位置 | 问题 | 修复 |\n|---|------|------|------|\n| 1 | line 8 | \"shape-based measures\" — 孤立术语，全文其他地方均未使用 | → \"distributional features\"，与 method/results 用语一致 |\n| 2 | line 13 | \"per-generator F1 ranging from 0.42 to 0.81\" — 与当前 Table 5 不符（binary F1 实际范围 0.524–0.712），且原引用 `\\S\\ref{}` 指向无表格的小节 | → \"binary F1 from 0.52 to 0.71 across individual baselines; Table~\\ref{tab:baselines}\"，引用改为具体表格 |\n\n**验证通过项：**\n- 全部 29 个 `\\cite{}`/`\\citet{}` key 均存在于 references.bib\n- `\\S\\ref{sec:results-baselines}` 指向 results.tex:110，label 存在\n- 无 novelty overclaim（line 15 明确说 \"not a new detection method\"）\n- framing 一致：6 generators / 3 families / base models / LOGO / diagnostic tool"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-related-work-cleanup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c9620b93c61838f3fb6",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper fig2 entropy min check",
+  "task_key": "worker_paper_fig2-entropy-min-check_20260523T024336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig2-entropy-min-check_20260523T024336_result.json",
+    "occurrence": 1,
+    "bytes": 910,
+    "sha256": "d7bb6a71a94cd4cbbf9b5b2fb92c20630adf4f6e323d336b1cabfdf40968d3e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复确认完成。\n\n**汇报：**\n\n| 项目 | 结果 |\n|------|------|\n| **entropy_min 原分组** | `C_INTER`（Intermediate，绿色 `#6C8C3C`）— 错误 |\n| **需要修复** | 是 |\n| **修改内容** | 4 处变更（两份脚本各 4 处）：<br>1. entropy_min 颜色 `C_INTER` → `C_STAT`（蓝色 `#2471A3`）<br>2. entropy_std 与 entropy_min 行序对调（entropy_std 提前至 index 3，entropy_min 下移至 index 4）<br>3. 分组分隔线 `[2.5, 4.5]` → `[2.5, 3.5]`<br>4. group_defs: Intermediate `(3,4)` → `(3,3)`；Stationary → Near-stationary `(4,6)`<br>附加：`pdf.fonttype=42`, `ps.fonttype=42` |\n| **Type 3 字体** | 无（全部 CID TrueType） |\n| **新 PDF 路径** | `artifacts/_project/paper/figures/fig2_framework.pdf` 及 `docs/chart/`、`docs/paper/figures/`、`docs/paper/chart/`、`docs/paper/`、`artifacts/_project/chart/` 均已同步 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig2-entropy-min-check.md"
+}

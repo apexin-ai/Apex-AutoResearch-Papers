@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74bbe59f29b68c48654f",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_3_1778834933.md",
+  "task_key": "loop_3_1778834933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778834933.md",
+    "occurrence": 1,
+    "bytes": 4937,
+    "sha256": "83670e5ef39ec9f397b1274473f9dd06b2b5a0efda1925667f20429c3db13c4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-15T04:47:02+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 cuda:0/1/2/3 on autodl-5090。不存在其他服务器或 GPU。\n- plan-005 三个子任务（cont/elab/rewrite）分别占 cuda:1/2/3，完成前不要在这三张卡上提交新任务。cuda:0 当前空闲。\n- Qwen3-8B 生成文件曾因 inode 删除丢数据（详见 memory.md）——plan-014 已完整重算确认，**不要再碰 plan-014 数据或重跑**。\n- plan-004-v2 (Downstream Utility) 是**确认的 negative**，已由 D009 reframe 为 diagnostic-not-curative。不要再尝试 depth-aware curation 实验。\n- EMNLP 2026 ARR DDL = **2026-05-25**，9 天倒计时。D012 恢复为主投稿目标（D010 已撤回）。一切以论文交付为第一优先级。\n- 模型路径含转义下划线：Qwen3-0.6B → `/root/autodl-tmp/models/Qwen/Qwen3-0___6B-Base`，Qwen3-1.7B → `Qwen3-1___7B-Base`。submit_training_job 时不要写错。\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：autodl-5090（root@），4× RTX 5090 32GB\n- **工作目录**：`/root/gen-depth-fingerprint`\n- **Python**：`/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- **激活命令**：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型缓存**：`/root/autodl-tmp/models/`（Pythia-410m, Pythia-1b, Pythia-2.8b, OLMo-2-1B, Qwen3-0.6B, Qwen3-1.7B, Qwen3-8B-Base）\n- **HF_HOME**：`/root/autodl-tmp/.hf_cache`\n- **数据盘**：`/root/autodl-tmp/`（大文件必须放这里，根分区 ~30GB）\n- **活跃进程**：\n  - plan-005-cont: PID 164658, tmux=plan-005-cont, cuda:1\n  - plan-005-elab: PID 164737, tmux=plan-005-elab, cuda:2\n  - plan-005-rewrite: PID 164881, tmux=plan-005-rewrite, cuda:3\n- **活跃 Cron**：3 个（分别监控 plan-005-cont/elab/rewrite）\n- **活跃 Worker**：`worker_paper_research_bib_completion_20260515T043749`（bib 补全，running）\n\n### 3. 📊 当前状态\n**刚完成**：plan-014 完整数据重算确认（6-gen LOGO F1=0.7893, held-out Qwen3-8B F1=0.6832），所有 P0 实验数据已锁定。plan-004-v2 负面结果已 reframe (D009)。plan-015-v2 ordinal baseline 完成（7-feature ensemble 0.798 显著优于所有单检测器）。\n\n**正在跑**：plan-005（prompt type comparison: continuation vs elaboration vs inspired_rewriting, Pythia-2.8B）。三路并行 ~35% 完成，ETA ~1.5h（服务器时间 ~14:00）。初步发现：continuation 深度衰减 15% vs elaboration 仅 1.5%——有论文价值。\n\n**正在等**：\n- plan-005 三路 cron 完成回调 → 分析 + patch 入论文\n- Worker `worker_paper_research_bib_completion_20260515T043749` 回调 → bib 条目补全结果\n- Paper Agent 写作进度（writing_plan 已审批，Step 2 进行中）\n\n**Registry 摘要**：40 条实验，20 success / 1 negative / 8 failed（多为早期 tmux 系统性问题，已重跑成功）/ 剩余 PREPARING 为历史遗留。\n\n### 4. 📋 待办（条件触发式）\n- **plan-005 cron 回调到达** → spawn worker 跑 prompt type 对比分析（3 prompt types × 5 depths 的 depth signal 强度差异 + LOGO F1）→ 结果 patch 入论文（可能支撑 Claim 2 的 generality beyond continuation）\n- **plan-005 分析完成** → 更新 paper_framing.md + registry + report.md → 汇报 Director\n- **bib_completion worker 回调** → 整合 bib 条目到论文\n- **Paper Agent 交付初稿** → 启动 Review cycle（Review Reviewer session）\n- **cuda:0 空闲** → 如果 plan-005 分析需要 GPU（特征提取），可以用 cuda:0 跑\n- **5/25 前 2 天** → 最终 PDF 视觉审查 + reference audit + 提交\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D005: Dual dynamics = level/diversity drift + shape stationarity\n- D006: Reframe 为实证/概念贡献（不是方法论创新）\n- D007: Re-dream 条件达标（4/6 conditional pass）\n- D009: Claim 3 negative → diagnostic-not-curative（保留为 honest negative finding）\n- D011: RC9 Scale 验证——depth signal 跨规模存在，但 8B held-out 有 ~11pp gap\n- D012: 撤回 D010，恢复 EMNLP 2026 ARR 为主投稿\n\n**最容易判断错的事**：\n1. plan-005 是 **P1 不是 P0**——如果来不及 patch 入论文也不阻塞提交。但初步数据（continuation 衰减 15% vs elaboration 1.5%）很有价值，值得尽力加入。\n2. Claim 3 是 negative finding，已经 reframe 好了，**不要试图\"救回\"**。论文中诚实报告即可。\n3. 7-feature ensemble 的优势不是绝对 F1 高（0.79），而是**跨生成器一致性**——单检测器 CI 跨度 0.41-0.82，ensemble CI 紧致 [0.786, 0.799]。这是论文 pitch 的核心。\n4. Scale gap (8B held-out 0.68 vs ≤2.8B 0.76-0.85) 必须在论文中诚实讨论，不能回避。\n5. 根分区只有 ~30GB，之前因 checkpoint 写根分区导致磁盘满 + OOM 连锁故障。所有输出必须走 `/root/autodl-tmp/`。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778834933.md"
+}

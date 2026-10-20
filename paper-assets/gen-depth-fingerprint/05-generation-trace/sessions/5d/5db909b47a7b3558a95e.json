@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5db909b47a7b3558a95e",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "prep r28 gpu readiness",
+  "task_key": "worker_prep_r28-gpu-readiness_20260520T054116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_r28-gpu-readiness_20260520T054116_result.json",
+    "occurrence": 1,
+    "bytes": 2024,
+    "sha256": "7f82fd56776bac9bfb1a68fabc15d49f239314def7b71114ce657449cab1ef26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "框架脚本已创建。以下是三个方向的就绪状态报告：\n\n---\n\n## R28 补实验预准备状态\n\n### 1. Scale (7B+) — ✅ 就绪\n\n| 项目 | 状态 |\n|------|------|\n| Qwen3-8B-Base 模型 | 已下载，`/root/autodl-tmp/models/Qwen/Qwen3-8B-Base/Qwen/Qwen3-8B-Base/`，16GB，5 shards 完整 |\n| plan-014 生成数据 | 已存在，`/root/gen-depth-fingerprint/data/qwen3-8b/generations.jsonl`，4.9MB / 4497 行 |\n| 磁盘空间 | `/root/autodl-tmp/` 剩余 63GB，充足 |\n\n**下一步**：直接跑 feature extraction + 分类实验即可，无需额外准备。\n\n### 2. TOST extra seeds — ⚠️ 需少量改造\n\n| 项目 | 状态 |\n|------|------|\n| 现有脚本 | `scripts/tost_equivalence.py`、`scripts/tost_per_generator.py`、`tost_multi_margin.py` |\n| seed 参数 | **不支持** — 三个脚本均为纯参数化 TOST（基于 t 分布），无随机性，无 `--n_seeds` 参数 |\n| 已有 seed 稳定性脚本 | `scripts/multi_seed_stability.py` — 但仅针对 XGBoost LOGO F1（5 seeds），不涉及 TOST |\n\n**改造评估**：约 20-30 行代码。在现有 TOST 脚本外加 bootstrap resampling 层（带 `--n_bootstrap` / `--seed` 参数），对 TOST p-value 计算 bootstrap CI。改造量小。\n\n### 3. DDR causality — 🆕 框架已创建\n\n| 项目 | 状态 |\n|------|------|\n| 现有脚本 | 无（无 causal/granger/intervention 相关文件） |\n| 相关资源 | `scripts/lofo_ablation.py`（LOFO 消融）、`plot_appendix_ddr_trends.py`（DDR 趋势图）可复用 |\n| 框架脚本 | 已创建 `scripts/ddr_causal_analysis.py`，含 4 个模块 stub：feature intervention、permutation importance、Granger causality、mediation analysis |\n\n**下一步**：Worker 填充 4 个 `TODO` 函数实现。数据格式已对齐 `features_8gen.csv`（columns: model_name, seed_id, depth, 7 features）。优先实现 permutation importance（最直接、reviewer 最容易接受）和 Granger causality（因果性论证最强）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-r28-gpu-readiness.md"
+}

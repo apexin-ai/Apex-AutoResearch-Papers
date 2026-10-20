@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c53f832f6545861a0261",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper related work ordinal",
+  "task_key": "worker_paper_related-work-ordinal_20260515T225312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_related-work-ordinal_20260515T225312_result.json",
+    "occurrence": 1,
+    "bytes": 2154,
+    "sha256": "526e65f09522e31f463508d87cb724b8e1a1c725ff070e6106b16c67ea972384"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have a complete picture. Here's my report:\n\n---\n\n## Task 1: related_work.tex CI width 检查\n\n**无残留问题。** related_work.tex 中不存在任何 `CI width`、`CI` 或 `[x, y]` 格式的置信区间引用。\n\n唯一涉及数值范围的是第 14 行：\n> \"binary F1 from 0.52 to 0.71 across individual baselines\"\n\n验证：对照 results.tex Table 2 (tab:baselines) 中四个 individual baseline 的 binary F1：\n- Binoculars: 0.524 → 0.52 ✓\n- FastDetectGPT: 0.616\n- LD-Score: 0.701\n- Avg-LogProb: 0.712 → 0.71 ✓\n\n范围 0.52–0.71 与表格数据一致。\n\n---\n\n## Task 2: P1-E ordinal baseline 结论\n\n### Registry 数据源\n\n有三个相关实验：\n\n| 实验 | 数据集 | 角色 |\n|------|--------|------|\n| `plan-015` | 5-gen (23032 samples) | 原始 ordinal baseline，**已过时** |\n| `plan-015-v2` | 同上 | bugfix + bootstrap CI，**已过时** |\n| `review-p1e-ordinal` | 6-gen (27529 samples) | **当前权威**，ordinal regression 对比 |\n\n### results.tex 数字一致性检查\n\n**§4.3 Baseline comparison (Table 2)** — 数字来自 `review-exp-a-baseline-ensemble`（6-gen 统一评估）：\n\n| 方法 | results.tex | registry | 状态 |\n|------|------------|----------|------|\n| 7-feature 3-class | 0.789 | 0.7887 | ✓ (四舍五入) |\n| 4-detector ens. 3-class | 0.796 | 0.7964 | ✓ |\n| 4-det + surface 3-class | 0.805 | 0.8049 | ✓ |\n\n**Ordinal regression paragraph (lines 59-64)** — 数字来自 `review-p1e-ordinal`：\n\n| 指标 | results.tex | registry | 状态 |\n|------|------------|----------|------|\n| XGBoost 3-class F1 | 0.789 | 0.7888 | ✓ |\n| CORAL 3-class F1 | 0.771 | 0.7711 | ✓ |\n| Frank-Hall 3-class F1 | 0.793 | 0.7931 | ✓ |\n| XGBoost binary F1 | 0.721 | 0.7213 | ✓ |\n| CORAL binary F1 | 0.728 | 0.7275 | ✓ |\n| XGBoost concordance | 0.821 | 0.821 | ✓ |\n| CORAL concordance | 0.810 | 0.810 | ✓ |\n| Frank-Hall concordance | 0.825 | 0.825 | ✓ |\n\n**所有数字与 registry 一致，无需修改。** Baseline comparison 和 ordinal regression 两个段落都已完整写入 results.tex，数据正确。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-related-work-ordinal.md"
+}

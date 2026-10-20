@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0aafe9cf989cc736d76d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis instruct silhouette recompute",
+  "task_key": "worker_analysis_instruct_silhouette_recompute_20260521T032058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_instruct_silhouette_recompute_20260521T032058_result.json",
+    "occurrence": 1,
+    "bytes": 599,
+    "sha256": "773bc2f9ee2eb53f071d1edcdb04dcaf631aa69a1c0f79efeb2575b9116c9230"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Instruct silhouette recomputed: **0.338 → 0.372** (k=2 k-means, gen-1 vs gen-2+, StandardScaler).\n\nKey findings:\n- The k-means partition for instruct models is structurally different from base models — it groups {entropy_mean, entropy_std} together vs the rest, whereas base models group {entropy_mean, ttr, hapax_ratio} vs rest.\n- Applying the base model's fixed partition to instruct data gives silhouette = -0.105, confirming the DDR structure genuinely differs between base and instruct.\n- Results saved to `artifacts/_project/analysis/instruct_silhouette_recompute.txt`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-instruct-silhouette-recompute.md"
+}

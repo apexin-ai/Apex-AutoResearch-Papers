@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14cdb3f07e4011440f8c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "infra download models eleutherai allenai",
+  "task_key": "worker_infra_download-models-eleutherai-allenai_20260514T182611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download-models-eleutherai-allenai_20260514T182611_result.json",
+    "occurrence": 1,
+    "bytes": 657,
+    "sha256": "f4ca957715c2b420dd15c804532166f2c39fd965229c5f6559bbb928f2f7ea24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 下载报告\n\n| 模型 | 下载方式 | 磁盘大小 | 本地路径 | vocab_size | params |\n|------|---------|---------|---------|-----------|--------|\n| EleutherAI/pythia-1b | ModelScope | 3.9GB | `/root/autodl-tmp/models/pythia-1b/EleutherAI/pythia-1b` | 50304 | 1012M |\n| allenai/OLMo-2-0425-1B | ModelScope | 5.6GB | `/root/autodl-tmp/models/olmo-2-1b-hf/allenai/OLMo-2-0425-1B` | 100352 | 1485M |\n\n注意：任务中指定的模型 ID `allenai/OLMo-2-1B-hf` 不存在，实际使用的是 `allenai/OLMo-2-0425-1B`（OLMo-2 April 2025 版本，HuggingFace 原生格式）。OLMo-2-1B 实际参数量为 1485M（接近 1.5B）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-download-models-eleutherai-allenai.md"
+}

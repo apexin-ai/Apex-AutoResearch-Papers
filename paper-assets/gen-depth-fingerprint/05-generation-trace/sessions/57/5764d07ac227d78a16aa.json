@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5764d07ac227d78a16aa",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "exp bjb2 llama resume",
+  "task_key": "worker_exp_bjb2-llama-resume_20260518T054149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_bjb2-llama-resume_20260518T054149_result.json",
+    "occurrence": 1,
+    "bytes": 622,
+    "sha256": "50c7d73b19e42ab30642a56cdf1cf0abf88fdc1f4db526650f01187641824c8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "从 1469 行增长到 1503 行，新数据正在写入。\n\n**状态汇总：**\n\n| 项目 | 值 |\n|---|---|\n| 已有数据 | 1469 行（294 个 seed，含 1 个不完整） |\n| 种子总数 | 995（非任务描述的 497，实际过滤后更多） |\n| 剩余 seed | ~701 |\n| 模型 | Llama-3.2-3B-Instruct, fp16 on cuda:2 |\n| tmux session | `exp054_resume` |\n| 生成速率 | ~2.6-3.4 seeds/s（含跳过），实际新 seed ~1 seed/8s |\n| 预计完成时间 | ~90 分钟 |\n\n生成已在 `tmux` 中稳定运行。如需后续监控或生成完成后运行特征提取和评估，告知即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-bjb2-llama-resume.md"
+}

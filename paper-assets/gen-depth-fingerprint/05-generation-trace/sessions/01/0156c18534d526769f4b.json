@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0156c18534d526769f4b",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper dream review fixes p0",
+  "task_key": "worker_paper_dream-review-fixes-p0_20260521T235011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_dream-review-fixes-p0_20260521T235011_result.json",
+    "occurrence": 1,
+    "bytes": 1123,
+    "sha256": "19be24d372045efb81f0b9b12142fc464afa0a90baa1f56feaaa656efa028146"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 52 citation keys resolve. Final state of the edits:\n\n**P0-1 Related Work — 4 changes made (both artifacts/ and docs/ copies):**\n\n1. **Alemohammad (self_consuming_mad)** — Added sentence connecting their autophagous loop to our recursive generation setup at inference time (§2.2, line 16)\n2. **Dohmatob \"Tale of Tails\"** — New bib entry `dohmatob_tale_of_tails` (ICML 2024, 5 authors verified via WebSearch). Added discussion linking their scaling-law theory to DDR's distributional compression (§2.2, line 16)\n3. **Kirchenbauer watermarking** — Expanded watermarking discussion to note generator cooperation requirement and that our approach is post-hoc, applicable when watermarks are absent or washed out (§2.4, line 33)\n4. **Guo \"curious decline\"** — Added explicit connection between their recursive vocabulary impoverishment and DDR's drifting TTR/hapax features (§2.3, line 26)\n\n**P0-2 XGBoost hyperparameters:**\n- Already present in method.tex (n_estimators=200, max_depth=6, lr=0.1). Added \"fixed without tuning\" — code confirms no GridSearch/Optuna/etc. was used."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-dream-review-fixes-p0.md"
+}

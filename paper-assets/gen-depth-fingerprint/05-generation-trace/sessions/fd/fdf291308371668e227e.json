@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "fdf291308371668e227e",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "exp exp 060 14b ddr",
+  "task_key": "worker_exp_exp_060_14b_ddr_20260520T115545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_exp_060_14b_ddr_20260520T115545.log",
+    "occurrence": 1,
+    "bytes": 1180359,
+    "sha256": "dfaaa2c9f032a806d8143af5bc1a84d06bac5ccdd96456fa03b55e06bd7d085a"
+  },
+  "statistics": {
+    "messages": 999,
+    "user_turns": 1,
+    "tool_calls": 458,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 75,
+      "tool_call": 458,
+      "tool_result": 458,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 982,
+      "chunks": [
+        {
+          "path": "fdf291308371668e227e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fdf291308371668e227e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fdf291308371668e227e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "fdf291308371668e227e-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "fdf291308371668e227e-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "fdf291308371668e227e-part-0006.json",
+          "message_count": 82
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "fdf291308371668e227e-part-0006.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-exp-060-14b-ddr.md"
+}

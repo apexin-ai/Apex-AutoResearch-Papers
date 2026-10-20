@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "id": "d7103a8c8878194e8f97",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "paper caption above table",
+  "task_key": "worker_paper_caption-above-table_20260522T061857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_caption-above-table_20260522T061857.log",
+    "occurrence": 1,
+    "bytes": 672440,
+    "sha256": "ff4beff9b6989da402d90184483acc6d50b989f1488d4b0191f20b2e8400acea"
+  },
+  "statistics": {
+    "messages": 209,
+    "user_turns": 3,
+    "tool_calls": 81,
+    "roles": {
+      "log": 1,
+      "system": 29,
+      "record": 1,
+      "assistant": 12,
+      "tool_call": 81,
+      "user": 3,
+      "tool_result": 81,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "d7103a8c8878194e8f97-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 23,
+      "chunks": [
+        {
+          "path": "d7103a8c8878194e8f97-part-0001.json",
+          "message_count": 23
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 28,
+      "chunks": [
+        {
+          "path": "d7103a8c8878194e8f97-part-0001.json",
+          "message_count": 28
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 151,
+      "chunks": [
+        {
+          "path": "d7103a8c8878194e8f97-part-0001.json",
+          "message_count": 122
+        },
+        {
+          "path": "d7103a8c8878194e8f97-part-0002.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-caption-above-table.md"
+}

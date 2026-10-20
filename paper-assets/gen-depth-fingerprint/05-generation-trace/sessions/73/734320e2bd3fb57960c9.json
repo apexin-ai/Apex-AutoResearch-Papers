@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "734320e2bd3fb57960c9",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper rd3 w1 table captions",
+  "task_key": "worker_paper_rd3-w1-table-captions_20260516T051618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_rd3-w1-table-captions_20260516T051618_result.json",
+    "occurrence": 1,
+    "bytes": 954,
+    "sha256": "2764637caba7d56488ac09f5202cc3a97f27a68d3ce3df85bff7cdceae4afe32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 14 tables now have consistent `(6-generator LOGO; ...)` or `(6-generator data/dataset)` annotations at the end of their captions.\n\nSummary of changes across 10 files:\n- **results.tex**: Tables 1 (logo-results), 2 (ablation), 3 (baselines) — added `(6-generator LOGO; 3-class and binary.)` or `(6-generator LOGO; 3-class.)`\n- **table4.tex**: Table 4 (cross-ref) — `(6-generator LOGO; 3-class.)`\n- **appendix_classifier.tex**: alt-classifier + sampling-ablation tables\n- **appendix_downstream.tex**: `(6-generator data; fine-tuning evaluation.)`\n- **appendix_finer_depth.tex**: 5-class tables — `(6-generator LOGO; 5-class: gen-0 through gen-4.)`\n- **appendix_lofo.tex, appendix_human_edit.tex, appendix_qlora.tex, appendix_confusion_matrix.tex, appendix_dataset_stats.tex**: each annotated with appropriate scheme\n\nFormat is now uniform: parenthetical at end of every caption specifying generator split and class scheme."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-rd3-w1-table-captions.md"
+}

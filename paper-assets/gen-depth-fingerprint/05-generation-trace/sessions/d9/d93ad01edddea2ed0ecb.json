@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "d93ad01edddea2ed0ecb",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "diagnose plan 006 paraphrastic",
+  "task_key": "worker_diagnose_plan-006-paraphrastic_20260515T231423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan-006-paraphrastic_20260515T231423_result.json",
+    "occurrence": 1,
+    "bytes": 1563,
+    "sha256": "785f71377fe760e9d5c2a480fd42b692af2b9f496ececa321407dde5a318c1d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论清晰了。\n\n**实验 plan-006-paraphrastic 没有失败。** 它成功运行完毕（return_code=0），三个阶段全部完成：\n\n- **generate**: 995 seeds → paraphrastic chains（~5500秒）\n- **features**: 提取了 4754 条特征\n- **evaluate**: 5-fold CV 完成，结果已存 `results/plan006_paraphrastic_comparison.json`\n\n**Cron 误判原因**：脚本中没有任何 `wandb` 集成（grep 确认零匹配），cron 的判定逻辑是检查 W&B metrics 是否存在，找不到就判 failed——这是 **false negative**。\n\n```json\n{\"root_cause\":\"脚本未集成 wandb，cron 以 'no W&B metrics' 为条件判定失败，但实验实际 return_code=0 且结果已保存到 results/plan006_paraphrastic_comparison.json\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"将 cron 判定逻辑改为同时检查 W&B metrics 和 results JSON 文件是否存在\",\"或在 paraphrastic_chains.py 中添加 wandb.log 调用上报关键指标（3-class F1=0.68, retention=0.89）\"],\"can_auto_fix\":true}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "脚本未集成 wandb，cron 以 'no W&B metrics' 为条件判定失败，但实验实际 return_code=0 且结果已保存到 results/plan006_paraphrastic_comparison.json",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "将 cron 判定逻辑改为同时检查 W&B metrics 和 results JSON 文件是否存在",
+                "或在 paraphrastic_chains.py 中添加 wandb.log 调用上报关键指标（3-class F1=0.68, retention=0.89）"
+              ],
+              "can_auto_fix": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan-006-paraphrastic.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97922888dab82746a272",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "fix tail decay consistency",
+  "task_key": "worker_fix_tail_decay_consistency_20260520T073726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_tail_decay_consistency_20260520T073726_result.json",
+    "occurrence": 1,
+    "bytes": 1322,
+    "sha256": "96a032d7358961248df25ccf6d6a76a53a57f3df8c0996e81ca2b649406793b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成总结\n\n### 两种 tail_decay 实现对比\n\n| | 原始 6-gen (extract_features.py) | 新增 3-gen (llama/mistral_filter_and_extract.py) |\n|---|---|---|\n| **公式** | `np.polyfit(ranks[100:1000], sorted_avg_log_probs[100:1000], 1)[0]` | `np.mean(nll_arr > percentile_90_threshold)` |\n| **含义** | 排序后 vocab log-prob 在 rank 100-1000 区间的线性回归斜率 | token NLL 超过 depth-0 第90百分位阈值的比例 |\n| **值域** | 负值 ~-0.002 | [0, 1], 典型值 ~0.1 |\n| **量纲** | log-prob/rank | 无量纲比例 |\n\n### 修复状态\n\n所有 3 个 JSONL 已修复为 log-prob slope：\n- **Llama/Mistral**: `fix_tail_decay_and_eval.py` 已于 05-16 修复\n- **Gemma**: 今天 15:35 重新提取（备份文件 `.bak` 保留了旧的 NLL proportion 值）\n\n### 验证结果\n\n9 个 generator 的 tail_decay 现在完全一致：均值均在 [-0.0024, -0.0022]，标准差 ~0.0002。\n\n### 已更新/创建的文件\n- `data/features_9gen.csv` — 合并 9-gen 特征文件（42,015 行）\n- `eval_9gen_logo.py` L212 — 修正过期注释\n- `results/9gen_logo_results.json` — notes 已更新\n\n### 9gen LOGO 评估结果\nF1 分数未变化（3-class: 0.751, binary: 0.666），因为 JSONL 数据此前已修正，本次主要是验证 + 元数据同步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-tail-decay-consistency.md"
+}

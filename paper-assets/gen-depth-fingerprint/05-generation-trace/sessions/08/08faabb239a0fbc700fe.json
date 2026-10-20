@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08faabb239a0fbc700fe",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "monitor exp062 qwen8b topk finalize",
+  "task_key": "worker_monitor_exp062-qwen8b-topk-finalize_20260521T195835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp062-qwen8b-topk-finalize_20260521T195835_result.json",
+    "occurrence": 1,
+    "bytes": 419,
+    "sha256": "e273cc1fcef20bead62d8fdbe756d1f1917e0b9f0f84afc9fe338645188db022"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Status summary so far:\n- PID 375795 still running, chain at 2991/~4700 lines (~64%)\n- `extract_features.py` is the right script: `--input data/qwen3-8b-topk/generations_shard0.jsonl --output data/features_qwen3-8b-topk.csv`\n- Cohen's d: no dedicated script, will compute inline with Python\n- Qwen3-8B top-k is the last of 16 model-strategy combos (15/16 done)\n\nWaiting for the next scheduled check."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp062-qwen8b-topk-finalize.md"
+}

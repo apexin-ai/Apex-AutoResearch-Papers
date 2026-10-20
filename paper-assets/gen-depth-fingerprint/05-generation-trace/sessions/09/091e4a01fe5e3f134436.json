@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "091e4a01fe5e3f134436",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "compute rd3 numbers and tables",
+  "task_key": "worker_compute_rd3-numbers-and-tables_20260516T044646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compute_rd3-numbers-and-tables_20260516T044646_result.json",
+    "occurrence": 1,
+    "bytes": 1318,
+    "sha256": "7bd513aa833ddacb2cf8bfd86c09f63ee7df1a63d64010a94c1a7e87258cc62a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits are complete. Here's a summary of changes:\n\n### Computed on server\n- **Per-generator binary F1**: Pythia-1B=0.795, Pythia-2.8B=0.723, OLMo-2-1B=0.677, Qwen3-0.6B=0.756, Qwen3-1.7B=0.748, Qwen3-8B=0.641 (avg=0.723, matching primary metric)\n- **Downstream bootstrap**: random ppl CI [2.367, 2.367], depth-strat CI [2.387, 2.388], Δ=0.020, permutation p=0.25 (minimum for n=3), Cohen's d=40.2 (inflated due to near-zero seed variance)\n- **Dataset**: 27,529 samples, 6 generators × 5 depths, counts decreasing at higher depths\n\n### Files modified\n1. **`results.tex`** — Table 1: added Binary F1 column with per-gen values + CIs, renamed \"Held-out F1\"→\"3-class\", updated caption with gen-0 caveat and \"6-generator LOGO\"; Table 2 caption: annotated \"3-class\"; Table 3 caption: honest framing (simplicity, not superiority); §4.4 downstream: added CIs + permutation p-value; cross-scale paragraph: updated to binary values; cross-ref paragraph: added self-referencing bias note for Qwen3-0.6B\n2. **`appendix_downstream.tex`** — Added bootstrap CIs, permutation p-value, Cohen's d with caveat\n3. **`appendix_dataset_stats.tex`** — New file with per-generator × per-depth sample count table\n4. **`main.tex`** — Added `\\input{appendix_dataset_stats}` section in appendix"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/compute-rd3-numbers-and-tables.md"
+}

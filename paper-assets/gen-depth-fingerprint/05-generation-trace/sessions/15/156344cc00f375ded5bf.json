@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "156344cc00f375ded5bf",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis alt classifier",
+  "task_key": "worker_analysis_alt-classifier_20260515T093824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alt-classifier_20260515T093824_result.json",
+    "occurrence": 1,
+    "bytes": 840,
+    "sha256": "6f8f335656dae961ca13430018c0b41b9ed30d17148834aa539e645e07e0bcef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Results:\n\n| Classifier | LOGO F1 (avg) | olmo-2-1b | pythia-1b | pythia-2.8b | qwen3-0.6b | qwen3-1.7b | qwen3-8b |\n|---|---|---|---|---|---|---|---|\n| XGBoost | **0.7893** | 0.764 | 0.856 | 0.804 | 0.824 | 0.805 | 0.683 |\n| RandomForest | **0.7897** | 0.764 | 0.856 | 0.804 | 0.825 | 0.807 | 0.684 |\n| LogisticRegression | **0.7253** | 0.719 | 0.781 | 0.740 | 0.745 | 0.743 | 0.624 |\n\n- XGBoost baseline: 0.7893, matches registry 0.789\n- RandomForest nearly identical to XGBoost (0.7897)\n- LogisticRegression lower (0.725) but still well above chance (0.33), with identical per-generator ranking\n\nResults saved to `/root/gen-depth-fingerprint/results/alt_classifier_results.json`. LaTeX appendix written to `appendix_classifier.tex` and `\\input` added to `main.tex` after the confusion matrix section."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alt-classifier.md"
+}

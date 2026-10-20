@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "390397dc5641d1675c50",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan009 finer ordinal",
+  "task_key": "worker_code_plan009-finer-ordinal_20260515T225221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan009-finer-ordinal_20260515T225221_result.json",
+    "occurrence": 1,
+    "bytes": 960,
+    "sha256": "c01199c089f27fdc64f0859f4541b145f10a5796cc5fe2c3a2dea73ad0bc9833"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "plan-009 完成。结论：**negative**。\n\n## 结果摘要\n\n| Model | 5-class macro-F1 | 95% CI |\n|-------|-----------------|--------|\n| **HGBT** | **0.5028** | [0.4974, 0.5079] |\n| RF | 0.4767 | [0.4718, 0.4815] |\n| Frank-Hall (ordinal) | 0.4513 | [0.4459, 0.4564] |\n| LR | 0.4468 | [0.4417, 0.4518] |\n| **HGBT 3-class** | **0.7815** | [0.7764, 0.7864] |\n\n**5-class vs 3-class delta: -0.2787** — 5-class 分类大幅劣于 3-class。\n\n### Per-class F1 (HGBT 5-class)\n- depth_0: 0.913 (很好)\n- depth_1: 0.628 (尚可)\n- depth_2: 0.269 (差)\n- depth_3: 0.265 (差)\n- depth_4: 0.439 (一般)\n\ndepth_2 和 depth_3 几乎不可分，说明 **中间代际（gen-2/gen-3）的特征高度重叠**，finer-grained classification 不提供额外有效信息。3-class 方案（gen-0/gen-1/gen-2+）仍是最优分类粒度。\n\n结果已保存到 `results/finer_ordinal_results.json`，registry 已更新为 DONE (negative)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan009-finer-ordinal.md"
+}

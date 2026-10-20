@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a16f7d351e33a2dd2b8a",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "fix ddr trends label",
+  "task_key": "worker_fix_ddr-trends-label_20260519T233445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_ddr-trends-label_20260519T233445_result.json",
+    "occurrence": 1,
+    "bytes": 1140,
+    "sha256": "43cc7d490b5682a0f087bc197d8aa43c5772407ccacdf05c7f2275c94071936c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All values now match the original exactly. Verification:\n\n| Feature | ρ | R² | Label |\n|---|---|---|---|\n| Entropy Mean | -0.598 | 0.969 | [DRIFTING] ✓ |\n| Entropy Std | -0.157 | 0.564 | [INTERMEDIATE] ✓ |\n| **Entropy Min** | **-0.404** | **0.416** | **[NEAR-STATIONARY]† ✓** |\n| Entropy Max | 0.061 | 0.287 | [STATIONARY] ✓ |\n| Tail Decay | -0.041 | 0.725 | [STATIONARY] ✓ |\n| TTR | -0.625 | 0.930 | [DRIFTING] ✓ |\n| Hapax Ratio | -0.640 | 0.897 | [DRIFTING] ✓ |\n\n**结果汇报：**\n\n- **脚本路径**: `/root/gen-depth-fingerprint/scripts/plot_appendix_ddr_trends.py`（原始脚本未找到，基于 PDF 视觉结构和 `generate_figures.py` 风格重建）\n- **修改内容**: Entropy Min 标签从 `[INTERMEDIATE]` → `[NEAR-STATIONARY]†`\n- **数据源**: 从 `features_all_models.csv`（6 gen）切换到 `features_8gen.csv`（8 gen），与原图一致\n- **统计量**: ρ 用 sample-level Spearman，R² 用 depth-mean linear regression，全部与原图数值吻合\n- **PDF 已生成**: 远程 `/root/gen-depth-fingerprint/chart/fig_appendix_ddr_trends.pdf`，本地已同步"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-ddr-trends-label.md"
+}

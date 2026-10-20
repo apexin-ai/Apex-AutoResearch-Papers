@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63353ebff822dc3fe261",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "gen plan 002 qwen3 1 7b",
+  "task_key": "worker_gen_plan-002-qwen3-1_7b_20260514T205217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gen_plan-002-qwen3-1_7b_20260514T205217_result.json",
+    "occurrence": 1,
+    "bytes": 404,
+    "sha256": "58d96cb8247a2c4145571a0b78264824c1e5ac6fbc90c6ba0db8322168e7d98e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 shard 均已正常启动：\n\n| Job | exp_id | GPU | Seeds | 状态 |\n|-----|--------|-----|-------|------|\n| Shard 0 | `plan-002-qwen3-1_7b-s0` | cuda:0 | [0:498] (498条) | 生成中 |\n| Shard 1 | `plan-002-qwen3-1_7b-s1` | cuda:1 | [498:996] (498条) | 生成中 |\n\n模型加载成功（float16, vocab=151936），attention_mask 警告无害（pad=eos 的标准提示）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gen-plan-002-qwen3-1-7b.md"
+}

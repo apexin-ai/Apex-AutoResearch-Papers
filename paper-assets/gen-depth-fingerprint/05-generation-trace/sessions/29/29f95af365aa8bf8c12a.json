@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29f95af365aa8bf8c12a",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "diagnosis exp062 progress check",
+  "task_key": "worker_diagnosis_exp062_progress_check_20260521T115923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_exp062_progress_check_20260521T115923_result.json",
+    "occurrence": 1,
+    "bytes": 811,
+    "sha256": "01c96dead01253f474bf2469d66a885e50026731e22867570aed0aec2e25cf1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/_project/analysis/exp062_progress_report.txt`。\n\n**当前状态**：4 张 GPU 全部在跑，5/16 combo 已完成，4/16 进行中，7/16 排队。\n\n关键进展：\n- **pythia-2.8b** 和 **olmo-2-1b** 的 greedy+topk 全部完成\n- **pythia-1b** greedy 完成，topk 在跑（67%，~22min）\n- **qwen3-1.7b** greedy 即将完成（97%，~6min），之后开始 topk\n- **llama-3.2-3b** 和 **mistral-7b-v0.3** 都在 greedy 阶段（57%，各需 ~1.5h）\n- **qwen3-0.6b** 和 **qwen3-8b** 排在 cuda:3 的 chain 队列中，等 pythia-1b 完成后启动\n\n**瓶颈**：cuda:3 任务最重——pythia-1b topk 结束后还要跑 qwen3-0.6b 和 qwen3-8b 各两种策略，预计全部完成需 ~6-7h。其他三张卡各需 ~3-5h 完成剩余的 greedy+topk。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-exp062-progress-check.md"
+}

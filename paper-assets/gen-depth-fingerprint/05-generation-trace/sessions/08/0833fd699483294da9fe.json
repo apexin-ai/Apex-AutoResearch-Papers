@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0833fd699483294da9fe",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops fix human edit instruct model",
+  "task_key": "worker_ops_fix-human-edit-instruct-model_20260515T170200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-human-edit-instruct-model_20260515T170200_result.json",
+    "occurrence": 1,
+    "bytes": 1604,
+    "sha256": "772005f4f4138cfac4791cabade6656383798fcc9f0e254d94ee4bbd360e8d2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "等待脚本正在运行。汇总当前状态：\n\n---\n\n## 执行总结\n\n### 根因修正\n用户诊断：\"模型是 Base 不是 Instruct\" — **不准确**。Qwen3 系列没有单独的 Instruct 版本，`Qwen3-0.6B` 本身就是 instruct 模型（有完整 chat_template）。\n\n**真正问题**：代码用原始文本 prompt 而不是 chat template，导致模型做 text continuation 而非 instruction following。\n\n### 已完成\n\n| Step | 状态 | 说明 |\n|------|------|------|\n| 模型验证 | ✅ | `Qwen3-0.6B` 已有 chat_template，就是 instruct 模型。HF/ModelScope 均不存在 `Qwen3-0.6B-Instruct` |\n| 代码修复 | ✅ | `llm_rephrase_batch` 改用 `apply_chat_template(enable_thinking=False)` + `temperature=1.0, top_p=0.95` |\n| 3-seed 验证 | ✅ | **100% 文本有变化**，23% fallback（vs 旧方法的 continuation 垃圾），改写质量好 |\n| 本地同步 | ✅ | 本地 `experiments/human_edit_robustness.py` 已同步修复 |\n| 重跑提交 | ✅ | PID 228872 等待旧进程(223500, ETA ~20min)结束后自动在 cuda:1 重跑全部条件 |\n\n### 待进行\n- 旧进程完成后可检查其 fallback 比例（`/tmp/human_edit_robustness.log`）\n- 重跑预计耗时 ~90 分钟（rephrase 阶段 ~85min + 特征提取 + 评估）\n- 结果输出到 `/root/gen-depth-fingerprint/results/human_edit_robustness.json`\n- 旧结果备份到 `human_edit_robustness_old_no_chat_template.json`\n\n### 监控命令\n```bash\ntail -20 /tmp/human_edit_rerun.log   # 重跑进度\ntail -5 /tmp/human_edit_robustness.log  # 旧进程进度\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-human-edit-instruct-model.md"
+}

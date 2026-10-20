@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0182226c86a812e28a50",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "exp bjb2 feature extract parallel",
+  "task_key": "worker_exp_bjb2-feature-extract-parallel_20260518T060151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_bjb2-feature-extract-parallel_20260518T060151_result.json",
+    "occurrence": 1,
+    "bytes": 1486,
+    "sha256": "80f70275216d244eada84bc2ada0ed3ffc8f6dcdd0aca2a2020ce908d23e90c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇总报告：\n\n---\n\n## 服务器状态报告\n\n### nvidia-smi（初始 → 最终）\n\n| GPU | 初始状态 | 最终状态 | 任务 |\n|-----|---------|---------|------|\n| **cuda:0** | 3977MiB, 42% | 3977MiB, 43% | `exp054_resume` — Llama-3.2-3B-Instruct 生成 (415/995 seeds), PID 2067 |\n| **cuda:1** | 空闲 | **2485MiB, 64%** | `feat_t05` — Pythia-2.8b t=0.5 特征提取 → 完成后自动接 t=0.9, PID 4306 |\n| **cuda:2** | 6923MiB, 64% | 6923MiB, 64% | `tc_phase3` — 生成任务 (525/996 seeds), PID 3103 |\n| **cuda:3** | 空闲 | **623MiB, 启动中** | `feat_qwen_t09` — Qwen3-1.7b t=0.9 特征提取, PID 4405 |\n\n### 模型权重\n- **Pythia-410M**: `/root/autodl-tmp/models/pythia-410m/...`, model.safetensors = **870MB** ✓\n\n### 温度曲线数据\n\n| 数据集 | 行数 | 特征提取状态 |\n|--------|------|------------|\n| pythia-2.8b-t05 | 4708 | **启动中** (cuda:1) |\n| pythia-2.8b-t09 | 4536 | 排队中 (cuda:1, 串行在 t05 后) |\n| qwen3-1.7b-t05 | **不存在** | — |\n| qwen3-1.7b-t09 | 2398 | **启动中** (cuda:3) |\n\n### tmux Sessions\n- `exp054_resume` — GPU 0, Llama 生成\n- `tc_phase3` — GPU 2, 生成任务\n- `feat_t05` — GPU 1, Pythia t=0.5 → t=0.9 特征提取（新建）\n- `feat_qwen_t09` — GPU 3, Qwen t=0.9 特征提取（新建）\n\n**注意**: `qwen3-1.7b-t05` 数据目录不存在，已改为提取 `qwen3-1.7b-t09`。如需 t=0.5 数据，需先跑生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-bjb2-feature-extract-parallel.md"
+}

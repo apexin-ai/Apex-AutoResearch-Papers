@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b200a58302a07a83c28",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "monitor progress check all",
+  "task_key": "worker_monitor_progress-check-all_20260515T033916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_progress-check-all_20260515T033916_result.json",
+    "occurrence": 1,
+    "bytes": 825,
+    "sha256": "d5e1b4db9d34800738a8a1795777e1d8ca586f7ddbdfe7d28d8694637a1248b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部正常运行，无异常：\n\n| 实验 | 进度 | ETA | GPU |\n|------|------|-----|-----|\n| **plan-014** (Qwen3-8B) | **815/996 (82%)** | ~49 min | cuda:0 75%, 16.5G/32.6G |\n| **plan-005-cont** (Pythia-2.8B continuation) | **78/995 (8%)** | ~1h50m | cuda:1 63%, 6.2G/32.6G |\n| **plan-005-elab** (Pythia-2.8B elaboration) | **72/995 (7%)** | ~2h18m | cuda:2 64%, 6.2G/32.6G |\n| **plan-005-rewrite** (Pythia-2.8B rewriting) | **72/995 (7%)** | ~2h02m | cuda:3 64%, 6.2G/32.6G |\n\n**plan-014** 即将完成（~50分钟内）。三个 plan-005 实验刚启动约 10 分钟，还需 ~2 小时。\n\n磁盘充足（根分区 25%、数据盘 50%），无 OOM/掉卡。plan-014 有少量 seeds 因空输出被跳过，属正常行为。\n\n报告已保存至 `artifacts/progress_snapshot.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-progress-check-all.md"
+}

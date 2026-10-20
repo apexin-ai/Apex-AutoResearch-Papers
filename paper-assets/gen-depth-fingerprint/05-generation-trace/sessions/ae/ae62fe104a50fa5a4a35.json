@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae62fe104a50fa5a4a35",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops check gemma rp11 progress",
+  "task_key": "worker_ops_check-gemma-rp11-progress_20260516T125053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-gemma-rp11-progress_20260516T125053_result.json",
+    "occurrence": 1,
+    "bytes": 545,
+    "sha256": "7ca36f7813ea3f7cc8f06aae9cc9e9ac5244ab57ef25f84ca8235e98feaec490"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Gemma-2-2B rp=1.1 生成进度报告：**\n\n| 指标 | 值 |\n|------|-----|\n| 进程状态 | PID 305925 存活，已运行 **40 分 11 秒**，CPU 0%（当前可能在等 GPU） |\n| GPU | GPU 1 占用 5865 MiB / 51% 利用率，其余空闲 |\n| 已生成条数 | **852 / 4970** |\n| 完成百分比 | **17.1%** |\n| 当前进度 | seed=178, depth=1 |\n| 最后写入 | May 16 20:51 |\n| 预估剩余时间 | 40min × (4970/852 - 1) ≈ **193 分钟（~3.2 小时）** |\n\n进程正常运行中，速度约 21 条/分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-gemma-rp11-progress-copy-2.md"
+}

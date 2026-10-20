@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f349e350f4c1a5af7513",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops kill duplicate processes",
+  "task_key": "worker_ops_kill-duplicate-processes_20260515T185324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-duplicate-processes_20260515T185324_result.json",
+    "occurrence": 1,
+    "bytes": 2023,
+    "sha256": "d25e4a4527ae5d271d65d35836fa278b2eaf92cd99ee2d77a2240f89e56e39fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. Kill 结果\n- PID 233692 (`--phase generate`): **已 kill**，SIGTERM 正常退出\n- PID 233512 (`--phase generate`): **已 kill**，SIGTERM 正常退出\n- PID 234066 (`--phase all`): **存活**，已运行 ~25 分钟，为唯一存活进程\n\n### 2. JSONL 完整性\n`data/pythia-2.8b-news/generations_shard0.jsonl`:\n- **1344 行，0 bad lines** — 无交错/截断问题\n- 文件仍在被 234066 写入（最后修改 02:54:28，仍在增长）\n\n其他域目录已有完整数据（来自早期实验，非本脚本）：\n| 目录 | 行数 | 有 features |\n|------|------|------------|\n| pythia-2.8b-continuation | 4620 | features.csv + features.jsonl |\n| pythia-2.8b-elaboration | 4946 | features.csv + features.jsonl |\n| pythia-2.8b-inspired_rewriting | 4827 | features.csv + features.jsonl |\n\n### 3. PID 234066 进度\n- 运行时间: ~25 分钟\n- 当前在 **news 域**生成阶段，已到 seed_id=112/500，最大 id=563\n- 每个 seed 生成 depth 0-4（共 5 层），预计总行数 ~2500 行，当前完成 **~54%**\n- `--phase all` 会依次处理 news → scientific → creative 三个域，news 完成后还有两个域要跑\n\n### 4. 脚本使用的数据集\n`multi_domain_seeds.py` 定义了 3 个域（DOMAINS dict，第 53 行）：\n\n| 域 | 数据集 | 说明 |\n|----|--------|------|\n| news | `abisee/cnn_dailymail` | CNN/DailyMail 新闻 |\n| scientific | `ccdv/arxiv-summarization` | arXiv 论文摘要 |\n| creative | `euclaise/writingprompts` | 创意写作提示 |\n\n每个域 500 seeds（NUM_SEEDS=500），每个 seed 生成 depth 0-4 的链式续写。\n\n### 5. 数据目录状态\n- `data/pythia-2.8b-news/`: 1.4MB，正在写入（当前实验）\n- `data/pythia-2.8b-continuation/`: 5.2MB + features（旧实验）\n- `data/pythia-2.8b-elaboration/`: 5.8MB + features（旧实验）\n- `data/pythia-2.8b-inspired_rewriting/`: 5.7MB + features（旧实验）\n- scientific 和 creative 目录**尚未创建**（等 234066 跑到）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-duplicate-processes.md"
+}

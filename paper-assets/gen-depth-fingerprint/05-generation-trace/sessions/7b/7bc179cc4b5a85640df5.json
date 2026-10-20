@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bc179cc4b5a85640df5",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops plan012 pythia410m check",
+  "task_key": "worker_ops_plan012-pythia410m-check_20260516T011151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan012-pythia410m-check_20260516T011151_result.json",
+    "occurrence": 1,
+    "bytes": 895,
+    "sha256": "75c4a6c9786f53ebafea3a5902bb6f69d176bf4ae05a185412063e13f3c73e56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验成功完成，正常退出（return code 0）。** cron 报 \"no sentinel\" 只是因为进程已在 cron 检查前正常结束。\n\n### 关键结果\n\n| 指标 | QLoRA (Pythia-410M) | XGBoost baseline | Delta |\n|------|-------------------|-----------------|-------|\n| **5-class macro F1** | 0.5564 ± 0.0158 | 0.5028 | **+0.0536** |\n| **3-class macro F1** | 0.8703 ± 0.0220 | 0.7815 | **+0.0888** |\n\n### Per-class F1 (5-class)\n\n| Class | F1 |\n|-------|-----|\n| depth_0 | 0.991 |\n| depth_1 | 0.733 |\n| depth_2 | 0.347 |\n| depth_3 | 0.291 |\n| depth_4 | 0.420 |\n\n### Per-class F1 (3-class)\n\n| Class | F1 |\n|-------|-----|\n| gen0 | 0.991 |\n| gen1 | 0.733 |\n| gen2+ | 0.887 |\n\n配置：QLoRA 4-bit, r=16, alpha=32, 3 epochs, 5-fold stratified CV, 18423 samples, 运行时间 61.8 min。结果已保存至 `results/plan012_pythia410m_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan012-pythia410m-check-copy-2.md"
+}

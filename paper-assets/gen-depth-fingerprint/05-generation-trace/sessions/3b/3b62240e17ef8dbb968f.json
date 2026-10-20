@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b62240e17ef8dbb968f",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis bootstrap seed variance",
+  "task_key": "worker_analysis_bootstrap-seed-variance_20260517T230017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-seed-variance_20260517T230017_result.json",
+    "occurrence": 1,
+    "bytes": 432,
+    "sha256": "c58468c13ffc7cb13b85b4b6f3afcae46cc06313b3e2e71fa5cd280c92120c02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果：** 5-seed binary LOGO F1 = **0.7006 ± 0.0009**。cross-seed 方差极低（std < 0.001），所有 generator 的 std 均 < 0.005，性能排序在所有 seed 下完全一致。单 seed 报告 F1 是合理的。\n\n输出已保存：\n- 服务器：`/root/gen-depth-fingerprint/results/bootstrap_seed_variance.json`\n- 本地 artifact：`artifacts/_project/analysis/bootstrap_seed_variance.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-seed-variance.md"
+}

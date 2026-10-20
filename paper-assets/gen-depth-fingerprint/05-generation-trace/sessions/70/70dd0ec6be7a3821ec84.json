@@ -1,0 +1,1310 @@
+{
+  "schema_version": "1.0",
+  "id": "70dd0ec6be7a3821ec84",
+  "project": "gen-depth-fingerprint",
+  "kind": "conversation",
+  "title": "paper add appendix refs",
+  "task_key": "worker_paper_add-appendix-refs_20260521T215228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_add-appendix-refs_20260521T215228.jsonl",
+    "occurrence": 1,
+    "bytes": 54463,
+    "sha256": "e20c047c63a1226edb656d0ef0ffdb5ff1066856cc41007804d52a58176c0dcf"
+  },
+  "statistics": {
+    "messages": 65,
+    "user_turns": 0,
+    "tool_calls": 32,
+    "roles": {
+      "tool_call": 32,
+      "tool_result": 32,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T21:56:52.625326+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper && for label in app:9gen-scale app:convergence app:qualitative app:human-edit app:cross-model-detail app:nll-distribution app:heteroscedasticity app:ddr-supplement app:holdout-split app:tost-sensitivity app:tost-bootstrap app:epsilon-sweep; do count=$(grep -r \"ref{$label}\" *.tex 2>/dev/null | grep -v \"\\\\\\\\label{\" | wc -l); echo \"$label: $count references\"; done",
+              "description": "Check which appendix labels are unreferenced in artifacts"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T21:56:52.625631+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "app:9gen-scale: 0 references\napp:convergence: 0 references\napp:qualitative: 0 references\napp:human-edit: 0 references\napp:cross-model-detail: 0 references\napp:nll-distribution: 0 references\napp:heteroscedasticity: 0 references\napp:ddr-supplement: 0 references\napp:holdout-split: 0 references\napp:tost-sensitivity: 0 references\napp:tost-bootstrap: 0 references\napp:epsilon-sweep: 0 references"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T21:56:52.625796+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper && for label in app:9gen-scale app:convergence app:qualitative app:human-edit app:cross-model-detail app:nll-distribution app:heteroscedasticity app:ddr-supplement app:holdout-split app:tost-sensitivity app:tost-bootstrap app:epsilon-sweep; do count=$(grep -r \"ref{$label}\" *.tex 2>/dev/null | grep -v \"\\\\\\\\label{\" | wc -l); echo \"$label: $count references\"; done",
+              "description": "Check which appendix labels are unreferenced in docs"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T21:56:52.625936+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "app:9gen-scale: 0 references\napp:convergence: 0 references\napp:qualitative: 0 references\napp:human-edit: 0 references\napp:cross-model-detail: 0 references\napp:nll-distribution: 0 references\napp:heteroscedasticity: 0 references\napp:ddr-supplement: 0 references\napp:holdout-split: 0 references\napp:tost-sensitivity: 0 references\napp:tost-bootstrap: 0 references\napp:epsilon-sweep: 0 references"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T21:56:52.626077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T21:56:52.626227+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\tRecursive generation alters \\emph{where} the token-level surprise distribution sits but not \\emph{how} it is shaped, a dichotomy with a mechanistic basis.\n5\tUnder nucleus sampling, top-$p$ truncation preserves the functional form of the conditional distribution at each step; what changes is the \\emph{input}: as the model conditions on increasingly self-typical outputs, expected NLL compresses monotonically.\n6\tThis yields two testable predictions: (1)~increasing sampling randomness should weaken the location drift, and (2)~semantic-preservation constraints should attenuate it.\n7\tBoth are confirmed: at $t{=}1.0$, location signal collapses ($\\rho$: $-0.60 \\to -0.002$; Appendix~\\ref{app:sampling-sensitivity}); under elaboration prompts, drift weakens (F1\\,=\\,0.730 vs.\\ 0.781; Appendix~\\ref{app:prompt-type}).\n8\tCausal analyses provide supporting evidence: drifting features contribute $5.5\\times$ more to classification, with 6/7 exhibiting significant Granger causality over the five-point chain, though the short series length (5 depths) limits formal causal inference (Appendix~\\ref{app:ddr-causality}).\n9\tThese results are established under nucleus sampling ($p{=}0.95$); shape features remain stable even at $\\tau{=}1.0$ ($d < 0.15$; Appendix~\\ref{app:ddr-temp-stability}).\n10\tGreedy decoding ($\\tau{=}0$) confirms shape stability across all eight generators (mean $|d|{=}0.05$), establishing DDR as an autoregressive property independent of sampling truncation; top-$k$ sampling ($k{=}50$) compresses drifting effect sizes without introducing new shape instability, with boundary violations in Pythia/OLMo traceable to model-intrinsic baselines (Appendix~\\ref{app:decoding-strategy}).\n11\t\n12\tThe classifier is a proof-of-concept for corpus-level auditing, not per-document filtering: gen-1 per-class F1\\,=\\,0.63 is insufficient for individual flagging but supports batch-level contamination estimation (${\\pm}3$--$4$\\% at $n{=}1{,}000\n…[truncated 2098 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T21:56:52.626375+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T21:56:52.626602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\t\\subsection{Depth Classification Performance}\n5\t\\label{sec:results-classification}\n6\t\n7\tThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\n8\tBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\n9\tWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\n10\tPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\n11\tCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n12\t\n13\t\\paragraph{Cross-model generalization.}\n14\tCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]) under 5-generator LOGO.\\footnote{5-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B); generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\n15\tSingle-generator transfer (Appendix~\\ref{app:transfer}) establishes that the signal is not a mixed-chain artifact: classifiers trained on one generator transfer to all others with mean binary F1\\,=\\,0.810; LOFO yields 0.686.\n16\tA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); \n…[truncated 12592 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T21:56:52.626760+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_*.tex",
+              "description": "List all appendix files"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T21:56:52.626903+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_9gen_scale.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ablation.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_confusion_matrix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_convergence.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_cross_model_detail.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_cross_temp.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_dataset_stats.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_causality.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_decoding_strategy.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_domain.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_downstream.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_error_analysis.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_feature_candidates.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0\n…[truncated 2308 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T21:56:52.627067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_9gen_scale.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T21:56:52.627221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\subsection{9-Generator Scale Evaluation}\\label{app:9gen-scale}\n2\t\n3\tThis analysis extends the 8-generator LOGO evaluation to nine generators by adding Gemma-2-2B, a model from a previously unrepresented architecture family (Gemma).\n4\tAll results use class-balanced LOGO; the 8-gen averages here (0.770/0.701) differ slightly from Table~\\ref{tab:logo-results} (0.762/0.694), which uses an unfiltered protocol.\n5\tTable~\\ref{tab:9gen-logo} reports per-generator LOGO performance under this expanded set.\n6\t\n7\t\\begin{table}[ht]\n8\t\\centering\n9\t\\caption{9-generator LOGO evaluation. Each row holds out the listed generator at test time. 3-class: gen-0\\,/\\,gen-1\\,/\\,gen-2+; binary: gen-1 vs.\\ gen-2+. 95\\% bootstrap CIs in brackets.}\n10\t\\label{tab:9gen-logo}\n11\t\\small\n12\t\\resizebox{\\linewidth}{!}{%\n13\t\\begin{tabular}{llr cc cc}\n14\t\\toprule\n15\t\\textbf{Generator} & \\textbf{Family} & \\textbf{Params} & \\textbf{3-class F1} & \\textbf{95\\% CI} & \\textbf{Binary F1} & \\textbf{95\\% CI} \\\\\n16\t\\midrule\n17\tPythia-1B       & Pythia  & 1.0B & 0.857 & [0.848, 0.866] & 0.785 & --- \\\\\n18\tQwen3-0.6B      & Qwen    & 0.6B & 0.819 & [0.807, 0.830] & 0.743 & --- \\\\\n19\tPythia-2.8B     & Pythia  & 2.8B & 0.812 & [0.801, 0.822] & 0.728 & --- \\\\\n20\tQwen3-1.7B      & Qwen    & 1.7B & 0.811 & [0.800, 0.823] & 0.746 & --- \\\\\n21\tOLMo-2-1B       & OLMo    & 1.5B & 0.773 & [0.762, 0.784] & 0.692 & --- \\\\\n22\tLlama-3.2-3B    & Llama   & 3.2B & 0.759 & [0.748, 0.770] & 0.680 & --- \\\\\n23\tQwen3-8B        & Qwen    & 8.2B & 0.696 & [0.683, 0.709] & 0.647 & [0.631, 0.664] \\\\\n24\tGemma-2-2B      & Gemma   & 2.6B & 0.628 & [0.622, 0.634] & 0.440 & [0.432, 0.449] \\\\\n25\tMistral-7B      & Mistral & 7.0B & 0.605 & [0.593, 0.617] & 0.534 & --- \\\\\n26\t\\midrule\n27\t\\textbf{Average (9-gen)} & & & \\textbf{0.751} & & \\textbf{0.666} & \\\\\n28\t\\textbf{Average (8-gen)} & & & \\textbf{0.770} & & \\textbf{0.701} & \\\\\n29\t\\bottomrule\n30\t\\end{tabular}}\n31\t\\end{table}\n32\t\n33\t\\paragraph{Overall comparison.}\n34\tAdding Gemma-2-2B reduces the mean \n…[truncated 2785 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T21:56:52.627367+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_convergence.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T21:56:52.627492+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tThis appendix visualizes per-feature convergence trajectories across generation depth, complementing the DDR analysis in \\S\\ref{sec:results-differential}.\n2\t\n3\t\\begin{figure}[H]\n4\t\\centering\n5\t\\includegraphics[width=\\columnwidth]{fig_convergence_dynamics.pdf}\n6\t\\caption{Per-feature convergence dynamics across generation depths 0--4, averaged over 8 generators. Each feature is expressed as Cohen's $d$ relative to depth~0, so all features start at zero and the $y$-axis directly reflects effect size. (a)~Drifting features (hapax ratio, TTR, entropy mean) and the intermediate feature (entropy std) diverge monotonically; lexical diversity features (TTR, hapax ratio) form a fast-convergence group ($|d| > 2$ by depth~2), while entropy mean and entropy std drift more slowly. (b)~Near-stationary features (entropy max, tail decay, entropy min) remain within $|d| < 0.25$ across all depths, confirming location stability. Shaded bands indicate $\\pm 1$ standard deviation across generators.}\n7\t\\label{fig:convergence-dynamics}\n8\t\\end{figure}\n9\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T21:56:52.627633+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_qualitative_examples.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T21:56:52.627777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Qualitative Examples}\n2\t\\label{app:qualitative}\n3\t\n4\tTable~\\ref{tab:qualitative-text} presents an example generation chain from seed 120 (Pythia-2.8B, continuation prompt), illustrating how text evolves across recursive generation steps.\n5\tTable~\\ref{tab:qualitative-features} reports the corresponding 7-feature values. Central-tendency features ($\\bar{H}$, TTR, hapax ratio) drift monotonically while shape features ($H_{\\max}$, tail decay) remain near-stationary, consistent with the differential depth response pattern.\n6\t\n7\t\\begin{table}[t]\n8\t\\centering\n9\t\\caption{Example text chain from seed 120 (Pythia-2.8B, continuation prompt). Gen-0 is the original Wikipedia passage; gen-1 and gen-2 are successive LLM continuations. Text is truncated for space.}\n10\t\\label{tab:qualitative-text}\n11\t\\small\n12\t\\begin{tabular}{p{0.90\\columnwidth}}\n13\t\\toprule\n14\t\\textbf{Gen-0 (Wikipedia seed)} \\\\\n15\t\\midrule\n16\tAquarius is an equatorial constellation of the zodiac, between Capricornus and Pisces. Its name is Latin for ``water-carrier'' or ``cup-carrier''. Aquarius is one of the oldest of the recognized constellations along the zodiac (the Sun's apparent path). It was one of the 48 constellations listed by the 2nd century astronomer Ptolemy, and it remains one of the 88 modern constellations. It is found in a region often called the Sea due to its profusion of constellations with watery associations such as Cetus the whale, Pisces the fish, and Eridanus the river. [\\ldots] \\\\\n17\t\\midrule\n18\t\\textbf{Gen-1} \\\\\n19\t\\midrule\n20\tBabylonian astrology and was also depicted in ancient Egyptian art. In Greek mythology, Aquarius is the son of Poseidon and Gaia. He is also the god of the sea and the sky, the god of travelers, and the guardian of the underworld. In Roman mythology, Aquarius is the son of Saturn and the nymph Egeria, and the god of the sea. In Jewish mythology, Aquarius is the son of the God of the Air and the Goddess of the Moon. In Chinese mythology, Aquarius is the so\n…[truncated 1373 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T21:56:52.627920+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T21:56:52.628084+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWe assess robustness to post-generation text modification by randomly replacing words at varying rates and re-evaluating the 8-generator LOGO pipeline (Table~\\ref{tab:human-edit}).\n2\tRandom word replacement represents a worst-case perturbation: real human editing preserves semantic coherence, so practical degradation is expected to be substantially lower than these estimates.\n3\t\n4\t\\begin{table}[ht]\n5\t\\centering\n6\t\\small\n7\t\\caption{Robustness to random word replacement under 8-gen LOGO evaluation (binary: gen-1 vs.\\ gen-2+). Bootstrap 95\\% CIs on binary F1 ($n$\\,=\\,1000).}\n8\t\\label{tab:human-edit}\n9\t\\resizebox{\\linewidth}{!}{%\n10\t\\begin{tabular}{lccc}\n11\t\\toprule\n12\t\\textbf{Perturbation rate} & \\textbf{Binary F1} & \\textbf{95\\% CI} & \\textbf{3-class F1} \\\\\n13\t\\midrule\n14\t0\\% (baseline) & 0.695 & [0.680, 0.710] & 0.737 \\\\\n15\t5\\%            & 0.650 & [0.635, 0.666] & 0.641 \\\\\n16\t10\\%           & 0.614 & [0.599, 0.629] & 0.492 \\\\\n17\t20\\%           & 0.591 & [0.576, 0.605] & 0.367 \\\\\n18\t\\bottomrule\n19\t\\end{tabular}}\n20\t\\end{table}\n21\t\n22\tBinary depth discrimination (gen-1 vs.\\ gen-2+) degrades sublinearly: the first 5\\% replacement causes the largest drop ($-$4.6\\,pp), with diminishing marginal impact thereafter ($-$3.6\\,pp for 5\\%$\\to$10\\%, $-$2.3\\,pp for 10\\%$\\to$20\\%).\n23\tAt 10\\% replacement, binary F1 remains 0.614, well above the 0.50 random baseline, which indicates that depth signal survives moderate perturbation.\n24\t\n25\tThree-class classification is more sensitive (0.737$\\to$0.367 at 20\\%), because distinguishing gen-0 from gen-1 relies heavily on lexical diversity features (TTR, hapax ratio) that are directly disrupted by word replacement.\n26\tThe binary metric, which excludes gen-0, is inherently more robust since it depends primarily on reference-model entropy features distributed across many tokens.\n27\t\n28\t\\paragraph{Feature subset degradation.}\n29\tTable~\\ref{tab:feature-degrade} compares perturbation robustness of the full 7-feature ensemble against an entr\n…[truncated 4851 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T21:56:52.628225+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_cross_model_detail.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T21:56:52.628354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tThis appendix reports per-generator breakdowns for the cross-model chain evaluation described in \\S\\ref{sec:results-classification}.\n2\t\n3\t\\begin{table}[ht]\n4\t\\centering\n5\t\\footnotesize\n6\t\\begin{tabular}{lcccc}\n7\t\\toprule\n8\t\\textbf{Class} & \\textbf{Prec.} & \\textbf{Rec.} & \\textbf{F1} & \\textbf{95\\% CI} \\\\\n9\t\\midrule\n10\tgen-0   & 0.921 & 0.948 & 0.935 & [.923, .946] \\\\\n11\tgen-1   & 0.737 & 0.803 & 0.768 & [.748, .788] \\\\\n12\tgen-2+  & 0.842 & 0.742 & 0.789 & [.768, .809] \\\\\n13\t\\midrule\n14\t\\textbf{Macro} & --- & --- & \\textbf{0.831} & [.817, .844] \\\\\n15\t\\bottomrule\n16\t\\end{tabular}\n17\t\\caption{Cross-model chain per-class performance (generator-level leave-one-out, $N$\\,=\\,2{,}964, $n_{\\text{generators}}$\\,=\\,5: Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B). Macro F1\\,=\\,0.831 under class balancing; under natural class distribution, macro F1\\,=\\,0.789. Binary F1 (gen-1 vs.\\ gen-2+)\\,=\\,0.830 (95\\% CI [.818, .841], case-level bootstrap, $n$\\,=\\,2{,}000). Cross-model chains avoid the gen-0 seed sharing issue present in single-generator LOGO.}\n18\t\\label{tab:cross-model-perclass}\n19\t\\end{table}\n20\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T21:56:52.628481+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_nll_distribution.tex"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T21:56:52.628620+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% section header and label in main.tex\n2\t\n3\t\\begin{figure}[h!]\n4\t\\centering\n5\t\\includegraphics[width=\\columnwidth]{fig_appendix_nll_distribution.pdf}\n6\t\\caption{Token-level NLL distribution by generation depth, aggregated across all 8 generators (Pythia-410M reference model). Dashed lines indicate median NLL per depth. The systematic leftward shift demonstrates that deeper-generation text is increasingly predictable.}\n7\t\\label{fig:nll-dist}\n8\t\\end{figure}\n9\t\n10\tTo visualize how the reference-model surprisal landscape shifts with generation depth, we plot the kernel density estimate of per-token negative log-likelihood (NLL) across depths~0--4 in Figure~\\ref{fig:nll-dist}.\n11\tFor each of the 8 base generators, we sample 25 texts per depth (1{,}000 texts total, $\\sim$236k tokens) and compute token-level NLL under the Pythia-410M reference model.\n12\tThe distributions exhibit a pronounced leftward shift as depth increases: gen-0 text (human-written seed) has a median NLL of 1.64~nats, dropping to 0.96 at depth~1 and reaching 0.02 at depth~4, confirming that recursively generated text becomes increasingly predictable to the reference model.\n13\tThe monotonic compression of the NLL distribution provides a mechanistic explanation for the entropy-based features that drive our depth classifier.\n14\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T21:56:52.628748+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost.tex"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T21:56:52.628891+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Per-Generator Equivalence Testing}\n2\t\\label{app:tost}\n3\t\n4\tTo confirm that the near-stationary classification is not a pooling artifact, we apply two one-sided $t$-tests (TOST) \\cite{lakens_equivalence} for each feature within each generator separately (gen-1 vs.\\ gen-2+, equivalence bound $|d| < 0.20$).\n5\tWe adopt Cohen's conventional small effect size ($d{=}0.20$) \\cite{cohen1988statistical} as the smallest effect of practical significance (SESOI): effects below this threshold are unlikely to be practically meaningful for depth discrimination.\n6\tLOFO analysis independently supports this choice: removing any near-stationary feature changes classification F1 by $\\leq$1.5\\,pp (Appendix~\\ref{app:lofo}), linking the statistical threshold to classification irrelevance.\n7\tSensitivity analysis at $\\varepsilon \\in \\{0.15, 0.20, 0.25\\}$ confirms the partition is robust to the bound choice (see DDR Validation appendix).\n8\tTable~\\ref{tab:tost-per-gen} reports observed $|d|$; \\checkmark{} marks features for which the TOST null hypothesis (non-equivalence) is rejected at $\\alpha = 0.05$.\n9\t\n10\tEntropy min passes equivalence for all eight generators; entropy max passes for six of eight (exceeding $\\varepsilon$ only for Pythia-1B and Pythia-2.8B, where $|d| \\approx 0.21$--$0.25$); tail decay passes for four of eight.\n11\tAll drifting and intermediate features fail equivalence uniformly, with $|d|$ ranging from 0.23 (entropy std, Mistral) to 1.40 (entropy mean, Pythia-1B).\n12\tThe partition is robust at the individual-generator level, with entropy min as the most consistently stationary feature.\n13\tFigure~\\ref{fig:ddr-scatter} visualizes the DDR partition in ($|\\rho|$, $d$) space, showing a clear gap between the three groups.\n14\t\n15\t\\begin{table}[ht]\n16\t\\centering\n17\t\\footnotesize\n18\t\\caption{Per-generator TOST equivalence ($\\varepsilon{=}|d|{<}0.20$, gen-1 vs.\\ gen-2+). Observed $|d|$; \\checkmark{} = equivalent ($p_{\\mathrm{TOST}} < 0.05$). Features grouped by DDR partit\n…[truncated 1920 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T21:56:52.629069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex",
+              "limit": "30"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T21:56:52.629211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\subsection*{Data-Driven Clustering}\n2\t\n3\tTo assess the DDR partition structure and determine whether the drifting/non-drifting split is data-driven, we apply $k$-means clustering ($k \\in \\{2,3,4,5\\}$) to the seven features in standardized $(|\\rho|, d)$ space (Table~\\ref{tab:clustering}).\n4\t\n5\t\\begin{table}[ht]\n6\t\\centering\n7\t\\small\n8\t\\caption{$k$-means clustering of 7 features in $(|\\rho|, d)$ space.}\n9\t\\label{tab:clustering}\n10\t\\resizebox{\\linewidth}{!}{%\n11\t\\begin{tabular}{ccp{5.5cm}}\n12\t\\toprule\n13\t$k$ & Silhouette & Clusters \\\\\n14\t\\midrule\n15\t2 & \\textbf{0.660} & \\{$\\bar{H}$, TTR, hapax\\} $\\mid$ \\{$\\sigma_H$, $H_{\\min}$, $H_{\\max}$, tail\\} \\\\\n16\t3 & 0.532 & \\{$\\bar{H}$, TTR, hapax\\} $\\mid$ \\{$\\sigma_H$, $H_{\\max}$, tail\\} $\\mid$ \\{$H_{\\min}$\\} \\\\\n17\t4 & 0.527 & \\{$\\bar{H}$, TTR, hapax\\} $\\mid$ \\{$H_{\\max}$, tail\\} $\\mid$ \\{$\\sigma_H$\\} $\\mid$ \\{$H_{\\min}$\\} \\\\\n18\t\\bottomrule\n19\t\\end{tabular}}\n20\t\\end{table}\n21\t\n22\tThe primary drifting/non-drifting split ($k{=}2$, silhouette\\,=\\,0.660) is the strongest cluster structure.\n23\tAt $k{=}3$, entropy min forms its own cluster rather than joining the near-stationary group because its pooled $|\\rho|{=}0.40$ (driven by the gen-0/gen-1 boundary) places it far from other near-stationary features in $\\rho$ space.\n24\tThe 3/1/3 DDR partition resolves this by using the gen-1 vs.\\ gen-2+ Cohen's $d$ ($d{=}0.03$) to place entropy min in the near-stationary group, a domain-informed refinement that unsupervised clustering cannot recover from pooled statistics alone.\n25\tAt $k{=}4$ (silhouette\\,=\\,0.571), entropy std separates from the near-stationary group, consistent with its intermediate DDR classification.\n26\t\n27\t\\paragraph{Exhaustive partition enumeration.}\n28\tTo confirm that the three-vs-four split is optimal rather than incidental, we enumerate all $\\binom{7}{3}{=}35$ possible ways to assign three features to a ``drifting'' group and the remaining four to ``non-drifting,'' computing the silhouette score for each partition in\n…[truncated 249 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T21:56:52.629350+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper && grep -n \"\\\\\\\\label{app:heteroscedasticity\\|\\\\\\\\label{app:ddr-supplement\\|\\\\\\\\label{app:holdout-split\\|\\\\\\\\label{app:tost-sensitivity\\|\\\\\\\\label{app:tost-bootstrap\\|\\\\\\\\label{app:epsilon-sweep\\|\\\\\\\\label{app:nll-distribution\\|\\\\\\\\label{app:convergence\\|\\\\\\\\label{app:qualitative\\|\\\\\\\\label{app:human-edit\\|\\\\\\\\label{app:cross-model-detail}\" *.tex",
+              "description": "Find label definitions in tex files"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T21:56:52.629480+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "appendix_ddr_validation.tex:37:\\label{app:tost-sensitivity}\nappendix_ddr_validation.tex:86:\\label{app:epsilon-sweep}\nappendix_ddr_validation.tex:118:\\label{app:holdout-split}\nappendix_ddr_validation.tex:165:\\label{app:heteroscedasticity}\nappendix_qualitative_examples.tex:2:\\label{app:qualitative}\nappendix_tost_bootstrap.tex:1:\\subsection{TOST Bootstrap Stability}\\label{app:tost-bootstrap}\nmain.tex:83:\\label{app:human-edit}\nmain.tex:103:\\label{app:cross-model-detail}\nmain.tex:149:\\label{app:ddr-supplement}\nmain.tex:156:\\label{app:convergence}\nmain.tex:175:\\label{app:nll-distribution}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T21:56:52.629635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex",
+              "offset": "70",
+              "limit": "120"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T21:56:52.629757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex",
+              "offset": "30"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T21:56:52.629900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "70\t\\label{app:feature-candidate}\n71\t\\input{appendix_feature_candidates}\n72\t\n73\t\\section{Confusion Matrix}\n74\t\\label{app:confusion}\n75\t\\input{appendix_confusion_matrix}\n76\t\n77\t\\section{Classifier Sensitivity}\n78\t\\label{app:classifier}\n79\t\\input{appendix_classifier}\n80\t\\FloatBarrier\n81\t\n82\t\\section{Robustness to Text Perturbation}\n83\t\\label{app:human-edit}\n84\t\\input{appendix_human_edit}\n85\t\n86\t\\section{Cross-Domain Generalization}\n87\t\\label{app:domain}\n88\t\\input{appendix_domain}\n89\t\n90\t\\section{Instruction-Tuned Model Analysis}\n91\t\\label{app:instruct}\n92\t\\input{appendix_instruct}\n93\t\n94\t\\section{Error Analysis of Binary Classification}\n95\t\\label{app:error-analysis}\n96\t\\input{appendix_error_analysis}\n97\t\n98\t\\section{Downstream Utility}\n99\t\\label{app:downstream}\n100\t\\input{appendix_downstream}\n101\t\n102\t\\section{Cross-Model Chain Per-Class Detail}\n103\t\\label{app:cross-model-detail}\n104\t\\input{appendix_cross_model_detail}\n105\t\n106\t\\section{Feature Distribution Analysis}\n107\t\\label{app:feature-distributions}\n108\t\\input{appendix_feature_distributions}\n109\t\n110\t\\section{Cross-Temperature Transfer}\n111\t\\label{app:cross-temp}\n112\t\\input{appendix_cross_temp}\n113\t\\FloatBarrier\n114\t\n115\t\\section{Feature Ablation}\n116\t\\label{app:ablation-table}\n117\t\\input{appendix_ablation}\n118\t\n119\t\\input{appendix_feature_correlation}\n120\t\n121\t\\section{Cross-Family Reference Models}\n122\t\\label{app:cross-ref}\n123\t\\input{table4}\n124\t\n125\t\\input{appendix_seed_control}\n126\t\n127\t\\input{appendix_tost}\n128\t\\FloatBarrier\n129\t\n130\t\\input{appendix_tost_bootstrap}\n131\t\n132\t\\section{DDR Partition Validation}\n133\t\\label{app:ddr-validation}\n134\t\\input{appendix_ddr_validation}\n135\t\\FloatBarrier\n136\t\n137\t\\section{Generator Subset Summary}\n138\t\\label{app:gen-subsets-section}\n139\t\\input{appendix_generator_subsets}\n140\t\n141\t\\input{appendix_qualitative_examples}\n142\t\n143\t\\section{Cross-Generator Transfer Analysis}\n144\t\\label{app:transfer}\n145\t\\input{appendix_transfer}\n146\t\\FloatBarrier\n147\t\n148\t\\section{Supplementar\n…[truncated 907 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T21:56:52.630176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "30\t\n31\t\\paragraph{Per-generator replication.}\n32\tTo rule out the possibility that the pooled silhouette is an artifact of mixing heterogeneous generators, we repeat the $(|\\rho|, d)$ clustering independently for each of the eight generators.\n33\tEvery generator recovers the identical \\{$\\bar{H}$, TTR, hapax\\} vs.\\ \\{$\\sigma_H$, $H_{\\min}$, $H_{\\max}$, tail\\} partition, with silhouette scores ranging from 0.505 (Pythia-1B) to 0.760 (Mistral-7B-v0.3; mean\\,=\\,0.651).\n34\tNo generator falls below the 0.50 moderate-structure threshold, confirming that the two-cluster structure is a per-generator property rather than a pooling artifact.\n35\t\n36\t\\subsection*{TOST Equivalence Bound Sensitivity}\n37\t\\label{app:tost-sensitivity}\n38\t\n39\tTable~\\ref{tab:tost-sensitivity} shows the fraction of generators for which each feature passes the TOST equivalence test (gen-1 vs.\\ gen-2+, $\\alpha{=}0.05$) at three equivalence bounds $\\varepsilon$.\n40\t\n41\t\\begin{table}[ht]\n42\t\\centering\n43\t\\small\n44\t\\caption{TOST equivalence pass rate across 8 generators at varying $\\varepsilon$.}\n45\t\\label{tab:tost-sensitivity}\n46\t\\resizebox{\\linewidth}{!}{%\n47\t\\begin{tabular}{llccc}\n48\t\\toprule\n49\t\\textbf{DDR Zone} & \\textbf{Feature} & $\\boldsymbol{\\varepsilon{=}0.15}$ & $\\boldsymbol{\\varepsilon{=}0.20}$ & $\\boldsymbol{\\varepsilon{=}0.25}$ \\\\\n50\t\\midrule\n51\t\\multirow{3}{*}{Drifting} & $\\bar{H}$ (ent.\\ mean) & 0/8 & 0/8 & 0/8 \\\\\n52\t & TTR & 0/8 & 0/8 & 0/8 \\\\\n53\t & hapax ratio & 0/8 & 0/8 & 0/8 \\\\\n54\t\\midrule\n55\tIntermediate & $\\sigma_H$ (ent.\\ std) & 0/8 & 0/8 & 0/8 \\\\\n56\t\\midrule\n57\t\\multirow{3}{*}{Near-stat.} & $H_{\\min}$ (ent.\\ min) & 7/8 & 8/8 & 8/8 \\\\\n58\t & $H_{\\max}$ (ent.\\ max) & 6/8 & 6/8 & 6/8 \\\\\n59\t & tail decay & 4/8 & 4/8 & 7/8 \\\\\n60\t\\bottomrule\n61\t\\end{tabular}}\n62\t\\end{table}\n63\t\n64\tThe partition is robust to the equivalence bound: drifting features reject equivalence at all $\\varepsilon$ for all generators, while entropy min passes even at the stricter bound $\\varepsilon{=}0.15$ (7/8 generator\n…[truncated 9918 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T21:56:52.630339+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost_bootstrap.tex"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T21:56:52.630475+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\subsection{TOST Bootstrap Stability}\\label{app:tost-bootstrap}\n2\t\n3\tTo verify that the equivalence conclusions in \\S\\ref{app:tost} are not sensitive to sample composition, we assess their stability under bootstrap resampling.\n4\tFor each of four representative features, we run 1{,}000 bootstrap iterations (base seed\\,=\\,42): each iteration independently resamples with replacement from the gen-1 and gen-2+ pools, recomputes Cohen's $d$ and the TOST $p$-value (equivalence margin $|d| < 0.20$).\n5\t\n6\t\\begin{table}[ht]\n7\t\\centering\n8\t\\footnotesize\n9\t\\caption{Bootstrap stability of TOST equivalence ($B{=}1{,}000$, margin $|d|{<}0.20$). Rejection rate = fraction of bootstrap iterations where TOST rejects non-equivalence at $\\alpha{=}0.05$.}\n10\t\\label{tab:tost-bootstrap}\n11\t\\resizebox{\\linewidth}{!}{%\n12\t\\begin{tabular}{l c c c}\n13\t\\toprule\n14\t\\textbf{Feature} & \\textbf{Rejection rate} & \\textbf{Median $d$} & \\textbf{$d$ 95\\% CI} \\\\\n15\t\\midrule\n16\tentropy\\_max  & 100\\% (1000/1000) & 0.062  & [0.037, 0.088] \\\\\n17\tentropy\\_min  & 100\\% (1000/1000) & $-$0.016 & [$-$0.042, 0.011] \\\\\n18\ttail\\_decay   & 100\\% (1000/1000) & 0.088  & [0.065, 0.111] \\\\\n19\t\\midrule\n20\tentropy\\_std  & 0\\% (0/1000)      & 0.458  & [0.435, 0.479] \\\\\n21\t\\bottomrule\n22\t\\end{tabular}}\n23\t\\end{table}\n24\t\n25\tAll three near-stationary features achieve a 100\\% rejection rate across 1{,}000 bootstrap iterations, and their effect-size 95\\% CIs fall entirely within the $\\pm 0.20$ equivalence margin.\n26\tEntropy std, included as an intermediate control, is never rejected (0\\%), with its CI $[0.435, 0.479]$ lying entirely outside the margin.\n27\tNo feature exhibits boundary-crossing: the classification of each feature is unanimous across all bootstrap samples, confirming that the equivalence conclusions are robust to resampling variability.\n28\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T21:56:52.630724+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint && diff artifacts/_project/paper/discussion.tex docs/paper/discussion.tex && echo \"IDENTICAL\" || echo \"DIFFERENT\"",
+              "description": "Compare discussion.tex in artifacts vs docs"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T21:56:52.630871+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "IDENTICAL"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T21:56:52.630993+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "diff artifacts/_project/paper/results.tex docs/paper/results.tex && echo \"IDENTICAL\" || echo \"DIFFERENT\"",
+              "description": "Compare results.tex in artifacts vs docs"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T21:56:52.631108+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "IDENTICAL"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-21T21:56:52.631219+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "diff artifacts/_project/paper/appendix_tost.tex docs/paper/appendix_tost.tex && echo \"IDENTICAL\" || echo \"DIFFERENT\"",
+              "description": "Compare appendix_tost.tex in artifacts vs docs"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-21T21:56:52.631328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "IDENTICAL"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-21T21:56:52.631471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex",
+              "old_string": "what changes is the \\emph{input}: as the model conditions on increasingly self-typical outputs, expected NLL compresses monotonically.",
+              "new_string": "what changes is the \\emph{input}: as the model conditions on increasingly self-typical outputs, expected NLL compresses monotonically (token-level distributions in Appendix~\\ref{app:nll-distribution}; per-feature convergence trajectories in Appendix~\\ref{app:convergence})."
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-21T21:56:52.631626+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-21T21:56:52.631750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex",
+              "old_string": "DDR is mechanistically distinct from model collapse \\cite{curse_of_recursion,strong_model_collapse}: retraining erodes tail coverage by updating weights, whereas inference-chain drift at fixed parameters shifts only location, leaving shape stable.",
+              "new_string": "DDR is mechanistically distinct from model collapse \\cite{curse_of_recursion,strong_model_collapse} (comprehensive supplementary analyses in Appendix~\\ref{app:ddr-supplement}): retraining erodes tail coverage by updating weights, whereas inference-chain drift at fixed parameters shifts only location, leaving shape stable."
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-21T21:56:52.631900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-21T21:56:52.632018+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex",
+              "old_string": "DDR supplies this decomposition, isolating which distributional properties carry cross-generator depth signal, enabling detection without per-generator calibration.",
+              "new_string": "DDR supplies this decomposition, isolating which distributional properties carry cross-generator depth signal, enabling detection without per-generator calibration; extending to a ninth generator family (Gemma-2) preserves the partition with modest F1 attenuation ($-1.9$\\,pp; Appendix~\\ref{app:9gen-scale})."
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-21T21:56:52.632153+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-21T21:56:52.632266+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex",
+              "old_string": "Our generation chains use open-ended continuation prompts; real-world recursive pipelines (instruction-following chains, multi-turn dialogues, mixed-model editing) may attenuate, restructure, or introduce confounds not present in controlled chains.",
+              "new_string": "Our generation chains use open-ended continuation prompts; real-world recursive pipelines (instruction-following chains, multi-turn dialogues, mixed-model editing) may attenuate, restructure, or introduce confounds not present in controlled chains, though depth signal survives moderate text perturbation (binary F1\\,=\\,0.614 at 10\\% word replacement; Appendix~\\ref{app:human-edit})."
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-21T21:56:52.632403+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-21T21:56:52.632529+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+              "old_string": "Cross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]) under 5-generator LOGO.\\footnote",
+              "new_string": "Cross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; per-class breakdown in Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-21T21:56:52.632722+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-21T21:56:52.632847+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+              "old_string": "This asymmetry constitutes the \\emph{differential depth response} (DDR).",
+              "new_string": "This asymmetry constitutes the \\emph{differential depth response} (DDR); Appendix~\\ref{app:qualitative} illustrates the pattern with a concrete generation chain where drifting features degrade monotonically while shape features remain stable."
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-21T21:56:52.633021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-21T21:56:52.633143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+              "old_string": "KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}).",
+              "new_string": "KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity})."
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-21T21:56:52.633306+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-21T21:56:52.633427+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+              "old_string": "A permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}).",
+              "new_string": "A permutation test ($n{=}10{,}000$) establishes the three-vs-four split as non-random ($p{=}0.030$; fixed-label silhouette\\,=\\,0.660 vs.\\ null mean\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ possible splits ranks this partition first (Appendix~\\ref{app:ddr-validation}), and disjoint four-generator holdout splits independently recover identical zone assignments (Appendix~\\ref{app:holdout-split})."
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-21T21:56:52.633608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-21T21:56:52.633750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost.tex",
+              "old_string": "Sensitivity analysis at $\\varepsilon \\in \\{0.15, 0.20, 0.25\\}$ confirms the partition is robust to the bound choice (see DDR Validation appendix).",
+              "new_string": "Sensitivity analysis at $\\varepsilon \\in \\{0.15, 0.20, 0.25\\}$ confirms the partition is robust to the bound choice (Appendix~\\ref{app:tost-sensitivity}); bootstrap resampling ($B{=}1{,}000$) shows 100\\% rejection stability for all near-stationary features (Appendix~\\ref{app:tost-bootstrap}); and the partition is invariant across $\\varepsilon \\in [0.10, 0.75]$ (Appendix~\\ref{app:epsilon-sweep})."
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-21T21:56:52.633902+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-21T21:56:52.634032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cp artifacts/_project/paper/discussion.tex docs/paper/discussion.tex && cp artifacts/_project/paper/results.tex docs/paper/results.tex && cp artifacts/_project/paper/appendix_tost.tex docs/paper/appendix_tost.tex && echo \"DONE\"",
+              "description": "Copy edited files from artifacts to docs"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-21T21:56:52.634146+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "DONE"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-21T21:56:52.634267+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper && for label in app:9gen-scale app:convergence app:qualitative app:human-edit app:cross-model-detail app:nll-distribution app:heteroscedasticity app:ddr-supplement app:holdout-split app:tost-sensitivity app:tost-bootstrap app:epsilon-sweep; do count=$(grep -r \"ref{$label}\" *.tex 2>/dev/null | grep -v \"\\\\\\\\label{\" | wc -l); echo \"$label: $count references\"; done",
+              "description": "Verify all 12 labels now have references in artifacts"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-21T21:56:52.634384+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "app:9gen-scale: 1 references\napp:convergence: 1 references\napp:qualitative: 1 references\napp:human-edit: 1 references\napp:cross-model-detail: 1 references\napp:nll-distribution: 1 references\napp:heteroscedasticity: 1 references\napp:ddr-supplement: 1 references\napp:holdout-split: 1 references\napp:tost-sensitivity: 1 references\napp:tost-bootstrap: 1 references\napp:epsilon-sweep: 1 references"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-21T21:56:52.634495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper && for label in app:9gen-scale app:convergence app:qualitative app:human-edit app:cross-model-detail app:nll-distribution app:heteroscedasticity app:ddr-supplement app:holdout-split app:tost-sensitivity app:tost-bootstrap app:epsilon-sweep; do count=$(grep -r \"ref{$label}\" *.tex 2>/dev/null | grep -v \"\\\\\\\\label{\" | wc -l); echo \"$label: $count references\"; done",
+              "description": "Verify all 12 labels now have references in docs"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-21T21:56:52.634627+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "app:9gen-scale: 1 references\napp:convergence: 1 references\napp:qualitative: 1 references\napp:human-edit: 1 references\napp:cross-model-detail: 1 references\napp:nll-distribution: 1 references\napp:heteroscedasticity: 1 references\napp:ddr-supplement: 1 references\napp:holdout-split: 1 references\napp:tost-sensitivity: 1 references\napp:tost-bootstrap: 1 references\napp:epsilon-sweep: 1 references"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-21T21:56:52.634792+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 12 个 label 在 artifacts 和 docs 两份中均已被引用 1 次。\n\n修改摘要：\n\n| Label | 插入位置 | 语境 |\n|---|---|---|\n| `app:9gen-scale` | discussion.tex — 跨生成器泛化句 | \"extending to a ninth generator family (Gemma-2) preserves the partition\" |\n| `app:convergence` | discussion.tex — NLL 压缩句 | \"per-feature convergence trajectories\" |\n| `app:nll-distribution` | discussion.tex — NLL 压缩句 | \"token-level distributions\" |\n| `app:ddr-supplement` | discussion.tex — DDR vs model collapse | \"comprehensive supplementary analyses\" |\n| `app:human-edit` | discussion.tex — 限制性讨论句 | \"depth signal survives moderate text perturbation\" |\n| `app:qualitative` | results.tex — DDR 定义句 | \"illustrates the pattern with a concrete generation chain\" |\n| `app:cross-model-detail` | results.tex — 跨模型链段落 | \"per-class breakdown\" |\n| `app:heteroscedasticity` | results.tex — 量化段落 | \"partition robust under heteroscedasticity\" |\n| `app:holdout-split` | results.tex — 验证段落 | \"disjoint four-generator holdout splits independently recover identical zone assignments\" |\n| `app:tost-sensitivity` | appendix_tost.tex — TOST 内部交叉引用 | \"sensitivity analysis...confirms robust to bound choice\" |\n| `app:tost-bootstrap` | appendix_tost.tex — TOST 内部交叉引用 | \"bootstrap resampling shows 100% rejection stability\" |\n| `app:epsilon-sweep` | appendix_tost.tex — TOST 内部交叉引用 | \"partition invariant across ε ∈ [0.10, 0.75]\" |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_add-appendix-refs_20260521T215228"
+          },
+          "id": "event-000065"
+        }
+      ],
+      "message_count": 65
+    }
+  ],
+  "readable_path": "readable/conversations/paper-add-appendix-refs.md"
+}

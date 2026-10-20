@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5782a5d73b03bb37ef58",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code human edit robustness",
+  "task_key": "worker_code_human-edit-robustness_20260516T215920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_human-edit-robustness_20260516T215920_result.json",
+    "occurrence": 1,
+    "bytes": 1032,
+    "sha256": "a232a3a0b90df8ba19d00d6a2c11f9ac961341bd3f6e6ddc04f1125bbd6aa5eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No errors. Experiment completed cleanly. Let me verify the 0% baseline sanity check against the expected ~0.70 binary F1.\n\nResults summary:\n\n| Perturbation | Binary F1 | Multiclass F1 | Binary 95% CI |\n|---|---|---|---|\n| 0% (baseline) | 0.6953 | 0.7371 | [0.6798, 0.7102] |\n| 5% | 0.6496 | 0.6407 | [0.6351, 0.6655] |\n| 10% | 0.6139 | 0.4916 | [0.5989, 0.6287] |\n| 20% | 0.5912 | 0.3669 | [0.5761, 0.6049] |\n\n**Degradation from baseline (binary F1):**\n- 5% replacement: -0.046 (6.6% relative drop)\n- 10% replacement: -0.081 (11.7% relative drop)\n- 20% replacement: -0.104 (15.0% relative drop)\n\n**Sanity check passed**: 0% baseline binary F1 = 0.695 matches the expected ~0.70 from v6.\n\nThe binary classification (gen-1 vs gen-2+) degrades gracefully: even at 20% word replacement, F1 remains at 0.59 (vs 0.70 baseline). The multiclass task is more sensitive because distinguishing gen-0 from gen-1/2+ relies heavily on lexical features (ttr, hapax) that are directly disrupted by word replacement."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-human-edit-robustness.md"
+}

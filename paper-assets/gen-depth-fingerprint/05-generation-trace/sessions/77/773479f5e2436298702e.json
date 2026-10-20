@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "773479f5e2436298702e",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_1_1778804228.md",
+  "task_key": "loop_1_1778804228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1778804228.md",
+    "occurrence": 1,
+    "bytes": 4930,
+    "sha256": "1b2aa60bab9dbc677d4df403e333a49608cd91ab0631fa50c199d3ae1a632cae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: idle_timeout\nupdated: '2026-05-15T00:13:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 的 cuda:0/1/2/3，不得用其他设备\n- submit_training_job 脚本内 `--device` 必须用 `cuda:0`（框架注入 CUDA_VISIBLE_DEVICES 映射物理卡）\n- generate_chain.py 已内置 SIGHUP 防御（`signal.SIG_IGN`），不要改动此逻辑\n- Framing 术语：禁用 \"dual dynamics\"/\"H1/H2\"，统一用 \"differential depth response\" + \"drifting/stationary\"（D007 决策）\n- 不可 overclaim drift/stationarity 为 \"novel discovery\"——它是 location-shift 的数学必然，贡献在 task formulation + empirical validation\n- plan-004 downstream fine-tuning 必须用非 Pythia 模型（OLMo-1B），避免 reference model 循环（Pythia-410M 既做特征提取又做 eval）\n- EMNLP 2026 ARR deadline: 2026-05-25（10 天），scope 仅 RQ1+RQ4；AAAI 2027: 2026-08-02\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: autodl-5090，工作目录 `/root/gen-depth-fingerprint`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**（全在 `/root/autodl-tmp/`）:\n  - pythia-2.8b: `.hf_cache/EleutherAI/pythia-2___8b`\n  - pythia-1b: `models/pythia-1b/EleutherAI/pythia-1b`\n  - pythia-410m (ref): `models/pythia-410m/models--EleutherAI--pythia-410m/snapshots/9879c9b...`\n  - olmo-2-1b: `models/olmo-2-1b-hf/allenai/OLMo-2-0425-1B`\n  - qwen3-1.7b: `models/Qwen/Qwen3-1___7B-Base`\n  - qwen3-0.6b: `models/Qwen/Qwen3-0___6B-Base`\n- **数据**: `/root/gen-depth-fingerprint/data/`（features_all_models.csv 23032条，各模型子目录有 generations.jsonl）\n- **活跃进程**: 无。所有 cron 已 reconcile，0 个活跃任务\n- **GPU 状态**: 4 卡全部空闲\n\n### 3. 📊 当前状态\n本 session 完成了 plan-002 全部数据生成（5 生成器 23K 记录）、plan-002-eval 跨生成器评估（LOGO F1=0.80）、plan-003 跨家族参考模型验证（OLMo/Qwen ref F1 0.81/0.82，确认非 Pythia artifact）、plan-013 文本长度混淆控制（三重证据排除）。\n\n**Registry 关键状态**:\n- DONE(success): mvp-001, plan-001, plan-001-fix, plan-002 全系列, plan-002-eval, plan-003 全系列, plan-013 — 共 17 个\n- PREPARING（待推进）: **plan-014**（Qwen3-8B-Base 7B+ 生成器，回应 RC9）、**plan-015**（ordinal baseline FastDetectGPT/LD-Score）、**plan-004-prep**（downstream utility OLMo-1B fine-tuning 准备）\n- PREPARING（历史残留，实际已完成，可忽略）: plan-001-restore, mvp-001-gen-s0/s1/s2/s3\n\n**无等待中的 Worker 回调 / Cron / Director 决策。** 上轮 session 已向 Director 汇报了 plan-003 结果但未收到后续指令。\n\n### 4. 📋 待办（条件触发式）\n- Director 批准 plan-014 → spawn Worker 下载 Qwen3-8B-Base 到 autodl-5090，生成 continuation 链（需 2 卡，约 8h）\n- Director 批准 plan-015 → spawn Worker 在 autodl-5090 跑 FastDetectGPT/LD-Score/Binoculars 对已有 23K 数据算 ordinal scores（1 卡，约 3h）\n- Director 批准 plan-004-prep → spawn Worker 下载 OLMo-1B，构建 depth-stratified fine-tuning 数据集（1 卡准备，后续 fine-tuning 需 Director 确认资源）\n- plan-014 完成 → 提特征 + 加入跨生成器分类器，验证 7B+ 模型深度信号是否衰减\n- plan-015 完成 → 比对：现有检测器 ordinal F1 vs 我们的 0.80；若 >0.70 则 baseline 很强需调整 claim 强度\n- 所有 P0 实验完成 → 启动论文写作 pipeline（先 paper_plan → 再分章节 spawn Writer Workers）\n- **EMNLP 决策点**: 若 Director 决定冲 EMNLP（5/25），需立即砍 scope 到 RQ1+RQ4，跳过 plan-004 downstream\n\n### 5. 🎯 战略上下文\n- **决策链**: D001(MVP方案) → D002(MVP PASS) → D003-D005(claim迭代) → D006(re-dream实证定位) → D007(differential depth response 术语+ordinal baseline)\n- **核心结论已稳固**: 跨 5 生成器/3 家族的 differential depth response 成立（LOGO 0.80, family-out 0.77），非长度 artifact，非 Pythia artifact。剩余工作是补强（7B+ 规模、ordinal baseline、downstream utility）\n- **最易判断错的事**:\n  1. plan-015 的 ordinal baseline 可能出乎意料地强——如果 FastDetectGPT 单特征 ordinal F1 >0.70，需要重新 frame 我们的方法优势（从\"能做 ordinal\"转为\"complementary features 做得更好\"）\n  2. Qwen3-8B-Base（plan-014）需要约 16GB 显存，autodl-5090 的 5090 单卡 32GB 够用，但生成速度会比小模型慢很多——预估 8-12h\n  3. registry 里有大量 PREPARING 残留（mvp-001-gen-s*, plan-001-restore），它们是早期实验的 stale 状态，不要试图重跑\n  4. AutoDL 网络：pip install / git clone 前必须 `source /etc/network_turbo`；HF 下载设 `HF_HUB_DISABLE_XET=1`；大模型优先用 ModelScope\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1778804228.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "834b05ad2511bae39e2c",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "paper layout rebalance",
+  "task_key": "worker_paper_layout-rebalance_20260525T080402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_layout-rebalance_20260525T080402.log",
+    "occurrence": 1,
+    "bytes": 582725,
+    "sha256": "da0646d631aa1a24e74009c7c9d98e460fd64d9402dca7d526412b2c21413d8f"
+  },
+  "statistics": {
+    "messages": 219,
+    "user_turns": 1,
+    "tool_calls": 74,
+    "roles": {
+      "log": 1,
+      "system": 12,
+      "record": 1,
+      "assistant": 55,
+      "tool_call": 74,
+      "user": 1,
+      "tool_result": 74,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "834b05ad2511bae39e2c-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 212,
+      "chunks": [
+        {
+          "path": "834b05ad2511bae39e2c-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "834b05ad2511bae39e2c-part-0002.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-layout-rebalance.md"
+}

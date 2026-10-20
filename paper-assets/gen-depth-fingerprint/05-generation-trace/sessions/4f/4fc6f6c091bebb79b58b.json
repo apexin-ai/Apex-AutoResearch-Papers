@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4fc6f6c091bebb79b58b",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper abstract intro binary f1",
+  "task_key": "worker_paper_abstract-intro-binary-f1_20260516T011952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_abstract-intro-binary-f1_20260516T011952_result.json",
+    "occurrence": 1,
+    "bytes": 673,
+    "sha256": "20ffbefdadde3c1897cd73f0f44f8632a667113b475b672ad1090e7acc8c45cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both files are already correct:\n\n- **abstract.tex**: Headline is binary F1=0.723 with CI [0.717, 0.729], std=0.051. No old numbers.\n- **introduction.tex**: Binary F1=0.723 appears in both the main text (line 25) and contributions (line 34), both with CI and std. No old numbers.\n- No \"consistently\" in either file.\n- Per-gen consistency uses std format (0.051), not raw range.\n- No residual 0.82, 0.80, or 0.789 as headline numbers.\n- The 0.42–0.81 range on intro line 17 correctly describes baseline detector weakness, not our ensemble.\n\nNo changes needed — both files already reflect the D017 decision with binary F1=0.723 as primary metric."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-abstract-intro-binary-f1.md"
+}

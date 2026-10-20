@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b7bb2cecd94cbd39e46",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan002 multi model",
+  "task_key": "worker_code_plan002-multi-model_20260514T185438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan002-multi-model_20260514T185438_result.json",
+    "occurrence": 1,
+    "bytes": 4303,
+    "sha256": "3d3675d3a6c7b84999b26e5c12a7ca85991746702c861845cd720fec5b2e2f0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 报告\n\n### 1. Qwen 模型确认\n\n| 模型 | Repo ID | 参数量 | 本地路径 |\n|------|---------|--------|---------|\n| Qwen3-1.7B-Base | `Qwen/Qwen3-1.7B-Base` | 1721M | `/root/autodl-tmp/models/Qwen/Qwen3-1___7B-Base` |\n| Qwen3-0.6B-Base | `Qwen/Qwen3-0.6B-Base` | 596M | `/root/autodl-tmp/models/Qwen/Qwen3-0___6B-Base` |\n\n### 2. Dry-run 结果\n\n| 模型 | 状态 | Records | Skipped | 耗时 |\n|------|------|---------|---------|------|\n| pythia-1b | **PASS** | 10 | 0 | 12.0s |\n| olmo-2-1b | **PASS** | 10 | 0 | 19.3s |\n| qwen3-1.7b | **PASS** | 10 | 0 | 29.6s |\n| qwen3-0.6b | **PASS** | 7 | 1 | 13.1s |\n\nqwen3-0.6b 在 seed 0 depth 2 生成了空输出，属小模型正常行为，代码已正确处理（skip + continue）。\n\n### 3. 完整运行命令（4 shard）\n\n```bash\ncd /root/gen-depth-fingerprint\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\n# pythia-1b\npython generate_chain.py --model-name pythia-1b --model-path /root/autodl-tmp/models/pythia-1b/EleutherAI/pythia-1b --shard-id 0 --num-shards 4 --device cuda:0\npython generate_chain.py --model-name pythia-1b --model-path /root/autodl-tmp/models/pythia-1b/EleutherAI/pythia-1b --shard-id 1 --num-shards 4 --device cuda:1\npython generate_chain.py --model-name pythia-1b --model-path /root/autodl-tmp/models/pythia-1b/EleutherAI/pythia-1b --shard-id 2 --num-shards 4 --device cuda:2\npython generate_chain.py --model-name pythia-1b --model-path /root/autodl-tmp/models/pythia-1b/EleutherAI/pythia-1b --shard-id 3 --num-shards 4 --device cuda:3\n\n# olmo-2-1b\npython generate_chain.py --model-name olmo-2-1b --model-path /root/autodl-tmp/models/olmo-2-1b-hf/allenai/OLMo-2-0425-1B --shard-id 0 --num-shards 4 --device cuda:0\npython generate_chain.py --model-name olmo-2-1b --model-path /root/autodl-tmp/models/olmo-2-1b-hf/allenai/OLMo-2-0425-1B --shard-id 1 --num-shards 4 --device cuda:1\npython generate_chain.py --model-name olmo-2-1b --model-path /root/autodl-tmp/models/olmo-2-1b-hf/allenai/OLMo-2-0425-1B --shard-id 2 --num-shards 4 --device cuda:2\npython generate_chain.py --model-name olmo-2-1b --model-path /root/autodl-tmp/models/olmo-2-1b-hf/allenai/OLMo-2-0425-1B --shard-id 3 --num-shards 4 --device cuda:3\n\n# qwen3-1.7b\npython generate_chain.py --model-name qwen3-1.7b --model-path /root/autodl-tmp/models/Qwen/Qwen3-1___7B-Base --shard-id 0 --num-shards 4 --device cuda:0\npython generate_chain.py --model-name qwen3-1.7b --model-path /root/autodl-tmp/models/Qwen/Qwen3-1___7B-Base --shard-id 1 --num-shards 4 --device cuda:1\npython generate_chain.py --model-name qwen3-1.7b --model-path /root/autodl-tmp/models/Qwen/Qwen3-1___7B-Base --shard-id 2 --num-shards 4 --device cuda:2\npython generate_chain.py --model-name qwen3-1.7b --model-path /root/autodl-tmp/models/Qwen/Qwen3-1___7B-Base --shard-id 3 --num-shards 4 --device cuda:3\n\n# qwen3-0.6b\npython generate_chain.py --model-name qwen3-0.6b --model-path /root/autodl-tmp/models/Qwen/Qwen3-0___6B-Base --shard-id 0 --num-shards 4 --device cuda:0\npython generate_chain.py --model-name qwen3-0.6b --model-path /root/autodl-tmp/models/Qwen/Qwen3-0___6B-Base --shard-id 1 --num-shards 4 --device cuda:1\npython generate_chain.py --model-name qwen3-0.6b --model-path /root/autodl-tmp/models/Qwen/Qwen3-0___6B-Base --shard-id 2 --num-shards 4 --device cuda:2\npython generate_chain.py --model-name qwen3-0.6b --model-path /root/autodl-tmp/models/Qwen/Qwen3-0___6B-Base --shard-id 3 --num-shards 4 --device cuda:3\n\n# 合并（每个模型跑完后）\npython merge_shards.py --model-name pythia-1b --num-shards 4\npython merge_shards.py --model-name olmo-2-1b --num-shards 4\npython merge_shards.py --model-name qwen3-1.7b --num-shards 4\npython merge_shards.py --model-name qwen3-0.6b --num-shards 4\n```\n\n### 4. 代码改动摘要\n\n**generate_chain.py**：新增 `--model-name`（默认 pythia-2.8b）和 `--model-path`（默认 None → 回退 Pythia-2.8B）。输出路径改为 `data/{model_name}/`。添加 `trust_remote_code=True`、pad_token 兼容处理、输出记录含 `\"model\"` 字段。不指定新参数时行为与原版一致。\n\n**merge_shards.py**：新增 `--model-name`。指定时从 `data/{model_name}/` 读取 shard，不指定时行为不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan002-multi-model.md"
+}

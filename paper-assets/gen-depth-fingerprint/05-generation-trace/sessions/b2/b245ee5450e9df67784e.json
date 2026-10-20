@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b245ee5450e9df67784e",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_2_1778812965.md",
+  "task_key": "loop_2_1778812965",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778812965.md",
+    "occurrence": 1,
+    "bytes": 4312,
+    "sha256": "00a94690fc1d0f59896df307e3e4492477e8f8fb964d73bb133ec0a1fd6de472"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-15T01:24:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 cuda:0-3（autodl-5090），禁止用白名单外 GPU\n- submit_training_job 注入 CUDA_VISIBLE_DEVICES 后脚本只能看到 cuda:0，**--device 必须写 cuda:0**，不能写物理卡号\n- 所有训练输出（checkpoints/logs）必须写 `/root/autodl-tmp/`，**绝对不写根分区**——曾因 checkpoint 撑爆 30GB 根分区导致全部进程挂掉\n- nohup 启动而非 tmux_backend（tmux has_session bug 未修，会误杀进程）。Python 用绝对路径 `/root/miniconda3/bin/python`\n- generate_chain.py 已加 SIGHUP ignore handler，但 fine-tuning 脚本没有——大规模 fine-tuning 必须确认输出路径和 save_strategy\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: autodl-5090，account=root，工作目录 `/root/gen-depth-fingerprint`\n- **Python**: `/root/miniconda3/bin/python`（conda base），无 venv\n- **数据盘**: `/root/autodl-tmp/gen-depth-fingerprint/`（大文件存这里）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **模型路径**: 见 memory.md \"模型路径\" 表。Qwen3-8B-Base 路径: `/root/autodl-tmp/models/Qwen/Qwen3-8B-Base/Qwen/Qwen3-8B-Base/`\n- **活跃进程**:\n  - plan-014: PID 134817, cuda:0, Qwen3-8B generation, log `/tmp/gen_large_model.log`\n  - plan-004-v2: PID 143757(cuda:1)/145189(cuda:2)/145799(cuda:3), downstream fine-tuning, logs `/tmp/plan004_gpu{1,2,3}.log`\n  - plan-015-v2: 无 PID 记录（ordinal baseline on cuda:2——注意与 plan-004-v2 的 cuda:2 冲突，需确认是否已完成或实际分配）\n- **Cron 监控**: plan-014 和 plan-004-v2 有活跃 cron，plan-015-v2 无 cron（reconcile 只返回两个）\n\n### 3. 📊 当前状态\n**刚完成**: plan-015 ordinal baseline（7-feature 0.80 vs Avg-LogProb 0.76，显著优势 p=0.000）；plan-003 跨家族参考模型验证；plan-013 文本长度混淆排除。plan-004（首次）因 OOM+磁盘满失败，已由 plan-004-v2 在数据盘重跑。\n\n**RUNNING**:\n- `plan-014` (cuda:0): Qwen3-8B-Base 生成链，383/~1000 seeds，预计还需几小时\n- `plan-004-v2` (cuda:1,2,3): OLMo-2-0425-1B downstream fine-tuning，5 variants × 3 seeds = 15 runs（size_matched_seed42 已完成 eval_loss=0.8618），GPU2 98% VRAM 接近极限\n- `plan-015-v2` (状态不明): ordinal baseline 重跑，无 cron 监控，需立即确认进程状态\n\n**等待中**:\n- plan-014 和 plan-004-v2 的 cron 回调\n- 全部 P0 完成后评估 EMNLP 可行性\n\n### 4. 📋 待办（条件触发式）\n- plan-014 cron 回调（generation done）→ spawn worker 跑 extract_features + 跨模型分析 → 确认 8B 模型同样展现 dual dynamics → 更新 ROADMAP Claim Scale(RC9)\n- plan-004-v2 cron 回调（fine-tuning done）→ spawn worker 分析 5 variants 的 eval_loss/ppl 差异 → Claim 3 downstream utility 结论 → 若 success 则全部 P0 完成\n- plan-015-v2 无 cron → **第一件事**确认其进程状态，若已完成需手动处理结果\n- 全部 P0 完成 → 向 Director 汇报 EMNLP 可行性评估（deadline May 25，仅剩 10 天）→ 若 go 则立即启动 Paper Agent\n- plan-004-v2 若 negative（depth-aware filtering 无优势）→ 产出 Framing 提案，Claim 3 可能需要降级或替换\n\n### 5. 🎯 战略上下文\n**项目核心结论**: 递归 LLM 生成链展现 differential depth response——level/diversity 特征漂移（H2），shape 特征稳态（H1）。跨 5 生成器 3 家族验证。7-feature ensemble macro-F1=0.80（LOGO），显著优于所有现有检测器。\n\n**决策链**: D001(MVP方案)→D002(MVP PASS)→D003-D005(framing迭代)→D006(实证/概念定位)→D007(Re-dream条件达标)\n\n**Claims 证据进度**: Claim 1 ✅, Claim 2 ✅, Claim 3 ⏳(plan-004-v2), Scale RC9 🔄(plan-014)\n\n**易错点**:\n- plan-015-v2 没有 cron 监控，容易被遗忘——必须手动查\n- plan-004-v2 GPU2 98% VRAM，可能随时 OOM——回调时先检查是否有 OOM 错误\n- EMNLP deadline 5/25 只剩 10 天，如果 plan-004-v2 结果是 negative，时间不够做 Framing 调整+论文——这种情况下应向 Director 建议直接瞄准 AAAI（deadline 8/2）\n- Qwen3-8B-Base 的模型路径有双层嵌套: `.../Qwen3-8B-Base/Qwen/Qwen3-8B-Base/`，不要只写到第一层\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778812965.md"
+}

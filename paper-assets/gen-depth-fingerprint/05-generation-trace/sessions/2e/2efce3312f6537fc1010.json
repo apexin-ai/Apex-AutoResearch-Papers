@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2efce3312f6537fc1010",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper ci and lofo from json",
+  "task_key": "worker_paper_ci-and-lofo-from-json_20260515T083500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_ci-and-lofo-from-json_20260515T083500_result.json",
+    "occurrence": 1,
+    "bytes": 448,
+    "sha256": "60df01a616846500501b14853f273829d1657c1c46b52c4873a5b7d561529c3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两处更新：\n\n**Table 1** (tab:logo-results)：新增 95% CI 列，所有 CI 从 JSON bootstrap 数据精确提取（n=1000）。Point estimates 保持不变。\n\n**LOFO 段落 + Table 3** (tab:lofo)：在 feature ablation 后新增 `\\paragraph{Leave-one-feature-out.}` 和对应表格，按影响幅度排序。关键发现：entropy_max 去掉后降幅最大（-1.5pp），entropy_min 完全冗余（Δ=+0.000）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-ci-and-lofo-from-json.md"
+}

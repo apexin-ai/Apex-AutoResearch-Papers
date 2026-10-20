@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c8c9c38952e5a0e18b3",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper instruct cross model fix",
+  "task_key": "worker_paper_instruct-cross-model-fix_20260515T181700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_instruct-cross-model-fix_20260515T181700_result.json",
+    "occurrence": 1,
+    "bytes": 844,
+    "sha256": "6cc57e4d5c658fbaea9648fabc980ce1900a5f4a2e6cb4ce2b51e86e6dd2d7ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "四个文件全部修改完成。变更摘要：\n\n**discussion.tex** — instruct 段落重写：\n- Entropy reversal 表述为跨三个 instruct 模型一致（partial ρ = +0.103/+0.161/+0.364），是 robust behavioral change\n- Surface feature reversal 明确标注为 model-dependent：Qwen 保持正向（TTR +0.139/+0.130, hapax +0.125/+0.166），OLMo 保持与 base 同向的负值（TTR -0.241, hapax -0.198）\n- 新增 OLMo paradox 段落：entropy 最强但 F1 最差，归因于 surface 与 entropy 极性矛盾导致分类器信号冲突\n\n**limitations.tex** — instruct limitation 段落修正：\n- 删除 \"surface feature degradation is partially explained by length confounds\" 的过度简化\n- 改为 model-dependent 表述 + entropy reversal 一致性\n\nartifacts/ 和 docs/paper/ 两处已同步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-instruct-cross-model-fix.md"
+}

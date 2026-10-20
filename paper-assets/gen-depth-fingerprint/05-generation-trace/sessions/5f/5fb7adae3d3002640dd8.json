@@ -1,0 +1,653 @@
+{
+  "schema_version": "1.0",
+  "id": "5fb7adae3d3002640dd8",
+  "project": "gen-depth-fingerprint",
+  "kind": "conversation",
+  "title": "paper related work cleanup",
+  "task_key": "worker_paper_related-work-cleanup_20260515T175029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_related-work-cleanup_20260515T175029.jsonl",
+    "occurrence": 1,
+    "bytes": 22490,
+    "sha256": "6ffd32573bfcc8aaa7e21eda84f9f66f2fe2b8e3d98521f490d8ba41c0d6d636"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 15,
+    "roles": {
+      "tool_call": 15,
+      "tool_result": 15,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T17:53:05.522027+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/related_work.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T17:53:05.522449+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related}\n3\t\n4\t\\subsection{AI-Generated Text Detection}\n5\t\\label{sec:related-detection}\n6\t\n7\tMethods for distinguishing human-written from machine-generated text have evolved from statistical tests on token-level distributions \\cite{gltr,grover,release_strategies} to zero-shot approaches exploiting reference-model likelihoods \\cite{detectgpt,fast_detectgpt,binoculars,dna_gpt} and learned classifiers over linguistic features \\cite{feat_aug_transformer,reliable_detection,ld_score}.\n8\tRecent work has pursued diverse detection signals: \\citet{intrinsic_dimension} use intrinsic dimensionality estimates, \\citet{diveye} propose surprisal diversity features directly comparable to our shape-based measures, and \\citet{generator_barrier} characterize the distributional gap between human and model outputs.\n9\t\\citet{wu_survey_2025} provide the most comprehensive recent survey; see also \\citet{jawahar_survey} for an earlier overview.\n10\tA persistent limitation is that all these methods produce binary (real vs.\\ synthetic) decisions.\n11\tRecent efforts extend detection to multi-class settings: \\citet{beyond_binary} propose role recognition and involvement measurement to distinguish collaborative human-LLM generation scenarios, and the SemEval-2024 shared task \\cite{semeval2024_task8} evaluates multi-generator attribution across domains and languages.\n12\tThese approaches discriminate among different \\emph{sources} (human vs.\\ specific models) rather than recursive generation \\emph{depth} within a single generator's chain.\n13\tEven when detection scores correlate with generation depth, they exhibit high cross-generator variance when repurposed as ordinal predictors (per-generator F1 ranging from 0.42 to 0.81; \\S\\ref{sec:results-baselines}), because each score captures a single distributional property that generalizes inconsistently.\n14\t\\citet{paraphrase_evades} and \\citet{detection_possibilities} further demonstrate that detection robustness degrad\n…[truncated 5497 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T17:53:05.522729+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/references.bib"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T17:53:05.523080+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% ===== Detection =====\n2\t\n3\t@inproceedings{detectgpt,\n4\t  title = {{DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature}},\n5\t  author = {Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n6\t  booktitle = {Proceedings of the International Conference on Machine Learning},\n7\t  year = {2023},\n8\t}\n9\t\n10\t@inproceedings{gltr,\n11\t  title = {{GLTR: Statistical Detection and Visualization of Generated Text}},\n12\t  author = {Gehrmann, Sebastian and Strobelt, Hendrik and Rush, Alexander M.},\n13\t  booktitle = {Proceedings of the Annual Meeting of the Association for Computational Linguistics},\n14\t  year = {2019},\n15\t}\n16\t\n17\t@inproceedings{dna_gpt,\n18\t  title = {{DNA-GPT: Divergent N-Gram Analysis for Training-Free Detection of GPT-Generated Text}},\n19\t  author = {Yang, Xianjun and Cheng, Wei and Wu, Yue and Petzold, Linda and Wang, William Yang and Chen, Haifeng},\n20\t  booktitle = {Proceedings of the International Conference on Learning Representations},\n21\t  year = {2024},\n22\t}\n23\t\n24\t@inproceedings{binoculars,\n25\t  title = {{Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text}},\n26\t  author = {Hans, Abhimanyu and Schwarzschild, Avi and Cherepanova, Valeriia and Kazemi, Hamid and Saha, Aniruddha and Goldblum, Micah and Geiping, Jonas and Goldstein, Tom},\n27\t  booktitle = {Proceedings of the International Conference on Machine Learning},\n28\t  year = {2024},\n29\t}\n30\t\n31\t@inproceedings{fast_detectgpt,\n32\t  title = {{Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature}},\n33\t  author = {Bao, Guangsheng and Zhao, Yanbin and Teng, Zhiyang and Yang, Linyi and Zhang, Yue},\n34\t  booktitle = {Proceedings of the International Conference on Learning Representations},\n35\t  year = {2024},\n36\t}\n37\t\n38\t@article{ld_score,\n39\t  title = {{Beyond Perplexity: Character Distribution Signatures and the MDTA Benchmark for AI Text Detec\n…[truncated 16718 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T17:53:05.523407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\label\\{sec:results-baselines\\}",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T17:53:05.523643+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/_backup/results_b30771.tex:92:\\label{sec:results-baselines}\nartifacts/_project/paper/results.tex:110:\\label{sec:results-baselines}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T17:53:05.523850+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.42|0\\.81|per-generator F1",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T17:53:05.524044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19:Notably, adding Qwen3-8B data \\emph{improves} classification on the original five generators (+1.1\\,pp to 0.811), indicating that cross-scale diversity benefits rather than dilutes the training signal.\n39:Pythia-2.8B     & Pythia & 2.8B & 0.804 & [0.793, 0.813] \\\\\n41:Qwen3-0.6B     & Qwen   & 0.6B & 0.824 & [0.813, 0.834] \\\\\n42:Qwen3-1.7B     & Qwen   & 1.7B & 0.806 & [0.796, 0.817] \\\\\n57:Concordance index---an ordinal-specific metric rewarding correct ranking---yields XGBoost 0.821, CORAL 0.810, Frank-Hall 0.825; again, all CIs overlap."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T17:53:05.524182+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "shape-based",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T17:53:05.524302+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/related_work.tex:8:Recent work has pursued diverse detection signals: \\citet{intrinsic_dimension} use intrinsic dimensionality estimates, \\citet{diveye} propose surprisal diversity features directly comparable to our shape-based measures, and \\citet{generator_barrier} characterize the distributional gap between human and model outputs."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T17:53:05.524452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+              "offset": "100",
+              "limit": "80"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T17:53:05.524635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "100\t\\bottomrule\n101\t\\end{tabular}\n102\t\\caption{Feature ablation (6-gen LOGO). Full $>$ surface = reference confirms complementarity between surface diversity features and reference-model distributional features.}\n103\t\\label{tab:ablation}\n104\t\\end{table}\n105\t\n106\tLeave-one-feature-out analysis confirms that 6 of 7 features contribute positively, with entropy\\_max showing the largest marginal impact despite modest split frequency (Appendix~\\ref{app:lofo}).\n107\t\n108\t\n109\t\\subsection{Comparison with Detection Baselines}\n110\t\\label{sec:results-baselines}\n111\t\n112\t\\begin{figure}[t]\n113\t\\centering\n114\t\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.png}\n115\t\\caption{LOGO macro-F1 with 95\\% bootstrap confidence intervals for each detection baseline and the 7-feature ensemble. Per-generator held-out F1 varies more for single detectors than for the ensemble.}\n116\t\\label{fig:baseline-ci}\n117\t\\end{figure}\n118\t\n119\tWe repurpose four existing detection scores as ordinal depth predictors by training the same classifier on each score as a single feature, using identical LOGO evaluation.\n120\tBecause gen-0 seed texts are shared across generators (\\S\\ref{sec:generation}), 3-class LOGO evaluation creates a train--test overlap for the gen-0 class.\n121\tWe therefore report both 3-class and binary (gen-1 vs.\\ gen-2+) results; the binary metric is the primary measure of depth discrimination (Table~\\ref{tab:baselines}).\n122\t\n123\t\\begin{table}[t]\n124\t\\centering\n125\t\\small\n126\t\\begin{tabular}{lccc}\n127\t\\toprule\n128\t\\textbf{Method} & \\textbf{3-class F1} & \\textbf{Binary F1} & \\textbf{Per-gen std} \\\\\n129\t\\midrule\n130\t7-feature ensemble    & 0.789 & \\textbf{0.723} & 0.051 \\\\\n131\t4-det.\\ + surface     & \\textbf{0.805} & 0.724 & 0.049 \\\\\n132\t4-detector ens.\\      & 0.796 & 0.712 & 0.044 \\\\\n133\tAvg-LogProb           & 0.737 & 0.712 & 0.044 \\\\\n134\tLD-Score              & 0.655 & 0.701 & 0.045 \\\\\n135\tFastDetectGPT         & 0.688 & 0.616 & 0.056 \\\\\n136\tBinoculars            & 0.417 & 0.5\n…[truncated 3366 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T17:53:05.524802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "shape-based|shape based",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T17:53:05.524928+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/related_work.tex:8:Recent work has pursued diverse detection signals: \\citet{intrinsic_dimension} use intrinsic dimensionality estimates, \\citet{diveye} propose surprisal diversity features directly comparable to our shape-based measures, and \\citet{generator_barrier} characterize the distributional gap between human and model outputs."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T17:53:05.525094+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "per.gen|per-gen|per_gen",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T17:53:05.525215+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "21:We note that this gap may narrow with scale-matched training data; our current dataset contains $\\sim$1{,}000 samples per generator regardless of scale."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T17:53:05.525330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "shape.based|shape-based",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+              "glob": "*.tex",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T17:53:05.525447+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 1 file\nartifacts/_project/paper/related_work.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T17:53:05.525557+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex",
+              "limit": "20"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T17:53:05.525720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Task Formulation}\n5\t\\label{sec:task}\n6\t\n7\tGiven a text $x$, the goal is to predict its \\emph{generation depth} $d \\in \\{0, 1, 2{+}\\}$, where $d{=}0$ denotes human-written text, $d{=}1$ denotes first-generation LLM output conditioned on human text, and $d{=}2{+}$ denotes text produced by recursively conditioning an LLM on its own prior output at least twice.\n8\tFormally, let $\\mathcal{C}_0$ be a reference corpus of human-written text.\n9\tA generation chain of depth $k$ is defined recursively: $x^{(0)} \\sim \\mathcal{C}_0$, and $x^{(k)} = G(x^{(k-1)})$ for $k \\geq 1$, where $G$ denotes stochastic LLM generation conditioned on its input.\n10\tWe frame depth estimation as an ordinal classification task over three classes rather than binary real-vs-synthetic detection, enabling finer-grained provenance characterization.\n11\tDepths beyond 2 are merged into a single $2{+}$ class, consistent with monotonic feature convergence that compresses inter-class margins beyond depth 2 (\\S\\ref{sec:results-differential}).\n12\t\n13\t\\subsection{Generation Chain Construction}\n14\t\\label{sec:generation}\n15\t\n16\tWe construct generation chains using six generators spanning three model families: \\textbf{Pythia} (2.8B, 1B) \\cite{pythia}, \\textbf{OLMo} (OLMo-2-1B) \\cite{olmo}, and \\textbf{Qwen} (Qwen3-1.7B, Qwen3-0.6B, Qwen3-8B-Base) \\cite{qwen3}.\n17\tThis selection covers parameter scales from 0.6B to 8.2B and diverse pretraining corpora, enabling evaluation of cross-generator and cross-scale generalization.\n18\t\n19\tFor each generator, we sample approximately 1{,}000 seed passages from English Wikipedia as $\\mathcal{C}_0$.\n20\tThe same pool of seed passages serves as gen-0 for all generators."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T17:53:05.525899+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/related_work.tex",
+              "old_string": "\\citet{diveye} propose surprisal diversity features directly comparable to our shape-based measures",
+              "new_string": "\\citet{diveye} propose surprisal diversity features directly comparable to our distributional features"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T17:53:05.526044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T17:53:05.526160+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/related_work.tex",
+              "old_string": "they exhibit high cross-generator variance when repurposed as ordinal predictors (per-generator F1 ranging from 0.42 to 0.81; \\S\\ref{sec:results-baselines}), because each score captures a single distributional property that generalizes inconsistently.",
+              "new_string": "they exhibit high cross-generator variance when repurposed as ordinal predictors (binary F1 from 0.52 to 0.71 across individual baselines; Table~\\ref{tab:baselines}), because each score captures a single distributional property that generalizes inconsistently."
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T17:53:05.526306+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T17:53:05.526431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T17:53:05.526594+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related}\n3\t\n4\t\\subsection{AI-Generated Text Detection}\n5\t\\label{sec:related-detection}\n6\t\n7\tMethods for distinguishing human-written from machine-generated text have evolved from statistical tests on token-level distributions \\cite{gltr,grover,release_strategies} to zero-shot approaches exploiting reference-model likelihoods \\cite{detectgpt,fast_detectgpt,binoculars,dna_gpt} and learned classifiers over linguistic features \\cite{feat_aug_transformer,reliable_detection,ld_score}.\n8\tRecent work has pursued diverse detection signals: \\citet{intrinsic_dimension} use intrinsic dimensionality estimates, \\citet{diveye} propose surprisal diversity features directly comparable to our shape-based measures, and \\citet{generator_barrier} characterize the distributional gap between human and model outputs.\n9\t\\citet{wu_survey_2025} provide the most comprehensive recent survey; see also \\citet{jawahar_survey} for an earlier overview.\n10\tA persistent limitation is that all these methods produce binary (real vs.\\ synthetic) decisions.\n11\tRecent efforts extend detection to multi-class settings: \\citet{beyond_binary} propose role recognition and involvement measurement to distinguish collaborative human-LLM generation scenarios, and the SemEval-2024 shared task \\cite{semeval2024_task8} evaluates multi-generator attribution across domains and languages.\n12\tThese approaches discriminate among different \\emph{sources} (human vs.\\ specific models) rather than recursive generation \\emph{depth} within a single generator's chain.\n13\tEven when detection scores correlate with generation depth, they exhibit high cross-generator variance when repurposed as ordinal predictors (per-generator F1 ranging from 0.42 to 0.81; \\S\\ref{sec:results-baselines}), because each score captures a single distributional property that generalizes inconsistently.\n14\t\\citet{paraphrase_evades} and \\citet{detection_possibilities} further demonstrate that detection robustness degrad\n…[truncated 5497 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T17:53:05.526752+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/related_work.tex",
+              "old_string": "\\citet{diveye} propose surprisal diversity features directly comparable to our shape-based measures",
+              "new_string": "\\citet{diveye} propose surprisal diversity features directly comparable to our distributional features"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T17:53:05.526899+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T17:53:05.527021+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/related_work.tex",
+              "old_string": "they exhibit high cross-generator variance when repurposed as ordinal predictors (per-generator F1 ranging from 0.42 to 0.81; \\S\\ref{sec:results-baselines}), because each score captures a single distributional property that generalizes inconsistently.",
+              "new_string": "they exhibit high cross-generator variance when repurposed as ordinal predictors (binary F1 from 0.52 to 0.71 across individual baselines; Table~\\ref{tab:baselines}), because each score captures a single distributional property that generalizes inconsistently."
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T17:53:05.527163+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T17:53:05.527313+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处修复完成，已同步到 `docs/paper/`。\n\n**问题清单：**\n\n| # | 位置 | 问题 | 修复 |\n|---|------|------|------|\n| 1 | line 8 | \"shape-based measures\" — 孤立术语，全文其他地方均未使用 | → \"distributional features\"，与 method/results 用语一致 |\n| 2 | line 13 | \"per-generator F1 ranging from 0.42 to 0.81\" — 与当前 Table 5 不符（binary F1 实际范围 0.524–0.712），且原引用 `\\S\\ref{}` 指向无表格的小节 | → \"binary F1 from 0.52 to 0.71 across individual baselines; Table~\\ref{tab:baselines}\"，引用改为具体表格 |\n\n**验证通过项：**\n- 全部 29 个 `\\cite{}`/`\\citet{}` key 均存在于 references.bib\n- `\\S\\ref{sec:results-baselines}` 指向 results.tex:110，label 存在\n- 无 novelty overclaim（line 15 明确说 \"not a new detection method\"）\n- framing 一致：6 generators / 3 families / base models / LOGO / diagnostic tool"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-cleanup_20260515T175029"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/conversations/paper-related-work-cleanup.md"
+}

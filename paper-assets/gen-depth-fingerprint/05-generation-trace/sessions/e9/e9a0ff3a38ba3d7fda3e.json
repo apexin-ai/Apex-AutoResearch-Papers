@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9a0ff3a38ba3d7fda3e",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper bib year audit",
+  "task_key": "worker_paper_bib-year-audit_20260515T235806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_bib-year-audit_20260515T235806_result.json",
+    "occurrence": 1,
+    "bytes": 1598,
+    "sha256": "4038d2b691e0a4667c2a8401083ae259626749399cbc3445606a287cfe18d830"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts 版本比 docs 版本多了一些 doi/volume/pages 字段，但核心信息（title/author/year/venue）完全一致，无需修复。\n\n---\n\n## 引用审计报告\n\n**总数**: 49 条引用（`docs/paper/references.bib`）\n**正文引用**: 72 处 `\\cite`/`\\citet`/`\\citep`，覆盖 49 个唯一 key\n**交叉检查**: 0 孤立条目，0 缺失条目，0 重复 key\n**已验证**: 49 条全部通过 ✓\n**需修复**: 0 条\n\n### 验证详情\n\n| 验证方式 | 条目数 | 结果 |\n|---------|--------|------|\n| OpenAlex 自动验证 | 41 | 标题+年份匹配 |\n| WebSearch 人工复核（OpenAlex not_found） | 6 | detectgpt, reliable_detection, detection_possibilities, aaronson_watermark, pythia, xgboost — 全部确认存在且信息正确 |\n| WebSearch 人工复核（OpenAlex mismatch） | 2 | self_consuming_mad（Alemohammad 确为第一作者，OpenAlex 索引错误）、qwen3（{Qwen Team} 是标准引用形式）|\n\n### OpenAlex 年份差异说明\n\n13 条 OpenAlex 返回年份与 bib 不同（如 dna_gpt bib=2024 vs OA=2023），全部核实为 **OpenAlex 使用 arXiv preprint 日期**，bib 使用会议/期刊出版年份，bib 写法正确。\n\n### 2024-2026 近期论文重点核查\n\n11 条 2024-2026 论文逐条 WebSearch 验证，标题、作者、年份、venue 全部准确，未发现 hallucinated 作者或编造条目。\n\n### artifacts 同步\n\n`artifacts/_project/paper/references.bib` 与 `docs/paper/references.bib` 核心信息一致，artifacts 版本额外包含部分 doi/volume/pages 字段，无冲突。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-bib-year-audit.md"
+}

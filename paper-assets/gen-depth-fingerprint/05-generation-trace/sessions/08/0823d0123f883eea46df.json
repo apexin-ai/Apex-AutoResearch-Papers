@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0823d0123f883eea46df",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan 015 ci v2",
+  "task_key": "worker_code_plan-015-ci-v2_20260515T003044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-015-ci-v2_20260515T003044_result.json",
+    "occurrence": 1,
+    "bytes": 788,
+    "sha256": "14b276619783a0344552d4b7548f755557cc8bc2fcdc6c05c040df603cb391c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n| 指标 | Point | 95% CI |\n|------|-------|--------|\n| **7-feature LOGO F1** | 0.7977 | [0.7925, 0.8031] |\n| **Avg-LogProb LOGO F1** | 0.7586 | [0.7530, 0.7640] |\n| **FastDetectGPT LOGO F1** | 0.7310 | [0.7252, 0.7366] |\n\n**Paired bootstrap ΔF1:**\n- 7-feature vs Avg-LogProb: **ΔF1=+0.039** [0.033, 0.044], p=0.000 — **显著**\n- 7-feature vs FastDetectGPT: **ΔF1=+0.067** [0.061, 0.073], p=0.000 — **显著**\n\n**Spearman ρ (vs label):**\n- Avg-LogProb: ρ=0.728 [0.720, 0.735]\n- FastDetectGPT: ρ=0.343 [0.330, 0.358]\n\n三组 CI 无重叠，1000 次 bootstrap 中没有一次 ΔF1≤0，7-feature 相对 Avg-LogProb 的优势在统计上高度显著。输出已存 `/root/gen-depth-fingerprint/data/plan015_bootstrap_ci.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-015-ci-v2.md"
+}

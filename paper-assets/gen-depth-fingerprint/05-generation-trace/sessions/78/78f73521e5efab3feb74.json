@@ -1,0 +1,821 @@
+{
+  "schema_version": "1.0",
+  "id": "78f73521e5efab3feb74",
+  "project": "gen-depth-fingerprint",
+  "kind": "conversation",
+  "title": "audit paper consistency",
+  "task_key": "worker_audit_paper-consistency_20260516T022243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_audit_paper-consistency_20260516T022243.jsonl",
+    "occurrence": 1,
+    "bytes": 49745,
+    "sha256": "8c456594f262fca5f3274e093bbcce4c474f445763b9dfff5791365247b542da"
+  },
+  "statistics": {
+    "messages": 41,
+    "user_turns": 0,
+    "tool_calls": 20,
+    "roles": {
+      "tool_call": 20,
+      "tool_result": 20,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T02:28:12.369057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/abstract.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T02:28:12.369454+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Abstract — Depth Fingerprinting of Recursive LLM Generation Chains\n2\t\\begin{abstract}\n3\tAs LLM outputs accumulate on the web, training corpora increasingly contain recursively generated text of unknown provenance depth.\n4\tWe formulate \\emph{ordinal depth estimation}---classifying text as human-written (gen-0), first-generation synthetic (gen-1), or deeper (gen-2+)---beyond binary detection.\n5\tWe characterize a \\emph{differential depth response}: central-tendency and diversity features drift monotonically with generation depth, while distributional shape features remain near-stationary.\n6\tA 7-feature ensemble exploiting this complementarity achieves binary macro-F1 of 0.723 (95\\% CI: [0.717, 0.729]) for gen-1 vs.\\ gen-2+ depth discrimination---excluding gen-0 to avoid shared-seed overlap---($p < 0.001$ vs.\\ all baselines) across 6 base-model generators from 3 model families (0.6B--8.2B parameters), with per-generator consistency (std\\,=\\,0.051).\n7\tIn our setting, depth-aware data curation does not outperform random subsampling, positioning depth fingerprinting as a diagnostic tool for provenance characterization.\n8\t\\end{abstract}\n9\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T02:28:12.369741+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/introduction.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T02:28:12.369999+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tWeb-crawled corpora are the dominant source of pretraining data for large language models (LLMs), yet an increasing fraction of this data is itself LLM-generated.\n5\tEstimates suggest that 7--17\\% of recent scientific papers and peer reviews contain substantial LLM-modified content \\cite{mapping_llm_science,monitoring_ai_review}, and this proportion continues to grow as generated text enters the web and becomes seed material for subsequent generation.\n6\tThe result is recursive generation chains whose outputs progressively diverge from human-written text---a problem that current detection methods are ill-equipped to address.\n7\t\n8\tExisting detectors \\cite{fast_detectgpt,binoculars,ld_score,detectgpt} provide binary real-vs-synthetic classification, forcing an all-or-nothing filtering decision: discard everything flagged as synthetic, losing potentially useful first-generation content, or retain everything, admitting text with compounding distributional drift.\n9\tThis conflates qualitatively different material.\n10\tA first-generation continuation---an LLM expanding a human-written passage---retains much of the source distribution's lexical and structural properties.\n11\tA third- or fourth-generation text, conditioned recursively on prior LLM outputs, exhibits measurably reduced vocabulary diversity, compressed perplexity, and narrower token probability distributions.\n12\tTreating these as a single ``synthetic'' category discards provenance information that could inform risk-stratified curation decisions.\n13\t\n14\tWe argue that a finer-grained characterization is needed: \\emph{ordinal depth estimation}, the task of classifying text into generation depth classes (gen-0\\,/\\,gen-1\\,/\\,gen-2+) rather than producing a binary label.\n15\tWe refer to the overall framework---features, classifier, and evaluation protocol---as \\emph{depth fingerprinting}, distinguishing the method from the task it addresses.\n16\tNo existing method ad\n…[truncated 3974 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T02:28:12.370224+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T02:28:12.370536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\tWe evaluate depth fingerprinting along four axes: cross-generator classification (\\S\\ref{sec:results-classification}), differential depth response of individual features (\\S\\ref{sec:results-differential}), comparison with existing detection baselines (\\S\\ref{sec:results-baselines}), and downstream utility for data curation (\\S\\ref{sec:results-downstream}).\n5\t\n6\t\\subsection{Depth Classification Performance}\n7\t\\label{sec:results-classification}\n8\t\n9\tTable~\\ref{tab:logo-results} reports leave-one-generator-out (LOGO) macro-F1 for 3-class depth estimation (gen-0\\,/\\,gen-1\\,/\\,gen-2+) across six generators spanning three model families and parameter counts from 0.6B to 8.2B.\n10\t\n11\tThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.789 (Table~\\ref{tab:logo-results}). Because gen-0 seed texts are shared across generators (\\S\\ref{sec:generation}), the gen-0 class F1 (0.94) may be inflated; we therefore report a leak-free binary evaluation (gen-1 vs.\\ gen-2+, F1\\,=\\,0.723) as the primary metric in \\S\\ref{sec:results-baselines}.\n12\tPer-generator held-out F1 ranges from 0.683 (Qwen3-8B) to 0.856 (Pythia-1B).\n13\tPer-class F1 varies by depth: gen-0\\,=\\,0.94, gen-2+\\,=\\,0.80, gen-1\\,=\\,0.64; the primary difficulty lies in distinguishing gen-1 from gen-2+, where feature margins narrow.\n14\t\n15\t\\paragraph{Cross-scale transfer.}\n16\tThe six-generator evaluation includes Qwen3-8B (8.2B parameters), confirming that depth signal persists at scales beyond the $\\leq$2.8B training generators.\n17\tHowever, cross-scale transfer incurs a moderate gap: Qwen3-8B held-out F1\\,=\\,0.683 (CI [0.668, 0.694]), compared to 0.76--0.86 for $\\leq$2.8B generators.\n18\tText generated by larger models is more fluent, compressing feature margins and making depth distinctions harder.\n19\tNotably, adding Qwen3-8B data \\emph{improves} classification on the original five generators (+0.8\\,pp to 0.810), indicating that cross-scale diversity benefits rather than dilut\n…[truncated 13231 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T02:28:12.370784+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T02:28:12.371047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Why are shape features stationary?}\n5\tDistributional shape features (entropy standard deviation, tail decay) remain near-stationary across generation depths, while central-tendency features drift monotonically (\\S\\ref{sec:results-differential}).\n6\tOne \\emph{speculative} explanation is that shape is primarily determined by the sampling mechanism (temperature, top-$p$ truncation) and the model's architecture-level output distribution, both of which are fixed across generation steps.\n7\tRecursive generation shifts \\emph{what} the model talks about---steering toward higher-probability vocabulary regions---but does not alter \\emph{how} the model distributes probability mass around its predictions.\n8\tIf this account is correct, shape features should remain stationary even at much greater depths and across different prompt types, while level features should continue to drift until reaching a fixed point.\n9\tSampling ablation supports this account: depth signal is robust to moderate sampling variation (F1 range ${\\leq}0.3$\\,pp for $t \\in [0.5, 0.7]$) but degrades at extreme temperatures ($t = 1.0$, $-6$\\,pp), consistent with shape features being determined by the sampling mechanism (Appendix~\\ref{app:sampling-sensitivity}).\n10\tWe flag this as a hypothesis for future investigation, not a conclusion supported by our current experiments.\n11\t\n12\t\\paragraph{Relation to OOD detection.}\n13\tReference-model entropy features are functionally NLL-based out-of-distribution scores---the same signal backbone underlying DetectGPT \\cite{detectgpt}, GLTR \\cite{gltr}, and Binoculars \\cite{binoculars}.\n14\tOur contribution is not these features per se, but the \\emph{ordinal} depth formulation and the empirical finding that they exhibit differential depth response under recursive generation.\n15\tThis connection also offers a lens on shape stationarity: in the OOD detection literature, distributional location statistics (mean log-likel\n…[truncated 9093 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T02:28:12.371274+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T02:28:12.371465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe introduced ordinal generation depth estimation as a task beyond binary synthetic text detection, providing a framework for characterizing the provenance of web-crawled text at finer granularity.\n5\tAcross six generators from three model families (0.6B--8.2B parameters), we documented differential depth response: central-tendency and diversity features drift monotonically with generation depth, while distributional shape features remain near-stationary.\n6\tA 7-feature ensemble combining both feature types achieves binary macro-F1 of 0.723 (95\\% CI: [0.717, 0.729]) for leak-free depth discrimination across six base-model generators, with per-generator std of 0.051.\n7\tCross-model chains---where each generation step uses a different generator---yield comparable performance (3-class F1\\,=\\,0.809, binary F1\\,=\\,0.764), confirming that depth signal persists under the generator heterogeneity typical of real-world contamination.\n8\tWe also reported that depth-aware data curation does not improve downstream language model quality over random subsampling, establishing that, in our experimental setting, depth fingerprinting functions as a diagnostic tool for provenance characterization rather than a curative tool for data selection.\n9\t\n10\tFuture work should extend evaluation to instruction-tuned and RLHF models, frontier-scale generators (70B+), and multilingual settings.\n11\tAll code, data, and trained models will be released upon publication to facilitate reproducibility.\n12\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T02:28:12.371686+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T02:28:12.371929+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section*{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\tAll six generators are base (pretrained) models.\n5\tWeb text is predominantly produced by instruction-tuned and RLHF-aligned models, whose generation distributions differ from base model continuations.\n6\tPreliminary instruct experiments show substantial depth-signal degradation: OLMo-2-1B-Instruct drops to 3-class LOGO F1\\,=\\,0.338 (vs.\\ 0.764 for base OLMo-2-1B) and Qwen3-0.6B with chat template to F1\\,=\\,0.667 (vs.\\ 0.816 base).\n7\tLength-controlled analysis reveals that the effect of instruct tuning on surface features is model-dependent: Qwen models retain weakly positive TTR and hapax partial correlations with depth, while OLMo-Instruct exhibits negative correlations similar to base models.\n8\tBy contrast, entropy-based depth signals consistently reverse sign across all three instruct models (partial $\\rho$ ranging from +0.103 to +0.364), suggesting a genuine behavioral change that persists after controlling for output length.\n9\tDisentangling architecture-dependent surface effects from the robust entropy reversal in instruct-tuned generation is a critical direction for future work.\n10\t\n11\tOur experiments include generators up to 8.2B parameters (Qwen3-8B).\n12\tDepth signal persists at this scale, but cross-scale classifier transfer incurs a moderate gap (held-out F1\\,=\\,0.683 vs.\\ 0.76--0.86 for $\\leq$2.8B generators).\n13\tFrontier models (70B+) remain untested; their higher fluency may further compress feature margins.\n14\t\n15\tWe evaluate three prompt types (continuation, elaboration, rewriting; Appendix~\\ref{app:prompt-type}) but all share the same Pythia-2.8B generator.\n16\tCross-prompt-type transfer (LOPTO F1\\,=\\,0.753) confirms the depth signal generalizes, yet additional prompt types (e.g., summarization, instruction following) and cross-generator $\\times$ cross-prompt interactions remain untested.\n17\t\n18\tOur primary evaluation uses single-generator chains; cross-model chains (\\S\\ref{sec:results-classificat\n…[truncated 1642 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T02:28:12.372176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T02:28:12.372476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Task Formulation}\n5\t\\label{sec:task}\n6\t\n7\tGiven a text $x$, the goal is to predict its \\emph{generation depth} $d \\in \\{0, 1, 2{+}\\}$, where $d{=}0$ denotes human-written text, $d{=}1$ denotes first-generation LLM output conditioned on human text, and $d{=}2{+}$ denotes text produced by recursively conditioning an LLM on its own prior output at least twice.\n8\tFormally, let $\\mathcal{C}_0$ be a reference corpus of human-written text.\n9\tA generation chain of depth $k$ is defined recursively: $x^{(0)} \\sim \\mathcal{C}_0$, and $x^{(k)} = G(x^{(k-1)})$ for $k \\geq 1$, where $G$ denotes stochastic LLM generation conditioned on its input.\n10\tWe frame depth estimation as an ordinal classification task over three classes rather than binary real-vs-synthetic detection, enabling finer-grained provenance characterization.\n11\tDepths beyond 2 are merged into a single $2{+}$ class, consistent with monotonic feature convergence that compresses inter-class margins beyond depth 2 (\\S\\ref{sec:results-differential}).\n12\t\n13\t\\subsection{Generation Chain Construction}\n14\t\\label{sec:generation}\n15\t\n16\tWe construct generation chains using six generators spanning three model families: \\textbf{Pythia} (2.8B, 1B) \\cite{pythia}, \\textbf{OLMo} (OLMo-2-1B) \\cite{olmo}, and \\textbf{Qwen} (Qwen3-1.7B, Qwen3-0.6B, Qwen3-8B-Base) \\cite{qwen3}.\n17\tThis selection covers parameter scales from 0.6B to 8.2B and diverse pretraining corpora, enabling evaluation of cross-generator and cross-scale generalization.\n18\t\n19\tFor each generator, we sample approximately 1{,}000 seed passages from English Wikipedia as $\\mathcal{C}_0$.\n20\tThe same pool of seed passages serves as gen-0 for all generators.\n21\tIn LOGO evaluation, gen-0 samples from the held-out generator's chains also appear (with the same text) in the training generators' chains, creating a potential train--test overlap for the gen-0 class.\n22\tWe address this with a supplementary binary evaluatio\n…[truncated 8012 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T02:28:12.372748+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/related_work.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T02:28:12.373034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related}\n3\t\n4\t\\subsection{AI-Generated Text Detection}\n5\t\\label{sec:related-detection}\n6\t\n7\tMethods for distinguishing human-written from machine-generated text have evolved from statistical tests on token-level distributions \\cite{gltr,grover,release_strategies} to zero-shot approaches exploiting reference-model likelihoods \\cite{detectgpt,fast_detectgpt,binoculars,dna_gpt} and learned classifiers over linguistic features \\cite{feat_aug_transformer,reliable_detection,ld_score}.\n8\tRecent work has pursued diverse detection signals: \\citet{intrinsic_dimension} use intrinsic dimensionality estimates, \\citet{diveye} propose surprisal diversity features directly comparable to our distributional features, and \\citet{generator_barrier} characterize the distributional gap between human and model outputs.\n9\t\\citet{wu_survey_2025} provide the most comprehensive recent survey; see also \\citet{jawahar_survey} for an earlier overview.\n10\tCommercial systems such as GPTZero provide trained-classifier detection but are non-reproducible due to proprietary model access, precluding controlled baseline comparison; we restrict evaluation to open methods.\n11\tA persistent limitation is that all these methods produce binary (real vs.\\ synthetic) decisions.\n12\tRecent efforts extend detection to multi-class settings: \\citet{beyond_binary} propose role recognition and involvement measurement to distinguish collaborative human-LLM generation scenarios, and the SemEval-2024 shared task \\cite{semeval2024_task8} evaluates multi-generator attribution across domains and languages.\n13\tThese approaches discriminate among different \\emph{sources} (human vs.\\ specific models) rather than recursive generation \\emph{depth} within a single generator's chain.\n14\tEven when detection scores correlate with generation depth, they exhibit high cross-generator variance when repurposed as ordinal predictors (binary F1 from 0.52 to 0.71 across individual baselines; Table~\\ref{\n…[truncated 5725 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T02:28:12.373303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_finer_depth.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T02:28:12.373551+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWe evaluate finer-grained 5-class depth classification (gen-0 through gen-4) using the same 7-feature ensemble and LOGO protocol described in \\S\\ref{sec:method}.\n2\t\n3\t\\begin{table}[h]\n4\t\\centering\n5\t\\small\n6\t\\begin{tabular}{lcccc}\n7\t\\toprule\n8\t\\textbf{Held-out Generator} & \\textbf{Macro F1} & \\textbf{Weighted F1} & \\textbf{Accuracy} \\\\\n9\t\\midrule\n10\tOLMo-2-1B       & 0.484 & 0.506 & 0.524 \\\\\n11\tPythia-1B        & 0.543 & 0.568 & 0.575 \\\\\n12\tPythia-2.8B      & 0.523 & 0.540 & 0.560 \\\\\n13\tQwen3-0.6B      & 0.513 & 0.521 & 0.546 \\\\\n14\tQwen3-1.7B      & 0.510 & 0.536 & 0.548 \\\\\n15\tQwen3-8B        & 0.434 & 0.455 & 0.493 \\\\\n16\t\\midrule\n17\t\\textbf{Average} & \\textbf{0.501 $\\pm$ 0.038} & \\textbf{0.521} & \\textbf{0.541} \\\\\n18\t\\bottomrule\n19\t\\end{tabular}\n20\t\\caption{5-class LOGO evaluation. Each row holds out one generator for testing, training on the remaining five.}\n21\t\\label{tab:5class-logo}\n22\t\\end{table}\n23\t\n24\t\\begin{table}[h]\n25\t\\centering\n26\t\\small\n27\t\\begin{tabular}{lccccc}\n28\t\\toprule\n29\t\\textbf{Metric} & \\textbf{Gen-0} & \\textbf{Gen-1} & \\textbf{Gen-2} & \\textbf{Gen-3} & \\textbf{Gen-4} \\\\\n30\t\\midrule\n31\tAvg F1      & 0.921 & 0.634 & 0.268 & 0.259 & 0.423 \\\\\n32\t\\bottomrule\n33\t\\end{tabular}\n34\t\\caption{Per-class F1 averaged across all six LOGO folds.}\n35\t\\label{tab:5class-perclass}\n36\t\\end{table}\n37\t\n38\t\\paragraph{Analysis.}\n39\tMoving from 3-class (gen-0 / gen-1 / gen-2+) to 5-class classification reduces LOGO macro F1 from 0.789 to 0.501, a drop of 0.288.\n40\tThe degradation is concentrated in the middle depths: gen-2 and gen-3 achieve only 0.268 and 0.259 F1, respectively.\n41\tThe aggregated confusion matrix reveals that 36.5\\% of true gen-2 samples are misclassified as gen-1, while 37.8\\% of true gen-3 samples are predicted as gen-4.\n42\tAdjacent depths (gen-2$\\leftrightarrow$gen-3, gen-3$\\leftrightarrow$gen-4) account for the majority of errors, consistent with the intuition that deeper recursive generations converge in surface-level statistical fingerprints.\n43\n…[truncated 1422 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T02:28:12.373809+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/ethics.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T02:28:12.374007+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section*{Ethics Statement}\n2\t\\label{sec:ethics}\n3\t\n4\tAll texts analyzed in this work are LLM-generated from publicly available Wikipedia seeds; no personal or sensitive data is involved.\n5\tOur method estimates the generation depth of a text passage---how many recursive generation steps it has undergone---not the identity of its author.\n6\tIndividual authorship attribution is outside both the scope and the capability of this approach; privacy implications are minimal.\n7\tWe acknowledge that depth estimation tools could in principle be used to selectively suppress machine-generated text in contexts where such content is legitimate (e.g., accessibility tools, assistive writing).\n8\tWe encourage deployment in data governance pipelines where provenance transparency---rather than content removal---is the objective.\n9\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T02:28:12.374209+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/table4.tex"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T02:28:12.374417+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{table}[t]\n2\t\\centering\n3\t\\small\n4\t\\begin{tabular}{llccc}\n5\t\\toprule\n6\t\\textbf{Reference Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{LOGO F1} & \\textbf{Entropy Drift Range} \\\\\n7\t\\midrule\n8\tPythia-410M & Pythia & 410M & 0.803 & [$-$1.19, $-$1.40] \\\\\n9\tOLMo-2-1B  & OLMo   & 1.5B & 0.807 & [$-$0.61, $-$0.91] \\\\\n10\tQwen3-0.6B & Qwen   & 0.6B & 0.816 & [$-$0.96, $-$1.35] \\\\\n11\t\\bottomrule\n12\t\\end{tabular}\n13\t\\caption{Cross-family reference model validation.\n14\tDrift direction is consistent (negative) across all three reference models;\n15\tmagnitude varies with reference model capacity.}\n16\t\\label{tab:cross-ref}\n17\t\\end{table}\n18\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T02:28:12.374645+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "artifacts/_project/paper/appendix_*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T02:28:12.374874+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/appendix_length.tex\nartifacts/_project/paper/appendix_prompt_type.tex\nartifacts/_project/paper/appendix_confusion_matrix.tex\nartifacts/_project/paper/appendix_lofo.tex\nartifacts/_project/paper/appendix_human_edit.tex\nartifacts/_project/paper/appendix_classifier.tex\nartifacts/_project/paper/appendix_finer_depth.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T02:28:12.375079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_human_edit.tex"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T02:28:12.375313+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tTo assess whether depth features are robust to post-generation human editing, we simulate two editing scenarios on the full generation chain dataset and re-evaluate the 6-generator LOGO pipeline (Table~\\ref{tab:human-edit}).\n2\t\n3\t\\paragraph{Random token replacement.}\n4\tWe randomly replace 5\\%, 10\\%, or 20\\% of tokens in each text with uniformly sampled vocabulary items, simulating unstructured human edits (typo corrections, word substitutions).\n5\tClassification degrades gracefully: 3-class F1 drops by 3.5\\,pp at 5\\% replacement and 6.0\\,pp at 20\\%, while binary F1 (gen-1 vs.\\ gen-2+) remains nearly unchanged ($\\Delta \\leq 0.8$\\,pp).\n6\tThe asymmetry is expected---random edits primarily disrupt human-vs-machine separation (gen-0 classification) by injecting noise into surface features, but the depth-discriminative distributional signal between gen-1 and gen-2+ is distributed across enough tokens to survive moderate perturbation.\n7\t\n8\t\\paragraph{LLM rephrase.}\n9\tWe rephrase each text using an instruction-tuned LLM, simulating the common scenario where users lightly edit LLM-generated text with LLM assistance.\n10\tThree-class F1 drops modestly ($-3.4$\\,pp), comparable to 5\\% random replacement.\n11\tHowever, binary F1 drops substantially ($-6.3$\\,pp), indicating that LLM rephrasing specifically erodes the distributional differences between generation depths---consistent with the rephraser imposing its own distributional signature that partially overwrites the depth fingerprint.\n12\t\n13\t\\begin{table}[h]\n14\t\\centering\n15\t\\small\n16\t\\caption{Human-edit robustness under 6-gen LOGO evaluation. Baseline uses unmodified generation chains.}\n17\t\\label{tab:human-edit}\n18\t\\begin{tabular}{lcccc}\n19\t\\toprule\n20\t\\textbf{Condition} & \\textbf{3-class F1} & \\textbf{Binary F1} & \\textbf{$\\Delta$ 3-class} & \\textbf{$\\Delta$ binary} \\\\\n21\t\\midrule\n22\tBaseline          & 0.789 & 0.724 & ---       & ---       \\\\\n23\tRandom 5\\%        & 0.754 & 0.718 & $-3.5$\\,pp & $-0.6$\\,pp \\\\\n24\tRandom 10\\%   \n…[truncated 1013 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T02:28:12.375548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_classifier.tex"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T02:28:12.375814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tTo verify that the depth signal resides in the features rather than the classifier,\n2\twe repeat the 6-generator LOGO evaluation using Logistic Regression and Random Forest\n3\tin place of XGBoost (Table~\\ref{tab:alt-classifier}).\n4\tAll other settings---the same 7 features, 3-class labels, and class-balanced downsampling---are\n5\tkept identical. For Logistic Regression we apply standard scaling to the features.\n6\t\n7\t\\begin{table}[h]\n8\t\\centering\n9\t\\caption{LOGO macro-F1 across three classifiers. Each column shows the held-out generator F1.}\n10\t\\label{tab:alt-classifier}\n11\t\\small\n12\t\\begin{tabular}{lc cccccc}\n13\t\\toprule\n14\tClassifier & Avg F1 & OLMo-2 & Py-1B & Py-2.8B & Qw-0.6B & Qw-1.7B & Qw-8B \\\\\n15\t\\midrule\n16\tXGBoost          & 0.789 & 0.764 & 0.856 & 0.804 & 0.824 & 0.806 & 0.683 \\\\\n17\tRandom Forest    & 0.790 & 0.764 & 0.856 & 0.804 & 0.825 & 0.807 & 0.684 \\\\\n18\tLogistic Regr.   & 0.725 & 0.719 & 0.781 & 0.740 & 0.745 & 0.743 & 0.624 \\\\\n19\t\\bottomrule\n20\t\\end{tabular}\n21\t\\end{table}\n22\t\n23\tBoth tree-based classifiers achieve LOGO F1 $\\approx 0.79$,\n24\tand even a linear model reaches $0.725$---well above the $0.33$ chance baseline for\n25\tthree classes.\n26\tThe per-generator ranking is also consistent across classifiers\n27\t(Pythia-1B easiest, Qwen3-8B hardest),\n28\tconfirming that discriminative power originates in the entropy and lexical features,\n29\tnot in classifier capacity.\n30\t\n31\t\\subsection*{Sampling Sensitivity Analysis}\n32\t\\label{app:sampling-sensitivity}\n33\t\n34\tTo assess robustness to decoding hyperparameters, we regenerate the full chain set under three sampling configurations and re-evaluate the 3-class LOGO pipeline (Table~\\ref{tab:sampling-ablation}).\n35\t\n36\t\\begin{table}[h]\n37\t\\centering\n38\t\\caption{Depth classification under varying sampling parameters. All other settings match the default pipeline.}\n39\t\\label{tab:sampling-ablation}\n40\t\\small\n41\t\\begin{tabular}{lcc ccc}\n42\t\\toprule\n43\tConfig & Temp.\\ & Top-$p$ & 3-class F1 & Binary F1 & $\\rho$(entr\n…[truncated 1139 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T02:28:12.376059+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_prompt_type.tex"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T02:28:12.376275+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWe evaluate depth fingerprinting under three prompt types using Pythia-2.8B: \\emph{continuation} (``Continue the following text''), \\emph{elaboration} (``Elaborate on the following text''), and \\emph{inspired rewriting} (``Write a new passage inspired by the following text''). Each uses 995 seeds $\\times$ 5 depths.\n2\t\n3\t\\paragraph{Within-prompt-type classification.}\n4\t5-fold CV macro-F1: continuation 0.78, rewriting 0.74, elaboration 0.73. All three prompt types exhibit the same differential depth response pattern: drifting features (hapax ratio, TTR, entropy mean) show consistent monotonic trends, while stationary features (entropy std, tail decay) change by less than 5\\%.\n5\t\n6\t\\paragraph{Cross-prompt-type transfer (LOPTO).}\n7\tLeave-one-prompt-type-out evaluation yields average F1\\,=\\,0.753, confirming that depth signal transfers across prompt types. Feature decay rates differ: continuation shows the strongest drift (16.9\\% per depth step), followed by rewriting (6.1\\%) and elaboration (1.4\\%), consistent with continuation chains applying less semantic constraint on the output.\n8\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T02:28:12.376504+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_length.tex"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T02:28:12.376765+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Appendix A — Length Confound Analysis\n2\t% Data source: plan-013 (23,032 samples, 5 generators)\n3\t\n4\tSurface diversity features (TTR, hapax ratio) mechanically depend on text length:\n5\tshorter texts yield higher type-token ratios by construction.\n6\tIf generation depth systematically shortens text, observed depth trends could be length artifacts rather than genuine distributional shifts.\n7\tWe rule this out with three complementary analyses.\n8\t\n9\t\\paragraph{(a) Length--depth correlation.}\n10\tWe compute Spearman rank correlation between word count and depth across all five generators.\n11\tCorrelations are weak and inconsistent in sign:\n12\t$\\rho$ ranges from $-0.066$ (Pythia-1B) to $+0.134$ (OLMo-2-1B), with $|\\rho| < 0.14$ in every case.\n13\tOne generator (Qwen3-0.6B) shows no significant correlation ($\\rho = 0.012$, $p = 0.43$).\n14\tLength and depth are thus near-independent in our corpus.\n15\t\n16\t\\paragraph{(b) Length-normalized feature trends.}\n17\tTo eliminate residual length effects, we recompute TTR and hapax ratio on fixed 200-word windows.\n18\tAfter normalization, monotonic depth trends are fully preserved for all generators; moreover, Spearman correlations between normalized features and depth \\emph{increase} in absolute value (e.g., Pythia-2.8B TTR: $\\rho = -0.633 \\to -0.715$).\n19\tLength removal sharpens the depth signal rather than diminishing it, confirming that the signal is not a length artifact.\n20\t\n21\t\\paragraph{(c) Length-matched classification.}\n22\tWe subsample the dataset so that word-count distributions are equalized across depth classes, then retrain the 3-class XGBoost classifier (\\S\\ref{sec:results-classification}).\n23\tMacro-F1 changes by $\\Delta = +0.041$ relative to the unmatched baseline---performance \\emph{improves} when length variance is removed.\n24\tThis is consistent with length acting as noise rather than signal.\n25\t\n26\t\\paragraph{Conclusion.}\n27\tWe observe a dropout bias: shorter texts are more likely to fall below the minimum-length thresh\n…[truncated 242 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T02:28:12.377016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_lofo.tex"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T02:28:12.377251+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWe complement the permutation importance analysis (\\S\\ref{sec:results-differential}) with a leave-one-feature-out ablation. Each row drops one of the seven features and re-evaluates the full 6-gen LOGO protocol; $\\Delta$ is the change relative to the full 7-feature ensemble (F1\\,=\\,0.789).\n2\t\n3\t\\begin{table}[h]\n4\t\\centering\n5\t\\small\n6\t\\begin{tabular}{lcc}\n7\t\\toprule\n8\t\\textbf{Dropped feature} & \\textbf{LOGO F1} & $\\boldsymbol{\\Delta}$ \\textbf{vs Full} \\\\\n9\t\\midrule\n10\tentropy\\_max    & 0.774 & $-$1.50\\,pp \\\\\n11\tentropy\\_mean   & 0.783 & $-$0.63\\,pp \\\\\n12\tttr             & 0.784 & $-$0.55\\,pp \\\\\n13\thapax\\_ratio    & 0.785 & $-$0.42\\,pp \\\\\n14\ttail\\_decay     & 0.786 & $-$0.33\\,pp \\\\\n15\tentropy\\_std    & 0.786 & $-$0.29\\,pp \\\\\n16\tentropy\\_min    & 0.789 & $+$0.01\\,pp \\\\\n17\t\\midrule\n18\tFull (7 features) & 0.789 & --- \\\\\n19\t\\bottomrule\n20\t\\end{tabular}\n21\t\\caption{Leave-one-feature-out ablation (6-gen LOGO). Each row drops one feature and re-evaluates with the LOGO protocol. Sorted by impact magnitude.}\n22\t\\label{tab:lofo}\n23\t\\end{table}\n24\t\n25\t\\paragraph{Analysis.}\n26\tEntropy\\_max causes the largest degradation when removed ($-$1.5\\,pp), despite ranking only fourth in permutation importance (split frequency 0.063). This indicates that entropy\\_max provides unique signal---capturing the most surprising token under the reference model---that is not redundant with other features.\n27\tConversely, entropy\\_min is fully redundant ($\\Delta$\\,=\\,+0.01\\,pp), consistent with its near-zero permutation importance (0.015).\n28\tSix of seven features contribute positively to the ensemble, confirming that the 7-feature design is not over-specified.\n29\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T02:28:12.377480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_confusion_matrix.tex"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T02:28:12.377734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tTable~\\ref{tab:confusion} reports the aggregated confusion matrix from 6-generator leave-one-generator-out (LOGO) evaluation, collapsed to three ordinal classes: gen-0 (human), gen-1 (first-generation), and gen-2+ (depth $\\geq$ 2).\n2\t\n3\t\\begin{table}[h]\n4\t\\centering\n5\t\\small\n6\t\\begin{tabular}{lccc}\n7\t\\toprule\n8\t& \\textbf{Pred gen-0} & \\textbf{Pred gen-1} & \\textbf{Pred gen-2+} \\\\\n9\t\\midrule\n10\t\\textbf{True gen-0} & 5{,}937 (99.4\\%) & 35 (0.6\\%) & 0 (0.0\\%) \\\\\n11\t\\textbf{True gen-1} & 368 (6.2\\%) & 4{,}437 (75.0\\%) & 1{,}113 (18.8\\%) \\\\\n12\t\\textbf{True gen-2+} & 464 (3.0\\%) & 3{,}646 (23.3\\%) & 11{,}529 (73.7\\%) \\\\\n13\t\\bottomrule\n14\t\\end{tabular}\n15\t\\caption{Aggregated 3-class confusion matrix from 6-generator LOGO evaluation ($N=27{,}529$). Each cell shows count and row-normalized percentage. Gen-0 is near-perfectly identified. Gen-1 errors are asymmetric: misclassification as gen-2+ (18.8\\%) is 3$\\times$ more frequent than as gen-0 (6.2\\%), indicating that gen-1 text already carries detectable recursive distortion.}\n16\t\\label{tab:confusion}\n17\t\\end{table}\n18\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T02:28:12.378189+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T02:28:12.378424+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T02:28:12.378736+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "paper-number-audit-20260516",
+              "type": "report",
+              "description": "论文全文数字一致性审计报告：逐文件检查所有定量声明与实验数据的一致性",
+              "project": "gen-depth-fingerprint",
+              "tags": "['paper', 'audit', 'consistency']",
+              "content_filename": "paper_number_audit_20260516.md",
+              "content": "# 论文全文数字一致性审计报告\n\n**审计日期**: 2026-05-16\n**审计范围**: abstract.tex, introduction.tex, results.tex, discussion.tex, conclusion.tex, limitations.tex, method.tex, related_work.tex, table4.tex, ethics.tex, appendix_finer_depth.tex, appendix_classifier.tex, appendix_human_edit.tex, appendix_prompt_type.tex, appendix_length.tex, appendix_lofo.tex, appendix_confusion_matrix.tex\n\n---\n\n## 审计结果\n\n### CRITICAL（必须修复）\n\n无。\n\n### WARNING（建议修复）\n\n- **[results.tex:30]** \"best single-model ceiling (Pythia-1B, 0.862)\" — 主 LOGO 表 (Table 1) 中 Pythia-1B held-out F1 = **0.856**，0.862 不在 ground truth 中。该数字可能来自 cross-model chain 的 5-fold stratified CV 对照实验，但论文未说明来源，且 0.862 恰好落在 LOGO CI 上界 [0.843, 0.863] 附近，有误用 CI 端点作点估计的嫌疑。**建议**：确认 0.862 的来源，若为 5-fold CV 则标注 \"(5-fold CV)\"；若为笔误则改为 0.856。\n\n- **[discussion.tex:67, limitations.tex:6]** Instruct 实验中 base Qwen3-0.6B 对比值写作 F1=0.816，但主 LOGO 表 (Table 1) 中同一模型 held-out F1 = **0.824**。差异原因是 instruct 实验可能使用了不同 reference model（Qwen3-0.6B 自身作 ref 时整体 LOGO F1=0.816，见 Table cross-ref），但论文未解释此差异。读者对比 Table 1 (0.824) 与此处 (0.816) 会产生疑惑。**建议**：在 instruct 讨论段落中加一句说明，或统一引用同一评估设置下的数字。\n\n- **[discussion.tex:69, limitations.tex:8]** Entropy 特征在 instruct 模型上 \"reverse sign\" 的措辞。项目叙事规范要求使用 \"depth signal degradation\" / \"method boundary\" 叙事而非 \"方向反转\"。当前文本标题已采用 \"degrades depth signal\" 叙事（合规），但正文中多次使用 \"reverse sign\"、\"reversal\" 等词汇。**建议**：将 \"reverse sign\" 改为 \"shift to positive\"，\"reversal\" 改为 \"sign change\" 或 \"weakening/degradation of the negative correlation\"，避免暗示系统性方向反转。\n\n### INFO（信息备注）\n\n- **[appendix_human_edit.tex:22-27]** 表格内舍入不一致：Random 20% 行显示 Binary F1 从 0.724→0.717（差 0.7pp），但 Δ 列写 −0.8pp（从未舍入值 0.7241→0.7165=0.76pp 四舍五入而来）。LLM rephrase 行类似：0.724→0.662=6.2pp，但 Δ 列写 −6.3pp。这是 \"从原始值计算 Δ\" vs \"从显示值计算 Δ\" 的经典舍入问题。不影响正确性，但严谨读者可能注意到。\n\n- **[discussion.tex:9, limitations.tex:27]** \"degrades at extreme temperatures (t=1.0, −6pp)\" — 实际 3-class 降幅为 6.2pp (0.788→0.726)，binary 为 6.6pp (0.799→0.733)。\"~6pp\" 是合理的近似值。\n\n- **[appendix_classifier.tex:44-47]** Sampling ablation 的 default config 3-class F1=0.788，而主结果报告 0.789。差异 (0.001) 来自数据重新生成，属预期行为。\n\n- **[appendix_human_edit.tex:22]** Human edit baseline binary F1=0.724（从 0.7241 舍入），而主结果 primary binary F1=0.723。两者来自不同实验流程，差异合理，但读者可能疑惑为何同一 baseline 在不同表中有微小差异。\n\n- **[results.tex:30]** Cross-model chain 比较中 single-model ceiling 使用 5-fold stratified CV（0.862），而 Table 1 使用 LOGO（0.856），两种评估协议不同。建议在文中明确标注评估协议以避免混淆。\n\n---\n\n## 逐文件核查清单\n\n### abstract.tex ✅\n| 声明 | 论文值 | 真值 | 状态 |\n|------|--------|------|------|\n| Binary F1 | 0.723 | 0.723 | ✓ |\n| 95% CI | [0.717, 0.729] | [0.717, 0.729] | ✓ |\n| Per-gen std | 0.051 | 0.051 | ✓ |\n| 6 generators, 3 families, 0.6B-8.2B | — | — | ✓ |\n\n### introduction.tex ✅\n| 声明 | 论文值 | 真值 | 状态 |\n|------|--------|------|------|\n| Binary F1 (×3处) | 0.723 | 0.723 | ✓ |\n| 95% CI (×3处) | [0.717, 0.729] | [0.717, 0.729] | ✓ |\n| Per-gen std (×2处) | 0.051 | 0.051 | ✓ |\n| PPL random vs depth | 2.367 vs 2.387 | 2.367 vs 2.387 | ✓ |\n| Per-gen F1 range (baselines) | 0.42–0.81 | 与 per-gen 详细数据一致 | ✓ |\n\n### results.tex ✅ (1 WARNING)\n| 声明 | 论文值 | 真值 | 状态 |\n|------|--------|------|------|\n| 3-class LOGO F1 | 0.789 | 0.789 | ✓ |\n| Binary F1 | 0.723 | 0.723 | ✓ |\n| Per-gen F1 (6个) | 0.856/0.804/0.764/0.824/0.806/0.683 | 全部匹配 | ✓ |\n| Per-class F1 | 0.94/0.64/0.80 | 0.94/0.64/0.80 | ✓ |\n| LOFO F1 (3个) | 0.772/0.762/0.754, Δ=-2.6pp | 全部匹配 | ✓ |\n| Cross-model chains | 3c=0.809, bin=0.764 | 0.809/0.764 | ✓ |\n| Ordinal: CORAL/FH/XGB | 0.771/0.793/0.789; bin 0.721/0.728; conc 0.821/0.810/0.825 | 全部匹配 | ✓ |\n| Spearman (5个) | -0.558/-0.542/-0.475/0.076/0.089 | 全部匹配 | ✓ |\n| Ablation: full/surface/ref | 0.789/0.729/0.745 | 全部匹配 | ✓ |\n| Top importance: hapax | 0.269 | 0.269 | ✓ |\n| Cross-ref (3个) | 0.803/0.807/0.816, spread=0.013 | 全部匹配 | ✓ |\n| Baselines (7行×3列) | 全部数字 | 全部匹配 | ✓ |\n| Baseline Δ计算 (4个) | +1.1/+2.2/+10.7/+19.9pp | 算术正确 | ✓ |\n| Downstream PPL (5行) | 2.335/2.367/2.387/2.389/2.681 | 全部匹配 | ✓ |\n| ⚠ Single-model ceiling | 0.862 | 真值 LOGO=0.856 | WARNING |\n\n### discussion.tex ✅ (2 WARNING)\n| 声明 | 论文值 | 真值 | 状态 |\n|------|--------|------|------|\n| Sampling robustness | ≤0.3pp, -6pp | 0.3pp, ~6.2pp | ✓ (近似) |\n| 5-class drop | 0.789→0.501, Δ=0.288 | 0.501 | ✓ |\n| 5-class per-class (gen2/3/4) | 0.268/0.259/0.423 | 全部匹配 | ✓ |\n| Alt classifiers | RF 0.476, LR 0.447, FH 0.451 | 全部匹配 | ✓ |\n| Human edit 20% | -6.0pp 3c, ≤0.8pp bin | -5.97pp/-0.76pp | ✓ |\n| LLM rephrase | -3.4pp 3c, -6.3pp bin | -3.4pp/-6.26pp | ✓ |\n| Multi-det ensemble | 0.805 vs 0.789; 0.723 vs 0.724 | 全部匹配 | ✓ |\n| Cross-ref spread | 0.013, range 0.803-0.816 | 匹配 | ✓ |\n| Pythia-1B cross-family | 0.845-0.848 | 0.845-0.848 | ✓ |\n| Instruct OLMo | 0.338 vs 0.764 | 匹配 | ✓ |\n| Instruct Qwen3-0.6B | 0.667 vs 0.816 | 匹配 | ⚠ 见WARNING |\n| Entropy partial ρ | +0.103/+0.161/+0.364 | 全部匹配 | ✓ |\n\n### conclusion.tex ✅\n| 声明 | 论文值 | 真值 | 状态 |\n|------|--------|------|------|\n| Binary F1 + CI + std | 0.723/[0.717,0.729]/0.051 | 全部匹配 | ✓ |\n| Cross-model | 3c=0.809, bin=0.764 | 匹配 | ✓ |\n\n### limitations.tex ✅ (同 discussion WARNING)\n所有数字与 discussion 一致，instruct 对比值同上 WARNING。\n\n### method.tex ✅\n| 声明 | 论文值 | 真值 | 状态 |\n|------|--------|------|------|\n| Cross-ref spread | 0.013 | 0.013 | ✓ |\n| Seed stability | mean=0.789, std=0.0009 | mean 匹配 | ✓ |\n| Ordinal range | 0.771-0.793 vs 0.789 | 匹配 | ✓ |\n\n### related_work.tex ✅\n| 声明 | 论文值 | 真值 | 状态 |\n|------|--------|------|------|\n| Baseline binary range | 0.52-0.71 | 0.524-0.712 | ✓ |\n\n### appendix_finer_depth.tex ✅\n5-class avg 0.501±0.038、per-class 0.921/0.634/0.268/0.259/0.423、alt classifiers 全部匹配。\n\n### appendix_human_edit.tex ✅ (INFO: 舍入)\nBaseline/delta 全部匹配 ground truth 原始值；delta 列有轻微舍入不一致（见 INFO）。\n\n### appendix_classifier.tex + sampling ✅\nXGBoost/RF/LR 全部匹配；sampling ablation 3×3 全部匹配。\n\n### 其他附录 (prompt_type, length, lofo, confusion_matrix, ethics) ✅\n无 ground truth 冲突，内部一致。\n\n---\n\n## 总结\n\n**通过（有条件）**。\n\n- **0 个 CRITICAL 问题**\n- **3 个 WARNING**：(1) Pythia-1B 0.862 来源不明；(2) Instruct Qwen3-0.6B base 对比值 0.816 vs LOGO 表 0.824 未解释；(3) instruct \"reverse sign\" 措辞与叙事规范的兼容性\n- **5 个 INFO**：均为轻微舍入近似，不影响结论\n\n所有主要指标（binary F1=0.723、3-class F1=0.789、CI、std、baseline 全表、downstream PPL、ablation、cross-ref、LOFO、5-class、human edit delta）均与 ground truth 完全一致或在合理舍入范围内。无 7-gen vs 6-gen 混用、无不支持的 \"significantly\" 声明。\n"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T02:28:12.379123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_c94dd3\\\", \\\"name\\\": \\\"paper-number-audit-20260516\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"论文全文数字一致性审计报告：逐文件检查所有定量声明与实验数据的一致性\\\", \\\"path\\\": \\\"projects/gen-depth-fingerprint/artifacts/_project/report/paper_number_audit_20260516.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"gen-depth-fingerprint\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T02:28:01.242921+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"audit\\\", \\\"consistency\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T02:28:12.379410+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计结果\n\n**通过（有条件）** — 0 CRITICAL / 3 WARNING / 5 INFO\n\n### WARNING（建议修复）\n\n1. **results.tex:30** — `\"best single-model ceiling (Pythia-1B, 0.862)\"` 与 LOGO 表中 Pythia-1B=**0.856** 不符。0.862 来源不明（疑为 5-fold CV 或 CI 上界误用），需确认或修正。\n\n2. **discussion.tex:67 + limitations.tex:6** — Instruct 对比中 base Qwen3-0.6B=**0.816**，但 LOGO 表中同一模型=**0.824**。差异源于不同 reference model 设置（cross-ref Qwen3-0.6B=0.816），但论文未解释，读者会困惑。\n\n3. **discussion.tex:69 + limitations.tex:8** — \"reverse sign\" 措辞与叙事规范（应用 \"degradation\" 而非 \"方向反转\"）存在张力。建议改为 \"shift to positive\" 或 \"sign change\"。\n\n### INFO\n\n- appendix_human_edit 表 delta 列有轻微舍入不一致（从原始值 vs 显示值计算 delta 的经典问题）\n- Sampling ablation default 3-class=0.788 vs 主结果 0.789（数据重生成所致）\n- \"~6pp\" 近似值（实际 6.2-6.6pp）\n\n其余所有主要数字（binary F1、CI、std、baseline 全表、downstream PPL、ablation、cross-ref、LOFO、5-class、human edit）均与 ground truth 完全一致。报告已注册为 `art_20260516_c94dd3`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_paper-consistency_20260516T022243"
+          },
+          "id": "event-000041"
+        }
+      ],
+      "message_count": 41
+    }
+  ],
+  "readable_path": "readable/conversations/audit-paper-consistency.md"
+}

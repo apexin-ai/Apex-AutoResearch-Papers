@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "967a1d49f0ae53ce61d9",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper compile new framework fig",
+  "task_key": "worker_paper_compile-new-framework-fig_20260523T053538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile-new-framework-fig_20260523T053538_result.json",
+    "occurrence": 1,
+    "bytes": 845,
+    "sha256": "a6d9e6364326acaff6a3341480f95659663f2141156dccb4b21ea1404e1510c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译和验证完成，汇报如下：\n\n**编译结果**: 成功，无 fatal error，无 LaTeX warning。\n\n**页数**: 37 页（正文 8 页 + 附录）。Conclusion 在 p8，符合 EMNLP 8 页限制。\n\n**框架图布局**: Figure 1 在 p2 顶部全宽显示，位于 Introduction 结束、Method section 开始之间，位置合理。图中三部分 (a) Recursive generation chain → (b) Feature extraction → (c) LOGO evaluation 清晰可读，信息密度高。\n\n**Type 3 字体**: 存在 5 个 Type 3 字体：\n- `DejaVuSerif-Bold` (p649)\n- `DejaVuSerif` (p648)  \n- `Cmmi10`, `Cmr10`, `Cmsy10` (p649-651)\n\n这些很可能来自框架图 PDF 中嵌入的字体。投稿前需要消除——生成框架图时应确保所有文字使用 Type 1 或 TrueType 字体（matplotlib 中设置 `pdf.fonttype: 42`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-new-framework-fig.md"
+}

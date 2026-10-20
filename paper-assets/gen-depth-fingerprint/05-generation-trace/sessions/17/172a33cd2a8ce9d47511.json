@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "172a33cd2a8ce9d47511",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "check qwen06b r2 s0 exit",
+  "task_key": "worker_check_qwen06b-r2-s0-exit_20260514T225922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_qwen06b-r2-s0-exit_20260514T225922_result.json",
+    "occurrence": 1,
+    "bytes": 640,
+    "sha256": "07315720f1514617c1b95a7ab5a00bc8952cb25201645c2b26be306f822cc354"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**shard0 (PID 117855)：正常完成 ✓**\n\n| 指标 | 值 |\n|------|-----|\n| 总行数 | 2270 |\n| unique seeds | 498（范围 0-497） |\n| depth 分布 | {0: 498, 1: 493, 2: 468, 3: 423, 4: 388} |\n| 最后一行 | seed_id=497, depth=4, JSON 完整 |\n\nRegistry 已更新为 DONE/success，cron 已删除。\n\n**其他进程状态：**\n- PID 118126 (shard1)：**已退出**（数据文件 generations_shard1.jsonl 已生成，2.4MB）\n- PID 120617：**运行中**，已运行 1h01m\n- PID 120694：**运行中**，已运行 1h01m\n\n注意：shard1 (PID 118126) 也已退出，可能也需要检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-qwen06b-r2-s0-exit.md"
+}

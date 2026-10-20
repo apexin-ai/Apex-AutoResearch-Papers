@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d08f47f615b59b4a5d64",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "exp review p0b volume matched",
+  "task_key": "worker_exp_review-p0b-volume-matched_20260515T134033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_review-p0b-volume-matched_20260515T134033_result.json",
+    "occurrence": 1,
+    "bytes": 631,
+    "sha256": "793f75594a0b6f310286ed3f9d6ebdd7dcf4ac415fcf836281857712ebf4d93b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "P0-B 完成。结果：\n\n| 条件 | Avg F1 |\n|---|---|\n| 5-gen LOGO (原始) | 0.8019 |\n| 5-gen volume-matched (3 seed 均值) | 0.8024 |\n| 6-gen LOGO (excl qwen3-8b) | 0.8102 |\n\n**分解**：\n- Volume effect: **+0.05pp**（将 4-gen train 上采样到 5-gen 等量，几乎无影响）\n- Total effect: +0.83pp\n- Diversity residual: **+0.78pp**（94% 来自 generator diversity）\n\n结论：加入 Qwen3-8B 带来的 per-generator F1 提升几乎完全来自 generator 多样性，而非数据量增加。脚本 `scripts/review_p0b_volume_matched.py`，结果 `results/review_p0b_volume_matched.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-review-p0b-volume-matched.md"
+}

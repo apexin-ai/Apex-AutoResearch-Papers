@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d92ff5271ed0b14f7f3",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "director / loop_4.md",
+  "task_key": "loop_4",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_4.md",
+    "occurrence": 1,
+    "bytes": 1733,
+    "sha256": "f0e6af60abe0a975c0fb6ac12496af85220ce62a5feeacbc31644892a950672c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_messages\nupdated: '2026-05-15T22:06:43+00:00'\n---\n\n## 当前状态\n\n项目 gen-depth-fingerprint 处于 Research + 审稿并行阶段。服务器 autodl-5090。\n\n### 正在跑的实验（3个）\n- plan-006-paraphrastic\n- plan-007-cross-model（跨模型链 vs 单模型链的 depth signal）\n- plan-008-multi-domain（news/scientific/creative 三域 seeds 的 domain robustness）\n\n### Agent 当前任务\nAgent 正在处理 consistency audit 后续修复指令（queue depth=0，idle 12s）。具体内容：\n- Paper Agent 已修复 results.tex 的 #1-#4 数字问题（commit f7efa9a，统一为 0.764 等）\n- Agent 刚修复 table2.tex feature group 标签错误（commit 0bb0699）：Surface only 改为 TTR+hapax_ratio(2个)，Reference only 改为 entropy_mean/std/min/max+tail_decay(5个)，F1 数字未动\n- Agent 提到 results.tex 还有 4 处数字问题等 Director 批准后修复——但从指令看 Paper Agent 已经修了 #1-#4，需要确认是否还有残留问题\n\n### 待处理\n- plan-004-prep：Downstream utility 准备（depth-stratified 数据集 + OLMo-1B fine-tuning 脚本），等 Director 确认才开跑\n- 58 个实验总计，38 成功，3 运行中，6 待处理\n\n### 审稿阶段\nReview 群已建（review_chat_id: oc_999770e4e57bfc6eabd12fc1f64af1ef），独立审稿团队在并行处理。论文溯源覆盖率 4/60，较低。\n\n### 下一步建议\n1. 确认 results.tex 数字问题是否全部解决（f7efa9a 已修 vs Agent 说还有 4 处待批）\n2. 3 个 running 实验完成后及时分析结果、更新 paper\n3. plan-004 downstream utility 是否批准启动——取决于 GPU 余量\n4. 论文溯源覆盖率低（4/60），需要 auto_build_provenance 补齐\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4.md"
+}

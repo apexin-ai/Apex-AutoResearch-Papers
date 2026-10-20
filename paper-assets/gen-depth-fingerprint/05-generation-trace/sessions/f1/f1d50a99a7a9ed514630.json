@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1d50a99a7a9ed514630",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan 005 prompt types",
+  "task_key": "worker_code_plan-005-prompt-types_20260515T032444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-005-prompt-types_20260515T032444_result.json",
+    "occurrence": 1,
+    "bytes": 1160,
+    "sha256": "51581d468dee24e35f12d717f3f64016d8e8a3c4dcb0fb1931fee5c8e588b91e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个任务全部正常运行，模型已加载，正在生成中。\n\n**总结：**\n\n| 任务 | exp_id | GPU | tmux session | 状态 |\n|------|--------|-----|-------------|------|\n| continuation | plan-005-cont | cuda:1 | plan-005-cont | 运行中 |\n| elaboration | plan-005-elab | cuda:2 | plan-005-elab | 运行中 |\n| inspired_rewriting | plan-005-rewrite | cuda:3 | plan-005-rewrite | 运行中 |\n\n**脚本变更**：创建了 `generate_chain_prompt.py`，基于原 `generate_chain.py` 扩展：\n- 新增 `--prompt-type` 参数（continuation/elaboration/inspired_rewriting）\n- elaboration 用 \"Please elaborate on...\" 模板包裹上一步输出\n- inspired_rewriting 用 \"Write a new passage inspired by...\" 模板\n- 输出 jsonl 增加 `prompt_type` 字段\n- 输出目录格式：`data/pythia-2.8b-{prompt_type}/`\n- 模板化 prompt 使用 256 token 输入窗口（vs continuation 的 128）以保留模板结构\n\n**注意**：`openwebtext_seeds.jsonl` 不存在，使用了现有的 `wiki_seed_1000.jsonl`（995 有效 seeds）。每个任务处理全部 995 seeds × depth 0-4，预计每个任务约 2-3 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-005-prompt-types.md"
+}

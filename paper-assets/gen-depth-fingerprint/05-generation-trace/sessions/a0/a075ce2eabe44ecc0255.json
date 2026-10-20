@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a075ce2eabe44ecc0255",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "director / loop_6_1779659415.md",
+  "task_key": "loop_6_1779659415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_6_1779659415.md",
+    "occurrence": 1,
+    "bytes": 2567,
+    "sha256": "10e3319c6954bfd2d06aa549104b2fa788466f654d1f40142ba15758daa08c26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_messages\nupdated: '2026-05-23T22:01:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 匿名仓库 push 必须用 `Anonymous <anonymous@example.com>` 作者信息，禁止泄露真实姓名/邮箱\n- 匿名仓库 URL: `https://github.com/anonymous-nlp-2026-2/gen-depth-fingerprint`（含 token，remote 已配在 bjb2-18868:/root/gen-depth-fingerprint）\n- QLoRA 实验实际协议是 **4-generator 5-fold stratified CV**（不是 6-gen LOGO），baseline=0.805，delta=+10.0pp——全文已修正，不要回退\n- Instruct F1 是 **0.469**（不是 0.487）——已修正\n- 服务器 bjb2-18868 已批准释放（数据已备份到 `artifacts/server_backup/`），释放后不要再派 SSH 任务\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb2-18868（**即将释放**，数据已备份）\n  - 工作目录：`/root/gen-depth-fingerprint`\n  - 匿名仓库 git remote origin 已配置（含 GitHub token）\n- 本地论文源：`/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/`\n- 本地备份：`artifacts/server_backup/`（24MB，209 JSON + 64 CSV + 189 PY + 23 SH）\n- 无活跃进程/训练任务/cron\n\n### 3. 📊 当前状态\n**ARR 提交准备全部完成：**\n- 3 个 CRITICAL 数据错误已修复（batch estimation 删除、QLoRA 协议修正、instruct F1 修正）\n- 最终 PDF 已编译上传（37 页）\n- 匿名仓库已同步（commit `3ca3d11`，14 文件）\n- AI disclosure appendix 已添加\n- ARR checklist 全英文字段已准备\n- 服务器数据已备份\n\nRegistry 无 RUNNING/PREPARING 实验。无等待中的回调。\n\n### 4. 📋 待办\n- 用户确认提交 ARR → 在 OpenReview 手动提交（DDL 2026-05-25）\n- 用户确认释放 bjb2-18868 → 通知 Manager 释放服务器\n- 收到 ARR 审稿意见 → 加载 `review-report-action` skill 处理\n\n### 5. 🎯 战略上下文\n- 项目核心：DDR（Differential Depth Response）—— NLL location features 随递归生成深度漂移，shape features 近似不变，实现无需 per-generator calibration 的深度分类\n- 主要数字锚点：leak-free binary F1=0.694，3-class F1=0.762（8-gen LOGO），cross-model F1=0.830，QLoRA ceiling F1=0.905\n- 易错点：论文中存在 6-gen 和 8-gen 两套实验（6-gen 是早期子集，8-gen 是扩展后主线），QLoRA 用的是 4-gen 子集——不要混淆这三个 generator 集合\n- η² 比较对象：>48× ratio 是 η²_depth(location) vs η²_depth(shape)，不是 vs η²_gen\n- 投稿目标：EMNLP 2026 via ARR May cycle，8 页正文限制\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1779659415.md"
+}

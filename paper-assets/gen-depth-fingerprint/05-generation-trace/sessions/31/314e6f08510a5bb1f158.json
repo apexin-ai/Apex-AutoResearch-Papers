@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "314e6f08510a5bb1f158",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code llama rp10 filter and extract",
+  "task_key": "worker_code_llama-rp10-filter-and-extract_20260516T113203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-rp10-filter-and-extract_20260516T113203_result.json",
+    "occurrence": 1,
+    "bytes": 1107,
+    "sha256": "b83df637cc80faf76729c8928bb9710eeec006be009f8086365b92d2be467633"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总报告：\n\n---\n\n## Phase 1: Soft Filter 结果\n\n| Depth | 原始 | 过滤后 | 移除数 | 比例 |\n|-------|------|--------|--------|------|\n| 0 | 995 | 995 | 0 | 0.0% |\n| 1 | 984 | 872 | 112 | 11.4% |\n| 2 | 943 | 533 | 410 | 43.5% |\n| 3 | 899 | 315 | 584 | 65.0% |\n| 4 | 859 | 222 | 637 | 74.2% |\n| **Total** | **4680** | **2937** | **1743** | **37.2%** |\n\n退化比例随 depth 单调递增，符合预期。\n\n## Phase 2: 3-ref 特征提取\n\n全部完成，每个文件 2937 条记录：\n- `features_pythia410m.jsonl` (90th NLL threshold: 6.17)\n- `features_olmo2-1b.jsonl` (90th NLL threshold: 5.33)\n- `features_qwen3-06b.jsonl` (90th NLL threshold: 6.02)\n\n字段：seed_id, depth, entropy_mean, entropy_std, entropy_min, entropy_max, tail_decay, ttr, hapax_ratio\n\n## 使用脚本\n\n- **新建**：`llama_filter_and_extract.py`（基于已有 `extract_features.py` 的特征计算逻辑，新增 soft filter + 多 ref model 支持 + task 指定的 tail_decay 定义）\n- 总耗时约 60s（5090 GPU 上 Pythia 18s + OLMo ~20s + Qwen ~20s）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-rp10-filter-and-extract.md"
+}

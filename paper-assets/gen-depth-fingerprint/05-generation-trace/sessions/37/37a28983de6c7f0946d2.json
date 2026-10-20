@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37a28983de6c7f0946d2",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis exp 059 results",
+  "task_key": "worker_analysis_exp_059_results_20260520T073622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_059_results_20260520T073622_result.json",
+    "occurrence": 1,
+    "bytes": 1320,
+    "sha256": "93be7ae6e711af451909f46fcda33eab016f58d9d3d45fbf82c1287f12379258"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "日志无 error，实验正常完成。结果如下：\n\n## exp_059 TOST Bootstrap 结果\n\n**配置**: n_bootstrap=1000, seed=42, margin(d)=0.2, α=0.05\n\n| Feature | median_p | rejection_rate | p_ci_95 | median_d | d_ci_95 |\n|---------|----------|---------------|---------|----------|---------|\n| **entropy_max** | 0.0 | **100%** ✓ | [0.0, 0.0] | 0.062 | [0.037, 0.088] |\n| **entropy_min** | 0.0 | **100%** ✓ | [0.0, 0.0] | −0.016 | [−0.042, 0.011] |\n| **tail_decay** | 0.0 | **100%** ✓ | [0.0, 0.0] | 0.088 | [0.065, 0.111] |\n| entropy_std | 1.0 | **0%** ✗ | [1.0, 1.0] | 0.458 | [0.435, 0.479] |\n\n## 分析\n\n**三个 stationary feature（entropy_max, entropy_min, tail_decay）在全部 1000 次 bootstrap 中 100% reject**，p 值的 95% CI 均为 [0.0, 0.0]，effect size d 全部远小于 margin 0.2。TOST equivalence 结论完全 robust，不受采样波动影响。\n\n**entropy_std 如预期不通过**：median_d = 0.458 远超 margin 0.2，0% rejection rate，确认 depth 间差异实质性存在，不等价。\n\n**总体结论**：TOST equivalence 在 bootstrap 下完全稳健。三个 stationary feature 的等价性是 robust finding，entropy_std 的非等价性同样稳定。这为论文中 \"depth-stationary features\" 的 claim 提供了强统计支撑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-059-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0eaa70597d21c0e08412",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "research ref audit worker 2",
+  "task_key": "worker_research_ref-audit-worker-2_20260526T103724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-worker-2_20260526T103724_result.json",
+    "occurrence": 1,
+    "bytes": 768,
+    "sha256": "5c7b846ad895c315ebeb0dd8b7c2cccf132a51386fff615e9543626a8a37423d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report written to `ref_audit_worker2.md`.\n\n**Summary of findings across all 74 entries:**\n\n- **0 hallucinated papers** — every entry corresponds to a real publication\n- **4 issues found:**\n  1. **`human_texts_outliers`** (CRITICAL) — wrong authors (Li, Yafu → Zeng, Cong), wrong subtitle, wrong venue (arXiv → NeurIPS 2025) for arXiv:2510.08602\n  2. **`xu_spectrum_detection`** — venue outdated: bib says arXiv, paper published at EMNLP 2024\n  3. **`two_birds`** — possibly accepted at SecureComm 2025 (verify)\n  4. **`wu_survey_2025`** — missing volume/number/pages for published journal article\n- **25 orphaned entries** in bib but not cited in any tex file\n- **48 actively cited entries** all have accurate cite-context usage"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ref-audit-worker-2.md"
+}

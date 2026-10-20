@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4aa073d0c5c3414b3aa1",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper sync anon repo fixes",
+  "task_key": "worker_paper_sync-anon-repo-fixes_20260523T195912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_sync-anon-repo-fixes_20260523T195912_result.json",
+    "occurrence": 1,
+    "bytes": 295,
+    "sha256": "0a3904f6f8c13a2f2d8ef9b90472907e2f591a67e57eb1dd7a28babb075a264e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**同步完成。**\n\n| 项目 | 结果 |\n|------|------|\n| Commit hash | `3ca3d11` |\n| 更新文件数 | 14 个 |\n| Push | 成功（`03b30d9..3ca3d11 main -> main`） |\n| 匿名检查 | CLEAN |\n\n首次 push 因 TLS 错误失败，启用 `network_turbo` 后重试成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-sync-anon-repo-fixes.md"
+}

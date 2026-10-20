@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25db36e4b42e11636658",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper fix b11 seed",
+  "task_key": "worker_paper_fix-b11-seed_20260518T004447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-b11-seed_20260518T004447_result.json",
+    "occurrence": 1,
+    "bytes": 558,
+    "sha256": "ae0f7bae31a22922149c8d76260dd32f06750e9dbe637908eba9dbaed119f3c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Written to `artifacts/_project/analysis/qualitative_example_best_seed.md`.\n\n**Seed 120 (Aquarius)** replaces seed 5. Key advantages:\n- **entropy_max range: 1.29%** (vs seed 5's 15%) — near-perfect shape stability\n- **tail_decay range: 3.81%** — stable\n- **TTR drop: 87.73%**, **hapax drop: 99.09%** — both monotonically decreasing\n- Text shows clean progressive degradation: factual Wikipedia → templated mythology claims → single sentence on repeat. Much stronger support for the \"shape stable, lexicon collapses\" narrative."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-b11-seed.md"
+}

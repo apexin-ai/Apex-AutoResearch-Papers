@@ -1,0 +1,814 @@
+{
+  "schema_version": "1.0",
+  "id": "200e82103534cff81f6d",
+  "project": "gen-depth-fingerprint",
+  "kind": "conversation",
+  "title": "cron hook plan 002 pythia1b s1 20260515T001330 066551",
+  "task_key": "cron_hook_plan-002-pythia1b-s1_20260515T001330_066551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_plan-002-pythia1b-s1_20260515T001330_066551.jsonl",
+    "occurrence": 1,
+    "bytes": 42993,
+    "sha256": "1f2e506e2e8c98541d0b04758fa3eff107a37595f0b9b1a364f611052eb83e99"
+  },
+  "statistics": {
+    "messages": 40,
+    "user_turns": 2,
+    "tool_calls": 19,
+    "roles": {
+      "user": 2,
+      "tool_call": 19,
+      "tool_result": 17,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T20:50:18.081545+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: plan-002-pythia1b-s1\n- project: gen-depth-fingerprint\n- server: autodl-5090\n- log_path: ~/runs/gen-depth-fingerprint/plan-002-pythia1b-s1.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T20:50:27.105284+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_experiment_plan_with_status",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T20:50:27.155810+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T20:50:30.016542+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "gen-depth-fingerprint",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T20:50:30.519743+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T20:50:30.520615+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan-002-pythia1b-s1\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T20:09:42.815Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:50:17.333Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python generate_chain.py --model-name pythia-1b --model-path /root/autodl-tmp/models/pythia-1b/EleutherAI/pythia-1b --input data/wiki_seed_1000.jsonl --shard-id 1 --num-shards 2 --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"108098\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-fingerprint/plan-002-pythia1b-s1.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T20:09:42.799Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T20:50:17.333Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T20:50:18.063486+00:00\\\"}]}}, \\\"plan-002-pythia1b-s0\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T20:09:40.947Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:50:12.706Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python generate_chain.py --model-name pythia-1b --model-path /root/autodl-tmp/models/pythia-1b/EleutherAI/pythia-1b --input data/wiki_seed_1000.jsonl --shard-id 0 --num-shards 2 --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"108021\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-fingerprint/plan-002-pythia1b-s0.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T20:09:40.932Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T20:50:12.706Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\n…[truncated 11318 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 504
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T20:50:30.871725+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "gen-depth-fingerprint",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T20:50:30.872023+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "gen-depth-fingerprint"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T20:50:32.929725+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 2, \\\"results\\\": [{\\\"exp_id\\\": \\\"plan-002-olmo2-s0\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=plan-002-olmo2-s0)\\\"]}, {\\\"exp_id\\\": \\\"plan-002-olmo2-s1\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=plan-002-olmo2-s1)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 2409
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T20:50:32.980388+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-14T20:50:17Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 13 个实验 — DONE 3, PREPARING 9, RUNNING 1\\\\n**DONE 分布**: success 3\\\\n\\\\n### GPU 占用\\\\n- **分配**: 4 张 — autodl-5090:cuda:0, autodl-5090:cuda:1, autodl-5090:cuda:2, autodl-5090:cuda:3\\\\n- **空闲（分配了没跑）**: autodl-5090:cuda:0, autodl-5090:cuda:1, autodl-5090:cuda:2, autodl-5090:cuda:3\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `plan-002` | autodl-5090 | ? | ? | `—` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `plan-001-fix` [success] — 2026-05-14T19:34:25\\\\n- `plan-001` [success] — 2026-05-14T19:34:17\\\\n- `mvp-001` [success] — 2026-05-14T18:08:20\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| plan-002 | 跨模型泛化：Pythia-410M 参考模型下的深度特征能否区分不同架构/规模生成器（Pythia-1B, OLMo-2-1B, Qwen3-1.7B, Qwen3-0.6B）的 continuation 链 | — | — | — |\\\\n\\\\n## 待处理\\\\n- plan-001-restore（准备中）\\\\n- mvp-001-gen-s0（准备中）\\\\n- mvp-001-gen-s3（准备中）\\\\n- mvp-001-gen-s2（准备中）\\\\n- mvp-001-gen-s1（准备中）\\\\n\\\\n## 近期结论\\\\n- **plan-001-fix** (success): —\\\\n  [plan-001-fix analysis report](/api/workspace-files/projects/gen-depth-fingerprint/artifacts/plan-001-fix/report/analysis_report.md)\\\\n- **plan-001** (success): Feature ablation: 模型级特征（entropy系列+tail_decay）独立于表面特征仍能区分生成深度；H1/H2趋势分析确认特征随depth的变化模式；perplexity随depth显著变化\\\\n- **mvp-001** (success): Pythia-410M 参考模型的分布特征（entropy stats, tail-decay, TTR, hapax）能区分 Pythia-2.8B continuation 链的 gen-0/gen-1/gen-2+，3-class macro-F1 ≥ 0.45\\\\n  [MVP Results](/api/workspace-files/projects/gen-depth-fingerprint/artifacts/mvp-001/data/mvp_results_pointer.txt) | [MVP-001 Results](\n…[truncated 312 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 2108
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T20:50:32.980941+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/ROADMAP.md\\\", \\\"content\\\": \\\"# gen-depth-fingerprint — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 18:12 UTC | 更新原因: Post-MVP: research 阶段启动，引用 paper_framing.md + experiment_plan.yaml\\\\n\\\\n## 核心方向\\\\n估计文本的\\\\\\\"生成深度\\\\\\\"（gen-0 / gen-1 / gen-2+），实现风险分层数据治理。非释义生成链打破 attractor 收敛约束，分布漂移随深度累积，留下可检测的\\\\\\\"分布指纹\\\\\\\"。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research（MVP 2026-05-14 通过，macro-F1=0.84，binary-F1=0.87）\\\\n- **服务器**: autodl-5090 (4× RTX 5090 32GB)\\\\n- **Venue**: AAAI 2027 (DDL Aug 2) primary / EMNLP 2026 ARR (May 25) stretch\\\\n- **Dream**: dream_20260514T181213 pending（full review mode）\\\\n- **覆盖率**: MVP 验证了 Claim 1 单生成器场景；Claim 2/3 待验证\\\\n\\\\n## Core Claims (from paper_framing.md)\\\\n1. **Depth Discriminability** — 分布特征能跨生成器区分 gen-0/gen-1/gen-2+\\\\n2. **Distributional Fingerprint Independence** — 参考模型特征独立于表面词汇统计\\\\n3. **Downstream Utility** — 深度感知过滤优于二分类过滤\\\\n\\\\n## 实验计划 (from experiment_plan.yaml)\\\\n| ID | Name | Claim | Pri | GPU·h | Status |\\\\n|----|------|-------|-----|-------|--------|\\\\n| mvp-001 | mvp_validation | 1 | — | 3 | ✅ DONE |\\\\n| plan_001 | feature_ablation | 2 | P0 | 1 | pending |\\\\n| plan_002 | cross_generator_evaluation | 1 | P0 | 20 | pending |\\\\n| plan_003 | cross_family_reference_model | 1 | P0 | 8 | pending |\\\\n| plan_004 | downstream_utility | 3 | P0 | 15 | pending |\\\\n| plan_005 | prompt_type_comparison | 1 | P1 | 10 | pending |\\\\n| plan_006 | paraphrastic_comparison | 1 | P1 | 8 | pending |\\\\n| plan_007 | cross_model_chains | 1 | P1 | 12 | pending |\\\\n| plan_008 | multi_domain_seeds | 1 | P1 | 10 | pending |\\\\n| plan_009-012 | P2 experiments | 1,2 | P2 | 23 | pending |\\\\n\\\\n**GPU 预算**: P0 ~44h / P1 ~40h / P2 ~23h / Total ~107h (≤200h budget)\\\\n\\\\n## 近期任务\\\\n- [ ] 等待 Dream 回调 → 分析审稿反馈 → 决定是否调整 framing/plan\\\\n- [ ] Dream 通过后：批准 plan_001 (feature_ablation) — 用现有 MVP 数据，无需新 generation\\\\n- [ ] plan_001 结果确认 Claim 2 后：批准 pla\n…[truncated 730 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 2108
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T20:50:45.619190+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__load_project_config",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T20:50:45.619496+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T20:50:45.920500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "gen-depth-fingerprint"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T20:50:45.971199+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"claim\\\": 2, \\\"name\\\": \\\"feature_ablation_and_trend\\\", \\\"description\\\": \\\"Three-part analysis on existing MVP data (zero new generation): (A) Feature ablation: reference-model-only features (entropy_mean/std/min/max + tail_decay) vs surface-only features (TTR + hapax_ratio) vs full feature set. XGBoost 5-fold CV for each. (B) H1/H2 trend analysis: plot each feature's mean ± std across depth 0-4. Monotonic trend → H2 (divergence); plateau → H1 (convergence). Fit linear regression per feature, report slope + R². (C) Perplexity pre-validation for Claim 3: compute Pythia-410M perplexity on depth-stratified subsets (no fine-tuning, just forward pass). If perplexity varies significantly with depth → Claim 3 signal exists.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 1, \\\"deps\\\": [\\\"mvp-001\\\"], \\\"notes\\\": \\\"Uses existing MVP data + features.csv. Critical for Claim 2. Plan B if surface-only ≈ full: reframe Claim 2 as \\\\\\\"complementary signal\\\\\\\" instead of \\\\\\\"independent signal\\\\\\\", narrative shifts to \\\\\\\"vocabulary impoverishment as primary depth signal\\\\\\\".\\\\n\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_002\\\", \\\"claim\\\": 1, \\\"name\\\": \\\"cross_generator_evaluation\\\", \\\"description\\\": \\\"Expand to 5 generators: Pythia-2.8B, Pythia-1B, OLMo-2-0425-1B (1485M), Qwen3-1.7B-Base, Qwen3-0.6B-Base. (Qwen3.5 不存在，用 Qwen3-Base 替代。) Leave-one-generator-out CV to test cross-generator generalization. 1000 seeds × 5 generators × 5 depths = 25K chains.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 20, \\\"deps\\\": [\\\"plan_001\\\"], \\\"notes\\\": \\\"Only proceed if plan_001 confirms reference features have independent or complementary value. Pythia family overlap (2.8B + 1B): supplement with leave-one-family-out evaluation in analysis. Discuss limitation in paper if Pythia holdout performance inflated by Pythia-1B in training set.\\\\n\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_003\\\", \\\"claim\\\": 2, \\\"name\\\n…[truncated 4165 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T20:50:58.808444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "gen-depth-fingerprint",
+              "section": "execution"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T20:50:59.260105+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"gen-depth-fingerprint\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"project_path\\\": \\\"/root/gen-depth-fingerprint\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"autodl-5090\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 451
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T20:51:11.746051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analyze:plan-002-pythia1b",
+              "project": "gen-depth-fingerprint",
+              "task_prompt": "## 任务：分析 plan-002 Pythia-1B 两个 shard 的生成结果\n\n### 背景\nplan-002 是跨模型泛化实验的数据生成阶段。Pythia-1B 的两个 shard（s0, s1）已完成，需要检查生成是否成功。\n\n**实验参数**：\n- 生成脚本: generate_chain.py\n- 模型: EleutherAI/pythia-1b (路径: /root/autodl-tmp/models/pythia-1b/EleutherAI/pythia-1b)\n- 输入: data/wiki_seed_1000.jsonl (1000 seeds)\n- 分片: 2 shards (s0: seed 0-499, s1: seed 500-999)\n- 参考模型: EleutherAI/pythia-410m\n- temperature=0.7, top_p=0.9, max_new_tokens=256\n- 生成深度: gen-0 到 gen-4 continuation 链\n\n### 服务器\n- autodl-5090\n- 项目路径: /root/gen-depth-fingerprint\n\n### 你需要做的\n\n1. **读取两个 shard 的日志**（用 ssh_read_only）:\n   - ~/runs/gen-depth-fingerprint/plan-002-pythia1b-s0.log\n   - ~/runs/gen-depth-fingerprint/plan-002-pythia1b-s1.log\n   - 关注: 是否有错误、生成了多少条记录、耗时\n\n2. **检查输出文件**（用 ssh_read_only）:\n   - 查看 /root/gen-depth-fingerprint/data/ 目录下 pythia-1b 相关的输出文件\n   - 确认文件大小、行数\n   - 查看前几行样本确认数据格式正确\n\n3. **汇总结果**:\n   - 两个 shard 各生成了多少条记录\n   - 是否有跳过的 seed\n   - 生成数据的总量\n   - 耗时统计\n   - 是否有任何异常或错误\n\n### 输出格式\n以清晰的结构化格式汇报结果，包括：\n- shard 级别的统计（记录数、错误数、耗时）\n- 输出文件路径和大小\n- 数据质量初步判断（格式是否正确、是否有空记录等）\n- 结论：生成是否完全成功\n",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T20:51:14.307623+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analyze_plan-002-pythia1b_20260514T205112\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/logs/workers/worker_analyze_plan-002-pythia1b_20260514T205112.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analyze_plan-002-pythia1b_20260514T205112 started. Use get_worker_status('worker_analyze_plan-002-pythia1b_20260514T205112') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2561
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T20:51:30.071010+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan-002-pythia1b-s0",
+              "field": "status",
+              "value": "ANALYZING",
+              "project": "gen-depth-fingerprint"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T20:51:30.672290+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan-002-pythia1b-s1",
+              "field": "status",
+              "value": "ANALYZING",
+              "project": "gen-depth-fingerprint"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T21:10:18.392726+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派出。先更新两个 shard 的 registry 状态到 ANALYZING。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1"
+          },
+          "id": "event-000022"
+        }
+      ],
+      "message_count": 22
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T00:11:54.838950+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T00:12:08.853895+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__load_project_config",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T00:12:08.904454+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T00:12:15.943465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "gen-depth-fingerprint",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T00:12:15.945973+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T00:12:16.449518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan-014\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T00:12:01.909Z\\\", \\\"updated_at\\\": \\\"2026-05-15T00:12:06.644Z\\\", \\\"hypothesis\\\": \\\"大模型生成器：Qwen3-8B-Base (7B+) 的 continuation 链是否展现同样的 depth dynamics\\\"}, \\\"plan-003-qwen06bref\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T00:09:31.649Z\\\", \\\"updated_at\\\": \\\"2026-05-15T00:10:01.383Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python extract_features_crossref.py --reference-model /root/autodl-tmp/models/Qwen/Qwen3-0___6B-Base --output data/features_ref_qwen.csv --device cuda:0\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"/root/gen-depth-fingerprint/data/\\\", \\\"data_count\\\": 23032, \\\"model_name\\\": \\\"Qwen3-0.6B (reference)\\\", \\\"seed\\\": 42}, \\\"checkpoint_path\\\": \\\"/root/gen-depth-fingerprint/data/features_ref_qwen.csv\\\", \\\"log_path\\\": \\\"/root/gen-depth-fingerprint/data/features_ref_qwen.csv\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T00:10:01.383Z\\\"}, \\\"plan-003-olmo2ref\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T00:09:31.145Z\\\", \\\"updated_at\\\": \\\"2026-05-15T00:10:00.971Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python extract_features_crossref.py --reference-model /root/autodl-tmp/models/olmo-2-1b-hf/allenai/OLMo-2-0425-1B --output data/features_ref_olmo.csv --device cuda:0\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"/root/gen-depth-fingerprint/data/\\\", \\\"data_count\\\": 23032, \\\"model_name\\\": \\\"OLMo-2-1B (reference)\\\", \\\"seed\\\": 42}, \\\"checkpoint_path\\\": \\\"/root/gen-depth-fingerprint/data/features_ref_olmo.csv\\\", \\\"log_path\\\": \\\"/root/gen-depth-fingerprint/data/features_ref_olmo.csv\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T00:10:00.971Z\\\"}, \\\"plan-003\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T23:58:40.949Z\\\", \\\"updated_at\\\": \\\"2026-05-15T00:09:28.999Z\\\", \\\"hypothesis\\\": \\\"跨家族参考模型伪证化：用 OLMo-2-1B 和 Qwen3-0.6B 作参考模型\n…[truncated 34486 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 506
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T00:12:16.450022+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 504
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T00:12:16.851225+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "gen-depth-fingerprint",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T00:12:17.353066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- plan-014（准备中）\\\\n- plan-004-prep: Downstream utility 准备：depth-stratified 数据集 + OLMo-1B fine-tuning 脚本（不开跑，等 Director 确认）（准备中）\\\\n- plan-015: 现有检测器 ordinal baseline：FastDetectGPT/LD-Score 等检测器的连续分数是否已提供 ordinal depth signal（准备中）\\\\n- plan-001-restore（准备中）\\\\n- mvp-001-gen-s0（准备中）\\\\n- mvp-001-gen-s3（准备中）\\\\n- mvp-001-gen-s2（准备中）\\\\n- mvp-001-gen-s1（准备中）\\\\n\\\\n## 近期结论\\\\n- **plan-003-qwen06bref** (success): —\\\\n  [features_ref_qwen](/api/workspace-files/projects/gen-depth-fingerprint/artifacts/plan-003-qwen06bref/data/features_ref_qwen_pointer.txt)\\\\n- **plan-003-olmo2ref** (success): —\\\\n  [features_ref_olmo](/api/workspace-files/projects/gen-depth-fingerprint/artifacts/plan-003-olmo2ref/data/features_ref_olmo_pointer.txt)\\\\n- **plan-003** (success): 跨家族参考模型伪证化：用 OLMo-2-1B 和 Qwen3-0.6B 作参考模型提取特征，验证 differential depth response 非 Pythia 特异\\\\n  [cross_ref_features](/api/workspace-files/projects/gen-depth-fingerprint/artifacts/plan-003/data/cross_ref_manifest.txt)\\\\n\\\\n## 趋势\\\\n成功 17 / 负向 0 / 失败 7 / 共 25\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nautodl-5090: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\\\n\\\\n## 告警\\\\n- plan-002-qwen3-1_7b-s0: 训练失败 — unknown\\\\n- plan-002-qwen3-1_7b-s1: 已被终止 — unknown\\\\n- plan-002-qwen17b-s0: 训练失败 — unknown\\\\n- plan-002-qwen17b-s1: 训练失败 — unknown\\\\n- plan-002-qwen17b-retry-s0: 训练失败 — unknown\\\\n- plan-002-qwen17b-retry-s1: 训练失败 — unknown\\\\n- plan-002-qwen06b-s0: 训练失败 — unknown\\\\n- plan-002-qwen06b-s1: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 1471, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 501
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T00:12:17.353386+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "gen-depth-fingerprint"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T00:12:17.453943+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/ROADMAP.md\\\", \\\"content\\\": \\\"# gen-depth-fingerprint — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 23:58 UTC | 更新原因: D007 — re-dream 达标, plan-003/004/015 启动\\\\n\\\\n## 核心方向\\\\n递归 LLM 生成链展现 **differential depth response**：central-tendency/diversity 特征随深度漂移（location shift），shape 特征近稳态。贡献定位为**实证/概念**：novel task formulation + 跨生成器实证验证 + risk-stratified curation。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research（post-MVP）+ 审稿进行中\\\\n- **MVP**: PASS (macro-F1=0.84, D002)\\\\n- **plan-001**: DONE — feature ablation + trend 完成\\\\n- **plan-002**: DONE — 5 生成器 23K 记录，LOGO 0.80, family-out 0.77, complementarity confirmed (McNemar p<0.001)\\\\n- **plan-013**: DONE — text length confound eliminated (三重证据)\\\\n- **Re-dream**: dream_20260514T221538 条件达标 (Best 4/6 conditional, Median 4/6)\\\\n- **D007**: Framing 重新校准 — \\\\\\\"dual dynamics\\\\\\\" → \\\\\\\"differential depth response\\\\\\\", 加 ordinal baseline\\\\n\\\\n## 近期任务\\\\n- [ ] plan-003 cross-family reference model (cuda:0+1, OLMo-2 + Qwen3-0.6B 做参考)\\\\n- [ ] plan-015 ordinal baseline comparison (cuda:2, FastDetectGPT/LD-Score/Binoculars)\\\\n- [ ] plan-004 downstream utility 准备 (cuda:3, OLMo-1B 下载 + 数据准备)\\\\n- [ ] [Dream 观察] plan-003 结果：entropy_mean drift 在非 Pythia 参考下是否成立\\\\n- [ ] [Dream 观察] plan-015 结果：现有检测器单特征是否达到 >0.70 ordinal F1\\\\n\\\\n## GPU 预算\\\\n- 分配: 4× RTX 5090 (autodl-5090: cuda:0-3)\\\\n- 当前: plan-003 (2卡) + plan-015 (1卡) + plan-004 prep (1卡)\\\\n- 已消耗: ~25h (plan-001: 1h, plan-002: ~22h, plan-013: 0.5h, plan-002-eval: CPU)\\\\n- 剩余 P0: plan-003 8h + plan-004 20h + plan-015 3h = 31h\\\\n- 总预算: ~119.5h / 200h\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D007 | 2026-05-14 | D007: Re-dream 条件达标(Best 4/6 conditional, Median 4 | plan_002, plan_013, plan_015, plan_003, plan_004 |\\\\n| D006 | 2026-05-14 | Dream D006: framing+plan调整 — 重新定位为实证/概念贡献，补充text l | plan_001, plan_002, plan_013, plan_014, \n…[truncated 506 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 100
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T00:12:17.454402+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "gen-depth-fingerprint",
+              "section": "execution"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T00:12:17.454711+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"gen-depth-fingerprint\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"project_path\\\": \\\"/root/gen-depth-fingerprint\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"autodl-5090\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T00:12:22.721780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "gen-depth-fingerprint",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T00:12:23.073692+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/memory.md\\\", \\\"content\\\": \\\"# gen-depth-fingerprint — Memory\\\\n\\\\n## 关键发现\\\\n\\\\n### MVP-001 结果（2026-05-14）\\\\n- **PASS**: macro-F1=0.8408 (阈值 0.45), binary F1=0.8653 (阈值 0.65)\\\\n- 词汇多样性特征（hapax_ratio, ttr）区分力最强，feature importance 分别 0.30 和 0.17\\\\n- entropy_mean 是最强的模型级特征（importance 0.22）\\\\n- tail_decay 区分力最弱（importance 0.057），但仍统计显著\\\\n- gen-0 几乎完美分离（F1=0.95），gen-1 vs gen-2+ 有一定混淆（45 个 gen-2+ 误判为 gen-1）\\\\n- 深度衰减 17.4%：部分 continuation 产生空文本导致链条中断（995→822 from depth 0→4）\\\\n\\\\n### plan-001-fix 结果（2026-05-14）\\\\n- **Feature Complementarity 确认**: full(0.82) > surface(0.76) > reference(0.72)，bootstrap CI 不重叠\\\\n- **Dual Dynamics**: H2 drift 特征（entropy_mean, ttr, hapax_ratio）+ H1 stationary 特征（tail_decay, entropy_std, entropy_max）\\\\n- **Effect size 递减**: 漂移减速，gen-1→gen-2 entropy 跃迁最大\\\\n- **PPL 单调递减**: median 13.50→4.96→3.00→2.07→1.72，退化样本 <1%\\\\n\\\\n### plan-002 跨模型特征分析（2026-05-14）\\\\n- **Dual Dynamics 跨 5 个生成器全部成立**：H2 drift（entropy_mean↓1.40~1.65, ttr↓0.39~0.45, hapax↓0.38~0.43）方向一致\\\\n- **tail_decay 无区分力**：~-0.0023 恒定，跨深度跨模型不变\\\\n- **depth=0 时模型间无差异**（跨模型 std<0.002）——seed text 统计特性是模型无关的\\\\n- **衰减速率与模型规模相关**：pythia-1b↓1.65 > pythia-2.8b↓1.49 → 更大模型退化更慢（但非严格单调）\\\\n\\\\n### plan-002-eval 跨生成器分类（2026-05-14）\\\\n- **Leave-one-generator-out avg macro-F1 = 0.8037**，跨架构高度可迁移\\\\n- **Leave-one-family-out Δ = +0.0107**，Pythia vs 非 Pythia 几乎无差异\\\\n- **Feature complementarity 在跨生成器设置下确认**（McNemar p≈0）：full(0.80) > ref(0.75) > surf(0.75)\\\\n- **Permutation importance**: hapax_ratio(0.289) > ttr(0.168) > entropy_mean(0.160)，与 MVP 排序一致\\\\n- **entropy_std 结论：H1 near-stationary**，drift 仅 0.12（entropy_mean 的 1/12.5），去掉后 F1 仅降 0.005\\\\n\\\\n### plan-013 文本长度混淆控制（2026-05-14）\\\\n- **长度不是混淆因素**（三重证据）：\\\\n  1. 长度-深度相关性弱（|ρ|<0.14）\\\\n  2. 归一化 TTR/hapax 趋势不仅保留，ρ 绝对值反而增大\\\\n  3. 长度匹配分类器 F1 上升 +0.041\\\\n- **短文本更容易 dropout**（所有模型一致）——dropout 与生成质量相关，非随机\\\\n\\\\n## 模型路径（autodl-5090）\\\\n\\\\n| 模型 | HF \n…[truncated 2211 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 351
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T00:12:23.124265+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "gen-depth-fingerprint",
+              "file": "paper_framing.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T00:12:23.225314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — gen-depth-fingerprint\\\\n\\\\n## Target Venue\\\\n- Primary: AAAI 2027 (deadline: August 2, 2026)\\\\n- Stretch: EMNLP 2026 ARR (deadline: May 25, 2026) — minimal scope RQ1+RQ4\\\\n- Fallback venues: ICLR 2027 (Sep 24), NAACL 2027 ARR (Oct 16)\\\\n\\\\n## Core Insight\\\\nNon-paraphrastic LLM generation chains exhibit **differential depth response**: **central-tendency/diversity features** (entropy_mean, TTR, hapax ratio) drift monotonically with depth, while **distributional shape features** (entropy_std, tail_decay) remain near-stationary. This differential response is consistent with recursive generation inducing a **location shift** in the NLL distribution — the text becomes progressively more predictable (mean shifts) while the functional form of the distribution is preserved (shape is invariant). The genuine novelty is not the drift/stationarity split per se (which follows from location-shift properties), but: (a) the **task formulation** (ordinal depth estimation beyond binary detection), (b) **empirical validation** across 5 generators / 3 model families showing this pattern is robust, (c) the practical consequence that combining both feature types yields **complementary signal** for depth classification (macro-F1 0.80 cross-generator, 0.77 cross-family).\\\\n\\\\n## Core Claims (3 条，均可证伪)\\\\n\\\\n**Claim 1 — Depth Discriminability**: Distributional features computed under a held-out reference model can classify text generation depth (gen-0 / gen-1 / gen-2+) with macro-F1 significantly above chance, generalizing across unseen generators (leave-one-generator-out evaluation).\\\\n\\\\n**Claim 2 — Differential Depth Response & Feature Complementarity**: Depth-dependent features exhibit differential response: central-tendency/diversity features (entropy_mean, TTR, hapax_ratio) drift monotonically with dep\n…[truncated 9735 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 101
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T00:13:30.061063+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 的 cuda:0/1/2/3，不得用其他设备\n- submit_training_job 脚本内 `--device` 必须用 `cuda:0`（框架注入 CUDA_VISIBLE_DEVICES 映射物理卡）\n- generate_chain.py 已内置 SIGHUP 防御（`signal.SIG_IGN`），不要改动此逻辑\n- Framing 术语：禁用 \"dual dynamics\"/\"H1/H2\"，统一用 \"differential depth response\" + \"drifting/stationary\"（D007 决策）\n- 不可 overclaim drift/stationarity 为 \"novel discovery\"——它是 location-shift 的数学必然，贡献在 task formulation + empirical validation\n- plan-004 downstream fine-tuning 必须用非 Pythia 模型（OLMo-1B），避免 reference model 循环（Pythia-410M 既做特征提取又做 eval）\n- EMNLP 2026 ARR deadline: 2026-05-25（10 天），scope 仅 RQ1+RQ4；AAAI 2027: 2026-08-02\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: autodl-5090，工作目录 `/root/gen-depth-fingerprint`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**（全在 `/root/autodl-tmp/`）:\n  - pythia-2.8b: `.hf_cache/EleutherAI/pythia-2___8b`\n  - pythia-1b: `models/pythia-1b/EleutherAI/pythia-1b`\n  - pythia-410m (ref): `models/pythia-410m/models--EleutherAI--pythia-410m/snapshots/9879c9b...`\n  - olmo-2-1b: `models/olmo-2-1b-hf/allenai/OLMo-2-0425-1B`\n  - qwen3-1.7b: `models/Qwen/Qwen3-1___7B-Base`\n  - qwen3-0.6b: `models/Qwen/Qwen3-0___6B-Base`\n- **数据**: `/root/gen-depth-fingerprint/data/`（features_all_models.csv 23032条，各模型子目录有 generations.jsonl）\n- **活跃进程**: 无。所有 cron 已 reconcile，0 个活跃任务\n- **GPU 状态**: 4 卡全部空闲\n\n### 3. 📊 当前状态\n本 session 完成了 plan-002 全部数据生成（5 生成器 23K 记录）、plan-002-eval 跨生成器评估（LOGO F1=0.80）、plan-003 跨家族参考模型验证（OLMo/Qwen ref F1 0.81/0.82，确认非 Pythia artifact）、plan-013 文本长度混淆控制（三重证据排除）。\n\n**Registry 关键状态**:\n- DONE(success): mvp-001, plan-001, plan-001-fix, plan-002 全系列, plan-002-eval, plan-003 全系列, plan-013 — 共 17 个\n- PREPARING（待推进）: **plan-014**（Qwen3-8B-Base 7B+ 生成器，回应 RC9）、**plan-015**（ordinal baseline FastDetectGPT/LD-Score）、**plan-004-prep**（downstream utility OLMo-1B fine-tuning 准备）\n- PREPARING（历史残留，实际已完成，可忽略）: plan-001-restore, mvp-001-gen-s0/s1/s2/s3\n\n**无等待中的 Worker 回调 / Cron / Director 决策。** 上轮 session 已向 Director 汇报了 plan-003 结果但未收到后续指令。\n\n### 4. 📋 待办（条件触发式）\n- Director 批准 plan-014 → spawn Worker 下载 Qwen3-8B-Base 到 autodl-5090，生成 continuation 链（需 2 卡，约 8h）\n- Director 批准 plan-015 → spawn Worker 在 autodl-5090 跑 FastDetectGPT/LD-Score/Binoculars 对已有 23K 数据算 ordinal scores（1 卡，约 3h）\n- Director 批准 plan-004-prep → spawn Worker 下载 OLMo-1B，构建 depth-stratified fine-tuning 数据集（1 卡准备，后续 fine-tuning 需 Director 确认资源）\n- plan-014 完成 → 提特征 + 加入跨生成器分类器，验证 7B+ 模型深度信号是否衰减\n- plan-015 完成 → 比对：现有检测器 ordinal F1 vs 我们的 0.80；若 >0.70 则 baseline 很强需调整 claim 强度\n- 所有 P0 实验完成 → 启动论文写作 pipeline（先 paper_plan → 再分章节 spawn Writer Workers）\n- **EMNLP 决策点**: 若 Director 决定冲 EMNLP（5/25），需立即砍 scope 到 RQ1+RQ4，跳过 plan-004 downstream\n\n### 5. 🎯 战略上下文\n- **决策链**: D001(MVP方案) → D002(MVP PASS) → D003-D005(claim迭代) → D006(re-dream实证定位) → D007(differential depth response 术语+ordinal baseline)\n- **核心结论已稳固**: 跨 5 生成器/3 家族的 differential depth response 成立（LOGO 0.80, family-out 0.77），非长度 artifact，非 Pythia artifact。剩余工作是补强（7B+ 规模、ordinal baseline、downstream utility）\n- **最易判断错的事**:\n  1. plan-015 的 ordinal baseline 可能出乎意料地强——如果 FastDetectGPT 单特征 ordinal F1 >0.70，需要重新 frame 我们的方法优势（从\"能做 ordinal\"转为\"complementary features 做得更好\"）\n  2. Qwen3-8B-Base（plan-014）需要约 16GB 显存，autodl-5090 的 5090 单卡 32GB 够用，但生成速度会比小模型慢很多——预估 8-12h\n  3. registry 里有大量 PREPARING 残留（mvp-001-gen-s*, plan-001-restore），它们是早期实验的 stale 状态，不要试图重跑\n  4. AutoDL 网络：pip install / git clone 前必须 `source /etc/network_turbo`；HF 下载设 `HF_HUB_DISABLE_XET=1`；大模型优先用 ModelScope\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-002-pythia1b-s1"
+          },
+          "id": "event-000040"
+        }
+      ],
+      "message_count": 18
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-plan-002-pythia1b-s1-20260515t001330-066551.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "add97b8d3c17489418ad",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops verify llama rp10 final",
+  "task_key": "worker_ops_verify-llama-rp10-final_20260516T112758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-llama-rp10-final_20260516T112758_result.json",
+    "occurrence": 1,
+    "bytes": 388,
+    "sha256": "f8e498b011cc7c803f61f3254bfade6d14a4b3cf106184994c9f09e3246e6d53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan-016-llama32-3b 生成完成** ✓\n\n| 项目 | 值 |\n|------|-----|\n| 状态 | 成功完成 |\n| 总条数 | 4680 |\n| Depth 分布 | d0=995, d1=984, d2=943, d3=899, d4=859 |\n| 最后记录 | seed_id=999, depth=4 |\n| 缺失率 | 5.9% (295/4975 因 degenerate 跳过，deeper depths 递减符合预期) |\n\nRegistry 已更新为 DONE/success，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-llama-rp10-final.md"
+}

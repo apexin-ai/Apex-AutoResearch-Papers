@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8acc84d452a9fdb9b8a0",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper regen fig2 framework",
+  "task_key": "worker_paper_regen-fig2-framework_20260520T033155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_regen-fig2-framework_20260520T033155_result.json",
+    "occurrence": 1,
+    "bytes": 218,
+    "sha256": "36cbf2fc09e918b1c7f129ba29baba7e538697fdc52497a88c5b7d57d32faeae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。文件已生成并拉回本地：\n\n- `fig2_framework.pdf` — 56K\n- `fig2_framework.png` — 261K\n\n路径：`artifacts/_project/paper/figures/`，cross-model binary F1 已更新为 0.830。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-regen-fig2-framework.md"
+}

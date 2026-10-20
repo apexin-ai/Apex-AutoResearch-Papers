@@ -1,0 +1,1499 @@
+# writing related work
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 30
+- **Recorded user turns:** 0
+- **Tool calls:** 9
+- **Original source:** `logs/workers/worker_writing_related-work_20260515T043503.log`
+- **Structured JSON:** [`45295d70ab09bf4735ae.json`](../../sessions/45/45295d70ab09bf4735ae.json)
+
+## Before a recorded user message
+
+30 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "68b23a58-9b42-4992-a28d-502aa99e9af3",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778836800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "b35370b7-2d84-40b5-877e-7649941b0a1c",
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by reading the literature map and checking the output directory.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "95680ee0-697f-459e-91e4-7b845e0f11b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ReFo4o2VDMLjJLmeAJJcP9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12424,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12424
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01TqQSG78QruonSypYrdJpoq`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "45e796c3-a485-457c-8c7b-c871dbb75d93",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ReFo4o2VDMLjJLmeAJJcP9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12424,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12424
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T04:35:12.608Z_
+
+<details><summary>↩ Tool result · `toolu_01TqQSG78QruonSypYrdJpoq`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "526286f9-beae-4e3c-a8fe-46c181a8bbc2",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the literature map and check the output directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "c0c307db-7d84-423f-95a0-0594be579e01",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vrpax26UL7RH6mSrit44km",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 450,
+      "cache_read_input_tokens": 24265,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 450
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01JCwbHTTDG2uG2TAPz4JWLq`</summary>
+
+```json
+{
+  "project": "gen-depth-fingerprint",
+  "file": "literature_map.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "5c0fb375-0a25-4b59-8721-46d0117e684c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vrpax26UL7RH6mSrit44km",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 450,
+      "cache_read_input_tokens": 24265,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 450
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T04:35:16.181Z_
+
+<details><summary>↩ Tool result · `toolu_01JCwbHTTDG2uG2TAPz4JWLq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/literature_map.yaml\", \"content\": \"# Literature Map for gen-depth-fingerprint\\n# 递归 LLM 生成链深度指纹识别\\n# Updated: 2026-05-15\\n# Categories: detection, model-collapse, data-quality, stylometry,\\n#             iterative-generation, watermarking, vocabulary-diversity,\\n#             membership-inference, ood-detection, survey\\n# Total: 39 papers\\n\\n##############################################################################\\n# 1. Perplexity-based / Zero-shot Detection\\n##############################################################################\\n\\n- id: detectgpt\\n  title: \\\"DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature\\\"\\n  authors: \\\"Mitchell et al.\\\"\\n  year: 2023\\n  venue: \\\"ICML 2023\\\"\\n  arxiv: \\\"2301.11305\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"基础检测方法，用 log-probability curvature 区分人/机文本；本项目的 depth fingerprint 可与之互补\\\"\\n  key_finding: \\\"机器生成文本倾向于占据模型 log-probability 函数的负曲率区域\\\"\\n\\n- id: gltr\\n  title: \\\"GLTR: Statistical Detection and Visualization of Generated Text\\\"\\n  authors: \\\"Gehrmann et al.\\\"\\n  year: 2019\\n  venue: \\\"ACL 2019\\\"\\n  arxiv: \\\"1906.04043\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"早期统计检测工具，使用 token rank/entropy 等特征；本项目可对比其特征在不同生成深度下的变化\\\"\\n  key_finding: \\\"使用 token 概率排名和熵的可视化方案将人类检测准确率从 54% 提升到 72%\\\"\\n\\n- id: dna_gpt\\n  title: \\\"DNA-GPT: Divergent N-Gram Analysis for Training-Free Detection of GPT-Generated Text\\\"\\n  authors: \\\"Yang et al.\\\"\\n  year: 2024\\n  venue: \\\"ICLR 2024\\\"\\n  arxiv: \\\"2305.17359\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"通过 n-gram 发散度做 zero-shot 检测；本项目 depth fingerprint 中的 diversity 指标可借鉴其 n-gram 分析\\\"\\n  key_finding: \\\"截断文本后让 LLM 重新生成，通过 n-gram 差异实现零样本检测\\\"\\n\\n- id: binoculars\\n  title: \\\"Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text\\\"\\n  authors: \\\"Hans et al.\\\"\\n  year: 2024\\n  venue: \\\"ICML 2024\\\"\\n  arxiv: \\\"2401.12070\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"双模型对比打分检测法；depth fingerprint 需要验证与 Binoculars score 在不同深度下的相关性\\\"\\n  key_finding: \\\"对比两个近似 LLM 的 perplexity 比值可在 0.01% FPR 下检测 90%+ 的 ChatGPT 输出\\\"\\n\\n- id: fast_detectgpt\\n  title: \\\"Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature\\\"\\n  authors: \\\"Bao et al.\\\"\\n  year: 2024\\n  venue: \\\"ICLR 2024\\\"\\n  arxiv: \\\"2310.05130\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"DetectGPT 加速版，用采样替代扰动；可作为 depth fingerprint pipeline 中的快速 baseline\\\"\\n  key_finding: \\\"用条件概率曲率替代扰动步骤，检测速度提升 340 倍，性能相对提升 75%\\\"\\n\\n- id: ld_score\\n  title: \\\"Beyond Perplexity: Character Distribution Signatures and the MDTA Benchmark for AI Text Detection\\\"\\n  authors: \\\"Narayanasamy et al.\\\"\\n  year: 2026\\n  venue: \\\"arXiv preprint\\\"\\n  arxiv: \\\"2605.01647\\\"\\n  category: detection\\n  role: method-component\\n  relevance: \\\"字符级分布特征 (LD-Score) 与 perplexity 正交（r=0.08-0.13）；可作为 depth fingerprint 的互补信号\\\"\\n  key_finding: \\\"LLM 近似全局字符分布而人类展示领域特化分布，形成可检测的 Wall of Separation\\\"\\n\\n- id: intrinsic_dimension\\n  title: \\\"Intrinsic Dimension Estimation for Robust Detection of AI-Generated Texts\\\"\\n  authors: \\\"Tulchinskii et al.\\\"\\n  year: 2023\\n  venue: \\\"NeurIPS 2023\\\"\\n  arxiv: \\\"2306.04723\\\"\\n  category: detection\\n  role: method-component\\n  relevance: \\\"用嵌入空间内在维度做检测；depth fingerprint 可探索内在维度随生成深度的变化趋势\\\"\\n  key_finding: \\\"人类文本嵌入的内在维度约 9（字母语言），AI 文本约低 1.5；跨域/跨模型稳定\\\"\\n\\n- id: diveye\\n  title: \\\"Diversity Boosts AI-Generated Text Detection\\\"\\n  authors: \\\"Basani & Chen\\\"\\n  year: 2026\\n  venue: \\\"TMLR 2026\\\"\\n  arxiv: \\\"2509.18880\\\"\\n  category: detection\\n  role: method-component\\n  relevance: \\\"用 surprisal diversity 特征检测 AI 文本——人类文本 surprisal 分布离散度更高、尾部更重；与本项目 shape 特征（entropy_std, tail_decay）直接可比\\\"\\n  key_finding: \\\"DivEye 框架捕捉 token surprisal 的波动模式，zero-shot 检测超现有方法最多 33.2%，对改写鲁棒\\\"\\n\\n- id: generator_barrier\\n  title: \\\"Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection\\\"\\n  authors: \\\"Pu et al.\\\"\\n  year: 2026\\n  venue: \\\"arXiv preprint\\\"\\n  arxiv: \\\"2604.13692\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"通过解耦表征实现跨生成器泛化检测（MAGE 20 个 LLM），与本项目 LOGO 跨生成器评估目标一致；不同方法论（表征学习 vs 特征工程）\\\"\\n  key_finding: \\\"解耦 AI 检测语义与生成器特有伪影，在未见生成器上准确率提升 24.2%、F1 提升 26.2%\\\"\\n\\n- id: feat_aug_transformer\\n  title: \\\"Feature-Augmented Transformers for Robust AI-Text Detection Across Domains and Generators\\\"\\n  authors: \\\"Mady et al.\\\"\\n  year: 2026\\n  venue: \\\"arXiv preprint\\\"\\n  arxiv: \\\"2605.03969\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"语言特征增强 Transformer 做跨域/跨生成器检测（DeBERTa+FeatAttn 85.9% bal-acc on M4）；验证了语言特征对泛化性的价值，支撑本项目特征工程路线\\\"\\n  key_finding: \\\"基模型域内近满分但迁移脆弱；attention-based 语言特征融合显著提升跨分布迁移能力\\\"\\n\\n##############################################################################\\n# 2. Model Collapse Theory\\n##############################################################################\\n\\n- id: self_consuming_mad\\n  title: \\\"Self-Consuming Generative Models Go MAD\\\"\\n  authors: \\\"Alemohammad et al.\\\"\\n  year: 2023\\n  venue: \\\"arXiv preprint\\\"\\n  arxiv: \\\"2307.01850\\\"\\n  category: model-collapse\\n  role: background\\n  relevance: \\\"定义 autophagous loop 三种模式并证明精度/多样性递减；本项目的 depth fingerprint 可量化此递减\\\"\\n  key_finding: \\\"无足够新鲜真实数据时，自噬循环导致生成质量（精度）或多样性（召回）逐步下降\\\"\\n\\n- id: curse_of_recursion\\n  title: \\\"The Curse of Recursion: Training on Generated Data Makes Models Forget\\\"\\n  authors: \\\"Shumailov et al.\\\"\\n  year: 2024\\n  venue: \\\"Nature 2024\\\"\\n  arxiv: \\\"2305.17493\\\"\\n  category: model-collapse\\n  role: background\\n  relevance: \\\"Nature 发表的 model collapse 里程碑论文；本项目关注推理链（非训练循环）的类似退化现象\\\"\\n  key_finding: \\\"递归训练导致不可逆缺陷——原始分布的尾部消失，在 VAE/GMM/LLM 中普遍存在\\\"\\n\\n- id: strong_model_collapse\\n  title: \\\"Strong Model Collapse\\\"\\n  authors: \\\"Dohmatob et al.\\\"\\n  year: 2024\\n  venue: \\\"ICLR 2025\\\"\\n  arxiv: \\\"2410.04840\\\"\\n  category: model-collapse\\n  role: background\\n  relevance: \\\"证明即使 1% 合成数据也会导致 collapse，更大模型可能放大效应；支撑 depth fingerprint 的理论动机\\\"\\n  key_finding: \\\"最小比例合成数据即可导致 strong collapse；更大模型在简化体制下可放大此效应\\\"\\n\\n- id: model_collapse_avoidable\\n  title: \\\"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data\\\"\\n  authors: \\\"Gerstgrasser et al.\\\"\\n  year: 2024\\n  venue: \\\"arXiv preprint\\\"\\n  arxiv: \\\"2404.01413\\\"\\n  category: model-collapse\\n  role: background\\n  relevance: \\\"证明累积数据时 collapse 可避免；本项目的生成链场景是纯推理无累积，collapse 更难避免\\\"\\n  key_finding: \\\"当数据累积而非替换时，混合真实与合成数据可避免 model collapse\\\"\\n\\n##############################################################################\\n# 3. OOD Detection\\n##############################################################################\\n\\n- id: ood_baseline\\n  title: \\\"A Baseline for Detecting Misclassified and Out-of-Distribution Examples in Neural Networks\\\"\\n  authors: \\\"Hendrycks & Gimpel\\\"\\n  year: 2017\\n  venue: \\\"ICLR 2017\\\"\\n  arxiv: \\\"1610.02136\\\"\\n  category: ood-detection\\n  role: background\\n  relevance: \\\"OOD 检测基线方法；depth fingerprint 可视为 OOD scoring 的一种特殊形式——检测偏离人类分布的程度\\\"\\n  key_finding: \\\"正确分类样本的最大 softmax 概率高于错误分类和 OOD 样本\\\"\\n\\n##############################################################################\\n# 4. Data Quality Scoring\\n##############################################################################\\n\\n- id: dsir\\n  title: \\\"Data Selection for Language Models via Importance Resampling\\\"\\n  authors: \\\"Xie et al.\\\"\\n  year: 2023\\n  venue: \\\"NeurIPS 2023\\\"\\n  arxiv: \\\"2302.03169\\\"\\n  category: data-quality\\n  role: background\\n  relevance: \\\"数据质量筛选框架；depth fingerprint 可作为 DSIR 类 pipeline 中合成数据污染度的质量信号\\\"\\n  key_finding: \\\"用 n-gram 特征空间的重要性权重做数据选择，100M 文档 4.5 小时处理\\\"\\n\\n- id: qurating\\n  title: \\\"QuRating: Selecting High-Quality Data for Training Language Models\\\"\\n  authors: \\\"Wettig et al.\\\"\\n  year: 2024\\n  venue: \\\"ICML 2024\\\"\\n  arxiv: \\\"2402.09739\\\"\\n  category: data-quality\\n  role: background\\n  relevance: \\\"LLM 成对判断的数据质量评分；depth fingerprint 类似地为文本分配生成深度分数\\\"\\n  key_finding: \\\"LLM 可准确判断文本的写作风格/专业性/教育价值等质量维度，用于预训练数据选择\\\"\\n\\n- id: ccnet\\n  title: \\\"CCNet: Extracting High Quality Monolingual Datasets from Web Crawl Data\\\"\\n  authors: \\\"Wenzek et al.\\\"\\n  year: 2020\\n  venue: \\\"LREC 2020\\\"\\n  arxiv: \\\"1911.00359\\\"\\n  category: data-quality\\n  role: background\\n  relevance: \\\"基于 perplexity 的 web 数据过滤 pipeline；depth fingerprint 可集成为额外的质量过滤维度\\\"\\n  key_finding: \\\"用语言模型 perplexity 过滤 Common Crawl 数据，接近维基百科质量水平\\\"\\n\\n##############################################################################\\n# 5. Watermarking\\n##############################################################################\\n\\n- id: watermark_llm\\n  title: \\\"A Watermark for Large Language Models\\\"\\n  authors: \\\"Kirchenbauer et al.\\\"\\n  year: 2023\\n  venue: \\\"ICML 2023\\\"\\n  arxiv: \\\"2301.10226\\\"\\n  category: watermarking\\n  role: background\\n  relevance: \\\"绿色 token 列表 watermark 方案；depth fingerprint 检测非水印场景下的生成痕迹，形成互补\\\"\\n  key_finding: \\\"通过在采样前划分 green/red token 列表实现不可见水印，短文本即可检测\\\"\\n\\n- id: synthid_text\\n  title: \\\"Scalable Watermarking for Identifying Large Language Model Outputs\\\"\\n  authors: \\\"Dathathri et al.\\\"\\n  year: 2024\\n  venue: \\\"Nature 2024\\\"\\n  arxiv: \\\"\\\"\\n  category: watermarking\\n  role: background\\n  relevance: \\\"生产级 LLM 水印方案（Google Gemini 部署）；depth fingerprint 面向无水印的 post-hoc 检测\\\"\\n  key_finding: \\\"Tournament Sampling 算法实现生产级文本水印，Google Gemini 实际部署\\\"\\n\\n- id: aaronson_watermark\\n  title: \\\"Watermarking GPT Outputs\\\"\\n  authors: \\\"Aaronson & Kirchner\\\"\\n  year: 2022\\n  venue: \\\"Technical Talk\\\"\\n  arxiv: \\\"\\\"\\n  category: watermarking\\n  role: background\\n  relevance: \\\"LLM 文本水印的原始提案；depth fingerprint 定位为不依赖水印的被动检测方案\\\"\\n  key_finding: \\\"用伪随机函数选择 next token，对短文本即可检测，对轻微编辑鲁棒\\\"\\n\\n- id: chainwash\\n  title: \\\"Chainwash: Multi-Step Rewriting Attacks on Diffusion Language Model Watermarks\\\"\\n  authors: \\\"Ameen et al.\\\"\\n  year: 2026\\n  venue: \\\"arXiv preprint\\\"\\n  arxiv: \\\"2605.05503\\\"\\n  category: watermarking\\n  role: background\\n  relevance: \\\"多步重写链攻击水印（5 hop 后检测率从 87.9% 降到 4.86%）；证明生成链深度影响水印信号，支撑 depth fingerprint 的动机——被动检测不依赖水印\\\"\\n  key_finding: \\\"链式重写（chainwash）通过生成式多步改写有效消除扩散语言模型水印，5 步后 94.76% 原可检测文本不再被标记\\\"\\n\\n##############################################################################\\n# 6. Vocabulary Diversity\\n##############################################################################\\n\\n- id: curious_decline\\n  title: \\\"The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text\\\"\\n  authors: \\\"Guo et al.\\\"\\n  year: 2024\\n  venue: \\\"NAACL 2024 Findings\\\"\\n  arxiv: \\\"2311.09807\\\"\\n  category: vocabulary-diversity\\n  role: direct-competitor\\n  relevance: \\\"直接相关：量化递归微调导致的词汇/句法/语义多样性下降；本项目扩展到推理链场景\\\"\\n  key_finding: \\\"递归微调导致词汇/句法/语义多样性持续下降，创意任务尤为显著\\\"\\n\\n- id: writing_diversity\\n  title: \\\"Does Writing with Language Models Reduce Content Diversity?\\\"\\n  authors: \\\"Padmakumar & He\\\"\\n  year: 2024\\n  venue: \\\"ICLR 2024\\\"\\n  arxiv: \\\"2309.05196\\\"\\n  category: vocabulary-diversity\\n  role: background\\n  relevance: \\\"实验证明 InstructGPT 协写降低多样性；支撑 depth fingerprint 中 diversity 随深度递减的假设\\\"\\n  key_finding: \\\"InstructGPT 协写显著降低不同作者间的文本相似度和词汇多样性\\\"\\n\\n- id: nucleus_sampling\\n  title: \\\"The Curious Case of Neural Text Degeneration\\\"\\n  authors: \\\"Holtzman et al.\\\"\\n  year: 2020\\n  venue: \\\"ICLR 2020\\\"\\n  arxiv: \\\"1904.09751\\\"\\n  category: vocabulary-diversity\\n  role: background\\n  relevance: \\\"定义了 neural text degeneration 和 nucleus sampling；depth fingerprint 中的 shape 特征与采样策略相关\\\"\\n  key_finding: \\\"最大化解码导致退化；Nucleus Sampling 截断不可靠尾部，生成质量接近人类\\\"\\n\\n- id: mapping_llm_science\\n  title: \\\"Mapping the Increasing Use of LLMs in Scientific Papers\\\"\\n  authors: \\\"Liang et al.\\\"\\n  year: 2024\\n  venue: \\\"arXiv preprint\\\"\\n  arxiv: \\\"2404.01268\\\"\\n  category: vocabulary-diversity\\n  role: background\\n  relevance: \\\"大规模量化科学论文中 LLM 修改内容的比例；depth fingerprint 可检测多轮修改的深度\\\"\\n  key_finding: \\\"95 万篇论文分析显示 CS 领域 LLM 修改率最高达 17.5%\\\"\\n\\n- id: monitoring_ai_review\\n  title: \\\"Monitoring AI-Modified Content at Scale: A Case Study on the Impact of ChatGPT on AI Conference Peer Reviews\\\"\\n  authors: \\\"Liang et al.\\\"\\n  year: 2024\\n  venue: \\\"ICML 2024\\\"\\n  arxiv: \\\"2403.07183\\\"\\n  category: vocabulary-diversity\\n  role: background\\n  relevance: \\\"检测同行评审中 LLM 修改内容；depth fingerprint 提供互补的深度维度信号\\\"\\n  key_finding: \\\"6.5-16.9% 的 AI 会议 peer review 可能被 LLM 实质性修改\\\"\\n\\n##############################################################################\\n# 7. Stylometry / Authorship Attribution\\n##############################################################################\\n\\n- id: stamatatos_survey\\n  title: \\\"A Survey of Modern Authorship Attribution Methods\\\"\\n  authors: \\\"Stamatatos\\\"\\n  year: 2009\\n  venue: \\\"JASIST 2009\\\"\\n  arxiv: \\\"\\\"\\n  category: stylometry\\n  role: background\\n  relevance: \\\"风格计量学经典综述；depth fingerprint 的特征工程可借鉴 stylometric 特征体系\\\"\\n  key_finding: \\\"综述词汇/字符/句法等多层次文体特征在作者归属中的应用\\\"\\n\\n- id: koppel_authorship\\n  title: \\\"Computational Methods in Authorship Attribution\\\"\\n  authors: \\\"Koppel et al.\\\"\\n  year: 2009\\n  venue: \\\"JASIST 2009\\\"\\n  arxiv: \\\"\\\"\\n  category: stylometry\\n  role: background\\n  relevance: \\\"开放集作者归属方法；depth fingerprint 可视为 LLM 生成深度的归属问题\\\"\\n  key_finding: \\\"解决大规模候选集和开放集场景下的作者归属问题\\\"\\n\\n- id: uchendu_attribution\\n  title: \\\"Authorship Attribution for Neural Text Generation\\\"\\n  authors: \\\"Uchendu et al.\\\"\\n  year: 2020\\n  venue: \\\"EMNLP 2020\\\"\\n  arxiv: \\\"\\\"\\n  category: stylometry\\n  role: background\\n  relevance: \\\"将作者归属扩展到 neural text 生成源识别；depth fingerprint 进一步细化到生成深度维度\\\"\\n  key_finding: \\\"可区分不同神经文本生成器的多类归属，超越二分类人/机检测\\\"\\n\\n##############################################################################\\n# 8. Iterative Generation\\n##############################################################################\\n\\n- id: broken_telephone\\n  title: \\\"LLM as a Broken Telephone: Iterative Generation Distorts Information\\\"\\n  authors: \\\"Mohamed et al.\\\"\\n  year: 2025\\n  venue: \\\"ACL 2025\\\"\\n  arxiv: \\\"2502.20258\\\"\\n  category: iterative-generation\\n  role: direct-competitor\\n  relevance: \\\"最直接相关：通过翻译链研究 LLM 迭代生成的信息失真；本项目扩展到非改写式生成链\\\"\\n  key_finding: \\\"LLM 迭代翻译链中失真随深度累积，语言相似度和提示策略影响退化速率\\\"\\n\\n- id: markovian_chains\\n  title: \\\"Markovian Generation Chains in Large Language Models\\\"\\n  authors: \\\"Geng et al.\\\"\\n  year: 2026\\n  venue: \\\"arXiv preprint\\\"\\n  arxiv: \\\"2603.11228\\\"\\n  category: iterative-generation\\n  role: direct-competitor\\n  relevance: \\\"定义 Markovian generation chains 并研究收敛/发散行为；本项目关注非改写链的 depth fingerprint\\\"\\n  key_finding: \\\"迭代重述/翻译中输出或收敛到小循环集，或继续产生新句子，取决于温度和初始输入\\\"\\n\\n##############################################################################\\n# 9. Membership Inference\\n##############################################################################\\n\\n- id: min_k_percent\\n  title: \\\"Detecting Pretraining Data from Large Language Models\\\"\\n  authors: \\\"Shi et al.\\\"\\n  year: 2024\\n  venue: \\\"ICLR 2024\\\"\\n  arxiv: \\\"2310.16789\\\"\\n  category: membership-inference\\n  role: method-component\\n  relevance: \\\"Min-K% 用最低概率 token 做成员推断；depth fingerprint 可借鉴其概率分布分析思路\\\"\\n  key_finding: \\\"未见过的文本更可能包含低概率离群 token；Min-K% Prob 在 WikiMIA 上提升 7.4%\\\"\\n\\n##############################################################################\\n# 10. Robustness / Adversarial / Theoretical\\n##############################################################################\\n\\n- id: reliable_detection\\n  title: \\\"Can AI-Generated Text be Reliably Detected?\\\"\\n  authors: \\\"Sadasivan et al.\\\"\\n  year: 2024\\n  venue: \\\"ICLR 2024\\\"\\n  arxiv: \\\"2303.11156\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"递归改写攻击显著降低检测率；depth fingerprint 面向非改写链，攻击面不同\\\"\\n  key_finding: \\\"递归改写可将 DetectGPT 从 70.3% 降到 4.6%；检测上界与分布 TV 距离相关\\\"\\n\\n- id: paraphrase_evades\\n  title: \\\"Paraphrasing Evades Detectors of AI-Generated Text, but Retrieval is an Effective Defense\\\"\\n  authors: \\\"Krishna et al.\\\"\\n  year: 2023\\n  venue: \\\"NeurIPS 2023\\\"\\n  arxiv: \\\"2303.13408\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"改写攻击 vs 检索防御；depth fingerprint 检测非改写链，与此正交但需考虑改写鲁棒性\\\"\\n  key_finding: \\\"DIPPER 改写器将 DetectGPT 准确率从 70.3% 降到 4.6%；检索方法是有效防御\\\"\\n\\n- id: detection_possibilities\\n  title: \\\"Position: On the Possibilities of AI-Generated Text Detection\\\"\\n  authors: \\\"Chakraborty et al.\\\"\\n  year: 2024\\n  venue: \\\"ICML 2024\\\"\\n  arxiv: \\\"2304.04736\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"理论证明 AI 文本检测在分布可区分时始终可行；支撑 depth fingerprint 的可行性\\\"\\n  key_finding: \\\"信息论证明：除非人/机分布完全不可分，检测始终可行；给出样本复杂度下界\\\"\\n\\n##############################################################################\\n# 11. Surveys / Early Detection\\n##############################################################################\\n\\n- id: jawahar_survey\\n  title: \\\"Automatic Detection of Machine Generated Text: A Critical Survey\\\"\\n  authors: \\\"Jawahar et al.\\\"\\n  year: 2020\\n  venue: \\\"COLING 2020\\\"\\n  arxiv: \\\"2011.01314\\\"\\n  category: survey\\n  role: background\\n  relevance: \\\"机器文本检测早期综述；depth fingerprint 定位在该领域的新维度\\\"\\n  key_finding: \\\"系统梳理统计方法和神经方法在机器文本检测中的应用与局限\\\"\\n\\n- id: grover\\n  title: \\\"Defending Against Neural Fake News\\\"\\n  authors: \\\"Zellers et al.\\\"\\n  year: 2019\\n  venue: \\\"NeurIPS 2019\\\"\\n  arxiv: \\\"1905.12616\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"生成器即最佳检测器的早期发现；depth fingerprint 不依赖生成器 access\\\"\\n  key_finding: \\\"Grover 自身是检测 Grover 生成假新闻的最佳检测器（92% vs 73% baseline）\\\"\\n\\n- id: release_strategies\\n  title: \\\"Release Strategies and the Social Impacts of Language Models\\\"\\n  authors: \\\"Solaiman et al.\\\"\\n  year: 2019\\n  venue: \\\"arXiv preprint\\\"\\n  arxiv: \\\"1908.09203\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"GPT-2 分阶段发布策略和检测工具；depth fingerprint 面向更复杂的生成链场景\\\"\\n  key_finding: \\\"分阶段发布 GPT-2 允许在模型升级间进行风险/收益分析和检测器开发\\\"\\n\", \"total_chars\": 16634, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "d2b815c0-8a4f-4e1e-9e8b-98fcebf74d2d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/literature_map.yaml\\\", \\\"content\\\": \\\"# Literature Map for gen-depth-fingerprint\\\\n# 递归 LLM 生成链深度指纹识别\\\\n# Updated: 2026-05-15\\\\n# Categories: detection, model-collapse, data-quality, stylometry,\\\\n#             iterative-generation, watermarking, vocabulary-diversity,\\\\n#             membership-inference, ood-detection, survey\\\\n# Total: 39 papers\\\\n\\\\n##############################################################################\\\\n# 1. Perplexity-based / Zero-shot Detection\\\\n##############################################################################\\\\n\\\\n- id: detectgpt\\\\n  title: \\\\\\\"DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature\\\\\\\"\\\\n  authors: \\\\\\\"Mitchell et al.\\\\\\\"\\\\n  year: 2023\\\\n  venue: \\\\\\\"ICML 2023\\\\\\\"\\\\n  arxiv: \\\\\\\"2301.11305\\\\\\\"\\\\n  category: detection\\\\n  role: background\\\\n  relevance: \\\\\\\"基础检测方法，用 log-probability curvature 区分人/机文本；本项目的 depth fingerprint 可与之互补\\\\\\\"\\\\n  key_finding: \\\\\\\"机器生成文本倾向于占据模型 log-probability 函数的负曲率区域\\\\\\\"\\\\n\\\\n- id: gltr\\\\n  title: \\\\\\\"GLTR: Statistical Detection and Visualization of Generated Text\\\\\\\"\\\\n  authors: \\\\\\\"Gehrmann et al.\\\\\\\"\\\\n  year: 2019\\\\n  venue: \\\\\\\"ACL 2019\\\\\\\"\\\\n  arxiv: \\\\\\\"1906.04043\\\\\\\"\\\\n  category: detection\\\\n  role: background\\\\n  relevance: \\\\\\\"早期统计检测工具，使用 token rank/entropy 等特征；本项目可对比其特征在不同生成深度下的变化\\\\\\\"\\\\n  key_finding: \\\\\\\"使用 token 概率排名和熵的可视化方案将人类检测准确率从 54% 提升到 72%\\\\\\\"\\\\n\\\\n- id: dna_gpt\\\\n  title: \\\\\\\"DNA-GPT: Divergent N-Gram Analysis for Training-Free Detection of GPT-Generated Text\\\\\\\"\\\\n  authors: \\\\\\\"Yang et al.\\\\\\\"\\\\n  year: 2024\\\\n  venue: \\\\\\\"ICLR 2024\\\\\\\"\\\\n  arxiv: \\\\\\\"2305.17359\\\\\\\"\\\\n  category: detection\\\\n  role: background\\\\n  relevance: \\\\\\\"通过 n-gram 发散度做 zero-shot 检测；本项目 depth fingerprint 中的 diversity 指标可借鉴其 n-gram 分析\\\\\\\"\\\\n  key_finding: \\\\\\\"截断文本后让 LLM 重新生成，通过 n-gram 差异实现零样本检测\\\\\\\"\\\\n\\\\n- id: binoculars\\\\n  title: \\\\\\\"Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text\\\\\\\"\\\\n  authors: \\\\\\\"Hans et al.\\\\\\\"\\\\n  year: 2024\\\\n  venue: \\\\\\\"ICML 2024\\\\\\\"\\\\n  arxiv: \\\\\\\"2401.12070\\\\\\\"\\\\n  category: detection\\\\n  role: background\\\\n  relevance: \\\\\\\"双模型对比打分检测法；depth fingerprint 需要验证与 Binoculars score 在不同深度下的相关性\\\\\\\"\\\\n  key_finding: \\\\\\\"对比两个近似 LLM 的 perplexity 比值可在 0.01% FPR 下检测 90%+ 的 ChatGPT 输出\\\\\\\"\\\\n\\\\n- id: fast_detectgpt\\\\n  title: \\\\\\\"Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature\\\\\\\"\\\\n  authors: \\\\\\\"Bao et al.\\\\\\\"\\\\n  year: 2024\\\\n  venue: \\\\\\\"ICLR 2024\\\\\\\"\\\\n  arxiv: \\\\\\\"2310.05130\\\\\\\"\\\\n  category: detection\\\\n  role: background\\\\n  relevance: \\\\\\\"DetectGPT 加速版，用采样替代扰动；可作为 depth fingerprint pipeline 中的快速 baseline\\\\\\\"\\\\n  key_finding: \\\\\\\"用条件概率曲率替代扰动步骤，检测速度提升 340 倍，性能相对提升 75%\\\\\\\"\\\\n\\\\n- id: ld_score\\\\n  title: \\\\\\\"Beyond Perplexity: Character Distribution Signatures and the MDTA Benchmark for AI Text Detection\\\\\\\"\\\\n  authors: \\\\\\\"Narayanasamy et al.\\\\\\\"\\\\n  year: 2026\\\\n  venue: \\\\\\\"arXiv preprint\\\\\\\"\\\\n  arxiv: \\\\\\\"2605.01647\\\\\\\"\\\\n  category: detection\\\\n  role: method-component\\\\n  relevance: \\\\\\\"字符级分布特征 (LD-Score) 与 perplexity 正交（r=0.08-0.13）；可作为 depth fingerprint 的互补信号\\\\\\\"\\\\n  key_finding: \\\\\\\"LLM 近似全局字符分布而人类展示领域特化分布，形成可检测的 Wall of Separation\\\\\\\"\\\\n\\\\n- id: intrinsic_dimension\\\\n  title: \\\\\\\"Intrinsic Dimension Estimation for Robust Detection of AI-Generated Texts\\\\\\\"\\\\n  authors: \\\\\\\"Tulchinskii et al.\\\\\\\"\\\\n  year: 2023\\\\n  venue: \\\\\\\"NeurIPS 2023\\\\\\\"\\\\n  arxiv: \\\\\\\"2306.04723\\\\\\\"\\\\n  category: detection\\\\n  role: method-component\\\\n  relevance: \\\\\\\"用嵌入空间内在维度做检测；depth fingerprint 可探索内在维度随生成深度的变化趋势\\\\\\\"\\\\n  key_finding: \\\\\\\"人类文本嵌入的内在维度约 9（字母语言），AI 文本约低 1.5；跨域/跨模型稳定\\\\\\\"\\\\n\\\\n- id: diveye\\\\n  title: \\\\\\\"Diversity Boosts AI-Generated Text Detection\\\\\\\"\\\\n  authors: \\\\\\\"Basani & Chen\\\\\\\"\\\\n  year: 2026\\\\n  venue: \\\\\\\"TMLR 2026\\\\\\\"\\\\n  arxiv: \\\\\\\"2509.18880\\\\\\\"\\\\n  category: detection\\\\n  role: method-component\\\\n  relevance: \\\\\\\"用 surprisal diversity 特征检测 AI 文本——人类文本 surprisal 分布离散度更高、尾部更重；与本项目 shape 特征（entropy_std, tail_decay）直接可比\\\\\\\"\\\\n  key_finding: \\\\\\\"DivEye 框架捕捉 token surprisal 的波动模式，zero-shot 检测超现有方法最多 33.2%，对改写鲁棒\\\\\\\"\\\\n\\\\n- id: generator_barrier\\\\n  title: \\\\\\\"Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection\\\\\\\"\\\\n  authors: \\\\\\\"Pu et al.\\\\\\\"\\\\n  year: 2026\\\\n  venue: \\\\\\\"arXiv preprint\\\\\\\"\\\\n  arxiv: \\\\\\\"2604.13692\\\\\\\"\\\\n  category: detection\\\\n  role: background\\\\n  relevance: \\\\\\\"通过解耦表征实现跨生成器泛化检测（MAGE 20 个 LLM），与本项目 LOGO 跨生成器评估目标一致；不同方法论（表征学习 vs 特征工程）\\\\\\\"\\\\n  key_finding: \\\\\\\"解耦 AI 检测语义与生成器特有伪影，在未见生成器上准确率提升 24.2%、F1 提升 26.2%\\\\\\\"\\\\n\\\\n- id: feat_aug_transformer\\\\n  title: \\\\\\\"Feature-Augmented Transformers for Robust AI-Text Detection Across Domains and Generators\\\\\\\"\\\\n  authors: \\\\\\\"Mady et al.\\\\\\\"\\\\n  year: 2026\\\\n  venue: \\\\\\\"arXiv preprint\\\\\\\"\\\\n  arxiv: \\\\\\\"2605.03969\\\\\\\"\\\\n  category: detection\\\\n  role: background\\\\n  relevance: \\\\\\\"语言特征增强 Transformer 做跨域/跨生成器检测（DeBERTa+FeatAttn 85.9% bal-acc on M4）；验证了语言特征对泛化性的价值，支撑本项目特征工程路线\\\\\\\"\\\\n  key_finding: \\\\\\\"基模型域内近满分但迁移脆弱；attention-based 语言特征融合显著提升跨分布迁移能力\\\\\\\"\\\\n\\\\n##############################################################################\\\\n# 2. Model Collapse Theory\\\\n##############################################################################\\\\n\\\\n- id: self_consuming_mad\\\\n  title: \\\\\\\"Self-Consuming Generative Models Go MAD\\\\\\\"\\\\n  authors: \\\\\\\"Alemohammad et al.\\\\\\\"\\\\n  year: 2023\\\\n  venue: \\\\\\\"arXiv preprint\\\\\\\"\\\\n  arxiv: \\\\\\\"2307.01850\\\\\\\"\\\\n  category: model-collapse\\\\n  role: background\\\\n  relevance: \\\\\\\"定义 autophagous loop 三种模式并证明精度/多样性递减；本项目的 depth fingerprint 可量化此递减\\\\\\\"\\\\n  key_finding: \\\\\\\"无足够新鲜真实数据时，自噬循环导致生成质量（精度）或多样性（召回）逐步下降\\\\\\\"\\\\n\\\\n- id: curse_of_recursion\\\\n  title: \\\\\\\"The Curse of Recursion: Training on Generated Data Makes Models Forget\\\\\\\"\\\\n  authors: \\\\\\\"Shumailov et al.\\\\\\\"\\\\n  year: 2024\\\\n  venue: \\\\\\\"Nature 2024\\\\\\\"\\\\n  arxiv: \\\\\\\"2305.17493\\\\\\\"\\\\n  category: model-collapse\\\\n  role: background\\\\n  relevance: \\\\\\\"Nature 发表的 model collapse 里程碑论文；本项目关注推理链（非训练循环）的类似退化现象\\\\\\\"\\\\n  key_finding: \\\\\\\"递归训练导致不可逆缺陷——原始分布的尾部消失，在 VAE/GMM/LLM 中普遍存在\\\\\\\"\\\\n\\\\n- id: strong_model_collapse\\\\n  title: \\\\\\\"Strong Model Collapse\\\\\\\"\\\\n  authors: \\\\\\\"Dohmatob et al.\\\\\\\"\\\\n  year: 2024\\\\n  venue: \\\\\\\"ICLR 2025\\\\\\\"\\\\n  arxiv: \\\\\\\"2410.04840\\\\\\\"\\\\n  category: model-collapse\\\\n  role: background\\\\n  relevance: \\\\\\\"证明即使 1% 合成数据也会导致 collapse，更大模型可能放大效应；支撑 depth fingerprint 的理论动机\\\\\\\"\\\\n  key_finding: \\\\\\\"最小比例合成数据即可导致 strong collapse；更大模型在简化体制下可放大此效应\\\\\\\"\\\\n\\\\n- id: model_collapse_avoidable\\\\n  title: \\\\\\\"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data\\\\\\\"\\\\n  authors: \\\\\\\"Gerstgrasser et al.\\\\\\\"\\\\n  year: 2024\\\\n  venue: \\\\\\\"arXiv preprint\\\\\\\"\\\\n  arxiv: \\\\\\\"2404.01413\\\\\\\"\\\\n  category: model-collapse\\\\n  role: background\\\\n  relevance: \\\\\\\"证明累积数据时 collapse 可避免；本项目的生成链场景是纯推理无累积，collapse 更难避免\\\\\\\"\\\\n  key_finding: \\\\\\\"当数据累积而非替换时，混合真实与合成数据可避免 model collapse\\\\\\\"\\\\n\\\\n##############################################################################\\\\n# 3. OOD Detection\\\\n##############################################################################\\\\n\\\\n- id: ood_baseline\\\\n  title: \\\\\\\"A Baseline for Detecting Misclassified and Out-of-Distribution Examples in Neural Networks\\\\\\\"\\\\n  authors: \\\\\\\"Hendrycks & Gimpel\\\\\\\"\\\\n  year: 2017\\\\n  venue: \\\\\\\"ICLR 2017\\\\\\\"\\\\n  arxiv: \\\\\\\"1610.02136\\\\\\\"\\\\n  category: ood-detection\\\\n  role: background\\\\n  relevance: \\\\\\\"OOD 检测基线方法；depth fingerprint 可视为 OOD scoring 的一种特殊形式——检测偏离人类分布的程度\\\\\\\"\\\\n  key_finding: \\\\\\\"正确分类样本的最大 softmax 概率高于错误分类和 OOD 样本\\\\\\\"\\\\n\\\\n##############################################################################\\\\n# 4. Data Quality Scoring\\\\n##############################################################################\\\\n\\\\n- id: dsir\\\\n  title: \\\\\\\"Data Selection for Language Models via Importance Resampling\\\\\\\"\\\\n  authors: \\\\\\\"Xie et al.\\\\\\\"\\\\n  year: 2023\\\\n  venue: \\\\\\\"NeurIPS 2023\\\\\\\"\\\\n  arxiv: \\\\\\\"2302.03169\\\\\\\"\\\\n  category: data-quality\\\\n  role: background\\\\n  relevance: \\\\\\\"数据质量筛选框架；depth fingerprint 可作为 DSIR 类 pipeline 中合成数据污染度的质量信号\\\\\\\"\\\\n  key_finding: \\\\\\\"用 n-gram 特征空间的重要性权重做数据选择，100M 文档 4.5 小时处理\\\\\\\"\\\\n\\\\n- id: qurating\\\\n  title: \\\\\\\"QuRating: Selecting High-Quality Data for Training Language Models\\\\\\\"\\\\n  authors: \\\\\\\"Wettig et al.\\\\\\\"\\\\n  year: 2024\\\\n  venue: \\\\\\\"ICML 2024\\\\\\\"\\\\n  arxiv: \\\\\\\"2402.09739\\\\\\\"\\\\n  category: data-quality\\\\n  role: background\\\\n  relevance: \\\\\\\"LLM 成对判断的数据质量评分；depth fingerprint 类似地为文本分配生成深度分数\\\\\\\"\\\\n  key_finding: \\\\\\\"LLM 可准确判断文本的写作风格/专业性/教育价值等质量维度，用于预训练数据选择\\\\\\\"\\\\n\\\\n- id: ccnet\\\\n  title: \\\\\\\"CCNet: Extracting High Quality Monolingual Datasets from Web Crawl Data\\\\\\\"\\\\n  authors: \\\\\\\"Wenzek et al.\\\\\\\"\\\\n  year: 2020\\\\n  venue: \\\\\\\"LREC 2020\\\\\\\"\\\\n  arxiv: \\\\\\\"1911.00359\\\\\\\"\\\\n  category: data-quality\\\\n  role: background\\\\n  relevance: \\\\\\\"基于 perplexity 的 web 数据过滤 pipeline；depth fingerprint 可集成为额外的质量过滤维度\\\\\\\"\\\\n  key_finding: \\\\\\\"用语言模型 perplexity 过滤 Common Crawl 数据，接近维基百科质量水平\\\\\\\"\\\\n\\\\n##############################################################################\\\\n# 5. Watermarking\\\\n##############################################################################\\\\n\\\\n- id: watermark_llm\\\\n  title: \\\\\\\"A Watermark for Large Language Models\\\\\\\"\\\\n  authors: \\\\\\\"Kirchenbauer et al.\\\\\\\"\\\\n  year: 2023\\\\n  venue: \\\\\\\"ICML 2023\\\\\\\"\\\\n  arxiv: \\\\\\\"2301.10226\\\\\\\"\\\\n  category: watermarking\\\\n  role: background\\\\n  relevance: \\\\\\\"绿色 token 列表 watermark 方案；depth fingerprint 检测非水印场景下的生成痕迹，形成互补\\\\\\\"\\\\n  key_finding: \\\\\\\"通过在采样前划分 green/red token 列表实现不可见水印，短文本即可检测\\\\\\\"\\\\n\\\\n- id: synthid_text\\\\n  title: \\\\\\\"Scalable Watermarking for Identifying Large Language Model Outputs\\\\\\\"\\\\n  authors: \\\\\\\"Dathathri et al.\\\\\\\"\\\\n  year: 2024\\\\n  venue: \\\\\\\"Nature 2024\\\\\\\"\\\\n  arxiv: \\\\\\\"\\\\\\\"\\\\n  category: watermarking\\\\n  role: background\\\\n  relevance: \\\\\\\"生产级 LLM 水印方案（Google Gemini 部署）；depth fingerprint 面向无水印的 post-hoc 检测\\\\\\\"\\\\n  key_finding: \\\\\\\"Tournament Sampling 算法实现生产级文本水印，Google Gemini 实际部署\\\\\\\"\\\\n\\\\n- id: aaronson_watermark\\\\n  title: \\\\\\\"Watermarking GPT Outputs\\\\\\\"\\\\n  authors: \\\\\\\"Aaronson & Kirchner\\\\\\\"\\\\n  year: 2022\\\\n  venue: \\\\\\\"Technical Talk\\\\\\\"\\\\n  arxiv: \\\\\\\"\\\\\\\"\\\\n  category: watermarking\\\\n  role: background\\\\n  relevance: \\\\\\\"LLM 文本水印的原始提案；depth fingerprint 定位为不依赖水印的被动检测方案\\\\\\\"\\\\n  key_finding: \\\\\\\"用伪随机函数选择 next token，对短文本即可检测，对轻微编辑鲁棒\\\\\\\"\\\\n\\\\n- id: chainwash\\\\n  title: \\\\\\\"Chainwash: Multi-Step Rewriting Attacks on Diffusion Language Model Watermarks\\\\\\\"\\\\n  authors: \\\\\\\"Ameen et al.\\\\\\\"\\\\n  year: 2026\\\\n  venue: \\\\\\\"arXiv preprint\\\\\\\"\\\\n  arxiv: \\\\\\\"2605.05503\\\\\\\"\\\\n  category: watermarking\\\\n  role: background\\\\n  relevance: \\\\\\\"多步重写链攻击水印（5 hop 后检测率从 87.9% 降到 4.86%）；证明生成链深度影响水印信号，支撑 depth fingerprint 的动机——被动检测不依赖水印\\\\\\\"\\\\n  key_finding: \\\\\\\"链式重写（chainwash）通过生成式多步改写有效消除扩散语言模型水印，5 步后 94.76% 原可检测文本不再被标记\\\\\\\"\\\\n\\\\n##############################################################################\\\\n# 6. Vocabulary Diversity\\\\n##############################################################################\\\\n\\\\n- id: curious_decline\\\\n  title: \\\\\\\"The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text\\\\\\\"\\\\n  authors: \\\\\\\"Guo et al.\\\\\\\"\\\\n  year: 2024\\\\n  venue: \\\\\\\"NAACL 2024 Findings\\\\\\\"\\\\n  arxiv: \\\\\\\"2311.09807\\\\\\\"\\\\n  category: vocabulary-diversity\\\\n  role: direct-competitor\\\\n  relevance: \\\\\\\"直接相关：量化递归微调导致的词汇/句法/语义多样性下降；本项目扩展到推理链场景\\\\\\\"\\\\n  key_finding: \\\\\\\"递归微调导致词汇/句法/语义多样性持续下降，创意任务尤为显著\\\\\\\"\\\\n\\\\n- id: writing_diversity\\\\n  title: \\\\\\\"Does Writing with Language Models Reduce Content Diversity?\\\\\\\"\\\\n  authors: \\\\\\\"Padmakumar & He\\\\\\\"\\\\n  year: 2024\\\\n  venue: \\\\\\\"ICLR 2024\\\\\\\"\\\\n  arxiv: \\\\\\\"2309.05196\\\\\\\"\\\\n  category: vocabulary-diversity\\\\n  role: background\\\\n  relevance: \\\\\\\"实验证明 InstructGPT 协写降低多样性；支撑 depth fingerprint 中 diversity 随深度递减的假设\\\\\\\"\\\\n  key_finding: \\\\\\\"InstructGPT 协写显著降低不同作者间的文本相似度和词汇多样性\\\\\\\"\\\\n\\\\n- id: nucleus_sampling\\\\n  title: \\\\\\\"The Curious Case of Neural Text Degeneration\\\\\\\"\\\\n  authors: \\\\\\\"Holtzman et al.\\\\\\\"\\\\n  year: 2020\\\\n  venue: \\\\\\\"ICLR 2020\\\\\\\"\\\\n  arxiv: \\\\\\\"1904.09751\\\\\\\"\\\\n  category: vocabulary-diversity\\\\n  role: background\\\\n  relevance: \\\\\\\"定义了 neural text degeneration 和 nucleus sampling；depth fingerprint 中的 shape 特征与采样策略相关\\\\\\\"\\\\n  key_finding: \\\\\\\"最大化解码导致退化；Nucleus Sampling 截断不可靠尾部，生成质量接近人类\\\\\\\"\\\\n\\\\n- id: mapping_llm_science\\\\n  title: \\\\\\\"Mapping the Increasing Use of LLMs in Scientific Papers\\\\\\\"\\\\n  authors: \\\\\\\"Liang et al.\\\\\\\"\\\\n  year: 2024\\\\n  venue: \\\\\\\"arXiv preprint\\\\\\\"\\\\n  arxiv: \\\\\\\"2404.01268\\\\\\\"\\\\n  category: vocabulary-diversity\\\\n  role: background\\\\n  relevance: \\\\\\\"大规模量化科学论文中 LLM 修改内容的比例；depth fingerprint 可检测多轮修改的深度\\\\\\\"\\\\n  key_finding: \\\\\\\"95 万篇论文分析显示 CS 领域 LLM 修改率最高达 17.5%\\\\\\\"\\\\n\\\\n- id: monitoring_ai_review\\\\n  title: \\\\\\\"Monitoring AI-Modified Content at Scale: A Case Study on the Impact of ChatGPT on AI Conference Peer Reviews\\\\\\\"\\\\n  authors: \\\\\\\"Liang et al.\\\\\\\"\\\\n  year: 2024\\\\n  venue: \\\\\\\"ICML 2024\\\\\\\"\\\\n  arxiv: \\\\\\\"2403.07183\\\\\\\"\\\\n  category: vocabulary-diversity\\\\n  role: background\\\\n  relevance: \\\\\\\"检测同行评审中 LLM 修改内容；depth fingerprint 提供互补的深度维度信号\\\\\\\"\\\\n  key_finding: \\\\\\\"6.5-16.9% 的 AI 会议 peer review 可能被 LLM 实质性修改\\\\\\\"\\\\n\\\\n##############################################################################\\\\n# 7. Stylometry / Authorship Attribution\\\\n##############################################################################\\\\n\\\\n- id: stamatatos_survey\\\\n  title: \\\\\\\"A Survey of Modern Authorship Attribution Methods\\\\\\\"\\\\n  authors: \\\\\\\"Stamatatos\\\\\\\"\\\\n  year: 2009\\\\n  venue: \\\\\\\"JASIST 2009\\\\\\\"\\\\n  arxiv: \\\\\\\"\\\\\\\"\\\\n  category: stylometry\\\\n  role: background\\\\n  relevance: \\\\\\\"风格计量学经典综述；depth fingerprint 的特征工程可借鉴 stylometric 特征体系\\\\\\\"\\\\n  key_finding: \\\\\\\"综述词汇/字符/句法等多层次文体特征在作者归属中的应用\\\\\\\"\\\\n\\\\n- id: koppel_authorship\\\\n  title: \\\\\\\"Computational Methods in Authorship Attribution\\\\\\\"\\\\n  authors: \\\\\\\"Koppel et al.\\\\\\\"\\\\n  year: 2009\\\\n  venue: \\\\\\\"JASIST 2009\\\\\\\"\\\\n  arxiv: \\\\\\\"\\\\\\\"\\\\n  category: stylometry\\\\n  role: background\\\\n  relevance: \\\\\\\"开放集作者归属方法；depth fingerprint 可视为 LLM 生成深度的归属问题\\\\\\\"\\\\n  key_finding: \\\\\\\"解决大规模候选集和开放集场景下的作者归属问题\\\\\\\"\\\\n\\\\n- id: uchendu_attribution\\\\n  title: \\\\\\\"Authorship Attribution for Neural Text Generation\\\\\\\"\\\\n  authors: \\\\\\\"Uchendu et al.\\\\\\\"\\\\n  year: 2020\\\\n  venue: \\\\\\\"EMNLP 2020\\\\\\\"\\\\n  arxiv: \\\\\\\"\\\\\\\"\\\\n  category: stylometry\\\\n  role: background\\\\n  relevance: \\\\\\\"将作者归属扩展到 neural text 生成源识别；depth fingerprint 进一步细化到生成深度维度\\\\\\\"\\\\n  key_finding: \\\\\\\"可区分不同神经文本生成器的多类归属，超越二分类人/机检测\\\\\\\"\\\\n\\\\n##############################################################################\\\\n# 8. Iterative Generation\\\\n##############################################################################\\\\n\\\\n- id: broken_telephone\\\\n  title: \\\\\\\"LLM as a Broken Telephone: Iterative Generation Distorts Information\\\\\\\"\\\\n  authors: \\\\\\\"Mohamed et al.\\\\\\\"\\\\n  year: 2025\\\\n  venue: \\\\\\\"ACL 2025\\\\\\\"\\\\n  arxiv: \\\\\\\"2502.20258\\\\\\\"\\\\n  category: iterative-generation\\\\n  role: direct-competitor\\\\n  relevance: \\\\\\\"最直接相关：通过翻译链研究 LLM 迭代生成的信息失真；本项目扩展到非改写式生成链\\\\\\\"\\\\n  key_finding: \\\\\\\"LLM 迭代翻译链中失真随深度累积，语言相似度和提示策略影响退化速率\\\\\\\"\\\\n\\\\n- id: markovian_chains\\\\n  title: \\\\\\\"Markovian Generation Chains in Large Language Models\\\\\\\"\\\\n  authors: \\\\\\\"Geng et al.\\\\\\\"\\\\n  year: 2026\\\\n  venue: \\\\\\\"arXiv preprint\\\\\\\"\\\\n  arxiv: \\\\\\\"2603.11228\\\\\\\"\\\\n  category: iterative-generation\\\\n  role: direct-competitor\\\\n  relevance: \\\\\\\"定义 Markovian generation chains 并研究收敛/发散行为；本项目关注非改写链的 depth fingerprint\\\\\\\"\\\\n  key_finding: \\\\\\\"迭代重述/翻译中输出或收敛到小循环集，或继续产生新句子，取决于温度和初始输入\\\\\\\"\\\\n\\\\n##############################################################################\\\\n# 9. Membership Inference\\\\n##############################################################################\\\\n\\\\n- id: min_k_percent\\\\n  title: \\\\\\\"Detecting Pretraining Data from Large Language Models\\\\\\\"\\\\n  authors: \\\\\\\"Shi et al.\\\\\\\"\\\\n  year: 2024\\\\n  venue: \\\\\\\"ICLR 2024\\\\\\\"\\\\n  arxiv: \\\\\\\"2310.16789\\\\\\\"\\\\n  category: membership-inference\\\\n  role: method-component\\\\n  relevance: \\\\\\\"Min-K% 用最低概率 token 做成员推断；depth fingerprint 可借鉴其概率分布分析思路\\\\\\\"\\\\n  key_finding: \\\\\\\"未见过的文本更可能包含低概率离群 token；Min-K% Prob 在 WikiMIA 上提升 7.4%\\\\\\\"\\\\n\\\\n##############################################################################\\\\n# 10. Robustness / Adversarial / Theoretical\\\\n##############################################################################\\\\n\\\\n- id: reliable_detection\\\\n  title: \\\\\\\"Can AI-Generated Text be Reliably Detected?\\\\\\\"\\\\n  authors: \\\\\\\"Sadasivan et al.\\\\\\\"\\\\n  year: 2024\\\\n  venue: \\\\\\\"ICLR 2024\\\\\\\"\\\\n  arxiv: \\\\\\\"2303.11156\\\\\\\"\\\\n  category: detection\\\\n  role: background\\\\n  relevance: \\\\\\\"递归改写攻击显著降低检测率；depth fingerprint 面向非改写链，攻击面不同\\\\\\\"\\\\n  key_finding: \\\\\\\"递归改写可将 DetectGPT 从 70.3% 降到 4.6%；检测上界与分布 TV 距离相关\\\\\\\"\\\\n\\\\n- id: paraphrase_evades\\\\n  title: \\\\\\\"Paraphrasing Evades Detectors of AI-Generated Text, but Retrieval is an Effective Defense\\\\\\\"\\\\n  authors: \\\\\\\"Krishna et al.\\\\\\\"\\\\n  year: 2023\\\\n  venue: \\\\\\\"NeurIPS 2023\\\\\\\"\\\\n  arxiv: \\\\\\\"2303.13408\\\\\\\"\\\\n  category: detection\\\\n  role: background\\\\n  relevance: \\\\\\\"改写攻击 vs 检索防御；depth fingerprint 检测非改写链，与此正交但需考虑改写鲁棒性\\\\\\\"\\\\n  key_finding: \\\\\\\"DIPPER 改写器将 DetectGPT 准确率从 70.3% 降到 4.6%；检索方法是有效防御\\\\\\\"\\\\n\\\\n- id: detection_possibilities\\\\n  title: \\\\\\\"Position: On the Possibilities of AI-Generated Text Detection\\\\\\\"\\\\n  authors: \\\\\\\"Chakraborty et al.\\\\\\\"\\\\n  year: 2024\\\\n  venue: \\\\\\\"ICML 2024\\\\\\\"\\\\n  arxiv: \\\\\\\"2304.04736\\\\\\\"\\\\n  category: detection\\\\n  role: background\\\\n  relevance: \\\\\\\"理论证明 AI 文本检测在分布可区分时始终可行；支撑 depth fingerprint 的可行性\\\\\\\"\\\\n  key_finding: \\\\\\\"信息论证明：除非人/机分布完全不可分，检测始终可行；给出样本复杂度下界\\\\\\\"\\\\n\\\\n##############################################################################\\\\n# 11. Surveys / Early Detection\\\\n##############################################################################\\\\n\\\\n- id: jawahar_survey\\\\n  title: \\\\\\\"Automatic Detection of Machine Generated Text: A Critical Survey\\\\\\\"\\\\n  authors: \\\\\\\"Jawahar et al.\\\\\\\"\\\\n  year: 2020\\\\n  venue: \\\\\\\"COLING 2020\\\\\\\"\\\\n  arxiv: \\\\\\\"2011.01314\\\\\\\"\\\\n  category: survey\\\\n  role: background\\\\n  relevance: \\\\\\\"机器文本检测早期综述；depth fingerprint 定位在该领域的新维度\\\\\\\"\\\\n  key_finding: \\\\\\\"系统梳理统计方法和神经方法在机器文本检测中的应用与局限\\\\\\\"\\\\n\\\\n- id: grover\\\\n  title: \\\\\\\"Defending Against Neural Fake News\\\\\\\"\\\\n  authors: \\\\\\\"Zellers et al.\\\\\\\"\\\\n  year: 2019\\\\n  venue: \\\\\\\"NeurIPS 2019\\\\\\\"\\\\n  arxiv: \\\\\\\"1905.12616\\\\\\\"\\\\n  category: detection\\\\n  role: background\\\\n  relevance: \\\\\\\"生成器即最佳检测器的早期发现；depth fingerprint 不依赖生成器 access\\\\\\\"\\\\n  key_finding: \\\\\\\"Grover 自身是检测 Grover 生成假新闻的最佳检测器（92% vs 73% baseline）\\\\\\\"\\\\n\\\\n- id: release_strategies\\\\n  title: \\\\\\\"Release Strategies and the Social Impacts of Language Models\\\\\\\"\\\\n  authors: \\\\\\\"Solaiman et al.\\\\\\\"\\\\n  year: 2019\\\\n  venue: \\\\\\\"arXiv preprint\\\\\\\"\\\\n  arxiv: \\\\\\\"1908.09203\\\\\\\"\\\\n  category: detection\\\\n  role: background\\\\n  relevance: \\\\\\\"GPT-2 分阶段发布策略和检测工具；depth fingerprint 面向更复杂的生成链场景\\\\\\\"\\\\n  key_finding: \\\\\\\"分阶段发布 GPT-2 允许在模型升级间进行风险/收益分析和检测器开发\\\\\\\"\\\\n\\\", \\\"total_chars\\\": 16634, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/literature_map.yaml\", \"content\": \"# Literature Map for gen-depth-fingerprint\\n# 递归 LLM 生成链深度指纹识别\\n# Updated: 2026-05-15\\n# Categories: detection, model-collapse, data-quality, stylometry,\\n#             iterative-generation, watermarking, vocabulary-diversity,\\n#             membership-inference, ood-detection, survey\\n# Total: 39 papers\\n\\n##############################################################################\\n# 1. Perplexity-based / Zero-shot Detection\\n##############################################################################\\n\\n- id: detectgpt\\n  title: \\\"DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature\\\"\\n  authors: \\\"Mitchell et al.\\\"\\n  year: 2023\\n  venue: \\\"ICML 2023\\\"\\n  arxiv: \\\"2301.11305\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"基础检测方法，用 log-probability curvature 区分人/机文本；本项目的 depth fingerprint 可与之互补\\\"\\n  key_finding: \\\"机器生成文本倾向于占据模型 log-probability 函数的负曲率区域\\\"\\n\\n- id: gltr\\n  title: \\\"GLTR: Statistical Detection and Visualization of Generated Text\\\"\\n  authors: \\\"Gehrmann et al.\\\"\\n  year: 2019\\n  venue: \\\"ACL 2019\\\"\\n  arxiv: \\\"1906.04043\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"早期统计检测工具，使用 token rank/entropy 等特征；本项目可对比其特征在不同生成深度下的变化\\\"\\n  key_finding: \\\"使用 token 概率排名和熵的可视化方案将人类检测准确率从 54% 提升到 72%\\\"\\n\\n- id: dna_gpt\\n  title: \\\"DNA-GPT: Divergent N-Gram Analysis for Training-Free Detection of GPT-Generated Text\\\"\\n  authors: \\\"Yang et al.\\\"\\n  year: 2024\\n  venue: \\\"ICLR 2024\\\"\\n  arxiv: \\\"2305.17359\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"通过 n-gram 发散度做 zero-shot 检测；本项目 depth fingerprint 中的 diversity 指标可借鉴其 n-gram 分析\\\"\\n  key_finding: \\\"截断文本后让 LLM 重新生成，通过 n-gram 差异实现零样本检测\\\"\\n\\n- id: binoculars\\n  title: \\\"Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text\\\"\\n  authors: \\\"Hans et al.\\\"\\n  year: 2024\\n  venue: \\\"ICML 2024\\\"\\n  arxiv: \\\"2401.12070\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"双模型对比打分检测法；depth fingerprint 需要验证与 Binoculars score 在不同深度下的相关性\\\"\\n  key_finding: \\\"对比两个近似 LLM 的 perplexity 比值可在 0.01% FPR 下检测 90%+ 的 ChatGPT 输出\\\"\\n\\n- id: fast_detectgpt\\n  title: \\\"Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature\\\"\\n  authors: \\\"Bao et al.\\\"\\n  year: 2024\\n  venue: \\\"ICLR 2024\\\"\\n  arxiv: \\\"2310.05130\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"DetectGPT 加速版，用采样替代扰动；可作为 depth fingerprint pipeline 中的快速 baseline\\\"\\n  key_finding: \\\"用条件概率曲率替代扰动步骤，检测速度提升 340 倍，性能相对提升 75%\\\"\\n\\n- id: ld_score\\n  title: \\\"Beyond Perplexity: Character Distribution Signatures and the MDTA Benchmark for AI Text Detection\\\"\\n  authors: \\\"Narayanasamy et al.\\\"\\n  year: 2026\\n  venue: \\\"arXiv preprint\\\"\\n  arxiv: \\\"2605.01647\\\"\\n  category: detection\\n  role: method-component\\n  relevance: \\\"字符级分布特征 (LD-Score) 与 perplexity 正交（r=0.08-0.13）；可作为 depth fingerprint 的互补信号\\\"\\n  key_finding: \\\"LLM 近似全局字符分布而人类展示领域特化分布，形成可检测的 Wall of Separation\\\"\\n\\n- id: intrinsic_dimension\\n  title: \\\"Intrinsic Dimension Estimation for Robust Detection of AI-Generated Texts\\\"\\n  authors: \\\"Tulchinskii et al.\\\"\\n  year: 2023\\n  venue: \\\"NeurIPS 2023\\\"\\n  arxiv: \\\"2306.04723\\\"\\n  category: detection\\n  role: method-component\\n  relevance: \\\"用嵌入空间内在维度做检测；depth fingerprint 可探索内在维度随生成深度的变化趋势\\\"\\n  key_finding: \\\"人类文本嵌入的内在维度约 9（字母语言），AI 文本约低 1.5；跨域/跨模型稳定\\\"\\n\\n- id: diveye\\n  title: \\\"Diversity Boosts AI-Generated Text Detection\\\"\\n  authors: \\\"Basani & Chen\\\"\\n  year: 2026\\n  venue: \\\"TMLR 2026\\\"\\n  arxiv: \\\"2509.18880\\\"\\n  category: detection\\n  role: method-component\\n  relevance: \\\"用 surprisal diversity 特征检测 AI 文本——人类文本 surprisal 分布离散度更高、尾部更重；与本项目 shape 特征（entropy_std, tail_decay）直接可比\\\"\\n  key_finding: \\\"DivEye 框架捕捉 token surprisal 的波动模式，zero-shot 检测超现有方法最多 33.2%，对改写鲁棒\\\"\\n\\n- id: generator_barrier\\n  title: \\\"Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection\\\"\\n  authors: \\\"Pu et al.\\\"\\n  year: 2026\\n  venue: \\\"arXiv preprint\\\"\\n  arxiv: \\\"2604.13692\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"通过解耦表征实现跨生成器泛化检测（MAGE 20 个 LLM），与本项目 LOGO 跨生成器评估目标一致；不同方法论（表征学习 vs 特征工程）\\\"\\n  key_finding: \\\"解耦 AI 检测语义与生成器特有伪影，在未见生成器上准确率提升 24.2%、F1 提升 26.2%\\\"\\n\\n- id: feat_aug_transformer\\n  title: \\\"Feature-Augmented Transformers for Robust AI-Text Detection Across Domains and Generators\\\"\\n  authors: \\\"Mady et al.\\\"\\n  year: 2026\\n  venue: \\\"arXiv preprint\\\"\\n  arxiv: \\\"2605.03969\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"语言特征增强 Transformer 做跨域/跨生成器检测（DeBERTa+FeatAttn 85.9% bal-acc on M4）；验证了语言特征对泛化性的价值，支撑本项目特征工程路线\\\"\\n  key_finding: \\\"基模型域内近满分但迁移脆弱；attention-based 语言特征融合显著提升跨分布迁移能力\\\"\\n\\n##############################################################################\\n# 2. Model Collapse Theory\\n##############################################################################\\n\\n- id: self_consuming_mad\\n  title: \\\"Self-Consuming Generative Models Go MAD\\\"\\n  authors: \\\"Alemohammad et al.\\\"\\n  year: 2023\\n  venue: \\\"arXiv preprint\\\"\\n  arxiv: \\\"2307.01850\\\"\\n  category: model-collapse\\n  role: background\\n  relevance: \\\"定义 autophagous loop 三种模式并证明精度/多样性递减；本项目的 depth fingerprint 可量化此递减\\\"\\n  key_finding: \\\"无足够新鲜真实数据时，自噬循环导致生成质量（精度）或多样性（召回）逐步下降\\\"\\n\\n- id: curse_of_recursion\\n  title: \\\"The Curse of Recursion: Training on Generated Data Makes Models Forget\\\"\\n  authors: \\\"Shumailov et al.\\\"\\n  year: 2024\\n  venue: \\\"Nature 2024\\\"\\n  arxiv: \\\"2305.17493\\\"\\n  category: model-collapse\\n  role: background\\n  relevance: \\\"Nature 发表的 model collapse 里程碑论文；本项目关注推理链（非训练循环）的类似退化现象\\\"\\n  key_finding: \\\"递归训练导致不可逆缺陷——原始分布的尾部消失，在 VAE/GMM/LLM 中普遍存在\\\"\\n\\n- id: strong_model_collapse\\n  title: \\\"Strong Model Collapse\\\"\\n  authors: \\\"Dohmatob et al.\\\"\\n  year: 2024\\n  venue: \\\"ICLR 2025\\\"\\n  arxiv: \\\"2410.04840\\\"\\n  category: model-collapse\\n  role: background\\n  relevance: \\\"证明即使 1% 合成数据也会导致 collapse，更大模型可能放大效应；支撑 depth fingerprint 的理论动机\\\"\\n  key_finding: \\\"最小比例合成数据即可导致 strong collapse；更大模型在简化体制下可放大此效应\\\"\\n\\n- id: model_collapse_avoidable\\n  title: \\\"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data\\\"\\n  authors: \\\"Gerstgrasser et al.\\\"\\n  year: 2024\\n  venue: \\\"arXiv preprint\\\"\\n  arxiv: \\\"2404.01413\\\"\\n  category: model-collapse\\n  role: background\\n  relevance: \\\"证明累积数据时 collapse 可避免；本项目的生成链场景是纯推理无累积，collapse 更难避免\\\"\\n  key_finding: \\\"当数据累积而非替换时，混合真实与合成数据可避免 model collapse\\\"\\n\\n##############################################################################\\n# 3. OOD Detection\\n##############################################################################\\n\\n- id: ood_baseline\\n  title: \\\"A Baseline for Detecting Misclassified and Out-of-Distribution Examples in Neural Networks\\\"\\n  authors: \\\"Hendrycks & Gimpel\\\"\\n  year: 2017\\n  venue: \\\"ICLR 2017\\\"\\n  arxiv: \\\"1610.02136\\\"\\n  category: ood-detection\\n  role: background\\n  relevance: \\\"OOD 检测基线方法；depth fingerprint 可视为 OOD scoring 的一种特殊形式——检测偏离人类分布的程度\\\"\\n  key_finding: \\\"正确分类样本的最大 softmax 概率高于错误分类和 OOD 样本\\\"\\n\\n##############################################################################\\n# 4. Data Quality Scoring\\n##############################################################################\\n\\n- id: dsir\\n  title: \\\"Data Selection for Language Models via Importance Resampling\\\"\\n  authors: \\\"Xie et al.\\\"\\n  year: 2023\\n  venue: \\\"NeurIPS 2023\\\"\\n  arxiv: \\\"2302.03169\\\"\\n  category: data-quality\\n  role: background\\n  relevance: \\\"数据质量筛选框架；depth fingerprint 可作为 DSIR 类 pipeline 中合成数据污染度的质量信号\\\"\\n  key_finding: \\\"用 n-gram 特征空间的重要性权重做数据选择，100M 文档 4.5 小时处理\\\"\\n\\n- id: qurating\\n  title: \\\"QuRating: Selecting High-Quality Data for Training Language Models\\\"\\n  authors: \\\"Wettig et al.\\\"\\n  year: 2024\\n  venue: \\\"ICML 2024\\\"\\n  arxiv: \\\"2402.09739\\\"\\n  category: data-quality\\n  role: background\\n  relevance: \\\"LLM 成对判断的数据质量评分；depth fingerprint 类似地为文本分配生成深度分数\\\"\\n  key_finding: \\\"LLM 可准确判断文本的写作风格/专业性/教育价值等质量维度，用于预训练数据选择\\\"\\n\\n- id: ccnet\\n  title: \\\"CCNet: Extracting High Quality Monolingual Datasets from Web Crawl Data\\\"\\n  authors: \\\"Wenzek et al.\\\"\\n  year: 2020\\n  venue: \\\"LREC 2020\\\"\\n  arxiv: \\\"1911.00359\\\"\\n  category: data-quality\\n  role: background\\n  relevance: \\\"基于 perplexity 的 web 数据过滤 pipeline；depth fingerprint 可集成为额外的质量过滤维度\\\"\\n  key_finding: \\\"用语言模型 perplexity 过滤 Common Crawl 数据，接近维基百科质量水平\\\"\\n\\n##############################################################################\\n# 5. Watermarking\\n##############################################################################\\n\\n- id: watermark_llm\\n  title: \\\"A Watermark for Large Language Models\\\"\\n  authors: \\\"Kirchenbauer et al.\\\"\\n  year: 2023\\n  venue: \\\"ICML 2023\\\"\\n  arxiv: \\\"2301.10226\\\"\\n  category: watermarking\\n  role: background\\n  relevance: \\\"绿色 token 列表 watermark 方案；depth fingerprint 检测非水印场景下的生成痕迹，形成互补\\\"\\n  key_finding: \\\"通过在采样前划分 green/red token 列表实现不可见水印，短文本即可检测\\\"\\n\\n- id: synthid_text\\n  title: \\\"Scalable Watermarking for Identifying Large Language Model Outputs\\\"\\n  authors: \\\"Dathathri et al.\\\"\\n  year: 2024\\n  venue: \\\"Nature 2024\\\"\\n  arxiv: \\\"\\\"\\n  category: watermarking\\n  role: background\\n  relevance: \\\"生产级 LLM 水印方案（Google Gemini 部署）；depth fingerprint 面向无水印的 post-hoc 检测\\\"\\n  key_finding: \\\"Tournament Sampling 算法实现生产级文本水印，Google Gemini 实际部署\\\"\\n\\n- id: aaronson_watermark\\n  title: \\\"Watermarking GPT Outputs\\\"\\n  authors: \\\"Aaronson & Kirchner\\\"\\n  year: 2022\\n  venue: \\\"Technical Talk\\\"\\n  arxiv: \\\"\\\"\\n  category: watermarking\\n  role: background\\n  relevance: \\\"LLM 文本水印的原始提案；depth fingerprint 定位为不依赖水印的被动检测方案\\\"\\n  key_finding: \\\"用伪随机函数选择 next token，对短文本即可检测，对轻微编辑鲁棒\\\"\\n\\n- id: chainwash\\n  title: \\\"Chainwash: Multi-Step Rewriting Attacks on Diffusion Language Model Watermarks\\\"\\n  authors: \\\"Ameen et al.\\\"\\n  year: 2026\\n  venue: \\\"arXiv preprint\\\"\\n  arxiv: \\\"2605.05503\\\"\\n  category: watermarking\\n  role: background\\n  relevance: \\\"多步重写链攻击水印（5 hop 后检测率从 87.9% 降到 4.86%）；证明生成链深度影响水印信号，支撑 depth fingerprint 的动机——被动检测不依赖水印\\\"\\n  key_finding: \\\"链式重写（chainwash）通过生成式多步改写有效消除扩散语言模型水印，5 步后 94.76% 原可检测文本不再被标记\\\"\\n\\n##############################################################################\\n# 6. Vocabulary Diversity\\n##############################################################################\\n\\n- id: curious_decline\\n  title: \\\"The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text\\\"\\n  authors: \\\"Guo et al.\\\"\\n  year: 2024\\n  venue: \\\"NAACL 2024 Findings\\\"\\n  arxiv: \\\"2311.09807\\\"\\n  category: vocabulary-diversity\\n  role: direct-competitor\\n  relevance: \\\"直接相关：量化递归微调导致的词汇/句法/语义多样性下降；本项目扩展到推理链场景\\\"\\n  key_finding: \\\"递归微调导致词汇/句法/语义多样性持续下降，创意任务尤为显著\\\"\\n\\n- id: writing_diversity\\n  title: \\\"Does Writing with Language Models Reduce Content Diversity?\\\"\\n  authors: \\\"Padmakumar & He\\\"\\n  year: 2024\\n  venue: \\\"ICLR 2024\\\"\\n  arxiv: \\\"2309.05196\\\"\\n  category: vocabulary-diversity\\n  role: background\\n  relevance: \\\"实验证明 InstructGPT 协写降低多样性；支撑 depth fingerprint 中 diversity 随深度递减的假设\\\"\\n  key_finding: \\\"InstructGPT 协写显著降低不同作者间的文本相似度和词汇多样性\\\"\\n\\n- id: nucleus_sampling\\n  title: \\\"The Curious Case of Neural Text Degeneration\\\"\\n  authors: \\\"Holtzman et al.\\\"\\n  year: 2020\\n  venue: \\\"ICLR 2020\\\"\\n  arxiv: \\\"1904.09751\\\"\\n  category: vocabulary-diversity\\n  role: background\\n  relevance: \\\"定义了 neural text degeneration 和 nucleus sampling；depth fingerprint 中的 shape 特征与采样策略相关\\\"\\n  key_finding: \\\"最大化解码导致退化；Nucleus Sampling 截断不可靠尾部，生成质量接近人类\\\"\\n\\n- id: mapping_llm_science\\n  title: \\\"Mapping the Increasing Use of LLMs in Scientific Papers\\\"\\n  authors: \\\"Liang et al.\\\"\\n  year: 2024\\n  venue: \\\"arXiv preprint\\\"\\n  arxiv: \\\"2404.01268\\\"\\n  category: vocabulary-diversity\\n  role: background\\n  relevance: \\\"大规模量化科学论文中 LLM 修改内容的比例；depth fingerprint 可检测多轮修改的深度\\\"\\n  key_finding: \\\"95 万篇论文分析显示 CS 领域 LLM 修改率最高达 17.5%\\\"\\n\\n- id: monitoring_ai_review\\n  title: \\\"Monitoring AI-Modified Content at Scale: A Case Study on the Impact of ChatGPT on AI Conference Peer Reviews\\\"\\n  authors: \\\"Liang et al.\\\"\\n  year: 2024\\n  venue: \\\"ICML 2024\\\"\\n  arxiv: \\\"2403.07183\\\"\\n  category: vocabulary-diversity\\n  role: background\\n  relevance: \\\"检测同行评审中 LLM 修改内容；depth fingerprint 提供互补的深度维度信号\\\"\\n  key_finding: \\\"6.5-16.9% 的 AI 会议 peer review 可能被 LLM 实质性修改\\\"\\n\\n##############################################################################\\n# 7. Stylometry / Authorship Attribution\\n##############################################################################\\n\\n- id: stamatatos_survey\\n  title: \\\"A Survey of Modern Authorship Attribution Methods\\\"\\n  authors: \\\"Stamatatos\\\"\\n  year: 2009\\n  venue: \\\"JASIST 2009\\\"\\n  arxiv: \\\"\\\"\\n  category: stylometry\\n  role: background\\n  relevance: \\\"风格计量学经典综述；depth fingerprint 的特征工程可借鉴 stylometric 特征体系\\\"\\n  key_finding: \\\"综述词汇/字符/句法等多层次文体特征在作者归属中的应用\\\"\\n\\n- id: koppel_authorship\\n  title: \\\"Computational Methods in Authorship Attribution\\\"\\n  authors: \\\"Koppel et al.\\\"\\n  year: 2009\\n  venue: \\\"JASIST 2009\\\"\\n  arxiv: \\\"\\\"\\n  category: stylometry\\n  role: background\\n  relevance: \\\"开放集作者归属方法；depth fingerprint 可视为 LLM 生成深度的归属问题\\\"\\n  key_finding: \\\"解决大规模候选集和开放集场景下的作者归属问题\\\"\\n\\n- id: uchendu_attribution\\n  title: \\\"Authorship Attribution for Neural Text Generation\\\"\\n  authors: \\\"Uchendu et al.\\\"\\n  year: 2020\\n  venue: \\\"EMNLP 2020\\\"\\n  arxiv: \\\"\\\"\\n  category: stylometry\\n  role: background\\n  relevance: \\\"将作者归属扩展到 neural text 生成源识别；depth fingerprint 进一步细化到生成深度维度\\\"\\n  key_finding: \\\"可区分不同神经文本生成器的多类归属，超越二分类人/机检测\\\"\\n\\n##############################################################################\\n# 8. Iterative Generation\\n##############################################################################\\n\\n- id: broken_telephone\\n  title: \\\"LLM as a Broken Telephone: Iterative Generation Distorts Information\\\"\\n  authors: \\\"Mohamed et al.\\\"\\n  year: 2025\\n  venue: \\\"ACL 2025\\\"\\n  arxiv: \\\"2502.20258\\\"\\n  category: iterative-generation\\n  role: direct-competitor\\n  relevance: \\\"最直接相关：通过翻译链研究 LLM 迭代生成的信息失真；本项目扩展到非改写式生成链\\\"\\n  key_finding: \\\"LLM 迭代翻译链中失真随深度累积，语言相似度和提示策略影响退化速率\\\"\\n\\n- id: markovian_chains\\n  title: \\\"Markovian Generation Chains in Large Language Models\\\"\\n  authors: \\\"Geng et al.\\\"\\n  year: 2026\\n  venue: \\\"arXiv preprint\\\"\\n  arxiv: \\\"2603.11228\\\"\\n  category: iterative-generation\\n  role: direct-competitor\\n  relevance: \\\"定义 Markovian generation chains 并研究收敛/发散行为；本项目关注非改写链的 depth fingerprint\\\"\\n  key_finding: \\\"迭代重述/翻译中输出或收敛到小循环集，或继续产生新句子，取决于温度和初始输入\\\"\\n\\n##############################################################################\\n# 9. Membership Inference\\n##############################################################################\\n\\n- id: min_k_percent\\n  title: \\\"Detecting Pretraining Data from Large Language Models\\\"\\n  authors: \\\"Shi et al.\\\"\\n  year: 2024\\n  venue: \\\"ICLR 2024\\\"\\n  arxiv: \\\"2310.16789\\\"\\n  category: membership-inference\\n  role: method-component\\n  relevance: \\\"Min-K% 用最低概率 token 做成员推断；depth fingerprint 可借鉴其概率分布分析思路\\\"\\n  key_finding: \\\"未见过的文本更可能包含低概率离群 token；Min-K% Prob 在 WikiMIA 上提升 7.4%\\\"\\n\\n##############################################################################\\n# 10. Robustness / Adversarial / Theoretical\\n##############################################################################\\n\\n- id: reliable_detection\\n  title: \\\"Can AI-Generated Text be Reliably Detected?\\\"\\n  authors: \\\"Sadasivan et al.\\\"\\n  year: 2024\\n  venue: \\\"ICLR 2024\\\"\\n  arxiv: \\\"2303.11156\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"递归改写攻击显著降低检测率；depth fingerprint 面向非改写链，攻击面不同\\\"\\n  key_finding: \\\"递归改写可将 DetectGPT 从 70.3% 降到 4.6%；检测上界与分布 TV 距离相关\\\"\\n\\n- id: paraphrase_evades\\n  title: \\\"Paraphrasing Evades Detectors of AI-Generated Text, but Retrieval is an Effective Defense\\\"\\n  authors: \\\"Krishna et al.\\\"\\n  year: 2023\\n  venue: \\\"NeurIPS 2023\\\"\\n  arxiv: \\\"2303.13408\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"改写攻击 vs 检索防御；depth fingerprint 检测非改写链，与此正交但需考虑改写鲁棒性\\\"\\n  key_finding: \\\"DIPPER 改写器将 DetectGPT 准确率从 70.3% 降到 4.6%；检索方法是有效防御\\\"\\n\\n- id: detection_possibilities\\n  title: \\\"Position: On the Possibilities of AI-Generated Text Detection\\\"\\n  authors: \\\"Chakraborty et al.\\\"\\n  year: 2024\\n  venue: \\\"ICML 2024\\\"\\n  arxiv: \\\"2304.04736\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"理论证明 AI 文本检测在分布可区分时始终可行；支撑 depth fingerprint 的可行性\\\"\\n  key_finding: \\\"信息论证明：除非人/机分布完全不可分，检测始终可行；给出样本复杂度下界\\\"\\n\\n##############################################################################\\n# 11. Surveys / Early Detection\\n##############################################################################\\n\\n- id: jawahar_survey\\n  title: \\\"Automatic Detection of Machine Generated Text: A Critical Survey\\\"\\n  authors: \\\"Jawahar et al.\\\"\\n  year: 2020\\n  venue: \\\"COLING 2020\\\"\\n  arxiv: \\\"2011.01314\\\"\\n  category: survey\\n  role: background\\n  relevance: \\\"机器文本检测早期综述；depth fingerprint 定位在该领域的新维度\\\"\\n  key_finding: \\\"系统梳理统计方法和神经方法在机器文本检测中的应用与局限\\\"\\n\\n- id: grover\\n  title: \\\"Defending Against Neural Fake News\\\"\\n  authors: \\\"Zellers et al.\\\"\\n  year: 2019\\n  venue: \\\"NeurIPS 2019\\\"\\n  arxiv: \\\"1905.12616\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"生成器即最佳检测器的早期发现；depth fingerprint 不依赖生成器 access\\\"\\n  key_finding: \\\"Grover 自身是检测 Grover 生成假新闻的最佳检测器（92% vs 73% baseline）\\\"\\n\\n- id: release_strategies\\n  title: \\\"Release Strategies and the Social Impacts of Language Models\\\"\\n  authors: \\\"Solaiman et al.\\\"\\n  year: 2019\\n  venue: \\\"arXiv preprint\\\"\\n  arxiv: \\\"1908.09203\\\"\\n  category: detection\\n  role: background\\n  relevance: \\\"GPT-2 分阶段发布策略和检测工具；depth fingerprint 面向更复杂的生成链场景\\\"\\n  key_finding: \\\"分阶段发布 GPT-2 允许在模型升级间进行风险/收益分析和检测器开发\\\"\\n\", \"total_chars\": 16634, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01ESqhdufqv31i4hfbCU1UGu`</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/ 2>/dev/null || echo \"DIR_NOT_FOUND\"",
+  "description": "Check paper output directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "3fa18f4f-9863-436a-b85b-01c82e62ccda",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vrpax26UL7RH6mSrit44km",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 450,
+      "cache_read_input_tokens": 24265,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 450
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T04:35:17.426Z_
+
+<details><summary>↩ Tool result · `toolu_01ESqhdufqv31i4hfbCU1UGu`</summary>
+
+```text
+total 8
+drwxr-xr-x 2 ubuntu ubuntu 4096 May 15 04:34 .
+drwxr-xr-x 7 ubuntu ubuntu 4096 May 15 04:34 ..
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "aa69861d-e45d-4c4e-a17c-6e84210f5627",
+  "tool_use_result": {
+    "stdout": "total 8\ndrwxr-xr-x 2 ubuntu ubuntu 4096 May 15 04:34 .\ndrwxr-xr-x 7 ubuntu ubuntu 4096 May 15 04:34 ..",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full literature map. Let me also read the paper_framing.md and writing_plan.yaml for additional context on positioning.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "adff4913-af9d-48cc-b129-4ddd96392ea2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FiMPimQbD3KdpN5r3pr25N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8844,
+      "cache_read_input_tokens": 24715,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8844
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+Now let me read the paper framing and writing plan for additional context.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "3b1dc62c-259b-470a-91c5-6e3f9bf6e28a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FiMPimQbD3KdpN5r3pr25N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8844,
+      "cache_read_input_tokens": 24715,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8844
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_013X4poL7ayGiUtvbYXozCcf`</summary>
+
+```json
+{
+  "project": "gen-depth-fingerprint",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "c9d3caf0-ff22-4b7c-8cc5-86bd4f52cada",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FiMPimQbD3KdpN5r3pr25N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8844,
+      "cache_read_input_tokens": 24715,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8844
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T04:35:23.812Z_
+
+<details><summary>↩ Tool result · `toolu_013X4poL7ayGiUtvbYXozCcf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/paper_framing.md\", \"content\": \"# Paper Framing — gen-depth-fingerprint\\n\\n## Target Venue\\n- Primary: AAAI 2027 (deadline: August 2, 2026)\\n- **Primary: EMNLP 2026 ARR (deadline: May 25, 2026)** — D012: 恢复为主投稿目标\\n- Fallback venues: ICLR 2027 (Sep 24), NAACL 2027 ARR (Oct 16)\\n\\n## Core Insight\\nNon-paraphrastic LLM generation chains exhibit **differential depth response**: **central-tendency/diversity features** (entropy_mean, TTR, hapax ratio) drift monotonically with depth, while **distributional shape features** (entropy_std, tail_decay) remain near-stationary. This differential response is consistent with recursive generation inducing a **location shift** in the NLL distribution — the text becomes progressively more predictable (mean shifts) while the functional form of the distribution is preserved (shape is invariant). The genuine novelty is not the drift/stationarity split per se (which follows from location-shift properties), but: (a) the **task formulation** (ordinal depth estimation beyond binary detection), (b) **empirical validation** across 6 generators / 3 model families (including 7B+ scale) showing this pattern is robust, (c) the practical consequence that combining both feature types yields **complementary signal** for depth classification (macro-F1 0.79 cross-generator with 6 generators, 0.77 cross-family). Depth signal is scale-invariant as a phenomenon, though cross-scale classifier transfer shows a moderate gap (8B held-out F1=0.69 vs ≤2.8B 0.76-0.85).\\n\\n## Core Claims (3 条，均可证伪)\\n\\n**Claim 1 — Depth Discriminability**: Distributional features computed under a held-out reference model can classify text generation depth (gen-0 / gen-1 / gen-2+) with macro-F1 significantly above chance, generalizing across unseen generators (leave-one-generator-out evaluation).\\n\\n**Claim 2 — Differential Depth Response & Feature Complementarity**: Depth-dependent features exhibit differential response: central-tendency/diversity features (entropy_mean, TTR, hapax_ratio) drift monotonically with depth (consistent with location shift in NLL distribution), while shape features (entropy_std, tail_decay) remain near-stationary. Full feature set (cross-gen 0.80) significantly outperforms surface-only (0.75) and reference-only (0.75) — the two feature groups are complementary. Notably, reference features generalize better across generators while surface features are stronger in-distribution — demonstrating complementarity across different evaluation axes.\\n\\n**Claim 3 — Downstream Utility (Negative Finding)**: Depth-aware data curation does NOT improve downstream CLM quality compared to random subsampling. At equal data count, size_matched (random control, ppl=2.367) outperforms depth01 (depth-stratified, 2.387) and binary_filtered (2.389). The primary determinant is data quantity, not depth composition (all 12K samples → ppl=2.335). Depth fingerprinting is an effective **diagnostic** tool for characterizing provenance, but not a **curative** tool for data curation. This honest negative finding is reported transparently.\\n\\n## Story Spine\\n\\n**Problem**: Web-scraped training data increasingly contains LLM-generated text of unknown provenance depth. Current detection methods offer only binary real-vs-synthetic classification, forcing all-or-nothing filtering: discard everything flagged as synthetic (losing useful gen-1 content) or keep everything (admitting high-risk deep-generation text with compounding distributional drift).\\n\\n**Existing approaches & gaps**: Binary detectors (FastDetectGPT, SynthID-Text, LD-Score) cannot distinguish gen-1 from gen-2+. Attractor cycle theory (ACL 2025) proves paraphrasing chains converge to 2-period cycles, bounding depth signal to ~3 classes — but this result depends on the semantic-preservation constraint of paraphrasing. No existing work attempts generation depth estimation. When repurposed as ordinal depth predictors, single detector scores (Avg-LogProb 0.77, LD-Score 0.72) show moderate signal but **high cross-generator variance** (CIs spanning 0.59–0.82), making them unreliable as standalone depth estimators.\\n\\n**Our framing**: We characterize distributional drift in recursive non-paraphrastic LLM generation, revealing **differential depth response**: level/diversity features (including reference-model entropy_mean) drift monotonically with depth, while distributional shape features (entropy variance, tail decay) remain near-stationary. This split is about **what the feature measures** (central tendency vs shape), not where it comes from. The combination of drifting and stationary features yields a 7-feature ensemble (LOGO F1=0.80 [0.786, 0.799]) that **significantly and consistently** outperforms all single-detector baselines (p<0.001 vs Avg-LogProb 0.77, LD-Score 0.72, FastDetectGPT 0.63, Binoculars 0.58). Crucially, single detectors exhibit high cross-generator variance (CIs spanning 0.59–0.82), while our ensemble maintains tight consistency — the practical advantage is **reliability across unknown generators**, not just average performance.\\n\\n**Headline result template**: \\\"On multi-generator continuation chains across 4 domains, our distributional fingerprint features achieve macro-F1 of 0.82 for 3-class depth estimation (gen-0/gen-1/gen-2+), with leave-one-generator-out generalization at 0.80. Depth-aware data curation does not outperform random subsampling for downstream CLM quality, establishing depth fingerprinting as a diagnostic tool for provenance characterization, not a curative tool for data selection.\\\"\\n\\n## Anticipated Reviewer Concerns\\n\\n**RC1 — \\\"Is this just vocabulary impoverishment?\\\"**: Surface features alone achieve 0.76 macro-F1, but full features achieve 0.82 (p<0.001). We don't claim reference features are \\\"better\\\" — we show they capture a **different, complementary** signal (stationary distributional shape vs drifting level/diversity). The dual dynamics finding is itself a scientific contribution. Note: \\\"fingerprint\\\" in the paper refers to the full feature vector's combination, not just reference-model features.\\n\\n**RC7 — Pre-registered prediction (LD-Score)**: LD-Score (character-distribution signature) measures character-level distributional properties. We predict it is a **level feature** (sensitive to vocabulary/character frequency shifts) and should exhibit **H₂ drift** with depth. This prediction is registered before plan_011 execution as an out-of-sample test of the level/shape framework.\\n\\n**RC2 — \\\"Does this generalize beyond Pythia?\\\"**: MVP used same-family models (Pythia-2.8B generator + Pythia-410M reference). → Cross-family experiments: Qwen/OLMo generators + non-Pythia reference models (RQ1 cross-generator evaluation).\\n\\n**RC3 — \\\"Is 3-class sufficient? Why not finer-grained?\\\"**: Attractor theory bounds paraphrasing to ~3 classes. → Secondary analysis: finer-grained ordinal classification (gen-0 through gen-4) on non-paraphrastic chains to test if more depth signal exists.\\n\\n**RC4 — \\\"How realistic are single-model chains?\\\"**: Real web contamination involves diverse generators. → Cross-model chains (different generator per depth step) as primary evaluation setting (RQ3).\\n\\n**RC5 — \\\"What about human editing / post-processing?\\\"**: Real-world synthetic text is often edited. → Robustness test with simulated human edits (random word replacement as lower-bound + LLM-simulated editing).\\n\\n**RC6 — \\\"Ecological validity — continuation vs real web content\\\"**: Lab-constructed chains may not match wild distribution. → Multi-domain seeds (news, Wikipedia, scientific, creative) + multiple prompt types (continuation, elaboration, inspired rewriting).\\n\\n**RC8 — \\\"Aren't these just OOD detection features?\\\"**: Reference-model entropy statistics are functionally NLL-based OOD scores (same signal backbone as DetectGPT/GLTR/Binoculars). Our contribution is NOT the features themselves but: (a) the problem formulation (ordinal depth estimation, not binary detection), (b) the empirical discovery that these features exhibit dual dynamics (level drift vs shape stationarity) under recursive generation, and (c) the practical application to risk-stratified data curation. Paper must explicitly connect to OOD detection + perplexity-based detection literature and position the contribution as primarily empirical/conceptual rather than methodological.\\n\\n**RC9 — \\\"Only ≤2.8B generators — does this transfer to frontier scale?\\\"**: **Answered (plan-014, D011).** Qwen3-8B (7.6B params) added as 6th generator. Depth signal IS present at 8B scale — all feature-depth Spearman correlations significant (hapax ρ=-0.568, ttr ρ=-0.553, entropy_mean ρ=-0.475, all p<1e-6), confirming depth fingerprinting is a scale-invariant phenomenon. However, cross-scale transfer shows a gap: Qwen3-8B held-out F1=0.69 vs ≤2.8B generators 0.76-0.85 (6-gen LOGO average 0.7886, -1.1pp from 5-gen 0.80). Notably, adding 8B data improves original 5-gen classification (+0.9pp to 0.8086). **Paper framing**: depth signal universality is supported (Claim 1 holds); cross-scale classifier transfer gap reported as honest limitation with analysis (8B text is more fluent → smaller feature margins → harder to distinguish from human text). The 6-gen LOGO 0.79 still significantly outperforms all single-detector baselines.\\n\\n**RC10 — \\\"Text length confound\\\"**: Hapax ratio and TTR are mechanically length-dependent. If generation chains produce texts of systematically different lengths, surface features may track length artifacts rather than distributional drift. → Length distribution analysis + length-normalized features + length-matched comparison (plan_013). Critical confound control.\\n\\n**RC11 — \\\"Downstream utility — single run, no CIs\\\"**: Depth-aware filtering advantage must be validated with multiple seeds + bootstrap CIs + sample-count-matched comparison (to control for data size confound). Must use non-Pythia model for downstream fine-tuning (OLMo-1B) to avoid reference model circularity (Pythia-410M as both feature extractor and eval model).\\n\\n## Contribution Positioning (D006+D007)\\nThe contribution is **primarily empirical and conceptual**, not methodological:\\n1. **Problem formulation**: Ordinal depth estimation as a new task beyond binary detection (genuinely novel — no prior work)\\n2. **Empirical characterization**: Differential depth response across 6 generators / 3 families (including 7B+ scale), with robust cross-generator generalization (6-gen LOGO 0.79, family-out 0.77). Scale-invariant phenomenon with honest cross-scale transfer gap.\\n3. **Negative finding**: Depth-aware data curation does NOT improve downstream CLM quality — depth fingerprinting is diagnostic, not curative (D009).\\n\\n**Framing discipline (D007 — re-dream consensus):**\\n- Do NOT call the drift/stationarity split a \\\"discovery\\\" — it follows from location-shift properties of the NLL distribution (means shift under distributional drift, shapes don't). Acknowledge this explicitly.\\n- Do NOT use H1/H2 terminology (overloads time-series unit-root convention). Use \\\"drifting\\\" vs \\\"stationary\\\" or \\\"differential response.\\\"\\n- Do NOT overclaim \\\"dual dynamics\\\" as a novel theoretical framework. Use \\\"differential depth response\\\" — more calibrated.\\n- Consider renaming \\\"distributional fingerprinting\\\" → \\\"distributional depth profiling\\\" (fingerprinting implies source identification, creates confusion with LLM attribution literature).\\n- Provide at least a speculative theoretical motivation for WHY shape features remain stationary (e.g., \\\"shape is determined by sampling mechanism and architecture, invariant to input content drift\\\").\\n- Report **realistic performance range** (0.69–0.85 per-generator held-out F1, 0.79 LOGO average across 6 generators) in abstract/conclusion, not just best-case.\\n- R² on 5 aggregated depth means is statistically meaningless (3 df). Use individual-level Spearman ρ with bootstrap CIs throughout.\\n\\nRelated work must expand to 30+ references covering: perplexity-based detection (DetectGPT, GLTR, DNA-GPT, Binoculars), model collapse theory (Alemohammad et al., Dohmatob et al., Gerstgrasser et al., Guo et al.), OOD detection (Hendrycks & Gimpel), data quality scoring (DSIR, QuRating, CCNet), watermarking (Kirchenbauer et al.), vocabulary diversity (Guo et al. 2024, Padmakumar & He 2024, Holtzman et al. 2020), **stylometry/authorship attribution** (Stamatatos 2009, Koppel et al. 2009 — feature set is essentially stylometric), **iterative generation** (LLM as Broken Telephone ACL 2025, Markovian Generation Chains), **membership inference** (Shi et al. 2024).\\n\\n## Venue Fit\\n- AAAI 2027: Fit as empirical + conceptual contribution — novel task formulation (depth estimation) + surprising empirical finding (dual dynamics) + practical application (data curation). Must position as empirical science, not methodology paper.\\n- EMNLP 2026: Excellent fit — directly addresses special theme \\\"New Missions for NLP Research\\\" (data contamination, synthetic data feedback loops, data governance). NLP-native venue for text-focused work. Empirical/conceptual contributions better received here than AAAI.\\n\", \"total_chars\": 13023, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "b71ff337-eae9-44d9-a225-bc4a86e0a4a3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — gen-depth-fingerprint\\\\n\\\\n## Target Venue\\\\n- Primary: AAAI 2027 (deadline: August 2, 2026)\\\\n- **Primary: EMNLP 2026 ARR (deadline: May 25, 2026)** — D012: 恢复为主投稿目标\\\\n- Fallback venues: ICLR 2027 (Sep 24), NAACL 2027 ARR (Oct 16)\\\\n\\\\n## Core Insight\\\\nNon-paraphrastic LLM generation chains exhibit **differential depth response**: **central-tendency/diversity features** (entropy_mean, TTR, hapax ratio) drift monotonically with depth, while **distributional shape features** (entropy_std, tail_decay) remain near-stationary. This differential response is consistent with recursive generation inducing a **location shift** in the NLL distribution — the text becomes progressively more predictable (mean shifts) while the functional form of the distribution is preserved (shape is invariant). The genuine novelty is not the drift/stationarity split per se (which follows from location-shift properties), but: (a) the **task formulation** (ordinal depth estimation beyond binary detection), (b) **empirical validation** across 6 generators / 3 model families (including 7B+ scale) showing this pattern is robust, (c) the practical consequence that combining both feature types yields **complementary signal** for depth classification (macro-F1 0.79 cross-generator with 6 generators, 0.77 cross-family). Depth signal is scale-invariant as a phenomenon, though cross-scale classifier transfer shows a moderate gap (8B held-out F1=0.69 vs ≤2.8B 0.76-0.85).\\\\n\\\\n## Core Claims (3 条，均可证伪)\\\\n\\\\n**Claim 1 — Depth Discriminability**: Distributional features computed under a held-out reference model can classify text generation depth (gen-0 / gen-1 / gen-2+) with macro-F1 significantly above chance, generalizing across unseen generators (leave-one-generator-out evaluation).\\\\n\\\\n**Claim 2 — Differential Depth Response & Feature Complementarity**: Depth-dependent features exhibit differential response: central-tendency/diversity features (entropy_mean, TTR, hapax_ratio) drift monotonically with depth (consistent with location shift in NLL distribution), while shape features (entropy_std, tail_decay) remain near-stationary. Full feature set (cross-gen 0.80) significantly outperforms surface-only (0.75) and reference-only (0.75) — the two feature groups are complementary. Notably, reference features generalize better across generators while surface features are stronger in-distribution — demonstrating complementarity across different evaluation axes.\\\\n\\\\n**Claim 3 — Downstream Utility (Negative Finding)**: Depth-aware data curation does NOT improve downstream CLM quality compared to random subsampling. At equal data count, size_matched (random control, ppl=2.367) outperforms depth01 (depth-stratified, 2.387) and binary_filtered (2.389). The primary determinant is data quantity, not depth composition (all 12K samples → ppl=2.335). Depth fingerprinting is an effective **diagnostic** tool for characterizing provenance, but not a **curative** tool for data curation. This honest negative finding is reported transparently.\\\\n\\\\n## Story Spine\\\\n\\\\n**Problem**: Web-scraped training data increasingly contains LLM-generated text of unknown provenance depth. Current detection methods offer only binary real-vs-synthetic classification, forcing all-or-nothing filtering: discard everything flagged as synthetic (losing useful gen-1 content) or keep everything (admitting high-risk deep-generation text with compounding distributional drift).\\\\n\\\\n**Existing approaches & gaps**: Binary detectors (FastDetectGPT, SynthID-Text, LD-Score) cannot distinguish gen-1 from gen-2+. Attractor cycle theory (ACL 2025) proves paraphrasing chains converge to 2-period cycles, bounding depth signal to ~3 classes — but this result depends on the semantic-preservation constraint of paraphrasing. No existing work attempts generation depth estimation. When repurposed as ordinal depth predictors, single detector scores (Avg-LogProb 0.77, LD-Score 0.72) show moderate signal but **high cross-generator variance** (CIs spanning 0.59–0.82), making them unreliable as standalone depth estimators.\\\\n\\\\n**Our framing**: We characterize distributional drift in recursive non-paraphrastic LLM generation, revealing **differential depth response**: level/diversity features (including reference-model entropy_mean) drift monotonically with depth, while distributional shape features (entropy variance, tail decay) remain near-stationary. This split is about **what the feature measures** (central tendency vs shape), not where it comes from. The combination of drifting and stationary features yields a 7-feature ensemble (LOGO F1=0.80 [0.786, 0.799]) that **significantly and consistently** outperforms all single-detector baselines (p<0.001 vs Avg-LogProb 0.77, LD-Score 0.72, FastDetectGPT 0.63, Binoculars 0.58). Crucially, single detectors exhibit high cross-generator variance (CIs spanning 0.59–0.82), while our ensemble maintains tight consistency — the practical advantage is **reliability across unknown generators**, not just average performance.\\\\n\\\\n**Headline result template**: \\\\\\\"On multi-generator continuation chains across 4 domains, our distributional fingerprint features achieve macro-F1 of 0.82 for 3-class depth estimation (gen-0/gen-1/gen-2+), with leave-one-generator-out generalization at 0.80. Depth-aware data curation does not outperform random subsampling for downstream CLM quality, establishing depth fingerprinting as a diagnostic tool for provenance characterization, not a curative tool for data selection.\\\\\\\"\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n**RC1 — \\\\\\\"Is this just vocabulary impoverishment?\\\\\\\"**: Surface features alone achieve 0.76 macro-F1, but full features achieve 0.82 (p<0.001). We don't claim reference features are \\\\\\\"better\\\\\\\" — we show they capture a **different, complementary** signal (stationary distributional shape vs drifting level/diversity). The dual dynamics finding is itself a scientific contribution. Note: \\\\\\\"fingerprint\\\\\\\" in the paper refers to the full feature vector's combination, not just reference-model features.\\\\n\\\\n**RC7 — Pre-registered prediction (LD-Score)**: LD-Score (character-distribution signature) measures character-level distributional properties. We predict it is a **level feature** (sensitive to vocabulary/character frequency shifts) and should exhibit **H₂ drift** with depth. This prediction is registered before plan_011 execution as an out-of-sample test of the level/shape framework.\\\\n\\\\n**RC2 — \\\\\\\"Does this generalize beyond Pythia?\\\\\\\"**: MVP used same-family models (Pythia-2.8B generator + Pythia-410M reference). → Cross-family experiments: Qwen/OLMo generators + non-Pythia reference models (RQ1 cross-generator evaluation).\\\\n\\\\n**RC3 — \\\\\\\"Is 3-class sufficient? Why not finer-grained?\\\\\\\"**: Attractor theory bounds paraphrasing to ~3 classes. → Secondary analysis: finer-grained ordinal classification (gen-0 through gen-4) on non-paraphrastic chains to test if more depth signal exists.\\\\n\\\\n**RC4 — \\\\\\\"How realistic are single-model chains?\\\\\\\"**: Real web contamination involves diverse generators. → Cross-model chains (different generator per depth step) as primary evaluation setting (RQ3).\\\\n\\\\n**RC5 — \\\\\\\"What about human editing / post-processing?\\\\\\\"**: Real-world synthetic text is often edited. → Robustness test with simulated human edits (random word replacement as lower-bound + LLM-simulated editing).\\\\n\\\\n**RC6 — \\\\\\\"Ecological validity — continuation vs real web content\\\\\\\"**: Lab-constructed chains may not match wild distribution. → Multi-domain seeds (news, Wikipedia, scientific, creative) + multiple prompt types (continuation, elaboration, inspired rewriting).\\\\n\\\\n**RC8 — \\\\\\\"Aren't these just OOD detection features?\\\\\\\"**: Reference-model entropy statistics are functionally NLL-based OOD scores (same signal backbone as DetectGPT/GLTR/Binoculars). Our contribution is NOT the features themselves but: (a) the problem formulation (ordinal depth estimation, not binary detection), (b) the empirical discovery that these features exhibit dual dynamics (level drift vs shape stationarity) under recursive generation, and (c) the practical application to risk-stratified data curation. Paper must explicitly connect to OOD detection + perplexity-based detection literature and position the contribution as primarily empirical/conceptual rather than methodological.\\\\n\\\\n**RC9 — \\\\\\\"Only ≤2.8B generators — does this transfer to frontier scale?\\\\\\\"**: **Answered (plan-014, D011).** Qwen3-8B (7.6B params) added as 6th generator. Depth signal IS present at 8B scale — all feature-depth Spearman correlations significant (hapax ρ=-0.568, ttr ρ=-0.553, entropy_mean ρ=-0.475, all p<1e-6), confirming depth fingerprinting is a scale-invariant phenomenon. However, cross-scale transfer shows a gap: Qwen3-8B held-out F1=0.69 vs ≤2.8B generators 0.76-0.85 (6-gen LOGO average 0.7886, -1.1pp from 5-gen 0.80). Notably, adding 8B data improves original 5-gen classification (+0.9pp to 0.8086). **Paper framing**: depth signal universality is supported (Claim 1 holds); cross-scale classifier transfer gap reported as honest limitation with analysis (8B text is more fluent → smaller feature margins → harder to distinguish from human text). The 6-gen LOGO 0.79 still significantly outperforms all single-detector baselines.\\\\n\\\\n**RC10 — \\\\\\\"Text length confound\\\\\\\"**: Hapax ratio and TTR are mechanically length-dependent. If generation chains produce texts of systematically different lengths, surface features may track length artifacts rather than distributional drift. → Length distribution analysis + length-normalized features + length-matched comparison (plan_013). Critical confound control.\\\\n\\\\n**RC11 — \\\\\\\"Downstream utility — single run, no CIs\\\\\\\"**: Depth-aware filtering advantage must be validated with multiple seeds + bootstrap CIs + sample-count-matched comparison (to control for data size confound). Must use non-Pythia model for downstream fine-tuning (OLMo-1B) to avoid reference model circularity (Pythia-410M as both feature extractor and eval model).\\\\n\\\\n## Contribution Positioning (D006+D007)\\\\nThe contribution is **primarily empirical and conceptual**, not methodological:\\\\n1. **Problem formulation**: Ordinal depth estimation as a new task beyond binary detection (genuinely novel — no prior work)\\\\n2. **Empirical characterization**: Differential depth response across 6 generators / 3 families (including 7B+ scale), with robust cross-generator generalization (6-gen LOGO 0.79, family-out 0.77). Scale-invariant phenomenon with honest cross-scale transfer gap.\\\\n3. **Negative finding**: Depth-aware data curation does NOT improve downstream CLM quality — depth fingerprinting is diagnostic, not curative (D009).\\\\n\\\\n**Framing discipline (D007 — re-dream consensus):**\\\\n- Do NOT call the drift/stationarity split a \\\\\\\"discovery\\\\\\\" — it follows from location-shift properties of the NLL distribution (means shift under distributional drift, shapes don't). Acknowledge this explicitly.\\\\n- Do NOT use H1/H2 terminology (overloads time-series unit-root convention). Use \\\\\\\"drifting\\\\\\\" vs \\\\\\\"stationary\\\\\\\" or \\\\\\\"differential response.\\\\\\\"\\\\n- Do NOT overclaim \\\\\\\"dual dynamics\\\\\\\" as a novel theoretical framework. Use \\\\\\\"differential depth response\\\\\\\" — more calibrated.\\\\n- Consider renaming \\\\\\\"distributional fingerprinting\\\\\\\" → \\\\\\\"distributional depth profiling\\\\\\\" (fingerprinting implies source identification, creates confusion with LLM attribution literature).\\\\n- Provide at least a speculative theoretical motivation for WHY shape features remain stationary (e.g., \\\\\\\"shape is determined by sampling mechanism and architecture, invariant to input content drift\\\\\\\").\\\\n- Report **realistic performance range** (0.69–0.85 per-generator held-out F1, 0.79 LOGO average across 6 generators) in abstract/conclusion, not just best-case.\\\\n- R² on 5 aggregated depth means is statistically meaningless (3 df). Use individual-level Spearman ρ with bootstrap CIs throughout.\\\\n\\\\nRelated work must expand to 30+ references covering: perplexity-based detection (DetectGPT, GLTR, DNA-GPT, Binoculars), model collapse theory (Alemohammad et al., Dohmatob et al., Gerstgrasser et al., Guo et al.), OOD detection (Hendrycks & Gimpel), data quality scoring (DSIR, QuRating, CCNet), watermarking (Kirchenbauer et al.), vocabulary diversity (Guo et al. 2024, Padmakumar & He 2024, Holtzman et al. 2020), **stylometry/authorship attribution** (Stamatatos 2009, Koppel et al. 2009 — feature set is essentially stylometric), **iterative generation** (LLM as Broken Telephone ACL 2025, Markovian Generation Chains), **membership inference** (Shi et al. 2024).\\\\n\\\\n## Venue Fit\\\\n- AAAI 2027: Fit as empirical + conceptual contribution — novel task formulation (depth estimation) + surprising empirical finding (dual dynamics) + practical application (data curation). Must position as empirical science, not methodology paper.\\\\n- EMNLP 2026: Excellent fit — directly addresses special theme \\\\\\\"New Missions for NLP Research\\\\\\\" (data contamination, synthetic data feedback loops, data governance). NLP-native venue for text-focused work. Empirical/conceptual contributions better received here than AAAI.\\\\n\\\", \\\"total_chars\\\": 13023, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/paper_framing.md\", \"content\": \"# Paper Framing — gen-depth-fingerprint\\n\\n## Target Venue\\n- Primary: AAAI 2027 (deadline: August 2, 2026)\\n- **Primary: EMNLP 2026 ARR (deadline: May 25, 2026)** — D012: 恢复为主投稿目标\\n- Fallback venues: ICLR 2027 (Sep 24), NAACL 2027 ARR (Oct 16)\\n\\n## Core Insight\\nNon-paraphrastic LLM generation chains exhibit **differential depth response**: **central-tendency/diversity features** (entropy_mean, TTR, hapax ratio) drift monotonically with depth, while **distributional shape features** (entropy_std, tail_decay) remain near-stationary. This differential response is consistent with recursive generation inducing a **location shift** in the NLL distribution — the text becomes progressively more predictable (mean shifts) while the functional form of the distribution is preserved (shape is invariant). The genuine novelty is not the drift/stationarity split per se (which follows from location-shift properties), but: (a) the **task formulation** (ordinal depth estimation beyond binary detection), (b) **empirical validation** across 6 generators / 3 model families (including 7B+ scale) showing this pattern is robust, (c) the practical consequence that combining both feature types yields **complementary signal** for depth classification (macro-F1 0.79 cross-generator with 6 generators, 0.77 cross-family). Depth signal is scale-invariant as a phenomenon, though cross-scale classifier transfer shows a moderate gap (8B held-out F1=0.69 vs ≤2.8B 0.76-0.85).\\n\\n## Core Claims (3 条，均可证伪)\\n\\n**Claim 1 — Depth Discriminability**: Distributional features computed under a held-out reference model can classify text generation depth (gen-0 / gen-1 / gen-2+) with macro-F1 significantly above chance, generalizing across unseen generators (leave-one-generator-out evaluation).\\n\\n**Claim 2 — Differential Depth Response & Feature Complementarity**: Depth-dependent features exhibit differential response: central-tendency/diversity features (entropy_mean, TTR, hapax_ratio) drift monotonically with depth (consistent with location shift in NLL distribution), while shape features (entropy_std, tail_decay) remain near-stationary. Full feature set (cross-gen 0.80) significantly outperforms surface-only (0.75) and reference-only (0.75) — the two feature groups are complementary. Notably, reference features generalize better across generators while surface features are stronger in-distribution — demonstrating complementarity across different evaluation axes.\\n\\n**Claim 3 — Downstream Utility (Negative Finding)**: Depth-aware data curation does NOT improve downstream CLM quality compared to random subsampling. At equal data count, size_matched (random control, ppl=2.367) outperforms depth01 (depth-stratified, 2.387) and binary_filtered (2.389). The primary determinant is data quantity, not depth composition (all 12K samples → ppl=2.335). Depth fingerprinting is an effective **diagnostic** tool for characterizing provenance, but not a **curative** tool for data curation. This honest negative finding is reported transparently.\\n\\n## Story Spine\\n\\n**Problem**: Web-scraped training data increasingly contains LLM-generated text of unknown provenance depth. Current detection methods offer only binary real-vs-synthetic classification, forcing all-or-nothing filtering: discard everything flagged as synthetic (losing useful gen-1 content) or keep everything (admitting high-risk deep-generation text with compounding distributional drift).\\n\\n**Existing approaches & gaps**: Binary detectors (FastDetectGPT, SynthID-Text, LD-Score) cannot distinguish gen-1 from gen-2+. Attractor cycle theory (ACL 2025) proves paraphrasing chains converge to 2-period cycles, bounding depth signal to ~3 classes — but this result depends on the semantic-preservation constraint of paraphrasing. No existing work attempts generation depth estimation. When repurposed as ordinal depth predictors, single detector scores (Avg-LogProb 0.77, LD-Score 0.72) show moderate signal but **high cross-generator variance** (CIs spanning 0.59–0.82), making them unreliable as standalone depth estimators.\\n\\n**Our framing**: We characterize distributional drift in recursive non-paraphrastic LLM generation, revealing **differential depth response**: level/diversity features (including reference-model entropy_mean) drift monotonically with depth, while distributional shape features (entropy variance, tail decay) remain near-stationary. This split is about **what the feature measures** (central tendency vs shape), not where it comes from. The combination of drifting and stationary features yields a 7-feature ensemble (LOGO F1=0.80 [0.786, 0.799]) that **significantly and consistently** outperforms all single-detector baselines (p<0.001 vs Avg-LogProb 0.77, LD-Score 0.72, FastDetectGPT 0.63, Binoculars 0.58). Crucially, single detectors exhibit high cross-generator variance (CIs spanning 0.59–0.82), while our ensemble maintains tight consistency — the practical advantage is **reliability across unknown generators**, not just average performance.\\n\\n**Headline result template**: \\\"On multi-generator continuation chains across 4 domains, our distributional fingerprint features achieve macro-F1 of 0.82 for 3-class depth estimation (gen-0/gen-1/gen-2+), with leave-one-generator-out generalization at 0.80. Depth-aware data curation does not outperform random subsampling for downstream CLM quality, establishing depth fingerprinting as a diagnostic tool for provenance characterization, not a curative tool for data selection.\\\"\\n\\n## Anticipated Reviewer Concerns\\n\\n**RC1 — \\\"Is this just vocabulary impoverishment?\\\"**: Surface features alone achieve 0.76 macro-F1, but full features achieve 0.82 (p<0.001). We don't claim reference features are \\\"better\\\" — we show they capture a **different, complementary** signal (stationary distributional shape vs drifting level/diversity). The dual dynamics finding is itself a scientific contribution. Note: \\\"fingerprint\\\" in the paper refers to the full feature vector's combination, not just reference-model features.\\n\\n**RC7 — Pre-registered prediction (LD-Score)**: LD-Score (character-distribution signature) measures character-level distributional properties. We predict it is a **level feature** (sensitive to vocabulary/character frequency shifts) and should exhibit **H₂ drift** with depth. This prediction is registered before plan_011 execution as an out-of-sample test of the level/shape framework.\\n\\n**RC2 — \\\"Does this generalize beyond Pythia?\\\"**: MVP used same-family models (Pythia-2.8B generator + Pythia-410M reference). → Cross-family experiments: Qwen/OLMo generators + non-Pythia reference models (RQ1 cross-generator evaluation).\\n\\n**RC3 — \\\"Is 3-class sufficient? Why not finer-grained?\\\"**: Attractor theory bounds paraphrasing to ~3 classes. → Secondary analysis: finer-grained ordinal classification (gen-0 through gen-4) on non-paraphrastic chains to test if more depth signal exists.\\n\\n**RC4 — \\\"How realistic are single-model chains?\\\"**: Real web contamination involves diverse generators. → Cross-model chains (different generator per depth step) as primary evaluation setting (RQ3).\\n\\n**RC5 — \\\"What about human editing / post-processing?\\\"**: Real-world synthetic text is often edited. → Robustness test with simulated human edits (random word replacement as lower-bound + LLM-simulated editing).\\n\\n**RC6 — \\\"Ecological validity — continuation vs real web content\\\"**: Lab-constructed chains may not match wild distribution. → Multi-domain seeds (news, Wikipedia, scientific, creative) + multiple prompt types (continuation, elaboration, inspired rewriting).\\n\\n**RC8 — \\\"Aren't these just OOD detection features?\\\"**: Reference-model entropy statistics are functionally NLL-based OOD scores (same signal backbone as DetectGPT/GLTR/Binoculars). Our contribution is NOT the features themselves but: (a) the problem formulation (ordinal depth estimation, not binary detection), (b) the empirical discovery that these features exhibit dual dynamics (level drift vs shape stationarity) under recursive generation, and (c) the practical application to risk-stratified data curation. Paper must explicitly connect to OOD detection + perplexity-based detection literature and position the contribution as primarily empirical/conceptual rather than methodological.\\n\\n**RC9 — \\\"Only ≤2.8B generators — does this transfer to frontier scale?\\\"**: **Answered (plan-014, D011).** Qwen3-8B (7.6B params) added as 6th generator. Depth signal IS present at 8B scale — all feature-depth Spearman correlations significant (hapax ρ=-0.568, ttr ρ=-0.553, entropy_mean ρ=-0.475, all p<1e-6), confirming depth fingerprinting is a scale-invariant phenomenon. However, cross-scale transfer shows a gap: Qwen3-8B held-out F1=0.69 vs ≤2.8B generators 0.76-0.85 (6-gen LOGO average 0.7886, -1.1pp from 5-gen 0.80). Notably, adding 8B data improves original 5-gen classification (+0.9pp to 0.8086). **Paper framing**: depth signal universality is supported (Claim 1 holds); cross-scale classifier transfer gap reported as honest limitation with analysis (8B text is more fluent → smaller feature margins → harder to distinguish from human text). The 6-gen LOGO 0.79 still significantly outperforms all single-detector baselines.\\n\\n**RC10 — \\\"Text length confound\\\"**: Hapax ratio and TTR are mechanically length-dependent. If generation chains produce texts of systematically different lengths, surface features may track length artifacts rather than distributional drift. → Length distribution analysis + length-normalized features + length-matched comparison (plan_013). Critical confound control.\\n\\n**RC11 — \\\"Downstream utility — single run, no CIs\\\"**: Depth-aware filtering advantage must be validated with multiple seeds + bootstrap CIs + sample-count-matched comparison (to control for data size confound). Must use non-Pythia model for downstream fine-tuning (OLMo-1B) to avoid reference model circularity (Pythia-410M as both feature extractor and eval model).\\n\\n## Contribution Positioning (D006+D007)\\nThe contribution is **primarily empirical and conceptual**, not methodological:\\n1. **Problem formulation**: Ordinal depth estimation as a new task beyond binary detection (genuinely novel — no prior work)\\n2. **Empirical characterization**: Differential depth response across 6 generators / 3 families (including 7B+ scale), with robust cross-generator generalization (6-gen LOGO 0.79, family-out 0.77). Scale-invariant phenomenon with honest cross-scale transfer gap.\\n3. **Negative finding**: Depth-aware data curation does NOT improve downstream CLM quality — depth fingerprinting is diagnostic, not curative (D009).\\n\\n**Framing discipline (D007 — re-dream consensus):**\\n- Do NOT call the drift/stationarity split a \\\"discovery\\\" — it follows from location-shift properties of the NLL distribution (means shift under distributional drift, shapes don't). Acknowledge this explicitly.\\n- Do NOT use H1/H2 terminology (overloads time-series unit-root convention). Use \\\"drifting\\\" vs \\\"stationary\\\" or \\\"differential response.\\\"\\n- Do NOT overclaim \\\"dual dynamics\\\" as a novel theoretical framework. Use \\\"differential depth response\\\" — more calibrated.\\n- Consider renaming \\\"distributional fingerprinting\\\" → \\\"distributional depth profiling\\\" (fingerprinting implies source identification, creates confusion with LLM attribution literature).\\n- Provide at least a speculative theoretical motivation for WHY shape features remain stationary (e.g., \\\"shape is determined by sampling mechanism and architecture, invariant to input content drift\\\").\\n- Report **realistic performance range** (0.69–0.85 per-generator held-out F1, 0.79 LOGO average across 6 generators) in abstract/conclusion, not just best-case.\\n- R² on 5 aggregated depth means is statistically meaningless (3 df). Use individual-level Spearman ρ with bootstrap CIs throughout.\\n\\nRelated work must expand to 30+ references covering: perplexity-based detection (DetectGPT, GLTR, DNA-GPT, Binoculars), model collapse theory (Alemohammad et al., Dohmatob et al., Gerstgrasser et al., Guo et al.), OOD detection (Hendrycks & Gimpel), data quality scoring (DSIR, QuRating, CCNet), watermarking (Kirchenbauer et al.), vocabulary diversity (Guo et al. 2024, Padmakumar & He 2024, Holtzman et al. 2020), **stylometry/authorship attribution** (Stamatatos 2009, Koppel et al. 2009 — feature set is essentially stylometric), **iterative generation** (LLM as Broken Telephone ACL 2025, Markovian Generation Chains), **membership inference** (Shi et al. 2024).\\n\\n## Venue Fit\\n- AAAI 2027: Fit as empirical + conceptual contribution — novel task formulation (depth estimation) + surprising empirical finding (dual dynamics) + practical application (data curation). Must position as empirical science, not methodology paper.\\n- EMNLP 2026: Excellent fit — directly addresses special theme \\\"New Missions for NLP Research\\\" (data contamination, synthetic data feedback loops, data governance). NLP-native venue for text-focused work. Empirical/conceptual contributions better received here than AAAI.\\n\", \"total_chars\": 13023, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01CqUx5wRvSZRezmontN6zi4`</summary>
+
+```json
+{
+  "project": "gen-depth-fingerprint",
+  "file": "writing_plan.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "9cae2c72-8b16-4cca-8970-fce158055894",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FiMPimQbD3KdpN5r3pr25N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8844,
+      "cache_read_input_tokens": 24715,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8844
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T04:35:24.155Z_
+
+<details><summary>↩ Tool result · `toolu_01CqUx5wRvSZRezmontN6zi4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/writing_plan.yaml\", \"content\": \"# Writing Plan — gen-depth-fingerprint\\n# Depth Fingerprinting of Recursive LLM Generation Chains\\n# Created: 2026-05-15\\n\\n##############################################################################\\n# 1. Submission Target\\n##############################################################################\\n\\nsubmission:\\n  primary:\\n    venue: EMNLP 2026 ARR\\n    deadline: 2026-05-25\\n    page_limit: \\\"8 pages (long) + unlimited appendix\\\"\\n    template: acl.sty\\n    special_requirements:\\n      - Limitations section (mandatory)\\n      - Ethics Statement\\n      - ARR submission format\\n    note: \\\"D012: 主投 EMNLP ARR，DDL 仅剩 10 天，全速推进\\\"\\n  fallback:\\n    - venue: AAAI 2027\\n      deadline: 2026-08-02\\n    - venue: ICLR 2027\\n      deadline: 2026-09-24\\n    - venue: NAACL 2027 ARR\\n      deadline: 2026-10-16\\n\\n##############################################################################\\n# 2. One-Sentence Contribution\\n##############################################################################\\n\\none_sentence: >\\n  We formulate ordinal depth estimation for recursive LLM generation chains,\\n  showing that distributional features exhibit differential depth response\\n  (central-tendency drifts, shape remains stationary), yielding a 7-feature\\n  ensemble that reliably classifies generation depth (LOGO F1=0.79) across\\n  6 generators / 3 model families (including 7B+ scale).\\n\\n##############################################################################\\n# 3. Claim-Evidence Map\\n##############################################################################\\n\\nclaims:\\n  C1_depth_discriminability:\\n    claim: >\\n      Distributional features under a held-out reference model classify\\n      generation depth (gen-0/gen-1/gen-2+) with macro-F1 significantly\\n      above chance, generalizing across unseen generators.\\n    evidence:\\n      - exp_id: plan-002-eval\\n        metric: \\\"LOGO avg macro-F1 = 0.8037\\\"\\n      - exp_id: plan-002-eval\\n        metric: \\\"Leave-one-family-out Δ = +0.0107 (Pythia vs non-Pythia)\\\"\\n      - exp_id: plan-015-v2\\n        metric: \\\"Bootstrap CI [0.786, 0.799], p<0.001 vs all baselines\\\"\\n      - exp_id: plan-013\\n        metric: \\\"Length not a confound (|ρ|<0.14, normalized trends preserved)\\\"\\n      - exp_id: plan-014\\n        metric: \\\"6-gen LOGO F1=0.7897 (incl. Qwen3-8B), held-out F1=0.6849, depth signal persists at 8B, cross-scale transfer gap noted\\\"\\n    tables: [Table 1, Table 2]\\n    figures: [Fig 2, Fig 3]\\n\\n  C2_differential_response:\\n    claim: >\\n      Central-tendency/diversity features (entropy_mean, TTR, hapax_ratio) drift\\n      monotonically with depth; shape features (entropy_std, tail_decay) remain\\n      near-stationary. Full 7-feature set significantly outperforms surface-only\\n      and reference-only subsets.\\n    evidence:\\n      - exp_id: plan-001-fix\\n        metric: \\\"full(0.82) > surface(0.76) > reference(0.72), CI non-overlapping\\\"\\n      - exp_id: plan-002\\n        metric: \\\"Drift direction consistent across all 6 generators (incl. 8B)\\\"\\n      - exp_id: plan-002-eval\\n        metric: \\\"full(0.80) > ref(0.75) = surf(0.75), McNemar p≈0\\\"\\n      - exp_id: plan-003\\n        metric: \\\"3 cross-family ref models: LOGO F1 0.80-0.82, drift direction consistent\\\"\\n    tables: [Table 2]\\n    figures: [Fig 1]\\n\\n  C3_downstream_negative:\\n    claim: >\\n      Depth-aware data curation does NOT improve downstream CLM quality.\\n      Data quantity dominates depth composition. Depth fingerprinting is\\n      diagnostic, not curative.\\n    status: NEGATIVE FINDING — report honestly\\n    evidence:\\n      - exp_id: plan-004-v2\\n        metric: \\\"all(2.335) < size_matched(2.367) < depth01(2.387) ≈ binary_filtered(2.389)\\\"\\n      - exp_id: plan-004-v2\\n        metric: \\\"15/15 runs, cross-seed variance <0.002\\\"\\n    tables: [Table 3]\\n    figures: [Fig 4]\\n    framing_note: >\\n      DO NOT hide or spin. Frame as: \\\"We tested whether depth-aware curation\\n      improves downstream quality. It does not. The primary determinant is data\\n      quantity, not depth composition. This positions depth fingerprinting as a\\n      diagnostic tool for provenance characterization, not a curative tool for\\n      data selection.\\\"\\n\\n##############################################################################\\n# 4. Paper Outline\\n##############################################################################\\n\\noutline:\\n  abstract:\\n    length: \\\"~200 words\\\"\\n    structure: \\\"five-sentence method (Farquhar)\\\"\\n    key_points:\\n      - \\\"We formulate ordinal depth estimation beyond binary detection\\\"\\n      - \\\"Why hard: existing detectors offer only real-vs-synthetic, no depth signal\\\"\\n      - \\\"How: 7 distributional features exhibiting differential depth response\\\"\\n      - \\\"Evidence: LOGO F1=0.79 across 6 generators / 3 families (incl. 7B+), p<0.001 vs baselines\\\"\\n      - \\\"Honest negative: depth-aware curation does not improve downstream quality\\\"\\n    headline_note: >\\n      The paper_framing.md headline template contains \\\"Z% downstream\\\" placeholder.\\n      UPDATE to negative-finding wording: \\\"...however, depth-aware data curation\\n      does not improve downstream model quality over random subsampling,\\n      positioning depth estimation as a diagnostic rather than curative tool.\\\"\\n    reviewer_concerns_covered: []\\n\\n  introduction:\\n    length: \\\"~1.5 pages\\\"\\n    key_points:\\n      - \\\"Problem: web data increasingly contains recursive LLM-generated text of unknown provenance depth\\\"\\n      - \\\"Gap: binary detectors cannot distinguish gen-1 from gen-2+, forcing all-or-nothing filtering\\\"\\n      - \\\"Our formulation: ordinal depth estimation as a new task (genuinely novel)\\\"\\n      - \\\"Core finding: differential depth response — level/diversity features drift, shape features are stationary\\\"\\n      - \\\"Practical consequence: 7-feature ensemble LOGO F1=0.79, reliable across unknown generators (incl. 7B+)\\\"\\n      - \\\"Honest reporting: downstream curation does not benefit (diagnostic, not curative)\\\"\\n      - \\\"Contributions list (3 items matching the 3 claims)\\\"\\n    evidence:\\n      - exp_id: plan-015-v2  # headline numbers\\n      - exp_id: plan-002-eval  # LOGO result\\n    reviewer_concerns_covered: [RC8]\\n    notes:\\n      - \\\"Must explicitly state contribution is empirical/conceptual, not methodological (D006+D007)\\\"\\n      - \\\"Connect to OOD detection literature in framing paragraph (RC8)\\\"\\n      - \\\"Do NOT overclaim 'dual dynamics' — use 'differential depth response' (D007)\\\"\\n\\n  related_work:\\n    length: \\\"~1 page\\\"\\n    organization: # see literature_strategy section below\\n      - subsection: \\\"AI-Generated Text Detection\\\"\\n        papers: [detectgpt, gltr, dna_gpt, binoculars, fast_detectgpt, ld_score, intrinsic_dimension, diveye, generator_barrier, feat_aug_transformer, reliable_detection, paraphrase_evades, detection_possibilities, grover, release_strategies, jawahar_survey]\\n        angle: \\\"Binary detection only — no depth estimation capability. Single-score baselines show high cross-generator variance.\\\"\\n      - subsection: \\\"Model Collapse and Iterative Generation\\\"\\n        papers: [self_consuming_mad, curse_of_recursion, strong_model_collapse, model_collapse_avoidable, broken_telephone, markovian_chains]\\n        angle: \\\"Training-loop collapse theory; iterative generation distortion. We study inference-chain depth without retraining.\\\"\\n      - subsection: \\\"Vocabulary Diversity and Stylometry\\\"\\n        papers: [curious_decline, writing_diversity, nucleus_sampling, mapping_llm_science, monitoring_ai_review, stamatatos_survey, koppel_authorship, uchendu_attribution]\\n        angle: \\\"Diversity decline documented but not used for depth estimation. Our surface features are stylometric in nature.\\\"\\n      - subsection: \\\"Data Quality and Provenance\\\"\\n        papers: [dsir, qurating, ccnet, watermark_llm, synthid_text, aaronson_watermark, chainwash, min_k_percent, ood_baseline]\\n        angle: \\\"Quality scoring/watermarking for data curation. Depth fingerprint complements these as provenance signal.\\\"\\n    reviewer_concerns_covered: [RC1, RC8]\\n\\n  method:\\n    length: \\\"~1.5 pages\\\"\\n    subsections:\\n      - name: \\\"Task Formulation\\\"\\n        content: \\\"Ordinal depth estimation: given text x, predict depth class {gen-0, gen-1, gen-2+}\\\"\\n        length: \\\"~0.25 page\\\"\\n      - name: \\\"Generation Chain Construction\\\"\\n        content: \\\"6 generators (Pythia-2.8B, Pythia-1B, OLMo-2-1B, Qwen3-1.7B, Qwen3-0.6B, Qwen3-8B), 3 families, ~1000 seeds × 5 depths, continuation prompt, temp=0.7/top_p=0.9/max_tokens=256\\\"\\n        evidence: [mvp-001, plan-002, plan-014]\\n        length: \\\"~0.25 page\\\"\\n      - name: \\\"Feature Extraction\\\"\\n        content: \\\"7 features: 4 reference-model (entropy_mean/std/max, tail_decay) + 3 surface (TTR, hapax_ratio, entropy_min). Reference model = Pythia-410M.\\\"\\n        length: \\\"~0.5 page\\\"\\n      - name: \\\"Evaluation Protocol\\\"\\n        content: \\\"Leave-one-generator-out (LOGO) cross-validation. XGBoost classifier. Bootstrap CI (n=1000). McNemar test for feature ablation.\\\"\\n        length: \\\"~0.5 page\\\"\\n    reviewer_concerns_covered: [RC2, RC4, RC6]\\n\\n  results:\\n    length: \\\"~2 pages\\\"\\n    subsections:\\n      - name: \\\"Depth Classification Performance (C1)\\\"\\n        content: \\\"6-gen LOGO F1=0.79, per-generator breakdown (0.68-0.86), family-out Δ=+0.01. Gen-0 near-perfect (F1=0.95), gen-1 vs gen-2+ harder. Qwen3-8B held-out F1=0.6849 (cross-scale gap).\\\"\\n        evidence: [plan-002-eval, plan-015-v2, plan-014]\\n        tables: [Table 1]\\n        figures: [Fig 2]\\n        length: \\\"~0.5 page\\\"\\n      - name: \\\"Differential Depth Response (C2)\\\"\\n        content: \\\"Feature drift patterns. entropy_mean/TTR/hapax drift monotonically. entropy_std/tail_decay near-stationary. Feature complementarity: full > surface = reference.\\\"\\n        evidence: [plan-001-fix, plan-002, plan-003]\\n        tables: [Table 2]\\n        figures: [Fig 1]\\n        length: \\\"~0.5 page\\\"\\n      - name: \\\"Comparison with Detection Baselines\\\"\\n        content: \\\"7-feature vs Avg-LogProb (+3.9pp, p<0.001), FastDetectGPT (+6.7pp), LD-Score, Binoculars. Key advantage: tight CI vs high variance of single detectors.\\\"\\n        evidence: [plan-015-v2]\\n        figures: [Fig 3]\\n        length: \\\"~0.5 page\\\"\\n      - name: \\\"Downstream Utility — Negative Finding (C3)\\\"\\n        content: \\\"Depth-aware curation does not improve CLM quality. all(2.335) < size_matched(2.367) < depth01(2.387). Quantity dominates composition. Diagnostic not curative.\\\"\\n        evidence: [plan-004-v2]\\n        tables: [Table 3]\\n        figures: [Fig 4]\\n        length: \\\"~0.5 page\\\"\\n    reviewer_concerns_covered: [RC1, RC2, RC10, RC11]\\n\\n  discussion:\\n    length: \\\"~0.5 page\\\"\\n    key_points:\\n      - \\\"Why shape features are stationary: determined by sampling mechanism and architecture, invariant to input content drift (speculative, explicitly flagged)\\\"\\n      - \\\"Practical implications: risk-stratified data curation (flag gen-2+ for review, keep gen-1)\\\"\\n      - \\\"Honest framing of C3: negative finding has positive information value — rules out depth-based filtering as curation strategy\\\"\\n      - \\\"Connection to model collapse literature: inference chains show similar distributional drift without retraining\\\"\\n    reviewer_concerns_covered: [RC3, RC8]\\n\\n  limitations:\\n    length: \\\"~0.25 page (mandatory for EMNLP; good practice for AAAI)\\\"\\n    items:\\n      - \\\"Generators up to 8B tested (plan-014); depth signal exists at scale but cross-scale transfer gap (8B held-out F1=0.685 vs ≤2.8B 0.76-0.86). Frontier models (70B+) untested.\\\"\\n      - \\\"Single prompt type (continuation); elaboration/rewriting chains not yet tested (plan-005 pending)\\\"\\n      - \\\"Lab-constructed single-model chains; real web contamination involves diverse generators per step\\\"\\n      - \\\"Negative downstream result tested on CLM only; other downstream tasks not evaluated\\\"\\n      - \\\"3-class granularity; finer-grained depth may be possible for non-paraphrastic chains\\\"\\n    reviewer_concerns_covered: [RC3, RC4, RC5, RC6, RC9]\\n\\n  conclusion:\\n    length: \\\"~0.25 page\\\"\\n    key_points:\\n      - \\\"Restate contributions: task formulation, empirical characterization, honest negative on downstream\\\"\\n      - \\\"Report realistic performance range (0.68-0.86 per-generator, 0.79 LOGO average)\\\"\\n      - \\\"Future work: frontier-scale generators, mixed-generator chains, prompt type diversity\\\"\\n\\n##############################################################################\\n# 5. Figure Plan\\n##############################################################################\\n\\nfigures:\\n  fig1_differential_response:\\n    title: \\\"Differential Depth Response of Distributional Features\\\"\\n    type: \\\"multi-panel line plot (2×2 or 1×4)\\\"\\n    tool: matplotlib\\n    aspect_ratio: \\\"2:1\\\"\\n    data_source: plan-002 (features_all_models.csv) + plan-014 (qwen3-8b features)\\n    content:\\n      - \\\"Panel A: entropy_mean vs depth (6 generators, monotonic drift)\\\"\\n      - \\\"Panel B: TTR or hapax_ratio vs depth (monotonic drift)\\\"\\n      - \\\"Panel C: entropy_std vs depth (near-stationary)\\\"\\n      - \\\"Panel D: tail_decay vs depth (near-stationary)\\\"\\n    notes: \\\"Error bands = bootstrap 95% CI. Color-code by generator. This is the signature figure — spend time on it.\\\"\\n    placement: \\\"Results §5.2\\\"\\n    evidence: [plan-001-fix, plan-002]\\n\\n  fig2_logo_performance:\\n    title: \\\"Leave-One-Generator-Out Classification Performance\\\"\\n    type: \\\"grouped bar chart\\\"\\n    tool: matplotlib\\n    aspect_ratio: \\\"3:2\\\"\\n    data_source: plan-002-eval (cross_generator_results.json) + plan-014 (6-gen LOGO)\\n    content:\\n      - \\\"Per held-out generator macro-F1 with CI\\\"\\n      - \\\"Horizontal line at overall LOGO mean (0.79)\\\"\\n      - \\\"Optional: per-class (gen-0/gen-1/gen-2+) breakdown\\\"\\n    placement: \\\"Results §5.1\\\"\\n    evidence: [plan-002-eval]\\n\\n  fig3_baseline_comparison:\\n    title: \\\"Comparison with Single-Detector Baselines\\\"\\n    type: \\\"forest plot (dot-with-CI)\\\"\\n    tool: matplotlib\\n    aspect_ratio: \\\"4:3\\\"\\n    data_source: plan-015-v2 (detector_baseline_results.json)\\n    content:\\n      - \\\"7-feature ensemble: 0.798 [0.786, 0.799]\\\"\\n      - \\\"Avg-LogProb: 0.765 [0.616, 0.820]\\\"\\n      - \\\"LD-Score: 0.721 [0.588, 0.770]\\\"\\n      - \\\"FastDetectGPT: 0.627 [0.511, 0.762]\\\"\\n      - \\\"Binoculars: 0.579 [0.405, 0.664]\\\"\\n    notes: \\\"Key message: ensemble has tight CI, single detectors have wide CI. Reliability advantage, not just mean.\\\"\\n    placement: \\\"Results §5.3\\\"\\n    evidence: [plan-015-v2]\\n\\n  fig4_downstream_negative:\\n    title: \\\"Downstream CLM Perplexity by Data Curation Strategy\\\"\\n    type: \\\"bar chart with error bars\\\"\\n    tool: matplotlib\\n    aspect_ratio: \\\"4:3\\\"\\n    data_source: plan-004-v2\\n    content:\\n      - \\\"5 variants: all / size_matched / depth01 / binary_filtered / depth0_only\\\"\\n      - \\\"Y-axis: eval perplexity\\\"\\n      - \\\"Error bars: 3-seed variance\\\"\\n      - \\\"Annotation: data count per variant\\\"\\n    notes: \\\"Frame as honest negative. Title should not hide the negative result.\\\"\\n    placement: \\\"Results §5.4\\\"\\n    evidence: [plan-004-v2]\\n\\n##############################################################################\\n# 6. Table Plan\\n##############################################################################\\n\\ntables:\\n  table1_logo_results:\\n    title: \\\"Leave-One-Generator-Out Depth Classification Results\\\"\\n    placement: \\\"Results §5.1\\\"\\n    columns: [\\\"Held-out Generator\\\", \\\"Family\\\", \\\"Params\\\", \\\"Macro-F1\\\", \\\"95% CI\\\"]\\n    rows:\\n      - [\\\"Pythia-2.8B\\\", \\\"Pythia\\\", \\\"2.8B\\\", \\\"0.804\\\", \\\"—\\\"]\\n      - [\\\"Pythia-1B\\\", \\\"Pythia\\\", \\\"1.0B\\\", \\\"0.855\\\", \\\"—\\\"]\\n      - [\\\"OLMo-2-1B\\\", \\\"OLMo\\\", \\\"1.5B\\\", \\\"0.762\\\", \\\"—\\\"]\\n      - [\\\"Qwen3-1.7B\\\", \\\"Qwen\\\", \\\"1.7B\\\", \\\"0.809\\\", \\\"—\\\"]\\n      - [\\\"Qwen3-0.6B\\\", \\\"Qwen\\\", \\\"0.6B\\\", \\\"0.823\\\", \\\"—\\\"]\\n      - [\\\"Qwen3-8B\\\", \\\"Qwen\\\", \\\"8.2B\\\", \\\"0.6849\\\", \\\"[0.672, 0.698]\\\"]\\n      - [\\\"**Average (6-gen)**\\\", \\\"\\\", \\\"\\\", \\\"**0.790**\\\", \\\"—\\\"]\\n    footer: \\\"Family-out Δ = +0.011. Qwen3-8B cross-scale transfer gap: 0.685 vs ≤2.8B avg 0.81.\\\"\\n    evidence: [plan-002-eval, plan-015-v2, plan-014]\\n    notes: \\\"Fill exact per-generator CIs from bootstrap data\\\"\\n\\n  table2_feature_ablation:\\n    title: \\\"Feature Group Ablation and Complementarity\\\"\\n    placement: \\\"Results §5.2\\\"\\n    columns: [\\\"Feature Set\\\", \\\"Features\\\", \\\"LOGO F1\\\", \\\"95% CI\\\", \\\"McNemar p\\\"]\\n    rows:\\n      - [\\\"Full (7 features)\\\", \\\"all\\\", \\\"0.790 (6-gen)\\\", \\\"[—]\\\", \\\"—\\\"]\\n      - [\\\"Surface only\\\", \\\"TTR, hapax_ratio, entropy_min\\\", \\\"0.729\\\", \\\"—\\\", \\\"< 0.001\\\"]\\n      - [\\\"Reference only\\\", \\\"entropy_mean/std/max, tail_decay\\\", \\\"0.745\\\", \\\"—\\\", \\\"< 0.001\\\"]\\n    footer: \\\"6-gen LOGO. Permutation importance: hapax_ratio(0.265) > entropy_mean(0.152) > ttr(0.148)\\\"\\n    evidence: [plan-002-eval, plan-001-fix, plan-014]\\n\\n  table3_downstream:\\n    title: \\\"Downstream CLM Fine-tuning by Depth Curation Strategy\\\"\\n    placement: \\\"Results §5.4\\\"\\n    columns: [\\\"Curation Strategy\\\", \\\"Train Size\\\", \\\"Eval PPL (mean±std)\\\", \\\"Δ vs size_matched\\\"]\\n    rows:\\n      - [\\\"All depths (no filter)\\\", \\\"12,299\\\", \\\"2.335 ± 0.000\\\", \\\"-0.032\\\"]\\n      - [\\\"Size-matched random\\\", \\\"3,951\\\", \\\"2.367 ± 0.000\\\", \\\"baseline\\\"]\\n      - [\\\"Depth 0+1 only\\\", \\\"3,951\\\", \\\"2.387 ± 0.001\\\", \\\"+0.020\\\"]\\n      - [\\\"Binary filtered\\\", \\\"3,951\\\", \\\"2.389 ± 0.000\\\", \\\"+0.022\\\"]\\n      - [\\\"Depth 0 only\\\", \\\"797\\\", \\\"2.681 ± 0.001\\\", \\\"+0.314\\\"]\\n    footer: >\\n      OLMo-2-0425-1B, 3 seeds. Size-matched is the proper control.\\n      Depth-aware curation does not outperform random subsampling at equal data count.\\n    evidence: [plan-004-v2]\\n\\n  table4_cross_ref:\\n    title: \\\"Cross-Family Reference Model Validation\\\"\\n    placement: \\\"Appendix (or Results §5.2 if space)\\\"\\n    columns: [\\\"Reference Model\\\", \\\"Family\\\", \\\"Params\\\", \\\"LOGO F1\\\", \\\"Entropy Drift Range\\\"]\\n    rows:\\n      - [\\\"Pythia-410M\\\", \\\"Pythia\\\", \\\"410M\\\", \\\"0.803\\\", \\\"[-1.19, -1.40]\\\"]\\n      - [\\\"OLMo-2-1B\\\", \\\"OLMo\\\", \\\"1.5B\\\", \\\"0.807\\\", \\\"[-0.61, -0.91]\\\"]\\n      - [\\\"Qwen3-0.6B\\\", \\\"Qwen\\\", \\\"0.6B\\\", \\\"0.816\\\", \\\"[-0.96, -1.35]\\\"]\\n    footer: \\\"Drift direction consistent across all reference models; magnitude varies.\\\"\\n    evidence: [plan-003]\\n\\n##############################################################################\\n# 7. Literature Strategy\\n##############################################################################\\n\\nliterature:\\n  total_papers: 39\\n  organization:\\n    perplexity_detection:\\n      papers: 16\\n      key_refs: [detectgpt, fast_detectgpt, binoculars, ld_score, diveye, generator_barrier]\\n      positioning: \\\"Binary detection paradigm. No depth estimation. High cross-generator variance when repurposed as ordinal predictors.\\\"\\n    model_collapse:\\n      papers: 4\\n      key_refs: [curse_of_recursion, strong_model_collapse, self_consuming_mad]\\n      positioning: \\\"Training-loop collapse. We study inference chains without retraining — distributional drift without model parameter change.\\\"\\n    iterative_generation:\\n      papers: 2\\n      key_refs: [broken_telephone, markovian_chains]\\n      positioning: \\\"Most directly related. broken_telephone: paraphrasing/translation chains. markovian_chains: convergence theory. We: non-paraphrastic continuation chains + depth estimation task.\\\"\\n    vocabulary_diversity:\\n      papers: 5\\n      key_refs: [curious_decline, writing_diversity, nucleus_sampling]\\n      positioning: \\\"Diversity decline documented in training loops. We show it appears in inference chains too and use it for depth classification.\\\"\\n    stylometry:\\n      papers: 3\\n      key_refs: [stamatatos_survey, uchendu_attribution]\\n      positioning: \\\"Feature set is essentially stylometric. We extend from source attribution to depth estimation.\\\"\\n    data_quality:\\n      papers: 3\\n      key_refs: [dsir, qurating]\\n      positioning: \\\"Data scoring/selection. Depth fingerprint as complementary provenance signal.\\\"\\n    watermarking:\\n      papers: 4\\n      key_refs: [watermark_llm, chainwash]\\n      positioning: \\\"Active signal embedding. We: passive post-hoc detection without watermark. chainwash motivates depth-aware approach — watermarks decay over generation steps.\\\"\\n    membership_inference:\\n      papers: 1\\n      key_refs: [min_k_percent]\\n      positioning: \\\"Probability distribution analysis for membership; we analyze for depth.\\\"\\n    ood_detection:\\n      papers: 1\\n      key_refs: [ood_baseline]\\n      positioning: \\\"Reference-model entropy features are functionally NLL-based OOD scores. Explicitly acknowledge this connection (RC8).\\\"\\n\\n##############################################################################\\n# 8. Writing Order & Dependencies\\n##############################################################################\\n\\nwriting_order:\\n  phase1_skeleton:\\n    deadline: \\\"2026-05-18\\\"\\n    tasks:\\n      - section: \\\"Results (§5)\\\"\\n        reason: \\\"Anchor claims to evidence first. Numbers drive the narrative.\\\"\\n        dependencies: []\\n        priority: 1\\n      - section: \\\"Method (§4)\\\"\\n        reason: \\\"Experimental setup needed to interpret results.\\\"\\n        dependencies: []\\n        priority: 2\\n      - section: \\\"Figures (all 4)\\\"\\n        reason: \\\"Figures convey results more effectively than text. Generate early.\\\"\\n        dependencies: [\\\"Results\\\"]\\n        priority: 1\\n\\n  phase2_narrative:\\n    deadline: \\\"2026-05-21\\\"\\n    tasks:\\n      - section: \\\"Introduction (§1)\\\"\\n        reason: \\\"Story spine. Requires stable results to write convincingly.\\\"\\n        dependencies: [\\\"Results\\\"]\\n        priority: 1\\n      - section: \\\"Related Work (§2)\\\"\\n        reason: \\\"Positioning depends on knowing exact claims.\\\"\\n        dependencies: [\\\"Introduction\\\"]\\n        priority: 2\\n      - section: \\\"Discussion + Limitations (§6)\\\"\\n        reason: \\\"Interprets results, addresses reviewer concerns.\\\"\\n        dependencies: [\\\"Results\\\"]\\n        priority: 2\\n\\n  phase3_polish:\\n    deadline: \\\"2026-05-23\\\"\\n    tasks:\\n      - section: \\\"Abstract\\\"\\n        reason: \\\"Last written, first read. Needs stable claims.\\\"\\n        dependencies: [\\\"Introduction\\\", \\\"Results\\\", \\\"Discussion\\\"]\\n        priority: 1\\n      - section: \\\"Conclusion\\\"\\n        reason: \\\"Mirror of abstract with forward-looking additions.\\\"\\n        dependencies: [\\\"Abstract\\\"]\\n        priority: 2\\n      - section: \\\"Title\\\"\\n        reason: \\\"After all claims are finalized.\\\"\\n        dependencies: [\\\"Abstract\\\"]\\n        priority: 3\\n\\n  phase4_submission:\\n    deadline: \\\"2026-05-25\\\"\\n    tasks:\\n      - \\\"Citation verification (reference-audit skill)\\\"\\n      - \\\"Page limit compliance (8 pages for EMNLP ARR)\\\"\\n      - \\\"Anonymization check\\\"\\n      - \\\"Limitations section + Ethics statement (mandatory for ARR)\\\"\\n      - \\\"Appendix organization (cross-ref table, length analysis, per-generator details)\\\"\\n\\n##############################################################################\\n# 9. Reviewer Concern Coverage Matrix\\n##############################################################################\\n\\nreviewer_coverage:\\n  RC1_vocabulary_impoverishment:\\n    sections: [related_work, results]\\n    evidence: [plan-002-eval]\\n    response: \\\"Feature complementarity proven: full(0.80) > surface(0.75) = ref(0.75). Two groups capture different signal.\\\"\\n\\n  RC2_generalize_beyond_pythia:\\n    sections: [method, results]\\n    evidence: [plan-002, plan-002-eval, plan-003]\\n    response: \\\"6 generators / 3 families (incl. 8B). LOGO F1=0.79, family-out Δ=+0.01. Cross-family ref models all work.\\\"\\n\\n  RC3_three_class_sufficient:\\n    sections: [discussion, limitations]\\n    evidence: []\\n    response: \\\"Attractor theory bounds paraphrasing to ~3 classes. Non-paraphrastic chains may support finer granularity — acknowledged as future work.\\\"\\n\\n  RC4_realistic_chains:\\n    sections: [method, limitations]\\n    evidence: [plan-002]\\n    response: \\\"6 generators across 3 families tested (incl. 8B). Mixed-generator chains acknowledged as limitation.\\\"\\n\\n  RC5_human_editing:\\n    sections: [limitations]\\n    evidence: []\\n    response: \\\"Not tested. Acknowledged as limitation. Robustness to editing is future work.\\\"\\n\\n  RC6_ecological_validity:\\n    sections: [method, limitations]\\n    evidence: [mvp-001]\\n    response: \\\"Wikipedia seeds across domains. Single prompt type (continuation); multi-prompt pending (plan-005).\\\"\\n\\n  RC7_ld_score_prediction:\\n    sections: [results]\\n    evidence: [plan-015-v2]\\n    response: \\\"LD-Score confirmed as level feature (LOGO F1=0.72, Spearman=0.79). Pre-registered prediction validated.\\\"\\n\\n  RC8_ood_detection_features:\\n    sections: [introduction, related_work, discussion]\\n    evidence: []\\n    response: \\\"Explicitly acknowledge reference-model entropy = NLL-based OOD score. Contribution is task formulation + empirical characterization, not features themselves.\\\"\\n\\n  RC9_scale:\\n    sections: [results, limitations]\\n    evidence: [plan-014]\\n    response: \\\"Qwen3-8B (8.2B params) tested. Depth signal persists at 8B (all Spearman p<1e-6). Cross-scale transfer gap: held-out F1=0.6849 vs ≤2.8B 0.76-0.86. 6-gen LOGO 0.79 still outperforms all baselines.\\\"\\n    status: \\\"RESOLVED (D011)\\\"\\n\\n  RC10_length_confound:\\n    sections: [results]\\n    evidence: [plan-013]\\n    response: \\\"Triple evidence: weak correlation (|ρ|<0.14), normalized trends preserved, length-matched F1 +0.041.\\\"\\n\\n  RC11_downstream_single_run:\\n    sections: [results]\\n    evidence: [plan-004-v2]\\n    response: \\\"15 runs (5 variants × 3 seeds), cross-seed variance <0.002. OLMo-2-1B avoids reference model circularity.\\\"\\n\\n##############################################################################\\n# 10. Pending Experiments & Writing Blockers\\n##############################################################################\\n\\npending:\\n  plan-014:\\n    status: DONE\\n    description: \\\"Qwen3-8B-Base (7B+ generator) — scale generalization test\\\"\\n    impact_on_paper: \\\"Results §5.1 + Limitations: depth signal persists at 8B, cross-scale gap 0.6849\\\"\\n    blocker: false\\n\\n  plan-005:\\n    status: RUNNING\\n    description: \\\"Prompt type comparison (continuation vs elaboration vs inspired_rewriting)\\\"\\n    impact_on_paper: \\\"Addresses RC6 ecological validity\\\"\\n    blocker: false  # acknowledged as limitation if not completed\\n\\n##############################################################################\\n# 11. Framing Discipline Reminders (from D006+D007)\\n##############################################################################\\n\\nframing_rules:\\n  - \\\"Use 'differential depth response', NOT 'dual dynamics' or 'H1/H2'\\\"\\n  - \\\"Contribution is empirical/conceptual, NOT methodological\\\"\\n  - \\\"Do NOT call drift/stationarity split a 'discovery' — it follows from location-shift properties\\\"\\n  - \\\"Report realistic performance range (0.69-0.85 per-gen, 0.79 LOGO avg) in abstract/conclusion, not just best-case\\\"\\n  - \\\"Consider 'distributional depth profiling' instead of 'distributional fingerprinting'\\\"\\n  - \\\"R² on 5 aggregated depth means is meaningless — use individual-level Spearman ρ with bootstrap CI\\\"\\n  - \\\"Headline template 'Z% downstream' → REPLACE with negative-finding wording\\\"\\n  - \\\"Explicitly connect to OOD detection + perplexity-based detection literature\\\"\\n  - \\\"Provide speculative theoretical motivation for shape stationarity\\\"\\n\", \"total_chars\": 26500, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "d58904c5-6dd7-4fad-82d2-3e6475dc3fab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/writing_plan.yaml\\\", \\\"content\\\": \\\"# Writing Plan — gen-depth-fingerprint\\\\n# Depth Fingerprinting of Recursive LLM Generation Chains\\\\n# Created: 2026-05-15\\\\n\\\\n##############################################################################\\\\n# 1. Submission Target\\\\n##############################################################################\\\\n\\\\nsubmission:\\\\n  primary:\\\\n    venue: EMNLP 2026 ARR\\\\n    deadline: 2026-05-25\\\\n    page_limit: \\\\\\\"8 pages (long) + unlimited appendix\\\\\\\"\\\\n    template: acl.sty\\\\n    special_requirements:\\\\n      - Limitations section (mandatory)\\\\n      - Ethics Statement\\\\n      - ARR submission format\\\\n    note: \\\\\\\"D012: 主投 EMNLP ARR，DDL 仅剩 10 天，全速推进\\\\\\\"\\\\n  fallback:\\\\n    - venue: AAAI 2027\\\\n      deadline: 2026-08-02\\\\n    - venue: ICLR 2027\\\\n      deadline: 2026-09-24\\\\n    - venue: NAACL 2027 ARR\\\\n      deadline: 2026-10-16\\\\n\\\\n##############################################################################\\\\n# 2. One-Sentence Contribution\\\\n##############################################################################\\\\n\\\\none_sentence: >\\\\n  We formulate ordinal depth estimation for recursive LLM generation chains,\\\\n  showing that distributional features exhibit differential depth response\\\\n  (central-tendency drifts, shape remains stationary), yielding a 7-feature\\\\n  ensemble that reliably classifies generation depth (LOGO F1=0.79) across\\\\n  6 generators / 3 model families (including 7B+ scale).\\\\n\\\\n##############################################################################\\\\n# 3. Claim-Evidence Map\\\\n##############################################################################\\\\n\\\\nclaims:\\\\n  C1_depth_discriminability:\\\\n    claim: >\\\\n      Distributional features under a held-out reference model classify\\\\n      generation depth (gen-0/gen-1/gen-2+) with macro-F1 significantly\\\\n      above chance, generalizing across unseen generators.\\\\n    evidence:\\\\n      - exp_id: plan-002-eval\\\\n        metric: \\\\\\\"LOGO avg macro-F1 = 0.8037\\\\\\\"\\\\n      - exp_id: plan-002-eval\\\\n        metric: \\\\\\\"Leave-one-family-out Δ = +0.0107 (Pythia vs non-Pythia)\\\\\\\"\\\\n      - exp_id: plan-015-v2\\\\n        metric: \\\\\\\"Bootstrap CI [0.786, 0.799], p<0.001 vs all baselines\\\\\\\"\\\\n      - exp_id: plan-013\\\\n        metric: \\\\\\\"Length not a confound (|ρ|<0.14, normalized trends preserved)\\\\\\\"\\\\n      - exp_id: plan-014\\\\n        metric: \\\\\\\"6-gen LOGO F1=0.7897 (incl. Qwen3-8B), held-out F1=0.6849, depth signal persists at 8B, cross-scale transfer gap noted\\\\\\\"\\\\n    tables: [Table 1, Table 2]\\\\n    figures: [Fig 2, Fig 3]\\\\n\\\\n  C2_differential_response:\\\\n    claim: >\\\\n      Central-tendency/diversity features (entropy_mean, TTR, hapax_ratio) drift\\\\n      monotonically with depth; shape features (entropy_std, tail_decay) remain\\\\n      near-stationary. Full 7-feature set significantly outperforms surface-only\\\\n      and reference-only subsets.\\\\n    evidence:\\\\n      - exp_id: plan-001-fix\\\\n        metric: \\\\\\\"full(0.82) > surface(0.76) > reference(0.72), CI non-overlapping\\\\\\\"\\\\n      - exp_id: plan-002\\\\n        metric: \\\\\\\"Drift direction consistent across all 6 generators (incl. 8B)\\\\\\\"\\\\n      - exp_id: plan-002-eval\\\\n        metric: \\\\\\\"full(0.80) > ref(0.75) = surf(0.75), McNemar p≈0\\\\\\\"\\\\n      - exp_id: plan-003\\\\n        metric: \\\\\\\"3 cross-family ref models: LOGO F1 0.80-0.82, drift direction consistent\\\\\\\"\\\\n    tables: [Table 2]\\\\n    figures: [Fig 1]\\\\n\\\\n  C3_downstream_negative:\\\\n    claim: >\\\\n      Depth-aware data curation does NOT improve downstream CLM quality.\\\\n      Data quantity dominates depth composition. Depth fingerprinting is\\\\n      diagnostic, not curative.\\\\n    status: NEGATIVE FINDING — report honestly\\\\n    evidence:\\\\n      - exp_id: plan-004-v2\\\\n        metric: \\\\\\\"all(2.335) < size_matched(2.367) < depth01(2.387) ≈ binary_filtered(2.389)\\\\\\\"\\\\n      - exp_id: plan-004-v2\\\\n        metric: \\\\\\\"15/15 runs, cross-seed variance <0.002\\\\\\\"\\\\n    tables: [Table 3]\\\\n    figures: [Fig 4]\\\\n    framing_note: >\\\\n      DO NOT hide or spin. Frame as: \\\\\\\"We tested whether depth-aware curation\\\\n      improves downstream quality. It does not. The primary determinant is data\\\\n      quantity, not depth composition. This positions depth fingerprinting as a\\\\n      diagnostic tool for provenance characterization, not a curative tool for\\\\n      data selection.\\\\\\\"\\\\n\\\\n##############################################################################\\\\n# 4. Paper Outline\\\\n##############################################################################\\\\n\\\\noutline:\\\\n  abstract:\\\\n    length: \\\\\\\"~200 words\\\\\\\"\\\\n    structure: \\\\\\\"five-sentence method (Farquhar)\\\\\\\"\\\\n    key_points:\\\\n      - \\\\\\\"We formulate ordinal depth estimation beyond binary detection\\\\\\\"\\\\n      - \\\\\\\"Why hard: existing detectors offer only real-vs-synthetic, no depth signal\\\\\\\"\\\\n      - \\\\\\\"How: 7 distributional features exhibiting differential depth response\\\\\\\"\\\\n      - \\\\\\\"Evidence: LOGO F1=0.79 across 6 generators / 3 families (incl. 7B+), p<0.001 vs baselines\\\\\\\"\\\\n      - \\\\\\\"Honest negative: depth-aware curation does not improve downstream quality\\\\\\\"\\\\n    headline_note: >\\\\n      The paper_framing.md headline template contains \\\\\\\"Z% downstream\\\\\\\" placeholder.\\\\n      UPDATE to negative-finding wording: \\\\\\\"...however, depth-aware data curation\\\\n      does not improve downstream model quality over random subsampling,\\\\n      positioning depth estimation as a diagnostic rather than curative tool.\\\\\\\"\\\\n    reviewer_concerns_covered: []\\\\n\\\\n  introduction:\\\\n    length: \\\\\\\"~1.5 pages\\\\\\\"\\\\n    key_points:\\\\n      - \\\\\\\"Problem: web data increasingly contains recursive LLM-generated text of unknown provenance depth\\\\\\\"\\\\n      - \\\\\\\"Gap: binary detectors cannot distinguish gen-1 from gen-2+, forcing all-or-nothing filtering\\\\\\\"\\\\n      - \\\\\\\"Our formulation: ordinal depth estimation as a new task (genuinely novel)\\\\\\\"\\\\n      - \\\\\\\"Core finding: differential depth response — level/diversity features drift, shape features are stationary\\\\\\\"\\\\n      - \\\\\\\"Practical consequence: 7-feature ensemble LOGO F1=0.79, reliable across unknown generators (incl. 7B+)\\\\\\\"\\\\n      - \\\\\\\"Honest reporting: downstream curation does not benefit (diagnostic, not curative)\\\\\\\"\\\\n      - \\\\\\\"Contributions list (3 items matching the 3 claims)\\\\\\\"\\\\n    evidence:\\\\n      - exp_id: plan-015-v2  # headline numbers\\\\n      - exp_id: plan-002-eval  # LOGO result\\\\n    reviewer_concerns_covered: [RC8]\\\\n    notes:\\\\n      - \\\\\\\"Must explicitly state contribution is empirical/conceptual, not methodological (D006+D007)\\\\\\\"\\\\n      - \\\\\\\"Connect to OOD detection literature in framing paragraph (RC8)\\\\\\\"\\\\n      - \\\\\\\"Do NOT overclaim 'dual dynamics' — use 'differential depth response' (D007)\\\\\\\"\\\\n\\\\n  related_work:\\\\n    length: \\\\\\\"~1 page\\\\\\\"\\\\n    organization: # see literature_strategy section below\\\\n      - subsection: \\\\\\\"AI-Generated Text Detection\\\\\\\"\\\\n        papers: [detectgpt, gltr, dna_gpt, binoculars, fast_detectgpt, ld_score, intrinsic_dimension, diveye, generator_barrier, feat_aug_transformer, reliable_detection, paraphrase_evades, detection_possibilities, grover, release_strategies, jawahar_survey]\\\\n        angle: \\\\\\\"Binary detection only — no depth estimation capability. Single-score baselines show high cross-generator variance.\\\\\\\"\\\\n      - subsection: \\\\\\\"Model Collapse and Iterative Generation\\\\\\\"\\\\n        papers: [self_consuming_mad, curse_of_recursion, strong_model_collapse, model_collapse_avoidable, broken_telephone, markovian_chains]\\\\n        angle: \\\\\\\"Training-loop collapse theory; iterative generation distortion. We study inference-chain depth without retraining.\\\\\\\"\\\\n      - subsection: \\\\\\\"Vocabulary Diversity and Stylometry\\\\\\\"\\\\n        papers: [curious_decline, writing_diversity, nucleus_sampling, mapping_llm_science, monitoring_ai_review, stamatatos_survey, koppel_authorship, uchendu_attribution]\\\\n        angle: \\\\\\\"Diversity decline documented but not used for depth estimation. Our surface features are stylometric in nature.\\\\\\\"\\\\n      - subsection: \\\\\\\"Data Quality and Provenance\\\\\\\"\\\\n        papers: [dsir, qurating, ccnet, watermark_llm, synthid_text, aaronson_watermark, chainwash, min_k_percent, ood_baseline]\\\\n        angle: \\\\\\\"Quality scoring/watermarking for data curation. Depth fingerprint complements these as provenance signal.\\\\\\\"\\\\n    reviewer_concerns_covered: [RC1, RC8]\\\\n\\\\n  method:\\\\n    length: \\\\\\\"~1.5 pages\\\\\\\"\\\\n    subsections:\\\\n      - name: \\\\\\\"Task Formulation\\\\\\\"\\\\n        content: \\\\\\\"Ordinal depth estimation: given text x, predict depth class {gen-0, gen-1, gen-2+}\\\\\\\"\\\\n        length: \\\\\\\"~0.25 page\\\\\\\"\\\\n      - name: \\\\\\\"Generation Chain Construction\\\\\\\"\\\\n        content: \\\\\\\"6 generators (Pythia-2.8B, Pythia-1B, OLMo-2-1B, Qwen3-1.7B, Qwen3-0.6B, Qwen3-8B), 3 families, ~1000 seeds × 5 depths, continuation prompt, temp=0.7/top_p=0.9/max_tokens=256\\\\\\\"\\\\n        evidence: [mvp-001, plan-002, plan-014]\\\\n        length: \\\\\\\"~0.25 page\\\\\\\"\\\\n      - name: \\\\\\\"Feature Extraction\\\\\\\"\\\\n        content: \\\\\\\"7 features: 4 reference-model (entropy_mean/std/max, tail_decay) + 3 surface (TTR, hapax_ratio, entropy_min). Reference model = Pythia-410M.\\\\\\\"\\\\n        length: \\\\\\\"~0.5 page\\\\\\\"\\\\n      - name: \\\\\\\"Evaluation Protocol\\\\\\\"\\\\n        content: \\\\\\\"Leave-one-generator-out (LOGO) cross-validation. XGBoost classifier. Bootstrap CI (n=1000). McNemar test for feature ablation.\\\\\\\"\\\\n        length: \\\\\\\"~0.5 page\\\\\\\"\\\\n    reviewer_concerns_covered: [RC2, RC4, RC6]\\\\n\\\\n  results:\\\\n    length: \\\\\\\"~2 pages\\\\\\\"\\\\n    subsections:\\\\n      - name: \\\\\\\"Depth Classification Performance (C1)\\\\\\\"\\\\n        content: \\\\\\\"6-gen LOGO F1=0.79, per-generator breakdown (0.68-0.86), family-out Δ=+0.01. Gen-0 near-perfect (F1=0.95), gen-1 vs gen-2+ harder. Qwen3-8B held-out F1=0.6849 (cross-scale gap).\\\\\\\"\\\\n        evidence: [plan-002-eval, plan-015-v2, plan-014]\\\\n        tables: [Table 1]\\\\n        figures: [Fig 2]\\\\n        length: \\\\\\\"~0.5 page\\\\\\\"\\\\n      - name: \\\\\\\"Differential Depth Response (C2)\\\\\\\"\\\\n        content: \\\\\\\"Feature drift patterns. entropy_mean/TTR/hapax drift monotonically. entropy_std/tail_decay near-stationary. Feature complementarity: full > surface = reference.\\\\\\\"\\\\n        evidence: [plan-001-fix, plan-002, plan-003]\\\\n        tables: [Table 2]\\\\n        figures: [Fig 1]\\\\n        length: \\\\\\\"~0.5 page\\\\\\\"\\\\n      - name: \\\\\\\"Comparison with Detection Baselines\\\\\\\"\\\\n        content: \\\\\\\"7-feature vs Avg-LogProb (+3.9pp, p<0.001), FastDetectGPT (+6.7pp), LD-Score, Binoculars. Key advantage: tight CI vs high variance of single detectors.\\\\\\\"\\\\n        evidence: [plan-015-v2]\\\\n        figures: [Fig 3]\\\\n        length: \\\\\\\"~0.5 page\\\\\\\"\\\\n      - name: \\\\\\\"Downstream Utility — Negative Finding (C3)\\\\\\\"\\\\n        content: \\\\\\\"Depth-aware curation does not improve CLM quality. all(2.335) < size_matched(2.367) < depth01(2.387). Quantity dominates composition. Diagnostic not curative.\\\\\\\"\\\\n        evidence: [plan-004-v2]\\\\n        tables: [Table 3]\\\\n        figures: [Fig 4]\\\\n        length: \\\\\\\"~0.5 page\\\\\\\"\\\\n    reviewer_concerns_covered: [RC1, RC2, RC10, RC11]\\\\n\\\\n  discussion:\\\\n    length: \\\\\\\"~0.5 page\\\\\\\"\\\\n    key_points:\\\\n      - \\\\\\\"Why shape features are stationary: determined by sampling mechanism and architecture, invariant to input content drift (speculative, explicitly flagged)\\\\\\\"\\\\n      - \\\\\\\"Practical implications: risk-stratified data curation (flag gen-2+ for review, keep gen-1)\\\\\\\"\\\\n      - \\\\\\\"Honest framing of C3: negative finding has positive information value — rules out depth-based filtering as curation strategy\\\\\\\"\\\\n      - \\\\\\\"Connection to model collapse literature: inference chains show similar distributional drift without retraining\\\\\\\"\\\\n    reviewer_concerns_covered: [RC3, RC8]\\\\n\\\\n  limitations:\\\\n    length: \\\\\\\"~0.25 page (mandatory for EMNLP; good practice for AAAI)\\\\\\\"\\\\n    items:\\\\n      - \\\\\\\"Generators up to 8B tested (plan-014); depth signal exists at scale but cross-scale transfer gap (8B held-out F1=0.685 vs ≤2.8B 0.76-0.86). Frontier models (70B+) untested.\\\\\\\"\\\\n      - \\\\\\\"Single prompt type (continuation); elaboration/rewriting chains not yet tested (plan-005 pending)\\\\\\\"\\\\n      - \\\\\\\"Lab-constructed single-model chains; real web contamination involves diverse generators per step\\\\\\\"\\\\n      - \\\\\\\"Negative downstream result tested on CLM only; other downstream tasks not evaluated\\\\\\\"\\\\n      - \\\\\\\"3-class granularity; finer-grained depth may be possible for non-paraphrastic chains\\\\\\\"\\\\n    reviewer_concerns_covered: [RC3, RC4, RC5, RC6, RC9]\\\\n\\\\n  conclusion:\\\\n    length: \\\\\\\"~0.25 page\\\\\\\"\\\\n    key_points:\\\\n      - \\\\\\\"Restate contributions: task formulation, empirical characterization, honest negative on downstream\\\\\\\"\\\\n      - \\\\\\\"Report realistic performance range (0.68-0.86 per-generator, 0.79 LOGO average)\\\\\\\"\\\\n      - \\\\\\\"Future work: frontier-scale generators, mixed-generator chains, prompt type diversity\\\\\\\"\\\\n\\\\n##############################################################################\\\\n# 5. Figure Plan\\\\n##############################################################################\\\\n\\\\nfigures:\\\\n  fig1_differential_response:\\\\n    title: \\\\\\\"Differential Depth Response of Distributional Features\\\\\\\"\\\\n    type: \\\\\\\"multi-panel line plot (2×2 or 1×4)\\\\\\\"\\\\n    tool: matplotlib\\\\n    aspect_ratio: \\\\\\\"2:1\\\\\\\"\\\\n    data_source: plan-002 (features_all_models.csv) + plan-014 (qwen3-8b features)\\\\n    content:\\\\n      - \\\\\\\"Panel A: entropy_mean vs depth (6 generators, monotonic drift)\\\\\\\"\\\\n      - \\\\\\\"Panel B: TTR or hapax_ratio vs depth (monotonic drift)\\\\\\\"\\\\n      - \\\\\\\"Panel C: entropy_std vs depth (near-stationary)\\\\\\\"\\\\n      - \\\\\\\"Panel D: tail_decay vs depth (near-stationary)\\\\\\\"\\\\n    notes: \\\\\\\"Error bands = bootstrap 95% CI. Color-code by generator. This is the signature figure — spend time on it.\\\\\\\"\\\\n    placement: \\\\\\\"Results §5.2\\\\\\\"\\\\n    evidence: [plan-001-fix, plan-002]\\\\n\\\\n  fig2_logo_performance:\\\\n    title: \\\\\\\"Leave-One-Generator-Out Classification Performance\\\\\\\"\\\\n    type: \\\\\\\"grouped bar chart\\\\\\\"\\\\n    tool: matplotlib\\\\n    aspect_ratio: \\\\\\\"3:2\\\\\\\"\\\\n    data_source: plan-002-eval (cross_generator_results.json) + plan-014 (6-gen LOGO)\\\\n    content:\\\\n      - \\\\\\\"Per held-out generator macro-F1 with CI\\\\\\\"\\\\n      - \\\\\\\"Horizontal line at overall LOGO mean (0.79)\\\\\\\"\\\\n      - \\\\\\\"Optional: per-class (gen-0/gen-1/gen-2+) breakdown\\\\\\\"\\\\n    placement: \\\\\\\"Results §5.1\\\\\\\"\\\\n    evidence: [plan-002-eval]\\\\n\\\\n  fig3_baseline_comparison:\\\\n    title: \\\\\\\"Comparison with Single-Detector Baselines\\\\\\\"\\\\n    type: \\\\\\\"forest plot (dot-with-CI)\\\\\\\"\\\\n    tool: matplotlib\\\\n    aspect_ratio: \\\\\\\"4:3\\\\\\\"\\\\n    data_source: plan-015-v2 (detector_baseline_results.json)\\\\n    content:\\\\n      - \\\\\\\"7-feature ensemble: 0.798 [0.786, 0.799]\\\\\\\"\\\\n      - \\\\\\\"Avg-LogProb: 0.765 [0.616, 0.820]\\\\\\\"\\\\n      - \\\\\\\"LD-Score: 0.721 [0.588, 0.770]\\\\\\\"\\\\n      - \\\\\\\"FastDetectGPT: 0.627 [0.511, 0.762]\\\\\\\"\\\\n      - \\\\\\\"Binoculars: 0.579 [0.405, 0.664]\\\\\\\"\\\\n    notes: \\\\\\\"Key message: ensemble has tight CI, single detectors have wide CI. Reliability advantage, not just mean.\\\\\\\"\\\\n    placement: \\\\\\\"Results §5.3\\\\\\\"\\\\n    evidence: [plan-015-v2]\\\\n\\\\n  fig4_downstream_negative:\\\\n    title: \\\\\\\"Downstream CLM Perplexity by Data Curation Strategy\\\\\\\"\\\\n    type: \\\\\\\"bar chart with error bars\\\\\\\"\\\\n    tool: matplotlib\\\\n    aspect_ratio: \\\\\\\"4:3\\\\\\\"\\\\n    data_source: plan-004-v2\\\\n    content:\\\\n      - \\\\\\\"5 variants: all / size_matched / depth01 / binary_filtered / depth0_only\\\\\\\"\\\\n      - \\\\\\\"Y-axis: eval perplexity\\\\\\\"\\\\n      - \\\\\\\"Error bars: 3-seed variance\\\\\\\"\\\\n      - \\\\\\\"Annotation: data count per variant\\\\\\\"\\\\n    notes: \\\\\\\"Frame as honest negative. Title should not hide the negative result.\\\\\\\"\\\\n    placement: \\\\\\\"Results §5.4\\\\\\\"\\\\n    evidence: [plan-004-v2]\\\\n\\\\n##############################################################################\\\\n# 6. Table Plan\\\\n##############################################################################\\\\n\\\\ntables:\\\\n  table1_logo_results:\\\\n    title: \\\\\\\"Leave-One-Generator-Out Depth Classification Results\\\\\\\"\\\\n    placement: \\\\\\\"Results §5.1\\\\\\\"\\\\n    columns: [\\\\\\\"Held-out Generator\\\\\\\", \\\\\\\"Family\\\\\\\", \\\\\\\"Params\\\\\\\", \\\\\\\"Macro-F1\\\\\\\", \\\\\\\"95% CI\\\\\\\"]\\\\n    rows:\\\\n      - [\\\\\\\"Pythia-2.8B\\\\\\\", \\\\\\\"Pythia\\\\\\\", \\\\\\\"2.8B\\\\\\\", \\\\\\\"0.804\\\\\\\", \\\\\\\"—\\\\\\\"]\\\\n      - [\\\\\\\"Pythia-1B\\\\\\\", \\\\\\\"Pythia\\\\\\\", \\\\\\\"1.0B\\\\\\\", \\\\\\\"0.855\\\\\\\", \\\\\\\"—\\\\\\\"]\\\\n      - [\\\\\\\"OLMo-2-1B\\\\\\\", \\\\\\\"OLMo\\\\\\\", \\\\\\\"1.5B\\\\\\\", \\\\\\\"0.762\\\\\\\", \\\\\\\"—\\\\\\\"]\\\\n      - [\\\\\\\"Qwen3-1.7B\\\\\\\", \\\\\\\"Qwen\\\\\\\", \\\\\\\"1.7B\\\\\\\", \\\\\\\"0.809\\\\\\\", \\\\\\\"—\\\\\\\"]\\\\n      - [\\\\\\\"Qwen3-0.6B\\\\\\\", \\\\\\\"Qwen\\\\\\\", \\\\\\\"0.6B\\\\\\\", \\\\\\\"0.823\\\\\\\", \\\\\\\"—\\\\\\\"]\\\\n      - [\\\\\\\"Qwen3-8B\\\\\\\", \\\\\\\"Qwen\\\\\\\", \\\\\\\"8.2B\\\\\\\", \\\\\\\"0.6849\\\\\\\", \\\\\\\"[0.672, 0.698]\\\\\\\"]\\\\n      - [\\\\\\\"**Average (6-gen)**\\\\\\\", \\\\\\\"\\\\\\\", \\\\\\\"\\\\\\\", \\\\\\\"**0.790**\\\\\\\", \\\\\\\"—\\\\\\\"]\\\\n    footer: \\\\\\\"Family-out Δ = +0.011. Qwen3-8B cross-scale transfer gap: 0.685 vs ≤2.8B avg 0.81.\\\\\\\"\\\\n    evidence: [plan-002-eval, plan-015-v2, plan-014]\\\\n    notes: \\\\\\\"Fill exact per-generator CIs from bootstrap data\\\\\\\"\\\\n\\\\n  table2_feature_ablation:\\\\n    title: \\\\\\\"Feature Group Ablation and Complementarity\\\\\\\"\\\\n    placement: \\\\\\\"Results §5.2\\\\\\\"\\\\n    columns: [\\\\\\\"Feature Set\\\\\\\", \\\\\\\"Features\\\\\\\", \\\\\\\"LOGO F1\\\\\\\", \\\\\\\"95% CI\\\\\\\", \\\\\\\"McNemar p\\\\\\\"]\\\\n    rows:\\\\n      - [\\\\\\\"Full (7 features)\\\\\\\", \\\\\\\"all\\\\\\\", \\\\\\\"0.790 (6-gen)\\\\\\\", \\\\\\\"[—]\\\\\\\", \\\\\\\"—\\\\\\\"]\\\\n      - [\\\\\\\"Surface only\\\\\\\", \\\\\\\"TTR, hapax_ratio, entropy_min\\\\\\\", \\\\\\\"0.729\\\\\\\", \\\\\\\"—\\\\\\\", \\\\\\\"< 0.001\\\\\\\"]\\\\n      - [\\\\\\\"Reference only\\\\\\\", \\\\\\\"entropy_mean/std/max, tail_decay\\\\\\\", \\\\\\\"0.745\\\\\\\", \\\\\\\"—\\\\\\\", \\\\\\\"< 0.001\\\\\\\"]\\\\n    footer: \\\\\\\"6-gen LOGO. Permutation importance: hapax_ratio(0.265) > entropy_mean(0.152) > ttr(0.148)\\\\\\\"\\\\n    evidence: [plan-002-eval, plan-001-fix, plan-014]\\\\n\\\\n  table3_downstream:\\\\n    title: \\\\\\\"Downstream CLM Fine-tuning by Depth Curation Strategy\\\\\\\"\\\\n    placement: \\\\\\\"Results §5.4\\\\\\\"\\\\n    columns: [\\\\\\\"Curation Strategy\\\\\\\", \\\\\\\"Train Size\\\\\\\", \\\\\\\"Eval PPL (mean±std)\\\\\\\", \\\\\\\"Δ vs size_matched\\\\\\\"]\\\\n    rows:\\\\n      - [\\\\\\\"All depths (no filter)\\\\\\\", \\\\\\\"12,299\\\\\\\", \\\\\\\"2.335 ± 0.000\\\\\\\", \\\\\\\"-0.032\\\\\\\"]\\\\n      - [\\\\\\\"Size-matched random\\\\\\\", \\\\\\\"3,951\\\\\\\", \\\\\\\"2.367 ± 0.000\\\\\\\", \\\\\\\"baseline\\\\\\\"]\\\\n      - [\\\\\\\"Depth 0+1 only\\\\\\\", \\\\\\\"3,951\\\\\\\", \\\\\\\"2.387 ± 0.001\\\\\\\", \\\\\\\"+0.020\\\\\\\"]\\\\n      - [\\\\\\\"Binary filtered\\\\\\\", \\\\\\\"3,951\\\\\\\", \\\\\\\"2.389 ± 0.000\\\\\\\", \\\\\\\"+0.022\\\\\\\"]\\\\n      - [\\\\\\\"Depth 0 only\\\\\\\", \\\\\\\"797\\\\\\\", \\\\\\\"2.681 ± 0.001\\\\\\\", \\\\\\\"+0.314\\\\\\\"]\\\\n    footer: >\\\\n      OLMo-2-0425-1B, 3 seeds. Size-matched is the proper control.\\\\n      Depth-aware curation does not outperform random subsampling at equal data count.\\\\n    evidence: [plan-004-v2]\\\\n\\\\n  table4_cross_ref:\\\\n    title: \\\\\\\"Cross-Family Reference Model Validation\\\\\\\"\\\\n    placement: \\\\\\\"Appendix (or Results §5.2 if space)\\\\\\\"\\\\n    columns: [\\\\\\\"Reference Model\\\\\\\", \\\\\\\"Family\\\\\\\", \\\\\\\"Params\\\\\\\", \\\\\\\"LOGO F1\\\\\\\", \\\\\\\"Entropy Drift Range\\\\\\\"]\\\\n    rows:\\\\n      - [\\\\\\\"Pythia-410M\\\\\\\", \\\\\\\"Pythia\\\\\\\", \\\\\\\"410M\\\\\\\", \\\\\\\"0.803\\\\\\\", \\\\\\\"[-1.19, -1.40]\\\\\\\"]\\\\n      - [\\\\\\\"OLMo-2-1B\\\\\\\", \\\\\\\"OLMo\\\\\\\", \\\\\\\"1.5B\\\\\\\", \\\\\\\"0.807\\\\\\\", \\\\\\\"[-0.61, -0.91]\\\\\\\"]\\\\n      - [\\\\\\\"Qwen3-0.6B\\\\\\\", \\\\\\\"Qwen\\\\\\\", \\\\\\\"0.6B\\\\\\\", \\\\\\\"0.816\\\\\\\", \\\\\\\"[-0.96, -1.35]\\\\\\\"]\\\\n    footer: \\\\\\\"Drift direction consistent across all reference models; magnitude varies.\\\\\\\"\\\\n    evidence: [plan-003]\\\\n\\\\n##############################################################################\\\\n# 7. Literature Strategy\\\\n##############################################################################\\\\n\\\\nliterature:\\\\n  total_papers: 39\\\\n  organization:\\\\n    perplexity_detection:\\\\n      papers: 16\\\\n      key_refs: [detectgpt, fast_detectgpt, binoculars, ld_score, diveye, generator_barrier]\\\\n      positioning: \\\\\\\"Binary detection paradigm. No depth estimation. High cross-generator variance when repurposed as ordinal predictors.\\\\\\\"\\\\n    model_collapse:\\\\n      papers: 4\\\\n      key_refs: [curse_of_recursion, strong_model_collapse, self_consuming_mad]\\\\n      positioning: \\\\\\\"Training-loop collapse. We study inference chains without retraining — distributional drift without model parameter change.\\\\\\\"\\\\n    iterative_generation:\\\\n      papers: 2\\\\n      key_refs: [broken_telephone, markovian_chains]\\\\n      positioning: \\\\\\\"Most directly related. broken_telephone: paraphrasing/translation chains. markovian_chains: convergence theory. We: non-paraphrastic continuation chains + depth estimation task.\\\\\\\"\\\\n    vocabulary_diversity:\\\\n      papers: 5\\\\n      key_refs: [curious_decline, writing_diversity, nucleus_sampling]\\\\n      positioning: \\\\\\\"Diversity decline documented in training loops. We show it appears in inference chains too and use it for depth classification.\\\\\\\"\\\\n    stylometry:\\\\n      papers: 3\\\\n      key_refs: [stamatatos_survey, uchendu_attribution]\\\\n      positioning: \\\\\\\"Feature set is essentially stylometric. We extend from source attribution to depth estimation.\\\\\\\"\\\\n    data_quality:\\\\n      papers: 3\\\\n      key_refs: [dsir, qurating]\\\\n      positioning: \\\\\\\"Data scoring/selection. Depth fingerprint as complementary provenance signal.\\\\\\\"\\\\n    watermarking:\\\\n      papers: 4\\\\n      key_refs: [watermark_llm, chainwash]\\\\n      positioning: \\\\\\\"Active signal embedding. We: passive post-hoc detection without watermark. chainwash motivates depth-aware approach — watermarks decay over generation steps.\\\\\\\"\\\\n    membership_inference:\\\\n      papers: 1\\\\n      key_refs: [min_k_percent]\\\\n      positioning: \\\\\\\"Probability distribution analysis for membership; we analyze for depth.\\\\\\\"\\\\n    ood_detection:\\\\n      papers: 1\\\\n      key_refs: [ood_baseline]\\\\n      positioning: \\\\\\\"Reference-model entropy features are functionally NLL-based OOD scores. Explicitly acknowledge this connection (RC8).\\\\\\\"\\\\n\\\\n##############################################################################\\\\n# 8. Writing Order & Dependencies\\\\n##############################################################################\\\\n\\\\nwriting_order:\\\\n  phase1_skeleton:\\\\n    deadline: \\\\\\\"2026-05-18\\\\\\\"\\\\n    tasks:\\\\n      - section: \\\\\\\"Results (§5)\\\\\\\"\\\\n        reason: \\\\\\\"Anchor claims to evidence first. Numbers drive the narrative.\\\\\\\"\\\\n        dependencies: []\\\\n        priority: 1\\\\n      - section: \\\\\\\"Method (§4)\\\\\\\"\\\\n        reason: \\\\\\\"Experimental setup needed to interpret results.\\\\\\\"\\\\n        dependencies: []\\\\n        priority: 2\\\\n      - section: \\\\\\\"Figures (all 4)\\\\\\\"\\\\n        reason: \\\\\\\"Figures convey results more effectively than text. Generate early.\\\\\\\"\\\\n        dependencies: [\\\\\\\"Results\\\\\\\"]\\\\n        priority: 1\\\\n\\\\n  phase2_narrative:\\\\n    deadline: \\\\\\\"2026-05-21\\\\\\\"\\\\n    tasks:\\\\n      - section: \\\\\\\"Introduction (§1)\\\\\\\"\\\\n        reason: \\\\\\\"Story spine. Requires stable results to write convincingly.\\\\\\\"\\\\n        dependencies: [\\\\\\\"Results\\\\\\\"]\\\\n        priority: 1\\\\n      - section: \\\\\\\"Related Work (§2)\\\\\\\"\\\\n        reason: \\\\\\\"Positioning depends on knowing exact claims.\\\\\\\"\\\\n        dependencies: [\\\\\\\"Introduction\\\\\\\"]\\\\n        priority: 2\\\\n      - section: \\\\\\\"Discussion + Limitations (§6)\\\\\\\"\\\\n        reason: \\\\\\\"Interprets results, addresses reviewer concerns.\\\\\\\"\\\\n        dependencies: [\\\\\\\"Results\\\\\\\"]\\\\n        priority: 2\\\\n\\\\n  phase3_polish:\\\\n    deadline: \\\\\\\"2026-05-23\\\\\\\"\\\\n    tasks:\\\\n      - section: \\\\\\\"Abstract\\\\\\\"\\\\n        reason: \\\\\\\"Last written, first read. Needs stable claims.\\\\\\\"\\\\n        dependencies: [\\\\\\\"Introduction\\\\\\\", \\\\\\\"Results\\\\\\\", \\\\\\\"Discussion\\\\\\\"]\\\\n        priority: 1\\\\n      - section: \\\\\\\"Conclusion\\\\\\\"\\\\n        reason: \\\\\\\"Mirror of abstract with forward-looking additions.\\\\\\\"\\\\n        dependencies: [\\\\\\\"Abstract\\\\\\\"]\\\\n        priority: 2\\\\n      - section: \\\\\\\"Title\\\\\\\"\\\\n        reason: \\\\\\\"After all claims are finalized.\\\\\\\"\\\\n        dependencies: [\\\\\\\"Abstract\\\\\\\"]\\\\n        priority: 3\\\\n\\\\n  phase4_submission:\\\\n    deadline: \\\\\\\"2026-05-25\\\\\\\"\\\\n    tasks:\\\\n      - \\\\\\\"Citation verification (reference-audit skill)\\\\\\\"\\\\n      - \\\\\\\"Page limit compliance (8 pages for EMNLP ARR)\\\\\\\"\\\\n      - \\\\\\\"Anonymization check\\\\\\\"\\\\n      - \\\\\\\"Limitations section + Ethics statement (mandatory for ARR)\\\\\\\"\\\\n      - \\\\\\\"Appendix organization (cross-ref table, length analysis, per-generator details)\\\\\\\"\\\\n\\\\n##############################################################################\\\\n# 9. Reviewer Concern Coverage Matrix\\\\n##############################################################################\\\\n\\\\nreviewer_coverage:\\\\n  RC1_vocabulary_impoverishment:\\\\n    sections: [related_work, results]\\\\n    evidence: [plan-002-eval]\\\\n    response: \\\\\\\"Feature complementarity proven: full(0.80) > surface(0.75) = ref(0.75). Two groups capture different signal.\\\\\\\"\\\\n\\\\n  RC2_generalize_beyond_pythia:\\\\n    sections: [method, results]\\\\n    evidence: [plan-002, plan-002-eval, plan-003]\\\\n    response: \\\\\\\"6 generators / 3 families (incl. 8B). LOGO F1=0.79, family-out Δ=+0.01. Cross-family ref models all work.\\\\\\\"\\\\n\\\\n  RC3_three_class_sufficient:\\\\n    sections: [discussion, limitations]\\\\n    evidence: []\\\\n    response: \\\\\\\"Attractor theory bounds paraphrasing to ~3 classes. Non-paraphrastic chains may support finer granularity — acknowledged as future work.\\\\\\\"\\\\n\\\\n  RC4_realistic_chains:\\\\n    sections: [method, limitations]\\\\n    evidence: [plan-002]\\\\n    response: \\\\\\\"6 generators across 3 families tested (incl. 8B). Mixed-generator chains acknowledged as limitation.\\\\\\\"\\\\n\\\\n  RC5_human_editing:\\\\n    sections: [limitations]\\\\n    evidence: []\\\\n    response: \\\\\\\"Not tested. Acknowledged as limitation. Robustness to editing is future work.\\\\\\\"\\\\n\\\\n  RC6_ecological_validity:\\\\n    sections: [method, limitations]\\\\n    evidence: [mvp-001]\\\\n    response: \\\\\\\"Wikipedia seeds across domains. Single prompt type (continuation); multi-prompt pending (plan-005).\\\\\\\"\\\\n\\\\n  RC7_ld_score_prediction:\\\\n    sections: [results]\\\\n    evidence: [plan-015-v2]\\\\n    response: \\\\\\\"LD-Score confirmed as level feature (LOGO F1=0.72, Spearman=0.79). Pre-registered prediction validated.\\\\\\\"\\\\n\\\\n  RC8_ood_detection_features:\\\\n    sections: [introduction, related_work, discussion]\\\\n    evidence: []\\\\n    response: \\\\\\\"Explicitly acknowledge reference-model entropy = NLL-based OOD score. Contribution is task formulation + empirical characterization, not features themselves.\\\\\\\"\\\\n\\\\n  RC9_scale:\\\\n    sections: [results, limitations]\\\\n    evidence: [plan-014]\\\\n    response: \\\\\\\"Qwen3-8B (8.2B params) tested. Depth signal persists at 8B (all Spearman p<1e-6). Cross-scale transfer gap: held-out F1=0.6849 vs ≤2.8B 0.76-0.86. 6-gen LOGO 0.79 still outperforms all baselines.\\\\\\\"\\\\n    status: \\\\\\\"RESOLVED (D011)\\\\\\\"\\\\n\\\\n  RC10_length_confound:\\\\n    sections: [results]\\\\n    evidence: [plan-013]\\\\n    response: \\\\\\\"Triple evidence: weak correlation (|ρ|<0.14), normalized trends preserved, length-matched F1 +0.041.\\\\\\\"\\\\n\\\\n  RC11_downstream_single_run:\\\\n    sections: [results]\\\\n    evidence: [plan-004-v2]\\\\n    response: \\\\\\\"15 runs (5 variants × 3 seeds), cross-seed variance <0.002. OLMo-2-1B avoids reference model circularity.\\\\\\\"\\\\n\\\\n##############################################################################\\\\n# 10. Pending Experiments & Writing Blockers\\\\n##############################################################################\\\\n\\\\npending:\\\\n  plan-014:\\\\n    status: DONE\\\\n    description: \\\\\\\"Qwen3-8B-Base (7B+ generator) — scale generalization test\\\\\\\"\\\\n    impact_on_paper: \\\\\\\"Results §5.1 + Limitations: depth signal persists at 8B, cross-scale gap 0.6849\\\\\\\"\\\\n    blocker: false\\\\n\\\\n  plan-005:\\\\n    status: RUNNING\\\\n    description: \\\\\\\"Prompt type comparison (continuation vs elaboration vs inspired_rewriting)\\\\\\\"\\\\n    impact_on_paper: \\\\\\\"Addresses RC6 ecological validity\\\\\\\"\\\\n    blocker: false  # acknowledged as limitation if not completed\\\\n\\\\n##############################################################################\\\\n# 11. Framing Discipline Reminders (from D006+D007)\\\\n##############################################################################\\\\n\\\\nframing_rules:\\\\n  - \\\\\\\"Use 'differential depth response', NOT 'dual dynamics' or 'H1/H2'\\\\\\\"\\\\n  - \\\\\\\"Contribution is empirical/conceptual, NOT methodological\\\\\\\"\\\\n  - \\\\\\\"Do NOT call drift/stationarity split a 'discovery' — it follows from location-shift properties\\\\\\\"\\\\n  - \\\\\\\"Report realistic performance range (0.69-0.85 per-gen, 0.79 LOGO avg) in abstract/conclusion, not just best-case\\\\\\\"\\\\n  - \\\\\\\"Consider 'distributional depth profiling' instead of 'distributional fingerprinting'\\\\\\\"\\\\n  - \\\\\\\"R² on 5 aggregated depth means is meaningless — use individual-level Spearman ρ with bootstrap CI\\\\\\\"\\\\n  - \\\\\\\"Headline template 'Z% downstream' → REPLACE with negative-finding wording\\\\\\\"\\\\n  - \\\\\\\"Explicitly connect to OOD detection + perplexity-based detection literature\\\\\\\"\\\\n  - \\\\\\\"Provide speculative theoretical motivation for shape stationarity\\\\\\\"\\\\n\\\", \\\"total_chars\\\": 26500, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/writing_plan.yaml\", \"content\": \"# Writing Plan — gen-depth-fingerprint\\n# Depth Fingerprinting of Recursive LLM Generation Chains\\n# Created: 2026-05-15\\n\\n##############################################################################\\n# 1. Submission Target\\n##############################################################################\\n\\nsubmission:\\n  primary:\\n    venue: EMNLP 2026 ARR\\n    deadline: 2026-05-25\\n    page_limit: \\\"8 pages (long) + unlimited appendix\\\"\\n    template: acl.sty\\n    special_requirements:\\n      - Limitations section (mandatory)\\n      - Ethics Statement\\n      - ARR submission format\\n    note: \\\"D012: 主投 EMNLP ARR，DDL 仅剩 10 天，全速推进\\\"\\n  fallback:\\n    - venue: AAAI 2027\\n      deadline: 2026-08-02\\n    - venue: ICLR 2027\\n      deadline: 2026-09-24\\n    - venue: NAACL 2027 ARR\\n      deadline: 2026-10-16\\n\\n##############################################################################\\n# 2. One-Sentence Contribution\\n##############################################################################\\n\\none_sentence: >\\n  We formulate ordinal depth estimation for recursive LLM generation chains,\\n  showing that distributional features exhibit differential depth response\\n  (central-tendency drifts, shape remains stationary), yielding a 7-feature\\n  ensemble that reliably classifies generation depth (LOGO F1=0.79) across\\n  6 generators / 3 model families (including 7B+ scale).\\n\\n##############################################################################\\n# 3. Claim-Evidence Map\\n##############################################################################\\n\\nclaims:\\n  C1_depth_discriminability:\\n    claim: >\\n      Distributional features under a held-out reference model classify\\n      generation depth (gen-0/gen-1/gen-2+) with macro-F1 significantly\\n      above chance, generalizing across unseen generators.\\n    evidence:\\n      - exp_id: plan-002-eval\\n        metric: \\\"LOGO avg macro-F1 = 0.8037\\\"\\n      - exp_id: plan-002-eval\\n        metric: \\\"Leave-one-family-out Δ = +0.0107 (Pythia vs non-Pythia)\\\"\\n      - exp_id: plan-015-v2\\n        metric: \\\"Bootstrap CI [0.786, 0.799], p<0.001 vs all baselines\\\"\\n      - exp_id: plan-013\\n        metric: \\\"Length not a confound (|ρ|<0.14, normalized trends preserved)\\\"\\n      - exp_id: plan-014\\n        metric: \\\"6-gen LOGO F1=0.7897 (incl. Qwen3-8B), held-out F1=0.6849, depth signal persists at 8B, cross-scale transfer gap noted\\\"\\n    tables: [Table 1, Table 2]\\n    figures: [Fig 2, Fig 3]\\n\\n  C2_differential_response:\\n    claim: >\\n      Central-tendency/diversity features (entropy_mean, TTR, hapax_ratio) drift\\n      monotonically with depth; shape features (entropy_std, tail_decay) remain\\n      near-stationary. Full 7-feature set significantly outperforms surface-only\\n      and reference-only subsets.\\n    evidence:\\n      - exp_id: plan-001-fix\\n        metric: \\\"full(0.82) > surface(0.76) > reference(0.72), CI non-overlapping\\\"\\n      - exp_id: plan-002\\n        metric: \\\"Drift direction consistent across all 6 generators (incl. 8B)\\\"\\n      - exp_id: plan-002-eval\\n        metric: \\\"full(0.80) > ref(0.75) = surf(0.75), McNemar p≈0\\\"\\n      - exp_id: plan-003\\n        metric: \\\"3 cross-family ref models: LOGO F1 0.80-0.82, drift direction consistent\\\"\\n    tables: [Table 2]\\n    figures: [Fig 1]\\n\\n  C3_downstream_negative:\\n    claim: >\\n      Depth-aware data curation does NOT improve downstream CLM quality.\\n      Data quantity dominates depth composition. Depth fingerprinting is\\n      diagnostic, not curative.\\n    status: NEGATIVE FINDING — report honestly\\n    evidence:\\n      - exp_id: plan-004-v2\\n        metric: \\\"all(2.335) < size_matched(2.367) < depth01(2.387) ≈ binary_filtered(2.389)\\\"\\n      - exp_id: plan-004-v2\\n        metric: \\\"15/15 runs, cross-seed variance <0.002\\\"\\n    tables: [Table 3]\\n    figures: [Fig 4]\\n    framing_note: >\\n      DO NOT hide or spin. Frame as: \\\"We tested whether depth-aware curation\\n      improves downstream quality. It does not. The primary determinant is data\\n      quantity, not depth composition. This positions depth fingerprinting as a\\n      diagnostic tool for provenance characterization, not a curative tool for\\n      data selection.\\\"\\n\\n##############################################################################\\n# 4. Paper Outline\\n##############################################################################\\n\\noutline:\\n  abstract:\\n    length: \\\"~200 words\\\"\\n    structure: \\\"five-sentence method (Farquhar)\\\"\\n    key_points:\\n      - \\\"We formulate ordinal depth estimation beyond binary detection\\\"\\n      - \\\"Why hard: existing detectors offer only real-vs-synthetic, no depth signal\\\"\\n      - \\\"How: 7 distributional features exhibiting differential depth response\\\"\\n      - \\\"Evidence: LOGO F1=0.79 across 6 generators / 3 families (incl. 7B+), p<0.001 vs baselines\\\"\\n      - \\\"Honest negative: depth-aware curation does not improve downstream quality\\\"\\n    headline_note: >\\n      The paper_framing.md headline template contains \\\"Z% downstream\\\" placeholder.\\n      UPDATE to negative-finding wording: \\\"...however, depth-aware data curation\\n      does not improve downstream model quality over random subsampling,\\n      positioning depth estimation as a diagnostic rather than curative tool.\\\"\\n    reviewer_concerns_covered: []\\n\\n  introduction:\\n    length: \\\"~1.5 pages\\\"\\n    key_points:\\n      - \\\"Problem: web data increasingly contains recursive LLM-generated text of unknown provenance depth\\\"\\n      - \\\"Gap: binary detectors cannot distinguish gen-1 from gen-2+, forcing all-or-nothing filtering\\\"\\n      - \\\"Our formulation: ordinal depth estimation as a new task (genuinely novel)\\\"\\n      - \\\"Core finding: differential depth response — level/diversity features drift, shape features are stationary\\\"\\n      - \\\"Practical consequence: 7-feature ensemble LOGO F1=0.79, reliable across unknown generators (incl. 7B+)\\\"\\n      - \\\"Honest reporting: downstream curation does not benefit (diagnostic, not curative)\\\"\\n      - \\\"Contributions list (3 items matching the 3 claims)\\\"\\n    evidence:\\n      - exp_id: plan-015-v2  # headline numbers\\n      - exp_id: plan-002-eval  # LOGO result\\n    reviewer_concerns_covered: [RC8]\\n    notes:\\n      - \\\"Must explicitly state contribution is empirical/conceptual, not methodological (D006+D007)\\\"\\n      - \\\"Connect to OOD detection literature in framing paragraph (RC8)\\\"\\n      - \\\"Do NOT overclaim 'dual dynamics' — use 'differential depth response' (D007)\\\"\\n\\n  related_work:\\n    length: \\\"~1 page\\\"\\n    organization: # see literature_strategy section below\\n      - subsection: \\\"AI-Generated Text Detection\\\"\\n        papers: [detectgpt, gltr, dna_gpt, binoculars, fast_detectgpt, ld_score, intrinsic_dimension, diveye, generator_barrier, feat_aug_transformer, reliable_detection, paraphrase_evades, detection_possibilities, grover, release_strategies, jawahar_survey]\\n        angle: \\\"Binary detection only — no depth estimation capability. Single-score baselines show high cross-generator variance.\\\"\\n      - subsection: \\\"Model Collapse and Iterative Generation\\\"\\n        papers: [self_consuming_mad, curse_of_recursion, strong_model_collapse, model_collapse_avoidable, broken_telephone, markovian_chains]\\n        angle: \\\"Training-loop collapse theory; iterative generation distortion. We study inference-chain depth without retraining.\\\"\\n      - subsection: \\\"Vocabulary Diversity and Stylometry\\\"\\n        papers: [curious_decline, writing_diversity, nucleus_sampling, mapping_llm_science, monitoring_ai_review, stamatatos_survey, koppel_authorship, uchendu_attribution]\\n        angle: \\\"Diversity decline documented but not used for depth estimation. Our surface features are stylometric in nature.\\\"\\n      - subsection: \\\"Data Quality and Provenance\\\"\\n        papers: [dsir, qurating, ccnet, watermark_llm, synthid_text, aaronson_watermark, chainwash, min_k_percent, ood_baseline]\\n        angle: \\\"Quality scoring/watermarking for data curation. Depth fingerprint complements these as provenance signal.\\\"\\n    reviewer_concerns_covered: [RC1, RC8]\\n\\n  method:\\n    length: \\\"~1.5 pages\\\"\\n    subsections:\\n      - name: \\\"Task Formulation\\\"\\n        content: \\\"Ordinal depth estimation: given text x, predict depth class {gen-0, gen-1, gen-2+}\\\"\\n        length: \\\"~0.25 page\\\"\\n      - name: \\\"Generation Chain Construction\\\"\\n        content: \\\"6 generators (Pythia-2.8B, Pythia-1B, OLMo-2-1B, Qwen3-1.7B, Qwen3-0.6B, Qwen3-8B), 3 families, ~1000 seeds × 5 depths, continuation prompt, temp=0.7/top_p=0.9/max_tokens=256\\\"\\n        evidence: [mvp-001, plan-002, plan-014]\\n        length: \\\"~0.25 page\\\"\\n      - name: \\\"Feature Extraction\\\"\\n        content: \\\"7 features: 4 reference-model (entropy_mean/std/max, tail_decay) + 3 surface (TTR, hapax_ratio, entropy_min). Reference model = Pythia-410M.\\\"\\n        length: \\\"~0.5 page\\\"\\n      - name: \\\"Evaluation Protocol\\\"\\n        content: \\\"Leave-one-generator-out (LOGO) cross-validation. XGBoost classifier. Bootstrap CI (n=1000). McNemar test for feature ablation.\\\"\\n        length: \\\"~0.5 page\\\"\\n    reviewer_concerns_covered: [RC2, RC4, RC6]\\n\\n  results:\\n    length: \\\"~2 pages\\\"\\n    subsections:\\n      - name: \\\"Depth Classification Performance (C1)\\\"\\n        content: \\\"6-gen LOGO F1=0.79, per-generator breakdown (0.68-0.86), family-out Δ=+0.01. Gen-0 near-perfect (F1=0.95), gen-1 vs gen-2+ harder. Qwen3-8B held-out F1=0.6849 (cross-scale gap).\\\"\\n        evidence: [plan-002-eval, plan-015-v2, plan-014]\\n        tables: [Table 1]\\n        figures: [Fig 2]\\n        length: \\\"~0.5 page\\\"\\n      - name: \\\"Differential Depth Response (C2)\\\"\\n        content: \\\"Feature drift patterns. entropy_mean/TTR/hapax drift monotonically. entropy_std/tail_decay near-stationary. Feature complementarity: full > surface = reference.\\\"\\n        evidence: [plan-001-fix, plan-002, plan-003]\\n        tables: [Table 2]\\n        figures: [Fig 1]\\n        length: \\\"~0.5 page\\\"\\n      - name: \\\"Comparison with Detection Baselines\\\"\\n        content: \\\"7-feature vs Avg-LogProb (+3.9pp, p<0.001), FastDetectGPT (+6.7pp), LD-Score, Binoculars. Key advantage: tight CI vs high variance of single detectors.\\\"\\n        evidence: [plan-015-v2]\\n        figures: [Fig 3]\\n        length: \\\"~0.5 page\\\"\\n      - name: \\\"Downstream Utility — Negative Finding (C3)\\\"\\n        content: \\\"Depth-aware curation does not improve CLM quality. all(2.335) < size_matched(2.367) < depth01(2.387). Quantity dominates composition. Diagnostic not curative.\\\"\\n        evidence: [plan-004-v2]\\n        tables: [Table 3]\\n        figures: [Fig 4]\\n        length: \\\"~0.5 page\\\"\\n    reviewer_concerns_covered: [RC1, RC2, RC10, RC11]\\n\\n  discussion:\\n    length: \\\"~0.5 page\\\"\\n    key_points:\\n      - \\\"Why shape features are stationary: determined by sampling mechanism and architecture, invariant to input content drift (speculative, explicitly flagged)\\\"\\n      - \\\"Practical implications: risk-stratified data curation (flag gen-2+ for review, keep gen-1)\\\"\\n      - \\\"Honest framing of C3: negative finding has positive information value — rules out depth-based filtering as curation strategy\\\"\\n      - \\\"Connection to model collapse literature: inference chains show similar distributional drift without retraining\\\"\\n    reviewer_concerns_covered: [RC3, RC8]\\n\\n  limitations:\\n    length: \\\"~0.25 page (mandatory for EMNLP; good practice for AAAI)\\\"\\n    items:\\n      - \\\"Generators up to 8B tested (plan-014); depth signal exists at scale but cross-scale transfer gap (8B held-out F1=0.685 vs ≤2.8B 0.76-0.86). Frontier models (70B+) untested.\\\"\\n      - \\\"Single prompt type (continuation); elaboration/rewriting chains not yet tested (plan-005 pending)\\\"\\n      - \\\"Lab-constructed single-model chains; real web contamination involves diverse generators per step\\\"\\n      - \\\"Negative downstream result tested on CLM only; other downstream tasks not evaluated\\\"\\n      - \\\"3-class granularity; finer-grained depth may be possible for non-paraphrastic chains\\\"\\n    reviewer_concerns_covered: [RC3, RC4, RC5, RC6, RC9]\\n\\n  conclusion:\\n    length: \\\"~0.25 page\\\"\\n    key_points:\\n      - \\\"Restate contributions: task formulation, empirical characterization, honest negative on downstream\\\"\\n      - \\\"Report realistic performance range (0.68-0.86 per-generator, 0.79 LOGO average)\\\"\\n      - \\\"Future work: frontier-scale generators, mixed-generator chains, prompt type diversity\\\"\\n\\n##############################################################################\\n# 5. Figure Plan\\n##############################################################################\\n\\nfigures:\\n  fig1_differential_response:\\n    title: \\\"Differential Depth Response of Distributional Features\\\"\\n    type: \\\"multi-panel line plot (2×2 or 1×4)\\\"\\n    tool: matplotlib\\n    aspect_ratio: \\\"2:1\\\"\\n    data_source: plan-002 (features_all_models.csv) + plan-014 (qwen3-8b features)\\n    content:\\n      - \\\"Panel A: entropy_mean vs depth (6 generators, monotonic drift)\\\"\\n      - \\\"Panel B: TTR or hapax_ratio vs depth (monotonic drift)\\\"\\n      - \\\"Panel C: entropy_std vs depth (near-stationary)\\\"\\n      - \\\"Panel D: tail_decay vs depth (near-stationary)\\\"\\n    notes: \\\"Error bands = bootstrap 95% CI. Color-code by generator. This is the signature figure — spend time on it.\\\"\\n    placement: \\\"Results §5.2\\\"\\n    evidence: [plan-001-fix, plan-002]\\n\\n  fig2_logo_performance:\\n    title: \\\"Leave-One-Generator-Out Classification Performance\\\"\\n    type: \\\"grouped bar chart\\\"\\n    tool: matplotlib\\n    aspect_ratio: \\\"3:2\\\"\\n    data_source: plan-002-eval (cross_generator_results.json) + plan-014 (6-gen LOGO)\\n    content:\\n      - \\\"Per held-out generator macro-F1 with CI\\\"\\n      - \\\"Horizontal line at overall LOGO mean (0.79)\\\"\\n      - \\\"Optional: per-class (gen-0/gen-1/gen-2+) breakdown\\\"\\n    placement: \\\"Results §5.1\\\"\\n    evidence: [plan-002-eval]\\n\\n  fig3_baseline_comparison:\\n    title: \\\"Comparison with Single-Detector Baselines\\\"\\n    type: \\\"forest plot (dot-with-CI)\\\"\\n    tool: matplotlib\\n    aspect_ratio: \\\"4:3\\\"\\n    data_source: plan-015-v2 (detector_baseline_results.json)\\n    content:\\n      - \\\"7-feature ensemble: 0.798 [0.786, 0.799]\\\"\\n      - \\\"Avg-LogProb: 0.765 [0.616, 0.820]\\\"\\n      - \\\"LD-Score: 0.721 [0.588, 0.770]\\\"\\n      - \\\"FastDetectGPT: 0.627 [0.511, 0.762]\\\"\\n      - \\\"Binoculars: 0.579 [0.405, 0.664]\\\"\\n    notes: \\\"Key message: ensemble has tight CI, single detectors have wide CI. Reliability advantage, not just mean.\\\"\\n    placement: \\\"Results §5.3\\\"\\n    evidence: [plan-015-v2]\\n\\n  fig4_downstream_negative:\\n    title: \\\"Downstream CLM Perplexity by Data Curation Strategy\\\"\\n    type: \\\"bar chart with error bars\\\"\\n    tool: matplotlib\\n    aspect_ratio: \\\"4:3\\\"\\n    data_source: plan-004-v2\\n    content:\\n      - \\\"5 variants: all / size_matched / depth01 / binary_filtered / depth0_only\\\"\\n      - \\\"Y-axis: eval perplexity\\\"\\n      - \\\"Error bars: 3-seed variance\\\"\\n      - \\\"Annotation: data count per variant\\\"\\n    notes: \\\"Frame as honest negative. Title should not hide the negative result.\\\"\\n    placement: \\\"Results §5.4\\\"\\n    evidence: [plan-004-v2]\\n\\n##############################################################################\\n# 6. Table Plan\\n##############################################################################\\n\\ntables:\\n  table1_logo_results:\\n    title: \\\"Leave-One-Generator-Out Depth Classification Results\\\"\\n    placement: \\\"Results §5.1\\\"\\n    columns: [\\\"Held-out Generator\\\", \\\"Family\\\", \\\"Params\\\", \\\"Macro-F1\\\", \\\"95% CI\\\"]\\n    rows:\\n      - [\\\"Pythia-2.8B\\\", \\\"Pythia\\\", \\\"2.8B\\\", \\\"0.804\\\", \\\"—\\\"]\\n      - [\\\"Pythia-1B\\\", \\\"Pythia\\\", \\\"1.0B\\\", \\\"0.855\\\", \\\"—\\\"]\\n      - [\\\"OLMo-2-1B\\\", \\\"OLMo\\\", \\\"1.5B\\\", \\\"0.762\\\", \\\"—\\\"]\\n      - [\\\"Qwen3-1.7B\\\", \\\"Qwen\\\", \\\"1.7B\\\", \\\"0.809\\\", \\\"—\\\"]\\n      - [\\\"Qwen3-0.6B\\\", \\\"Qwen\\\", \\\"0.6B\\\", \\\"0.823\\\", \\\"—\\\"]\\n      - [\\\"Qwen3-8B\\\", \\\"Qwen\\\", \\\"8.2B\\\", \\\"0.6849\\\", \\\"[0.672, 0.698]\\\"]\\n      - [\\\"**Average (6-gen)**\\\", \\\"\\\", \\\"\\\", \\\"**0.790**\\\", \\\"—\\\"]\\n    footer: \\\"Family-out Δ = +0.011. Qwen3-8B cross-scale transfer gap: 0.685 vs ≤2.8B avg 0.81.\\\"\\n    evidence: [plan-002-eval, plan-015-v2, plan-014]\\n    notes: \\\"Fill exact per-generator CIs from bootstrap data\\\"\\n\\n  table2_feature_ablation:\\n    title: \\\"Feature Group Ablation and Complementarity\\\"\\n    placement: \\\"Results §5.2\\\"\\n    columns: [\\\"Feature Set\\\", \\\"Features\\\", \\\"LOGO F1\\\", \\\"95% CI\\\", \\\"McNemar p\\\"]\\n    rows:\\n      - [\\\"Full (7 features)\\\", \\\"all\\\", \\\"0.790 (6-gen)\\\", \\\"[—]\\\", \\\"—\\\"]\\n      - [\\\"Surface only\\\", \\\"TTR, hapax_ratio, entropy_min\\\", \\\"0.729\\\", \\\"—\\\", \\\"< 0.001\\\"]\\n      - [\\\"Reference only\\\", \\\"entropy_mean/std/max, tail_decay\\\", \\\"0.745\\\", \\\"—\\\", \\\"< 0.001\\\"]\\n    footer: \\\"6-gen LOGO. Permutation importance: hapax_ratio(0.265) > entropy_mean(0.152) > ttr(0.148)\\\"\\n    evidence: [plan-002-eval, plan-001-fix, plan-014]\\n\\n  table3_downstream:\\n    title: \\\"Downstream CLM Fine-tuning by Depth Curation Strategy\\\"\\n    placement: \\\"Results §5.4\\\"\\n    columns: [\\\"Curation Strategy\\\", \\\"Train Size\\\", \\\"Eval PPL (mean±std)\\\", \\\"Δ vs size_matched\\\"]\\n    rows:\\n      - [\\\"All depths (no filter)\\\", \\\"12,299\\\", \\\"2.335 ± 0.000\\\", \\\"-0.032\\\"]\\n      - [\\\"Size-matched random\\\", \\\"3,951\\\", \\\"2.367 ± 0.000\\\", \\\"baseline\\\"]\\n      - [\\\"Depth 0+1 only\\\", \\\"3,951\\\", \\\"2.387 ± 0.001\\\", \\\"+0.020\\\"]\\n      - [\\\"Binary filtered\\\", \\\"3,951\\\", \\\"2.389 ± 0.000\\\", \\\"+0.022\\\"]\\n      - [\\\"Depth 0 only\\\", \\\"797\\\", \\\"2.681 ± 0.001\\\", \\\"+0.314\\\"]\\n    footer: >\\n      OLMo-2-0425-1B, 3 seeds. Size-matched is the proper control.\\n      Depth-aware curation does not outperform random subsampling at equal data count.\\n    evidence: [plan-004-v2]\\n\\n  table4_cross_ref:\\n    title: \\\"Cross-Family Reference Model Validation\\\"\\n    placement: \\\"Appendix (or Results §5.2 if space)\\\"\\n    columns: [\\\"Reference Model\\\", \\\"Family\\\", \\\"Params\\\", \\\"LOGO F1\\\", \\\"Entropy Drift Range\\\"]\\n    rows:\\n      - [\\\"Pythia-410M\\\", \\\"Pythia\\\", \\\"410M\\\", \\\"0.803\\\", \\\"[-1.19, -1.40]\\\"]\\n      - [\\\"OLMo-2-1B\\\", \\\"OLMo\\\", \\\"1.5B\\\", \\\"0.807\\\", \\\"[-0.61, -0.91]\\\"]\\n      - [\\\"Qwen3-0.6B\\\", \\\"Qwen\\\", \\\"0.6B\\\", \\\"0.816\\\", \\\"[-0.96, -1.35]\\\"]\\n    footer: \\\"Drift direction consistent across all reference models; magnitude varies.\\\"\\n    evidence: [plan-003]\\n\\n##############################################################################\\n# 7. Literature Strategy\\n##############################################################################\\n\\nliterature:\\n  total_papers: 39\\n  organization:\\n    perplexity_detection:\\n      papers: 16\\n      key_refs: [detectgpt, fast_detectgpt, binoculars, ld_score, diveye, generator_barrier]\\n      positioning: \\\"Binary detection paradigm. No depth estimation. High cross-generator variance when repurposed as ordinal predictors.\\\"\\n    model_collapse:\\n      papers: 4\\n      key_refs: [curse_of_recursion, strong_model_collapse, self_consuming_mad]\\n      positioning: \\\"Training-loop collapse. We study inference chains without retraining — distributional drift without model parameter change.\\\"\\n    iterative_generation:\\n      papers: 2\\n      key_refs: [broken_telephone, markovian_chains]\\n      positioning: \\\"Most directly related. broken_telephone: paraphrasing/translation chains. markovian_chains: convergence theory. We: non-paraphrastic continuation chains + depth estimation task.\\\"\\n    vocabulary_diversity:\\n      papers: 5\\n      key_refs: [curious_decline, writing_diversity, nucleus_sampling]\\n      positioning: \\\"Diversity decline documented in training loops. We show it appears in inference chains too and use it for depth classification.\\\"\\n    stylometry:\\n      papers: 3\\n      key_refs: [stamatatos_survey, uchendu_attribution]\\n      positioning: \\\"Feature set is essentially stylometric. We extend from source attribution to depth estimation.\\\"\\n    data_quality:\\n      papers: 3\\n      key_refs: [dsir, qurating]\\n      positioning: \\\"Data scoring/selection. Depth fingerprint as complementary provenance signal.\\\"\\n    watermarking:\\n      papers: 4\\n      key_refs: [watermark_llm, chainwash]\\n      positioning: \\\"Active signal embedding. We: passive post-hoc detection without watermark. chainwash motivates depth-aware approach — watermarks decay over generation steps.\\\"\\n    membership_inference:\\n      papers: 1\\n      key_refs: [min_k_percent]\\n      positioning: \\\"Probability distribution analysis for membership; we analyze for depth.\\\"\\n    ood_detection:\\n      papers: 1\\n      key_refs: [ood_baseline]\\n      positioning: \\\"Reference-model entropy features are functionally NLL-based OOD scores. Explicitly acknowledge this connection (RC8).\\\"\\n\\n##############################################################################\\n# 8. Writing Order & Dependencies\\n##############################################################################\\n\\nwriting_order:\\n  phase1_skeleton:\\n    deadline: \\\"2026-05-18\\\"\\n    tasks:\\n      - section: \\\"Results (§5)\\\"\\n        reason: \\\"Anchor claims to evidence first. Numbers drive the narrative.\\\"\\n        dependencies: []\\n        priority: 1\\n      - section: \\\"Method (§4)\\\"\\n        reason: \\\"Experimental setup needed to interpret results.\\\"\\n        dependencies: []\\n        priority: 2\\n      - section: \\\"Figures (all 4)\\\"\\n        reason: \\\"Figures convey results more effectively than text. Generate early.\\\"\\n        dependencies: [\\\"Results\\\"]\\n        priority: 1\\n\\n  phase2_narrative:\\n    deadline: \\\"2026-05-21\\\"\\n    tasks:\\n      - section: \\\"Introduction (§1)\\\"\\n        reason: \\\"Story spine. Requires stable results to write convincingly.\\\"\\n        dependencies: [\\\"Results\\\"]\\n        priority: 1\\n      - section: \\\"Related Work (§2)\\\"\\n        reason: \\\"Positioning depends on knowing exact claims.\\\"\\n        dependencies: [\\\"Introduction\\\"]\\n        priority: 2\\n      - section: \\\"Discussion + Limitations (§6)\\\"\\n        reason: \\\"Interprets results, addresses reviewer concerns.\\\"\\n        dependencies: [\\\"Results\\\"]\\n        priority: 2\\n\\n  phase3_polish:\\n    deadline: \\\"2026-05-23\\\"\\n    tasks:\\n      - section: \\\"Abstract\\\"\\n        reason: \\\"Last written, first read. Needs stable claims.\\\"\\n        dependencies: [\\\"Introduction\\\", \\\"Results\\\", \\\"Discussion\\\"]\\n        priority: 1\\n      - section: \\\"Conclusion\\\"\\n        reason: \\\"Mirror of abstract with forward-looking additions.\\\"\\n        dependencies: [\\\"Abstract\\\"]\\n        priority: 2\\n      - section: \\\"Title\\\"\\n        reason: \\\"After all claims are finalized.\\\"\\n        dependencies: [\\\"Abstract\\\"]\\n        priority: 3\\n\\n  phase4_submission:\\n    deadline: \\\"2026-05-25\\\"\\n    tasks:\\n      - \\\"Citation verification (reference-audit skill)\\\"\\n      - \\\"Page limit compliance (8 pages for EMNLP ARR)\\\"\\n      - \\\"Anonymization check\\\"\\n      - \\\"Limitations section + Ethics statement (mandatory for ARR)\\\"\\n      - \\\"Appendix organization (cross-ref table, length analysis, per-generator details)\\\"\\n\\n##############################################################################\\n# 9. Reviewer Concern Coverage Matrix\\n##############################################################################\\n\\nreviewer_coverage:\\n  RC1_vocabulary_impoverishment:\\n    sections: [related_work, results]\\n    evidence: [plan-002-eval]\\n    response: \\\"Feature complementarity proven: full(0.80) > surface(0.75) = ref(0.75). Two groups capture different signal.\\\"\\n\\n  RC2_generalize_beyond_pythia:\\n    sections: [method, results]\\n    evidence: [plan-002, plan-002-eval, plan-003]\\n    response: \\\"6 generators / 3 families (incl. 8B). LOGO F1=0.79, family-out Δ=+0.01. Cross-family ref models all work.\\\"\\n\\n  RC3_three_class_sufficient:\\n    sections: [discussion, limitations]\\n    evidence: []\\n    response: \\\"Attractor theory bounds paraphrasing to ~3 classes. Non-paraphrastic chains may support finer granularity — acknowledged as future work.\\\"\\n\\n  RC4_realistic_chains:\\n    sections: [method, limitations]\\n    evidence: [plan-002]\\n    response: \\\"6 generators across 3 families tested (incl. 8B). Mixed-generator chains acknowledged as limitation.\\\"\\n\\n  RC5_human_editing:\\n    sections: [limitations]\\n    evidence: []\\n    response: \\\"Not tested. Acknowledged as limitation. Robustness to editing is future work.\\\"\\n\\n  RC6_ecological_validity:\\n    sections: [method, limitations]\\n    evidence: [mvp-001]\\n    response: \\\"Wikipedia seeds across domains. Single prompt type (continuation); multi-prompt pending (plan-005).\\\"\\n\\n  RC7_ld_score_prediction:\\n    sections: [results]\\n    evidence: [plan-015-v2]\\n    response: \\\"LD-Score confirmed as level feature (LOGO F1=0.72, Spearman=0.79). Pre-registered prediction validated.\\\"\\n\\n  RC8_ood_detection_features:\\n    sections: [introduction, related_work, discussion]\\n    evidence: []\\n    response: \\\"Explicitly acknowledge reference-model entropy = NLL-based OOD score. Contribution is task formulation + empirical characterization, not features themselves.\\\"\\n\\n  RC9_scale:\\n    sections: [results, limitations]\\n    evidence: [plan-014]\\n    response: \\\"Qwen3-8B (8.2B params) tested. Depth signal persists at 8B (all Spearman p<1e-6). Cross-scale transfer gap: held-out F1=0.6849 vs ≤2.8B 0.76-0.86. 6-gen LOGO 0.79 still outperforms all baselines.\\\"\\n    status: \\\"RESOLVED (D011)\\\"\\n\\n  RC10_length_confound:\\n    sections: [results]\\n    evidence: [plan-013]\\n    response: \\\"Triple evidence: weak correlation (|ρ|<0.14), normalized trends preserved, length-matched F1 +0.041.\\\"\\n\\n  RC11_downstream_single_run:\\n    sections: [results]\\n    evidence: [plan-004-v2]\\n    response: \\\"15 runs (5 variants × 3 seeds), cross-seed variance <0.002. OLMo-2-1B avoids reference model circularity.\\\"\\n\\n##############################################################################\\n# 10. Pending Experiments & Writing Blockers\\n##############################################################################\\n\\npending:\\n  plan-014:\\n    status: DONE\\n    description: \\\"Qwen3-8B-Base (7B+ generator) — scale generalization test\\\"\\n    impact_on_paper: \\\"Results §5.1 + Limitations: depth signal persists at 8B, cross-scale gap 0.6849\\\"\\n    blocker: false\\n\\n  plan-005:\\n    status: RUNNING\\n    description: \\\"Prompt type comparison (continuation vs elaboration vs inspired_rewriting)\\\"\\n    impact_on_paper: \\\"Addresses RC6 ecological validity\\\"\\n    blocker: false  # acknowledged as limitation if not completed\\n\\n##############################################################################\\n# 11. Framing Discipline Reminders (from D006+D007)\\n##############################################################################\\n\\nframing_rules:\\n  - \\\"Use 'differential depth response', NOT 'dual dynamics' or 'H1/H2'\\\"\\n  - \\\"Contribution is empirical/conceptual, NOT methodological\\\"\\n  - \\\"Do NOT call drift/stationarity split a 'discovery' — it follows from location-shift properties\\\"\\n  - \\\"Report realistic performance range (0.69-0.85 per-gen, 0.79 LOGO avg) in abstract/conclusion, not just best-case\\\"\\n  - \\\"Consider 'distributional depth profiling' instead of 'distributional fingerprinting'\\\"\\n  - \\\"R² on 5 aggregated depth means is meaningless — use individual-level Spearman ρ with bootstrap CI\\\"\\n  - \\\"Headline template 'Z% downstream' → REPLACE with negative-finding wording\\\"\\n  - \\\"Explicitly connect to OOD detection + perplexity-based detection literature\\\"\\n  - \\\"Provide speculative theoretical motivation for shape stationarity\\\"\\n\", \"total_chars\": 26500, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the context I need. Let me write the Related Work section. Let me carefully organize this according to the 4 subsections specified, using the literature map citation keys, following the writing guidelines (difference-focused, not abstract-repeating), and adhering to the framing discipline (RC8 OOD connection, empirical/conceptual contribution positioning).
+
+Let me draft the Related Work section in LaTeX.
+
+Key points to hit:
+1. §2.1 AI-Generated Text Detection: Binary only, no depth. Single-score baselines have high cross-generator variance. Our features are NLL-based OOD scores (RC8 connection). 
+2. §2.2 Model Collapse and Iterative Generation: Training-loop vs inference-chain distinction. Broken Telephone and Markovian Chains need detailed comparison.
+3. §2.3 Vocabulary Diversity and Stylometry: Diversity decline documented but not used for depth estimation. Curious Decline needs detailed comparison.
+4. §2.4 Data Quality and Provenance: Quality scoring/watermarking. Depth fingerprint as passive provenance signal.
+
+The contribution itself is the ordinal formulation of depth, the differential response across generators, and how multiple features complement each other. Let me write this now, targeting around 1 page so probably 600-800 words.
+
+Now I'm writing the Related Work section, starting with AI-generated text detection methods. I'm covering the statistical approaches that use token-level probability signals—histogram-based methods, perplexity curvature, model contrast ratios, and n-gram divergence—then moving into more recent extensions like character-distribution signatures.
+
+I'm also describing learned discriminator approaches that use linguistic features for cross-generator transfer, and methods that disentangle generator-specific artifacts to generalize across multiple LLMs. Then I'm noting the robustness challenges from paraphrase attacks, the theoretical guarantees that detection remains possible when distributions differ, and citing the relevant surveys.
+
+Now I'm identifying the core limitation of existing detectors: they output a single binary score without any depth estimation capability. When I try to repurpose these scores as ordinal depth predictors, they show high variance across different generators, with confidence intervals spanning a wide range that makes them unreliable for consistent classification. My approach uses entropy features from reference models as out-of-distribution signals, which draws on the same foundation as DetectGPT and Binoculars, but the real contribution is formulating this as an ordinal depth problem, empirically demonstrating differential responses under recursive generation, and leveraging complementary features for consistent cross-generator performance.
+
+I'm now transitioning to model collapse theory and how recursive training on synthetic data degrades generation quality.  Research shows that even small amounts of synthetic data can trigger collapse, and there are different modes of this degradation with trade-offs between precision and diversity. However, my work focuses on something different: inference chains where the model stays frozen but still exhibits distributional drift through iterative generation without retraining. I'm looking at concurrent work on iterative generation—studies on paraphrasing and translation chains that show information distortion accumulates with depth and outputs converge toward attractor states, with formal proofs about this convergence behavior.
+
+The key distinction is that prior work examines paraphrastic chains constrained by semantic preservation, limiting the depth signal to roughly three distinguishable classes. I'm instead studying non-paraphrastic continuation chains where the lack of semantic anchoring allows for richer depth signal, and I'm framing depth estimation as an explicit classification task rather than just analyzing convergence patterns.
+
+Now I'm looking at how vocabulary diversity and stylometry change in LLM-mediated text production. Studies document lexical, syntactic, and semantic diversity loss across recursive iterations, with particularly sharp declines in creative tasks, and show that LLM-assisted writing reduces diversity across different authors.
+
+I'm building on stylometric approaches traditionally used for authorship analysis, extending them from source attribution to depth estimation by combining surface features like type-token ratio and hapax ratio with distributional features from reference models to capture complementary signals about how many times text has been regenerated.
+
+Now I'm looking at how existing data quality methods use language model perplexity and importance resampling to filter corpora, but these approaches don't actually tell us about generation provenance or depth. Watermarking offers one active solution through statistical signals embedded in token selection, though recent work shows that multi-step rewriting chains can degrade watermark detectability dramatically—from nearly 88% down to under 5% after just five rewrites. This limitation motivates developing passive provenance signals that don't rely on watermarks, which is where depth fingerprinting comes in as a complementary approach.
+
+What's interesting about using probability-based features for depth is that it connects to membership inference techniques, which similarly analyze token probability distributions but for a different purpose—determining whether text was in a model's training set rather than assessing how deeply a model processed it.
+
+I need to double-check the citation format since the guidelines specify \cite{key} rather than \citet{key}. Let me also review the word count to make sure I'm staying within the roughly 650-750 word target for a single page in the ACL two-column format.
+
+Looking at the writing principles, I should avoid vague claims like "to the best of our knowledge" and instead focus on concrete differences between approaches. The most closely related work—Broken Telephone, Markovian Chains, and Curious Decline—deserves detailed comparison rather than surface-level summaries. Each related paper should get at most 1-2 sentences that highlight what distinguishes our approach.
+
+Let me tighten the draft and make sure every sentence earns its place.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "d3e39358-eb3e-4621-9afe-b3253ccd9517",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PrNCzbsytmjL5NH4ZN7tuJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13742,
+      "cache_read_input_tokens": 33559,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13742
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+Now I'll write the Related Work section.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "7d7e0237-5b53-4de4-b192-bfb4819f56ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PrNCzbsytmjL5NH4ZN7tuJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13742,
+      "cache_read_input_tokens": 33559,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13742
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01QYsvZoqiVEckr7RELnHnfi`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/related_work.tex",
+  "content": "\\section{Related Work}\n\n\\subsection{AI-Generated Text Detection}\n\nA large body of work addresses binary classification of machine-generated text.\nStatistical approaches exploit token-level probability signals:\n\\cite{gltr} use token rank histograms under a reference model,\n\\cite{detectgpt} identify machine text through negative log-probability curvature,\nand \\cite{fast_detectgpt} accelerate this via conditional probability curvature.\n\\cite{binoculars} contrast perplexity ratios between two similar models,\nwhile \\cite{dna_gpt} measure n-gram divergence after re-generation.\nMore recent work extends these ideas:\n\\cite{ld_score} introduce character-distribution signatures orthogonal to perplexity,\n\\cite{intrinsic_dimension} leverage embedding-space intrinsic dimensionality,\nand \\cite{diveye} capture token surprisal diversity patterns.\nLearned approaches include generator-specific discriminators \\cite{grover},\nfeature-augmented transformers for cross-domain transfer \\cite{feat_aug_transformer},\nand disentangled representations for cross-generator generalization \\cite{generator_barrier}.\nRobustness analyses show that paraphrase attacks severely degrade detectors \\cite{reliable_detection,paraphrase_evades},\nthough detection remains information-theoretically feasible whenever human and machine distributions are distinguishable \\cite{detection_possibilities}.\n\\cite{jawahar_survey} and \\cite{release_strategies} provide broader surveys.\n\nThese methods share a fundamental limitation: they produce a single binary score with no capacity for depth estimation.\nWhen repurposed as ordinal depth predictors, individual detector scores exhibit high cross-generator variance (confidence intervals spanning 0.59--0.82 in our experiments), making them unreliable as standalone depth estimators.\nOur reference-model entropy features are functionally NLL-based out-of-distribution scores \\cite{ood_baseline}, drawing on the same signal backbone as DetectGPT and Binoculars.\nThe contribution is not the features themselves but rather the ordinal depth formulation, the empirical finding of differential depth response under recursive generation, and multi-feature complementarity that yields tight cross-generator consistency.\n\n\\subsection{Model Collapse and Iterative Generation}\n\nModel collapse theory establishes that recursive training on synthetic data degrades generative quality.\n\\cite{curse_of_recursion} prove that iterative retraining causes irreversible distribution tail loss across VAEs, GMMs, and LLMs.\n\\cite{strong_model_collapse} show that even minimal synthetic data fractions suffice to trigger collapse,\n\\cite{self_consuming_mad} characterize precision--diversity trade-offs in autophagous loops,\nand \\cite{model_collapse_avoidable} demonstrate that data accumulation (rather than replacement) mitigates the effect.\nThese results concern \\emph{training-loop} dynamics where model parameters change across iterations.\nWe study \\emph{inference chains}: the same frozen model generates text recursively without retraining, yet distributional drift still accumulates.\n\nTwo concurrent works study iterative generation directly.\n\\cite{broken_telephone} analyze LLM paraphrasing and translation chains, showing that information distortion accumulates with depth and outputs converge toward attractor states---critically, the semantic-preservation constraint of paraphrasing bounds depth-distinguishable classes to approximately three.\n\\cite{markovian_chains} formalize this convergence, proving that iterative rephrasing chains either collapse to small cycle sets or continue producing novel sentences depending on temperature and initialization.\nBoth focus on \\emph{paraphrastic} chains.\nWe study \\emph{non-paraphrastic} continuation chains, where the absence of semantic anchoring permits richer depth signal, and formulate depth estimation as an explicit ordinal classification task rather than analyzing convergence behavior.\n\n\\subsection{Vocabulary Diversity and Stylometry}\n\nSeveral studies document diversity decline in LLM-mediated text.\n\\cite{curious_decline} quantify lexical, syntactic, and semantic diversity loss across recursive fine-tuning iterations, finding particularly severe decline for creative tasks---the closest antecedent to our work, though they study training-loop effects rather than inference-chain drift and do not formulate depth estimation.\n\\cite{writing_diversity} show that LLM-assisted writing reduces inter-author diversity,\nwhile \\cite{mapping_llm_science} and \\cite{monitoring_ai_review} estimate that 7--17\\% of scientific papers and peer reviews contain substantial LLM-modified content.\n\\cite{nucleus_sampling} characterize neural text degeneration, proposing nucleus sampling whose truncation behavior shapes the distributional properties our features capture.\n\nThese works document diversity decline as a phenomenon but do not exploit it for depth classification.\nOur surface features (type-token ratio, hapax ratio) are essentially stylometric, drawing on a long tradition of computational stylometry \\cite{stamatatos_survey,koppel_authorship}.\n\\cite{uchendu_attribution} extend authorship attribution to neural text generator identification;\nwe further extend from \\emph{source} attribution to \\emph{depth} estimation, combining surface stylometric features with reference-model distributional features for complementary signal.\n\n\\subsection{Data Quality and Provenance}\n\nData curation pipelines increasingly rely on quality scoring to filter web-scale corpora.\n\\cite{ccnet} use language model perplexity for quality filtering,\n\\cite{dsir} apply importance resampling in n-gram feature space,\nand \\cite{qurating} employ LLM pairwise judgments for multi-dimensional quality assessment.\nThese methods score text quality but do not assess generation provenance or depth.\n\nWatermarking offers an active provenance mechanism:\n\\cite{watermark_llm} embed statistical signals via green-list token biasing,\n\\cite{synthid_text} deploy production-scale watermarking,\nand \\cite{aaronson_watermark} propose pseudorandom function-based marking.\nHowever, \\cite{chainwash} demonstrate that multi-step rewriting chains reduce watermark detectability from 87.9\\% to 4.86\\% within five hops, motivating watermark-free approaches.\nDepth fingerprinting complements both paradigms as a \\emph{passive} provenance signal requiring no watermark embedding.\nMethodologically, our probability-based features also connect to membership inference \\cite{min_k_percent}, which analyzes token probability distributions for training set membership rather than generation depth.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "c75848ce-2cd3-41f5-a451-d5b04760687b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PrNCzbsytmjL5NH4ZN7tuJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13742,
+      "cache_read_input_tokens": 33559,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13742
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T04:36:45.499Z_
+
+<details><summary>↩ Tool result · `toolu_01QYsvZoqiVEckr7RELnHnfi`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/related_work.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "05b3fe51-a91c-4049-a235-55bf160bcdfe",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/related_work.tex",
+    "content": "\\section{Related Work}\n\n\\subsection{AI-Generated Text Detection}\n\nA large body of work addresses binary classification of machine-generated text.\nStatistical approaches exploit token-level probability signals:\n\\cite{gltr} use token rank histograms under a reference model,\n\\cite{detectgpt} identify machine text through negative log-probability curvature,\nand \\cite{fast_detectgpt} accelerate this via conditional probability curvature.\n\\cite{binoculars} contrast perplexity ratios between two similar models,\nwhile \\cite{dna_gpt} measure n-gram divergence after re-generation.\nMore recent work extends these ideas:\n\\cite{ld_score} introduce character-distribution signatures orthogonal to perplexity,\n\\cite{intrinsic_dimension} leverage embedding-space intrinsic dimensionality,\nand \\cite{diveye} capture token surprisal diversity patterns.\nLearned approaches include generator-specific discriminators \\cite{grover},\nfeature-augmented transformers for cross-domain transfer \\cite{feat_aug_transformer},\nand disentangled representations for cross-generator generalization \\cite{generator_barrier}.\nRobustness analyses show that paraphrase attacks severely degrade detectors \\cite{reliable_detection,paraphrase_evades},\nthough detection remains information-theoretically feasible whenever human and machine distributions are distinguishable \\cite{detection_possibilities}.\n\\cite{jawahar_survey} and \\cite{release_strategies} provide broader surveys.\n\nThese methods share a fundamental limitation: they produce a single binary score with no capacity for depth estimation.\nWhen repurposed as ordinal depth predictors, individual detector scores exhibit high cross-generator variance (confidence intervals spanning 0.59--0.82 in our experiments), making them unreliable as standalone depth estimators.\nOur reference-model entropy features are functionally NLL-based out-of-distribution scores \\cite{ood_baseline}, drawing on the same signal backbone as DetectGPT and Binoculars.\nThe contribution is not the features themselves but rather the ordinal depth formulation, the empirical finding of differential depth response under recursive generation, and multi-feature complementarity that yields tight cross-generator consistency.\n\n\\subsection{Model Collapse and Iterative Generation}\n\nModel collapse theory establishes that recursive training on synthetic data degrades generative quality.\n\\cite{curse_of_recursion} prove that iterative retraining causes irreversible distribution tail loss across VAEs, GMMs, and LLMs.\n\\cite{strong_model_collapse} show that even minimal synthetic data fractions suffice to trigger collapse,\n\\cite{self_consuming_mad} characterize precision--diversity trade-offs in autophagous loops,\nand \\cite{model_collapse_avoidable} demonstrate that data accumulation (rather than replacement) mitigates the effect.\nThese results concern \\emph{training-loop} dynamics where model parameters change across iterations.\nWe study \\emph{inference chains}: the same frozen model generates text recursively without retraining, yet distributional drift still accumulates.\n\nTwo concurrent works study iterative generation directly.\n\\cite{broken_telephone} analyze LLM paraphrasing and translation chains, showing that information distortion accumulates with depth and outputs converge toward attractor states---critically, the semantic-preservation constraint of paraphrasing bounds depth-distinguishable classes to approximately three.\n\\cite{markovian_chains} formalize this convergence, proving that iterative rephrasing chains either collapse to small cycle sets or continue producing novel sentences depending on temperature and initialization.\nBoth focus on \\emph{paraphrastic} chains.\nWe study \\emph{non-paraphrastic} continuation chains, where the absence of semantic anchoring permits richer depth signal, and formulate depth estimation as an explicit ordinal classification task rather than analyzing convergence behavior.\n\n\\subsection{Vocabulary Diversity and Stylometry}\n\nSeveral studies document diversity decline in LLM-mediated text.\n\\cite{curious_decline} quantify lexical, syntactic, and semantic diversity loss across recursive fine-tuning iterations, finding particularly severe decline for creative tasks---the closest antecedent to our work, though they study training-loop effects rather than inference-chain drift and do not formulate depth estimation.\n\\cite{writing_diversity} show that LLM-assisted writing reduces inter-author diversity,\nwhile \\cite{mapping_llm_science} and \\cite{monitoring_ai_review} estimate that 7--17\\% of scientific papers and peer reviews contain substantial LLM-modified content.\n\\cite{nucleus_sampling} characterize neural text degeneration, proposing nucleus sampling whose truncation behavior shapes the distributional properties our features capture.\n\nThese works document diversity decline as a phenomenon but do not exploit it for depth classification.\nOur surface features (type-token ratio, hapax ratio) are essentially stylometric, drawing on a long tradition of computational stylometry \\cite{stamatatos_survey,koppel_authorship}.\n\\cite{uchendu_attribution} extend authorship attribution to neural text generator identification;\nwe further extend from \\emph{source} attribution to \\emph{depth} estimation, combining surface stylometric features with reference-model distributional features for complementary signal.\n\n\\subsection{Data Quality and Provenance}\n\nData curation pipelines increasingly rely on quality scoring to filter web-scale corpora.\n\\cite{ccnet} use language model perplexity for quality filtering,\n\\cite{dsir} apply importance resampling in n-gram feature space,\nand \\cite{qurating} employ LLM pairwise judgments for multi-dimensional quality assessment.\nThese methods score text quality but do not assess generation provenance or depth.\n\nWatermarking offers an active provenance mechanism:\n\\cite{watermark_llm} embed statistical signals via green-list token biasing,\n\\cite{synthid_text} deploy production-scale watermarking,\nand \\cite{aaronson_watermark} propose pseudorandom function-based marking.\nHowever, \\cite{chainwash} demonstrate that multi-step rewriting chains reduce watermark detectability from 87.9\\% to 4.86\\% within five hops, motivating watermark-free approaches.\nDepth fingerprinting complements both paradigms as a \\emph{passive} provenance signal requiring no watermark embedding.\nMethodologically, our probability-based features also connect to membership inference \\cite{min_k_percent}, which analyzes token probability distributions for training set membership rather than generation depth.\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+Now let me register the artifact and count words.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "73553c5d-49a5-4282-aa2c-e7c904625c8a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XEvJLXni8DGPY623SNZPuh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3845,
+      "cache_read_input_tokens": 47301,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3845
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01GyT4DfeDBFidoWJ3LkZQJB`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "87c8a56f-5b99-4613-b7e7-70666d81fed1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XEvJLXni8DGPY623SNZPuh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3845,
+      "cache_read_input_tokens": 47301,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3845
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T04:36:49.298Z_
+
+<details><summary>↩ Tool result · `toolu_01GyT4DfeDBFidoWJ3LkZQJB`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "649d0652-a88d-4c07-a420-8bc990de482b",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01FNR9tucGTRh6z9MMFCKHtA`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/related_work.tex | wc -w",
+  "description": "Count words in related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "b5d24e5c-3a24-447a-b5ab-70e9ccd96a19",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XEvJLXni8DGPY623SNZPuh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3845,
+      "cache_read_input_tokens": 47301,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3845
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T04:36:50.217Z_
+
+<details><summary>↩ Tool result · `toolu_01FNR9tucGTRh6z9MMFCKHtA`</summary>
+
+```text
+716
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "ad98607d-3fa4-4646-bd81-fdc59df4e05c",
+  "tool_use_result": {
+    "stdout": "716",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01Jbs8tUbNDXjDntvQ5mrSpj`</summary>
+
+```json
+{
+  "name": "related_work.tex",
+  "type": "paper",
+  "description": "Related Work section (§2) for EMNLP 2026 ARR submission — 4 subsections, 39 citations, ~716 words",
+  "project": "gen-depth-fingerprint",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/related_work.tex",
+  "tags": [
+    "paper",
+    "related-work",
+    "emnlp2026"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "332ea056-20b5-4fc7-a622-75eabc9ffb7c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PfYR515Dk963HGBXHtrnUR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 972,
+      "cache_read_input_tokens": 51146,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 972
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T04:36:55.365Z_
+
+<details><summary>↩ Tool result · `toolu_01Jbs8tUbNDXjDntvQ5mrSpj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_2ce9dd\", \"name\": \"related_work.tex\", \"type\": \"paper\", \"description\": \"Related Work section (§2) for EMNLP 2026 ARR submission — 4 subsections, 39 citations, ~716 words\", \"path\": \"projects/gen-depth-fingerprint/artifacts/_project/paper/related_work_2ce9dd.tex\", \"url\": null, \"project\": \"gen-depth-fingerprint\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T04:36:55.320662+00:00\", \"tags\": [\"paper\", \"related-work\", \"emnlp2026\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "aa189fc7-7e51-4be6-99e3-2ccd829a766d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_2ce9dd\\\", \\\"name\\\": \\\"related_work.tex\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Related Work section (§2) for EMNLP 2026 ARR submission — 4 subsections, 39 citations, ~716 words\\\", \\\"path\\\": \\\"projects/gen-depth-fingerprint/artifacts/_project/paper/related_work_2ce9dd.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"gen-depth-fingerprint\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T04:36:55.320662+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"related-work\\\", \\\"emnlp2026\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_2ce9dd\", \"name\": \"related_work.tex\", \"type\": \"paper\", \"description\": \"Related Work section (§2) for EMNLP 2026 ARR submission — 4 subsections, 39 citations, ~716 words\", \"path\": \"projects/gen-depth-fingerprint/artifacts/_project/paper/related_work_2ce9dd.tex\", \"url\": null, \"project\": \"gen-depth-fingerprint\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T04:36:55.320662+00:00\", \"tags\": [\"paper\", \"related-work\", \"emnlp2026\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+文件已写入。报告：
+
+```json
+{
+  "section": "related_work",
+  "word_count": 716,
+  "citations_needed": [
+    "detectgpt", "gltr", "dna_gpt", "binoculars", "fast_detectgpt",
+    "ld_score", "intrinsic_dimension", "diveye", "generator_barrier",
+    "feat_aug_transformer", "reliable_detection", "paraphrase_evades",
+    "detection_possibilities", "grover", "release_strategies", "jawahar_survey",
+    "self_consuming_mad", "curse_of_recursion", "strong_model_collapse",
+    "model_collapse_avoidable", "broken_telephone", "markovian_chains",
+    "curious_decline", "writing_diversity", "nucleus_sampling",
+    "mapping_llm_science", "monitoring_ai_review",
+    "stamatatos_survey", "koppel_authorship", "uchendu_attribution",
+    "dsir", "qurating", "ccnet",
+    "watermark_llm", "synthid_text", "aaronson_watermark", "chainwash",
+    "min_k_percent", "ood_baseline"
+  ],
+  "notes": "39 citations across 4 subsections. RC8 (OOD connection) addressed in §2.1 closing paragraph — explicitly states features are NLL-based OOD scores and positions contribution as formulation+empirics, not methodology. Broken Telephone / Markovian Chains / Curious Decline given detailed comparison as requested. ~716 words fits ~1 page in ACL two-column format."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "uuid": "fc27d05f-9fdb-4cc9-88dc-42f4891967b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016nj6LrUWuwGQGcptJVsXwZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 534,
+      "cache_read_input_tokens": 52118,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 534
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 30_
+
+文件已写入。报告：
+
+```json
+{
+  "section": "related_work",
+  "word_count": 716,
+  "citations_needed": [
+    "detectgpt", "gltr", "dna_gpt", "binoculars", "fast_detectgpt",
+    "ld_score", "intrinsic_dimension", "diveye", "generator_barrier",
+    "feat_aug_transformer", "reliable_detection", "paraphrase_evades",
+    "detection_possibilities", "grover", "release_strategies", "jawahar_survey",
+    "self_consuming_mad", "curse_of_recursion", "strong_model_collapse",
+    "model_collapse_avoidable", "broken_telephone", "markovian_chains",
+    "curious_decline", "writing_diversity", "nucleus_sampling",
+    "mapping_llm_science", "monitoring_ai_review",
+    "stamatatos_survey", "koppel_authorship", "uchendu_attribution",
+    "dsir", "qurating", "ccnet",
+    "watermark_llm", "synthid_text", "aaronson_watermark", "chainwash",
+    "min_k_percent", "ood_baseline"
+  ],
+  "notes": "39 citations across 4 subsections. RC8 (OOD connection) addressed in §2.1 closing paragraph — explicitly states features are NLL-based OOD scores and positions contribution as formulation+empirics, not methodology. Broken Telephone / Markovian Chains / Curious Decline given detailed comparison as requested. ~716 words fits ~1 page in ACL two-column format."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 119629,
+  "duration_api_ms": 120667,
+  "num_turns": 10,
+  "stop_reason": "end_turn",
+  "session_id": "a4ea863b-74f2-44e9-aa8b-209cccae4487",
+  "total_cost_usd": 0.51170625,
+  "usage": {
+    "input_tokens": 13,
+    "cache_creation_input_tokens": 40811,
+    "cache_read_input_tokens": 244945,
+    "output_tokens": 5269,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 40811,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 415,
+        "cache_read_input_tokens": 52118,
+        "cache_creation_input_tokens": 534,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 534
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2255,
+      "outputTokens": 24,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002375,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 13,
+      "outputTokens": 5269,
+      "cacheReadInputTokens": 244945,
+      "cacheCreationInputTokens": 40811,
+      "webSearchRequests": 0,
+      "costUSD": 0.50933125,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "bb196931-5b9f-4869-80a0-4d45675046b9"
+}
+```
+
+</details>
+
+---

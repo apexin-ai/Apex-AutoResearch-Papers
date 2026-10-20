@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c668956d1f34d4bb4d3",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper final data audit",
+  "task_key": "worker_paper_final-data-audit_20260523T191628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_final-data-audit_20260523T191628_result.json",
+    "occurrence": 1,
+    "bytes": 7456,
+    "sha256": "8441a7f3aa5b123c3c4360497bc7efc51067739922d9f24699d8491a236a3f94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集和比对完成。编制审计报告。\n\n## 数据自查报告\n\n### ✅ 已核对一致\n\n**Abstract（全部数字）**\n- `d=0.74–1.05` ← tost_equivalence: hapax |d|=0.735 (heteroscedasticity table), entropy_mean |d|=1.054 → 0.74–1.05 ✓\n- `d<0.10` ← entropy_max d=0.062, tail_decay d=0.087 → 均<0.10 ✓\n- `d=0.46` ← entropy_std d=0.4571 → 0.46 ✓\n- `≥8×` ← 0.735/0.087=8.4× ✓\n- `F1=0.694` ← 8gen_logo binary f1_observed=0.6944 → 0.694 ✓\n- `F1=0.830` ← cross_model binary_f1=0.8296 → 0.830 ✓\n- `F1=0.762` ← 8gen_logo 3class f1_observed=0.762 ✓\n- `F1=0.905` ← plan012_qwen06b macro_f1_3class=0.9052 → 0.905 ✓\n\n**Table 1（8 generators + averages，逐行核对）**\n- 所有 8 个 generator 的 Binary F1、95% CI、3-class F1 与 `8gen_logo_unfiltered.json` 完全一致 ✓\n- Average: Bin=0.694, 3class=0.762 ✓\n- LOFO (family-level)=0.686 ← `8gen_lofo_family.json` avg binary_f1=0.6865 → 0.686 ✓\n- SD=0.028, IQR=[0.692, 0.714] ← 从 per-generator binary F1 计算验证 ✓\n\n**Table 2（7 baselines，逐行核对）**\n- 全部 7 个 method 的 3-class F1、Binary F1 与 `8gen_table3_v7_unified.json` 完全一致 ✓\n- ms/text: 9.7, 22.8 ← `efficiency_comparison.json` ✓\n\n**Results §5.1**\n- N=37,058 ✓, CI [0.688, 0.700] ✓, 0.694±0.010 SE ✓\n- 0.633 (Mistral-7B) ✓, 0.724 (Pythia-2.8B) ✓\n- Cross-model binary F1=0.830, CI [.818, .841] ← cross_model_logo ✓\n- Length-matched F1=0.724 vs 0.770 ← `8gen_length_confound.json` ✓\n- Independent-seed F1=0.680 ← `independent_seed_results.json` avg=0.6803 → 0.680 ✓\n- QLoRA +11.6pp: 0.905−0.789=0.116 ✓（0.789 = 6-gen LOGO XGBoost, appendix_classifier 验证）\n\n**Results §5.2**\n- Silhouette=0.660, p=0.030 ← appendix_ddr_validation 一致 ✓\n- ρ: hapax -0.64, TTR -0.62, entropy_mean -0.60 ← `8gen_pooled_rho.json` ✓\n- F1=0.773 (10-fold) ← `8gen_feature_ablation.json` full=0.7727 → 0.773 ✓\n- Surface-only=0.688, reference-only=0.713 ← 同上 ✓\n- ~2.4× lower cost ← efficiency speedup_ratio=2.35 → ~2.4× ✓\n\n**Discussion**\n- Depth-2 error rate=48.4% ← `comprehensive_error_analysis.json` depth_2 rate=0.4842 ✓\n- ≤29.2% for gen-3 ← depth_3 rate=0.2917 → 29.2% ✓\n- QLoRA F1=0.89–0.91 ← qlora_olmo-instruct 3class=0.888, qlora_qwen-instruct 3class=0.907 → 0.89–0.91 ✓\n- Cross-domain F1=0.74–0.75 ← appendix_domain: 0.739–0.754 → 0.74–0.75 ✓\n\n**Conclusion**\n- F1=0.694–0.762 ✓, F1=0.830 ✓, QLoRA=0.89–0.91 ✓\n\n**Limitations**\n- Instruct LOGO binary F1=0.487 ← appendix_instruct line 50 内部一致\n- QLoRA=0.89–0.91 ✓\n- 5-class F1≈0.50 ← finer_ordinal GBT_5class=0.501 ✓\n\n**Appendix tables（抽查）**\n- LOFO 8-gen 全部 7 行 ← `8gen_lofo_results.json` 逐项验证 ✓\n- Instruct table（OLMo/Qwen/Llama base vs instruct）← `instruct_analysis_summary.json` 逐项验证 ✓\n- Instruct QLoRA table ← 4 个 qlora JSON 逐项验证 ✓\n- Variance decomposition table η² values ← appendix 内部一致 ✓\n- DDR validation epsilon sweep table d values ← tost_equivalence + heteroscedasticity table 一致 ✓\n- Length confound: F1=0.724, 0.770, random=0.767, Δ=0.046 ← `8gen_length_confound.json` ✓\n\n---\n\n### ⚠️ 发现的不一致\n\n**1. Discussion η²_gen 标注错误（discussion.tex:8）**\n\n论文写：`η²_depth=0.34–0.37 for location vs η²_gen<0.009 (>48×)`\n\n实际：\n- η²_depth=0.34–0.37（location, 正确）来自 variance decomposition table\n- `>48×` 的比较对象是 **shape η²_depth<0.007**（0.341/0.007=48.7×），NOT η²_gen\n- η²_gen 在 variance decomposition table 中范围 0.001–0.024，不是 <0.009\n- η²_gen ≤ 0.009 是来自 **cross-model appendix** 的不同 ANOVA（正确引用在 results.tex:22）\n- Appendix 自身正确描述了这个比较（line 31: \"34-37% location vs <1% shape\"）\n\n→ **建议修正**: 将 discussion.tex 中 `$\\eta^2_{\\text{gen}}{<}0.009$` 改为 `$\\eta^2_{\\text{depth}}{<}0.01$ for shape features`，或拆分为两个独立声明。\n\n**2. Cross-ref spread 0.013 vs 源数据 0.012（results.tex:101）**\n\n论文写：`F1 spread of only 0.013`\n源数据：avg_macro_f1 across 3 refs = 0.8034, 0.8072, 0.8158 → range = 0.0124 → 0.012\n\n→ **建议修正**: 改为 `0.012` 或保留 `0.013` 并标注为 ceiling rounding。影响很小。\n\n**3. Same-family \"up to 1.3 pp\"（results.tex:101）**\n\n论文写：`same-family proximity may inflate Pythia F1 by up to 1.3 pp`\n源数据 (`review_p2f_cross_ref_bias.json`)：\n- Pythia-1B: same-family vs cross-family delta = 0.0086 → 0.9pp\n- Pythia-2.8B: max cross-ref delta = 0.0114 → 1.1pp\n\n1.3pp 与 spread 0.013 是同一个数的不同表述（0.0124→0.013/1.3pp），但源数据实际为 0.0124=1.24pp，非 1.3pp。\n\n→ **建议修正**: 改为 `up to 1.2 pp` 或 `up to $\\sim$1 pp`\n\n---\n\n### ❌ 待人工确认\n\n**1. QLoRA 实验描述 \"6-gen LOGO\" vs 源数据 4-gen 5-fold CV**\n\nappendix_qlora.tex 和 appendix_classifier.tex 均声称 \"6-generator LOGO\"，但 `plan012_qwen06b_results.json` 明确使用 4 generators (pythia-1b, olmo-2-1b, qwen3-0.6b, qwen3-1.7b) + 5-fold stratified CV。F1=0.905 值一致（0.9052→0.905），但**实验协议描述**需确认：是否有独立的 6-gen LOGO 结果文件，还是附录描述有误。\n\n**2. XGBoost baseline 0.789 来源**\n\nappendix_qlora 和 appendix_lofo 均引用 \"6-gen LOGO XGBoost 3-class F1=0.789\"。但：\n- `finer_ordinal_results.json` GBT_3class = 0.7836（6-gen LOGO, 但值 = 0.784 ≠ 0.789）\n- `plan012_xgboost_matched.json` = 0.8048（4-gen 5-fold CV）\n- appendix_classifier.tex XGBoost avg = 0.789\n\n最可能来源是 appendix_classifier 中的 6-gen LOGO 实验（未找到对应 JSON）。建议确认 `rp_lofo_corrected.json` 或 `lofo_ablation_results.json` 是否包含此值。\n\n**3. Instruct LOGO binary F1=0.487 来源**\n\nappendix_instruct.tex line 50 声称 \"Three-generator instruct LOGO yields binary F1=0.487\"。未在已检查的 JSON 文件中找到此数值。可能在 `exp052_instruct_eval.json` 或其他未读取的 instruct 结果文件中。\n\n**4. ±3–4% batch estimation**\n\nConclusion 引用 \"±3–4% batch estimation; Appendix error-analysis\"。未在 `comprehensive_error_analysis.json` 截断输出中找到。需完整读取该文件确认。\n\n**5. η² >48× 边界极其紧凑**\n\n即使用正确的比较（location η²_depth vs shape η²_depth），最小比值为 0.341/0.007 = 48.7×。仅仅 \"barely >48×\"。如果使用更精确的小数位（如 η²_depth(ent max) = 0.0073），比值可能<48。建议验证原始 ANOVA 输出的精确 η² 值。\n\n---\n\n### 修复完整性确认\n\n- **Cohen's d 0.55 残留**：**无** ✓ — grep 未找到任何 entropy_std 与 0.55 关联的残留。所有出现的 0.55 均为其他上下文（LOFO drop、PCA loading、per-family DDR table 中的 entropy_mean）。\n- **TTR ρ -0.63 残留**：**无** ✓ — grep 未找到 \"TTR -0.63\" 的任何实例。Results.tex 正确使用 -0.62。\n- **d ≤ 0.08 残留**：**无** ✓ — grep 未找到 `d ≤ 0.08` 或 `d\\leq 0.08` 的任何实例。正文使用 `d < 0.10`。\n- **\"excluding all Pythia\" 残留**：**无** ✓ — grep 未找到 \"excluding.*Pythia\" 的任何实例。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-final-data-audit.md"
+}

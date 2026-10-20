@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20e7d21ab20eb4852d95",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops exp062 rebalance qwen8b",
+  "task_key": "worker_ops_exp062_rebalance_qwen8b_20260521T120600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp062_rebalance_qwen8b_20260521T120600_result.json",
+    "occurrence": 1,
+    "bytes": 314,
+    "sha256": "8b1c46bd9a366d90c0fb2e338246c985b8f5487a93903eeb6c8b49c5bbfa37e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**执行结果**：\n- 旧 chain watcher (PID 349616) 已终止\n- 新 cuda:3 chain v2 (PID 356682) 运行中，只跑到 Qwen3-0.6B\n- Qwen3-8B 空闲 GPU watcher (PID 356867) 运行中，每 60s 检查 cuda:0/1/2\n- 预计 ~23:00 CST cuda:0/1/2 某张卡空闲后自动启动 Qwen3-8B"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp062-rebalance-qwen8b.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aeb24ae52bc59fa68848",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan 002 eval",
+  "task_key": "worker_code_plan-002-eval_20260514T233401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-002-eval_20260514T233401_result.json",
+    "occurrence": 1,
+    "bytes": 1146,
+    "sha256": "33848393bf4380f0a42a24944b5a227714a673cde8bac015bc86a41c8bad0c8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果摘要：\n\n### 1. Leave-One-Generator-Out CV\n平均 macro-F1 = **0.8037**。gen-0 分类最容易（F1 > 0.91），gen-1 最难（F1 0.58–0.71）。Pythia-1b 泛化最好（0.8507），OLMo-2-1b 最差（0.7519）。\n\n### 2. Leave-One-Family-Out\n两个方向差异极小（Δ = +0.0107），说明深度指纹在 Pythia 和非 Pythia 家族间高度可迁移。\n\n### 3. Feature Ablation\n| Feature Set | Avg Macro-F1 |\n|---|---|\n| full (7 features) | 0.8037 |\n| reference_only (5) | 0.7543 |\n| surface_only (2) | 0.7471 |\n\n两组子集都显著弱于 full（McNemar p ≈ 0），表面特征和参考特征互补。\n\n### 4. Permutation Importance\nTop 3: **hapax_ratio** (0.289) > **ttr** (0.168) > **entropy_mean** (0.160)。tail_decay 贡献最小。\n\n### 5. entropy_std 结论\n去掉 entropy_std 后 macro-F1 仅下降 0.0049，drift 幅度（0.12）远小于 entropy_mean（1.50）。**entropy_std 更可能是 H1（模型特有 artifact），而非通用深度信号。**\n\n产出文件已保存在服务器 `data/cross_generator_results.json` 和 `data/cross_generator_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-002-eval.md"
+}

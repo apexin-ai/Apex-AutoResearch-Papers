@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b6dcd04eb521b3e8f1e",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "infra gpu check b11",
+  "task_key": "worker_infra_gpu-check-b11_20260518T004017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-check-b11_20260518T004017_result.json",
+    "occurrence": 1,
+    "bytes": 1086,
+    "sha256": "c9055b562c8b119872ca2a6f2a77512054c6c62d9e2a9ed0f904ce9af1d7e099"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Summary\n\n### Subtask A: GPU & Experiment Progress\n\n| Session | Current Job | Progress | Notes |\n| --- | --- | --- | --- |\n| **tc_fix** | 1/3: Pythia-2.8B t=0.5 (top_p=0.9) | 62% (612/995 seeds), ~1h08m left | First job still running |\n| **indep_seed** | 2/4: OLMo-2-1B indepB | 19% (93/495 seeds) | Job 1 **completed**: Pythia-2.8B indepA (500 seeds, 2338 records → `data/independent_seed/pythia-2.8b-indepA/generations_shard0.jsonl`, 80 skipped) |\n\n**GPU**: RTX 5090, 90% utilization, 9.8/32.6 GB VRAM, 2 python processes (one per session).\n\n### Subtask B: Qualitative Example Extracted\n\nWritten to `artifacts/_project/analysis/qualitative_example_seed5.md`.\n\nSeed 5 = Abraham Lincoln article. Key degradation pattern across gen-0 to gen-4:\n- **TTR**: 0.660 → 0.260 (60% collapse)\n- **Hapax ratio**: 0.555 → 0.178\n- **Text**: Gen-0 is coherent Wikipedia prose; by gen-3/4 it degenerates into repetitive lists (\"Douglas was the Republican nominee for President in 1884... 1888... 1892...\"), an excellent qualitative example of model collapse."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-check-b11.md"
+}

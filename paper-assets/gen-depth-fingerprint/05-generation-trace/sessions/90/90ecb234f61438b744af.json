@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "90ecb234f61438b744af",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "code 8gen baselines",
+  "task_key": "worker_code_8gen-baselines_20260516T133345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_8gen-baselines_20260516T133345.log",
+    "occurrence": 1,
+    "bytes": 1022316,
+    "sha256": "1f4e9cfc223b3f80ba005410c3d33bb4edbcb1c277ba711cc01a673049256b82"
+  },
+  "statistics": {
+    "messages": 779,
+    "user_turns": 0,
+    "tool_calls": 365,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 365,
+      "tool_result": 365,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 779,
+      "chunks": [
+        {
+          "path": "90ecb234f61438b744af-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "90ecb234f61438b744af-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "90ecb234f61438b744af-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "90ecb234f61438b744af-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "90ecb234f61438b744af-part-0005.json",
+          "message_count": 59
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-8gen-baselines.md"
+}

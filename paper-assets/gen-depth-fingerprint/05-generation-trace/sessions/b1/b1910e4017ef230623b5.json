@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "b1910e4017ef230623b5",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "ssh plan 004 v2 missing runs",
+  "task_key": "worker_ssh_plan-004-v2-missing-runs_20260515T024227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan-004-v2-missing-runs_20260515T024227.log",
+    "occurrence": 1,
+    "bytes": 1330758,
+    "sha256": "97445a1f52c3da7193c1c0c7c1ee6a0f8ce19f6f7c0afdbc11b40586eca271f5"
+  },
+  "statistics": {
+    "messages": 385,
+    "user_turns": 1,
+    "tool_calls": 134,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 109,
+      "tool_call": 134,
+      "tool_result": 134,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 254,
+      "chunks": [
+        {
+          "path": "b1910e4017ef230623b5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b1910e4017ef230623b5-part-0002.json",
+          "message_count": 74
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 131,
+      "chunks": [
+        {
+          "path": "b1910e4017ef230623b5-part-0002.json",
+          "message_count": 66
+        },
+        {
+          "path": "b1910e4017ef230623b5-part-0003.json",
+          "message_count": 65
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-plan-004-v2-missing-runs.md"
+}

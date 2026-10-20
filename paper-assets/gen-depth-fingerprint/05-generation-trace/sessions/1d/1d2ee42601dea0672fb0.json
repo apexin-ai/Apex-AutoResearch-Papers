@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d2ee42601dea0672fb0",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper paperbanana fig2 v9",
+  "task_key": "worker_paper_paperbanana-fig2-v9_20260525T065418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_paperbanana-fig2-v9_20260525T065418_result.json",
+    "occurrence": 1,
+    "bytes": 772,
+    "sha256": "11280765ac9666cd9a636dea8a2b09683a224468d22c796572d4f8eeeb97cabc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 2 regeneration complete.\n\n**Result**: PaperBanana v9b — 2 rounds, all critical constraints met.\n\n**Outputs**:\n- PNG: `artifacts/_project/paper/fig2_framework.png`\n- PDF: `artifacts/_project/paper/fig2_framework.pdf` (raster, no embedded fonts)\n\n**Checklist**:\n| Check | Status |\n|-------|--------|\n| No specific model names | ✓ (Reference LM, Classifier, LLM only) |\n| No math symbols (except formula) | ✓ |\n| Panel (c) generic LOGO grid | ✓ (2×4 brain icons, 7 solid + 1 ✕) |\n| One generic Classifier | ✓ |\n| Gen-depth output boxes in (c) | ✓ (gen-0/1/2+ mint) |\n| Blue panel progression | ✓ |\n| DDR white boxes w/ left border | Partial (colored fills, but visually distinct) |\n| 10-second new-reader story | ✓ |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-paperbanana-fig2-v9.md"
+}

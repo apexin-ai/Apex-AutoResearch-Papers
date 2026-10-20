@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14646231d7ae26279b50",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis convergence dynamics figure",
+  "task_key": "worker_analysis_convergence_dynamics_figure_20260519T120142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_convergence_dynamics_figure_20260519T120142_result.json",
+    "occurrence": 1,
+    "bytes": 674,
+    "sha256": "d0c617cd5efbc0a6fc2c0ba8f9535d9bd001edb3c90344c6f7df036c1a09e226"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。输出文件：\n\n- **PDF**: `artifacts/_project/chart/fig_convergence_dynamics.pdf` (26 KB)\n- **PNG**: `artifacts/_project/chart/fig_convergence_dynamics.png` (188 KB)\n- **Caption**: `artifacts/_project/chart/fig_convergence_dynamics_caption.tex`\n\n**指数拟合结果**（drifting 特征）：\n| Feature | λ (convergence rate) |\n|---|---|\n| Entropy (mean) | 0.12 (slow drift) |\n| TTR | 0.47 (fast) |\n| Hapax ratio | 0.60 (fastest) |\n\n词汇多样性特征（TTR、hapax ratio）在 2 步内快速收敛，entropy mean 衰减较慢，而 distributional shape 特征（entropy max/min、tail decay）跨所有 depth 保持稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-convergence-dynamics-figure.md"
+}

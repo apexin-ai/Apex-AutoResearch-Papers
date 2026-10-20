@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84b954fb19e51ec68702",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "hotfix kill cuda2 qwen",
+  "task_key": "worker_hotfix_kill_cuda2_qwen_20260521T071542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_hotfix_kill_cuda2_qwen_20260521T071542_result.json",
+    "occurrence": 1,
+    "bytes": 978,
+    "sha256": "f76a2270eacf87d571b36c32a877026ed3544213e3d17f0bfce84ea5790c2604"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 最终状态\n\n| GPU | 状态 | 进程 |\n|-----|------|------|\n| cuda:0 | pythia-2.8b greedy+topk | PID 283041，运行中 |\n| cuda:1 | olmo-2-1b greedy+topk | PID 283607，greedy 进度 ~33%（324/995） |\n| cuda:2 | **空闲** ✓ | 3MiB |\n| cuda:3 | **空闲** ✓ | 3MiB |\n\n**已完成：**\n1. 已 kill cuda:2 上的 qwen3-1.7b 违规进程（PID 338751 及其父进程链）\n2. 已修复 `cross_model_chains.py`、`detector_baseline.py`、`sampling_ablation.py` 中所有 cuda:2/3 默认值 → cuda:0\n3. `start_qwen_after_olmo.sh` 本身无问题（已使用 cuda:1），已重新启动等待链\n4. 无 crontab 自动触发\n\n**OLMo 预计完成时间：** greedy 剩余 ~671 条 × 8.6s ≈ 96 min，之后还有 topk ~995 条 × 8.6s ≈ 143 min。**OLMo 总计约 4 小时后完成**（~19:15 CST），届时 Qwen3-1.7B 自动在 cuda:1 启动。\n\n**Qwen3-1.7B 已完成的进度（80/996 greedy）丢失**，重启后将从头开始。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/hotfix-kill-cuda2-qwen.md"
+}

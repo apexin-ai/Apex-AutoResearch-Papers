@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6e12d29aa55c8036b29",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan 002 qwen retry and start",
+  "task_key": "worker_code_plan-002-qwen-retry-and-start_20260514T212136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-002-qwen-retry-and-start_20260514T212136_result.json",
+    "occurrence": 1,
+    "bytes": 778,
+    "sha256": "1325023bfcf6ef25ffcc72debe8ee80e312438e55f3dfb07b6dfd4c12b3bb90b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**代码修改（generate_chain.py）：**\n- 添加 `MODEL_NAME_MAP`（L32-35），映射 `qwen3-1.7b` → `/root/autodl-tmp/models/Qwen/Qwen3-1___7B-Base`，`qwen3-0.6b` → `/root/autodl-tmp/models/Qwen/Qwen3-0___6B-Base`\n- 模型路径解析优先查 map，再 fallback 默认路径\n- 两处 `f.write()` 后均加了 `f.flush()`（L163, L189）\n\n**数据清理：** qwen3-1.7b 目录已空，无需清理\n\n**已提交 4 个任务：**\n\n| exp_id | 模型 | GPU | \n|--------|------|-----|\n| plan-002-qwen17b-retry-s0 | Qwen3-1.7B | cuda:0 |\n| plan-002-qwen17b-retry-s1 | Qwen3-1.7B | cuda:1 |\n| plan-002-qwen06b-s0 | Qwen3-0.6B | cuda:2 |\n| plan-002-qwen06b-s1 | Qwen3-0.6B | cuda:3 |\n\nRegistry spec 已全部更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-002-qwen-retry-and-start.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "324a684b83232f48ff6c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "figure ddr trends recolor v2",
+  "task_key": "worker_figure_ddr_trends_recolor_v2_20260521T065621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_ddr_trends_recolor_v2_20260521T065621_result.json",
+    "occurrence": 1,
+    "bytes": 471,
+    "sha256": "63e1abfec422f99d4b65b7f1a19e5b3bda12be5708911cee8f2272e2d44ec8fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成。7 个 panel（4×2 layout，第 8 格放 legend），所有 mean 线统一 `#0072B2` 蓝色加粗，±1.96 SE 浅蓝半透明 shading，个别 generator traces 保留 Wong palette 配色，zone 标签保留分色（右上角斜体）。\n\n输出文件：\n- `artifacts/_project/chart/fig_appendix_ddr_trends.pdf` / `.png`\n- `docs/chart/fig_appendix_ddr_trends.pdf` / `.png`\n- 脚本：`artifacts/_project/chart/fig_appendix_ddr_trends.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-ddr-trends-recolor-v2.md"
+}

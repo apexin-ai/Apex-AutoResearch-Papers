@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "bf5532fc92e05df2a957",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "code plan 015 bugfix v2",
+  "task_key": "worker_code_plan-015-bugfix-v2_20260515T003652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-015-bugfix-v2_20260515T003652.log",
+    "occurrence": 1,
+    "bytes": 1363174,
+    "sha256": "2fa5c80081357d358ab3070d3aba1b5a16f2989b2ae83dd266822e7c38cda9a2"
+  },
+  "statistics": {
+    "messages": 985,
+    "user_turns": 1,
+    "tool_calls": 396,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 2,
+      "assistant": 181,
+      "tool_call": 396,
+      "tool_result": 395,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 594,
+      "chunks": [
+        {
+          "path": "bf5532fc92e05df2a957-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bf5532fc92e05df2a957-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "bf5532fc92e05df2a957-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "bf5532fc92e05df2a957-part-0004.json",
+          "message_count": 54
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 391,
+      "chunks": [
+        {
+          "path": "bf5532fc92e05df2a957-part-0004.json",
+          "message_count": 126
+        },
+        {
+          "path": "bf5532fc92e05df2a957-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "bf5532fc92e05df2a957-part-0006.json",
+          "message_count": 85
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan-015-bugfix-v2.md"
+}

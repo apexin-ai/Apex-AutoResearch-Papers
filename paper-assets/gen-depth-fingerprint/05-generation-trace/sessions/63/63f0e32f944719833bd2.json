@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63f0e32f944719833bd2",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops plan008 dedup reeval",
+  "task_key": "worker_ops_plan008-dedup-reeval_20260515T223303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan008-dedup-reeval_20260515T223303_result.json",
+    "occurrence": 1,
+    "bytes": 571,
+    "sha256": "5f85aa990d523525d3a14e434e69990b461189acb966722e7115b453ddac1a91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**Dedup**: news 去除 801 重复（3115→2314），scientific/creative 无重复。\n\n**Dedup 后 vs 前**:\n| | news | scientific | creative | wikipedia |\n|---|---|---|---|---|\n| 3class F1 | 0.574→**0.561** (-1.3pp) | 0.705 (不变) | 0.628 (不变) | 0.793 (不变) |\n| binary F1 | 0.627→**0.626** | 0.770 | 0.731 | 0.822 |\n\n- Cross-domain pooled: 0.478→0.478 (基本不变)\n- Wiki→news transfer: 0.225→0.231 (+0.6pp)\n\n变化在噪声范围内，结论不变。Registry 已更新，标注 dedup applied。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan008-dedup-reeval.md"
+}

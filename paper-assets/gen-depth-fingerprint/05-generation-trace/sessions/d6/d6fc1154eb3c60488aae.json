@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6fc1154eb3c60488aae",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis olmo instruct length confound",
+  "task_key": "worker_analysis_olmo-instruct-length-confound_20260515T180847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_olmo-instruct-length-confound_20260515T180847_result.json",
+    "occurrence": 1,
+    "bytes": 1154,
+    "sha256": "ffd1925b21dc4f6afc8ac70668adde369d439c1da43045aa8a293c69168b9b47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "OLMo-Instruct length confound 分析完成。结果已追加到 `instruct_length_confound.json` 并更新 registry。\n\n**关键发现（OLMo-2-0425-1B-Instruct）：**\n\n| 指标 | 值 |\n|------|-----|\n| length-depth Spearman ρ | **-0.3701**（确认 length confound） |\n| **entropy_mean** original → partial ρ | 0.4822 → **0.3640**（控制长度后仍显著，reversal survives） |\n| **ttr** original → partial ρ | 0.0057 → **-0.2407**（原本就几乎无相关，控制后反转为负） |\n| **hapax_ratio** original → partial ρ | 0.0253 → **-0.1979**（同上） |\n| surface reversal survives | **NO** |\n| entropy reversal survives | **YES** |\n| depth signal after control | **partially_survives** |\n| binary LOGO F1 (held-out) | **0.3506** |\n\n与 Qwen instruct 模型的区别：OLMo-Instruct 的 surface 特征（ttr/hapax）原始 ρ 就接近零（不像 Qwen 的 ~0.5），所以不存在 \"surface reversal\"。但 entropy ρ sign reversal（base 约 -0.64 → instruct +0.48）在控制长度后仍保留（partial ρ = 0.364），说明 **entropy 方向反转不是纯粹的长度伪相关**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-olmo-instruct-length-confound.md"
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "8dc5bada7515ae89de30",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "exp plan 010 human edit",
+  "task_key": "worker_exp_plan-010-human-edit_20260515T155416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan-010-human-edit_20260515T155416.log",
+    "occurrence": 1,
+    "bytes": 1027545,
+    "sha256": "94c139fc71be3a23368f148756f70a4f1d78a717432e45351f9c433a56165fc0"
+  },
+  "statistics": {
+    "messages": 500,
+    "user_turns": 1,
+    "tool_calls": 213,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 66,
+      "tool_call": 213,
+      "tool_result": 213,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 484,
+      "chunks": [
+        {
+          "path": "8dc5bada7515ae89de30-part-0001.json",
+          "message_count": 136
+        },
+        {
+          "path": "8dc5bada7515ae89de30-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8dc5bada7515ae89de30-part-0003.json",
+          "message_count": 168
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "8dc5bada7515ae89de30-part-0003.json",
+          "message_count": 12
+        },
+        {
+          "path": "8dc5bada7515ae89de30-part-0004.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-plan-010-human-edit.md"
+}

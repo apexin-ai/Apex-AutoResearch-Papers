@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f778155476997557799",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "check plan 015 v2 status",
+  "task_key": "worker_check_plan-015-v2-status_20260515T012532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_plan-015-v2-status_20260515T012532_result.json",
+    "occurrence": 1,
+    "bytes": 1057,
+    "sha256": "577dfba18fc7d85bc6cb2349c9bf92eaa124c4c134678b5d28ea91372c9639ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## plan-015-v2 状态报告\n\n**进程存活**：PID 148428，运行 `scripts/ordinal_baseline.py --device cuda:0`（CUDA_VISIBLE_DEVICES=2），08:56 启动，已运行约 30 分钟。\n\n**当前阶段**：已完成 Eval 阶段，正在执行 Bootstrap CI（置信区间计算）。日志最后显示完成了 LD-Score 的 bootstrap，正在处理 FastDetectGPT。\n\n**Eval 中间结果**：\n\n| 方法 | F1 | LOGO | rho |\n|------|-----|------|-----|\n| LD-Score | 0.6603±0.0070 | 0.6597 | 0.6837 |\n| FastDetectGPT | 0.6938±0.0097 | 0.6824 | 0.4174 |\n| Avg-LogProb | 0.7592±0.0064 | 0.7564 | 0.7282 |\n| Binoculars | 0.2462±0.0050 | 0.2507 | 0.1762 |\n| 7-feat | 0.8024±0.0049 | 0.7980 | — |\n\n**输出文件**：\n- `results/ordinal_baseline_results.json`（3.2KB，08:55 写入）\n- `artifacts/plan-015/bootstrap_ci_results.txt`（08:41 写入）\n- `artifacts/plan-015/report/ordinal_baseline_results.txt`（08:55 写入）\n\n**结论**：进程正常运行中，Bootstrap CI 阶段进行中，预计短时间内完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-plan-015-v2-status.md"
+}

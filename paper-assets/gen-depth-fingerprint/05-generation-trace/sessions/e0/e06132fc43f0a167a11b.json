@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e06132fc43f0a167a11b",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_3_1778819329.md",
+  "task_key": "loop_3_1778819329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778819329.md",
+    "occurrence": 1,
+    "bytes": 4716,
+    "sha256": "a408478165616451450d8b6e37fb35f32fbafd263fb466b23a626529769867fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-15T04:19:18+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0/1/2/3 on autodl-5090，不得使用其他设备\n- EMNLP 2026 ARR DDL: **2026-05-25**（D012 明确指示不允许换会议）\n- plan-014 的 metrics 是基于 82% 快照的临时值（3702/~4500 records），**不得用于论文**——必须等完整数据重算\n- Claim 3 (Downstream Utility) 已确认 negative (D009)，reframe 为 diagnostic-not-curative，**禁止**再跑 downstream curation 实验试图翻盘\n- 大文件只能放 /root/autodl-tmp/，根分区 ~30GB 曾因 checkpoint 爆满导致 plan-004 失败\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: autodl-5090 (4× RTX 5090 32GB), account=root\n- **工作目录**: /root/gen-depth-fingerprint\n- **Python**: /root/miniconda3/bin/python (conda base, 不是 venv)\n- **激活命令**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**: \n  - Pythia-410M: /root/autodl-tmp/models/pythia-410m/models--EleutherAI--pythia-410m/snapshots/\n  - Qwen3-8B-Base: /root/autodl-tmp/models/Qwen/Qwen3-8B-Base/Qwen/Qwen3-8B-Base/\n  - OLMo-2-1B: /root/autodl-tmp/models/olmo-2-1b-hf/allenai/OLMo-2-0425-1B\n  - Qwen3-0.6B: /root/autodl-tmp/models/Qwen/Qwen3-0___6B-Base\n  - Qwen3-1.7B: /root/autodl-tmp/models/Qwen/Qwen3-1___7B-Base\n- **数据**: /root/gen-depth-fingerprint/data/ (seeds, generations, features CSVs)\n- **HF_HOME**: /root/autodl-tmp/.hf_cache\n- **活跃进程**:\n  - plan-014: PID 134817 (cuda:0, tmux), Qwen3-8B generation ~87%\n  - plan-005-cont: PID 164658 (cuda:1, tmux), ~17%\n  - plan-005-elab: PID 164737 (cuda:2, tmux), ~16%\n  - plan-005-rewrite: PID 164881 (cuda:3, tmux), ~16%\n- **活跃 Worker**: worker_analysis_plan-014-revalidation-v2 (running) — 正在重算 plan-014 完整数据的 LOGO\n\n### 3. 📊 当前状态\n**刚完成**: 所有 P0 实验（plan-001 ablation, plan-002 cross-gen, plan-003 cross-ref, plan-013 length, plan-015 ordinal baseline, plan-004-v2 downstream negative）。Paper Agent 已启动。\n\n**正在进行**:\n- **plan-014** (RUNNING, cuda:0): Qwen3-8B 生成 87%，ETA ~30min。**注意**: registry 标记为 DONE/success 但 notes 里写了 PENDING REVALIDATION。Worker `plan-014-revalidation-v2` 正在等完整数据做最终 LOGO 评估。当前临时 metrics: 6-gen LOGO F1=0.7886, held-out F1=0.6886。\n- **plan-005** (RUNNING, cuda:1/2/3): 三种 prompt type (continuation/elaboration/inspired_rewriting) 并行生成，Pythia-2.8B, ~16-17%, ETA ~2h from 03:53 UTC。完成后需做 prompt type comparison analysis。\n\n**等待中**:\n- plan-014-revalidation-v2 Worker 回调 → 更新最终 D011 数字\n- plan-005 三个 cron 回调 → 触发 prompt type 分析\n- Paper Agent（已启动但未看到 Worker）\n\n### 4. 📋 待办（条件触发式）\n- plan-014 generation 完成 (PID 134817 exits) → revalidation worker 已在跑，等它回调 → 更新 registry metrics 为最终值 → 更新 ROADMAP D011 → 汇报 Director 最终 scale 数字\n- plan-005-cont/elab/rewrite 各自 cron 回调 → spawn worker 做 prompt type 对比分析（3 prompt types 的 LOGO F1 + Spearman + feature importance） → 结果 patch 入论文\n- plan-005 分析完成 → 更新 ROADMAP P1 状态 → 汇报 Director\n- Paper Agent 交付初稿 → 启动 Review cycle → 目标 5/25 提交\n- report.md 需要更新（当前资源状态行说\"空闲 cuda:0-3\"但实际全在跑）\n\n### 5. 🎯 战略上下文\n**核心结论链**: MVP (D001→D002) → Dual Dynamics 发现 (D004→D005) → Re-dream 通过 (D006→D007) → Ordinal baseline 叙事调整 (D008) → Downstream negative reframe (D009) → Scale signal 确认但有 gap (D011) → 恢复 EMNLP 目标 (D012)\n\n**论文 framing**: \"Differential depth response\" — central-tendency/diversity 特征随深度漂移 (H2), shape 特征近稳态 (H1)。7-feature ensemble 跨 6 generators / 3 families 显著优于所有单检测器。Claim 3 诚实报告为 negative finding。\n\n**易踩坑**:\n1. plan-014 registry 状态是 DONE/success，但数据不完整——**不要**基于当前 metrics 写论文数字，必须等 revalidation worker 的最终结果\n2. submit_training_job 注入 CUDA_VISIBLE_DEVICES，脚本内永远用 `--device cuda:0`（历史教训：mvp-001-gen-s1/s2/s3 全因此失败）\n3. AutoDL tmux session 有系统性 SIGHUP 问题（plan-002 四次被杀），长任务需要 nohup 备份或 disown\n4. Binoculars baseline 有 denominator bug（已修复在 plan-015-v2），引用数字时用修复后的 0.579 不是之前的错误值\n5. 用户明确说过\"不允许换会议\"——**绝对不要**在汇报中暗示时间不够或建议 fallback\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778819329.md"
+}

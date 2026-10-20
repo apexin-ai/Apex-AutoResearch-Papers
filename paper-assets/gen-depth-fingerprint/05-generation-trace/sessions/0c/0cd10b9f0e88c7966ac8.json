@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0cd10b9f0e88c7966ac8",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "diag bjb2 gen monitor chain",
+  "task_key": "worker_diag_bjb2-gen-monitor-chain_20260518T071956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_bjb2-gen-monitor-chain_20260518T071956_result.json",
+    "occurrence": 1,
+    "bytes": 1295,
+    "sha256": "09cfe6dc6500b3b6eb9fc1f0d1e6a549bdeec0f3ceef311f31b58d8ee2947940"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两条自动链均已就位，正在等待生成进程结束。\n\n---\n\n## 汇总\n\n### 生成进度\n| 任务 | Session | PID | GPU | 进度 | 预估剩余 |\n|------|---------|-----|-----|------|----------|\n| Qwen t=0.9 | tc_phase3 | 2067 | GPU 0 (42%, 4.0G) | **927/996** (93%) | ~14 min |\n| Llama instruct | exp054_resume | 3103 | GPU 2 (65%, 6.9G) | **944/995** (95%) | ~7 min |\n\n### GPU 状态\n- GPU 0: Qwen 生成中 (3968 MiB)\n- GPU 1: **空闲** → Qwen 特征提取将用此 GPU\n- GPU 2: Llama 生成中 (6916 MiB)\n- GPU 3: **空闲** → Llama 特征提取将用此 GPU\n\n### 自动链设置\n**tc_phase3:chain** — 等 PID 2067 结束 → `CUDA_VISIBLE_DEVICES=1 python extract_features.py --input data/qwen3-1.7b-t09/generations_shard0.jsonl --output data/features_qwen3-1.7b-t09.csv --device cuda:0`\n\n**exp054_resume:chain** — 等 PID 3103 结束 → `CUDA_VISIBLE_DEVICES=3 python extract_features.py --input data/llama-3.2-3b-instruct/generations_shard0.jsonl --output data/features_llama-3.2-3b-instruct.csv --device cuda:0` → `python eval_exp054_instruct_llama.py`\n\n注意：Qwen 的旧 features CSV（2413 条）将被完整数据重新提取覆盖。`$(date)` 在 echo 中被提前展开了（纯装饰，不影响实际命令执行）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-bjb2-gen-monitor-chain.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab3c6ef406a82c7c1158",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper appendix tost bootstrap",
+  "task_key": "worker_paper_appendix_tost_bootstrap_20260520T082345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix_tost_bootstrap_20260520T082345_result.json",
+    "occurrence": 1,
+    "bytes": 409,
+    "sha256": "a105580b9f2702b0319cff0f8d87bec8001f13abcbc90a38a3b6dae39c4e45e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n1. **新建 `appendix_tost_bootstrap.tex`** — 包含 section 标题、bootstrap 方法说明、booktabs 风格表格（4 features × rejection rate / median d / d 95% CI）、总结段落。\n2. **`results.tex` 第 81 行** — 在 `(Appendix~\\ref{app:tost}).` 后添加了 bootstrap 引用句。\n\n你需要在 `main.tex` 中添加 `\\input{appendix_tost_bootstrap}` 行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-appendix-tost-bootstrap.md"
+}

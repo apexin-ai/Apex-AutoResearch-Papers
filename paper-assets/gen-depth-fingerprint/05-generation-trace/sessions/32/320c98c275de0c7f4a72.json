@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "320c98c275de0c7f4a72",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "fix supplement add llama instruct",
+  "task_key": "worker_fix_supplement-add-llama-instruct_20260519T130158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_supplement-add-llama-instruct_20260519T130158.log",
+    "occurrence": 1,
+    "bytes": 873547,
+    "sha256": "ff6f52aeb7275c684251f9ac5419b9ec0a55bce8825f860cbe916f5d39861ffe"
+  },
+  "statistics": {
+    "messages": 149,
+    "user_turns": 1,
+    "tool_calls": 55,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 32,
+      "tool_call": 55,
+      "tool_result": 55,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 116,
+      "chunks": [
+        {
+          "path": "320c98c275de0c7f4a72-part-0001.json",
+          "message_count": 108
+        },
+        {
+          "path": "320c98c275de0c7f4a72-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "320c98c275de0c7f4a72-part-0002.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-supplement-add-llama-instruct.md"
+}

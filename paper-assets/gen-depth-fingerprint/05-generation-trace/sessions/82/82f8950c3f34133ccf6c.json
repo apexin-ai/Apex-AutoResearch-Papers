@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82f8950c3f34133ccf6c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "check review exp a status",
+  "task_key": "worker_check_review-exp-a-status_20260515T124250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_review-exp-a-status_20260515T124250_result.json",
+    "occurrence": 1,
+    "bytes": 1505,
+    "sha256": "c65e3bc2f363bfe754cd97b6e2212f55bc9e287db6de109b4fee299281377d6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exp A 完成。结果汇总：\n\n## Exp A: 4-Baseline Ensemble LOGO 对比（6-gen, n=27529）\n\n| Group | Features | Avg F1 | 95% CI |\n|-------|----------|--------|--------|\n| **(a) 4-baseline** | avg_logprob, ld_score, fastdetectgpt, binoculars | **0.7964** | [0.7921, 0.8007] |\n| **(b) 4-baseline+surface** | above + ttr, hapax_ratio | **0.8049** | [0.8003, 0.8092] |\n| **(c) 7-feature unified** | entropy_{mean,std,min,max}, tail_decay, ttr, hapax | **0.7887** | [0.7839, 0.7930] |\n| **(d) 7-feature original** | same as (c), same hyperparams | **0.7887** | [0.7839, 0.7930] |\n\nPer-generator F1（最难的 qwen3-8b 和最易的 pythia-1b）：\n\n| Generator | (a) 4-baseline | (b) +surface | (c) 7-feature |\n|-----------|---------------|-------------|--------------|\n| pythia-1b | 0.837 | 0.848 | **0.853** |\n| qwen3-0.6b | 0.825 | **0.838** | 0.823 |\n| qwen3-1.7b | 0.822 | **0.838** | 0.806 |\n| pythia-2.8b | 0.802 | 0.805 | 0.804 |\n| olmo-2-1b | **0.779** | 0.778 | 0.765 |\n| qwen3-8b | 0.713 | **0.722** | 0.682 |\n\n关键发现：\n- **(c)=(d)**：unified 和 original 超参完全相同，结果一致（sanity check pass）\n- **(b) > (a) > (c)**：加 surface features（ttr+hapax）能显著提升 baseline ensemble，但 7-feature depth-only 的表现略低于 4-baseline detector ensemble\n- **4-baseline+surface (0.805)** 和 **7-feature (0.789)** 的 CI 不重叠，差异显著\n- qwen3-8b 始终是最难的 generator，7-feature 对它的 F1 仅 0.682"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-review-exp-a-status.md"
+}

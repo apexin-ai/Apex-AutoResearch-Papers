@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc02c652afdda0bce56c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis exp062 cohens d batch2",
+  "task_key": "worker_analysis_exp062-cohens-d-batch2_20260521T195702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp062-cohens-d-batch2_20260521T195702_result.json",
+    "occurrence": 1,
+    "bytes": 926,
+    "sha256": "fef0522b0a7c98bf5c534f1ecb42e8c00c6137840edc2ffff1a85edbf689c90d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**Qwen3-8B greedy** (gen1=982, gen2+=2722):\n\n| Feature | Cohen's d |\n|---|---|\n| entropy_mean | 0.98 |\n| entropy_std | 0.71 |\n| entropy_min | 0.06 |\n| entropy_max | 0.01 |\n| tail_decay | 0.08 |\n| ttr | 0.76 |\n| hapax_ratio | 0.76 |\n\nShape: YES, Drift: YES → **DDR: YES**\n\n**Qwen3-0.6B top-k** (gen1=991, gen2+=2569):\n\n| Feature | Cohen's d |\n|---|---|\n| entropy_mean | 0.80 |\n| entropy_std | 0.30 |\n| entropy_min | 0.10 |\n| entropy_max | 0.02 |\n| tail_decay | 0.13 |\n| ttr | 0.58 |\n| hapax_ratio | 0.52 |\n\nShape: YES, Drift: YES → **DDR: YES**\n\nQwen3-0.6B 在 greedy 下 hapax=0.46 未过 Drift 阈值，但 top-k 下反而 hapax=0.52 通过了——stochastic sampling 反而增强了 drift signal。\n\n进度：**15/16**，剩余 Qwen3-8B top-k。两份 appendix tex 和两份 summary txt 已同步更新，Mean 行已重算（Greedy 8/8, Top-k 7/8）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp062-cohens-d-batch2.md"
+}

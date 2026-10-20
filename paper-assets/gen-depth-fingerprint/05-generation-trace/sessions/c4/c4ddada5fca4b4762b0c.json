@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4ddada5fca4b4762b0c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analyze qwen17b retry s1 check",
+  "task_key": "worker_analyze_qwen17b-retry-s1-check_20260514T215900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_qwen17b-retry-s1-check_20260514T215900_result.json",
+    "occurrence": 1,
+    "bytes": 351,
+    "sha256": "e0b24db3c646cdae5108d9766262882ca6b74e59352fcdfd0c691137d9891c4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan-002-qwen17b-retry-s1: failed**\n\n- 进程被 SIGHUP 终止 (EXIT_CODE=129)，仅完成 29% (144/498 seeds)\n- 产出 693 条记录（远低于 2000 阈值），148 unique seeds\n- Depth 分布 `{0:148, 1:145, 2:142, 3:132, 4:126}`，分布本身合理但数据不完整\n- Registry 已更新 conclusion=failed 及 failure_reason"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-qwen17b-retry-s1-check.md"
+}

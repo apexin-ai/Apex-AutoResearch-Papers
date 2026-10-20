@@ -1,0 +1,44 @@
+{
+  "exp_id": "review-rd2m7-bib-audit",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:20:45.148Z",
+    "updated_at": "2026-05-15T16:29:28.700Z",
+    "hypothesis": "Rd2-M7: bib 年份验证（diveye, strong_model_collapse, aaronson_watermark）",
+    "conclusion": "success",
+    "metrics": {
+      "diveye": {
+        "year_correct": true,
+        "year": 2026,
+        "venue": "TMLR",
+        "author_fix": "Varun Basani → Advik Raj Basani, Yuntian Chen → Pin-Yu Chen"
+      },
+      "strong_model_collapse": {
+        "year_correct": true,
+        "year": 2025,
+        "venue": "ICLR"
+      },
+      "aaronson_watermark": {
+        "author_fix": "Chelsea → Hendrik Kirchner",
+        "url_added": "https://scottaaronson.blog/?p=6823"
+      }
+    },
+    "spec": {
+      "command": "manual bib verification",
+      "server": "local",
+      "data_path": "paper/references.bib",
+      "data_count": 3,
+      "model_name": "N/A",
+      "seed": 0
+    },
+    "checkpoint_path": "N/A",
+    "log_path": "N/A",
+    "completed_at": "2026-05-15T16:29:28.700Z"
+  },
+  "timestamp": "2026-05-15T16:29:28.781254+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5922a1f5aa3e71f4dab3",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code table4 grid search",
+  "task_key": "worker_code_table4-grid-search_20260517T113140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_table4-grid-search_20260517T113140_result.json",
+    "occurrence": 1,
+    "bytes": 73,
+    "sha256": "b33ce3bd431a08558e9b7b4cf935d1d38c5cde37ad25fce3c00f1275ffaa56e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: Stream idle timeout - partial response received"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-table4-grid-search.md"
+}

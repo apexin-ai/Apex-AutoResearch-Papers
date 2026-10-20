@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ac933df60696cf3daf3",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper redesign framework figure",
+  "task_key": "worker_paper_redesign-framework-figure_20260517T154447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_redesign-framework-figure_20260517T154447_result.json",
+    "occurrence": 1,
+    "bytes": 829,
+    "sha256": "22cd1ea64a9d05c61fb0216994fe04edfd382909dce4de9da07fff4c5f1a84c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已全部同步。\n\n**输出文件** (4 份，PDF/PNG 一致):\n\n| 位置 | PDF | PNG |\n|------|-----|-----|\n| `artifacts/_project/chart/` | 46K | 180K |\n| `artifacts/_project/paper/figures/` | 46K | 180K |\n\n**服务器脚本**: `/root/gen-depth-fingerprint/scripts/plot_fig2_framework_v2.py`\n\n**设计要点**:\n- 三栏布局 (6.75×3.0 inches, `figure*` 双栏)\n- **左栏**: Seed text (gen-0) → Generator G (含 ×4 回环箭头) → 5 级深度渐变条 → 参数标注框\n- **中栏**: Pythia-410M → Token NLL 分布曲线 → 7 features 三组分色 (Drifting 蓝 / Stationary 橙 / Intermediate 灰)\n- **右栏**: XGBoost (LOGO-CV) → 3-class 输出 → DDR 趋势子图 (三条趋势线带端点标签)\n- 配色: 深度渐变 #F7FBFF→#08519C，跨栏粗箭头，虚线分隔符"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-redesign-framework-figure.md"
+}

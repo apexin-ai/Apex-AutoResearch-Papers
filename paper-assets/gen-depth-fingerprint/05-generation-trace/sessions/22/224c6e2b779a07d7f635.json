@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "224c6e2b779a07d7f635",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper pdf sync final",
+  "task_key": "worker_paper_pdf-sync-final_20260522T022116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_pdf-sync-final_20260522T022116_result.json",
+    "occurrence": 1,
+    "bytes": 385,
+    "sha256": "957296933c25eeb1fdadc86797de24a79687ce38f3562f03a237b659b8b5044a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n| 项目 | 值 |\n|---|---|\n| 远程文件大小 | 2,507,462 bytes |\n| 本地 MD5 | `b69bb8aec786b072e7844906f491c055` |\n| 两份本地副本 | MD5 一致 ✓ |\n| 本地文件大小 | 2,507,462 bytes（与远程一致）✓ |\n\n（`md5sum` 不在 ssh_read_only 白名单，无法直接获取远程 MD5，但文件大小完全匹配，传输完整。）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-pdf-sync-final.md"
+}

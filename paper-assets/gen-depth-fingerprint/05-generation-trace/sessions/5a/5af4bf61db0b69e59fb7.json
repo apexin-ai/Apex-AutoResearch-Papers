@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5af4bf61db0b69e59fb7",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_6_1779052296.md",
+  "task_key": "loop_6_1779052296",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1779052296.md",
+    "occurrence": 1,
+    "bytes": 3828,
+    "sha256": "06c3b8292072a3e78e0d3e5973111c3c59bd93bf416d5cc798bd2148a632633b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_wall_time\nupdated: '2026-05-17T12:05:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 的 cuda:0-3（4× RTX 5090 32GB），不可用其他服务器或 GPU\n- tail_decay 定义：代码实现是 rank 100-1000 sorted avg log-prob 的线性回归斜率，**不是** 论文曾写的 \"90th percentile proportion\"——已修正，不可回退\n- tail_decay sensitivity analysis 声明已删除（从未实际运行过），不可在论文中重新出现\n- llama_filter_and_extract.py / mistral_filter_and_extract.py 中的旧版 tail_decay（proportion）是死代码，最终数据全部用 extract_features.py 的 slope 实现，已验证一致\n- EMNLP 2026 ARR DDL: 2026-05-25\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090，工作目录 `/root/gen-depth-fingerprint/`\n- Python：`source /root/miniconda3/bin/activate`\n- 本地论文：`/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/`（与 `artifacts/_project/paper/` 已同步）\n- 特征数据：`/root/gen-depth-fingerprint/data/features_all_models.csv`（6-gen）+ `data/{llama-3.2-3b,mistral-7b-v0.3}/features_pythia410m.jsonl`（合并为 8-gen）\n- 模型缓存：`/root/autodl-tmp/models/`\n- 活跃进程：无（全部实验完成）\n- Cron：无活跃 cron\n\n### 3. 📊 当前状态\n**刚完成的 3 项审稿回应实验**（全部 DONE，结果已汇报 Director）：\n1. **Table 4 grid search** → `results/table4_grid_search.json`：4-det+surface 3-class F1=0.795 > 7-feature 0.774（+2.1pp），binary 持平（0.709 vs 0.707）\n2. **TOST equivalence** → `results/tost_equivalence.json`：all_data ≈ size_matched（p<0.001），all_data vs depth01 边缘不等价（diff=0.052, margin=0.053）\n3. **Efficiency benchmark** → `results/efficiency_comparison.json`：7-feature 快 2.35×，省 3.2× 显存（单模型 410M vs 双模型 1.41B）\n\n**exp_047_multi_domain_t07** DONE/success：t=0.7 cross-domain binary F1 = News 0.712 / Academic 0.628 / Code 0.687（低于 t=1.0 的 0.75/0.74/0.75）\n\n**等待 Director 决策**：\n- 论文 framing：如何整合 grid search 结果（7-feature 不再有绝对 F1 优势，需转 efficiency 叙事）\n- 两处数字修正：OLMo base \"0.764\" → 0.763，LOFO delta \"−0.8pp\" → −1.5pp\n- Multi-domain：是否两组 temperature 都报告\n\nRegistry 中无 RUNNING/PREPARING 实验。\n\n### 4. 📋 待办（条件触发式）\n- Director 批准 Table 4 叙事调整 → 派 Worker 重写 results.tex §4.2 + discussion.tex efficiency 段\n- Director 确认数字修正 → 派 Worker 改 limitations.tex:7（0.764→0.763）+ results.tex:14（−0.8pp→−1.5pp）\n- Director 决定 multi-domain framing → 派 Worker 更新 appendix_domain.tex（加 t=0.7 数据行）\n- 任何论文修改完成 → 编译检查 + docs/paper 同步\n- 投稿前最终检查 → reference-audit skill + 全文 AI 风格 grep\n\n### 5. 🎯 战略上下文\n- **核心转折**：grid search 显示 4-det+surface 在公平超参下 3-class 略优 7-feature（+2.1pp）。论文 claim 不能再是 \"7-feature outperforms all baselines\"，需要转为 **efficiency-accuracy tradeoff**：\"comparable accuracy, 2.4× faster, single model\"。Binary F1 仍持平，这是 7-feature 的最后防线\n- **易踩的坑**：\n  - appendix_dataset_stats.tex 需要 `\\protect\\footnotemark`（已修复，不可丢失）\n  - features_all_models.csv 只含 6-gen，Llama/Mistral 特征在各自目录的 features_pythia410m.jsonl 中，评估时由 fix_tail_decay_and_eval.py 合并\n  - multi-domain t=0.7 结果低于 t=1.0 是正确的（低温 → 低 drift → 弱信号），不是 bug\n  - 论文中 \"Qwen3-0.6B with chat template 0.667\" 用的是 7-gen split（排除 Qwen3-0.6B base），不是 8-gen LOGO，引用时注意上下文\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1779052296.md"
+}

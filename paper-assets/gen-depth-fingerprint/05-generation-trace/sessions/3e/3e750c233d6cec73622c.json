@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "3e750c233d6cec73622c",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "monitor plan 005 elab rewrite",
+  "task_key": "worker_monitor_plan-005-elab-rewrite_20260515T055129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_plan-005-elab-rewrite_20260515T055129.log",
+    "occurrence": 1,
+    "bytes": 627584,
+    "sha256": "ae5169ad7b1f902f2aeb07fd2fd4991207ef5512f51b187f9b4d2263fd8176ff"
+  },
+  "statistics": {
+    "messages": 301,
+    "user_turns": 0,
+    "tool_calls": 127,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 43,
+      "tool_call": 127,
+      "tool_result": 127,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 301,
+      "chunks": [
+        {
+          "path": "3e750c233d6cec73622c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e750c233d6cec73622c-part-0002.json",
+          "message_count": 121
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/monitor-plan-005-elab-rewrite.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cba4918e7514cddae3d8",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code gemma rp11 generation",
+  "task_key": "worker_code_gemma-rp11-generation_20260516T120935",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gemma-rp11-generation_20260516T120935_result.json",
+    "occurrence": 1,
+    "bytes": 616,
+    "sha256": "bf095722220d0d0262acdcea9d6a1d197f7224d25dcce4f397e21118722b3b97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动完成。\n\n**汇报：**\n\n| 项目 | 值 |\n|------|-----|\n| PID | 305925 |\n| GPU | cuda:1 (通过 CUDA_VISIBLE_DEVICES=1 映射为 cuda:0) |\n| 模型 | `/root/autodl-tmp/models/gemma-2-2b/AI-ModelScope/gemma-2-2b` |\n| repetition_penalty | 1.1 |\n| 输出 | `/root/gen-depth-fingerprint/data/gemma-2-2b-rp11/generations_shard0.jsonl` |\n| 速度 | ~15.6s/seed |\n| 994 seeds 预估完成 | ~4.3h (约 UTC 16:25 / 北京时间 00:25) |\n| Registry | `plan-016-gemma2-2b-rp11` → RUNNING |\n\n日志：`/tmp/gemma_rp11.log`。已开始写入数据，输出目录独立于 rp=1.0 数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gemma-rp11-generation.md"
+}

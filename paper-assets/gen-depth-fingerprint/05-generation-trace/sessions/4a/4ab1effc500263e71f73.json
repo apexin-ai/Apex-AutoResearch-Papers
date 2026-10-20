@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ab1effc500263e71f73",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops verify elaboration numbers",
+  "task_key": "worker_ops_verify-elaboration-numbers_20260516T130654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-elaboration-numbers_20260516T130654_result.json",
+    "occurrence": 1,
+    "bytes": 2698,
+    "sha256": "9be73854ff8ad1e92d6e5dd7861183e3b39f7a7be5ffdd1048c026a570d96eb5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the report.\n\n---\n\n## 报告：elaboration/rewriting 数字来源验证\n\n### 来源文件\n\n论文中 elaboration/rewriting 相关数字**全部来自 `data/prompt_type_results.json`**，而非 plan006。\n\n### 逐条验证\n\n| 论文数字 | 出处位置 | 来源文件中的值 | 匹配？ |\n|----------|---------|--------------|--------|\n| elaboration F1 = 0.730 | limitations.tex:15, discussion.tex:30 | `prompt_type_results.json` → `per_prompt_cv_f1.elaboration.mean = 0.73` | ✓ |\n| rewriting F1 = 0.737 | limitations.tex:15 | `prompt_type_results.json` → `per_prompt_cv_f1.inspired_rewriting.mean = 0.7368` → 四舍五入 0.737 | ✓ |\n| continuation F1 = 0.781 | limitations.tex:15, discussion.tex:30 | `prompt_type_results.json` → `per_prompt_cv_f1.continuation.mean = 0.7806` → 四舍五入 0.781 | ✓ |\n| LOPTO F1 = 0.753 | discussion.tex:30 | `prompt_type_results.json` → `lopto_f1.avg = 0.7525` → 四舍五入 0.753 | ✓ |\n| elaboration retains 98.6% | discussion.tex:29 | `prompt_type_results.json` → `depth_decay.elaboration.retention_d4_pct = 98.6` | ✓ |\n| continuation 16.9% loss | discussion.tex:29 | `prompt_type_results.json` → `depth_decay.continuation.retention_d4_pct = 83.1` → 100-83.1=16.9 | ✓ |\n| elaboration drift 1.4% | appendix_prompt_type.tex:7 | `prompt_type_results.json` → 100-98.6=1.4 | ✓ |\n| rewriting drift 6.1% | appendix_prompt_type.tex:7 | `prompt_type_results.json` → 100-93.9=6.1 | ✓ |\n| binary F1 0.671 vs 0.749 | limitations.tex:15 | `plan006_paraphrastic_comparison.json` → paraphrase 0.6711, continuation 0.7491 | ✓（这组来自 plan006）|\n\n### plan006 vs prompt_type_results 的关系\n\n- **`data/prompt_type_results.json`**：prompt type 实验（continuation / elaboration / inspired_rewriting，3 种 prompt 类型），是 elaboration/rewriting 相关数字的**权威来源**\n- **`results/plan006_paraphrastic_comparison.json`**：paraphrastic comparison 实验（paraphrase vs continuation），只提供 binary F1（0.671 vs 0.749）和 paraphrase 相关数字\n\n两个文件中 continuation 的数值略有差异（plan006 的 CV F1=0.7876 vs prompt_type 的 0.7806；retention 82.6% vs 83.1%），因为它们是独立实验运行，使用不同的数据子集。论文统一使用 prompt_type_results 中的 continuation 数字（0.781, 83.1%）。\n\n### 注意事项\n\nappendix_prompt_type.tex:7 写的是 \"16.9% **per depth step**\"，但实际是 4 步的总损失（不是每步损失率）。rewriting 6.1% 和 elaboration 1.4% 同理。措辞可能需要修正为 \"over the full 4-step chain\" 或 \"total retention loss\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-elaboration-numbers.md"
+}

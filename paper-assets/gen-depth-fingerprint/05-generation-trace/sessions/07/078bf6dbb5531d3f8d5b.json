@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "078bf6dbb5531d3f8d5b",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code mvp eval pipeline",
+  "task_key": "worker_code_mvp-eval-pipeline_20260514T180512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-eval-pipeline_20260514T180512_result.json",
+    "occurrence": 1,
+    "bytes": 2056,
+    "sha256": "ca29f38e752b13c98b6b62224e978648913145abab33a9b01ea918f8b9e37b93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## MVP 评估报告\n\n### 1. Merge 结果\n合并 4 个 shards → **4,609 行** ✓\n\n### 2. 特征提取结果\n- **features.csv**: 4,610 行（4,609 数据 + 1 header）✓\n- **列名**: `id, depth, seed_id, entropy_mean, entropy_std, entropy_min, entropy_max, tail_decay, ttr, hapax_ratio`\n- **NaN**: 无\n\n### 3. 统计检验（Kruskal-Wallis，Bonferroni 校正后全部显著 ***）\n\n| 特征 | H-statistic | p-value | 显著 |\n|------|------------|---------|------|\n| hapax_ratio | 1536.14 | 0.0 | *** |\n| ttr | 1445.11 | 0.0 | *** |\n| entropy_mean | 1180.80 | 3.91e-257 | *** |\n| entropy_min | 589.12 | 1.19e-128 | *** |\n| entropy_std | 193.42 | 9.99e-43 | *** |\n| entropy_max | 49.64 | 1.67e-11 | *** |\n| tail_decay | 25.44 | 2.99e-06 | *** |\n\n**所有 7 个特征全部高度显著**，词汇多样性特征（hapax_ratio, ttr）和 entropy_mean 区分力最强。\n\n### 4. 分类结果\n\n**3-class macro-F1: 0.8408** | **Binary gen-0 vs gen-2+ F1: 0.8653**\n\nCV macro-F1: 0.806 ± 0.013\n\n**Per-class metrics:**\n\n| Class | Precision | Recall | F1 |\n|-------|-----------|--------|-----|\n| gen-0 | 0.9590 | 0.9444 | **0.9517** |\n| gen-1 | 0.7419 | 0.8131 | **0.7759** |\n| gen-2+ | 0.8297 | 0.7626 | **0.7947** |\n\n**Confusion matrix:**\n\n```\n           pred-0  pred-1  pred-2+\ngen-0       187      11       0\ngen-1         6     161      31\ngen-2+        2      45     151\n```\n\ngen-0 几乎完美分离；gen-1 和 gen-2+ 之间有一定混淆（45 个 gen-2+ 被误判为 gen-1），符合预期——相邻代际特征更接近。\n\n**Feature importance (XGBoost):**\n1. hapax_ratio: 0.3004\n2. entropy_mean: 0.2202\n3. ttr: 0.1651\n4. entropy_std: 0.1340\n5. entropy_max: 0.0650\n6. entropy_min: 0.0585\n7. tail_decay: 0.0569\n\n### 5. Pass/Fail 判定\n\n| 条件 | 阈值 | 实际值 | 结果 |\n|------|------|--------|------|\n| macro-F1 ≥ 0.45 | 0.45 | **0.8408** | ✓ |\n| binary F1 ≥ 0.65 | 0.65 | **0.8653** | ✓ |\n\n## **PASS** — 两项指标均大幅超过阈值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-eval-pipeline.md"
+}

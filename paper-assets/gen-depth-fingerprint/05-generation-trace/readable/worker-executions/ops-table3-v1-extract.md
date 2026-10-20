@@ -1,0 +1,1560 @@
+# ops table3 v1 extract
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 30
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/workers/worker_ops_table3-v1-extract_20260516T190133.log`
+- **Structured JSON:** [`2d12840487ef11763e3c.json`](../../sessions/2d/2d12840487ef11763e3c.json)
+
+## Before a recorded user message
+
+30 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "208fc5f2-5bd2-4685-8f8a-a70060cb6564",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778958600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "7b53ef89-1588-41fe-b007-9d76dbc3a25c",
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to SSH to the autodl-5090 server and extract results from previous experiments. Let me start by checking the results files and scripts on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "841c5db5-73d8-4070-ad90-d6ad3ae14028",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018DQ9gnz1eZpL7YbKSk9gzw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13078,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13078
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013ZWB54Js9HFKhdoAMHo5cc`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "061e0965-afe2-41a0-983c-e3da6e999595",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018DQ9gnz1eZpL7YbKSk9gzw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13078,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13078
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T19:01:45.966Z_
+
+<details><summary>↩ Tool result · `toolu_013ZWB54Js9HFKhdoAMHo5cc`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "eec5186d-f3b9-4ed6-82ae-21f9d742f5ec",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking the results files and scripts on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "7ddd0ad3-7f9d-43a3-870a-ec1e854ae1fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KGeyfjh7uMcW7gRYHiTMtN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 477,
+      "cache_read_input_tokens": 24919,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 477
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VwubEBPvBnZMDbRVrouTZe`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/gen-depth-fingerprint/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "4bd78960-8c78-4df7-bb05-9ddd232274d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KGeyfjh7uMcW7gRYHiTMtN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 477,
+      "cache_read_input_tokens": 24919,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 477
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014x9C3MadKRpHQHxanf9Sdn`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/gen-depth-fingerprint/scripts/eval_table3*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "18153a2b-4f37-409b-91f7-5a76b9fccac3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KGeyfjh7uMcW7gRYHiTMtN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 477,
+      "cache_read_input_tokens": 24919,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 477
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T19:01:50.637Z_
+
+<details><summary>↩ Tool result · `toolu_01VwubEBPvBnZMDbRVrouTZe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1028\\ndrwxr-xr-x  2 root root   4096 May 17 01:54 .\\ndrwxr-xr-x 14 root root   4096 May 17 01:25 ..\\n-rw-r--r--  1 root root   1030 May 16 22:53 8gen_baselines.json\\n-rw-r--r--  1 root root   2578 May 16 23:03 8gen_classifier_comparison.json\\n-rw-r--r--  1 root root   3207 May 17 01:12 8gen_cross_model_chains.json\\n-rw-r--r--  1 root root    835 May 16 21:18 8gen_feature_ablation.json\\n-rw-r--r--  1 root root   1548 May 16 23:02 8gen_finer_depth.json\\n-rw-r--r--  1 root root    550 May 16 21:17 8gen_lofo_family.json\\n-rw-r--r--  1 root root   7388 May 17 01:34 8gen_logo_baselines.json\\n-rw-r--r--  1 root root   2869 May 16 20:51 8gen_logo_results_BUGGY_DO_NOT_USE.json\\n-rw-r--r--  1 root root   2025 May 16 20:42 8gen_logo_unfiltered.json\\n-rw-r--r--  1 root root   2050 May 16 20:51 8gen_per_gen_spearman.json\\n-rw-r--r--  1 root root    682 May 16 20:51 8gen_pooled_rho.json\\n-rw-r--r--  1 root root   1511 May 16 23:23 8gen_sampling_ablation.json\\n-rw-r--r--  1 root root    727 May 17 02:45 8gen_table3_unified.json\\n-rw-r--r--  1 root root   1721 May 17 01:40 README.md\\n-rw-r--r--  1 root root   1492 May 15 03:14 ablation_results.json\\n-rw-r--r--  1 root root   2799 May 15 17:41 alt_classifier_results.json\\n-rw-r--r--  1 root root    785 May 15 22:31 binary_bootstrap_pvalue.json\\n-rw-r--r--  1 root root   2051 May 15 15:34 bootstrap_ci_results.json\\n-rw-r--r--  1 root root   1086 May 15 20:33 bootstrap_ci_v2_results.json\\n-rw-r--r--  1 root root   1969 May 15 16:37 confusion_matrix_3class.json\\n-rw-r--r--  1 root root   1969 May 15 16:35 confusion_matrix_results.json\\n-rw-r--r--  1 root root   2914 May 16 06:08 cross_model_chains_results.json\\n-rw-r--r--  1 root root   2906 May 16 12:49 dataset_stats.json\\n-rw-r--r--  1 root root   1293 May 16 12:49 dataset_stats_table.tex\\n-rw-r--r--  1 root root    963 May 16 20:54 degeneration_rates.json\\n-rw-r--r--  1 root root 542087 May 15 03:14 depth_trends.png\\n-rw-r--r--  1 root root   1032 May 15 17:50 family_holdout_3class.json\\n-rw-r--r--  1 root root  33027 May 16 13:00 fig1_differential_response_v2.pdf\\n-rw-r--r--  1 root root  78335 May 16 13:00 fig1_differential_response_v2.png\\n-rw-r--r--  1 root root    281 May 16 20:43 filter_diagnostic.json\\n-rw-r--r--  1 root root   7924 May 16 07:05 finer_ordinal_results.json\\n-rw-r--r--  1 root root   7841 May 17 00:30 gemma_cross_rp_comparison.json\\n-rw-r--r--  1 root root    795 May 17 00:10 gemma_rp11_held_out_logo.json\\n-rw-r--r--  1 root root   1544 May 16 05:26 human_edit_robustness.json\\n-rw-r--r--  1 root root   1542 May 16 02:51 human_edit_robustness_old_no_chat_template.json\\n-rw-r--r--  1 root root   8023 May 16 02:11 instruct_length_confound.json\\n-rw-r--r--  1 root root   2145 May 15 16:17 lofo_ablation_results.json\\n-rw-r--r--  1 root root    730 May 15 12:30 multi_classify_results.csv\\n-rw-r--r--  1 root root  21881 May 15 12:30 multi_classify_results.json\\n-rw-r--r--  1 root root   2617 May 16 06:36 multi_domain_results.json\\n-rw-r--r--  1 root root   1485 May 15 16:35 multi_seed_stability.json\\n-rw-r--r--  1 root root   1821 May 15 02:06 mvp_results.json\\n-rw-r--r--  1 root root   3034 May 16 12:49 n2a_bootstrap_ci.json\\n-rw-r--r--  1 root root   3166 May 15 08:55 ordinal_baseline_results.json\\n-rw-r--r--  1 root root   2697 May 16 20:16 original_6gen_filter_stats.json\\n-rw-r--r--  1 root root   1490 May 15 23:52 p1c_instruct_logo_f1.json\\n-rw-r--r--  1 root root   7355 May 16 12:49 per_gen_binary_f1.json\\n-rw-r--r--  1 root root    642 May 15 03:14 perplexity_by_depth.json\\n-rw-r--r--  1 root root   4881 May 16 10:12 plan006_paraphrastic_comparison.json\\n-rw-r--r--  1 root root   4868 May 16 07:03 plan006_paraphrastic_comparison_old_rp13.json\\n-rw-r--r--  1 root root   6918 May 16 08:29 plan012_pythia410m_results.json\\n-rw-r--r--  1 root root   6889 May 16 09:05 plan012_qwen06b_results.json\\n-rw-r--r--  1 root root   6903 May 16 09:44 plan012_qwen06b_seed123_r32_results.json\\n-rw-r--r--  1 root root   3631 May 16 09:34 plan012_xgboost_matched.json\\n-rw-r--r--  1 root root    746 May 16 14:02 pooled_rho_fix.json\\n-rw-r--r--  1 root root   1618 May 16 13:19 rd3_int1_entropy_std_pergen.json\\n-rw-r--r--  1 root root   4539 May 15 20:56 review_baseline_ensemble_results.json\\n-rw-r--r--  1 root root    789 May 15 20:26 review_overall_ci_results.json\\n-rw-r--r--  1 root root    387 May 15 20:33 review_overall_ci_v2_results.json\\n-rw-r--r--  1 root root   6495 May 15 21:48 review_p0a_binary_logo.json\\n-rw-r--r--  1 root root   1468 May 15 21:43 review_p0b_volume_matched.json\\n-rw-r--r--  1 root root   2598 May 15 22:57 review_p1c_instruct.json\\n-rw-r--r--  1 root root   5568 May 16 01:08 review_p1c_olmo_instruct.json\\n-rw-r--r--  1 root root   5845 May 15 23:58 review_p1c_qwen06b_instruct.json\\n-rw-r--r--  1 root root   6860 May 15 21:51 review_p1d_6gen_baselines.json\\n-rw-r--r--  1 root root   2113 May 15 21:54 review_p1e_ordinal.json\\n-rw-r--r--  1 root root   2242 May 15 21:43 review_p2f_cross_ref_bias.json\\n-rw-r--r--  1 root root   2136 May 15 20:27 review_topic_drift_results.json\\n-rw-r--r--  1 root root   1033 May 16 21:06 rp_lofo_corrected.json\\n-rw-r--r--  1 root root   1509 May 16 20:17 rp_lofo_preliminary.json\\n-rw-r--r--  1 root root   1725 May 16 20:54 rp_lofo_results.json\\n-rw-r--r--  1 root root   2103 May 16 04:22 sampling_ablation.json\\n-rw-r--r--  1 root root   1250 May 16 12:49 spearman_per_generator.json\\n-rw-r--r--  1 root root   1182 May 16 16:37 table4_cross_ref_logo.json\\n-rw-r--r--  1 root root   6751 May 15 03:14 trend_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "80b71c02-7b8f-4f28-8fe4-2af5d52de5f5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1028\\\\ndrwxr-xr-x  2 root root   4096 May 17 01:54 .\\\\ndrwxr-xr-x 14 root root   4096 May 17 01:25 ..\\\\n-rw-r--r--  1 root root   1030 May 16 22:53 8gen_baselines.json\\\\n-rw-r--r--  1 root root   2578 May 16 23:03 8gen_classifier_comparison.json\\\\n-rw-r--r--  1 root root   3207 May 17 01:12 8gen_cross_model_chains.json\\\\n-rw-r--r--  1 root root    835 May 16 21:18 8gen_feature_ablation.json\\\\n-rw-r--r--  1 root root   1548 May 16 23:02 8gen_finer_depth.json\\\\n-rw-r--r--  1 root root    550 May 16 21:17 8gen_lofo_family.json\\\\n-rw-r--r--  1 root root   7388 May 17 01:34 8gen_logo_baselines.json\\\\n-rw-r--r--  1 root root   2869 May 16 20:51 8gen_logo_results_BUGGY_DO_NOT_USE.json\\\\n-rw-r--r--  1 root root   2025 May 16 20:42 8gen_logo_unfiltered.json\\\\n-rw-r--r--  1 root root   2050 May 16 20:51 8gen_per_gen_spearman.json\\\\n-rw-r--r--  1 root root    682 May 16 20:51 8gen_pooled_rho.json\\\\n-rw-r--r--  1 root root   1511 May 16 23:23 8gen_sampling_ablation.json\\\\n-rw-r--r--  1 root root    727 May 17 02:45 8gen_table3_unified.json\\\\n-rw-r--r--  1 root root   1721 May 17 01:40 README.md\\\\n-rw-r--r--  1 root root   1492 May 15 03:14 ablation_results.json\\\\n-rw-r--r--  1 root root   2799 May 15 17:41 alt_classifier_results.json\\\\n-rw-r--r--  1 root root    785 May 15 22:31 binary_bootstrap_pvalue.json\\\\n-rw-r--r--  1 root root   2051 May 15 15:34 bootstrap_ci_results.json\\\\n-rw-r--r--  1 root root   1086 May 15 20:33 bootstrap_ci_v2_results.json\\\\n-rw-r--r--  1 root root   1969 May 15 16:37 confusion_matrix_3class.json\\\\n-rw-r--r--  1 root root   1969 May 15 16:35 confusion_matrix_results.json\\\\n-rw-r--r--  1 root root   2914 May 16 06:08 cross_model_chains_results.json\\\\n-rw-r--r--  1 root root   2906 May 16 12:49 dataset_stats.json\\\\n-rw-r--r--  1 root root   1293 May 16 12:49 dataset_stats_table.tex\\\\n-rw-r--r--  1 root root    963 May 16 20:54 degeneration_rates.json\\\\n-rw-r--r--  1 root root 542087 May 15 03:14 depth_trends.png\\\\n-rw-r--r--  1 root root   1032 May 15 17:50 family_holdout_3class.json\\\\n-rw-r--r--  1 root root  33027 May 16 13:00 fig1_differential_response_v2.pdf\\\\n-rw-r--r--  1 root root  78335 May 16 13:00 fig1_differential_response_v2.png\\\\n-rw-r--r--  1 root root    281 May 16 20:43 filter_diagnostic.json\\\\n-rw-r--r--  1 root root   7924 May 16 07:05 finer_ordinal_results.json\\\\n-rw-r--r--  1 root root   7841 May 17 00:30 gemma_cross_rp_comparison.json\\\\n-rw-r--r--  1 root root    795 May 17 00:10 gemma_rp11_held_out_logo.json\\\\n-rw-r--r--  1 root root   1544 May 16 05:26 human_edit_robustness.json\\\\n-rw-r--r--  1 root root   1542 May 16 02:51 human_edit_robustness_old_no_chat_template.json\\\\n-rw-r--r--  1 root root   8023 May 16 02:11 instruct_length_confound.json\\\\n-rw-r--r--  1 root root   2145 May 15 16:17 lofo_ablation_results.json\\\\n-rw-r--r--  1 root root    730 May 15 12:30 multi_classify_results.csv\\\\n-rw-r--r--  1 root root  21881 May 15 12:30 multi_classify_results.json\\\\n-rw-r--r--  1 root root   2617 May 16 06:36 multi_domain_results.json\\\\n-rw-r--r--  1 root root   1485 May 15 16:35 multi_seed_stability.json\\\\n-rw-r--r--  1 root root   1821 May 15 02:06 mvp_results.json\\\\n-rw-r--r--  1 root root   3034 May 16 12:49 n2a_bootstrap_ci.json\\\\n-rw-r--r--  1 root root   3166 May 15 08:55 ordinal_baseline_results.json\\\\n-rw-r--r--  1 root root   2697 May 16 20:16 original_6gen_filter_stats.json\\\\n-rw-r--r--  1 root root   1490 May 15 23:52 p1c_instruct_logo_f1.json\\\\n-rw-r--r--  1 root root   7355 May 16 12:49 per_gen_binary_f1.json\\\\n-rw-r--r--  1 root root    642 May 15 03:14 perplexity_by_depth.json\\\\n-rw-r--r--  1 root root   4881 May 16 10:12 plan006_paraphrastic_comparison.json\\\\n-rw-r--r--  1 root root   4868 May 16 07:03 plan006_paraphrastic_comparison_old_rp13.json\\\\n-rw-r--r--  1 root root   6918 May 16 08:29 plan012_pythia410m_results.json\\\\n-rw-r--r--  1 root root   6889 May 16 09:05 plan012_qwen06b_results.json\\\\n-rw-r--r--  1 root root   6903 May 16 09:44 plan012_qwen06b_seed123_r32_results.json\\\\n-rw-r--r--  1 root root   3631 May 16 09:34 plan012_xgboost_matched.json\\\\n-rw-r--r--  1 root root    746 May 16 14:02 pooled_rho_fix.json\\\\n-rw-r--r--  1 root root   1618 May 16 13:19 rd3_int1_entropy_std_pergen.json\\\\n-rw-r--r--  1 root root   4539 May 15 20:56 review_baseline_ensemble_results.json\\\\n-rw-r--r--  1 root root    789 May 15 20:26 review_overall_ci_results.json\\\\n-rw-r--r--  1 root root    387 May 15 20:33 review_overall_ci_v2_results.json\\\\n-rw-r--r--  1 root root   6495 May 15 21:48 review_p0a_binary_logo.json\\\\n-rw-r--r--  1 root root   1468 May 15 21:43 review_p0b_volume_matched.json\\\\n-rw-r--r--  1 root root   2598 May 15 22:57 review_p1c_instruct.json\\\\n-rw-r--r--  1 root root   5568 May 16 01:08 review_p1c_olmo_instruct.json\\\\n-rw-r--r--  1 root root   5845 May 15 23:58 review_p1c_qwen06b_instruct.json\\\\n-rw-r--r--  1 root root   6860 May 15 21:51 review_p1d_6gen_baselines.json\\\\n-rw-r--r--  1 root root   2113 May 15 21:54 review_p1e_ordinal.json\\\\n-rw-r--r--  1 root root   2242 May 15 21:43 review_p2f_cross_ref_bias.json\\\\n-rw-r--r--  1 root root   2136 May 15 20:27 review_topic_drift_results.json\\\\n-rw-r--r--  1 root root   1033 May 16 21:06 rp_lofo_corrected.json\\\\n-rw-r--r--  1 root root   1509 May 16 20:17 rp_lofo_preliminary.json\\\\n-rw-r--r--  1 root root   1725 May 16 20:54 rp_lofo_results.json\\\\n-rw-r--r--  1 root root   2103 May 16 04:22 sampling_ablation.json\\\\n-rw-r--r--  1 root root   1250 May 16 12:49 spearman_per_generator.json\\\\n-rw-r--r--  1 root root   1182 May 16 16:37 table4_cross_ref_logo.json\\\\n-rw-r--r--  1 root root   6751 May 15 03:14 trend_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 1028\\ndrwxr-xr-x  2 root root   4096 May 17 01:54 .\\ndrwxr-xr-x 14 root root   4096 May 17 01:25 ..\\n-rw-r--r--  1 root root   1030 May 16 22:53 8gen_baselines.json\\n-rw-r--r--  1 root root   2578 May 16 23:03 8gen_classifier_comparison.json\\n-rw-r--r--  1 root root   3207 May 17 01:12 8gen_cross_model_chains.json\\n-rw-r--r--  1 root root    835 May 16 21:18 8gen_feature_ablation.json\\n-rw-r--r--  1 root root   1548 May 16 23:02 8gen_finer_depth.json\\n-rw-r--r--  1 root root    550 May 16 21:17 8gen_lofo_family.json\\n-rw-r--r--  1 root root   7388 May 17 01:34 8gen_logo_baselines.json\\n-rw-r--r--  1 root root   2869 May 16 20:51 8gen_logo_results_BUGGY_DO_NOT_USE.json\\n-rw-r--r--  1 root root   2025 May 16 20:42 8gen_logo_unfiltered.json\\n-rw-r--r--  1 root root   2050 May 16 20:51 8gen_per_gen_spearman.json\\n-rw-r--r--  1 root root    682 May 16 20:51 8gen_pooled_rho.json\\n-rw-r--r--  1 root root   1511 May 16 23:23 8gen_sampling_ablation.json\\n-rw-r--r--  1 root root    727 May 17 02:45 8gen_table3_unified.json\\n-rw-r--r--  1 root root   1721 May 17 01:40 README.md\\n-rw-r--r--  1 root root   1492 May 15 03:14 ablation_results.json\\n-rw-r--r--  1 root root   2799 May 15 17:41 alt_classifier_results.json\\n-rw-r--r--  1 root root    785 May 15 22:31 binary_bootstrap_pvalue.json\\n-rw-r--r--  1 root root   2051 May 15 15:34 bootstrap_ci_results.json\\n-rw-r--r--  1 root root   1086 May 15 20:33 bootstrap_ci_v2_results.json\\n-rw-r--r--  1 root root   1969 May 15 16:37 confusion_matrix_3class.json\\n-rw-r--r--  1 root root   1969 May 15 16:35 confusion_matrix_results.json\\n-rw-r--r--  1 root root   2914 May 16 06:08 cross_model_chains_results.json\\n-rw-r--r--  1 root root   2906 May 16 12:49 dataset_stats.json\\n-rw-r--r--  1 root root   1293 May 16 12:49 dataset_stats_table.tex\\n-rw-r--r--  1 root root    963 May 16 20:54 degeneration_rates.json\\n-rw-r--r--  1 root root 542087 May 15 03:14 depth_trends.png\\n-rw-r--r--  1 root root   1032 May 15 17:50 family_holdout_3class.json\\n-rw-r--r--  1 root root  33027 May 16 13:00 fig1_differential_response_v2.pdf\\n-rw-r--r--  1 root root  78335 May 16 13:00 fig1_differential_response_v2.png\\n-rw-r--r--  1 root root    281 May 16 20:43 filter_diagnostic.json\\n-rw-r--r--  1 root root   7924 May 16 07:05 finer_ordinal_results.json\\n-rw-r--r--  1 root root   7841 May 17 00:30 gemma_cross_rp_comparison.json\\n-rw-r--r--  1 root root    795 May 17 00:10 gemma_rp11_held_out_logo.json\\n-rw-r--r--  1 root root   1544 May 16 05:26 human_edit_robustness.json\\n-rw-r--r--  1 root root   1542 May 16 02:51 human_edit_robustness_old_no_chat_template.json\\n-rw-r--r--  1 root root   8023 May 16 02:11 instruct_length_confound.json\\n-rw-r--r--  1 root root   2145 May 15 16:17 lofo_ablation_results.json\\n-rw-r--r--  1 root root    730 May 15 12:30 multi_classify_results.csv\\n-rw-r--r--  1 root root  21881 May 15 12:30 multi_classify_results.json\\n-rw-r--r--  1 root root   2617 May 16 06:36 multi_domain_results.json\\n-rw-r--r--  1 root root   1485 May 15 16:35 multi_seed_stability.json\\n-rw-r--r--  1 root root   1821 May 15 02:06 mvp_results.json\\n-rw-r--r--  1 root root   3034 May 16 12:49 n2a_bootstrap_ci.json\\n-rw-r--r--  1 root root   3166 May 15 08:55 ordinal_baseline_results.json\\n-rw-r--r--  1 root root   2697 May 16 20:16 original_6gen_filter_stats.json\\n-rw-r--r--  1 root root   1490 May 15 23:52 p1c_instruct_logo_f1.json\\n-rw-r--r--  1 root root   7355 May 16 12:49 per_gen_binary_f1.json\\n-rw-r--r--  1 root root    642 May 15 03:14 perplexity_by_depth.json\\n-rw-r--r--  1 root root   4881 May 16 10:12 plan006_paraphrastic_comparison.json\\n-rw-r--r--  1 root root   4868 May 16 07:03 plan006_paraphrastic_comparison_old_rp13.json\\n-rw-r--r--  1 root root   6918 May 16 08:29 plan012_pythia410m_results.json\\n-rw-r--r--  1 root root   6889 May 16 09:05 plan012_qwen06b_results.json\\n-rw-r--r--  1 root root   6903 May 16 09:44 plan012_qwen06b_seed123_r32_results.json\\n-rw-r--r--  1 root root   3631 May 16 09:34 plan012_xgboost_matched.json\\n-rw-r--r--  1 root root    746 May 16 14:02 pooled_rho_fix.json\\n-rw-r--r--  1 root root   1618 May 16 13:19 rd3_int1_entropy_std_pergen.json\\n-rw-r--r--  1 root root   4539 May 15 20:56 review_baseline_ensemble_results.json\\n-rw-r--r--  1 root root    789 May 15 20:26 review_overall_ci_results.json\\n-rw-r--r--  1 root root    387 May 15 20:33 review_overall_ci_v2_results.json\\n-rw-r--r--  1 root root   6495 May 15 21:48 review_p0a_binary_logo.json\\n-rw-r--r--  1 root root   1468 May 15 21:43 review_p0b_volume_matched.json\\n-rw-r--r--  1 root root   2598 May 15 22:57 review_p1c_instruct.json\\n-rw-r--r--  1 root root   5568 May 16 01:08 review_p1c_olmo_instruct.json\\n-rw-r--r--  1 root root   5845 May 15 23:58 review_p1c_qwen06b_instruct.json\\n-rw-r--r--  1 root root   6860 May 15 21:51 review_p1d_6gen_baselines.json\\n-rw-r--r--  1 root root   2113 May 15 21:54 review_p1e_ordinal.json\\n-rw-r--r--  1 root root   2242 May 15 21:43 review_p2f_cross_ref_bias.json\\n-rw-r--r--  1 root root   2136 May 15 20:27 review_topic_drift_results.json\\n-rw-r--r--  1 root root   1033 May 16 21:06 rp_lofo_corrected.json\\n-rw-r--r--  1 root root   1509 May 16 20:17 rp_lofo_preliminary.json\\n-rw-r--r--  1 root root   1725 May 16 20:54 rp_lofo_results.json\\n-rw-r--r--  1 root root   2103 May 16 04:22 sampling_ablation.json\\n-rw-r--r--  1 root root   1250 May 16 12:49 spearman_per_generator.json\\n-rw-r--r--  1 root root   1182 May 16 16:37 table4_cross_ref_logo.json\\n-rw-r--r--  1 root root   6751 May 15 03:14 trend_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T19:01:51.008Z_
+
+<details><summary>↩ Tool result · `toolu_014x9C3MadKRpHQHxanf9Sdn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root  8619 May 17 02:44 /root/gen-depth-fingerprint/scripts/eval_table3_unified.py\\n-rw-r--r-- 1 root root 11356 May 17 02:36 /root/gen-depth-fingerprint/scripts/eval_table3_unified_v4.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "2ecf1063-084b-48e1-acda-61621b16b76a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root  8619 May 17 02:44 /root/gen-depth-fingerprint/scripts/eval_table3_unified.py\\\\n-rw-r--r-- 1 root root 11356 May 17 02:36 /root/gen-depth-fingerprint/scripts/eval_table3_unified_v4.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root  8619 May 17 02:44 /root/gen-depth-fingerprint/scripts/eval_table3_unified.py\\n-rw-r--r-- 1 root root 11356 May 17 02:36 /root/gen-depth-fingerprint/scripts/eval_table3_unified_v4.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MtCw8NXpTN71skbqDV2F8z`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/8gen_table3_unified.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "cb2804b7-58b9-496c-a154-776bbfc89f73",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CYD7iVEjBfhxSAuv1EcVLJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3351,
+      "cache_read_input_tokens": 25396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3351
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T19:01:55.509Z_
+
+<details><summary>↩ Tool result · `toolu_01MtCw8NXpTN71skbqDV2F8z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"ld_score\\\": {\\n    \\\"f1\\\": 0.4909,\\n    \\\"ci_lower\\\": 0.4852,\\n    \\\"ci_upper\\\": 0.4973\\n  },\\n  \\\"entropy_mean\\\": {\\n    \\\"f1\\\": 0.668,\\n    \\\"ci_lower\\\": 0.662,\\n    \\\"ci_upper\\\": 0.6742\\n  },\\n  \\\"4det_surface\\\": {\\n    \\\"f1\\\": 0.6857,\\n    \\\"ci_lower\\\": 0.6798,\\n    \\\"ci_upper\\\": 0.6918\\n  },\\n  \\\"7feature\\\": {\\n    \\\"f1\\\": 0.6911,\\n    \\\"ci_lower\\\": 0.6853,\\n    \\\"ci_upper\\\": 0.6972\\n  },\\n  \\\"meta\\\": {\\n    \\\"n_samples\\\": 26168,\\n    \\\"n_generators\\\": 8,\\n    \\\"task\\\": \\\"binary (gen1 vs gen2+)\\\",\\n    \\\"protocol\\\": \\\"pooled LOGO 8-fold\\\",\\n    \\\"hyperparams\\\": {\\n      \\\"single\\\": {\\n        \\\"n_estimators\\\": 100,\\n        \\\"max_depth\\\": 3\\n      },\\n      \\\"ensemble\\\": {\\n        \\\"n_estimators\\\": 200,\\n        \\\"max_depth\\\": 6\\n      }\\n    },\\n    \\\"random_state\\\": 42,\\n    \\\"bootstrap_n\\\": 1000\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "8cf69ede-b983-4305-85f0-0df51e4de67b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"ld_score\\\\\\\": {\\\\n    \\\\\\\"f1\\\\\\\": 0.4909,\\\\n    \\\\\\\"ci_lower\\\\\\\": 0.4852,\\\\n    \\\\\\\"ci_upper\\\\\\\": 0.4973\\\\n  },\\\\n  \\\\\\\"entropy_mean\\\\\\\": {\\\\n    \\\\\\\"f1\\\\\\\": 0.668,\\\\n    \\\\\\\"ci_lower\\\\\\\": 0.662,\\\\n    \\\\\\\"ci_upper\\\\\\\": 0.6742\\\\n  },\\\\n  \\\\\\\"4det_surface\\\\\\\": {\\\\n    \\\\\\\"f1\\\\\\\": 0.6857,\\\\n    \\\\\\\"ci_lower\\\\\\\": 0.6798,\\\\n    \\\\\\\"ci_upper\\\\\\\": 0.6918\\\\n  },\\\\n  \\\\\\\"7feature\\\\\\\": {\\\\n    \\\\\\\"f1\\\\\\\": 0.6911,\\\\n    \\\\\\\"ci_lower\\\\\\\": 0.6853,\\\\n    \\\\\\\"ci_upper\\\\\\\": 0.6972\\\\n  },\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"n_samples\\\\\\\": 26168,\\\\n    \\\\\\\"n_generators\\\\\\\": 8,\\\\n    \\\\\\\"task\\\\\\\": \\\\\\\"binary (gen1 vs gen2+)\\\\\\\",\\\\n    \\\\\\\"protocol\\\\\\\": \\\\\\\"pooled LOGO 8-fold\\\\\\\",\\\\n    \\\\\\\"hyperparams\\\\\\\": {\\\\n      \\\\\\\"single\\\\\\\": {\\\\n        \\\\\\\"n_estimators\\\\\\\": 100,\\\\n        \\\\\\\"max_depth\\\\\\\": 3\\\\n      },\\\\n      \\\\\\\"ensemble\\\\\\\": {\\\\n        \\\\\\\"n_estimators\\\\\\\": 200,\\\\n        \\\\\\\"max_depth\\\\\\\": 6\\\\n      }\\\\n    },\\\\n    \\\\\\\"random_state\\\\\\\": 42,\\\\n    \\\\\\\"bootstrap_n\\\\\\\": 1000\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"ld_score\\\": {\\n    \\\"f1\\\": 0.4909,\\n    \\\"ci_lower\\\": 0.4852,\\n    \\\"ci_upper\\\": 0.4973\\n  },\\n  \\\"entropy_mean\\\": {\\n    \\\"f1\\\": 0.668,\\n    \\\"ci_lower\\\": 0.662,\\n    \\\"ci_upper\\\": 0.6742\\n  },\\n  \\\"4det_surface\\\": {\\n    \\\"f1\\\": 0.6857,\\n    \\\"ci_lower\\\": 0.6798,\\n    \\\"ci_upper\\\": 0.6918\\n  },\\n  \\\"7feature\\\": {\\n    \\\"f1\\\": 0.6911,\\n    \\\"ci_lower\\\": 0.6853,\\n    \\\"ci_upper\\\": 0.6972\\n  },\\n  \\\"meta\\\": {\\n    \\\"n_samples\\\": 26168,\\n    \\\"n_generators\\\": 8,\\n    \\\"task\\\": \\\"binary (gen1 vs gen2+)\\\",\\n    \\\"protocol\\\": \\\"pooled LOGO 8-fold\\\",\\n    \\\"hyperparams\\\": {\\n      \\\"single\\\": {\\n        \\\"n_estimators\\\": 100,\\n        \\\"max_depth\\\": 3\\n      },\\n      \\\"ensemble\\\": {\\n        \\\"n_estimators\\\": 200,\\n        \\\"max_depth\\\": 6\\n      }\\n    },\\n    \\\"random_state\\\": 42,\\n    \\\"bootstrap_n\\\": 1000\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UNvDub4WZBfheJQm3W852u`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/8gen_logo_unfiltered.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "dbb11fe7-b82d-4c5a-96fc-1a3c0c1c630e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CYD7iVEjBfhxSAuv1EcVLJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3351,
+      "cache_read_input_tokens": 25396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3351
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T19:01:55.940Z_
+
+<details><summary>↩ Tool result · `toolu_01UNvDub4WZBfheJQm3W852u`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"3class\\\": {\\n    \\\"f1_observed\\\": 0.762,\\n    \\\"ci_lower\\\": 0.7577,\\n    \\\"ci_upper\\\": 0.7664,\\n    \\\"n_samples\\\": 37058,\\n    \\\"per_generator\\\": {\\n      \\\"llama-3.2-3b\\\": {\\n        \\\"f1\\\": 0.7753,\\n        \\\"ci_lower\\\": 0.7634,\\n        \\\"ci_upper\\\": 0.788\\n      },\\n      \\\"mistral-7b-v0.3\\\": {\\n        \\\"f1\\\": 0.6815,\\n        \\\"ci_lower\\\": 0.6694,\\n        \\\"ci_upper\\\": 0.695\\n      },\\n      \\\"olmo-2-1b\\\": {\\n        \\\"f1\\\": 0.781,\\n        \\\"ci_lower\\\": 0.7695,\\n        \\\"ci_upper\\\": 0.7931\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"f1\\\": 0.8064,\\n        \\\"ci_lower\\\": 0.7946,\\n        \\\"ci_upper\\\": 0.8177\\n      },\\n      \\\"pythia-2.8b\\\": {\\n        \\\"f1\\\": 0.7983,\\n        \\\"ci_lower\\\": 0.7865,\\n        \\\"ci_upper\\\": 0.8097\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"f1\\\": 0.7795,\\n        \\\"ci_lower\\\": 0.7677,\\n        \\\"ci_upper\\\": 0.7925\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"f1\\\": 0.7717,\\n        \\\"ci_lower\\\": 0.7585,\\n        \\\"ci_upper\\\": 0.7844\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"f1\\\": 0.7143,\\n        \\\"ci_lower\\\": 0.7007,\\n        \\\"ci_upper\\\": 0.7286\\n      }\\n    }\\n  },\\n  \\\"binary\\\": {\\n    \\\"f1_observed\\\": 0.6944,\\n    \\\"ci_lower\\\": 0.6883,\\n    \\\"ci_upper\\\": 0.7004,\\n    \\\"n_samples\\\": 29095,\\n    \\\"per_generator\\\": {\\n      \\\"llama-3.2-3b\\\": {\\n        \\\"f1\\\": 0.6968,\\n        \\\"ci_lower\\\": 0.6798,\\n        \\\"ci_upper\\\": 0.7129\\n      },\\n      \\\"mistral-7b-v0.3\\\": {\\n        \\\"f1\\\": 0.6327,\\n        \\\"ci_lower\\\": 0.6172,\\n        \\\"ci_upper\\\": 0.6482\\n      },\\n      \\\"olmo-2-1b\\\": {\\n        \\\"f1\\\": 0.6954,\\n        \\\"ci_lower\\\": 0.6788,\\n        \\\"ci_upper\\\": 0.7114\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"f1\\\": 0.7175,\\n        \\\"ci_lower\\\": 0.6998,\\n        \\\"ci_upper\\\": 0.735\\n      },\\n      \\\"pythia-2.8b\\\": {\\n        \\\"f1\\\": 0.7243,\\n        \\\"ci_lower\\\": 0.7068,\\n        \\\"ci_upper\\\": 0.7417\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"f1\\\": 0.6911,\\n        \\\"ci_lower\\\": 0.6733,\\n        \\\"ci_upper\\\": 0.7086\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"f1\\\": 0.7093,\\n        \\\"ci_lower\\\": 0.6925,\\n        \\\"ci_upper\\\": 0.7259\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"f1\\\": 0.6918,\\n        \\\"ci_lower\\\": 0.6738,\\n        \\\"ci_upper\\\": 0.7077\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "e898ad96-01c0-41b7-aeb5-7245f6a47fbf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"3class\\\\\\\": {\\\\n    \\\\\\\"f1_observed\\\\\\\": 0.762,\\\\n    \\\\\\\"ci_lower\\\\\\\": 0.7577,\\\\n    \\\\\\\"ci_upper\\\\\\\": 0.7664,\\\\n    \\\\\\\"n_samples\\\\\\\": 37058,\\\\n    \\\\\\\"per_generator\\\\\\\": {\\\\n      \\\\\\\"llama-3.2-3b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.7753,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.7634,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.788\\\\n      },\\\\n      \\\\\\\"mistral-7b-v0.3\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.6815,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.6694,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.695\\\\n      },\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.781,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.7695,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.7931\\\\n      },\\\\n      \\\\\\\"pythia-1b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.8064,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.7946,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.8177\\\\n      },\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.7983,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.7865,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.8097\\\\n      },\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.7795,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.7677,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.7925\\\\n      },\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.7717,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.7585,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.7844\\\\n      },\\\\n      \\\\\\\"qwen3-8b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.7143,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.7007,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.7286\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"binary\\\\\\\": {\\\\n    \\\\\\\"f1_observed\\\\\\\": 0.6944,\\\\n    \\\\\\\"ci_lower\\\\\\\": 0.6883,\\\\n    \\\\\\\"ci_upper\\\\\\\": 0.7004,\\\\n    \\\\\\\"n_samples\\\\\\\": 29095,\\\\n    \\\\\\\"per_generator\\\\\\\": {\\\\n      \\\\\\\"llama-3.2-3b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.6968,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.6798,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.7129\\\\n      },\\\\n      \\\\\\\"mistral-7b-v0.3\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.6327,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.6172,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.6482\\\\n      },\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.6954,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.6788,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.7114\\\\n      },\\\\n      \\\\\\\"pythia-1b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.7175,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.6998,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.735\\\\n      },\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.7243,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.7068,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.7417\\\\n      },\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.6911,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.6733,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.7086\\\\n      },\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.7093,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.6925,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.7259\\\\n      },\\\\n      \\\\\\\"qwen3-8b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.6918,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.6738,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.7077\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"3class\\\": {\\n    \\\"f1_observed\\\": 0.762,\\n    \\\"ci_lower\\\": 0.7577,\\n    \\\"ci_upper\\\": 0.7664,\\n    \\\"n_samples\\\": 37058,\\n    \\\"per_generator\\\": {\\n      \\\"llama-3.2-3b\\\": {\\n        \\\"f1\\\": 0.7753,\\n        \\\"ci_lower\\\": 0.7634,\\n        \\\"ci_upper\\\": 0.788\\n      },\\n      \\\"mistral-7b-v0.3\\\": {\\n        \\\"f1\\\": 0.6815,\\n        \\\"ci_lower\\\": 0.6694,\\n        \\\"ci_upper\\\": 0.695\\n      },\\n      \\\"olmo-2-1b\\\": {\\n        \\\"f1\\\": 0.781,\\n        \\\"ci_lower\\\": 0.7695,\\n        \\\"ci_upper\\\": 0.7931\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"f1\\\": 0.8064,\\n        \\\"ci_lower\\\": 0.7946,\\n        \\\"ci_upper\\\": 0.8177\\n      },\\n      \\\"pythia-2.8b\\\": {\\n        \\\"f1\\\": 0.7983,\\n        \\\"ci_lower\\\": 0.7865,\\n        \\\"ci_upper\\\": 0.8097\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"f1\\\": 0.7795,\\n        \\\"ci_lower\\\": 0.7677,\\n        \\\"ci_upper\\\": 0.7925\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"f1\\\": 0.7717,\\n        \\\"ci_lower\\\": 0.7585,\\n        \\\"ci_upper\\\": 0.7844\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"f1\\\": 0.7143,\\n        \\\"ci_lower\\\": 0.7007,\\n        \\\"ci_upper\\\": 0.7286\\n      }\\n    }\\n  },\\n  \\\"binary\\\": {\\n    \\\"f1_observed\\\": 0.6944,\\n    \\\"ci_lower\\\": 0.6883,\\n    \\\"ci_upper\\\": 0.7004,\\n    \\\"n_samples\\\": 29095,\\n    \\\"per_generator\\\": {\\n      \\\"llama-3.2-3b\\\": {\\n        \\\"f1\\\": 0.6968,\\n        \\\"ci_lower\\\": 0.6798,\\n        \\\"ci_upper\\\": 0.7129\\n      },\\n      \\\"mistral-7b-v0.3\\\": {\\n        \\\"f1\\\": 0.6327,\\n        \\\"ci_lower\\\": 0.6172,\\n        \\\"ci_upper\\\": 0.6482\\n      },\\n      \\\"olmo-2-1b\\\": {\\n        \\\"f1\\\": 0.6954,\\n        \\\"ci_lower\\\": 0.6788,\\n        \\\"ci_upper\\\": 0.7114\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"f1\\\": 0.7175,\\n        \\\"ci_lower\\\": 0.6998,\\n        \\\"ci_upper\\\": 0.735\\n      },\\n      \\\"pythia-2.8b\\\": {\\n        \\\"f1\\\": 0.7243,\\n        \\\"ci_lower\\\": 0.7068,\\n        \\\"ci_upper\\\": 0.7417\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"f1\\\": 0.6911,\\n        \\\"ci_lower\\\": 0.6733,\\n        \\\"ci_upper\\\": 0.7086\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"f1\\\": 0.7093,\\n        \\\"ci_lower\\\": 0.6925,\\n        \\\"ci_upper\\\": 0.7259\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"f1\\\": 0.6918,\\n        \\\"ci_lower\\\": 0.6738,\\n        \\\"ci_upper\\\": 0.7077\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0174S6wh7jT2DgAEWSDmo8WS`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/8gen_logo_baselines.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "0bcf1a9d-71ef-4879-8032-9d8bc5a0a28a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CYD7iVEjBfhxSAuv1EcVLJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3351,
+      "cache_read_input_tokens": 25396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3351
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T19:01:56.627Z_
+
+<details><summary>↩ Tool result · `toolu_0174S6wh7jT2DgAEWSDmo8WS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"LOGO\\\",\\n  \\\"n_generators\\\": 8,\\n  \\\"generators\\\": [\\n    \\\"pythia-2.8b\\\",\\n    \\\"pythia-1b\\\",\\n    \\\"olmo-2-1b\\\",\\n    \\\"qwen3-0.6b\\\",\\n    \\\"qwen3-1.7b\\\",\\n    \\\"qwen3-8b\\\",\\n    \\\"llama-3.2-3b\\\",\\n    \\\"mistral-7b-v0.3\\\"\\n  ],\\n  \\\"baselines\\\": {\\n    \\\"avg_logprob\\\": {\\n      \\\"3class_f1\\\": 0.6834,\\n      \\\"3class_ci95\\\": [\\n        0.7026,\\n        0.7123\\n      ],\\n      \\\"binary_f1\\\": 0.6405,\\n      \\\"binary_ci95\\\": [\\n        0.6716,\\n        0.6829\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.7632,\\n          \\\"binary_f1\\\": 0.7151\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.7994,\\n          \\\"binary_f1\\\": 0.7645\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.7322,\\n          \\\"binary_f1\\\": 0.7017\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.7527,\\n          \\\"binary_f1\\\": 0.7325\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.7576,\\n          \\\"binary_f1\\\": 0.7398\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.6272,\\n          \\\"binary_f1\\\": 0.6324\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.5722,\\n          \\\"binary_f1\\\": 0.4747\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.4626,\\n          \\\"binary_f1\\\": 0.3633\\n        }\\n      }\\n    },\\n    \\\"fastdetectgpt\\\": {\\n      \\\"3class_f1\\\": 0.6552,\\n      \\\"3class_ci95\\\": [\\n        0.6613,\\n        0.6707\\n      ],\\n      \\\"binary_f1\\\": 0.5642,\\n      \\\"binary_ci95\\\": [\\n        0.5728,\\n        0.5849\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.7194,\\n          \\\"binary_f1\\\": 0.624\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.7453,\\n          \\\"binary_f1\\\": 0.6778\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.6621,\\n          \\\"binary_f1\\\": 0.5862\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.7162,\\n          \\\"binary_f1\\\": 0.6359\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.688,\\n          \\\"binary_f1\\\": 0.6073\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.5964,\\n          \\\"binary_f1\\\": 0.5107\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.5707,\\n          \\\"binary_f1\\\": 0.462\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.5438,\\n          \\\"binary_f1\\\": 0.41\\n        }\\n      }\\n    },\\n    \\\"binoculars\\\": {\\n      \\\"3class_f1\\\": 0.395,\\n      \\\"3class_ci95\\\": [\\n        0.4013,\\n        0.4115\\n      ],\\n      \\\"binary_f1\\\": 0.5196,\\n      \\\"binary_ci95\\\": [\\n        0.5317,\\n        0.5432\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.4408,\\n          \\\"binary_f1\\\": 0.5484\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.4232,\\n          \\\"binary_f1\\\": 0.5573\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.4146,\\n          \\\"binary_f1\\\": 0.54\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.3951,\\n          \\\"binary_f1\\\": 0.555\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.4135,\\n          \\\"binary_f1\\\": 0.542\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.4211,\\n          \\\"binary_f1\\\": 0.5239\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.3359,\\n          \\\"binary_f1\\\": 0.4992\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.3158,\\n          \\\"binary_f1\\\": 0.3906\\n        }\\n      }\\n    },\\n    \\\"ld_score\\\": {\\n      \\\"3class_f1\\\": 0.6189,\\n      \\\"3class_ci95\\\": [\\n        0.6267,\\n        0.6366\\n      ],\\n      \\\"binary_f1\\\": 0.6574,\\n      \\\"binary_ci95\\\": [\\n        0.6718,\\n        0.6837\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.6779,\\n          \\\"binary_f1\\\": 0.7299\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.7369,\\n          \\\"binary_f1\\\": 0.7675\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.6379,\\n          \\\"binary_f1\\\": 0.6721\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.6923,\\n          \\\"binary_f1\\\": 0.7185\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.6581,\\n          \\\"binary_f1\\\": 0.7056\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.5438,\\n          \\\"binary_f1\\\": 0.6222\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.54,\\n          \\\"binary_f1\\\": 0.5758\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.4646,\\n          \\\"binary_f1\\\": 0.4674\\n        }\\n      }\\n    }\\n  },\\n  \\\"ensembles\\\": {\\n    \\\"4det_ensemble\\\": {\\n      \\\"3class_f1\\\": 0.7696,\\n      \\\"3class_ci95\\\": [\\n        0.7761,\\n        0.784\\n      ],\\n      \\\"binary_f1\\\": 0.686,\\n      \\\"binary_ci95\\\": [\\n        0.6934,\\n        0.7048\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.8126,\\n          \\\"binary_f1\\\": 0.7282\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.8485,\\n          \\\"binary_f1\\\": 0.7816\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.7811,\\n          \\\"binary_f1\\\": 0.6959\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.826,\\n          \\\"binary_f1\\\": 0.7414\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.8218,\\n          \\\"binary_f1\\\": 0.7473\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.7017,\\n          \\\"binary_f1\\\": 0.6364\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.7633,\\n          \\\"binary_f1\\\": 0.6829\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.602,\\n          \\\"binary_f1\\\": 0.474\\n        }\\n      }\\n    },\\n    \\\"4det_surface\\\": {\\n      \\\"3class_f1\\\": 0.7873,\\n      \\\"3class_ci95\\\": [\\n        0.7904,\\n        0.7983\\n      ],\\n      \\\"binary_f1\\\": 0.6986,\\n      \\\"binary_ci95\\\": [\\n        0.7036,\\n        0.7146\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.818,\\n          \\\"binary_f1\\\": 0.7216\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.8508,\\n          \\\"binary_f1\\\": 0.7789\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.7818,\\n          \\\"binary_f1\\\": 0.6856\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.8396,\\n          \\\"binary_f1\\\": 0.7653\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.8396,\\n          \\\"binary_f1\\\": 0.7622\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.7297,\\n          \\\"binary_f1\\\": 0.6526\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.7662,\\n          \\\"binary_f1\\\": 0.6586\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.6728,\\n          \\\"binary_f1\\\": 0.5641\\n        }\\n      }\\n    }\\n  },\\n  \\\"7feature_ours\\\": {\\n    \\\"3class_f1\\\": 0.7401,\\n    \\\"3class_ci95\\\": [\\n      0.7573,\\n      0.7657\\n    ],\\n    \\\"binary_f1\\\": 0.6614,\\n    \\\"binary_ci95\\\": [\\n      0.6867,\\n      0.6983\\n    ],\\n    \\\"per_gen\\\": {\\n      \\\"pythia-2.8b\\\": {\\n        \\\"3class_f1\\\": 0.8105,\\n        \\\"binary_f1\\\": 0.7275\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"3class_f1\\\": 0.8529,\\n        \\\"binary_f1\\\": 0.7924\\n      },\\n      \\\"olmo-2-1b\\\": {\\n        \\\"3class_f1\\\": 0.7729,\\n        \\\"binary_f1\\\": 0.6903\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"3class_f1\\\": 0.8216,\\n        \\\"binary_f1\\\": 0.756\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"3class_f1\\\": 0.8128,\\n        \\\"binary_f1\\\": 0.7578\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"3class_f1\\\": 0.6946,\\n        \\\"binary_f1\\\": 0.6512\\n      },\\n      \\\"llama-3.2-3b\\\": {\\n        \\\"3class_f1\\\": 0.6425,\\n        \\\"binary_f1\\\": 0.5149\\n      },\\n      \\\"mistral-7b-v0.3\\\": {\\n        \\\"3class_f1\\\": 0.5131,\\n        \\\"binary_f1\\\": 0.4009\\n      }\\n    }\\n  },\\n  \\\"config\\\": {\\n    \\\"xgb_n_estimators_baseline\\\": 100,\\n    \\\"xgb_max_depth_baseline\\\": 3,\\n    \\\"xgb_n_estimators_ours\\\": 200,\\n    \\\"xgb_max_depth_ours\\\": 6,\\n    \\\"bootstrap_n\\\": 1000,\\n    \\\"logo_seed\\\": 789\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "61c6b3c9-e86e-4fd5-9bf5-e492a986cb99",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"LOGO\\\\\\\",\\\\n  \\\\\\\"n_generators\\\\\\\": 8,\\\\n  \\\\\\\"generators\\\\\\\": [\\\\n    \\\\\\\"pythia-2.8b\\\\\\\",\\\\n    \\\\\\\"pythia-1b\\\\\\\",\\\\n    \\\\\\\"olmo-2-1b\\\\\\\",\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\",\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\",\\\\n    \\\\\\\"qwen3-8b\\\\\\\",\\\\n    \\\\\\\"llama-3.2-3b\\\\\\\",\\\\n    \\\\\\\"mistral-7b-v0.3\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"baselines\\\\\\\": {\\\\n    \\\\\\\"avg_logprob\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.6834,\\\\n      \\\\\\\"3class_ci95\\\\\\\": [\\\\n        0.7026,\\\\n        0.7123\\\\n      ],\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.6405,\\\\n      \\\\\\\"binary_ci95\\\\\\\": [\\\\n        0.6716,\\\\n        0.6829\\\\n      ],\\\\n      \\\\\\\"per_gen\\\\\\\": {\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7632,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7151\\\\n        },\\\\n        \\\\\\\"pythia-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7994,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7645\\\\n        },\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7322,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7017\\\\n        },\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7527,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7325\\\\n        },\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7576,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7398\\\\n        },\\\\n        \\\\\\\"qwen3-8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.6272,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6324\\\\n        },\\\\n        \\\\\\\"llama-3.2-3b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.5722,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.4747\\\\n        },\\\\n        \\\\\\\"mistral-7b-v0.3\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.4626,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.3633\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"fastdetectgpt\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.6552,\\\\n      \\\\\\\"3class_ci95\\\\\\\": [\\\\n        0.6613,\\\\n        0.6707\\\\n      ],\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.5642,\\\\n      \\\\\\\"binary_ci95\\\\\\\": [\\\\n        0.5728,\\\\n        0.5849\\\\n      ],\\\\n      \\\\\\\"per_gen\\\\\\\": {\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7194,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.624\\\\n        },\\\\n        \\\\\\\"pythia-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7453,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6778\\\\n        },\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.6621,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.5862\\\\n        },\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7162,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6359\\\\n        },\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.688,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6073\\\\n        },\\\\n        \\\\\\\"qwen3-8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.5964,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.5107\\\\n        },\\\\n        \\\\\\\"llama-3.2-3b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.5707,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.462\\\\n        },\\\\n        \\\\\\\"mistral-7b-v0.3\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.5438,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.41\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"binoculars\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.395,\\\\n      \\\\\\\"3class_ci95\\\\\\\": [\\\\n        0.4013,\\\\n        0.4115\\\\n      ],\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.5196,\\\\n      \\\\\\\"binary_ci95\\\\\\\": [\\\\n        0.5317,\\\\n        0.5432\\\\n      ],\\\\n      \\\\\\\"per_gen\\\\\\\": {\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.4408,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.5484\\\\n        },\\\\n        \\\\\\\"pythia-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.4232,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.5573\\\\n        },\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.4146,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.54\\\\n        },\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.3951,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.555\\\\n        },\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.4135,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.542\\\\n        },\\\\n        \\\\\\\"qwen3-8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.4211,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.5239\\\\n        },\\\\n        \\\\\\\"llama-3.2-3b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.3359,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.4992\\\\n        },\\\\n        \\\\\\\"mistral-7b-v0.3\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.3158,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.3906\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"ld_score\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.6189,\\\\n      \\\\\\\"3class_ci95\\\\\\\": [\\\\n        0.6267,\\\\n        0.6366\\\\n      ],\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.6574,\\\\n      \\\\\\\"binary_ci95\\\\\\\": [\\\\n        0.6718,\\\\n        0.6837\\\\n      ],\\\\n      \\\\\\\"per_gen\\\\\\\": {\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.6779,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7299\\\\n        },\\\\n        \\\\\\\"pythia-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7369,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7675\\\\n        },\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.6379,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6721\\\\n        },\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.6923,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7185\\\\n        },\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.6581,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7056\\\\n        },\\\\n        \\\\\\\"qwen3-8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.5438,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6222\\\\n        },\\\\n        \\\\\\\"llama-3.2-3b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.54,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.5758\\\\n        },\\\\n        \\\\\\\"mistral-7b-v0.3\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.4646,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.4674\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"ensembles\\\\\\\": {\\\\n    \\\\\\\"4det_ensemble\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.7696,\\\\n      \\\\\\\"3class_ci95\\\\\\\": [\\\\n        0.7761,\\\\n        0.784\\\\n      ],\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.686,\\\\n      \\\\\\\"binary_ci95\\\\\\\": [\\\\n        0.6934,\\\\n        0.7048\\\\n      ],\\\\n      \\\\\\\"per_gen\\\\\\\": {\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.8126,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7282\\\\n        },\\\\n        \\\\\\\"pythia-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.8485,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7816\\\\n        },\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7811,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6959\\\\n        },\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.826,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7414\\\\n        },\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.8218,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7473\\\\n        },\\\\n        \\\\\\\"qwen3-8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7017,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6364\\\\n        },\\\\n        \\\\\\\"llama-3.2-3b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7633,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6829\\\\n        },\\\\n        \\\\\\\"mistral-7b-v0.3\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.602,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.474\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"4det_surface\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.7873,\\\\n      \\\\\\\"3class_ci95\\\\\\\": [\\\\n        0.7904,\\\\n        0.7983\\\\n      ],\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.6986,\\\\n      \\\\\\\"binary_ci95\\\\\\\": [\\\\n        0.7036,\\\\n        0.7146\\\\n      ],\\\\n      \\\\\\\"per_gen\\\\\\\": {\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.818,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7216\\\\n        },\\\\n        \\\\\\\"pythia-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.8508,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7789\\\\n        },\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7818,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6856\\\\n        },\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.8396,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7653\\\\n        },\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.8396,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7622\\\\n        },\\\\n        \\\\\\\"qwen3-8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7297,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6526\\\\n        },\\\\n        \\\\\\\"llama-3.2-3b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7662,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6586\\\\n        },\\\\n        \\\\\\\"mistral-7b-v0.3\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.6728,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.5641\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"7feature_ours\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.7401,\\\\n    \\\\\\\"3class_ci95\\\\\\\": [\\\\n      0.7573,\\\\n      0.7657\\\\n    ],\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.6614,\\\\n    \\\\\\\"binary_ci95\\\\\\\": [\\\\n      0.6867,\\\\n      0.6983\\\\n    ],\\\\n    \\\\\\\"per_gen\\\\\\\": {\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.8105,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.7275\\\\n      },\\\\n      \\\\\\\"pythia-1b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.8529,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.7924\\\\n      },\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.7729,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.6903\\\\n      },\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.8216,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.756\\\\n      },\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.8128,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.7578\\\\n      },\\\\n      \\\\\\\"qwen3-8b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.6946,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.6512\\\\n      },\\\\n      \\\\\\\"llama-3.2-3b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.6425,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.5149\\\\n      },\\\\n      \\\\\\\"mistral-7b-v0.3\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.5131,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.4009\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"xgb_n_estimators_baseline\\\\\\\": 100,\\\\n    \\\\\\\"xgb_max_depth_baseline\\\\\\\": 3,\\\\n    \\\\\\\"xgb_n_estimators_ours\\\\\\\": 200,\\\\n    \\\\\\\"xgb_max_depth_ours\\\\\\\": 6,\\\\n    \\\\\\\"bootstrap_n\\\\\\\": 1000,\\\\n    \\\\\\\"logo_seed\\\\\\\": 789\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"LOGO\\\",\\n  \\\"n_generators\\\": 8,\\n  \\\"generators\\\": [\\n    \\\"pythia-2.8b\\\",\\n    \\\"pythia-1b\\\",\\n    \\\"olmo-2-1b\\\",\\n    \\\"qwen3-0.6b\\\",\\n    \\\"qwen3-1.7b\\\",\\n    \\\"qwen3-8b\\\",\\n    \\\"llama-3.2-3b\\\",\\n    \\\"mistral-7b-v0.3\\\"\\n  ],\\n  \\\"baselines\\\": {\\n    \\\"avg_logprob\\\": {\\n      \\\"3class_f1\\\": 0.6834,\\n      \\\"3class_ci95\\\": [\\n        0.7026,\\n        0.7123\\n      ],\\n      \\\"binary_f1\\\": 0.6405,\\n      \\\"binary_ci95\\\": [\\n        0.6716,\\n        0.6829\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.7632,\\n          \\\"binary_f1\\\": 0.7151\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.7994,\\n          \\\"binary_f1\\\": 0.7645\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.7322,\\n          \\\"binary_f1\\\": 0.7017\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.7527,\\n          \\\"binary_f1\\\": 0.7325\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.7576,\\n          \\\"binary_f1\\\": 0.7398\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.6272,\\n          \\\"binary_f1\\\": 0.6324\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.5722,\\n          \\\"binary_f1\\\": 0.4747\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.4626,\\n          \\\"binary_f1\\\": 0.3633\\n        }\\n      }\\n    },\\n    \\\"fastdetectgpt\\\": {\\n      \\\"3class_f1\\\": 0.6552,\\n      \\\"3class_ci95\\\": [\\n        0.6613,\\n        0.6707\\n      ],\\n      \\\"binary_f1\\\": 0.5642,\\n      \\\"binary_ci95\\\": [\\n        0.5728,\\n        0.5849\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.7194,\\n          \\\"binary_f1\\\": 0.624\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.7453,\\n          \\\"binary_f1\\\": 0.6778\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.6621,\\n          \\\"binary_f1\\\": 0.5862\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.7162,\\n          \\\"binary_f1\\\": 0.6359\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.688,\\n          \\\"binary_f1\\\": 0.6073\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.5964,\\n          \\\"binary_f1\\\": 0.5107\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.5707,\\n          \\\"binary_f1\\\": 0.462\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.5438,\\n          \\\"binary_f1\\\": 0.41\\n        }\\n      }\\n    },\\n    \\\"binoculars\\\": {\\n      \\\"3class_f1\\\": 0.395,\\n      \\\"3class_ci95\\\": [\\n        0.4013,\\n        0.4115\\n      ],\\n      \\\"binary_f1\\\": 0.5196,\\n      \\\"binary_ci95\\\": [\\n        0.5317,\\n        0.5432\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.4408,\\n          \\\"binary_f1\\\": 0.5484\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.4232,\\n          \\\"binary_f1\\\": 0.5573\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.4146,\\n          \\\"binary_f1\\\": 0.54\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.3951,\\n          \\\"binary_f1\\\": 0.555\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.4135,\\n          \\\"binary_f1\\\": 0.542\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.4211,\\n          \\\"binary_f1\\\": 0.5239\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.3359,\\n          \\\"binary_f1\\\": 0.4992\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.3158,\\n          \\\"binary_f1\\\": 0.3906\\n        }\\n      }\\n    },\\n    \\\"ld_score\\\": {\\n      \\\"3class_f1\\\": 0.6189,\\n      \\\"3class_ci95\\\": [\\n        0.6267,\\n        0.6366\\n      ],\\n      \\\"binary_f1\\\": 0.6574,\\n      \\\"binary_ci95\\\": [\\n        0.6718,\\n        0.6837\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.6779,\\n          \\\"binary_f1\\\": 0.7299\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.7369,\\n          \\\"binary_f1\\\": 0.7675\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.6379,\\n          \\\"binary_f1\\\": 0.6721\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.6923,\\n          \\\"binary_f1\\\": 0.7185\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.6581,\\n          \\\"binary_f1\\\": 0.7056\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.5438,\\n          \\\"binary_f1\\\": 0.6222\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.54,\\n          \\\"binary_f1\\\": 0.5758\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.4646,\\n          \\\"binary_f1\\\": 0.4674\\n        }\\n      }\\n    }\\n  },\\n  \\\"ensembles\\\": {\\n    \\\"4det_ensemble\\\": {\\n      \\\"3class_f1\\\": 0.7696,\\n      \\\"3class_ci95\\\": [\\n        0.7761,\\n        0.784\\n      ],\\n      \\\"binary_f1\\\": 0.686,\\n      \\\"binary_ci95\\\": [\\n        0.6934,\\n        0.7048\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.8126,\\n          \\\"binary_f1\\\": 0.7282\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.8485,\\n          \\\"binary_f1\\\": 0.7816\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.7811,\\n          \\\"binary_f1\\\": 0.6959\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.826,\\n          \\\"binary_f1\\\": 0.7414\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.8218,\\n          \\\"binary_f1\\\": 0.7473\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.7017,\\n          \\\"binary_f1\\\": 0.6364\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.7633,\\n          \\\"binary_f1\\\": 0.6829\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.602,\\n          \\\"binary_f1\\\": 0.474\\n        }\\n      }\\n    },\\n    \\\"4det_surface\\\": {\\n      \\\"3class_f1\\\": 0.7873,\\n      \\\"3class_ci95\\\": [\\n        0.7904,\\n        0.7983\\n      ],\\n      \\\"binary_f1\\\": 0.6986,\\n      \\\"binary_ci95\\\": [\\n        0.7036,\\n        0.7146\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.818,\\n          \\\"binary_f1\\\": 0.7216\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.8508,\\n          \\\"binary_f1\\\": 0.7789\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.7818,\\n          \\\"binary_f1\\\": 0.6856\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.8396,\\n          \\\"binary_f1\\\": 0.7653\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.8396,\\n          \\\"binary_f1\\\": 0.7622\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.7297,\\n          \\\"binary_f1\\\": 0.6526\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.7662,\\n          \\\"binary_f1\\\": 0.6586\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.6728,\\n          \\\"binary_f1\\\": 0.5641\\n        }\\n      }\\n    }\\n  },\\n  \\\"7feature_ours\\\": {\\n    \\\"3class_f1\\\": 0.7401,\\n    \\\"3class_ci95\\\": [\\n      0.7573,\\n      0.7657\\n    ],\\n    \\\"binary_f1\\\": 0.6614,\\n    \\\"binary_ci95\\\": [\\n      0.6867,\\n      0.6983\\n    ],\\n    \\\"per_gen\\\": {\\n      \\\"pythia-2.8b\\\": {\\n        \\\"3class_f1\\\": 0.8105,\\n        \\\"binary_f1\\\": 0.7275\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"3class_f1\\\": 0.8529,\\n        \\\"binary_f1\\\": 0.7924\\n      },\\n      \\\"olmo-2-1b\\\": {\\n        \\\"3class_f1\\\": 0.7729,\\n        \\\"binary_f1\\\": 0.6903\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"3class_f1\\\": 0.8216,\\n        \\\"binary_f1\\\": 0.756\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"3class_f1\\\": 0.8128,\\n        \\\"binary_f1\\\": 0.7578\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"3class_f1\\\": 0.6946,\\n        \\\"binary_f1\\\": 0.6512\\n      },\\n      \\\"llama-3.2-3b\\\": {\\n        \\\"3class_f1\\\": 0.6425,\\n        \\\"binary_f1\\\": 0.5149\\n      },\\n      \\\"mistral-7b-v0.3\\\": {\\n        \\\"3class_f1\\\": 0.5131,\\n        \\\"binary_f1\\\": 0.4009\\n      }\\n    }\\n  },\\n  \\\"config\\\": {\\n    \\\"xgb_n_estimators_baseline\\\": 100,\\n    \\\"xgb_max_depth_baseline\\\": 3,\\n    \\\"xgb_n_estimators_ours\\\": 200,\\n    \\\"xgb_max_depth_ours\\\": 6,\\n    \\\"bootstrap_n\\\": 1000,\\n    \\\"logo_seed\\\": 789\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also check the eval_table3_unified.py script for the v1 version to understand what features are used in each method.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "eafdff9d-d947-4644-adff-23936183760e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZBbEheDAg943dSuKVsFTj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7185,
+      "cache_read_input_tokens": 28747,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7185
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+Now let me check the script to understand feature compositions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "cea261d4-4827-4299-930f-2ca618fc60de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZBbEheDAg943dSuKVsFTj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7185,
+      "cache_read_input_tokens": 28747,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7185
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01STQVoNhaUATRWoWr8jqFYw`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -150 /root/gen-depth-fingerprint/scripts/eval_table3_unified.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "985cfe06-231f-4f2c-aa5a-e84374d79cc9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZBbEheDAg943dSuKVsFTj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7185,
+      "cache_read_input_tokens": 28747,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7185
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T19:02:03.004Z_
+
+<details><summary>↩ Tool result · `toolu_01STQVoNhaUATRWoWr8jqFYw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Table 3 unified evaluation: 4 methods, binary LOGO, LD-Score trigram.\\\"\\\"\\\"\\n\\nimport json, time, sys\\nimport numpy as np\\nimport pandas as pd\\nfrom collections import Counter\\nfrom pathlib import Path\\nfrom sklearn.metrics import f1_score\\nfrom xgboost import XGBClassifier\\n\\nsys.stdout = open(sys.stdout.fileno(), mode='w', buffering=1)\\n\\nROOT = Path(\\\"/root/gen-depth-fingerprint\\\")\\nDATA = ROOT / \\\"data\\\"\\nRESULTS = ROOT / \\\"results\\\"\\nRESULTS.mkdir(exist_ok=True)\\n\\nALL_8 = [\\\"pythia-2.8b\\\", \\\"pythia-1b\\\", \\\"olmo-2-1b\\\", \\\"qwen3-0.6b\\\", \\\"qwen3-1.7b\\\", \\\"qwen3-8b\\\",\\n          \\\"llama-3.2-3b\\\", \\\"mistral-7b-v0.3\\\"]\\n\\nJSONL_PATHS = {\\n    \\\"olmo-2-1b\\\":   DATA / \\\"olmo-2-1b\\\" / \\\"generations.jsonl\\\",\\n    \\\"pythia-1b\\\":   DATA / \\\"pythia-1b\\\" / \\\"generations.jsonl\\\",\\n    \\\"pythia-2.8b\\\": DATA / \\\"generations.jsonl\\\",\\n    \\\"qwen3-0.6b\\\":  DATA / \\\"qwen3-0.6b\\\" / \\\"generations.jsonl\\\",\\n    \\\"qwen3-1.7b\\\":  DATA / \\\"qwen3-1.7b\\\" / \\\"generations.jsonl\\\",\\n    \\\"qwen3-8b\\\":    DATA / \\\"qwen3-8b\\\" / \\\"generations.jsonl\\\",\\n    \\\"llama-3.2-3b\\\": DATA / \\\"llama-3.2-3b\\\" / \\\"generations_filtered.jsonl\\\",\\n    \\\"mistral-7b-v0.3\\\": DATA / \\\"mistral-7b-v0.3\\\" / \\\"generations_filtered.jsonl\\\",\\n}\\n\\nFEAT_JSONL_PATHS = {\\n    \\\"llama-3.2-3b\\\": DATA / \\\"llama-3.2-3b\\\" / \\\"features_pythia410m.jsonl\\\",\\n    \\\"mistral-7b-v0.3\\\": DATA / \\\"mistral-7b-v0.3\\\" / \\\"features_pythia410m.jsonl\\\",\\n}\\n\\nN_BOOT = 1000\\nSEED = 42\\n\\nMETHODS = {\\n    \\\"ld_score\\\":      ([\\\"ld_score\\\"], 100, 3),\\n    \\\"entropy_mean\\\":  ([\\\"entropy_mean\\\"], 100, 3),\\n    \\\"4det_surface\\\":  ([\\\"ld_score\\\", \\\"entropy_mean\\\", \\\"hapax_ratio\\\", \\\"ttr\\\"], 200, 6),\\n    \\\"7feature\\\":      ([\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_max\\\", \\\"entropy_min\\\",\\n                       \\\"ttr\\\", \\\"hapax_ratio\\\", \\\"tail_decay\\\"], 200, 6),\\n}\\n\\n\\ndef ld_score_trigram(text):\\n    tokens = text.split()\\n    if len(tokens) < 3:\\n        return 0.0\\n    trigrams = [tuple(tokens[i:i+3]) for i in range(len(tokens)-2)]\\n    counts = Counter(trigrams)\\n    repeated = sum(1 for c in counts.values() if c > 1)\\n    return repeated / len(trigrams)\\n\\n\\ndef load_jsonl(path):\\n    rows = []\\n    with open(path) as f:\\n        for line in f:\\n            rows.append(json.loads(line))\\n    return pd.DataFrame(rows)\\n\\n\\ndef load_all_data():\\n    print(\\\"[1] Loading features_all_models.csv (6 generators)...\\\")\\n    feat = pd.read_csv(DATA / \\\"features_all_models.csv\\\")\\n    feat = feat.rename(columns={\\\"model_name\\\": \\\"model\\\"})\\n    print(f\\\"  {len(feat)} rows, generators: {sorted(feat['model'].unique())}\\\")\\n\\n    # Load llama/mistral features from jsonl\\n    print(\\\"[2] Loading llama/mistral features...\\\")\\n    for model, path in FEAT_JSONL_PATHS.items():\\n        df_feat = load_jsonl(path)\\n        df_feat[\\\"model\\\"] = model\\n        # Filter to only rows present in generations_filtered\\n        gen_path = JSONL_PATHS[model]\\n        df_gen = load_jsonl(gen_path)\\n        valid_keys = set(zip(df_gen[\\\"seed_id\\\"], df_gen[\\\"depth\\\"]))\\n        mask = [tuple(r) in valid_keys for r in zip(df_feat[\\\"seed_id\\\"], df_feat[\\\"depth\\\"])]\\n        df_feat = df_feat[mask].reset_index(drop=True)\\n        df_feat = df_feat.rename(columns={\\\"model_name\\\": \\\"model\\\"} if \\\"model_name\\\" in df_feat.columns else {})\\n        if \\\"model\\\" not in df_feat.columns:\\n            df_feat[\\\"model\\\"] = model\\n        feat = pd.concat([feat, df_feat[[\\\"model\\\", \\\"seed_id\\\", \\\"depth\\\",\\n                                          \\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\",\\n                                          \\\"entropy_max\\\", \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]]],\\n                         ignore_index=True)\\n        print(f\\\"  {model}: {mask.count(True)} rows added\\\")\\n\\n    print(f\\\"  Total features: {len(feat)} rows\\\")\\n\\n    # Load text for ld_score computation\\n    print(\\\"[3] Loading text and computing ld_score...\\\")\\n    texts_all = []\\n    for model in ALL_8:\\n        df_gen = load_jsonl(JSONL_PATHS[model])\\n        df_gen[\\\"model\\\"] = model\\n        texts_all.append(df_gen[[\\\"model\\\", \\\"seed_id\\\", \\\"depth\\\", \\\"text\\\"]])\\n    texts_df = pd.concat(texts_all, ignore_index=True)\\n    print(f\\\"  Total texts: {len(texts_df)}\\\")\\n\\n    # Compute ld_score\\n    t0 = time.time()\\n    texts_df[\\\"ld_score\\\"] = texts_df[\\\"text\\\"].apply(ld_score_trigram)\\n    print(f\\\"  ld_score computed in {time.time()-t0:.1f}s\\\")\\n\\n    # Merge features with text (to get ld_score)\\n    merged = feat.merge(texts_df[[\\\"model\\\", \\\"seed_id\\\", \\\"depth\\\", \\\"ld_score\\\"]],\\n                        on=[\\\"model\\\", \\\"seed_id\\\", \\\"depth\\\"], how=\\\"inner\\\")\\n    print(f\\\"[4] Merged: {len(merged)} rows\\\")\\n    print(f\\\"  Generators: {sorted(merged['model'].unique())}\\\")\\n    print(f\\\"  Per-generator counts:\\\")\\n    for m in ALL_8:\\n        n = (merged[\\\"model\\\"] == m).sum()\\n        print(f\\\"    {m}: {n}\\\")\\n\\n    # Check for NaN\\n    needed = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_max\\\", \\\"entropy_min\\\",\\n              \\\"ttr\\\", \\\"hapax_ratio\\\", \\\"tail_decay\\\", \\\"ld_score\\\"]\\n    na_count = merged[needed].isna().sum().sum()\\n    if na_count > 0:\\n        print(f\\\"  WARNING: {na_count} NaN values, filling with median\\\")\\n        for col in needed:\\n            if merged[col].isna().any():\\n                merged[col] = merged[col].fillna(merged[col].median())\\n\\n    return merged\\n\\n\\ndef bootstrap_ci(y_true, y_pred, n_boot=N_BOOT, seed=SEED):\\n    rng = np.random.RandomState(seed)\\n    scores = []\\n    n = len(y_true)\\n    for _ in range(n_boot):\\n        idx = rng.randint(0, n, n)\\n        scores.append(f1_score(y_true[idx], y_pred[idx], average='macro'))\\n    return float(np.percentile(scores, 2.5)), float(np.percentile(scores, 97.5))\\n\\n\\ndef logo_eval(df, features, n_estimators, max_depth):\\n    \\\"\\\"\\\"Leave-One-Generator-Out, binary: gen1 vs gen2+, exclude depth=0.\\\"\\\"\\\"\\n    # Filter: depth >= 1\\n    df_bin = df[df[\\\"depth\\\"] >= 1].copy()\\n    df_bin[\\\"label\\\"] = (df_bin[\\\"depth\\\"] >= 2).astype(int)\\n\\n    all_y_true = []\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "c309230a-3c5d-4ccf-aee2-33948edf6e79",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Table 3 unified evaluation: 4 methods, binary LOGO, LD-Score trigram.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json, time, sys\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom collections import Counter\\\\nfrom pathlib import Path\\\\nfrom sklearn.metrics import f1_score\\\\nfrom xgboost import XGBClassifier\\\\n\\\\nsys.stdout = open(sys.stdout.fileno(), mode='w', buffering=1)\\\\n\\\\nROOT = Path(\\\\\\\"/root/gen-depth-fingerprint\\\\\\\")\\\\nDATA = ROOT / \\\\\\\"data\\\\\\\"\\\\nRESULTS = ROOT / \\\\\\\"results\\\\\\\"\\\\nRESULTS.mkdir(exist_ok=True)\\\\n\\\\nALL_8 = [\\\\\\\"pythia-2.8b\\\\\\\", \\\\\\\"pythia-1b\\\\\\\", \\\\\\\"olmo-2-1b\\\\\\\", \\\\\\\"qwen3-0.6b\\\\\\\", \\\\\\\"qwen3-1.7b\\\\\\\", \\\\\\\"qwen3-8b\\\\\\\",\\\\n          \\\\\\\"llama-3.2-3b\\\\\\\", \\\\\\\"mistral-7b-v0.3\\\\\\\"]\\\\n\\\\nJSONL_PATHS = {\\\\n    \\\\\\\"olmo-2-1b\\\\\\\":   DATA / \\\\\\\"olmo-2-1b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"pythia-1b\\\\\\\":   DATA / \\\\\\\"pythia-1b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"pythia-2.8b\\\\\\\": DATA / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\":  DATA / \\\\\\\"qwen3-0.6b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\":  DATA / \\\\\\\"qwen3-1.7b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"qwen3-8b\\\\\\\":    DATA / \\\\\\\"qwen3-8b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"llama-3.2-3b\\\\\\\": DATA / \\\\\\\"llama-3.2-3b\\\\\\\" / \\\\\\\"generations_filtered.jsonl\\\\\\\",\\\\n    \\\\\\\"mistral-7b-v0.3\\\\\\\": DATA / \\\\\\\"mistral-7b-v0.3\\\\\\\" / \\\\\\\"generations_filtered.jsonl\\\\\\\",\\\\n}\\\\n\\\\nFEAT_JSONL_PATHS = {\\\\n    \\\\\\\"llama-3.2-3b\\\\\\\": DATA / \\\\\\\"llama-3.2-3b\\\\\\\" / \\\\\\\"features_pythia410m.jsonl\\\\\\\",\\\\n    \\\\\\\"mistral-7b-v0.3\\\\\\\": DATA / \\\\\\\"mistral-7b-v0.3\\\\\\\" / \\\\\\\"features_pythia410m.jsonl\\\\\\\",\\\\n}\\\\n\\\\nN_BOOT = 1000\\\\nSEED = 42\\\\n\\\\nMETHODS = {\\\\n    \\\\\\\"ld_score\\\\\\\":      ([\\\\\\\"ld_score\\\\\\\"], 100, 3),\\\\n    \\\\\\\"entropy_mean\\\\\\\":  ([\\\\\\\"entropy_mean\\\\\\\"], 100, 3),\\\\n    \\\\\\\"4det_surface\\\\\\\":  ([\\\\\\\"ld_score\\\\\\\", \\\\\\\"entropy_mean\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\", \\\\\\\"ttr\\\\\\\"], 200, 6),\\\\n    \\\\\\\"7feature\\\\\\\":      ([\\\\\\\"entropy_mean\\\\\\\", \\\\\\\"entropy_std\\\\\\\", \\\\\\\"entropy_max\\\\\\\", \\\\\\\"entropy_min\\\\\\\",\\\\n                       \\\\\\\"ttr\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\", \\\\\\\"tail_decay\\\\\\\"], 200, 6),\\\\n}\\\\n\\\\n\\\\ndef ld_score_trigram(text):\\\\n    tokens = text.split()\\\\n    if len(tokens) < 3:\\\\n        return 0.0\\\\n    trigrams = [tuple(tokens[i:i+3]) for i in range(len(tokens)-2)]\\\\n    counts = Counter(trigrams)\\\\n    repeated = sum(1 for c in counts.values() if c > 1)\\\\n    return repeated / len(trigrams)\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    rows = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            rows.append(json.loads(line))\\\\n    return pd.DataFrame(rows)\\\\n\\\\n\\\\ndef load_all_data():\\\\n    print(\\\\\\\"[1] Loading features_all_models.csv (6 generators)...\\\\\\\")\\\\n    feat = pd.read_csv(DATA / \\\\\\\"features_all_models.csv\\\\\\\")\\\\n    feat = feat.rename(columns={\\\\\\\"model_name\\\\\\\": \\\\\\\"model\\\\\\\"})\\\\n    print(f\\\\\\\"  {len(feat)} rows, generators: {sorted(feat['model'].unique())}\\\\\\\")\\\\n\\\\n    # Load llama/mistral features from jsonl\\\\n    print(\\\\\\\"[2] Loading llama/mistral features...\\\\\\\")\\\\n    for model, path in FEAT_JSONL_PATHS.items():\\\\n        df_feat = load_jsonl(path)\\\\n        df_feat[\\\\\\\"model\\\\\\\"] = model\\\\n        # Filter to only rows present in generations_filtered\\\\n        gen_path = JSONL_PATHS[model]\\\\n        df_gen = load_jsonl(gen_path)\\\\n        valid_keys = set(zip(df_gen[\\\\\\\"seed_id\\\\\\\"], df_gen[\\\\\\\"depth\\\\\\\"]))\\\\n        mask = [tuple(r) in valid_keys for r in zip(df_feat[\\\\\\\"seed_id\\\\\\\"], df_feat[\\\\\\\"depth\\\\\\\"])]\\\\n        df_feat = df_feat[mask].reset_index(drop=True)\\\\n        df_feat = df_feat.rename(columns={\\\\\\\"model_name\\\\\\\": \\\\\\\"model\\\\\\\"} if \\\\\\\"model_name\\\\\\\" in df_feat.columns else {})\\\\n        if \\\\\\\"model\\\\\\\" not in df_feat.columns:\\\\n            df_feat[\\\\\\\"model\\\\\\\"] = model\\\\n        feat = pd.concat([feat, df_feat[[\\\\\\\"model\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\",\\\\n                                          \\\\\\\"entropy_mean\\\\\\\", \\\\\\\"entropy_std\\\\\\\", \\\\\\\"entropy_min\\\\\\\",\\\\n                                          \\\\\\\"entropy_max\\\\\\\", \\\\\\\"tail_decay\\\\\\\", \\\\\\\"ttr\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\"]]],\\\\n                         ignore_index=True)\\\\n        print(f\\\\\\\"  {model}: {mask.count(True)} rows added\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"  Total features: {len(feat)} rows\\\\\\\")\\\\n\\\\n    # Load text for ld_score computation\\\\n    print(\\\\\\\"[3] Loading text and computing ld_score...\\\\\\\")\\\\n    texts_all = []\\\\n    for model in ALL_8:\\\\n        df_gen = load_jsonl(JSONL_PATHS[model])\\\\n        df_gen[\\\\\\\"model\\\\\\\"] = model\\\\n        texts_all.append(df_gen[[\\\\\\\"model\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\", \\\\\\\"text\\\\\\\"]])\\\\n    texts_df = pd.concat(texts_all, ignore_index=True)\\\\n    print(f\\\\\\\"  Total texts: {len(texts_df)}\\\\\\\")\\\\n\\\\n    # Compute ld_score\\\\n    t0 = time.time()\\\\n    texts_df[\\\\\\\"ld_score\\\\\\\"] = texts_df[\\\\\\\"text\\\\\\\"].apply(ld_score_trigram)\\\\n    print(f\\\\\\\"  ld_score computed in {time.time()-t0:.1f}s\\\\\\\")\\\\n\\\\n    # Merge features with text (to get ld_score)\\\\n    merged = feat.merge(texts_df[[\\\\\\\"model\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\", \\\\\\\"ld_score\\\\\\\"]],\\\\n                        on=[\\\\\\\"model\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\"], how=\\\\\\\"inner\\\\\\\")\\\\n    print(f\\\\\\\"[4] Merged: {len(merged)} rows\\\\\\\")\\\\n    print(f\\\\\\\"  Generators: {sorted(merged['model'].unique())}\\\\\\\")\\\\n    print(f\\\\\\\"  Per-generator counts:\\\\\\\")\\\\n    for m in ALL_8:\\\\n        n = (merged[\\\\\\\"model\\\\\\\"] == m).sum()\\\\n        print(f\\\\\\\"    {m}: {n}\\\\\\\")\\\\n\\\\n    # Check for NaN\\\\n    needed = [\\\\\\\"entropy_mean\\\\\\\", \\\\\\\"entropy_std\\\\\\\", \\\\\\\"entropy_max\\\\\\\", \\\\\\\"entropy_min\\\\\\\",\\\\n              \\\\\\\"ttr\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\", \\\\\\\"tail_decay\\\\\\\", \\\\\\\"ld_score\\\\\\\"]\\\\n    na_count = merged[needed].isna().sum().sum()\\\\n    if na_count > 0:\\\\n        print(f\\\\\\\"  WARNING: {na_count} NaN values, filling with median\\\\\\\")\\\\n        for col in needed:\\\\n            if merged[col].isna().any():\\\\n                merged[col] = merged[col].fillna(merged[col].median())\\\\n\\\\n    return merged\\\\n\\\\n\\\\ndef bootstrap_ci(y_true, y_pred, n_boot=N_BOOT, seed=SEED):\\\\n    rng = np.random.RandomState(seed)\\\\n    scores = []\\\\n    n = len(y_true)\\\\n    for _ in range(n_boot):\\\\n        idx = rng.randint(0, n, n)\\\\n        scores.append(f1_score(y_true[idx], y_pred[idx], average='macro'))\\\\n    return float(np.percentile(scores, 2.5)), float(np.percentile(scores, 97.5))\\\\n\\\\n\\\\ndef logo_eval(df, features, n_estimators, max_depth):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Leave-One-Generator-Out, binary: gen1 vs gen2+, exclude depth=0.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    # Filter: depth >= 1\\\\n    df_bin = df[df[\\\\\\\"depth\\\\\\\"] >= 1].copy()\\\\n    df_bin[\\\\\\\"label\\\\\\\"] = (df_bin[\\\\\\\"depth\\\\\\\"] >= 2).astype(int)\\\\n\\\\n    all_y_true = []\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Table 3 unified evaluation: 4 methods, binary LOGO, LD-Score trigram.\\\"\\\"\\\"\\n\\nimport json, time, sys\\nimport numpy as np\\nimport pandas as pd\\nfrom collections import Counter\\nfrom pathlib import Path\\nfrom sklearn.metrics import f1_score\\nfrom xgboost import XGBClassifier\\n\\nsys.stdout = open(sys.stdout.fileno(), mode='w', buffering=1)\\n\\nROOT = Path(\\\"/root/gen-depth-fingerprint\\\")\\nDATA = ROOT / \\\"data\\\"\\nRESULTS = ROOT / \\\"results\\\"\\nRESULTS.mkdir(exist_ok=True)\\n\\nALL_8 = [\\\"pythia-2.8b\\\", \\\"pythia-1b\\\", \\\"olmo-2-1b\\\", \\\"qwen3-0.6b\\\", \\\"qwen3-1.7b\\\", \\\"qwen3-8b\\\",\\n          \\\"llama-3.2-3b\\\", \\\"mistral-7b-v0.3\\\"]\\n\\nJSONL_PATHS = {\\n    \\\"olmo-2-1b\\\":   DATA / \\\"olmo-2-1b\\\" / \\\"generations.jsonl\\\",\\n    \\\"pythia-1b\\\":   DATA / \\\"pythia-1b\\\" / \\\"generations.jsonl\\\",\\n    \\\"pythia-2.8b\\\": DATA / \\\"generations.jsonl\\\",\\n    \\\"qwen3-0.6b\\\":  DATA / \\\"qwen3-0.6b\\\" / \\\"generations.jsonl\\\",\\n    \\\"qwen3-1.7b\\\":  DATA / \\\"qwen3-1.7b\\\" / \\\"generations.jsonl\\\",\\n    \\\"qwen3-8b\\\":    DATA / \\\"qwen3-8b\\\" / \\\"generations.jsonl\\\",\\n    \\\"llama-3.2-3b\\\": DATA / \\\"llama-3.2-3b\\\" / \\\"generations_filtered.jsonl\\\",\\n    \\\"mistral-7b-v0.3\\\": DATA / \\\"mistral-7b-v0.3\\\" / \\\"generations_filtered.jsonl\\\",\\n}\\n\\nFEAT_JSONL_PATHS = {\\n    \\\"llama-3.2-3b\\\": DATA / \\\"llama-3.2-3b\\\" / \\\"features_pythia410m.jsonl\\\",\\n    \\\"mistral-7b-v0.3\\\": DATA / \\\"mistral-7b-v0.3\\\" / \\\"features_pythia410m.jsonl\\\",\\n}\\n\\nN_BOOT = 1000\\nSEED = 42\\n\\nMETHODS = {\\n    \\\"ld_score\\\":      ([\\\"ld_score\\\"], 100, 3),\\n    \\\"entropy_mean\\\":  ([\\\"entropy_mean\\\"], 100, 3),\\n    \\\"4det_surface\\\":  ([\\\"ld_score\\\", \\\"entropy_mean\\\", \\\"hapax_ratio\\\", \\\"ttr\\\"], 200, 6),\\n    \\\"7feature\\\":      ([\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_max\\\", \\\"entropy_min\\\",\\n                       \\\"ttr\\\", \\\"hapax_ratio\\\", \\\"tail_decay\\\"], 200, 6),\\n}\\n\\n\\ndef ld_score_trigram(text):\\n    tokens = text.split()\\n    if len(tokens) < 3:\\n        return 0.0\\n    trigrams = [tuple(tokens[i:i+3]) for i in range(len(tokens)-2)]\\n    counts = Counter(trigrams)\\n    repeated = sum(1 for c in counts.values() if c > 1)\\n    return repeated / len(trigrams)\\n\\n\\ndef load_jsonl(path):\\n    rows = []\\n    with open(path) as f:\\n        for line in f:\\n            rows.append(json.loads(line))\\n    return pd.DataFrame(rows)\\n\\n\\ndef load_all_data():\\n    print(\\\"[1] Loading features_all_models.csv (6 generators)...\\\")\\n    feat = pd.read_csv(DATA / \\\"features_all_models.csv\\\")\\n    feat = feat.rename(columns={\\\"model_name\\\": \\\"model\\\"})\\n    print(f\\\"  {len(feat)} rows, generators: {sorted(feat['model'].unique())}\\\")\\n\\n    # Load llama/mistral features from jsonl\\n    print(\\\"[2] Loading llama/mistral features...\\\")\\n    for model, path in FEAT_JSONL_PATHS.items():\\n        df_feat = load_jsonl(path)\\n        df_feat[\\\"model\\\"] = model\\n        # Filter to only rows present in generations_filtered\\n        gen_path = JSONL_PATHS[model]\\n        df_gen = load_jsonl(gen_path)\\n        valid_keys = set(zip(df_gen[\\\"seed_id\\\"], df_gen[\\\"depth\\\"]))\\n        mask = [tuple(r) in valid_keys for r in zip(df_feat[\\\"seed_id\\\"], df_feat[\\\"depth\\\"])]\\n        df_feat = df_feat[mask].reset_index(drop=True)\\n        df_feat = df_feat.rename(columns={\\\"model_name\\\": \\\"model\\\"} if \\\"model_name\\\" in df_feat.columns else {})\\n        if \\\"model\\\" not in df_feat.columns:\\n            df_feat[\\\"model\\\"] = model\\n        feat = pd.concat([feat, df_feat[[\\\"model\\\", \\\"seed_id\\\", \\\"depth\\\",\\n                                          \\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\",\\n                                          \\\"entropy_max\\\", \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]]],\\n                         ignore_index=True)\\n        print(f\\\"  {model}: {mask.count(True)} rows added\\\")\\n\\n    print(f\\\"  Total features: {len(feat)} rows\\\")\\n\\n    # Load text for ld_score computation\\n    print(\\\"[3] Loading text and computing ld_score...\\\")\\n    texts_all = []\\n    for model in ALL_8:\\n        df_gen = load_jsonl(JSONL_PATHS[model])\\n        df_gen[\\\"model\\\"] = model\\n        texts_all.append(df_gen[[\\\"model\\\", \\\"seed_id\\\", \\\"depth\\\", \\\"text\\\"]])\\n    texts_df = pd.concat(texts_all, ignore_index=True)\\n    print(f\\\"  Total texts: {len(texts_df)}\\\")\\n\\n    # Compute ld_score\\n    t0 = time.time()\\n    texts_df[\\\"ld_score\\\"] = texts_df[\\\"text\\\"].apply(ld_score_trigram)\\n    print(f\\\"  ld_score computed in {time.time()-t0:.1f}s\\\")\\n\\n    # Merge features with text (to get ld_score)\\n    merged = feat.merge(texts_df[[\\\"model\\\", \\\"seed_id\\\", \\\"depth\\\", \\\"ld_score\\\"]],\\n                        on=[\\\"model\\\", \\\"seed_id\\\", \\\"depth\\\"], how=\\\"inner\\\")\\n    print(f\\\"[4] Merged: {len(merged)} rows\\\")\\n    print(f\\\"  Generators: {sorted(merged['model'].unique())}\\\")\\n    print(f\\\"  Per-generator counts:\\\")\\n    for m in ALL_8:\\n        n = (merged[\\\"model\\\"] == m).sum()\\n        print(f\\\"    {m}: {n}\\\")\\n\\n    # Check for NaN\\n    needed = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_max\\\", \\\"entropy_min\\\",\\n              \\\"ttr\\\", \\\"hapax_ratio\\\", \\\"tail_decay\\\", \\\"ld_score\\\"]\\n    na_count = merged[needed].isna().sum().sum()\\n    if na_count > 0:\\n        print(f\\\"  WARNING: {na_count} NaN values, filling with median\\\")\\n        for col in needed:\\n            if merged[col].isna().any():\\n                merged[col] = merged[col].fillna(merged[col].median())\\n\\n    return merged\\n\\n\\ndef bootstrap_ci(y_true, y_pred, n_boot=N_BOOT, seed=SEED):\\n    rng = np.random.RandomState(seed)\\n    scores = []\\n    n = len(y_true)\\n    for _ in range(n_boot):\\n        idx = rng.randint(0, n, n)\\n        scores.append(f1_score(y_true[idx], y_pred[idx], average='macro'))\\n    return float(np.percentile(scores, 2.5)), float(np.percentile(scores, 97.5))\\n\\n\\ndef logo_eval(df, features, n_estimators, max_depth):\\n    \\\"\\\"\\\"Leave-One-Generator-Out, binary: gen1 vs gen2+, exclude depth=0.\\\"\\\"\\\"\\n    # Filter: depth >= 1\\n    df_bin = df[df[\\\"depth\\\"] >= 1].copy()\\n    df_bin[\\\"label\\\"] = (df_bin[\\\"depth\\\"] >= 2).astype(int)\\n\\n    all_y_true = []\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PxTyb7am7aoQrLVVc5nPr8`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/8gen_baselines.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "295768a5-771c-4aa0-89ec-1e1d0e7cc930",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZBbEheDAg943dSuKVsFTj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7185,
+      "cache_read_input_tokens": 28747,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7185
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T19:02:03.484Z_
+
+<details><summary>↩ Tool result · `toolu_01PxTyb7am7aoQrLVVc5nPr8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"avg_logprob\\\": {\\n    \\\"pooled_3class_f1\\\": 0.7085,\\n    \\\"pooled_binary_f1\\\": 0.6785,\\n    \\\"pooled_binary_ci\\\": [\\n      0.6717,\\n      0.6854\\n    ]\\n  },\\n  \\\"fastdetectgpt\\\": {\\n    \\\"pooled_3class_f1\\\": 0.6654,\\n    \\\"pooled_binary_f1\\\": 0.5805,\\n    \\\"pooled_binary_ci\\\": [\\n      0.5741,\\n      0.5875\\n    ]\\n  },\\n  \\\"binoculars\\\": {\\n    \\\"pooled_3class_f1\\\": 0.4094,\\n    \\\"pooled_binary_f1\\\": 0.5327,\\n    \\\"pooled_binary_ci\\\": [\\n      0.5268,\\n      0.5392\\n    ]\\n  },\\n  \\\"ld_score\\\": {\\n    \\\"pooled_3class_f1\\\": 0.6326,\\n    \\\"pooled_binary_f1\\\": 0.6788,\\n    \\\"pooled_binary_ci\\\": [\\n      0.6717,\\n      0.6851\\n    ]\\n  },\\n  \\\"4det_ensemble\\\": {\\n    \\\"pooled_3class_f1\\\": 0.779,\\n    \\\"pooled_binary_f1\\\": 0.6993,\\n    \\\"pooled_binary_ci\\\": [\\n      0.6928,\\n      0.7054\\n    ]\\n  },\\n  \\\"4det_surface\\\": {\\n    \\\"pooled_3class_f1\\\": 0.7823,\\n    \\\"pooled_binary_f1\\\": 0.7044,\\n    \\\"pooled_binary_ci\\\": [\\n      0.6979,\\n      0.7106\\n    ]\\n  },\\n  \\\"7feature_ours\\\": {\\n    \\\"pooled_3class_f1\\\": 0.7616,\\n    \\\"pooled_binary_f1\\\": 0.6935,\\n    \\\"pooled_binary_ci\\\": [\\n      0.6867,\\n      0.7\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "a91b3a9a-dda7-4e52-bb80-36eda7405b02",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"avg_logprob\\\\\\\": {\\\\n    \\\\\\\"pooled_3class_f1\\\\\\\": 0.7085,\\\\n    \\\\\\\"pooled_binary_f1\\\\\\\": 0.6785,\\\\n    \\\\\\\"pooled_binary_ci\\\\\\\": [\\\\n      0.6717,\\\\n      0.6854\\\\n    ]\\\\n  },\\\\n  \\\\\\\"fastdetectgpt\\\\\\\": {\\\\n    \\\\\\\"pooled_3class_f1\\\\\\\": 0.6654,\\\\n    \\\\\\\"pooled_binary_f1\\\\\\\": 0.5805,\\\\n    \\\\\\\"pooled_binary_ci\\\\\\\": [\\\\n      0.5741,\\\\n      0.5875\\\\n    ]\\\\n  },\\\\n  \\\\\\\"binoculars\\\\\\\": {\\\\n    \\\\\\\"pooled_3class_f1\\\\\\\": 0.4094,\\\\n    \\\\\\\"pooled_binary_f1\\\\\\\": 0.5327,\\\\n    \\\\\\\"pooled_binary_ci\\\\\\\": [\\\\n      0.5268,\\\\n      0.5392\\\\n    ]\\\\n  },\\\\n  \\\\\\\"ld_score\\\\\\\": {\\\\n    \\\\\\\"pooled_3class_f1\\\\\\\": 0.6326,\\\\n    \\\\\\\"pooled_binary_f1\\\\\\\": 0.6788,\\\\n    \\\\\\\"pooled_binary_ci\\\\\\\": [\\\\n      0.6717,\\\\n      0.6851\\\\n    ]\\\\n  },\\\\n  \\\\\\\"4det_ensemble\\\\\\\": {\\\\n    \\\\\\\"pooled_3class_f1\\\\\\\": 0.779,\\\\n    \\\\\\\"pooled_binary_f1\\\\\\\": 0.6993,\\\\n    \\\\\\\"pooled_binary_ci\\\\\\\": [\\\\n      0.6928,\\\\n      0.7054\\\\n    ]\\\\n  },\\\\n  \\\\\\\"4det_surface\\\\\\\": {\\\\n    \\\\\\\"pooled_3class_f1\\\\\\\": 0.7823,\\\\n    \\\\\\\"pooled_binary_f1\\\\\\\": 0.7044,\\\\n    \\\\\\\"pooled_binary_ci\\\\\\\": [\\\\n      0.6979,\\\\n      0.7106\\\\n    ]\\\\n  },\\\\n  \\\\\\\"7feature_ours\\\\\\\": {\\\\n    \\\\\\\"pooled_3class_f1\\\\\\\": 0.7616,\\\\n    \\\\\\\"pooled_binary_f1\\\\\\\": 0.6935,\\\\n    \\\\\\\"pooled_binary_ci\\\\\\\": [\\\\n      0.6867,\\\\n      0.7\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"avg_logprob\\\": {\\n    \\\"pooled_3class_f1\\\": 0.7085,\\n    \\\"pooled_binary_f1\\\": 0.6785,\\n    \\\"pooled_binary_ci\\\": [\\n      0.6717,\\n      0.6854\\n    ]\\n  },\\n  \\\"fastdetectgpt\\\": {\\n    \\\"pooled_3class_f1\\\": 0.6654,\\n    \\\"pooled_binary_f1\\\": 0.5805,\\n    \\\"pooled_binary_ci\\\": [\\n      0.5741,\\n      0.5875\\n    ]\\n  },\\n  \\\"binoculars\\\": {\\n    \\\"pooled_3class_f1\\\": 0.4094,\\n    \\\"pooled_binary_f1\\\": 0.5327,\\n    \\\"pooled_binary_ci\\\": [\\n      0.5268,\\n      0.5392\\n    ]\\n  },\\n  \\\"ld_score\\\": {\\n    \\\"pooled_3class_f1\\\": 0.6326,\\n    \\\"pooled_binary_f1\\\": 0.6788,\\n    \\\"pooled_binary_ci\\\": [\\n      0.6717,\\n      0.6851\\n    ]\\n  },\\n  \\\"4det_ensemble\\\": {\\n    \\\"pooled_3class_f1\\\": 0.779,\\n    \\\"pooled_binary_f1\\\": 0.6993,\\n    \\\"pooled_binary_ci\\\": [\\n      0.6928,\\n      0.7054\\n    ]\\n  },\\n  \\\"4det_surface\\\": {\\n    \\\"pooled_3class_f1\\\": 0.7823,\\n    \\\"pooled_binary_f1\\\": 0.7044,\\n    \\\"pooled_binary_ci\\\": [\\n      0.6979,\\n      0.7106\\n    ]\\n  },\\n  \\\"7feature_ours\\\": {\\n    \\\"pooled_3class_f1\\\": 0.7616,\\n    \\\"pooled_binary_f1\\\": 0.6935,\\n    \\\"pooled_binary_ci\\\": [\\n      0.6867,\\n      0.7\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also get the rest of the eval_table3_unified.py script to see the full LOGO evaluation logic, and check if there's a `3det_surface` method (which the user mentioned but the actual file shows `4det_surface`).
+
+Let me also look at the 8gen_logo_unfiltered.json more carefully. It's the per-generator LOGO results for the 7-feature method.
+
+Let me also check if there's a baselines script that has more detail.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "88b96dcd-6c8a-4f23-b885-edab0cc4243f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WvZSZXM9YmZsGkzaeUimpL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3938,
+      "cache_read_input_tokens": 35932,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3938
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015XxQB2VJkh2JgF2yEVuYhY`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -100 /root/gen-depth-fingerprint/scripts/eval_table3_unified.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "13a9a5ca-5b48-459f-8bef-9e754fbdfd38",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WvZSZXM9YmZsGkzaeUimpL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3938,
+      "cache_read_input_tokens": 35932,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3938
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T19:02:10.339Z_
+
+<details><summary>↩ Tool result · `toolu_015XxQB2VJkh2JgF2yEVuYhY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n\\ndef logo_eval(df, features, n_estimators, max_depth):\\n    \\\"\\\"\\\"Leave-One-Generator-Out, binary: gen1 vs gen2+, exclude depth=0.\\\"\\\"\\\"\\n    # Filter: depth >= 1\\n    df_bin = df[df[\\\"depth\\\"] >= 1].copy()\\n    df_bin[\\\"label\\\"] = (df_bin[\\\"depth\\\"] >= 2).astype(int)\\n\\n    all_y_true = []\\n    all_y_pred = []\\n\\n    for held_out in ALL_8:\\n        test_mask = df_bin[\\\"model\\\"] == held_out\\n        train_mask = ~test_mask\\n\\n        X_train = df_bin.loc[train_mask, features].values\\n        y_train = df_bin.loc[train_mask, \\\"label\\\"].values\\n        X_test = df_bin.loc[test_mask, features].values\\n        y_test = df_bin.loc[test_mask, \\\"label\\\"].values\\n\\n        if len(X_test) == 0:\\n            continue\\n\\n        clf = XGBClassifier(\\n            n_estimators=n_estimators, max_depth=max_depth,\\n            learning_rate=0.1, random_state=SEED,\\n            use_label_encoder=False, eval_metric='logloss',\\n            verbosity=0, n_jobs=-1\\n        )\\n        clf.fit(X_train, y_train)\\n        y_pred = clf.predict(X_test)\\n\\n        all_y_true.extend(y_test)\\n        all_y_pred.extend(y_pred)\\n\\n    y_true = np.array(all_y_true)\\n    y_pred = np.array(all_y_pred)\\n    f1 = float(f1_score(y_true, y_pred, average='macro'))\\n    ci_lower, ci_upper = bootstrap_ci(y_true, y_pred)\\n    return f1, ci_lower, ci_upper, len(y_true)\\n\\n\\ndef main():\\n    t0 = time.time()\\n    print(\\\"=\\\" * 60)\\n    print(\\\"Table 3 Unified Evaluation\\\")\\n    print(\\\"Binary (gen1 vs gen2+) | Pooled LOGO 8-fold | Tiered XGB\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    merged = load_all_data()\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(\\\"LOGO Evaluation\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    results = {}\\n    for name, (feats, n_est, max_d) in METHODS.items():\\n        print(f\\\"\\\\n  {name} (n_est={n_est}, max_depth={max_d}, {len(feats)} features)...\\\")\\n        f1, ci_lo, ci_hi, n = logo_eval(merged, feats, n_est, max_d)\\n        print(f\\\"    F1={f1:.4f}  CI=[{ci_lo:.4f}, {ci_hi:.4f}]  n={n}\\\")\\n        results[name] = {\\\"f1\\\": round(f1, 4), \\\"ci_lower\\\": round(ci_lo, 4), \\\"ci_upper\\\": round(ci_hi, 4)}\\n\\n    # Summary\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"{'Method':<15} {'F1':>8} {'CI':>22}\\\")\\n    print(\\\"-\\\" * 50)\\n    for name in [\\\"ld_score\\\", \\\"entropy_mean\\\", \\\"4det_surface\\\", \\\"7feature\\\"]:\\n        r = results[name]\\n        print(f\\\"{name:<15} {r['f1']:>8.4f} [{r['ci_lower']:.4f}, {r['ci_upper']:.4f}]\\\")\\n\\n    # Save\\n    n_bin = merged[merged[\\\"depth\\\"] >= 1].shape[0]\\n    output = {\\n        \\\"ld_score\\\": results[\\\"ld_score\\\"],\\n        \\\"entropy_mean\\\": results[\\\"entropy_mean\\\"],\\n        \\\"4det_surface\\\": results[\\\"4det_surface\\\"],\\n        \\\"7feature\\\": results[\\\"7feature\\\"],\\n        \\\"meta\\\": {\\n            \\\"n_samples\\\": int(n_bin),\\n            \\\"n_generators\\\": 8,\\n            \\\"task\\\": \\\"binary (gen1 vs gen2+)\\\",\\n            \\\"protocol\\\": \\\"pooled LOGO 8-fold\\\",\\n            \\\"hyperparams\\\": {\\n                \\\"single\\\": {\\\"n_estimators\\\": 100, \\\"max_depth\\\": 3},\\n                \\\"ensemble\\\": {\\\"n_estimators\\\": 200, \\\"max_depth\\\": 6}\\n            },\\n            \\\"random_state\\\": 42,\\n            \\\"bootstrap_n\\\": 1000\\n        }\\n    }\\n\\n    out_path = RESULTS / \\\"8gen_table3_unified.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n    print(f\\\"Total time: {time.time()-t0:.0f}s\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "185e95b2-5846-4ce7-9962-bb1a4ffabc19",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n\\\\ndef logo_eval(df, features, n_estimators, max_depth):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Leave-One-Generator-Out, binary: gen1 vs gen2+, exclude depth=0.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    # Filter: depth >= 1\\\\n    df_bin = df[df[\\\\\\\"depth\\\\\\\"] >= 1].copy()\\\\n    df_bin[\\\\\\\"label\\\\\\\"] = (df_bin[\\\\\\\"depth\\\\\\\"] >= 2).astype(int)\\\\n\\\\n    all_y_true = []\\\\n    all_y_pred = []\\\\n\\\\n    for held_out in ALL_8:\\\\n        test_mask = df_bin[\\\\\\\"model\\\\\\\"] == held_out\\\\n        train_mask = ~test_mask\\\\n\\\\n        X_train = df_bin.loc[train_mask, features].values\\\\n        y_train = df_bin.loc[train_mask, \\\\\\\"label\\\\\\\"].values\\\\n        X_test = df_bin.loc[test_mask, features].values\\\\n        y_test = df_bin.loc[test_mask, \\\\\\\"label\\\\\\\"].values\\\\n\\\\n        if len(X_test) == 0:\\\\n            continue\\\\n\\\\n        clf = XGBClassifier(\\\\n            n_estimators=n_estimators, max_depth=max_depth,\\\\n            learning_rate=0.1, random_state=SEED,\\\\n            use_label_encoder=False, eval_metric='logloss',\\\\n            verbosity=0, n_jobs=-1\\\\n        )\\\\n        clf.fit(X_train, y_train)\\\\n        y_pred = clf.predict(X_test)\\\\n\\\\n        all_y_true.extend(y_test)\\\\n        all_y_pred.extend(y_pred)\\\\n\\\\n    y_true = np.array(all_y_true)\\\\n    y_pred = np.array(all_y_pred)\\\\n    f1 = float(f1_score(y_true, y_pred, average='macro'))\\\\n    ci_lower, ci_upper = bootstrap_ci(y_true, y_pred)\\\\n    return f1, ci_lower, ci_upper, len(y_true)\\\\n\\\\n\\\\ndef main():\\\\n    t0 = time.time()\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"Table 3 Unified Evaluation\\\\\\\")\\\\n    print(\\\\\\\"Binary (gen1 vs gen2+) | Pooled LOGO 8-fold | Tiered XGB\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    merged = load_all_data()\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(\\\\\\\"LOGO Evaluation\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n    results = {}\\\\n    for name, (feats, n_est, max_d) in METHODS.items():\\\\n        print(f\\\\\\\"\\\\\\\\n  {name} (n_est={n_est}, max_depth={max_d}, {len(feats)} features)...\\\\\\\")\\\\n        f1, ci_lo, ci_hi, n = logo_eval(merged, feats, n_est, max_d)\\\\n        print(f\\\\\\\"    F1={f1:.4f}  CI=[{ci_lo:.4f}, {ci_hi:.4f}]  n={n}\\\\\\\")\\\\n        results[name] = {\\\\\\\"f1\\\\\\\": round(f1, 4), \\\\\\\"ci_lower\\\\\\\": round(ci_lo, 4), \\\\\\\"ci_upper\\\\\\\": round(ci_hi, 4)}\\\\n\\\\n    # Summary\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"{'Method':<15} {'F1':>8} {'CI':>22}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 50)\\\\n    for name in [\\\\\\\"ld_score\\\\\\\", \\\\\\\"entropy_mean\\\\\\\", \\\\\\\"4det_surface\\\\\\\", \\\\\\\"7feature\\\\\\\"]:\\\\n        r = results[name]\\\\n        print(f\\\\\\\"{name:<15} {r['f1']:>8.4f} [{r['ci_lower']:.4f}, {r['ci_upper']:.4f}]\\\\\\\")\\\\n\\\\n    # Save\\\\n    n_bin = merged[merged[\\\\\\\"depth\\\\\\\"] >= 1].shape[0]\\\\n    output = {\\\\n        \\\\\\\"ld_score\\\\\\\": results[\\\\\\\"ld_score\\\\\\\"],\\\\n        \\\\\\\"entropy_mean\\\\\\\": results[\\\\\\\"entropy_mean\\\\\\\"],\\\\n        \\\\\\\"4det_surface\\\\\\\": results[\\\\\\\"4det_surface\\\\\\\"],\\\\n        \\\\\\\"7feature\\\\\\\": results[\\\\\\\"7feature\\\\\\\"],\\\\n        \\\\\\\"meta\\\\\\\": {\\\\n            \\\\\\\"n_samples\\\\\\\": int(n_bin),\\\\n            \\\\\\\"n_generators\\\\\\\": 8,\\\\n            \\\\\\\"task\\\\\\\": \\\\\\\"binary (gen1 vs gen2+)\\\\\\\",\\\\n            \\\\\\\"protocol\\\\\\\": \\\\\\\"pooled LOGO 8-fold\\\\\\\",\\\\n            \\\\\\\"hyperparams\\\\\\\": {\\\\n                \\\\\\\"single\\\\\\\": {\\\\\\\"n_estimators\\\\\\\": 100, \\\\\\\"max_depth\\\\\\\": 3},\\\\n                \\\\\\\"ensemble\\\\\\\": {\\\\\\\"n_estimators\\\\\\\": 200, \\\\\\\"max_depth\\\\\\\": 6}\\\\n            },\\\\n            \\\\\\\"random_state\\\\\\\": 42,\\\\n            \\\\\\\"bootstrap_n\\\\\\\": 1000\\\\n        }\\\\n    }\\\\n\\\\n    out_path = RESULTS / \\\\\\\"8gen_table3_unified.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out_path}\\\\\\\")\\\\n    print(f\\\\\\\"Total time: {time.time()-t0:.0f}s\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n\\ndef logo_eval(df, features, n_estimators, max_depth):\\n    \\\"\\\"\\\"Leave-One-Generator-Out, binary: gen1 vs gen2+, exclude depth=0.\\\"\\\"\\\"\\n    # Filter: depth >= 1\\n    df_bin = df[df[\\\"depth\\\"] >= 1].copy()\\n    df_bin[\\\"label\\\"] = (df_bin[\\\"depth\\\"] >= 2).astype(int)\\n\\n    all_y_true = []\\n    all_y_pred = []\\n\\n    for held_out in ALL_8:\\n        test_mask = df_bin[\\\"model\\\"] == held_out\\n        train_mask = ~test_mask\\n\\n        X_train = df_bin.loc[train_mask, features].values\\n        y_train = df_bin.loc[train_mask, \\\"label\\\"].values\\n        X_test = df_bin.loc[test_mask, features].values\\n        y_test = df_bin.loc[test_mask, \\\"label\\\"].values\\n\\n        if len(X_test) == 0:\\n            continue\\n\\n        clf = XGBClassifier(\\n            n_estimators=n_estimators, max_depth=max_depth,\\n            learning_rate=0.1, random_state=SEED,\\n            use_label_encoder=False, eval_metric='logloss',\\n            verbosity=0, n_jobs=-1\\n        )\\n        clf.fit(X_train, y_train)\\n        y_pred = clf.predict(X_test)\\n\\n        all_y_true.extend(y_test)\\n        all_y_pred.extend(y_pred)\\n\\n    y_true = np.array(all_y_true)\\n    y_pred = np.array(all_y_pred)\\n    f1 = float(f1_score(y_true, y_pred, average='macro'))\\n    ci_lower, ci_upper = bootstrap_ci(y_true, y_pred)\\n    return f1, ci_lower, ci_upper, len(y_true)\\n\\n\\ndef main():\\n    t0 = time.time()\\n    print(\\\"=\\\" * 60)\\n    print(\\\"Table 3 Unified Evaluation\\\")\\n    print(\\\"Binary (gen1 vs gen2+) | Pooled LOGO 8-fold | Tiered XGB\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    merged = load_all_data()\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(\\\"LOGO Evaluation\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    results = {}\\n    for name, (feats, n_est, max_d) in METHODS.items():\\n        print(f\\\"\\\\n  {name} (n_est={n_est}, max_depth={max_d}, {len(feats)} features)...\\\")\\n        f1, ci_lo, ci_hi, n = logo_eval(merged, feats, n_est, max_d)\\n        print(f\\\"    F1={f1:.4f}  CI=[{ci_lo:.4f}, {ci_hi:.4f}]  n={n}\\\")\\n        results[name] = {\\\"f1\\\": round(f1, 4), \\\"ci_lower\\\": round(ci_lo, 4), \\\"ci_upper\\\": round(ci_hi, 4)}\\n\\n    # Summary\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"{'Method':<15} {'F1':>8} {'CI':>22}\\\")\\n    print(\\\"-\\\" * 50)\\n    for name in [\\\"ld_score\\\", \\\"entropy_mean\\\", \\\"4det_surface\\\", \\\"7feature\\\"]:\\n        r = results[name]\\n        print(f\\\"{name:<15} {r['f1']:>8.4f} [{r['ci_lower']:.4f}, {r['ci_upper']:.4f}]\\\")\\n\\n    # Save\\n    n_bin = merged[merged[\\\"depth\\\"] >= 1].shape[0]\\n    output = {\\n        \\\"ld_score\\\": results[\\\"ld_score\\\"],\\n        \\\"entropy_mean\\\": results[\\\"entropy_mean\\\"],\\n        \\\"4det_surface\\\": results[\\\"4det_surface\\\"],\\n        \\\"7feature\\\": results[\\\"7feature\\\"],\\n        \\\"meta\\\": {\\n            \\\"n_samples\\\": int(n_bin),\\n            \\\"n_generators\\\": 8,\\n            \\\"task\\\": \\\"binary (gen1 vs gen2+)\\\",\\n            \\\"protocol\\\": \\\"pooled LOGO 8-fold\\\",\\n            \\\"hyperparams\\\": {\\n                \\\"single\\\": {\\\"n_estimators\\\": 100, \\\"max_depth\\\": 3},\\n                \\\"ensemble\\\": {\\\"n_estimators\\\": 200, \\\"max_depth\\\": 6}\\n            },\\n            \\\"random_state\\\": 42,\\n            \\\"bootstrap_n\\\": 1000\\n        }\\n    }\\n\\n    out_path = RESULTS / \\\"8gen_table3_unified.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n    print(f\\\"Total time: {time.time()-t0:.0f}s\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014gRa2a39XSiDkFReKVCFJt`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/8gen_feature_ablation.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "f42bee25-d075-46e8-bce9-310deb04c95a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WvZSZXM9YmZsGkzaeUimpL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3938,
+      "cache_read_input_tokens": 35932,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3938
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T19:02:10.804Z_
+
+<details><summary>↩ Tool result · `toolu_014gRa2a39XSiDkFReKVCFJt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"full_7features\\\": {\\n    \\\"mean_f1\\\": 0.7727,\\n    \\\"std_f1\\\": 0.0092,\\n    \\\"top_feature_importance\\\": {\\n      \\\"hapax_ratio\\\": 0.3486,\\n      \\\"entropy_mean\\\": 0.2336,\\n      \\\"ttr\\\": 0.1753,\\n      \\\"entropy_std\\\": 0.0936,\\n      \\\"entropy_max\\\": 0.0742,\\n      \\\"entropy_min\\\": 0.0395,\\n      \\\"tail_decay\\\": 0.0352\\n    }\\n  },\\n  \\\"surface_only_2features\\\": {\\n    \\\"mean_f1\\\": 0.6882,\\n    \\\"std_f1\\\": 0.0069,\\n    \\\"features\\\": [\\n      \\\"ttr\\\",\\n      \\\"hapax_ratio\\\"\\n    ]\\n  },\\n  \\\"reference_only_5features\\\": {\\n    \\\"mean_f1\\\": 0.7134,\\n    \\\"std_f1\\\": 0.0087,\\n    \\\"features\\\": [\\n      \\\"entropy_mean\\\",\\n      \\\"entropy_std\\\",\\n      \\\"entropy_max\\\",\\n      \\\"entropy_min\\\",\\n      \\\"tail_decay\\\"\\n    ]\\n  },\\n  \\\"comparison\\\": {\\n    \\\"full_vs_surface\\\": {\\n      \\\"delta\\\": 0.0845,\\n      \\\"p_value\\\": 0.9916\\n    },\\n    \\\"full_vs_reference\\\": {\\n      \\\"delta\\\": 0.0594,\\n      \\\"p_value\\\": 0.9919\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "643f26e3-3135-41cf-bf4d-6cef2e27981d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"full_7features\\\\\\\": {\\\\n    \\\\\\\"mean_f1\\\\\\\": 0.7727,\\\\n    \\\\\\\"std_f1\\\\\\\": 0.0092,\\\\n    \\\\\\\"top_feature_importance\\\\\\\": {\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.3486,\\\\n      \\\\\\\"entropy_mean\\\\\\\": 0.2336,\\\\n      \\\\\\\"ttr\\\\\\\": 0.1753,\\\\n      \\\\\\\"entropy_std\\\\\\\": 0.0936,\\\\n      \\\\\\\"entropy_max\\\\\\\": 0.0742,\\\\n      \\\\\\\"entropy_min\\\\\\\": 0.0395,\\\\n      \\\\\\\"tail_decay\\\\\\\": 0.0352\\\\n    }\\\\n  },\\\\n  \\\\\\\"surface_only_2features\\\\\\\": {\\\\n    \\\\\\\"mean_f1\\\\\\\": 0.6882,\\\\n    \\\\\\\"std_f1\\\\\\\": 0.0069,\\\\n    \\\\\\\"features\\\\\\\": [\\\\n      \\\\\\\"ttr\\\\\\\",\\\\n      \\\\\\\"hapax_ratio\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"reference_only_5features\\\\\\\": {\\\\n    \\\\\\\"mean_f1\\\\\\\": 0.7134,\\\\n    \\\\\\\"std_f1\\\\\\\": 0.0087,\\\\n    \\\\\\\"features\\\\\\\": [\\\\n      \\\\\\\"entropy_mean\\\\\\\",\\\\n      \\\\\\\"entropy_std\\\\\\\",\\\\n      \\\\\\\"entropy_max\\\\\\\",\\\\n      \\\\\\\"entropy_min\\\\\\\",\\\\n      \\\\\\\"tail_decay\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"comparison\\\\\\\": {\\\\n    \\\\\\\"full_vs_surface\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.0845,\\\\n      \\\\\\\"p_value\\\\\\\": 0.9916\\\\n    },\\\\n    \\\\\\\"full_vs_reference\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.0594,\\\\n      \\\\\\\"p_value\\\\\\\": 0.9919\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"full_7features\\\": {\\n    \\\"mean_f1\\\": 0.7727,\\n    \\\"std_f1\\\": 0.0092,\\n    \\\"top_feature_importance\\\": {\\n      \\\"hapax_ratio\\\": 0.3486,\\n      \\\"entropy_mean\\\": 0.2336,\\n      \\\"ttr\\\": 0.1753,\\n      \\\"entropy_std\\\": 0.0936,\\n      \\\"entropy_max\\\": 0.0742,\\n      \\\"entropy_min\\\": 0.0395,\\n      \\\"tail_decay\\\": 0.0352\\n    }\\n  },\\n  \\\"surface_only_2features\\\": {\\n    \\\"mean_f1\\\": 0.6882,\\n    \\\"std_f1\\\": 0.0069,\\n    \\\"features\\\": [\\n      \\\"ttr\\\",\\n      \\\"hapax_ratio\\\"\\n    ]\\n  },\\n  \\\"reference_only_5features\\\": {\\n    \\\"mean_f1\\\": 0.7134,\\n    \\\"std_f1\\\": 0.0087,\\n    \\\"features\\\": [\\n      \\\"entropy_mean\\\",\\n      \\\"entropy_std\\\",\\n      \\\"entropy_max\\\",\\n      \\\"entropy_min\\\",\\n      \\\"tail_decay\\\"\\n    ]\\n  },\\n  \\\"comparison\\\": {\\n    \\\"full_vs_surface\\\": {\\n      \\\"delta\\\": 0.0845,\\n      \\\"p_value\\\": 0.9916\\n    },\\n    \\\"full_vs_reference\\\": {\\n      \\\"delta\\\": 0.0594,\\n      \\\"p_value\\\": 0.9919\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+All data collected. Here's the complete report:
+
+---
+
+## === Table 3 (Baselines) — `8gen_table3_unified.json` ===
+
+Binary task (gen1 vs gen2+), pooled LOGO 8-fold:
+
+| Method | Features | Hyperparams | Binary F1 | 95% CI |
+|--------|----------|-------------|-----------|--------|
+| ld_score | `[ld_score]` | n_est=100, max_depth=3 | **0.4909** | [0.4852, 0.4973] |
+| entropy_mean | `[entropy_mean]` | n_est=100, max_depth=3 | **0.6680** | [0.6620, 0.6742] |
+| 4det_surface | `[ld_score, entropy_mean, hapax_ratio, ttr]` | n_est=200, max_depth=6 | **0.6857** | [0.6798, 0.6918] |
+| 7feature | `[entropy_mean, entropy_std, entropy_max, entropy_min, ttr, hapax_ratio, tail_decay]` | n_est=200, max_depth=6 | **0.6911** | [0.6853, 0.6972] |
+
+Note: The method previously called "3det_surface" is actually **4det_surface** (ld_score + entropy_mean + hapax_ratio + ttr = 4 features, 2 "detector" + 2 surface).
+
+---
+
+## === Table 1 (Per-generator, 7-feature) — `8gen_logo_unfiltered.json` ===
+
+Protocol: 7-feature XGB (n_est=200, max_depth=6), LOGO.
+
+| Generator | 3-class F1 | Binary F1 | Binary 95% CI |
+|-----------|-----------|-----------|---------------|
+| pythia-1b | 0.8064 | 0.7175 | [0.6998, 0.7350] |
+| pythia-2.8b | 0.7983 | 0.7243 | [0.7068, 0.7417] |
+| olmo-2-1b | 0.7810 | 0.6954 | [0.6788, 0.7114] |
+| qwen3-0.6b | 0.7795 | 0.6911 | [0.6733, 0.7086] |
+| qwen3-1.7b | 0.7717 | 0.7093 | [0.6925, 0.7259] |
+| qwen3-8b | 0.7143 | 0.6918 | [0.6738, 0.7077] |
+| **llama-3.2-3b** | 0.7753 | 0.6968 | [0.6798, 0.7129] |
+| **mistral-7b-v0.3** | 0.6815 | 0.6327 | [0.6172, 0.6482] |
+
+Pooled: 3-class F1 = 0.762 [0.7577, 0.7664], Binary F1 = 0.6944 [0.6883, 0.7004]
+
+---
+
+## === LD-Score 状态 ===
+
+**LD-Score (trigram repetition ratio)** 在 v1 unified 评估中有完整结果：
+- Binary F1 = **0.4909** (Table 3, hyperparams: n_est=100, max_depth=3)
+- 在 `8gen_logo_baselines.json` 中的 LOGO 结果：binary F1 = **0.6574** [0.6718, 0.6837]（注意：这个文件用了不同 seed=789, 而 table3_unified 用 seed=42）
+
+`8gen_baselines.json`（pooled LOGO, 可能是另一脚本）：
+- pooled binary F1 = **0.6788** [0.6717, 0.6851]
+
+差异来源：`8gen_table3_unified.json` 的 LD-Score=0.4909 用的是 seed=42 + n_est=100/max_depth=3；`8gen_baselines.json` 和 `8gen_logo_baselines.json` 用的是不同 random seed (789) 和/或不同样本池。
+
+---
+
+## === 8gen_logo_baselines.json 完整对比 (seed=789) ===
+
+| Method | 3-class F1 | Binary F1 | Binary CI |
+|--------|-----------|-----------|-----------|
+| avg_logprob | 0.6834 | 0.6405 | [0.6716, 0.6829] |
+| fastdetectgpt | 0.6552 | 0.5642 | [0.5728, 0.5849] |
+| binoculars | 0.3950 | 0.5196 | [0.5317, 0.5432] |
+| ld_score | 0.6189 | 0.6574 | [0.6718, 0.6837] |
+| 4det_ensemble | 0.7696 | 0.6860 | [0.6934, 0.7048] |
+| 4det_surface | 0.7873 | 0.6986 | [0.7036, 0.7146] |
+| 7feature_ours | 0.7401 | 0.6614 | [0.6867, 0.6983] |
+
+Config: baselines use n_est=100/max_depth=3, ensembles use n_est=200/max_depth=6, logo_seed=789, bootstrap_n=1000.
+
+---
+
+## === 缺失项 ===
+
+1. **v1 table3_unified 没有 avg_logprob / fastdetectgpt / binoculars 单特征结果**（只有 ld_score 和 entropy_mean 作为单特征）。这些在 `8gen_logo_baselines.json` 里有，但 seed 不同 (789 vs 42)。
+2. **v1 table3_unified 没有 4det_ensemble**（只有 4det_surface）。`8gen_logo_baselines.json` 有。
+3. **LD-Score 数字不一致**：table3_unified 报 0.4909（seed=42），logo_baselines 报 0.6574（seed=789）。差异巨大，可能是 binary label 定义差异或 LD-Score 计算方式不同（table3 用 trigram ratio 自定义函数，baselines 可能用不同实现）。
+4. **`8gen_logo_unfiltered.json` 没有记录用的 seed 和超参**，但从 per-gen CI 宽度推测是同 LOGO protocol。
+5. **Per-generator CI 在 `8gen_logo_unfiltered.json` 中是 3-class 和 binary 各自的 per-gen F1 + CI**，格式完整。但 **baselines 的 per-gen 没有 CI**（只有点估计）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "uuid": "c45196eb-2ce3-4895-afa3-e1f582ac6c20",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QY2oHisTe8iSVSqMPBJfGK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2806,
+      "cache_read_input_tokens": 39870,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2806
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 30_
+
+All data collected. Here's the complete report:
+
+---
+
+## === Table 3 (Baselines) — `8gen_table3_unified.json` ===
+
+Binary task (gen1 vs gen2+), pooled LOGO 8-fold:
+
+| Method | Features | Hyperparams | Binary F1 | 95% CI |
+|--------|----------|-------------|-----------|--------|
+| ld_score | `[ld_score]` | n_est=100, max_depth=3 | **0.4909** | [0.4852, 0.4973] |
+| entropy_mean | `[entropy_mean]` | n_est=100, max_depth=3 | **0.6680** | [0.6620, 0.6742] |
+| 4det_surface | `[ld_score, entropy_mean, hapax_ratio, ttr]` | n_est=200, max_depth=6 | **0.6857** | [0.6798, 0.6918] |
+| 7feature | `[entropy_mean, entropy_std, entropy_max, entropy_min, ttr, hapax_ratio, tail_decay]` | n_est=200, max_depth=6 | **0.6911** | [0.6853, 0.6972] |
+
+Note: The method previously called "3det_surface" is actually **4det_surface** (ld_score + entropy_mean + hapax_ratio + ttr = 4 features, 2 "detector" + 2 surface).
+
+---
+
+## === Table 1 (Per-generator, 7-feature) — `8gen_logo_unfiltered.json` ===
+
+Protocol: 7-feature XGB (n_est=200, max_depth=6), LOGO.
+
+| Generator | 3-class F1 | Binary F1 | Binary 95% CI |
+|-----------|-----------|-----------|---------------|
+| pythia-1b | 0.8064 | 0.7175 | [0.6998, 0.7350] |
+| pythia-2.8b | 0.7983 | 0.7243 | [0.7068, 0.7417] |
+| olmo-2-1b | 0.7810 | 0.6954 | [0.6788, 0.7114] |
+| qwen3-0.6b | 0.7795 | 0.6911 | [0.6733, 0.7086] |
+| qwen3-1.7b | 0.7717 | 0.7093 | [0.6925, 0.7259] |
+| qwen3-8b | 0.7143 | 0.6918 | [0.6738, 0.7077] |
+| **llama-3.2-3b** | 0.7753 | 0.6968 | [0.6798, 0.7129] |
+| **mistral-7b-v0.3** | 0.6815 | 0.6327 | [0.6172, 0.6482] |
+
+Pooled: 3-class F1 = 0.762 [0.7577, 0.7664], Binary F1 = 0.6944 [0.6883, 0.7004]
+
+---
+
+## === LD-Score 状态 ===
+
+**LD-Score (trigram repetition ratio)** 在 v1 unified 评估中有完整结果：
+- Binary F1 = **0.4909** (Table 3, hyperparams: n_est=100, max_depth=3)
+- 在 `8gen_logo_baselines.json` 中的 LOGO 结果：binary F1 = **0.6574** [0.6718, 0.6837]（注意：这个文件用了不同 seed=789, 而 table3_unified 用 seed=42）
+
+`8gen_baselines.json`（pooled LOGO, 可能是另一脚本）：
+- pooled binary F1 = **0.6788** [0.6717, 0.6851]
+
+差异来源：`8gen_table3_unified.json` 的 LD-Score=0.4909 用的是 seed=42 + n_est=100/max_depth=3；`8gen_baselines.json` 和 `8gen_logo_baselines.json` 用的是不同 random seed (789) 和/或不同样本池。
+
+---
+
+## === 8gen_logo_baselines.json 完整对比 (seed=789) ===
+
+| Method | 3-class F1 | Binary F1 | Binary CI |
+|--------|-----------|-----------|-----------|
+| avg_logprob | 0.6834 | 0.6405 | [0.6716, 0.6829] |
+| fastdetectgpt | 0.6552 | 0.5642 | [0.5728, 0.5849] |
+| binoculars | 0.3950 | 0.5196 | [0.5317, 0.5432] |
+| ld_score | 0.6189 | 0.6574 | [0.6718, 0.6837] |
+| 4det_ensemble | 0.7696 | 0.6860 | [0.6934, 0.7048] |
+| 4det_surface | 0.7873 | 0.6986 | [0.7036, 0.7146] |
+| 7feature_ours | 0.7401 | 0.6614 | [0.6867, 0.6983] |
+
+Config: baselines use n_est=100/max_depth=3, ensembles use n_est=200/max_depth=6, logo_seed=789, bootstrap_n=1000.
+
+---
+
+## === 缺失项 ===
+
+1. **v1 table3_unified 没有 avg_logprob / fastdetectgpt / binoculars 单特征结果**（只有 ld_score 和 entropy_mean 作为单特征）。这些在 `8gen_logo_baselines.json` 里有，但 seed 不同 (789 vs 42)。
+2. **v1 table3_unified 没有 4det_ensemble**（只有 4det_surface）。`8gen_logo_baselines.json` 有。
+3. **LD-Score 数字不一致**：table3_unified 报 0.4909（seed=42），logo_baselines 报 0.6574（seed=789）。差异巨大，可能是 binary label 定义差异或 LD-Score 计算方式不同（table3 用 trigram ratio 自定义函数，baselines 可能用不同实现）。
+4. **`8gen_logo_unfiltered.json` 没有记录用的 seed 和超参**，但从 per-gen CI 宽度推测是同 LOGO protocol。
+5. **Per-generator CI 在 `8gen_logo_unfiltered.json` 中是 3-class 和 binary 各自的 per-gen F1 + CI**，格式完整。但 **baselines 的 per-gen 没有 CI**（只有点估计）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 62451,
+  "duration_api_ms": 62085,
+  "num_turns": 11,
+  "stop_reason": "end_turn",
+  "session_id": "f8aad119-d508-471e-8025-fa80dcdba207",
+  "total_cost_usd": 0.35917425,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 30835,
+    "cache_read_input_tokens": 166705,
+    "output_tokens": 3245,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 30835,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1876,
+        "cache_read_input_tokens": 39870,
+        "cache_creation_input_tokens": 2806,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2806
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1803,
+      "outputTokens": 25,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001928,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 3245,
+      "cacheReadInputTokens": 166705,
+      "cacheCreationInputTokens": 30835,
+      "webSearchRequests": 0,
+      "costUSD": 0.35724625,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "5f4239c0-22fe-4d04-a6e6-00bb907b0dab"
+}
+```
+
+</details>
+
+---

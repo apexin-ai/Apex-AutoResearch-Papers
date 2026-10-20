@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ddbe8317e41342250e40",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops verify data count",
+  "task_key": "worker_ops_verify-data-count_20260516T231936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-data-count_20260516T231936_result.json",
+    "occurrence": 1,
+    "bytes": 1312,
+    "sha256": "22aa9aa4451f4f3521e6b097297cb3849cea56dc93d3075b96824ed6d8c86e5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已确认。\n\n---\n\n## 结论\n\n```\n=== 数据文件行数 ===\ndetector_scores_8gen.csv: 34,131 行（不含 header）\nfeatures_all_models.csv: 27,529 行（不含 header，仅 6 个 generator）\nllama features_pythia410m.jsonl: 4,680 行\nmistral features_pythia410m.jsonl: 4,849 行\n\n=== 差异来源 ===\n37,058 = features_all_models.csv (27,529) + llama (4,680) + mistral (4,849)\n         即 fix_tail_decay_and_eval.py → step2_8gen_logo() 的 concat 结果\n         用于 Table 1 的 LOGO 评估（产出 8gen_logo_unfiltered.json, F1=0.694/0.762）\n\n34,131 = 37,058 与 detector_scores_8gen.csv 做 inner join 后的结果\n         llama 丢 1,743 行 (4,680→2,937), mistral 丢 1,184 行 (4,849→3,665)\n         用于 baseline 对比实验（eval_8gen_logo_baselines.py）和 Table 3 detector 评估\n\n=== 根因 ===\ndetector_scores_8gen.csv 中 llama/mistral 的行更少，是因为 detector score 计算\n（FastDetectGPT/Binoculars）对部分样本失败或被过滤。inner join 时那些缺失\ndetector score 的样本被自然丢弃。\n\n=== 结论 ===\nTable 1 (LOGO, 7-feature classifier) 实际使用: 37,058 条\nTable 3 (detector baselines) 实际使用: 34,131 条\n论文应分别报告两个数字，标注各自适用的表格。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-data-count.md"
+}

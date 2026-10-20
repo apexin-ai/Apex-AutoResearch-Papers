@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b973c064c6363dc35f49",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "writing appendix decoding template",
+  "task_key": "worker_writing_appendix_decoding_template_20260521T075437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_appendix_decoding_template_20260521T075437_result.json",
+    "occurrence": 1,
+    "bytes": 612,
+    "sha256": "15fd32273eb8f2dcbab07f2bbba4bc48dcc0076ab8243c5bec5aea07200f0517"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **appendix_decoding_strategy.tex** — 已创建，含 Cohen's d 表格（placeholder）和结论段\n- **main.tex** — 作为 `\\subsection{Decoding Strategy Robustness}` 挂在 `Supplementary DDR Characterization` (App. S) 下，位于 DDR Causality 之后、9-Gen Scale 之前，未新增 `\\section`\n- **discussion_decoding_versions.txt** — Version A（stability confirmed）和 Version B（partially degrades）两个替换版本，对应 discussion.tex 第 10 行 \"remains open\" 句\n- **docs/paper/** — 已同步\n- **编译** — 36 页，0 errors，0 warnings"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-appendix-decoding-template.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0228b794280e5041dcb7",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan001 ablation",
+  "task_key": "worker_code_plan001-ablation_20260514T181555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-ablation_20260514T181555_result.json",
+    "occurrence": 1,
+    "bytes": 600,
+    "sha256": "b055698088f624db93a64a2e5e048e9341719622b749ad3811745a0647bd6c7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**Dry-run 结果摘要：**\n\n| Part | 状态 | 关键结果 |\n|------|------|----------|\n| A | ✅ | full (0.693) > surface_only (0.589) > reference_only (0.455)；full vs ref 显著 (p=0.022) |\n| B | ✅ | entropy_mean/ttr/hapax_ratio 有 moderate trend (R²=0.35-0.39)；其余特征 H1 attractor |\n| C | ✅ | PPL 随 depth 单调递减 (13.1→1.3)；Kruskal-Wallis p=0.0047 显著 |\n\n脚本位于 `/root/gen-depth-fingerprint/ablation_analysis.py`，dry-run 产物已清理，results/ 目录只剩 `mvp_results.json`。正式运行去掉 `--dry-run` 即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan001-ablation.md"
+}

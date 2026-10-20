@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a8c197f259c5972121a",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "research literature map creation",
+  "task_key": "worker_research_literature-map-creation_20260515T013119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-map-creation_20260515T013119_result.json",
+    "occurrence": 1,
+    "bytes": 966,
+    "sha256": "28b97ba650b3a90adb3e8c4b2a402a47af59726608b2b8a18db7219ce3dd7c1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`literature_map.yaml` 已创建，35 篇论文，覆盖全部 11 个要求的类别。\n\n**统计：**\n- detection: 10 篇 (DetectGPT, GLTR, DNA-GPT, Binoculars, Fast-DetectGPT, LD-Score, intrinsic dimension, Grover, Sadasivan, Krishna, Chakraborty, Solaiman)\n- model-collapse: 4 篇 (Alemohammad, Shumailov, Dohmatob, Gerstgrasser)\n- data-quality: 3 篇 (DSIR, QuRating, CCNet)\n- watermarking: 3 篇 (Kirchenbauer, SynthID, Aaronson)\n- vocabulary-diversity: 5 篇 (Guo, Padmakumar, Holtzman, Liang x2)\n- stylometry: 3 篇 (Stamatatos, Koppel, Uchendu)\n- iterative-generation: 2 篇 (Broken Telephone, Markovian Chains)\n- membership-inference: 1 篇 (Min-K%)\n- ood-detection: 1 篇 (Hendrycks & Gimpel)\n- survey: 1 篇 (Jawahar)\n\n**Direct competitors:** 3 篇 — Guo et al. (diversity decline), Mohamed et al. (Broken Telephone, ACL 2025), Geng et al. (Markovian Chains, 2026)\n\n所有 arxiv ID、venue、year 均经 WebSearch 验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-map-creation.md"
+}

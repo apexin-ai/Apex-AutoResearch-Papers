@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e4347c31d21c7f79728",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper paperbanana fig2 v5",
+  "task_key": "worker_paper_paperbanana-fig2-v5_20260525T053456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_paperbanana-fig2-v5_20260525T053456_result.json",
+    "occurrence": 1,
+    "bytes": 1074,
+    "sha256": "1d15a31a576cec59593636d33453c9715d8c06b88d1a54c0875e2d18f9a750cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Figure 2 v5 generation complete.**\n\n**Result: Success**\n\n| Check | Status |\n|-------|--------|\n| Gen-depth cross-panel color consistency (core requirement) | ✅ gen-0(green)/gen-1(orange)/gen-2+(pink) identical in Panel (a) and Panel (c) |\n| Cross-panel thick arrows | ✅ Prominent, dark, clearly visible |\n| Blue progression panel backgrounds | ✅ (a) lightest → (c) darkest |\n| DDR boxes horizontal layout | ✅ Drifting/Intermediate/Near-Stationary in single row |\n| DDR box names correct | ✅ No renaming/paraphrasing |\n| 8 generator names correct | ✅ Py-2.8B, Py-1B, OLMo, Q-0.6B, Q-8B, Q-1.7B, Llama-3, Mistral |\n| No Gemma/TinyLlama | ✅ |\n| Colorful blue icons | ✅ |\n| Soft pastel DDR fills | ✅ |\n| PDF font check | ✅ Raster-only, no font embedding issues |\n\n**Iterations:** 2 external rounds (Round 1: color callback verified but arrows too thin + DDR stacked; Round 2: all issues fixed)\n\n**Output files:**\n- PNG: `artifacts/_project/paper/fig2_framework.png`\n- PDF: `artifacts/_project/paper/fig2_framework.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-paperbanana-fig2-v5.md"
+}

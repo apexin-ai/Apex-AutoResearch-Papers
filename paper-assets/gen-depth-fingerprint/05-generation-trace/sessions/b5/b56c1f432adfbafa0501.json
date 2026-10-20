@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b56c1f432adfbafa0501",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "paper fig1 paperbanana",
+  "task_key": "worker_paper_fig1-paperbanana_20260522T171418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig1-paperbanana_20260522T171418.log",
+    "occurrence": 1,
+    "bytes": 595092,
+    "sha256": "4cb38dda3eb98870a14c6850fea4c00195a82baba0e125d19ef9388cbe9a59f9"
+  },
+  "statistics": {
+    "messages": 238,
+    "user_turns": 0,
+    "tool_calls": 73,
+    "roles": {
+      "log": 1,
+      "system": 15,
+      "assistant": 72,
+      "tool_call": 73,
+      "tool_result": 73,
+      "record": 1,
+      "result": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 238,
+      "chunks": [
+        {
+          "path": "b56c1f432adfbafa0501-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b56c1f432adfbafa0501-part-0002.json",
+          "message_count": 58
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-fig1-paperbanana.md"
+}

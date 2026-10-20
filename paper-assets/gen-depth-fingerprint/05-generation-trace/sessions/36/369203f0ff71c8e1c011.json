@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "369203f0ff71c8e1c011",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis pareto throughput",
+  "task_key": "worker_analysis_pareto-throughput_20260517T234044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_pareto-throughput_20260517T234044_result.json",
+    "occurrence": 1,
+    "bytes": 572,
+    "sha256": "bee7acfee9e32e653ac1e4bb5bcb92ee10f08bc77c6da78f6651dd91067524b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果摘要**:\n- 7-Feature (Ours) 位于 Pareto 前沿：9.7 ms/text, Binary F1 = 0.6935\n- 比 4-Det+Surface 快 2.4 倍（9.7 vs 22.8 ms），F1 仅低 1.5%（0.6935 vs 0.7044）\n- GPU 内存占用降低 3.2 倍（905 MB vs 2868 MB），FLOPs 降低 3.4 倍\n- LD-Score 虽然最快（0.61 ms），但 3-class F1 远低于 7-Feature（0.6326 vs 0.7616），无法区分 generation depth\n\n**输出文件**:\n- 图: `artifacts/_project/paper/chart/fig_appendix_pareto.pdf`\n- 数字表: `artifacts/_project/analysis/pareto_throughput.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-pareto-throughput.md"
+}

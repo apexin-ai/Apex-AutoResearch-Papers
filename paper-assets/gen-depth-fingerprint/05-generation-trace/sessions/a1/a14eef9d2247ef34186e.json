@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a14eef9d2247ef34186e",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_10_1778908394.md",
+  "task_key": "loop_10_1778908394",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778908394.md",
+    "occurrence": 1,
+    "bytes": 4401,
+    "sha256": "133857e5d462983a5c6071f73692efe2e1ff1ec27b59ac87223468d3a4fc2ba1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-16T04:55:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 cuda:0/1/2/3，不可用其他设备\n- submit_training_job 的 GPU 编号始终从 0 开始（框架注入 CUDA_VISIBLE_DEVICES）\n- Primary metric 已改为 binary F1（gen-1 vs gen-2+, leak-free）= 0.723，3-class F1=0.789 仅作 supplementary（D017 决策）\n- Claim 3 (Downstream Utility) 已确认 negative，reframe 为 diagnostic-not-curative（D023），不可再尝试证明 depth filtering 有效\n- Instruct 模型方向已撤回（D019）：instruct depth signal 反转主要是长度伪影，论文 scope 限定为 base model only\n- EMNLP 2026 ARR DDL: 2026-05-25，还剩 9 天\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090，工作目录 /root/gen-depth-fingerprint\n- Python：/root/miniconda3/bin/python（conda base env，不用 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- HF cache：/root/autodl-tmp/.hf_cache（根分区 30GB 限制，大文件必须放 /root/autodl-tmp/）\n- 数据目录：/root/gen-depth-fingerprint/data/（各模型子目录）\n- 结果目录：/root/gen-depth-fingerprint/results/\n- 日志目录：/root/gen-depth-fingerprint/logs/ + /tmp/plan*.log\n- 活跃进程：\n  - plan-006-confound-fix: PID 256127 (cuda:1), log=/tmp/plan006_confound_fix.log — **可能已死（cron miss 4/5）**\n  - plan-012-qwen06b-v2: 已确认 failed\n\n### 3. 📊 当前状态\n刚收到 cron 回调：plan-012-qwen06b-v2 进程退出无 W&B metrics，自动标记 failed。同时 reconcile_crons 发现 plan-006-confound-fix 也进程消失（miss 4/5）。\n\n**已派出两个诊断 Worker（均在运行中，尚未回调）**：\n- `worker_diagnose_plan-012-qwen06b-v2_20260516T015306` — 查 /tmp/plan012_qwen06b_v2.log 定位失败原因\n- `worker_diagnose_plan-006-confound-fix_20260516T015314` — 确认进程存活状态 + 查日志\n\nRegistry 状态：\n- RUNNING: plan-006-confound-fix（但可能已死）\n- DONE(failed): plan-012-qwen06b-v2\n- PREPARING（历史遗留可忽略）: plan-004-prep, plan-001-restore, mvp-001-gen-s0/s1/s2/s3\n- 其余 56 个实验全部 DONE\n\n**尚未向 Director 汇报**——等两个诊断 Worker 回调后一并汇报。\n\n### 4. 📋 待办\n- Worker diagnose plan-012-qwen06b-v2 回调 → 读诊断报告 → update_registry 写入 failure reason → 判断是否值得重跑（对照组 plan-012-qwen06b 已 success，v2 是 hyperparameter sensitivity check，非关键路径）\n- Worker diagnose plan-006-confound-fix 回调 → 如果进程已死 → update_registry(status=DONE, conclusion=failed) + 查是否有部分结果 → 评估重跑优先级\n- 两个诊断都完成后 → 读 resource-saturation skill → 向 Director 汇报（带 [资源] 行），内容包括：两个实验失败原因 + 当前 4 张 GPU 全部空闲 + EMNLP 9 天倒计时下的建议\n- plan-006-confound-fix 如需重跑 → 检查代码是否需要修复 → spawn worker 重新提交\n- ROADMAP 中未完成项：abstract+intro 数字更新、related_work CI width 修复、P1-E ordinal 写入论文、全文数字一致性验证 → 这些是论文写作任务，等 Director 指示优先级\n\n### 5. 🎯 战略上下文\n- 项目核心：递归 LLM 生成链的 depth fingerprint。7-feature ensemble 跨 6 base-model generators / 3 families 验证。Binary LOGO F1=0.723 是 primary metric。\n- 关键决策链：D017（binary primary metric）→ D019（撤回 instruct）→ D023（Claim 3 reframe 为 diagnostic）→ D024（5-class ordinal negative）\n- plan-012 系列是 end-to-end QLoRA 深度分类实验：plan-012-qwen06b 成功（F1=0.583），plan-012-pythia410m 成功（F1=0.556），plan-012-qwen06b-v2 失败（是 sensitivity check，非关键）\n- plan-006-confound-fix 的内容未在 registry 中有 hypothesis/notes，需要从诊断 Worker 的日志中确认它在做什么\n- 易错点：plan-006-paraphrastic 已完成（success），但 report.md 显示它也被 cron 误判过 \"process dead 5×\"——这个项目的 cron 监控有 false positive 倾向（实验可能已完成但没写 sentinel/W&B），诊断时要先看是否有结果文件再判定真失败\n- Round 2 审稿修复大部分完成，剩余是论文文本更新（abstract/intro/related_work），Round 3 reviewer 审查后才能提交 EMNLP\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778908394.md"
+}

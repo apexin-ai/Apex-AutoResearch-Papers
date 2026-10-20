@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27bfa12f406f682292ee",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code tail decay sensitivity search",
+  "task_key": "worker_code_tail-decay-sensitivity-search_20260517T102937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_tail-decay-sensitivity-search_20260517T102937_result.json",
+    "occurrence": 1,
+    "bytes": 6571,
+    "sha256": "872e7fcb612a6ca9f33ec9691711e2990d473b2452d37b3ac42a61e9610b272b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "以下是所有搜索结果的完整报告：\n\n---\n\n## 1. `grep -rn \"sensitivity\"` (*.py, *.json, *.yaml, *.md, *.txt)\n\n**结果：空（exit code 1，无匹配）**\n\n---\n\n## 2. `grep -rn \"percentile\"` (*.py, *.json)\n\n```\n/root/gen-depth-fingerprint/results/8gen_table3_v5_unified.json:90:    \"bootstrap_method\": \"percentile (2.5%, 97.5%)\",\n/root/gen-depth-fingerprint/results/8gen_table3_v6_unified.json:90:    \"bootstrap_method\": \"percentile (2.5%, 97.5%)\",\n/root/gen-depth-fingerprint/ablation_analysis.py:49:    ci_lower = float(np.percentile(diffs, 100 * alpha / 2))\n/root/gen-depth-fingerprint/ablation_analysis.py:50:    ci_upper = float(np.percentile(diffs, 100 * (1 - alpha / 2)))\n/root/gen-depth-fingerprint/cross_generator_eval.py:66:                      \"ci_lo\": float(np.percentile(arr, 2.5)),\n/root/gen-depth-fingerprint/cross_generator_eval.py:67:                      \"ci_hi\": float(np.percentile(arr, 97.5))}\n/root/gen-depth-fingerprint/cross_ref_analysis.py:39:    ci_low, ci_high = np.percentile(rhos, [2.5, 97.5])\n/root/gen-depth-fingerprint/cross_ref_analysis.py:128:    ci_lo, ci_hi = np.percentile(boot_f1s, [2.5, 97.5])\n/root/gen-depth-fingerprint/scripts/ordinal_baseline.py:380:    f1_ci = np.percentile(boot_f1s, [2.5, 97.5])\n/root/gen-depth-fingerprint/scripts/ordinal_baseline.py:381:    rho_ci = np.percentile(boot_rhos, [2.5, 97.5])\n/root/gen-depth-fingerprint/scripts/ordinal_baseline.py:402:    f1_ci = np.percentile(boot_f1s, [2.5, 97.5])\n/root/gen-depth-fingerprint/scripts/ordinal_baseline.py:426:    ci = np.percentile(diffs, [2.5, 97.5])\n/root/gen-depth-fingerprint/scripts/bootstrap_ci.py:78:    return [round(float(np.percentile(vals, 2.5)), 4), ...]\n/root/gen-depth-fingerprint/scripts/plot_fig1.py:65:    return np.mean(values), np.percentile(boot_means, 100*alpha), ...\n/root/gen-depth-fingerprint/llama_filter_and_extract.py:219:        threshold_90 = float(np.percentile(all_depth0_nll_values, 90))\n/root/gen-depth-fingerprint/llama_filter_and_extract.py:220:        print(f\"  90th percentile NLL threshold: {threshold_90:.4f}\")\n/root/gen-depth-fingerprint/mistral_filter_and_extract.py:219:        threshold_90 = float(np.percentile(all_depth0_nll_values, 90))\n/root/gen-depth-fingerprint/mistral_filter_and_extract.py:220:        print(f\"  90th percentile NLL threshold: {threshold_90:.4f}\")\n```\n（+ 大量其他 bootstrap CI 相关用法，全部是 `np.percentile(arr, 2.5)` / `np.percentile(arr, 97.5)` 模式）\n\n---\n\n## 3. `grep -rn \"85th\"` / `grep -rn \"95th\"`\n\n**结果：均为空（无匹配）**\n\n## 3b. `grep -rn \"90th\"`\n\n```\n/root/gen-depth-fingerprint/scripts/instruct_length_confound.py:117:        print(f\"  depth {d}: 10th-90th pctile = [{depth_ranges[d][0]:.0f}, {depth_ranges[d][1]:.0f}]\")\n/root/gen-depth-fingerprint/llama_filter_and_extract.py:220:        print(f\"  90th percentile NLL threshold: {threshold_90:.4f}\")\n/root/gen-depth-fingerprint/mistral_filter_and_extract.py:220:        print(f\"  90th percentile NLL threshold: {threshold_90:.4f}\")\n```\n\n## 3c. `grep -rn \"threshold\"` (*.py)\n\n```\n/root/gen-depth-fingerprint/llama_filter_and_extract.py:202:    # Depth-0 indices for threshold computation\n/root/gen-depth-fingerprint/llama_filter_and_extract.py:205:    print(f\"\\n  Depth-0 samples for threshold: {len(depth0_texts)}\")\n/root/gen-depth-fingerprint/llama_filter_and_extract.py:215:        # Step 1: Compute NLL threshold from depth-0 data\n/root/gen-depth-fingerprint/llama_filter_and_extract.py:216:        print(\"  Computing NLL threshold from depth-0 data...\")\n/root/gen-depth-fingerprint/llama_filter_and_extract.py:219:        threshold_90 = float(np.percentile(all_depth0_nll_values, 90))\n/root/gen-depth-fingerprint/llama_filter_and_extract.py:220:        print(f\"  90th percentile NLL threshold: {threshold_90:.4f}\")\n/root/gen-depth-fingerprint/llama_filter_and_extract.py:226:        print(\"  Computing tail_decay (NLL > threshold proportion)...\")\n/root/gen-depth-fingerprint/llama_filter_and_extract.py:233:                tail_decays.append(float(np.mean(nll_arr > threshold_90)))\n/root/gen-depth-fingerprint/mistral_filter_and_extract.py:202:    # Depth-0 indices for threshold computation\n/root/gen-depth-fingerprint/mistral_filter_and_extract.py:205:    print(f\"\\n  Depth-0 samples for threshold: {len(depth0_texts)}\")\n/root/gen-depth-fingerprint/mistral_filter_and_extract.py:215:        # Step 1: Compute NLL threshold from depth-0 data\n/root/gen-depth-fingerprint/mistral_filter_and_extract.py:216:        print(\"  Computing NLL threshold from depth-0 data...\")\n/root/gen-depth-fingerprint/mistral_filter_and_extract.py:219:        threshold_90 = float(np.percentile(all_depth0_nll_values, 90))\n/root/gen-depth-fingerprint/mistral_filter_and_extract.py:220:        print(f\"  90th percentile NLL threshold: {threshold_90:.4f}\")\n/root/gen-depth-fingerprint/mistral_filter_and_extract.py:226:        print(\"  Computing tail_decay (NLL > threshold proportion)...\")\n/root/gen-depth-fingerprint/mistral_filter_and_extract.py:233:                tail_decays.append(float(np.mean(nll_arr > threshold_90)))\n```\n\n---\n\n## 4. `find /root/gen-depth-fingerprint/experiments/ -name \"*sensitivity*\" -o -name \"*tail*\" -o -name \"*threshold*\"`\n\n**结果：空（无匹配文件）**\n\n---\n\n## 5. `find /root/gen-depth-fingerprint/ -name \"*sensitivity*\" -o -name \"*ablat*tail*\"`\n\n**结果：空（无匹配文件）**\n\n## 5b. `find /root/gen-depth-fingerprint/ -name \"*tail*\"`\n\n```\n/root/gen-depth-fingerprint/fix_tail_decay_and_eval.py\n```\n\n---\n\n## 6. `ls /root/gen-depth-fingerprint/experiments/`\n\n```\nanalysis\ndownstream\nerror_analysis\nhuman_edit_robustness\nhuman_edit_robustness.py\nmulti_domain\nseed_stratification\n```\n\n---\n\n## 结论\n\n**tail_decay sensitivity analysis 实验不存在。** 具体发现：\n\n- 没有任何文件名包含 \"sensitivity\"\n- 没有任何代码/文档中出现 \"sensitivity\" 字符串\n- experiments/ 目录下无 sensitivity/tail/threshold 相关子目录\n- `tail_decay` 作为特征被广泛使用（feature extraction + classification），但没有对其 threshold 做过 sensitivity 分析（如对比 85th/90th/95th percentile 的效果）\n- 唯一相关的文件是 `fix_tail_decay_and_eval.py`（修复 tail_decay 计算方式并重新评估），但这不是 sensitivity analysis\n- NLL threshold 固定为 90th percentile，无其他 percentile 的对比实验"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-tail-decay-sensitivity-search.md"
+}

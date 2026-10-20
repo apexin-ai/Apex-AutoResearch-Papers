@@ -1,0 +1,1374 @@
+{
+  "schema_version": "1.0",
+  "session_id": "d7103a8c8878194e8f97",
+  "rounds": [
+    {
+      "number": 3,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018YJHZqronE1dy9ws6Z7Gic",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+                "old_string": "\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}",
+                "new_string": "\\footnotesize\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "b7b25e27-3856-4660-9add-04fdb84ddfea",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LKF5sJ7fFXZabZejQ1CkRH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3197,
+                "cache_read_input_tokens": 67158,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3197
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-22T06:22:50.149Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018YJHZqronE1dy9ws6Z7Gic",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "6ed5501d-cf06-4414-968c-10ee8fbfd184",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+              "oldString": "\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}",
+              "newString": "\\footnotesize\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}",
+              "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B; generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) confirms the signal is not a mixed-chain artifact (mean transfer F1\\,=\\,0.810; LOFO\\,=\\,0.686).\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ XGBoost 0.789; Appendix~\\ref{app:qlora}), confirming richer token-level representations capture additional depth signal, albeit requiring per-generator fine-tuning; on instruct data, QLoRA recovers to 0.89--0.91 (Appendix~\\ref{app:instruct}), establishing the decomposition, not the classifier, as DDR's primary contribution.\nThe 11.6\\,pp gap suggests token embeddings capture sequential patterns beyond the seven summary statistics; probing analysis could identify these dimensions.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-class F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; Appendix~\\ref{app:ddr-validation}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---we hypothesize this reflects the mixing property of finite-vocabulary autoregressive processes~\\citep{markovian_chains}---predicting that location statistics should drift while shape statistics remain invariant.\n\nThe classification results above establish \\emph{that} depth is distinguishable; we now ask \\emph{why} by examining which features respond to recursive generation.\nFigure~\\ref{fig:ddr-trajectory} reveals a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nAppendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.\nThe primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760, invariant across $\\varepsilon \\in [0.10, 0.75]$; Appendix~\\ref{app:ddr-validation}).\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) confirms the split as non-random (null\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ splits ranks this partition first (Appendix~\\ref{app:ddr-validation}); holdout splits recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core split and classification.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV, complementing the LOGO protocol in Table~\\ref{tab:logo-results}) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nTo isolate reference-model bias, we evaluate on a 5-generator subset excluding all Pythia-family generators---a stricter protocol than 8-gen LOGO.\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable performance (F1 spread\\,=\\,0.013; Table~\\ref{tab:cross-ref} in Appendix~\\ref{app:cross-ref}), with drift direction consistently negative.\nSame-family proximity may inflate Pythia F1 by up to 1.3\\,pp, but the DDR partition is fully preserved regardless of reference choice.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-$9.3 to $-$26.0\\,pp binary F1; Appendix~\\ref{app:sampling-sensitivity}); continuation chains show the strongest drift (F1\\,=\\,0.781; Appendix~\\ref{app:prompt-type}).\nThe DDR partition hierarchy is preserved across temperatures (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nWe next ask whether existing detection methods---designed for binary real-vs-synthetic classification---incidentally capture depth structure, repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nFastDetectGPT and Binoculars target binary detection, not ordinal depth; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-class F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at ${\\sim}2.4\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines ($\\Delta$\\,=\\,6.7--36.3\\,pp 3-class F1; Figure~\\ref{fig:baseline-ci}) while matching the 4-detector ensemble at ${\\sim}2.4\\times$ lower cost (binary F1: 0.705 vs.\\ 0.700); adding surface features yields 0.708.\nDDR's contribution is thus the decomposition into location-sensitive and shape-stable components---a structural distinction absent from existing detection methods and collapse analyses (\\S\\ref{sec:discussion}).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 26,
+                  "oldLines": 6,
+                  "newStart": 26,
+                  "newLines": 8,
+                  "lines": [
+                    " \\begin{table}[t]",
+                    " \\centering",
+                    " \\footnotesize",
+                    "+\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}",
+                    "+\\label{tab:logo-results}",
+                    " \\resizebox{\\columnwidth}{!}{%",
+                    " \\begin{tabular}{llcccc}",
+                    " \\toprule"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GHXBELh2f5uUBQ5pQMxJeR",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+                "old_string": "\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}",
+                "new_string": "\\end{tabular}}\n\\end{table}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "c3ff8587-bfc1-4e2d-9dd7-35aeaa07b8b5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LKF5sJ7fFXZabZejQ1CkRH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3197,
+                "cache_read_input_tokens": 67158,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3197
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-22T06:22:52.951Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GHXBELh2f5uUBQ5pQMxJeR",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "0cf3c2f1-5d15-4e5f-9dc6-5270a76061ca",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+              "oldString": "\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}",
+              "newString": "\\end{tabular}}\n\\end{table}",
+              "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B; generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) confirms the signal is not a mixed-chain artifact (mean transfer F1\\,=\\,0.810; LOFO\\,=\\,0.686).\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ XGBoost 0.789; Appendix~\\ref{app:qlora}), confirming richer token-level representations capture additional depth signal, albeit requiring per-generator fine-tuning; on instruct data, QLoRA recovers to 0.89--0.91 (Appendix~\\ref{app:instruct}), establishing the decomposition, not the classifier, as DDR's primary contribution.\nThe 11.6\\,pp gap suggests token embeddings capture sequential patterns beyond the seven summary statistics; probing analysis could identify these dimensions.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-class F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; Appendix~\\ref{app:ddr-validation}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---we hypothesize this reflects the mixing property of finite-vocabulary autoregressive processes~\\citep{markovian_chains}---predicting that location statistics should drift while shape statistics remain invariant.\n\nThe classification results above establish \\emph{that} depth is distinguishable; we now ask \\emph{why} by examining which features respond to recursive generation.\nFigure~\\ref{fig:ddr-trajectory} reveals a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nAppendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.\nThe primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760, invariant across $\\varepsilon \\in [0.10, 0.75]$; Appendix~\\ref{app:ddr-validation}).\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) confirms the split as non-random (null\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ splits ranks this partition first (Appendix~\\ref{app:ddr-validation}); holdout splits recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core split and classification.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV, complementing the LOGO protocol in Table~\\ref{tab:logo-results}) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nTo isolate reference-model bias, we evaluate on a 5-generator subset excluding all Pythia-family generators---a stricter protocol than 8-gen LOGO.\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable performance (F1 spread\\,=\\,0.013; Table~\\ref{tab:cross-ref} in Appendix~\\ref{app:cross-ref}), with drift direction consistently negative.\nSame-family proximity may inflate Pythia F1 by up to 1.3\\,pp, but the DDR partition is fully preserved regardless of reference choice.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-$9.3 to $-$26.0\\,pp binary F1; Appendix~\\ref{app:sampling-sensitivity}); continuation chains show the strongest drift (F1\\,=\\,0.781; Appendix~\\ref{app:prompt-type}).\nThe DDR partition hierarchy is preserved across temperatures (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nWe next ask whether existing detection methods---designed for binary real-vs-synthetic classification---incidentally capture depth structure, repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nFastDetectGPT and Binoculars target binary detection, not ordinal depth; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-class F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at ${\\sim}2.4\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines ($\\Delta$\\,=\\,6.7--36.3\\,pp 3-class F1; Figure~\\ref{fig:baseline-ci}) while matching the 4-detector ensemble at ${\\sim}2.4\\times$ lower cost (binary F1: 0.705 vs.\\ 0.700); adding surface features yields 0.708.\nDDR's contribution is thus the decomposition into location-sensitive and shape-stable components---a structural distinction absent from existing detection methods and collapse analyses (\\S\\ref{sec:discussion}).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 46,
+                  "oldLines": 8,
+                  "newStart": 46,
+                  "newLines": 6,
+                  "lines": [
+                    " \\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\",
+                    " \\bottomrule",
+                    " \\end{tabular}}",
+                    "-\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}",
+                    "-\\label{tab:logo-results}",
+                    " \\end{table}",
+                    " ",
+                    " \\subsection{Differential Depth Response}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PgHKMcEpvCg74oUnZb4Fy4",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+                "old_string": "\\footnotesize\n\\begin{tabular}{lcccc}",
+                "new_string": "\\footnotesize\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\begin{tabular}{lcccc}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "35d44b6a-12c7-4742-a44a-86c819678665",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LKF5sJ7fFXZabZejQ1CkRH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3197,
+                "cache_read_input_tokens": 67158,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3197
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-22T06:22:59.165Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PgHKMcEpvCg74oUnZb4Fy4",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "805b211c-12a2-450d-9961-90848fe5f6bc",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+              "oldString": "\\footnotesize\n\\begin{tabular}{lcccc}",
+              "newString": "\\footnotesize\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\begin{tabular}{lcccc}",
+              "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B; generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) confirms the signal is not a mixed-chain artifact (mean transfer F1\\,=\\,0.810; LOFO\\,=\\,0.686).\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ XGBoost 0.789; Appendix~\\ref{app:qlora}), confirming richer token-level representations capture additional depth signal, albeit requiring per-generator fine-tuning; on instruct data, QLoRA recovers to 0.89--0.91 (Appendix~\\ref{app:instruct}), establishing the decomposition, not the classifier, as DDR's primary contribution.\nThe 11.6\\,pp gap suggests token embeddings capture sequential patterns beyond the seven summary statistics; probing analysis could identify these dimensions.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-class F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; Appendix~\\ref{app:ddr-validation}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---we hypothesize this reflects the mixing property of finite-vocabulary autoregressive processes~\\citep{markovian_chains}---predicting that location statistics should drift while shape statistics remain invariant.\n\nThe classification results above establish \\emph{that} depth is distinguishable; we now ask \\emph{why} by examining which features respond to recursive generation.\nFigure~\\ref{fig:ddr-trajectory} reveals a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nAppendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.\nThe primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760, invariant across $\\varepsilon \\in [0.10, 0.75]$; Appendix~\\ref{app:ddr-validation}).\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) confirms the split as non-random (null\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ splits ranks this partition first (Appendix~\\ref{app:ddr-validation}); holdout splits recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core split and classification.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV, complementing the LOGO protocol in Table~\\ref{tab:logo-results}) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nTo isolate reference-model bias, we evaluate on a 5-generator subset excluding all Pythia-family generators---a stricter protocol than 8-gen LOGO.\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable performance (F1 spread\\,=\\,0.013; Table~\\ref{tab:cross-ref} in Appendix~\\ref{app:cross-ref}), with drift direction consistently negative.\nSame-family proximity may inflate Pythia F1 by up to 1.3\\,pp, but the DDR partition is fully preserved regardless of reference choice.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-$9.3 to $-$26.0\\,pp binary F1; Appendix~\\ref{app:sampling-sensitivity}); continuation chains show the strongest drift (F1\\,=\\,0.781; Appendix~\\ref{app:prompt-type}).\nThe DDR partition hierarchy is preserved across temperatures (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nWe next ask whether existing detection methods---designed for binary real-vs-synthetic classification---incidentally capture depth structure, repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nFastDetectGPT and Binoculars target binary detection, not ordinal depth; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-class F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at ${\\sim}2.4\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines ($\\Delta$\\,=\\,6.7--36.3\\,pp 3-class F1; Figure~\\ref{fig:baseline-ci}) while matching the 4-detector ensemble at ${\\sim}2.4\\times$ lower cost (binary F1: 0.705 vs.\\ 0.700); adding surface features yields 0.708.\nDDR's contribution is thus the decomposition into location-sensitive and shape-stable components---a structural distinction absent from existing detection methods and collapse analyses (\\S\\ref{sec:discussion}).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 119,
+                  "oldLines": 6,
+                  "newStart": 119,
+                  "newLines": 8,
+                  "lines": [
+                    " \\begin{table}[t]",
+                    " \\centering",
+                    " \\footnotesize",
+                    "+\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}",
+                    "+\\label{tab:baselines}",
+                    " \\begin{tabular}{lcccc}",
+                    " \\toprule",
+                    " \\textbf{Method} & \\textbf{Feat.} & \\textbf{3-class F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DYAgcoPW8m2D5Tsn7wZD2W",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+                "old_string": "\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}",
+                "new_string": "\\end{tabular}\n\\end{table}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "7b8309f8-2b1b-44dd-ad1d-14d787fc0ccd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LKF5sJ7fFXZabZejQ1CkRH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3197,
+                "cache_read_input_tokens": 67158,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3197
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-22T06:23:01.446Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DYAgcoPW8m2D5Tsn7wZD2W",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "4c5e68a7-d7d6-4d87-8578-8463936ed517",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+              "oldString": "\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}",
+              "newString": "\\end{tabular}\n\\end{table}",
+              "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nBecause gen-0 seeds are shared across generators (\\S\\ref{sec:generation}), gen-0 classification is near-perfect (per-class F1\\,$\\approx$\\,0.94), inflating the 3-class metric.\nWe therefore adopt \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) as the primary metric throughout: it excludes gen-0 entirely and is unaffected by seed sharing.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty concentrated at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\nCIs reflect bootstrap sampling variability; the cross-generator range (9.1\\,pp) captures the distinct and larger uncertainty of generator selection.\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B; generator-level LOGO with bootstrap CIs ($n$\\,=\\,2{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) confirms the signal is not a mixed-chain artifact (mean transfer F1\\,=\\,0.810; LOFO\\,=\\,0.686).\nA scale effect emerges: Pythia achieves the highest F1 (0.718--0.724) while larger models degrade (Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (cross-reference spread $\\leq$0.013; \\S\\ref{sec:results-differential}); cross-domain signal persists with variation (Appendix~\\ref{app:domain}).\nAn end-to-end QLoRA classifier achieves 3-class F1\\,=\\,0.905 under 6-generator LOGO ($+$11.6\\,pp vs.\\ XGBoost 0.789; Appendix~\\ref{app:qlora}), confirming richer token-level representations capture additional depth signal, albeit requiring per-generator fine-tuning; on instruct data, QLoRA recovers to 0.89--0.91 (Appendix~\\ref{app:instruct}), establishing the decomposition, not the classifier, as DDR's primary contribution.\nThe 11.6\\,pp gap suggests token embeddings capture sequential patterns beyond the seven summary statistics; probing analysis could identify these dimensions.\n\n\\paragraph{Length confound control.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770 unmatched); a random-subsample control verifies the drop reflects deconfounding, not sample-size reduction (Appendix~\\ref{app:length}).\n\n\\paragraph{Seed-sharing control.}\nSeed-level demeaning (F1\\,=\\,0.701) and an independent-seed experiment with disjoint seed pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) both verify that the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}).}\n\\label{tab:logo-results}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-class F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_ddr_trajectory.pdf}\n\\caption{Feature trajectories across generation depth. \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho| > 0.59$). \\textbf{Bottom row (stationary)}: entropy max and tail decay remain flat ($|\\rho| < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (blue for drifting, amber for stationary). This dichotomy defines the differential depth response (DDR).}\n\\label{fig:ddr-trajectory}\n\\end{figure*}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds serve as reference anchors from behavioral science, with the partition independently validated by data-driven $k$-means clustering (silhouette\\,=\\,0.660, $p{=}0.030$ vs.\\ null; Appendix~\\ref{app:ddr-validation}).\nUnder autoregressive generation with nucleus sampling, the top-$p$ truncation preserves the conditional distribution's functional form while inputs grow increasingly self-typical---we hypothesize this reflects the mixing property of finite-vocabulary autoregressive processes~\\citep{markovian_chains}---predicting that location statistics should drift while shape statistics remain invariant.\n\nThe classification results above establish \\emph{that} depth is distinguishable; we now ask \\emph{why} by examining which features respond to recursive generation.\nFigure~\\ref{fig:ddr-trajectory} reveals a consistent dichotomy across all eight generators: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nAppendix~\\ref{app:qualitative} illustrates the DDR with a concrete generation chain.\nThe primary partition is binary: $k{=}2$ clustering cleanly separates three drifting from four non-drifting features; higher $k$ degrades quality ($k{=}3$: silhouette\\,=\\,0.532; Appendix~\\ref{app:ddr-validation}).\nA domain-informed refinement resolves entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from the three near-stationary features ($d < 0.10$; CV shift $<$3\\% vs.\\ $>$15\\% for drifting features).\nMultiple effect-size measures corroborate this partition (Quantification below).\n\n\\begin{figure}[t!]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Diamonds: cross-generator means; dots: per-generator values. Drifting features (blue; $|\\rho| > 0.60$, $d{=}0.76$--$1.17$) show strong monotonic depth sensitivity; non-drifting features remain stable. Entropy std (wine; $d{=}0.55$) is an intermediate member; near-stationary features (amber; $d \\leq 0.10$) show negligible drift. Entropy min ($|\\rho|{=}0.40$ pooled; gen-0/gen-1 sensitive) and tail decay (TOST 4/8) are boundary features within this group.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled Spearman correlations with depth corroborate the binary split (Figure~\\ref{fig:feature-drift}):\ndrifting features show substantial monotonic trends (hapax ratio $\\rho = -0.64$, TTR $\\rho = -0.63$, entropy mean $\\rho = -0.60$),\nwhile non-drifting features remain near-zero (tail decay $|\\rho| = 0.04$; per-depth distributions in Appendix~\\ref{app:feature-distributions}).\nThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and non-drifting features ($|\\rho| \\leq 0.16$) defines the DDR partition.\nWithin the non-drifting group, entropy std ($|\\rho| = 0.16$, $d{=}0.55$) shows a substantial level shift despite low monotonicity, distinguishing it from the three near-stationary features ($d < 0.10$); this refinement is stable across $d$ thresholds in $[0.56, 0.75]$ (Appendix~\\ref{app:ddr-validation}).\n\n\\paragraph{Quantification.}\nParametric and non-parametric effect-size measures converge on the split.\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7\\times$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary features ($d \\leq 0.08$); KS statistics, Glass's $\\Delta$, Cliff's $\\delta$, and CV shift all corroborate (Appendix~\\ref{app:ddr-validation}), with the partition robust under heteroscedasticity (Glass's $\\Delta$ gap ${\\geq}9.5\\times$; Appendix~\\ref{app:heteroscedasticity}).\nFour features fall cleanly into drifting or non-drifting groups.\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1 vs.\\ gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1 ($|\\rho|{=}0.40$); tail decay is \\emph{weakly stationary}, passing TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\nEntropy std ($d{=}0.55$, $|\\rho|{=}0.16$) is the sole intermediate member.\n\\paragraph{Validation.}\nPer-generator split analysis provides the strongest validation: each of the eight hold-out generators independently recovers the identical drifting/non-drifting partition (per-generator silhouette range 0.505--0.760, invariant across $\\varepsilon \\in [0.10, 0.75]$; Appendix~\\ref{app:ddr-validation}).\nPer-generator TOST equivalence testing ($\\varepsilon{=}|d|{<}0.20$; gen-1 vs.\\ gen-2+) confirms near-stationarity for entropy min (8/8 pass) and entropy max (6/8); tail decay passes for only 4/8, with $|d|{=}0.10$--$0.22$ spanning the boundary.\nA permutation test ($n{=}10{,}000$) confirms the split as non-random (null\\,=\\,0.46); exhaustive enumeration of all $\\binom{7}{3}{=}35$ splits ranks this partition first (Appendix~\\ref{app:ddr-validation}); holdout splits recover identical zone assignments (Appendix~\\ref{app:holdout-split}).\nReclassifying either boundary feature as intermediate preserves the core split and classification.\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV, complementing the LOGO protocol in Table~\\ref{tab:logo-results}) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nPCA confirms the three drifting features share a single latent dimension (92.3\\% variance; Appendix~\\ref{sec:appendix-feature-correlation}); replacing them with PC1 costs only 1.1\\,pp, reinforcing that DDR's contribution is identifying \\emph{which} distributional properties drift, not classification per se.\nTTR and hapax ratio ($r = 0.97$) are both retained for marginal LOFO gains despite feature masking \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nTo isolate reference-model bias, we evaluate on a 5-generator subset excluding all Pythia-family generators---a stricter protocol than 8-gen LOGO.\nAlternative references (OLMo-2-1B, Qwen3-0.6B) achieve comparable performance (F1 spread\\,=\\,0.013; Table~\\ref{tab:cross-ref} in Appendix~\\ref{app:cross-ref}), with drift direction consistently negative.\nSame-family proximity may inflate Pythia F1 by up to 1.3\\,pp, but the DDR partition is fully preserved regardless of reference choice.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-$9.3 to $-$26.0\\,pp binary F1; Appendix~\\ref{app:sampling-sensitivity}); continuation chains show the strongest drift (F1\\,=\\,0.781; Appendix~\\ref{app:prompt-type}).\nThe DDR partition hierarchy is preserved across temperatures (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nWe next ask whether existing detection methods---designed for binary real-vs-synthetic classification---incidentally capture depth structure, repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nFastDetectGPT and Binoculars target binary detection, not ordinal depth; Avg-LogProb provides the most meaningful single-feature baseline.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-class F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}\n\\label{tab:baselines}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at ${\\sim}2.4\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nThe 7-feature ensemble surpasses all individual baselines ($\\Delta$\\,=\\,6.7--36.3\\,pp 3-class F1; Figure~\\ref{fig:baseline-ci}) while matching the 4-detector ensemble at ${\\sim}2.4\\times$ lower cost (binary F1: 0.705 vs.\\ 0.700); adding surface features yields 0.708.\nDDR's contribution is thus the decomposition into location-sensitive and shape-stable components---a structural distinction absent from existing detection methods and collapse analyses (\\S\\ref{sec:discussion}).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 135,
+                  "oldLines": 8,
+                  "newStart": 135,
+                  "newLines": 6,
+                  "lines": [
+                    " Binoculars            & 1 & 0.411 & 0.539 & --- \\\\",
+                    " \\bottomrule",
+                    " \\end{tabular}",
+                    "-\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled.}",
+                    "-\\label{tab:baselines}",
+                    " \\end{table}",
+                    " ",
+                    " \\begin{figure}[t]"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018k82Ge9g1b3dimYsxq4VQ6",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/table1.tex",
+                "old_string": "\\small\n\\begin{tabular}{llccc}",
+                "new_string": "\\small\n\\caption{Leave-one-generator-out (LOGO) depth classification results (3-class).\nEach row holds out one generator for testing and trains on the remaining seven.}\n\\label{tab:logo-results}\n\\begin{tabular}{llccc}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "07a60fe4-3603-41fc-b92b-a22457f44717",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LKF5sJ7fFXZabZejQ1CkRH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3197,
+                "cache_read_input_tokens": 67158,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3197
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": "2026-05-22T06:23:03.897Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018k82Ge9g1b3dimYsxq4VQ6",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/table1.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "6c5a6fa6-5866-4e8b-988e-e1d1fbe6a4fe",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/table1.tex",
+              "oldString": "\\small\n\\begin{tabular}{llccc}",
+              "newString": "\\small\n\\caption{Leave-one-generator-out (LOGO) depth classification results (3-class).\nEach row holds out one generator for testing and trains on the remaining seven.}\n\\label{tab:logo-results}\n\\begin{tabular}{llccc}",
+              "originalFile": "%% NOTE: this standalone file is NOT \\input'd by main.tex; the inline table in results.tex is authoritative.\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Held-out Generator} & \\textbf{Family} & \\textbf{Params} & \\textbf{Macro-F1} & \\textbf{95\\% CI} \\\\\n\\midrule\nPythia-2.8B   & Pythia  & 2.8B & ---   & --- \\\\\nPythia-1B     & Pythia  & 1.0B & 0.806 & --- \\\\\nQwen3-1.7B   & Qwen    & 1.7B & ---   & --- \\\\\nLlama-3.2-3B & Llama   & 3.2B & ---   & --- \\\\\nOLMo-2-1B    & OLMo    & 1.0B & ---   & --- \\\\\nQwen3-8B     & Qwen    & 8.0B & ---   & --- \\\\\nQwen3-0.6B   & Qwen    & 0.6B & ---   & --- \\\\\nMistral-7B   & Mistral & 7.0B & 0.681 & --- \\\\\n\\midrule\n\\textbf{Average (8-gen)} & & & \\textbf{0.762} & [0.758, 0.766] \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Leave-one-generator-out (LOGO) depth classification results (3-class).\nEach row holds out one generator for testing and trains on the remaining seven.}\n\\label{tab:logo-results}\n\\end{table}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 2,
+                  "oldLines": 6,
+                  "newStart": 2,
+                  "newLines": 9,
+                  "lines": [
+                    " \\begin{table}[t]",
+                    " \\centering",
+                    " \\small",
+                    "+\\caption{Leave-one-generator-out (LOGO) depth classification results (3-class).",
+                    "+Each row holds out one generator for testing and trains on the remaining seven.}",
+                    "+\\label{tab:logo-results}",
+                    " \\begin{tabular}{llccc}",
+                    " \\toprule",
+                    " \\textbf{Held-out Generator} & \\textbf{Family} & \\textbf{Params} & \\textbf{Macro-F1} & \\textbf{95\\% CI} \\\\"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JoEpkNpQUviEKVU1KJztK4",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/table1.tex",
+                "old_string": "\\end{tabular}\n\\caption{Leave-one-generator-out (LOGO) depth classification results (3-class).\nEach row holds out one generator for testing and trains on the remaining seven.}\n\\label{tab:logo-results}\n\\end{table}",
+                "new_string": "\\end{tabular}\n\\end{table}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "98c12c81-cc4c-48a2-8778-a0c7f7654078",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LKF5sJ7fFXZabZejQ1CkRH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3197,
+                "cache_read_input_tokens": 67158,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3197
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": "2026-05-22T06:23:07.999Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JoEpkNpQUviEKVU1KJztK4",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/table1.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "16259969-6d04-47db-a6a1-54dff0c28b21",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/table1.tex",
+              "oldString": "\\end{tabular}\n\\caption{Leave-one-generator-out (LOGO) depth classification results (3-class).\nEach row holds out one generator for testing and trains on the remaining seven.}\n\\label{tab:logo-results}\n\\end{table}",
+              "newString": "\\end{tabular}\n\\end{table}",
+              "originalFile": "%% NOTE: this standalone file is NOT \\input'd by main.tex; the inline table in results.tex is authoritative.\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Leave-one-generator-out (LOGO) depth classification results (3-class).\nEach row holds out one generator for testing and trains on the remaining seven.}\n\\label{tab:logo-results}\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Held-out Generator} & \\textbf{Family} & \\textbf{Params} & \\textbf{Macro-F1} & \\textbf{95\\% CI} \\\\\n\\midrule\nPythia-2.8B   & Pythia  & 2.8B & ---   & --- \\\\\nPythia-1B     & Pythia  & 1.0B & 0.806 & --- \\\\\nQwen3-1.7B   & Qwen    & 1.7B & ---   & --- \\\\\nLlama-3.2-3B & Llama   & 3.2B & ---   & --- \\\\\nOLMo-2-1B    & OLMo    & 1.0B & ---   & --- \\\\\nQwen3-8B     & Qwen    & 8.0B & ---   & --- \\\\\nQwen3-0.6B   & Qwen    & 0.6B & ---   & --- \\\\\nMistral-7B   & Mistral & 7.0B & 0.681 & --- \\\\\n\\midrule\n\\textbf{Average (8-gen)} & & & \\textbf{0.762} & [0.758, 0.766] \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Leave-one-generator-out (LOGO) depth classification results (3-class).\nEach row holds out one generator for testing and trains on the remaining seven.}\n\\label{tab:logo-results}\n\\end{table}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 21,
+                  "oldLines": 7,
+                  "newStart": 21,
+                  "newLines": 4,
+                  "lines": [
+                    " \\textbf{Average (8-gen)} & & & \\textbf{0.762} & [0.758, 0.766] \\\\",
+                    " \\bottomrule",
+                    " \\end{tabular}",
+                    "-\\caption{Leave-one-generator-out (LOGO) depth classification results (3-class).",
+                    "-Each row holds out one generator for testing and trains on the remaining seven.}",
+                    "-\\label{tab:logo-results}",
+                    " \\end{table}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AS43AmMadNgCWoakmnQxtX",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/table2.tex",
+                "old_string": "\\small\n\\begin{tabular}{lp{3.2cm}ccc}",
+                "new_string": "\\small\n\\caption{Feature group ablation and complementarity (8-gen 10-fold CV).\nBoth subsets significantly underperform the full set (+8.5\\,pp, +5.9\\,pp).\nPermutation importance: \\texttt{hapax\\_ratio} (0.269) $>$ \\texttt{entropy\\_mean} (0.164) $>$ \\texttt{ttr} (0.159).}\n\\label{tab:feature-ablation}\n\\begin{tabular}{lp{3.2cm}ccc}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "c05c5ee4-840d-4e41-9961-a9b4cd22366e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LKF5sJ7fFXZabZejQ1CkRH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3197,
+                "cache_read_input_tokens": 67158,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3197
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-22T06:23:10.025Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AS43AmMadNgCWoakmnQxtX",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/table2.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "13990fd7-bff3-4446-b204-71ad86f36fb1",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/table2.tex",
+              "oldString": "\\small\n\\begin{tabular}{lp{3.2cm}ccc}",
+              "newString": "\\small\n\\caption{Feature group ablation and complementarity (8-gen 10-fold CV).\nBoth subsets significantly underperform the full set (+8.5\\,pp, +5.9\\,pp).\nPermutation importance: \\texttt{hapax\\_ratio} (0.269) $>$ \\texttt{entropy\\_mean} (0.164) $>$ \\texttt{ttr} (0.159).}\n\\label{tab:feature-ablation}\n\\begin{tabular}{lp{3.2cm}ccc}",
+              "originalFile": "\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lp{3.2cm}ccc}\n\\toprule\n\\textbf{Feature Set} & \\textbf{Features} & \\textbf{LOGO F1} & \\textbf{95\\% CI} & \\textbf{McNemar $p$} \\\\\n\\midrule\nFull (7 features) & all & 0.773 & --- & --- \\\\\nSurface only (2)  & TTR, hapax\\_ratio & 0.688 & --- & $<$ 0.001 \\\\\nReference only (5) & entropy\\_mean/std/min/max, tail\\_decay & 0.713 & --- & $<$ 0.001 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Feature group ablation and complementarity (8-gen 10-fold CV).\nBoth subsets significantly underperform the full set (+8.5\\,pp, +5.9\\,pp).\nPermutation importance: \\texttt{hapax\\_ratio} (0.269) $>$ \\texttt{entropy\\_mean} (0.164) $>$ \\texttt{ttr} (0.159).}\n\\label{tab:feature-ablation}\n\\end{table}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 6,
+                  "newStart": 1,
+                  "newLines": 10,
+                  "lines": [
+                    " \\begin{table}[t]",
+                    " \\centering",
+                    " \\small",
+                    "+\\caption{Feature group ablation and complementarity (8-gen 10-fold CV).",
+                    "+Both subsets significantly underperform the full set (+8.5\\,pp, +5.9\\,pp).",
+                    "+Permutation importance: \\texttt{hapax\\_ratio} (0.269) $>$ \\texttt{entropy\\_mean} (0.164) $>$ \\texttt{ttr} (0.159).}",
+                    "+\\label{tab:feature-ablation}",
+                    " \\begin{tabular}{lp{3.2cm}ccc}",
+                    " \\toprule",
+                    " \\textbf{Feature Set} & \\textbf{Features} & \\textbf{LOGO F1} & \\textbf{95\\% CI} & \\textbf{McNemar $p$} \\\\"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ACsZHbsBc931dcz7Uy6EcS",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/table2.tex",
+                "old_string": "\\end{tabular}\n\\caption{Feature group ablation and complementarity (8-gen 10-fold CV).\nBoth subsets significantly underperform the full set (+8.5\\,pp, +5.9\\,pp).\nPermutation importance: \\texttt{hapax\\_ratio} (0.269) $>$ \\texttt{entropy\\_mean} (0.164) $>$ \\texttt{ttr} (0.159).}\n\\label{tab:feature-ablation}\n\\end{table}",
+                "new_string": "\\end{tabular}\n\\end{table}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "66d73292-c322-45f0-81b2-c322daf56930",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LKF5sJ7fFXZabZejQ1CkRH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3197,
+                "cache_read_input_tokens": 67158,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3197
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": "2026-05-22T06:23:11.897Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ACsZHbsBc931dcz7Uy6EcS",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/table2.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "12d69ff2-6514-4528-bcdf-6cab25cc532d",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/table2.tex",
+              "oldString": "\\end{tabular}\n\\caption{Feature group ablation and complementarity (8-gen 10-fold CV).\nBoth subsets significantly underperform the full set (+8.5\\,pp, +5.9\\,pp).\nPermutation importance: \\texttt{hapax\\_ratio} (0.269) $>$ \\texttt{entropy\\_mean} (0.164) $>$ \\texttt{ttr} (0.159).}\n\\label{tab:feature-ablation}\n\\end{table}",
+              "newString": "\\end{tabular}\n\\end{table}",
+              "originalFile": "\\begin{table}[t]\n\\centering\n\\small\n\\caption{Feature group ablation and complementarity (8-gen 10-fold CV).\nBoth subsets significantly underperform the full set (+8.5\\,pp, +5.9\\,pp).\nPermutation importance: \\texttt{hapax\\_ratio} (0.269) $>$ \\texttt{entropy\\_mean} (0.164) $>$ \\texttt{ttr} (0.159).}\n\\label{tab:feature-ablation}\n\\begin{tabular}{lp{3.2cm}ccc}\n\\toprule\n\\textbf{Feature Set} & \\textbf{Features} & \\textbf{LOGO F1} & \\textbf{95\\% CI} & \\textbf{McNemar $p$} \\\\\n\\midrule\nFull (7 features) & all & 0.773 & --- & --- \\\\\nSurface only (2)  & TTR, hapax\\_ratio & 0.688 & --- & $<$ 0.001 \\\\\nReference only (5) & entropy\\_mean/std/min/max, tail\\_decay & 0.713 & --- & $<$ 0.001 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Feature group ablation and complementarity (8-gen 10-fold CV).\nBoth subsets significantly underperform the full set (+8.5\\,pp, +5.9\\,pp).\nPermutation importance: \\texttt{hapax\\_ratio} (0.269) $>$ \\texttt{entropy\\_mean} (0.164) $>$ \\texttt{ttr} (0.159).}\n\\label{tab:feature-ablation}\n\\end{table}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 14,
+                  "oldLines": 8,
+                  "newStart": 14,
+                  "newLines": 4,
+                  "lines": [
+                    " Reference only (5) & entropy\\_mean/std/min/max, tail\\_decay & 0.713 & --- & $<$ 0.001 \\\\",
+                    " \\bottomrule",
+                    " \\end{tabular}",
+                    "-\\caption{Feature group ablation and complementarity (8-gen 10-fold CV).",
+                    "-Both subsets significantly underperform the full set (+8.5\\,pp, +5.9\\,pp).",
+                    "-Permutation importance: \\texttt{hapax\\_ratio} (0.269) $>$ \\texttt{entropy\\_mean} (0.164) $>$ \\texttt{ttr} (0.159).}",
+                    "-\\label{tab:feature-ablation}",
+                    " \\end{table}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016kje9BdJJ4jfSoLsittv7j",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/table4.tex",
+                "old_string": "\\renewcommand{\\arraystretch}{1.3}\n\\resizebox{\\linewidth}{!}{%",
+                "new_string": "\\renewcommand{\\arraystretch}{1.3}\n\\caption{Cross-family reference model validation (5-gen LOGO subset). Drift direction is consistent (negative) across all three references; magnitude varies with capacity. Spread in LOGO F1 is 0.013.}\n\\label{tab:cross-ref}\n\\resizebox{\\linewidth}{!}{%"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "c6df8817-cc2c-45dc-ae77-df665181be57",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LKF5sJ7fFXZabZejQ1CkRH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3197,
+                "cache_read_input_tokens": 67158,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3197
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": "2026-05-22T06:23:15.311Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016kje9BdJJ4jfSoLsittv7j",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/table4.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "08adf79d-06de-4744-8711-b958b630779b",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/table4.tex",
+              "oldString": "\\renewcommand{\\arraystretch}{1.3}\n\\resizebox{\\linewidth}{!}{%",
+              "newString": "\\renewcommand{\\arraystretch}{1.3}\n\\caption{Cross-family reference model validation (5-gen LOGO subset). Drift direction is consistent (negative) across all three references; magnitude varies with capacity. Spread in LOGO F1 is 0.013.}\n\\label{tab:cross-ref}\n\\resizebox{\\linewidth}{!}{%",
+              "originalFile": "To isolate reference-model bias, we replace Pythia-410M with two alternative references from different families and evaluate on a 5-generator subset excluding all Pythia generators.\nTable~\\ref{tab:cross-ref} shows that performance spread across references is only 0.013 F1, confirming the DDR partition is reference-model agnostic.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\renewcommand{\\arraystretch}{1.3}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Reference} & \\textbf{Family} & \\textbf{Params} & \\textbf{LOGO F1} & \\textbf{Ent.\\ Drift} \\\\\n\\midrule\nPythia-410M & Pythia & 410M & 0.803 & [$-$1.19, $-$1.40] \\\\\nOLMo-2-1B  & OLMo   & 1.5B & 0.807 & [$-$0.61, $-$0.91] \\\\\nQwen3-0.6B & Qwen   & 0.6B & 0.816 & [$-$0.96, $-$1.35] \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Cross-family reference model validation (5-gen LOGO subset). Drift direction is consistent (negative) across all three references; magnitude varies with capacity. Spread in LOGO F1 is 0.013.}\n\\label{tab:cross-ref}\n\\end{table}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 5,
+                  "oldLines": 6,
+                  "newStart": 5,
+                  "newLines": 8,
+                  "lines": [
+                    " \\centering",
+                    " \\footnotesize",
+                    " \\renewcommand{\\arraystretch}{1.3}",
+                    "+\\caption{Cross-family reference model validation (5-gen LOGO subset). Drift direction is consistent (negative) across all three references; magnitude varies with capacity. Spread in LOGO F1 is 0.013.}",
+                    "+\\label{tab:cross-ref}",
+                    " \\resizebox{\\linewidth}{!}{%",
+                    " \\begin{tabular}{llccc}",
+                    " \\toprule"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019ndqFh96yLdKXAsYBpxHWK",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/table4.tex",
+                "old_string": "\\end{tabular}}\n\\caption{Cross-family reference model validation (5-gen LOGO subset). Drift direction is consistent (negative) across all three references; magnitude varies with capacity. Spread in LOGO F1 is 0.013.}\n\\label{tab:cross-ref}\n\\end{table}",
+                "new_string": "\\end{tabular}}\n\\end{table}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "4f36acb8-25fd-4cb9-bb3b-20475532d13b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LKF5sJ7fFXZabZejQ1CkRH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3197,
+                "cache_read_input_tokens": 67158,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3197
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": "2026-05-22T06:23:16.652Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019ndqFh96yLdKXAsYBpxHWK",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/table4.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "e21aa460-d10d-4476-9ab8-da6a272851bb",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/table4.tex",
+              "oldString": "\\end{tabular}}\n\\caption{Cross-family reference model validation (5-gen LOGO subset). Drift direction is consistent (negative) across all three references; magnitude varies with capacity. Spread in LOGO F1 is 0.013.}\n\\label{tab:cross-ref}\n\\end{table}",
+              "newString": "\\end{tabular}}\n\\end{table}",
+              "originalFile": "To isolate reference-model bias, we replace Pythia-410M with two alternative references from different families and evaluate on a 5-generator subset excluding all Pythia generators.\nTable~\\ref{tab:cross-ref} shows that performance spread across references is only 0.013 F1, confirming the DDR partition is reference-model agnostic.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\renewcommand{\\arraystretch}{1.3}\n\\caption{Cross-family reference model validation (5-gen LOGO subset). Drift direction is consistent (negative) across all three references; magnitude varies with capacity. Spread in LOGO F1 is 0.013.}\n\\label{tab:cross-ref}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Reference} & \\textbf{Family} & \\textbf{Params} & \\textbf{LOGO F1} & \\textbf{Ent.\\ Drift} \\\\\n\\midrule\nPythia-410M & Pythia & 410M & 0.803 & [$-$1.19, $-$1.40] \\\\\nOLMo-2-1B  & OLMo   & 1.5B & 0.807 & [$-$0.61, $-$0.91] \\\\\nQwen3-0.6B & Qwen   & 0.6B & 0.816 & [$-$0.96, $-$1.35] \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Cross-family reference model validation (5-gen LOGO subset). Drift direction is consistent (negative) across all three references; magnitude varies with capacity. Spread in LOGO F1 is 0.013.}\n\\label{tab:cross-ref}\n\\end{table}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 17,
+                  "oldLines": 6,
+                  "newStart": 17,
+                  "newLines": 4,
+                  "lines": [
+                    " Qwen3-0.6B & Qwen   & 0.6B & 0.816 & [$-$0.96, $-$1.35] \\\\",
+                    " \\bottomrule",
+                    " \\end{tabular}}",
+                    "-\\caption{Cross-family reference model validation (5-gen LOGO subset). Drift direction is consistent (negative) across all three references; magnitude varies with capacity. Spread in LOGO F1 is 0.013.}",
+                    "-\\label{tab:cross-ref}",
+                    " \\end{table}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits done. Now syncing to `artifacts/_project/paper/` and verifying correctness. Let me copy the files."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "b89d3982-41f7-4bb6-80b0-8a710cb2afe7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012xFeywfNycdts3hyUBxTXg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 62707,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 62707
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000201"
+        },
+        {
+          "source_line": 202,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KCLrrDgPiqTCW74Fd35wKv",
+              "name": "Bash",
+              "input": {
+                "command": "for f in appendix_ablation.tex appendix_confusion_matrix.tex appendix_cross_model_detail.tex appendix_dataset_stats.tex appendix_ddr_causality.tex appendix_downstream.tex appendix_finer_depth.tex appendix_lofo.tex appendix_seed_control.tex appendix_transfer.tex method.tex results.tex table1.tex table2.tex table4.tex; do cp \"docs/paper/$f\" \"artifacts/_project/paper/$f\"; done && echo \"DONE\"",
+                "description": "Copy edited tex files to artifacts directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "ed42745c-924a-4064-b70c-69a037fbea23",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012xFeywfNycdts3hyUBxTXg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 62707,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 62707
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000202"
+        },
+        {
+          "source_line": 203,
+          "timestamp": "2026-05-22T06:23:40.505Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KCLrrDgPiqTCW74Fd35wKv",
+              "type": "tool_result",
+              "content": "DONE",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "c842534a-a52d-49ad-b918-f32b4353fcb4",
+            "tool_use_result": {
+              "stdout": "DONE",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000203"
+        },
+        {
+          "source_line": 204,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PXGy3XJrLgx4k3yHPAyPYP",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper && grep -n '\\\\end{tabular' *.tex | head -80",
+                "description": "Check for remaining captions after end tabular"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "ccc611d0-73e5-4183-b9a9-8999994aefdf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012xFeywfNycdts3hyUBxTXg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 62707,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 62707
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000204"
+        },
+        {
+          "source_line": 205,
+          "timestamp": "2026-05-22T06:23:41.501Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PXGy3XJrLgx4k3yHPAyPYP",
+              "type": "tool_result",
+              "content": "appendix_9gen_scale.tex:30:\\end{tabular}}\nappendix_ablation.tex:18:\\end{tabular}\nappendix_classifier.tex:21:\\end{tabular}}\nappendix_classifier.tex:64:\\end{tabular}}\nappendix_confusion_matrix.tex:18:\\end{tabular}}\nappendix_cross_model_detail.tex:18:\\end{tabular}\nappendix_dataset_stats.tex:28:\\end{tabular}\nappendix_ddr_causality.tex:25:\\end{tabular}}\nappendix_ddr_causality.tex:51:\\end{tabular}}\nappendix_ddr_validation.tex:19:\\end{tabular}}\nappendix_ddr_validation.tex:61:\\end{tabular}}\nappendix_ddr_validation.tex:111:\\end{tabular}}\nappendix_ddr_validation.tex:147:\\end{tabular}}\nappendix_ddr_validation.tex:189:\\end{tabular}\nappendix_decoding_strategy.tex:36:\\end{tabular}}\nappendix_decoding_strategy.tex:63:\\end{tabular}}\nappendix_domain.tex:20:\\end{tabular}\nappendix_downstream.tex:19:\\end{tabular}\nappendix_downstream.tex:63:\\end{tabular}}\nappendix_error_analysis.tex:34:\\end{tabular}}\nappendix_feature_candidates.tex:21:\\end{tabular}}\nappendix_feature_correlation.tex:24:\\end{tabular}}\nappendix_finer_depth.tex:22:\\end{tabular}}\nappendix_finer_depth.tex:37:\\end{tabular}}\nappendix_generator_subsets.tex:22:\\end{tabular}}\nappendix_human_edit.tex:19:\\end{tabular}}\nappendix_human_edit.tex:51:\\end{tabular}}\nappendix_human_edit.tex:72:\\end{tabular}\nappendix_instruct.tex:22:\\end{tabular}}\nappendix_instruct.tex:46:\\end{tabular}\nappendix_instruct.tex:92:\\end{tabular}}\nappendix_iterative_comparison.tex:39:\\end{tabular}}\nappendix_lofo.tex:22:\\end{tabular}\nappendix_qlora.tex:21:\\end{tabular}}\nappendix_qualitative_examples.tex:26:\\end{tabular}\nappendix_qualitative_examples.tex:47:\\end{tabular}}\nappendix_seed_control.tex:27:\\end{tabular}}\nappendix_temperature_stability.tex:23:\\end{tabular}}\nappendix_tost.tex:43:\\end{tabular}}\nappendix_tost_bootstrap.tex:22:\\end{tabular}}\nappendix_transfer.tex:25:\\end{tabular}}\nmethod.tex:22:\\end{tabular}\nresults.tex:48:\\end{tabular}}\nresults.tex:137:\\end{tabular}\ntable1.tex:23:\\end{tabular}\ntable2.tex:16:\\end{tabular}\ntable4.tex:19:\\end{tabular}}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "136cd6bc-0576-408b-aadd-0bc31dbd12de",
+            "tool_use_result": {
+              "stdout": "appendix_9gen_scale.tex:30:\\end{tabular}}\nappendix_ablation.tex:18:\\end{tabular}\nappendix_classifier.tex:21:\\end{tabular}}\nappendix_classifier.tex:64:\\end{tabular}}\nappendix_confusion_matrix.tex:18:\\end{tabular}}\nappendix_cross_model_detail.tex:18:\\end{tabular}\nappendix_dataset_stats.tex:28:\\end{tabular}\nappendix_ddr_causality.tex:25:\\end{tabular}}\nappendix_ddr_causality.tex:51:\\end{tabular}}\nappendix_ddr_validation.tex:19:\\end{tabular}}\nappendix_ddr_validation.tex:61:\\end{tabular}}\nappendix_ddr_validation.tex:111:\\end{tabular}}\nappendix_ddr_validation.tex:147:\\end{tabular}}\nappendix_ddr_validation.tex:189:\\end{tabular}\nappendix_decoding_strategy.tex:36:\\end{tabular}}\nappendix_decoding_strategy.tex:63:\\end{tabular}}\nappendix_domain.tex:20:\\end{tabular}\nappendix_downstream.tex:19:\\end{tabular}\nappendix_downstream.tex:63:\\end{tabular}}\nappendix_error_analysis.tex:34:\\end{tabular}}\nappendix_feature_candidates.tex:21:\\end{tabular}}\nappendix_feature_correlation.tex:24:\\end{tabular}}\nappendix_finer_depth.tex:22:\\end{tabular}}\nappendix_finer_depth.tex:37:\\end{tabular}}\nappendix_generator_subsets.tex:22:\\end{tabular}}\nappendix_human_edit.tex:19:\\end{tabular}}\nappendix_human_edit.tex:51:\\end{tabular}}\nappendix_human_edit.tex:72:\\end{tabular}\nappendix_instruct.tex:22:\\end{tabular}}\nappendix_instruct.tex:46:\\end{tabular}\nappendix_instruct.tex:92:\\end{tabular}}\nappendix_iterative_comparison.tex:39:\\end{tabular}}\nappendix_lofo.tex:22:\\end{tabular}\nappendix_qlora.tex:21:\\end{tabular}}\nappendix_qualitative_examples.tex:26:\\end{tabular}\nappendix_qualitative_examples.tex:47:\\end{tabular}}\nappendix_seed_control.tex:27:\\end{tabular}}\nappendix_temperature_stability.tex:23:\\end{tabular}}\nappendix_tost.tex:43:\\end{tabular}}\nappendix_tost_bootstrap.tex:22:\\end{tabular}}\nappendix_transfer.tex:25:\\end{tabular}}\nmethod.tex:22:\\end{tabular}\nresults.tex:48:\\end{tabular}}\nresults.tex:137:\\end{tabular}\ntable1.tex:23:\\end{tabular}\ntable2.tex:16:\\end{tabular}\ntable4.tex:19:\\end{tabular}}",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000205"
+        },
+        {
+          "source_line": 206,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016aRXjLQz6udPFC9Mvjmxdv",
+              "name": "Bash",
+              "input": {
+                "command": "for f in appendix_ablation.tex appendix_confusion_matrix.tex appendix_cross_model_detail.tex appendix_dataset_stats.tex appendix_ddr_causality.tex appendix_downstream.tex appendix_finer_depth.tex appendix_lofo.tex appendix_seed_control.tex appendix_transfer.tex method.tex results.tex table1.tex table2.tex table4.tex; do echo \"=== $f ===\" && python3 -c \"\nimport re, sys\ntext = open('$f').read()\n# Find all table environments\ntables = list(re.finditer(r'\\\\\\\\begin\\{table\\*?\\}.*?\\\\\\\\end\\{table\\*?\\}', text, re.DOTALL))\nfor i, m in enumerate(tables):\n    t = m.group()\n    # Check if caption appears after end{tabular}\n    tabular_end = max(t.rfind('\\\\\\\\end{tabular}'), t.rfind('\\\\\\\\end{tabularx}'))\n    caption_pos = t.find('\\\\\\\\caption')\n    if caption_pos > tabular_end and tabular_end >= 0:\n        print(f'  TABLE {i+1}: STILL HAS CAPTION BELOW (caption at {caption_pos}, tabular ends at {tabular_end})')\n    elif caption_pos >= 0 and tabular_end >= 0:\n        print(f'  TABLE {i+1}: OK (caption at {caption_pos}, tabular ends at {tabular_end})')\n    else:\n        print(f'  TABLE {i+1}: no caption or no tabular found')\n\"; done",
+                "description": "Verify all captions are now above tabular"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "29ce6b79-4d03-42a4-80a9-e59b11ec37f1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EQGjsE63drTofrE94kA2up",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1177,
+                "cache_read_input_tokens": 74548,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1177
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000206"
+        },
+        {
+          "source_line": 207,
+          "timestamp": "2026-05-22T06:23:50.460Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016aRXjLQz6udPFC9Mvjmxdv",
+              "type": "tool_result",
+              "content": "=== appendix_ablation.tex ===\n  TABLE 1: OK (caption at 42, tabular ends at 551)\n=== appendix_confusion_matrix.tex ===\n  TABLE 1: OK (caption at 36, tabular ends at 787)\n=== appendix_cross_model_detail.tex ===\n  TABLE 1: OK (caption at 43, tabular ends at 896)\n=== appendix_dataset_stats.tex ===\n  TABLE 1: OK (caption at 35, tabular ends at 943)\n=== appendix_ddr_causality.tex ===\n  TABLE 1: OK (caption at 36, tabular ends at 755)\n  TABLE 2: OK (caption at 36, tabular ends at 670)\n=== appendix_downstream.tex ===\n  TABLE 1: OK (caption at 36, tabular ends at 666)\n  TABLE 2: OK (caption at 36, tabular ends at 953)\n=== appendix_finer_depth.tex ===\n  TABLE 1: OK (caption at 36, tabular ends at 700)\n  TABLE 2: OK (caption at 36, tabular ends at 364)\n=== appendix_lofo.tex ===\n  TABLE 1: OK (caption at 36, tabular ends at 674)\n=== appendix_seed_control.tex ===\n  TABLE 1: OK (caption at 36, tabular ends at 827)\n=== appendix_transfer.tex ===\n  TABLE 1: OK (caption at 69, tabular ends at 1419)\n=== method.tex ===\n  TABLE 1: OK (caption at 43, tabular ends at 958)\n=== results.tex ===\n  TABLE 1: OK (caption at 42, tabular ends at 1504)\n  TABLE 2: OK (caption at 42, tabular ends at 1096)\n=== table1.tex ===\n  TABLE 1: OK (caption at 35, tabular ends at 833)\n=== table2.tex ===\n  TABLE 1: OK (caption at 35, tabular ends at 695)\n=== table4.tex ===\n  TABLE 1: OK (caption at 76, tabular ends at 658)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "a319cdd4-392d-483f-91cc-949b117403d6",
+            "tool_use_result": {
+              "stdout": "=== appendix_ablation.tex ===\n  TABLE 1: OK (caption at 42, tabular ends at 551)\n=== appendix_confusion_matrix.tex ===\n  TABLE 1: OK (caption at 36, tabular ends at 787)\n=== appendix_cross_model_detail.tex ===\n  TABLE 1: OK (caption at 43, tabular ends at 896)\n=== appendix_dataset_stats.tex ===\n  TABLE 1: OK (caption at 35, tabular ends at 943)\n=== appendix_ddr_causality.tex ===\n  TABLE 1: OK (caption at 36, tabular ends at 755)\n  TABLE 2: OK (caption at 36, tabular ends at 670)\n=== appendix_downstream.tex ===\n  TABLE 1: OK (caption at 36, tabular ends at 666)\n  TABLE 2: OK (caption at 36, tabular ends at 953)\n=== appendix_finer_depth.tex ===\n  TABLE 1: OK (caption at 36, tabular ends at 700)\n  TABLE 2: OK (caption at 36, tabular ends at 364)\n=== appendix_lofo.tex ===\n  TABLE 1: OK (caption at 36, tabular ends at 674)\n=== appendix_seed_control.tex ===\n  TABLE 1: OK (caption at 36, tabular ends at 827)\n=== appendix_transfer.tex ===\n  TABLE 1: OK (caption at 69, tabular ends at 1419)\n=== method.tex ===\n  TABLE 1: OK (caption at 43, tabular ends at 958)\n=== results.tex ===\n  TABLE 1: OK (caption at 42, tabular ends at 1504)\n  TABLE 2: OK (caption at 42, tabular ends at 1096)\n=== table1.tex ===\n  TABLE 1: OK (caption at 35, tabular ends at 833)\n=== table2.tex ===\n  TABLE 1: OK (caption at 35, tabular ends at 695)\n=== table4.tex ===\n  TABLE 1: OK (caption at 76, tabular ends at 658)",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000207"
+        },
+        {
+          "source_line": 208,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 19 tables pass verification. \n\n**修改了 15 个文件、19 个表格的 caption 位置**（从 tabular 下方移到上方），已同步到 `artifacts/_project/paper/`。\n\n| 文件 | 表格数 |\n|------|--------|\n| appendix_ablation.tex | 1 |\n| appendix_confusion_matrix.tex | 1 |\n| appendix_cross_model_detail.tex | 1 |\n| appendix_dataset_stats.tex | 1 |\n| appendix_ddr_causality.tex | 2 |\n| appendix_downstream.tex | 2 |\n| appendix_finer_depth.tex | 2 |\n| appendix_lofo.tex | 1 |\n| appendix_seed_control.tex | 1 |\n| appendix_transfer.tex | 1 |\n| method.tex | 1 |\n| results.tex | 2 |\n| table1.tex | 1 |\n| table2.tex | 1 |\n| table4.tex | 1 |\n\n其余 7 个文件（appendix_classifier, appendix_ddr_validation, appendix_decoding_strategy, appendix_human_edit, appendix_instruct, appendix_qualitative_examples, appendix_tost）的表格 caption 已在上方，无需修改。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "uuid": "dea18f07-d97a-4406-a441-c1b8b6ccdd6d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UfNdeciAF4kY96MoVMAZcp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1043,
+                "cache_read_input_tokens": 75725,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1043
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000208"
+        },
+        {
+          "source_line": 209,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 19 tables pass verification. \n\n**修改了 15 个文件、19 个表格的 caption 位置**（从 tabular 下方移到上方），已同步到 `artifacts/_project/paper/`。\n\n| 文件 | 表格数 |\n|------|--------|\n| appendix_ablation.tex | 1 |\n| appendix_confusion_matrix.tex | 1 |\n| appendix_cross_model_detail.tex | 1 |\n| appendix_dataset_stats.tex | 1 |\n| appendix_ddr_causality.tex | 2 |\n| appendix_downstream.tex | 2 |\n| appendix_finer_depth.tex | 2 |\n| appendix_lofo.tex | 1 |\n| appendix_seed_control.tex | 1 |\n| appendix_transfer.tex | 1 |\n| method.tex | 1 |\n| results.tex | 2 |\n| table1.tex | 1 |\n| table2.tex | 1 |\n| table4.tex | 1 |\n\n其余 7 个文件（appendix_classifier, appendix_ddr_validation, appendix_decoding_strategy, appendix_human_edit, appendix_instruct, appendix_qualitative_examples, appendix_tost）的表格 caption 已在上方，无需修改。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 297029,
+            "duration_api_ms": 349036,
+            "num_turns": 60,
+            "stop_reason": "end_turn",
+            "session_id": "71631f7a-0abb-4fb1-8c87-df07bd0abe31",
+            "total_cost_usd": 1.7198296500000003,
+            "usage": {
+              "input_tokens": 10,
+              "cache_creation_input_tokens": 148448,
+              "cache_read_input_tokens": 402860,
+              "output_tokens": 16586,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 148448,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 358,
+                  "cache_read_input_tokens": 75725,
+                  "cache_creation_input_tokens": 1043,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1043
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1504,
+                "outputTokens": 10781,
+                "cacheReadInputTokens": 177944,
+                "cacheCreationInputTokens": 82157,
+                "webSearchRequests": 0,
+                "costUSD": 0.17589965,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 10,
+                "outputTokens": 16586,
+                "cacheReadInputTokens": 402860,
+                "cacheCreationInputTokens": 148448,
+                "webSearchRequests": 0,
+                "costUSD": 1.54393,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "3eeb8849-f11c-4a41-a4e7-c80f8dd75bbd"
+          },
+          "id": "event-000209"
+        }
+      ]
+    }
+  ]
+}

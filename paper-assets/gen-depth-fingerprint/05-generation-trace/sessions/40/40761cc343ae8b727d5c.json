@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40761cc343ae8b727d5c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops check instruct experiments",
+  "task_key": "worker_ops_check-instruct-experiments_20260515T154840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-instruct-experiments_20260515T154840_result.json",
+    "occurrence": 1,
+    "bytes": 1312,
+    "sha256": "33f14e3ca330190f2ecf882e604b578f403e2df746dcf34796a53c75dff0336a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态报告\n\n### 1. Qwen3-1.7B-Instruct — 已完成 ✓\n- `review_p1c_instruct.json` 已存在（22:57 生成），4963 records，全 pipeline 完成\n- **关键发现：instruct 微调反转了深度指纹方向**\n  - hapax_ratio: instruct +0.48 vs base -0.67 (delta 1.15)\n  - ttr: instruct +0.48 vs base -0.65 (delta 1.13)\n  - entropy_mean: instruct +0.48 vs base -0.60 (delta 1.08)\n  - `differential_depth_response: false`\n\n### 2. OLMo-2-0425-1B-Instruct (GPU 0, PID 218484) — 生成中\n- **进度**: 855 / ~5000 records (~17%)\n- GPU 0: 50% util, 3638 MiB VRAM\n- 速率 ~45 records/min → **预计还需 ~90 min，ETA ~01:20 UTC**\n- Step 2 (features) 和 Step 3 (analysis) 尚未开始\n\n### 3. Qwen3-0.6B-Instruct (GPU 2, PID 219116) — 生成中\n- **进度**: 3343 / ~5000 records (~67%)\n- GPU 2: 33% util, 1900 MiB VRAM\n- 速率 ~186 records/min → **预计还需 ~9 min，ETA ~23:58 UTC**\n- 小模型生成速度快很多，即将完成 Step 1\n\n### GPU 总览\n| GPU | 状态 | 温度 | VRAM | Util |\n|-----|-------|------|------|------|\n| 0 (5090) | OLMo instruct 生成 | 52°C | 3.6/32.6 GB | 50% |\n| 1 (5090) | 空闲 | 29°C | 3 MiB | 0% |\n| 2 (5090) | Qwen3-0.6B 生成 | 45°C | 1.9/32.6 GB | 33% |\n| 3 (5090) | 空闲 | 27°C | 3 MiB | 0% |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-instruct-experiments.md"
+}

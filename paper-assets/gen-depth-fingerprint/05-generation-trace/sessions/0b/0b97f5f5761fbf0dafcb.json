@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b97f5f5761fbf0dafcb",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code gemma rp10 filter and extract",
+  "task_key": "worker_code_gemma-rp10-filter-and-extract_20260516T120943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gemma-rp10-filter-and-extract_20260516T120943_result.json",
+    "occurrence": 1,
+    "bytes": 1198,
+    "sha256": "e03d7d1a492049b669704fd2284fb1ca329dae53c47b8fe8d867be4dbd3cd3cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果：\n\n### Phase 1: Soft Filter\n\n| Depth | 原始 | 保留 | 移除率 |\n|-------|------|------|--------|\n| 0 | 994 | 994 | 0.0% |\n| 1 | 993 | 19 | 98.1% |\n| 2 | 990 | 16 | 98.4% |\n| 3 | 990 | 15 | 98.5% |\n| 4 | 990 | 17 | 98.3% |\n| **Total** | **4957** | **1061** | **78.6%** |\n\n**与预期不符**：Gemma-2-2B rp=1.0 在 depth ≥ 1 时严重退化（repeated_4gram_ratio > 0.5 的样本占 ~98%）。Depth-0（原始人类文本）完全未受影响。这说明 Gemma-2-2B 无 repetition penalty 时在递归生成中几乎全面崩溃。\n\n### Phase 2: 3-ref Feature Extraction\n\n| 文件 | 行数 |\n|------|------|\n| `features_pythia410m.jsonl` | 1061 |\n| `features_olmo2-1b.jsonl` | 1061 |\n| `features_qwen3-06b.jsonl` | 1061 |\n\n特征字段：`seed_id, depth, entropy_mean, entropy_std, entropy_min, entropy_max, tail_decay, ttr, hapax_ratio`\n\n90th percentile NLL thresholds (from depth-0):\n- Pythia-410M: 6.5664\n- OLMo-2-1B: (logged in first run)\n- Qwen3-0.6B: 6.2773\n\n**注意**：过滤后仅剩 67 条 depth > 0 样本，下游分类实验可能需要考虑是否对 Gemma 使用不同 filter 阈值或完全跳过 filter。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gemma-rp10-filter-and-extract.md"
+}

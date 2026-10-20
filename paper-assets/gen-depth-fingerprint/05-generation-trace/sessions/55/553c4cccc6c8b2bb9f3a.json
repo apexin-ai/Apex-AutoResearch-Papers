@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "553c4cccc6c8b2bb9f3a",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "compile fix labels and bib",
+  "task_key": "worker_compile_fix-labels-and-bib_20260519T175053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compile_fix-labels-and-bib_20260519T175053_result.json",
+    "occurrence": 1,
+    "bytes": 1040,
+    "sha256": "27dee6f4bc3790c9713fc130611643b3ee264a054fe7cd941be3488017375c3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. SCP references.bib\n上传成功，630 行 bib 文件覆盖远程。\n\n### 2. 远程 grep 发现的重复 label\n| Label | 正确位置 | 重复位置 |\n|-------|---------|---------|\n| `fig:baseline-ci` | main.tex:130 (appendix) | results.tex:103 |\n| `tab:ablation` | appendix_ablation.tex:14 | results.tex:89 |\n| `tab:cross-ref` | table4.tex:15 (via main.tex:139) | table4.tex 被 results.tex:74 `\\input{table4}` 再次引入 |\n\n### 3. 修复操作\n用本地正确版的 results.tex 直接 SCP 覆盖远程。本地 results.tex 不含上述三个重复定义（无 `\\input{table4}`、无 ablation 表格副本、无 baseline-ci 图副本）。\n\n### 4. 编译结果\n- **Errors**: 0\n- **Undefined citations**: 0\n- **Undefined references**: 0\n- **Multiply-defined labels**: 0\n- **总页数**: 32 页 (2.9 MB)\n\n### 5. 本地同步文件\n- `docs/paper/results.tex` — 已更新\n- `docs/paper/references.bib` — 已更新\n- `artifacts/_project/paper/` — 本身就是源，无需更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/compile-fix-labels-and-bib.md"
+}

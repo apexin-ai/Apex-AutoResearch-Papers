@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a534a3d3dbb43d08df0",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_3_1778816168.md",
+  "task_key": "loop_3_1778816168",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778816168.md",
+    "occurrence": 1,
+    "bytes": 4657,
+    "sha256": "a845fa253378673cbba9532adb0a319aebe35aaaba600c1448eff1759d9d8dc0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-15T03:36:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 的 cuda:0/1/2/3，无其他服务器/卡\n- plan-014 的 Qwen3-8B 生成用 nohup 启动（非 submit_training_job），因为 tmux_backend 有 SIGHUP bug（见 memory.md SIGHUP 事故）。完成后必须用 recovered 文件（`data/qwen3-8b/generations_shard0_recovered.jsonl`）覆盖 `generations_shard0.jsonl`，否则数据不完整\n- submit_training_job 注入 CUDA_VISIBLE_DEVICES 后脚本内只能用 `--device cuda:0`，不能用物理卡号\n- 所有训练输出写 `/root/autodl-tmp/`，根分区只有 ~30GB（已发生过磁盘满事故）\n- Claim 3 (Downstream Utility) 已确认 negative（D009），不可再用 depth curation 做正面 claim\n- EMNLP 已放弃（D010），主投 AAAI 2027 (DDL 2026-08-02)\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: autodl-5090，工作目录 `/root/gen-depth-fingerprint`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不用 venv），激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**: `/root/autodl-tmp/models/`（Pythia, OLMo, Qwen 全系列路径见 memory.md \"模型路径\"表）\n- **HF cache**: `HF_HOME=/root/autodl-tmp/.hf_cache`\n- **数据**: `/root/gen-depth-fingerprint/data/`（各模型子目录），downstream 实验输出在 `/root/autodl-tmp/gen-depth-fingerprint/experiments/downstream/`\n- **活跃进程**:\n  - plan-014: PID 134817 (nohup, cuda:0)，Qwen3-8B 生成 767/996 seeds，cron 监控中\n  - plan-005-cont: PID 164658 (tmux, cuda:1)，Pythia-2.8B continuation prompt\n  - plan-005-elab: PID 164737 (tmux, cuda:2)，Pythia-2.8B elaboration prompt\n  - plan-005-rewrite: PID 164881 (tmux, cuda:3)，Pythia-2.8B inspired_rewriting prompt\n- **cron**: plan-014 有活跃 cron 监控\n\n### 3. 📊 当前状态\n**刚完成**: plan-004-v2（Downstream Utility 15/15 runs 全部完成，结论 negative——D009 reframe 为 diagnostic-not-curative）；plan-015/015-v2（ordinal baseline + bootstrap CI，7-feature ensemble LOGO F1=0.80 显著优于所有单检测器）。\n\n**正在跑**:\n- **plan-014** (RUNNING): Qwen3-8B-Base 生成链，77% 完成（767/996 seeds），ETA ~30-50min。完成后需做：recovered 文件覆盖 → 特征提取 → 6-gen LOGO 分类评估 → RC9 结论\n- **plan-005** (PREPARING→RUNNING): 3 种 prompt type（continuation/elaboration/inspired_rewriting）用 Pythia-2.8B 各跑 1000 seeds，cuda:1/2/3 并行，刚提交\n\n**等待中**:\n- plan-014 cron 回调（进程完成时触发）\n- plan-005 的 3 个子实验 cron 回调\n- 无 pending Director 决策\n- 无运行中 Worker\n\n### 4. 📋 待办（条件触发式）\n- plan-014 cron 回调（完成） → spawn Worker: (1) 用 recovered 文件覆盖 shard0, (2) 合并 Qwen3-8B 数据到 features_all_models.csv, (3) 运行 6-gen LOGO 分类 → 若 LOGO F1 ≥0.75 则 RC9=supported，否则 RC9=limitation → 更新 registry + report.md → 汇报 Director\n- plan-014 cron 回调（失败） → 检查日志，判断能否用 recovered 文件单独跑（77% 数据可能已足够分析）\n- plan-005 三个子实验全部完成 → spawn Worker 做 prompt type 对比分析（3 种 prompt 的 depth signal 强度差异 + 对 RC6 的回应）\n- 全部 P0 实验完成 + RC9 结论出 → 汇报 Director，建议启动 Paper Agent 写初稿\n- paper_framing.md headline template 需更新（去除 downstream 占位符，因 Claim 3 已 negative）\n\n### 5. 🎯 战略上下文\n**项目核心结论**（D001→D010 决策链）：递归 LLM 生成链展现 differential depth response。7-feature ensemble LOGO F1=0.80，跨 5 生成器 / 3 模型家族一致优于所有单检测器 baseline（p<0.001）。贡献定位：empirical + conceptual（novel task formulation + 跨生成器实证），非 methodological。Claim 3 (downstream utility) 已确认 negative 并 reframe。\n\n**关键判断点**:\n- plan-014 (RC9) 是最后一个 P0 实验。若 7B+ 模型深度信号弱 → honest limitation 但不改核心 story；若 comparable → 强泛化证据。这决定论文强度\n- plan-005 (RC6) 是 secondary，回应\"只用 continuation prompt\"的攻击面\n- 下一个\"我\"最易犯的错：(1) plan-014 recovered 文件逻辑——必须先覆盖再做后续分析，不能直接用 shard0 (2) 不要尝试重新提交 plan-014，进程仍在跑 (3) plan-005 的 3 个子实验是独立 registry 条目（plan-005-cont/elab/rewrite），不是 plan-005 本身\n- AAAI 2027 DDL 8月2日，时间充裕（~11周），不必赶。全部 P0 完成后启动 Paper Agent\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778816168.md"
+}

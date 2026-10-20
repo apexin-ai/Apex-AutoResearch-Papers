@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59a82f5bf099db99fbb5",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis plan 004 v2 results",
+  "task_key": "worker_analysis_plan-004-v2-results_20260515T031001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-004-v2-results_20260515T031001_result.json",
+    "occurrence": 1,
+    "bytes": 1073,
+    "sha256": "aa5f3368af3a57fa1642d087cd77e0129d53b535e97a13813c85cf5fce8f2e98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n**排序**（lower PPL = better）：all (2.335) > size_matched (2.367) > depth01 (2.387) > binary_filtered (2.389) > depth0_only (2.682)\n\n**关键结论**：\n\n1. **\"Depth-aware curation helps\" 不成立。** 在同等数据量（3951 samples）下，随机采样（size_matched）的 PPL 比 depth01 低 0.020、比 binary_filtered 低 0.022。两种 filtering 策略都不如随机。\n\n2. **数据量是主导因素。** all (12299 samples) 比 size_matched (3951) 低 0.032 PPL——这是实验中最大的效应，且方向明确。\n\n3. **统计显著性的 caveat：** 虽然所有对比的 bootstrap CI 都不跨 0，但这是因为 seed 间方差极小（<0.001），而非样本量充足。n=3 的 bootstrap 只有 8 种 resample 模式，CI 的\"紧\"是假象。\n\n4. **实际差异很小：** 三个 size-matched variant 之间总 spread 仅 0.022 PPL，难以支撑任何 filtering 优于 random 的 claim。\n\n报告已保存到服务器 `artifacts/plan-004-v2/downstream_analysis.txt` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-004-v2-results.md"
+}

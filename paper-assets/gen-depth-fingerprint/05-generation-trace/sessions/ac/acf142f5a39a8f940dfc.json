@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "acf142f5a39a8f940dfc",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper compile verify vspace restored",
+  "task_key": "worker_paper_compile-verify-vspace-restored_20260522T230457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile-verify-vspace-restored_20260522T230457_result.json",
+    "occurrence": 1,
+    "bytes": 815,
+    "sha256": "5a719b97148e122f518b828fd154f43aa761202ac60be238a3f629821986da1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译验证完成。结果汇总：\n\n| 检查项 | 结果 |\n|--------|------|\n| 本地↔远程文件一致性 | ✓ 所有 .tex/.bib MD5 一致，无需传输 |\n| `\\raggedbottom` in main.tex | ✓ 存在 |\n| `\\vspace{-2mm}` in discussion.tex | ✓ 2处 |\n| `\\vspace{-2mm}` in conclusion.tex | ✓ 2处（非 enlargethispage） |\n| `\\vspace{-1mm}` in results.tex | ✓ 4处 |\n| `\\vspace{-1mm}` in method.tex | ✓ 1处 |\n| `\\vspace{-1mm}` in limitations.tex | ✓ 2处 |\n| Errors | 0 |\n| Undefined references | 0 |\n| Missing citations | 0 |\n| 总页数 | 36 |\n| **Conclusion 位置** | **第8页** ✓ |\n| MD5 | `053310847b014f66ba99eae0f59a1a6d` |\n\n注意：本地文件中不存在 `\\enlargethispage`，conclusion.tex 使用的是两处 `\\vspace{-2mm}` 来压缩空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-verify-vspace-restored.md"
+}

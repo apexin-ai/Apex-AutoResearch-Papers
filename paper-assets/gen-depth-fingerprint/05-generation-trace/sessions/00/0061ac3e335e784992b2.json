@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0061ac3e335e784992b2",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops plan 014 data recovery",
+  "task_key": "worker_ops_plan-014-data-recovery_20260515T033846",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan-014-data-recovery_20260515T033846_result.json",
+    "occurrence": 1,
+    "bytes": 487,
+    "sha256": "334a2666d3bca14a5ce95201c6c7e0301700ebac6212b2906324229c92e52ffa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **恢复文件**：3675 行，数据完整，内容格式正常（包含 id、depth、text、seed_id、token_count、model 字段）\n- **Watchdog PID**：166222，每 30 秒从 /proc/134823/fd/50 同步最新数据，进程结束时自动覆盖 generations_shard0.jsonl\n- **数据完整性**：3675 行远超原始磁盘文件的 416 行，恢复成功。进程仍在运行（802/996 seeds），watchdog 会持续追踪直到进程结束并做最终复制"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan-014-data-recovery.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4c94e82e315de48fe2c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code mvp features",
+  "task_key": "worker_code_mvp-features_20260514T165847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-features_20260514T165847_result.json",
+    "occurrence": 1,
+    "bytes": 831,
+    "sha256": "d3839889ed1721716064c62799c3b0b478f966aeabc80a4d7dcf91efc53d180a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本 dry-run 全部通过。\n\n**结果汇总：**\n\n| 脚本 | dry-run 状态 | 说明 |\n|------|-------------|------|\n| `extract_features.py` | PASS | 加载 Pythia-410M → 提取 10 条文本的 entropy/tail_decay/ttr/hapax_ratio → 输出 features.csv (10×10) |\n| `classify_and_eval.py` | PASS | 模拟 1000 条 → 3-class XGBoost → macro-F1=0.745, binary F1=0.873 → Verdict: PASS → 保存 mvp_results.json |\n\n**注意事项：**\n- `extract_features.py` 读取到了 `generations.jsonl` 中已有的 10 条数据（另一个 Worker 已开始写入），说明数据生成和特征提取可衔接\n- 模型加载使用本地 snapshot 路径 + `local_files_only=True`，无需网络\n- `torch_dtype` 有 deprecation warning（改用 `dtype`），不影响功能，正式运行时可修复"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-features.md"
+}

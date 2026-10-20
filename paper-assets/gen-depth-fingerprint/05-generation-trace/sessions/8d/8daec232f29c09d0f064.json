@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8daec232f29c09d0f064",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper round39 sf3 sf7",
+  "task_key": "worker_paper_round39-sf3-sf7_20260522T013451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_round39-sf3-sf7_20260522T013451_result.json",
+    "occurrence": 1,
+    "bytes": 1016,
+    "sha256": "29d89916960ae74c3b951418b132959ed2542d42ee5ce3591c60f5eb8bd52e1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits applied to both copies. Summary:\n\n| Task | Result |\n|------|--------|\n| **SF-3** | Added \"power is limited with only three depth levels\" caveat to TOST sentence (results.tex L93). Compensated by removing redundant `Cohen's~\\citeyearpar{cohen1988statistical} conventional threshold` (already cited on L87). |\n| **SF-4** | **Already covered** — L8 explains gen-0 inflation, L46 caption has the `$^{\\dagger}$` footnote. No change needed. |\n| **SF-5** | Added `(F1\\,=\\,0.62--0.65; Appendix~\\ref{app:domain})` to discussion.tex L15, replacing the bare appendix ref. Inline addition, no line change. |\n| **SF-6** | **Already covered** — L19-20 already explains that DDR complements concurrent works by isolating *what* converges vs. *why*. No change needed. |\n| **SF-7** | Added \"albeit requiring per-generator fine-tuning (DDR's handcrafted features are generator-agnostic)\" to results.tex L17. Compensated by trimming \"empirical\" and \"specific\" from the same sentence. |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-round39-sf3-sf7.md"
+}

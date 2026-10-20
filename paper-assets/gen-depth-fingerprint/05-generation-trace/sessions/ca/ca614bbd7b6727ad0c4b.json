@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "ca614bbd7b6727ad0c4b",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper layout figures tables",
+  "task_key": "worker_paper_layout-figures-tables_20260525T073028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_layout-figures-tables_20260525T073028_result.json",
+    "occurrence": 1,
+    "bytes": 2125689,
+    "sha256": "7c92fc6005cff51625117db1a67ed2e98b139210faba607ac9bdcb0b06d0435b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2125709,
+                "serialized_sha256": "0ccc0294993c5a94bb7731b846e09720f42726e2f81d231a205689101dfc7fd8",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-layout-figures-tables.md"
+}

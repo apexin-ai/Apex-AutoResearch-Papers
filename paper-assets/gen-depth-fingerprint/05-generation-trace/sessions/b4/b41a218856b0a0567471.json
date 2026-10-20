@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b41a218856b0a0567471",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "run exp 057 9gen rerun",
+  "task_key": "worker_run_exp_057_9gen_rerun_20260520T073632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_exp_057_9gen_rerun_20260520T073632_result.json",
+    "occurrence": 1,
+    "bytes": 2441,
+    "sha256": "bab587e955d41a94d84ba0cfdc5a880bcae92f4d7767637708ef1243e5b36495"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 9-gen LOGO 结果（修复 Gemma 数据后）\n\n### 总体\n\n| 指标 | 值 |\n|------|-----|\n| 总样本数 | 42,015 (旧: 38,119, +3,896) |\n| 3-class F1 | **0.7510** |\n| Binary F1 | **0.6661** |\n| 8-gen baseline | 0.7698 |\n| Δ (9gen - 8gen) | **-0.0188** |\n\n### Per-generator 3-class F1（held-out）\n\n| Generator | F1 | 95% CI | Binary F1 | Δ vs 8gen |\n|-----------|-----|--------|-----------|-----------|\n| pythia-1b | 0.8571 | [0.848, 0.866] | 0.7850 | +0.0007 |\n| qwen3-0.6b | 0.8185 | [0.807, 0.830] | 0.7432 | -0.0039 |\n| pythia-2.8b | 0.8117 | [0.801, 0.822] | 0.7281 | -0.0052 |\n| qwen3-1.7b | 0.8114 | [0.800, 0.823] | 0.7460 | +0.0016 |\n| olmo-2-1b | 0.7732 | [0.762, 0.784] | 0.6917 | -0.0010 |\n| llama-3.2-3b | 0.7591 | [0.748, 0.770] | 0.6797 | -0.0030 |\n| qwen3-8b | 0.6955 | [0.683, 0.709] | 0.6468 | -0.0054 |\n| **gemma-2-2b** | **0.6279** | [0.622, 0.634] | **0.4402** | (new) |\n| mistral-7b-v0.3 | 0.6045 | [0.593, 0.617] | 0.5338 | -0.0114 |\n\n### 修复前后对比（Gemma-2-2B）\n\n| 指标 | 旧 (1061行) | 新 (4957行) | 变化 |\n|------|------------|------------|------|\n| 3-class F1 | 0.6143 | 0.6279 | +0.014 |\n| gen-0 F1 | 0.9737 | 0.9914 | +0.018 |\n| gen-1 F1 | 0.0625 | 0.0363 | -0.026 |\n| gen-2+ F1 | 0.8067 | 0.8560 | +0.049 |\n| Binary F1 | 0.5539 | 0.4402 | **-0.114** |\n| Binary CI | [0.422, 0.684] | [0.432, 0.449] | CI 大幅收窄 |\n\n### 关键发现\n\n1. **9-gen 总体 F1 基本不变**：0.7510 vs 旧的 0.7516，差异 -0.0006，修复 Gemma 数据对整体影响很小。\n\n2. **Gemma-2-2B 是最难泛化的 generator 之一**：3-class F1=0.628，仅略高于 Mistral (0.605)。gen-1 F1 极低（0.036），说明分类器几乎无法区分 Gemma 的 gen-1 和其他类别。Binary F1=0.440，9 个 generator 中最低。\n\n3. **Qwen3-8B（7B+ 代表）表现中等偏下**：3-class F1=0.696，binary F1=0.647。在小模型（pythia-1b=0.857, qwen3-0.6b=0.819）和大模型之间有明显的 gap，与 model scale 使分类更困难的假设一致。\n\n4. **vs 8-gen baseline**：加入 Gemma 后，原有 8 个 generator 的表现普遍轻微下降（-0.011 ~ +0.002），最大降幅在 Mistral（-0.011）。总体 Δ=-0.019，表明增加 diverse generator 会稍微增加泛化难度。\n\n5. **CI 收窄是修复的主要收益**：旧 Gemma binary CI 宽度 0.262，新的仅 0.017——数据充足后置信区间合理了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-exp-057-9gen-rerun.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f5b2785d1c3684ee2e9",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper caption above table",
+  "task_key": "worker_paper_caption-above-table_20260522T061857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_caption-above-table_20260522T061857_result.json",
+    "occurrence": 1,
+    "bytes": 916,
+    "sha256": "6ad8699bc1fa41cb85c4511afb4862411dde994c6909b7cde0c0c3a4f3c0edf1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 19 tables pass verification. \n\n**修改了 15 个文件、19 个表格的 caption 位置**（从 tabular 下方移到上方），已同步到 `artifacts/_project/paper/`。\n\n| 文件 | 表格数 |\n|------|--------|\n| appendix_ablation.tex | 1 |\n| appendix_confusion_matrix.tex | 1 |\n| appendix_cross_model_detail.tex | 1 |\n| appendix_dataset_stats.tex | 1 |\n| appendix_ddr_causality.tex | 2 |\n| appendix_downstream.tex | 2 |\n| appendix_finer_depth.tex | 2 |\n| appendix_lofo.tex | 1 |\n| appendix_seed_control.tex | 1 |\n| appendix_transfer.tex | 1 |\n| method.tex | 1 |\n| results.tex | 2 |\n| table1.tex | 1 |\n| table2.tex | 1 |\n| table4.tex | 1 |\n\n其余 7 个文件（appendix_classifier, appendix_ddr_validation, appendix_decoding_strategy, appendix_human_edit, appendix_instruct, appendix_qualitative_examples, appendix_tost）的表格 caption 已在上方，无需修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-caption-above-table.md"
+}

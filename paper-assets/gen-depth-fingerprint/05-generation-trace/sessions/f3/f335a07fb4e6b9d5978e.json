@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f335a07fb4e6b9d5978e",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "monitor exp062 cron triage",
+  "task_key": "worker_monitor_exp062-cron-triage_20260521T195442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp062-cron-triage_20260521T195442_result.json",
+    "occurrence": 1,
+    "bytes": 1163,
+    "sha256": "2d7fba1f7568ca1ba493a3b0d28af1e7c04d6673c19e32d644f925745f163423"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论：PID 369104 退出 — **正常完成**\n\n### 证据\n\n| 检查项 | 结果 |\n|--------|------|\n| **greedy chain** | 996/996 seeds 全部完成，输出 **4700 条记录**（跳过 124 条），耗时 4h28m |\n| **退出方式** | 日志显示 greedy 完成后进入 topk 阶段（\"Resuming: 624 seeds done\"），随后被终止。无 anti-dup watcher 日志，推断是 watcher 脚本已清理或未持久化日志，但 PID 369104 在 greedy 完成后被 kill 属于预期行为 |\n| **greedy features** | 已提取完毕：`data/features_qwen3-8b-greedy.csv`（640KB，03:53 生成） |\n\n### 其他进程状态\n\n| 进程 | 状态 |\n|------|------|\n| **PID 375795** (Qwen3-8B topk, cuda:0) | **运行中**，已运行 2h35m，进度 **2919 lines**（目标 ~4700+） |\n| **PID 357811** (Qwen3-0.6B topk) | **已退出**，进度 4556 lines |\n| **PID 372588, 376120** | **已退出** |\n| **Feature watcher** | 已完成所有提取，含 qwen3-8b-topk features（2885 条） |\n\n### 当前唯一活跃任务\n\nPID 375795（Qwen3-8B topk on cuda:0）仍在运行，2919/~4700 约 62% 进度，预计还需 ~1.5h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp062-cron-triage.md"
+}

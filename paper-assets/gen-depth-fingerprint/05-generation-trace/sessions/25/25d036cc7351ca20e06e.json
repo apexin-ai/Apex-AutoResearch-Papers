@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25d036cc7351ca20e06e",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code fig1 8gen redraw",
+  "task_key": "worker_code_fig1-8gen-redraw_20260516T164859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig1-8gen-redraw_20260516T164859_result.json",
+    "occurrence": 1,
+    "bytes": 239,
+    "sha256": "bde7793eba5462922284406c5a25102717bf78f358f68a02b0e0dc4ab165058d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Figure 1 已重绘并覆盖：\n- PDF: 26.6 KB\n- PNG: 123.5 KB (300 dpi)\n\n8 个 generator 的 per-gen Spearman ρ dots 按 family 颜色编码，pooled median 用黑色横线标注，legend 显示 5 个 family。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig1-8gen-redraw.md"
+}

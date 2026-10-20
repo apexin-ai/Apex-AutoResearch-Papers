@@ -1,0 +1,16 @@
+{
+  "exp_id": "mvp_002",
+  "project": "svs_formal_verification",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:08:19.727Z",
+    "updated_at": "2026-05-14T09:08:31.087Z",
+    "hypothesis": "量词修复 + PCV 后，Z3 IC 能区分正确和错误推理链（正确链 IC 显著高于错误链）",
+    "parent": "mvp_001"
+  },
+  "timestamp": "2026-05-14T09:08:31.121286+00:00",
+  "trigger": "update_registry"
+}

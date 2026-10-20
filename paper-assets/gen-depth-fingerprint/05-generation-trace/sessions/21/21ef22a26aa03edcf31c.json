@@ -1,0 +1,284 @@
+{
+  "schema_version": "1.0",
+  "id": "21ef22a26aa03edcf31c",
+  "project": "gen-depth-fingerprint",
+  "kind": "conversation",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260515T045642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_related_work_20260515T045642.jsonl",
+    "occurrence": 1,
+    "bytes": 17920,
+    "sha256": "68acb8723377695ce375b37175b37a212bf30d0c5352adc77f99eb9d4a391485"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "tool_call": 6,
+      "tool_result": 6,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T04:57:55.170271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T045642",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T04:57:55.171091+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T045642",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T04:57:55.171369+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T045642",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T04:57:55.171729+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tWeb-crawled corpora are the dominant source of pretraining data for large language models (LLMs), yet an increasing fraction of this data is itself LLM-generated.\n5\tEstimates suggest that 7--17\\% of recent scientific papers and peer reviews contain substantial LLM-modified content \\cite{mapping_llm_science,monitoring_ai_review}, and this proportion continues to grow as generated text enters the web and becomes seed material for subsequent generation.\n6\tThe result is recursive generation chains whose outputs progressively diverge from human-written text---a problem that current detection methods are ill-equipped to address.\n7\t\n8\tExisting detectors \\cite{fast_detectgpt,binoculars,ld_score,detectgpt} provide binary real-vs-synthetic classification, forcing an all-or-nothing filtering decision: discard everything flagged as synthetic, losing potentially useful first-generation content, or retain everything, admitting text with compounding distributional drift.\n9\tThis conflates qualitatively different material.\n10\tA first-generation continuation---an LLM expanding a human-written passage---retains much of the source distribution's lexical and structural properties.\n11\tA third- or fourth-generation text, conditioned recursively on prior LLM outputs, exhibits measurably reduced vocabulary diversity, compressed perplexity, and narrower token probability distributions.\n12\tTreating these as a single ``synthetic'' category discards provenance information that could inform risk-stratified curation decisions.\n13\t\n14\tWe argue that a finer-grained characterization is needed: \\emph{ordinal depth estimation}, the task of classifying text into generation depth classes (gen-0\\,/\\,gen-1\\,/\\,gen-2+) rather than producing a binary label.\n15\tNo existing method addresses this task directly.\n16\tWhen repurposed as ordinal depth predictors, individual detection scores exhibit high cross-generator variance---confidence intervals spanning\n…[truncated 3753 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T045642",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T04:57:55.171981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T045642",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T04:57:55.172226+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Task Formulation}\n5\t\\label{sec:task}\n6\t\n7\tWe formalize \\textbf{ordinal depth estimation}: given a text passage $x$, predict its generation depth $d \\in \\{0, 1, 2{+}\\}$, where $d{=}0$ denotes human-written text, $d{=}1$ is first-generation LLM output conditioned on a human seed, and $d{=}2{+}$ is text produced by recursively prompting an LLM with its own prior output.\n8\t\n9\tThis formulation differs from binary detection \\cite{detectgpt,fast_detectgpt,binoculars}, which collapses all synthetic text into a single class, and from source attribution \\cite{uchendu_attribution}, which identifies the generating model rather than the generation history. The ordinal framing enables \\emph{risk-stratified} data curation: gen-1 text retains substantial properties of its human seed, whereas gen-2+ text carries compounding distributional drift \\cite{curse_of_recursion,self_consuming_mad} and poses higher contamination risk.\n10\t\n11\t\\subsection{Generation Chain Construction}\n12\t\\label{sec:chains}\n13\t\n14\tWe construct non-paraphrastic generation chains using 6 generators spanning 3 model families: \\textbf{Pythia} (Pythia-2.8B, Pythia-1B), \\textbf{OLMo} (OLMo-2-1B), and \\textbf{Qwen} (Qwen3-1.7B, Qwen3-0.6B, Qwen3-8B). This selection covers a parameter range from 0.6B to 7.6B and ensures that cross-generator generalization is evaluated across architecturally distinct model families.\n15\t\n16\tFor each generator, we sample ${\\sim}$1{,}000 seed passages from OpenWebText as depth-0 (human-written) text. Each seed is extended through a 4-step continuation chain: the prompt \\texttt{\"Continue the following text:\"} is applied iteratively to produce depths gen-1 through gen-4. All generations use temperature $0.7$, top-$p$ sampling at $0.9$ \\cite{nucleus_sampling}, and a maximum of 256 new tokens. The continuation (non-paraphrastic) setting preserves the sequential generation context without the semantic-preservation constraint of paraphrasi\n…[truncated 5219 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T045642",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T04:57:55.172477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T045642",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/",
+              "description": "List paper directory contents"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T04:57:55.172736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 116\ndrwxr-xr-x 3 ubuntu ubuntu  4096 May 15 04:52 .\ndrwxr-xr-x 3 ubuntu ubuntu  4096 May 15 04:16 ..\n-rw-r--r-- 1 ubuntu ubuntu 11615 May 15 04:19 acl.sty\n-rw-r--r-- 1 ubuntu ubuntu 45186 May 15 04:19 acl_natbib.bst\ndrwxr-xr-x 2 ubuntu ubuntu  4096 May 15 04:16 figures\n-rw-r--r-- 1 ubuntu ubuntu  5633 May 15 04:44 introduction.tex\n-rw-r--r-- 1 ubuntu ubuntu  7051 May 15 04:36 method.tex\n-rw-r--r-- 1 ubuntu ubuntu 15100 May 15 04:52 references.bib\n-rw-r--r-- 1 ubuntu ubuntu 11108 May 15 04:45 results.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T045642",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T04:57:55.172955+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T045642",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -oP '(?<=@\\w{1,20}\\{)[^,]+' /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/references.bib | sort",
+              "description": "Extract all BibTeX citation keys"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T04:57:55.173153+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "aaronson_watermark\nbinoculars\nbroken_telephone\nccnet\nchainwash\ncurious_decline\ncurse_of_recursion\ndetectgpt\ndetection_possibilities\ndiveye\ndna_gpt\ndsir\nfast_detectgpt\nfeat_aug_transformer\ngenerator_barrier\ngltr\ngrover\nintrinsic_dimension\njawahar_survey\nkoppel_authorship\nld_score\nmapping_llm_science\nmarkovian_chains\nmin_k_percent\nmodel_collapse_avoidable\nmonitoring_ai_review\nnucleus_sampling\nolmo\nood_baseline\nparaphrase_evades\npythia\nqurating\nqwen3\nrelease_strategies\nreliable_detection\nself_consuming_mad\nstamatatos_survey\nstrong_model_collapse\nsynthid_text\nuchendu_attribution\nwatermark_llm\nwriting_diversity\nxgboost"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T045642",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T04:57:55.173371+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T045642",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/related_work.tex",
+              "content": "\\section{Related Work}\n\\label{sec:related}\n\n\\subsection{AI-Generated Text Detection}\n\\label{sec:related-detection}\n\nMethods for distinguishing human-written from machine-generated text have evolved from statistical tests on token-level distributions \\cite{gltr,grover,release_strategies} to zero-shot approaches exploiting reference-model likelihoods \\cite{detectgpt,fast_detectgpt,binoculars,dna_gpt} and learned classifiers over linguistic features \\cite{feat_aug_transformer,reliable_detection,ld_score}.\nRecent work has pursued diverse detection signals: \\citet{intrinsic_dimension} use intrinsic dimensionality estimates, \\citet{diveye} propose surprisal diversity features directly comparable to our shape-based measures, and \\citet{generator_barrier} characterize the distributional gap between human and model outputs.\n\\citet{jawahar_survey} provide a comprehensive survey.\nA persistent limitation is that all these methods produce binary (real vs.\\ synthetic) decisions.\nEven when detection scores correlate with generation depth, they exhibit high cross-generator variance when repurposed as ordinal predictors (CI spanning 0.59--0.82 in macro-F1; \\S\\ref{sec:results-baselines}), because each score captures a single distributional property that generalizes inconsistently.\n\\citet{paraphrase_evades} and \\citet{detection_possibilities} further demonstrate that detection robustness degrades under distributional shift.\nOur reference-model entropy features are functionally NLL-based out-of-distribution scores \\cite{ood_baseline}; the contribution is not a new detection method but the task formulation (ordinal depth estimation) and the empirical finding that combining drifting and stationary features yields consistent cross-generator performance.\n\n\\subsection{Model Collapse and Iterative Generation}\n\\label{sec:related-collapse}\n\nA growing body of work studies quality degradation when models are trained on their own outputs.\n\\citet{self_consuming_mad} demonstrate that self-consuming generative models progressively lose distributional coverage, and \\citet{curse_of_recursion} show that model collapse is inevitable in successive fine-tuning rounds without fresh human data, though \\citet{model_collapse_avoidable} identify conditions under which careful data mixing can mitigate this effect.\n\\citet{strong_model_collapse} extend these results to larger-scale settings.\nThese studies focus on \\emph{training-loop} degradation, where model weights are updated on recursive data.\nOur setting is different: we study \\emph{inference chains}, where a fixed model generates text conditioned on its own prior output without retraining.\n\nTwo concurrent lines of work are most directly relevant.\n\\citet{broken_telephone} analyze paraphrasing and translation chains, showing progressive information loss analogous to the telephone game.\n\\citet{markovian_chains} provide a theoretical framework for convergence in iterative text transformations, demonstrating that semantic-preservation constraints induce attractor dynamics that bound distinguishable depth to approximately three classes.\nOur work differs in two respects: we study \\emph{non-paraphrastic continuation} chains, where the absence of semantic anchoring permits richer depth signal beyond the attractor bound; and we focus on \\emph{estimating} depth from text features rather than characterizing convergence behavior.\n\n\\subsection{Vocabulary Diversity and Stylometry}\n\\label{sec:related-diversity}\n\nDeclining lexical diversity in LLM-generated text is documented in both training \\cite{curious_decline} and deployment \\cite{writing_diversity} settings.\nOur surface features---type-token ratio and hapax ratio---instantiate this observation for inference chains, where we show monotonic diversity decline across generation depths without any model retraining.\n\nThese features are classical stylometric measures with a long history in authorship attribution \\cite{stamatatos_survey,koppel_authorship}.\n\\citet{uchendu_attribution} extend stylometric and neural methods to multi-class attribution of text to specific generators.\nWe push beyond generator identity to the \\emph{depth} dimension: text from the same generator at different depths exhibits systematically different feature profiles, and these profiles generalize across generators.\nSampling strategies also affect diversity; \\citet{nucleus_sampling} show that top-$p$ sampling mitigates some degeneration, but our results demonstrate that diversity still declines monotonically across recursive application of the same sampling procedure.\n\n\\subsection{Data Quality and Provenance}\n\\label{sec:related-provenance}\n\nScalable data curation relies on quality signals to filter web-crawled corpora.\n\\citet{dsir} select pretraining data to match a target distribution, \\citet{qurating} learn quality scores from LLM judgments, and \\citet{ccnet} filter Common Crawl via perplexity-based heuristics.\nGeneration depth is a complementary provenance signal: it characterizes \\emph{how many steps removed} text is from a human source, orthogonal to content quality per se.\n\nAn alternative approach is proactive provenance through watermarking \\cite{watermark_llm,synthid_text,aaronson_watermark}, where identifiable patterns are embedded during generation.\nHowever, \\citet{chainwash} demonstrate that watermark strength decays across multi-step generation chains, motivating passive post-hoc methods that do not require generator cooperation.\nOur depth fingerprinting is such a method: it operates on text alone without assuming access to the generating model or an embedded watermark.\nAt the feature level, our reference-model NLL analysis connects to \\citet{min_k_percent}, who use the probability distribution's lower tail for membership inference; we analyze the full NLL distribution for a different purpose---ordinal depth estimation rather than training-set membership.\n"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T04:57:55.173677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/related_work.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T045642",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T04:57:55.173919+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Related Work 已写入 `/docs/paper/related_work.tex`。4 个子节，覆盖全部 39 个指定引用，约 1 页篇幅。术语与 Introduction/Method 一致（ordinal depth estimation、differential depth response、LOGO、non-paraphrastic continuation chains）。每个子节末尾明确定位与本工作的区别，贡献定位为 empirical/conceptual 而非 methodological。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T045642"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-related-work.md"
+}

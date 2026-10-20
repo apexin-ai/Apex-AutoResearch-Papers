@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1899ce04f6cf6a7434e5",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper mechanistic anova convergence",
+  "task_key": "worker_paper_mechanistic-anova-convergence_20260522T113138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_mechanistic-anova-convergence_20260522T113138_result.json",
+    "occurrence": 1,
+    "bytes": 1085,
+    "sha256": "7368a036aec93a11b08dd0bafafd0a141cbe9953c35fc8628fc1c373a56b2779"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果摘要：\n\n**ANOVA 方差分解** — η² 四项之和均为 1.0000，符合预期：\n- **Location features** (entropy_mean, ttr, hapax_ratio): η²(depth) = 0.34–0.37，远超 η²(generator) ≈ 0.02 → depth 是主效应\n- **Shape features** (entropy_min, entropy_max, tail_decay): η²(depth) < 0.01 → depth 几乎无解释力，架构不变量\n- **Intermediate** (entropy_std): η²(depth) = 0.054，介于两组之间\n\n所有效应均在 p < 0.001 水平显著。\n\n**收敛率拟合**：\n- Location features: λ = 0.40 ± 0.26，R² = 0.99 → 稳定指数收敛，符合 Markov chain mixing\n- Shape features: λ 极大且方差爆炸（5.27 ± 8.43），R² = 0.73 → 指数模型不适配，这些 feature 本身就是 flat 的（不随 depth 变化）\n- entropy_std 的 R² = 0.60，拟合较差，确认其过渡性质\n\n输出文件：\n- `anova_table.csv` — η² 分解表\n- `convergence_rates.csv` — 56 行（7 features × 8 generators）的 λ、R² 值\n- `anova_table.tex` — booktabs 格式 appendix 表格"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-mechanistic-anova-convergence.md"
+}

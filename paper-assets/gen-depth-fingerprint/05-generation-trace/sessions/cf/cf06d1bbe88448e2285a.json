@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf06d1bbe88448e2285a",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis 5class depth",
+  "task_key": "worker_analysis_5class-depth_20260515T073414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_5class-depth_20260515T073414_result.json",
+    "occurrence": 1,
+    "bytes": 769,
+    "sha256": "910fd9565ba8588ebc796d21fe0d757dc307069ce390fa9ce982faa5f2550c66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**5-class LOGO 结果（已从服务器现有 `multi_classify_results.json` 提取）：**\n\n| Held-out Generator | Macro F1 |\n|---|---|\n| OLMo-2-1B | 0.498 |\n| Pythia-1B | 0.552 |\n| Pythia-2.8B | 0.527 |\n| Qwen3-0.6B | 0.506 |\n| Qwen3-1.7B | 0.519 |\n| Qwen3-8B | 0.437 |\n| **Average** | **0.507 +/- 0.036** |\n\n**Per-class F1：** gen-0=0.936, gen-1=0.635, gen-2=0.276, gen-3=0.261, gen-4=0.425\n\n**vs 3-class：** F1 从 0.789 降到 0.507（-0.282），主要因为 gen-2/gen-3 几乎不可分（相邻深度混淆率 >35%）。\n\n已写入：\n- `appendix_finer_depth.tex` — 含两张表格 + 分析段落\n- `main.tex` — 在 `appendix_prompt_type` 之后添加了 `\\section{Finer-Grained Depth Classification}`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-5class-depth.md"
+}

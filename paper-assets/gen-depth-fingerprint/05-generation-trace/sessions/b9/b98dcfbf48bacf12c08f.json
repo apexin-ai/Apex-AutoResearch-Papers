@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b98dcfbf48bacf12c08f",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "figure ddr trends redraw",
+  "task_key": "worker_figure_ddr_trends_redraw_20260521T020331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_ddr_trends_redraw_20260521T020331_result.json",
+    "occurrence": 1,
+    "bytes": 564,
+    "sha256": "cd99359f4b6191ce17690054c28746615749c0db3f4616af1563617e29ed69ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已完成。验证通过：\n\n- **Pooled mean**: 深灰色 `#555555`，非纯黑 ✓\n- **Shading**: 极淡 95% CI band (±1.96 SE, alpha=0.12) ✓\n- **Generator traces**: 彩色可辨，alpha=0.65 ✓\n- **高度**: 从 8.5\" 压缩到 5.2\"（约 39% 压缩）✓\n- **标题**: 两行排版避免重叠 ✓\n- **所有标注**: ρ, R², DDR category 完整 ✓\n- **布局**: 2×4 grid（7 panels + legend slot）✓\n- **Legend**: 单列放在第 8 格位置 ✓\n\nPDF 已保存到 `artifacts/_project/chart/fig_appendix_ddr_trends.pdf`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-ddr-trends-redraw.md"
+}

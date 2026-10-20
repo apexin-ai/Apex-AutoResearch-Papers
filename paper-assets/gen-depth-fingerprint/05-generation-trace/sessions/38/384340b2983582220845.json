@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "384340b2983582220845",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper emnlp submission prep",
+  "task_key": "worker_paper_emnlp-submission-prep_20260516T030521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_emnlp-submission-prep_20260516T030521_result.json",
+    "occurrence": 1,
+    "bytes": 673,
+    "sha256": "5bde5c3203a607a7d7aa055dd880382a7a27f6d5a33cb091eb6fc8a95bbc20ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Checklist 写入 `artifacts/emnlp_submission_checklist.md` 并已注册。\n\n**结果**：26 项通过，1 项必须修复，6 项需人工确认。\n\n**必须修复**：\n- `paper/_backup/` 目录必须从提交包中删除（含 24 个过期 .tex，部分有 `\\cite{placeholder}`）\n\n**需编译验证**：\n- 页数估计 7–9 页，必须编译确认 ≤ 8 页（Discussion 86 行是首选裁减对象）\n- PDF metadata 无作者信息泄露\n- `acl.sty` 需包含在提交目录中\n- `chart/` 下有 3 个未引用图片文件可清理\n- `app:sampling-sensitivity` 是 Appendix G 的 `\\subsection*`，交叉引用指向父节点而非子标题"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-emnlp-submission-prep.md"
+}

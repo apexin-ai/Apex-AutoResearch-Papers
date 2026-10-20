@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08d406ab2ba396285982",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis exhaustive enumeration 35",
+  "task_key": "worker_analysis_exhaustive_enumeration_35_20260521T031410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exhaustive_enumeration_35_20260521T031410_result.json",
+    "occurrence": 1,
+    "bytes": 316,
+    "sha256": "88a5769157cbaa2a98ec75a06be5dde2b54a076335486f97a67a43e85d074c81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：论文的 DDR 分区 {entropy_mean, ttr, hapax_ratio} 在全部 C(7,3)=35 种 3-vs-4 划分中 **排名第 1**，silhouette=0.6603，比第 2 名 (0.4806) 高出 0.18。20/35 种划分的 silhouette 为负值。结果已保存到 `artifacts/_project/analysis/exhaustive_35_enumeration.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exhaustive-enumeration-35.md"
+}

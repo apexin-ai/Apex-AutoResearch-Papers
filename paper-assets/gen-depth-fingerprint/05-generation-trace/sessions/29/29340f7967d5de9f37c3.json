@@ -1,0 +1,859 @@
+{
+  "schema_version": "1.0",
+  "id": "29340f7967d5de9f37c3",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "paper abstract intro binary f1",
+  "task_key": "worker_paper_abstract-intro-binary-f1_20260516T011952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_abstract-intro-binary-f1_20260516T011952.log",
+    "occurrence": 1,
+    "bytes": 38218,
+    "sha256": "4a0e32bd648374a7b386e9e9af2a9d95dd8e1f8ddbe2f25c4c6404de0eb43544"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 5,
+      "record": 1,
+      "tool_call": 5,
+      "tool_result": 5,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+                "session_id": "3bd6e1e1-d59f-49f2-9f7b-3cd3a83228eb",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "5793590d-b03d-405a-a16d-24c7901d3368",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading both files to understand their current state.",
+              "signature": "EoACClkIDRgCKkBfjWzRD4GbGHStY765BCi6banuDdrY6xogKVinMKg4a9cmz0blRcGnZTP2Cn8DorLU7lqlst89fk+6OnoJ7zm6Mg9jbGF1ZGUtb3B1cy00LTY4ABIM/kZqqg9haRFJjYNNGgyTRn6Y/5oGY3adr4EiMFX1uVRILyVd4c1vXp9P5X+kpaNwlCfeimvIvOzY6PklX3DZE4G6s8SkVDPbiE87kCpVkGgnMD5FeXgUXuJspOt0che9SB3mPatGP/hbwVpT2w6xn+8QPrBwp/pJblJ0cP5tHM2x4e6i2X/M+pfLba4qRnldgXZ/NZPyNlAHNGFmKTq9c0Nc5xgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3bd6e1e1-d59f-49f2-9f7b-3cd3a83228eb",
+            "uuid": "095ae28c-91d7-4e4d-be2e-64f1ef919930",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017eEjP5XcUqvUxmEvS9HJxo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12425,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12425
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778905200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "9c401bb9-3ea1-4ddc-96f0-c9e7db07971a",
+                "session_id": "3bd6e1e1-d59f-49f2-9f7b-3cd3a83228eb"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016xtx6zE2HpU9rCcEumMAtZ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/abstract.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3bd6e1e1-d59f-49f2-9f7b-3cd3a83228eb",
+            "uuid": "f44ac13c-3a6f-431a-a4e6-92b6410b4372",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017eEjP5XcUqvUxmEvS9HJxo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12425,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12425
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T01:20:00.162Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016xtx6zE2HpU9rCcEumMAtZ",
+              "type": "tool_result",
+              "content": "1\t% Abstract — Depth Fingerprinting of Recursive LLM Generation Chains\n2\t\\begin{abstract}\n3\tAs LLM outputs accumulate on the web, training corpora increasingly contain recursively generated text of unknown provenance depth.\n4\tWe formulate \\emph{ordinal depth estimation}---classifying text as human-written (gen-0), first-generation synthetic (gen-1), or deeper (gen-2+)---beyond binary detection.\n5\tWe characterize a \\emph{differential depth response}: central-tendency and diversity features drift monotonically with generation depth, while distributional shape features remain near-stationary.\n6\tA 7-feature ensemble exploiting this complementarity achieves binary macro-F1 of 0.723 (95\\% CI: [0.717, 0.729]) for gen-1 vs.\\ gen-2+ depth discrimination---excluding gen-0 to avoid shared-seed overlap---($p < 0.001$ vs.\\ all baselines) across 6 base-model generators from 3 model families (0.6B--8.2B parameters), with per-generator consistency (std\\,=\\,0.051).\n7\tIn our setting, depth-aware data curation does not outperform random subsampling, positioning depth fingerprinting as a diagnostic tool for provenance characterization.\n8\t\\end{abstract}\n9\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3bd6e1e1-d59f-49f2-9f7b-3cd3a83228eb",
+            "uuid": "8a0d5578-2b6f-4b2b-af25-2b5f0e42ec9f",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/abstract.tex",
+                "content": "% Abstract — Depth Fingerprinting of Recursive LLM Generation Chains\n\\begin{abstract}\nAs LLM outputs accumulate on the web, training corpora increasingly contain recursively generated text of unknown provenance depth.\nWe formulate \\emph{ordinal depth estimation}---classifying text as human-written (gen-0), first-generation synthetic (gen-1), or deeper (gen-2+)---beyond binary detection.\nWe characterize a \\emph{differential depth response}: central-tendency and diversity features drift monotonically with generation depth, while distributional shape features remain near-stationary.\nA 7-feature ensemble exploiting this complementarity achieves binary macro-F1 of 0.723 (95\\% CI: [0.717, 0.729]) for gen-1 vs.\\ gen-2+ depth discrimination---excluding gen-0 to avoid shared-seed overlap---($p < 0.001$ vs.\\ all baselines) across 6 base-model generators from 3 model families (0.6B--8.2B parameters), with per-generator consistency (std\\,=\\,0.051).\nIn our setting, depth-aware data curation does not outperform random subsampling, positioning depth fingerprinting as a diagnostic tool for provenance characterization.\n\\end{abstract}\n",
+                "numLines": 9,
+                "startLine": 1,
+                "totalLines": 9
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019r3DAwHJBW5DRn5vcQ3ynq",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3bd6e1e1-d59f-49f2-9f7b-3cd3a83228eb",
+            "uuid": "67b7f0ea-b688-4b62-920a-e6302e11aa39",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017eEjP5XcUqvUxmEvS9HJxo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12425,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12425
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T01:20:00.629Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019r3DAwHJBW5DRn5vcQ3ynq",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tWeb-crawled corpora are the dominant source of pretraining data for large language models (LLMs), yet an increasing fraction of this data is itself LLM-generated.\n5\tEstimates suggest that 7--17\\% of recent scientific papers and peer reviews contain substantial LLM-modified content \\cite{mapping_llm_science,monitoring_ai_review}, and this proportion continues to grow as generated text enters the web and becomes seed material for subsequent generation.\n6\tThe result is recursive generation chains whose outputs progressively diverge from human-written text---a problem that current detection methods are ill-equipped to address.\n7\t\n8\tExisting detectors \\cite{fast_detectgpt,binoculars,ld_score,detectgpt} provide binary real-vs-synthetic classification, forcing an all-or-nothing filtering decision: discard everything flagged as synthetic, losing potentially useful first-generation content, or retain everything, admitting text with compounding distributional drift.\n9\tThis conflates qualitatively different material.\n10\tA first-generation continuation---an LLM expanding a human-written passage---retains much of the source distribution's lexical and structural properties.\n11\tA third- or fourth-generation text, conditioned recursively on prior LLM outputs, exhibits measurably reduced vocabulary diversity, compressed perplexity, and narrower token probability distributions.\n12\tTreating these as a single ``synthetic'' category discards provenance information that could inform risk-stratified curation decisions.\n13\t\n14\tWe argue that a finer-grained characterization is needed: \\emph{ordinal depth estimation}, the task of classifying text into generation depth classes (gen-0\\,/\\,gen-1\\,/\\,gen-2+) rather than producing a binary label.\n15\tWe refer to the overall framework---features, classifier, and evaluation protocol---as \\emph{depth fingerprinting}, distinguishing the method from the task it addresses.\n16\tNo existing method addresses this task directly in non-paraphrastic continuation chains.\n17\tWhen repurposed as ordinal depth predictors, individual detection scores exhibit high cross-generator variance---per-generator F1 ranging from 0.42 to 0.81 (\\S\\ref{sec:results-baselines})---making any single detector unreliable across unknown generators.\n18\tConcurrent work on iterative paraphrasing chains \\cite{broken_telephone,markovian_chains} analyzes convergence behavior under semantic-preservation constraints, which bound distinguishable depth classes to approximately three.\n19\tThese results do not extend to \\emph{non-paraphrastic} generation chains (e.g., continuation), where the absence of semantic anchoring permits richer depth signal.\n20\tWe focus on non-paraphrastic continuation chains from base (pretrained) models; instruction-tuned and RLHF models, which dominate web text, remain untested (Limitations).\n21\t\n22\tWe study distributional drift in non-paraphrastic LLM generation chains across six generators from three model families (Pythia, OLMo, Qwen; 0.6B--8.2B parameters).\n23\tWe characterize a \\emph{differential depth response}: central-tendency and diversity features---including reference-model mean entropy (functionally an NLL-based out-of-distribution score \\cite{ood_baseline}), type-token ratio, and hapax ratio---drift monotonically with generation depth, while distributional shape features (entropy standard deviation, tail decay) remain near-stationary.\n24\tThis pattern is consistent with recursive generation inducing a location shift in the NLL distribution: text becomes progressively more predictable on average while the functional form of the distribution is preserved.\n25\tThe combination of drifting and stationary features yields a 7-feature ensemble that achieves binary macro-F1 of 0.723 (95\\% CI: [0.717, 0.729]) for leak-free depth discrimination (gen-1 vs.\\ gen-2+), with per-generator consistency (std\\,=\\,0.051).\n26\t\n27\tWe also report a negative finding.\n28\tDepth-aware data curation---selecting training data based on estimated generation depth---does not improve downstream language model quality compared to random subsampling at equal sample count (perplexity: 2.367 random vs.\\ 2.387 depth-stratified).\n29\tIn our experimental setting, depth fingerprinting is an effective \\emph{diagnostic} tool for characterizing text provenance, not a \\emph{curative} tool for data selection.\n30\t\n31\tOur contributions are:\n32\t\\begin{enumerate}[nosep,leftmargin=*]\n33\t    \\item \\textbf{Task formulation.} We define ordinal generation depth estimation as a task beyond binary detection, providing a framework for finer-grained provenance characterization of web-crawled text.\n34\t    \\item \\textbf{Empirical characterization.} We characterize differential depth response across six base-model generators spanning three model families (0.6B--8.2B): a 7-feature ensemble combining drifting and stationary features achieves binary F1\\,=\\,0.723 (95\\% CI: [0.717, 0.729]) for leak-free depth discrimination (gen-1 vs.\\ gen-2+), outperforming all individual detection baselines ($p < 0.001$), with per-generator consistency (std\\,=\\,0.051).\n35\t    \\item \\textbf{Complementary analysis.} As a complementary analysis, we show that depth-aware data curation does not improve downstream language model quality compared to random subsampling, establishing depth fingerprinting as a diagnostic rather than curative tool.\n36\t\\end{enumerate}\n37\t\n38\tThe remainder of this paper is organized as follows.\n39\t\\S\\ref{sec:related} surveys related work on text detection, model collapse, and data quality.\n40\t\\S\\ref{sec:method} describes generation chain construction, feature extraction, and evaluation protocol.\n41\t\\S\\ref{sec:results} presents classification results, differential depth response analysis, baseline comparisons, and the downstream utility experiment.\n42\t\\S\\ref{sec:discussion} discusses implications, and a separate Limitations section addresses scope boundaries.\n43\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3bd6e1e1-d59f-49f2-9f7b-3cd3a83228eb",
+            "uuid": "7a223ac1-3819-4628-aa3d-8fb224408e12",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/introduction.tex",
+                "content": "\\section{Introduction}\n\\label{sec:introduction}\n\nWeb-crawled corpora are the dominant source of pretraining data for large language models (LLMs), yet an increasing fraction of this data is itself LLM-generated.\nEstimates suggest that 7--17\\% of recent scientific papers and peer reviews contain substantial LLM-modified content \\cite{mapping_llm_science,monitoring_ai_review}, and this proportion continues to grow as generated text enters the web and becomes seed material for subsequent generation.\nThe result is recursive generation chains whose outputs progressively diverge from human-written text---a problem that current detection methods are ill-equipped to address.\n\nExisting detectors \\cite{fast_detectgpt,binoculars,ld_score,detectgpt} provide binary real-vs-synthetic classification, forcing an all-or-nothing filtering decision: discard everything flagged as synthetic, losing potentially useful first-generation content, or retain everything, admitting text with compounding distributional drift.\nThis conflates qualitatively different material.\nA first-generation continuation---an LLM expanding a human-written passage---retains much of the source distribution's lexical and structural properties.\nA third- or fourth-generation text, conditioned recursively on prior LLM outputs, exhibits measurably reduced vocabulary diversity, compressed perplexity, and narrower token probability distributions.\nTreating these as a single ``synthetic'' category discards provenance information that could inform risk-stratified curation decisions.\n\nWe argue that a finer-grained characterization is needed: \\emph{ordinal depth estimation}, the task of classifying text into generation depth classes (gen-0\\,/\\,gen-1\\,/\\,gen-2+) rather than producing a binary label.\nWe refer to the overall framework---features, classifier, and evaluation protocol---as \\emph{depth fingerprinting}, distinguishing the method from the task it addresses.\nNo existing method addresses this task directly in non-paraphrastic continuation chains.\nWhen repurposed as ordinal depth predictors, individual detection scores exhibit high cross-generator variance---per-generator F1 ranging from 0.42 to 0.81 (\\S\\ref{sec:results-baselines})---making any single detector unreliable across unknown generators.\nConcurrent work on iterative paraphrasing chains \\cite{broken_telephone,markovian_chains} analyzes convergence behavior under semantic-preservation constraints, which bound distinguishable depth classes to approximately three.\nThese results do not extend to \\emph{non-paraphrastic} generation chains (e.g., continuation), where the absence of semantic anchoring permits richer depth signal.\nWe focus on non-paraphrastic continuation chains from base (pretrained) models; instruction-tuned and RLHF models, which dominate web text, remain untested (Limitations).\n\nWe study distributional drift in non-paraphrastic LLM generation chains across six generators from three model families (Pythia, OLMo, Qwen; 0.6B--8.2B parameters).\nWe characterize a \\emph{differential depth response}: central-tendency and diversity features---including reference-model mean entropy (functionally an NLL-based out-of-distribution score \\cite{ood_baseline}), type-token ratio, and hapax ratio---drift monotonically with generation depth, while distributional shape features (entropy standard deviation, tail decay) remain near-stationary.\nThis pattern is consistent with recursive generation inducing a location shift in the NLL distribution: text becomes progressively more predictable on average while the functional form of the distribution is preserved.\nThe combination of drifting and stationary features yields a 7-feature ensemble that achieves binary macro-F1 of 0.723 (95\\% CI: [0.717, 0.729]) for leak-free depth discrimination (gen-1 vs.\\ gen-2+), with per-generator consistency (std\\,=\\,0.051).\n\nWe also report a negative finding.\nDepth-aware data curation---selecting training data based on estimated generation depth---does not improve downstream language model quality compared to random subsampling at equal sample count (perplexity: 2.367 random vs.\\ 2.387 depth-stratified).\nIn our experimental setting, depth fingerprinting is an effective \\emph{diagnostic} tool for characterizing text provenance, not a \\emph{curative} tool for data selection.\n\nOur contributions are:\n\\begin{enumerate}[nosep,leftmargin=*]\n    \\item \\textbf{Task formulation.} We define ordinal generation depth estimation as a task beyond binary detection, providing a framework for finer-grained provenance characterization of web-crawled text.\n    \\item \\textbf{Empirical characterization.} We characterize differential depth response across six base-model generators spanning three model families (0.6B--8.2B): a 7-feature ensemble combining drifting and stationary features achieves binary F1\\,=\\,0.723 (95\\% CI: [0.717, 0.729]) for leak-free depth discrimination (gen-1 vs.\\ gen-2+), outperforming all individual detection baselines ($p < 0.001$), with per-generator consistency (std\\,=\\,0.051).\n    \\item \\textbf{Complementary analysis.} As a complementary analysis, we show that depth-aware data curation does not improve downstream language model quality compared to random subsampling, establishing depth fingerprinting as a diagnostic rather than curative tool.\n\\end{enumerate}\n\nThe remainder of this paper is organized as follows.\n\\S\\ref{sec:related} surveys related work on text detection, model collapse, and data quality.\n\\S\\ref{sec:method} describes generation chain construction, feature extraction, and evaluation protocol.\n\\S\\ref{sec:results} presents classification results, differential depth response analysis, baseline comparisons, and the downstream utility experiment.\n\\S\\ref{sec:discussion} discusses implications, and a separate Limitations section addresses scope boundaries.\n",
+                "numLines": 43,
+                "startLine": 1,
+                "totalLines": 43
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me analyze the current state of both files:\n\n**abstract.tex**: Already uses binary F1 = 0.723 as the headline number. It mentions \"binary macro-F1 of 0.723 (95% CI: [0.717, 0.729]) for gen-1 vs. gen-2+ depth discrimination---excluding gen-0 to avoid shared-seed overlap\". This looks correct already.\n\n**introduction.tex**: Also already uses binary F1 = 0.723 with CI [0.717, 0.729]. The headline numbers look correct.\n\n\nNow I'm checking whether any outdated numbers like 0.82 or 0.80 are still lingering in the text, and verifying that the 3-class F1 of 0.789 appears only as a supplementary result with appropriate caveats. I'm also confirming that the per-generation performance uses the CI plus standard deviation format rather than raw ranges, and noting that while the best single detector and ensemble advantage details aren't explicitly highlighted in the abstract or introduction, that's acceptable for now. I'm verifying that the updated numbers are consistent across the abstract and intro sections—the binary F1 of 0.723 with its confidence interval is the main headline, and I'm confirming there are no lingering old metrics like 0.82 or 0.80 that need cleaning up. The per-generator consistency is properly expressed as std=0.051 rather than a range, and baseline weakness is still documented where relevant without conflating it with the ensemble performance.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3bd6e1e1-d59f-49f2-9f7b-3cd3a83228eb",
+            "uuid": "c6e55d25-36d4-4c8e-a321-95a6a9657c40",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019hFkC4zV2M5cysCapL25YZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2070,
+                "cache_read_input_tokens": 24266,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2070
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both files already use binary F1=0.723 as the headline. Let me verify there are no residual old numbers."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3bd6e1e1-d59f-49f2-9f7b-3cd3a83228eb",
+            "uuid": "a0425d2d-40e1-4214-8d43-24aeba669e20",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019hFkC4zV2M5cysCapL25YZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2070,
+                "cache_read_input_tokens": 24266,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2070
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DBm3aqphjTnqTQM88J12aj",
+              "name": "Grep",
+              "input": {
+                "pattern": "0\\.\\d{2,3}",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/abstract.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3bd6e1e1-d59f-49f2-9f7b-3cd3a83228eb",
+            "uuid": "9dff5c10-feed-437e-8391-4990522dd066",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019hFkC4zV2M5cysCapL25YZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2070,
+                "cache_read_input_tokens": 24266,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2070
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T01:20:17.655Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DBm3aqphjTnqTQM88J12aj",
+              "type": "tool_result",
+              "content": "6:A 7-feature ensemble exploiting this complementarity achieves binary macro-F1 of 0.723 (95\\% CI: [0.717, 0.729]) for gen-1 vs.\\ gen-2+ depth discrimination---excluding gen-0 to avoid shared-seed overlap---($p < 0.001$ vs.\\ all baselines) across 6 base-model generators from 3 model families (0.6B--8.2B parameters), with per-generator consistency (std\\,=\\,0.051)."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3bd6e1e1-d59f-49f2-9f7b-3cd3a83228eb",
+            "uuid": "5a19c487-723f-4237-8e42-4b02beef9a05",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "6:A 7-feature ensemble exploiting this complementarity achieves binary macro-F1 of 0.723 (95\\% CI: [0.717, 0.729]) for gen-1 vs.\\ gen-2+ depth discrimination---excluding gen-0 to avoid shared-seed overlap---($p < 0.001$ vs.\\ all baselines) across 6 base-model generators from 3 model families (0.6B--8.2B parameters), with per-generator consistency (std\\,=\\,0.051).",
+              "numLines": 1
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013i1uLHKnJ1NmSmSWLEhr36",
+              "name": "Grep",
+              "input": {
+                "pattern": "0\\.\\d{2,3}",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/introduction.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3bd6e1e1-d59f-49f2-9f7b-3cd3a83228eb",
+            "uuid": "04e72e1e-c808-4973-83a0-e7782fdca40b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019hFkC4zV2M5cysCapL25YZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2070,
+                "cache_read_input_tokens": 24266,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2070
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T01:20:18.609Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013i1uLHKnJ1NmSmSWLEhr36",
+              "type": "tool_result",
+              "content": "17:When repurposed as ordinal depth predictors, individual detection scores exhibit high cross-generator variance---per-generator F1 ranging from 0.42 to 0.81 (\\S\\ref{sec:results-baselines})---making any single detector unreliable across unknown generators.\n25:The combination of drifting and stationary features yields a 7-feature ensemble that achieves binary macro-F1 of 0.723 (95\\% CI: [0.717, 0.729]) for leak-free depth discrimination (gen-1 vs.\\ gen-2+), with per-generator consistency (std\\,=\\,0.051).\n34:    \\item \\textbf{Empirical characterization.} We characterize differential depth response across six base-model generators spanning three model families (0.6B--8.2B): a 7-feature ensemble combining drifting and stationary features achieves binary F1\\,=\\,0.723 (95\\% CI: [0.717, 0.729]) for leak-free depth discrimination (gen-1 vs.\\ gen-2+), outperforming all individual detection baselines ($p < 0.001$), with per-generator consistency (std\\,=\\,0.051)."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3bd6e1e1-d59f-49f2-9f7b-3cd3a83228eb",
+            "uuid": "eea55f6d-a54b-45a5-a31b-4b2a1b7177f1",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "17:When repurposed as ordinal depth predictors, individual detection scores exhibit high cross-generator variance---per-generator F1 ranging from 0.42 to 0.81 (\\S\\ref{sec:results-baselines})---making any single detector unreliable across unknown generators.\n25:The combination of drifting and stationary features yields a 7-feature ensemble that achieves binary macro-F1 of 0.723 (95\\% CI: [0.717, 0.729]) for leak-free depth discrimination (gen-1 vs.\\ gen-2+), with per-generator consistency (std\\,=\\,0.051).\n34:    \\item \\textbf{Empirical characterization.} We characterize differential depth response across six base-model generators spanning three model families (0.6B--8.2B): a 7-feature ensemble combining drifting and stationary features achieves binary F1\\,=\\,0.723 (95\\% CI: [0.717, 0.729]) for leak-free depth discrimination (gen-1 vs.\\ gen-2+), outperforming all individual detection baselines ($p < 0.001$), with per-generator consistency (std\\,=\\,0.051).",
+              "numLines": 3
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K6To9CpdeBMSTusXG8FL5y",
+              "name": "Grep",
+              "input": {
+                "pattern": "consistently",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3bd6e1e1-d59f-49f2-9f7b-3cd3a83228eb",
+            "uuid": "d3a71803-6046-413c-b84c-ed0386247d8b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019hFkC4zV2M5cysCapL25YZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2070,
+                "cache_read_input_tokens": 24266,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2070
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T01:20:19.146Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K6To9CpdeBMSTusXG8FL5y",
+              "type": "tool_result",
+              "content": "artifacts/_project/paper/related_work.tex:14:Even when detection scores correlate with generation depth, they exhibit high cross-generator variance when repurposed as ordinal predictors (binary F1 from 0.52 to 0.71 across individual baselines; Table~\\ref{tab:baselines}), because each score captures a single distributional property that generalizes inconsistently.\nartifacts/_project/paper/discussion.tex:63:Overall LOGO F1 varies by only 0.013 across three cross-family reference models (0.803--0.816; Table~\\ref{tab:cross-ref}), and entropy drift direction is consistently negative for all three, confirming that the differential depth response is a property of recursive generation itself.\nartifacts/_project/paper/limitations.tex:8:By contrast, entropy-based depth signals consistently reverse sign across all three instruct models (partial $\\rho$ ranging from +0.103 to +0.364), suggesting a genuine behavioral change that persists after controlling for output length.\nartifacts/_project/paper/results.tex:93:Entropy drift direction is consistently negative across all reference models (Table~\\ref{tab:cross-ref}), confirming that the differential depth response is a property of recursive generation, not of the specific reference model used."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3bd6e1e1-d59f-49f2-9f7b-3cd3a83228eb",
+            "uuid": "0c4a05b5-672e-402b-ae8d-41ad7e6a0289",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "artifacts/_project/paper/related_work.tex:14:Even when detection scores correlate with generation depth, they exhibit high cross-generator variance when repurposed as ordinal predictors (binary F1 from 0.52 to 0.71 across individual baselines; Table~\\ref{tab:baselines}), because each score captures a single distributional property that generalizes inconsistently.\nartifacts/_project/paper/discussion.tex:63:Overall LOGO F1 varies by only 0.013 across three cross-family reference models (0.803--0.816; Table~\\ref{tab:cross-ref}), and entropy drift direction is consistently negative for all three, confirming that the differential depth response is a property of recursive generation itself.\nartifacts/_project/paper/limitations.tex:8:By contrast, entropy-based depth signals consistently reverse sign across all three instruct models (partial $\\rho$ ranging from +0.103 to +0.364), suggesting a genuine behavioral change that persists after controlling for output length.\nartifacts/_project/paper/results.tex:93:Entropy drift direction is consistently negative across all reference models (Table~\\ref{tab:cross-ref}), confirming that the differential depth response is a property of recursive generation, not of the specific reference model used.",
+              "numLines": 4
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check the \"consistently\" usages:\n\n1. `related_work.tex:14`: \"generalizes inconsistently\" - this is fine, it's a negative statement about baselines, not a claim about our method.\n2. `discussion.tex:63`: \"consistently negative for all three\" - this is about entropy drift direction being negative, supported by data from 3 cross-family reference models. The constraint says \"禁止说 consistently 除非有多数据集证据\" - this is within the same dataset but across reference models. It's a bit borderline. However, the task only asks me to update abstract.tex and introduction.tex.\n\n\n3. `limitations.tex:8`: \"consistently reverse sign across all three instruct models\" - supported by data from 3 instruct models.\n4. `results.tex:93`: \"consistently negative across all reference models\" - same as discussion.tex.\n\nSince the task only requires updating abstract.tex and introduction.tex, and neither contains \"consistently\", that constraint is already satisfied. Checking the abstract and introduction: both have the correct Binary F1=0.723 with CI [0.717, 0.729] and std=0.051, with no outdated numbers or problematic \"consistently\" usage.\n\nThe baseline detector ranges in intro line 17 (0.42 to 0.81) refer to individual models rather than our ensemble, and the per-generation F1 range 0.68-0.86 doesn't appear in either file. The perplexity numbers mentioned in intro line 28 are downstream utility metrics, not F1 scores. Both files are correctly updated with the binary F1=0.723 as the primary metric, with no residual old headline numbers like 0.82, 0.80, or 0.789.\n\nLooking at whether the 3-class F1=0.789 should appear as a supplementary caveat—the abstract and intro don't actually need to mention it if they're focusing on the primary binary metric. I think both files are already in good shape and don't require changes.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3bd6e1e1-d59f-49f2-9f7b-3cd3a83228eb",
+            "uuid": "b0cef83e-5a95-4785-bc45-1a68729b033c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NAtVbimXdes2PNMM1nuALN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1963,
+                "cache_read_input_tokens": 26336,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1963
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both files are already correct:\n\n- **abstract.tex**: Headline is binary F1=0.723 with CI [0.717, 0.729], std=0.051. No old numbers.\n- **introduction.tex**: Binary F1=0.723 appears in both the main text (line 25) and contributions (line 34), both with CI and std. No old numbers.\n- No \"consistently\" in either file.\n- Per-gen consistency uses std format (0.051), not raw range.\n- No residual 0.82, 0.80, or 0.789 as headline numbers.\n- The 0.42–0.81 range on intro line 17 correctly describes baseline detector weakness, not our ensemble.\n\nNo changes needed — both files already reflect the D017 decision with binary F1=0.723 as primary metric."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3bd6e1e1-d59f-49f2-9f7b-3cd3a83228eb",
+            "uuid": "ffbcc088-30c2-4352-bc1a-b19f2817f7b4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NAtVbimXdes2PNMM1nuALN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1963,
+                "cache_read_input_tokens": 26336,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1963
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both files are already correct:\n\n- **abstract.tex**: Headline is binary F1=0.723 with CI [0.717, 0.729], std=0.051. No old numbers.\n- **introduction.tex**: Binary F1=0.723 appears in both the main text (line 25) and contributions (line 34), both with CI and std. No old numbers.\n- No \"consistently\" in either file.\n- Per-gen consistency uses std format (0.051), not raw range.\n- No residual 0.82, 0.80, or 0.789 as headline numbers.\n- The 0.42–0.81 range on intro line 17 correctly describes baseline detector weakness, not our ensemble.\n\nNo changes needed — both files already reflect the D017 decision with binary F1=0.723 as primary metric."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 40015,
+            "duration_api_ms": 42556,
+            "num_turns": 6,
+            "stop_reason": "end_turn",
+            "session_id": "3bd6e1e1-d59f-49f2-9f7b-3cd3a83228eb",
+            "total_cost_usd": 0.189477,
+            "usage": {
+              "input_tokens": 5,
+              "cache_creation_input_tokens": 16458,
+              "cache_read_input_tokens": 62443,
+              "output_tokens": 2156,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 16458,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 799,
+                  "cache_read_input_tokens": 26336,
+                  "cache_creation_input_tokens": 1963,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1963
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1383,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001468,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 5,
+                "outputTokens": 2156,
+                "cacheReadInputTokens": 62443,
+                "cacheCreationInputTokens": 16458,
+                "webSearchRequests": 0,
+                "costUSD": 0.18800899999999998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "5a92debb-42e5-4374-ac2c-40ac576b27c2"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-abstract-intro-binary-f1.md"
+}

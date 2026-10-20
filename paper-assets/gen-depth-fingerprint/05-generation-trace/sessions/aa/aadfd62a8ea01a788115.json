@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aadfd62a8ea01a788115",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "compute tost equivalence v2",
+  "task_key": "worker_compute_tost-equivalence-v2_20260518T123445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compute_tost-equivalence-v2_20260518T123445_result.json",
+    "occurrence": 1,
+    "bytes": 1260,
+    "sha256": "99a68f1c8b073e8991259a0eebfcd809733206c8b4fec17bca5e98e1264a0302"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务都完成了。\n\n---\n\n## 任务 A: TOST 等价性检验结果\n\n数据：`features_8gen.csv`，37058 行，gen-1: 7896，gen-2+: 21199，等价性边界 |d| < 0.10\n\n| Feature | Group | d_obs | p_TOST | Equivalent? |\n|---|---|---|---|---|\n| entropy_min | near-stationary | -0.0157 | 8.18e-11 | **YES** |\n| entropy_max | near-stationary | +0.0622 | 2.07e-03 | **YES** |\n| tail_decay | near-stationary | +0.0873 | 1.68e-01 | NO |\n| entropy_std | intermediate | +0.4571 | 1.00e+00 | NO |\n| hapax_ratio | drifting | +0.7346 | 1.00e+00 | NO |\n| ttr | drifting | +0.8142 | 1.00e+00 | NO |\n| entropy_mean | drifting | +1.0544 | 1.00e+00 | NO |\n\n**解读：**\n- `entropy_min` 和 `entropy_max` 通过等价性检验（p < 0.05），确认其 gen-1 vs gen-2+ 差异在 |d| < 0.10 以内，是真正的 near-stationary。\n- `tail_decay` 虽然 d=0.087 在边界附近，但 p=0.168 未通过（样本量不足以在此边界下确认等价）。\n- drifting 特征（entropy_mean, ttr, hapax_ratio）的 d 值都远大于 0.10，符合预期。\n\nJSON 已保存至 `/root/gen-depth-fingerprint/results/tost_equivalence.json`。\n\n## 任务 B: tmux 清理\n\n所有 tmux sessions 已清除，服务器上无残留 session。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/compute-tost-equivalence-v2.md"
+}

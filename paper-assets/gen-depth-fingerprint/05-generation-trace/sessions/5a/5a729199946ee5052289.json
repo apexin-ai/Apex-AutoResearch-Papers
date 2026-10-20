@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a729199946ee5052289",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "research ref audit worker 3",
+  "task_key": "worker_research_ref-audit-worker-3_20260526T103739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-worker-3_20260526T103739_result.json",
+    "occurrence": 1,
+    "bytes": 893,
+    "sha256": "ca4b2db08b2b6e282b764e868969db56a818587faf1562d27cb34898d2a0156b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Audit complete. Report written to `ref_audit_worker3.md`.\n\n**4 issues found across 74 entries:**\n\n**Serious (2):**\n1. **`human_texts_outliers`** — Title and authors in bib don't match arXiv:2510.08602. The actual paper is by Cong Zeng et al. with title \"Detecting LLM-generated Texts via Out-of-distribution Detection\", not by Li Yafu et al. with \"Rethinking...\" subtitle. Either the arXiv ID or the metadata is wrong.\n2. **`diveye`** — Venue is TMLR 2026, not ICLR 2026. The ICLR 2026 submission was withdrawn; GitHub repo confirms `[TMLR '26]`.\n\n**Moderate (2):**\n3. **`xu_spectrum_detection`** — Published at EMNLP 2024, but bib still lists it as arXiv preprint.\n4. **`beyond_final_actor`** — ACL 2026 venue couldn't be independently confirmed yet.\n\nAll 74 entries verified as real papers. No hallucinated references. No cite-context mismatches found."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ref-audit-worker-3.md"
+}

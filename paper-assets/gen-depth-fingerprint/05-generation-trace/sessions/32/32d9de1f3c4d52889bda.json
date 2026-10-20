@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32d9de1f3c4d52889bda",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ssh kill residual pid",
+  "task_key": "worker_ssh_kill-residual-pid_20260515T031050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill-residual-pid_20260515T031050_result.json",
+    "occurrence": 1,
+    "bytes": 218,
+    "sha256": "b1bae73f65ab66c144a7c740310015cd14f8dadacee1d758b66b2f7f7883f1f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已不存在，GPU2 已释放。\n\n```\nALREADY_DEAD\nCONFIRMED_DEAD\n\nGPU 显存使用:\n0: 16473 MiB\n1: 0 MiB\n2: 0 MiB\n3: 0 MiB\n```\n\nGPU0 上还有约 16GB 占用，GPU 1/2/3 均空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-residual-pid.md"
+}

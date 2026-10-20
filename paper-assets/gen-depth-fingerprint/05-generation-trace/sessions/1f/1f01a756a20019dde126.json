@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f01a756a20019dde126",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper rd3 int1 entropy std verify",
+  "task_key": "worker_paper_rd3-int1-entropy-std-verify_20260516T051818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_rd3-int1-entropy-std-verify_20260516T051818_result.json",
+    "occurrence": 1,
+    "bytes": 1324,
+    "sha256": "a5da29cd2ef91459d429100df577ab45d648c19949f3cecc148ddcd63b21ce76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n| Generator | entropy_std ρ | p-value | entropy_mean ρ | tail_decay ρ |\n|-----------|--------------|---------|----------------|-------------|\n| olmo-2-1b | **-0.2958** | <1e-6 | -0.6386 | -0.1411 |\n| pythia-1b | **-0.2414** | <1e-6 | -0.7120 | +0.0904 |\n| pythia-2.8b | -0.1530 | <1e-6 | -0.6754 | +0.0633 |\n| qwen3-0.6b | **-0.2294** | <1e-6 | -0.5656 | -0.0902 |\n| qwen3-1.7b | -0.1882 | <1e-6 | -0.6022 | -0.0698 |\n| qwen3-8b | -0.0755 | <1e-6 | -0.4754 | -0.0894 |\n\n### 判断\n\n**entropy_std 的 \"near-stationary\" 分类需要加 caveat。** 3/6 generator 的 |ρ| > 0.2：\n\n- 最大偏离：**olmo-2-1b** (ρ = -0.296)\n- 其次：pythia-1b (-0.241)、qwen3-0.6b (-0.229)\n\n所有 generator 的 entropy_std ρ 都是**负值**，说明 entropy_std 随 depth 系统性下降（方差收缩），只是幅度因模型而异。Overall |ρ| = 0.076 之所以小，并非因为各模型都接近零，而是小模型（1B 级）有较强负相关，大模型（qwen3-8b）接近零，混合后被稀释。\n\n对比特征：entropy_mean 全部 |ρ| > 0.47（强 depth-sensitive），tail_decay 全部 |ρ| < 0.15（真正 near-stationary）。\n\n结果已保存到服务器 `results/rd3_int1_entropy_std_pergen.json` 和本地 artifacts，并注册为 `art_20260516_8edcf5`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-rd3-int1-entropy-std-verify.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "277f627dd6d31412f419",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analyze qwen06b s0 check",
+  "task_key": "worker_analyze_qwen06b-s0-check_20260514T220033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_qwen06b-s0-check_20260514T220033_result.json",
+    "occurrence": 1,
+    "bytes": 970,
+    "sha256": "d8fb37a3f59ef2fbb34e7e0c14b55c0209d5f2f6c699b491c33f3141c7d92afe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### plan-002-qwen06b-s0 / s1：**仍在运行，未退出**\n\n| | s0 | s1 |\n|---|---|---|\n| 进度 | 199/498 seeds (40%) | 184/498 seeds (37%) |\n| 数据行数 | 913 (且在增长) | 856 (且在增长) |\n| 错误 | 无 | 无 |\n| Registry | RUNNING | RUNNING |\n\n两次查询间隔数秒，shard0 从 905→913、shard1 从 849→856，确认进程仍在写入数据。数据格式正确（含 id/depth/text/seed_id/token_count/model 字段）。\n\n**结论：s0 没有退出，两个 shard 都在正常运行中，无需更新 registry。**\n\n### plan-002-qwen17b-r2-s0 / s1：也在运行\n\n| | r2-s0 | r2-s1 |\n|---|---|---|\n| 进度 | 169/498 (34%) | 156/498 (31%) |\n| 数据行数 | 772 | 738 |\n| 状态 | 已从上次失败点恢复（skip 154/143 seeds） | 同左 |\n\n四个生成进程全部正常运行中。按当前速度（~10s/seed），qwen06b 预计还需 ~50-55 分钟完成，qwen17b-r2 会更慢一些。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-qwen06b-s0-check.md"
+}

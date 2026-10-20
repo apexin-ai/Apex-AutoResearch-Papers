@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6fa034bb86d1a839dbe",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper m6 dataset stats",
+  "task_key": "worker_paper_m6-dataset-stats_20260516T051806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_m6-dataset-stats_20260516T051806_result.json",
+    "occurrence": 1,
+    "bytes": 313,
+    "sha256": "f1ef94d74c3423403836d88c442d2c7663278c2a615381e4c1b4128d9753661c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Created `appendix_dataset_stats.tex` in both `docs/paper/` and `artifacts/_project/paper/` with a `table*` showing per-generator × per-depth statistics (n / mean±std whitespace tokens). The `\\input{appendix_dataset_stats}` was already present in `main.tex` line 71. Committed as `38384e7`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-m6-dataset-stats.md"
+}

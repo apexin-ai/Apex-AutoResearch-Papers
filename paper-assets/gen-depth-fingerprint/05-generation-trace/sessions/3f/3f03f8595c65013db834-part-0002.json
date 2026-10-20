@@ -1,0 +1,396 @@
+{
+  "schema_version": "1.0",
+  "session_id": "3f03f8595c65013db834",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 176,
+          "timestamp": "2026-05-23T10:46:37.323Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013N4egPjMiXaJaadVaQKZVz",
+              "type": "tool_result",
+              "content": "1\t\\vspace{-1mm}\n2\t\\section{Results}\n3\t\\label{sec:results}\n4\t\\vspace{-1mm}\n5\t\n6\t\\begin{figure}[t]\n7\t\\centering\n8\t\\includegraphics[width=\\columnwidth]{fig_transfer_heatmap.pdf}\n9\t\\caption{Cross-generator depth classification: $8{\\times}8$ transfer matrix (binary F1, gen-1 vs.\\ gen-2+). Each cell shows F1 when training on one generator (row) and testing on another (column). Mean cross-generator F1\\,=\\,0.810 [95\\% CI: 0.796, 0.822]; uniformly high off-diagonal values demonstrate that depth signal transfers robustly across five architectural families without per-generator calibration.}\n10\t\\label{fig:transfer-heatmap}\n11\t\\end{figure}\n12\t\n13\t\\subsection{Depth Classification Performance}\n14\t\\label{sec:results-classification}\n15\t\n16\tThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\n17\tThis 3-class metric is inflated by shared gen-0 seeds across generators (per-class gen-0 F1\\,$\\approx$\\,0.94; \\S\\ref{sec:generation}); we therefore report \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+, our primary conservative metric)\\,=\\,0.694 (CI [0.688, 0.700]; generator-level mean${\\pm}$SE: $0.694{\\pm}0.010$) throughout, excluding gen-0 entirely.\n18\tPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\n19\t\n20\t\\paragraph{Cross-model generalization.}\n21\tCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B; generator-level LOGO with bootstrap CIs ($n$\\,=\\,1{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\n22\tSingle-generator transfer (Appendix~\\ref{app:transfer}) confirms the signal is not a mixed-chain artifact (mean transfer F1\\,=\\,0.810, Figure~\\ref{fig:transfer-heatmap}; LOFO\\,=\\,0.686); the cross-model advantage is only 2\\,pp; ANOVA variance decomposition confirms generator identity contributes ${<}1$\\% of feature variance ($\\eta^2_{\\text{gen}} \\leq 0.009$; Appendix~\\ref{app:cross-model-detail}).\n23\tA scale effect emerges: smaller models achieve higher F1 (Pythia-2.8B: 0.724 vs.\\ Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (spread $\\leq$0.013; \\S\\ref{sec:results-differential}).\n24\tAn end-to-end QLoRA classifier reaches 3-class F1\\,=\\,0.905 ($+$11.6\\,pp; Appendix~\\ref{app:qlora}), confirming additional depth signal in token-level representations; on instruct data, QLoRA recovers to 0.89--0.91 (Appendix~\\ref{app:instruct}), establishing the decomposition as DDR's primary contribution.\n25\t\n26\t\\paragraph{Confound controls.}\n27\tLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770; Appendix~\\ref{app:length}); independent-seed evaluation with disjoint pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) confirms the classifier captures generative degradation, not seed-specific content.\n28\t\n29\t\\begin{table}[t]\n30\t\\centering\n31\t\\footnotesize\n32\t\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}). CIs: text-level bootstrap ($n$\\,=\\,1{,}000) within each fold.}\n33\t\\label{tab:logo-results}\n34\t\\resizebox{\\columnwidth}{!}{%\n35\t\\begin{tabular}{@{}llcccc@{}}\n36\t\\toprule\n37\t\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-class F1}$^{\\dagger}$ \\\\\n38\t\\midrule\n39\tPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\n40\tPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\n41\tQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\n42\tLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\n43\tOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\n44\tQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\n45\tQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\n46\tMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n47\t\\midrule\n48\t\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n49\t\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n50\t\\bottomrule\n51\t\\end{tabular}}\n52\t\\end{table}\n53\t\n54\t\\vspace{-1mm}\n55\t\\subsection{Differential Depth Response}\n56\t\\label{sec:results-differential}\n57\t\n58\t\\begin{figure}[!t]\n59\t\\centering\n60\t\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n61\t\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at ${\\sim}2.4\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n62\t\\label{fig:baseline-ci}\n63\t\\end{figure}\n64\t\n65\t\\paragraph{Formal definition.}\n66\tFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\n67\tA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds are reference anchors, not definitive boundaries---the two-cluster structure is robust across $\\varepsilon \\in [0.10, 0.75]$, supported by unsupervised $k$-means (silhouette\\,=\\,0.660, $p{=}0.030$), exhaustive enumeration of all 35 splits (this partition ranks first), and independent replication in all eight generators (Appendix~\\ref{app:ddr-validation}); crucially, each generator's data is fully independent, making per-generator split analysis an 8-fold independent validation of the partition rather than same-data circularity.\n68\tRecursive inputs grow increasingly self-typical~\\citep{markovian_chains}, predicting location drift with shape invariance (confirmed across nucleus, greedy, and top-$k$ strategies; Appendix~\\ref{app:decoding-strategy}).\n69\t\n70\tFigure~\\ref{fig:ddr-trajectory} reveals the dichotomy: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\n71\tThe partition is binary ($k{=}2$; silhouette\\,=\\,0.660), with entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from three near-stationary features ($d < 0.10$; Appendix~\\ref{app:ddr-validation}).\n72\t\n73\t\\begin{figure}[t]\n74\t\\centering\n75\t\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n76\t\\caption{Differential depth response (DDR). Drifting features (blue; $|\\rho| > 0.60$, effect size $d{=}0.76$--$1.17$) shift monotonically with generation depth; near-stationary features (amber; $d \\leq 0.10$) are approximately preserved; entropy std (wine; $d{=}0.55$) is intermediate. Diamonds: cross-generator means; dots: per-generator values.}\n77\t\\label{fig:feature-drift}\n78\t\\end{figure}\n79\t\n80\tPooled Spearman correlations corroborate the split: drifting features show $|\\rho| > 0.60$ (hapax ratio $-0.64$, TTR $-0.63$, entropy mean $-0.60$) vs.\\ $|\\rho| \\leq 0.16$ for entropy max and tail decay; entropy min reaches $|\\rho|{=}0.40$ due to its gen-0/gen-1 boundary sensitivity (discussed below)---a persistent magnitude gap defining the DDR partition (Figure~\\ref{fig:feature-drift}).\n81\t\n82\t\\paragraph{Quantification.}\n83\tCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7{\\times}$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary ($d < 0.10$); KS, Glass's $\\Delta$, Cliff's $\\delta$ all corroborate (Appendix~\\ref{app:ddr-validation}).\n84\tEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1/gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1; tail decay passes TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\n85\t\\paragraph{Validation.}\n86\tEach hold-out generator independently recovers the identical partition (silhouette 0.505--0.760; Appendix~\\ref{app:ddr-validation}); TOST confirms near-stationarity for entropy min (8/8) and entropy max (6/8); permutation testing confirms the split as non-random ($p{=}0.030$); $\\Delta|\\rho| \\leq 0.05$ across splits; disjoint generator-pool splits, heteroscedasticity robustness, per-feature convergence dynamics (Figure~\\ref{fig:convergence}), and per-family DDR consistency (Appendix~\\ref{app:family-ddr}) appear in Appendices~\\ref{app:holdout-split}--\\ref{app:convergence}.\n87\t\n88\t\\begin{figure}[t]\n89\t\\centering\n90\t\\includegraphics[width=\\columnwidth]{fig_convergence_dynamics.pdf}\n91\t\\caption{Feature convergence dynamics across generation depth. Drifting features (blue) show monotonically increasing effect size ($|d| > 1$ by gen-2+); near-stationary features (amber) remain within $|d| < 0.25$ at all depths, confirming shape stability is not an artifact of insufficient chain length.}\n92\t\\label{fig:convergence}\n93\t\\end{figure}\n94\t\n95\t\\paragraph{Feature complementarity.}\n96\tThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV, complementing the LOGO protocol in Table~\\ref{tab:logo-results}) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\n97\tThe collinear drifting triplet captures ${\\sim}$1 effective dimension (PCA PC1\\,=\\,92.3\\%; Appendix~\\ref{sec:appendix-feature-correlation}); group ablation confirms complementarity for depth profiling: 3-class F1 gains $+$5.3\\,pp when non-drifting features are added (drifting-only 0.716, all-7 0.769), while binary detection is already saturated by location drift alone (drifting-only binary F1\\,=\\,0.697 vs.\\ all-7\\,=\\,0.700; Appendix~\\ref{app:ablation-table})---shape stability contributes to depth \\emph{grading}, not detection.\n98\tTTR and hapax ratio ($r = 0.97$) are retained for marginal LOFO gains \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n99\t\n100\t\\paragraph{Cross-family reference models.}\n101\tAlternative references (OLMo-2-1B, Qwen3-0.6B) yield F1 spread of only 0.013 (Appendix~\\ref{app:cross-ref}); same-family proximity may inflate Pythia F1 by up to 1.3\\,pp, but the DDR partition is preserved.\n102\t\n103\t\\paragraph{Temperature and prompt-type sensitivity.}\n104\tAll four tested generators degrade at $t{=}0.9$ ($-$9.3 to $-$26.0\\,pp binary F1; Appendix~\\ref{app:sampling-sensitivity}); continuation chains show the strongest drift (F1\\,=\\,0.781; Appendix~\\ref{app:prompt-type}).\n105\tThe DDR partition hierarchy is preserved across temperatures (Appendix~\\ref{app:ddr-temp-stability}).\n106\t\n107\t\n108\t\\vspace{-1mm}\n109\t\\subsection{Comparison with Detection Baselines}\n110\t\\label{sec:results-baselines}\n111\t\n112\tWe next ask whether existing detection methods---designed for binary real-vs-synthetic classification---incidentally capture depth structure, repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\n113\tThe strongest baseline is a 4-detector + surface feature ensemble (binary F1\\,=\\,0.708), which pools four detection scores with TTR and hapax ratio; among individual detectors, Avg-LogProb provides the most meaningful single-feature comparison.\n114\t\n115\t\\begin{table}[t]\n116\t\\centering\n117\t\\footnotesize\n118\t\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled. XGBoost uses 7 handcrafted scalar features (one 410M reference); QLoRA (\\S\\ref{sec:results-classification}) uses the full token sequence---an information-asymmetric ceiling, not a fair comparison.}\n119\t\\label{tab:baselines}\n120\t\\resizebox{\\columnwidth}{!}{%\n121\t\\begin{tabular}{lcccc}\n122\t\\toprule\n123\t\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-class F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n124\t\\midrule\n125\t4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n126\t4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n127\t7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n128\t\\midrule\n129\tAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\n130\tFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\n131\tLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\n132\tBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n133\t\\bottomrule\n134\t\\end{tabular}}\n135\t\\end{table}\n136\t\n137\tThe 7-feature ensemble matches the 4-detector+surface ensemble on binary F1 (0.705 vs.\\ 0.708; Figure~\\ref{fig:baseline-ci}) at ${\\sim}2.4\\times$ lower cost, though the latter leads by 2.1\\,pp on 3-class F1 (0.795 vs.\\ 0.774); both surpass individual detectors by 3.0--16.6\\,pp.\n138\tDDR's contribution is the decomposition into location-sensitive and shape-stable components (\\S\\ref{sec:discussion}), achieving comparable depth discrimination with a single 410M reference model; ordinal-specific methods (CORAL, Frank-Hall) yield comparable F1 (Appendix~\\ref{app:classifier}).\n139\tConcurrent iterative-generation studies use different chain operators (back-translation, rephrasing) and target different phenomena (factuality, convergence dynamics), precluding direct inclusion as depth classification baselines (Appendix~\\ref{app:iterative-comparison}).\n140\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f3b941b4-e03a-43a0-95ae-15fa14e1df7f",
+            "uuid": "86212271-8544-40e7-b226-d793cc229fdc",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+                "content": "\\vspace{-1mm}\n\\section{Results}\n\\label{sec:results}\n\\vspace{-1mm}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_transfer_heatmap.pdf}\n\\caption{Cross-generator depth classification: $8{\\times}8$ transfer matrix (binary F1, gen-1 vs.\\ gen-2+). Each cell shows F1 when training on one generator (row) and testing on another (column). Mean cross-generator F1\\,=\\,0.810 [95\\% CI: 0.796, 0.822]; uniformly high off-diagonal values demonstrate that depth signal transfers robustly across five architectural families without per-generator calibration.}\n\\label{fig:transfer-heatmap}\n\\end{figure}\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\nThis 3-class metric is inflated by shared gen-0 seeds across generators (per-class gen-0 F1\\,$\\approx$\\,0.94; \\S\\ref{sec:generation}); we therefore report \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+, our primary conservative metric)\\,=\\,0.694 (CI [0.688, 0.700]; generator-level mean${\\pm}$SE: $0.694{\\pm}0.010$) throughout, excluding gen-0 entirely.\nPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\n\n\\paragraph{Cross-model generalization.}\nCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B; generator-level LOGO with bootstrap CIs ($n$\\,=\\,1{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\nSingle-generator transfer (Appendix~\\ref{app:transfer}) confirms the signal is not a mixed-chain artifact (mean transfer F1\\,=\\,0.810, Figure~\\ref{fig:transfer-heatmap}; LOFO\\,=\\,0.686); the cross-model advantage is only 2\\,pp; ANOVA variance decomposition confirms generator identity contributes ${<}1$\\% of feature variance ($\\eta^2_{\\text{gen}} \\leq 0.009$; Appendix~\\ref{app:cross-model-detail}).\nA scale effect emerges: smaller models achieve higher F1 (Pythia-2.8B: 0.724 vs.\\ Mistral-7B: 0.633), partly reflecting same-family affinity with the Pythia-410M reference (spread $\\leq$0.013; \\S\\ref{sec:results-differential}).\nAn end-to-end QLoRA classifier reaches 3-class F1\\,=\\,0.905 ($+$11.6\\,pp; Appendix~\\ref{app:qlora}), confirming additional depth signal in token-level representations; on instruct data, QLoRA recovers to 0.89--0.91 (Appendix~\\ref{app:instruct}), establishing the decomposition as DDR's primary contribution.\n\n\\paragraph{Confound controls.}\nLength-matched subsampling yields binary F1\\,=\\,0.724 (vs.\\ 0.770; Appendix~\\ref{app:length}); independent-seed evaluation with disjoint pools (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}) confirms the classifier captures generative degradation, not seed-specific content.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\caption{8-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric; it excludes gen-0 entirely and is unaffected by seed sharing. Cross-generator binary F1: SD\\,=\\,0.028, IQR\\,=\\,[0.692, 0.714]. $^{\\dagger}$3-class F1 carries upward bias because gen-0 seeds are shared across generators (\\S\\ref{sec:generation}); independent-seed controls confirm the depth signal (F1\\,=\\,0.680; Appendix~\\ref{app:seed-control}). CIs: text-level bootstrap ($n$\\,=\\,1{,}000) within each fold.}\n\\label{tab:logo-results}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llcccc@{}}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{Params} & \\textbf{Bin F1} & \\textbf{95\\% CI} & \\textbf{3-class F1}$^{\\dagger}$ \\\\\n\\midrule\nPythia-2.8B     & Pythia  & 2.8B & \\textbf{0.724} & [.707, .742] & 0.798 \\\\\nPythia-1B       & Pythia  & 1.0B & 0.718 & [.700, .735] & \\textbf{0.806} \\\\\nQwen3-1.7B     & Qwen    & 1.7B & 0.709 & [.693, .726] & 0.772 \\\\\nLlama-3.2-3B   & Llama   & 3.2B & 0.697 & [.680, .713] & 0.775 \\\\\nOLMo-2-1B      & OLMo    & 1.5B & 0.695 & [.679, .711] & 0.781 \\\\\nQwen3-8B       & Qwen    & 8.2B & 0.692 & [.674, .708] & 0.714 \\\\\nQwen3-0.6B     & Qwen    & 0.6B & 0.691 & [.673, .709] & 0.780 \\\\\nMistral-7B     & Mistral & 7.0B & 0.633 & [.617, .648] & 0.682 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textbf{Average (8-gen LOGO)}} & \\textbf{0.694} & [.688, .700] & \\textbf{0.762} \\\\\n\\multicolumn{3}{l}{\\textbf{LOFO (family-level)}} & 0.686 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\vspace{-1mm}\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\n\\begin{figure}[!t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.pdf}\n\\caption{LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at ${\\sim}2.4\\times$ lower cost; individual detectors vary widely when repurposed for depth. Inference costs measured on a single NVIDIA RTX 5090.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\n\\paragraph{Formal definition.}\nFor feature $f$ measured across depths $d \\in \\{0,1,2{+}\\}$, we define its \\emph{depth sensitivity} as $\\text{DDR}(f) = |\\rho(\\text{depth}, f)|$, where $\\rho$ is Spearman correlation over all per-text measurements.\nA feature is classified as \\emph{drifting} if Cohen's $d > 0.50$ between adjacent depths, or \\emph{stationary} if $d < 0.15$; these thresholds are reference anchors, not definitive boundaries---the two-cluster structure is robust across $\\varepsilon \\in [0.10, 0.75]$, supported by unsupervised $k$-means (silhouette\\,=\\,0.660, $p{=}0.030$), exhaustive enumeration of all 35 splits (this partition ranks first), and independent replication in all eight generators (Appendix~\\ref{app:ddr-validation}); crucially, each generator's data is fully independent, making per-generator split analysis an 8-fold independent validation of the partition rather than same-data circularity.\nRecursive inputs grow increasingly self-typical~\\citep{markovian_chains}, predicting location drift with shape invariance (confirmed across nucleus, greedy, and top-$k$ strategies; Appendix~\\ref{app:decoding-strategy}).\n\nFigure~\\ref{fig:ddr-trajectory} reveals the dichotomy: central-tendency features (entropy mean, TTR, hapax ratio) decline monotonically with depth, while shape features (entropy max, tail decay, entropy min) remain flat.\nThe partition is binary ($k{=}2$; silhouette\\,=\\,0.660), with entropy std as a sole \\emph{intermediate} member ($d{=}0.55$, $|\\rho|{=}0.16$), distinct from three near-stationary features ($d < 0.10$; Appendix~\\ref{app:ddr-validation}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response (DDR). Drifting features (blue; $|\\rho| > 0.60$, effect size $d{=}0.76$--$1.17$) shift monotonically with generation depth; near-stationary features (amber; $d \\leq 0.10$) are approximately preserved; entropy std (wine; $d{=}0.55$) is intermediate. Diamonds: cross-generator means; dots: per-generator values.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nPooled Spearman correlations corroborate the split: drifting features show $|\\rho| > 0.60$ (hapax ratio $-0.64$, TTR $-0.63$, entropy mean $-0.60$) vs.\\ $|\\rho| \\leq 0.16$ for entropy max and tail decay; entropy min reaches $|\\rho|{=}0.40$ due to its gen-0/gen-1 boundary sensitivity (discussed below)---a persistent magnitude gap defining the DDR partition (Figure~\\ref{fig:feature-drift}).\n\n\\paragraph{Quantification.}\nCohen's $d$ \\cite{cohen1988statistical} shows a ${\\geq}7{\\times}$ gap between drifting ($d{=}0.76$--$1.17$) and near-stationary ($d < 0.10$); KS, Glass's $\\Delta$, Cliff's $\\delta$ all corroborate (Appendix~\\ref{app:ddr-validation}).\nEntropy min and tail decay are \\emph{boundary features}: entropy min is near-stationary for gen-1/gen-2+ ($d{=}0.016$) but sensitive at gen-0/gen-1; tail decay passes TOST for only 4/8 generators ($|d|{=}0.10$--$0.22$).\n\\paragraph{Validation.}\nEach hold-out generator independently recovers the identical partition (silhouette 0.505--0.760; Appendix~\\ref{app:ddr-validation}); TOST confirms near-stationarity for entropy min (8/8) and entropy max (6/8); permutation testing confirms the split as non-random ($p{=}0.030$); $\\Delta|\\rho| \\leq 0.05$ across splits; disjoint generator-pool splits, heteroscedasticity robustness, per-feature convergence dynamics (Figure~\\ref{fig:convergence}), and per-family DDR consistency (Appendix~\\ref{app:family-ddr}) appear in Appendices~\\ref{app:holdout-split}--\\ref{app:convergence}.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_convergence_dynamics.pdf}\n\\caption{Feature convergence dynamics across generation depth. Drifting features (blue) show monotonically increasing effect size ($|d| > 1$ by gen-2+); near-stationary features (amber) remain within $|d| < 0.25$ at all depths, confirming shape stability is not an artifact of insufficient chain length.}\n\\label{fig:convergence}\n\\end{figure}\n\n\\paragraph{Feature complementarity.}\nThe full 7-feature set (F1\\,=\\,0.773, 10-fold stratified CV, complementing the LOGO protocol in Table~\\ref{tab:logo-results}) outperforms surface-only (0.688) and reference-only (0.713; McNemar $p \\approx 0$; Appendix~\\ref{app:ablation-table}).\nThe collinear drifting triplet captures ${\\sim}$1 effective dimension (PCA PC1\\,=\\,92.3\\%; Appendix~\\ref{sec:appendix-feature-correlation}); group ablation confirms complementarity for depth profiling: 3-class F1 gains $+$5.3\\,pp when non-drifting features are added (drifting-only 0.716, all-7 0.769), while binary detection is already saturated by location drift alone (drifting-only binary F1\\,=\\,0.697 vs.\\ all-7\\,=\\,0.700; Appendix~\\ref{app:ablation-table})---shape stability contributes to depth \\emph{grading}, not detection.\nTTR and hapax ratio ($r = 0.97$) are retained for marginal LOFO gains \\cite{strobl_conditional_2008} (Appendix~\\ref{app:lofo}).\n\n\\paragraph{Cross-family reference models.}\nAlternative references (OLMo-2-1B, Qwen3-0.6B) yield F1 spread of only 0.013 (Appendix~\\ref{app:cross-ref}); same-family proximity may inflate Pythia F1 by up to 1.3\\,pp, but the DDR partition is preserved.\n\n\\paragraph{Temperature and prompt-type sensitivity.}\nAll four tested generators degrade at $t{=}0.9$ ($-$9.3 to $-$26.0\\,pp binary F1; Appendix~\\ref{app:sampling-sensitivity}); continuation chains show the strongest drift (F1\\,=\\,0.781; Appendix~\\ref{app:prompt-type}).\nThe DDR partition hierarchy is preserved across temperatures (Appendix~\\ref{app:ddr-temp-stability}).\n\n\n\\vspace{-1mm}\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\nWe next ask whether existing detection methods---designed for binary real-vs-synthetic classification---incidentally capture depth structure, repurposing four detection scores as ordinal depth predictors under identical XGBoost and LOGO conditions (Table~\\ref{tab:baselines}).\nThe strongest baseline is a 4-detector + surface feature ensemble (binary F1\\,=\\,0.708), which pools four detection scores with TTR and hapax ratio; among individual detectors, Avg-LogProb provides the most meaningful single-feature comparison.\n\n\\begin{table}[t]\n\\centering\n\\footnotesize\n\\caption{Depth classification (8-gen LOGO, pooled evaluation; pooled F1 is slightly higher than per-generator macro F1 in Table~\\ref{tab:logo-results} because larger test folds from high-performing generators contribute proportionally more). Identical XGBoost configuration. 7-feature: one 410M model (905\\,MB); 4-det ensembles: two models, 1.4B params (2{,}868\\,MB). Individual detection scores (N/A) share the reference-model forward pass; per-method timing is not separately profiled. XGBoost uses 7 handcrafted scalar features (one 410M reference); QLoRA (\\S\\ref{sec:results-classification}) uses the full token sequence---an information-asymmetric ceiling, not a fair comparison.}\n\\label{tab:baselines}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Feat.} & \\textbf{3-class F1} & \\textbf{Bin F1} & \\textbf{ms/text} \\\\\n\\midrule\n4-det.\\ + surface     & 6 & \\textbf{0.795} & \\textbf{0.708} & 22.8 \\\\\n4-detector ens.\\      & 4 & 0.785 & 0.700 & 22.8 \\\\\n7-feature (ours)      & 7 & 0.774 & 0.705 & \\textbf{9.7} \\\\\n\\midrule\nAvg-LogProb           & 1 & 0.707 & 0.673 & --- \\\\\nFastDetectGPT         & 1 & 0.660 & 0.569 & --- \\\\\nLD-Score              & 1 & 0.630 & 0.675 & --- \\\\\nBinoculars            & 1 & 0.411 & 0.539 & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nThe 7-feature ensemble matches the 4-detector+surface ensemble on binary F1 (0.705 vs.\\ 0.708; Figure~\\ref{fig:baseline-ci}) at ${\\sim}2.4\\times$ lower cost, though the latter leads by 2.1\\,pp on 3-class F1 (0.795 vs.\\ 0.774); both surpass individual detectors by 3.0--16.6\\,pp.\nDDR's contribution is the decomposition into location-sensitive and shape-stable components (\\S\\ref{sec:discussion}), achieving comparable depth discrimination with a single 410M reference model; ordinal-specific methods (CORAL, Frank-Hall) yield comparable F1 (Appendix~\\ref{app:classifier}).\nConcurrent iterative-generation studies use different chain operators (back-translation, rephrasing) and target different phenomena (factuality, convergence dynamics), precluding direct inclusion as depth classification baselines (Appendix~\\ref{app:iterative-comparison}).\n",
+                "numLines": 140,
+                "startLine": 1,
+                "totalLines": 140
+              }
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the paper's Table 4 (\"Table~\\ref{tab:cross-ref}\") values. It's the cross-reference model validation table, not the cross-ref data. Let me check what the user means by \"Table 4 cross-ref.\"\n\nLooking at the file `table4_cross_ref_logo.json`:\n```json\n{\n  \"pythia-410m\": {\n    \"per_fold_f1\": {\n      \"olmo-2-1b\": 0.7656,\n      \"pythia-1b\": 0.8515,\n      \"pythia-2.8b\": 0.8019,\n      \"qwen3-0.6b\": 0.8240,\n      \"qwen3-1.7b\": 0.8063,\n      \"qwen3-8b\": 0.6854\n    },\n    \"avg_macro_f1\": 0.7891,\n    \"ci_low\": 0.7473,\n    \"ci_high\": 0.8236\n  },\n  \"olmo-2-1b\": {\n    \"avg_macro_f1\": 0.7948,\n    \"ci_low\": 0.7567,\n    \"ci_high\":\n```\n\nGenerating JSON data... I'm realizing the discrepancy comes down to what generators are included in each evaluation. The \"5-gen subset\" in the paper likely excludes the Pythia family generators to prevent same-family reference bias, which would explain why Pythia-410M scores 0.803 in the paper versus 0.789 in the JSON's full 6-generator setup. Let me verify this by checking what the average would be if I remove just the Pythia generators from the fold. I'm realizing the paper's 8-generator setup might produce different cross-reference results than the 6-generator JSON data I'm looking at, which could explain why my manual calculation doesn't match the reported 0.803 value. The \"5-gen LOGO subset\" likely means excluding the reference model's family entirely, but I need to figure out which generators are actually included in the paper's current computation. The discrepancy between the paper's reported values and the JSON data suggests they might be using different subsets or computation methods. With 8 total generators, excluding the 2 Pythia models leaves 6, not 5, so there's likely an additional exclusion I'm not accounting for. I should check if there are other cross-reference results in the data that might clarify what subset was actually used for the table.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f3b941b4-e03a-43a0-95ae-15fa14e1df7f",
+            "uuid": "bbf7ef15-6db1-4874-a053-6935e0017496",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014VtvGguJF2dKRotmmoUucy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6596,
+                "cache_read_input_tokens": 109494,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6596
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KjkMEmfWzwhdP4ELxxSMBs",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "cat /root/gen-depth-fingerprint/results/review_p2f_cross_ref_bias.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f3b941b4-e03a-43a0-95ae-15fa14e1df7f",
+            "uuid": "19ccfe9a-05da-4263-b3f5-0dc6c519ab53",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014VtvGguJF2dKRotmmoUucy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6596,
+                "cache_read_input_tokens": 109494,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6596
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-23T10:47:16.862Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KjkMEmfWzwhdP4ELxxSMBs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"analysis\\\\\\\": \\\\\\\"P2-F Cross-reference-model bias check for Pythia-1B same-family advantage\\\\\\\",\\\\n  \\\\\\\"per_reference_logo\\\\\\\": {\\\\n    \\\\\\\"pythia-410m\\\\\\\": {\\\\n      \\\\\\\"avg_macro_f1\\\\\\\": 0.8034,\\\\n      \\\\\\\"ci\\\\\\\": [\\\\n        0.7722,\\\\n        0.8322\\\\n      ],\\\\n      \\\\\\\"per_generator_f1\\\\\\\": {\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": 0.7501,\\\\n        \\\\\\\"pythia-1b\\\\\\\": 0.8555,\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": 0.8009,\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": 0.8166,\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": 0.7939\\\\n      }\\\\n    },\\\\n    \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n      \\\\\\\"avg_macro_f1\\\\\\\": 0.8072,\\\\n      \\\\\\\"ci\\\\\\\": [\\\\n        0.7802,\\\\n        0.8309\\\\n      ],\\\\n      \\\\\\\"per_generator_f1\\\\\\\": {\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": 0.761,\\\\n        \\\\\\\"pythia-1b\\\\\\\": 0.8454,\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": 0.79,\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": 0.8282,\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": 0.8114\\\\n      }\\\\n    },\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n      \\\\\\\"avg_macro_f1\\\\\\\": 0.8158,\\\\n      \\\\\\\"ci\\\\\\\": [\\\\n        0.7862,\\\\n        0.8411\\\\n      ],\\\\n      \\\\\\\"per_generator_f1\\\\\\\": {\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": 0.7677,\\\\n        \\\\\\\"pythia-1b\\\\\\\": 0.8483,\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": 0.7895,\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": 0.8383,\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": 0.8354\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"pythia1b_bias_table\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"reference_model\\\\\\\": \\\\\\\"pythia-410m\\\\\\\",\\\\n      \\\\\\\"pythia1b_held_out_f1\\\\\\\": 0.8555,\\\\n      \\\\\\\"other_4gen_avg_f1\\\\\\\": 0.7904,\\\\n      \\\\\\\"pythia1b_delta_vs_avg\\\\\\\": 0.0651,\\\\n      \\\\\\\"pythia1b_rank_among_5\\\\\\\": 1\\\\n    },\\\\n    {\\\\n      \\\\\\\"reference_model\\\\\\\": \\\\\\\"olmo-2-1b\\\\\\\",\\\\n      \\\\\\\"pythia1b_held_out_f1\\\\\\\": 0.8454,\\\\n      \\\\\\\"other_4gen_avg_f1\\\\\\\": 0.7977,\\\\n      \\\\\\\"pythia1b_delta_vs_avg\\\\\\\": 0.0477,\\\\n      \\\\\\\"pythia1b_rank_among_5\\\\\\\": 1\\\\n    },\\\\n    {\\\\n      \\\\\\\"reference_model\\\\\\\": \\\\\\\"qwen3-0.6b\\\\\\\",\\\\n      \\\\\\\"pythia1b_held_out_f1\\\\\\\": 0.8483,\\\\n      \\\\\\\"other_4gen_avg_f1\\\\\\\": 0.8077,\\\\n      \\\\\\\"pythia1b_delta_vs_avg\\\\\\\": 0.0406,\\\\n      \\\\\\\"pythia1b_rank_among_5\\\\\\\": 1\\\\n    }\\\\n  ],\\\\n  \\\\\\\"conclusion\\\\\\\": {\\\\n    \\\\\\\"pythia1b_f1_same_family_ref\\\\\\\": 0.8555,\\\\n    \\\\\\\"pythia1b_f1_cross_family_avg\\\\\\\": 0.8468,\\\\n    \\\\\\\"f1_drop_cross_family\\\\\\\": 0.0086,\\\\n    \\\\\\\"pythia1b_always_rank1\\\\\\\": true,\\\\n    \\\\\\\"verdict\\\\\\\": \\\\\\\"same-family bias NOT confirmed\\\\\\\",\\\\n    \\\\\\\"reasoning\\\\\\\": \\\\\\\"Pythia-1B ranks #1 across ALL three reference models (same-family Pythia-410M, cross-family OLMo-2-1B, cross-family Qwen3-0.6B). F1 drop from same-family to cross-family reference is only 0.009 (0.855 -> 0.847), well within CI. Its high detectability is intrinsic (likely due to distinctive generation patterns), not an artifact of same-family reference model bias.\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f3b941b4-e03a-43a0-95ae-15fa14e1df7f",
+            "uuid": "aeac214a-abec-481e-8098-ef93643845b2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"analysis\\\\\\\": \\\\\\\"P2-F Cross-reference-model bias check for Pythia-1B same-family advantage\\\\\\\",\\\\n  \\\\\\\"per_reference_logo\\\\\\\": {\\\\n    \\\\\\\"pythia-410m\\\\\\\": {\\\\n      \\\\\\\"avg_macro_f1\\\\\\\": 0.8034,\\\\n      \\\\\\\"ci\\\\\\\": [\\\\n        0.7722,\\\\n        0.8322\\\\n      ],\\\\n      \\\\\\\"per_generator_f1\\\\\\\": {\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": 0.7501,\\\\n        \\\\\\\"pythia-1b\\\\\\\": 0.8555,\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": 0.8009,\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": 0.8166,\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": 0.7939\\\\n      }\\\\n    },\\\\n    \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n      \\\\\\\"avg_macro_f1\\\\\\\": 0.8072,\\\\n      \\\\\\\"ci\\\\\\\": [\\\\n        0.7802,\\\\n        0.8309\\\\n      ],\\\\n      \\\\\\\"per_generator_f1\\\\\\\": {\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": 0.761,\\\\n        \\\\\\\"pythia-1b\\\\\\\": 0.8454,\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": 0.79,\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": 0.8282,\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": 0.8114\\\\n      }\\\\n    },\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n      \\\\\\\"avg_macro_f1\\\\\\\": 0.8158,\\\\n      \\\\\\\"ci\\\\\\\": [\\\\n        0.7862,\\\\n        0.8411\\\\n      ],\\\\n      \\\\\\\"per_generator_f1\\\\\\\": {\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": 0.7677,\\\\n        \\\\\\\"pythia-1b\\\\\\\": 0.8483,\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": 0.7895,\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": 0.8383,\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": 0.8354\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"pythia1b_bias_table\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"reference_model\\\\\\\": \\\\\\\"pythia-410m\\\\\\\",\\\\n      \\\\\\\"pythia1b_held_out_f1\\\\\\\": 0.8555,\\\\n      \\\\\\\"other_4gen_avg_f1\\\\\\\": 0.7904,\\\\n      \\\\\\\"pythia1b_delta_vs_avg\\\\\\\": 0.0651,\\\\n      \\\\\\\"pythia1b_rank_among_5\\\\\\\": 1\\\\n    },\\\\n    {\\\\n      \\\\\\\"reference_model\\\\\\\": \\\\\\\"olmo-2-1b\\\\\\\",\\\\n      \\\\\\\"pythia1b_held_out_f1\\\\\\\": 0.8454,\\\\n      \\\\\\\"other_4gen_avg_f1\\\\\\\": 0.7977,\\\\n      \\\\\\\"pythia1b_delta_vs_avg\\\\\\\": 0.0477,\\\\n      \\\\\\\"pythia1b_rank_among_5\\\\\\\": 1\\\\n    },\\\\n    {\\\\n      \\\\\\\"reference_model\\\\\\\": \\\\\\\"qwen3-0.6b\\\\\\\",\\\\n      \\\\\\\"pythia1b_held_out_f1\\\\\\\": 0.8483,\\\\n      \\\\\\\"other_4gen_avg_f1\\\\\\\": 0.8077,\\\\n      \\\\\\\"pythia1b_delta_vs_avg\\\\\\\": 0.0406,\\\\n      \\\\\\\"pythia1b_rank_among_5\\\\\\\": 1\\\\n    }\\\\n  ],\\\\n  \\\\\\\"conclusion\\\\\\\": {\\\\n    \\\\\\\"pythia1b_f1_same_family_ref\\\\\\\": 0.8555,\\\\n    \\\\\\\"pythia1b_f1_cross_family_avg\\\\\\\": 0.8468,\\\\n    \\\\\\\"f1_drop_cross_family\\\\\\\": 0.0086,\\\\n    \\\\\\\"pythia1b_always_rank1\\\\\\\": true,\\\\n    \\\\\\\"verdict\\\\\\\": \\\\\\\"same-family bias NOT confirmed\\\\\\\",\\\\n    \\\\\\\"reasoning\\\\\\\": \\\\\\\"Pythia-1B ranks #1 across ALL three reference models (same-family Pythia-410M, cross-family OLMo-2-1B, cross-family Qwen3-0.6B). F1 drop from same-family to cross-family reference is only 0.009 (0.855 -> 0.847), well within CI. Its high detectability is intrinsic (likely due to distinctive generation patterns), not an artifact of same-family reference model bias.\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"P2-F Cross-reference-model bias check for Pythia-1B same-family advantage\\\",\\n  \\\"per_reference_logo\\\": {\\n    \\\"pythia-410m\\\": {\\n      \\\"avg_macro_f1\\\": 0.8034,\\n      \\\"ci\\\": [\\n        0.7722,\\n        0.8322\\n      ],\\n      \\\"per_generator_f1\\\": {\\n        \\\"olmo-2-1b\\\": 0.7501,\\n        \\\"pythia-1b\\\": 0.8555,\\n        \\\"pythia-2.8b\\\": 0.8009,\\n        \\\"qwen3-0.6b\\\": 0.8166,\\n        \\\"qwen3-1.7b\\\": 0.7939\\n      }\\n    },\\n    \\\"olmo-2-1b\\\": {\\n      \\\"avg_macro_f1\\\": 0.8072,\\n      \\\"ci\\\": [\\n        0.7802,\\n        0.8309\\n      ],\\n      \\\"per_generator_f1\\\": {\\n        \\\"olmo-2-1b\\\": 0.761,\\n        \\\"pythia-1b\\\": 0.8454,\\n        \\\"pythia-2.8b\\\": 0.79,\\n        \\\"qwen3-0.6b\\\": 0.8282,\\n        \\\"qwen3-1.7b\\\": 0.8114\\n      }\\n    },\\n    \\\"qwen3-0.6b\\\": {\\n      \\\"avg_macro_f1\\\": 0.8158,\\n      \\\"ci\\\": [\\n        0.7862,\\n        0.8411\\n      ],\\n      \\\"per_generator_f1\\\": {\\n        \\\"olmo-2-1b\\\": 0.7677,\\n        \\\"pythia-1b\\\": 0.8483,\\n        \\\"pythia-2.8b\\\": 0.7895,\\n        \\\"qwen3-0.6b\\\": 0.8383,\\n        \\\"qwen3-1.7b\\\": 0.8354\\n      }\\n    }\\n  },\\n  \\\"pythia1b_bias_table\\\": [\\n    {\\n      \\\"reference_model\\\": \\\"pythia-410m\\\",\\n      \\\"pythia1b_held_out_f1\\\": 0.8555,\\n      \\\"other_4gen_avg_f1\\\": 0.7904,\\n      \\\"pythia1b_delta_vs_avg\\\": 0.0651,\\n      \\\"pythia1b_rank_among_5\\\": 1\\n    },\\n    {\\n      \\\"reference_model\\\": \\\"olmo-2-1b\\\",\\n      \\\"pythia1b_held_out_f1\\\": 0.8454,\\n      \\\"other_4gen_avg_f1\\\": 0.7977,\\n      \\\"pythia1b_delta_vs_avg\\\": 0.0477,\\n      \\\"pythia1b_rank_among_5\\\": 1\\n    },\\n    {\\n      \\\"reference_model\\\": \\\"qwen3-0.6b\\\",\\n      \\\"pythia1b_held_out_f1\\\": 0.8483,\\n      \\\"other_4gen_avg_f1\\\": 0.8077,\\n      \\\"pythia1b_delta_vs_avg\\\": 0.0406,\\n      \\\"pythia1b_rank_among_5\\\": 1\\n    }\\n  ],\\n  \\\"conclusion\\\": {\\n    \\\"pythia1b_f1_same_family_ref\\\": 0.8555,\\n    \\\"pythia1b_f1_cross_family_avg\\\": 0.8468,\\n    \\\"f1_drop_cross_family\\\": 0.0086,\\n    \\\"pythia1b_always_rank1\\\": true,\\n    \\\"verdict\\\": \\\"same-family bias NOT confirmed\\\",\\n    \\\"reasoning\\\": \\\"Pythia-1B ranks #1 across ALL three reference models (same-family Pythia-410M, cross-family OLMo-2-1B, cross-family Qwen3-0.6B). F1 drop from same-family to cross-family reference is only 0.009 (0.855 -> 0.847), well within CI. Its high detectability is intrinsic (likely due to distinctive generation patterns), not an artifact of same-family reference model bias.\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            }
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K5NGVoR1Edpu4hv31bi8s7",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-18868",
+                "command": "cat /root/gen-depth-fingerprint/results/cross_model_logo_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f3b941b4-e03a-43a0-95ae-15fa14e1df7f",
+            "uuid": "8c8ac936-21e8-409d-8b32-9d64d1091b6f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014VtvGguJF2dKRotmmoUucy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6596,
+                "cache_read_input_tokens": 109494,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6596
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-23T10:47:17.359Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K5NGVoR1Edpu4hv31bi8s7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"cross_model_chains_logo\\\\\\\",\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"leave-one-generator-out (LOGO)\\\\\\\",\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"Each fold holds out all samples produced by one generator. Depth-0 (wikipedia) samples split equally across folds. Training set balanced per fold.\\\\\\\",\\\\n  \\\\\\\"logo\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.7887,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.8296,\\\\n    \\\\\\\"n_samples\\\\\\\": 4773,\\\\n    \\\\\\\"confusion_matrix\\\\\\\": [\\\\n      [\\\\n        948,\\\\n        44,\\\\n        3\\\\n      ],\\\\n      [\\\\n        74,\\\\n        757,\\\\n        157\\\\n      ],\\\\n      [\\\\n        54,\\\\n        647,\\\\n        2089\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"per_class\\\\\\\": {\\\\n      \\\\\\\"gen-0\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.881,\\\\n        \\\\\\\"recall\\\\\\\": 0.9528,\\\\n        \\\\\\\"f1\\\\\\\": 0.9155\\\\n      },\\\\n      \\\\\\\"gen-1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.5228,\\\\n        \\\\\\\"recall\\\\\\\": 0.7662,\\\\n        \\\\\\\"f1\\\\\\\": 0.6215\\\\n      },\\\\n      \\\\\\\"gen-2+\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.9289,\\\\n        \\\\\\\"recall\\\\\\\": 0.7487,\\\\n        \\\\\\\"f1\\\\\\\": 0.8291\\\\n      }\\\\n    },\\\\n    \\\\\\\"per_generator\\\\\\\": {\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.7683,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.8099,\\\\n        \\\\\\\"n_test\\\\\\\": 982,\\\\n        \\\\\\\"n_train_balanced\\\\\\\": 2331\\\\n      },\\\\n      \\\\\\\"pythia-1b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.8098,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.8321,\\\\n        \\\\\\\"n_test\\\\\\\": 928,\\\\n        \\\\\\\"n_train_balanced\\\\\\\": 2388\\\\n      },\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.791,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.8185,\\\\n        \\\\\\\"n_test\\\\\\\": 950,\\\\n        \\\\\\\"n_train_balanced\\\\\\\": 2355\\\\n      },\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.7802,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.8151,\\\\n        \\\\\\\"n_test\\\\\\\": 968,\\\\n        \\\\\\\"n_train_balanced\\\\\\\": 2352\\\\n      },\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.7953,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.871,\\\\n        \\\\\\\"n_test\\\\\\\": 945,\\\\n        \\\\\\\"n_train_balanced\\\\\\\": 2388\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"bootstrap_ci_95\\\\\\\": {\\\\n    \\\\\\\"3class_f1_ci\\\\\\\": [\\\\n      0.7767,\\\\n      0.7997\\\\n    ],\\\\n    \\\\\\\"binary_f1_ci\\\\\\\": [\\\\n      0.8183,\\\\n      0.8409\\\\n    ],\\\\n    \\\\\\\"n_boot\\\\\\\": 2000\\\\n  },\\\\n  \\\\\\\"vs_original_5fold_cv\\\\\\\": {\\\\n    \\\\\\\"original_3class_f1\\\\\\\": 0.8089,\\\\n    \\\\\\\"original_binary_f1\\\\\\\": 0.7635,\\\\n    \\\\\\\"logo_3class_f1\\\\\\\": 0.7887,\\\\n    \\\\\\\"logo_binary_f1\\\\\\\": 0.8296,\\\\n    \\\\\\\"delta_3class\\\\\\\": -0.0202,\\\\n    \\\\\\\"delta_binary\\\\\\\": 0.0661\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"generators\\\\\\\": [\\\\n      \\\\\\\"olmo-2-1b\\\\\\\",\\\\n      \\\\\\\"pythia-1b\\\\\\\",\\\\n      \\\\\\\"pythia-2.8b\\\\\\\",\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\",\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"features\\\\\\\": [\\\\n      \\\\\\\"entropy_mean\\\\\\\",\\\\n      \\\\\\\"entropy_std\\\\\\\",\\\\n      \\\\\\\"entropy_min\\\\\\\",\\\\n      \\\\\\\"entropy_max\\\\\\\",\\\\n      \\\\\\\"tail_decay\\\\\\\",\\\\n      \\\\\\\"ttr\\\\\\\",\\\\n      \\\\\\\"hapax_ratio\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"xgb_params\\\\\\\": {\\\\n      \\\\\\\"n_estimators\\\\\\\": 200,\\\\n      \\\\\\\"max_depth\\\\\\\": 6,\\\\n      \\\\\\\"learning_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"random_state\\\\\\\": 42,\\\\n      \\\\\\\"use_label_encoder\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"class_map\\\\\\\": {\\\\n      \\\\\\\"0\\\\\\\": \\\\\\\"gen-0\\\\\\\",\\\\n      \\\\\\\"1\\\\\\\": \\\\\\\"gen-1\\\\\\\",\\\\n      \\\\\\\"2-4\\\\\\\": \\\\\\\"gen-2+\\\\\\\"\\\\n    },\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 2000\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f3b941b4-e03a-43a0-95ae-15fa14e1df7f",
+            "uuid": "180e6e3e-6f61-49c9-a0fb-58aadda58b07",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"cross_model_chains_logo\\\\\\\",\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"leave-one-generator-out (LOGO)\\\\\\\",\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"Each fold holds out all samples produced by one generator. Depth-0 (wikipedia) samples split equally across folds. Training set balanced per fold.\\\\\\\",\\\\n  \\\\\\\"logo\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.7887,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.8296,\\\\n    \\\\\\\"n_samples\\\\\\\": 4773,\\\\n    \\\\\\\"confusion_matrix\\\\\\\": [\\\\n      [\\\\n        948,\\\\n        44,\\\\n        3\\\\n      ],\\\\n      [\\\\n        74,\\\\n        757,\\\\n        157\\\\n      ],\\\\n      [\\\\n        54,\\\\n        647,\\\\n        2089\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"per_class\\\\\\\": {\\\\n      \\\\\\\"gen-0\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.881,\\\\n        \\\\\\\"recall\\\\\\\": 0.9528,\\\\n        \\\\\\\"f1\\\\\\\": 0.9155\\\\n      },\\\\n      \\\\\\\"gen-1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.5228,\\\\n        \\\\\\\"recall\\\\\\\": 0.7662,\\\\n        \\\\\\\"f1\\\\\\\": 0.6215\\\\n      },\\\\n      \\\\\\\"gen-2+\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.9289,\\\\n        \\\\\\\"recall\\\\\\\": 0.7487,\\\\n        \\\\\\\"f1\\\\\\\": 0.8291\\\\n      }\\\\n    },\\\\n    \\\\\\\"per_generator\\\\\\\": {\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.7683,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.8099,\\\\n        \\\\\\\"n_test\\\\\\\": 982,\\\\n        \\\\\\\"n_train_balanced\\\\\\\": 2331\\\\n      },\\\\n      \\\\\\\"pythia-1b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.8098,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.8321,\\\\n        \\\\\\\"n_test\\\\\\\": 928,\\\\n        \\\\\\\"n_train_balanced\\\\\\\": 2388\\\\n      },\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.791,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.8185,\\\\n        \\\\\\\"n_test\\\\\\\": 950,\\\\n        \\\\\\\"n_train_balanced\\\\\\\": 2355\\\\n      },\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.7802,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.8151,\\\\n        \\\\\\\"n_test\\\\\\\": 968,\\\\n        \\\\\\\"n_train_balanced\\\\\\\": 2352\\\\n      },\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.7953,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.871,\\\\n        \\\\\\\"n_test\\\\\\\": 945,\\\\n        \\\\\\\"n_train_balanced\\\\\\\": 2388\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"bootstrap_ci_95\\\\\\\": {\\\\n    \\\\\\\"3class_f1_ci\\\\\\\": [\\\\n      0.7767,\\\\n      0.7997\\\\n    ],\\\\n    \\\\\\\"binary_f1_ci\\\\\\\": [\\\\n      0.8183,\\\\n      0.8409\\\\n    ],\\\\n    \\\\\\\"n_boot\\\\\\\": 2000\\\\n  },\\\\n  \\\\\\\"vs_original_5fold_cv\\\\\\\": {\\\\n    \\\\\\\"original_3class_f1\\\\\\\": 0.8089,\\\\n    \\\\\\\"original_binary_f1\\\\\\\": 0.7635,\\\\n    \\\\\\\"logo_3class_f1\\\\\\\": 0.7887,\\\\n    \\\\\\\"logo_binary_f1\\\\\\\": 0.8296,\\\\n    \\\\\\\"delta_3class\\\\\\\": -0.0202,\\\\n    \\\\\\\"delta_binary\\\\\\\": 0.0661\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"generators\\\\\\\": [\\\\n      \\\\\\\"olmo-2-1b\\\\\\\",\\\\n      \\\\\\\"pythia-1b\\\\\\\",\\\\n      \\\\\\\"pythia-2.8b\\\\\\\",\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\",\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"features\\\\\\\": [\\\\n      \\\\\\\"entropy_mean\\\\\\\",\\\\n      \\\\\\\"entropy_std\\\\\\\",\\\\n      \\\\\\\"entropy_min\\\\\\\",\\\\n      \\\\\\\"entropy_max\\\\\\\",\\\\n      \\\\\\\"tail_decay\\\\\\\",\\\\n      \\\\\\\"ttr\\\\\\\",\\\\n      \\\\\\\"hapax_ratio\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"xgb_params\\\\\\\": {\\\\n      \\\\\\\"n_estimators\\\\\\\": 200,\\\\n      \\\\\\\"max_depth\\\\\\\": 6,\\\\n      \\\\\\\"learning_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"random_state\\\\\\\": 42,\\\\n      \\\\\\\"use_label_encoder\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"class_map\\\\\\\": {\\\\n      \\\\\\\"0\\\\\\\": \\\\\\\"gen-0\\\\\\\",\\\\n      \\\\\\\"1\\\\\\\": \\\\\\\"gen-1\\\\\\\",\\\\n      \\\\\\\"2-4\\\\\\\": \\\\\\\"gen-2+\\\\\\\"\\\\n    },\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 2000\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"cross_model_chains_logo\\\",\\n  \\\"method\\\": \\\"leave-one-generator-out (LOGO)\\\",\\n  \\\"description\\\": \\\"Each fold holds out all samples produced by one generator. Depth-0 (wikipedia) samples split equally across folds. Training set balanced per fold.\\\",\\n  \\\"logo\\\": {\\n    \\\"3class_f1\\\": 0.7887,\\n    \\\"binary_f1\\\": 0.8296,\\n    \\\"n_samples\\\": 4773,\\n    \\\"confusion_matrix\\\": [\\n      [\\n        948,\\n        44,\\n        3\\n      ],\\n      [\\n        74,\\n        757,\\n        157\\n      ],\\n      [\\n        54,\\n        647,\\n        2089\\n      ]\\n    ],\\n    \\\"per_class\\\": {\\n      \\\"gen-0\\\": {\\n        \\\"precision\\\": 0.881,\\n        \\\"recall\\\": 0.9528,\\n        \\\"f1\\\": 0.9155\\n      },\\n      \\\"gen-1\\\": {\\n        \\\"precision\\\": 0.5228,\\n        \\\"recall\\\": 0.7662,\\n        \\\"f1\\\": 0.6215\\n      },\\n      \\\"gen-2+\\\": {\\n        \\\"precision\\\": 0.9289,\\n        \\\"recall\\\": 0.7487,\\n        \\\"f1\\\": 0.8291\\n      }\\n    },\\n    \\\"per_generator\\\": {\\n      \\\"olmo-2-1b\\\": {\\n        \\\"3class_f1\\\": 0.7683,\\n        \\\"binary_f1\\\": 0.8099,\\n        \\\"n_test\\\": 982,\\n        \\\"n_train_balanced\\\": 2331\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"3class_f1\\\": 0.8098,\\n        \\\"binary_f1\\\": 0.8321,\\n        \\\"n_test\\\": 928,\\n        \\\"n_train_balanced\\\": 2388\\n      },\\n      \\\"pythia-2.8b\\\": {\\n        \\\"3class_f1\\\": 0.791,\\n        \\\"binary_f1\\\": 0.8185,\\n        \\\"n_test\\\": 950,\\n        \\\"n_train_balanced\\\": 2355\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"3class_f1\\\": 0.7802,\\n        \\\"binary_f1\\\": 0.8151,\\n        \\\"n_test\\\": 968,\\n        \\\"n_train_balanced\\\": 2352\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"3class_f1\\\": 0.7953,\\n        \\\"binary_f1\\\": 0.871,\\n        \\\"n_test\\\": 945,\\n        \\\"n_train_balanced\\\": 2388\\n      }\\n    }\\n  },\\n  \\\"bootstrap_ci_95\\\": {\\n    \\\"3class_f1_ci\\\": [\\n      0.7767,\\n      0.7997\\n    ],\\n    \\\"binary_f1_ci\\\": [\\n      0.8183,\\n      0.8409\\n    ],\\n    \\\"n_boot\\\": 2000\\n  },\\n  \\\"vs_original_5fold_cv\\\": {\\n    \\\"original_3class_f1\\\": 0.8089,\\n    \\\"original_binary_f1\\\": 0.7635,\\n    \\\"logo_3class_f1\\\": 0.7887,\\n    \\\"logo_binary_f1\\\": 0.8296,\\n    \\\"delta_3class\\\": -0.0202,\\n    \\\"delta_binary\\\": 0.0661\\n  },\\n  \\\"config\\\": {\\n    \\\"generators\\\": [\\n      \\\"olmo-2-1b\\\",\\n      \\\"pythia-1b\\\",\\n      \\\"pythia-2.8b\\\",\\n      \\\"qwen3-0.6b\\\",\\n      \\\"qwen3-1.7b\\\"\\n    ],\\n    \\\"features\\\": [\\n      \\\"entropy_mean\\\",\\n      \\\"entropy_std\\\",\\n      \\\"entropy_min\\\",\\n      \\\"entropy_max\\\",\\n      \\\"tail_decay\\\",\\n      \\\"ttr\\\",\\n      \\\"hapax_ratio\\\"\\n    ],\\n    \\\"xgb_params\\\": {\\n      \\\"n_estimators\\\": 200,\\n      \\\"max_depth\\\": 6,\\n      \\\"learning_rate\\\": 0.1,\\n      \\\"random_state\\\": 42,\\n      \\\"use_label_encoder\\\": false\\n    },\\n    \\\"class_map\\\": {\\n      \\\"0\\\": \\\"gen-0\\\",\\n      \\\"1\\\": \\\"gen-1\\\",\\n      \\\"2-4\\\": \\\"gen-2+\\\"\\n    },\\n    \\\"n_bootstrap\\\": 2000\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I found the data source for Table 4! The `review_p2f_cross_ref_bias.json` contains:\n\n- pythia-410m: avg_macro_f1 = 0.8034 (paper says 0.803 ✓)\n- olmo-2-1b: avg_macro_f1 = 0.8072 (paper says 0.807 ✓)\n- qwen3-0.6b: avg_macro_f1 = 0.8158 (paper says 0.816 ✓)\n\n**Table 4 values match the server data!** Spread: 0.8158 - 0.8034 = 0.0124 ≈ 0.013 (rounded).\n\n\nThe evaluation is specifically the 5-gen LOGO subset mentioned in the paper caption, which explains why larger models like Llama, Mistral, and Qwen3-8B aren't included here.\n\nNow looking at the task summary, I'm trying to trace back where the d=0.55 value comes from across all the available datasets. I'm checking the entropy_std Cohen's d values from different sources — the 8-gen equivalence test gives d=0.457, the bootstrap analysis shows a median around 0.458, and the 6-gen pooled data yields d=0.493 — but none of these match the 0.55 figure, so it doesn't appear to come from any of the existing experimental data or calculation scripts.\n\nThe most likely source is the gen-0 to gen-1 step size showing d=0.558, which would round to 0.56 rather than 0.55, and this value seems to have been incorrectly labeled as \"pooled d\" in the epsilon-sweep table of the paper without ever being validated against actual data. There's also an internal inconsistency in the appendix validation file where line 85 reports d=0.49 (which aligns with the actual 6-gen data at 0.493), but lines 101 and 112 report d=0.55, suggesting the value may have been introduced as a transcription error or misremembered figure.\n\nNow I'm checking the actual values from the server data. The 8-gen comparison shows d=0.457 with a confidence interval of [0.435, 0.479], and the 6-gen comparison gives d=0.493. Looking at Table 4, I'm verifying that the paper's reported values match what's in the server data across the three reference models—Pythia-410M, OLMo-2-1B, and Qwen3-0.6B all show close alignment between the published numbers and the actual stored values.\n\nI notice the spread across these models is only 0.013, which is good consistency. However, there's an important caveat: Table 4 is currently based on a 5-gen subset that excludes Llama, Mistral, and Qwen3-8B, while the rest of the paper uses the 8-gen configuration. This might mean I need to update Table 4 to align with the 8-gen setup for consistency across all tables.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f3b941b4-e03a-43a0-95ae-15fa14e1df7f",
+            "uuid": "6fe23e52-93b1-4b9e-884b-35c43b340c20",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GZxvBcWYnHjcm9H6W2bfJf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5185,
+                "cache_read_input_tokens": 116090,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5185
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据溯源完成。以下是完整汇报。\n\n---\n\n## 任务 1：entropy_std d=0.55 溯源\n\n### 结论：**d=0.55 无法精确追溯到任何现存数据或计算脚本**\n\n所有可复现的计算结果：\n\n| 数据集/方法 | d 值 |\n|---|---|\n| 8-gen pooled (gen-1 vs gen-2+, `tost_equivalence.json`) | **0.457** [CI: 0.435, 0.479] |\n| 8-gen bootstrap (`tost_bootstrap.json`) | 0.458 |\n| 6-gen pooled (gen-1 vs gen-2+, `features_all_models.csv`) | 0.493 |\n| 8-gen per-generator avg (gen-1 vs gen-2+) | mean=0.463, median=0.507 |\n| 6-gen per-generator avg (gen-1 vs gen-2+) | mean=0.496, median=0.524 |\n| gen-0→gen-1 step d (`trend_analysis.json`) | 0.558 |\n| Single-gen Pythia-2.8B (gen-1 vs gen-2+) | 0.389 |\n\n**最可能来源**：gen-0→gen-1 步长 d=0.558（来自 `trend_analysis.json`），四舍五入后被误用为 \"pooled d=0.55\"，但这个值仅代表首步变化，不是论文声称的整体 effect size。\n\n### 内部矛盾\n\n同一个 `appendix_ddr_validation.tex` 中存在两个不同值：\n- **第85行**: `entropy std ($d{=}0.49$)` ← 接近实际 6-gen 数据 0.493\n- **第101/112行**: `entropy std ($d{=}0.55$)` ← 无数据支撑\n\n### 当前正确值\n\n应使用 **d = 0.46**（8-gen, gen-1 vs gen-2+, 95% CI [0.44, 0.48]）。\n\n论文中需要修正的位置（均写 d=0.55）：\n- `abstract.tex:4`\n- `introduction.tex:9, 25`\n- `results.tex:71, 76`\n- `appendix_ddr_validation.tex:101, 112, 121`\n\n同时 `appendix_ddr_validation.tex:85` 的 d=0.49 虽更接近但也应统一修正。\n\n---\n\n## 任务 2：Table 4 (cross-ref) 校验\n\n**Table 4 值与服务器数据一致**（数据源：`review_p2f_cross_ref_bias.json`，5-gen LOGO 子集）：\n\n| Reference | 论文值 | 服务器值 | 匹配 |\n|---|---|---|---|\n| Pythia-410M | 0.803 | 0.8034 | ✓ |\n| OLMo-2-1B | 0.807 | 0.8072 | ✓ |\n| Qwen3-0.6B | 0.816 | 0.8158 | ✓ |\n| Spread | 0.013 | 0.0124 | ✓ (rounded) |\n\n**注意事项**：Table 4 使用 5-gen 子集（olmo-2-1b, pythia-1b, pythia-2.8b, qwen3-0.6b, qwen3-1.7b），不包含 Llama、Mistral、Qwen3-8B。论文其他表格均使用 8-gen 配置，需评估是否更新 Table 4 到 8-gen。\n\n---\n\n### 总结\n\n- **d=0.55**：**陈旧值，无数据支撑**。正确值为 d=0.46（8-gen）或 d=0.49（6-gen）。涉及 abstract、intro、results、appendix 共 ~9 处需修正。\n- **Table 4**：数据正确，无需修正内容值。但注意其使用 5-gen 子集与其他表格的 8-gen 不一致。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f3b941b4-e03a-43a0-95ae-15fa14e1df7f",
+            "uuid": "075da2a3-314a-45f1-a84f-8cf85e6593c7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GZxvBcWYnHjcm9H6W2bfJf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5185,
+                "cache_read_input_tokens": 116090,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5185
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据溯源完成。以下是完整汇报。\n\n---\n\n## 任务 1：entropy_std d=0.55 溯源\n\n### 结论：**d=0.55 无法精确追溯到任何现存数据或计算脚本**\n\n所有可复现的计算结果：\n\n| 数据集/方法 | d 值 |\n|---|---|\n| 8-gen pooled (gen-1 vs gen-2+, `tost_equivalence.json`) | **0.457** [CI: 0.435, 0.479] |\n| 8-gen bootstrap (`tost_bootstrap.json`) | 0.458 |\n| 6-gen pooled (gen-1 vs gen-2+, `features_all_models.csv`) | 0.493 |\n| 8-gen per-generator avg (gen-1 vs gen-2+) | mean=0.463, median=0.507 |\n| 6-gen per-generator avg (gen-1 vs gen-2+) | mean=0.496, median=0.524 |\n| gen-0→gen-1 step d (`trend_analysis.json`) | 0.558 |\n| Single-gen Pythia-2.8B (gen-1 vs gen-2+) | 0.389 |\n\n**最可能来源**：gen-0→gen-1 步长 d=0.558（来自 `trend_analysis.json`），四舍五入后被误用为 \"pooled d=0.55\"，但这个值仅代表首步变化，不是论文声称的整体 effect size。\n\n### 内部矛盾\n\n同一个 `appendix_ddr_validation.tex` 中存在两个不同值：\n- **第85行**: `entropy std ($d{=}0.49$)` ← 接近实际 6-gen 数据 0.493\n- **第101/112行**: `entropy std ($d{=}0.55$)` ← 无数据支撑\n\n### 当前正确值\n\n应使用 **d = 0.46**（8-gen, gen-1 vs gen-2+, 95% CI [0.44, 0.48]）。\n\n论文中需要修正的位置（均写 d=0.55）：\n- `abstract.tex:4`\n- `introduction.tex:9, 25`\n- `results.tex:71, 76`\n- `appendix_ddr_validation.tex:101, 112, 121`\n\n同时 `appendix_ddr_validation.tex:85` 的 d=0.49 虽更接近但也应统一修正。\n\n---\n\n## 任务 2：Table 4 (cross-ref) 校验\n\n**Table 4 值与服务器数据一致**（数据源：`review_p2f_cross_ref_bias.json`，5-gen LOGO 子集）：\n\n| Reference | 论文值 | 服务器值 | 匹配 |\n|---|---|---|---|\n| Pythia-410M | 0.803 | 0.8034 | ✓ |\n| OLMo-2-1B | 0.807 | 0.8072 | ✓ |\n| Qwen3-0.6B | 0.816 | 0.8158 | ✓ |\n| Spread | 0.013 | 0.0124 | ✓ (rounded) |\n\n**注意事项**：Table 4 使用 5-gen 子集（olmo-2-1b, pythia-1b, pythia-2.8b, qwen3-0.6b, qwen3-1.7b），不包含 Llama、Mistral、Qwen3-8B。论文其他表格均使用 8-gen 配置，需评估是否更新 Table 4 到 8-gen。\n\n---\n\n### 总结\n\n- **d=0.55**：**陈旧值，无数据支撑**。正确值为 d=0.46（8-gen）或 d=0.49（6-gen）。涉及 abstract、intro、results、appendix 共 ~9 处需修正。\n- **Table 4**：数据正确，无需修正内容值。但注意其使用 5-gen 子集与其他表格的 8-gen 不一致。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 550081,
+            "duration_api_ms": 544001,
+            "num_turns": 74,
+            "stop_reason": "end_turn",
+            "session_id": "f3b941b4-e03a-43a0-95ae-15fa14e1df7f",
+            "total_cost_usd": 2.930107,
+            "usage": {
+              "input_tokens": 42,
+              "cache_creation_input_tokens": 109434,
+              "cache_read_input_tokens": 3203403,
+              "output_tokens": 25693,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 109434,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 2287,
+                  "cache_read_input_tokens": 116090,
+                  "cache_creation_input_tokens": 5185,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 5185
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1813,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001908,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 42,
+                "outputTokens": 25693,
+                "cacheReadInputTokens": 3203403,
+                "cacheCreationInputTokens": 109434,
+                "webSearchRequests": 0,
+                "costUSD": 2.9281989999999998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "4fee246e-63e8-4f31-a94d-ad08d16d1c01"
+          },
+          "id": "event-000184"
+        }
+      ]
+    }
+  ]
+}

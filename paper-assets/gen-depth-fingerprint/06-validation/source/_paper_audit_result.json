@@ -1,0 +1,1639 @@
+{
+  "phase1": {
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig_appendix_9gen_scale.pdf' which does not exist",
+          "location": "appendix_9gen_scale.tex:35"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig_appendix_decoding.pdf' which does not exist",
+          "location": "appendix_decoding_strategy.tex:69"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig_appendix_semantic_sim.pdf' which does not exist",
+          "location": "appendix_seed_control.tex:40"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig_appendix_tost_heatmap.pdf' which does not exist",
+          "location": "appendix_tost.tex:14"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig_appendix_ref_comparison.pdf' which does not exist",
+          "location": "table4.tex:24"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:seed-control} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:introduction} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:ablation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:tost-heatmap} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ddr-supplement} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:feature-corr} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:family_ddr_consistency} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:holdout-split} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:5class-perclass} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ai-assistants} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:decoding-robustness} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:tost-bootstrap} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:ethics} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:9gen-scale} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:feature-ablation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:task} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:related} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:heteroscedasticity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:5class-logo} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:conclusion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:limitations} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:cross-model-perclass} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_9gen_scale.tex:7"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_classifier.tex:7"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_classifier.tex:68"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_confusion_matrix.tex:4"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_ddr_causality.tex:7"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_ddr_causality.tex:33"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_ddr_validation.tex:12"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_ddr_validation.tex:48"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_ddr_validation.tex:105"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_ddr_validation.tex:139"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_decoding_strategy.tex:11"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_decoding_strategy.tex:39"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_downstream.tex:43"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_feature_candidates.tex:4"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_feature_correlation.tex:6"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_finer_depth.tex:3"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_finer_depth.tex:25"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_generator_subsets.tex:3"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_human_edit.tex:4"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_human_edit.tex:36"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_instruct.tex:6"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_instruct.tex:73"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_iterative_comparison.tex:1"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_qlora.tex:8"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_qualitative_examples.tex:29"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_seed_control.tex:10"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_temperature_stability.tex:3"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_tost.tex:26"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_tost_bootstrap.tex:6"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_transfer.tex:5"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "per_family_ddr_table.tex:1"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "results.tex:31"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "results.tex:105"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "table4.tex:4"
+        }
+      ],
+      "info": [],
+      "summary": "5 critical, 56 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 7,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_9gen_scale.tex",
+          "role": "other",
+          "num_numbers": 74,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_ablation.tex",
+          "role": "other",
+          "num_numbers": 9,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_ai_assistants.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_classifier.tex",
+          "role": "other",
+          "num_numbers": 96,
+          "num_cites": 2
+        },
+        {
+          "file": "appendix_confusion_matrix.tex",
+          "role": "other",
+          "num_numbers": 18,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_convergence.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_cross_model_detail.tex",
+          "role": "other",
+          "num_numbers": 19,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_cross_temp.tex",
+          "role": "other",
+          "num_numbers": 34,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_dataset_stats.tex",
+          "role": "other",
+          "num_numbers": 6,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_ddr_causality.tex",
+          "role": "other",
+          "num_numbers": 31,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_ddr_validation.tex",
+          "role": "other",
+          "num_numbers": 161,
+          "num_cites": 1
+        },
+        {
+          "file": "appendix_decoding_strategy.tex",
+          "role": "other",
+          "num_numbers": 211,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_domain.tex",
+          "role": "other",
+          "num_numbers": 36,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_downstream.tex",
+          "role": "other",
+          "num_numbers": 39,
+          "num_cites": 1
+        },
+        {
+          "file": "appendix_error_analysis.tex",
+          "role": "other",
+          "num_numbers": 59,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_feature_candidates.tex",
+          "role": "other",
+          "num_numbers": 35,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_feature_correlation.tex",
+          "role": "other",
+          "num_numbers": 53,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_feature_distributions.tex",
+          "role": "other",
+          "num_numbers": 2,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_finer_depth.tex",
+          "role": "other",
+          "num_numbers": 42,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_generator_subsets.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_human_edit.tex",
+          "role": "other",
+          "num_numbers": 82,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_instruct.tex",
+          "role": "other",
+          "num_numbers": 78,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_iterative_comparison.tex",
+          "role": "other",
+          "num_numbers": 3,
+          "num_cites": 2
+        },
+        {
+          "file": "appendix_length.tex",
+          "role": "other",
+          "num_numbers": 14,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_lofo.tex",
+          "role": "other",
+          "num_numbers": 40,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_nll_distribution.tex",
+          "role": "other",
+          "num_numbers": 2,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_prompt_type.tex",
+          "role": "other",
+          "num_numbers": 7,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_qlora.tex",
+          "role": "other",
+          "num_numbers": 31,
+          "num_cites": 1
+        },
+        {
+          "file": "appendix_qualitative_examples.tex",
+          "role": "other",
+          "num_numbers": 22,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_seed_control.tex",
+          "role": "other",
+          "num_numbers": 24,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_temperature_stability.tex",
+          "role": "other",
+          "num_numbers": 41,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_tost.tex",
+          "role": "other",
+          "num_numbers": 74,
+          "num_cites": 2
+        },
+        {
+          "file": "appendix_tost_bootstrap.tex",
+          "role": "other",
+          "num_numbers": 18,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_transfer.tex",
+          "role": "other",
+          "num_numbers": 71,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_variance_decomposition.tex",
+          "role": "other",
+          "num_numbers": 39,
+          "num_cites": 0
+        },
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 6,
+          "num_cites": 0
+        },
+        {
+          "file": "discussion.tex",
+          "role": "other",
+          "num_numbers": 12,
+          "num_cites": 2
+        },
+        {
+          "file": "ethics.tex",
+          "role": "other",
+          "num_numbers": 12,
+          "num_cites": 0
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 15,
+          "num_cites": 16
+        },
+        {
+          "file": "limitations.tex",
+          "role": "other",
+          "num_numbers": 10,
+          "num_cites": 0
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 14,
+          "num_cites": 12
+        },
+        {
+          "file": "per_family_ddr_table.tex",
+          "role": "other",
+          "num_numbers": 64,
+          "num_cites": 0
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 2,
+          "num_cites": 34
+        },
+        {
+          "file": "results.tex",
+          "role": "result",
+          "num_numbers": 131,
+          "num_cites": 1
+        },
+        {
+          "file": "table1.tex",
+          "role": "other",
+          "num_numbers": 6,
+          "num_cites": 0
+        },
+        {
+          "file": "table2.tex",
+          "role": "other",
+          "num_numbers": 10,
+          "num_cites": 0
+        },
+        {
+          "file": "table4.tex",
+          "role": "other",
+          "num_numbers": 14,
+          "num_cites": 0
+        }
+      ],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.780. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.758. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.714. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.700. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.770. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.796. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.781. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.74. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.760. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.705. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.75. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.795. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.772. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.708. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.773. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.707. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.798. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.769. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.709. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.718. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.785. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.766. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.716. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.762. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.774. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.724. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.775. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.7, but result section reports 0.713. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'aaronson_watermark' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'beyond_final_actor' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'briesch_self_consuming' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'detection_possibilities' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'diaz_soft_labels_ordinal' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'feat_aug_transformer' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'gltr' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'grover' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'intrinsic_dim_detection' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'jawahar_survey' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'kasa_ordinality_nlp' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'koppel_authorship' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'mauve' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'model_collapse_avoidable' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'munir_looking_glass' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'nucleus_sampling' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'paraphrase_evades' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'qurating' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'raid' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'release_strategies' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'seddik_synthetic_data' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'seqxgpt' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'strobl_conditional_2008' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'uchendu_attribution' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'welleck_unlikelihood' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "abstract": [
+              "\\geq",
+              "\\times"
+            ],
+            "appendix_9gen_scale": [
+              "\\Delta",
+              "\\rho",
+              "\\sim"
+            ],
+            "appendix_classifier": [
+              "\\approx",
+              "\\ast",
+              "\\dagger",
+              "\\in",
+              "\\leftrightarrow",
+              "\\leq",
+              "\\rho",
+              "\\rightarrow"
+            ],
+            "appendix_confusion_matrix": [
+              "\\geq",
+              "\\times"
+            ],
+            "appendix_convergence": [
+              "\\pm"
+            ],
+            "appendix_cross_model_detail": [
+              "\\eta",
+              "\\times"
+            ],
+            "appendix_cross_temp": [
+              "\\rightarrow"
+            ],
+            "appendix_dataset_stats": [
+              "\\rho",
+              "\\sim"
+            ],
+            "appendix_ddr_causality": [
+              "\\Delta",
+              "\\boldsymbol",
+              "\\times"
+            ],
+            "appendix_ddr_validation": [
+              "\\Delta",
+              "\\alpha",
+              "\\bar",
+              "\\binom",
+              "\\boldsymbol",
+              "\\dagger",
+              "\\delta",
+              "\\geq",
+              "\\in",
+              "\\leq",
+              "\\max",
+              "\\mid",
+              "\\min",
+              "\\rho",
+              "\\sigma",
+              "\\times",
+              "\\varepsilon"
+            ],
+            "appendix_decoding_strategy": [
+              "\\sim",
+              "\\tau"
+            ],
+            "appendix_domain": [
+              "\\leq",
+              "\\times"
+            ],
+            "appendix_downstream": [
+              "\\Delta",
+              "\\alpha",
+              "\\pm",
+              "\\times"
+            ],
+            "appendix_error_analysis": [
+              "\\Delta",
+              "\\bar",
+              "\\beta",
+              "\\max",
+              "\\min",
+              "\\sigma",
+              "\\to"
+            ],
+            "appendix_feature_candidates": [
+              "\\Delta",
+              "\\max",
+              "\\rho"
+            ],
+            "appendix_feature_correlation": [
+              "\\bar",
+              "\\max",
+              "\\min",
+              "\\sigma",
+              "\\tau"
+            ],
+            "appendix_feature_distributions": [
+              "\\pm",
+              "\\rho"
+            ],
+            "appendix_finer_depth": [
+              "\\leftrightarrow",
+              "\\pm"
+            ],
+            "appendix_generator_subsets": [
+              "\\boldsymbol"
+            ],
+            "appendix_human_edit": [
+              "\\sim",
+              "\\to"
+            ],
+            "appendix_instruct": [
+              "\\Delta",
+              "\\approx",
+              "\\boldsymbol",
+              "\\leq",
+              "\\pm",
+              "\\rho",
+              "\\rightarrow",
+              "\\to"
+            ],
+            "appendix_length": [
+              "\\Delta",
+              "\\rho"
+            ],
+            "appendix_lofo": [
+              "\\Delta",
+              "\\binom",
+              "\\boldsymbol"
+            ],
+            "appendix_nll_distribution": [
+              "\\sim"
+            ],
+            "appendix_prompt_type": [
+              "\\times"
+            ],
+            "appendix_qlora": [
+              "\\Delta",
+              "\\pm",
+              "\\times"
+            ],
+            "appendix_qualitative_examples": [
+              "\\bar",
+              "\\max",
+              "\\min",
+              "\\sigma"
+            ],
+            "appendix_seed_control": [
+              "\\approx",
+              "\\rightarrow"
+            ],
+            "appendix_temperature_stability": [
+              "\\boldsymbol",
+              "\\in",
+              "\\tau"
+            ],
+            "appendix_tost": [
+              "\\alpha",
+              "\\approx",
+              "\\bar",
+              "\\in",
+              "\\leq",
+              "\\max",
+              "\\min",
+              "\\rho",
+              "\\sigma",
+              "\\varepsilon"
+            ],
+            "appendix_tost_bootstrap": [
+              "\\alpha",
+              "\\pm"
+            ],
+            "appendix_transfer": [
+              "\\backslash",
+              "\\times",
+              "\\to"
+            ],
+            "appendix_variance_decomposition": [
+              "\\cdot",
+              "\\eta",
+              "\\lambda",
+              "\\pm",
+              "\\times"
+            ],
+            "conclusion": [
+              "\\leq",
+              "\\tau"
+            ],
+            "discussion": [
+              "\\approx",
+              "\\leq",
+              "\\log",
+              "\\tau",
+              "\\times",
+              "\\to"
+            ],
+            "ethics": [
+              "\\times"
+            ],
+            "introduction": [
+              "\\geq",
+              "\\rho",
+              "\\sim",
+              "\\times"
+            ],
+            "limitations": [
+              "\\approx",
+              "\\leq",
+              "\\tau"
+            ],
+            "method": [
+              "\\Delta",
+              "\\approx",
+              "\\geq",
+              "\\in",
+              "\\leq",
+              "\\max",
+              "\\sim",
+              "\\tau",
+              "\\times"
+            ],
+            "per_family_ddr_table": [
+              "\\approx",
+              "\\beta",
+              "\\pm",
+              "\\rho",
+              "\\to"
+            ],
+            "related_work": [
+              "\\sim"
+            ],
+            "results": [
+              "\\Delta",
+              "\\approx",
+              "\\dagger",
+              "\\delta",
+              "\\eta",
+              "\\geq",
+              "\\in",
+              "\\leq",
+              "\\rho",
+              "\\sim",
+              "\\times",
+              "\\to",
+              "\\varepsilon"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 53,
+        "info": 1
+      }
+    },
+    "compile_result": {
+      "success": true,
+      "passed": true,
+      "compiled": {
+        "success": true,
+        "pdf_path": "<compiled-in-isolated-tmpdir>",
+        "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/_audit_compile_1h9zr09g",
+        "main_tex": "main.tex",
+        "log_tail": " []\n\n\nUnderfull \\hbox (badness 10000) in paragraph at lines 35--35\n\\T1/ptm/m/n/9 (+20) ca-tion + DDR\n []\n\n\nUnderfull \\hbox (badness 3803) in paragraph at lines 43--45\n []\\T1/ptm/b/n/10.95 (+20) Finding-level con-nec-tions.[] [][]\\T1/ptm/m/n/10.95\n (+20) Mo-hamed et al.[][]\n []\n\n\nUnderfull \\hbox (badness 7888) in paragraph at lines 43--45\n\\T1/ptm/m/n/10.95 (+20) ([][]2025[][])'s fac-tu-al-ity degra-da-tion un-der bac\nk-\n []\n\n) (./appendix_nll_distribution.tex\n<fig_appendix_nll_distribution.pdf, id=2225, 245.01036pt x 195.0374pt>\nFile: fig_appendix_nll_distribution.pdf Graphic file (type pdf)\n<use fig_appendix_nll_distribution.pdf>\nPackage pdftex.def Info: fig_appendix_nll_distribution.pdf  used on input line \n5.\n(pdftex.def)             Requested size: 219.08614pt x 174.40709pt.\n) [35 <../chart/fig_appendix_9gen_scale.pdf>] (./appendix_ai_assistants.tex\nUnderfull \\hbox (badness 1092) in paragraph at lines 4--6\n[]\\T1/ptm/b/n/10.95 (+20) Code: \\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\n scripts, data-\n []\n\n) [36\n\n <./fig_appendix_nll_distribution.pdf>] (./main.aux)\n ***********\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n ***********\nPackage rerunfilecheck Info: File `main.out' has not changed.\n(rerunfilecheck)             Checksum: 865C77FC436348B6AB2ABADDE648C373;9257.\n ) \nHere is how much of TeX's memory you used:\n 30006 strings out of 469438\n 565029 string characters out of 5468411\n 1018663 words of memory out of 5000000\n 57136 multiletter control sequences out of 15000+600000\n 728610 words of font info for 528 fonts, out of 8000000 for 9000\n 59 hyphenation exceptions out of 8191\n 98i,15n,108p,1001b,692s stack positions out of 10000i,1000n,20000p,200000b,200000s\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></usr\n/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/\ntexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texliv\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm\nf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/\nfonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/t\nype1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu\nblic/amsfonts/cmextra/cmmib9.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub\nlic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams\nfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm\n/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pf\nb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/\nshare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/\ntexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive\n/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-\ndist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/typ\ne1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ\nic/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/c\nourier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8\na.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/sha\nre/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texm\nf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (36 pages, 2846345 bytes).\nPDF statistics:\n 2461 PDF objects out of 2487 (max. 8388607)\n 1354 compressed objects within 14 object streams\n 310 named destinations out of 1000 (max. 500000)\n 87578 words of extra memory for PDF output out of 89155 (max. 10000000)\n",
+        "error": "",
+        "pages": 36,
+        "warnings": []
+      },
+      "pages": 36,
+      "page_status": "ok",
+      "max_pages": null,
+      "min_pages": null,
+      "critical_warnings": [],
+      "minor_warnings": [
+        "Underfull \\hbox (badness 10000) in paragraph at lines 6--6",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 6--6",
+        "Underfull \\hbox (badness 3229) in paragraph at lines 8--12",
+        "Underfull \\hbox (badness 2302) in paragraph at lines 8--12",
+        "Underfull \\hbox (badness 1152) in paragraph at lines 8--12",
+        "Underfull \\hbox (badness 1308) in paragraph at lines 26--27",
+        "Underfull \\hbox (badness 1859) in paragraph at lines 11--14",
+        "Underfull \\hbox (badness 6236) in paragraph at lines 11--14",
+        "Underfull \\hbox (badness 1888) in paragraph at lines 11--14",
+        "Underfull \\hbox (badness 1515) in paragraph at lines 11--14",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 11--14",
+        "Underfull \\hbox (badness 2213) in paragraph at lines 11--14",
+        "Underfull \\hbox (badness 1648) in paragraph at lines 16--2",
+        "Underfull \\hbox (badness 4621) in paragraph at lines 17--18",
+        "Underfull \\hbox (badness 7168) in paragraph at lines 18--19",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 22--23",
+        "Overfull \\hbox (1.42862pt too wide) in paragraph at lines 11--25",
+        "Underfull \\hbox (badness 3449) in paragraph at lines 37--39",
+        "Underfull \\hbox (badness 2635) in paragraph at lines 37--39",
+        "Underfull \\hbox (badness 2818) in paragraph at lines 37--39",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 40--46",
+        "Underfull \\hbox (badness 2310) in paragraph at lines 40--46",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 40--46",
+        "Underfull \\hbox (badness 5022) in paragraph at lines 57--60",
+        "Underfull \\hbox (badness 3849) in paragraph at lines 57--60",
+        "Underfull \\hbox (badness 2020) in paragraph at lines 57--60",
+        "Underfull \\hbox (badness 1337) in paragraph at lines 72--75",
+        "Underfull \\hbox (badness 2735) in paragraph at lines 72--75",
+        "Underfull \\hbox (badness 1107) in paragraph at lines 72--75",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 77--79",
+        "Underfull \\hbox (badness 1953) in paragraph at lines 14--17",
+        "Underfull \\hbox (badness 1168) in paragraph at lines 14--17",
+        "Underfull \\hbox (badness 2050) in paragraph at lines 14--17",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 19--19",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 19--23",
+        "Underfull \\hbox (badness 4886) in paragraph at lines 19--23",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 25--26",
+        "Underfull \\hbox (badness 1158) in paragraph at lines 25--26",
+        "Underfull \\hbox (badness 1038) in paragraph at lines 34--34",
+        "Underfull \\hbox (badness 2158) in paragraph at lines 60--63",
+        "Underfull \\hbox (badness 1533) in paragraph at lines 60--63",
+        "Underfull \\hbox (badness 1867) in paragraph at lines 60--63",
+        "Underfull \\hbox (badness 1881) in paragraph at lines 64--66",
+        "Underfull \\hbox (badness 1360) in paragraph at lines 74--75",
+        "Underfull \\hbox (badness 2726) in paragraph at lines 84--86",
+        "Underfull \\hbox (badness 1881) in paragraph at lines 87--88",
+        "Underfull \\hbox (badness 3098) in paragraph at lines 87--88",
+        "Underfull \\hbox (badness 3838) in paragraph at lines 95--96",
+        "Underfull \\hbox (badness 3769) in paragraph at lines 98--100",
+        "Underfull \\hbox (badness 1292) in paragraph at lines 127--129",
+        "Underfull \\hbox (badness 1412) in paragraph at lines 127--129",
+        "Underfull \\hbox (badness 4144) in paragraph at lines 127--129",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 130--134",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 130--134",
+        "Underfull \\hbox (badness 6445) in paragraph at lines 5--8",
+        "Underfull \\hbox (badness 1303) in paragraph at lines 5--8",
+        "Underfull \\hbox (badness 1297) in paragraph at lines 5--8",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 10--12",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 14--16",
+        "Underfull \\hbox (badness 1348) in paragraph at lines 18--19",
+        "Underfull \\hbox (badness 1205) in paragraph at lines 21--2",
+        "Underfull \\hbox (badness 1565) in paragraph at lines 21--2",
+        "Underfull \\hbox (badness 8189) in paragraph at lines 155--161",
+        "Underfull \\hbox (badness 1178) in paragraph at lines 155--161",
+        "Underfull \\hbox (badness 3668) in paragraph at lines 172--177",
+        "Underfull \\hbox (badness 1596) in paragraph at lines 371--375",
+        "Underfull \\hbox (badness 4156) in paragraph at lines 51--53",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 4--7",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 4--7",
+        "Underfull \\hbox (badness 8151) in paragraph at lines 4--7",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 4--7",
+        "Underfull \\hbox (badness 1052) in paragraph at lines 13--63",
+        "Underfull \\hbox (badness 1755) in paragraph at lines 4--7",
+        "Underfull \\hbox (badness 1478) in paragraph at lines 25--28",
+        "Underfull \\hbox (badness 1502) in paragraph at lines 30--31",
+        "Underfull \\hbox (badness 1424) in paragraph at lines 30--31",
+        "Underfull \\hbox (badness 3229) in paragraph at lines 1--2",
+        "Underfull \\hbox (badness 5245) in paragraph at lines 1--2",
+        "Underfull \\hbox (badness 2012) in paragraph at lines 26--29",
+        "Underfull \\hbox (badness 4279) in paragraph at lines 26--29",
+        "Underfull \\hbox (badness 5652) in paragraph at lines 33--36",
+        "Underfull \\hbox (badness 1796) in paragraph at lines 23--88",
+        "Underfull \\hbox (badness 1052) in paragraph at lines 24--32",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 53--55",
+        "Underfull \\hbox (badness 1072) in paragraph at lines 53--55",
+        "Underfull \\hbox (badness 5578) in paragraph at lines 66--67",
+        "Underfull \\hbox (badness 2626) in paragraph at lines 101--102",
+        "Underfull \\hbox (badness 1975) in paragraph at lines 101--102",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 103--104",
+        "Underfull \\hbox (badness 3189) in paragraph at lines 103--104",
+        "Underfull \\hbox (badness 2165) in paragraph at lines 25--27",
+        "Underfull \\hbox (badness 1424) in paragraph at lines 27--31",
+        "Underfull \\hbox (badness 1565) in paragraph at lines 65--69",
+        "Underfull \\hbox (badness 2486) in paragraph at lines 65--69",
+        "Underfull \\hbox (badness 4913) in paragraph at lines 71--72",
+        "Underfull \\hbox (badness 2150) in paragraph at lines 76--76",
+        "Underfull \\hbox (badness 1521) in paragraph at lines 4--7",
+        "Underfull \\hbox (badness 1275) in paragraph at lines 32--34",
+        "Overfull \\hbox (16.51817pt too wide) in paragraph at lines 61--74",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 35--36",
+        "Underfull \\hbox (badness 3612) in paragraph at lines 35--36",
+        "Underfull \\hbox (badness 2351) in paragraph at lines 35--36",
+        "Underfull \\hbox (badness 5431) in paragraph at lines 6--6",
+        "Underfull \\hbox (badness 6575) in paragraph at lines 6--6",
+        "Underfull \\hbox (badness 1221) in paragraph at lines 15--18",
+        "Underfull \\hbox (badness 1735) in paragraph at lines 15--18",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 29--29",
+        "Underfull \\hbox (badness 2126) in paragraph at lines 29--29",
+        "Underfull \\hbox (badness 3861) in paragraph at lines 83--98",
+        "Underfull \\hbox (badness 1297) in paragraph at lines 83--98",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 212--152",
+        "Underfull \\hbox (badness 2680) in paragraph at lines 212--152",
+        "Underfull \\hbox (badness 1509) in paragraph at lines 6--6",
+        "Underfull \\hbox (badness 2181) in paragraph at lines 60--61",
+        "Underfull \\hbox (badness 3260) in paragraph at lines 62--63",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 3919) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 1931) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 2486) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 4084) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 2073) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 4660) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 3291) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 4660) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 7613) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 35--35",
+        "Underfull \\hbox (badness 3803) in paragraph at lines 43--45",
+        "Underfull \\hbox (badness 7888) in paragraph at lines 43--45",
+        "Underfull \\hbox (badness 1092) in paragraph at lines 4--6"
+      ],
+      "issues": [],
+      "summary": "PASS"
+    },
+    "refs_result": null,
+    "internal_leak": {
+      "passed": true,
+      "critical": [],
+      "warning": [],
+      "info": [],
+      "summary": "0 critical, 0 warning, 0 info"
+    }
+  },
+  "content_findings": [
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "Abstract 问题(recursive generation reshapes text distributions, binary detection ignores depth) == Intro 问题 ✓；Intro 贡献列表(DDR, task formulation, scope characterization)三条均有 Method/Results 对应 section/table ✓；Method 设计动机(decompose what drifts vs. preserved) == Intro gap ✓；Experiments 验证全部 claimed contributions ✓；Conclusion 总结 == Experiments 结论 ✓。全文主线高度一致，未检测到叙事漂移。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "叙事一致性",
+      "message": "abstract.tex:5 + conclusion.tex:5 \"cross-model binary F1=0.830\" 与 8-generator 主结果(F1=0.694, 0.762)并列呈现，但 0.830 来自 5-generator 子集(Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B)。Results §4.1 有脚注说明，但 Abstract 和 Conclusion 未标注 generator 数量差异。审稿人可能误认为 0.830 也是 8-gen 结果。建议在 Abstract 加 \"(5-generator)\" 限定或改为引用 8-gen transfer mean F1=0.810。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Abstract 回答四个必答问题(问题/重要性/方法/结果) ✓，约 155 words，符合 200-word 限制。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Intro 遵循 5 段结构(背景→问题→gap→本文方法→贡献列表) ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Related Work 按 3 个主题(detection / model collapse / diversity-stylometry-provenance)归纳式组织 ✓，非 \"A did X. B did Y.\" 堆砌。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "章节结构",
+      "message": "ethics.tex 文件存在但未被 main.tex \\input{}。Ethics Statement（含 Licenses/Compute/Software 信息）不会出现在编译后 PDF 中。EMNLP 2026 ethical considerations 虽为 optional，但已准备好的 Ethics Statement 不包含似为遗漏。"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围",
+      "message": "Contribution 1(DDR)→ §4.2 + Figure 1-3 + Table 2；Contribution 2(task + dataset)→ §3.1-3.2 + Table 1 + App A；Contribution 3(scope)→ §4.2 temperature/prompt/instruct/scale/domain/perturbation + 15+ appendix sections。三条贡献均有充分正文+附录支撑 ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围",
+      "message": "无孤儿章节——所有 appendix sections 均在正文中被引用 ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围",
+      "message": "Title \"Base-Model LLM Text\" 与实验范围(8 base models, instruct 在 appendix 探索性分析)准确匹配 ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "\"significantly\" 仅出现 1 次(table2.tex:5)，有 McNemar p < 0.001 统计检验支撑 ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "无 \"state-of-the-art\" 或 \"novel\" claim ✓。DDR 被定位为 \"descriptive empirical finding\"，hedging 恰当。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "\"≥8× effect-size gap\" 经验证：min_drifting/max_stationary = 0.74/0.09 = 8.2×(appendix_ddr_validation.tex Table 7 exact values: tail_decay d=0.09, entropy_max d=0.06, entropy_min d=0.016)。Claim 成立但余量仅 0.2×。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "\"matching multi-detector ensembles\"：pooled 0.705 vs 0.708（3pp gap），表述合理 ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "主结果表(Table 2)含 95% bootstrap CIs ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "Baselines(FastDetectGPT, Binoculars, LD-Score, Avg-LogProb)均为近 2 年论文 ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "Ablation 充分：feature group ablation(Table 2b)、LOFO(App F)、classifier sensitivity(App H)、feature candidates screening(App F.1)、confound controls(length/seed/domain)。与 Method 7 features + DDR partition 对齐 ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "多重验证协议：LOGO(8-gen)、LOFO(family-level)、independent seeds、cross-model chains、cross-domain、cross-temperature、perturbation robustness。评估体系全面 ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "超参(XGBoost: n_estimators=200, max_depth=6, lr=0.1)、GPU(4× RTX 5090)、训练时间(~62 GPU-hours)、生成参数(τ=0.7, p=0.9, max_len=256)、数据预处理(37,058 texts after filtering)均在正文/ethics 中 ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "Software versions 在 ethics.tex 中详细列出(Python 3.12.3, PyTorch 2.10.0, etc.) ✓——但因 ethics.tex 未被 \\input，这些信息不会出现在 PDF 中（见上方章节结构 warning）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "AI Assistants 声明(App 最后一节) ✓。Code/data 匿名链接已提供 ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号",
+      "message": "\"entropy\" 术语在 Intro(脚注 1)和 Method(§3.3 Terminology 段)双重定义为 \"per-token NLL under reference model, not information-theoretic entropy\" ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号",
+      "message": "DDR、d(Cohen's d)、ρ(Spearman)、LOGO、LOFO 等术语全文一致使用 ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号",
+      "message": "7 个 feature 名称(entropy_mean/std/max/min, tail_decay, ttr, hapax_ratio)全文统一 ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "逻辑流",
+      "message": "Discussion 提供高层解读(shape stability 机制假设、与 model collapse 区分、temperature 机制解释、error structure 分析、应用场景)，非简单重复 Results 数字 ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "逻辑流",
+      "message": "Conclusion 仅 2 句，非常精简。虽含前瞻性表述(\"QLoRA recovery... points to tractable extension to instruct settings\")，但未提及更广泛影响(如对 data governance / corpus curation 的意义)，可适当扩展。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Limitations",
+      "message": "~111 words，覆盖 4 个 distinct limitations：(1) base models only + instruct degradation，(2) English-centric + fixed decoding regime，(3) depth resolution bounded at 3 classes，(4) temperature-dependent signal strength。实质性且不回避 ✓。符合用户规则\"写一小段，覆盖 3 个点左右\" ✓。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "abstract.tex:4 连续两个 -ing 分词尾(\"revealing an asymmetry...yielding a ≥8× effect-size gap\")，abstract.tex:5 再出现一个(\"achieving leak-free binary F1\")。Abstract 两句话中 3 个 \", [verb]-ing\" 结构是典型 AI 写作标志，出现在论文最高曝光位置。建议改写为独立句或用其他句式。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "conclusion.tex:5 \"enabling cross-generator depth classification\" — 同样的 -ing 分词尾模式。Conclusion 全文仅 2 句，其中 1 句有此模式，比例偏高。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "limitations.tex:4 \"suggesting the signal is compressed rather than eliminated\" — 同模式。Limitations 全段 4 句中出现 1 次。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "em-dash(—)仅在 LaTeX 注释行(main.tex:1, abstract.tex:1, appendix_length.tex:1)，正文内容无解释性 em-dash ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "无 en-dash \" – \" 解释性用法 ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "无 filler words(it is worth noting/notably/importantly) ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "无 AI 黑名单用词(delve/leverage/utilize/facilitate/myriad/plethora) ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "无连续 Furthermore/Moreover/Additionally ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "段落长度适当，无过度分段(2-3 句一段) ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "正则扫描：无 exp_ID 编号、无服务器路径(/root/, /home/, /tmp/)、无内部 IP ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "语义级检查：无隐含内部流程表述(\"我们在第三轮实验中\")、无对内部工具的间接引用、无不应公开的实验细节 ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "[EMNLP 2026] Abstract ≤ 200 words：~155 words ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "[EMNLP 2026] 仅一个 Limitations section，在正文中(limitations.tex via main.tex)，appendix 无重复 ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "[EMNLP 2026] ARR Checklist 未出现在 PDF 中 ✓（用户确认在 OpenReview form 填写）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "审稿规则",
+      "message": "[EMNLP 2026] 编译 36 页(含大量 appendix)，正文 8 页限制需单独核实(main text 结构看起来合理但精确页数需 PDF 验证)。"
+    }
+  ],
+  "visual_findings": [
+    {
+      "severity": "warning",
+      "dimension": "page 1",
+      "message": "[写作规则] Abstract 预估约 240-280 words，很可能超过 EMNLP 2026 的 200-word 硬限制。Abstract 占左栏约 60-65%，按每行约 8 词、约 30 行估算，明显超出 200 词上限。需精简。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "第一页全文字无 display item；Figure 1 出现在第 2 页顶部（前 3 页内），满足早期视觉锚点要求。Title / Author / Abstract 排版整洁，\"Anonymous ACL submission\" 格式正确。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1 作为首个 display item 有效传达核心 DDR 概念（drifting vs stationary feature trajectories），4 panel 布局清晰，caption 自包含。各 generator 用不同颜色 + diamond marker 标注 cross-generator mean，可区分性良好。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 3",
+      "message": "Figure 2 框架图（pipeline）布局清晰，三部分（Generation Chain / Feature Extraction & Partitioning / Cross-Validation Evaluation）逻辑链完整。信息密度中等偏上——可考虑在 (b) 部分增加更多 feature 细节以提升浓缩度，但当前水平可接受。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "正文 8 页共 9 个 display items（Figure 1-6 + Table 1-3），密度 ~1.1/页，对实证论文优秀。无连续 2 页纯文本（仅 page 1 无 display item，page 2 即出现 Figure 1）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 4-7",
+      "message": "所有表格统一使用 booktabs 风格（\\toprule/\\midrule/\\bottomrule），无竖线。最优结果加粗标注 ✓。小数精度列内统一 ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Figure 3 heatmap（cross-generator transfer matrix）色阶连续可读，cell 内数值清晰，caption 自包含。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Table 3 + Figure 5 双 display item 页面密度好。Figure 5 (F1 vs inference cost scatter) 点标签清晰。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Figure 6 (convergence dynamics) 两 panel 布局好。Section 6 Conclusion 起始处在页面底部约 1/3 位置，heading 后有充足正文跟随（无孤悬 heading 问题）。Conclusion 在 page 8 结束，主正文恰好 8 页。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9",
+      "message": "[写作规则] Limitations 章节简短（约 5-6 行，覆盖 ~3 个点），符合 EMNLP 规则 ✓。正文仅此一个 Limitations section，附录中无重复 ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9",
+      "message": "[审稿规则] 主正文（Abstract-Conclusion）恰好 8 页，符合 EMNLP 2026 long paper 8 页限制 ✓。Limitations 在第 9 页不计入页数限制。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 13",
+      "message": "[写作规则] Figure 7（7 个 violin plots）底部有约 25% 页面空白。最后一行仅 1 个子图（Hapax Ratio），右侧和下方均为空白。违反用户规则\"附录中避免大量空白的存在\"。建议：将 Hapax Ratio 子图从独立行改为上移与前一行并排（3+3+1 → 4+3 或 3+4 布局），或在空白区域填充后续章节文字。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 12",
+      "message": "附录 Length Confound Analysis 页为纯文本（含 prompt template 文本框），是附录中唯一无 figure/table 的单页，前后页均有 display items，不构成连续纯文本问题。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 14-35",
+      "message": "附录页面密度极高，table + figure + text 交替紧凑。多数页面含 2-4 个 display items，空间利用率优秀。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 25",
+      "message": "Figure 12 (UMAP) + Figure 13 (cross-temperature transfer) 双 figure 页，两图占位合理，与文字段交替出现。UMAP 颜色方案（按 depth/class 着色）色彩区分度好。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 36",
+      "message": "末页内容约占 65-70%，底部约 30% 空白（\"Use of AI Assistants\" 声明后）。作为全文最后一页可理解，但如有可能可将前面章节文字或 Table 52 扩展信息前移以填充。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "图表分辨率充足——所有 figure 中文字（axis label、legend、tick label）清晰可读，均 ≥ 正文字号 70%。无位图模糊现象。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "颜色方案整体合理：Figure 1 使用多色 + marker 区分 generators（非纯红绿对比）；heatmap 使用连续色阶；violin plots 使用区分度好的分类色板。未发现严重色盲不友好配色。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "公式渲染正确，无 LaTeX 错误残留、无乱码、无 overfull hbox 可见痕迹。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "Float 位置合理——正文中 Figure/Table 均出现在首次引用附近（同页或下一页），无 float 漂移到论文末尾的情况。附录中图表嵌入在对应分析文字附近 ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "无 margin 溢出、无 section heading 孤悬页底、无 [?] 未解析引用。References 格式统一。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "附录共 ~21 figures + ~52 tables，display items 总计 ~73 个（含正文），支撑力极强。"
+    }
+  ],
+  "counts": {
+    "critical": 5,
+    "warning": 261,
+    "info": 55
+  },
+  "error": "",
+  "timestamp": "2026-05-25T12:44:36.270532+00:00"
+}

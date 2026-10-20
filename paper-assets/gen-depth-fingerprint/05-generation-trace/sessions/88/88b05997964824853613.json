@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88b05997964824853613",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan 004 oom rerun",
+  "task_key": "worker_code_plan-004-oom-rerun_20260515T003650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-004-oom-rerun_20260515T003650_result.json",
+    "occurrence": 1,
+    "bytes": 679,
+    "sha256": "0b5a1165a10b8421be9dab147c500a6b6a3a972d658df5adc85e5921bbad1516"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动并稳定运行。\n\n**汇总：**\n- **PID**: 142680（实际 python 进程）\n- **GPU**: cuda:2，占用 16048MiB / 32607MiB（49%），无 OOM 风险\n- **参数**: `--batch-size 2 --grad-accum 8`（effective batch size = 16，与原始一致）\n- **进度**: 38/741 steps，速度 ~1.50 it/s\n- **预计完成时间**: 741 steps ÷ 1.50 it/s ≈ 494 秒 ≈ **~8 分钟**（加上 3 次 eval 约 2 分钟），总计约 **10 分钟**，预计 08:49 左右完成\n- **日志**: `/tmp/plan004_oom_rerun.log`\n\n另外注意：GPU 3 的主批次已结束（0MiB），GPU 1 的主批次之前因 `/tmp` 目录问题崩了（不是 OOM）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-004-oom-rerun.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a76521cc1137ce3f8d5d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code exp 059 tost bootstrap",
+  "task_key": "worker_code_exp_059_tost_bootstrap_20260520T070641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_059_tost_bootstrap_20260520T070641_result.json",
+    "occurrence": 1,
+    "bytes": 898,
+    "sha256": "fba6b6aebbcb0cf89890b058271b132346931f97bbe12a5ada36d7efebb77843"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**脚本**: `/root/gen-depth-fingerprint/scripts/tost_bootstrap.py`\n\n**Dry-run (n=10) 结果**:\n| Feature | median_p | rejection_rate | observed_d |\n|---------|----------|---------------|------------|\n| entropy_std | 1.00 | 0% | 0.456 (远超 margin) |\n| entropy_max | ~0 | 100% | 0.070 |\n| entropy_min | ~0 | 100% | -0.009 |\n| tail_decay | ~0 | 100% | 0.085 |\n\nentropy_std 的 |d|=0.46 远超 margin=0.2，TOST 无法拒绝（非等价），符合预期（原脚本分类为 \"intermediate\"）。其余三个 near-stationary 特征均 100% 通过。\n\n**执行完整分析的命令**（等审批）:\n```bash\ncd /root/gen-depth-fingerprint && python3 scripts/tost_bootstrap.py --n-bootstrap 1000 --base-seed 42 --output results/tost_bootstrap.json\n```\n\n预估时间：dry-run 10 次约 1 秒，1000 次约 1.5-2 分钟，纯 CPU 计算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-059-tost-bootstrap.md"
+}

@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "b908329398b4694b9da5",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "diagnose tmux death root cause",
+  "task_key": "worker_diagnose_tmux-death-root-cause_20260514T220718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_tmux-death-root-cause_20260514T220718_result.json",
+    "occurrence": 1,
+    "bytes": 5197,
+    "sha256": "1bf31427e89180695fecf02c8d7f23af56a4f824da7046d727685403b81d2e1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**确认根因。**`tmux has-session -t 120612` 返回 NO（false negative），但 `tmux has-session -t plan-002-qwen17b-r2-s0` 返回 YES。Session 一直活着，是检查逻辑的 bug。\n\n---\n\n## 诊断结论\n\n```json\n{\n  \"root_cause\": \"框架 check_status 方法用 PID（如'120612'）调用 tmux has-session，但 session 名是 exp_id（如'plan-002-qwen17b-r2-s0'），导致永远报 tmux_session_alive=false。Worker 误判 session 已死，调用 kill_job(exp_id) 'cleanup orphan'，实际杀死了正在运行的 session。\",\n  \"error_type\": \"framework_bug\",\n  \"evidence\": [\n    \"tmux has-session -t 120612 → NO; tmux has-session -t plan-002-qwen17b-r2-s0 → YES（session 一直活着）\",\n    \"registry 22:01:52 记录 'tmux_session_alive=false（PID 120612 仍在运行 ~3min）' — 但 tmux ls 确认 session 存在\",\n    \"所有 Qwen 失败均为 EXIT_CODE=129（SIGHUP from tmux kill-session），非 143（SIGTERM from kill PID）\",\n    \"Pythia/OLMo 在 Worker 误判前已完成（exit 0），所以未受影响\",\n    \"qwen06b 用 ssh_execute 直接启动（无 tmux），kill_job 的 tmux kill-session 对它无效，进程存活至今\"\n  ],\n  \"why_qwen_only\": \"Pythia/OLMo 运行时间短（40-70min），在 Worker 下一次 poll 触发 kill 前已自然完成。Qwen 运行时间长（预计 ~2h），Worker poll 周期内发现 tmux_session_alive=false 就触发了 kill。\",\n  \"fix_steps\": [\n    \"修复 tmux_backend.py:check_status() — tmux has-session 检查应使用 exp_id 而非 PID\",\n    \"修复 tmux_backend.py:kill() — tmux kill-session 应使用 exp_id 而非 PID\",\n    \"确认 Worker 不应在 tmux_session_alive=false 时自动调用 kill_job\"\n  ],\n  \"can_auto_fix\": true,\n  \"r2_status\": \"PID 120612/120689 正在运行，tmux session 存活，GPU 0/1 利用率 39%/44%，进度 ~40%（200+/498 seeds）。r2 未被杀是因为 Worker 这次没立即 kill 而是先派诊断 Worker\",\n  \"recommended_resubmit_strategy\": \"不需要重提交。r2 和 qwen06b 全部 4 个进程都在正常运行。修复框架 bug 后，后续实验不会再被误杀。\"\n}\n```\n\n### Bug 位置\n\n`/home/ubuntu/agent-ml-research/core/tools/execution_backends/tmux_backend.py` 第 178 行：\n\n```python\n# BUG: pid 是数字 PID，session 名是 exp_id\ntmux_result = conn.run(\n    f\"tmux has-session -t {shlex.quote(pid)} 2>/dev/null && echo yes || echo no\", ...\n)\n```\n\n应改为：\n```python\nsession_name = exp_id if exp_id else pid\ntmux_result = conn.run(\n    f\"tmux has-session -t {shlex.quote(session_name)} 2>/dev/null && echo yes || echo no\", ...\n)\n```\n\n### 当前状态\n\n| 进程 | GPU | 进度 | 状态 |\n|------|-----|------|------|\n| qwen17b-r2-s0 (PID 120612) | cuda:0, 39% | ~200/498 seeds | tmux alive, 正常运行 |\n| qwen17b-r2-s1 (PID 120694) | cuda:1, 44% | running | tmux alive, 正常运行 |\n| qwen06b-s0 (PID 117855) | cuda:2, 33% | running (orphan) | 无 tmux，PPID=1，仍在正常写数据 |\n| qwen06b-s1 (PID 118126) | cuda:3, 33% | running (orphan) | 无 tmux，PPID=1，仍在正常写数据 |\n\n所有 4 个实验正在正常推进，无需干预。修复 `check_status` bug 可以防止未来实验被误杀。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "框架 check_status 方法用 PID（如'120612'）调用 tmux has-session，但 session 名是 exp_id（如'plan-002-qwen17b-r2-s0'），导致永远报 tmux_session_alive=false。Worker 误判 session 已死，调用 kill_job(exp_id) 'cleanup orphan'，实际杀死了正在运行的 session。",
+              "error_type": "framework_bug",
+              "evidence": [
+                "tmux has-session -t 120612 → NO; tmux has-session -t plan-002-qwen17b-r2-s0 → YES（session 一直活着）",
+                "registry 22:01:52 记录 'tmux_session_alive=false（PID 120612 仍在运行 ~3min）' — 但 tmux ls 确认 session 存在",
+                "所有 Qwen 失败均为 EXIT_CODE=129（SIGHUP from tmux kill-session），非 143（SIGTERM from kill PID）",
+                "Pythia/OLMo 在 Worker 误判前已完成（exit 0），所以未受影响",
+                "qwen06b 用 ssh_execute 直接启动（无 tmux），kill_job 的 tmux kill-session 对它无效，进程存活至今"
+              ],
+              "why_qwen_only": "Pythia/OLMo 运行时间短（40-70min），在 Worker 下一次 poll 触发 kill 前已自然完成。Qwen 运行时间长（预计 ~2h），Worker poll 周期内发现 tmux_session_alive=false 就触发了 kill。",
+              "fix_steps": [
+                "修复 tmux_backend.py:check_status() — tmux has-session 检查应使用 exp_id 而非 PID",
+                "修复 tmux_backend.py:kill() — tmux kill-session 应使用 exp_id 而非 PID",
+                "确认 Worker 不应在 tmux_session_alive=false 时自动调用 kill_job"
+              ],
+              "can_auto_fix": true,
+              "r2_status": "PID 120612/120689 正在运行，tmux session 存活，GPU 0/1 利用率 39%/44%，进度 ~40%（200+/498 seeds）。r2 未被杀是因为 Worker 这次没立即 kill 而是先派诊断 Worker",
+              "recommended_resubmit_strategy": "不需要重提交。r2 和 qwen06b 全部 4 个进程都在正常运行。修复框架 bug 后，后续实验不会再被误杀。"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-tmux-death-root-cause.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "237d10cda3fb04b684f4",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "fix copy figure1 pdf",
+  "task_key": "worker_fix_copy-figure1-pdf_20260516T060547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_copy-figure1-pdf_20260516T060547_result.json",
+    "occurrence": 1,
+    "bytes": 154,
+    "sha256": "e9923235fd63edb566543d961721db6b29e94c425c72aaf66ed48230f7221fd4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File copied successfully. 33,038 bytes (33KB), matches the server file size exactly. The regenerated Figure 1 PDF is now at the local path."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-copy-figure1-pdf.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c9eb95319681cc90e93",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code 8gen finer depth",
+  "task_key": "worker_code_8gen-finer-depth_20260516T145933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_8gen-finer-depth_20260516T145933_result.json",
+    "occurrence": 1,
+    "bytes": 841,
+    "sha256": "cf13371dd97b51e64652b35447957cd4d233e322c75dd4105eefb2dce812fc05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果保存到 `results/8gen_finer_depth.json`。\n\n**结果摘要：**\n\n| 指标 | 5-class | 3-class |\n|------|---------|---------|\n| LOGO avg F1 | **0.4878** | **0.7698** |\n| 95% CI | [0.4825, 0.4912] | [0.7636, 0.7715] |\n| Delta | **-0.2820** | — |\n\n**Per-class F1 (5-class)：**\n| Class | F1 |\n|-------|-----|\n| gen-0 | 0.9173 |\n| gen-1 | 0.5931 |\n| gen-2 | **0.2395** |\n| gen-3 | **0.2337** |\n| gen-4 | 0.4506 |\n\n**验证通过：**\n- 5-class F1 (0.49) 显著低于 3-class (0.77)，符合预期\n- gen-2 和 gen-3 的 per-class F1 最低（~0.24），确认了 6-gen 实验中观察到的 gen-2/gen-3 难以区分的现象\n- 混淆矩阵显示 gen-2 和 gen-3 互相混淆严重，且都大量被误分为 gen-4\n- gen-0 几乎完美分类 (0.98 recall)，gen-1 次之 (0.70 recall)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-8gen-finer-depth.md"
+}

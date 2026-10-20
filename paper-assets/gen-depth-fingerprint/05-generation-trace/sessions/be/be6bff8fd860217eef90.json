@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be6bff8fd860217eef90",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "merge qwen06b shards",
+  "task_key": "worker_merge_qwen06b-shards_20260514T230234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_merge_qwen06b-shards_20260514T230234_result.json",
+    "occurrence": 1,
+    "bytes": 393,
+    "sha256": "8597d7ddf1cba0d538430756581cd2914a38b4cae77e949786a67bc3f5c07ccb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "合并结果：\n\n| 指标 | 值 |\n|------|-----|\n| 总行数 | 4538 |\n| Unique seeds | 996 |\n| Depth 分布 | {0: 996, 1: 986, 2: 938, 3: 840, 4: 778} |\n| 文件大小 | 4.75 MB |\n| JSON 错误 | 0 |\n\n合并成功，无数据损坏。996 个 unique seeds（预期 ~996，两个 shard 各 ~498），depth 0-4 分布合理，逐层递减符合生成深度衰减预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/merge-qwen06b-shards.md"
+}

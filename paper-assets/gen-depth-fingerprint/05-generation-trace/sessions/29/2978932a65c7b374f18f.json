@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2978932a65c7b374f18f",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code negative analysis writeup",
+  "task_key": "worker_code_negative-analysis-writeup_20260517T033634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_negative-analysis-writeup_20260517T033634_result.json",
+    "occurrence": 1,
+    "bytes": 116,
+    "sha256": "3ddaf4d176709a4209759ff0129b541e7065e185b7c04ab404cebddf460d763a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `/root/gen-depth-fingerprint/experiments/analysis/negative_experiment_review.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-negative-analysis-writeup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34665c3c38eb4ea19e4c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis multi seed stability",
+  "task_key": "worker_analysis_multi-seed-stability_20260515T083406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_multi-seed-stability_20260515T083406_result.json",
+    "occurrence": 1,
+    "bytes": 435,
+    "sha256": "f16a1e2a73c15bc6a60f50239498c3beb97c21a972e0e1842cca36188756ad0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果如下：\n\n| Seed | 6-gen LOGO F1 |\n|------|---------------|\n| 42   | 0.7904 |\n| 123  | 0.7892 |\n| 456  | 0.7876 |\n| 789  | 0.7890 |\n| 1024 | 0.7887 |\n| **Mean±Std** | **0.7890 ± 0.0009** |\n\n5 个种子的 macro-F1 范围 [0.7876, 0.7904]，标准差仅 0.0009，结果高度稳定，不依赖随机种子。JSON 已保存至 `/root/gen-depth-fingerprint/results/multi_seed_stability.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-multi-seed-stability.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec0ba3c92278d20053b7",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper fix references",
+  "task_key": "worker_paper_fix-references_20260525T082406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-references_20260525T082406_result.json",
+    "occurrence": 1,
+    "bytes": 1341,
+    "sha256": "4471fc70c8d2b1f05109b20be29ab62bacd3cb2acb4eeb9026b3ae670d688a5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "BibTeX: 0 warnings. Compilation successful (PDF output on 35 pages, 0 bibtex warnings).\n\n---\n\n## 汇报：10 个条目验证结果\n\n| # | Key | 结果 | 修正内容 |\n|---|-----|------|---------|\n| 1 | `cohen1988statistical` | ✓ 已正确 | 无需修改。2nd ed, Lawrence Erlbaum Associates, 1988 均正确 |\n| 2 | `paraphrase_evades` | ✓ 已正确 | NeurIPS 2023, 作者/标题均正确 |\n| 3 | `intrinsic_dim_detection` | ✓ 已正确 | NeurIPS 2023, 作者/标题均正确 |\n| 4 | `self_consuming_mad` | ✓ 已正确 | ICLR 2024, 8位作者均正确 |\n| 5 | `dsir` | ✓ 已正确 | NeurIPS 2023, Xie/Santurkar/Ma/Liang 均正确 |\n| 6 | `nucleus_sampling` | ✓ 已正确 | ICLR 2020, 作者/标题均正确 |\n| 7 | `qwen3` | **已修正** | author: `{Qwen Team}` → 个人作者列表 `Yang, An and Li, Anfeng and ... and others`（与 arXiv 元数据一致，与 `llama3` 条目风格统一） |\n| 8 | `gutierrez_ordinal_survey` | ✓ 已正确 | IEEE TKDE 28(1):127-146, 2016, 作者含正确 LaTeX 重音符 |\n| 9 | `diaz_soft_labels_ordinal` | **已修正** | author: `Diaz, Raul` → `D{\\'i}az, Ra{\\'u}l`（论文 PDF 原文使用重音符，与 bib 中 gutierrez 条目风格一致） |\n| 10 | `llama3` | ✓ 已正确 | arXiv preprint 2407.21783, 2024, 未正式发表于会议/期刊 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-references.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f2a40806c1b67544ca3",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper r44 n1 cross model anova",
+  "task_key": "worker_paper_r44-n1-cross-model-anova_20260522T152400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r44-n1-cross-model-anova_20260522T152400_result.json",
+    "occurrence": 1,
+    "bytes": 1451,
+    "sha256": "67600e2e743d4709fef19b8bbe5b1ad80994f8fc627db0acc38139d10832555b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n---\n\n### Two-way ANOVA (depths 1–4, fully crossed, n=3778)\n\n| Feature | η²(depth) | η²(generator) | η²(interaction) |\n|---|---|---|---|\n| entropy_mean | **.2989***| .0008 ns | .0077** |\n| entropy_std | **.0826***| .0090*** | .0027 ns |\n| entropy_min | .0019 ns | .0029* | .0041 ns |\n| entropy_max | .0021* | .0005 ns | .0012 ns |\n| tail_decay | .0003 ns | .0065*** | .0037 ns |\n| ttr | **.1921***| .0035* | .0070** |\n| hapax_ratio | **.1526***| .0030* | .0071** |\n\n**Generator η² range: [0.0005, 0.0090], mean=0.0037 — 所有特征均 < 1%，远低于 10% 阈值。**\n\n### 结论 (R44-N1)\n\n1. **Generator identity 对特征方差的解释力极小**（η² 平均 0.37%，最大 0.90%），diversity confound 可忽略。\n2. **Depth 是主要方差来源**：entropy_mean（29.9%）、ttr（19.2%）、hapax_ratio（15.3%）的方差主要由 depth 驱动。\n3. **Interaction 效应也很小**（均 < 1%），说明 depth 效应在不同 generator 间保持一致。\n4. 加上 depth=0（one-way），entropy_mean/ttr/hapax_ratio 的 η² 提升到 44–46%，因为 human→machine 的跳跃是最大的信号源。\n\n**结论：generator diversity 不构成对 depth classification claim 的 confound。**\n\n文件已保存：\n- 远程脚本：`/root/gen-depth-fingerprint/scripts/cross_model_anova.py`\n- 本地 CSV：`artifacts/_project/analysis/cross_model_anova.csv`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-r44-n1-cross-model-anova.md"
+}

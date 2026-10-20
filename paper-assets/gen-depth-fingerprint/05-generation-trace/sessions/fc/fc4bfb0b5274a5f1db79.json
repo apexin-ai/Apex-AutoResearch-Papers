@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc4bfb0b5274a5f1db79",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "compute cohens d",
+  "task_key": "worker_compute_cohens-d_20260518T084239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compute_cohens-d_20260518T084239_result.json",
+    "occurrence": 1,
+    "bytes": 1138,
+    "sha256": "3908389c669ac34fe63e0d30921c173dae9ebc9183ae2f605a09f90f622c93e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n### 数据概况\n- 总行数: 27,529 (6 个模型, depth 0-4)\n- 排除 gen-0 后: 21,557 行 (gen-1: 5,918, gen-2+: 15,639)\n- Class-balanced 后: 11,836 行 (每组 5,918)\n\n### Pooled Cohen's d: gen-1 vs gen-2+ (class-balanced)\n\n| Feature | Cohen's d | 95% CI | \\|d\\| | Category |\n|---|---|---|---|---|\n| entropy_mean | +1.1690 | [+1.1161, +1.2200] | 1.1690 | drifting |\n| ttr | +0.8765 | [+0.8338, +0.9230] | 0.8765 | drifting |\n| hapax_ratio | +0.7559 | [+0.7101, +0.7996] | 0.7559 | drifting |\n| entropy_std | +0.5453 | [+0.5058, +0.5845] | 0.5453 | drifting |\n| entropy_max | +0.0795 | [+0.0434, +0.1145] | 0.0795 | stationary |\n| tail_decay | +0.0745 | [+0.0396, +0.1086] | 0.0745 | stationary |\n| entropy_min | -0.0247 | [-0.0584, +0.0127] | 0.0247 | stationary |\n\n4 个特征 drifting (\\|d\\| > 0.5): entropy_mean (大效应, d=1.17), ttr, hapax_ratio, entropy_std。3 个特征 stationary (\\|d\\| < 0.2): entropy_max, tail_decay, entropy_min。没有 intermediate 类 (0.2 < \\|d\\| < 0.5)。所有正 d 值表示 gen-1 均值高于 gen-2+，即这些特征随生成深度递减。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/compute-cohens-d.md"
+}

@@ -1,0 +1,653 @@
+{
+  "schema_version": "1.0",
+  "id": "0cd1274cad5f473913c2",
+  "project": "gen-depth-fingerprint",
+  "kind": "conversation",
+  "title": "cron hook plan 006 paraphrastic 20260516T021533 994784",
+  "task_key": "cron_hook_plan-006-paraphrastic_20260516T021533_994784",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_plan-006-paraphrastic_20260516T021533_994784.jsonl",
+    "occurrence": 1,
+    "bytes": 30640,
+    "sha256": "3244c4e663851bffb995d6115ebde07339336685fca5e8153663089fcb301683"
+  },
+  "statistics": {
+    "messages": 32,
+    "user_turns": 2,
+    "tool_calls": 14,
+    "roles": {
+      "user": 2,
+      "tool_call": 14,
+      "tool_result": 14,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T23:13:22.748732+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: plan-006-paraphrastic\n- project: gen-depth-fingerprint\n- server: autodl-5090\n- log_path: /tmp/plan006_full.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T23:13:35.360857+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+              "max_results": "8"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T23:13:35.411354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T23:13:38.627143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "gen-depth-fingerprint",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T23:13:39.130720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T23:13:39.633989+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (79,247 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint--claude-sessions-agent-a26c910f/84492718-263b-4cca-9ca1-5a5505dd5eaf/tool-results/mcp-agent-ml-research-read_registry-1778886819096.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint--claude-sessions-agent-a26c910f/84492718-263b-4cca-9ca1-5a5505dd5eaf/tool-results/mcp-agent-ml-research-read_registry-1778886819096.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint--claude-sessions-agent-a26c910f/84492718-263b-4cca-9ca1-5a5505dd5eaf/tool-results/mcp-agent-ml-research-read_registry-1778886819096.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1006
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T23:13:39.634280+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 503
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T23:13:39.634427+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "gen-depth-fingerprint",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T23:13:40.086408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-15T23:13:21Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 60 个实验 — DONE 53, PREPARING 6, RUNNING 1\\\\n**DONE 分布**: failed 9, killed 1, negative 4, success 39\\\\n\\\\n### GPU 占用\\\\n- **分配**: 4 张 — autodl-5090:cuda:0, autodl-5090:cuda:1, autodl-5090:cuda:2, autodl-5090:cuda:3\\\\n- **实际运行**: 1 张 — autodl-5090:cuda:0(plan-012-qwen06b)\\\\n- **空闲（分配了没跑）**: autodl-5090:cuda:1, autodl-5090:cuda:2, autodl-5090:cuda:3\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `plan-012-qwen06b` | autodl-5090 | cuda:0 | ? | `—` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `plan-006-paraphrastic` [failed] — 2026-05-15T23:13:21 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n- `plan-009-finer-ordinal` [negative] — 2026-05-15T23:02:23\\\\n- `plan-008-multi-domain` [success] — 2026-05-15T22:36:35\\\\n- `plan-007-cross-model` [success] — 2026-05-15T22:32:04\\\\n- `plan-010-human-edit` [success] — 2026-05-15T21:20:47\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `plan-006-paraphrastic`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| plan-012-qwen06b | QLoRA fine-tuned Qwen3-0.6B-Base for 5-class depth classification vs 7-feature XGBoost handcrafted baseline. Tests if learned representations outperform handcrafted distributional features. | — | — | — |\\\\n\\\\n## 待处理\\\\n- plan-004-prep: Downstream utility 准备：depth-stratified 数据集 + OLMo-1B fine-tuning 脚本（不开跑，等 Director 确认）（准备中）\\\\n- plan-001-restore（准备中）\\\\n- mvp-001-gen-s0（准备中）\\\\n- mvp-001-gen-s3（准备中）\\\\n- mvp-001-gen-s2（准备中）\\\\n- mvp-001-gen-s1\n…[truncated 896 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 451
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T23:13:40.086816+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "gen-depth-fingerprint"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T23:13:40.438337+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/ROADMAP.md\\\", \\\"content\\\": \\\"# gen-depth-fingerprint — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 14:09 UTC | 更新原因: 同步 D017 binary metric + Round 2 修复进展 + P1-C 状态\\\\n\\\\n## 核心方向\\\\n递归 LLM 生成链展现 **differential depth response**：central-tendency/diversity 特征随深度漂移，shape 特征近稳态。7-feature ensemble 跨 6 base-model generators / 3 families 验证。**Primary metric (D017)**: binary LOGO F1=0.723 (gen-1 vs gen-2+, leak-free)；3-class LOGO F1=0.789 supplementary (gen-0 共享 caveat)。详见 paper_framing.md。\\\\n\\\\n## 投稿目标\\\\n- **主投: EMNLP 2026 ARR (DDL: 2026-05-25)** — 10 天倒计时\\\\n\\\\n## 当前进展\\\\n- **阶段**: Round 2 审稿修复中 → 修复完成后提交 Round 3\\\\n- **Round 2 审稿修复状态**:\\\\n  - Rd2-N1 CI 误用 → ✅ results/conclusion 已改 per-gen F1 range，⏳ abstract/intro 更新中\\\\n  - Rd2-N2 Gen-0 泄露 → ✅ P0-A binary F1=0.723，binary eval table 已加，⏳ abstract/intro headline 更新中\\\\n  - Rd2-N3 仅 base model → ✅ scope narrowing 完成，⏳ P1-C instruct 实验运行中 (Qwen3-1.7B-Instruct, cuda:1)\\\\n  - Rd2-N4 Cross-scale gap → ✅ P0-B volume-matched (94% diversity)，scope 已 narrow\\\\n  - Rd2-W1 Overclaimed novelty → ✅ \\\\\\\"characterize\\\\\\\" 替代 \\\\\\\"central finding\\\\\\\"\\\\n  - Rd2-W3 Protocol mixing → ✅ Table 3 统一 6-gen LOGO\\\\n  - Rd2-W5 No ordinal methods → ✅ P1-E: CORAL/Frank-Hall 无显著优势，⏳ 写入论文中\\\\n  - Rd2-W6 Hyperparameter asymmetry → ✅ M6 delta <0.002pp\\\\n  - Rd2-M1–M6 Minor fixes → ✅ 全部完成\\\\n- **P2-F cross-ref bias**: ✅ Pythia-1B 在所有 ref model 下均 #1，same-family bias 不成立\\\\n\\\\n## 近期任务（EMNLP 冲刺）\\\\n- [x] P0-A gen-0 泄露修复 + binary eval (D017)\\\\n- [x] P0-B volume-matched control\\\\n- [x] P1-D Table 3 统一 6-gen LOGO + M6 sensitivity\\\\n- [x] P1-E ordinal regression comparison (M5)\\\\n- [x] P2-F cross-ref bias check\\\\n- [x] results.tex Table 3 + binary eval table + delta 数字更新\\\\n- [x] conclusion.tex binary F1 headline\\\\n- [ ] **abstract + intro 数字更新 → binary F1 headline（Agent 处理中）**\\\\n- [ ] related_work CI width 残留修复\\\\n- [ ] P1-E ordinal 结论写入论文\\\\n- [ ]\n…[truncated 2090 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 351
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T23:13:40.489005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/skills/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T23:13:40.539629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/agent_a26c910f."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T23:13:45.852043+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "gen-depth-fingerprint",
+              "filters": "{'exp_id': 'plan-006-paraphrastic'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T23:13:46.052892+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1357}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 200
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T23:13:46.053305+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/on-experiment-failed.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T23:13:46.103779+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T23:13:54.738816+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint--claude-sessions-agent-a26c910f/84492718-263b-4cca-9ca1-5a5505dd5eaf/tool-results/mcp-agent-ml-research-read_registry-1778886819096.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nif 'plan-006-paraphrastic' in exps:\n    print(json.dumps(exps['plan-006-paraphrastic'], indent=2))\nelse:\n    # search for it\n    for k,v in exps.items():\n        if 'plan-006' in k or 'paraphrastic' in str(v):\n            print(f'=== {k} ===')\n            print(json.dumps(v, indent=2))\n\"",
+              "description": "Extract plan-006-paraphrastic from registry dump"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T23:13:55.043067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T21:44:53.232Z\",\n  \"updated_at\": \"2026-05-15T23:13:21.032Z\",\n  \"spec\": {\n    \"plan_id\": \"plan_006\",\n    \"hypothesis\": \"Paraphrastic chains converge faster than continuation chains, preserving less depth signal \\u2014 tests attractor convergence theory\",\n    \"gpu\": \"cuda:1\",\n    \"command\": \"python paraphrastic_chains.py --phase all --device cuda:1\",\n    \"server\": \"autodl-5090\",\n    \"data_path\": \"/root/gen-depth-fingerprint/data/prompt_type_features.csv (continuation baseline)\",\n    \"data_count\": \"995 seeds x 5 depths\",\n    \"model_name\": \"Pythia-2.8B\",\n    \"seed\": \"matching plan-005 seeds\",\n    \"pid\": 246021\n  },\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-15T23:13:20.370Z\"\n  },\n  \"failure_reason\": \"process dead 5\\u00d7 with no sentinel/W&B \\u2014 auto-resolved as failed\",\n  \"conclusion\": \"failed\",\n  \"completed_at\": \"2026-05-15T23:13:21.032Z\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-15T23:13:22.445352+00:00\"\n      }\n    ]\n  }\n}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "Bash",
+            "elapsed_ms": 304
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T23:13:55.043440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/on-experiment-failed*",
+              "path": "/home/ubuntu"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T23:13:55.661498+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "Glob",
+            "elapsed_ms": 618
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T23:13:58.525401+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T23:13:58.576681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: on-experiment-failed\n3\tdescription: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。\n4\tscope: global\n5\ttags:\n6\t- workflow\n7\t- diagnosis\n8\t- cron-hook\n9\ttools:\n10\t- read_registry\n11\t- tail_training_logs\n12\t- update_registry\n13\t- append_idea\n14\t- feishu_send_result_card\n15\t- spawn_worker\n16\t- check_job_status\n17\tversion: 4\n18\theavy: true\n19\troles:\n20\t- agent\n21\t---\n22\t\n23\t# 实验失败诊断工作流\n24\t\n25\t## 触发方式\n26\t由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。\n27\t\n28\t## 步骤\n29\t\n30\t### Step 0: 读取项目上下文（诊断前必须执行）\n31\t先读文档，再看日志——否则诊断方向可能完全错误：\n32\t\n33\t- `read_project_file(\"memory.md\")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案\n34\t- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构\n35\t\n36\t读完后检查：\n37\t- memory.md 里有没有\"此类实验曾失败，原因是 X\"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程\n38\t- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）\n39\t\n40\t### Step 1: 了解失败背景\n41\t- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path\n42\t\n43\t### Step 2: 浅层日志诊断\n44\t有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)\n45\t- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback\n46\t- 没找到 → 增加行数再查\n47\t\n48\t### Step 2.5: 深查（满足以下任一条件时 spawn_worker）\n49\t- 运行时长 < 5 分钟（初始化阶段崩溃）\n50\t- tail 日志中未见明确 Traceback 或错误行\n51\t- 同类实验连续失败 ≥ 2 次\n52\t\n53\t```python\n54\tspawn_worker(\n55\t    task_type=\"diagnose:{exp_id}\",\n56\t    task_prompt=\"\"\"SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。\n57\t\n58\t项目路径：{project_path}（绝对路径）\n59\t日志路径：{log_path}（可能为空）\n60\t\n61\t执行步骤（按顺序，有结论就停）：\n62\t\n63\t1. 如果有日志路径：\n64\t   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）\n65\t   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）\n66\t   - 日志文件不存在：说明任务启动即失败，跳到步骤 2\n67\t\n68\t2. 日志无错误或无日志时，检查基础设施：\n69\t   - 入口文件是否存在\n70\t   - 激活环境并验证 import\n71\t   - 检查 configs/ 目录\n72\t\n73\t3. 检查磁盘/内存（OOM 类）\n74\t\n75\t最后输出一行 JSON：\n76\t{\"root_cause\":\"<引用具体报错行>\",\"error_type\":\"infrastructure|hyperparameter|resource|data\",\"fix_steps\":[\"步骤1\",\"步骤2\"],\"can_auto_fix\":true}\"\"\",\n77\t    tool_groups=[\"ssh\"],\n78\t)\n79\t```\n80\t\n81\tWorker 返回后，以其结论作为 Step 3 的诊断依据。\n82\t\n83\t### \n…[truncated 1766 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T23:13:58.577003+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "gen-depth-fingerprint",
+              "section": "execution"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T23:13:58.677405+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"gen-depth-fingerprint\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"project_path\\\": \\\"/root/gen-depth-fingerprint\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"autodl-5090\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 100
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T23:14:07.966070+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "gen-depth-fingerprint",
+              "file": "memory.md"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T23:14:08.016732+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/memory.md\\\", \\\"content\\\": \\\"# Memory — gen-depth-fingerprint\\\\n\\\\n## 写作约束\\\\n- **7-gen vs 6-gen 数字禁止直接对比** (2026-05-15 Director 硬约束): 7-gen binary F1=0.768 不可与 6-gen binary F1=0.723 做 apple-to-apple 比较。原因：训练集组成变化（多了 instruct 数据），提升主要来自 training diversity。写 instruct scope limitation 时只报告 instruct held-out 绝对 F1 和同架构 Δ，不引用 aggregate 对比。\\\\n- **Instruct 方向反转是长度伪影** (2026-05-15 Reviewer CRITICAL, 已验证): instruct 模型输出极短（0.6B depth-1 仅 35 tokens vs depth-0 252 tokens），length-depth ρ > 0.5。Length-matched 后 surface feature ρ 降至 ~0（0.6B）或缩减 53-91%（1.7B），entropy 同理。**不可 claim 方向反转**。Discussion 用纯 \\\\\\\"method boundary\\\\\\\" 叙事：instruct 链不产生可检测的 depth signal（gen-1 vs gen-2+ F1 ≈ 0.5）。\\\\n\\\\n## 实验经验\\\\n- **BASE_MODEL_RHO 是 per-generator 值** (2026-05-15): analyze_instruct.py 中 hapax=-0.670 等值来自 Qwen3-1.7B-Base 单模型 pooled Spearman ρ，与论文 6-gen pooled 值 (-0.558) 不矛盾——统计口径不同。\\\\n\\\", \\\"total_chars\\\": 815, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T23:14:23.026281+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "diagnose:plan-006-paraphrastic",
+              "project": "gen-depth-fingerprint",
+              "task_prompt": "SSH 到服务器 autodl-5090，诊断实验 plan-006-paraphrastic 的失败原因。\n\n**背景**：\n- 实验假设：Paraphrastic chains converge faster than continuation chains, preserving less depth signal\n- 命令：`python paraphrastic_chains.py --phase all --device cuda:1`\n- 项目路径：/root/gen-depth-fingerprint\n- 日志路径：/tmp/plan006_full.log\n- 模型：Pythia-2.8B\n- 失败表现：进程反复退出 5 次，无 W&B metrics，cron 自动判定 failed\n\n**执行步骤（按顺序，有结论就停）**：\n\n1. 先看日志文件 /tmp/plan006_full.log：\n   - 结尾 80 行（找 Traceback / Error / CUDA OOM / KeyError / ImportError）\n   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）\n   - 日志文件不存在：说明任务启动即失败，跳到步骤 2\n\n2. 检查脚本本身：\n   - `ls -la /root/gen-depth-fingerprint/paraphrastic_chains.py` 确认文件存在\n   - 如果存在，看脚本开头导入和 main 函数结构\n   - 尝试 `cd /root/gen-depth-fingerprint && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python paraphrastic_chains.py --help` 验证能否启动\n\n3. 检查环境：\n   - `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"import torch; print(torch.cuda.is_available(), torch.cuda.device_count())\"`\n   - `nvidia-smi` 检查 GPU 状态\n   - `df -h /tmp /root` 检查磁盘空间\n\n4. 如果 paraphrastic_chains.py 不存在，检查是否在其他路径：\n   - `find /root/gen-depth-fingerprint -name \"paraphrastic*\" -o -name \"plan006*\"`\n\n**最后输出一行 JSON**：\n{\"root_cause\":\"<引用具体报错行>\",\"error_type\":\"infrastructure|hyperparameter|resource|data\",\"fix_steps\":[\"步骤1\",\"步骤2\"],\"can_auto_fix\":true/false}\n\n注意：用 ssh_read_only 做所有诊断，只有需要修改时才用 ssh_execute。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T23:14:25.711726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_plan-006-paraphrastic_20260515T231423\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/logs/workers/worker_diagnose_plan-006-paraphrastic_20260515T231423.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_diagnose_plan-006-paraphrastic_20260515T231423 started. Use get_worker_status('worker_diagnose_plan-006-paraphrastic_20260515T231423') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2685
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T23:14:31.055257+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断 Worker 已派出 (`worker_diagnose_plan-006-paraphrastic_20260515T231423`)，正在 SSH 到 autodl-5090 读取 `/tmp/plan006_full.log` 分析根因。\n\n同时检查资源饱和度——当前 4 张 GPU 分配，仅 1 张在跑 plan-012-qwen06b (cuda:0)，cuda:1/2/3 空闲。Worker 完成后我会更新 registry notes、刷新 report.md、向 Director 汇报诊断结果和修复建议。\n\n等待 Worker 回调。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic"
+          },
+          "id": "event-000030"
+        }
+      ],
+      "message_count": 30
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T02:14:56.028104+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T02:15:33.992813+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 cuda:0-3，共 4 张 RTX 5090。白名单外的 GPU 必须 push back Director\n- 7-gen vs 6-gen 数字禁止直接对比（D017 约束）：7-gen binary F1=0.768 不可与 6-gen binary F1=0.723 做 apple-to-apple 比较\n- Instruct 方向反转已确认为长度伪影，不可 claim 方向反转（Reviewer CRITICAL 已验证）\n- Primary metric 是 binary F1=0.723（gen-1 vs gen-2+, leak-free），3-class F1=0.789 仅 supplementary\n- EMNLP 2026 ARR DDL: 2026-05-25，剩 9 天\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090，工作目录 /root/gen-depth-fingerprint\n- Python：/root/miniconda3/bin/python（conda base 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- AutoDL 特性：根分区 30GB，大文件放 /root/autodl-tmp/；pip 前 `source /etc/network_turbo`；HF 下载设 `HF_HUB_DISABLE_XET=1`\n- 活跃进程：plan-012-qwen06b RUNNING on cuda:0（QLoRA fine-tuned Qwen3-0.6B-Base 5-class depth classifier）\n- cuda:1/2/3 空闲\n\n### 3. 📊 当前状态\n**刚触发**：plan-006-paraphrastic 实验失败回调（process dead 5× with no sentinel/W&B）。已派诊断 Worker `worker_diagnose_plan-006-paraphrastic_20260515T231423` SSH 查日志 /tmp/plan006_full.log，**尚未返回结果**。\n\n**Registry 概览**：\n- RUNNING: plan-012-qwen06b（cuda:0，QLoRA depth classifier vs XGBoost baseline）\n- PREPARING: plan-004-prep, plan-001-restore, mvp-001-gen-s0/s1/s2/s3\n- DONE: 53 个（success 39, negative 4, failed 9, killed 1）\n\n**等待中**：\n- Worker 回调：诊断 Worker 结果 → 需更新 registry notes + 汇报 Director\n- plan-012-qwen06b cron 回调 → 分析 QLoRA vs XGBoost 结果\n\n### 4. 📋 待办\n- 诊断 Worker 返回 → 按 error_type 分叉：infrastructure 可自修重试；resource/data 汇报 Director 决策；更新 registry notes + 发飞书结果卡片\n- plan-012-qwen06b 完成回调 → 分析 QLoRA 5-class accuracy vs 7-feature XGBoost baseline，汇报 Director\n- cuda:1/2/3 空闲 → 应向 Director 汇报资源闲置，建议分配任务（ROADMAP 待办：abstract+intro 数字更新、related_work CI 残留修复、P1-E ordinal 写入论文、bib 年份验证、全文一致性验证）\n- Round 2 修复全部完成 → post_to_reviewer 一致性检查 → submit_paper_to_review Round 3\n- Round 3 通过 → EMNLP ARR 提交材料准备\n\n### 5. 🎯 战略上下文\n- 核心结论：递归 LLM 生成链的 central-tendency/diversity 特征随深度漂移，shape 特征近稳态。7-feature ensemble 跨 6 base-model / 3 families 验证，binary LOGO F1=0.723\n- Claim 3 (Downstream Utility) 已确认 negative (D023)，reframe 为 \"diagnostic-not-curative\"\n- D025: Director 批准重跑 plan-006 paraphrastic with matched generation，现在这个重跑也 failed，需要决定是否再试或放弃这个方向\n- D019: 撤回 instruct inverted DDR 叙事，instruct 写入 discussion 作为 method boundary\n- 易错点：plan-006 是 paraphrastic chains 实验（用 Pythia-2.8B 做 paraphrase 链 vs continuation 链对比），不是核心 claim 实验，失败不影响主 story，但如果能救回来可以丰富 discussion\n- 当前最大风险：离 DDL 9 天，论文 abstract/intro 数字更新还没完成，Round 3 审查还没开始。GPU 资源 3/4 空闲是浪费\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan-006-paraphrastic"
+          },
+          "id": "event-000032"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-plan-006-paraphrastic-20260516t021533-994784.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51846b26e4ade8d16b75",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code compile check",
+  "task_key": "worker_code_compile-check_20260517T051202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_compile-check_20260517T051202_result.json",
+    "occurrence": 1,
+    "bytes": 1100,
+    "sha256": "ff9547dc94764a9805ccb0f99b1e20bc2604dd6bee713a68e6fcc43a08d669f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个新 appendix 都正常渲染，无 LaTeX 错误（只有常规的 Underfull/Overfull hbox 警告）。`appendix_error_analysis.tex` 有一个 overfull hbox (23.8pt too wide) 在 lines 20-34 的表格区域，但不是编译错误。\n\n## 编译结果报告\n\n| 项目 | 结果 |\n|------|------|\n| **编译状态** | 成功 (exit code 0) |\n| **LaTeX 错误** | 0 |\n| **Warnings** | 4 (均为 `'h' float specifier changed to 'ht'`，无害) |\n| **Undefined references** | 0 |\n| **Multiply defined labels** | 0 |\n| **总页数** | 18 |\n| **正文页数** | 8 (到 `\\bibliography` 前，含 conclusion/limitations/ethics) |\n| **References** | 2 页 (pp. 9-10) |\n| **Appendix** | 8 页 (pp. 11-18) |\n\n### 新 appendix 验证\n- `appendix_domain.tex` — 正常渲染，无错误\n- `appendix_error_analysis.tex` — 正常渲染，无错误。有一处 overfull hbox (23.8pt) 在表格区域，可能需要微调列宽\n\n### 修复记录\n- 修复了 `appendix_dataset_stats.tex` 第 25 行 `\\footnotemark` 在 `\\caption{}` 中的兼容性问题（加 `\\protect`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-compile-check.md"
+}

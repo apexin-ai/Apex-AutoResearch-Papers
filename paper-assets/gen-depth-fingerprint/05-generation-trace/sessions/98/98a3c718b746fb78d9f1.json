@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98a3c718b746fb78d9f1",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_2_1778808231.md",
+  "task_key": "loop_2_1778808231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778808231.md",
+    "occurrence": 1,
+    "bytes": 3868,
+    "sha256": "09d0ece49cfc34391889f55d7d9beb456a970ec9c12e81c2a0b816243852bb00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-15T01:23:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（autodl-5090），超出必须 push back Director\n- submit_training_job 注入 CUDA_VISIBLE_DEVICES 后脚本内必须用 `--device cuda:0`（逻辑设备 0）\n- **提交前必须检查目标 GPU 上是否有活跃 tmux session**——已发生 3 次重复提交覆盖事故（SIGHUP 杀死在跑实验）\n- generate_chain.py 已改为 append+flush+resume 模式，重跑时会自动跳过已完成 seed_id\n- Qwen3.5 系列不存在，用 Qwen3-Base；OLMo-2-1B-hf 不存在，用 OLMo-2-0425-1B\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090 (4× RTX 5090 32GB)，工作目录 `/root/gen-depth-fingerprint`\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- HF_HOME：`/root/autodl-tmp/.hf_cache`\n- 模型路径：\n  - pythia-410m (ref): `/root/autodl-tmp/models/pythia-410m`\n  - pythia-1b: `/root/autodl-tmp/models/pythia-1b/EleutherAI/pythia-1b`\n  - pythia-2.8b: `/root/autodl-tmp/.hf_cache/EleutherAI/pythia-2___8b`\n  - olmo-2-1b: `/root/autodl-tmp/models/olmo-2-1b-hf/allenai/OLMo-2-0425-1B`\n  - qwen3-1.7b: `/root/autodl-tmp/models/Qwen/Qwen3-1___7B-Base`\n  - qwen3-0.6b: `/root/autodl-tmp/models/Qwen/Qwen3-0___6B-Base`\n- 数据：`/root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl` (1000 seeds)\n- 产出：`/root/gen-depth-fingerprint/data/{model-name}/generations_shard{0,1}.jsonl`\n- 活跃进程：**待诊断 Worker 确认**（r2-s0 PID 120612, r2-s1 PID 120689，可能已死）\n\n### 3. 📊 当前状态\n**我刚做完**：收到 plan-002-qwen17b-retry-s0 SIGHUP 失败回调 → 分析根因（r2 重复提交覆盖 tmux） → 更新 registry notes → 派诊断 Worker → 向 Director 初步汇报。\n\n**Registry 关键状态**：\n- plan-002 (umbrella): RUNNING\n- plan-002-qwen06b-s0/s1: RUNNING（但 cron 检测进程已消失，miss 3/5 和 2/5）\n- plan-002-qwen17b-r2-s0/s1: PREPARING（PID 已分配，存活未知）\n- plan-002-qwen17b-retry-s0/s1: DONE/failed（SIGHUP，第 3 次）\n- plan-002-olmo2-s0/s1: DONE/success ✓\n- plan-002-pythia1b-s0/s1: DONE/success ✓\n\n**等待中**：\n- 诊断 Worker `worker_diagnose_server-sweep-20260514_20260514T220140` 回调（SSH 全面检查服务器）\n- Director 对 Qwen3-1.7B 反复失败的决策\n\n### 4. 📋 待办\n- 诊断 Worker 回调 → 根据结果：(a) 若 r2 在跑且正常 → 更新 r2 状态为 RUNNING，等其完成；(b) 若 r2 也死了 → 更新所有状态为 DONE/failed，汇报 Director 决定是否第 4 次提交\n- qwen06b 进程确认死亡 → 更新 registry 为 DONE/failed，检查已产出数据量，决定是否 resume\n- 所有 Qwen 生成完成 → plan-002 转 DONE，合并 shard，开始 plan-003（cross_family_reference_model）\n- Director 回复 → 按指示执行（可能是修复提交流程防重复、或放弃 Qwen3-1.7B 换模型）\n\n### 5. 🎯 战略上下文\n- **核心结论**：MVP macro-F1=0.84 验证 Claim 1（单生成器）；plan-001-fix 验证 Claim 2（Feature Complementarity，dual dynamics）\n- **当前瓶颈**：plan-002（跨生成器）Pythia-1B 和 OLMo-2 已成功，Qwen3-1.7B 反复被 SIGHUP（操作层面问题非代码问题），Qwen3-0.6B 状态不明\n- **易错点**：\n  1. 不要在 GPU 上有活跃进程时提交新实验到同一 GPU——tmux session 名冲突会覆盖\n  2. generate_chain.py 支持 resume，数据没丢，下次跑会自动跳过已完成 seed\n  3. plan-002 的 retry/r2 命名混乱（retry-s0, r2-s0 等），下一轮提交统一命名\n- **Venue 时间线**：AAAI 2027 (Aug 2) primary / EMNLP ARR (May 25) stretch\n- **决策链**：D001(MVP方案) → D002(MVP PASS进研究) → D003/D004/D005(Claim 2 framing 调整为 dual dynamics)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778808231.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2fd65c360d925d01f48e",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops submission precheck",
+  "task_key": "worker_ops_submission-precheck_20260516T202001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submission-precheck_20260516T202001_result.json",
+    "occurrence": 1,
+    "bytes": 2097,
+    "sha256": "054892778bc0295b21af5b8e0b70c697aaa4f0f68c2949719e5b11a41530cd77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data needed for the checklist. Let me compile the final report.\n\n```\n=== SUBMISSION CHECKLIST ===\n\n[1] Citation Integrity\n    Status: PASS\n    Missing bib entries: none\n    Unused bib entries: gemma2\n\n[2] Figure/Table References\n    Status: PASS\n    Missing labels: none\n    Unused labels: fig:baseline-ci, tab:5class-logo, tab:5class-perclass,\n                   tab:feature-ablation, tab:lofo, tab:qlora\n    (All unused labels are in appendix files — defined but only internally\n     referenced via \\ref within their own appendix sections or unreferenced\n     standalone tables.)\n\n[3] Data-Paper Consistency\n    Status: PASS\n    Checked: Table 1 per-gen F1, Baselines table\n    \n    Table 1 (8gen_logo_unfiltered.json → results.tex tab:logo-results):\n      Binary F1: all 8 generators match (0.633–0.724) ✓\n      3-class F1: all 8 generators match (0.682–0.806) ✓\n      Pooled: 3-class 0.762, binary 0.694, CI [0.688, 0.700] ✓\n    \n    Baselines (8gen_logo_baselines.json → results.tex tab:baselines):\n      Avg-LogProb: 0.683/0.641 ✓\n      FastDetectGPT: 0.655/0.564 ✓\n      Binoculars: 0.395/0.520 ✓\n      LD-Score: 0.619/0.657 ✓\n      4-det ensemble: 0.770/0.686 ✓\n      4-det + surface: 0.787/0.699 ✓\n    \n    Mismatches: none\n\n[4] Compilation & Page Count\n    Status: FAIL\n    Compilation: SUCCESS (no errors, no undefined references)\n    Total pages: 17\n    Main body (through Conclusion): ~9 pages (overflows onto page 9)\n    Limitations starts: page 9 right column\n    References: pages 10–12\n    Appendix: pages 13–17\n    \n    EMNLP limit: 8 pages main body (excl. Limitations/Ethics/References/Appendix)\n    OVER LIMIT by ~0.7 page — Discussion + Conclusion spill onto page 9.\n\n=== SUMMARY: 3/4 PASS ===\n\nAction needed: Cut ~0.7 page from main body (Discussion is the most compressible\nsection — \"Paraphrastic chains\", \"Instruct tuning\", and \"Negative downstream\nfinding\" paragraphs on pages 8–9 are candidates for trimming or moving to appendix).\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submission-precheck.md"
+}

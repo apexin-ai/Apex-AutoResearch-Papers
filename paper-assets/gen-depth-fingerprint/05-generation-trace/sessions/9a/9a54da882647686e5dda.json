@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a54da882647686e5dda",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper p1c instruct writeup",
+  "task_key": "worker_paper_p1c-instruct-writeup_20260515T175016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_p1c-instruct-writeup_20260515T175016_result.json",
+    "occurrence": 1,
+    "bytes": 659,
+    "sha256": "2342ee4abc511d954109f0044fa7e8daeba001d347e4d6c1932b787ed3560123"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。变更内容：\n\n**discussion.tex** — 新增 `\\paragraph{Instruct tuning degrades depth signal.}` (3句)：\n- OLMo-2-1B-Instruct LOGO F1=0.338 vs base 0.763；Qwen3-0.6B chat F1=0.667 vs base 0.816\n- 推测 instruct tuning 改变 token 分布使 depth features 失效，机制待明确\n- 以此 justify scope 限定为 base model\n\n**limitations.tex** — 第一段补充了 OLMo instruct 和 Qwen3 chat 的具体 F1 数值及 length confound 问题，替换了原来纯定性的表述。\n\n两个文件已同步到 `docs/paper/`。未在 results 主文中添加内容，未使用 \"inverted DDR\"/\"significantly\" 措辞。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-p1c-instruct-writeup.md"
+}

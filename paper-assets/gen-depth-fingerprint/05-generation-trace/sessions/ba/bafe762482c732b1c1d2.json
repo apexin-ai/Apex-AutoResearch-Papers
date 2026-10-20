@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bafe762482c732b1c1d2",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "exp review p1e ordinal",
+  "task_key": "worker_exp_review-p1e-ordinal_20260515T134136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_review-p1e-ordinal_20260515T134136_result.json",
+    "occurrence": 1,
+    "bytes": 817,
+    "sha256": "5a49c9e5c18c6b134f935db8815de28585e2fe6b0cfba4f17f97b93e8af93126"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "P1-E 实验完成。结果汇总：\n\n### 3-class LOGO (gen-0 / gen-1 / gen-2+)\n\n| 方法 | F1 | 95% CI |\n|---|---|---|\n| **XGBoost multiclass** | 0.7888 | [0.7843, 0.7933] |\n| **CORAL ordinal** | 0.7711 | [0.7662, 0.7760] |\n| **Frank-Hall ordinal** | **0.7931** | [0.7885, 0.7975] |\n\nOrdinal consistency (concordance): XGBoost 0.821, CORAL 0.810, Frank-Hall **0.825**\n\n### Binary LOGO (gen-1 vs gen-2+)\n\n| 方法 | F1 | 95% CI |\n|---|---|---|\n| XGBoost binary | 0.7213 | [0.7150, 0.7275] |\n| CORAL binary | 0.7275 | [0.7217, 0.7339] |\n\n### 结论\n三种方法 CI 高度重叠，ordinal structure 对 3-class 任务收益极小。Frank-Hall 略优但差异不显著（+0.004），CORAL 反而略差（-0.018）。符合预期——3 个有序类太少，ordinal 结构信息有限。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-review-p1e-ordinal.md"
+}

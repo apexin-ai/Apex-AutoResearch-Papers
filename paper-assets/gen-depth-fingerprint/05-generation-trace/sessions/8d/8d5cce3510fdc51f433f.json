@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d5cce3510fdc51f433f",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper page count fix",
+  "task_key": "worker_paper_page-count-fix_20260516T032306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_page-count-fix_20260516T032306_result.json",
+    "occurrence": 1,
+    "bytes": 887,
+    "sha256": "267c4adafe2c9dc6060ebacbe3abad99dd7352a82f43d199079f593f00f267e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Summary of changes:\n\n1. **Table 5 → appendix**: Created `appendix_downstream.tex` with the full table + analysis. Replaced the downstream subsection in `results.tex` with a 3-line summary referencing `Appendix I`. Added `\\input{appendix_downstream}` to `main.tex` appendix section.\n\n2. **Related Work compressed**: 61 → 44 lines. All 5 subsections preserved, all citations retained, method detail descriptions trimmed.\n\n3. **Paraphrastic chains paragraph restored** in `discussion.tex` between Robustness and Instruct models (lines 16-19). Qwen3-0.6B 0.816/0.824 clarification preserved on line 22.\n\n4. **Compiled and verified**: pdflatex 2-pass confirms 16 total pages. Body (abstract through conclusion) ends on page 8; limitations/ethics/references/appendix start on pages 8-9+.\n\nBoth `docs/paper/` and `artifacts/_project/paper/` are fully synced."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-page-count-fix.md"
+}

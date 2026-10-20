@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba35b778fbd9d3df29d6",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper instruct nuance update",
+  "task_key": "worker_paper_instruct-nuance-update_20260515T181413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_instruct-nuance-update_20260515T181413_result.json",
+    "occurrence": 1,
+    "bytes": 819,
+    "sha256": "3ad7880384a2c45a6c5e1c79ce73c6e75284719d219a3f2ae7b137c005da6df0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Changes:\n\n**discussion.tex** — `\\paragraph{Instruct tuning degrades depth signal.}` replaced with expanded `\\paragraph{Instruct tuning degrades depth signal through multiple mechanisms.}`:\n- Surface features (TTR, hapax) confounded by length collapse (OLMo-Instruct ρ=−0.370, Qwen3 ρ=−0.583)\n- Entropy features show genuine behavioral shifts surviving length control (OLMo-Instruct partial ρ=0.364, Qwen3 partial ρ=0.161)\n- Concludes multi-faceted disruption, justifies base-model scope\n\n**limitations.tex** — Instruct paragraph updated: replaces \"length confounds dominating the residual signal\" with nuanced length-controlled analysis distinguishing surface feature confounds from genuine entropy behavioral changes, with partial ρ values.\n\nBoth synced to `docs/paper/`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-instruct-nuance-update.md"
+}

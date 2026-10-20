@@ -1,0 +1,202 @@
+# SVS Formal Verification - Literature Map
+# 更新日期: 2026-05-14
+# 基于 VeriCoT 深度调研整合
+
+papers:
+
+  # ============================================================
+  # Direct Competitors - 直接竞争方法
+  # ============================================================
+
+  VeriCoT:
+    title: "VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks"
+    authors: "Yu Feng, Nathaniel Weir, Kaj Bostrom, Sam Bayless, Darion Cassel, Sapana Chaudhary, Benjamin Kiesl-Reiter, Huzefa Rangwala"
+    venue: ICLR 2026 (Poster)
+    arxiv: "2511.04662"
+    role: direct-competitor
+    method:
+      verifier: Z3 SMT solver
+      granularity: step-level
+      verdict: binary (entailed / contradicted / ungrounded / untranslatable)
+      chain_selection: none (single-chain + serial self-reflection)
+      formalization: SMT-LIB via Claude-3.5-Sonnet-V2
+      premise_source: LLM-generated (source context / commonsense / prior step)
+      training_dependency: none at inference; optional SFT/DPO
+    datasets: [ProofWriter, BioASQ, LegalBench-SARA]
+    key_results:
+      pass_rate: "15-45% (ProofWriter 45.2%, BioASQ 25.3%, SARA 15.2%)"
+      precision: "84-94%"
+      self_reflection_gain: "+46% relative pass rate"
+    svs_relevance: |
+      最直接的竞争者。核心差异：
+      1. Binary vs Graded: VeriCoT 输出 pass/fail，SVS 输出连续 IC 分数
+      2. Single-chain vs Multi-chain: VeriCoT 验证单链+串行反思，SVS 多链采样+分数排序选择
+      3. LLM-gen premises vs PCV: VeriCoT 由 LLM 生成 premises（有 fabrication 风险），SVS 使用题目给定 premises
+      4. Pass rate: VeriCoT 15-45%，SVS ~85% formalization rate（粒度不同不直接可比）
+      论文定位: "binary single-chain verification; we extend to graded multi-chain selection"
+
+  PC-CoT:
+    title: "Typed Chain-of-Thought (PC-CoT): Certified Self-Consistency via Curry-Howard Correspondence"
+    venue: ICLR 2026
+    arxiv: "2510.01069"
+    role: direct-competitor
+    method:
+      verifier: type checker (Curry-Howard correspondence)
+      granularity: step-level
+      verdict: binary (type-check pass/fail)
+      chain_selection: "Certified Self-Consistency = binary type-check filter + majority voting (SC)"
+      formalization: typed CoT via Curry-Howard
+      training_dependency: none
+    datasets: [GSM8K]
+    key_results:
+      typing_rate: "40-60%"
+    svs_relevance: |
+      提出 "Certified Self-Consistency"，是 SVS graded chain selection 的最近 alternative。
+      核心差异：
+      1. Binary filter + SC vs Graded scoring selection: PC-CoT 先 binary 筛再投票，SVS 用连续分数直接排序
+      2. 赛道不同: PC-CoT 仅测 GSM8K（数学），SVS 做逻辑推理
+      3. 信息损失: binary filter 丢弃了验证程度的连续信息
+      论文定位: "Certified Self-Consistency = binary filter + SC; we show graded scoring outperforms"
+      必须做的 ablation: SVS graded IC vs binary filter + SC
+
+  VERGE:
+    title: "VERGE: Verification-Guided Reasoning with Z3/SMT"
+    venue: arXiv 2026
+    arxiv: "2601.20055"
+    role: direct-competitor
+    method:
+      verifier: Z3/SMT
+      granularity: step-level
+      verdict: "graded (MCS-based)"
+      chain_selection: "partial (trajectory-level formal guidance during generation)"
+      formalization: SMT encoding
+      key_innovation: "MCS (Maximal Consistent Subsets) for error localization + formal guidance during generation"
+    svs_relevance: |
+      最接近 SVS 的 graded 思路，但用途不同。
+      核心差异：
+      1. 用途: VERGE 用 MCS 做 error localization + 生成引导，SVS 用 MCS-derived score 做 chain selection
+      2. 时机: VERGE 在生成过程中介入（online），SVS 在生成后评估（post-hoc）
+      3. 复杂度: VERGE 需修改生成 pipeline，SVS 是 plug-and-play 后处理
+      论文定位: "MCS for error localization + refinement; we use MCS-derived score for selection"
+
+  # ============================================================
+  # Method Components - 方法组件（用于训练，非 inference-time）
+  # ============================================================
+
+  PRoSFI:
+    title: "PRoSFI: Graded Reward via Structured Formal Intermediaries for RL Training"
+    venue: ICML 2026
+    arxiv: "2603.29500"
+    role: method-component
+    method:
+      verifier: Z3/Prover9
+      granularity: step-level
+      verdict: "graded reward (R=1.0/0.3/0.1/0.0)"
+      chain_selection: none (training reward only, not used at inference)
+      key_innovation: "graded formal verification reward for RL (PPO/GRPO)"
+    svs_relevance: |
+      与 SVS 共享 "graded formal verification" 理念，但用途截然不同。
+      核心差异：
+      1. Training vs Inference: PRoSFI 的 graded score 是 RL reward（训练信号），SVS 用于 inference-time chain selection
+      2. SVS 无需训练: PRoSFI 需 RL 训练循环，SVS 是 training-free 的 test-time 方法
+      论文定位: "graded reward for training; we use graded score at inference without training"
+
+  # ============================================================
+  # Evaluation Baselines
+  # ============================================================
+
+  LogicReward:
+    title: "LogicReward: Isabelle-based Graded Reward for SFT/DPO Training"
+    venue: ICLR 2026
+    github: "https://github.com/Aiden0526/Logic-Reward"
+    role: evaluation
+    method:
+      verifier: Isabelle theorem prover
+      granularity: step-level
+      verdict: "graded reward"
+      chain_selection: none (training reward only)
+      key_innovation: "formal verification → reward signal for SFT/DPO"
+    svs_relevance: |
+      同样产出 graded verification signal，但仅用于训练。
+      核心差异：
+      1. 训练 vs 推理: LogicReward 用于 SFT/DPO 训练，SVS 用于 inference-time selection
+      2. 验证器: LogicReward 用 Isabelle（交互式定理证明器），SVS 用 Z3（SMT solver），Z3 更轻量自动化
+      3. 互补潜力: Hybrid scoring（IC score + LogicReward）是潜在扩展方向
+
+  # ============================================================
+  # Background - 早期基础工作
+  # ============================================================
+
+  LINC:
+    title: "LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers"
+    venue: EMNLP 2023
+    arxiv: "2310.15164"
+    role: background
+    method:
+      verifier: Prover9
+      granularity: problem-level
+      verdict: binary
+      chain_selection: none
+      key_innovation: "LLM → FOL → theorem prover pipeline"
+    svs_relevance: |
+      SVS 的前身类方法。LINC 做 problem-level binary 验证，不验证 CoT 步骤。
+      SVS 在三个维度上推进：step/claim-level 粒度、graded 判定、multi-chain selection。
+
+  LOGIC-LM:
+    title: "LOGIC-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning"
+    venue: EMNLP 2023
+    arxiv: "2305.12295"
+    role: background
+    method:
+      verifier: symbolic solver
+      granularity: problem-level
+      verdict: binary
+      chain_selection: none
+      key_innovation: "NL → symbolic formulation → solver，with self-refinement loop"
+    svs_relevance: |
+      Problem-level binary 验证 + self-refinement。与 SVS 的差异同 LINC：
+      粒度（problem vs claim）、判定（binary vs graded）、用途（refinement vs selection）。
+      LOGIC-LM 的 self-refinement 思路与 VeriCoT 的 self-reflection 类似。
+
+  SatLM:
+    title: "SatLM: Satisfiability-Aided Language Models Using Declarative Prompting"
+    venue: NeurIPS 2023
+    arxiv: "2305.09656"
+    role: background
+    method:
+      verifier: SAT solver
+      granularity: problem-level
+      verdict: binary
+      chain_selection: none
+      key_innovation: "declarative programming paradigm for LLM reasoning"
+    svs_relevance: |
+      SAT solver 路线，声明式编程范式。与 SVS 的 SMT-based 方法不同赛道。
+      SAT 表达力弱于 SMT（无量词、无函数），但求解效率更高。
+      SVS 选择 Z3 SMT 是更通用的形式化选择。
+
+# ============================================================
+# 图谱总结
+# ============================================================
+
+landscape_summary:
+  trend_binary_to_graded: |
+    2023 年工作（LINC, LOGIC-LM, SatLM）全是 binary problem-level 验证。
+    2026 年开始出现 graded step-level scoring（PRoSFI, VERGE, LogicReward），但均用于 training reward。
+    SVS 首次将 graded formal verification score 用于 inference-time chain selection。
+
+  chain_selection_gap: |
+    现有工作的 chain selection 方式：
+    - 无选择: VeriCoT, LINC, LOGIC-LM, SatLM, PRoSFI, LogicReward
+    - Binary filter + SC: PC-CoT (Certified Self-Consistency)
+    - 生成引导: VERGE
+    - Graded scoring selection: SVS (ours) ← 唯一
+
+  common_bottleneck: |
+    Autoformalization 是所有方法的共同瓶颈：
+    - VeriCoT: 45% pass rate
+    - PC-CoT: 40-60% typing rate
+    - SVS: ~85% formalization rate（claim-level 粒度更宽容）
+
+  svs_unique_contribution: |
+    "Graded formal verification score for inference-time chain selection"
+    是 SVS 的独特贡献点。无人将连续验证分数直接用于 test-time chain ranking/selection。

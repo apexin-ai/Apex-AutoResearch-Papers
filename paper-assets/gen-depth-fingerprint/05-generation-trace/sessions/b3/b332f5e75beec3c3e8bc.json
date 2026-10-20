@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b332f5e75beec3c3e8bc",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "exp exp 060 continuation",
+  "task_key": "worker_exp_exp_060_continuation_20260520T123657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_exp_060_continuation_20260520T123657_result.json",
+    "occurrence": 1,
+    "bytes": 662,
+    "sha256": "2c6e2206a153ceedaab3a1e96b99ec6d68d42e2b0f9dc6c76a79506a6dffab0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 已启动并正常运行。\n\n**汇总：**\n\n| 项目 | 值 |\n|---|---|\n| Pipeline 脚本 | `/root/gen-depth-fingerprint/scripts/exp060_pipeline.sh` |\n| DDR 分析脚本 | `/root/gen-depth-fingerprint/scripts/exp060_ddr_analysis.py` |\n| Pipeline PID | 197137 |\n| 日志 | `/tmp/exp060_pipeline.log` |\n| 当前状态 | 等待生成进程 PID 194539 完成（538/~2500 行） |\n\n**预期时间线：**\n- 生成完成：约 2-2.5 小时后（按当前速率 ~14 行/分钟）\n- Feature extraction：约 15-30 分钟（2500 条，batch_size=8，Pythia-410M）\n- DDR analysis：< 1 分钟\n- **全部完成预计约 3 小时后**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-exp-060-continuation.md"
+}

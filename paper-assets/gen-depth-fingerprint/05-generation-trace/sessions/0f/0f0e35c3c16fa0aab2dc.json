@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f0e35c3c16fa0aab2dc",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan003 ref model prep",
+  "task_key": "worker_code_plan003-ref-model-prep_20260515T225246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan003-ref-model-prep_20260515T225246_result.json",
+    "occurrence": 1,
+    "bytes": 760,
+    "sha256": "bbb66a0178f1febfa668dde58108b132e2d64f3dea7d0f2c1bb910d24a692d48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan-003 已经完成。** 三个相关 entry 全部 DONE：\n\n- **plan-003** (parent): LOGO F1 — Pythia ref: 0.8034, OLMo ref: 0.8072, Qwen ref: 0.8158。三个 reference model 的 entropy_mean drift 均为负（单调递减），`dual_dynamics_is_pythia_artifact: false`。\n- **plan-003-olmo2ref**: OLMo-2-1B 特征提取完成，23032 samples\n- **plan-003-qwen06bref**: Qwen3-0.6B 特征提取完成，23032 samples\n\n**结论**: Cross-family falsification test 通过。Entropy drift 在三个不同家族的 reference model 下都存在（OLMo drift range [-0.608, -0.909], Qwen [-0.956, -1.346], Pythia [-1.187, -1.402]），确认 dual dynamics 不是 Pythia-specific artifact。Claim 2 成立。\n\n无需重新执行 plan-003。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan003-ref-model-prep.md"
+}

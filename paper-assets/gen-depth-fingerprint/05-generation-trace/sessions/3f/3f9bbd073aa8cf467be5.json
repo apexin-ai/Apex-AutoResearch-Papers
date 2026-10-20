@@ -1,0 +1,451 @@
+{
+  "schema_version": "1.0",
+  "id": "3f9bbd073aa8cf467be5",
+  "project": "gen-depth-fingerprint",
+  "kind": "conversation",
+  "title": "paper n3a table1 binary f1",
+  "task_key": "worker_paper_n3a-table1-binary-f1_20260516T045708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_n3a-table1-binary-f1_20260516T045708.jsonl",
+    "occurrence": 1,
+    "bytes": 19090,
+    "sha256": "5b9e4bc30d9f75c7a5834296837038ee0627178a452d940e0020e875d2838222"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T04:59:09.563163+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_n3a-table1-binary-f1_20260516T045708",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T04:59:09.563535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\tWe evaluate depth fingerprinting along four axes: cross-generator classification (\\S\\ref{sec:results-classification}), differential depth response of individual features (\\S\\ref{sec:results-differential}), comparison with existing detection baselines (\\S\\ref{sec:results-baselines}), and downstream utility for data curation (\\S\\ref{sec:results-downstream}).\n5\t\n6\t\\subsection{Depth Classification Performance}\n7\t\\label{sec:results-classification}\n8\t\n9\tTable~\\ref{tab:logo-results} reports leave-one-generator-out (LOGO) macro-F1 for 3-class depth estimation (gen-0\\,/\\,gen-1\\,/\\,gen-2+) across six generators spanning three model families and parameter counts from 0.6B to 8.2B.\n10\t\n11\tThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.789 (Table~\\ref{tab:logo-results}). Because gen-0 seed texts are shared across generators (\\S\\ref{sec:generation}), the gen-0 class F1 (0.94) may be inflated; we therefore report a leak-free binary evaluation (gen-1 vs.\\ gen-2+, F1\\,=\\,0.723) as the primary metric.\n12\tPer-generator binary F1 ranges from 0.641 (Qwen3-8B) to 0.795 (Pythia-1B); 3-class F1 ranges from 0.683 to 0.856.\n13\tPer-class F1 varies by depth: gen-0\\,=\\,0.94, gen-2+\\,=\\,0.80, gen-1\\,=\\,0.64; the primary difficulty lies in distinguishing gen-1 from gen-2+, where feature margins narrow.\n14\t\n15\t\\paragraph{Cross-scale transfer.}\n16\tThe six-generator evaluation includes Qwen3-8B (8.2B parameters), confirming that depth signal persists beyond the $\\leq$2.8B training generators, though with a moderate gap: Qwen3-8B binary F1\\,=\\,0.641 (CI [0.625, 0.657]) vs.\\ 0.68--0.80 for smaller generators.\n17\tAdding Qwen3-8B data improves classification on the original five generators (+0.8\\,pp to 0.810); a volume-matched control confirms 94\\% of this gain is attributable to generator diversity rather than data quantity.\n18\t\n19\t\\paragraph{Cross-family generalization.}\n20\tLeave-one-family-out (LOFO) evaluation---holding out an entire model family\n…[truncated 9702 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_n3a-table1-binary-f1_20260516T045708",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T04:59:09.563735+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_n3a-table1-binary-f1_20260516T045708",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T04:59:09.563873+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_n3a-table1-binary-f1_20260516T045708",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T04:59:09.564037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_n3a-table1-binary-f1_20260516T045708",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+              "offset": "30",
+              "limit": "25"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T04:59:09.564173+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "30\t\\begin{table}[t]\n31\t\\centering\n32\t\\small\n33\t\\begin{tabular}{llccc}\n34\t\\toprule\n35\t\\textbf{Generator} & \\textbf{Family} & \\textbf{Params} & \\textbf{Held-out F1} & \\textbf{95\\% CI} \\\\\n36\t\\midrule\n37\tPythia-1B       & Pythia & 1.0B & 0.856 & [0.843, 0.863] \\\\\n38\tPythia-2.8B     & Pythia & 2.8B & 0.804 & [0.793, 0.813] \\\\\n39\tOLMo-2-1B      & OLMo   & 1.5B & 0.764 & [0.754, 0.776] \\\\\n40\tQwen3-0.6B     & Qwen   & 0.6B & 0.824 & [0.813, 0.834] \\\\\n41\tQwen3-1.7B     & Qwen   & 1.7B & 0.806 & [0.796, 0.817] \\\\\n42\tQwen3-8B       & Qwen   & 8.2B & 0.683 & [0.668, 0.694] \\\\\n43\t\\midrule\n44\t\\multicolumn{3}{l}{Average (6-gen LOGO)} & 0.789 & --- \\\\\n45\t\\multicolumn{3}{l}{5-gen LOGO (excl.\\ Qwen3-8B)} & 0.802 & --- \\\\\n46\t\\bottomrule\n47\t\\end{tabular}\n48\t\\caption{Leave-one-generator-out macro-F1 with bootstrap 95\\% confidence intervals ($n$\\,=\\,1000) for 3-class depth estimation using the 7-feature ensemble. Each row holds out one generator for testing and trains on the remaining five.}\n49\t\\label{tab:logo-results}\n50\t\\end{table}\n51\t\n52\t\\paragraph{Ordinal regression comparison.}\n53\tCORAL ordinal regression \\cite{coral_ordinal} and Frank-Hall ordinal reduction \\cite{frank_hall_ordinal} achieve 3-class F1 of 0.771 and 0.793 respectively, with all CIs overlapping the standard XGBoost (0.789).\n54\tExplicitly encoding ordinal structure does not yield a measurable gain, likely because 3-class granularity provides insufficient ordinal resolution for ranking-aware losses."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_n3a-table1-binary-f1_20260516T045708",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T04:59:09.564361+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_n3a-table1-binary-f1_20260516T045708",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+              "old_string": "\\textbf{Generator} & \\textbf{Family} & \\textbf{Params} & \\textbf{3-class} & \\textbf{Binary} & \\textbf{95\\% CI} \\\\\n\\midrule\nPythia-1B       & Pythia & 1.0B & 0.856 & 0.795 & [0.780, 0.809] \\\\\nPythia-2.8B     & Pythia & 2.8B & 0.804 & 0.723 & [0.709, 0.739] \\\\\nOLMo-2-1B      & OLMo   & 1.5B & 0.764 & 0.677 & [0.660, 0.692] \\\\\nQwen3-0.6B     & Qwen   & 0.6B & 0.824 & 0.756 & [0.742, 0.772] \\\\\nQwen3-1.7B     & Qwen   & 1.7B & 0.806 & 0.748 & [0.732, 0.762] \\\\\nQwen3-8B       & Qwen   & 8.2B & 0.683 & 0.641 & [0.625, 0.657] \\\\\n\\midrule\n\\multicolumn{3}{l}{Average (6-gen LOGO)} & 0.789 & 0.723 & --- \\\\\n\\multicolumn{3}{l}{5-gen LOGO (excl.\\ Qwen3-8B)} & 0.802 & 0.740 & --- \\\\",
+              "new_string": "\\textbf{Generator} & \\textbf{Family} & \\textbf{Params} & \\textbf{3-class F1} & \\textbf{Binary F1} & \\textbf{95\\% CI} \\\\\n\\midrule\nPythia-1B       & Pythia & 1.0B & 0.856 & \\textbf{0.795} & [0.780, 0.809] \\\\\nPythia-2.8B     & Pythia & 2.8B & 0.804 & \\textbf{0.723} & [0.709, 0.739] \\\\\nOLMo-2-1B      & OLMo   & 1.5B & 0.764 & \\textbf{0.677} & [0.660, 0.692] \\\\\nQwen3-0.6B     & Qwen   & 0.6B & 0.824 & \\textbf{0.756} & [0.742, 0.772] \\\\\nQwen3-1.7B     & Qwen   & 1.7B & 0.806 & \\textbf{0.748} & [0.732, 0.762] \\\\\nQwen3-8B       & Qwen   & 8.2B & 0.683 & \\textbf{0.641} & [0.625, 0.657] \\\\\n\\midrule\n\\multicolumn{3}{l}{Average (6-gen LOGO)} & 0.789 & \\textbf{0.723} & --- \\\\\n\\multicolumn{3}{l}{5-gen LOGO (excl.\\ Qwen3-8B)} & 0.802 & \\textbf{0.740} & --- \\\\"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T04:59:09.564549+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_n3a-table1-binary-f1_20260516T045708",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T04:59:09.564696+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_n3a-table1-binary-f1_20260516T045708",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+              "old_string": "\\caption{6-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). 3-class includes gen-0, whose seed texts are shared across generators (\\S\\ref{sec:generation}); Binary F1 (gen-1 vs.\\ gen-2+ only) eliminates this overlap and serves as the primary metric. 95\\% CIs are for Binary F1.}",
+              "new_string": "\\caption{6-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Gen-0 samples are shared across generators (\\S\\ref{sec:generation}); 3-class results are supplementary. Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric.}"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T04:59:09.564864+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_n3a-table1-binary-f1_20260516T045708",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T04:59:09.565008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_n3a-table1-binary-f1_20260516T045708",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+              "old_string": "\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Generator} & \\textbf{Family} & \\textbf{Params} & \\textbf{Held-out F1} & \\textbf{95\\% CI} \\\\\n\\midrule\nPythia-1B       & Pythia & 1.0B & 0.856 & [0.843, 0.863] \\\\\nPythia-2.8B     & Pythia & 2.8B & 0.804 & [0.793, 0.813] \\\\\nOLMo-2-1B      & OLMo   & 1.5B & 0.764 & [0.754, 0.776] \\\\\nQwen3-0.6B     & Qwen   & 0.6B & 0.824 & [0.813, 0.834] \\\\\nQwen3-1.7B     & Qwen   & 1.7B & 0.806 & [0.796, 0.817] \\\\\nQwen3-8B       & Qwen   & 8.2B & 0.683 & [0.668, 0.694] \\\\\n\\midrule\n\\multicolumn{3}{l}{Average (6-gen LOGO)} & 0.789 & --- \\\\\n\\multicolumn{3}{l}{5-gen LOGO (excl.\\ Qwen3-8B)} & 0.802 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Leave-one-generator-out macro-F1 with bootstrap 95\\% confidence intervals ($n$\\,=\\,1000) for 3-class depth estimation using the 7-feature ensemble. Each row holds out one generator for testing and trains on the remaining five.}",
+              "new_string": "\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Generator} & \\textbf{Family} & \\textbf{Params} & \\textbf{3-class F1} & \\textbf{Binary F1} & \\textbf{95\\% CI} \\\\\n\\midrule\nPythia-1B       & Pythia & 1.0B & 0.856 & \\textbf{0.795} & [0.780, 0.809] \\\\\nPythia-2.8B     & Pythia & 2.8B & 0.804 & \\textbf{0.723} & [0.709, 0.739] \\\\\nOLMo-2-1B      & OLMo   & 1.5B & 0.764 & \\textbf{0.677} & [0.660, 0.692] \\\\\nQwen3-0.6B     & Qwen   & 0.6B & 0.824 & \\textbf{0.756} & [0.742, 0.772] \\\\\nQwen3-1.7B     & Qwen   & 1.7B & 0.806 & \\textbf{0.748} & [0.732, 0.762] \\\\\nQwen3-8B       & Qwen   & 8.2B & 0.683 & \\textbf{0.641} & [0.625, 0.657] \\\\\n\\midrule\n\\multicolumn{3}{l}{Average (6-gen LOGO)} & 0.789 & \\textbf{0.723} & --- \\\\\n\\multicolumn{3}{l}{5-gen LOGO (excl.\\ Qwen3-8B)} & 0.802 & \\textbf{0.740} & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{6-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Gen-0 samples are shared across generators (\\S\\ref{sec:generation}); 3-class results are supplementary. Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric.}"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T04:59:09.565194+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_n3a-table1-binary-f1_20260516T045708",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T04:59:09.565342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_n3a-table1-binary-f1_20260516T045708",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+              "offset": "30",
+              "limit": "21"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T04:59:09.565471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "30\t\\begin{table}[t]\n31\t\\centering\n32\t\\small\n33\t\\begin{tabular}{llcccc}\n34\t\\toprule\n35\t\\textbf{Generator} & \\textbf{Family} & \\textbf{Params} & \\textbf{3-class F1} & \\textbf{Binary F1} & \\textbf{95\\% CI} \\\\\n36\t\\midrule\n37\tPythia-1B       & Pythia & 1.0B & 0.856 & \\textbf{0.795} & [0.780, 0.809] \\\\\n38\tPythia-2.8B     & Pythia & 2.8B & 0.804 & \\textbf{0.723} & [0.709, 0.739] \\\\\n39\tOLMo-2-1B      & OLMo   & 1.5B & 0.764 & \\textbf{0.677} & [0.660, 0.692] \\\\\n40\tQwen3-0.6B     & Qwen   & 0.6B & 0.824 & \\textbf{0.756} & [0.742, 0.772] \\\\\n41\tQwen3-1.7B     & Qwen   & 1.7B & 0.806 & \\textbf{0.748} & [0.732, 0.762] \\\\\n42\tQwen3-8B       & Qwen   & 8.2B & 0.683 & \\textbf{0.641} & [0.625, 0.657] \\\\\n43\t\\midrule\n44\t\\multicolumn{3}{l}{Average (6-gen LOGO)} & 0.789 & \\textbf{0.723} & --- \\\\\n45\t\\multicolumn{3}{l}{5-gen LOGO (excl.\\ Qwen3-8B)} & 0.802 & \\textbf{0.740} & --- \\\\\n46\t\\bottomrule\n47\t\\end{tabular}\n48\t\\caption{6-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Gen-0 samples are shared across generators (\\S\\ref{sec:generation}); 3-class results are supplementary. Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric.}\n49\t\\label{tab:logo-results}\n50\t\\end{table}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_n3a-table1-binary-f1_20260516T045708",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T04:59:09.565617+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_n3a-table1-binary-f1_20260516T045708",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+              "offset": "30",
+              "limit": "21"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T04:59:09.565753+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "30\t\\begin{table}[t]\n31\t\\centering\n32\t\\small\n33\t\\begin{tabular}{llcccc}\n34\t\\toprule\n35\t\\textbf{Generator} & \\textbf{Family} & \\textbf{Params} & \\textbf{3-class F1} & \\textbf{Binary F1} & \\textbf{95\\% CI} \\\\\n36\t\\midrule\n37\tPythia-1B       & Pythia & 1.0B & 0.856 & \\textbf{0.795} & [0.780, 0.809] \\\\\n38\tPythia-2.8B     & Pythia & 2.8B & 0.804 & \\textbf{0.723} & [0.709, 0.739] \\\\\n39\tOLMo-2-1B      & OLMo   & 1.5B & 0.764 & \\textbf{0.677} & [0.660, 0.692] \\\\\n40\tQwen3-0.6B     & Qwen   & 0.6B & 0.824 & \\textbf{0.756} & [0.742, 0.772] \\\\\n41\tQwen3-1.7B     & Qwen   & 1.7B & 0.806 & \\textbf{0.748} & [0.732, 0.762] \\\\\n42\tQwen3-8B       & Qwen   & 8.2B & 0.683 & \\textbf{0.641} & [0.625, 0.657] \\\\\n43\t\\midrule\n44\t\\multicolumn{3}{l}{Average (6-gen LOGO)} & 0.789 & \\textbf{0.723} & --- \\\\\n45\t\\multicolumn{3}{l}{5-gen LOGO (excl.\\ Qwen3-8B)} & 0.802 & \\textbf{0.740} & --- \\\\\n46\t\\bottomrule\n47\t\\end{tabular}\n48\t\\caption{6-generator LOGO macro-F1 for the 7-feature ensemble (bootstrap 95\\% CIs, $n$\\,=\\,1000). Gen-0 samples are shared across generators (\\S\\ref{sec:generation}); 3-class results are supplementary. Binary F1 (gen-1 vs.\\ gen-2+) is the primary metric.}\n49\t\\label{tab:logo-results}\n50\t\\end{table}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_n3a-table1-binary-f1_20260516T045708",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T04:59:09.565890+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_n3a-table1-binary-f1_20260516T045708",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "git diff --stat",
+              "description": "Check what files changed"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T04:59:09.566032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": " .claude/sessions/agent_113cd425/AGENTS.md          |    2 +-\n .claude/sessions/agent_113cd425/CLAUDE.md          |    2 +-\n .claude/sessions/agent_3f8424b2/AGENTS.md          |    2 +-\n .claude/sessions/agent_3f8424b2/CLAUDE.md          |    2 +-\n .claude/sessions/agent_7b81b561/AGENTS.md          |    2 +-\n .claude/sessions/agent_7b81b561/CLAUDE.md          |    2 +-\n .claude/sessions/agent_c184ef80/AGENTS.md          |    2 +-\n .claude/sessions/agent_c184ef80/CLAUDE.md          |    2 +-\n .claude/sessions/director_98a1947f/AGENTS.md       |    2 +-\n .claude/sessions/director_98a1947f/CLAUDE.md       |    2 +-\n .claude/sessions/paper_agent_f6e70382/AGENTS.md    |    2 +-\n .claude/sessions/paper_agent_f6e70382/CLAUDE.md    |    2 +-\n .../sessions/review_director_fec00603/AGENTS.md    |    2 +-\n .../sessions/review_director_fec00603/CLAUDE.md    |    2 +-\n .../sessions/review_reviewer_1_c21d58b8/AGENTS.md  |    2 +-\n .../sessions/review_reviewer_1_c21d58b8/CLAUDE.md  |    2 +-\n .../sessions/review_reviewer_2_3f564e41/AGENTS.md  |    2 +-\n .../sessions/review_reviewer_2_3f564e41/CLAUDE.md  |    2 +-\n .claude/sessions/reviewer_23f47168/AGENTS.md       |    2 +-\n .claude/sessions/reviewer_23f47168/CLAUDE.md       |    2 +-\n ROADMAP.md                                         |   98 +-\n artifacts/_project/paper/_pdf_images/main_p3.png   |  Bin 516749 -> 578516 bytes\n artifacts/_project/paper/_pdf_images/main_p4.png   |  Bin 496526 -> 572992 bytes\n artifacts/_project/paper/_pdf_images/main_p5.png   |  Bin 504221 -> 598071 bytes\n artifacts/_project/paper/_pdf_images/main_p6.png   |  Bin 435093 -> 516558 bytes\n artifacts/_project/paper/_pdf_images/main_p7.png   |  Bin 506182 -> 598594 bytes\n artifacts/_project/paper/abstract.tex              |    4 +-\n artifacts/_project/paper/discussion.tex            |   18 +-\n artifacts/_project/paper/introduction.tex          |    8 +-\n artifacts/_project/paper/limitations.tex           |    5 +-\n artifacts/_project/paper/method.tex    \n…[truncated 2810 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_n3a-table1-binary-f1_20260516T045708",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T04:59:09.566198+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_n3a-table1-binary-f1_20260516T045708",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "git add docs/paper/results.tex artifacts/_project/paper/results.tex && git commit -m \"$(cat <<'EOF'\nfix paper: add binary F1 column to Table 1 (N3a+N3b)\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n)\"",
+              "description": "Commit results.tex changes"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T04:59:09.566321+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "[master d8f6a27] fix paper: add binary F1 column to Table 1 (N3a+N3b)\n Committer: Ubuntu <ubuntu@ip-172-31-15-53.ap-northeast-1.compute.internal>\nYour name and email address were configured automatically based\non your username and hostname. Please check that they are accurate.\nYou can suppress this message by setting them explicitly. Run the\nfollowing command and follow the instructions in your editor to edit\nyour configuration file:\n\n    git config --global --edit\n\nAfter doing this, you may fix the identity used for this commit with:\n\n    git commit --amend --reset-author\n\n 2 files changed, 30 insertions(+), 28 deletions(-)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_n3a-table1-binary-f1_20260516T045708",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T04:59:09.566466+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改内容：\n\n1. **表头**：`3-class` → `3-class F1`，`Binary` → `Binary F1`\n2. **Binary F1 值全部加粗**（`\\textbf{}`），突出 primary metric\n3. **Caption 更新**：简化为 \"Gen-0 samples are shared across generators; 3-class results are supplementary. Binary F1 (gen-1 vs. gen-2+) is the primary metric.\"\n4. **两个文件已同步**：`docs/paper/results.tex` 和 `artifacts/_project/paper/results.tex` 内容一致"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_n3a-table1-binary-f1_20260516T045708"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/paper-n3a-table1-binary-f1.md"
+}

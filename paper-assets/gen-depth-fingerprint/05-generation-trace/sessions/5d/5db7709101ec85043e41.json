@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "5db7709101ec85043e41",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "paper layout fix v2",
+  "task_key": "worker_paper_layout-fix-v2_20260525T074526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_layout-fix-v2_20260525T074526.log",
+    "occurrence": 1,
+    "bytes": 990926,
+    "sha256": "aef9f70275de878bd949bc7064024e8b3d0b5aac6035a942d32c08157aa0f76d"
+  },
+  "statistics": {
+    "messages": 282,
+    "user_turns": 0,
+    "tool_calls": 102,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 74,
+      "tool_call": 102,
+      "tool_result": 102,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 282,
+      "chunks": [
+        {
+          "path": "5db7709101ec85043e41-part-0001.json",
+          "message_count": 146
+        },
+        {
+          "path": "5db7709101ec85043e41-part-0002.json",
+          "message_count": 136
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-layout-fix-v2.md"
+}

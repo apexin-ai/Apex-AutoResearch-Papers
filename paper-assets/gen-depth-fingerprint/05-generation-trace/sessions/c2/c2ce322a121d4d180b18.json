@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c2ce322a121d4d180b18",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops llama mistral stats",
+  "task_key": "worker_ops_llama-mistral-stats_20260516T231511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama-mistral-stats_20260516T231511_result.json",
+    "occurrence": 1,
+    "bytes": 237,
+    "sha256": "c087dc51ae7d2a4b591e7b899329da9225fbf4171653e87533f4b5d6875ce3e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n```\nLlama-3.2-3B: gen-0=995, gen-1=872, gen-2=533, gen-3=315, gen-4=222, total=2937, avg_length=169.7\nMistral-7B-v0.3: gen-0=996, gen-1=924, gen-2=734, gen-3=559, gen-4=452, total=3665, avg_length=151.5\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama-mistral-stats.md"
+}

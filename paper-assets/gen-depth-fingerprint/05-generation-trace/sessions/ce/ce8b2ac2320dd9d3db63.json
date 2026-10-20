@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "ce8b2ac2320dd9d3db63",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper framework figure",
+  "task_key": "worker_paper_framework-figure_20260517T150251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_framework-figure_20260517T150251_result.json",
+    "occurrence": 1,
+    "bytes": 2120434,
+    "sha256": "3ff97b97ae87313ee7ce9e4ae37ba396c5235c54a80651715e208cfcc9f47f1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2120454,
+                "serialized_sha256": "5ea087c95638e0d3a3bc76878c83312800c713cbc1ce70b1f9dd09b2df728bce",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-framework-figure.md"
+}

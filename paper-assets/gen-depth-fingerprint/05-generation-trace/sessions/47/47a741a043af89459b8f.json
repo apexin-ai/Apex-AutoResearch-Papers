@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47a741a043af89459b8f",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "writing appendix decoding fill tables",
+  "task_key": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_appendix_decoding_fill_tables_20260521T151125_result.json",
+    "occurrence": 1,
+    "bytes": 624,
+    "sha256": "454147c03041045eea56053c023b0706c84f4ea1d63561953832f789c9d193a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both files updated. Data sources and coverage summary:\n\n**Nucleus (Nuc.)**: 8/8 generators — computed from `features_8gen.csv` on server (gen-1 vs gen-2+ Cohen's d)\n\n**Greedy (Gr.)**: 6/8 generators — from `decoding_cohens_d_all.txt` (Qwen3-0.6B and Qwen3-8B missing)\n\n**Top-k**: 3/8 generators — from `decoding_cohens_d_all.txt` (only Pythia-2.8B, Pythia-1B, OLMo-2-1B completed)\n\nRemaining XX cells: Qwen3-0.6B greedy/topk, Qwen3-8B greedy/topk, Qwen3-1.7B topk, LLaMA-3.2-3B topk, Mistral-7B topk — pending experiment completion. Conclusion text (VERSION A/B/C) left untouched as requested."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-appendix-decoding-fill-tables.md"
+}

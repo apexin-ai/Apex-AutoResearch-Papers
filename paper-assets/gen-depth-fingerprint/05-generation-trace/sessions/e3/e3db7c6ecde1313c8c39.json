@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3db7c6ecde1313c8c39",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper appendix finer depth fix",
+  "task_key": "worker_paper_appendix-finer-depth-fix_20260516T003102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix-finer-depth-fix_20260516T003102_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "0cb182746946ed6f86a476c6159bb7a891300763514f1c504da4f9b7b5c40e89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All corrected values are consistent across all 4 files (2× appendix_finer_depth.tex + 2× discussion.tex). The `_backup/results_b30771.tex` match on 0.476 is unrelated (it's a correlation coefficient, not a classifier F1).\n\n**Summary of fixes** (all values corrected to match `finer_ordinal_results.json`):\n\n| Location | Old → New |\n|---|---|\n| Table 1 per-gen Macro F1 | 6 values, all off by 0.3–1.4pp |\n| Table 1 per-gen Accuracy | 6 values, all off by 0.2–1.2pp |\n| Table 1 Average | 0.507±0.036 → 0.501±0.038, Acc 0.546→0.541 |\n| Table 2 per-class F1 | Gen-0: 0.936→0.921, Gen-2: 0.276→0.268, Gen-4: 0.425→0.423 |\n| Analysis: drop magnitude | 0.282 → 0.288 |\n| Analysis: confusion % | 36.2%→36.5%, 37.2%→37.8% |\n| Classifier comparison | HGBT 0.503→0.501, CI adjusted, RF 0.477→0.476, XGBoost 0.507→0.501 |\n| Discussion: all echoed values | Same corrections propagated |\n\nWeighted F1 column left unchanged — the JSON doesn't contain per-generator weighted F1, so those values can't be verified from this data source."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-appendix-finer-depth-fix.md"
+}

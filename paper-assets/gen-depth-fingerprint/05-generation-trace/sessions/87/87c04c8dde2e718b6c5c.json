@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87c04c8dde2e718b6c5c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper framing sync",
+  "task_key": "worker_paper_framing-sync_20260517T211046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_framing-sync_20260517T211046_result.json",
+    "occurrence": 1,
+    "bytes": 942,
+    "sha256": "1e7878760d68cadbf64545b4dc09a56610c385e19be2175ea5f3a2401adb4947"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已更新 paper_framing.md。主要变更：\n\n1. **Scope**: 6-gen/3-family → **8-gen/5-family** (Pythia, OLMo, Qwen, Llama, Mistral)\n2. **Primary metric**: 3-class F1 0.79 → **leak-free binary F1 = 0.694**（排除 gen-0 seed sharing 泄漏）\n3. **Cross-model**: 0.764 是 **binary F1**（3-class 实际是 0.809，已标注清楚）\n4. **Feature ablation**: 旧 0.79/0.75/0.75 → 实际 **0.773/0.688/0.713**\n5. **LOFO**: 旧 0.75–0.77 → 实际 **binary F1 = 0.686**\n6. **Positioning**: 明确标注 **Findings paper**，贡献定位调整为 Findings 级别\n7. **Limitations**: 新增独立章节，突出 instruct 退化、温度敏感性、7-feature 非最优（efficiency advantage）、3-class 天花板、scale effect\n8. **Downstream TOST**: 补充 ±2% margin (p=1.1×10⁻⁴) 和 margin sensitivity 细节\n9. **新增 Headline Metrics Summary 表格** 集中所有关键数字，便于快速查阅"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-framing-sync.md"
+}

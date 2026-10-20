@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c810f3a8aae859d7748b",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper paperbanana fig2 final",
+  "task_key": "worker_paper_paperbanana-fig2-final_20260525T041618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_paperbanana-fig2-final_20260525T041618_result.json",
+    "occurrence": 1,
+    "bytes": 683,
+    "sha256": "96471cec41f781a8feaa8eca7deb0893f881b252669c0591666b1b922d77b78b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Figure 2 生成完成。**\n\n**结果：成功。** PaperBanana 使用 Gemini 2.5 Pro + Gemini 3 Pro Image 一轮即通过 VLM Critic 审核。\n\n**视觉质量评估：**\n- DDR 三色正确（Drifting 红 #D6604D, Intermediate 紫 #7570B3, Near-Stationary 蓝 #4393C3）\n- 8 个生成器名称全部正确，无错误名称\n- 三 panel 布局平衡，内容完整（公式、特征列表、LOGO 流程、XGBoost 分类器）\n- 文字清晰可读，整体有顶会论文的专业感\n\n**输出文件：**\n- PDF: `artifacts/_project/paper/fig2_framework.pdf` (3.5MB, 0 Type 3 字体)\n- PNG: `artifacts/_project/paper/fig2_framework.png` (2752×1536, 300 DPI)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-paperbanana-fig2-final.md"
+}

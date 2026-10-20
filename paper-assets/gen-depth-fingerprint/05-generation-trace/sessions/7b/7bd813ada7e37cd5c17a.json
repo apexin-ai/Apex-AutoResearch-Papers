@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bd813ada7e37cd5c17a",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper abstract intro binary update",
+  "task_key": "worker_paper_abstract-intro-binary-update_20260515T162541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_abstract-intro-binary-update_20260515T162541_result.json",
+    "occurrence": 1,
+    "bytes": 640,
+    "sha256": "1cd035e145fb0db3ef8b47e25d1635183f6e63a1d4f85183efff21aa703a9c47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 files updated. Changes summary:\n\n| Location | Change |\n|---|---|\n| abstract (both copies) | `0.72` → `0.723 (95\\% CI: [0.717, 0.729])`; added `base-model` before `generators` |\n| intro paragraph (both copies) | Same metric update on the headline claim |\n| intro contribution bullet (both copies) | Same metric update + added `base-model generators` |\n\nNo 3-class F1 was previously mentioned in abstract/intro, so no supplementary reference needed here. Scope already says \"base (pretrained) models\" in intro line 20; the new `base-model generators` reinforces this in the abstract and contributions bullet."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-abstract-intro-binary-update.md"
+}

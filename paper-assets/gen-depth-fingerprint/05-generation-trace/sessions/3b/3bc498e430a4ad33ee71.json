@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3bc498e430a4ad33ee71",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper r14 citations",
+  "task_key": "worker_paper_r14-citations_20260517T201145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r14-citations_20260517T201145_result.json",
+    "occurrence": 1,
+    "bytes": 1401,
+    "sha256": "fac34ff71f628da4df5cd2ca29fcaff7d5e11da754edea5e679b58a898e0dc77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "改动摘要：\n\n**1. Abburi et al., 2025 (arXiv:2505.11550)**\n- **注意**：该论文实际作者为 **Abburi, Bhattacharya, Bowen, Pudota**，不是 Alikhanov。arXiv ID 确认无误，但作者名有误。\n- bib key: `abburi_multifaceted`，添加在 Detection 区 `semeval2024_task8` 之后\n- 在 `related_work.tex` §2.1 第一句 learned classifiers 列表中插入，改写为 \"learned classifiers that combine handcrafted features with neural architectures\"\n\n**2. CORN loss (Shi, Cao, Raschka, 2023)**\n- 正式发表于 *Pattern Analysis and Applications*, vol. 26, pp. 941-955\n- bib key: `corn_ordinal`，添加在 Machine Learning 区 `frank_hall_ordinal` 之后\n- `related_work.tex` §2.1：在 ordinal classification literature 引用组中添加 `corn_ordinal`\n- `method.tex` §3.4 Classifier 段：在 \"CORAL, Frank-Hall\" 之间插入 \"CORN\"\n\n**3. AAAI 2025 Defactify 4.0 Shared Task**\n- 找到的是 dataset/overview paper: Roy et al. (2025), \"A Comprehensive Dataset for Human vs. AI Generated Text Detection\", arXiv:2510.22874（20 位作者）\n- 未找到独立的 shared task overview proceedings paper；此 dataset paper 是该 shared task 最可引用的出处\n- bib key: `defactify_dataset`，添加在 Detection 区\n- `related_work.tex` §2.1：在 multi-generator attribution 的 `semeval2024_task8` 引用后追加 `defactify_dataset`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-r14-citations.md"
+}

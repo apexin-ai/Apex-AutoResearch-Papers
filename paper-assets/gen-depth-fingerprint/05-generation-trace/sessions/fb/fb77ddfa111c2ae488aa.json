@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb77ddfa111c2ae488aa",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "infra install tmux",
+  "task_key": "worker_infra_install-tmux_20260514T172207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_install-tmux_20260514T172207_result.json",
+    "occurrence": 1,
+    "bytes": 71,
+    "sha256": "f1bd1e87e5d68feb4d27451ff1ce821c79efa0e2ef5576abf94bee0a668f72f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "安装完成。**tmux 3.2a** 已安装到 autodl-5090。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-install-tmux.md"
+}

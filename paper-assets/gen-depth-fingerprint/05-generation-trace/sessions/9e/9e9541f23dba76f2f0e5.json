@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e9541f23dba76f2f0e5",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper trace 5 unconfirmed",
+  "task_key": "worker_paper_trace-5-unconfirmed_20260523T193833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_trace-5-unconfirmed_20260523T193833_result.json",
+    "occurrence": 1,
+    "bytes": 4360,
+    "sha256": "e66d50b8c747ddadf87e63d2a1fe4ba2d029ef18122913bd42b91038a3e32daf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data needed for the complete report. Here's the synthesis:\n\n---\n\n## 逐项追溯报告\n\n### 1. QLoRA F1=0.905 的实验协议\n\n**源文件**: `results/plan012_qwen06b_results.json`\n- `macro_f1_3class: 0.9052`\n- `cv_type: \"5-fold_stratified\"`\n- `generators: [\"pythia-1b\", \"olmo-2-1b\", \"qwen3-0.6b\", \"qwen3-1.7b\"]` — **4 个 generator**\n- `n_samples: 18423`\n\n**论文描述** (appendix_qlora.tex:25): \"QLoRA achieves 3-class LOGO F1=0.905 under **6-generator LOGO**\"\n\n**判定: 数值正确，协议描述错误**\n- 实际是 **4-gen 5-fold stratified CV**，不是 \"6-generator LOGO\"\n- 论文表格中 XGBoost baseline=0.789 来自不同实验 (`8gen_logo_results.json > baseline_6gen_3class_f1: 0.7893`，6-gen LOGO)\n- 匹配协议的 XGBoost baseline (`plan012_xgboost_matched.json`) = **0.8048** (4-gen, 5-fold stratified)\n- 实际 delta 应为 0.905−0.805 = **+10.0pp**，不是论文声称的 +11.6pp\n\n**应改为**: \"4-generator 5-fold stratified CV, F1=0.905, +10.0pp vs matched XGBoost baseline (0.805)\"\n\n---\n\n### 2. XGBoost 3-class F1=0.789\n\n**源文件**:\n- `results/8gen_logo_results.json` → `baseline_6gen_3class_f1: 0.7893`\n- `results/lofo_ablation_results.json` → `reference_f1: 0.789`\n- `results/appendix_classifier.tex:17` 确认一致引用\n\n**判定: 准确** ✓\n- 0.7893 四舍五入到 0.789，6-gen LOGO 协议正确\n- 6 generators: olmo-2-1b, pythia-1b, pythia-2.8b, qwen3-0.6b, qwen3-1.7b, qwen3-8b\n\n---\n\n### 3. Instruct LOGO binary F1=0.487\n\n**论文描述** (appendix_instruct.tex:50): \"Three-generator instruct LOGO yields binary F1=0.487\"\n\n**源文件: 未找到**\n\n逐个文件排查，最接近的值:\n| 文件 | 描述 | 值 |\n|------|------|-----|\n| `instruct_length_confound.json` | qwen3-0.6b-inst held-out binary | 0.5519 |\n| `instruct_length_confound.json` | qwen3-1.7b-inst held-out binary | 0.5058 |\n| `instruct_length_confound.json` | olmo-inst held-out binary | 0.3506 |\n| 以上三者平均 | | **0.4694** |\n| `review_p1c_olmo_instruct.json` | olmo-inst binary LOGO F1 | 0.4255 |\n| `p1c_instruct_logo_f1.json` | qwen3-1.7b-inst binary F1 | 0.6582 |\n| `8gen_finer_depth.json` | 5-class finer depth logo_avg | 0.4878 |\n\n**判定: 来源不可追溯**\n- 0.487 不出现在任何 JSON 结果文件中\n- 三个 instruct generator 的 held-out binary F1 均值为 0.469（非 0.487）\n- 可能是未保存的计算结果或笔误\n- **需要复现或更正**\n\n---\n\n### 4. ±3-4% batch estimation\n\n**论文描述** (conclusion.tex:8): \"corpus auditing (±3–4% batch estimation; Appendix~\\ref{app:error-analysis})\"\n\n**实际数据**:\n- Appendix error-analysis (`appendix_error_analysis.tex`): **不包含任何 batch/prevalence estimation 内容**，仅分析分类错误模式\n- 实际 prevalence estimation 实验: `results/corpus_prevalence_demo.json`\n  - Best method: EMQ, **MAE = 9.45pp**\n  - `conclusion: \"not viable\"`\n  - 各比例点 EMQ 误差: 0%→2.3pp, 25%→8.9pp, 50%→11.7pp, 75%→13.2pp, 100%→11.2pp\n\n**判定: 错误** ✗\n1. 引用的 Appendix 不含相关实验\n2. 实际实验结果 MAE=9.45pp，远超 3-4%\n3. 实验自身结论为 \"not viable\"\n4. **此声明必须删除或根据实际数据重写**\n\n---\n\n### 5. >48× 方差比\n\n**源文件**: `data/cross-model-chains/cross_model_anova.csv` (两因素 ANOVA)\n\n| Feature | η²_depth | η²_generator | 比值 |\n|---------|----------|------------|------|\n| entropy_mean | 0.2989 | 0.000818 | **365.4×** |\n| ttr | 0.1921 | 0.003477 | **55.3×** |\n| hapax_ratio | 0.1526 | 0.002996 | **50.9×** |\n| entropy_std | 0.0826 | 0.008999 | **9.2×** |\n| entropy_max | 0.00215 | 0.000476 | 4.5× |\n| entropy_min | 0.00195 | 0.002936 | 0.66× |\n| tail_decay | 0.000349 | 0.006508 | 0.054× |\n\n**论文描述** (conclusion.tex:7): \"ANOVA: depth explains >48× more variance than generator identity\"（无特征限定）\n\n**判定: 部分正确，措辞需限定**\n- \">48×\" 仅对 3 个最强 location 特征成立 (entropy_mean/ttr/hapax_ratio，最小 50.9×)\n- entropy_std 仅 9.2×\n- entropy_min 和 tail_decay 中 generator 方差反而大于 depth\n- **应改为**: \"for the three strongest location features, depth explains >48× more variance…\" 或报告范围 \"51–365×\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-trace-5-unconfirmed.md"
+}

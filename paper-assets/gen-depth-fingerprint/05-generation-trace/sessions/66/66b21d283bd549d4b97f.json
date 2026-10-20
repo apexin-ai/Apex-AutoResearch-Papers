@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66b21d283bd549d4b97f",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "exp exp 060 analysis",
+  "task_key": "worker_exp_exp_060_analysis_20260520T144620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_exp_060_analysis_20260520T144620_result.json",
+    "occurrence": 1,
+    "bytes": 1030,
+    "sha256": "623468ce7e58dbc0b758c549295d96b98640af433ba41364c1ee3bc0426a8556"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_060 结果汇报\n\n**Feature Extraction**: 2229 samples, 498 seeds, depth 分布 {0: 498, 1: 488, 2: 466, 3: 414, 4: 363}\n\n**DDR Analysis — Qwen3-14B-Base (14.7B params)**:\n\n| Feature | Spearman ρ | p-value | Cohen's d (gen0 vs gen≥2) | Group |\n|---------|-----------|---------|---------------------------|-------|\n| entropy_mean | −0.3877 | 7.06e-81 | +0.7765 | **drifting** |\n| entropy_std | −0.0557 | 0.00851 | −0.0223 | stationary |\n| entropy_max | +0.0791 | 0.000186 | −0.1717 | stationary |\n| entropy_min | −0.2471 | 2.27e-32 | −0.1365 | stationary |\n| ttr | −0.4916 | 5.48e-136 | +1.0913 | **drifting** |\n| hapax_ratio | −0.5065 | 1.52e-145 | +1.1245 | **drifting** |\n| tail_decay | −0.0637 | 0.00262 | +0.1356 | stationary |\n\n**DDR pattern match: True** — entropy_mean/ttr/hapax_ratio 漂移，entropy_max/entropy_min/tail_decay 稳定，与预期一致。DDR pattern 在 14.7B 规模下 **CONFIRMED**。\n\n结果已保存至 `results/exp_060_14b_ddr.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-exp-060-analysis.md"
+}

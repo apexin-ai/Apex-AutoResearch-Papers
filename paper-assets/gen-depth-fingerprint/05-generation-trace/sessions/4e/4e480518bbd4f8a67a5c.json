@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e480518bbd4f8a67a5c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis plan 014 completion",
+  "task_key": "worker_analysis_plan-014-completion_20260515T031748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-014-completion_20260515T031748_result.json",
+    "occurrence": 1,
+    "bytes": 1025,
+    "sha256": "16662226e4b733306b0548e3debd46ddf6c9ca8aad5d4624a3447c515c9b8f09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Plan-014 状态报告\n\n**进程 134817: ALIVE**，已运行 ~3h，当前 728/996 seeds（65%），tqdm 预估剩余 ~1h。\n\n### 关键问题：输出文件被删除\n\nPython 进程（PID 134823）写入的文件描述符指向一个已删除的 inode：\n```\nfd 50 -> /root/.../generations_shard0.jsonl (deleted)\n```\n\n磁盘上的文件只有 **416 行**（旧数据），而进程实际已写入 **3362+ 行**（到 seed_id ~751）。\n\n### 已采取的恢复措施\n\n1. 从 `/proc/134823/fd/50` 恢复数据到 `generations_shard0_recovered.jsonl`（3362 行）\n2. 启动 watchdog（PID 163595），每 30s 从 proc fd 拷贝最新数据，进程结束时做最终拷贝\n3. 原始 416 行文件已备份为 `.bak_416`\n\n### 预估\n\n- 剩余 ~268 seeds，约 1 小时完成\n- 当前 ~4.5 records/seed，预计最终 ~4500 行\n- 进程完成后需将 `generations_shard0_recovered.jsonl` 重命名为 `generations_shard0.jsonl`，然后执行 Step 2-5（特征提取 + 6-gen LOGO 评估）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-014-completion.md"
+}

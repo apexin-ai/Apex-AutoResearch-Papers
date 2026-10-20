@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a703db5ea65d68a81d6e",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "figure nll distribution fix generators",
+  "task_key": "worker_figure_nll_distribution_fix_generators_20260520T185702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_nll_distribution_fix_generators_20260520T185702_result.json",
+    "occurrence": 1,
+    "bytes": 819,
+    "sha256": "4ed838774c728eea6bed5dcf12c955d4fd087bbeec146663a53ffd6c7bae26f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n### 修改内容\n- `scripts/extract_token_nll.py` GENERATORS 字典：`\"gemma-2-2b\"` → `\"qwen3-8b-base\"`（路径 `data/qwen3-8b/generations_shard0.jsonl`）\n\n### 新 median NLL（对比旧值）\n\n| Depth | 旧 median | 新 median | 变化 |\n|-------|-----------|-----------|------|\n| 0 | 1.62 | **1.715** | +0.095 |\n| 1 | 0.66 | **0.973** | +0.313 |\n| 2 | 0.11 | **0.244** | +0.134 |\n| 3 | 0.03 | **0.044** | +0.014 |\n| 4 | 0.01 | **0.025** | +0.015 |\n\n趋势不变（depth 越深 NLL 越低），但各 depth 的 median 均有所上升，qwen3-8b-base 比 gemma-2-2b 的 NLL 偏高。\n\n### 输出文件\n- `results/token_nll_by_depth.json` — 3.9MB\n- `results/fig_appendix_nll_distribution.pdf` — 16KB\n- `results/fig_appendix_nll_distribution.png` — 111KB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-nll-distribution-fix-generators.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7975532c4c6b5a04f0bf",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper bib full audit",
+  "task_key": "worker_paper_bib-full-audit_20260515T182852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_bib-full-audit_20260515T182852_result.json",
+    "occurrence": 1,
+    "bytes": 3210,
+    "sha256": "8113e980dbe3f0ac3cd30e3da51e2320598fc7cfaebfdf9c3d6c818e4f2d3f4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两份 bib 文件均已同步修复。以下是全量审计汇总：\n\n## 审计结果（41 条总计，8 条已修 → 33 条本轮审计）\n\n| Key | 作者 | Venue | 年份 | 状态 | 修正说明 |\n|-----|------|-------|------|------|----------|\n| detectgpt | Mitchell et al. | ICML | 2023 | ✅ | — |\n| gltr | Gehrmann et al. | ACL Sys Demo | 2019 | ⚠️ 已修 | booktitle 补 \": System Demonstrations\" |\n| dna_gpt | Yang et al. | ICLR | 2024 | ✅ | — |\n| binoculars | Hans et al. | ICML | 2024 | ✅ | — |\n| fast_detectgpt | Bao et al. | ICLR | 2024 | ✅ | — |\n| ld_score | Narayanasamy et al. | arXiv | 2026 | ✅ | — |\n| intrinsic_dimension | Tulchinskii et al. | NeurIPS | 2023 | ✅ | — |\n| generator_barrier | Pu et al. | arXiv | 2026 | ✅ | — |\n| feat_aug_transformer | Mady et al. | arXiv | 2026 | ✅ | — |\n| paraphrase_evades | Krishna et al. | NeurIPS | 2023 | ✅ | — |\n| detection_possibilities | Chakraborty et al. | ICML | 2024 | ✅ | — |\n| beyond_binary | Cheng et al. | WWW | 2025 | ✅ | — |\n| semeval2024_task8 | Wang et al. | SemEval | 2024 | ✅ | — |\n| curse_of_recursion | Shumailov et al. | Nature 631 | 2024 | ⚠️ 已修 | 标题改为 Nature 发表版；补 vol/pages |\n| model_collapse_avoidable | Gerstgrasser et al. | arXiv | 2024 | ✅ | — |\n| synthid_text | Dathathri et al. | Nature 634 | 2024 | ⚠️ 已修 | \"Al-Merey\"→\"Al Merey\"；补 vol=634, pages |\n| watermark_llm | Kirchenbauer et al. | ICML | 2023 | ✅ | — |\n| chainwash | Ameen et al. | arXiv | 2026 | ✅ | — |\n| broken_telephone | Mohamed et al. | ACL | 2025 | ✅ | — |\n| markovian_chains | Geng et al. | arXiv | 2026 | ✅ | — |\n| ood_baseline | Hendrycks & Gimpel | ICLR | 2017 | ✅ | — |\n| min_k_percent | Shi et al. | ICLR | 2024 | ✅ | — |\n| stamatatos_survey | Stamatatos | JASIST | 2009 | ✅ | — |\n| koppel_authorship | Koppel et al. | JASIST | 2009 | ✅ | — |\n| uchendu_attribution | Uchendu et al. | EMNLP | 2020 | ✅ | — |\n| curious_decline | Guo et al. | Findings NAACL | 2024 | ✅ | — |\n| writing_diversity | Padmakumar & He | ICLR | 2024 | ✅ | — |\n| nucleus_sampling | Holtzman et al. | ICLR | 2020 | ✅ | — |\n| monitoring_ai_review | Liang et al. | ICML | 2024 | ✅ | — |\n| jawahar_survey | Jawahar et al. | COLING | 2020 | ✅ | — |\n| pythia | Biderman et al. | ICML | 2023 | ✅ | — |\n| olmo | Groeneveld et al. | ACL | 2024 | ✅ | — |\n| qwen3 | Qwen Team | arXiv | 2025 | ✅ | — |\n| coral_ordinal | Cao et al. | PRL | 2020 | ✅ | — |\n| frank_hall_ordinal | Frank & Hall | ECML | 2001 | ✅ | — |\n| xgboost | Chen & Guestrin | KDD | 2016 | ✅ | — |\n| dsir | Xie et al. | NeurIPS | 2023 | ✅ | — |\n| qurating | Wettig et al. | ICML | 2024 | ✅ | — |\n| ccnet | Wenzek et al. | LREC | 2020 | ✅ | — |\n| release_strategies | Solaiman et al. | arXiv | 2019 | ✅ | — |\n| grover | Zellers et al. | NeurIPS | 2019 | ✅ | — |\n\n## 统计\n\n- 总条目：41（含 8 条先前已修）\n- 本轮审计：33\n- 本轮修正：**3 条**（curse_of_recursion, synthid_text, gltr）\n- 无法验证：0\n- 两份 bib 文件已同步"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-bib-full-audit.md"
+}

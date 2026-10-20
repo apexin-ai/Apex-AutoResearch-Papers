@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0842934a322c1447fa9",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code gemma cross rp comparison",
+  "task_key": "worker_code_gemma-cross-rp-comparison_20260516T162904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gemma-cross-rp-comparison_20260516T162904_result.json",
+    "occurrence": 1,
+    "bytes": 573,
+    "sha256": "7739e8c4c163d86934330c22ef5596837168380313af2cceb41df4aa9325ae05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已写入 `results/gemma_cross_rp_comparison.json`。\n\n关键发现：\n- **Depth retention**：rp=1.0 仅 1.7%（994/1061 停在 depth 0），rp=1.1 为 96.1%，差异 +0.9437\n- **显著 domain shift**（所有 KS test p ≈ 0）：\n  - `tail_decay` 效应最大（Cohen's d = 2.90）\n  - `ttr` 和 `hapax_ratio` 次之（d ≈ 1.45）\n  - `entropy_mean` 也有大效应（d = 1.13）\n  - `entropy_std/max/min` 效应较小（|d| < 0.2）\n- rp=1.0 的 Spearman ρ 存在但因深层样本极少（每层仅 15-19 条）可靠性有限"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gemma-cross-rp-comparison.md"
+}

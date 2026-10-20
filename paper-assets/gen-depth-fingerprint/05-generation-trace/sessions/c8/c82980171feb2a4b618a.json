@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c82980171feb2a4b618a",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper figure fig2",
+  "task_key": "worker_paper_figure_fig2_20260515T041831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig2_20260515T041831_result.json",
+    "occurrence": 1,
+    "bytes": 465,
+    "sha256": "4a8db630e6ddf6862322d539e9ccc45e60e16a62aaba5cc7b131575bf00efcdb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 2 完成。\n\n**输出文件**：\n- 本地 PNG: `figures/paper/fig2_logo_performance.png`\n- 本地 PDF: `figures/paper/fig2_logo_performance.pdf`\n- 服务器: `/root/gen-depth-fingerprint/figures/paper/fig2_logo_performance.{pdf,png}`\n\n**数据来源**：全部 6 个生成器的 macro-F1 和 95% CI 均来自 `cross_generator_results.json`，无 hardcode。Pythia-1B 最高 (0.853)，Qwen3-8B 最低 (0.689)，6-gen LOGO 均值 0.789。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig2.md"
+}

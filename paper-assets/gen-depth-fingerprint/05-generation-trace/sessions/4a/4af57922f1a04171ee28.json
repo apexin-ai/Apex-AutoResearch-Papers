@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4af57922f1a04171ee28",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code 8gen sampling ablation",
+  "task_key": "worker_code_8gen-sampling-ablation_20260516T151913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_8gen-sampling-ablation_20260516T151913_result.json",
+    "occurrence": 1,
+    "bytes": 745,
+    "sha256": "89e5c73790ae6a57dafa32424f32819614a1c0656086309a16f19ed83377d572"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已保存到 `results/8gen_sampling_ablation.json`。\n\n**验证**：\n- 100% 3-class F1 = 0.769，与已知 main result (~0.76) 一致 ✓\n- 3-class F1 单调递增：0.754 → 0.764 → 0.768 → 0.769 ✓\n- 25% vs 100% 差距 = 1.6pp（在预期 ~2-5pp 范围内，XGBoost 对样本量不敏感）✓\n- 标准差极小（<0.002），说明结果稳定\n\n| Fraction | 3-class F1 | Binary F1 |\n|----------|-----------|-----------|\n| 25% | 0.754±0.002 | 0.769±0.000 |\n| 50% | 0.764±0.002 | 0.769±0.002 |\n| 75% | 0.768±0.002 | 0.771±0.001 |\n| 100% | 0.769±0.001 | 0.770±0.002 |\n\nBinary 的差异更小（~0.1pp），因为 gen-1 vs gen-2+ 的区分本身信号强、不依赖大量训练样本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-8gen-sampling-ablation.md"
+}

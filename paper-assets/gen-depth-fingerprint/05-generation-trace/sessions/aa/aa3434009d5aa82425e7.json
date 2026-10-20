@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "aa3434009d5aa82425e7",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "ops table3 consistency audit",
+  "task_key": "worker_ops_table3-consistency-audit_20260516T173901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_table3-consistency-audit_20260516T173901.log",
+    "occurrence": 1,
+    "bytes": 631989,
+    "sha256": "1d2b0c461ee5586a114e4678f886e1455b3628a5d329f90cdf52a046edcc567d"
+  },
+  "statistics": {
+    "messages": 133,
+    "user_turns": 0,
+    "tool_calls": 47,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 35,
+      "tool_call": 47,
+      "tool_result": 47,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 133,
+      "chunks": [
+        {
+          "path": "aa3434009d5aa82425e7-part-0001.json",
+          "message_count": 129
+        },
+        {
+          "path": "aa3434009d5aa82425e7-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-table3-consistency-audit.md"
+}

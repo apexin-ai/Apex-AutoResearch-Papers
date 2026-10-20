@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c8c76527af482a97760",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "research experiment coverage",
+  "task_key": "worker_research_experiment-coverage_20260517T124233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_experiment-coverage_20260517T124233_result.json",
+    "occurrence": 1,
+    "bytes": 748,
+    "sha256": "9e079ab289b0fcb87da8ce9d871e4969436f0f5228153a6b505ccfa55f50dcac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入并注册。\n\n**总结**: 实验覆盖度 **8/10**。13 个维度中 7 个✅充分覆盖，5 个⚠️部分覆盖，1 个❌未覆盖（多语言）。\n\n三个主要 gap:\n1. **Instruction-tuned models** (质疑概率 4/5) — 但 Limitations 已有 preliminary negative data\n2. **Generator 规模 13B+** (质疑概率 4/5) — 8.2B 已是 reasonable scope，论文已报告 scale gap\n3. **Sampling ablation 仅 1 generator** (质疑概率 3/5) — 论文已有理论解释\n\n**所有 gap 已在 Limitations 中透明报告。8 天 DDL 内不建议补充新实验，重点放在论文打磨和提交准备。** Rebuttal 阶段可优先准备温度 ablation 扩展 (~2h) 和 instruct systematic 实验 (~4h)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-experiment-coverage.md"
+}

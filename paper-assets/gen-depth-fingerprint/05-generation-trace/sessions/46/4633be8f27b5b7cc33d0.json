@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4633be8f27b5b7cc33d0",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_3_1778820351.md",
+  "task_key": "loop_3_1778820351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778820351.md",
+    "occurrence": 1,
+    "bytes": 4503,
+    "sha256": "f83bb6823e59618c9a0c4a3160e2770a8179857b10ea3f695739d9eb1990d9eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-15T04:31:55+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 cuda:0/1/2/3（config 确认）。不可用其他服务器或 GPU\n- submit_training_job 的 `--device` 必须写 `cuda:0`（框架自动注入 CUDA_VISIBLE_DEVICES 映射物理卡，脚本内永远 cuda:0）——MVP 阶段 4 个 shard 全因写 cuda:1/2/3 失败\n- Claim 3 (Downstream Utility) 是 **负面结果**（D009），论文中必须诚实报告为 \"diagnostic-not-curative\"，禁止 spin\n- paper_framing.md 顶部同时写了 AAAI 和 EMNLP 为 \"Primary\"——以 **D012** 为准：EMNLP 2026 ARR (5/25) 是主投，AAAI 是 fallback\n- 大文件（模型/数据/checkpoint）必须放 `/root/autodl-tmp/`，根分区仅 ~30GB（plan-004 曾因磁盘满 OOM）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: autodl-5090 (4× RTX 5090 32GB)\n- **工作目录**: `/root/gen-depth-fingerprint`\n- **Python**: `/root/miniconda3/bin/python`（conda base，不用 venv）\n- **激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**:\n  - Pythia-2.8B: `/root/autodl-tmp/models/pythia-2.8b/` (MVP 生成器)\n  - Pythia-410M: `/root/autodl-tmp/models/pythia-410m/...snapshots/` (参考模型)\n  - Qwen3-8B-Base: `/root/autodl-tmp/models/Qwen/Qwen3-8B-Base/`\n  - Qwen3-1.7B-Base: `/root/autodl-tmp/models/Qwen/Qwen3-1___7B-Base/`\n  - Qwen3-0.6B-Base: `/root/autodl-tmp/models/Qwen/Qwen3-0___6B-Base/`\n  - OLMo-2-1B: `/root/autodl-tmp/models/olmo-2-1b-hf/allenai/OLMo-2-0425-1B/`\n- **HF_HOME**: `/root/autodl-tmp/.hf_cache`\n- **活跃进程**:\n  - plan-005-cont: PID 164658, tmux=plan-005-cont, cuda:1\n  - plan-005-elab: PID 164737, tmux=plan-005-elab, cuda:2\n  - plan-005-rewrite: PID 164881, tmux=plan-005-rewrite, cuda:3\n- **Cron**: 3 个 cron 监控 plan-005-{cont,elab,rewrite}（reconcile 确认 all still running）\n\n### 3. 📊 当前状态\n**刚完成**: plan-014 完整数据重算确认（6-gen LOGO 0.7897, held-out 0.6849），RC9 数字已落地。writing_plan.yaml 已创建并审批通过，Paper Agent Step 2 进行中。\n\n**Registry RUNNING**:\n- `plan-005` (umbrella) + `plan-005-cont`/`plan-005-elab`/`plan-005-rewrite`: Prompt type comparison (continuation/elaboration/inspired_rewriting), Pythia-2.8B, 995 seeds × 3 types。截至 04:20 UTC ~35% 完成，ETA ~05:50 UTC。初步发现：continuation depth 衰减 15%, elaboration 仅 1.5%——这是新发现，需 patch 入论文。\n\n**Running Workers**:\n- `worker_analysis_plan-014-revalidation-v2` (started 03:56) — plan-014 最终重算分析\n- `worker_ssh_check-plan005-status` (started 04:30) — plan-005 进度检查\n\n**等待中**:\n- plan-005 三个 cron 回调（完成后需 spawn worker 做 prompt type 对比分析 + patch 入论文）\n- Paper Agent 后续章节写作（writing_plan.yaml 已就绪）\n\n### 4. 📋 待办（条件触发式）\n- plan-005 cron 回调（3 个都完成）→ spawn worker 做 prompt type 对比分析（LOGO per type, depth decay curve 对比）→ 结果 patch 入论文 Section 4.5 或 Appendix\n- plan-005 分析完成 → 所有实验数据齐全 → Paper Agent 全速推进剩余章节（Method → Experiments → Discussion → Intro → Abstract）\n- Paper 初稿完成 → Review cycle（spawn reviewer worker）→ 迭代修改 → 5/25 提交\n- cuda:0 当前空闲 → plan-005 完成前可用于论文图表生成（draw-paper-figure skill）或其他轻量计算任务\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D005: Dual dynamics = level/diversity vs shape 分界\n- D008: Ensemble narrative = 跨生成器一致性优势（不是平均性能优势）\n- D009: Claim 3 负面 → diagnostic-not-curative\n- D011: RC9 scale confirmed, 但 8B→小模型迁移有 ~11pp gap\n- D012: 恢复 EMNLP 2026 ARR (5/25) 为主投\n\n**最易判断错的事**:\n1. plan-005 的 prompt type 结果（continuation 衰减 15% vs elaboration 1.5%）是 **新发现**，可能需要在论文中讨论 prompt type 对 depth signal 的影响——但不要让它变成新 claim，它是 C2 的补充证据\n2. 6-gen LOGO F1=0.7897（不是 0.80）——writing_plan 里多处写了 0.80，那是 5-gen baseline 或 plan-002-eval 的数字，6-gen 数字更低因为 Qwen3-8B 拉低了均值\n3. 两个 worker 可能已经完成但 session 重置前没回调——新 session 先 list_workers 检查状态\n4. Deleted inode 坑：不要在生成任务运行中动输出目录的 symlink（plan-014 教训）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778820351.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eee0c5a1654adbcc952e",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "gen plan 016 llama32 3b",
+  "task_key": "worker_gen_plan-016-llama32-3b_20260516T071838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gen_plan-016-llama32-3b_20260516T071838_result.json",
+    "occurrence": 1,
+    "bytes": 86,
+    "sha256": "ead324ad96f08f7ff7079f17e5621ae477101e126fde8bed8123b8327e069077"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Download is progressing at ~1.5 MB/s. Will check again in ~4.5 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gen-plan-016-llama32-3b.md"
+}

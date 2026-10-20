@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "076ba34f28431c6f2bf1",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code cross temp qwen only",
+  "task_key": "worker_code_cross-temp-qwen-only_20260517T125436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross-temp-qwen-only_20260517T125436_result.json",
+    "occurrence": 1,
+    "bytes": 1099,
+    "sha256": "2229640da9ed8c4d894bb528e7f55c63cd667613f5ed5b3ea9e8870563d296ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `results/cross_temp_transfer_qwen_only.json`。\n\n**结果摘要：**\n\n| Condition | Binary F1 | 95% CI | 3-class F1 | 95% CI |\n|-----------|-----------|--------|------------|--------|\n| 0.7→0.7 | 0.9262 | [0.916, 0.935] | 0.7690 | [0.756, 0.781] |\n| 0.7→1.0 | 0.7574 | [0.745, 0.770] | 0.4581 | [0.445, 0.472] |\n| 1.0→1.0 | 0.8248 | [0.810, 0.838] | 0.5738 | [0.560, 0.588] |\n| 1.0→0.7 | 0.9443 | [0.936, 0.953] | 0.6014 | [0.593, 0.611] |\n\n**Transfer deltas:**\n- 0.7-trained, cross→1.0: binary **-16.9 pp**, 3-class **-31.1 pp** (大幅下降)\n- 1.0-trained, cross→0.7: binary **+12.0 pp**, 3-class **+2.8 pp** (反而提升)\n\n关键发现：transfer 是非对称的。t=0.7 训练的分类器迁移到 t=1.0 时严重衰减，但 t=1.0 训练的分类器迁移到 t=0.7 时 binary F1 反而更高（0.9443 vs 0.8248）。这说明 t=1.0 的特征分布更 \"spread out\"，学到的 decision boundary 在 t=0.7 上也适用，但反向不行。3-class 任务中 gen-1 类别（per-class F1 在 1.0→0.7 中仅 0.05）是主要瓶颈。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cross-temp-qwen-only.md"
+}

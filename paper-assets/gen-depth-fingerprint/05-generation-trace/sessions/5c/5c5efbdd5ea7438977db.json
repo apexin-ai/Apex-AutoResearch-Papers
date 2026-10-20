@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c5efbdd5ea7438977db",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code ldscore sparse fix",
+  "task_key": "worker_code_ldscore-sparse-fix_20260516T200237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ldscore-sparse-fix_20260516T200237_result.json",
+    "occurrence": 1,
+    "bytes": 625,
+    "sha256": "e7d694e629230fd2edcc0c8a53f6bb47a312550633c0a929bd3fd67f7af6b2ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。结果已保存到 `/root/gen-depth-fingerprint/results/8gen_ldscore_sparse_fixed.json`。\n\n**结果摘要：**\n\n| 任务 | F1 | 95% CI |\n|------|-----|--------|\n| Binary (gen1 vs gen2+) | **0.6762** | [0.6706, 0.6818] |\n| 3-class (0/1/2+) | **0.6317** | [0.6268, 0.6363] |\n\nBinary F1 = 0.6762 在预期范围 [0.63-0.68] 内（之前 seed=789 报 0.6574），确认 sparse 实现修复�� v4 vocab 截断 bug��v4 降至 0.491）。\n\n实现细节：character-level trigram JSD，sparse CSR 矩阵 50778 vocab（无截断），per-fold 从训练集 depth-0 计算参考分布。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ldscore-sparse-fix.md"
+}

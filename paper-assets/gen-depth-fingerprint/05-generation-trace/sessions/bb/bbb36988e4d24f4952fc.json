@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbb36988e4d24f4952fc",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "hotfix kill mistral watcher",
+  "task_key": "worker_hotfix_kill_mistral_watcher_20260521T111650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_hotfix_kill_mistral_watcher_20260521T111650_result.json",
+    "occurrence": 1,
+    "bytes": 227,
+    "sha256": "c02b4b8ef0f4257d2343d93517ebe4b7f8827d2d1f37926692ac9bd598217a73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n- **Watcher (PID 348289)** 已 kill，不会再重复启动 Mistral\n- **cuda:2** 上 Mistral 正常运行（PID 349080，占用 14636MiB，GPU 利用率 87%）\n- 其他 GPU 上的进程未受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/hotfix-kill-mistral-watcher.md"
+}

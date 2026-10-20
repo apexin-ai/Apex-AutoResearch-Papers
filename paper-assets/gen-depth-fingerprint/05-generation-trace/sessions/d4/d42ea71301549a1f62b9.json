@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d42ea71301549a1f62b9",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper fig2 framework v3",
+  "task_key": "worker_paper_fig2-framework-v3_20260518T012428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig2-framework-v3_20260518T012428_result.json",
+    "occurrence": 1,
+    "bytes": 628,
+    "sha256": "49ce65aea1a4d695f60be15f546a3e556acab25bf6a39bdce2a428b0f8984b76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs are in place:\n\n| File | Path |\n|------|------|\n| Script (server) | `/root/gen-depth-fingerprint/fig2_framework_v3.py` |\n| Script (local) | `artifacts/_project/chart/fig2_framework_v3.py` |\n| PDF (server) | `/root/gen-depth-fingerprint/results/fig2_framework.pdf` |\n| PDF (local) | `artifacts/_project/paper/chart/fig2_framework.pdf` |\n| PNG (local) | `artifacts/_project/paper/chart/fig2_framework.png` |\n\n3 轮迭代完成。Panel (b) 包含 7-feature Spearman ρ 水平柱状图，按 |ρ| 排序，三类颜色区分 drifting/intermediate/stationary，图例在右上角不遮挡数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig2-framework-v3.md"
+}

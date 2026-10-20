@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5359a5383bff117bd93a",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "exp instruct qwen3 1 7b",
+  "task_key": "worker_exp_instruct-qwen3-1_7b_20260518T030649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_instruct-qwen3-1_7b_20260518T030649_result.json",
+    "occurrence": 1,
+    "bytes": 1467,
+    "sha256": "cd28a4e52495beef01a442185fff9789b27d37b835011fe1cee54ed1d348ddce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成。汇报结果：\n\n## exp_052 结果：Qwen3-1.7B Instruct vs Base\n\n### Within-model 5-fold CV\n\n| Metric | Instruct | Base | Delta |\n|--------|----------|------|-------|\n| **Binary F1** (gen-1 vs gen-2+) | **0.8753** [0.8667, 0.8837] | 0.8614 [0.8511, 0.8710] | **+0.014** |\n| **3-class F1** (gen-0/1/2+) | 0.7324 [0.7195, 0.7450] | **0.7690** [0.7563, 0.7821] | **-0.037** |\n\n### Per-class 3-class F1\n| Class | Instruct | Base |\n|-------|----------|------|\n| gen-0 | 0.894 | 0.884 |\n| gen-1 | **0.438** | 0.579 |\n| gen-2+ | 0.866 | 0.845 |\n\n### LOGO 跨模型泛化（已有结果）\n- Instruct held-out: binary F1 = 0.658, 3-class F1 = 0.543\n- Base held-out: binary F1 = 0.821, 3-class F1 = 0.802\n\n### 关键发现\n\n1. **Within-model binary F1 instruct 略优于 base**（0.875 vs 0.861），深度信号本身并未减弱\n2. **3-class F1 instruct 更差**，瓶颈在 gen-1（0.438 vs 0.579）：chat template 包装导致 gen-0→gen-1 跳跃加大，gen-1 被频繁误分类\n3. **Spearman ρ 方向反转**：instruct 的 lexical diversity 随深度递增（ρ > 0），base 则递减（ρ < 0）。这解释了 LOGO 跨模型泛化大幅下降（0.658 vs 0.821）——在 base models 上训练的分类器对 instruct 的反向 drift 方向无法适应\n4. 参考 F1=0.709 的对比：within-model binary F1（0.875）远超此值；LOGO binary F1（0.658）低于此值。差异来源是评估设置不同"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-instruct-qwen3-1-7b.md"
+}

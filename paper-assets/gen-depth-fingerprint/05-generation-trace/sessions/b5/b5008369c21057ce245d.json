@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5008369c21057ce245d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "diagnosis exp062 full progress",
+  "task_key": "worker_diagnosis_exp062_full_progress_20260521T112828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_exp062_full_progress_20260521T112828_result.json",
+    "occurrence": 1,
+    "bytes": 1835,
+    "sha256": "929cbb7738b88fa991f18b9f98c9c55e5a3f235740c3b9c8feb30db270504df2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_062 进度汇报\n\n### GPU 状态\n| GPU | 利用率 | 显存 | 运行模型 |\n|-----|--------|------|----------|\n| 0 | 91% | 13.0 GB | pythia-2.8b (topk) + llama-3.2-3b (greedy) |\n| 1 | 41% | 3.9 GB | qwen3-1.7b (greedy) |\n| 2 | 87% | 14.6 GB | mistral-7b-v0.3 (greedy) |\n| 3 | 50% | 2.6 GB | pythia-1b (topk) |\n\n### 各 generator × strategy 进度\n\n| 模型 | greedy | topk | 备注 |\n|------|--------|------|------|\n| **olmo-2-1b** | **DONE** (4879 lines) | **DONE** (4641 lines) | 全部完成 |\n| **pythia-2.8b** | **DONE** (4854 lines) | 882/995 seeds (89%) | topk ~19min 完成 |\n| **pythia-1b** | **DONE** (4867 lines) | 198/995 seeds (20%) | topk ~60min 完成 |\n| **qwen3-1.7b** | 834/996 seeds (84%) | 未开始 | greedy ~38min，topk ~4h |\n| **llama-3.2-3b** | 437/995 seeds (44%) | 未开始 | greedy ~2.4h，topk ~4.4h |\n| **mistral-7b-v0.3** | 427/996 seeds (43%) | 未开始 | greedy ~2.2h，topk ~3.8h |\n\n**统计：12 组合中 4 完成 / 5 进行中 / 3 未开始**\n\n### 已完成输出路径\n- `/root/gen-depth-fingerprint/data/olmo-2-1b-greedy/generations_shard0.jsonl`\n- `/root/gen-depth-fingerprint/data/olmo-2-1b-topk/generations_shard0.jsonl`\n- `/root/gen-depth-fingerprint/data/pythia-2.8b-greedy/generations_shard0.jsonl`\n- `/root/gen-depth-fingerprint/data/pythia-1b-greedy/generations_shard0.jsonl`\n\n### 辅助进程\n- `extract_after_pythia.sh` — 等待 pythia-2.8b topk 完成后自动提取特征\n- `start_cuda3_chain.sh` — 等待 pythia-1b topk 完成后触发后续任务\n\n### 预计全部完成时间\n\n瓶颈在 GPU 0（llama + pythia 共享）。pythia-2.8b topk ~19min 后完成释放显存，llama 独占 GPU 0 后会加速。\n\n保守估计：**全部 12 组合完成约需 6-7 小时**，即 **5 月 22 日凌晨 01:30 - 02:30 CST**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-exp062-full-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77c27814e730d2505cc6",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper dream review fixes p1p2",
+  "task_key": "worker_paper_dream-review-fixes-p1p2_20260522T001017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_dream-review-fixes-p1p2_20260522T001017_result.json",
+    "occurrence": 1,
+    "bytes": 1579,
+    "sha256": "b6b1d41edd6f79e5a8af2e7a9173aabfd43e813480fdf054363811c602661ca0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 项任务完成情况：\n\n| 任务 | 状态 | 说明 |\n|------|------|------|\n| **P1-1** R² 澄清 | ✓ | R² 不在 results.tex 而在 `appendix_feature_distributions.tex`。已在 L5 后添加说明：R² 基于 depth-level means（每 generator 5 个点）的 OLS 回归，非 per-sample 回归；Spearman ρ 提供互补的 per-sample 单调性度量。 |\n| **P1-2** DDR 阈值 justification | 无需修改 | results.tex L90 的 Validation 段落已包含完整的 permutation test（$n$=10,000, $p$=0.030, silhouette=0.660 vs null 0.46）+ exhaustive enumeration，位于专门的 `\\paragraph{Validation}` 中，足够突出。 |\n| **P1-3** \"structural regularity\" | 无需修改 | 全文搜索确认该短语不出现在论文任何 .tex 文件中（仅在 dream report 中）。 |\n| **P2-1** Feature ablation vs LOGO | ✓ | 在 results.tex Feature complementarity 段落（L94 后）添加一句，说明 `tab:feature-ablation` 用 10-fold stratified CV 评估 within-distribution feature contribution，而 `tab:logo-results` 用 LOGO 评估 cross-generator generalization。 |\n| **P2-2** Prompt 模板 | ✓ | `appendix_prompt_type.tex` 已有三种 prompt 的简述。改写为正式 itemize 列表，包含完整的 `\\texttt{}` 格式模板。 |\n| **P2-3** Baseline 公平性注释 | ✓ | 在 results.tex baseline 段落（L109 后）添加：FastDetectGPT/Binoculars 是 binary real/fake 检测工具而非 ordinal depth estimator，Avg-LogProb 是最有意义的 single-feature baseline。 |\n\nartifacts 和 docs 两份已同步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-dream-review-fixes-p1p2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14ba9145dad943c08da4",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code table3 v6 balanced",
+  "task_key": "worker_code_table3-v6-balanced_20260516T205808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_table3-v6-balanced_20260516T205808_result.json",
+    "occurrence": 1,
+    "bytes": 1031,
+    "sha256": "cc701060ad3f613ae6f3ae1a917b22dd955e50807b57075f3bbdb1a7f776b20a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "V6 运行完成（78s），结果已保存。验证结果汇总：\n\n| Method | Binary F1 | CI | Multiclass F1 | CI |\n|---|---|---|---|---|\n| **7feature_ours** | **0.7014** | [0.696, 0.707] | **0.7762** | [0.772, 0.780] |\n| 4det_surface | 0.7070 | [0.701, 0.712] | 0.7923 | [0.788, 0.796] |\n| 4det_ensemble | 0.6975 | [0.691, 0.703] | 0.7843 | [0.780, 0.788] |\n| entropy_mean | 0.7006 | [0.695, 0.706] | 0.5556 | [0.551, 0.561] |\n| ld_score | 0.6756 | [0.670, 0.681] | 0.6306 | [0.626, 0.636] |\n| avg_logprob | 0.6735 | [0.667, 0.679] | 0.7071 | [0.702, 0.712] |\n| fastdetectgpt | 0.5760 | [0.570, 0.582] | 0.6637 | [0.659, 0.668] |\n| binoculars | 0.5336 | [0.528, 0.539] | 0.4105 | [0.405, 0.416] |\n\n验证对照任务预期：\n- 7feature binary 0.7014 ≈ 0.70 ✓\n- avg_logprob binary 0.6735 ✓\n- ld_score binary 0.6756 ✓\n- fastdetectgpt binary 0.5760 ✓\n- binoculars binary 0.5336 ✓\n- 4det ensembles binary 0.697–0.707 ✓\n- 所有方法 binary F1 > 0.50 ✓ — class balancing 生效"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-table3-v6-balanced.md"
+}

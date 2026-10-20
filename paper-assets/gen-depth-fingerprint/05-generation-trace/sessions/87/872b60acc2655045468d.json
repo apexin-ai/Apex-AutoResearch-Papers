@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "872b60acc2655045468d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code cross model per class",
+  "task_key": "worker_code_cross-model-per-class_20260517T150156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross-model-per-class_20260517T150156_result.json",
+    "occurrence": 1,
+    "bytes": 1142,
+    "sha256": "ebfa56b362c9c199445b84982504cc6d52e10a64af62d5b8601c95903db2937b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here's the summary:\n\n## Cross-Model Chains Per-Class Metrics\n\n**File:** `results/cross_model_chains_per_class.json`  \n**N = 2964** (988 per class, balanced), 5 generators × 3 families\n\n### 3-Class (macro F1 = 0.8305 [0.8172, 0.8439])\n\n| Class | Precision | Recall | F1 | Support |\n|-------|-----------|--------|----|---------|\n| gen-0 | 0.9213 [.905,.938] | 0.9484 [.934,.962] | 0.9347 [.923,.946] | 988 |\n| gen-1 | 0.7370 [.711,.765] | 0.8026 [.777,.827] | 0.7684 [.748,.788] | 988 |\n| gen-2+ | 0.8416 [.817,.866] | 0.7419 [.715,.769] | 0.7886 [.768,.809] | 988 |\n\n### Binary gen-0 vs gen-1+ (macro F1 = 0.9506 [0.9421, 0.9589])\n\n| Class | Precision | Recall | F1 | Support |\n|-------|-----------|--------|----|---------|\n| gen-0 | 0.9213 | 0.9484 | 0.9347 | 988 |\n| gen-1+ | 0.9738 | 0.9595 | 0.9666 | 1976 |\n\n### Other results files confirmed\n- **distributional_tests.json** — KS tests across 7 features, all 3 depth-pair comparisons, Bonferroni-corrected\n- **tost_multi_margin.json** — TOST equivalence tests at multiple margins (1%–5%), comparing all vs size-matched configurations"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cross-model-per-class.md"
+}

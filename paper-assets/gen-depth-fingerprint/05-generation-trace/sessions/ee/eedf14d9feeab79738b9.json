@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eedf14d9feeab79738b9",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper paperbanana fig2 v12",
+  "task_key": "worker_paper_paperbanana-fig2-v12_20260525T072955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_paperbanana-fig2-v12_20260525T072955_result.json",
+    "occurrence": 1,
+    "bytes": 531,
+    "sha256": "4798621a66ac083e0a02c94e7578fd28e732460fed93ee404ee6133f95d75e90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Figure 2 v12 已生成并部署：\n\n**修改内容**：Panel (c) 的 train/test 区域从 2×4 grid 改为两个并排区域 — 左侧 \"N-1 train\" 白色圆角框含 7 个清晰 brain icon，右侧 \"1 test\" 虚线框含 1 个 brain icon + ✕ 标记。\n\n**文件更新**：\n- `/tmp/fig2_intent_v12.txt` — 新 intent 文件\n- `artifacts/_project/paper/fig2_framework.png` — 更新\n- `artifacts/_project/paper/fig2_framework.pdf` — 更新（Type 42 字体设置，纯光栅无嵌入字体）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-paperbanana-fig2-v12.md"
+}

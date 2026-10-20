@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c3941599659f7891a4d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan007 eval fix",
+  "task_key": "worker_code_plan007-eval-fix_20260515T204407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan007-eval-fix_20260515T204407_result.json",
+    "occurrence": 1,
+    "bytes": 624,
+    "sha256": "aa94e5bb772b35d50035bb378915b4522e866843bc7ff40cb3c0e83bc75043fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**修改内容：**\n\n1. **Qwen3-8B 注释** — 第58-60行，`GENERATOR_POOL` 定义前添加了排除说明\n2. **Binary F1 指标** — 第544-560行：\n   - `binary_f1_gen0`：gen-0 vs gen-2+（supplementary）\n   - `binary_f1_gen1`：gen-1 vs gen-2+（primary，D017）\n3. **结果 JSON** — 第634-636行：\n   - `binary_f1` → gen-1 vs gen-2+ 的值\n   - `binary_f1_gen1_vs_gen2plus` → 同上（显式命名）\n   - `binary_f1_gen0_vs_gen2plus` → 旧指标保留\n\n**验证：**\n- `--help` 正常运行\n- generate 进程 PID 241978/242205 仍在运行，未受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan007-eval-fix.md"
+}

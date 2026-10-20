@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f65f90eedacf1e7b390",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "figure ddr trajectory v2",
+  "task_key": "worker_figure_ddr_trajectory_v2_20260520T134707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_ddr_trajectory_v2_20260520T134707_result.json",
+    "occurrence": 1,
+    "bytes": 617,
+    "sha256": "ae2bb8b4ca4e205db33d1ac7521d11d08b2b51c7fc523515618a144bc2746225"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**文件路径与大小**：\n- `artifacts/_project/chart/fig_ddr_trajectory.pdf` — 29.8 KB\n- `artifacts/_project/chart/fig_ddr_trajectory.png` — 310.6 KB (2039×1053 px)\n\n**4 panel ρ 值**：\n| Panel | Feature | ρ | p |\n|-------|---------|-----|-----|\n| (a) | entropy_mean | −0.5978 | <1e-300 |\n| (b) | hapax_ratio | −0.6405 | <1e-300 |\n| (c) | entropy_max | +0.0608 | 1.06e-31 |\n| (d) | tail_decay | −0.0413 | 1.84e-15 |\n\nDrifting features (a)(b) 有强负 ρ（−0.60, −0.64），Stationary features (c)(d) 接近零（+0.06, −0.04），分类符合预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-ddr-trajectory-v2.md"
+}

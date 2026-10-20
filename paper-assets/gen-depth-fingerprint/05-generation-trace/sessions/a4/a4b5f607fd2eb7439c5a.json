@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4b5f607fd2eb7439c5a",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper d031 related work",
+  "task_key": "worker_paper_d031-related-work_20260520T112444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d031-related-work_20260520T112444_result.json",
+    "occurrence": 1,
+    "bytes": 610,
+    "sha256": "d80316c62eab57e309fb7dc445bc608f6a5b120e23b6e06f2818e53fd5205354"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All changes complete:\n\n**related_work.tex** (4 edits):\n- **W6a** (L8): Added RAID citation sentence after surveys\n- **W6b** (L9): Added Task 8C multi-class subtask clarification to SemEval citation\n- **W6c** (L16): Added Dohmatob & Feng framework contrast — their tail coverage loss under retraining vs. our shape preservation under inference chains\n- **N3** (L22-39): Added comparison table with 4 concurrent works + \"This work\" row\n\n**references.bib** (15 deletions):\n- All 15 orphan entries removed (verified 0 citations each before deletion)\n- `raid` entry preserved (line 504)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d031-related-work.md"
+}

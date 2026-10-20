@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "4513f2c76b673919d0c8",
+  "project": "gen-depth-fingerprint",
+  "kind": "conversation",
+  "title": "ssh plan 014 status",
+  "task_key": "worker_ssh_plan-014-status_20260515T002925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_plan-014-status_20260515T002925.jsonl",
+    "occurrence": 1,
+    "bytes": 278,
+    "sha256": "4752cf8c5dca9e179e0bbc3a00be7721550d423ed18673100701f6321a3f899b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T00:29:35.765956+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 500 Internal server error. This is a server-side issue, usually temporary — try again in a moment. If it persists, check status.claude.com."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_plan-014-status_20260515T002925"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-plan-014-status.md"
+}

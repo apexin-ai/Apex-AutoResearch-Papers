@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a401f53ed5276a6ba2c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "data package data supplement",
+  "task_key": "worker_data_package-data-supplement_20260517T125054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_package-data-supplement_20260517T125054_result.json",
+    "occurrence": 1,
+    "bytes": 760,
+    "sha256": "33f64e0596c2a2efb088338783bc2ef8ac2eb66ac77790f21ca661aa17442c80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。打包结果：\n\n| 文件 | 行数 | 大小 |\n|------|------|------|\n| `features_all_models.csv` | 27,530 | 3.6M |\n| `detector_scores_8gen.csv` | 34,132 | 2.5M |\n| `wiki_seed_1000.jsonl` | 1,000 | 23M |\n| `paraphrase_features.csv` | 4,913 | 704K |\n| `cross-model-chains/features.csv` | 4,774 | 912K |\n| `features_pythia-2.8b-{creative,news,scientific}.csv` | 7,098 | 1.0M |\n| `features_qwen3-1.7b-{high,low}-temp.csv` | 9,514 | 1.3M |\n| `features_{qwen3-0.6b,qwen3-1.7b,olmo-2}-instruct.csv` | 14,317 | 1.8M |\n| `seeds/{news,scientific,creative}_seed_500.jsonl` | 1,500 | 1.6M |\n| `README.md` | — | 8K |\n\n**总大小 36M**，远低于 200MB 限制。17 个文件，无可识别信息，行数与服务器完全一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-package-data-supplement.md"
+}

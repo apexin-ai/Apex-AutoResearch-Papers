@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "417fe4fb29eefca8d9a6",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "compute tost d020",
+  "task_key": "worker_compute_tost-d020_20260518T123940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compute_tost-d020_20260518T123940_result.json",
+    "occurrence": 1,
+    "bytes": 998,
+    "sha256": "0a16b91017abc044724dad2e75f30386431b78035abfd6ed78e09495504a85e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有 d=0.10 备份，说明脚本上次可能就已经改成 0.20 了。当前结果已经是 d=0.20 的 TOST 检验，无需重跑。\n\n**d=0.20 TOST 等价性检验结果：**\n\n| Feature | Group | d_obs | p_TOST | Equivalent? |\n|---|---|---|---|---|\n| entropy_mean | drifting | +1.0544 | 1.0 | NOT |\n| entropy_std | intermediate | +0.4571 | 1.0 | NOT |\n| entropy_max | near-stationary | +0.0622 | 7.97e-26 | **EQUIV** |\n| entropy_min | intermediate | -0.0157 | 3.39e-60 | **EQUIV** |\n| tail_decay | near-stationary | +0.0873 | 6.67e-18 | **EQUIV** |\n| ttr | drifting | +0.8142 | 1.0 | NOT |\n| hapax_ratio | drifting | +0.7346 | 1.0 | NOT |\n\n- **等价 (3/7):** entropy_max, entropy_min, tail_decay（observed |d| < 0.10，远在 0.20 bound 内）\n- **不等价 (4/7):** entropy_mean, entropy_std, ttr, hapax_ratio（observed |d| 从 0.46 到 1.05，远超 bound）\n\n即使放宽到 d=0.20，drifting 组和 entropy_std 的效应量太大，TOST 仍拒绝等价。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/compute-tost-d020-copy-2.md"
+}

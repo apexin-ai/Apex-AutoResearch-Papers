@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7e3096db08f6083bfb2",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code fig1 8gen integrate",
+  "task_key": "worker_code_fig1-8gen-integrate_20260516T171306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig1-8gen-integrate_20260516T171306_result.json",
+    "occurrence": 1,
+    "bytes": 625,
+    "sha256": "83a2f7dd232a945fcb4f6e667771cc8a647212217b60e2f3ee0b25eaa2f7e4cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表生成完毕，验证通过：\n\n- **PDF**: 33KB, **PNG**: 100KB — 均满足大小要求\n- 7 个 feature 列，每列 8 个彩色 dots（5 family 配色正确）+ 黑色 X Overall 标记\n- 三区阴影带和标注清晰可见（Strong drift / Moderate / Near-stationary）\n- hapax_ratio、ttr、entropy_mean 落在 Strong drift 区；entropy_max、tail_decay 在 Near-stationary 区附近；entropy_std、entropy_min 在 Moderate 区\n\n文件已保存到本地论文目录：\n- `artifacts/_project/paper/fig1_differential_response.pdf`\n- `artifacts/_project/paper/fig1_differential_response.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig1-8gen-integrate.md"
+}

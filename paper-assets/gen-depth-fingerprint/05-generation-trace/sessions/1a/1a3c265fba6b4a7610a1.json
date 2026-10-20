@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a3c265fba6b4a7610a1",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan 014 large gen",
+  "task_key": "worker_code_plan-014-large-gen_20260515T001230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-014-large-gen_20260515T001230_result.json",
+    "occurrence": 1,
+    "bytes": 634,
+    "sha256": "d04fee4d61464bc962c6cc9f5fdfa94c39d6540e48f63d5a4361d311ccc21e22"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "生成已启动，首个 seed 耗时 ~15s/it，预计 ~4 小时完成全部 996 seeds。\n\n汇报：\n\n1. **模型**：Qwen3-8B-Base（`/root/autodl-tmp/models/Qwen/Qwen3-8B-Base/Qwen/Qwen3-8B-Base/`）\n2. **参数量**：8.2B，FP16 显存占用 ~16.1GB / 32GB\n3. **进程 PID**：134817（子进程在 nohup 下运行）\n4. **日志确认**：模型加载成功，996 seeds，~14.9s/seed，GPU 利用率 78%\n5. **预估完成时间**：约 4 小时（~08:18 开始 → ~12:20 完成，UTC+8）\n\n日志：`/tmp/gen_large_model.log`\n输出：`/root/gen-depth-fingerprint/data/qwen3-8b/generations_shard0.jsonl`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-014-large-gen.md"
+}

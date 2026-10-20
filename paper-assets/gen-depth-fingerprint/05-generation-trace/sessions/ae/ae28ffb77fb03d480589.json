@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae28ffb77fb03d480589",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "diag gpu visibility",
+  "task_key": "worker_diag_gpu-visibility_20260518T043402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_gpu-visibility_20260518T043402_result.json",
+    "occurrence": 1,
+    "bytes": 727,
+    "sha256": "8692c090a2ab98ebe32a85ba46c130ed7376c59c07cb74b8ba1d8d57778385a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| 项目 | 值 |\n|---|---|\n| **可见 GPU** | 1 张 — `GPU 0: NVIDIA GeForce RTX 5090` |\n| **Driver / CUDA** | 580.76.05 / 13.0 |\n| **显存** | 10896 MiB / 32607 MiB (占用 33%) |\n| **GPU 利用率** | 88%, 52°C, 289W/575W |\n| **进程** | PID 53903 `python` (3968 MiB), PID 55009 `/root/miniconda3/bin/python` (6914 MiB) |\n| **CUDA_VISIBLE_DEVICES** | 空（未设置，默认可见所有卡） |\n| **tmux sessions** | `tc_fix` 存活 (06:33 创建), `exp054` 存活 (12:04 创建) |\n\n注意：`/dev/nvidia2` 存在但 `nvidia-smi -L` 只报告 1 张卡，说明容器映射了 1 张 5090。两个 Python 进程合计占用约 10.9 GiB 显存，GPU 负载 88%，卡正在跑任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-gpu-visibility.md"
+}

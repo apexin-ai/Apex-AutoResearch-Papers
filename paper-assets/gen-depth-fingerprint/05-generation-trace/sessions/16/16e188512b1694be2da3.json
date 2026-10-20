@@ -1,0 +1,198 @@
+{
+  "schema_version": "1.0",
+  "id": "16e188512b1694be2da3",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops check table3 file",
+  "task_key": "worker_ops_check-table3-file_20260516T182951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-table3-file_20260516T182951_result.json",
+    "occurrence": 1,
+    "bytes": 6117,
+    "sha256": "25cc95bcff50dba2249dad5321c21a7f67f5273c3a05270c20200f8e7ff3d2cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n-rw-r--r-- 1 root root 3028 May 17 01:54 /root/gen-depth-fingerprint/results/8gen_table3_unified.json\n```\n\n```json\n{\n  \"method\": \"pooled_logo\",\n  \"n_generators\": 8,\n  \"generators\": [\n    \"llama-3.2-3b\",\n    \"mistral-7b-v0.3\",\n    \"olmo-2-1b\",\n    \"pythia-1b\",\n    \"pythia-2.8b\",\n    \"qwen3-0.6b\",\n    \"qwen3-1.7b\",\n    \"qwen3-8b\"\n  ],\n  \"xgb_params\": {\n    \"n_estimators\": 200,\n    \"max_depth\": 6,\n    \"learning_rate\": 0.1,\n    \"random_state\": 42\n  },\n  \"total_samples\": {\n    \"feat_data\": 37058,\n    \"det_data\": 34131,\n    \"merged\": 37058,\n    \"det_available\": 34131,\n    \"det_missing\": 2927\n  },\n  \"results\": {\n    \"7feature_ours\": {\n      \"3class_f1\": 0.7614,\n      \"3class_ci95\": [0.7572, 0.7658],\n      \"binary_f1\": 0.6939,\n      \"binary_ci95\": [0.6876, 0.7],\n      \"features\": [\"entropy_mean\",\"entropy_std\",\"entropy_max\",\"entropy_min\",\"ttr\",\"hapax_ratio\",\"tail_decay\"],\n      \"n_samples_3class\": 37058,\n      \"n_samples_binary\": 29095,\n      \"n_dropped\": 0\n    },\n    \"3det_surface\": {\n      \"3class_f1\": 0.794,\n      \"3class_ci95\": [0.7897, 0.7981],\n      \"binary_f1\": 0.7125,\n      \"binary_ci95\": [0.7063, 0.7185],\n      \"features\": [\"avg_logprob\",\"fastdetectgpt\",\"binoculars\",\"ttr\",\"hapax_ratio\"],\n      \"n_samples_3class\": 34131,\n      \"n_samples_binary\": 26168,\n      \"n_dropped\": 2927\n    },\n    \"3det_ensemble\": {\n      \"3class_f1\": 0.7692,\n      \"3class_ci95\": [0.765, 0.7737],\n      \"binary_f1\": 0.6832,\n      \"binary_ci95\": [0.6771, 0.6896],\n      \"features\": [\"avg_logprob\",\"fastdetectgpt\",\"binoculars\"],\n      \"n_samples_3class\": 34131,\n      \"n_samples_binary\": 26168,\n      \"n_dropped\": 2927\n    },\n    \"avg_logprob\": {\n      \"3class_f1\": 0.6905,\n      \"3class_ci95\": [0.6857, 0.6952],\n      \"binary_f1\": 0.6566,\n      \"binary_ci95\": [0.6505, 0.6625],\n      \"features\": [\"avg_logprob\"],\n      \"n_samples_3class\": 34131,\n      \"n_samples_binary\": 26168,\n      \"n_dropped\": 2927\n    },\n    \"fastdetectgpt\": {\n      \"3class_f1\": 0.5837,\n      \"3class_ci95\": [0.5805, 0.5872],\n      \"binary_f1\": 0.4468,\n      \"binary_ci95\": [0.442, 0.4515],\n      \"features\": [\"fastdetectgpt\"],\n      \"n_samples_3class\": 34131,\n      \"n_samples_binary\": 26168,\n      \"n_dropped\": 2927\n    },\n    \"binoculars\": {\n      \"3class_f1\": 0.2905,\n      \"3class_ci95\": [0.287, 0.2945],\n      \"binary_f1\": 0.4384,\n      \"binary_ci95\": [0.4342, 0.4427],\n      \"features\": [\"binoculars\"],\n      \"n_samples_3class\": 34131,\n      \"n_samples_binary\": 26168,\n      \"n_dropped\": 2927\n    }\n  },\n  \"notes\": \"D039 unified evaluation. All methods use identical XGB(200/6/lr0.1/seed42), same LOGO folds, pooled macro-F1. ld_score unavailable (no public implementation).\"\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "method": "pooled_logo",
+              "n_generators": 8,
+              "generators": [
+                "llama-3.2-3b",
+                "mistral-7b-v0.3",
+                "olmo-2-1b",
+                "pythia-1b",
+                "pythia-2.8b",
+                "qwen3-0.6b",
+                "qwen3-1.7b",
+                "qwen3-8b"
+              ],
+              "xgb_params": {
+                "n_estimators": 200,
+                "max_depth": 6,
+                "learning_rate": 0.1,
+                "random_state": 42
+              },
+              "total_samples": {
+                "feat_data": 37058,
+                "det_data": 34131,
+                "merged": 37058,
+                "det_available": 34131,
+                "det_missing": 2927
+              },
+              "results": {
+                "7feature_ours": {
+                  "3class_f1": 0.7614,
+                  "3class_ci95": [
+                    0.7572,
+                    0.7658
+                  ],
+                  "binary_f1": 0.6939,
+                  "binary_ci95": [
+                    0.6876,
+                    0.7
+                  ],
+                  "features": [
+                    "entropy_mean",
+                    "entropy_std",
+                    "entropy_max",
+                    "entropy_min",
+                    "ttr",
+                    "hapax_ratio",
+                    "tail_decay"
+                  ],
+                  "n_samples_3class": 37058,
+                  "n_samples_binary": 29095,
+                  "n_dropped": 0
+                },
+                "3det_surface": {
+                  "3class_f1": 0.794,
+                  "3class_ci95": [
+                    0.7897,
+                    0.7981
+                  ],
+                  "binary_f1": 0.7125,
+                  "binary_ci95": [
+                    0.7063,
+                    0.7185
+                  ],
+                  "features": [
+                    "avg_logprob",
+                    "fastdetectgpt",
+                    "binoculars",
+                    "ttr",
+                    "hapax_ratio"
+                  ],
+                  "n_samples_3class": 34131,
+                  "n_samples_binary": 26168,
+                  "n_dropped": 2927
+                },
+                "3det_ensemble": {
+                  "3class_f1": 0.7692,
+                  "3class_ci95": [
+                    0.765,
+                    0.7737
+                  ],
+                  "binary_f1": 0.6832,
+                  "binary_ci95": [
+                    0.6771,
+                    0.6896
+                  ],
+                  "features": [
+                    "avg_logprob",
+                    "fastdetectgpt",
+                    "binoculars"
+                  ],
+                  "n_samples_3class": 34131,
+                  "n_samples_binary": 26168,
+                  "n_dropped": 2927
+                },
+                "avg_logprob": {
+                  "3class_f1": 0.6905,
+                  "3class_ci95": [
+                    0.6857,
+                    0.6952
+                  ],
+                  "binary_f1": 0.6566,
+                  "binary_ci95": [
+                    0.6505,
+                    0.6625
+                  ],
+                  "features": [
+                    "avg_logprob"
+                  ],
+                  "n_samples_3class": 34131,
+                  "n_samples_binary": 26168,
+                  "n_dropped": 2927
+                },
+                "fastdetectgpt": {
+                  "3class_f1": 0.5837,
+                  "3class_ci95": [
+                    0.5805,
+                    0.5872
+                  ],
+                  "binary_f1": 0.4468,
+                  "binary_ci95": [
+                    0.442,
+                    0.4515
+                  ],
+                  "features": [
+                    "fastdetectgpt"
+                  ],
+                  "n_samples_3class": 34131,
+                  "n_samples_binary": 26168,
+                  "n_dropped": 2927
+                },
+                "binoculars": {
+                  "3class_f1": 0.2905,
+                  "3class_ci95": [
+                    0.287,
+                    0.2945
+                  ],
+                  "binary_f1": 0.4384,
+                  "binary_ci95": [
+                    0.4342,
+                    0.4427
+                  ],
+                  "features": [
+                    "binoculars"
+                  ],
+                  "n_samples_3class": 34131,
+                  "n_samples_binary": 26168,
+                  "n_dropped": 2927
+                }
+              },
+              "notes": "D039 unified evaluation. All methods use identical XGB(200/6/lr0.1/seed42), same LOGO folds, pooled macro-F1. ld_score unavailable (no public implementation)."
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-table3-file.md"
+}

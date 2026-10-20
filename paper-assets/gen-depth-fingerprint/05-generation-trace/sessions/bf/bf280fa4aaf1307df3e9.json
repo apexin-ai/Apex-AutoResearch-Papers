@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf280fa4aaf1307df3e9",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "gpu expand generators",
+  "task_key": "worker_gpu_expand_generators_20260521T093312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_expand_generators_20260521T093312_result.json",
+    "occurrence": 1,
+    "bytes": 911,
+    "sha256": "6168db7b4b3cfce3b7acf420e7e20918de54c77150c99621f2a97128fb94e319"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。\n\n### 当前 GPU 状态\n\n| GPU | 占用 | 进程 |\n|-----|------|------|\n| cuda:0 | 13046 MiB / 32607 MiB | Pythia topk (PID 283041, 6186 MiB) + **Llama greedy (PID 347968, 6846 MiB)** |\n| cuda:1 | 7594 MiB / 32607 MiB | OLMo topk (PID 283607, 3616 MiB) + Qwen greedy (PID 344399, 3964 MiB) |\n| cuda:2 | 空闲 | — |\n| cuda:3 | 空闲 | — |\n\n### 新启动进程\n\n| 模型 | PID | 日志 | 状态 |\n|------|-----|------|------|\n| **Llama-3.2-3B** | 347968 | `/tmp/gen_llama_decoding.log` | 已在 cuda:0 运行 greedy，~16s/it |\n| **Mistral watcher** | 348289 | `/tmp/start_mistral_watcher.log` | 等待 OLMo (PID 283607) 结束后自动在 cuda:1 启动 Mistral-7B-v0.3 |\n\nMistral 日志将写入 `/tmp/gen_mistral_decoding.log`。脚本 `generate_chain_decoding.py` 已更新 MODEL_PATHS，新增 `llama-3.2-3b` 和 `mistral-7b-v0.3`。cuda:2/3 未使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-expand-generators.md"
+}

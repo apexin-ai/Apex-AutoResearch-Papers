@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67a102d8d45763b0ceac",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops ssh connectivity test",
+  "task_key": "worker_ops_ssh-connectivity-test_20260515T032058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_ssh-connectivity-test_20260515T032058_result.json",
+    "occurrence": 1,
+    "bytes": 169,
+    "sha256": "9fea66b6f6092fe47d6aa73f6aa12b136227795e2167767d461962ed82ce854c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **第 1 步**：SSH 连接正常，返回 `hello`。\n- **第 2 步**：进程 134817 存活，已运行 `3:02:10`（3小时2分10秒）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-ssh-connectivity-test.md"
+}

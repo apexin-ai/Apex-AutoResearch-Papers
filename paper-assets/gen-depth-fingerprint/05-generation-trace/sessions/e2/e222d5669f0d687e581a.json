@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e222d5669f0d687e581a",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "diag llama results fetch",
+  "task_key": "worker_diag_llama-results-fetch_20260518T051744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_llama-results-fetch_20260518T051744_result.json",
+    "occurrence": 1,
+    "bytes": 492,
+    "sha256": "e6fad43c2b5932c7d6dce8077ee4b73e538dde24f84983f221794cf9be4ddc2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "服务器 autodl-5090 无法连接（端口 35890 拒绝连接）。可能原因：\n\n1. **实例已关机** — AutoDL 实例如果余额不足或手动关机，SSH 端口会不可达\n2. **网络/跳板机问题** — 中间网络链路断开\n\n建议操作：\n- 登录 AutoDL 控制台确认实例状态（是否在运行）\n- 如果实例已关机，需要开机后重试\n- 检查账户余额是否充足\n\n服务器恢复后我可以立即重新执行全部检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-llama-results-fetch.md"
+}

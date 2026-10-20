@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef09b31d6380edf5ccc1",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_3_1778819390.md",
+  "task_key": "loop_3_1778819390",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778819390.md",
+    "occurrence": 1,
+    "bytes": 4375,
+    "sha256": "4c0db764a284bb2dd7b45b6c34ae724ec6a46880b90ebf46865dc1de213c15c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-15T04:29:42+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: `cuda:0, cuda:1, cuda:2, cuda:3`（autodl-5090），白名单外的 GPU 即使 Director 指令也必须 push back\n- `submit_training_job` 注入 `CUDA_VISIBLE_DEVICES` 映射 → 脚本内 `--device` 始终写 `cuda:0`（多次因写 cuda:1/2/3 导致 invalid device ordinal）\n- 根分区只有 ~30GB，模型/数据/checkpoint 必须放 `/root/autodl-tmp/`，否则磁盘满（plan-004 已踩过）\n- 大型生成任务运行中**不要动输出目录的 symlink**（plan-014 踩过 deleted inode 问题，数据写入 /proc/pid/fd 而非文件）\n- EMNLP 2026 ARR DDL **2026-05-25**（D012），9 天倒计时，不允许 fallback 思维\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: autodl-5090 (4× RTX 5090 32GB)\n- **工作目录**: `/root/gen-depth-fingerprint`\n- **Python**: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**: `/root/autodl-tmp/models/` (Pythia-410M, Pythia-1B, Pythia-2.8B, OLMo-2-1B, Qwen3-0.6B, Qwen3-1.7B, Qwen3-8B-Base)\n- **HF cache**: `HF_HOME=/root/autodl-tmp/.hf_cache`\n- **活跃进程**:\n  - plan-005-cont: PID 164658, tmux=plan-005-cont, cuda:1 (continuation chains)\n  - plan-005-elab: PID 164737, tmux=plan-005-elab, cuda:2 (elaboration chains)\n  - plan-005-rewrite: PID 164881, tmux=plan-005-rewrite, cuda:3 (inspired_rewriting chains)\n- **活跃 cron**: plan-005-cont, plan-005-elab, plan-005-rewrite（reconcile 确认全部 still running）\n- **cuda:0**: 空闲\n\n### 3. 📊 当前状态\n**刚完成**: plan-014 完整数据重算确认（6-gen LOGO 0.7897, Qwen3-8B held-out 0.6849），最终 RC9 数字落地。Paper Agent Step 2 进行中（writing_plan 已审批）。\n\n**RUNNING 实验**:\n| exp_id | 假设 | GPU | 进度(截至04:20 UTC) |\n|--------|------|-----|-----|\n| plan-005-cont | continuation prompt depth signal | cuda:1 | 381/995 (38%) |\n| plan-005-elab | elaboration prompt depth signal | cuda:2 | 336/995 (34%) |\n| plan-005-rewrite | inspired_rewriting prompt depth signal | cuda:3 | 348/995 (35%) |\n\n**初步发现**: continuation depth 衰减 15% vs elaboration 仅 1.5%——continuation 递归更容易产生低质量文本。\n\n**Running Workers**:\n- `worker_analysis_plan-014-revalidation-v2` (running since 03:56 UTC) — 可能已 stale/卡住\n- `worker_analysis_plan-005-final` (running since 04:28 UTC) — plan-005 中期分析\n\n**等待中**: plan-005 三个 cron 回调（ETA ~05:30-06:00 UTC）\n\n### 4. 📋 待办（条件触发式）\n- plan-005 cron 回调到 → spawn worker 做 prompt type 对比分析（LOGO per prompt type, depth decay curve 对比, 统计检验）→ 更新 registry → patch 结论入论文\n- plan-005 分析完成 → 全部 P0+P1 数据就绪 → 全力推 Paper Agent 完成初稿\n- Paper Agent 初稿交付 → Review cycle（Reviewer 全文审查）→ 迭代修改 → 5/25 提交\n- cuda:0 空闲 → 如果有任何可并行的分析/数据准备任务立即用上（不要让 GPU 空着）\n- worker_analysis_plan-014-revalidation-v2 如果长时间无回调 → 检查是否 stale，必要时 cancel 重派\n\n### 5. 🎯 战略上下文\n**项目核心结论**: 递归 LLM 生成链展现 differential depth response——central-tendency/diversity 特征随深度漂移，shape 特征近稳态。7-feature ensemble 跨 6 generators / 3 families 验证，LOGO F1=0.79。Claim 3 (downstream utility) 为负面结果，已 reframe 为 diagnostic-not-curative (D009)。\n\n**决策链**: D005(dual dynamics 细化) → D006(framing 调整) → D007(re-dream 共识: 实证/概念贡献) → D008(ensemble 优势叙事) → D009(Claim 3 负面 reframe) → D011(RC9 scale 验证) → D012(恢复 EMNLP 为主投)\n\n**易错点**:\n- 不要用 H1/H2 术语（D007 明确禁止，overloads 时间序列单位根惯例），用 \"drifting\" vs \"stationary\"\n- 不要称 drift/stationarity 为 \"discovery\"——它是 NLL 分布 location-shift 的数学后果，要明确承认\n- 8B held-out F1=0.69 vs ≤2.8B 0.76-0.85 的 gap 必须诚实报告为 limitation，不能回避\n- 论文摘要/结论报告 realistic range (0.69-0.85)，不只报 best-case\n- plan-005 的 prompt type 结果是 P1 补充实验，如果 EMNLP 时间紧张可以作为 appendix 而非 main body\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778819390.md"
+}

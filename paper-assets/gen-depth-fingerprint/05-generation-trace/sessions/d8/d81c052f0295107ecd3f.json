@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d81c052f0295107ecd3f",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis plan 005 rewrite",
+  "task_key": "worker_analysis_plan-005-rewrite_20260515T055440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-005-rewrite_20260515T055440_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "0cf0f263997e9b3076a147202e79184446be6cbec4131bdbdde5f17c92bd9327"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n- **total_records**: 4827\n- **unique_seeds**: 995\n- **depth_distribution**: {0:995, 1:995, 2:959, 3:944, 4:934}\n- **file_size_mb**: 5.41\n- **runtime_seconds**: 8584 (~2.4h)\n- **output_file**: `/root/gen-depth-fingerprint/data/pythia-2.8b-inspired_rewriting/generations_shard0.jsonl`\n- **depth_retention (d4/d0)**: 93.9%\n- **skipped**: 61 (均为 empty output/input)\n- **异常**: 无\n\n**与 continuation 对比**：inspired_rewriting depth retention 93.9% 远优于 continuation 的 83.1%，depth 1 甚至零衰减（995/995）。rewriting prompt 使模型在递归生成中更稳定，产生空输出的概率更低（skip 61 vs 168）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-005-rewrite.md"
+}

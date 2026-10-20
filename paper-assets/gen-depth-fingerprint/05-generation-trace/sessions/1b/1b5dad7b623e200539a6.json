@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b5dad7b623e200539a6",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper figure fig1 fig2 fig3",
+  "task_key": "worker_paper_figure_fig1_fig2_fig3_20260515T045043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1_fig2_fig3_20260515T045043_result.json",
+    "occurrence": 1,
+    "bytes": 1820,
+    "sha256": "34a135d3f3f41cede8e7868cada77e7b54b43a18c4e33021ce6e0f73670868de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 工具不可用，跳过注册。\n\n## 结果汇总\n\n### Figure 1: Differential Depth Response\n- **路径**: `/root/gen-depth-fingerprint/figures/paper/fig1_differential_response.{png,pdf}`\n- **脚本**: `/root/gen-depth-fingerprint/scripts/plot_fig1.py`\n- **内容**: 2×2 multi-panel, 6 generators, depths 0–4, bootstrap 95% CI bands\n- **关键发现**:\n  - (a)(b) entropy_mean 和 hapax_ratio 随 depth 单调下降，所有 generator 一致\n  - Qwen3-8B 衰减最小（entropy delta = −1.09 vs 其他 −1.40~−1.65）\n  - (c)(d) entropy_std 和 tail_decay 近似平稳，drift 量级比 (a)(b) 小 10–15×\n\n### Figure 2: LOGO Classification Performance\n- **路径**: `/root/gen-depth-fingerprint/figures/paper/fig2_logo_performance.{png,pdf}`\n- **脚本**: `/root/gen-depth-fingerprint/scripts/plot_fig2.py`\n- **内容**: grouped bar chart, 6 held-out generators, 4 类别 (macro/gen-0/gen-1/gen-2+), bootstrap CI error bars\n- **关键发现**:\n  - LOGO 总均值 = 0.789\n  - Pythia-1B 泛化最佳 (0.856), Qwen3-8B 最难 (0.683)\n  - Gen-0 (human) 检测一致高 (>0.86), Gen-1 是瓶颈 (0.54–0.71)\n\n### Figure 3: Baseline Comparison (Forest Plot)\n- **路径**: `/root/gen-depth-fingerprint/figures/paper/fig3_baseline_comparison.{png,pdf}`\n- **脚本**: `/root/gen-depth-fingerprint/scripts/plot_fig3.py`\n- **内容**: 4 methods, dot + bootstrap 95% CI (粗线) + per-generator range (细线)\n- **关键发现**:\n  - 7-Feature Ensemble: **0.798** [0.793, 0.803]\n  - Avg Log-Prob: 0.759 [0.753, 0.764]\n  - FastDetectGPT: 0.731 [0.725, 0.737]\n  - Entropy Mean: 0.593 [0.587, 0.599]\n  - 所有 bootstrap CI 不重叠，差异显著\n- **缺失**: LD-Score（无公开实现）和 Binoculars（GPU 内存限制）未实验，数据不可用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-fig2-fig3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88fbe3f9262729c8ad5d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "research paper plan",
+  "task_key": "worker_research_paper-plan_20260515T032552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-plan_20260515T032552_result.json",
+    "occurrence": 1,
+    "bytes": 924,
+    "sha256": "7c5f9bdd2982f72b2f08ae2b2ddd3f6faac43488b6a056eed6e068e2d506bf37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`writing_plan.yaml` 已创建，覆盖：\n\n- **3 个 Claim 的 evidence mapping**（含 C3 negative finding 的 honest reporting 框架）\n- **6 个 section 的 outline**，每个标注篇幅、对应 exp_id、reviewer concern 覆盖\n- **4 张图**：differential response 多面板图、LOGO 柱状图、baseline 对比森林图、downstream 负面结果图\n- **4 张表**：LOGO 分生成器结果、feature ablation、downstream 5 variants、cross-ref 验证\n- **39 篇文献分 9 类**的 related work 组织策略\n- **4 阶段写作顺序**：Results+Figures → Intro+RW → Abstract+Title → 投前检查\n- **11 个 RC 的覆盖矩阵**，标注每个 concern 在哪个 section 回应、用什么 evidence\n- **headline template 的 \"Z% downstream\" 已标记为需更新为 negative finding 措辞**\n- **2 个 pending 实验**（plan-014 scale、plan-005 prompt type）标记为 non-blocker"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-plan.md"
+}

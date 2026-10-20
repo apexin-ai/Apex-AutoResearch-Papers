@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c735686c1be72141069c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ssh plan 014 postproc prep",
+  "task_key": "worker_ssh_plan-014-postproc-prep_20260515T024543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan-014-postproc-prep_20260515T024543_result.json",
+    "occurrence": 1,
+    "bytes": 1481,
+    "sha256": "e8f60e8c0586422dbef14b8c1e1120fa63ba228b5e10c894336fbd50e3c7ea8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 当前进度\n- **plan-014 生成**: 595/996 seeds (~60%)，~15s/seed，预计 **~1.7h 后完成**（约 UTC 10:45）\n- 已生成 416 行 JSONL，数据格式正确（seed_id, depth, text, model 字段齐全）\n\n### 脚本已就绪\n`/root/gen-depth-fingerprint/scripts/run_plan014_postproc.sh` 包含完整流水线：\n\n| Step | 操作 | 预期耗时 |\n|------|------|---------|\n| 1 | 验证生成数据完整性（~4980 行） | <1s |\n| 2 | 更新 `classify_multi.py` 的 `MODEL_FAMILIES`，添加 `qwen3-8b→qwen` | <1s |\n| 3 | `extract_features_multi.py --model-name qwen3-8b` 增量提取特征，合并到 `features_all_models.csv` | ~30-60 min |\n| 4 | `classify_multi.py --input data/features_all_models.csv` 运行 6 生成器 LOGO 评估 | ~2 min |\n\n### 兼容性确认\n- 数据格式完全兼容，`extract_features_multi.py` 的增量模式会自动发现 `data/qwen3-8b/generations_shard0.jsonl`\n- `classify_multi.py` 的 LOGO 函数动态读取 `model_name.unique()`，无需硬编码生成器列表\n- 唯一需要修改的是 `MODEL_FAMILIES` 字典（leave-one-family-out 评估需要），脚本已包含自动 patch\n\n### 执行方式\n生成完成后：\n```bash\nbash /root/gen-depth-fingerprint/scripts/run_plan014_postproc.sh\n```\n或用 nohup 后台执行（特征提取耗时较长）：\n```bash\nnohup bash /root/gen-depth-fingerprint/scripts/run_plan014_postproc.sh > /tmp/plan014_postproc.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-plan-014-postproc-prep.md"
+}

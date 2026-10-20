@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "6794a7de671321bd16b6",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "exp instruct llama3 2 3b",
+  "task_key": "worker_exp_instruct-llama3-2-3b_20260518T034629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_instruct-llama3-2-3b_20260518T034629.log",
+    "occurrence": 1,
+    "bytes": 890095,
+    "sha256": "1ab1a62ef9a5afab22e9a7a080a40317545250b1552a9418f496f9127ec739ed"
+  },
+  "statistics": {
+    "messages": 661,
+    "user_turns": 0,
+    "tool_calls": 278,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 101,
+      "tool_call": 278,
+      "tool_result": 278,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 661,
+      "chunks": [
+        {
+          "path": "6794a7de671321bd16b6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6794a7de671321bd16b6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6794a7de671321bd16b6-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "6794a7de671321bd16b6-part-0004.json",
+          "message_count": 121
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-instruct-llama3-2-3b.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a987c1e953dfffbef12",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "research citation verification w11",
+  "task_key": "worker_research_citation_verification_w11_20260520T155942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_citation_verification_w11_20260520T155942_result.json",
+    "occurrence": 1,
+    "bytes": 5348,
+    "sha256": "ac8b4ec74ec2ad8150019c9cba4b96a0347a46de0d2bf4b1a4a124c4647d0e4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n### 1. Wang et al. (ACL 2025) — attractor cycles in recursive generation\n**✅ 真实存在**\n\n\"Unveiling Attractor Cycles in Large Language Models: A Dynamical Systems View of Successive Paraphrasing\"\n\n```bibtex\n@inproceedings{wang-etal-2025-unveiling,\n  title     = {Unveiling Attractor Cycles in Large Language Models: A Dynamical Systems View of Successive Paraphrasing},\n  author    = {Wang, Zhilin and Li, Yafu and Yan, Jianhao and Cheng, Yu and Zhang, Yue},\n  booktitle = {Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n  month     = jul,\n  year      = {2025},\n  address   = {Vienna, Austria},\n  publisher = {Association for Computational Linguistics},\n  url       = {https://aclanthology.org/2025.acl-long.624/},\n  pages     = {12740--12755}\n}\n```\n\n---\n\n### 2. Sun et al. (2026) — late-stage stability in iterative text generation\n**✅ 真实存在**\n\n\"When AI Settles Down: Late-Stage Stability as a Signature of AI-Generated Text Detection\"\n\n```bibtex\n@article{sun2026settles,\n  title   = {When {AI} Settles Down: Late-Stage Stability as a Signature of {AI}-Generated Text Detection},\n  author  = {Sun, Ke and Bao, Guangsheng and Cui, Han and Zhang, Yue},\n  journal = {arXiv preprint arXiv:2601.04833},\n  year    = {2026},\n  url     = {https://arxiv.org/abs/2601.04833}\n}\n```\n\n注意：该论文的焦点是用 late-stage volatility decay 做**检测**，而非研究 iterative generation 本身的 stability。审稿人描述的 framing 略有偏差但论文确实存在。\n\n---\n\n### 3. Guo et al. (ICLR 2024) — iterative retraining stability / model collapse\n**⚠️ 近似匹配（作者+会议张冠李戴）**\n\nICLR 2024 上关于 iterative retraining stability 的论文是 **Bertrand et al.**，不是 Guo：\n\n> Quentin Bertrand, Avishek Joey Bose, Alexandre Duplessis, Marco Jiralerspong, Gauthier Gidel. \"On the Stability of Iterative Retraining of Generative Models on their Own Data.\" ICLR 2024 (Spotlight).\n\n确实存在一篇 **Guo et al.** 关于 iterative training 导致 linguistic diversity 下降的论文，但发表在 **Findings of NAACL 2024**，不是 ICLR：\n\n> Yanzhu Guo, Guokan Shang, Michalis Vazirgiannis, Chloé Clavel. \"The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text.\" Findings of NAACL 2024.\n\n**结论：审稿人将两篇论文的作者和会议混在一起了。**\n\n---\n\n### 4. Li et al. (2024) — self-consuming generative models\n**❌ 不存在（审稿人幻觉）**\n\n2024 年 self-consuming generative models 方向的主要论文：\n- Alemohammad et al. \"Self-Consuming Generative Models Go MAD\" (ICLR 2024)\n- Bertrand et al. \"Self-Consuming Generative Models with Curated Data...\" (NeurIPS 2024)\n- Gillman et al. \"Self-Correcting Self-Consuming Loops\" (ICML 2024)\n- Fu et al. \"Towards Theoretical Understandings of Self-Consuming Generative Models\" (ICML 2024)\n\n**没有任何一篇以 \"Li\" 为第一作者。** 搜索了 Google Scholar、Semantic Scholar、arXiv，包括不同关键词组合，均未找到匹配论文。\n\n---\n\n### 5. Zhang et al. (2024) — MMD-based AI text detection\n**✅ 真实存在**\n\n\"Detecting Machine-Generated Texts by Multi-Population Aware Optimization for Maximum Mean Discrepancy\"\n\n```bibtex\n@inproceedings{zhang2024detecting,\n  title     = {Detecting Machine-Generated Texts by Multi-Population Aware Optimization for Maximum Mean Discrepancy},\n  author    = {Zhang, Shuhai and Song, Yiliao and Yang, Jiahao and Li, Yuanqing and Han, Bo and Tan, Mingkui},\n  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations},\n  year      = {2024},\n  url       = {https://openreview.net/forum?id=3fEKavFsnv}\n}\n```\n\n---\n\n### 6. Weng et al. (2025) — knowledge attribution in LLMs\n**❌ 不存在（审稿人幻觉）**\n\n搜索范围：Google Scholar、arXiv、ACL Anthology、NAACL/ACL/EMNLP/AAAI 2025 accepted papers。Yixuan Weng 在 CIKM 2024 有一篇 knowledge localization 相关论文（\"Does Knowledge Localization Hold True?\"），但主题是 entity vs relation knowledge，不是 knowledge attribution，且年份不符。2025 年 knowledge attribution 相关论文的第一作者均非 Weng。\n\n---\n\n### 汇总\n\n| # | 引用 | 状态 | 说明 |\n|---|------|------|------|\n| 1 | Wang et al. (ACL 2025) | ✅ 真实 | attractor cycles，完全匹配 |\n| 2 | Sun et al. (2026) | ✅ 真实 | late-stage stability，arXiv preprint |\n| 3 | Guo et al. (ICLR 2024) | ⚠️ 张冠李戴 | ICLR 2024 是 Bertrand et al.；Guo et al. 在 NAACL 2024 |\n| 4 | Li et al. (2024) | ❌ 幻觉 | 无此论文 |\n| 5 | Zhang et al. (2024) | ✅ 真实 | MMD-MP，ICLR 2024 |\n| 6 | Weng et al. (2025) | ❌ 幻觉 | 无此论文 |\n\nSources:\n- [Wang et al. ACL 2025](https://aclanthology.org/2025.acl-long.624/)\n- [Sun et al. 2026](https://arxiv.org/abs/2601.04833)\n- [Bertrand et al. ICLR 2024](https://openreview.net/forum?id=JORAfH2xFd)\n- [Guo et al. NAACL 2024](https://aclanthology.org/2024.findings-naacl.228/)\n- [Zhang et al. ICLR 2024](https://openreview.net/forum?id=3fEKavFsnv)\n- [Yixuan Weng ACL Anthology](https://aclanthology.org/people/yixuan-weng/)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-citation-verification-w11.md"
+}

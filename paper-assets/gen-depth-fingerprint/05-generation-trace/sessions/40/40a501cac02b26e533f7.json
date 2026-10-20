@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40a501cac02b26e533f7",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper entropy std d trace",
+  "task_key": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_entropy-std-d-trace_20260523T103849_result.json",
+    "occurrence": 1,
+    "bytes": 2533,
+    "sha256": "6d04d0d3af6c3e84a23436c6a12465d746dcea5c267b5600c5b58d62caf179df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据溯源完成。以下是完整汇报。\n\n---\n\n## 任务 1：entropy_std d=0.55 溯源\n\n### 结论：**d=0.55 无法精确追溯到任何现存数据或计算脚本**\n\n所有可复现的计算结果：\n\n| 数据集/方法 | d 值 |\n|---|---|\n| 8-gen pooled (gen-1 vs gen-2+, `tost_equivalence.json`) | **0.457** [CI: 0.435, 0.479] |\n| 8-gen bootstrap (`tost_bootstrap.json`) | 0.458 |\n| 6-gen pooled (gen-1 vs gen-2+, `features_all_models.csv`) | 0.493 |\n| 8-gen per-generator avg (gen-1 vs gen-2+) | mean=0.463, median=0.507 |\n| 6-gen per-generator avg (gen-1 vs gen-2+) | mean=0.496, median=0.524 |\n| gen-0→gen-1 step d (`trend_analysis.json`) | 0.558 |\n| Single-gen Pythia-2.8B (gen-1 vs gen-2+) | 0.389 |\n\n**最可能来源**：gen-0→gen-1 步长 d=0.558（来自 `trend_analysis.json`），四舍五入后被误用为 \"pooled d=0.55\"，但这个值仅代表首步变化，不是论文声称的整体 effect size。\n\n### 内部矛盾\n\n同一个 `appendix_ddr_validation.tex` 中存在两个不同值：\n- **第85行**: `entropy std ($d{=}0.49$)` ← 接近实际 6-gen 数据 0.493\n- **第101/112行**: `entropy std ($d{=}0.55$)` ← 无数据支撑\n\n### 当前正确值\n\n应使用 **d = 0.46**（8-gen, gen-1 vs gen-2+, 95% CI [0.44, 0.48]）。\n\n论文中需要修正的位置（均写 d=0.55）：\n- `abstract.tex:4`\n- `introduction.tex:9, 25`\n- `results.tex:71, 76`\n- `appendix_ddr_validation.tex:101, 112, 121`\n\n同时 `appendix_ddr_validation.tex:85` 的 d=0.49 虽更接近但也应统一修正。\n\n---\n\n## 任务 2：Table 4 (cross-ref) 校验\n\n**Table 4 值与服务器数据一致**（数据源：`review_p2f_cross_ref_bias.json`，5-gen LOGO 子集）：\n\n| Reference | 论文值 | 服务器值 | 匹配 |\n|---|---|---|---|\n| Pythia-410M | 0.803 | 0.8034 | ✓ |\n| OLMo-2-1B | 0.807 | 0.8072 | ✓ |\n| Qwen3-0.6B | 0.816 | 0.8158 | ✓ |\n| Spread | 0.013 | 0.0124 | ✓ (rounded) |\n\n**注意事项**：Table 4 使用 5-gen 子集（olmo-2-1b, pythia-1b, pythia-2.8b, qwen3-0.6b, qwen3-1.7b），不包含 Llama、Mistral、Qwen3-8B。论文其他表格均使用 8-gen 配置，需评估是否更新 Table 4 到 8-gen。\n\n---\n\n### 总结\n\n- **d=0.55**：**陈旧值，无数据支撑**。正确值为 d=0.46（8-gen）或 d=0.49（6-gen）。涉及 abstract、intro、results、appendix 共 ~9 处需修正。\n- **Table 4**：数据正确，无需修正内容值。但注意其使用 5-gen 子集与其他表格的 8-gen 不一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-entropy-std-d-trace.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0bdf626088014967330",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code fix baselines pooled metrics",
+  "task_key": "worker_code_fix-baselines-pooled-metrics_20260516T135916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-baselines-pooled-metrics_20260516T135916_result.json",
+    "occurrence": 1,
+    "bytes": 1196,
+    "sha256": "4b1ef8d2abfe678b4644583a5cee194a4fc274d0c3a65c711fddb98e68c3227c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results complete. Here's the full summary:\n\n## Pooled LOGO F1 Results (document-level bootstrap CI)\n\n| Method | Pooled 3-class F1 | Pooled Binary F1 | Binary 95% CI |\n|--------|-------------------|------------------|---------------|\n| avg_logprob | 0.7085 | 0.6785 | [0.6717, 0.6854] |\n| fastdetectgpt | 0.6654 | 0.5805 | [0.5741, 0.5875] |\n| binoculars | 0.4094 | 0.5327 | [0.5268, 0.5392] |\n| ld_score | 0.6334 | 0.6758 | [0.6691, 0.6822] |\n| 4det_ensemble | 0.7786 | 0.6983 | [0.6919, 0.7045] |\n| **4det_surface** | **0.7832** | **0.7050** | [0.6983, 0.7110] |\n| **7feature_ours** | **0.7616** | **0.6935** | [0.6867, 0.7000] |\n\n### Key answers:\n- **4det_surface pooled binary F1 = 0.705 > 0.694? YES**\n- **4det_surface > 7feature_ours? YES** (0.705 vs 0.6935)\n\nNote: 7feature_ours uses XGB 200/6 (the paper config); all other baselines use XGB 100/3. LD score uses top-10K trigram vocabulary for computational efficiency. The 4det_surface ensemble (4 detector scores + ttr + hapax_ratio) exceeds our 7-feature approach by ~1.2 percentage points on pooled binary F1, with non-overlapping CI lower bounds (0.6983 vs 0.7000 — just barely overlapping actually)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-baselines-pooled-metrics.md"
+}

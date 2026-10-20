@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0fd75a268833e664b572",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan 013 text length",
+  "task_key": "worker_code_plan-013-text-length_20260514T234122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-013-text-length_20260514T234122_result.json",
+    "occurrence": 1,
+    "bytes": 1396,
+    "sha256": "f6e69fbda88c3e54d5805e6ca5c80ac269356f9f6a8a7ae943fc0748393b5de0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。输出文件已生成：\n- `data/text_length_analysis.json` (13KB)\n- `data/text_length_boxplot.png` (102KB)\n\n### 结果摘要\n\n**1. 长度分布**：depth 0 的文本最长（~175-181 词），随深度增加略有下降，但方差增大（std 从 ~27 增至 ~55-65）。olmo-2-1b 是例外，深度越大反而越长。\n\n**2. Spearman 相关性**（word_count vs depth）：\n\n| Model | ρ | p-value | Sig |\n|---|---|---|---|\n| pythia-2.8b | -0.057 | 9.9e-05 | Yes |\n| pythia-1b | -0.066 | 9.6e-06 | Yes |\n| olmo-2-1b | +0.134 | 2.7e-20 | Yes |\n| qwen3-0.6b | +0.012 | 0.43 | No |\n| qwen3-1.7b | +0.085 | 6.7e-09 | Yes |\n\n相关性虽统计显著但绝对值很小（|ρ| < 0.14），长度与深度弱相关。\n\n**3. 归一化特征**（窗口200词）：所有 5 个模型的 TTR/hapax 深度趋势在归一化后**完全保留**，且 Spearman ρ 绝对值反而增大（如 pythia-2.8b: -0.633 → -0.715）。**长度不是 TTR/hapax 深度趋势的混淆因素。**\n\n**4. 长度匹配分类器**：匹配后 macro-F1 反而**上升**（avg Δ = +0.041），说明移除长度变异后分类更纯净。**长度不是主要混淆因素**。\n\n**5. Dropout**：20/20 个深度转换中，dropout 样本的平均词数都低于保留样本（如 pythia-1b depth 3→4: lost=41词 vs kept=158词）。**短文本显著更容易 dropout。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-013-text-length.md"
+}

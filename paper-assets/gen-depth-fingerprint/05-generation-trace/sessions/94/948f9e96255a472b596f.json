@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "948f9e96255a472b596f",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "figure fig3 baseline comparison",
+  "task_key": "worker_figure_fig3-baseline-comparison_20260515T043508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig3-baseline-comparison_20260515T043508_result.json",
+    "occurrence": 1,
+    "bytes": 596,
+    "sha256": "d5d4a0a3f6a84289b47cf854fc6c55759341253fa8ea731cbb179d2ee453e86e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 3 已生成并注册（`art_20260515_8b005a`）。\n\n**文件位置**：\n- PDF: `/root/gen-depth-fingerprint/figures/fig3_baseline_comparison.pdf`\n- PNG: `/root/gen-depth-fingerprint/figures/fig3_baseline_comparison.png`\n\n**图表要点**：\n- 7-Feature Ensemble 用深蓝加粗突出，CI width 仅 0.013\n- 4 个单检测器灰色显示，CI width 0.182–0.259（是 ensemble 的 14–20 倍）\n- 竖向虚线标注 ensemble mean (0.798)\n- 所有单检测器标注 *** p<0.001 (bootstrap)\n- 每行右侧标注 CI width 数值，直观展示 reliability advantage"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig3-baseline-comparison.md"
+}

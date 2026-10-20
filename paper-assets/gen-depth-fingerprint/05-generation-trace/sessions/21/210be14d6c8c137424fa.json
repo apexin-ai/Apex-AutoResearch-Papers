@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "210be14d6c8c137424fa",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper writing tables",
+  "task_key": "worker_paper_writing_tables_20260515T045108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_tables_20260515T045108_result.json",
+    "occurrence": 1,
+    "bytes": 874,
+    "sha256": "5f266ec671b85270ee493e3f3ddc12572eea31dec530799eba942b1aed5e544a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个表格已生成并注册。\n\n**数字修正（以 registry 为准）：**\n\n| 字段 | 任务指定 | Registry 实际 | 采用 |\n|------|---------|--------------|------|\n| Pythia-1B F1 | 0.855 | 0.856 | 0.856 |\n| OLMo-2-1B F1 | 0.762 | 0.764 | 0.764 |\n| Qwen3-1.7B F1 | 0.809 | 0.805 | 0.805 |\n| Qwen3-0.6B F1 | 0.823 | 0.824 | 0.824 |\n| Qwen3-8B F1 | 0.6849 | 0.683 | 0.683 |\n| 6-gen Avg | 0.790 | 0.789 | 0.789 |\n| hapax importance | 0.265 | 0.269 | 0.269 |\n| entropy_mean importance | 0.152 | 0.164 | 0.164 |\n| ttr importance | 0.148 | 0.159 | 0.159 |\n\n文件路径：\n- `artifacts/_project/paper/table1.tex` — LOGO 分类结果\n- `artifacts/_project/paper/table2.tex` — 特征消融\n- `artifacts/_project/paper/table3.tex` — 下游 CLM（负面结果）\n- `artifacts/_project/paper/table4.tex` — 跨家族参考模型验证"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-tables.md"
+}

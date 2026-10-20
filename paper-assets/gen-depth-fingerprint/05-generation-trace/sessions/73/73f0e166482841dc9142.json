@@ -1,0 +1,2517 @@
+{
+  "schema_version": "1.0",
+  "id": "73f0e166482841dc9142",
+  "project": "gen-depth-fingerprint",
+  "kind": "conversation",
+  "title": "paper final data audit",
+  "task_key": "worker_paper_final-data-audit_20260523T191628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_final-data-audit_20260523T191628.jsonl",
+    "occurrence": 1,
+    "bytes": 150378,
+    "sha256": "a564ca2a184ea15396adc5abdf9057881d12c3cc6637bcf74f3661d81f3e3527"
+  },
+  "statistics": {
+    "messages": 127,
+    "user_turns": 0,
+    "tool_calls": 63,
+    "roles": {
+      "tool_call": 63,
+      "tool_result": 63,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T19:29:15.896102+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T19:29:15.896389+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T19:29:15.896597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/tost_equivalence.json"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T19:29:15.896845+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"equivalence_bound_d\\\\\\\": 0.2,\\\\n  \\\\\\\"alpha\\\\\\\": 0.05,\\\\n  \\\\\\\"features\\\\\\\": {\\\\n    \\\\\\\"entropy_mean\\\\\\\": {\\\\n      \\\\\\\"group\\\\\\\": \\\\\\\"drifting\\\\\\\",\\\\n      \\\\\\\"n_gen1\\\\\\\": 7896,\\\\n      \\\\\\\"n_gen2p\\\\\\\": 21199,\\\\n      \\\\\\\"mean_gen1\\\\\\\": 2.405806,\\\\n      \\\\\\\"mean_gen2p\\\\\\\": 1.525337,\\\\n      \\\\\\\"mean_diff\\\\\\\": 0.88047,\\\\n      \\\\\\\"pooled_sd\\\\\\\": 0.835039,\\\\n      \\\\\\\"observed_d\\\\\\\": 1.0544,\\\\n      \\\\\\\"delta_raw\\\\\\\": 0.167008,\\\\n      \\\\\\\"t_lower\\\\\\\": 95.1459,\\\\n      \\\\\\\"p_lower\\\\\\\": 0.0,\\\\n      \\\\\\\"t_upper\\\\\\\": 64.8061,\\\\n      \\\\\\\"p_upper\\\\\\\": 1.0,\\\\n      \\\\\\\"p_tost\\\\\\\": 1.0,\\\\n      \\\\\\\"equivalent_at_alpha_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"entropy_std\\\\\\\": {\\\\n      \\\\\\\"group\\\\\\\": \\\\\\\"intermediate\\\\\\\",\\\\n      \\\\\\\"n_gen1\\\\\\\": 7896,\\\\n      \\\\\\\"n_gen2p\\\\\\\": 21199,\\\\n      \\\\\\\"mean_gen1\\\\\\\": 1.741032,\\\\n      \\\\\\\"mean_gen2p\\\\\\\": 1.624322,\\\\n      \\\\\\\"mean_diff\\\\\\\": 0.11671,\\\\n      \\\\\\\"pooled_sd\\\\\\\": 0.255351,\\\\n      \\\\\\\"observed_d\\\\\\\": 0.4571,\\\\n      \\\\\\\"delta_raw\\\\\\\": 0.05107,\\\\n      \\\\\\\"t_lower\\\\\\\": 49.8374,\\\\n      \\\\\\\"p_lower\\\\\\\": 0.0,\\\\n      \\\\\\\"t_upper\\\\\\\": 19.4977,\\\\n      \\\\\\\"p_upper\\\\\\\": 1.0,\\\\n      \\\\\\\"p_tost\\\\\\\": 1.0,\\\\n      \\\\\\\"equivalent_at_alpha_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"entropy_max\\\\\\\": {\\\\n      \\\\\\\"group\\\\\\\": \\\\\\\"near-stationary\\\\\\\",\\\\n      \\\\\\\"n_gen1\\\\\\\": 7896,\\\\n      \\\\\\\"n_gen2p\\\\\\\": 21199,\\\\n      \\\\\\\"mean_gen1\\\\\\\": 7.559449,\\\\n      \\\\\\\"mean_gen2p\\\\\\\": 7.512676,\\\\n      \\\\\\\"mean_diff\\\\\\\": 0.046773,\\\\n      \\\\\\\"pooled_sd\\\\\\\": 0.751956,\\\\n      \\\\\\\"observed_d\\\\\\\": 0.0622,\\\\n      \\\\\\\"delta_raw\\\\\\\": 0.150391,\\\\n      \\\\\\\"t_lower\\\\\\\": 19.8879,\\\\n      \\\\\\\"p_lower\\\\\\\": 0.0,\\\\n      \\\\\\\"t_upper\\\\\\\": -10.4519,\\\\n      \\\\\\\"p_upper\\\\\\\": 7.971553542441683e-26,\\\\n      \\\\\\\"p_tost\\\\\\\": 7.971553542441683e-26,\\\\n      \\\\\\\"equivalent_at_alpha_005\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"entropy_min\\\\\\\": {\\\\n      \\\\\\\"group\\\\\\\": \\\\\\\"intermediate\\\\\\\",\\\\n      \\\\\\\"n_gen1\\\\\\\": 7896,\\\\n   \n…[truncated 2343 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T19:29:15.897023+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/8gen_logo_unfiltered.json"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T19:29:15.897212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"3class\\\\\\\": {\\\\n    \\\\\\\"f1_observed\\\\\\\": 0.762,\\\\n    \\\\\\\"ci_lower\\\\\\\": 0.7577,\\\\n    \\\\\\\"ci_upper\\\\\\\": 0.7664,\\\\n    \\\\\\\"n_samples\\\\\\\": 37058,\\\\n    \\\\\\\"per_generator\\\\\\\": {\\\\n      \\\\\\\"llama-3.2-3b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.7753,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.7634,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.788\\\\n      },\\\\n      \\\\\\\"mistral-7b-v0.3\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.6815,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.6694,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.695\\\\n      },\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.781,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.7695,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.7931\\\\n      },\\\\n      \\\\\\\"pythia-1b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.8064,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.7946,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.8177\\\\n      },\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.7983,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.7865,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.8097\\\\n      },\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.7795,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.7677,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.7925\\\\n      },\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.7717,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.7585,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.7844\\\\n      },\\\\n      \\\\\\\"qwen3-8b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.7143,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.7007,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.7286\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"binary\\\\\\\": {\\\\n    \\\\\\\"f1_observed\\\\\\\": 0.6944,\\\\n    \\\\\\\"ci_lower\\\\\\\": 0.6883,\\\\n    \\\\\\\"ci_upper\\\\\\\": 0.7004,\\\\n    \\\\\\\"n_samples\\\\\\\": 29095,\\\\n    \\\\\\\"per_generator\\\\\\\": {\\\\n      \\\\\\\"llama-3.2-3b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.6968,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.6798,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.7129\\\\n      },\\\\n      \\\\\\\"mistral-7b-v0.3\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.6327,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.6172,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.6482\\\\n      },\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.6954,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.6788,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.7114\\\\n \n…[truncated 834 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T19:29:15.897370+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/cross_model_logo_results.json"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T19:29:15.897562+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"cross_model_chains_logo\\\\\\\",\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"leave-one-generator-out (LOGO)\\\\\\\",\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"Each fold holds out all samples produced by one generator. Depth-0 (wikipedia) samples split equally across folds. Training set balanced per fold.\\\\\\\",\\\\n  \\\\\\\"logo\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.7887,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.8296,\\\\n    \\\\\\\"n_samples\\\\\\\": 4773,\\\\n    \\\\\\\"confusion_matrix\\\\\\\": [\\\\n      [\\\\n        948,\\\\n        44,\\\\n        3\\\\n      ],\\\\n      [\\\\n        74,\\\\n        757,\\\\n        157\\\\n      ],\\\\n      [\\\\n        54,\\\\n        647,\\\\n        2089\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"per_class\\\\\\\": {\\\\n      \\\\\\\"gen-0\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.881,\\\\n        \\\\\\\"recall\\\\\\\": 0.9528,\\\\n        \\\\\\\"f1\\\\\\\": 0.9155\\\\n      },\\\\n      \\\\\\\"gen-1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.5228,\\\\n        \\\\\\\"recall\\\\\\\": 0.7662,\\\\n        \\\\\\\"f1\\\\\\\": 0.6215\\\\n      },\\\\n      \\\\\\\"gen-2+\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.9289,\\\\n        \\\\\\\"recall\\\\\\\": 0.7487,\\\\n        \\\\\\\"f1\\\\\\\": 0.8291\\\\n      }\\\\n    },\\\\n    \\\\\\\"per_generator\\\\\\\": {\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.7683,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.8099,\\\\n        \\\\\\\"n_test\\\\\\\": 982,\\\\n        \\\\\\\"n_train_balanced\\\\\\\": 2331\\\\n      },\\\\n      \\\\\\\"pythia-1b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.8098,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.8321,\\\\n        \\\\\\\"n_test\\\\\\\": 928,\\\\n        \\\\\\\"n_train_balanced\\\\\\\": 2388\\\\n      },\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.791,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.8185,\\\\n        \\\\\\\"n_test\\\\\\\": 950,\\\\n        \\\\\\\"n_train_balanced\\\\\\\": 2355\\\\n      },\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.7802,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.8151,\\\\n        \\\\\\\"n_test\\\\\\\": 968,\\\\n        \\\\\\\"n_train_balanced\\\\\\\": 2352\\\\n      },\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.7953,\\\\n     \n…[truncated 1530 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T19:29:15.897764+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/8gen_pooled_rho.json"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T19:29:15.897917+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"pooled\\\\\\\": {\\\\n    \\\\\\\"entropy_mean\\\\\\\": -0.5978,\\\\n    \\\\\\\"entropy_std\\\\\\\": -0.1567,\\\\n    \\\\\\\"entropy_min\\\\\\\": -0.4037,\\\\n    \\\\\\\"entropy_max\\\\\\\": 0.0608,\\\\n    \\\\\\\"tail_decay\\\\\\\": -0.0413,\\\\n    \\\\\\\"ttr\\\\\\\": -0.6249,\\\\n    \\\\\\\"hapax_ratio\\\\\\\": -0.6405\\\\n  },\\\\n  \\\\\\\"pooled_balanced\\\\\\\": {\\\\n    \\\\\\\"entropy_mean\\\\\\\": -0.5954,\\\\n    \\\\\\\"entropy_std\\\\\\\": -0.1692,\\\\n    \\\\\\\"entropy_min\\\\\\\": -0.3992,\\\\n    \\\\\\\"entropy_max\\\\\\\": 0.0595,\\\\n    \\\\\\\"tail_decay\\\\\\\": -0.0422,\\\\n    \\\\\\\"ttr\\\\\\\": -0.613,\\\\n    \\\\\\\"hapax_ratio\\\\\\\": -0.6288\\\\n  },\\\\n  \\\\\\\"n_samples_pooled\\\\\\\": 37058,\\\\n  \\\\\\\"n_samples_balanced\\\\\\\": 33275,\\\\n  \\\\\\\"n_per_depth_balanced\\\\\\\": 6655,\\\\n  \\\\\\\"generators\\\\\\\": [\\\\n    \\\\\\\"pythia-2.8b\\\\\\\",\\\\n    \\\\\\\"pythia-1b\\\\\\\",\\\\n    \\\\\\\"olmo-2-1b\\\\\\\",\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\",\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\",\\\\n    \\\\\\\"qwen3-8b\\\\\\\",\\\\n    \\\\\\\"llama-3.2-3b\\\\\\\",\\\\n    \\\\\\\"mistral-7b-v0.3\\\\\\\"\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T19:29:15.898047+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/8gen_table3_v7_unified.json"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T19:29:15.898239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"methods\\\\\\\": {\\\\n    \\\\\\\"avg_logprob\\\\\\\": {\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.6734,\\\\n      \\\\\\\"binary_ci_lo\\\\\\\": 0.6672,\\\\n      \\\\\\\"binary_ci_hi\\\\\\\": 0.6788,\\\\n      \\\\\\\"multiclass_f1\\\\\\\": 0.7072,\\\\n      \\\\\\\"multiclass_ci_lo\\\\\\\": 0.7023,\\\\n      \\\\\\\"multiclass_ci_hi\\\\\\\": 0.712,\\\\n      \\\\\\\"n_test_binary\\\\\\\": 26168,\\\\n      \\\\\\\"n_test_multiclass\\\\\\\": 34131\\\\n    },\\\\n    \\\\\\\"fastdetectgpt\\\\\\\": {\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.5688,\\\\n      \\\\\\\"binary_ci_lo\\\\\\\": 0.5628,\\\\n      \\\\\\\"binary_ci_hi\\\\\\\": 0.5745,\\\\n      \\\\\\\"multiclass_f1\\\\\\\": 0.6599,\\\\n      \\\\\\\"multiclass_ci_lo\\\\\\\": 0.6552,\\\\n      \\\\\\\"multiclass_ci_hi\\\\\\\": 0.6644,\\\\n      \\\\\\\"n_test_binary\\\\\\\": 26168,\\\\n      \\\\\\\"n_test_multiclass\\\\\\\": 34131\\\\n    },\\\\n    \\\\\\\"binoculars\\\\\\\": {\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.5391,\\\\n      \\\\\\\"binary_ci_lo\\\\\\\": 0.5336,\\\\n      \\\\\\\"binary_ci_hi\\\\\\\": 0.5447,\\\\n      \\\\\\\"multiclass_f1\\\\\\\": 0.411,\\\\n      \\\\\\\"multiclass_ci_lo\\\\\\\": 0.4058,\\\\n      \\\\\\\"multiclass_ci_hi\\\\\\\": 0.4162,\\\\n      \\\\\\\"n_test_binary\\\\\\\": 26168,\\\\n      \\\\\\\"n_test_multiclass\\\\\\\": 34131\\\\n    },\\\\n    \\\\\\\"ld_score\\\\\\\": {\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.675,\\\\n      \\\\\\\"binary_ci_lo\\\\\\\": 0.6691,\\\\n      \\\\\\\"binary_ci_hi\\\\\\\": 0.6808,\\\\n      \\\\\\\"multiclass_f1\\\\\\\": 0.63,\\\\n      \\\\\\\"multiclass_ci_lo\\\\\\\": 0.6248,\\\\n      \\\\\\\"multiclass_ci_hi\\\\\\\": 0.6348,\\\\n      \\\\\\\"n_test_binary\\\\\\\": 26168,\\\\n      \\\\\\\"n_test_multiclass\\\\\\\": 34131\\\\n    },\\\\n    \\\\\\\"entropy_mean\\\\\\\": {\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.6986,\\\\n      \\\\\\\"binary_ci_lo\\\\\\\": 0.6927,\\\\n      \\\\\\\"binary_ci_hi\\\\\\\": 0.7041,\\\\n      \\\\\\\"multiclass_f1\\\\\\\": 0.5545,\\\\n      \\\\\\\"multiclass_ci_lo\\\\\\\": 0.5498,\\\\n      \\\\\\\"multiclass_ci_hi\\\\\\\": 0.5596,\\\\n      \\\\\\\"n_test_binary\\\\\\\": 26168,\\\\n      \\\\\\\"n_test_multiclass\\\\\\\": 34131\\\\n    },\\\\n    \\\\\\\"4det_ensemble\\\\\\\": {\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.7,\\\\n      \\\\\\\"binary_ci_lo\\\\\\\": 0.694,\\\\n      \\\\\\\"binary_ci_hi\\\\\\\": 0.7056,\\\\n      \\\\\\\"multiclass_f1\\\\\\\": 0\n…[truncated 2445 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T19:29:15.898391+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/8gen_length_confound.json"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T19:29:15.898690+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"length_stats_by_depth\\\\\\\": {\\\\n    \\\\\\\"gen_0\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 175.03,\\\\n      \\\\\\\"median\\\\\\\": 179.0,\\\\n      \\\\\\\"std\\\\\\\": 27.64,\\\\n      \\\\\\\"min\\\\\\\": 24,\\\\n      \\\\\\\"max\\\\\\\": 230,\\\\n      \\\\\\\"n\\\\\\\": 7963\\\\n    },\\\\n    \\\\\\\"gen_1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 167.08,\\\\n      \\\\\\\"median\\\\\\\": 179.5,\\\\n      \\\\\\\"std\\\\\\\": 46.01,\\\\n      \\\\\\\"min\\\\\\\": 1,\\\\n      \\\\\\\"max\\\\\\\": 249,\\\\n      \\\\\\\"n\\\\\\\": 7896\\\\n    },\\\\n    \\\\\\\"gen_2plus\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 165.04,\\\\n      \\\\\\\"median\\\\\\\": 180.0,\\\\n      \\\\\\\"std\\\\\\\": 55.44,\\\\n      \\\\\\\"min\\\\\\\": 1,\\\\n      \\\\\\\"max\\\\\\\": 256,\\\\n      \\\\\\\"n\\\\\\\": 21014\\\\n    }\\\\n  },\\\\n  \\\\\\\"length_stats_per_generator\\\\\\\": {\\\\n    \\\\\\\"llama-3.2-3b\\\\\\\": {\\\\n      \\\\\\\"gen_0\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 180.84,\\\\n        \\\\\\\"std\\\\\\\": 26.51,\\\\n        \\\\\\\"n\\\\\\\": 995\\\\n      },\\\\n      \\\\\\\"gen_1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 174.6,\\\\n        \\\\\\\"std\\\\\\\": 42.31,\\\\n        \\\\\\\"n\\\\\\\": 984\\\\n      },\\\\n      \\\\\\\"gen_2plus\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 174.4,\\\\n        \\\\\\\"std\\\\\\\": 50.69,\\\\n        \\\\\\\"n\\\\\\\": 2701\\\\n      }\\\\n    },\\\\n    \\\\\\\"mistral-7b-v0.3\\\\\\\": {\\\\n      \\\\\\\"gen_0\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 157.26,\\\\n        \\\\\\\"std\\\\\\\": 24.45,\\\\n        \\\\\\\"n\\\\\\\": 996\\\\n      },\\\\n      \\\\\\\"gen_1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 151.82,\\\\n        \\\\\\\"std\\\\\\\": 35.07,\\\\n        \\\\\\\"n\\\\\\\": 994\\\\n      },\\\\n      \\\\\\\"gen_2plus\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 154.13,\\\\n        \\\\\\\"std\\\\\\\": 42.0,\\\\n        \\\\\\\"n\\\\\\\": 2859\\\\n      }\\\\n    },\\\\n    \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n      \\\\\\\"gen_0\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 180.86,\\\\n        \\\\\\\"std\\\\\\\": 26.66,\\\\n        \\\\\\\"n\\\\\\\": 995\\\\n      },\\\\n      \\\\\\\"gen_1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 172.62,\\\\n        \\\\\\\"std\\\\\\\": 47.61,\\\\n        \\\\\\\"n\\\\\\\": 988\\\\n      },\\\\n      \\\\\\\"gen_2plus\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 181.37,\\\\n        \\\\\\\"std\\\\\\\": 46.27,\\\\n        \\\\\\\"n\\\\\\\": 2730\\\\n      }\\\\n    },\\\\n    \\\\\\\"pythia-1b\\\\\\\": {\\\\n    \n…[truncated 7408 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T19:29:15.898867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/8gen_feature_ablation.json"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T19:29:15.899021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"full_7features\\\\\\\": {\\\\n    \\\\\\\"mean_f1\\\\\\\": 0.7727,\\\\n    \\\\\\\"std_f1\\\\\\\": 0.0092,\\\\n    \\\\\\\"top_feature_importance\\\\\\\": {\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.3486,\\\\n      \\\\\\\"entropy_mean\\\\\\\": 0.2336,\\\\n      \\\\\\\"ttr\\\\\\\": 0.1753,\\\\n      \\\\\\\"entropy_std\\\\\\\": 0.0936,\\\\n      \\\\\\\"entropy_max\\\\\\\": 0.0742,\\\\n      \\\\\\\"entropy_min\\\\\\\": 0.0395,\\\\n      \\\\\\\"tail_decay\\\\\\\": 0.0352\\\\n    }\\\\n  },\\\\n  \\\\\\\"surface_only_2features\\\\\\\": {\\\\n    \\\\\\\"mean_f1\\\\\\\": 0.6882,\\\\n    \\\\\\\"std_f1\\\\\\\": 0.0069,\\\\n    \\\\\\\"features\\\\\\\": [\\\\n      \\\\\\\"ttr\\\\\\\",\\\\n      \\\\\\\"hapax_ratio\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"reference_only_5features\\\\\\\": {\\\\n    \\\\\\\"mean_f1\\\\\\\": 0.7134,\\\\n    \\\\\\\"std_f1\\\\\\\": 0.0087,\\\\n    \\\\\\\"features\\\\\\\": [\\\\n      \\\\\\\"entropy_mean\\\\\\\",\\\\n      \\\\\\\"entropy_std\\\\\\\",\\\\n      \\\\\\\"entropy_max\\\\\\\",\\\\n      \\\\\\\"entropy_min\\\\\\\",\\\\n      \\\\\\\"tail_decay\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"comparison\\\\\\\": {\\\\n    \\\\\\\"full_vs_surface\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.0845,\\\\n      \\\\\\\"p_value\\\\\\\": 0.9916\\\\n    },\\\\n    \\\\\\\"full_vs_reference\\\\\\\": {\\\\n      \\\\\\\"delta\\\\\\\": 0.0594,\\\\n      \\\\\\\"p_value\\\\\\\": 0.9919\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T19:29:15.899152+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/independent_seed_results.json"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T19:29:15.899276+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/efficiency_comparison.json"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T19:29:15.899414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"independent_seed_control\\\\\\\",\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"Cross-generator depth classification with non-overlapping Wikipedia seeds\\\\\\\",\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"train\\\\\\\": \\\\\\\"Pythia-2.8B (SetA)\\\\\\\",\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"OLMo-2-1B (SetB)\\\\\\\",\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.6945,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.6727,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.7167,\\\\n      \\\\\\\"n_train\\\\\\\": 996,\\\\n      \\\\\\\"n_test\\\\\\\": 1842\\\\n    },\\\\n    {\\\\n      \\\\\\\"train\\\\\\\": \\\\\\\"OLMo-2-1B (SetB)\\\\\\\",\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"Pythia-2.8B (SetA)\\\\\\\",\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.666,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.6429,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.6893,\\\\n      \\\\\\\"n_train\\\\\\\": 980,\\\\n      \\\\\\\"n_test\\\\\\\": 1838\\\\n    }\\\\n  ],\\\\n  \\\\\\\"average_binary_f1\\\\\\\": 0.6803,\\\\n  \\\\\\\"shared_seed_logo_binary_f1_ref\\\\\\\": 0.694,\\\\n  \\\\\\\"delta_vs_shared\\\\\\\": -0.0137\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T19:29:15.899539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/trend_analysis.json"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T19:29:15.899745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"benchmark_config\\\\\\\": {\\\\n    \\\\\\\"n_samples\\\\\\\": 100,\\\\n    \\\\\\\"warmup_samples\\\\\\\": 5,\\\\n    \\\\\\\"max_seq_len\\\\\\\": 512,\\\\n    \\\\\\\"avg_seq_len\\\\\\\": 236.8,\\\\n    \\\\\\\"gpu\\\\\\\": \\\\\\\"NVIDIA RTX 5090 32GB\\\\\\\",\\\\n    \\\\\\\"dtype\\\\\\\": \\\\\\\"float16\\\\\\\"\\\\n  },\\\\n  \\\\\\\"methods\\\\\\\": {\\\\n    \\\\\\\"7_feature_ensemble\\\\\\\": {\\\\n      \\\\\\\"models\\\\\\\": [\\\\n        \\\\\\\"Pythia-410M (410M params)\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"model_params_total\\\\\\\": \\\\\\\"410M\\\\\\\",\\\\n      \\\\\\\"forward_passes_per_text\\\\\\\": 1,\\\\n      \\\\\\\"gpu_memory_mb\\\\\\\": 773.1,\\\\n      \\\\\\\"inference_gpu_memory_mb\\\\\\\": 905.2,\\\\n      \\\\\\\"wall_clock_ms_per_text\\\\\\\": 9.7,\\\\n      \\\\\\\"total_time_100_texts_s\\\\\\\": 0.97,\\\\n      \\\\\\\"flops_per_text\\\\\\\": \\\\\\\"1.94e+11\\\\\\\",\\\\n      \\\\\\\"features\\\\\\\": {\\\\n        \\\\\\\"reference (GPU)\\\\\\\": [\\\\n          \\\\\\\"entropy_mean\\\\\\\",\\\\n          \\\\\\\"entropy_std\\\\\\\",\\\\n          \\\\\\\"entropy_min\\\\\\\",\\\\n          \\\\\\\"entropy_max\\\\\\\",\\\\n          \\\\\\\"tail_decay\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"surface (CPU)\\\\\\\": [\\\\n          \\\\\\\"ttr\\\\\\\",\\\\n          \\\\\\\"hapax_ratio\\\\\\\"\\\\n        ]\\\\n      }\\\\n    },\\\\n    \\\\\\\"4_det_plus_surface\\\\\\\": {\\\\n      \\\\\\\"models\\\\\\\": [\\\\n        \\\\\\\"Pythia-410M (410M params, observer)\\\\\\\",\\\\n        \\\\\\\"Pythia-1B (1B params, performer)\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"model_params_total\\\\\\\": \\\\\\\"1.41B\\\\\\\",\\\\n      \\\\\\\"forward_passes_per_text\\\\\\\": \\\\\\\"3 naive (2× 410M + 1× 1B) or 2 optimized (1× 410M + 1× 1B)\\\\\\\",\\\\n      \\\\\\\"gpu_memory_mb\\\\\\\": 2712.1,\\\\n      \\\\\\\"inference_gpu_memory_mb\\\\\\\": 2867.8,\\\\n      \\\\\\\"wall_clock_ms_per_text\\\\\\\": 22.8,\\\\n      \\\\\\\"total_time_100_texts_s\\\\\\\": 2.28,\\\\n      \\\\\\\"flops_per_text_optimized\\\\\\\": \\\\\\\"6.68e+11\\\\\\\",\\\\n      \\\\\\\"flops_per_text_naive\\\\\\\": \\\\\\\"8.62e+11\\\\\\\",\\\\n      \\\\\\\"time_breakdown_s\\\\\\\": {\\\\n        \\\\\\\"fdg_logprob_s\\\\\\\": 0.858,\\\\n        \\\\\\\"binoculars_s\\\\\\\": 1.359,\\\\n        \\\\\\\"ld_score_s\\\\\\\": 0.061,\\\\n        \\\\\\\"surface_s\\\\\\\": 0.002\\\\n      },\\\\n      \\\\\\\"detectors\\\\\\\": {\\\n…[truncated 720 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T19:29:15.900025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"depth_stats\\\\\\\": {\\\\n    \\\\\\\"0\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 2.6374087816506773,\\\\n        \\\\\\\"std\\\\\\\": 0.27717613092527676\\\\n      },\\\\n      \\\\\\\"entropy_std\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 1.6609960075598866,\\\\n        \\\\\\\"std\\\\\\\": 0.1256674729733904\\\\n      },\\\\n      \\\\\\\"entropy_min\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.005803041422187348,\\\\n        \\\\\\\"std\\\\\\\": 0.008763921722661955\\\\n      },\\\\n      \\\\\\\"entropy_max\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 7.378588253768844,\\\\n        \\\\\\\"std\\\\\\\": 0.7282325159568803\\\\n      },\\\\n      \\\\\\\"tail_decay\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -0.002292841542423794,\\\\n        \\\\\\\"std\\\\\\\": 0.00017396749401778864\\\\n      },\\\\n      \\\\\\\"ttr\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6425738249946202,\\\\n        \\\\\\\"std\\\\\\\": 0.06037126185913722\\\\n      },\\\\n      \\\\\\\"hapax_ratio\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5162570657200536,\\\\n        \\\\\\\"std\\\\\\\": 0.07531405822138115\\\\n      }\\\\n    },\\\\n    \\\\\\\"1\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 2.384188446978105,\\\\n        \\\\\\\"std\\\\\\\": 0.5987833102638476\\\\n      },\\\\n      \\\\\\\"entropy_std\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 1.7540577414423921,\\\\n        \\\\\\\"std\\\\\\\": 0.1999193360550864\\\\n      },\\\\n      \\\\\\\"entropy_min\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.017137494439181916,\\\\n        \\\\\\\"std\\\\\\\": 0.2524072618482429\\\\n      },\\\\n      \\\\\\\"entropy_max\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 7.583895506825076,\\\\n        \\\\\\\"std\\\\\\\": 0.7277124417265177\\\\n      },\\\\n      \\\\\\\"tail_decay\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -0.002249432088791551,\\\\n        \\\\\\\"std\\\\\\\": 0.00022264791276626985\\\\n      },\\\\n      \\\\\\\"ttr\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.47646453941724204,\\\\n        \\\\\\\"std\\\\\\\": 0.1512107980163041\\\\n      },\\\\n      \\\\\\\"hapax_ratio\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.32954094427005726,\\\\n        \\\\\\\"std\\\\\\\": 0.16611899615573963\\\\n      }\\\\n    },\\\\n    \\\\\\\"2\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": {\\\\n        \\\n…[truncated 6531 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T19:29:15.900176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/review_p2f_cross_ref_bias.json"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T19:29:15.900353+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"analysis\\\\\\\": \\\\\\\"P2-F Cross-reference-model bias check for Pythia-1B same-family advantage\\\\\\\",\\\\n  \\\\\\\"per_reference_logo\\\\\\\": {\\\\n    \\\\\\\"pythia-410m\\\\\\\": {\\\\n      \\\\\\\"avg_macro_f1\\\\\\\": 0.8034,\\\\n      \\\\\\\"ci\\\\\\\": [\\\\n        0.7722,\\\\n        0.8322\\\\n      ],\\\\n      \\\\\\\"per_generator_f1\\\\\\\": {\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": 0.7501,\\\\n        \\\\\\\"pythia-1b\\\\\\\": 0.8555,\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": 0.8009,\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": 0.8166,\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": 0.7939\\\\n      }\\\\n    },\\\\n    \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n      \\\\\\\"avg_macro_f1\\\\\\\": 0.8072,\\\\n      \\\\\\\"ci\\\\\\\": [\\\\n        0.7802,\\\\n        0.8309\\\\n      ],\\\\n      \\\\\\\"per_generator_f1\\\\\\\": {\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": 0.761,\\\\n        \\\\\\\"pythia-1b\\\\\\\": 0.8454,\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": 0.79,\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": 0.8282,\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": 0.8114\\\\n      }\\\\n    },\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n      \\\\\\\"avg_macro_f1\\\\\\\": 0.8158,\\\\n      \\\\\\\"ci\\\\\\\": [\\\\n        0.7862,\\\\n        0.8411\\\\n      ],\\\\n      \\\\\\\"per_generator_f1\\\\\\\": {\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": 0.7677,\\\\n        \\\\\\\"pythia-1b\\\\\\\": 0.8483,\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": 0.7895,\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": 0.8383,\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": 0.8354\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"pythia1b_bias_table\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"reference_model\\\\\\\": \\\\\\\"pythia-410m\\\\\\\",\\\\n      \\\\\\\"pythia1b_held_out_f1\\\\\\\": 0.8555,\\\\n      \\\\\\\"other_4gen_avg_f1\\\\\\\": 0.7904,\\\\n      \\\\\\\"pythia1b_delta_vs_avg\\\\\\\": 0.0651,\\\\n      \\\\\\\"pythia1b_rank_among_5\\\\\\\": 1\\\\n    },\\\\n    {\\\\n      \\\\\\\"reference_model\\\\\\\": \\\\\\\"olmo-2-1b\\\\\\\",\\\\n      \\\\\\\"pythia1b_held_out_f1\\\\\\\": 0.8454,\\\\n      \\\\\\\"other_4gen_avg_f1\\\\\\\": 0.7977,\\\\n      \\\\\\\"pythia1b_delta_vs_avg\\\\\\\": 0.0477,\\\\n      \\\\\\\"pythia1b_rank_among_5\\\\\\\": 1\\\\n    },\\\\n    {\\\\n      \\\\\\\"reference_model\\\\\\\": \\\\\\\"qwen3-0.6b\\\\\\\",\\\\n      \\\\\\\"pythia1b_held_out_f1\\\\\\\": 0.8483,\\\\n      \\\\\\\"other_4gen_avg_f1\\\\\\\"\n…[truncated 904 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T19:29:15.900497+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "find /root/gen-depth-fingerprint/results/ -name '*anova*' -o -name '*variance*' -o -name '*eta*'"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T19:29:15.900637+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gen-depth-fingerprint/results/bootstrap_seed_variance.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T19:29:15.900758+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "find /root/gen-depth-fingerprint/ -path '*instruct*' -name '*.json'"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T19:29:15.900922+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gen-depth-fingerprint/checkpoints/qlora_instruct_olmo-2-0425-1b-instruct/fold_0/checkpoint-1329/adapter_config.json\\\\n/root/gen-depth-fingerprint/checkpoints/qlora_instruct_olmo-2-0425-1b-instruct/fold_0/checkpoint-1329/trainer_state.json\\\\n/root/gen-depth-fingerprint/checkpoints/qlora_instruct_olmo-2-0425-1b-instruct/fold_1/checkpoint-886/adapter_config.json\\\\n/root/gen-depth-fingerprint/checkpoints/qlora_instruct_olmo-2-0425-1b-instruct/fold_1/checkpoint-886/trainer_state.json\\\\n/root/gen-depth-fingerprint/checkpoints/qlora_instruct_olmo-2-0425-1b-instruct/fold_2/checkpoint-1329/adapter_config.json\\\\n/root/gen-depth-fingerprint/checkpoints/qlora_instruct_olmo-2-0425-1b-instruct/fold_2/checkpoint-1329/trainer_state.json\\\\n/root/gen-depth-fingerprint/checkpoints/qlora_instruct_olmo-2-0425-1b-instruct/fold_3/checkpoint-1329/adapter_config.json\\\\n/root/gen-depth-fingerprint/checkpoints/qlora_instruct_olmo-2-0425-1b-instruct/fold_3/checkpoint-1329/trainer_state.json\\\\n/root/gen-depth-fingerprint/checkpoints/qlora_instruct_olmo-2-0425-1b-instruct/fold_4/checkpoint-1329/adapter_config.json\\\\n/root/gen-depth-fingerprint/checkpoints/qlora_instruct_olmo-2-0425-1b-instruct/fold_4/checkpoint-1329/trainer_state.json\\\\n/root/gen-depth-fingerprint/checkpoints/qlora_instruct_qwen3-1.7b-instruct/fold_0/checkpoint-994/adapter_config.json\\\\n/root/gen-depth-fingerprint/checkpoints/qlora_instruct_qwen3-1.7b-instruct/fold_0/checkpoint-994/trainer_state.json\\\\n/root/gen-depth-fingerprint/checkpoints/qlora_instruct_qwen3-1.7b-instruct/fold_1/checkpoint-1491/adapter_config.json\\\\n/root/gen-depth-fingerprint/checkpoints/qlora_instruct_qwen3-1.7b-instruct/fold_1/checkpoint-1491/trainer_state.json\\\\n/root/gen-depth-fingerprint/checkpoints/qlora_instruct_qwen3-1.7b-instruct/fold_2/checkpoint-1491/adapter_config.json\\\\n/root/gen-depth-fingerprint/checkpoints/qlora_instruct_qwen3-1.7b-instruct/fold_2/checkpoint-1491/trainer_state.jso\n…[truncated 3585 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T19:29:15.901080+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "find /root/gen-depth-fingerprint/ -name '*qlora*' -o -name '*plan012*'"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T19:29:15.901216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gen-depth-fingerprint/__pycache__/qlora_instruct.cpython-312.pyc\\\\n/root/gen-depth-fingerprint/checkpoints/plan012_pythia410m\\\\n/root/gen-depth-fingerprint/checkpoints/plan012_qwen06b\\\\n/root/gen-depth-fingerprint/checkpoints/plan012_qwen06b_v2\\\\n/root/gen-depth-fingerprint/checkpoints/qlora_instruct_olmo-2-0425-1b-instruct\\\\n/root/gen-depth-fingerprint/checkpoints/qlora_instruct_qwen3-1.7b-instruct\\\\n/root/gen-depth-fingerprint/checkpoints/qlora_instruct_olmo-2-1b\\\\n/root/gen-depth-fingerprint/checkpoints/qlora_instruct_qwen3-1.7b\\\\n/root/gen-depth-fingerprint/logs/plan012_pythia410m.log\\\\n/root/gen-depth-fingerprint/logs/plan012_qwen06b.log\\\\n/root/gen-depth-fingerprint/paper/appendix_qlora.tex\\\\n/root/gen-depth-fingerprint/results/plan012_pythia410m_results.json\\\\n/root/gen-depth-fingerprint/results/plan012_xgboost_matched.json\\\\n/root/gen-depth-fingerprint/results/plan012_qwen06b_results.json\\\\n/root/gen-depth-fingerprint/results/plan012_qwen06b_seed123_r32_results.json\\\\n/root/gen-depth-fingerprint/results/qlora_olmo_instruct.log\\\\n/root/gen-depth-fingerprint/results/qlora_qwen_instruct.log\\\\n/root/gen-depth-fingerprint/results/qlora_olmo_base.log\\\\n/root/gen-depth-fingerprint/results/qlora_qwen_base.log\\\\n/root/gen-depth-fingerprint/results/qlora_qwen3-1.7b.json\\\\n/root/gen-depth-fingerprint/results/qlora_olmo-2-1b.json\\\\n/root/gen-depth-fingerprint/results/qlora_olmo-2-0425-1b-instruct.json\\\\n/root/gen-depth-fingerprint/results/qlora_qwen3-1.7b-instruct.json\\\\n/root/gen-depth-fingerprint/scripts/plan012_xgboost_matched.py\\\\n/root/gen-depth-fingerprint/qlora_instruct.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T19:29:15.901348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "find /root/gen-depth-fingerprint/ -name '*finer*' -name '*.json'"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T19:29:15.901469+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gen-depth-fingerprint/results/8gen_finer_depth.json\\\\n/root/gen-depth-fingerprint/results/finer_ordinal_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T19:29:15.901597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/experiments/error_analysis/comprehensive_error_analysis.json"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T19:29:15.901910+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"binary\\\\\\\": {\\\\n    \\\\\\\"gen_stats\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"generator\\\\\\\": \\\\\\\"pythia-1b\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": 3560,\\\\n        \\\\\\\"fp\\\\\\\": 188,\\\\n        \\\\\\\"fn\\\\\\\": 460,\\\\n        \\\\\\\"total_err\\\\\\\": 648,\\\\n        \\\\\\\"err_rate\\\\\\\": 0.18202247191011237,\\\\n        \\\\\\\"f1\\\\\\\": 0.8667215137803373\\\\n      },\\\\n      {\\\\n        \\\\\\\"generator\\\\\\\": \\\\\\\"pythia-2.8b\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": 3614,\\\\n        \\\\\\\"fp\\\\\\\": 129,\\\\n        \\\\\\\"fn\\\\\\\": 737,\\\\n        \\\\\\\"total_err\\\\\\\": 866,\\\\n        \\\\\\\"err_rate\\\\\\\": 0.23962368566685113,\\\\n        \\\\\\\"f1\\\\\\\": 0.8134424816889272\\\\n      },\\\\n      {\\\\n        \\\\\\\"generator\\\\\\\": \\\\\\\"olmo-2-1b\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": 3718,\\\\n        \\\\\\\"fp\\\\\\\": 154,\\\\n        \\\\\\\"fn\\\\\\\": 900,\\\\n        \\\\\\\"total_err\\\\\\\": 1054,\\\\n        \\\\\\\"err_rate\\\\\\\": 0.28348574502420654,\\\\n        \\\\\\\"f1\\\\\\\": 0.7764106915570641\\\\n      },\\\\n      {\\\\n        \\\\\\\"generator\\\\\\\": \\\\\\\"qwen3-0.6b\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": 3542,\\\\n        \\\\\\\"fp\\\\\\\": 234,\\\\n        \\\\\\\"fn\\\\\\\": 511,\\\\n        \\\\\\\"total_err\\\\\\\": 745,\\\\n        \\\\\\\"err_rate\\\\\\\": 0.21033314511575382,\\\\n        \\\\\\\"f1\\\\\\\": 0.8459152016546019\\\\n      },\\\\n      {\\\\n        \\\\\\\"generator\\\\\\\": \\\\\\\"qwen3-1.7b\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": 3621,\\\\n        \\\\\\\"fp\\\\\\\": 175,\\\\n        \\\\\\\"fn\\\\\\\": 639,\\\\n        \\\\\\\"total_err\\\\\\\": 814,\\\\n        \\\\\\\"err_rate\\\\\\\": 0.2247997790665562,\\\\n        \\\\\\\"f1\\\\\\\": 0.8308395677472984\\\\n      },\\\\n      {\\\\n        \\\\\\\"generator\\\\\\\": \\\\\\\"qwen3-8b\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": 3502,\\\\n        \\\\\\\"fp\\\\\\\": 93,\\\\n        \\\\\\\"fn\\\\\\\": 1104,\\\\n        \\\\\\\"total_err\\\\\\\": 1197,\\\\n        \\\\\\\"err_rate\\\\\\\": 0.34180468303826383,\\\\n        \\\\\\\"f1\\\\\\\": 0.7033457249070632\\\\n      },\\\\n      {\\\\n        \\\\\\\"generator\\\\\\\": \\\\\\\"llama-3.2-3b\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": 3685,\\\\n        \\\\\\\"fp\\\\\\\": 82,\\\\n        \\\\\\\"fn\\\\\\\": 1030,\\\\n        \\\\\\\"total_err\\\\\\\": 1112,\\\\n        \\\\\\\"err_rate\\\\\\\": 0.301763907734057,\\\\n        \\\\\\\"f1\\\\\\\":\n…[truncated 8173 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-23T19:29:15.902120+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/plan012_pythia410m_results.json"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-23T19:29:15.902377+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"plan-012-pythia410m\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"EleutherAI/pythia-410m\\\\\\\",\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/EleutherAI/pythia-410m\\\\\\\",\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"QLoRA_4bit_seqcls\\\\\\\",\\\\n  \\\\\\\"lora_config\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 16,\\\\n    \\\\\\\"alpha\\\\\\\": 32,\\\\n    \\\\\\\"target_modules\\\\\\\": [\\\\n      \\\\\\\"query_key_value\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"max_length\\\\\\\": 512,\\\\n  \\\\\\\"batch_size\\\\\\\": 8,\\\\n  \\\\\\\"lr\\\\\\\": 0.0002,\\\\n  \\\\\\\"epochs\\\\\\\": 3,\\\\n  \\\\\\\"n_folds\\\\\\\": 5,\\\\n  \\\\\\\"n_samples\\\\\\\": 18423,\\\\n  \\\\\\\"generators\\\\\\\": [\\\\n    \\\\\\\"pythia-1b\\\\\\\",\\\\n    \\\\\\\"olmo-2-1b\\\\\\\",\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\",\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"cv_type\\\\\\\": \\\\\\\"5-fold_stratified\\\\\\\",\\\\n  \\\\\\\"macro_f1_5class\\\\\\\": 0.5564,\\\\n  \\\\\\\"macro_f1_5class_std\\\\\\\": 0.0158,\\\\n  \\\\\\\"macro_f1_3class\\\\\\\": 0.8703,\\\\n  \\\\\\\"macro_f1_3class_std\\\\\\\": 0.022,\\\\n  \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n    \\\\\\\"depth_0\\\\\\\": 0.9909,\\\\n    \\\\\\\"depth_1\\\\\\\": 0.7334,\\\\n    \\\\\\\"depth_2\\\\\\\": 0.3468,\\\\n    \\\\\\\"depth_3\\\\\\\": 0.291,\\\\n    \\\\\\\"depth_4\\\\\\\": 0.4201\\\\n  },\\\\n  \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n    \\\\\\\"gen0\\\\\\\": 0.9909,\\\\n    \\\\\\\"gen1\\\\\\\": 0.7334,\\\\n    \\\\\\\"gen2+\\\\\\\": 0.8866\\\\n  },\\\\n  \\\\\\\"fold_results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"fold\\\\\\\": 0,\\\\n      \\\\\\\"n_train\\\\\\\": 14738,\\\\n      \\\\\\\"n_val\\\\\\\": 3685,\\\\n      \\\\\\\"macro_f1_5class\\\\\\\": 0.5733,\\\\n      \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n        \\\\\\\"depth_0\\\\\\\": 0.9956,\\\\n        \\\\\\\"depth_1\\\\\\\": 0.7625,\\\\n        \\\\\\\"depth_2\\\\\\\": 0.3581,\\\\n        \\\\\\\"depth_3\\\\\\\": 0.3027,\\\\n        \\\\\\\"depth_4\\\\\\\": 0.4473\\\\n      },\\\\n      \\\\\\\"confusion_matrix_5class\\\\\\\": [\\\\n        [\\\\n          794,\\\\n          3,\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          4,\\\\n          676,\\\\n          97,\\\\n          10,\\\\n          3\\\\n        ],\\\\n        [\\\\n          0,\\\\n          205,\\\\n          253,\\\\n          133,\\\\n          156\\\\n        ],\\\n…[truncated 6732 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-23T19:29:15.902529+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/plan012_qwen06b_results.json"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-23T19:29:15.902805+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"plan-012-qwen06b\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Qwen/Qwen3-0.6B\\\\\\\",\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-0.6B-Base\\\\\\\",\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"QLoRA_4bit_seqcls\\\\\\\",\\\\n  \\\\\\\"lora_config\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 16,\\\\n    \\\\\\\"alpha\\\\\\\": 32,\\\\n    \\\\\\\"target_modules\\\\\\\": [\\\\n      \\\\\\\"q_proj\\\\\\\",\\\\n      \\\\\\\"v_proj\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"max_length\\\\\\\": 512,\\\\n  \\\\\\\"batch_size\\\\\\\": 8,\\\\n  \\\\\\\"lr\\\\\\\": 0.0002,\\\\n  \\\\\\\"epochs\\\\\\\": 3,\\\\n  \\\\\\\"n_folds\\\\\\\": 5,\\\\n  \\\\\\\"n_samples\\\\\\\": 18423,\\\\n  \\\\\\\"generators\\\\\\\": [\\\\n    \\\\\\\"pythia-1b\\\\\\\",\\\\n    \\\\\\\"olmo-2-1b\\\\\\\",\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\",\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"cv_type\\\\\\\": \\\\\\\"5-fold_stratified\\\\\\\",\\\\n  \\\\\\\"macro_f1_5class\\\\\\\": 0.5828,\\\\n  \\\\\\\"macro_f1_5class_std\\\\\\\": 0.01,\\\\n  \\\\\\\"macro_f1_3class\\\\\\\": 0.9052,\\\\n  \\\\\\\"macro_f1_3class_std\\\\\\\": 0.0032,\\\\n  \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n    \\\\\\\"depth_0\\\\\\\": 0.9991,\\\\n    \\\\\\\"depth_1\\\\\\\": 0.7963,\\\\n    \\\\\\\"depth_2\\\\\\\": 0.4128,\\\\n    \\\\\\\"depth_3\\\\\\\": 0.2594,\\\\n    \\\\\\\"depth_4\\\\\\\": 0.4465\\\\n  },\\\\n  \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n    \\\\\\\"gen0\\\\\\\": 0.9991,\\\\n    \\\\\\\"gen1\\\\\\\": 0.7963,\\\\n    \\\\\\\"gen2+\\\\\\\": 0.9202\\\\n  },\\\\n  \\\\\\\"fold_results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"fold\\\\\\\": 0,\\\\n      \\\\\\\"n_train\\\\\\\": 14738,\\\\n      \\\\\\\"n_val\\\\\\\": 3685,\\\\n      \\\\\\\"macro_f1_5class\\\\\\\": 0.5911,\\\\n      \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n        \\\\\\\"depth_0\\\\\\\": 0.9981,\\\\n        \\\\\\\"depth_1\\\\\\\": 0.798,\\\\n        \\\\\\\"depth_2\\\\\\\": 0.4259,\\\\n        \\\\\\\"depth_3\\\\\\\": 0.2668,\\\\n        \\\\\\\"depth_4\\\\\\\": 0.4667\\\\n      },\\\\n      \\\\\\\"confusion_matrix_5class\\\\\\\": [\\\\n        [\\\\n          797,\\\\n          0,\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          3,\\\\n          654,\\\\n          119,\\\\n          12,\\\\n          2\\\\n        ],\\\\n        [\\\\n          0,\\\\n          132,\\\\n          313,\\\\n          141,\\\\n          161\\\\n        ],\\\n…[truncated 6710 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-23T19:29:15.902959+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/8gen_finer_depth.json"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-23T19:29:15.903123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"5class\\\\\\\": {\\\\n    \\\\\\\"logo_avg_f1\\\\\\\": 0.4878,\\\\n    \\\\\\\"ci95\\\\\\\": [\\\\n      0.4825,\\\\n      0.4912\\\\n    ],\\\\n    \\\\\\\"per_gen\\\\\\\": {\\\\n      \\\\\\\"llama-3.2-3b\\\\\\\": 0.4926,\\\\n      \\\\\\\"mistral-7b-v0.3\\\\\\\": 0.3934,\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": 0.5046,\\\\n      \\\\\\\"pythia-1b\\\\\\\": 0.5341,\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": 0.5318,\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": 0.4954,\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": 0.5047,\\\\n      \\\\\\\"qwen3-8b\\\\\\\": 0.4456\\\\n    },\\\\n    \\\\\\\"per_class_f1\\\\\\\": {\\\\n      \\\\\\\"gen0\\\\\\\": 0.9173,\\\\n      \\\\\\\"gen1\\\\\\\": 0.5931,\\\\n      \\\\\\\"gen2\\\\\\\": 0.2395,\\\\n      \\\\\\\"gen3\\\\\\\": 0.2337,\\\\n      \\\\\\\"gen4\\\\\\\": 0.4506\\\\n    },\\\\n    \\\\\\\"confusion_matrix_avg\\\\\\\": [\\\\n      [\\\\n        0.98,\\\\n        0.01,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        0.08,\\\\n        0.7,\\\\n        0.14,\\\\n        0.04,\\\\n        0.03\\\\n      ],\\\\n      [\\\\n        0.04,\\\\n        0.37,\\\\n        0.19,\\\\n        0.15,\\\\n        0.25\\\\n      ],\\\\n      [\\\\n        0.03,\\\\n        0.2,\\\\n        0.16,\\\\n        0.18,\\\\n        0.43\\\\n      ],\\\\n      [\\\\n        0.02,\\\\n        0.14,\\\\n        0.13,\\\\n        0.19,\\\\n        0.52\\\\n      ]\\\\n    ]\\\\n  },\\\\n  \\\\\\\"3class_control\\\\\\\": {\\\\n    \\\\\\\"logo_avg_f1\\\\\\\": 0.7698,\\\\n    \\\\\\\"ci95\\\\\\\": [\\\\n      0.7636,\\\\n      0.7715\\\\n    ]\\\\n  },\\\\n  \\\\\\\"delta_5class_vs_3class\\\\\\\": -0.282,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"n_generators\\\\\\\": 8,\\\\n    \\\\\\\"n_features\\\\\\\": 7,\\\\n    \\\\\\\"features\\\\\\\": [\\\\n      \\\\\\\"entropy_mean\\\\\\\",\\\\n      \\\\\\\"entropy_std\\\\\\\",\\\\n      \\\\\\\"entropy_min\\\\\\\",\\\\n      \\\\\\\"entropy_max\\\\\\\",\\\\n      \\\\\\\"tail_decay\\\\\\\",\\\\n      \\\\\\\"ttr\\\\\\\",\\\\n      \\\\\\\"hapax_ratio\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"xgb_params\\\\\\\": {\\\\n      \\\\\\\"n_estimators\\\\\\\": 200,\\\\n      \\\\\\\"max_depth\\\\\\\": 6,\\\\n      \\\\\\\"learning_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"random_state\\\\\\\": 42,\\\\n      \\\\\\\"eval_metric\\\\\\\": \\\\\\\"mlogloss\\\\\\\"\\\\n    },\\\\n    \\\\\\\"bootstrap_B\\\\\\\": 1000,\\\\n    \\\\\\\"downsampling\\\\\n…[truncated 155 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-23T19:29:15.903273+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/instruct_analysis_summary.json"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-23T19:29:15.903547+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"Qwen3-1.7B\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-1.7B\\\\\\\",\\\\n    \\\\\\\"base\\\\\\\": {\\\\n      \\\\\\\"n_records\\\\\\\": 4617,\\\\n      \\\\\\\"spearman\\\\\\\": {\\\\n        \\\\\\\"entropy_mean\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": -0.6022,\\\\n          \\\\\\\"p\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"entropy_std\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": -0.1882,\\\\n          \\\\\\\"p\\\\\\\": 4.4337822892986996e-38\\\\n        },\\\\n        \\\\\\\"entropy_min\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": -0.4062,\\\\n          \\\\\\\"p\\\\\\\": 5.9780106192058154e-183\\\\n        },\\\\n        \\\\\\\"entropy_max\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.0884,\\\\n          \\\\\\\"p\\\\\\\": 1.7650691817287978e-09\\\\n        },\\\\n        \\\\\\\"tail_decay\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": -0.0698,\\\\n          \\\\\\\"p\\\\\\\": 2.0564506021102645e-06\\\\n        },\\\\n        \\\\\\\"ttr\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": -0.6523,\\\\n          \\\\\\\"p\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"hapax_ratio\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": -0.6696,\\\\n          \\\\\\\"p\\\\\\\": 0.0\\\\n        }\\\\n      },\\\\n      \\\\\\\"cohens_d\\\\\\\": {\\\\n        \\\\\\\"entropy_mean\\\\\\\": 1.115,\\\\n        \\\\\\\"entropy_std\\\\\\\": 0.5155,\\\\n        \\\\\\\"entropy_min\\\\\\\": -0.0491,\\\\n        \\\\\\\"entropy_max\\\\\\\": -0.0198,\\\\n        \\\\\\\"tail_decay\\\\\\\": 0.0879,\\\\n        \\\\\\\"ttr\\\\\\\": 0.9285,\\\\n        \\\\\\\"hapax_ratio\\\\\\\": 0.8301\\\\n      },\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.8614,\\\\n      \\\\\\\"binary_ci95\\\\\\\": [\\\\n        0.8516,\\\\n        0.871\\\\n      ],\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.769,\\\\n      \\\\\\\"3class_ci95\\\\\\\": [\\\\n        0.756,\\\\n        0.7822\\\\n      ]\\\\n    },\\\\n    \\\\\\\"instruct\\\\\\\": {\\\\n      \\\\\\\"n_records\\\\\\\": 4963,\\\\n      \\\\\\\"spearman\\\\\\\": {\\\\n        \\\\\\\"entropy_mean\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.4779,\\\\n          \\\\\\\"p\\\\\\\": 1.2160434288400172e-281\\\\n        },\\\\n        \\\\\\\"entropy_std\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.3009,\\\\n          \\\\\\\"p\\\\\\\": 2.3066700449424215e-104\\\\n        },\\\\n        \\\\\\\"entropy_min\\\\\\\": {\\\\n          \\\\\\\"rho\\\\\\\": 0.337,\\\\n          \\\\\\\"p\\\\\\\": 4.89\n…[truncated 8161 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-23T19:29:15.903726+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/bootstrap_seed_variance.json"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-23T19:29:15.903887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"seeds\\\\\\\": [\\\\n    42,\\\\n    123,\\\\n    456,\\\\n    789,\\\\n    1024\\\\n  ],\\\\n  \\\\\\\"binary_f1\\\\\\\": [\\\\n    0.7014,\\\\n    0.7017,\\\\n    0.6992,\\\\n    0.7005,\\\\n    0.7001\\\\n  ],\\\\n  \\\\\\\"mean\\\\\\\": 0.7006,\\\\n  \\\\\\\"std\\\\\\\": 0.0009,\\\\n  \\\\\\\"per_generator_mean\\\\\\\": {\\\\n    \\\\\\\"llama-3.2-3b\\\\\\\": 0.6863,\\\\n    \\\\\\\"mistral-7b-v0.3\\\\\\\": 0.5404,\\\\n    \\\\\\\"olmo-2-1b\\\\\\\": 0.6923,\\\\n    \\\\\\\"pythia-1b\\\\\\\": 0.7899,\\\\n    \\\\\\\"pythia-2.8b\\\\\\\": 0.7391,\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\": 0.7512,\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\": 0.7549,\\\\n    \\\\\\\"qwen3-8b\\\\\\\": 0.6506\\\\n  },\\\\n  \\\\\\\"per_generator_std\\\\\\\": {\\\\n    \\\\\\\"llama-3.2-3b\\\\\\\": 0.0033,\\\\n    \\\\\\\"mistral-7b-v0.3\\\\\\\": 0.0043,\\\\n    \\\\\\\"olmo-2-1b\\\\\\\": 0.0023,\\\\n    \\\\\\\"pythia-1b\\\\\\\": 0.0035,\\\\n    \\\\\\\"pythia-2.8b\\\\\\\": 0.0028,\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\": 0.0048,\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\": 0.0041,\\\\n    \\\\\\\"qwen3-8b\\\\\\\": 0.0015\\\\n  },\\\\n  \\\\\\\"per_generator_all_seeds\\\\\\\": {\\\\n    \\\\\\\"llama-3.2-3b\\\\\\\": [\\\\n      0.6845,\\\\n      0.6926,\\\\n      0.686,\\\\n      0.6834,\\\\n      0.6849\\\\n    ],\\\\n    \\\\\\\"mistral-7b-v0.3\\\\\\\": [\\\\n      0.5476,\\\\n      0.5419,\\\\n      0.5345,\\\\n      0.5392,\\\\n      0.5386\\\\n    ],\\\\n    \\\\\\\"olmo-2-1b\\\\\\\": [\\\\n      0.6946,\\\\n      0.69,\\\\n      0.6917,\\\\n      0.6952,\\\\n      0.6898\\\\n    ],\\\\n    \\\\\\\"pythia-1b\\\\\\\": [\\\\n      0.7899,\\\\n      0.7848,\\\\n      0.7887,\\\\n      0.7908,\\\\n      0.7955\\\\n    ],\\\\n    \\\\\\\"pythia-2.8b\\\\\\\": [\\\\n      0.7393,\\\\n      0.7414,\\\\n      0.7412,\\\\n      0.7396,\\\\n      0.7338\\\\n    ],\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\": [\\\\n      0.7573,\\\\n      0.7563,\\\\n      0.7453,\\\\n      0.7497,\\\\n      0.7472\\\\n    ],\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\": [\\\\n      0.7479,\\\\n      0.7554,\\\\n      0.7537,\\\\n      0.7578,\\\\n      0.7597\\\\n    ],\\\\n    \\\\\\\"qwen3-8b\\\\\\\": [\\\\n      0.6501,\\\\n      0.6511,\\\\n      0.6523,\\\\n      0.648,\\\\n      0.6514\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"\n…[truncated 1 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-23T19:29:15.904030+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/p1c_instruct_logo_f1.json"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-23T19:29:15.904193+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"7gen_logo_avg_f1\\\\\\\": 0.7498,\\\\n  \\\\\\\"7gen_binary_f1\\\\\\\": 0.768,\\\\n  \\\\\\\"per_generator\\\\\\\": {\\\\n    \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.759,\\\\n      \\\\\\\"gen0_f1\\\\\\\": 0.9328,\\\\n      \\\\\\\"gen1_f1\\\\\\\": 0.5925,\\\\n      \\\\\\\"gen2p_f1\\\\\\\": 0.7517,\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.7479\\\\n    },\\\\n    \\\\\\\"pythia-1b\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.8484,\\\\n      \\\\\\\"gen0_f1\\\\\\\": 0.9831,\\\\n      \\\\\\\"gen1_f1\\\\\\\": 0.7013,\\\\n      \\\\\\\"gen2p_f1\\\\\\\": 0.8607,\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.8615\\\\n    },\\\\n    \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.7975,\\\\n      \\\\\\\"gen0_f1\\\\\\\": 0.9687,\\\\n      \\\\\\\"gen1_f1\\\\\\\": 0.6378,\\\\n      \\\\\\\"gen2p_f1\\\\\\\": 0.786,\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.7906\\\\n    },\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.8162,\\\\n      \\\\\\\"gen0_f1\\\\\\\": 0.9679,\\\\n      \\\\\\\"gen1_f1\\\\\\\": 0.657,\\\\n      \\\\\\\"gen2p_f1\\\\\\\": 0.8238,\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.8241\\\\n    },\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.8023,\\\\n      \\\\\\\"gen0_f1\\\\\\\": 0.9312,\\\\n      \\\\\\\"gen1_f1\\\\\\\": 0.6548,\\\\n      \\\\\\\"gen2p_f1\\\\\\\": 0.821,\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.8208\\\\n    },\\\\n    \\\\\\\"qwen3-1.7b-instruct\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.5434,\\\\n      \\\\\\\"gen0_f1\\\\\\\": 0.7033,\\\\n      \\\\\\\"gen1_f1\\\\\\\": 0.3293,\\\\n      \\\\\\\"gen2p_f1\\\\\\\": 0.5976,\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.6582\\\\n    },\\\\n    \\\\\\\"qwen3-8b\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.6817,\\\\n      \\\\\\\"gen0_f1\\\\\\\": 0.8246,\\\\n      \\\\\\\"gen1_f1\\\\\\\": 0.5437,\\\\n      \\\\\\\"gen2p_f1\\\\\\\": 0.6768,\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.6729\\\\n    }\\\\n  },\\\\n  \\\\\\\"vs_base_comparison\\\\\\\": {\\\\n    \\\\\\\"instruct_held_out_f1\\\\\\\": 0.5434,\\\\n    \\\\\\\"base_held_out_f1\\\\\\\": 0.8023,\\\\n    \\\\\\\"delta\\\\\\\": -0.2589,\\\\n    \\\\\\\"reference_6gen_base_held_out_f1\\\\\\\": 0.805\\\\n  },\\\\n  \\\\\\\"note\\\\\\\": \\\\\\\"instruct depth-response direction is reversed (diversity increases with depth) vs base (decreases). XGBoost handles both directions.\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\"\n…[truncated 84 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-23T19:29:15.904335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/qlora_olmo-2-1b.json"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-23T19:29:15.904593+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"qlora_instruct_olmo-2-1b\\\\\\\",\\\\n  \\\\\\\"generator\\\\\\\": \\\\\\\"olmo-2-1b\\\\\\\",\\\\n  \\\\\\\"backbone\\\\\\\": \\\\\\\"/root/autodl-tmp/models/qwen3-0.6b/Qwen/Qwen3-0___6B-Base/\\\\\\\",\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"QLoRA_4bit_seqcls\\\\\\\",\\\\n  \\\\\\\"lora_config\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 32,\\\\n    \\\\\\\"alpha\\\\\\\": 64,\\\\n    \\\\\\\"target_modules\\\\\\\": [\\\\n      \\\\\\\"q_proj\\\\\\\",\\\\n      \\\\\\\"v_proj\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"max_length\\\\\\\": 512,\\\\n  \\\\\\\"batch_size\\\\\\\": 8,\\\\n  \\\\\\\"lr\\\\\\\": 0.0002,\\\\n  \\\\\\\"epochs\\\\\\\": 3,\\\\n  \\\\\\\"n_folds\\\\\\\": 5,\\\\n  \\\\\\\"n_samples\\\\\\\": 2379,\\\\n  \\\\\\\"cv_type\\\\\\\": \\\\\\\"5-fold_stratified_within_model\\\\\\\",\\\\n  \\\\\\\"macro_f1_5class\\\\\\\": 0.5398,\\\\n  \\\\\\\"macro_f1_5class_std\\\\\\\": 0.015,\\\\n  \\\\\\\"macro_f1_3class\\\\\\\": 0.8588,\\\\n  \\\\\\\"macro_f1_3class_std\\\\\\\": 0.0036,\\\\n  \\\\\\\"binary_f1_gen1_vs_gen2plus\\\\\\\": 0.7925,\\\\n  \\\\\\\"binary_f1_gen1_vs_gen2plus_std\\\\\\\": 0.0097,\\\\n  \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n    \\\\\\\"depth_0\\\\\\\": 0.9921,\\\\n    \\\\\\\"depth_1\\\\\\\": 0.6995,\\\\n    \\\\\\\"depth_2\\\\\\\": 0.3657,\\\\n    \\\\\\\"depth_3\\\\\\\": 0.2224,\\\\n    \\\\\\\"depth_4\\\\\\\": 0.4193\\\\n  },\\\\n  \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n    \\\\\\\"gen0\\\\\\\": 0.9921,\\\\n    \\\\\\\"gen1\\\\\\\": 0.6995,\\\\n    \\\\\\\"gen2+\\\\\\\": 0.8849\\\\n  },\\\\n  \\\\\\\"fold_results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"fold\\\\\\\": 0,\\\\n      \\\\\\\"n_train\\\\\\\": 1903,\\\\n      \\\\\\\"n_val\\\\\\\": 476,\\\\n      \\\\\\\"macro_f1_5class\\\\\\\": 0.5184,\\\\n      \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n        \\\\\\\"depth_0\\\\\\\": 0.9851,\\\\n        \\\\\\\"depth_1\\\\\\\": 0.7035,\\\\n        \\\\\\\"depth_2\\\\\\\": 0.3832,\\\\n        \\\\\\\"depth_3\\\\\\\": 0.1457,\\\\n        \\\\\\\"depth_4\\\\\\\": 0.3743\\\\n      },\\\\n      \\\\\\\"confusion_matrix_5class\\\\\\\": [\\\\n        [\\\\n          99,\\\\n          1,\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          1,\\\\n          70,\\\\n          25,\\\\n          1,\\\\n          2\\\\n        ],\\\\n        [\\\\n          0,\\\\n          19,\\\\n          41,\\\\n          15,\\\\n          20\\\\n        ],\\\\n        [\\\n…[truncated 6594 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-23T19:29:15.904759+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/qlora_qwen3-1.7b.json"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-23T19:29:15.905018+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"qlora_instruct_qwen3-1.7b\\\\\\\",\\\\n  \\\\\\\"generator\\\\\\\": \\\\\\\"qwen3-1.7b\\\\\\\",\\\\n  \\\\\\\"backbone\\\\\\\": \\\\\\\"/root/autodl-tmp/models/qwen3-0.6b/Qwen/Qwen3-0___6B-Base/\\\\\\\",\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"QLoRA_4bit_seqcls\\\\\\\",\\\\n  \\\\\\\"lora_config\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 32,\\\\n    \\\\\\\"alpha\\\\\\\": 64,\\\\n    \\\\\\\"target_modules\\\\\\\": [\\\\n      \\\\\\\"q_proj\\\\\\\",\\\\n      \\\\\\\"v_proj\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"max_length\\\\\\\": 512,\\\\n  \\\\\\\"batch_size\\\\\\\": 8,\\\\n  \\\\\\\"lr\\\\\\\": 0.0002,\\\\n  \\\\\\\"epochs\\\\\\\": 3,\\\\n  \\\\\\\"n_folds\\\\\\\": 5,\\\\n  \\\\\\\"n_samples\\\\\\\": 2291,\\\\n  \\\\\\\"cv_type\\\\\\\": \\\\\\\"5-fold_stratified_within_model\\\\\\\",\\\\n  \\\\\\\"macro_f1_5class\\\\\\\": 0.5544,\\\\n  \\\\\\\"macro_f1_5class_std\\\\\\\": 0.0068,\\\\n  \\\\\\\"macro_f1_3class\\\\\\\": 0.904,\\\\n  \\\\\\\"macro_f1_3class_std\\\\\\\": 0.0094,\\\\n  \\\\\\\"binary_f1_gen1_vs_gen2plus\\\\\\\": 0.8597,\\\\n  \\\\\\\"binary_f1_gen1_vs_gen2plus_std\\\\\\\": 0.0123,\\\\n  \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n    \\\\\\\"depth_0\\\\\\\": 0.995,\\\\n    \\\\\\\"depth_1\\\\\\\": 0.7983,\\\\n    \\\\\\\"depth_2\\\\\\\": 0.3535,\\\\n    \\\\\\\"depth_3\\\\\\\": 0.2713,\\\\n    \\\\\\\"depth_4\\\\\\\": 0.354\\\\n  },\\\\n  \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n    \\\\\\\"gen0\\\\\\\": 0.995,\\\\n    \\\\\\\"gen1\\\\\\\": 0.7983,\\\\n    \\\\\\\"gen2+\\\\\\\": 0.9186\\\\n  },\\\\n  \\\\\\\"fold_results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"fold\\\\\\\": 0,\\\\n      \\\\\\\"n_train\\\\\\\": 1832,\\\\n      \\\\\\\"n_val\\\\\\\": 459,\\\\n      \\\\\\\"macro_f1_5class\\\\\\\": 0.5531,\\\\n      \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n        \\\\\\\"depth_0\\\\\\\": 1.0,\\\\n        \\\\\\\"depth_1\\\\\\\": 0.8058,\\\\n        \\\\\\\"depth_2\\\\\\\": 0.3377,\\\\n        \\\\\\\"depth_3\\\\\\\": 0.3235,\\\\n        \\\\\\\"depth_4\\\\\\\": 0.2987\\\\n      },\\\\n      \\\\\\\"confusion_matrix_5class\\\\\\\": [\\\\n        [\\\\n          100,\\\\n          0,\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          0,\\\\n          83,\\\\n          13,\\\\n          2,\\\\n          0\\\\n        ],\\\\n        [\\\\n          0,\\\\n          18,\\\\n          26,\\\\n          30,\\\\n          20\\\\n        ],\\\\n        [\\\\n \n…[truncated 6587 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-23T19:29:15.905181+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/qlora_olmo-2-0425-1b-instruct.json"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-23T19:29:15.905430+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"qlora_instruct_olmo-2-0425-1b-instruct\\\\\\\",\\\\n  \\\\\\\"generator\\\\\\\": \\\\\\\"olmo-2-0425-1b-instruct\\\\\\\",\\\\n  \\\\\\\"backbone\\\\\\\": \\\\\\\"/root/autodl-tmp/models/qwen3-0.6b/Qwen/Qwen3-0___6B-Base/\\\\\\\",\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"QLoRA_4bit_seqcls\\\\\\\",\\\\n  \\\\\\\"lora_config\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 32,\\\\n    \\\\\\\"alpha\\\\\\\": 64,\\\\n    \\\\\\\"target_modules\\\\\\\": [\\\\n      \\\\\\\"q_proj\\\\\\\",\\\\n      \\\\\\\"v_proj\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"max_length\\\\\\\": 512,\\\\n  \\\\\\\"batch_size\\\\\\\": 8,\\\\n  \\\\\\\"lr\\\\\\\": 0.0002,\\\\n  \\\\\\\"epochs\\\\\\\": 3,\\\\n  \\\\\\\"n_folds\\\\\\\": 5,\\\\n  \\\\\\\"n_samples\\\\\\\": 4429,\\\\n  \\\\\\\"cv_type\\\\\\\": \\\\\\\"5-fold_stratified_within_model\\\\\\\",\\\\n  \\\\\\\"macro_f1_5class\\\\\\\": 0.5976,\\\\n  \\\\\\\"macro_f1_5class_std\\\\\\\": 0.0046,\\\\n  \\\\\\\"macro_f1_3class\\\\\\\": 0.8881,\\\\n  \\\\\\\"macro_f1_3class_std\\\\\\\": 0.0071,\\\\n  \\\\\\\"binary_f1_gen1_vs_gen2plus\\\\\\\": 0.8363,\\\\n  \\\\\\\"binary_f1_gen1_vs_gen2plus_std\\\\\\\": 0.0096,\\\\n  \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n    \\\\\\\"depth_0\\\\\\\": 0.99,\\\\n    \\\\\\\"depth_1\\\\\\\": 0.7662,\\\\n    \\\\\\\"depth_2\\\\\\\": 0.433,\\\\n    \\\\\\\"depth_3\\\\\\\": 0.3433,\\\\n    \\\\\\\"depth_4\\\\\\\": 0.4552\\\\n  },\\\\n  \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n    \\\\\\\"gen0\\\\\\\": 0.99,\\\\n    \\\\\\\"gen1\\\\\\\": 0.7662,\\\\n    \\\\\\\"gen2+\\\\\\\": 0.9081\\\\n  },\\\\n  \\\\\\\"fold_results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"fold\\\\\\\": 0,\\\\n      \\\\\\\"n_train\\\\\\\": 3543,\\\\n      \\\\\\\"n_val\\\\\\\": 886,\\\\n      \\\\\\\"macro_f1_5class\\\\\\\": 0.5993,\\\\n      \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n        \\\\\\\"depth_0\\\\\\\": 0.995,\\\\n        \\\\\\\"depth_1\\\\\\\": 0.7838,\\\\n        \\\\\\\"depth_2\\\\\\\": 0.4451,\\\\n        \\\\\\\"depth_3\\\\\\\": 0.3322,\\\\n        \\\\\\\"depth_4\\\\\\\": 0.4406\\\\n      },\\\\n      \\\\\\\"confusion_matrix_5class\\\\\\\": [\\\\n        [\\\\n          199,\\\\n          0,\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          2,\\\\n          165,\\\\n          23,\\\\n          1,\\\\n          2\\\\n        ],\\\\n        [\\\\n          0,\\\\n          44,\\\\n          81,\\\\n          34,\\\\n          18\\\n…[truncated 6644 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-23T19:29:15.905601+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/qlora_qwen3-1.7b-instruct.json"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-23T19:29:15.905854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"qlora_instruct_qwen3-1.7b-instruct\\\\\\\",\\\\n  \\\\\\\"generator\\\\\\\": \\\\\\\"qwen3-1.7b-instruct\\\\\\\",\\\\n  \\\\\\\"backbone\\\\\\\": \\\\\\\"/root/autodl-tmp/models/qwen3-0.6b/Qwen/Qwen3-0___6B-Base/\\\\\\\",\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"QLoRA_4bit_seqcls\\\\\\\",\\\\n  \\\\\\\"lora_config\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 32,\\\\n    \\\\\\\"alpha\\\\\\\": 64,\\\\n    \\\\\\\"target_modules\\\\\\\": [\\\\n      \\\\\\\"q_proj\\\\\\\",\\\\n      \\\\\\\"v_proj\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"max_length\\\\\\\": 512,\\\\n  \\\\\\\"batch_size\\\\\\\": 8,\\\\n  \\\\\\\"lr\\\\\\\": 0.0002,\\\\n  \\\\\\\"epochs\\\\\\\": 3,\\\\n  \\\\\\\"n_folds\\\\\\\": 5,\\\\n  \\\\\\\"n_samples\\\\\\\": 4963,\\\\n  \\\\\\\"cv_type\\\\\\\": \\\\\\\"5-fold_stratified_within_model\\\\\\\",\\\\n  \\\\\\\"macro_f1_5class\\\\\\\": 0.5514,\\\\n  \\\\\\\"macro_f1_5class_std\\\\\\\": 0.0031,\\\\n  \\\\\\\"macro_f1_3class\\\\\\\": 0.9066,\\\\n  \\\\\\\"macro_f1_3class_std\\\\\\\": 0.0082,\\\\n  \\\\\\\"binary_f1_gen1_vs_gen2plus\\\\\\\": 0.8672,\\\\n  \\\\\\\"binary_f1_gen1_vs_gen2plus_std\\\\\\\": 0.0137,\\\\n  \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n    \\\\\\\"depth_0\\\\\\\": 0.9855,\\\\n    \\\\\\\"depth_1\\\\\\\": 0.8004,\\\\n    \\\\\\\"depth_2\\\\\\\": 0.4078,\\\\n    \\\\\\\"depth_3\\\\\\\": 0.1548,\\\\n    \\\\\\\"depth_4\\\\\\\": 0.4084\\\\n  },\\\\n  \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n    \\\\\\\"gen0\\\\\\\": 0.9855,\\\\n    \\\\\\\"gen1\\\\\\\": 0.8004,\\\\n    \\\\\\\"gen2+\\\\\\\": 0.9338\\\\n  },\\\\n  \\\\\\\"fold_results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"fold\\\\\\\": 0,\\\\n      \\\\\\\"n_train\\\\\\\": 3970,\\\\n      \\\\\\\"n_val\\\\\\\": 993,\\\\n      \\\\\\\"macro_f1_5class\\\\\\\": 0.5531,\\\\n      \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n        \\\\\\\"depth_0\\\\\\\": 0.9851,\\\\n        \\\\\\\"depth_1\\\\\\\": 0.8138,\\\\n        \\\\\\\"depth_2\\\\\\\": 0.4767,\\\\n        \\\\\\\"depth_3\\\\\\\": 0.0099,\\\\n        \\\\\\\"depth_4\\\\\\\": 0.4802\\\\n      },\\\\n      \\\\\\\"confusion_matrix_5class\\\\\\\": [\\\\n        [\\\\n          199,\\\\n          1,\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          3,\\\\n          153,\\\\n          41,\\\\n          0,\\\\n          2\\\\n        ],\\\\n        [\\\\n          1,\\\\n          15,\\\\n          143,\\\\n          2,\\\\n          37\\\\n\n…[truncated 6644 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-23T19:29:15.906006+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "find /root/gen-depth-fingerprint/results/ -name '*lofo*' -o -name '*leave_one*'"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-23T19:29:15.906136+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gen-depth-fingerprint/results/lofo_ablation_results.json\\\\n/root/gen-depth-fingerprint/results/8gen_lofo_family.json\\\\n/root/gen-depth-fingerprint/results/rp_lofo_results.json\\\\n/root/gen-depth-fingerprint/results/rp_lofo_corrected.json\\\\n/root/gen-depth-fingerprint/results/rp_lofo_preliminary.json\\\\n/root/gen-depth-fingerprint/results/8gen_lofo_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-23T19:29:15.906261+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "find /root/gen-depth-fingerprint/results/ -name '*silhouette*' -o -name '*cluster*' -o -name '*pca*'"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-23T19:29:15.906381+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-23T19:29:15.906496+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-23T19:29:15.906636+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/appendix_9gen_scale.tex\ndocs/paper/appendix_ablation.tex\ndocs/paper/appendix_cross_temp.tex\ndocs/paper/appendix_dataset_stats.tex\ndocs/paper/appendix_ddr_causality.tex\ndocs/paper/appendix_downstream.tex\ndocs/paper/appendix_feature_candidates.tex\ndocs/paper/appendix_feature_correlation.tex\ndocs/paper/appendix_finer_depth.tex\ndocs/paper/appendix_generator_subsets.tex\ndocs/paper/appendix_human_edit.tex\ndocs/paper/appendix_prompt_type.tex\ndocs/paper/appendix_qualitative_examples.tex\ndocs/paper/appendix_seed_control.tex\ndocs/paper/appendix_tost.tex\ndocs/paper/appendix_tost_bootstrap.tex\ndocs/paper/ethics.tex\ndocs/paper/table1.tex\ndocs/paper/table2.tex\ndocs/paper/appendix_confusion_matrix.tex\ndocs/paper/appendix_nll_distribution.tex\ndocs/paper/appendix_length.tex\ndocs/paper/appendix_classifier.tex\ndocs/paper/appendix_instruct.tex\ndocs/paper/appendix_temperature_stability.tex\ndocs/paper/appendix_decoding_strategy.tex\ndocs/paper/appendix_cross_model_detail.tex\ndocs/paper/appendix_variance_decomposition.tex\ndocs/paper/appendix_domain.tex\ndocs/paper/related_work.tex\ndocs/paper/appendix_lofo.tex\ndocs/paper/appendix_qlora.tex\ndocs/paper/limitations.tex\ndocs/paper/appendix_convergence.tex\ndocs/paper/appendix_feature_distributions.tex\ndocs/paper/appendix_transfer.tex\ndocs/paper/per_family_ddr_table.tex\ndocs/paper/appendix_error_analysis.tex\ndocs/paper/appendix_ddr_validation.tex\ndocs/paper/table4.tex\ndocs/paper/introduction.tex\ndocs/paper/abstract.tex\ndocs/paper/results.tex\ndocs/paper/discussion.tex\ndocs/paper/method.tex\ndocs/paper/conclusion.tex\ndocs/paper/appendix_iterative_comparison.tex\ndocs/paper/appendix_ai_assistants.tex\ndocs/paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-23T19:29:15.906813+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/8gen_lofo_results.json"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-23T19:29:15.906990+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"8gen\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 37058,\\\\n  \\\\\\\"n_generators\\\\\\\": 8,\\\\n  \\\\\\\"generators\\\\\\\": [\\\\n    \\\\\\\"llama-3.2-3b\\\\\\\",\\\\n    \\\\\\\"mistral-7b-v0.3\\\\\\\",\\\\n    \\\\\\\"olmo-2-1b\\\\\\\",\\\\n    \\\\\\\"pythia-1b\\\\\\\",\\\\n    \\\\\\\"pythia-2.8b\\\\\\\",\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\",\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\",\\\\n    \\\\\\\"qwen3-8b\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"n_folds\\\\\\\": 10,\\\\n  \\\\\\\"full_baseline_f1\\\\\\\": 0.7707,\\\\n  \\\\\\\"full_baseline_std\\\\\\\": 0.0081,\\\\n  \\\\\\\"full_fold_scores\\\\\\\": [\\\\n    0.779,\\\\n    0.756,\\\\n    0.7774,\\\\n    0.7619,\\\\n    0.7743,\\\\n    0.7626,\\\\n    0.7738,\\\\n    0.7738,\\\\n    0.7662,\\\\n    0.7821\\\\n  ],\\\\n  \\\\\\\"lofo_results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"dropped\\\\\\\": \\\\\\\"entropy_max\\\\\\\",\\\\n      \\\\\\\"lofo_f1_mean\\\\\\\": 0.7522,\\\\n      \\\\\\\"lofo_f1_std\\\\\\\": 0.0079,\\\\n      \\\\\\\"delta\\\\\\\": -0.0185,\\\\n      \\\\\\\"fold_scores\\\\\\\": [\\\\n        0.7568,\\\\n        0.7336,\\\\n        0.759,\\\\n        0.7439,\\\\n        0.7539,\\\\n        0.7516,\\\\n        0.7493,\\\\n        0.7542,\\\\n        0.7569,\\\\n        0.7628\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"dropped\\\\\\\": \\\\\\\"entropy_mean\\\\\\\",\\\\n      \\\\\\\"lofo_f1_mean\\\\\\\": 0.759,\\\\n      \\\\\\\"lofo_f1_std\\\\\\\": 0.0069,\\\\n      \\\\\\\"delta\\\\\\\": -0.0117,\\\\n      \\\\\\\"fold_scores\\\\\\\": [\\\\n        0.7594,\\\\n        0.7545,\\\\n        0.766,\\\\n        0.7495,\\\\n        0.7635,\\\\n        0.7488,\\\\n        0.7533,\\\\n        0.7636,\\\\n        0.7612,\\\\n        0.7703\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"dropped\\\\\\\": \\\\\\\"entropy_std\\\\\\\",\\\\n      \\\\\\\"lofo_f1_mean\\\\\\\": 0.7634,\\\\n      \\\\\\\"lofo_f1_std\\\\\\\": 0.0062,\\\\n      \\\\\\\"delta\\\\\\\": -0.0073,\\\\n      \\\\\\\"fold_scores\\\\\\\": [\\\\n        0.7737,\\\\n        0.7528,\\\\n        0.7626,\\\\n        0.7544,\\\\n        0.7677,\\\\n        0.7601,\\\\n        0.7669,\\\\n        0.7616,\\\\n        0.764,\\\\n        0.7698\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"dropped\\\\\\\": \\\\\\\"ttr\\\\\\\",\\\\n      \\\\\\\"lofo_f1_mean\\\\\\\": 0.7635,\\\\n      \\\\\\\"lofo_f1_std\\\\\\\": 0.0088,\\\\n      \\\\\n…[truncated 1528 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-23T19:29:15.907140+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/finer_ordinal_results.json"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-23T19:29:15.907395+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"GBT_5class\\\\\\\": {\\\\n    \\\\\\\"macro_f1\\\\\\\": 0.5010378348882,\\\\n    \\\\\\\"macro_f1_95ci\\\\\\\": [\\\\n      0.4957715149134756,\\\\n      0.5061465726230152\\\\n    ],\\\\n    \\\\\\\"accuracy\\\\\\\": 0.5410294598423481,\\\\n    \\\\\\\"mae\\\\\\\": 0.6602855170910676,\\\\n    \\\\\\\"per_class_f1\\\\\\\": {\\\\n      \\\\\\\"depth_0\\\\\\\": 0.9214380825565912,\\\\n      \\\\\\\"depth_1\\\\\\\": 0.6335342077277561,\\\\n      \\\\\\\"depth_2\\\\\\\": 0.26824837020412523,\\\\n      \\\\\\\"depth_3\\\\\\\": 0.259110269758637,\\\\n      \\\\\\\"depth_4\\\\\\\": 0.42285824419389034\\\\n    },\\\\n    \\\\\\\"confusion_matrix\\\\\\\": [\\\\n      [\\\\n        5882,\\\\n        89,\\\\n        1,\\\\n        0,\\\\n        0\\\\n      ],\\\\n      [\\\\n        399,\\\\n        4468,\\\\n        747,\\\\n        175,\\\\n        129\\\\n      ],\\\\n      [\\\\n        234,\\\\n        2045,\\\\n        1255,\\\\n        828,\\\\n        1237\\\\n      ],\\\\n      [\\\\n        158,\\\\n        1002,\\\\n        968,\\\\n        1095,\\\\n        1958\\\\n      ],\\\\n      [\\\\n        122,\\\\n        583,\\\\n        787,\\\\n        1173,\\\\n        2194\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"per_generator\\\\\\\": {\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.5225877542314128,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5604252549359948,\\\\n        \\\\\\\"mae\\\\\\\": 0.5964417444131048,\\\\n        \\\\\\\"n_test\\\\\\\": 4609\\\\n      },\\\\n      \\\\\\\"pythia-1b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.5430628237584577,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5745334796926455,\\\\n        \\\\\\\"mae\\\\\\\": 0.5626783754116356,\\\\n        \\\\\\\"n_test\\\\\\\": 4555\\\\n      },\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.48444141412708125,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5240823254827074,\\\\n        \\\\\\\"mae\\\\\\\": 0.6957352005092298,\\\\n        \\\\\\\"n_test\\\\\\\": 4713\\\\n      },\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.512936841023435,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5460555310709564,\\\\n        \\\\\\\"mae\\\\\\\": 0.6557955046275893,\\\\n        \\\\\\\"n_test\\\\\\\": 4538\\\\n      },\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n       \n…[truncated 7920 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-23T19:29:15.907549+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "find /root/gen-depth-fingerprint/results/ -name '*eta*' -o -name '*variance_decomp*' -o -name '*anova*'"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-23T19:29:15.907715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-23T19:29:15.907836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "find /root/gen-depth-fingerprint/results/ -name '*silhouette*' -o -name '*pca*' -o -name '*umap*'"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-23T19:29:15.907953+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-23T19:29:15.908065+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "find /root/gen-depth-fingerprint/results/ -name '*variance*'"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-23T19:29:15.908179+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gen-depth-fingerprint/results/bootstrap_seed_variance.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-23T19:29:15.908289+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-23T19:29:15.908415+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Abstract — Depth Profiling of Recursive LLM Generation Chains\n2\t\\begin{abstract}\n3\tAs LLM outputs re-enter training corpora and seed further generation, understanding how recursive generation reshapes text distributions is critical for data provenance and corpus curation---yet existing detectors answer only the binary human-or-machine question, ignoring \\emph{generation depth}: we introduce \\emph{depth profiling} to address this gap.\n4\tWe decompose distributional drift under recursive generation into location and shape components, revealing an asymmetry we term \\emph{differential depth response} (DDR): across eight base-model generators from five families, NLL location features drift monotonically with depth (effect size $d{=}0.74$--$1.05$) while three shape features remain near-stationary ($d < 0.10$), with entropy std intermediate ($d{=}0.46$)---a ${\\geq}8{\\times}$ effect-size gap.\n5\tPrior work documents \\emph{what converges}; the central finding here is \\emph{what is approximately preserved}: shape stability complements location drift for ordinal depth grading without per-generator calibration, achieving leak-free binary F1\\,=\\,0.694 (gen-1 vs.\\ gen-2+), cross-model binary F1\\,=\\,0.830, and 3-class F1\\,=\\,0.762 under leave-one-generator-out evaluation (gen-0 seeds shared across generators; \\S\\ref{sec:generation}); an end-to-end classifier reaches 3-class F1\\,=\\,0.905 (6-gen LOGO; Appendix~\\ref{app:qlora}).\n6\tInstruction tuning compresses DDR, bounding current applicability to base models.\n7\t\\end{abstract}\n8\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-23T19:29:15.908549+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-23T19:29:15.908716+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tAn estimated 7--17\\% of recent scientific publications already contain substantial LLM-modified content \\cite{mapping_llm_science,monitoring_ai_review}. As these outputs re-enter training corpora \\cite{dolma,fineweb} and seed further generation, text accumulates at varying \\emph{generation depths}; each successive cycle reshapes distributional properties in ways that matter for data provenance, corpus auditing, and contamination monitoring in base-model pretraining corpora \\cite{ccnet,dsir} as well as model collapse analysis \\cite{curse_of_recursion,strong_model_collapse}. Understanding \\emph{how} recursive generation alters text distributions---and which properties change versus which are preserved---is therefore a prerequisite for principled corpus curation, yet current methods address only binary human-or-machine detection \\cite{detectgpt,fast_detectgpt,binoculars,ld_score}.\n5\tBase models provide the cleanest substrate to isolate depth effects from alignment-induced changes.\n6\tWe find that recursive generation produces a decomposable depth profile: distributional \\emph{location} drifts with depth while \\emph{shape} remains stable across generators, an asymmetry sufficient for cross-generator depth prediction.\n7\t\n8\tDistributional compression under recursive generation is well-documented \\cite{curious_decline,broken_telephone,markovian_chains}, yet existing analyses characterize \\emph{that} and \\emph{why} convergence occurs without decomposing what drifts from what is preserved.\n9\tWe introduce \\emph{depth profiling} (coarse ordinal classification into gen-0\\,/\\,gen-1\\,/\\,gen-2+), and decompose this compression into structurally distinct components: across eight base-model generators spanning five architectural families (0.6B--8B), the NLL distribution's central tendency (mean entropy (reference-model NLL), lexical diversity) drifts monotonically with depth while its shape (entropy extremes, tail structure) re\n…[truncated 3229 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-23T19:29:15.908856+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-23T19:29:15.909066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\vspace{-1mm}\n2\t\\section{Results}\n3\t\\label{sec:results}\n4\t\\vspace{-1mm}\n5\t\n6\t\\begin{figure}[t]\n7\t\\centering\n8\t\\includegraphics[width=\\columnwidth]{fig_transfer_heatmap.pdf}\n9\t\\caption{Cross-generator depth classification: $8{\\times}8$ transfer matrix (binary F1, gen-1 vs.\\ gen-2+). Each cell shows F1 when training on one generator (row) and testing on another (column). Mean cross-generator F1\\,=\\,0.810 [95\\% CI: 0.796, 0.822]; uniformly high off-diagonal values demonstrate that depth signal transfers robustly across five architectural families without per-generator calibration.}\n10\t\\label{fig:transfer-heatmap}\n11\t\\end{figure}\n12\t\n13\t\\subsection{Depth Classification Performance}\n14\t\\label{sec:results-classification}\n15\t\n16\tThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\n17\tThis 3-class metric is inflated by shared gen-0 seeds across generators (per-class gen-0 F1\\,$\\approx$\\,0.94; \\S\\ref{sec:generation}); we therefore report \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+, our primary conservative metric)\\,=\\,0.694 (CI [0.688, 0.700]; generator-level mean${\\pm}$SE: $0.694{\\pm}0.010$) throughout, excluding gen-0 entirely.\n18\tPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\\,=\\,0.028), with the primary difficulty at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\n19\t\n20\t\\paragraph{Cross-model generalization.}\n21\tCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B; generator-level LOGO with bootstrap CIs ($n$\\,=\\,1{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}\n22\tSingle-generator transfer (Appendix~\\ref{app:transfe\n…[truncated 12127 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-23T19:29:15.909212+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-23T19:29:15.909345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\vspace{-3mm}\n2\t\\section{Discussion}\n3\t\\label{sec:discussion}\n4\t\n5\t\\paragraph{Mechanistic interpretation.}\n6\t\\looseness=-1 DDR reflects an empirical regularity of base-model autoregressive generation: recursive inputs compress the token-level NLL distribution monotonically (Appendix~\\ref{app:nll-distribution}), shifting location features independently of the token-selection mechanism.\n7\tShape features resist this compression because they are architecturally bounded---entropy max is capped by $\\log|V|$, and tail decay reflects softmax long-tail geometry rather than input statistics---explaining their near-stationarity across generators and depths.\n8\tControlled ablations (Appendices~\\ref{app:decoding-strategy}--\\ref{app:prompt-type}) and ANOVA corroborate this: $\\eta^2_{\\text{depth}}{=}0.34$--$0.37$ for location vs.\\ $\\eta^2_{\\text{gen}}{<}0.009$ (${>}48{\\times}$; Appendix~\\ref{app:variance-decomposition}; Granger causality: Appendix~\\ref{app:ddr-causality}), indicating that generation depth is a more fundamental analytical dimension than generator architecture---recursive generation imposes a universal compression trajectory that transcends model family.\n9\tDDR is distinct from model collapse \\cite{curse_of_recursion,strong_model_collapse}---retraining erodes tail via weight updates, while DDR shifts only location---and complements concurrent iterative-generation studies (Appendix~\\ref{app:iterative-comparison}).\n10\t\n11\t\\paragraph{Failure modes and practical scope.}\n12\t\\looseness=-2 The gen-1$\\to$gen-2 boundary is the primary classification failure point (depth-2 error rate\\,=\\,48.4\\%; Appendix~\\ref{app:error-analysis}): the gen-0$\\to$gen-1 transition produces the largest distributional shift, so depth-2 texts carry insufficient accumulated drift beyond gen-1 for reliable separation.\n13\tDeeper generations ($\\geq$gen-3) show monotonically decreasing error rates ($\\leq$29.2\\%), confirming that DDR signal strengthens with chain length.\n14\tInstruction tuning compresses \n…[truncated 164 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-23T19:29:15.909484+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-23T19:29:15.909622+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\vspace{-1mm}\n2\t\\section{Conclusion}\n3\t\\label{sec:conclusion}\n4\t\\vspace{-1mm}\n5\t\n6\t\\looseness=-2 Recursive generation produces a decomposable depth response---location features drift while shape is approximately preserved---enabling cross-generator depth classification (F1\\,=\\,0.694--0.762) within the base-model scope.\n7\tCross-model chains confirm generalization across architectures (F1\\,=\\,0.830; ANOVA: depth explains ${>}48{\\times}$ more variance than generator identity).\n8\tQLoRA recovery (F1\\,=\\,0.89--0.91) suggests tractable extension to instruct models; DDR connects depth profiling to model collapse analysis and corpus auditing (${\\pm}3$--$4$\\% batch estimation; Appendix~\\ref{app:error-analysis}).\n9\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-23T19:29:15.909747+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/limitations.tex"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-23T19:29:15.909864+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\vspace{-1mm}\n2\t\\section*{Limitations}\n3\t\\label{sec:limitations}\n4\t\\vspace{-1mm}\n5\t\n6\t\\looseness=-1 All eight generators are base (pretrained) models with $\\leq$8.2B parameters; instruction-tuned variants show substantially degraded depth signal (LOGO binary F1\\,=\\,0.487; Appendix~\\ref{app:instruct}), though QLoRA partially recovers (F1\\,=\\,0.89--0.91), suggesting the signal is compressed rather than eliminated.\n7\tThe evaluation assumes English Wikipedia seeds, a fixed decoding regime ($t{=}0.7$, nucleus $p{=}0.9$), and an English-centric reference model (Pythia-410M); cross-temperature and cross-lingual transfer remain untested.\n8\tDepth resolution is bounded at three classes (gen-0\\,/\\,gen-1\\,/\\,gen-2+); finer-grained 5-class classification yields F1\\,$\\approx$\\,0.50 with deeper depths mutually indistinguishable (Appendix~\\ref{app:finer-depth}).\n9\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-23T19:29:15.910084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/8gen_lofo_family.json"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-23T19:29:15.910215+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/plan012_xgboost_matched.json"
+            }
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-23T19:29:15.910359+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"pythia_held_out\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.7774,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.6867,\\\\n    \\\\\\\"n_test\\\\\\\": 9164\\\\n  },\\\\n  \\\\\\\"olmo_held_out\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.781,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.7073,\\\\n    \\\\\\\"n_test\\\\\\\": 4713\\\\n  },\\\\n  \\\\\\\"qwen_held_out\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.7448,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.687,\\\\n    \\\\\\\"n_test\\\\\\\": 13652\\\\n  },\\\\n  \\\\\\\"llama_held_out\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.7744,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.708,\\\\n    \\\\\\\"n_test\\\\\\\": 4680\\\\n  },\\\\n  \\\\\\\"mistral_held_out\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.6815,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.6433,\\\\n    \\\\\\\"n_test\\\\\\\": 4849\\\\n  },\\\\n  \\\\\\\"average\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.7518,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.6865\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-23T19:29:15.910565+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"plan-012-xgboost-matched\\\\\\\",\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"HGBT_7features_5fold_stratified\\\\\\\",\\\\n  \\\\\\\"evaluation_protocol\\\\\\\": \\\\\\\"5-fold stratified CV, 4 generators (pythia-1b, olmo-2-1b, qwen3-0.6b, qwen3-1.7b)\\\\\\\",\\\\n  \\\\\\\"matched_to\\\\\\\": \\\\\\\"plan-012 QLoRA evaluation protocol\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 18423,\\\\n  \\\\\\\"n_folds\\\\\\\": 5,\\\\n  \\\\\\\"n_bootstrap\\\\\\\": 2000,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"features\\\\\\\": [\\\\n    \\\\\\\"entropy_mean\\\\\\\",\\\\n    \\\\\\\"entropy_std\\\\\\\",\\\\n    \\\\\\\"entropy_min\\\\\\\",\\\\n    \\\\\\\"entropy_max\\\\\\\",\\\\n    \\\\\\\"tail_decay\\\\\\\",\\\\n    \\\\\\\"ttr\\\\\\\",\\\\n    \\\\\\\"hapax_ratio\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"xgboost_5class\\\\\\\": {\\\\n    \\\\\\\"macro_f1\\\\\\\": 0.4968,\\\\n    \\\\\\\"macro_f1_std\\\\\\\": 0.0076,\\\\n    \\\\\\\"macro_f1_ci95\\\\\\\": [\\\\n      0.4908,\\\\n      0.5029\\\\n    ],\\\\n    \\\\\\\"macro_f1_boot_std\\\\\\\": 0.0031,\\\\n    \\\\\\\"weighted_f1\\\\\\\": 0.5114,\\\\n    \\\\\\\"weighted_f1_ci95\\\\\\\": [\\\\n      0.5042,\\\\n      0.5192\\\\n    ],\\\\n    \\\\\\\"accuracy\\\\\\\": 0.531,\\\\n    \\\\\\\"accuracy_ci95\\\\\\\": [\\\\n      0.524,\\\\n      0.5383\\\\n    ],\\\\n    \\\\\\\"per_class_f1\\\\\\\": {\\\\n      \\\\\\\"class_0\\\\\\\": 0.9492,\\\\n      \\\\\\\"class_1\\\\\\\": 0.6495,\\\\n      \\\\\\\"class_2\\\\\\\": 0.2665,\\\\n      \\\\\\\"class_3\\\\\\\": 0.2611,\\\\n      \\\\\\\"class_4\\\\\\\": 0.3578\\\\n    },\\\\n    \\\\\\\"fold_results\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"fold\\\\\\\": 0,\\\\n        \\\\\\\"n_train\\\\\\\": 14738,\\\\n        \\\\\\\"n_val\\\\\\\": 3685,\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.4838,\\\\n        \\\\\\\"weighted_f1\\\\\\\": 0.4988,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5227\\\\n      },\\\\n      {\\\\n        \\\\\\\"fold\\\\\\\": 1,\\\\n        \\\\\\\"n_train\\\\\\\": 14738,\\\\n        \\\\\\\"n_val\\\\\\\": 3685,\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.5058,\\\\n        \\\\\\\"weighted_f1\\\\\\\": 0.5206,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5384\\\\n      },\\\\n      {\\\\n        \\\\\\\"fold\\\\\\\": 2,\\\\n        \\\\\\\"n_train\\\\\\\": 14738,\\\\n        \\\\\\\"n_val\\\\\\\": 3685,\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.503,\\\\n        \\\\\\\"weighted_f1\\\\\\\": 0.5166,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5354\\\\n \n…[truncated 2853 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-23T19:29:15.910742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "find /root/gen-depth-fingerprint/results/ -name '*variance*' -o -name '*anova*' -o -name '*eta*' -o -name '*decomp*'"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-23T19:29:15.910869+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gen-depth-fingerprint/results/bootstrap_seed_variance.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-23T19:29:15.910983+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-18868",
+              "command": "cat /root/gen-depth-fingerprint/results/review_p1c_instruct.json"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-23T19:29:15.911166+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-1.7B-Instruct\\\\\\\",\\\\n  \\\\\\\"n_records\\\\\\\": 4963,\\\\n  \\\\\\\"depth_distribution\\\\\\\": {\\\\n    \\\\\\\"0\\\\\\\": 996,\\\\n    \\\\\\\"1\\\\\\\": 996,\\\\n    \\\\\\\"2\\\\\\\": 991,\\\\n    \\\\\\\"3\\\\\\\": 990,\\\\n    \\\\\\\"4\\\\\\\": 990\\\\n  },\\\\n  \\\\\\\"spearman_rho\\\\\\\": {\\\\n    \\\\\\\"hapax_ratio\\\\\\\": 0.4766,\\\\n    \\\\\\\"ttr\\\\\\\": 0.4801,\\\\n    \\\\\\\"entropy_mean\\\\\\\": 0.4779,\\\\n    \\\\\\\"entropy_std\\\\\\\": 0.3009,\\\\n    \\\\\\\"entropy_max\\\\\\\": 0.1874,\\\\n    \\\\\\\"entropy_min\\\\\\\": 0.337,\\\\n    \\\\\\\"tail_decay\\\\\\\": 0.1831\\\\n  },\\\\n  \\\\\\\"spearman_p\\\\\\\": {\\\\n    \\\\\\\"hapax_ratio\\\\\\\": \\\\\\\"7.29e-280\\\\\\\",\\\\n    \\\\\\\"ttr\\\\\\\": \\\\\\\"1.44e-284\\\\\\\",\\\\n    \\\\\\\"entropy_mean\\\\\\\": \\\\\\\"1.22e-281\\\\\\\",\\\\n    \\\\\\\"entropy_std\\\\\\\": \\\\\\\"2.31e-104\\\\\\\",\\\\n    \\\\\\\"entropy_max\\\\\\\": \\\\\\\"1.89e-40\\\\\\\",\\\\n    \\\\\\\"entropy_min\\\\\\\": \\\\\\\"4.90e-132\\\\\\\",\\\\n    \\\\\\\"tail_decay\\\\\\\": \\\\\\\"1.15e-38\\\\\\\"\\\\n  },\\\\n  \\\\\\\"differential_depth_response\\\\\\\": false,\\\\n  \\\\\\\"drift_check\\\\\\\": {\\\\n    \\\\\\\"hapax_ratio\\\\\\\": true,\\\\n    \\\\\\\"entropy_mean\\\\\\\": true,\\\\n    \\\\\\\"ttr\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"shape_check\\\\\\\": {\\\\n    \\\\\\\"entropy_std\\\\\\\": false,\\\\n    \\\\\\\"tail_decay\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"comparison_vs_base\\\\\\\": {\\\\n    \\\\\\\"hapax_ratio\\\\\\\": {\\\\n      \\\\\\\"instruct\\\\\\\": 0.4766,\\\\n      \\\\\\\"base\\\\\\\": -0.6696,\\\\n      \\\\\\\"delta\\\\\\\": 1.1462\\\\n    },\\\\n    \\\\\\\"ttr\\\\\\\": {\\\\n      \\\\\\\"instruct\\\\\\\": 0.4801,\\\\n      \\\\\\\"base\\\\\\\": -0.6523,\\\\n      \\\\\\\"delta\\\\\\\": 1.1324\\\\n    },\\\\n    \\\\\\\"entropy_mean\\\\\\\": {\\\\n      \\\\\\\"instruct\\\\\\\": 0.4779,\\\\n      \\\\\\\"base\\\\\\\": -0.6022,\\\\n      \\\\\\\"delta\\\\\\\": 1.0801\\\\n    },\\\\n    \\\\\\\"entropy_std\\\\\\\": {\\\\n      \\\\\\\"instruct\\\\\\\": 0.3009,\\\\n      \\\\\\\"base\\\\\\\": -0.1882,\\\\n      \\\\\\\"delta\\\\\\\": 0.4891\\\\n    },\\\\n    \\\\\\\"entropy_max\\\\\\\": {\\\\n      \\\\\\\"instruct\\\\\\\": 0.1874,\\\\n      \\\\\\\"base\\\\\\\": 0.0884,\\\\n      \\\\\\\"delta\\\\\\\": 0.099\\\\n    },\\\\n    \\\\\\\"entropy_min\\\\\\\": {\\\\n      \\\\\\\"instruct\\\\\\\": 0.337,\\\\n      \\\\\\\"base\\\\\\\": -0.4062,\\\\n      \\\\\\\"delta\\\\\\\": 0.7432\\\\n    },\\\\n    \n…[truncated 1662 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-23T19:29:15.911316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.55",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper",
+              "output_mode": "content",
+              "glob": "*.tex",
+              "-n": "True"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-23T19:29:15.911441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/appendix_feature_correlation.tex:28:Full 7-feature PCA yields PC1 (44.4\\% variance) loading on the drifting triplet (0.53--0.55) and PC2 (18.3\\% variance) capturing entropy distributional shape (entropy std vs.\\ entropy min contrast).\ndocs/paper/appendix_lofo.tex:14:ttr             & 0.784 & $-$0.55\\,pp \\\\\ndocs/paper/per_family_ddr_table.tex:16:Qwen & 3 & 0.55\\tiny{$\\pm$0.07} & 0.60\\tiny{$\\pm$0.06} & 0.62\\tiny{$\\pm$0.06} & 0.16\\tiny{$\\pm$0.08} & 0.09\\tiny{$\\pm$0.00} & 0.36\\tiny{$\\pm$0.05} & 0.08\\tiny{$\\pm$0.01} \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-23T19:29:15.911568+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.63",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper",
+              "output_mode": "content",
+              "glob": "*.tex",
+              "-n": "True"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-23T19:29:15.911773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/appendix_qlora.tex:26:On 5-class evaluation, QLoRA reaches F1\\,=\\,0.583 ($\\pm$0.010) vs.\\ 0.501 for XGBoost (+8.2\\,pp), with the largest gains at gen-1 (0.796 vs.\\ 0.634) and gen-2 (0.413 vs.\\ 0.268).\ndocs/paper/appendix_human_edit.tex:15:5\\%            & 0.650 & [0.635, 0.666] & 0.641 \\\\\ndocs/paper/appendix_feature_candidates.tex:17:CV        & 0.633 & 0.980 & $-$0.000 & 0.761 & entropy\\_mean \\\\\ndocs/paper/appendix_feature_candidates.tex:19:kurtosis  & 0.635 & 0.769 & $-$0.003 & 0.650 & entropy\\_mean \\\\\ndocs/paper/appendix_feature_candidates.tex:24:All six candidates occupy the drifting zone ($|\\rho| > 0.63$, $d > 0.77$), overlapping with entropy mean, TTR, and hapax ratio; none introduces a new axis of depth-dependent variation.\ndocs/paper/appendix_lofo.tex:13:entropy\\_mean   & 0.783 & $-$0.63\\,pp \\\\\ndocs/paper/appendix_9gen_scale.tex:23:Qwen3-8B        & Qwen    & 8.2B & 0.696 & [0.683, 0.709] & 0.647 & [0.631, 0.664] \\\\\ndocs/paper/appendix_9gen_scale.tex:24:Gemma-2-2B      & Gemma   & 2.6B & 0.628 & [0.622, 0.634] & 0.440 & [0.432, 0.449] \\\\\ndocs/paper/appendix_9gen_scale.tex:46:A clear parameter-count gradient emerges across the nine generators: three of four sub-1.7B generators achieve F1\\,$>$\\,0.81 (OLMo-2-1B at 0.773 is the exception), mid-range models (2--3B) cluster at 0.63--0.81, and large models (7B+) fall to 0.60--0.70.\ndocs/paper/appendix_instruct.tex:20:Llama-3.2-3B    & 0.742 & 0.544 & 0.849 & 0.838 & $-$0.63 & $+$0.23 & 3/7 \\\\\ndocs/paper/per_family_ddr_table.tex:17:Llama & 1 & 0.63 & 0.69 & 0.70 & 0.16 & 0.09 & 0.40 & 0.06 \\\\\ndocs/paper/per_family_ddr_table.tex:20:All 8 gen. & 8 & 0.60\\tiny{$\\pm$0.08} & 0.63\\tiny{$\\pm$0.05} & 0.65\\tiny{$\\pm$0.05} & 0.18\\tiny{$\\pm$0.08} & 0.07\\tiny{$\\pm$0.03} & 0.40\\tiny{$\\pm$0.06} & 0.08\\tiny{$\\pm$0.03} \\\\\ndocs/paper/appendix_tost.tex:38:Qwen3-0.6B  & 0.92 & 0.63 & 0.50 & 0.56 & 0.01\\,\\checkmark & 0.08\\,\\checkmark & 0.10\\,\\checkmark \\\\\ndocs/paper/appendix_domain.tex:16:Code           & 0.754 & [0.737, 0.7\n…[truncated 1421 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-23T19:29:15.911927+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.08",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper",
+              "output_mode": "content",
+              "glob": "*.tex",
+              "-n": "True"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-23T19:29:15.912069+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/appendix_ddr_validation.tex:152: & tail decay & 0.10 & 0.08 & 0.02 & 0.11 & 0.07 & 0.04 \\\\\ndocs/paper/appendix_ddr_validation.tex:192:\\multirow{3}{*}{Near-stat.} & tail decay & 0.087 & 0.099 & 0.072 \\\\\ndocs/paper/appendix_feature_correlation.tex:18:$H_{\\max}$ & 0.01 & 0.16 & $-$0.04 & \\textemdash & $-$0.08 & $-$0.13 & $-$0.15 \\\\\ndocs/paper/appendix_feature_correlation.tex:19:$\\tau$ & 0.07 & 0.26 & 0.01 & $-$0.08 & \\textemdash & 0.13 & 0.14 \\\\\ndocs/paper/appendix_instruct.tex:68:The hypothesis is partially rejected: Qwen3-1.7B-Instruct shows mixed changes (entropy max $d$: $0.51 \\to 0.08$, becoming near-stationary; entropy std $d$: $1.07 \\to 1.51$, increasing), while OLMo-Instruct loses nearly all depth signal (entropy mean $d$: $1.33 \\to 0.02$; tail decay $d$: $0.60 \\to 0.06$).\ndocs/paper/appendix_qualitative_examples.tex:44:TTR & 0.659 & 0.272 & 0.081 \\\\\ndocs/paper/per_family_ddr_table.tex:14:Pythia & 2 & 0.69\\tiny{$\\pm$0.03} & 0.65\\tiny{$\\pm$0.02} & 0.66\\tiny{$\\pm$0.01} & 0.20\\tiny{$\\pm$0.06} & 0.02\\tiny{$\\pm$0.02} & 0.49\\tiny{$\\pm$0.02} & 0.08\\tiny{$\\pm$0.02} \\\\\ndocs/paper/per_family_ddr_table.tex:16:Qwen & 3 & 0.55\\tiny{$\\pm$0.07} & 0.60\\tiny{$\\pm$0.06} & 0.62\\tiny{$\\pm$0.06} & 0.16\\tiny{$\\pm$0.08} & 0.09\\tiny{$\\pm$0.00} & 0.36\\tiny{$\\pm$0.05} & 0.08\\tiny{$\\pm$0.01} \\\\\ndocs/paper/per_family_ddr_table.tex:20:All 8 gen. & 8 & 0.60\\tiny{$\\pm$0.08} & 0.63\\tiny{$\\pm$0.05} & 0.65\\tiny{$\\pm$0.05} & 0.18\\tiny{$\\pm$0.08} & 0.07\\tiny{$\\pm$0.03} & 0.40\\tiny{$\\pm$0.06} & 0.08\\tiny{$\\pm$0.03} \\\\\ndocs/paper/appendix_tost.tex:33:Pythia-1B    & 1.40 & 0.80 & 0.65 & 0.53 & 0.21          & 0.08\\,\\checkmark & 0.02\\,\\checkmark \\\\\ndocs/paper/appendix_tost.tex:38:Qwen3-0.6B  & 0.92 & 0.63 & 0.50 & 0.56 & 0.01\\,\\checkmark & 0.08\\,\\checkmark & 0.10\\,\\checkmark \\\\\ndocs/paper/appendix_tost_bootstrap.tex:16:entropy\\_max  & 100\\% (1000/1000) & 0.062  & [0.037, 0.088] \\\\\ndocs/paper/appendix_tost_bootstrap.tex:18:tail\\_decay   & 100\\% (1000/1000) & 0.088  & [0.065, 0.111] \\\\\ndocs/\n…[truncated 1066 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-23T19:29:15.912208+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_instruct.tex"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-23T19:29:15.912375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\subsection*{Instruction-Tuned Model Results}\n2\t\n3\tTable~\\ref{tab:instruct} summarizes depth classification under instruction tuning for three model families.\n4\tAll results use within-model 5-fold CV on single-generator chains; LOGO evaluation is available for two models but uses earlier generator subsets (5--6 generators), so cross-model numbers are not directly comparable across rows.\n5\t\n6\t\\begin{table}[ht]\n7\t\\centering\n8\t\\small\n9\t\\caption{Depth classification: base vs.\\ instruction-tuned models (within-model 5-fold CV). $\\rho$: Spearman correlation of entropy mean with depth. Rev.: number of features (out of 7) whose $\\rho$ reverses sign under instruction tuning.}\n10\t\\label{tab:instruct}\n11\t\\resizebox{\\linewidth}{!}{%\n12\t\\begin{tabular}{lcc cc cc c}\n13\t\\toprule\n14\t& \\multicolumn{2}{c}{\\textbf{3-class F1}} & \\multicolumn{2}{c}{\\textbf{Binary F1}} & \\multicolumn{2}{c}{$\\boldsymbol{\\rho}$\\textbf{(ent.\\ mean)}} & \\\\\n15\t\\cmidrule(lr){2-3} \\cmidrule(lr){4-5} \\cmidrule(lr){6-7}\n16\t\\textbf{Model} & Base & Instruct & Base & Instruct & Base & Instruct & \\textbf{Rev.} \\\\\n17\t\\midrule\n18\tOLMo-2-1B       & 0.754 & 0.575 & 0.845 & 0.813 & $-$0.64 & $+$0.48 & 6/7 \\\\\n19\tQwen3-1.7B      & 0.769 & 0.732 & 0.861 & 0.875 & $-$0.60 & $+$0.48 & 6/7 \\\\\n20\tLlama-3.2-3B    & 0.742 & 0.544 & 0.849 & 0.838 & $-$0.63 & $+$0.23 & 3/7 \\\\\n21\t\\bottomrule\n22\t\\end{tabular}}\n23\t\\end{table}\n24\t\n25\tInstruction tuning degrades 3-class F1 by 3.7--19.9\\,pp across all three families, while binary F1 (gen-1 vs.\\ gen-2+) changes remain small ($|\\Delta| \\leq 3.2$\\,pp).\n26\tThe asymmetry indicates that instruction tuning primarily disrupts the gen-0/gen-1 boundary (human vs.\\ first-generation), consistent with RLHF shifting the output distribution away from human-like text.\n27\tEntropy-mean $\\rho$ reverses sign for all three models ($-0.60$--$-0.64$ base $\\rightarrow$ $+0.23$--$+0.48$ instruct), and 6 of 7 features reverse for OLMo and Qwen vs.\\ 3 of 7 for Llama.\n28\tThis pattern is consistent with instructio\n…[truncated 6081 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-23T19:29:15.912523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_qlora.tex"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-23T19:29:15.912704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tTo assess whether depth signal extends beyond handcrafted features, we fine-tune a pretrained language model end-to-end as a depth classifier using QLoRA \\cite{qlora}.\n2\t\n3\t\\paragraph{Setup.}\n4\tWe fine-tune Qwen3-0.6B-Base with LoRA rank 16, learning rate $2 \\times 10^{-4}$, and 3 epochs, framing depth estimation as 5-class sequence classification (gen-0 through gen-4).\\footnote{Evaluated on the original 6-generator subset; XGBoost 3-class F1\\,=\\,0.789. We expect 8-generator training to further improve given additional diversity; the comparison direction is preserved.}\n5\tFor 3-class evaluation, we collapse predictions into gen-0\\,/\\,gen-1\\,/\\,gen-2+ post hoc.\n6\tAll results use the same LOGO protocol as the main experiments.\n7\t\n8\t\\begin{table}[ht]\n9\t\\centering\n10\t\\small\n11\t\\caption{QLoRA end-to-end depth classification vs.\\ XGBoost on handcrafted features, under LOGO evaluation.}\n12\t\\label{tab:qlora}\n13\t\\resizebox{\\linewidth}{!}{%\n14\t\\begin{tabular}{lccc}\n15\t\\toprule\n16\t\\textbf{Method} & \\textbf{5-class F1} & \\textbf{3-class F1} & \\textbf{Per-class F1 (5-class)} \\\\\n17\t\\midrule\n18\tXGBoost (7 features) & 0.501 $\\pm$ 0.038 & 0.789 & --- \\\\\n19\tQLoRA (Qwen3-0.6B)   & 0.583 $\\pm$ 0.010 & 0.905 $\\pm$ 0.003 & 0.999\\,/\\,0.796\\,/\\,0.413\\,/\\,0.259\\,/\\,0.447 \\\\\n20\t\\bottomrule\n21\t\\end{tabular}}\n22\t\\end{table}\n23\t\n24\t\\paragraph{Results.}\n25\tQLoRA achieves 3-class LOGO F1\\,=\\,0.905 ($\\pm$0.003) under 6-generator LOGO, a +11.6\\,pp improvement over the same-subset XGBoost baseline (0.789).\n26\tOn 5-class evaluation, QLoRA reaches F1\\,=\\,0.583 ($\\pm$0.010) vs.\\ 0.501 for XGBoost (+8.2\\,pp), with the largest gains at gen-1 (0.796 vs.\\ 0.634) and gen-2 (0.413 vs.\\ 0.268).\n27\tThe gen-2/gen-3 boundary remains the primary failure mode (gen-3 F1\\,=\\,0.259), consistent with the feature-level analysis in \\S\\ref{sec:discussion}.\n28\t\n29\t\\paragraph{Hyperparameter robustness.}\n30\tA second run with LoRA rank 32 and seed 123 yields 5-class F1\\,=\\,0.587 ($\\pm$0.005) and 3-class F1\\,=\\,0.905 ($\\pm$0\n…[truncated 1244 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-23T19:29:15.912850+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_ddr_validation.tex"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-23T19:29:15.913076+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\subsection*{Data-Driven Clustering}\n2\t\n3\tTo assess the DDR partition structure and determine whether the drifting/non-drifting split is data-driven, we apply $k$-means clustering ($k \\in \\{2,3,4,5\\}$) to the seven features in standardized $(|\\rho|, d)$ space (Table~\\ref{tab:clustering}).\n4\t\n5\t\\begin{table}[ht]\n6\t\\centering\n7\t\\small\n8\t\\caption{$k$-means clustering of 7 features in $(|\\rho|, d)$ space.}\n9\t\\label{tab:clustering}\n10\t\\resizebox{\\linewidth}{!}{%\n11\t\\begin{tabular}{ccp{5.5cm}}\n12\t\\toprule\n13\t$k$ & Silhouette & Clusters \\\\\n14\t\\midrule\n15\t2 & \\textbf{0.660} & \\{$\\bar{H}$, TTR, hapax\\} $\\mid$ \\{$\\sigma_H$, $H_{\\min}$, $H_{\\max}$, tail\\} \\\\\n16\t3 & 0.532 & \\{$\\bar{H}$, TTR, hapax\\} $\\mid$ \\{$\\sigma_H$, $H_{\\max}$, tail\\} $\\mid$ \\{$H_{\\min}$\\} \\\\\n17\t4 & 0.527 & \\{$\\bar{H}$, TTR, hapax\\} $\\mid$ \\{$H_{\\max}$, tail\\} $\\mid$ \\{$\\sigma_H$\\} $\\mid$ \\{$H_{\\min}$\\} \\\\\n18\t\\bottomrule\n19\t\\end{tabular}}\n20\t\\end{table}\n21\t\n22\tThe primary drifting/non-drifting split ($k{=}2$, silhouette\\,=\\,0.660) is the strongest cluster structure.\n23\tAt $k{=}3$, entropy min forms its own cluster rather than joining the near-stationary group because its pooled $|\\rho|{=}0.40$ (driven by the gen-0/gen-1 boundary) places it far from other near-stationary features in $\\rho$ space.\n24\tThe 3/1/3 DDR partition resolves this by using the gen-1 vs.\\ gen-2+ Cohen's $d$ ($d{=}0.03$) to place entropy min in the near-stationary group, a domain-informed refinement that unsupervised clustering cannot recover from pooled statistics alone.\n25\tAt $k{=}4$ (silhouette\\,=\\,0.571), entropy std separates from the near-stationary group, consistent with its intermediate DDR classification.\n26\t\n27\t\\paragraph{Exhaustive partition enumeration.}\n28\tTo confirm that the three-vs-four split is optimal rather than incidental, we enumerate all $\\binom{7}{3}{=}35$ possible ways to assign three features to a ``drifting'' group and the remaining four to ``non-drifting,'' computing the silhouette score for each partition in\n…[truncated 13308 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-23T19:29:15.913316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "d.*leq.*0\\.08|d\\s*\\\\leq\\s*0\\.08|d\\s*≤\\s*0\\.08",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper",
+              "output_mode": "content",
+              "glob": "*.tex",
+              "-n": "True"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-23T19:29:15.913454+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-23T19:29:15.913597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "TTR.*-0\\.63|ttr.*-0\\.63|-0\\.63.*TTR|-0\\.63.*ttr",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper",
+              "output_mode": "content",
+              "glob": "*.tex",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-23T19:29:15.913734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-23T19:29:15.913853+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "entropy.std.*0\\.55|0\\.55.*entropy.std|d\\{?=\\}?0\\.55|d\\s*=\\s*0\\.55",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper",
+              "output_mode": "content",
+              "glob": "*.tex",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-23T19:29:15.913970+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/appendix_feature_correlation.tex:28:Full 7-feature PCA yields PC1 (44.4\\% variance) loading on the drifting triplet (0.53--0.55) and PC2 (18.3\\% variance) capturing entropy distributional shape (entropy std vs.\\ entropy min contrast)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-23T19:29:15.914089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "excluding.*Pythia|Pythia.*exclud",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper",
+              "output_mode": "content",
+              "glob": "*.tex",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-23T19:29:15.914202+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-23T19:29:15.914308+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_domain.tex"
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-23T19:29:15.914439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tThis pilot study evaluates whether depth signal generalizes beyond Wikipedia by constructing generation chains from three additional domains: News articles, Academic abstracts, and Code documentation.\n2\tFor each domain, we sample 200 seed texts and generate chains of depth 3 using three generators (Pythia-1B, Qwen3-1.7B, Mistral-7B).\n3\tThe same 7-feature ensemble and LOGO protocol are applied.\n4\t\n5\t\\noindent\\textbf{Important caveat:} Cross-domain generation used $t{=}1.0$, top-$p{=}1.0$, which falls outside the method's reliable operating range ($t \\leq 0.7$; Appendix~\\ref{app:sampling-sensitivity}). Domain and temperature effects are therefore confounded in the results below; the cross-domain signal may partly reflect temperature-induced distributional divergence rather than domain generalization alone.\n6\t\n7\t\\begin{table}[ht]\n8\t\\centering\n9\t\\small\n10\t\\caption{Cross-domain depth classification under LOGO evaluation (binary: gen-1 vs.\\ gen-2+). Three generators $\\times$ 200 seeds per domain. Bootstrap 95\\% CIs ($n$\\,=\\,1000).}\n11\t\\label{tab:domain}\n12\t\\begin{tabular}{lccc}\n13\t\\toprule\n14\t\\textbf{Domain} & \\textbf{Binary F1} & \\textbf{95\\% CI} & \\textbf{3-class F1} \\\\\n15\t\\midrule\n16\tCode           & 0.754 & [0.737, 0.770] & 0.634 \\\\\n17\tNews           & 0.746 & [0.726, 0.764] & 0.652 \\\\\n18\tAcademic       & 0.739 & [0.720, 0.757] & 0.622 \\\\\n19\t\\bottomrule\n20\t\\end{tabular}\n21\t\\end{table}\n22\t\n23\tAll three non-Wikipedia domains achieve binary F1 $>$ 0.73 under leave-one-generator-out evaluation, which demonstrates that depth signal is not an artifact of Wikipedia text properties.\n24\t\n25\t\\paragraph{Domain $\\times$ temperature interaction.}\n26\tCross-domain generation used $t{=}1.0$, top-$p{=}1.0$ (vs.\\ the main experiment's $t{=}0.7$, top-$p{=}0.9$).\n27\tSupplementary evaluation at $t{=}0.7$ reveals a domain $\\times$ temperature interaction: the main Wikipedia experiment favors lower temperature (depth signal degrades monotonically with rising temperature; Appendix~\\ref{app\n…[truncated 1575 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-23T19:29:15.914584+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_variance_decomposition.tex"
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-23T19:29:15.914728+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\subsection{Variance Decomposition}\n2\t\\label{app:variance-decomposition}\n3\t\n4\tTo quantify the mechanistic structure underlying DDR, we decompose each feature's variance into depth, generator, interaction, and residual components via two-way ANOVA (Type~II; Table~\\ref{tab:anova_decomposition}).\n5\t\n6\t\\begin{table}[H]\n7\t\\centering\n8\t\\caption{Two-way ANOVA variance decomposition (classical $\\eta^2$; proportions of total SS) for depth $\\times$ generator ($N$\\,=\\,37{,}058). Location features show dominant depth effects ($\\eta^2_{\\text{depth}} {=} 0.34$--$0.37$); shape features are depth-invariant ($\\eta^2_{\\text{depth}} < 0.01$). All effects $p < 10^{-6}$.}\n9\t\\label{tab:anova_decomposition}\n10\t\\small\n11\t\\begin{tabular}{@{}l cccc@{}}\n12\t\\toprule\n13\tFeature & $\\eta^2_{\\text{depth}}$ & $\\eta^2_{\\text{gen}}$ & $\\eta^2_{\\text{int}}$ & $\\eta^2_{\\text{resid}}$ \\\\\n14\t\\midrule\n15\t\\multicolumn{5}{@{}l}{\\textit{Location (drifting)}} \\\\\n16\t\\quad Ent.\\ Mean & \\textbf{0.341} & 0.022 & 0.010 & 0.627 \\\\\n17\t\\quad TTR & \\textbf{0.370} & 0.024 & 0.007 & 0.599 \\\\\n18\t\\quad Hapax Ratio & \\textbf{0.364} & 0.017 & 0.006 & 0.612 \\\\\n19\t\\addlinespace\n20\t\\multicolumn{5}{@{}l}{\\textit{Shape (near-stationary)}} \\\\\n21\t\\quad Ent.\\ Max & 0.007 & 0.002 & 0.003 & 0.988 \\\\\n22\t\\quad Ent.\\ Min & 0.002 & 0.001 & 0.001 & 0.996 \\\\\n23\t\\quad Tail Decay & 0.002 & 0.023 & 0.009 & 0.967 \\\\\n24\t\\addlinespace\n25\t\\multicolumn{5}{@{}l}{\\textit{Intermediate}} \\\\\n26\t\\quad Ent.\\ Std & 0.054 & 0.020 & 0.011 & 0.915 \\\\\n27\t\\bottomrule\n28\t\\end{tabular}\n29\t\\end{table}\n30\t\n31\tThe depth factor explains 34--37\\% of location-feature variance but $<$1\\% of shape-feature variance---a ${>}48\\times$ ratio that quantifies the DDR partition as a systematic depth$\\times$feature-type interaction rather than a post-hoc grouping.\n32\tGenerator identity contributes comparably across both groups ($\\eta^2_{\\text{gen}} {=} 0.02$), confirming that the asymmetry is specific to depth, not generator.\n33\tInteraction terms are uniformly small ($\\eta^2_\n…[truncated 582 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-23T19:29:15.914869+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_lofo.tex"
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-23T19:29:15.915013+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWe complement the permutation importance analysis (\\S\\ref{sec:results-differential}) with a leave-one-feature-out ablation. Each row drops one of the seven features and re-evaluates the full 6-gen LOGO protocol; $\\Delta$ is the change relative to the full 7-feature ensemble (F1\\,=\\,0.789).\n2\t\n3\t\\begin{table}[ht]\n4\t\\centering\n5\t\\small\n6\t\\caption{Leave-one-feature-out ablation (6-gen LOGO). Each row drops one feature and re-evaluates with the LOGO protocol. Sorted by impact magnitude.}\n7\t\\label{tab:lofo}\n8\t\\begin{tabular}{lcc}\n9\t\\toprule\n10\t\\textbf{Dropped feature} & \\textbf{LOGO F1} & $\\boldsymbol{\\Delta}$ \\textbf{vs Full} \\\\\n11\t\\midrule\n12\tentropy\\_max    & 0.774 & $-$1.50\\,pp \\\\\n13\tentropy\\_mean   & 0.783 & $-$0.63\\,pp \\\\\n14\tttr             & 0.784 & $-$0.55\\,pp \\\\\n15\thapax\\_ratio    & 0.785 & $-$0.42\\,pp \\\\\n16\ttail\\_decay     & 0.786 & $-$0.33\\,pp \\\\\n17\tentropy\\_std    & 0.786 & $-$0.29\\,pp \\\\\n18\tentropy\\_min    & 0.789 & $+$0.01\\,pp \\\\\n19\t\\midrule\n20\tFull (7 features) & 0.789 & --- \\\\\n21\t\\bottomrule\n22\t\\end{tabular}\n23\t\\end{table}\n24\t\n25\t\\paragraph{Analysis.}\n26\tEntropy\\_max causes the largest degradation when removed ($-$1.5\\,pp), despite ranking only fourth in permutation importance (split frequency 0.063). This indicates that entropy\\_max provides unique signal (capturing the most surprising token under the reference model) that is not redundant with other features.\n27\tConversely, entropy\\_min is fully redundant ($\\Delta$\\,=\\,+0.01\\,pp), consistent with its near-zero permutation importance (0.015).\n28\tSix of seven features contribute positively to the ensemble, which confirms that the 7-feature design is not over-specified.\n29\t\n30\tTo verify that feature importance generalizes beyond the original 6-generator subset, we repeat the LOFO analysis on the full 8-generator set (37,058 samples, 10-fold stratified CV). Table~\\ref{tab:lofo-8gen} confirms consistent rankings: \\texttt{entropy\\_max} remains the most impactful feature ($\\Delta=-0.019$), followed by \\textt\n…[truncated 1616 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-23T19:29:15.915155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_finer_depth.tex"
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-23T19:29:15.915298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWe evaluate finer-grained 5-class depth classification (gen-0 through gen-4) using the same 7-feature ensemble and LOGO protocol described in \\S\\ref{sec:method}.\n2\t\n3\t\\begin{table}[ht]\n4\t\\centering\n5\t\\small\n6\t\\caption{5-class LOGO evaluation. Each row holds out one generator for testing, training on the remaining five.}\n7\t\\label{tab:5class-logo}\n8\t\\resizebox{\\linewidth}{!}{%\n9\t\\begin{tabular}{lcccc}\n10\t\\toprule\n11\t\\textbf{Held-out Generator} & \\textbf{Macro F1} & \\textbf{Weighted F1} & \\textbf{Accuracy} \\\\\n12\t\\midrule\n13\tOLMo-2-1B       & 0.484 & 0.506 & 0.524 \\\\\n14\tPythia-1B        & 0.543 & 0.568 & 0.575 \\\\\n15\tPythia-2.8B      & 0.523 & 0.540 & 0.560 \\\\\n16\tQwen3-0.6B      & 0.513 & 0.521 & 0.546 \\\\\n17\tQwen3-1.7B      & 0.510 & 0.536 & 0.548 \\\\\n18\tQwen3-8B        & 0.434 & 0.455 & 0.493 \\\\\n19\t\\midrule\n20\t\\textbf{Average} & \\textbf{0.501 $\\pm$ 0.038} & \\textbf{0.521} & \\textbf{0.541} \\\\\n21\t\\bottomrule\n22\t\\end{tabular}}\n23\t\\end{table}\n24\t\n25\t\\begin{table}[ht]\n26\t\\centering\n27\t\\small\n28\t\\caption{Per-class F1 averaged across all six LOGO folds.}\n29\t\\label{tab:5class-perclass}\n30\t\\resizebox{\\linewidth}{!}{%\n31\t\\begin{tabular}{lccccc}\n32\t\\toprule\n33\t\\textbf{Metric} & \\textbf{Gen-0} & \\textbf{Gen-1} & \\textbf{Gen-2} & \\textbf{Gen-3} & \\textbf{Gen-4} \\\\\n34\t\\midrule\n35\tAvg F1      & 0.921 & 0.634 & 0.268 & 0.259 & 0.423 \\\\\n36\t\\bottomrule\n37\t\\end{tabular}}\n38\t\\end{table}\n39\t\n40\t\\paragraph{Analysis.}\n41\tMoving from 3-class (gen-0 / gen-1 / gen-2+) to 5-class classification reduces LOGO macro F1 to approximately 0.50 (six-generator subset; the 3-class baseline for this subset is comparable to the 8-generator result of 0.762 in Table~\\ref{tab:logo-results}).\n42\tThe degradation is concentrated in the middle depths: gen-2 and gen-3 achieve only 0.268 and 0.259 F1, respectively.\n43\tThe aggregated confusion matrix reveals that 36.5\\% of true gen-2 samples are misclassified as gen-1, while 37.8\\% of true gen-3 samples are predicted as gen-4.\n44\tAdjacent depths (gen-2$\\leftrightarr\n…[truncated 1912 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-23T19:29:15.915533+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_cross_model_detail.tex"
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-23T19:29:15.915700+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tThis appendix reports per-generator breakdowns for the cross-model chain evaluation described in \\S\\ref{sec:results-classification}.\n2\t\n3\t\\begin{table}[ht]\n4\t\\centering\n5\t\\footnotesize\n6\t\\caption{Cross-model chain per-class performance (generator-level leave-one-out, $N$\\,=\\,2{,}964, $n_{\\text{generators}}$\\,=\\,5: Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B). Macro F1\\,=\\,0.831 under class balancing; under natural class distribution, macro F1\\,=\\,0.789. Binary F1 (gen-1 vs.\\ gen-2+)\\,=\\,0.830 (95\\% CI [.818, .841], case-level bootstrap, $n$\\,=\\,2{,}000). Cross-model chains avoid the gen-0 seed sharing issue present in single-generator LOGO.}\n7\t\\label{tab:cross-model-perclass}\n8\t\\begin{tabular}{lcccc}\n9\t\\toprule\n10\t\\textbf{Class} & \\textbf{Prec.} & \\textbf{Rec.} & \\textbf{F1} & \\textbf{95\\% CI} \\\\\n11\t\\midrule\n12\tgen-0   & 0.921 & 0.948 & 0.935 & [.923, .946] \\\\\n13\tgen-1   & 0.737 & 0.803 & 0.768 & [.748, .788] \\\\\n14\tgen-2+  & 0.842 & 0.742 & 0.789 & [.768, .809] \\\\\n15\t\\midrule\n16\t\\textbf{Macro} & --- & --- & \\textbf{0.831} & [.817, .844] \\\\\n17\t\\bottomrule\n18\t\\end{tabular}\n19\t\\end{table}\n20\t\n21\t\\paragraph{Variance decomposition.}\n22\tA two-way ANOVA (generator $\\times$ depth) on cross-model chain features ($n{=}3{,}778$, depths 1--4) confirms that generator identity contributes negligible variance: partial $\\eta^2_{\\text{gen}} < 1\\%$ for all seven features (range 0.05\\%--0.90\\%, mean 0.37\\%), while depth accounts for 15.3\\%--29.9\\% of variance in drifting features.\n23\tThe generator$\\times$depth interaction is also $< 1\\%$.\n24\tThis confirms that the F1\\,=\\,0.830 cross-model advantage reflects depth signal rather than generator diversity accumulation: mixing generators across chain steps does not introduce a confounding generator-identity cue.\n25\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-23T19:29:15.915844+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_length.tex"
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-23T19:29:15.915989+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Appendix — Length Confound Analysis\n2\t% Data source: 8-generator LOGO corpus (37,058 samples)\n3\t\n4\tSurface diversity features (TTR, hapax ratio) mechanically depend on text length:\n5\tshorter texts yield higher type-token ratios by construction.\n6\tIf generation depth systematically shortens text, observed depth trends could be length artifacts rather than genuine distributional shifts.\n7\tWe investigate with three complementary analyses.\n8\t\n9\t\\paragraph{(a) Length--depth correlation.}\n10\tSpearman rank correlation between word count and generation depth is weak across all eight generators ($|\\rho| < 0.14$); depth does not systematically shorten or lengthen text in our corpus.\n11\t\n12\t\\paragraph{(b) Length--feature correlations.}\n13\tWhile length--depth correlation is weak, individual features show moderate length dependence:\n14\ttail\\_decay ($|\\rho| = 0.38$), hapax\\_ratio ($|\\rho| = 0.30$), and TTR ($|\\rho| = 0.29$).\n15\tReference-model features show weaker length correlations (entropy\\_mean $|\\rho| = 0.09$, entropy\\_std $|\\rho| = 0.18$).\n16\tThis motivates the length-matched evaluation below: if length mediates some depth--feature association, controlling for length will reduce classification performance.\n17\t\n18\t\\paragraph{(c) Length-matched classification.}\n19\tWe subsample the dataset so that word-count distributions are equalized across depth classes (gen-0\\,/\\,gen-1\\,/\\,gen-2+), then retrain the binary XGBoost classifier under pooled LOGO (8-fold).\n20\tLength-matched binary F1\\,=\\,0.724, down from 0.770 on the unmatched set ($\\Delta$\\,=\\,$-$0.046).\n21\tThe matched subset is smaller than the full corpus; a random-subsample control at equal $N$ (below) isolates the deconfounding effect from the sample-size reduction.\n22\tTo distinguish this from a sample-size effect, we run a random-subsample control at equal $N$ without length matching: F1\\,=\\,0.767, which confirms that the 0.046 drop reflects genuine length deconfounding rather than reduced data.\n23\t\n24\t\\paragraph{Conc\n…[truncated 568 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-23T19:29:15.916130+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_classifier.tex"
+            }
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-23T19:29:15.916336+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tTo verify that the depth signal resides in the features rather than the classifier,\n2\twe repeat the 6-generator LOGO evaluation using Logistic Regression and Random Forest\n3\tin place of XGBoost (Table~\\ref{tab:alt-classifier}).\n4\tAll other settings (the same 7 features, 3-class labels, and class-balanced downsampling) are\n5\tkept identical. For Logistic Regression we apply standard scaling to the features.\n6\t\n7\t\\begin{table}[ht]\n8\t\\centering\n9\t\\caption{LOGO macro-F1 across three classifiers. Each column shows the held-out generator F1. (6-generator LOGO; 3-class.)}\n10\t\\label{tab:alt-classifier}\n11\t\\small\n12\t\\resizebox{\\linewidth}{!}{%\n13\t\\begin{tabular}{lc cccccc}\n14\t\\toprule\n15\tClassifier & Avg F1 & OLMo-2 & Py-1B & Py-2.8B & Qw-0.6B & Qw-1.7B & Qw-8B \\\\\n16\t\\midrule\n17\tXGBoost          & 0.789 & 0.764 & 0.856 & 0.804 & 0.824 & 0.806 & 0.683 \\\\\n18\tRandom Forest    & 0.790 & 0.764 & 0.856 & 0.804 & 0.825 & 0.807 & 0.684 \\\\\n19\tLogistic Regr.   & 0.725 & 0.719 & 0.781 & 0.740 & 0.745 & 0.743 & 0.624 \\\\\n20\t\\bottomrule\n21\t\\end{tabular}}\n22\t\\end{table}\n23\t\n24\tBoth tree-based classifiers achieve LOGO F1 $\\approx 0.79$,\n25\tand even a linear model reaches $0.725$, well above the $0.33$ chance baseline for\n26\tthree classes.\n27\tThe per-generator ranking is also consistent across classifiers\n28\t(Pythia-1B easiest, Qwen3-8B hardest),\n29\tconfirming that discriminative power originates in the entropy and lexical features,\n30\tnot in classifier capacity.\n31\tOrdinal-specific methods (CORAL \\cite{coral_ordinal}, Frank-Hall \\cite{frank_hall_ordinal}) achieve comparable F1 with overlapping CIs, which confirms that 3-class granularity provides insufficient resolution for ranking-aware losses to improve over standard multiclass classification.\n32\t\n33\t\\paragraph{XGBoost hyperparameter sensitivity.}\n34\tTo verify that performance is not an artifact of hyperparameter selection, we vary \\texttt{max\\_depth} $\\in \\{3, 4, 6, 8\\}$ while keeping all other settings fixed (Table~\\ref{tab:xgb-sensiti\n…[truncated 5132 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-23T19:29:15.916498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_downstream.tex"
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-23T19:29:15.916691+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tCan depth-aware data curation improve downstream language model quality?\n2\tWe fine-tune OLMo-2-0425-1B on five data variants (3 seeds each) and evaluate perplexity on a held-out test set (Table~\\ref{tab:downstream}).\n3\t\n4\t\\begin{table}[ht]\n5\t\\centering\n6\t\\small\n7\t\\caption{Downstream fine-tuning perplexity (OLMo-2-0425-1B, mean $\\pm$ std across 3 seeds). At equal sample count, random subsampling (2.367) outperforms depth-aware curation (depth 0--1: 2.387, binary-filtered: 2.389).}\n8\t\\label{tab:downstream}\n9\t\\begin{tabular}{lrc}\n10\t\\toprule\n11\t\\textbf{Variant} & \\textbf{$n$} & \\textbf{Test PPL} \\\\\n12\t\\midrule\n13\tAll depths            & 12{,}299 & 2.335 $\\pm$ 0.000 \\\\\n14\tSize-matched (random) & 3{,}951  & 2.367 $\\pm$ 0.000 \\\\\n15\tDepth 0--1 only       & 3{,}951  & 2.387 $\\pm$ 0.001 \\\\\n16\tBinary-filtered       & 3{,}951  & 2.389 $\\pm$ 0.000 \\\\\n17\tDepth 0 only          & 797      & 2.681 $\\pm$ 0.001 \\\\\n18\t\\bottomrule\n19\t\\end{tabular}\n20\t\\end{table}\n21\t\n22\tThe results are unambiguous: data quantity dominates depth composition.\n23\tTraining on all 12{,}299 samples yields the lowest perplexity (2.335).\n24\tAt equal sample count ($n$\\,=\\,3{,}951), random subsampling (2.367) \\emph{outperforms} both depth-stratified selection (depth 0--1: 2.387) and binary detection filtering (2.389).\n25\tCross-seed variance is below 0.002 across all variants, which confirms the robustness of this null result.\n26\t\n27\tRestricting training to human-only text (depth 0, $n$\\,=\\,797) produces a sharp perplexity increase to 2.681, driven primarily by the 5$\\times$ reduction in data volume rather than depth composition per se.\n28\t\n29\t\\paragraph{Equivalence testing.}\n30\tWe apply a two one-sided $t$-test (TOST) with a $\\pm$2\\% relative margin (equivalence bounds $\\pm$0.047 on the ppl scale) to formally assess whether the depth-aware and random subsampling conditions produce practically indistinguishable perplexity.\n31\tAt equal sample count ($n$\\,=\\,3{,}951): size-matched (random) ppl\\,=\\,2.367 vs.\\ depth\n…[truncated 3468 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-23T19:29:15.916954+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集和比对完成。编制审计报告。\n\n## 数据自查报告\n\n### ✅ 已核对一致\n\n**Abstract（全部数字）**\n- `d=0.74–1.05` ← tost_equivalence: hapax |d|=0.735 (heteroscedasticity table), entropy_mean |d|=1.054 → 0.74–1.05 ✓\n- `d<0.10` ← entropy_max d=0.062, tail_decay d=0.087 → 均<0.10 ✓\n- `d=0.46` ← entropy_std d=0.4571 → 0.46 ✓\n- `≥8×` ← 0.735/0.087=8.4× ✓\n- `F1=0.694` ← 8gen_logo binary f1_observed=0.6944 → 0.694 ✓\n- `F1=0.830` ← cross_model binary_f1=0.8296 → 0.830 ✓\n- `F1=0.762` ← 8gen_logo 3class f1_observed=0.762 ✓\n- `F1=0.905` ← plan012_qwen06b macro_f1_3class=0.9052 → 0.905 ✓\n\n**Table 1（8 generators + averages，逐行核对）**\n- 所有 8 个 generator 的 Binary F1、95% CI、3-class F1 与 `8gen_logo_unfiltered.json` 完全一致 ✓\n- Average: Bin=0.694, 3class=0.762 ✓\n- LOFO (family-level)=0.686 ← `8gen_lofo_family.json` avg binary_f1=0.6865 → 0.686 ✓\n- SD=0.028, IQR=[0.692, 0.714] ← 从 per-generator binary F1 计算验证 ✓\n\n**Table 2（7 baselines，逐行核对）**\n- 全部 7 个 method 的 3-class F1、Binary F1 与 `8gen_table3_v7_unified.json` 完全一致 ✓\n- ms/text: 9.7, 22.8 ← `efficiency_comparison.json` ✓\n\n**Results §5.1**\n- N=37,058 ✓, CI [0.688, 0.700] ✓, 0.694±0.010 SE ✓\n- 0.633 (Mistral-7B) ✓, 0.724 (Pythia-2.8B) ✓\n- Cross-model binary F1=0.830, CI [.818, .841] ← cross_model_logo ✓\n- Length-matched F1=0.724 vs 0.770 ← `8gen_length_confound.json` ✓\n- Independent-seed F1=0.680 ← `independent_seed_results.json` avg=0.6803 → 0.680 ✓\n- QLoRA +11.6pp: 0.905−0.789=0.116 ✓（0.789 = 6-gen LOGO XGBoost, appendix_classifier 验证）\n\n**Results §5.2**\n- Silhouette=0.660, p=0.030 ← appendix_ddr_validation 一致 ✓\n- ρ: hapax -0.64, TTR -0.62, entropy_mean -0.60 ← `8gen_pooled_rho.json` ✓\n- F1=0.773 (10-fold) ← `8gen_feature_ablation.json` full=0.7727 → 0.773 ✓\n- Surface-only=0.688, reference-only=0.713 ← 同上 ✓\n- ~2.4× lower cost ← efficiency speedup_ratio=2.35 → ~2.4× ✓\n\n**Discussion**\n- Depth-2 error rate=48.4% ← `comprehensive_error_analysis.json` depth_2 rate=0.4842 ✓\n- ≤29.2% for gen-3 ← depth_3 rate=0.2917 → 29.2% ✓\n- QLoRA F1=0.89–0.91 ← qlora_olmo-instruct 3class=0.888, qlora_qwen-instruct 3class=0.907 → 0.89–0.91 ✓\n- Cross-domain F1=0.74–0.75 ← appendix_domain: 0.739–0.754 → 0.74–0.75 ✓\n\n**Conclusion**\n- F1=0.694–0.762 ✓, F1=0.830 ✓, QLoRA=0.89–0.91 ✓\n\n**Limitations**\n- Instruct LOGO binary F1=0.487 ← appendix_instruct line 50 内部一致\n- QLoRA=0.89–0.91 ✓\n- 5-class F1≈0.50 ← finer_ordinal GBT_5class=0.501 ✓\n\n**Appendix tables（抽查）**\n- LOFO 8-gen 全部 7 行 ← `8gen_lofo_results.json` 逐项验证 ✓\n- Instruct table（OLMo/Qwen/Llama base vs instruct）← `instruct_analysis_summary.json` 逐项验证 ✓\n- Instruct QLoRA table ← 4 个 qlora JSON 逐项验证 ✓\n- Variance decomposition table η² values ← appendix 内部一致 ✓\n- DDR validation epsilon sweep table d values ← tost_equivalence + heteroscedasticity table 一致 ✓\n- Length confound: F1=0.724, 0.770, random=0.767, Δ=0.046 ← `8gen_length_confound.json` ✓\n\n---\n\n### ⚠️ 发现的不一致\n\n**1. Discussion η²_gen 标注错误（discussion.tex:8）**\n\n论文写：`η²_depth=0.34–0.37 for location vs η²_gen<0.009 (>48×)`\n\n实际：\n- η²_depth=0.34–0.37（location, 正确）来自 variance decomposition table\n- `>48×` 的比较对象是 **shape η²_depth<0.007**（0.341/0.007=48.7×），NOT η²_gen\n- η²_gen 在 variance decomposition table 中范围 0.001–0.024，不是 <0.009\n- η²_gen ≤ 0.009 是来自 **cross-model appendix** 的不同 ANOVA（正确引用在 results.tex:22）\n- Appendix 自身正确描述了这个比较（line 31: \"34-37% location vs <1% shape\"）\n\n→ **建议修正**: 将 discussion.tex 中 `$\\eta^2_{\\text{gen}}{<}0.009$` 改为 `$\\eta^2_{\\text{depth}}{<}0.01$ for shape features`，或拆分为两个独立声明。\n\n**2. Cross-ref spread 0.013 vs 源数据 0.012（results.tex:101）**\n\n论文写：`F1 spread of only 0.013`\n源数据：avg_macro_f1 across 3 refs = 0.8034, 0.8072, 0.8158 → range = 0.0124 → 0.012\n\n→ **建议修正**: 改为 `0.012` 或保留 `0.013` 并标注为 ceiling rounding。影响很小。\n\n**3. Same-family \"up to 1.3 pp\"（results.tex:101）**\n\n论文写：`same-family proximity may inflate Pythia F1 by up to 1.3 pp`\n源数据 (`review_p2f_cross_ref_bias.json`)：\n- Pythia-1B: same-family vs cross-family delta = 0.0086 → 0.9pp\n- Pythia-2.8B: max cross-ref delta = 0.0114 → 1.1pp\n\n1.3pp 与 spread 0.013 是同一个数的不同表述（0.0124→0.013/1.3pp），但源数据实际为 0.0124=1.24pp，非 1.3pp。\n\n→ **建议修正**: 改为 `up to 1.2 pp` 或 `up to $\\sim$1 pp`\n\n---\n\n### ❌ 待人工确认\n\n**1. QLoRA 实验描述 \"6-gen LOGO\" vs 源数据 4-gen 5-fold CV**\n\nappendix_qlora.tex 和 appendix_classifier.tex 均声称 \"6-generator LOGO\"，但 `plan012_qwen06b_results.json` 明确使用 4 generators (pythia-1b, olmo-2-1b, qwen3-0.6b, qwen3-1.7b) + 5-fold stratified CV。F1=0.905 值一致（0.9052→0.905），但**实验协议描述**需确认：是否有独立的 6-gen LOGO 结果文件，还是附录描述有误。\n\n**2. XGBoost baseline 0.789 来源**\n\nappendix_qlora 和 appendix_lofo 均引用 \"6-gen LOGO XGBoost 3-class F1=0.789\"。但：\n- `finer_ordinal_results.json` GBT_3class = 0.7836（6-gen LOGO, 但值 = 0.784 ≠ 0.789）\n- `plan012_xgboost_matched.json` = 0.8048（4-gen 5-fold CV）\n- appendix_classifier.tex XGBoost avg = 0.789\n\n最可能来源是 appendix_classifier 中的 6-gen LOGO 实验（未找到对应 JSON）。建议确认 `rp_lofo_corrected.json` 或 `lofo_ablation_results.json` 是否包含此值。\n\n**3. Instruct LOGO binary F1=0.487 来源**\n\nappendix_instruct.tex line 50 声称 \"Three-generator instruct LOGO yields binary F1=0.487\"。未在已检查的 JSON 文件中找到此数值。可能在 `exp052_instruct_eval.json` 或其他未读取的 instruct 结果文件中。\n\n**4. ±3–4% batch estimation**\n\nConclusion 引用 \"±3–4% batch estimation; Appendix error-analysis\"。未在 `comprehensive_error_analysis.json` 截断输出中找到。需完整读取该文件确认。\n\n**5. η² >48× 边界极其紧凑**\n\n即使用正确的比较（location η²_depth vs shape η²_depth），最小比值为 0.341/0.007 = 48.7×。仅仅 \"barely >48×\"。如果使用更精确的小数位（如 η²_depth(ent max) = 0.0073），比值可能<48。建议验证原始 ANOVA 输出的精确 η² 值。\n\n---\n\n### 修复完整性确认\n\n- **Cohen's d 0.55 残留**：**无** ✓ — grep 未找到任何 entropy_std 与 0.55 关联的残留。所有出现的 0.55 均为其他上下文（LOFO drop、PCA loading、per-family DDR table 中的 entropy_mean）。\n- **TTR ρ -0.63 残留**：**无** ✓ — grep 未找到 \"TTR -0.63\" 的任何实例。Results.tex 正确使用 -0.62。\n- **d ≤ 0.08 残留**：**无** ✓ — grep 未找到 `d ≤ 0.08` 或 `d\\leq 0.08` 的任何实例。正文使用 `d < 0.10`。\n- **\"excluding all Pythia\" 残留**：**无** ✓ — grep 未找到 \"excluding.*Pythia\" 的任何实例。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_final-data-audit_20260523T191628"
+          },
+          "id": "event-000127"
+        }
+      ],
+      "message_count": 127
+    }
+  ],
+  "readable_path": "readable/conversations/paper-final-data-audit.md"
+}

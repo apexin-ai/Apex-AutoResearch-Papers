@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80c29f7b3a920937fe66",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "prep plan 002 qwen3 0 6b download",
+  "task_key": "worker_prep_plan-002-qwen3-0_6b-download_20260514T205611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_plan-002-qwen3-0_6b-download_20260514T205611_result.json",
+    "occurrence": 1,
+    "bytes": 69,
+    "sha256": "a68cae947dda5d9f86a99b3a7d0fd4f543c9a73b0ba1efabddd5a718f663602e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台轮询也已确认下载完成。任务结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-plan-002-qwen3-0-6b-download.md"
+}

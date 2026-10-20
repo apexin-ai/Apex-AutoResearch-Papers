@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed29d2e0cf83ac3e3258",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "figure ddr trends label fix",
+  "task_key": "worker_figure_ddr_trends_label_fix_20260521T021746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_ddr_trends_label_fix_20260521T021746_result.json",
+    "occurrence": 1,
+    "bytes": 315,
+    "sha256": "b17ecb1f2f88c2e2dd33954b54944089c49f910552ac9ee20c5721eb67db4abc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部标签已修正，PDF 已保存到本地：\n\n- entropy_max → `[NEAR-STATIONARY]` ✓\n- tail_decay → `[NEAR-STATIONARY]` ✓\n- entropy_min → `[NEAR-STATIONARY]`（无 `†`）✓\n- entropy_mean/ttr/hapax_ratio → `[DRIFTING]` 不变 ✓\n- entropy_std → `[INTERMEDIATE]` 不变 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-ddr-trends-label-fix.md"
+}

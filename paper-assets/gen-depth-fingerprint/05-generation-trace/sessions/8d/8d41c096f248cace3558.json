@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d41c096f248cace3558",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis qlora instruct results",
+  "task_key": "worker_analysis_qlora_instruct_results_20260519T094959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qlora_instruct_results_20260519T094959_result.json",
+    "occurrence": 1,
+    "bytes": 1425,
+    "sha256": "f7d513720eeef33fce98feec2fb9b60ef466c712f3727459099cba6abebe2e59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部完成。汇总如下：\n\n## OLMo-2-0425-1B-Instruct (instruct)\n| Metric | Value |\n|---|---|\n| macro_f1_5class | **0.5976** ± 0.0046 |\n| macro_f1_3class | **0.8881** ± 0.0071 |\n| binary_f1 (gen1 vs gen2+) | **0.8363** ± 0.0096 |\n| per_class_5class | d0=0.990, d1=0.766, d2=0.433, d3=0.343, d4=0.455 |\n| n_samples | 4429 |\n| runtime | 1689.7s |\n\n## OLMo-2-1B (base)\n| Metric | Value |\n|---|---|\n| macro_f1_5class | **0.5398** ± 0.0150 |\n| macro_f1_3class | **0.8588** ± 0.0036 |\n| binary_f1 (gen1 vs gen2+) | **0.7925** ± 0.0097 |\n| per_class_5class | d0=0.992, d1=0.700, d2=0.366, d3=0.222, d4=0.419 |\n| n_samples | 2379 |\n| runtime | 911.7s |\n\n## Qwen3-1.7B-Instruct (instruct)\n| Metric | Value |\n|---|---|\n| macro_f1_5class | **0.5514** ± 0.0031 |\n| macro_f1_3class | **0.9066** ± 0.0082 |\n| binary_f1 (gen1 vs gen2+) | **0.8672** ± 0.0137 |\n| per_class_5class | d0=0.986, d1=0.800, d2=0.408, d3=0.155, d4=0.408 |\n| n_samples | 4963 |\n| runtime | 1880.5s |\n\n## Qwen3-1.7B (base)\n| Metric | Value |\n|---|---|\n| macro_f1_5class | **0.5544** ± 0.0068 |\n| macro_f1_3class | **0.9040** ± 0.0094 |\n| binary_f1 (gen1 vs gen2+) | **0.8597** ± 0.0123 |\n| per_class_5class | d0=0.995, d1=0.798, d2=0.354, d3=0.271, d4=0.354 |\n| n_samples | 2291 |\n| runtime | 880.9s |\n\n所有 4 个 JSON 完整内容已在上方工具输出中返回，无截断。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qlora-instruct-results.md"
+}

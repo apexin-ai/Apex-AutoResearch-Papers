@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ccffcc653140f6ede65",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis multi seed stability",
+  "task_key": "worker_analysis_multi-seed-stability_20260515T081408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_multi-seed-stability_20260515T081408_result.json",
+    "occurrence": 1,
+    "bytes": 367,
+    "sha256": "12e8bf460621a65c72229f4aa4964b4540f56d8c658c3aad817f6f5c974be636"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果如下：\n\n| Seed | 6-gen LOGO F1 |\n|------|---------------|\n| 42   | 0.7894 |\n| 123  | 0.7915 |\n| 456  | 0.7922 |\n| 789  | 0.7904 |\n| 1024 | 0.7886 |\n| **Mean±Std** | **0.7904 ± 0.0013** |\n\nstd = 0.0013，结果对种子选择几乎不敏感。已保存至 `/root/gen-depth-fingerprint/results/multi_seed_stability.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-multi-seed-stability-copy-3.md"
+}

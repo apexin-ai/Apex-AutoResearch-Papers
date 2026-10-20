@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bcb330934dc4f86996d",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "reviewer / loop_6_1779399966.md",
+  "task_key": "loop_6_1779399966",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_6_1779399966.md",
+    "occurrence": 1,
+    "bytes": 2745,
+    "sha256": "d0fe3be7e472102c5020c97806a9495e00212aec739c4c83dd7b26b454097180"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_wall_time\nupdated: '2026-05-21T01:40:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0-3（bjb2-18868），当前 4 卡全空闲，等用户确认释放\n- 论文已定稿 v38，**不得修改论文内容**除非用户/Director 明确要求\n- 3 篇新 bib entry（diveye, schaeffer_collapse_position, drayson_detection_prevents_collapse）未经 reference-audit skill 完整验证——如有审稿人质疑需补验\n- QLoRA \"+11.6pp\" 是 vs 6-gen XGBoost baseline (0.789)，不是 8-gen LOGO (0.694)——appendix 脚注已说明但主文未显式标注，审稿人可能混淆\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb2-18868，代码目录 /root/gen-depth-fingerprint\n- 本地 workspace：/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/\n- 论文目录：artifacts/_project/paper/（main.pdf = v38，33 页）\n- 模型路径（远程）：/root/autodl-tmp/models/（含 qwen3-14b-base、qwen3-0.6b-instruct 等）\n- 活跃进程：无（全部实验已完成，47 个 DONE）\n- Cron/Worker：无活跃任务\n\n### 3. 📊 当前状态\n- **刚完成**：v37 pre-submission final check（数值一致性 ✅、cross-section ✅、格式 0 critical ✅、8 页主文 ✅）+ GPU 利用再评估（5 候选逐条分析，结论：无实验能将 3.0→3.5）+ ROADMAP v38 审查通过\n- **Registry**：全部 DONE，无 RUNNING/PREPARING\n- **等待**：用户在 OpenReview 手动提交 → 确认后释放 GPU\n\n### 4. 📋 待办\n- 用户确认已提交 → 签字确认 GPU 释放\n- 审稿意见回来 → 加载 rebuttal skill，逐条核实 reviewer claims vs registry 数据\n- 审稿人质疑 bib 条目 → 跑 reference-audit skill 验证 3 篇新引用的 arXiv ID（diveye: 2509.18880, schaeffer: 2503.03150, drayson: 2502.15654）\n- 审稿人质疑 \"+11.6pp\" → 解释是 6-gen 对比，建议 camera-ready 显式标注\n\n### 5. 🎯 战略上下文\n- **核心结论**：DDR 是 real phenomenon（silhouette=0.632, drifting d=0.76-1.17 vs stationary d<0.10），但 classifier 是 proof-of-concept（F1=0.694），instruct 是已知硬限制（F1 降至 0.544-0.575）\n- **Overall 3.0-3.25**，Significance 是最大短板（2.5-3.0）。gap 是结构性的（task significance + base-model-only），不是实验覆盖度问题\n- **决策链**：D026-D028 确认不跑新实验 → D029 推翻跑了 3 组高价值实验 → D030-D033 最终稳态 → D034 确认投稿\n- **易错点**：(1) Qwen3-0.6B（无后缀）= instruct 模型，Qwen3-0.6B-Base = base 模型，命名反直觉；(2) 8-gen LOGO F1=0.694 vs 6-gen LOGO F1=0.789 是不同 generator subset，不要混用；(3) 14B 只有 DDR statistics（exp_060），无 LOGO classification F1\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1779399966.md"
+}

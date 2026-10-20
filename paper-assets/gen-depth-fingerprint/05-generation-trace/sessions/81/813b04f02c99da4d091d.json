@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "813b04f02c99da4d091d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper n2a downstream bootstrap",
+  "task_key": "worker_paper_n2a-downstream-bootstrap_20260516T043728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_n2a-downstream-bootstrap_20260516T043728_result.json",
+    "occurrence": 1,
+    "bytes": 824,
+    "sha256": "609ae612ad279774e571595d62bb29faf50673cd3e22d0e1687543c9a48478e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果摘要：\n\n**Primary comparison (size_matched vs depth01):**\n- Mean diff: −0.0202 ppl (depth01 略差)\n- 95% Bootstrap CI: [−0.0207, −0.0199]\n- Cohen's d: −65.5 (极大效应量，但这是因为 within-group variance 极小——3 seeds 几乎一致)\n- Exact permutation p = 0.10 (C(6,3)=20，最小非零 p=0.05，当前不显著)\n\n**关键 caveat:** n=3/group 下 exact permutation test 只有 20 种排列，p 值分辨率极低（最小 0.05）。Cohen's d 数值巨大是因为 seed 间方差几乎为零，不代表实际效应大。CI 窄也是同理。论文中应表述为 \"directional evidence with limited statistical power\" 而非确定性结论。\n\n所有 10 组 pairwise 比较已写入 `artifacts/n2a_downstream_bootstrap.json`，已注册为 `art_20260516_a4d103`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-n2a-downstream-bootstrap.md"
+}

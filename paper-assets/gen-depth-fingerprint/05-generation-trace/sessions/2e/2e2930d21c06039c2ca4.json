@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e2930d21c06039c2ca4",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "writing review paper edits batch1",
+  "task_key": "worker_writing_review-paper-edits-batch1_20260515T122743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_review-paper-edits-batch1_20260515T122743_result.json",
+    "occurrence": 1,
+    "bytes": 1497,
+    "sha256": "5f760ac436c6ee3af42c04a9864b88ba3a46c479dce4a9350bd2000997489ff8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。各项修改摘要：\n\n| 项 | Commit | 内容 |\n|---|---|---|\n| **W2** | `58ce1aa` | results.tex cross-scale 段末加 caveat：~1,000 samples/generator |\n| **W4** | `0280eed` | references.bib 加 Munir et al. (2021)；related_work.tex 加 source attribution vs depth estimation 段落，引用 uchendu_attribution + munir_looking_glass。MR3/MR4 已存在（detectgpt/binoculars） |\n| **W5** | `5ae9466` | intro.tex contribution 3 改为 \"Complementary analysis\"；abstract.tex + main.tex 同步降级措辞。conclusion.tex 已是软措辞无需改 |\n| **W7** | `5f893c4` | method.tex entropy_min 从 surface 移到 reference-model features（5 ref + 2 surface）；results.tex ablation 描述更新。ablation table 计数已正确 |\n| **W8** | `156b6ec` | method.tex Feature Extraction 开头加动机段落（两互补视角 + 非 post-hoc 设计） |\n| **W10** | `886ea9a` | method.tex 3-class 合并理由改为 \"monotonic feature convergence that compresses inter-class margins beyond depth 2\" |\n| **W14** | `2833a43` | limitations.tex 补两条：reference model 固定为 Pythia-410M、English Wikipedia only |\n| **W16** | `49138ba` | method.tex Classifier 段加 XGBoost 超参数：n_estimators=200, max_depth=6, lr=0.1 |\n| **sync** | `523397a` | 8 个修改文件同步到 docs/paper/ |\n\n**需注意**：W4 中 Munir et al. (2021) 的 venue 写为 EACL Findings（任务说 NAACL Findings），commit message 已标注\"需验证\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-review-paper-edits-batch1.md"
+}

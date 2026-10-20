@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60d950612e826bddb6a2",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis holdout split validation",
+  "task_key": "worker_analysis_holdout-split-validation_20260519T005549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_holdout-split-validation_20260519T005549_result.json",
+    "occurrence": 1,
+    "bytes": 1032,
+    "sha256": "2f0451e7c19606aeb3149d5475ed05c135f66889c9744a4d4aaa8af8708aef77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Summary of outputs:\n\n**DDR partition is 100% consistent across both holdout splits.** All 7 features land in the same zone (drifting / intermediate / near-stationary) regardless of which 4 generators are in the selection vs. validation set.\n\n| Feature | Zone | Split A sel/val |ρ| | Split B sel/val |ρ| |\n|---|---|---|---|\n| entropy_mean | drifting | 0.60 / 0.58 | 0.60 / 0.58 |\n| ttr | drifting | 0.61 / 0.59 | 0.60 / 0.59 |\n| hapax_ratio | drifting | 0.62 / 0.60 | 0.62 / 0.61 |\n| entropy_std | intermediate | 0.19 / 0.21 | 0.22 / 0.17 |\n| entropy_min | intermediate | 0.39 / 0.36 | 0.38 / 0.37 |\n| entropy_max | near-stationary | 0.05 / 0.05 | 0.04 / 0.06 |\n| tail_decay | near-stationary | 0.10 / 0.08 | 0.11 / 0.07 |\n\nSaved files:\n- `artifacts/_project/rebuttal/spearman_per_generator.json` (8-generator ρ data)\n- `artifacts/_project/rebuttal/holdout_split_results.json` (full split validation results)\n- `artifacts/_project/chart/fig_ddr_holdout_split.pdf` + `.png` (scatter plots)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-holdout-split-validation.md"
+}

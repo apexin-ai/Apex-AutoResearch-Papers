@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15acab1ca9970a64048d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper batch b crossfile",
+  "task_key": "worker_paper_batch-b-crossfile_20260518T003242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_batch-b-crossfile_20260518T003242_result.json",
+    "occurrence": 1,
+    "bytes": 2020,
+    "sha256": "5f91cde23fc0eb30e8d3d32e9c2a834bfa43fa87d7a7caf50c2faa5e8d695054"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass. Here's the summary:\n\n## Completed\n\n### B4: Shape Preservation Weakening\n- **abstract.tex**: \"approximately preserves distributional shape\" → \"whose shape remains comparatively stable\"\n- **method.tex**: \"approximately preserving distributional shape\" → \"with distributional shape remaining comparatively stable\"\n- **discussion.tex**: \"approximately preserves distributional shape\" → \"leaves distributional shape comparatively stable\" + added Levene reconciliation sentence\n- **conclusion.tex**: \"approximately preserves distributional shape\" → \"whose shape remains comparatively stable\"\n- Remaining occurrences are only in introduction.tex, results.tex, related_work.tex (outside scope)\n\n### B10: Missing References\nAdded 3 verified references:\n1. **Briesch et al. 2023** (`briesch_self_consuming`) — confirmed: arXiv:2311.16822\n2. **Jovanović et al. 2024** (`jovanovic_watermark_stealing`) — note: the paper titled \"Watermark Stealing in Large Language Models\" is by Jovanović/Staab/Vechev at ICML 2024, not Zhang. A separate Zhang et al. ACSAC 2024 paper has a different title.\n3. **McGovern et al. 2025** (`mcgovern_fingerprints`) — GenAIDetect workshop, confirmed\n\n**Skipped:**\n- **Tang et al. 2024**: No paper by Tang with that title exists. The Nature Reviews Physics article \"Science in the age of large language models\" is by Birhane et al. 2023.\n- **Geng et al. 2026** (`markovian_chains`): Still arXiv preprint, under review at ICLR 2026. Current bib entry is up-to-date.\n\n### B11: Qualitative Examples Appendix\n- Created `appendix_qualitative_examples.tex` with feature table populated from actual data (seed 5, Pythia-2.8B, depths 0/1/2)\n- Text cells left as TODO (generated texts not available locally, only on server)\n- Added `\\input{appendix_qualitative_examples}` to main.tex\n\n### B12: Bib Check\n- `self_consuming_mad` first author confirmed correct: Sina Alemohammad (verified via arXiv and multiple sources)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-batch-b-crossfile.md"
+}

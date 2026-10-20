@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3261f91ea97464d0eb5",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops verify 8gen rho",
+  "task_key": "worker_ops_verify-8gen-rho_20260516T172140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-8gen-rho_20260516T172140_result.json",
+    "occurrence": 1,
+    "bytes": 1795,
+    "sha256": "b2fe71a63bd3528560387945e0048309a92b5baa2b96e061550cb225699df70f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 8gen_pooled_rho.json (8 generators, N=37058)\n\n| Feature | ρ (pooled) | ρ (balanced) |\n|---------|-----------|-------------|\n| hapax_ratio | **-0.641** | -0.629 |\n| ttr | **-0.625** | -0.613 |\n| entropy_mean | **-0.598** | -0.595 |\n| entropy_min | -0.404 | -0.399 |\n| entropy_std | -0.157 | -0.169 |\n| entropy_max | +0.061 | +0.060 |\n| tail_decay | -0.041 | -0.042 |\n\nGenerators: pythia-2.8b, pythia-1b, olmo-2-1b, qwen3-0.6b, qwen3-1.7b, qwen3-8b, llama-3.2-3b, mistral-7b-v0.3\n\n## pooled_rho_fix.json (6 generators, N=27529)\n\n| Feature | ρ (pooled) | ρ (per-gen median) |\n|---------|-----------|-------------------|\n| hapax_ratio | **-0.647** | -0.662 |\n| ttr | **-0.630** | -0.643 |\n| entropy_mean | **-0.610** | -0.620 |\n| entropy_min | -0.406 | -0.397 |\n| entropy_std | -0.200 | -0.209 |\n| entropy_max | +0.050 | +0.076 |\n| tail_decay | -0.040 | -0.080 |\n\nGenerators: olmo-2-1b, pythia-1b, pythia-2.8b, qwen3-0.6b, qwen3-1.7b, qwen3-8b (缺 llama-3.2-3b, mistral-7b-v0.3)\n\n## 差异分析\n\n| Feature | 8gen pooled | fix pooled | Δ |\n|---------|------------|-----------|---|\n| hapax_ratio | -0.641 | -0.647 | +0.006 |\n| ttr | -0.625 | -0.630 | +0.005 |\n| entropy_mean | -0.598 | -0.610 | +0.012 |\n| entropy_min | -0.404 | -0.406 | +0.002 |\n| entropy_std | -0.157 | -0.200 | +0.043 |\n| entropy_max | +0.061 | +0.050 | +0.011 |\n| tail_decay | -0.041 | -0.040 | -0.001 |\n\n主要差异来源：\n1. **样本量不同**：8gen 有 37058 样本（含 llama-3.2-3b + mistral-7b-v0.3），fix 只有 27529 样本（6 gen）\n2. **entropy_std 差距最大**（Δ=0.043）：新增的两个 generator 拉低了 entropy_std 与 depth 的相关性\n3. 核心 feature（hapax_ratio, ttr, entropy_mean）差异很小（<0.012），结论稳健"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-8gen-rho.md"
+}

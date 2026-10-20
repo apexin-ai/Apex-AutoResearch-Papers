@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0dde82375c8d8dace605",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper bib author fix",
+  "task_key": "worker_paper_bib-author-fix_20260515T181255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_bib-author-fix_20260515T181255_result.json",
+    "occurrence": 1,
+    "bytes": 2012,
+    "sha256": "25519df32e7e7f4f1d2bd2ba885f71e0e2a3cdf4c44f30528d2e44c8e8cfc70b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件均已修复。汇总：\n\n---\n\n### 条目 1: `wu_survey_2025`\n**原始:** `Wu, Junchao and Zhu, Shu and Li, Decheng and Yang, Jie and Xiang, Xinyu and Qiao, Yixin and Ruan, Yucheng and Wang, Tat-Seng and Ge, Yongfeng`\n**修复:** `Wu, Junchao and Yang, Shu and Zhan, Runzhe and Yuan, Yulin and Chao, Lidia Sam and Wong, Derek Fai`\n**证据:** [ACL Anthology 2025.cl-1.8](https://aclanthology.org/2025.cl-1.8/), [MIT Press](https://direct.mit.edu/coli/article/51/1/275/127462/)\n**问题:** 9 个作者中仅 Wu, Junchao 正确，其余 8 个全部是幻觉。\"Wang, Tat-Seng\" 确系 reviewer 指出的错误——该领域知名学者是 Chua, Tat-Seng，但此论文的真实作者中两者皆无。\n\n### 条目 2: `munir_looking_glass`\n**原始:** `Munir, Muhammad Adnan and Siddiqui, Shoaib Ahmed and Dengel, Andreas and Ahmed, Sheraz` / venue: `Findings of EACL`\n**修复:** `Munir, Shaoor and Batool, Brishna and Shafiq, Zubair and Srinivasan, Padmini and Zaffar, Fareed` / venue: `Proceedings of EACL` (main)\n**证据:** [ACL Anthology 2021.eacl-main.155](https://aclanthology.org/2021.eacl-main.155/)\n**问题:** 作者完全错误（混淆了同姓 Munir 的另一篇 DFKI 论文）。且 venue 应为 EACL main，非 Findings。\n\n### 条目 3: `reliable_detection`\n**原始:** `@inproceedings` / ICLR 2024\n**修复:** `@article` / Transactions on Machine Learning Research, 2025\n**证据:** [OpenReview TMLR](https://openreview.net/forum?id=OOgsAZdFOt), [TMLR acceptance announcement](https://x.com/TmlrPub/status/1900336120296034775)\n**问题:** 该论文曾提交 ICLR 但未被接收，最终发表于 TMLR 2025。\n\n### 条目 4: `mapping_llm_science`\n**原始:** `@article` / arXiv preprint arXiv:2404.01268, 2024\n**修复:** `@inproceedings` / Proceedings of the Conference on Language Modeling, 2024\n**证据:** [OpenReview COLM 2024](https://openreview.net/forum?id=YX7QnhxESU)\n**问题:** 已正式发表于 COLM 2024，不再是 preprint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-bib-author-fix.md"
+}

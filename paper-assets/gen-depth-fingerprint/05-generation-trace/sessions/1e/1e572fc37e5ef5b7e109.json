@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e572fc37e5ef5b7e109",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper p1e ordinal and ci fix",
+  "task_key": "worker_paper_p1e-ordinal-and-ci-fix_20260515T162553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_p1e-ordinal-and-ci-fix_20260515T162553_result.json",
+    "occurrence": 1,
+    "bytes": 759,
+    "sha256": "5a2c2635d8d704a4824b6d7113fb5d4faa4d0f712433a4438d0f0eacea77933b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**Task A**: 两份 results.tex（`artifacts/_project/paper/` 和 `docs/paper/`）的 ordinal regression 段落已扩展，新增：\n- Binary F1: XGBoost 0.721, CORAL 0.728\n- Concordance index: XGBoost 0.821, CORAL 0.810, Frank-Hall 0.825\n- 结尾解释：3-class 粒度不足以让 ranking-aware loss 产生优势\n\n**Task B**: related_work.tex 无 CI width 相关描述（grep 确认）。唯一的数值声明是 line 13 的 \"per-generator F1 ranging from 0.42 to 0.81\"，这是 per-generator F1 范围而非 CI width，与当前 baselines 表一致，无需修改。\n\n**Discussion**: 未新增独立段落——ordinal 不优于 nominal 的解释（3-class 粒度不足）已嵌入 results 段落末句，避免重复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-p1e-ordinal-and-ci-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6e681ae1285620d9d3b",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper m4 figure1 strip plot",
+  "task_key": "worker_paper_m4-figure1-strip-plot_20260516T045721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_m4-figure1-strip-plot_20260516T045721_result.json",
+    "occurrence": 1,
+    "bytes": 454,
+    "sha256": "14beef0068f31ab07fab15387222a57802bed5ad4d340f4dd2722568a3f46014"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Figure 1 is now a strip plot showing per-generator Spearman ρ variation:\n\n- Each of the 6 generators (Pythia-1B/2.8B, OLMo-2-1B, Qwen3-0.6B/1.7B/8B) gets its own colored marker per feature\n- Overall ρ shown as large black X markers\n- Blue-shaded columns = drifting features (Hapax, TTR, H̄); gray-shaded = near-stationary (H_min, H_max, Tail Dec., σ_H)\n- Legend below the plot, no overlap with data\n- Committed as `8746954`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-m4-figure1-strip-plot.md"
+}

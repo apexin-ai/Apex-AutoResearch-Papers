@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4c972e183fed1608f67",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "exp instruct llama3 2 3b",
+  "task_key": "worker_exp_instruct-llama3-2-3b_20260518T034629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_instruct-llama3-2-3b_20260518T034629_result.json",
+    "occurrence": 1,
+    "bytes": 1545,
+    "sha256": "5ccacad32a246c5b225dfb255504426de1c8f4d7b71665de0b9146e6f8821d2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Server remains unreachable. The AutoDL instance has likely hibernated or had a network disruption. \n\n**Status report for exp_054:**\n\n**Completed:**\n- Downloaded Llama-3.2-3B-Instruct via ModelScope to `/root/autodl-tmp/models/Llama-3.2-3B-Instruct-ms/LLM-Research/Llama-3___2-3B-Instruct`\n- Generation started in tmux session `exp054` using `generate_chain_instruct.py` (497 seeds, shard 0/2)\n- ~292/497 seeds (~59%) completed before connection loss\n- Eval script prepared at `/root/gen-depth-fingerprint/eval_exp054_instruct_llama.py`\n\n**If the server instance hibernated (GPU processes killed):**\n- The script has **resume support** — when restarted, it skips already-completed seeds\n- ~292 seeds should already be saved in `data/llama-3.2-3b-instruct/generations_shard0.jsonl`\n\n**Next steps when server comes back:**\n1. Check if tmux `exp054` is still running or if generation completed\n2. If interrupted, resume generation: same command, it auto-skips done seeds\n3. Run feature extraction:\n   ```bash\n   /root/miniconda3/bin/python extract_features.py --input data/llama-3.2-3b-instruct/generations_shard0.jsonl --output data/features_llama-3.2-3b-instruct.csv --device cuda:0\n   ```\n4. Run evaluation:\n   ```bash\n   /root/miniconda3/bin/python eval_exp054_instruct_llama.py\n   ```\n\n**Reference baseline (Llama-3.2-3B base):** binary F1=0.697, Spearman ρ all negative except entropy_max (+0.0859). Both Qwen and OLMo instruct variants showed massive direction reversals (negative → positive ρ)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-instruct-llama3-2-3b.md"
+}

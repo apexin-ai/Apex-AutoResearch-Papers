@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a7fe892d93a4b074eed",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code mvp critical fix",
+  "task_key": "worker_code_mvp-critical-fix_20260514T170956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-critical-fix_20260514T170956_result.json",
+    "occurrence": 1,
+    "bytes": 2030,
+    "sha256": "275d29eec0ee14a82d1396e03fef80c1190a3f4b00876e20f58a23a8e436beef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "results/ 目录已清空，dry-run 产物已清理。\n\n---\n\n## 报告\n\n### 1. 虚假结果删除\n已删除：`results/mvp_results.json`、`data/generations_shard0.jsonl`、`data/features.csv`。results/ 目录现为空。\n\n### 2. wiki_seed_1000.jsonl 格式\n- **JSON keys**: `{\"id\": str, \"title\": str, \"text\": str}`\n- **行数**: 1000 行（经过滤后有效 seeds: 995 条）\n\n### 3. Dry-run 结果\n| 脚本 | 状态 |\n|------|------|\n| generate_chain.py | **PASS** — 10 records (2 seeds × 5 depths), 0 skipped, 21.4s |\n| extract_features.py | **PASS** — 10 rows, shape (10, 10) |\n| classify_and_eval.py | **PASS** — 无 MARGINAL，无 mock 数据，dry-run 未写文件 |\n\n### 4. 模型路径\n**Pythia-2.8B**: `/root/autodl-tmp/.hf_cache/EleutherAI/pythia-2___8b`\n\n### 5. 4 shard 完整运行命令\n```\nshard 0: python generate_chain.py --input data/wiki_seed_1000.jsonl --shard-id 0 --num-shards 4 --device cuda:0\nshard 1: python generate_chain.py --input data/wiki_seed_1000.jsonl --shard-id 1 --num-shards 4 --device cuda:1\nshard 2: python generate_chain.py --input data/wiki_seed_1000.jsonl --shard-id 2 --num-shards 4 --device cuda:2\nshard 3: python generate_chain.py --input data/wiki_seed_1000.jsonl --shard-id 3 --num-shards 4 --device cuda:3\n```\n\n### 6. 预估运行时间\n- 每个 seed ~10.7s（含 4 次 256-token 生成）\n- 每 shard: 248-249 seeds\n- **单 shard 预估: ~44 分钟**\n- 4 shard 并行运行，总耗时 ~44 分钟\n\n### 修复总结\n| 修改 | 详情 |\n|------|------|\n| generate_chain.py | `--input` 替代 `--seed-file`；`--output-dir` 新增；删除 HF 下载回退；`temperature=0.7, top_p=0.9`；空输入防护；ID 公式 `shard_id * shard_size * 5 + local_idx`；`dtype=torch.float16` |\n| classify_and_eval.py | 删除 `generate_mock_features`；verdict 改为二元 PASS/FAIL（无 MARGINAL）；dry-run 只输出到 stdout；小数据集自适应处理 |\n| merge_shards.py | 已存在且逻辑正确，无需修改 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-critical-fix.md"
+}

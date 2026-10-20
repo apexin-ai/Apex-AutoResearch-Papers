@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb36ecf4e1ca5b192ffa",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code table3 unified v4",
+  "task_key": "worker_code_table3-unified-v4_20260516T184144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_table3-unified-v4_20260516T184144_result.json",
+    "occurrence": 1,
+    "bytes": 510,
+    "sha256": "3ee7749a4230bb8cde11cfc8248bd215d8f42747b555e401c6ae5c52c5723f86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n| Method | F1 | 95% CI |\n|--------|------|--------|\n| ld_score | 0.4909 | [0.4852, 0.4973] |\n| entropy_mean | 0.6680 | [0.6620, 0.6742] |\n| 4det_surface | 0.6857 | [0.6798, 0.6918] |\n| 7feature | 0.6911 | [0.6853, 0.6972] |\n\n7feature F1=0.6911，与 canonical 0.694 偏差 0.003，在容差范围内。N=26,168（排除 depth=0 后的 binary 样本），8 generators 全部参与。输出已保存到 `/root/gen-depth-fingerprint/results/8gen_table3_unified.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-table3-unified-v4.md"
+}

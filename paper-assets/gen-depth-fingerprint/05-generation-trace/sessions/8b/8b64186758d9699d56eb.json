@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b64186758d9699d56eb",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis lofo ablation",
+  "task_key": "worker_analysis_lofo-ablation_20260515T075519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_lofo-ablation_20260515T075519_result.json",
+    "occurrence": 1,
+    "bytes": 1236,
+    "sha256": "1ed1635a8df107d8e9ed45e560496fe983150bf6b6ea43cf1cb49bf358aa582e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both tasks complete. Results saved to server.\n\n---\n\n## Task 1: LOFO Ablation Results\n\nFull baseline (sanity check): **0.7904**\n\n| Dropped feature | LOGO F1 | Δ vs Full (0.789) |\n|---|---|---|\n| hapax_ratio | 0.7848 | -0.0042 |\n| ttr | 0.7835 | -0.0055 |\n| entropy_mean | 0.7827 | -0.0063 |\n| entropy_std | 0.7861 | -0.0029 |\n| entropy_min | 0.7891 | +0.0001 |\n| **entropy_max** | **0.7740** | **-0.0150** |\n| tail_decay | 0.7857 | -0.0033 |\n\n**Key findings:**\n- **entropy_max** is the most important feature (Δ = -0.015, biggest drop)\n- **entropy_min** is essentially redundant (Δ ≈ 0, removing it doesn't hurt)\n- Importance ranking: entropy_max > entropy_mean > ttr > hapax_ratio > tail_decay > entropy_std > entropy_min\n\nResults saved to `/root/gen-depth-fingerprint/results/lofo_ablation_results.json`\n\n---\n\n## Task 2: Multi-seed Stability Results\n\n| Seed | LOGO F1 |\n|---|---|\n| 42 | 0.7904 |\n| 123 | 0.7892 |\n| 456 | 0.7876 |\n| 789 | 0.7890 |\n| 1024 | 0.7887 |\n\n**Mean: 0.7890 ± 0.0009** (range: 0.7876–0.7904)\n\nExtremely stable — std of 0.0009 confirms results are seed-independent.\n\nResults saved to `/root/gen-depth-fingerprint/results/multi_seed_stability.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-lofo-ablation.md"
+}

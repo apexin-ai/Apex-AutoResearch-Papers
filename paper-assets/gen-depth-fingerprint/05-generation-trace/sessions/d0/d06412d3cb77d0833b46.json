@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d06412d3cb77d0833b46",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_4_1778847391.md",
+  "task_key": "loop_4_1778847391",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778847391.md",
+    "occurrence": 1,
+    "bytes": 4556,
+    "sha256": "bc5c36e20e5cb107feaace632d72a18c3e6ad7324dda1b4b949ce6f823438d12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-15T09:36:27+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（全在 autodl-5090）。白名单外的 GPU 即使 Director 指令也必须 push back\n- submit_training_job 的 `--device` 始终写 `cuda:0`（框架注入 CUDA_VISIBLE_DEVICES 映射物理 GPU）\n- 根分区只有 ~30GB，模型/数据/HF cache 全放 `/root/autodl-tmp/`，设 `HF_HOME=/root/autodl-tmp/.hf_cache`\n- pip install / git clone 前必须 `source /etc/network_turbo`\n- EMNLP 2026 ARR DDL 2026-05-25（D012），10 天倒计时，不得暗示降级 venue\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090，工作目录 `/root/gen-depth-fingerprint`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型路径：`/root/autodl-tmp/models/`（Qwen3-8B-Base, Qwen3-1.7B-Base, Qwen3-0.6B-Base, OLMo-2-1B）\n- 数据路径：`/root/gen-depth-fingerprint/data/`（各生成器子目录：pythia-2.8b, pythia-1b, olmo-2-1b, qwen3-0.6b, qwen3-1.7b, qwen3-8b）\n- 特征文件：`data/features_all_models.csv`（23032 records, 6 generators）\n- 活跃进程：plan-005-elab (PID 164737, tmux, cuda:2, elaboration prompt type)\n- 活跃 cron：plan-005-elab 监控中\n- Worker 正在跑：`worker_analysis_plan-005-rewrite_20260515T055440`（分析 rewrite 输出）、`worker_monitor_plan-005-elab-rewrite_20260515T055129`\n\n### 3. 📊 当前状态\n**刚做完**：收到 plan-005-rewrite (inspired_rewriting) 的 cron 完成回调，已派 Worker 分析输出数据（统计 records/seeds/depth distribution，更新 registry）。该 Worker 尚未回调。\n\n**实验状态**：\n- plan-005-elab (elaboration): RUNNING on cuda:2，是 plan-005 三件套最后一个\n- plan-005-rewrite (inspired_rewriting): ANALYZING，Worker 正在分析\n- plan-005-cont (continuation): DONE/success，4620 records, 995 seeds\n\n**等待中**：\n- Worker `analysis:plan-005-rewrite` 回调 → 更新 registry、metrics\n- plan-005-elab cron 完成回调 → 同样流程分析\n- 两个都完成后 → 三种 prompt type 对比分析（depth retention rate、feature drift pattern）→ 结果 patch 入论文\n\n**Paper 进度**：Paper Agent Step 2 进行中，已完成 related work、discussion、consistency fixes、reference audit。初稿框架就绪，等 plan-005 全部完成后 patch prompt-type 对比结果进论文。\n\n### 4. 📋 待办\n- Worker `analysis:plan-005-rewrite` 回调 → 读 metrics → update_registry(conclusion, metrics, checkpoint_path, log_path) → 刷新 report.md\n- plan-005-elab cron 回调 → spawn worker 分析 → 同上流程\n- 三种 prompt type 全部 DONE → spawn worker 做跨 prompt-type 对比分析（feature extraction + depth signal 强度对比 + 统计检验）→ 结果写入 artifacts\n- 对比分析完成 → 向 Director 汇报（带 [资源] 行），附 prompt-type 对比 key findings + 论文 patch 建议\n- Director 确认 → spawn worker patch 结果入论文（Section 4 或 Appendix）\n- cuda:0, cuda:1, cuda:3 空闲 → 如有 Director 新任务立即利用；否则汇报时建议释放或用于论文图表生成\n\n### 5. 🎯 战略上下文\n- **核心发现**：递归 LLM 生成链展现 differential depth response——central-tendency/diversity 特征随深度漂移，shape 特征近稳态。7-feature ensemble 跨 6 generators / 3 families，6-gen LOGO F1=0.79，显著优于所有单检测器 baseline\n- **决策链**：D004(Claim2 reframe) → D005(dual dynamics) → D006(re-dream) → D007(re-dream 达标) → D008(ensemble narrative) → D009(Claim3 negative, diagnostic-not-curative) → D011(RC9 scale 验证) → D012(恢复 EMNLP 主投)\n- **Claim 3 是 negative**（D009）：depth-aware curation 不优于随机抽样，已 reframe 为 diagnostic-not-curative。论文中不能 claim downstream utility\n- **plan-005 初步发现**（来自早期 35% 快照）：continuation depth 衰减 15% vs elaboration 仅 1.5%——这说明 prompt type 显著影响 depth signal 强度，是论文的一个 interesting finding\n- **易踩的坑**：\n  - plan-005 父实验标记 failed（因 startup recovery 问题），但三个子实验 (cont/elab/rewrite) 是独立提交的，不受影响\n  - AutoDL 实例重启后 SSH 端口会变，连接失败别反复重试\n  - 已有 6 个 PREPARING 状态的历史遗留实验（mvp-001-gen-s0~s3, plan-001-restore, plan-004-prep），都是旧条目可忽略\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778847391.md"
+}

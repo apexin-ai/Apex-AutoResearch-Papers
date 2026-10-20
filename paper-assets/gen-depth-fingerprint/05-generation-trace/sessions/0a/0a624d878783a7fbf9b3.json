@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "0a624d878783a7fbf9b3",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "paper restore fig3 compress",
+  "task_key": "worker_paper_restore-fig3-compress_20260522T041531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_restore-fig3-compress_20260522T041531.log",
+    "occurrence": 1,
+    "bytes": 917419,
+    "sha256": "c519031c39f2b58b8e75b5092b8ebbd5d9af154ac1e30e12e60dac344993a8b7"
+  },
+  "statistics": {
+    "messages": 226,
+    "user_turns": 1,
+    "tool_calls": 80,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 80,
+      "tool_result": 80,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 165,
+      "chunks": [
+        {
+          "path": "0a624d878783a7fbf9b3-part-0001.json",
+          "message_count": 149
+        },
+        {
+          "path": "0a624d878783a7fbf9b3-part-0002.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 61,
+      "chunks": [
+        {
+          "path": "0a624d878783a7fbf9b3-part-0002.json",
+          "message_count": 61
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-restore-fig3-compress.md"
+}

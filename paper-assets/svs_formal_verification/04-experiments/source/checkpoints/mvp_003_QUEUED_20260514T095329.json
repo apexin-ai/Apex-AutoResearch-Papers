@@ -1,0 +1,15 @@
+{
+  "exp_id": "mvp_003",
+  "project": "svs_formal_verification",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:53:24.001Z",
+    "updated_at": "2026-05-14T09:53:29.260Z",
+    "hypothesis": "Z3 subprocess 隔离 + 量词修复 + PCV 后，IC 能区分正确和错误推理链"
+  },
+  "timestamp": "2026-05-14T09:53:29.269152+00:00",
+  "trigger": "update_registry"
+}

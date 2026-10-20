@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af511bb545a3eca46981",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "compile final check",
+  "task_key": "worker_compile_final-check_20260520T084633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compile_final-check_20260520T084633_result.json",
+    "occurrence": 1,
+    "bytes": 661,
+    "sha256": "a8397b4441c67bc15cbacec56ad4190ff6a8b9a35d55a9086b3ca229d9e4176e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，0 errors, 0 undefined references。\n\n**编译结果：**\n| 指标 | 值 |\n|------|-----|\n| 编译错误 | **0** |\n| Undefined references | **0** |\n| 总页数 | **33 页** |\n| 文件大小 | **2.8 MB** |\n\n**修复内容：** 原有 29 个附录节超出字母 A-Z 限制（26），将 3 个节降级为子节：\n- TOST Bootstrap Stability → Per-Generator Equivalence Testing 的 subsection\n- DDR Causality Analysis → Supplementary DDR Characterization 的 subsection\n- 9-Generator Scale Evaluation → Supplementary DDR Characterization 的 subsection\n\n所有 `\\label` 保持不变，交叉引用不受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/compile-final-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3323b95ab73782996d79",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "exp review exp b topic drift",
+  "task_key": "worker_exp_review-exp-b-topic-drift_20260515T122416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_review-exp-b-topic-drift_20260515T122416_result.json",
+    "occurrence": 1,
+    "bytes": 1178,
+    "sha256": "4fb08f9cacc060e13bc95d7d501b827e3280a1b23dbcff3201a7ca7540410426"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**(a) 语义相似度随深度递增**（语义漂移递减）：\n| 转换 | cosine sim |\n|------|-----------|\n| 0→1 | 0.622 ± 0.165 |\n| 1→2 | 0.683 ± 0.184 |\n| 2→3 | 0.801 ± 0.201 |\n| 3→4 | 0.859 ± 0.190 |\n\n深层生成文本趋于语义收敛（similarity 从 0.62 升到 0.86），最大漂移发生在 depth 0→1。\n\n**(b) Prompt type 对比**（Pythia-2.8B）：\n- continuation: avg_sim = 0.717（漂移最大）\n- elaboration: avg_sim = 0.809\n- inspired_rewriting: avg_sim = 0.808\n\n**(c) Shape features 与语义漂移——弱相关** ✓：\n- entropy_std: ρ = **-0.164**\n- tail_decay: ρ = **0.068**\n\n两者 |ρ| < 0.2，说明 shape features 捕捉的信号与 topic drift 大部分正交。\n\n**(d) Drifting features 与语义漂移——也较弱**：\n- hapax_ratio: ρ = **-0.124**\n- ttr: ρ = **-0.178**\n- entropy_mean: ρ = **-0.286**\n\ndrifting features 的 |ρ| 略高于 shape features（尤其 entropy_mean），但仍远低于预期的 0.3-0.5 范围。所有 features 与语义漂移的相关性都较弱，进一步说明 depth fingerprint 捕捉的不仅仅是 topic shift。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-review-exp-b-topic-drift.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afeab953cd80275a09d1",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "diag temp gen status check",
+  "task_key": "worker_diag_temp-gen-status-check_20260518T152636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_temp-gen-status-check_20260518T152636_result.json",
+    "occurrence": 1,
+    "bytes": 1351,
+    "sha256": "4b52dc035b0d02e5765053376995ad555ca0e3c495e6fea4e03cdc0fea672425"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\ntemp_qwen06: 运行中（t=0.5 阶段）\n  - tmux session: temp_qwen06（存在）\n  - 当前任务: [1/2] t=0.5 top_p=0.9\n  - 进度: 160/996 seeds (16%), 速度 10.12s/it, 剩余 ~2h21m\n  - t=0.5 文件: /root/gen-depth-fingerprint/data/qwen3-0.6b-t05/generations_shard0.jsonl, 750 行\n  - t=0.9 文件: 尚未开始（qwen3-0.6b-t09 目录不存在）\n  - 预计完成 t=0.5 + t=0.9 全部: ~5h\n\ntemp_olmo: 运行中（t=0.5 阶段）\n  - tmux session: temp_olmo（存在）\n  - 当前任务: [1/2] t=0.5 top_p=0.9\n  - 进度: 231/995 seeds (23%), 速度 8.71s/it, 剩余 ~1h51m\n  - t=0.5 文件: /root/gen-depth-fingerprint/data/olmo-2-1b-t05/generations_shard0.jsonl, 1136 行\n  - t=0.9 文件: 尚未开始（olmo-2-1b-t09 目录不存在）\n  - 预计完成 t=0.5 + t=0.9 全部: ~4h15m\n\nGPU 状态:\n  - GPU 0: 使用中 — OLMo (PID 27216), 3616MiB/32607MiB, 50% util\n  - GPU 1: 使用中 — Qwen (PID 27228), 1816MiB/32607MiB, 32% util\n  - GPU 2: 空闲\n  - GPU 3: 空闲\n```\n\n两个实验都在正常运行，都处于 t=0.5 的第一阶段。数据格式正确（jsonl，每条含 id/depth/text/seed_id/token_count/model 字段，每 seed 5 个 depth）。OLMo 跑得快些（8.71s vs 10.12s per seed），预计全部完成（含 t=0.9）分别在 ~4h15m 和 ~5h 后。GPU 2、3 空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-temp-gen-status-check.md"
+}

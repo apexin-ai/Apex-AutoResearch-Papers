@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "123e56c674f2b8e3d6f9",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan 002 eval prep",
+  "task_key": "worker_code_plan-002-eval-prep_20260514T205631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-002-eval-prep_20260514T205631_result.json",
+    "occurrence": 1,
+    "bytes": 912,
+    "sha256": "47f8b2c81cb95b3587260b1cc52fdafb798eef5e0b7ad077c520890d884ccc8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本均通过 dry-run 验证。\n\n---\n\n**产出：**\n\n| 脚本 | 路径 | 功能 |\n|------|------|------|\n| `extract_features_multi.py` | `/root/gen-depth-fingerprint/extract_features_multi.py` | 多生成器特征提取，支持 `--model-name` 增量模式 |\n| `cross_generator_eval.py` | `/root/gen-depth-fingerprint/cross_generator_eval.py` | Leave-one-generator-out + Leave-one-family-out CV 评估 |\n\n**dry-run 结果：**\n- `extract_features_multi.py` — 成功提取 pythia-2.8b (10 rows) + pythia-1b (10 rows)，增量合并到 `data/features_all.csv`\n- `cross_generator_eval.py` — 成功执行跨生成器评估，输出 macro-F1、per-class F1、confusion matrix 到 stdout 和 `results/cross_generator_results.json`\n\n待数据生成完成后，全量运行命令：\n```bash\npython extract_features_multi.py --device cuda:0\npython cross_generator_eval.py\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-002-eval-prep.md"
+}

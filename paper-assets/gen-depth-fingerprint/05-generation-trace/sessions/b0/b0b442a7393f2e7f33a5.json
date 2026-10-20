@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "b0b442a7393f2e7f33a5",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "code package code supplement",
+  "task_key": "worker_code_package-code-supplement_20260517T125034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_package-code-supplement_20260517T125034.log",
+    "occurrence": 1,
+    "bytes": 1801006,
+    "sha256": "215277b10a45102897d5de0ced21bfee8a7fad36f9bac0b89a31aee96a01a771"
+  },
+  "statistics": {
+    "messages": 238,
+    "user_turns": 1,
+    "tool_calls": 76,
+    "roles": {
+      "log": 1,
+      "system": 41,
+      "assistant": 41,
+      "record": 1,
+      "tool_call": 76,
+      "tool_result": 76,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 153,
+      "chunks": [
+        {
+          "path": "b0b442a7393f2e7f33a5-part-0001.json",
+          "message_count": 80
+        },
+        {
+          "path": "b0b442a7393f2e7f33a5-part-0002.json",
+          "message_count": 62
+        },
+        {
+          "path": "b0b442a7393f2e7f33a5-part-0003.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 85,
+      "chunks": [
+        {
+          "path": "b0b442a7393f2e7f33a5-part-0003.json",
+          "message_count": 85
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-package-code-supplement.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f351ded80454f704e4cc",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "audit paper consistency",
+  "task_key": "worker_audit_paper-consistency_20260516T022243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_paper-consistency_20260516T022243_result.json",
+    "occurrence": 1,
+    "bytes": 1295,
+    "sha256": "2bcafaf51493997432eaeecdf3bb047ee6b4d92a0b38be819c21fd5402771984"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计结果\n\n**通过（有条件）** — 0 CRITICAL / 3 WARNING / 5 INFO\n\n### WARNING（建议修复）\n\n1. **results.tex:30** — `\"best single-model ceiling (Pythia-1B, 0.862)\"` 与 LOGO 表中 Pythia-1B=**0.856** 不符。0.862 来源不明（疑为 5-fold CV 或 CI 上界误用），需确认或修正。\n\n2. **discussion.tex:67 + limitations.tex:6** — Instruct 对比中 base Qwen3-0.6B=**0.816**，但 LOGO 表中同一模型=**0.824**。差异源于不同 reference model 设置（cross-ref Qwen3-0.6B=0.816），但论文未解释，读者会困惑。\n\n3. **discussion.tex:69 + limitations.tex:8** — \"reverse sign\" 措辞与叙事规范（应用 \"degradation\" 而非 \"方向反转\"）存在张力。建议改为 \"shift to positive\" 或 \"sign change\"。\n\n### INFO\n\n- appendix_human_edit 表 delta 列有轻微舍入不一致（从原始值 vs 显示值计算 delta 的经典问题）\n- Sampling ablation default 3-class=0.788 vs 主结果 0.789（数据重生成所致）\n- \"~6pp\" 近似值（实际 6.2-6.6pp）\n\n其余所有主要数字（binary F1、CI、std、baseline 全表、downstream PPL、ablation、cross-ref、LOFO、5-class、human edit）均与 ground truth 完全一致。报告已注册为 `art_20260516_c94dd3`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-paper-consistency.md"
+}

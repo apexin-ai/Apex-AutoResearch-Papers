@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6179bee0fbc480e7435",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops verify paper numbers r9",
+  "task_key": "worker_ops_verify-paper-numbers-r9_20260516T130253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-paper-numbers-r9_20260516T130253_result.json",
+    "occurrence": 1,
+    "bytes": 1041,
+    "sha256": "a52566b62842059fea4e180c6e4e2a0b9cb0fc9ec01358f1e42b596aa4577d18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the evidence needed.\n\n## Report\n\n### 1. \"16.9% depth retention loss by gen-4\" (discussion.tex:27)\n\n**Source file**: `/root/gen-depth-fingerprint/data/prompt_type_results.json`\n\n**Actual data**: continuation `retention_d4_pct` = 83.1%, meaning loss = **16.9%** (= 100 - 83.1).\n\nCalculation: d0=995, d4=827 → 827/995 = 0.8311 → loss = 16.89% ≈ 16.9%.\n\n**Verdict: 数字匹配。** 来源是 `data/prompt_type_results.json` 的 `depth_decay.continuation` 字段。\n\n---\n\n### 2. \"within-type CV F1 of 0.781 for continuation\" (discussion.tex:28, limitations.tex:16)\n\n**Source file**: `/root/gen-depth-fingerprint/data/prompt_type_results.json`\n\n**Actual data**: `per_prompt_cv_f1.continuation.mean` = **0.7806**\n\n论文写 0.781，实际值 0.7806 四舍五入到三位小数是 0.781。\n\n**Verdict: 数字匹配。** 来源是 `data/prompt_type_results.json` 的 `per_prompt_cv_f1.continuation.mean` 字段。\n\n---\n\n**总结：两个数字均有实验来源，数值正确。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-paper-numbers-r9.md"
+}

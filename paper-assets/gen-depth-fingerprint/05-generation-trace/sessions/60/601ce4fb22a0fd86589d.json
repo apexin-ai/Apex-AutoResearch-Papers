@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "601ce4fb22a0fd86589d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code cross temp transfer",
+  "task_key": "worker_code_cross-temp-transfer_20260517T124518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross-temp-transfer_20260517T124518_result.json",
+    "occurrence": 1,
+    "bytes": 961,
+    "sha256": "8dabf3197b0ca5f018d9bdcf19cba52edfbd9dad8686c87dcc510d4851e25dd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果摘要：\n\n| Condition | Binary F1 | 3-class F1 |\n|-----------|-----------|------------|\n| 0.7→0.7 (baseline) | 0.9471 | 0.7888 |\n| 0.7→1.0 (cross-temp) | 0.9001 | 0.7225 |\n| 1.0→1.0 (baseline) | 0.9107 | 0.7257 |\n| 1.0→0.7 (cross-temp) | 0.9581 | 0.7913 |\n\n**Cross-temp deltas:**\n- 0.7-trained → test on 1.0: binary -4.7pp, 3-class -6.6pp\n- 1.0-trained → test on 0.7: binary +4.7pp, 3-class +6.6pp\n\n**关键发现：** 性能变化几乎完全来自 qwen3-1.7b fold。其他 5 个 generator 的数据在两个温度数据集中相同，per-gen F1 不变。qwen3-1.7b 的 3-class F1 从 within-temp 的 ~0.81 / ~0.42 降到 cross-temp 的 ~0.42 / ~0.81，说明温度变化主要影响该 generator 的 depth signal 强度，但 LOGO 整体平均仍保持 >0.72 (3-class) 和 >0.90 (binary)。\n\n脚本：`cross_temp_transfer.py`，结果：`results/cross_temp_transfer.json`，已注册 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cross-temp-transfer.md"
+}

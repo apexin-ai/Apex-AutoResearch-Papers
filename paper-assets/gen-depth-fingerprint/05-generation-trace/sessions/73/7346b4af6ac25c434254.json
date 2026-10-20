@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7346b4af6ac25c434254",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "diagnosis qlora status check",
+  "task_key": "worker_diagnosis_qlora_status_check_20260519T090046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_qlora_status_check_20260519T090046_result.json",
+    "occurrence": 1,
+    "bytes": 1208,
+    "sha256": "a056236bfde45dd2486e15abb83c138d0c56fb0bdf271e7890c21d568dece981"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n**4 个 QLoRA 实验全部失败**，错误相同：`TypeError: expected str, bytes or os.PathLike object, not NoneType`\n\n### 根因\n\nBackbone 路径 `/root/autodl-tmp/models/qwen3-0.6b` 是 HuggingFace Hub cache 结构，实际模型文件在子目录：\n```\n/root/autodl-tmp/models/qwen3-0.6b/Qwen/Qwen3-0___6B-Base/\n```\n\n`AutoTokenizer.from_pretrained(\"/root/autodl-tmp/models/qwen3-0.6b\")` 在顶层目录找不到 `vocab.json`/`tokenizer.json`，导致 `vocab_file=None`，触发 TypeError。\n\n### 各实验状态\n\n| 实验 | 状态 | 错误 |\n|------|------|------|\n| exp_055 (OLMo instruct) | **失败** | tokenizer 路径错误 |\n| exp_056 (Qwen instruct) | **失败** | tokenizer 路径错误 |\n| exp_055b (OLMo base) | **失败** | tokenizer 路径错误 |\n| exp_056b (Qwen base) | **失败** | tokenizer 路径错误 |\n\nGPU 全部空闲（4x RTX 5090, 0% 利用率, 0MiB 显存）。\n\n### 修复方案\n\n将 `--backbone` 路径改为实际模型目录：\n```\n/root/autodl-tmp/models/qwen3-0.6b/Qwen/Qwen3-0___6B-Base/\n```\n\n或在 `qlora_instruct.py` 第 227 行加一层路径探测逻辑。需要修复后重新启动全部 4 个实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-qlora-status-check.md"
+}

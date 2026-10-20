@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "a3c48509d7ab247a1bde",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "analysis plan 014 revalidation v2",
+  "task_key": "worker_analysis_plan-014-revalidation-v2_20260515T035630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-014-revalidation-v2_20260515T035630.log",
+    "occurrence": 1,
+    "bytes": 1040270,
+    "sha256": "239d487a5521152c532112ea21ab56e87b50abc5d7ea965c7d1af93568180866"
+  },
+  "statistics": {
+    "messages": 873,
+    "user_turns": 0,
+    "tool_calls": 386,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 96,
+      "tool_call": 386,
+      "tool_result": 386,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 873,
+      "chunks": [
+        {
+          "path": "a3c48509d7ab247a1bde-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a3c48509d7ab247a1bde-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a3c48509d7ab247a1bde-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a3c48509d7ab247a1bde-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "a3c48509d7ab247a1bde-part-0005.json",
+          "message_count": 153
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-plan-014-revalidation-v2.md"
+}

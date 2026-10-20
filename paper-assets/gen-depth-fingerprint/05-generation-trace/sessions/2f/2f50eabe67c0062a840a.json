@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f50eabe67c0062a840a",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper appendix length confound",
+  "task_key": "worker_paper_appendix-length-confound_20260515T054847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix-length-confound_20260515T054847_result.json",
+    "occurrence": 1,
+    "bytes": 312,
+    "sha256": "72b847ec324105f2df4ab2bce3cd624f717ac51becb550f26be58795d1b73b82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **`appendix_length.tex`** — 包含三段分析 (a) Spearman |ρ| < 0.14, (b) 归一化后趋势保持且更强, (c) length-matched F1 Δ=+0.041，加结论段。约 0.5 页，术语与 results.tex 一致。\n- **`main.tex`** — placeholder 替换为 `\\input{appendix_length}`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-appendix-length-confound.md"
+}

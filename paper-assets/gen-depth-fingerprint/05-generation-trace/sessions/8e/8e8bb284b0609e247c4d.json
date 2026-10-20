@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "8e8bb284b0609e247c4d",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "exp review p1e ordinal",
+  "task_key": "worker_exp_review-p1e-ordinal_20260515T134136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_review-p1e-ordinal_20260515T134136.log",
+    "occurrence": 1,
+    "bytes": 662127,
+    "sha256": "1b39454be11fc0342d74adde5d2d47d4cf93d6a259836de3674575f1a193b5ec"
+  },
+  "statistics": {
+    "messages": 441,
+    "user_turns": 1,
+    "tool_calls": 171,
+    "roles": {
+      "log": 1,
+      "system": 44,
+      "assistant": 51,
+      "record": 1,
+      "tool_call": 171,
+      "user": 1,
+      "tool_result": 171,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "8e8bb284b0609e247c4d-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 434,
+      "chunks": [
+        {
+          "path": "8e8bb284b0609e247c4d-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "8e8bb284b0609e247c4d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8e8bb284b0609e247c4d-part-0003.json",
+          "message_count": 81
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-review-p1e-ordinal.md"
+}

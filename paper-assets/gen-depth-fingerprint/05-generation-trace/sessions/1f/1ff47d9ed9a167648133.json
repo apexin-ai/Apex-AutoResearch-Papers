@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ff47d9ed9a167648133",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops verify llama rp11 final",
+  "task_key": "worker_ops_verify-llama-rp11-final_20260516T114502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-llama-rp11-final_20260516T114502_result.json",
+    "occurrence": 1,
+    "bytes": 565,
+    "sha256": "cda90a31590a945c49766ac7fb292bb9e65398c249e71f70656762a86cbfa002"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan-016-llama32-3b-rp11 完成，结论: success**\n\n| 指标 | 值 |\n|------|-----|\n| 总条数 | 4416 (预期 4975) |\n| 跳过 | 283 条 (empty output) |\n| depth 0 | 995 (100%) |\n| depth 1 | 975 (98.0%) |\n| depth 2 | 912 (91.7%) |\n| depth 3 | 822 (82.6%) |\n| depth 4 | 712 (71.6%) |\n\nrp=1.1 的 skip 率随 depth 递增明显——depth 越深空输出越多，总 skip 率 ~11.3%。这与 rp=1.1 抑制重复导致模型在深层续写时更容易生成空/截断输出一致。\n\nRegistry 已标记 DONE/success，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-llama-rp11-final.md"
+}

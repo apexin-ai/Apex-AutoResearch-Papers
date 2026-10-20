@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1324f617805e87541d1c",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_4_1778847455.md",
+  "task_key": "loop_4_1778847455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778847455.md",
+    "occurrence": 1,
+    "bytes": 2788,
+    "sha256": "6c7bf4f04c19ba9d90fa67510fbb247963c879fa8ef9967b77246adeccebabe9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_wall_time\nupdated: '2026-05-15T12:16:31+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 参数范围 **\"0.6B--8.2B\" 禁止改为 \"0.6B--8B\"**（Qwen3-8B 实际参数 8.2B，Director 三次重申，已存 persistent memory）\n- 论文文件同时存在于 `artifacts/_project/paper/` 和 `docs/paper/`，任何修改必须双向同步，否则 Review Director 审查时会发现不一致\n- 当前无 GPU 分配给本项目，不要尝试提交实验\n\n### 2. 🖥️ 基础设施快照\n- 本项目无远程服务器——所有实验（特征提取、XGBoost 训练、bootstrap CI）均在本地 CPU 完成\n- 论文目录：`/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/`\n- 同步副本：`/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/`\n- 实验数据/脚本：`artifacts/_project/` 下各子目录\n- 无活跃进程、无 tmux session、无 cron 任务\n\n### 3. 📊 当前状态\n刚完成 Director 要求的\"最终编译验证 + 全文 consistency 扫描\"四步检查，已通过 `main_agent_post_to_director` 汇报：\n- 编译 ✅（13 页，0 errors，0 undefined refs，body ≤8 页）\n- 数值一致性 ✅（LOGO F1=0.789、0.6B--8.2B、CI width 1.4pp 等全文一致）\n- 交叉引用 ✅\n- docs/paper/ 同步 ✅（17/17 文件一致）\n\nRegistry 无 RUNNING/PREPARING 实验。所有补充分析（bootstrap CI v2、5-class depth、LOFO ablation、multi-seed stability、confusion matrix、alt classifier、Qwen family-out）均已完成并写入论文。\n\n等待中：Review Director 审查报告（已提交，尚未返回）。\n\n### 4. 📋 待办\n- Review Director 审查报告返回 → 按报告逐条处理（修改文件 / 汇报 Director 决策项）\n- Director 指令\"提交\" → 执行 EMNLP 2026 ARR 投稿流程（匿名化检查、PDF 生成、supplementary 打包）\n- 若 Director 要求新实验 → 先确认 GPU 分配（当前 gpu_ids 为空），必要时 push back 申请资源\n\n### 5. 🎯 战略上下文\n- 论文核心结论：7-feature ensemble LOGO F1=0.789，显著优于所有 single-detector baselines（p<0.001），但 depth-aware data curation 不优于 random subsampling → depth fingerprinting 定位为 **diagnostic tool**，非 curative tool\n- EMNLP 2026 ARR deadline **2026-05-25**，距今 10 天\n- 论文已基本就绪，处于 polish + review 阶段\n- 易错点：abstract 同时存在 main.tex 内联版和 abstract.tex 独立版，改一个必须同步另一个\n- 易错点：results.tex 中 Table 1 的 bootstrap CI 是 v2 版本（class-balanced downsampling），不要用 v1 数据覆盖\n- LOFO 三个 family-out 值（Pythia 0.772, OLMo 0.762, Qwen 0.754）已写入 results.tex，勿遗漏任何一个\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778847455.md"
+}

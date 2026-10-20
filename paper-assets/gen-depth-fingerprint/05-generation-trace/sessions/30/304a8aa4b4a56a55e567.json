@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "304a8aa4b4a56a55e567",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code baseline robustness compare",
+  "task_key": "worker_code_baseline-robustness-compare_20260516T230349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_baseline-robustness-compare_20260516T230349_result.json",
+    "occurrence": 1,
+    "bytes": 969,
+    "sha256": "9e8031fcf56f86445947d02f2de2630287c2838d336e2a5c8760a6a525509f2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果已保存到 `/root/gen-depth-fingerprint/experiments/human_edit_robustness/baseline_robustness.json`。\n\n**关键发现：**\n\n| Method | 0% | 5% | 10% | 20% | Drop@20% |\n|--------|----|----|-----|-----|----------|\n| ld_score | 0.677 | 0.673 | 0.677 | 0.671 | **0.006** |\n| fastdetectgpt | 0.571 | 0.437 | 0.468 | 0.514 | 0.058 |\n| binoculars | 0.500 | 0.461 | 0.446 | 0.425 | 0.075 |\n| 7-feature (ref) | 0.695 | 0.650 | 0.614 | 0.591 | 0.104 |\n| avg_logprob | 0.682 | 0.419 | 0.335 | 0.375 | **0.307** |\n\n- **Most robust**: `ld_score` (仅 0.6% 退化，trigram 分布对词替换几乎不敏感)\n- **Least robust**: `avg_logprob` (30.7% 退化，token-level NLL 对任何文本变化极其敏感)\n- 7-feature 的退化 (10.4%) 介于 binoculars 和 avg_logprob 之间，属中等鲁棒性\n- fastdetectgpt 和 avg_logprob 在扰动下出现非单调行为（可能因为扰动改变了 curvature 分布的方向性）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-baseline-robustness-compare.md"
+}

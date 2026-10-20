@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48de19299c9e75c4377e",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ssh emergency disk cleanup",
+  "task_key": "worker_ssh_emergency-disk-cleanup_20260515T003913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_emergency-disk-cleanup_20260515T003913_result.json",
+    "occurrence": 1,
+    "bytes": 805,
+    "sha256": "472c517770030830ef00fc017414f048bef02b201bdbdbf0608bd5958b679ce6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。验证清单：\n\n| 检查项 | 状态 |\n|--------|------|\n| df -h / > 5GB free | ✅ 23G free (25%) |\n| plan-014 symlink 正常，进程存活 | ✅ PID 134823 alive, symlink → data disk |\n| HF_HOME 设置 | ✅ 已写入 .bashrc |\n| plan-004 output_dir 指向数据盘 | ✅ experiments/downstream → /root/autodl-tmp/... |\n| plan-004 batch_size ≤ 8 | ✅ size_matched: bs=2 ga=8; 其他: bs=4 ga=4 |\n| 3 GPU 训练已提交 | ✅ GPU1/2/3 全部在跑 |\n\n**分配方案 (15 runs total)：**\n- GPU 1: depth0_only×3 + depth01 seed42,123 = 5 runs (~1.73 it/s)\n- GPU 2: 等 size_matched_seed42 完成 → depth01_seed456 + all×3 = 4 runs\n- GPU 3: size_matched seed123,456 + binary_filtered×3 = 5 runs (~1.51 it/s)\n\n日志位置：`/tmp/plan004_gpu{1,2,3}.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-emergency-disk-cleanup.md"
+}

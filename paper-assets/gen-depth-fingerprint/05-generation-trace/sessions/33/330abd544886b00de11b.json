@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "330abd544886b00de11b",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "diagnosis decoding strategy check",
+  "task_key": "worker_diagnosis_decoding_strategy_check_20260521T063730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_decoding_strategy_check_20260521T063730_result.json",
+    "occurrence": 1,
+    "bytes": 576,
+    "sha256": "8480d7ae71a0fb51533fc6e4f57f9920e568c5ede9057ffd176937d816924f83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**STATUS: PARTIAL** — 实验正在运行，无错误。\n\n| 组合 | 状态 |\n|------|------|\n| pythia-2.8b × greedy | 运行中 38/995 (~3.8%), ETA ~3.8h |\n| pythia-2.8b × topk | 待 greedy 完成后自动运行 |\n| olmo-2-1b × greedy | 运行中 59/995 (~5.9%), ETA ~2.25h |\n| olmo-2-1b × topk | 待 greedy 完成后自动运行 |\n| qwen3-1.7b × greedy | **未启动** |\n| qwen3-1.7b × topk | **未启动** |\n\nGPU 2、3 空闲。Qwen3-1.7B 需要手动启动。诊断已写入 `artifacts/_project/analysis/decoding_strategy_diagnosis.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-decoding-strategy-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f90aa500727281b8baf",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis threshold sweep",
+  "task_key": "worker_analysis_threshold_sweep_20260521T062444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_threshold_sweep_20260521T062444_result.json",
+    "occurrence": 1,
+    "bytes": 612,
+    "sha256": "f3c5d44f8d48dae8e6b4895ed6cf4fb8ff117d1b2283f689ae287e3fd4a9c5d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已保存：\n\n- **结果表**: `artifacts/_project/analysis/threshold_sweep_results.txt`\n- **附录段落**: `artifacts/_project/analysis/threshold_sweep_paragraph.tex`\n\n核心发现：整个 [0.10, 0.80] 范围内只存在 3 个不同的 partition，说明分组是自然聚类而非阈值选择的产物。论文使用的 3-drifting partition 对应 peak silhouette = 0.6603，在 |d| ∈ [0.50, 0.75] 范围内完全稳定。唯一会切换分组的 feature 是 entropy_std (d=0.4914)，它两侧分别有 0.40 和 0.29 的 gap，所以无论哪种 partition 都是稳健的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-threshold-sweep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9269705083f28646a7fc",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "writing results section",
+  "task_key": "worker_writing_results-section_20260515T043424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_results-section_20260515T043424_result.json",
+    "occurrence": 1,
+    "bytes": 1353,
+    "sha256": "5ebed1280ac19830005d0aae0e166caf83760bb473741fbf838d5a9fe042118c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n**报告**\n\n| 项目 | 内容 |\n|------|------|\n| **Section** | §5 Results (4 subsections: Classification, Differential Depth Response, Baselines, Downstream Utility) |\n| **Word count** | ~1,131 words (含 LaTeX markup), 约 2 pages in acl.sty 双栏 |\n| **Tables** | 4 个已定义: `tab:logo-results` (per-gen LOGO), `tab:ablation` (feature ablation), `tab:baselines` (baseline comparison), `tab:downstream` (downstream PPL) |\n| **Figures referenced** | 4 个需制作: `fig:feature-drift` (§5.2 drift vs stationarity), `fig:baseline-ci` (§5.3 CI forest plot), 另有 Fig 2 (§5.1 per-gen/per-class) 和 Fig 4 (§5.4 downstream bar chart) 需在正文中补 `\\ref` 或移至 appendix |\n| **Citations needed** | 无外部 citation 在 Results 内引用 (检测器名称如 FastDetectGPT、Binoculars、LD-Score 在 Method/Related Work 中已引); `Appendix~\\ref{app:length}` 需在 appendix 中建立对应 label |\n| **Notes** | (1) Binoculars 使用 bugfix 后数值 0.579 ✓; (2) 全部数字来自 registry 确认 (plan-014, plan-015-v2, plan-004-v2, plan-002-eval, plan-003, plan-013); (3) §5.4 负面结果以 diagnostic-not-curative framing 如实报告; (4) 未使用 \"dual dynamics\"/\"H1/H2\"/\"discovery\" 等禁用术语; (5) 5-class fine-grained 结果 (F1=0.505) 未放入主文, 可移至 appendix |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-results-section.md"
+}

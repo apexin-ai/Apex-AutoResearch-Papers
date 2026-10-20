@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8c1b78e02046f00e64e",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper fig1 strip plot vertical",
+  "task_key": "worker_paper_fig1-strip-plot-vertical_20260523T022535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig1-strip-plot-vertical_20260523T022535_result.json",
+    "occurrence": 1,
+    "bytes": 533,
+    "sha256": "93cb93b32e4885bfac25eb8f3bc024c1a5de152f2424f854b864f512579960b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 已重画为垂直 strip plot，输出到：\n- `docs/chart/fig1_differential_response.pdf` / `.png`\n- `artifacts/_project/chart/fig1_differential_response.pdf` / `.png`\n\n验证结果：\n- 无 Type 3 字体（全部 CID TrueType）\n- 7 个 feature 按 |ρ| 降序排列，每个用不同 marker shape\n- 三色区域分组（Drifting / Intermediate / Near-stationary）+ 顶部 zone 标注\n- 8 个 generator 的独立 ρ 值（小点 + jitter）+ 跨 generator 均值（大菱形）+ min–max 范围线"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig1-strip-plot-vertical.md"
+}

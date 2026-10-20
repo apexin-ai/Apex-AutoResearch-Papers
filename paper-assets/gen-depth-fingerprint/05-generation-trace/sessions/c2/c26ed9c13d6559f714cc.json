@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c26ed9c13d6559f714cc",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper final compile all changes",
+  "task_key": "worker_paper_final-compile-all-changes_20260522T031445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_final-compile-all-changes_20260522T031445_result.json",
+    "occurrence": 1,
+    "bytes": 271,
+    "sha256": "e510963a9ba6f504e80cde6eface9382606db5f437cfb9d5c1f32036305a3c7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Final Report**\n\n| Item | Value |\n|------|-------|\n| Total pages | 36 |\n| Limitations start page | 9 |\n| Undefined references | 0 |\n| Missing figures | 0 |\n| PDF MD5 | `0ad0ed9d72dc248e48ab24125dcfd6bc` |\n| Local copies | 2/2 verified identical |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-final-compile-all-changes.md"
+}

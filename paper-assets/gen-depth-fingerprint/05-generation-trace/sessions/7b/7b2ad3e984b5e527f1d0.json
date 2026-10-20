@@ -1,0 +1,2077 @@
+{
+  "schema_version": "1.0",
+  "id": "7b2ad3e984b5e527f1d0",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "paper related work ordinal",
+  "task_key": "worker_paper_related-work-ordinal_20260515T225312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_related-work-ordinal_20260515T225312.log",
+    "occurrence": 1,
+    "bytes": 162345,
+    "sha256": "79badbace8186c5eae1ae0a050928c8b6f2f642a542a4ec1397259a8b344f96c"
+  },
+  "statistics": {
+    "messages": 49,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 13,
+      "tool_call": 16,
+      "tool_result": 16,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+                "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "5328cef6-6f46-4371-9b18-cf4310a9b690",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778886600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "1f18b88e-506e-4ab5-a195-6636d48a86bb",
+                "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to do two tasks:\n\n1. Check `docs/paper/related_work.tex` for any residual CI width references\n2. Look up plan-015 ordinal baseline results from the registry and check if they're in results.tex\n\nLet me start by reading the related_work.tex file and querying the registry in parallel.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "f39fb076-4198-4f41-b930-6ac1efffd32e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X7BUsLX5EZX7UNLaPZYmBL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12199,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12199
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AjQhRthYEyonuuqdex1XpS",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "0c409ef5-fb3e-4edb-8efe-d300a2697583",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X7BUsLX5EZX7UNLaPZYmBL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12199,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12199
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T22:53:28.482Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AjQhRthYEyonuuqdex1XpS",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\n2\t\\label{sec:related}\n3\t\n4\t\\subsection{AI-Generated Text Detection}\n5\t\\label{sec:related-detection}\n6\t\n7\tMethods for distinguishing human-written from machine-generated text have evolved from statistical tests on token-level distributions \\cite{gltr,grover,release_strategies} to zero-shot approaches exploiting reference-model likelihoods \\cite{detectgpt,fast_detectgpt,binoculars,dna_gpt} and learned classifiers over linguistic features \\cite{feat_aug_transformer,reliable_detection,ld_score}.\n8\tRecent work has pursued diverse detection signals: \\citet{intrinsic_dimension} use intrinsic dimensionality estimates, \\citet{diveye} propose surprisal diversity features directly comparable to our distributional features, and \\citet{generator_barrier} characterize the distributional gap between human and model outputs.\n9\t\\citet{wu_survey_2025} provide the most comprehensive recent survey; see also \\citet{jawahar_survey} for an earlier overview.\n10\tCommercial systems such as GPTZero provide trained-classifier detection but are non-reproducible due to proprietary model access, precluding controlled baseline comparison; we restrict evaluation to open methods.\n11\tA persistent limitation is that all these methods produce binary (real vs.\\ synthetic) decisions.\n12\tRecent efforts extend detection to multi-class settings: \\citet{beyond_binary} propose role recognition and involvement measurement to distinguish collaborative human-LLM generation scenarios, and the SemEval-2024 shared task \\cite{semeval2024_task8} evaluates multi-generator attribution across domains and languages.\n13\tThese approaches discriminate among different \\emph{sources} (human vs.\\ specific models) rather than recursive generation \\emph{depth} within a single generator's chain.\n14\tEven when detection scores correlate with generation depth, they exhibit high cross-generator variance when repurposed as ordinal predictors (binary F1 from 0.52 to 0.71 across individual baselines; Table~\\ref{tab:baselines}), because each score captures a single distributional property that generalizes inconsistently.\n15\t\\citet{paraphrase_evades} and \\citet{detection_possibilities} further demonstrate that detection robustness degrades under distributional shift.\n16\tOur reference-model entropy features are functionally NLL-based out-of-distribution scores \\cite{ood_baseline}; the contribution is not a new detection method but the task formulation (ordinal depth estimation) and the empirical finding that combining drifting and stationary features yields consistent cross-generator performance.\n17\t\n18\t\\paragraph{Source attribution vs.\\ depth estimation.}\n19\tA related but distinct task is \\emph{source attribution}: identifying \\emph{which} model generated a given text.\n20\t\\citet{uchendu_attribution} train multi-class classifiers over stylometric features to distinguish outputs of different generators, and \\citet{munir_looking_glass} learn attribution models that generalize across unseen language models.\n21\tThese methods answer \\emph{who} generated the text; depth estimation answers \\emph{how many recursive steps} produced it.\n22\tThe two tasks are orthogonal: a single generator can produce text at any depth, and texts at the same depth may originate from different generators.\n23\tOur LOGO evaluation explicitly decouples generator identity from depth by holding out entire generators, ensuring that the classifier learns depth signal rather than generator fingerprints.\n24\t\n25\t\\subsection{Model Collapse and Iterative Generation}\n26\t\\label{sec:related-collapse}\n27\t\n28\tA growing body of work studies quality degradation when models are trained on their own outputs.\n29\t\\citet{self_consuming_mad} demonstrate that self-consuming generative models progressively lose distributional coverage, and \\citet{curse_of_recursion} show that model collapse is inevitable in successive fine-tuning rounds without fresh human data, though \\citet{model_collapse_avoidable} identify conditions under which careful data mixing can mitigate this effect.\n30\t\\citet{strong_model_collapse} extend these results to larger-scale settings.\n31\tThese studies focus on \\emph{training-loop} degradation, where model weights are updated on recursive data.\n32\tOur setting is different: we study \\emph{inference chains}, where a fixed model generates text conditioned on its own prior output without retraining.\n33\t\n34\tTwo concurrent lines of work are most directly relevant.\n35\t\\citet{broken_telephone} analyze paraphrasing and translation chains, showing progressive information loss analogous to the telephone game.\n36\t\\citet{markovian_chains} provide a theoretical framework for convergence in iterative text transformations, demonstrating that semantic-preservation constraints induce attractor dynamics that bound distinguishable depth to approximately three classes.\n37\tOur work differs in two respects: we study \\emph{non-paraphrastic continuation} chains, where the absence of semantic anchoring permits richer depth signal beyond the attractor bound; and we focus on \\emph{estimating} depth from text features rather than characterizing convergence behavior.\n38\t\n39\t\\subsection{Vocabulary Diversity and Stylometry}\n40\t\\label{sec:related-diversity}\n41\t\n42\tDeclining lexical diversity in LLM-generated text is documented in both training \\cite{curious_decline} and deployment \\cite{writing_diversity} settings.\n43\tOur surface features---type-token ratio and hapax ratio---instantiate this observation for inference chains, where we show monotonic diversity decline across generation depths without any model retraining.\n44\t\n45\tThese features are classical stylometric measures with a long history in authorship attribution \\cite{stamatatos_survey,koppel_authorship}.\n46\t\\citet{uchendu_attribution} extend stylometric and neural methods to multi-class attribution of text to specific generators.\n47\tWe push beyond generator identity to the \\emph{depth} dimension: text from the same generator at different depths exhibits systematically different feature profiles, and these profiles generalize across generators.\n48\tSampling strategies also affect diversity; \\citet{nucleus_sampling} show that top-$p$ sampling mitigates some degeneration, but our results demonstrate that diversity still declines monotonically across recursive application of the same sampling procedure.\n49\t\n50\t\\subsection{Data Quality and Provenance}\n51\t\\label{sec:related-provenance}\n52\t\n53\tScalable data curation relies on quality signals to filter web-crawled corpora.\n54\t\\citet{dsir} select pretraining data to match a target distribution, \\citet{qurating} learn quality scores from LLM judgments, and \\citet{ccnet} filter Common Crawl via perplexity-based heuristics.\n55\tGeneration depth is a complementary provenance signal: it characterizes \\emph{how many steps removed} text is from a human source, orthogonal to content quality per se.\n56\t\n57\tAn alternative approach is proactive provenance through watermarking \\cite{watermark_llm,synthid_text,aaronson_watermark}, where identifiable patterns are embedded during generation.\n58\tHowever, \\citet{chainwash} demonstrate that watermark strength decays across multi-step generation chains, motivating passive post-hoc methods that do not require generator cooperation.\n59\tOur depth fingerprinting is such a method: it operates on text alone without assuming access to the generating model or an embedded watermark.\n60\tAt the feature level, our reference-model NLL analysis connects to \\citet{min_k_percent}, who use the probability distribution's lower tail for membership inference; we analyze the full NLL distribution for a different purpose---ordinal depth estimation rather than training-set membership.\n61\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "ef87f56d-65a4-4b79-b5ec-df595a077de4",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/related_work.tex",
+                "content": "\\section{Related Work}\n\\label{sec:related}\n\n\\subsection{AI-Generated Text Detection}\n\\label{sec:related-detection}\n\nMethods for distinguishing human-written from machine-generated text have evolved from statistical tests on token-level distributions \\cite{gltr,grover,release_strategies} to zero-shot approaches exploiting reference-model likelihoods \\cite{detectgpt,fast_detectgpt,binoculars,dna_gpt} and learned classifiers over linguistic features \\cite{feat_aug_transformer,reliable_detection,ld_score}.\nRecent work has pursued diverse detection signals: \\citet{intrinsic_dimension} use intrinsic dimensionality estimates, \\citet{diveye} propose surprisal diversity features directly comparable to our distributional features, and \\citet{generator_barrier} characterize the distributional gap between human and model outputs.\n\\citet{wu_survey_2025} provide the most comprehensive recent survey; see also \\citet{jawahar_survey} for an earlier overview.\nCommercial systems such as GPTZero provide trained-classifier detection but are non-reproducible due to proprietary model access, precluding controlled baseline comparison; we restrict evaluation to open methods.\nA persistent limitation is that all these methods produce binary (real vs.\\ synthetic) decisions.\nRecent efforts extend detection to multi-class settings: \\citet{beyond_binary} propose role recognition and involvement measurement to distinguish collaborative human-LLM generation scenarios, and the SemEval-2024 shared task \\cite{semeval2024_task8} evaluates multi-generator attribution across domains and languages.\nThese approaches discriminate among different \\emph{sources} (human vs.\\ specific models) rather than recursive generation \\emph{depth} within a single generator's chain.\nEven when detection scores correlate with generation depth, they exhibit high cross-generator variance when repurposed as ordinal predictors (binary F1 from 0.52 to 0.71 across individual baselines; Table~\\ref{tab:baselines}), because each score captures a single distributional property that generalizes inconsistently.\n\\citet{paraphrase_evades} and \\citet{detection_possibilities} further demonstrate that detection robustness degrades under distributional shift.\nOur reference-model entropy features are functionally NLL-based out-of-distribution scores \\cite{ood_baseline}; the contribution is not a new detection method but the task formulation (ordinal depth estimation) and the empirical finding that combining drifting and stationary features yields consistent cross-generator performance.\n\n\\paragraph{Source attribution vs.\\ depth estimation.}\nA related but distinct task is \\emph{source attribution}: identifying \\emph{which} model generated a given text.\n\\citet{uchendu_attribution} train multi-class classifiers over stylometric features to distinguish outputs of different generators, and \\citet{munir_looking_glass} learn attribution models that generalize across unseen language models.\nThese methods answer \\emph{who} generated the text; depth estimation answers \\emph{how many recursive steps} produced it.\nThe two tasks are orthogonal: a single generator can produce text at any depth, and texts at the same depth may originate from different generators.\nOur LOGO evaluation explicitly decouples generator identity from depth by holding out entire generators, ensuring that the classifier learns depth signal rather than generator fingerprints.\n\n\\subsection{Model Collapse and Iterative Generation}\n\\label{sec:related-collapse}\n\nA growing body of work studies quality degradation when models are trained on their own outputs.\n\\citet{self_consuming_mad} demonstrate that self-consuming generative models progressively lose distributional coverage, and \\citet{curse_of_recursion} show that model collapse is inevitable in successive fine-tuning rounds without fresh human data, though \\citet{model_collapse_avoidable} identify conditions under which careful data mixing can mitigate this effect.\n\\citet{strong_model_collapse} extend these results to larger-scale settings.\nThese studies focus on \\emph{training-loop} degradation, where model weights are updated on recursive data.\nOur setting is different: we study \\emph{inference chains}, where a fixed model generates text conditioned on its own prior output without retraining.\n\nTwo concurrent lines of work are most directly relevant.\n\\citet{broken_telephone} analyze paraphrasing and translation chains, showing progressive information loss analogous to the telephone game.\n\\citet{markovian_chains} provide a theoretical framework for convergence in iterative text transformations, demonstrating that semantic-preservation constraints induce attractor dynamics that bound distinguishable depth to approximately three classes.\nOur work differs in two respects: we study \\emph{non-paraphrastic continuation} chains, where the absence of semantic anchoring permits richer depth signal beyond the attractor bound; and we focus on \\emph{estimating} depth from text features rather than characterizing convergence behavior.\n\n\\subsection{Vocabulary Diversity and Stylometry}\n\\label{sec:related-diversity}\n\nDeclining lexical diversity in LLM-generated text is documented in both training \\cite{curious_decline} and deployment \\cite{writing_diversity} settings.\nOur surface features---type-token ratio and hapax ratio---instantiate this observation for inference chains, where we show monotonic diversity decline across generation depths without any model retraining.\n\nThese features are classical stylometric measures with a long history in authorship attribution \\cite{stamatatos_survey,koppel_authorship}.\n\\citet{uchendu_attribution} extend stylometric and neural methods to multi-class attribution of text to specific generators.\nWe push beyond generator identity to the \\emph{depth} dimension: text from the same generator at different depths exhibits systematically different feature profiles, and these profiles generalize across generators.\nSampling strategies also affect diversity; \\citet{nucleus_sampling} show that top-$p$ sampling mitigates some degeneration, but our results demonstrate that diversity still declines monotonically across recursive application of the same sampling procedure.\n\n\\subsection{Data Quality and Provenance}\n\\label{sec:related-provenance}\n\nScalable data curation relies on quality signals to filter web-crawled corpora.\n\\citet{dsir} select pretraining data to match a target distribution, \\citet{qurating} learn quality scores from LLM judgments, and \\citet{ccnet} filter Common Crawl via perplexity-based heuristics.\nGeneration depth is a complementary provenance signal: it characterizes \\emph{how many steps removed} text is from a human source, orthogonal to content quality per se.\n\nAn alternative approach is proactive provenance through watermarking \\cite{watermark_llm,synthid_text,aaronson_watermark}, where identifiable patterns are embedded during generation.\nHowever, \\citet{chainwash} demonstrate that watermark strength decays across multi-step generation chains, motivating passive post-hoc methods that do not require generator cooperation.\nOur depth fingerprinting is such a method: it operates on text alone without assuming access to the generating model or an embedded watermark.\nAt the feature level, our reference-model NLL analysis connects to \\citet{min_k_percent}, who use the probability distribution's lower tail for membership inference; we analyze the full NLL distribution for a different purpose---ordinal depth estimation rather than training-set membership.\n",
+                "numLines": 61,
+                "startLine": 1,
+                "totalLines": 61
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019W1Nr2t6rCw6dJTVdrXAXn",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_registry",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "c8cd14be-3da3-42c3-a9a3-c64463686724",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X7BUsLX5EZX7UNLaPZYmBL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12199,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12199
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T22:53:29.091Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_019W1Nr2t6rCw6dJTVdrXAXn",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "05a96f31-fb0a-4485-a929-6373c014b2ad",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__read_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__read_registry",
+              "total_deferred_tools": 25
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me query the registry for plan-015 related experiments and also read results.tex in parallel.",
+              "signature": "EqACClkIDRgCKkCgHBuY5NT+iLRMoYcCDXRtGkjB9lJHxkzNU55/asb1LYq9rTzJ9+xTgUcddV6gpVThgK7P3naB32Gn7tteGLGHMg9jbGF1ZGUtb3B1cy00LTY4ABIMxCUAUbCApKlkd5r8GgxgVtmb7FwMCxLDCGQiMELzxaXqGRn4arBMWEWQj+EOjXjEjXtSy2Co5awIo6rQPWvTgat9miwsVEGPIhj/Nyp1E3eUruRM7dTFwzuNScqETiM49Q0SM+9JQi8pKNjUN5HpzBU7Lzb9C30NSdLq9Xe6ORCNh+Agl6A2ZGjaGeq7bJiOB3hgvgZXdRlL+7Jp8ffbrLrcFsUh5ugT5OT6myJB8U9R6XSJPBAfLNNRWbKuKqAZE+K/GAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "a828d46d-0077-41ec-babe-54cba923c115",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014ME7MgKKtyuyuNsdywEGdd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2489,
+                "cache_read_input_tokens": 24040,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2489
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KYsdba7APgrTnAs4jmPZxL",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "gen-depth-fingerprint",
+                "limit": 0,
+                "filters": {
+                  "plan_id": "plan-015"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "6203a450-3854-434e-9153-689452ba1fdd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014ME7MgKKtyuyuNsdywEGdd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2489,
+                "cache_read_input_tokens": 24040,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2489
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T22:53:34.104Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KYsdba7APgrTnAs4jmPZxL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2128}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "cf7203a7-5d06-43b3-9efe-d949157a296b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2128}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2128}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LxBh5doC2AzZGdS6LFc7Nx",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "68131321-fb0e-4125-93a5-5cf8e6e76206",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014ME7MgKKtyuyuNsdywEGdd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2489,
+                "cache_read_input_tokens": 24040,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2489
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T22:53:34.167Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LxBh5doC2AzZGdS6LFc7Nx",
+              "type": "tool_result",
+              "content": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\tWe evaluate depth fingerprinting along four axes: cross-generator classification (\\S\\ref{sec:results-classification}), differential depth response of individual features (\\S\\ref{sec:results-differential}), comparison with existing detection baselines (\\S\\ref{sec:results-baselines}), and downstream utility for data curation (\\S\\ref{sec:results-downstream}).\n5\t\n6\t\\subsection{Depth Classification Performance}\n7\t\\label{sec:results-classification}\n8\t\n9\tTable~\\ref{tab:logo-results} reports leave-one-generator-out (LOGO) macro-F1 for 3-class depth estimation (gen-0\\,/\\,gen-1\\,/\\,gen-2+) across six generators spanning three model families and parameter counts from 0.6B to 8.2B.\n10\t\n11\tThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.789 (Table~\\ref{tab:logo-results}). Because gen-0 seed texts are shared across generators (\\S\\ref{sec:generation}), the gen-0 class F1 (0.94) may be inflated; we therefore report a leak-free binary evaluation (gen-1 vs.\\ gen-2+, F1\\,=\\,0.723) as the primary metric in \\S\\ref{sec:results-baselines}.\n12\tPer-generator held-out F1 ranges from 0.683 (Qwen3-8B) to 0.856 (Pythia-1B).\n13\tPer-class F1 varies by depth: gen-0\\,=\\,0.94, gen-2+\\,=\\,0.80, gen-1\\,=\\,0.64; the primary difficulty lies in distinguishing gen-1 from gen-2+, where feature margins narrow.\n14\t\n15\t\\paragraph{Cross-scale transfer.}\n16\tThe six-generator evaluation includes Qwen3-8B (8.2B parameters), confirming that depth signal persists at scales beyond the $\\leq$2.8B training generators.\n17\tHowever, cross-scale transfer incurs a moderate gap: Qwen3-8B held-out F1\\,=\\,0.683 (CI [0.668, 0.694]), compared to 0.76--0.86 for $\\leq$2.8B generators.\n18\tText generated by larger models is more fluent, compressing feature margins and making depth distinctions harder.\n19\tNotably, adding Qwen3-8B data \\emph{improves} classification on the original five generators (+0.8\\,pp to 0.810), indicating that cross-scale diversity benefits rather than dilutes the training signal.\n20\tA volume-matched control confirms this gain is driven by generator diversity, not data quantity: upsampling the 4-generator training set to match the 5-generator count yields only +0.05\\,pp, while the remaining +0.78\\,pp (94\\% of the total improvement) is attributable to the additional generator's distributional diversity.\n21\tWe note that this gap may narrow with scale-matched training data; our current dataset contains $\\sim$1{,}000 samples per generator regardless of scale.\n22\t\n23\t\\paragraph{Cross-family generalization.}\n24\tLeave-one-family-out (LOFO) evaluation---holding out an entire model family and training on the remaining two---yields macro-F1 of 0.772 (Pythia held out), 0.762 (OLMo held out), and 0.754 (Qwen held out), confirming that depth features transfer across architectural families with only modest degradation (average $\\Delta$\\,=\\,$-$2.6\\,pp vs.\\ LOGO).\n25\t\n26\t\\paragraph{Cross-model chains.}\n27\tReal-world contamination involves diverse generators at each depth step.\n28\tWe construct cross-model chains where each generation step uses a randomly selected generator and evaluate under LOGO cross-validation.\n29\tCross-model chains yield 3-class macro-F1\\,=\\,0.809 and binary F1\\,=\\,0.764, confirming that depth signal is maintained when chain provenance is heterogeneous.\n30\tCross-model 3-class F1 (0.809) falls below the best single-model ceiling (Pythia-1B, 0.862) but demonstrates that depth fingerprinting remains effective in multi-generator scenarios that better approximate real-world web contamination.\n31\t\n32\t\\paragraph{Length confound control.}\n33\tText length correlates weakly with depth (Spearman $|\\rho| < 0.14$).\n34\tLength-normalized feature trends are preserved, and length-matched subsampling yields comparable or higher F1 ($\\Delta$\\,=\\,+0.041), ruling out length as a confound (Appendix~\\ref{app:length}).\n35\t\n36\t\n37\t\\begin{table}[t]\n38\t\\centering\n39\t\\small\n40\t\\begin{tabular}{llccc}\n41\t\\toprule\n42\t\\textbf{Generator} & \\textbf{Family} & \\textbf{Params} & \\textbf{Held-out F1} & \\textbf{95\\% CI} \\\\\n43\t\\midrule\n44\tPythia-1B       & Pythia & 1.0B & 0.856 & [0.843, 0.863] \\\\\n45\tPythia-2.8B     & Pythia & 2.8B & 0.804 & [0.793, 0.813] \\\\\n46\tOLMo-2-1B      & OLMo   & 1.5B & 0.764 & [0.754, 0.776] \\\\\n47\tQwen3-0.6B     & Qwen   & 0.6B & 0.824 & [0.813, 0.834] \\\\\n48\tQwen3-1.7B     & Qwen   & 1.7B & 0.806 & [0.796, 0.817] \\\\\n49\tQwen3-8B       & Qwen   & 8.2B & 0.683 & [0.668, 0.694] \\\\\n50\t\\midrule\n51\t\\multicolumn{3}{l}{Average (6-gen LOGO)} & 0.789 & --- \\\\\n52\t\\multicolumn{3}{l}{5-gen LOGO (excl.\\ Qwen3-8B)} & 0.802 & --- \\\\\n53\t\\bottomrule\n54\t\\end{tabular}\n55\t\\caption{Leave-one-generator-out macro-F1 with bootstrap 95\\% confidence intervals ($n$\\,=\\,1000) for 3-class depth estimation using the 7-feature ensemble. Each row holds out one generator for testing and trains on the remaining five.}\n56\t\\label{tab:logo-results}\n57\t\\end{table}\n58\t\n59\t\\paragraph{Ordinal regression comparison.}\n60\tTo test whether the ordinal structure of the 3-class depth label provides additional discriminative power, we compare CORAL ordinal regression \\cite{coral_ordinal} and Frank-Hall ordinal reduction \\cite{frank_hall_ordinal} against the standard multiclass XGBoost classifier under the same LOGO protocol.\n61\tOn 3-class F1, CORAL achieves 0.771, Frank-Hall 0.793, and XGBoost 0.789; all three confidence intervals overlap.\n62\tBinary F1 (gen-1 vs.\\ gen-2+) similarly shows no separation: XGBoost 0.721, CORAL 0.728.\n63\tConcordance index---an ordinal-specific metric rewarding correct ranking---yields XGBoost 0.821, CORAL 0.810, Frank-Hall 0.825; again, all CIs overlap.\n64\tThe standard multiclass classifier already captures the depth-discriminative signal, and explicitly encoding ordinal structure does not yield a measurable gain, likely because the 3-class granularity provides insufficient ordinal resolution for ranking-aware losses to exploit.\n65\t\n66\t\n67\t\\subsection{Differential Depth Response}\n68\t\\label{sec:results-differential}\n69\t\n70\tFeatures exhibit \\emph{differential depth response}: central-tendency and diversity measures drift monotonically with depth, while distributional shape measures remain near-stationary.\n71\tThis pattern is consistent with recursive generation inducing a location shift in the token-level NLL distribution---the text becomes progressively more predictable (mean shifts), while the functional form of the distribution is preserved (shape is invariant).\n72\t\n73\t\\begin{figure}[t]\n74\t\\centering\n75\t\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n76\t\\caption{Differential depth response: Spearman correlations between individual features and generation depth. Central-tendency and diversity features (hapax ratio, TTR, entropy mean) show strong monotonic drift, while shape features (entropy std, tail decay) remain near-stationary.}\n77\t\\label{fig:feature-drift}\n78\t\\end{figure}\n79\t\n80\tIndividual-level Spearman correlations with depth confirm the split (Figure~\\ref{fig:feature-drift}):\n81\tdrifting features show strong monotonic trends (hapax ratio $\\rho = -0.558$, TTR $\\rho = -0.542$, entropy mean $\\rho = -0.475$),\n82\twhile shape features show weak or negligible correlations (entropy std $|\\rho| = 0.076$, tail decay $|\\rho| = 0.089$).\n83\t\n84\t\\paragraph{Feature complementarity.}\n85\tTable~\\ref{tab:ablation} reports ablation results.\n86\tThe full 7-feature set (F1\\,=\\,0.789) significantly outperforms both surface-only features (TTR, hapax\\_ratio; F1\\,=\\,0.729) and reference-only features (entropy mean/std/max/min, tail\\_decay; F1\\,=\\,0.745; McNemar $p \\approx 0$).\n87\tPermutation importance ranks hapax ratio highest (0.269), followed by entropy mean (0.164) and TTR (0.159).\n88\tSurface features capture vocabulary impoverishment; reference features capture distributional shift---neither subsumes the other.\n89\t\n90\t\\paragraph{Cross-family reference models.}\n91\tTo confirm that differential depth response is not an artifact of the Pythia-410M reference model, we compute features using three cross-family references: Pythia-410M, OLMo-2-1B, and Qwen3-0.6B.\n92\tAll three achieve LOGO F1 between 0.80 and 0.82, with consistent drift directions across features.\n93\tThe pattern generalizes across reference model architectures.\n94\t\n95\t\n96\t\\begin{table}[t]\n97\t\\centering\n98\t\\small\n99\t\\begin{tabular}{lcc}\n100\t\\toprule\n101\t\\textbf{Feature set} & \\textbf{LOGO F1} & \\textbf{Top feature (importance)} \\\\\n102\t\\midrule\n103\tFull (7 features)     & 0.789 & hapax\\_ratio (0.269) \\\\\n104\tSurface only (2)      & 0.729 & hapax\\_ratio (0.320) \\\\\n105\tReference only (5)    & 0.745 & entropy\\_mean (0.218) \\\\\n106\t\\bottomrule\n107\t\\end{tabular}\n108\t\\caption{Feature ablation (6-gen LOGO). Full $>$ surface = reference confirms complementarity between surface diversity features and reference-model distributional features.}\n109\t\\label{tab:ablation}\n110\t\\end{table}\n111\t\n112\tLeave-one-feature-out analysis confirms that 6 of 7 features contribute positively, with entropy\\_max showing the largest marginal impact despite modest split frequency (Appendix~\\ref{app:lofo}).\n113\t\n114\t\n115\t\\subsection{Comparison with Detection Baselines}\n116\t\\label{sec:results-baselines}\n117\t\n118\t\\begin{figure}[t]\n119\t\\centering\n120\t\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.png}\n121\t\\caption{LOGO macro-F1 with 95\\% bootstrap confidence intervals for each detection baseline and the 7-feature ensemble. Per-generator held-out F1 varies more for single detectors than for the ensemble.}\n122\t\\label{fig:baseline-ci}\n123\t\\end{figure}\n124\t\n125\tWe repurpose four existing detection scores as ordinal depth predictors by training the same classifier on each score as a single feature, using identical LOGO evaluation.\n126\tBecause gen-0 seed texts are shared across generators (\\S\\ref{sec:generation}), 3-class LOGO evaluation creates a train--test overlap for the gen-0 class.\n127\tWe therefore report both 3-class and binary (gen-1 vs.\\ gen-2+) results; the binary metric is the primary measure of depth discrimination (Table~\\ref{tab:baselines}).\n128\t\n129\t\\begin{table}[t]\n130\t\\centering\n131\t\\small\n132\t\\begin{tabular}{lccc}\n133\t\\toprule\n134\t\\textbf{Method} & \\textbf{3-class F1} & \\textbf{Binary F1} & \\textbf{Per-gen std} \\\\\n135\t\\midrule\n136\t7-feature ensemble    & 0.789 & \\textbf{0.723} & 0.051 \\\\\n137\t4-det.\\ + surface     & \\textbf{0.805} & 0.724 & 0.049 \\\\\n138\t4-detector ens.\\      & 0.796 & 0.712 & 0.044 \\\\\n139\tAvg-LogProb           & 0.737 & 0.712 & 0.044 \\\\\n140\tLD-Score              & 0.655 & 0.701 & 0.045 \\\\\n141\tFastDetectGPT         & 0.688 & 0.616 & 0.056 \\\\\n142\tBinoculars            & 0.417 & 0.524 & 0.022 \\\\\n143\t\\bottomrule\n144\t\\end{tabular}\n145\t\\caption{Depth classification under unified 6-gen LOGO evaluation. \\textbf{3-class}: gen-0/gen-1/gen-2+ (gen-0 samples shared across generators; see \\S\\ref{sec:generation}). \\textbf{Binary}: gen-1 vs.\\ gen-2+ only, eliminating the gen-0 train--test overlap. Per-gen std measures cross-generator consistency of the binary metric. The 7-feature ensemble is the strongest single-model method on both metrics and matches the best multi-detector ensemble on binary F1.}\n146\t\\label{tab:baselines}\n147\t\\end{table}\n148\t\n149\tThe 7-feature ensemble achieves binary F1\\,=\\,0.723, outperforming every individual detection baseline: +1.1\\,pp over Avg-LogProb, +2.2\\,pp over LD-Score, +10.7\\,pp over FastDetectGPT, and +19.9\\,pp over Binoculars ($p < 0.001$ for all comparisons).\n150\tOn the 3-class metric, the ensemble (0.789) similarly outperforms all single baselines, though the margins are inflated by the gen-0 overlap.\n151\t\n152\t\\paragraph{Multi-detector ensembles.}\n153\tCombining all four detection scores into a 4-detector ensemble yields binary F1\\,=\\,0.712---below the 7-feature ensemble (0.723).\n154\tThe multi-detector advantage seen in 3-class evaluation (0.796 vs.\\ 0.789) is driven entirely by superior gen-0 classification; existing detectors excel at human-vs-machine discrimination but do not capture the finer depth signal between gen-1 and gen-2+.\n155\tAdding our surface features (TTR, hapax ratio) to the 4-detector ensemble raises binary F1 to 0.724, matching the 7-feature ensemble and confirming that surface diversity features capture signal complementary to detection scores.\n156\tBaseline results are stable across classifier hyperparameters: using the ensemble's settings ($n\\_\\text{estimators}{=}200$, $\\max\\_\\text{depth}{=}6$) instead of the default ($100$/$3$) changes baseline F1 by less than 0.002\\,pp, confirming that performance differences reflect feature informativeness rather than classifier capacity.\n157\t\n158\t\\paragraph{Binoculars: a non-transferable signal.}\n159\tBinoculars achieves near-random performance on the depth task (3-class F1\\,=\\,0.417, binary F1\\,=\\,0.524), confirming that cross-model perplexity ratios---the core signal in Binoculars---do not transfer to depth discrimination.\n160\t\n161\t\n162\t\\subsection{Downstream Utility: A Negative Finding}\n163\t\\label{sec:results-downstream}\n164\t\n165\tCan depth-aware data curation improve downstream language model quality?\n166\tWe fine-tune OLMo-2-0425-1B on five data variants (3 seeds each) and evaluate perplexity on a held-out test set (Table~\\ref{tab:downstream}).\n167\t\n168\t\\begin{table}[t]\n169\t\\centering\n170\t\\small\n171\t\\begin{tabular}{lrc}\n172\t\\toprule\n173\t\\textbf{Variant} & \\textbf{$n$} & \\textbf{Test PPL} \\\\\n174\t\\midrule\n175\tAll depths            & 12{,}299 & 2.335 $\\pm$ 0.000 \\\\\n176\tSize-matched (random) & 3{,}951  & 2.367 $\\pm$ 0.000 \\\\\n177\tDepth 0--1 only       & 3{,}951  & 2.387 $\\pm$ 0.001 \\\\\n178\tBinary-filtered       & 3{,}951  & 2.389 $\\pm$ 0.000 \\\\\n179\tDepth 0 only          & 797      & 2.681 $\\pm$ 0.001 \\\\\n180\t\\bottomrule\n181\t\\end{tabular}\n182\t\\caption{Downstream fine-tuning perplexity (OLMo-2-0425-1B, mean $\\pm$ std across 3 seeds). At equal sample count, random subsampling (2.367) outperforms depth-aware curation (depth 0--1: 2.387, binary-filtered: 2.389).}\n183\t\\label{tab:downstream}\n184\t\\end{table}\n185\t\n186\tThe results are unambiguous: data quantity dominates depth composition.\n187\tTraining on all 12{,}299 samples yields the lowest perplexity (2.335).\n188\tAt equal sample count ($n$\\,=\\,3{,}951), random subsampling (2.367) \\emph{outperforms} both depth-stratified selection (depth 0--1: 2.387) and binary detection filtering (2.389).\n189\tCross-seed variance is below 0.002 across all variants, confirming the robustness of this null result.\n190\t\n191\tRestricting training to human-only text (depth 0, $n$\\,=\\,797) produces a sharp perplexity increase to 2.681, driven primarily by the 5$\\times$ reduction in data volume rather than depth composition per se.\n192\t\n193\tWe report this negative finding transparently: depth fingerprinting is an effective \\emph{diagnostic} tool for characterizing text provenance, not a \\emph{curative} tool for data curation.\n194\tKnowing the generation depth of a document does not, by itself, make it more or less useful for training.\n195\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "da47481f-a5e3-4075-aaa7-114d1ca39882",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+                "content": "\\section{Results}\n\\label{sec:results}\n\nWe evaluate depth fingerprinting along four axes: cross-generator classification (\\S\\ref{sec:results-classification}), differential depth response of individual features (\\S\\ref{sec:results-differential}), comparison with existing detection baselines (\\S\\ref{sec:results-baselines}), and downstream utility for data curation (\\S\\ref{sec:results-downstream}).\n\n\\subsection{Depth Classification Performance}\n\\label{sec:results-classification}\n\nTable~\\ref{tab:logo-results} reports leave-one-generator-out (LOGO) macro-F1 for 3-class depth estimation (gen-0\\,/\\,gen-1\\,/\\,gen-2+) across six generators spanning three model families and parameter counts from 0.6B to 8.2B.\n\nThe 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.789 (Table~\\ref{tab:logo-results}). Because gen-0 seed texts are shared across generators (\\S\\ref{sec:generation}), the gen-0 class F1 (0.94) may be inflated; we therefore report a leak-free binary evaluation (gen-1 vs.\\ gen-2+, F1\\,=\\,0.723) as the primary metric in \\S\\ref{sec:results-baselines}.\nPer-generator held-out F1 ranges from 0.683 (Qwen3-8B) to 0.856 (Pythia-1B).\nPer-class F1 varies by depth: gen-0\\,=\\,0.94, gen-2+\\,=\\,0.80, gen-1\\,=\\,0.64; the primary difficulty lies in distinguishing gen-1 from gen-2+, where feature margins narrow.\n\n\\paragraph{Cross-scale transfer.}\nThe six-generator evaluation includes Qwen3-8B (8.2B parameters), confirming that depth signal persists at scales beyond the $\\leq$2.8B training generators.\nHowever, cross-scale transfer incurs a moderate gap: Qwen3-8B held-out F1\\,=\\,0.683 (CI [0.668, 0.694]), compared to 0.76--0.86 for $\\leq$2.8B generators.\nText generated by larger models is more fluent, compressing feature margins and making depth distinctions harder.\nNotably, adding Qwen3-8B data \\emph{improves} classification on the original five generators (+0.8\\,pp to 0.810), indicating that cross-scale diversity benefits rather than dilutes the training signal.\nA volume-matched control confirms this gain is driven by generator diversity, not data quantity: upsampling the 4-generator training set to match the 5-generator count yields only +0.05\\,pp, while the remaining +0.78\\,pp (94\\% of the total improvement) is attributable to the additional generator's distributional diversity.\nWe note that this gap may narrow with scale-matched training data; our current dataset contains $\\sim$1{,}000 samples per generator regardless of scale.\n\n\\paragraph{Cross-family generalization.}\nLeave-one-family-out (LOFO) evaluation---holding out an entire model family and training on the remaining two---yields macro-F1 of 0.772 (Pythia held out), 0.762 (OLMo held out), and 0.754 (Qwen held out), confirming that depth features transfer across architectural families with only modest degradation (average $\\Delta$\\,=\\,$-$2.6\\,pp vs.\\ LOGO).\n\n\\paragraph{Cross-model chains.}\nReal-world contamination involves diverse generators at each depth step.\nWe construct cross-model chains where each generation step uses a randomly selected generator and evaluate under LOGO cross-validation.\nCross-model chains yield 3-class macro-F1\\,=\\,0.809 and binary F1\\,=\\,0.764, confirming that depth signal is maintained when chain provenance is heterogeneous.\nCross-model 3-class F1 (0.809) falls below the best single-model ceiling (Pythia-1B, 0.862) but demonstrates that depth fingerprinting remains effective in multi-generator scenarios that better approximate real-world web contamination.\n\n\\paragraph{Length confound control.}\nText length correlates weakly with depth (Spearman $|\\rho| < 0.14$).\nLength-normalized feature trends are preserved, and length-matched subsampling yields comparable or higher F1 ($\\Delta$\\,=\\,+0.041), ruling out length as a confound (Appendix~\\ref{app:length}).\n\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Generator} & \\textbf{Family} & \\textbf{Params} & \\textbf{Held-out F1} & \\textbf{95\\% CI} \\\\\n\\midrule\nPythia-1B       & Pythia & 1.0B & 0.856 & [0.843, 0.863] \\\\\nPythia-2.8B     & Pythia & 2.8B & 0.804 & [0.793, 0.813] \\\\\nOLMo-2-1B      & OLMo   & 1.5B & 0.764 & [0.754, 0.776] \\\\\nQwen3-0.6B     & Qwen   & 0.6B & 0.824 & [0.813, 0.834] \\\\\nQwen3-1.7B     & Qwen   & 1.7B & 0.806 & [0.796, 0.817] \\\\\nQwen3-8B       & Qwen   & 8.2B & 0.683 & [0.668, 0.694] \\\\\n\\midrule\n\\multicolumn{3}{l}{Average (6-gen LOGO)} & 0.789 & --- \\\\\n\\multicolumn{3}{l}{5-gen LOGO (excl.\\ Qwen3-8B)} & 0.802 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Leave-one-generator-out macro-F1 with bootstrap 95\\% confidence intervals ($n$\\,=\\,1000) for 3-class depth estimation using the 7-feature ensemble. Each row holds out one generator for testing and trains on the remaining five.}\n\\label{tab:logo-results}\n\\end{table}\n\n\\paragraph{Ordinal regression comparison.}\nTo test whether the ordinal structure of the 3-class depth label provides additional discriminative power, we compare CORAL ordinal regression \\cite{coral_ordinal} and Frank-Hall ordinal reduction \\cite{frank_hall_ordinal} against the standard multiclass XGBoost classifier under the same LOGO protocol.\nOn 3-class F1, CORAL achieves 0.771, Frank-Hall 0.793, and XGBoost 0.789; all three confidence intervals overlap.\nBinary F1 (gen-1 vs.\\ gen-2+) similarly shows no separation: XGBoost 0.721, CORAL 0.728.\nConcordance index---an ordinal-specific metric rewarding correct ranking---yields XGBoost 0.821, CORAL 0.810, Frank-Hall 0.825; again, all CIs overlap.\nThe standard multiclass classifier already captures the depth-discriminative signal, and explicitly encoding ordinal structure does not yield a measurable gain, likely because the 3-class granularity provides insufficient ordinal resolution for ranking-aware losses to exploit.\n\n\n\\subsection{Differential Depth Response}\n\\label{sec:results-differential}\n\nFeatures exhibit \\emph{differential depth response}: central-tendency and diversity measures drift monotonically with depth, while distributional shape measures remain near-stationary.\nThis pattern is consistent with recursive generation inducing a location shift in the token-level NLL distribution---the text becomes progressively more predictable (mean shifts), while the functional form of the distribution is preserved (shape is invariant).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_differential_response.pdf}\n\\caption{Differential depth response: Spearman correlations between individual features and generation depth. Central-tendency and diversity features (hapax ratio, TTR, entropy mean) show strong monotonic drift, while shape features (entropy std, tail decay) remain near-stationary.}\n\\label{fig:feature-drift}\n\\end{figure}\n\nIndividual-level Spearman correlations with depth confirm the split (Figure~\\ref{fig:feature-drift}):\ndrifting features show strong monotonic trends (hapax ratio $\\rho = -0.558$, TTR $\\rho = -0.542$, entropy mean $\\rho = -0.475$),\nwhile shape features show weak or negligible correlations (entropy std $|\\rho| = 0.076$, tail decay $|\\rho| = 0.089$).\n\n\\paragraph{Feature complementarity.}\nTable~\\ref{tab:ablation} reports ablation results.\nThe full 7-feature set (F1\\,=\\,0.789) significantly outperforms both surface-only features (TTR, hapax\\_ratio; F1\\,=\\,0.729) and reference-only features (entropy mean/std/max/min, tail\\_decay; F1\\,=\\,0.745; McNemar $p \\approx 0$).\nPermutation importance ranks hapax ratio highest (0.269), followed by entropy mean (0.164) and TTR (0.159).\nSurface features capture vocabulary impoverishment; reference features capture distributional shift---neither subsumes the other.\n\n\\paragraph{Cross-family reference models.}\nTo confirm that differential depth response is not an artifact of the Pythia-410M reference model, we compute features using three cross-family references: Pythia-410M, OLMo-2-1B, and Qwen3-0.6B.\nAll three achieve LOGO F1 between 0.80 and 0.82, with consistent drift directions across features.\nThe pattern generalizes across reference model architectures.\n\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcc}\n\\toprule\n\\textbf{Feature set} & \\textbf{LOGO F1} & \\textbf{Top feature (importance)} \\\\\n\\midrule\nFull (7 features)     & 0.789 & hapax\\_ratio (0.269) \\\\\nSurface only (2)      & 0.729 & hapax\\_ratio (0.320) \\\\\nReference only (5)    & 0.745 & entropy\\_mean (0.218) \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Feature ablation (6-gen LOGO). Full $>$ surface = reference confirms complementarity between surface diversity features and reference-model distributional features.}\n\\label{tab:ablation}\n\\end{table}\n\nLeave-one-feature-out analysis confirms that 6 of 7 features contribute positively, with entropy\\_max showing the largest marginal impact despite modest split frequency (Appendix~\\ref{app:lofo}).\n\n\n\\subsection{Comparison with Detection Baselines}\n\\label{sec:results-baselines}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_baseline_comparison.png}\n\\caption{LOGO macro-F1 with 95\\% bootstrap confidence intervals for each detection baseline and the 7-feature ensemble. Per-generator held-out F1 varies more for single detectors than for the ensemble.}\n\\label{fig:baseline-ci}\n\\end{figure}\n\nWe repurpose four existing detection scores as ordinal depth predictors by training the same classifier on each score as a single feature, using identical LOGO evaluation.\nBecause gen-0 seed texts are shared across generators (\\S\\ref{sec:generation}), 3-class LOGO evaluation creates a train--test overlap for the gen-0 class.\nWe therefore report both 3-class and binary (gen-1 vs.\\ gen-2+) results; the binary metric is the primary measure of depth discrimination (Table~\\ref{tab:baselines}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Method} & \\textbf{3-class F1} & \\textbf{Binary F1} & \\textbf{Per-gen std} \\\\\n\\midrule\n7-feature ensemble    & 0.789 & \\textbf{0.723} & 0.051 \\\\\n4-det.\\ + surface     & \\textbf{0.805} & 0.724 & 0.049 \\\\\n4-detector ens.\\      & 0.796 & 0.712 & 0.044 \\\\\nAvg-LogProb           & 0.737 & 0.712 & 0.044 \\\\\nLD-Score              & 0.655 & 0.701 & 0.045 \\\\\nFastDetectGPT         & 0.688 & 0.616 & 0.056 \\\\\nBinoculars            & 0.417 & 0.524 & 0.022 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Depth classification under unified 6-gen LOGO evaluation. \\textbf{3-class}: gen-0/gen-1/gen-2+ (gen-0 samples shared across generators; see \\S\\ref{sec:generation}). \\textbf{Binary}: gen-1 vs.\\ gen-2+ only, eliminating the gen-0 train--test overlap. Per-gen std measures cross-generator consistency of the binary metric. The 7-feature ensemble is the strongest single-model method on both metrics and matches the best multi-detector ensemble on binary F1.}\n\\label{tab:baselines}\n\\end{table}\n\nThe 7-feature ensemble achieves binary F1\\,=\\,0.723, outperforming every individual detection baseline: +1.1\\,pp over Avg-LogProb, +2.2\\,pp over LD-Score, +10.7\\,pp over FastDetectGPT, and +19.9\\,pp over Binoculars ($p < 0.001$ for all comparisons).\nOn the 3-class metric, the ensemble (0.789) similarly outperforms all single baselines, though the margins are inflated by the gen-0 overlap.\n\n\\paragraph{Multi-detector ensembles.}\nCombining all four detection scores into a 4-detector ensemble yields binary F1\\,=\\,0.712---below the 7-feature ensemble (0.723).\nThe multi-detector advantage seen in 3-class evaluation (0.796 vs.\\ 0.789) is driven entirely by superior gen-0 classification; existing detectors excel at human-vs-machine discrimination but do not capture the finer depth signal between gen-1 and gen-2+.\nAdding our surface features (TTR, hapax ratio) to the 4-detector ensemble raises binary F1 to 0.724, matching the 7-feature ensemble and confirming that surface diversity features capture signal complementary to detection scores.\nBaseline results are stable across classifier hyperparameters: using the ensemble's settings ($n\\_\\text{estimators}{=}200$, $\\max\\_\\text{depth}{=}6$) instead of the default ($100$/$3$) changes baseline F1 by less than 0.002\\,pp, confirming that performance differences reflect feature informativeness rather than classifier capacity.\n\n\\paragraph{Binoculars: a non-transferable signal.}\nBinoculars achieves near-random performance on the depth task (3-class F1\\,=\\,0.417, binary F1\\,=\\,0.524), confirming that cross-model perplexity ratios---the core signal in Binoculars---do not transfer to depth discrimination.\n\n\n\\subsection{Downstream Utility: A Negative Finding}\n\\label{sec:results-downstream}\n\nCan depth-aware data curation improve downstream language model quality?\nWe fine-tune OLMo-2-0425-1B on five data variants (3 seeds each) and evaluate perplexity on a held-out test set (Table~\\ref{tab:downstream}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lrc}\n\\toprule\n\\textbf{Variant} & \\textbf{$n$} & \\textbf{Test PPL} \\\\\n\\midrule\nAll depths            & 12{,}299 & 2.335 $\\pm$ 0.000 \\\\\nSize-matched (random) & 3{,}951  & 2.367 $\\pm$ 0.000 \\\\\nDepth 0--1 only       & 3{,}951  & 2.387 $\\pm$ 0.001 \\\\\nBinary-filtered       & 3{,}951  & 2.389 $\\pm$ 0.000 \\\\\nDepth 0 only          & 797      & 2.681 $\\pm$ 0.001 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Downstream fine-tuning perplexity (OLMo-2-0425-1B, mean $\\pm$ std across 3 seeds). At equal sample count, random subsampling (2.367) outperforms depth-aware curation (depth 0--1: 2.387, binary-filtered: 2.389).}\n\\label{tab:downstream}\n\\end{table}\n\nThe results are unambiguous: data quantity dominates depth composition.\nTraining on all 12{,}299 samples yields the lowest perplexity (2.335).\nAt equal sample count ($n$\\,=\\,3{,}951), random subsampling (2.367) \\emph{outperforms} both depth-stratified selection (depth 0--1: 2.387) and binary detection filtering (2.389).\nCross-seed variance is below 0.002 across all variants, confirming the robustness of this null result.\n\nRestricting training to human-only text (depth 0, $n$\\,=\\,797) produces a sharp perplexity increase to 2.681, driven primarily by the 5$\\times$ reduction in data volume rather than depth composition per se.\n\nWe report this negative finding transparently: depth fingerprinting is an effective \\emph{diagnostic} tool for characterizing text provenance, not a \\emph{curative} tool for data curation.\nKnowing the generation depth of a document does not, by itself, make it more or less useful for training.\n",
+                "numLines": 195,
+                "startLine": 1,
+                "totalLines": 195
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The registry filter for `plan_id: \"plan-015\"` returned no results. Let me try broader searches - maybe the experiment is stored under a different key or naming convention. Let me also check if there are any experiments at all related to ordinal baselines.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "d880f95d-e3bc-4d0f-9ee8-ffbf36f633d7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H5SsztSdrNiZkb2sGjX1a6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5404,
+                "cache_read_input_tokens": 26529,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5404
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry returned no results for `plan_id: \"plan-015\"`. Let me search with broader filters."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "ce0b3c36-022a-4079-a14b-2897d8ce2eb1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H5SsztSdrNiZkb2sGjX1a6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5404,
+                "cache_read_input_tokens": 26529,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5404
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QSWdPL3KvmNrDgwpzbXiXM",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "gen-depth-fingerprint",
+                "limit": 50,
+                "fields": [
+                  "experiment_id",
+                  "plan_id",
+                  "title",
+                  "status",
+                  "conclusion"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "1cd366de-a03c-4928-a502-31331978b1d7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H5SsztSdrNiZkb2sGjX1a6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5404,
+                "cache_read_input_tokens": 26529,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5404
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T22:53:42.434Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QSWdPL3KvmNrDgwpzbXiXM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan-009-finer-ordinal\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"plan-008-multi-domain\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-007-cross-model\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-006-paraphrastic\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"plan-010-human-edit\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-sampling-ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-p1c-olmo-instruct\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"review-p2f-cross-ref-bias\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-rd2m7-bib-audit\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-p1c-instruct-logo\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-p1c-qwen06b-instruct\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"review-p1c-instruct\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-p1e-ordinal\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-p1d-table3-6gen\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-p0a-gen0-leakage\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-p0b-volume-matched\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-exp-a-baseline-ensemble\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-exp-c-overall-ci\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-exp-b-topic-drift\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-005-elab\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-005\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-005-rewrite\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-005-cont\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-014\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-004-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan-015-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-015\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-004\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan-004-prep\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-001-restore\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"mvp-001-gen-s0\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"plan-003-qwen06bref\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-003-olmo2ref\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-003\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-002-qwen17b-r2-s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-013\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-002-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-002-qwen17b-r2-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-002-qwen06b-r2-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-002-qwen06b-r2-s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-002-qwen17b-retry-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan-002-qwen17b-retry-s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan-002-qwen06b-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan-002-qwen06b-s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan-002-qwen17b-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan-002-qwen17b-s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan-002-qwen3-1_7b-s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan-002-qwen3-1_7b-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"plan-002-olmo2-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 50, \\\"total\\\": 59, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1392}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "12708df8-aa04-4482-b87a-123ebbd8dd07",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan-009-finer-ordinal\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"plan-008-multi-domain\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-007-cross-model\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-006-paraphrastic\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"plan-010-human-edit\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-sampling-ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-p1c-olmo-instruct\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"review-p2f-cross-ref-bias\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-rd2m7-bib-audit\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-p1c-instruct-logo\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-p1c-qwen06b-instruct\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"review-p1c-instruct\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-p1e-ordinal\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-p1d-table3-6gen\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-p0a-gen0-leakage\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-p0b-volume-matched\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-exp-a-baseline-ensemble\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-exp-c-overall-ci\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"review-exp-b-topic-drift\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-005-elab\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-005\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-005-rewrite\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-005-cont\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-014\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-004-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan-015-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-015\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-004\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan-004-prep\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-001-restore\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"mvp-001-gen-s0\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"plan-003-qwen06bref\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-003-olmo2ref\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-003\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-002-qwen17b-r2-s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-013\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-002-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-002-qwen17b-r2-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-002-qwen06b-r2-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-002-qwen06b-r2-s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan-002-qwen17b-retry-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan-002-qwen17b-retry-s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan-002-qwen06b-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan-002-qwen06b-s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan-002-qwen17b-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan-002-qwen17b-s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan-002-qwen3-1_7b-s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan-002-qwen3-1_7b-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"plan-002-olmo2-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 50, \\\"total\\\": 59, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1392}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"plan-009-finer-ordinal\": {\"status\": \"PREPARING\"}, \"plan-008-multi-domain\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan-007-cross-model\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan-006-paraphrastic\": {\"status\": \"RUNNING\"}, \"plan-010-human-edit\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"review-sampling-ablation\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"review-p1c-olmo-instruct\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"review-p2f-cross-ref-bias\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"review-rd2m7-bib-audit\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"review-p1c-instruct-logo\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"review-p1c-qwen06b-instruct\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"review-p1c-instruct\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"review-p1e-ordinal\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"review-p1d-table3-6gen\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"review-p0a-gen0-leakage\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"review-p0b-volume-matched\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"review-exp-a-baseline-ensemble\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"review-exp-c-overall-ci\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"review-exp-b-topic-drift\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan-005-elab\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan-005\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan-005-rewrite\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan-005-cont\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan-014\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan-004-v2\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"plan-015-v2\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan-015\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan-004\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"plan-004-prep\": {\"status\": \"PREPARING\", \"conclusion\": \"success\"}, \"plan-001-restore\": {\"status\": \"PREPARING\"}, \"mvp-001-gen-s0\": {\"status\": \"PREPARING\"}, \"plan-003-qwen06bref\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan-003-olmo2ref\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan-003\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan-002-qwen17b-r2-s0\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan-013\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan-002-eval\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan-002\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan-002-qwen17b-r2-s1\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan-002-qwen06b-r2-s1\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan-002-qwen06b-r2-s0\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"plan-002-qwen17b-retry-s1\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"plan-002-qwen17b-retry-s0\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"plan-002-qwen06b-s1\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"plan-002-qwen06b-s0\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"plan-002-qwen17b-s1\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"plan-002-qwen17b-s0\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"plan-002-qwen3-1_7b-s0\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"plan-002-qwen3-1_7b-s1\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"plan-002-olmo2-s1\": {\"status\": \"DONE\", \"conclusion\": \"success\"}}, \"count\": 50, \"total\": 59, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1392}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found `plan-015`, `plan-015-v2`, and `review-p1e-ordinal`. Let me read these in detail."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "68a91459-405b-41ea-a44b-76a9aa3106d4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JamCGVKvok3nTa5k9ZpUZv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1741,
+                "cache_read_input_tokens": 31933,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1741
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GK7azEJYBXgfr3cbm6DeUM",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "gen-depth-fingerprint",
+                "filters": {
+                  "experiment_id": "plan-015"
+                },
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "2a0be8a5-d8de-428a-95eb-ae2f046cdfa8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JamCGVKvok3nTa5k9ZpUZv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1741,
+                "cache_read_input_tokens": 31933,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1741
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T22:53:47.078Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GK7azEJYBXgfr3cbm6DeUM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1688}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "b6095926-b5d9-4d8e-a986-cd01c112c026",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1688}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1688}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Lm5mD49shS889h7SnmRvcD",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "gen-depth-fingerprint",
+                "filters": {
+                  "experiment_id": "plan-015-v2"
+                },
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "28efe235-f423-43a7-8e3c-b135beba0bd3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JamCGVKvok3nTa5k9ZpUZv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1741,
+                "cache_read_input_tokens": 31933,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1741
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T22:53:47.981Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Lm5mD49shS889h7SnmRvcD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1329}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "7f51a2c6-5bea-4538-848a-6029cce4f280",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1329}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1329}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VSpfx4Bt61BT232RNC6XZ6",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "gen-depth-fingerprint",
+                "filters": {
+                  "experiment_id": "review-p1e-ordinal"
+                },
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "08c8e636-c7ad-4f61-93ce-86f1efda68ba",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JamCGVKvok3nTa5k9ZpUZv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1741,
+                "cache_read_input_tokens": 31933,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1741
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T22:53:48.425Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VSpfx4Bt61BT232RNC6XZ6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1546}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "c81703ce-2506-4449-9cd4-0a4625d22546",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1546}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1546}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Hmm, the `experiment_id` filter isn't matching. Let me try reading the registry without filters and look at the full data for the relevant experiments, or try different filter keys.",
+              "signature": "EvECClkIDRgCKkCqVW3PrdzpGA6v1idoejxGWCM1piZM3EBQC40MaLvzlba/XJ5pULDzVPsPl10UmKgQbmxsl1Awks6WfcZDyS9ZMg9jbGF1ZGUtb3B1cy00LTY4ABIMyEsqYTLbBOZL62RpGgwmrtxIJ3qjdrUPPj4iMJ3X5TU0DBREsAYUXRymzQuQ/MHA3GwOMGQaGyFgMlccYf1V6jRqxME+PTnm8B4mKirFAZlzQjLpS0bdwomvtAf6Hn3LDW8JhtMCmv5eNuQC5zKhX5wvPnJBtIia1pKvNmbkGjOgWKGxanSRk65tfHxa1AC39nzjxrZ0mX4QAq6TXk/0JU66fXJ2A+E7Eln0uw/Mg4F6XDhgw12fVvDY43XIznf8sIIdsC17jzrxUDZIoRDfDNFuoKWjMPU9Y7wNMSe4NAAuDuKxLjkMMcViAYOvL2E5ahDOWmBKrxWI0SE8MKRKK7HtSI9zugUHW1o46TS3GadVakJXGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "39eb0f60-c91a-4b99-bc93-23debb07373d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WuTWswWQSaPKUp5QFYpAbv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 756,
+                "cache_read_input_tokens": 33674,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 756
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The `experiment_id` filter doesn't match. The earlier listing showed these experiments exist — let me try reading them differently."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "0cc76a7d-c308-4784-ae60-ecee8671ad8f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WuTWswWQSaPKUp5QFYpAbv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 756,
+                "cache_read_input_tokens": 33674,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 756
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FqCuQWPBdJjb8UDg83WtKT",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "gen-depth-fingerprint",
+                "limit": 5,
+                "filters": {
+                  "status": "DONE",
+                  "conclusion": "success"
+                },
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "158f3e1c-b053-47d1-8a1a-59935e9710fc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WuTWswWQSaPKUp5QFYpAbv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 756,
+                "cache_read_input_tokens": 33674,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 756
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T22:53:53.600Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FqCuQWPBdJjb8UDg83WtKT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan-008-multi-domain\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:31:52.426Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:36:35.848Z\\\", \\\"hypothesis\\\": \\\"Multi-domain seeds: depth signal 在 news/scientific/creative 三种域的 seeds 上是否一致，验证 domain robustness\\\", \\\"spec\\\": {\\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"Pythia-2.8B (generator) + Pythia-410M (reference)\\\", \\\"data_path\\\": \\\"3 domains: news (abisee/cnn_dailymail), scientific (ccdv/arxiv-summarization), creative (euclaise/writingprompts)\\\", \\\"data_count\\\": \\\"500 seeds × 3 domains × 5 depths = 7500 target texts\\\", \\\"seed\\\": \\\"not set (sequential seed_ids 0-499 per domain)\\\", \\\"command\\\": \\\"python multi_domain_seeds.py --phase all --device cuda:0\\\", \\\"pid\\\": 234066}, \\\"notes\\\": \\\"Dedup applied 2026-05-15: news removed 801 duplicates (3115→2314), scientific/creative had 0 duplicates. Re-extracted news features from deduped data, re-evaluated. News 3class F1 changed 0.5742→0.5614 (-1.3pp), other domains unchanged. Cross-domain pooled 0.478→0.4775, wiki→news transfer 0.2254→0.2310. Changes within noise; conclusions unchanged.\\\", \\\"checkpoint_path\\\": \\\"/root/gen-depth-fingerprint/results/multi_domain_results.json\\\", \\\"log_path\\\": \\\"/tmp/plan008_full.log\\\", \\\"metrics\\\": {\\\"per_domain\\\": {\\\"news\\\": {\\\"3class_f1\\\": 0.5614, \\\"binary_f1\\\": 0.6264}, \\\"scientific\\\": {\\\"3class_f1\\\": 0.7049, \\\"binary_f1\\\": 0.7701}, \\\"creative\\\": {\\\"3class_f1\\\": 0.6275, \\\"binary_f1\\\": 0.731}, \\\"wikipedia\\\": {\\\"3class_f1\\\": 0.7928, \\\"binary_f1\\\": 0.8224}}, \\\"cross_domain_pooled\\\": {\\\"3class_f1\\\": 0.4775, \\\"binary_f1\\\": 0.6742}, \\\"wiki_transfer\\\": {\\\"news\\\": 0.231, \\\"scientific\\\": 0.3351, \\\"creative\\\": 0.2319}, \\\"n_records\\\": {\\\"news\\\": 2314, \\\"scientific\\\": 2316, \\\"creative\\\": 2466}, \\\"dedup_applied\\\": true, \\\"dedup_removed\\\": {\\\"news\\\": 801, \\\"scientific\\\": 0, \\\"creative\\\": 0}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T22:14:06.460Z\\\"}, \\\"plan-007-cross-model\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T20:41:08.851Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:32:04.766Z\\\", \\\"hypothesis\\\": \\\"Cross-model chains (different generator per depth step) vs single-model chains: depth signal 在更真实的多生成器场景下是否保持\\\", \\\"spec\\\": {\\\"command\\\": \\\"python cross_model_chains.py --phase generate --device cuda:X --shard Y --num-shards 2\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:2 (shard0 PID 241978), cuda:3 (shard1 PID 242205)\\\", \\\"data_path\\\": \\\"data/cross-model-chains/\\\", \\\"data_count\\\": \\\"995 seeds x 5 depths, each depth uses random generator from pool of 5\\\", \\\"model_name\\\": \\\"Cross-model: Pythia-2.8B, Pythia-1B, OLMo-2-1B, Qwen3-0.6B, Qwen3-1.7B (random per depth). Reference: Pythia-410M\\\", \\\"seed\\\": \\\"deterministic per seed_id\\\", \\\"pid\\\": \\\"241978 (shard0), 242205 (shard1)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"3class_macro_f1\\\": 0.8089, \\\"3class_f1_std\\\": 0.0166, \\\"binary_f1_gen1_vs_gen2plus\\\": 0.7635, \\\"binary_f1_gen0_vs_gen2plus\\\": 0.8372, \\\"per_class_f1\\\": {\\\"gen0\\\": 0.9285, \\\"gen1\\\": 0.7367, \\\"gen2plus\\\": 0.7614}, \\\"n_samples\\\": 2964, \\\"avg_generators_per_chain\\\": 3, \\\"feature_importance\\\": {\\\"hapax_ratio\\\": 0.357, \\\"entropy_mean\\\": 0.204, \\\"ttr\\\": 0.202}, \\\"vs_single_model\\\": {\\\"pythia-1b\\\": 0.8622, \\\"qwen3-0.6b\\\": 0.8354, \\\"pythia-2.8b\\\": 0.8156, \\\"qwen3-1.7b\\\": 0.8106, \\\"olmo-2-1b\\\": 0.7801, \\\"cross-model\\\": 0.8089}, \\\"n_samples_note\\\": \\\"corrected from 4773 to 2964 per confusion matrix sum\\\"}, \\\"checkpoint_path\\\": \\\"/root/gen-depth-fingerprint/results/cross_model_chains_results.json\\\", \\\"log_path\\\": \\\"/tmp/plan007_shard0.log\\\", \\\"completed_at\\\": \\\"2026-05-15T22:10:00.047Z\\\"}, \\\"plan-010-human-edit\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:53:51.598Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:20:47.338Z\\\", \\\"hypothesis\\\": \\\"RC5 Human edit robustness: depth signal 在模拟人类编辑（random word replacement 5/10/20% + LLM light rephrasing）下的存活率\\\", \\\"spec\\\": {\\\"command\\\": \\\"python human_edit_robustness.py\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"/root/gen-depth-fingerprint/data/\\\", \\\"data_count\\\": 21557, \\\"model_name\\\": \\\"Qwen3-0.6B (rephrase needs fix to Instruct)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A (evaluation experiment)\\\", \\\"log_path\\\": \\\"/tmp/human_edit_robustness.log\\\", \\\"result_path\\\": \\\"/root/gen-depth-fingerprint/results/human_edit_robustness.json\\\"}, \\\"notes\\\": \\\"Bug fix: llm_rephrase_batch 原始代码用 raw text prompt 而非 chat template，导致 Qwen3-0.6B 做 continuation 而非 rephrase。已改用 apply_chat_template(enable_thinking=False)。3-seed 验证通过：100% 文本有变化，23% fallback（合理）。重跑 PID 228872 等待旧进程 223500 结束后自动在 cuda:1 执行全部条件，ETA ~90 min。旧结果备份到 human_edit_robustness_old_no_chat_template.json。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"baseline\\\": {\\\"3class_f1\\\": 0.7889, \\\"binary_f1\\\": 0.7241, \\\"ci_3class\\\": [0.787, 0.798], \\\"ci_binary\\\": [0.719, 0.734]}, \\\"random_5pct\\\": {\\\"3class_f1\\\": 0.7538, \\\"binary_f1\\\": 0.7182, \\\"delta_3class\\\": -0.0351, \\\"delta_binary\\\": -0.0059}, \\\"random_10pct\\\": {\\\"3class_f1\\\": 0.7425, \\\"binary_f1\\\": 0.7168, \\\"delta_3class\\\": -0.0464, \\\"delta_binary\\\": -0.0073}, \\\"random_20pct\\\": {\\\"3class_f1\\\": 0.7292, \\\"binary_f1\\\": 0.7165, \\\"delta_3class\\\": -0.0597, \\\"delta_binary\\\": -0.0076}, \\\"llm_rephrase\\\": {\\\"3class_f1\\\": 0.7549, \\\"binary_f1\\\": 0.6615, \\\"delta_3class\\\": -0.034, \\\"delta_binary\\\": -0.0626}, \\\"degradation_curve\\\": \\\"robust\\\", \\\"llm_rephrase_robust\\\": true, \\\"finding\\\": \\\"Graceful degradation: 5-20% random replacement drops 3-class F1 by 3.5-6.0pp. LLM rephrase: 3-class robust (-3.4pp) but binary degrades more (-6.3pp).\\\"}, \\\"completed_at\\\": \\\"2026-05-15T21:20:47.338Z\\\"}, \\\"review-sampling-ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:51:28.351Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:31:56.459Z\\\", \\\"hypothesis\\\": \\\"Sampling strategy ablation: 不同 temperature/top-p 配置对 depth signal 的影响，验证 robustness（低温 0.5/0.8、默认 0.7/0.9、高温 1.0/0.95）\\\", \\\"notes\\\": \\\"Pipeline split: cuda:3 (PID 222783) runs low+default configs, cuda:2 (PID 226113) runs high_t10_p095. Checkpoint mechanism ensures no duplicate work. cuda:3 will auto-skip high phase. Total ETA ~5.5h (was 11.3h). tmux: high_temp (cuda:2). Log: /root/gen-depth-fingerprint/logs/high_temp_cuda2.log\\\", \\\"spec\\\": {\\\"command\\\": \\\"python sampling_ablation.py --phase all (cuda:3) + python run_high_only.py (cuda:2)\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"/root/gen-depth-fingerprint/data/\\\", \\\"data_count\\\": 2988, \\\"model_name\\\": \\\"Qwen3-1.7B (3 sampling configs: low t=0.5/p=0.8, default t=0.7/p=0.9, high t=1.0/p=0.95)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A (evaluation experiment, no model checkpoint)\\\", \\\"log_path\\\": \\\"/root/gen-depth-fingerprint/logs/high_temp_cuda2.log\\\", \\\"result_path\\\": \\\"/root/gen-depth-fingerprint/results/sampling_ablation.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"low_t05_p08\\\": {\\\"3class_f1\\\": 0.785, \\\"binary_f1\\\": 0.797, \\\"spearman_entropy_mean\\\": -0.694}, \\\"default_t07_p09\\\": {\\\"3class_f1\\\": 0.788, \\\"binary_f1\\\": 0.799, \\\"spearman_entropy_mean\\\": -0.602}, \\\"high_t10_p095\\\": {\\\"3class_f1\\\": 0.726, \\\"binary_f1\\\": 0.733, \\\"spearman_entropy_mean\\\": -0.002}, \\\"f1_range_pp\\\": 6.19, \\\"robust\\\": false, \\\"finding\\\": \\\"Low/default configs robust (<0.3pp diff). High temp (t=1.0) degrades depth signal ~6pp; entropy correlation drops to ~0. Qwen3-1.7B per-gen F1 collapses to 0.418 at high temp.\\\"}, \\\"completed_at\\\": \\\"2026-05-15T20:27:16.632Z\\\"}, \\\"review-p2f-cross-ref-bias\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T13:47:00.408Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:29:29.410Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pythia1b_f1_pythia410m_ref\\\": 0.856, \\\"pythia1b_f1_olmo_ref\\\": 0.845, \\\"pythia1b_f1_qwen_ref\\\": 0.848, \\\"same_to_cross_drop\\\": 0.009, \\\"pythia1b_rank_all_refs\\\": 1, \\\"same_family_bias\\\": false}, \\\"spec\\\": {\\\"command\\\": \\\"python run_cross_ref_bias.py\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/\\\", \\\"data_count\\\": 18000, \\\"model_name\\\": \\\"Pythia-1B (3 ref models)\\\", \\\"seed\\\": 42}, \\\"checkpoint_path\\\": \\\"/root/gen-depth-fingerprint/results/cross_ref_bias.json\\\", \\\"log_path\\\": \\\"/root/gen-depth-fingerprint/results/cross_ref_bias.json\\\", \\\"completed_at\\\": \\\"2026-05-15T16:29:29.410Z\\\"}}, \\\"count\\\": 5, \\\"total\\\": 39, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1815}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "9ba139ec-8a8b-41f5-9dd8-e602c5a1d17d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan-008-multi-domain\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:31:52.426Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:36:35.848Z\\\", \\\"hypothesis\\\": \\\"Multi-domain seeds: depth signal 在 news/scientific/creative 三种域的 seeds 上是否一致，验证 domain robustness\\\", \\\"spec\\\": {\\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"Pythia-2.8B (generator) + Pythia-410M (reference)\\\", \\\"data_path\\\": \\\"3 domains: news (abisee/cnn_dailymail), scientific (ccdv/arxiv-summarization), creative (euclaise/writingprompts)\\\", \\\"data_count\\\": \\\"500 seeds × 3 domains × 5 depths = 7500 target texts\\\", \\\"seed\\\": \\\"not set (sequential seed_ids 0-499 per domain)\\\", \\\"command\\\": \\\"python multi_domain_seeds.py --phase all --device cuda:0\\\", \\\"pid\\\": 234066}, \\\"notes\\\": \\\"Dedup applied 2026-05-15: news removed 801 duplicates (3115→2314), scientific/creative had 0 duplicates. Re-extracted news features from deduped data, re-evaluated. News 3class F1 changed 0.5742→0.5614 (-1.3pp), other domains unchanged. Cross-domain pooled 0.478→0.4775, wiki→news transfer 0.2254→0.2310. Changes within noise; conclusions unchanged.\\\", \\\"checkpoint_path\\\": \\\"/root/gen-depth-fingerprint/results/multi_domain_results.json\\\", \\\"log_path\\\": \\\"/tmp/plan008_full.log\\\", \\\"metrics\\\": {\\\"per_domain\\\": {\\\"news\\\": {\\\"3class_f1\\\": 0.5614, \\\"binary_f1\\\": 0.6264}, \\\"scientific\\\": {\\\"3class_f1\\\": 0.7049, \\\"binary_f1\\\": 0.7701}, \\\"creative\\\": {\\\"3class_f1\\\": 0.6275, \\\"binary_f1\\\": 0.731}, \\\"wikipedia\\\": {\\\"3class_f1\\\": 0.7928, \\\"binary_f1\\\": 0.8224}}, \\\"cross_domain_pooled\\\": {\\\"3class_f1\\\": 0.4775, \\\"binary_f1\\\": 0.6742}, \\\"wiki_transfer\\\": {\\\"news\\\": 0.231, \\\"scientific\\\": 0.3351, \\\"creative\\\": 0.2319}, \\\"n_records\\\": {\\\"news\\\": 2314, \\\"scientific\\\": 2316, \\\"creative\\\": 2466}, \\\"dedup_applied\\\": true, \\\"dedup_removed\\\": {\\\"news\\\": 801, \\\"scientific\\\": 0, \\\"creative\\\": 0}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T22:14:06.460Z\\\"}, \\\"plan-007-cross-model\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T20:41:08.851Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:32:04.766Z\\\", \\\"hypothesis\\\": \\\"Cross-model chains (different generator per depth step) vs single-model chains: depth signal 在更真实的多生成器场景下是否保持\\\", \\\"spec\\\": {\\\"command\\\": \\\"python cross_model_chains.py --phase generate --device cuda:X --shard Y --num-shards 2\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:2 (shard0 PID 241978), cuda:3 (shard1 PID 242205)\\\", \\\"data_path\\\": \\\"data/cross-model-chains/\\\", \\\"data_count\\\": \\\"995 seeds x 5 depths, each depth uses random generator from pool of 5\\\", \\\"model_name\\\": \\\"Cross-model: Pythia-2.8B, Pythia-1B, OLMo-2-1B, Qwen3-0.6B, Qwen3-1.7B (random per depth). Reference: Pythia-410M\\\", \\\"seed\\\": \\\"deterministic per seed_id\\\", \\\"pid\\\": \\\"241978 (shard0), 242205 (shard1)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"3class_macro_f1\\\": 0.8089, \\\"3class_f1_std\\\": 0.0166, \\\"binary_f1_gen1_vs_gen2plus\\\": 0.7635, \\\"binary_f1_gen0_vs_gen2plus\\\": 0.8372, \\\"per_class_f1\\\": {\\\"gen0\\\": 0.9285, \\\"gen1\\\": 0.7367, \\\"gen2plus\\\": 0.7614}, \\\"n_samples\\\": 2964, \\\"avg_generators_per_chain\\\": 3, \\\"feature_importance\\\": {\\\"hapax_ratio\\\": 0.357, \\\"entropy_mean\\\": 0.204, \\\"ttr\\\": 0.202}, \\\"vs_single_model\\\": {\\\"pythia-1b\\\": 0.8622, \\\"qwen3-0.6b\\\": 0.8354, \\\"pythia-2.8b\\\": 0.8156, \\\"qwen3-1.7b\\\": 0.8106, \\\"olmo-2-1b\\\": 0.7801, \\\"cross-model\\\": 0.8089}, \\\"n_samples_note\\\": \\\"corrected from 4773 to 2964 per confusion matrix sum\\\"}, \\\"checkpoint_path\\\": \\\"/root/gen-depth-fingerprint/results/cross_model_chains_results.json\\\", \\\"log_path\\\": \\\"/tmp/plan007_shard0.log\\\", \\\"completed_at\\\": \\\"2026-05-15T22:10:00.047Z\\\"}, \\\"plan-010-human-edit\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:53:51.598Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:20:47.338Z\\\", \\\"hypothesis\\\": \\\"RC5 Human edit robustness: depth signal 在模拟人类编辑（random word replacement 5/10/20% + LLM light rephrasing）下的存活率\\\", \\\"spec\\\": {\\\"command\\\": \\\"python human_edit_robustness.py\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"/root/gen-depth-fingerprint/data/\\\", \\\"data_count\\\": 21557, \\\"model_name\\\": \\\"Qwen3-0.6B (rephrase needs fix to Instruct)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A (evaluation experiment)\\\", \\\"log_path\\\": \\\"/tmp/human_edit_robustness.log\\\", \\\"result_path\\\": \\\"/root/gen-depth-fingerprint/results/human_edit_robustness.json\\\"}, \\\"notes\\\": \\\"Bug fix: llm_rephrase_batch 原始代码用 raw text prompt 而非 chat template，导致 Qwen3-0.6B 做 continuation 而非 rephrase。已改用 apply_chat_template(enable_thinking=False)。3-seed 验证通过：100% 文本有变化，23% fallback（合理）。重跑 PID 228872 等待旧进程 223500 结束后自动在 cuda:1 执行全部条件，ETA ~90 min。旧结果备份到 human_edit_robustness_old_no_chat_template.json。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"baseline\\\": {\\\"3class_f1\\\": 0.7889, \\\"binary_f1\\\": 0.7241, \\\"ci_3class\\\": [0.787, 0.798], \\\"ci_binary\\\": [0.719, 0.734]}, \\\"random_5pct\\\": {\\\"3class_f1\\\": 0.7538, \\\"binary_f1\\\": 0.7182, \\\"delta_3class\\\": -0.0351, \\\"delta_binary\\\": -0.0059}, \\\"random_10pct\\\": {\\\"3class_f1\\\": 0.7425, \\\"binary_f1\\\": 0.7168, \\\"delta_3class\\\": -0.0464, \\\"delta_binary\\\": -0.0073}, \\\"random_20pct\\\": {\\\"3class_f1\\\": 0.7292, \\\"binary_f1\\\": 0.7165, \\\"delta_3class\\\": -0.0597, \\\"delta_binary\\\": -0.0076}, \\\"llm_rephrase\\\": {\\\"3class_f1\\\": 0.7549, \\\"binary_f1\\\": 0.6615, \\\"delta_3class\\\": -0.034, \\\"delta_binary\\\": -0.0626}, \\\"degradation_curve\\\": \\\"robust\\\", \\\"llm_rephrase_robust\\\": true, \\\"finding\\\": \\\"Graceful degradation: 5-20% random replacement drops 3-class F1 by 3.5-6.0pp. LLM rephrase: 3-class robust (-3.4pp) but binary degrades more (-6.3pp).\\\"}, \\\"completed_at\\\": \\\"2026-05-15T21:20:47.338Z\\\"}, \\\"review-sampling-ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:51:28.351Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:31:56.459Z\\\", \\\"hypothesis\\\": \\\"Sampling strategy ablation: 不同 temperature/top-p 配置对 depth signal 的影响，验证 robustness（低温 0.5/0.8、默认 0.7/0.9、高温 1.0/0.95）\\\", \\\"notes\\\": \\\"Pipeline split: cuda:3 (PID 222783) runs low+default configs, cuda:2 (PID 226113) runs high_t10_p095. Checkpoint mechanism ensures no duplicate work. cuda:3 will auto-skip high phase. Total ETA ~5.5h (was 11.3h). tmux: high_temp (cuda:2). Log: /root/gen-depth-fingerprint/logs/high_temp_cuda2.log\\\", \\\"spec\\\": {\\\"command\\\": \\\"python sampling_ablation.py --phase all (cuda:3) + python run_high_only.py (cuda:2)\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"/root/gen-depth-fingerprint/data/\\\", \\\"data_count\\\": 2988, \\\"model_name\\\": \\\"Qwen3-1.7B (3 sampling configs: low t=0.5/p=0.8, default t=0.7/p=0.9, high t=1.0/p=0.95)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A (evaluation experiment, no model checkpoint)\\\", \\\"log_path\\\": \\\"/root/gen-depth-fingerprint/logs/high_temp_cuda2.log\\\", \\\"result_path\\\": \\\"/root/gen-depth-fingerprint/results/sampling_ablation.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"low_t05_p08\\\": {\\\"3class_f1\\\": 0.785, \\\"binary_f1\\\": 0.797, \\\"spearman_entropy_mean\\\": -0.694}, \\\"default_t07_p09\\\": {\\\"3class_f1\\\": 0.788, \\\"binary_f1\\\": 0.799, \\\"spearman_entropy_mean\\\": -0.602}, \\\"high_t10_p095\\\": {\\\"3class_f1\\\": 0.726, \\\"binary_f1\\\": 0.733, \\\"spearman_entropy_mean\\\": -0.002}, \\\"f1_range_pp\\\": 6.19, \\\"robust\\\": false, \\\"finding\\\": \\\"Low/default configs robust (<0.3pp diff). High temp (t=1.0) degrades depth signal ~6pp; entropy correlation drops to ~0. Qwen3-1.7B per-gen F1 collapses to 0.418 at high temp.\\\"}, \\\"completed_at\\\": \\\"2026-05-15T20:27:16.632Z\\\"}, \\\"review-p2f-cross-ref-bias\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T13:47:00.408Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:29:29.410Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pythia1b_f1_pythia410m_ref\\\": 0.856, \\\"pythia1b_f1_olmo_ref\\\": 0.845, \\\"pythia1b_f1_qwen_ref\\\": 0.848, \\\"same_to_cross_drop\\\": 0.009, \\\"pythia1b_rank_all_refs\\\": 1, \\\"same_family_bias\\\": false}, \\\"spec\\\": {\\\"command\\\": \\\"python run_cross_ref_bias.py\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/\\\", \\\"data_count\\\": 18000, \\\"model_name\\\": \\\"Pythia-1B (3 ref models)\\\", \\\"seed\\\": 42}, \\\"checkpoint_path\\\": \\\"/root/gen-depth-fingerprint/results/cross_ref_bias.json\\\", \\\"log_path\\\": \\\"/root/gen-depth-fingerprint/results/cross_ref_bias.json\\\", \\\"completed_at\\\": \\\"2026-05-15T16:29:29.410Z\\\"}}, \\\"count\\\": 5, \\\"total\\\": 39, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1815}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"plan-008-multi-domain\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:31:52.426Z\", \"updated_at\": \"2026-05-15T22:36:35.848Z\", \"hypothesis\": \"Multi-domain seeds: depth signal 在 news/scientific/creative 三种域的 seeds 上是否一致，验证 domain robustness\", \"spec\": {\"server\": \"autodl-5090\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"model_name\": \"Pythia-2.8B (generator) + Pythia-410M (reference)\", \"data_path\": \"3 domains: news (abisee/cnn_dailymail), scientific (ccdv/arxiv-summarization), creative (euclaise/writingprompts)\", \"data_count\": \"500 seeds × 3 domains × 5 depths = 7500 target texts\", \"seed\": \"not set (sequential seed_ids 0-499 per domain)\", \"command\": \"python multi_domain_seeds.py --phase all --device cuda:0\", \"pid\": 234066}, \"notes\": \"Dedup applied 2026-05-15: news removed 801 duplicates (3115→2314), scientific/creative had 0 duplicates. Re-extracted news features from deduped data, re-evaluated. News 3class F1 changed 0.5742→0.5614 (-1.3pp), other domains unchanged. Cross-domain pooled 0.478→0.4775, wiki→news transfer 0.2254→0.2310. Changes within noise; conclusions unchanged.\", \"checkpoint_path\": \"/root/gen-depth-fingerprint/results/multi_domain_results.json\", \"log_path\": \"/tmp/plan008_full.log\", \"metrics\": {\"per_domain\": {\"news\": {\"3class_f1\": 0.5614, \"binary_f1\": 0.6264}, \"scientific\": {\"3class_f1\": 0.7049, \"binary_f1\": 0.7701}, \"creative\": {\"3class_f1\": 0.6275, \"binary_f1\": 0.731}, \"wikipedia\": {\"3class_f1\": 0.7928, \"binary_f1\": 0.8224}}, \"cross_domain_pooled\": {\"3class_f1\": 0.4775, \"binary_f1\": 0.6742}, \"wiki_transfer\": {\"news\": 0.231, \"scientific\": 0.3351, \"creative\": 0.2319}, \"n_records\": {\"news\": 2314, \"scientific\": 2316, \"creative\": 2466}, \"dedup_applied\": true, \"dedup_removed\": {\"news\": 801, \"scientific\": 0, \"creative\": 0}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T22:14:06.460Z\"}, \"plan-007-cross-model\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:41:08.851Z\", \"updated_at\": \"2026-05-15T22:32:04.766Z\", \"hypothesis\": \"Cross-model chains (different generator per depth step) vs single-model chains: depth signal 在更真实的多生成器场景下是否保持\", \"spec\": {\"command\": \"python cross_model_chains.py --phase generate --device cuda:X --shard Y --num-shards 2\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:2 (shard0 PID 241978), cuda:3 (shard1 PID 242205)\", \"data_path\": \"data/cross-model-chains/\", \"data_count\": \"995 seeds x 5 depths, each depth uses random generator from pool of 5\", \"model_name\": \"Cross-model: Pythia-2.8B, Pythia-1B, OLMo-2-1B, Qwen3-0.6B, Qwen3-1.7B (random per depth). Reference: Pythia-410M\", \"seed\": \"deterministic per seed_id\", \"pid\": \"241978 (shard0), 242205 (shard1)\"}, \"conclusion\": \"success\", \"metrics\": {\"3class_macro_f1\": 0.8089, \"3class_f1_std\": 0.0166, \"binary_f1_gen1_vs_gen2plus\": 0.7635, \"binary_f1_gen0_vs_gen2plus\": 0.8372, \"per_class_f1\": {\"gen0\": 0.9285, \"gen1\": 0.7367, \"gen2plus\": 0.7614}, \"n_samples\": 2964, \"avg_generators_per_chain\": 3, \"feature_importance\": {\"hapax_ratio\": 0.357, \"entropy_mean\": 0.204, \"ttr\": 0.202}, \"vs_single_model\": {\"pythia-1b\": 0.8622, \"qwen3-0.6b\": 0.8354, \"pythia-2.8b\": 0.8156, \"qwen3-1.7b\": 0.8106, \"olmo-2-1b\": 0.7801, \"cross-model\": 0.8089}, \"n_samples_note\": \"corrected from 4773 to 2964 per confusion matrix sum\"}, \"checkpoint_path\": \"/root/gen-depth-fingerprint/results/cross_model_chains_results.json\", \"log_path\": \"/tmp/plan007_shard0.log\", \"completed_at\": \"2026-05-15T22:10:00.047Z\"}, \"plan-010-human-edit\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:53:51.598Z\", \"updated_at\": \"2026-05-15T21:20:47.338Z\", \"hypothesis\": \"RC5 Human edit robustness: depth signal 在模拟人类编辑（random word replacement 5/10/20% + LLM light rephrasing）下的存活率\", \"spec\": {\"command\": \"python human_edit_robustness.py\", \"server\": \"autodl-5090\", \"data_path\": \"/root/gen-depth-fingerprint/data/\", \"data_count\": 21557, \"model_name\": \"Qwen3-0.6B (rephrase needs fix to Instruct)\", \"seed\": 42, \"checkpoint_path\": \"N/A (evaluation experiment)\", \"log_path\": \"/tmp/human_edit_robustness.log\", \"result_path\": \"/root/gen-depth-fingerprint/results/human_edit_robustness.json\"}, \"notes\": \"Bug fix: llm_rephrase_batch 原始代码用 raw text prompt 而非 chat template，导致 Qwen3-0.6B 做 continuation 而非 rephrase。已改用 apply_chat_template(enable_thinking=False)。3-seed 验证通过：100% 文本有变化，23% fallback（合理）。重跑 PID 228872 等待旧进程 223500 结束后自动在 cuda:1 执行全部条件，ETA ~90 min。旧结果备份到 human_edit_robustness_old_no_chat_template.json。\", \"conclusion\": \"success\", \"metrics\": {\"baseline\": {\"3class_f1\": 0.7889, \"binary_f1\": 0.7241, \"ci_3class\": [0.787, 0.798], \"ci_binary\": [0.719, 0.734]}, \"random_5pct\": {\"3class_f1\": 0.7538, \"binary_f1\": 0.7182, \"delta_3class\": -0.0351, \"delta_binary\": -0.0059}, \"random_10pct\": {\"3class_f1\": 0.7425, \"binary_f1\": 0.7168, \"delta_3class\": -0.0464, \"delta_binary\": -0.0073}, \"random_20pct\": {\"3class_f1\": 0.7292, \"binary_f1\": 0.7165, \"delta_3class\": -0.0597, \"delta_binary\": -0.0076}, \"llm_rephrase\": {\"3class_f1\": 0.7549, \"binary_f1\": 0.6615, \"delta_3class\": -0.034, \"delta_binary\": -0.0626}, \"degradation_curve\": \"robust\", \"llm_rephrase_robust\": true, \"finding\": \"Graceful degradation: 5-20% random replacement drops 3-class F1 by 3.5-6.0pp. LLM rephrase: 3-class robust (-3.4pp) but binary degrades more (-6.3pp).\"}, \"completed_at\": \"2026-05-15T21:20:47.338Z\"}, \"review-sampling-ablation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:51:28.351Z\", \"updated_at\": \"2026-05-15T20:31:56.459Z\", \"hypothesis\": \"Sampling strategy ablation: 不同 temperature/top-p 配置对 depth signal 的影响，验证 robustness（低温 0.5/0.8、默认 0.7/0.9、高温 1.0/0.95）\", \"notes\": \"Pipeline split: cuda:3 (PID 222783) runs low+default configs, cuda:2 (PID 226113) runs high_t10_p095. Checkpoint mechanism ensures no duplicate work. cuda:3 will auto-skip high phase. Total ETA ~5.5h (was 11.3h). tmux: high_temp (cuda:2). Log: /root/gen-depth-fingerprint/logs/high_temp_cuda2.log\", \"spec\": {\"command\": \"python sampling_ablation.py --phase all (cuda:3) + python run_high_only.py (cuda:2)\", \"server\": \"autodl-5090\", \"data_path\": \"/root/gen-depth-fingerprint/data/\", \"data_count\": 2988, \"model_name\": \"Qwen3-1.7B (3 sampling configs: low t=0.5/p=0.8, default t=0.7/p=0.9, high t=1.0/p=0.95)\", \"seed\": 42, \"checkpoint_path\": \"N/A (evaluation experiment, no model checkpoint)\", \"log_path\": \"/root/gen-depth-fingerprint/logs/high_temp_cuda2.log\", \"result_path\": \"/root/gen-depth-fingerprint/results/sampling_ablation.json\"}, \"conclusion\": \"success\", \"metrics\": {\"low_t05_p08\": {\"3class_f1\": 0.785, \"binary_f1\": 0.797, \"spearman_entropy_mean\": -0.694}, \"default_t07_p09\": {\"3class_f1\": 0.788, \"binary_f1\": 0.799, \"spearman_entropy_mean\": -0.602}, \"high_t10_p095\": {\"3class_f1\": 0.726, \"binary_f1\": 0.733, \"spearman_entropy_mean\": -0.002}, \"f1_range_pp\": 6.19, \"robust\": false, \"finding\": \"Low/default configs robust (<0.3pp diff). High temp (t=1.0) degrades depth signal ~6pp; entropy correlation drops to ~0. Qwen3-1.7B per-gen F1 collapses to 0.418 at high temp.\"}, \"completed_at\": \"2026-05-15T20:27:16.632Z\"}, \"review-p2f-cross-ref-bias\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T13:47:00.408Z\", \"updated_at\": \"2026-05-15T16:29:29.410Z\", \"conclusion\": \"success\", \"metrics\": {\"pythia1b_f1_pythia410m_ref\": 0.856, \"pythia1b_f1_olmo_ref\": 0.845, \"pythia1b_f1_qwen_ref\": 0.848, \"same_to_cross_drop\": 0.009, \"pythia1b_rank_all_refs\": 1, \"same_family_bias\": false}, \"spec\": {\"command\": \"python run_cross_ref_bias.py\", \"server\": \"autodl-5090\", \"data_path\": \"data/\", \"data_count\": 18000, \"model_name\": \"Pythia-1B (3 ref models)\", \"seed\": 42}, \"checkpoint_path\": \"/root/gen-depth-fingerprint/results/cross_ref_bias.json\", \"log_path\": \"/root/gen-depth-fingerprint/results/cross_ref_bias.json\", \"completed_at\": \"2026-05-15T16:29:29.410Z\"}}, \"count\": 5, \"total\": 39, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1815}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The limit=5 only returned the first 5 experiments sorted by updated_at desc. I need to specifically look for plan-015 and review-p1e-ordinal. The filtering by experiment_id didn't work. Let me try reading the raw registry file to find these experiments. Or I should look at the registry YAML file directly.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "ae767a2a-5a9f-49e9-8c17-75b32595a6f5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SBa3yFAN6dQ3RCHGdtFZSD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3888,
+                "cache_read_input_tokens": 34430,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3888
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the registry file directly to find the plan-015 and review-p1e-ordinal entries."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "da42a2d8-078d-417c-a3c7-32fe548ed09c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SBa3yFAN6dQ3RCHGdtFZSD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3888,
+                "cache_read_input_tokens": 34430,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3888
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DuAW36tXoZ5CYCMqrvKf6L",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/registry*.yaml",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "ae2c0fc5-9198-42ff-9b70-b089baebefd4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SBa3yFAN6dQ3RCHGdtFZSD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3888,
+                "cache_read_input_tokens": 34430,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3888
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T22:54:00.081Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DuAW36tXoZ5CYCMqrvKf6L",
+              "type": "tool_result",
+              "content": "registry.yaml"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "16fddceb-d5f2-4ca2-9036-471ef70f7424",
+            "tool_use_result": {
+              "filenames": [
+                "registry.yaml"
+              ],
+              "durationMs": 19,
+              "numFiles": 1,
+              "truncated": false
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UtiSPisMxaYtKWmWD5ggKi",
+              "name": "Grep",
+              "input": {
+                "pattern": "plan-015|review-p1e-ordinal",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/registry.yaml",
+                "output_mode": "content",
+                "-n": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "3ce059e8-bac7-49e2-bbe9-4aad53c386d7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NGYjLg2VKnQQi43so5LiAr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 231,
+                "cache_read_input_tokens": 38318,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 231
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T22:54:03.788Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UtiSPisMxaYtKWmWD5ggKi",
+              "type": "tool_result",
+              "content": "987:  plan-015:\n1311:  plan-015-v2:\n1848:  review-p1e-ordinal:"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "c0824760-97ff-4d84-875b-8697e1e836fc",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "987:  plan-015:\n1311:  plan-015-v2:\n1848:  review-p1e-ordinal:",
+              "numLines": 3
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WTAhCxtLnc2SrUkMVYG5Mr",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/registry.yaml",
+                "offset": 987,
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "75edd520-2731-4391-925d-6ddd6870b4c4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011ci6Wf539aWhQKLGMMeMpu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 192,
+                "cache_read_input_tokens": 38549,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 192
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T22:54:06.186Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WTAhCxtLnc2SrUkMVYG5Mr",
+              "type": "tool_result",
+              "content": "987\t  plan-015:\n988\t    status: DONE\n989\t    retry_count: 0\n990\t    created_at: '2026-05-14T23:58:41.890Z'\n991\t    updated_at: '2026-05-15T01:25:59.552Z'\n992\t    hypothesis: 现有检测器 ordinal baseline：FastDetectGPT/LD-Score 等检测器的连续分数是否已提供 ordinal\n993\t      depth signal\n994\t    spec:\n995\t      command: python detector_baseline.py (log_likelihood + fast_detect_gpt + entropy_mean)\n996\t      server: autodl-5090\n997\t      data_path: /root/gen-depth-fingerprint/data/features_all_models.csv\n998\t      data_count: 23032\n999\t      model_name: Pythia-410M (log_likelihood, FastDetectGPT, entropy_mean baselines)\n1000\t      seed: 42\n1001\t      checkpoint_path: /root/gen-depth-fingerprint/data/detector_baseline_results.json\n1002\t      log_path: /root/gen-depth-fingerprint/data/\n1003\t    conclusion: success\n1004\t    metrics:\n1005\t      seven_feature_logo_f1: 0.798\n1006\t      seven_feature_ci:\n1007\t      - 0.786\n1008\t      - 0.799\n1009\t      avg_logprob_logo_f1: 0.7653\n1010\t      avg_logprob_ci:\n1011\t      - 0.616\n1012\t      - 0.82\n1013\t      avg_logprob_spearman: 0.7876\n1014\t      ld_score_logo_f1: 0.7212\n1015\t      ld_score_ci:\n1016\t      - 0.588\n1017\t      - 0.77\n1018\t      ld_score_spearman: 0.7943\n1019\t      ld_score_pre_fix: 0.6854\n1020\t      fast_detect_gpt_logo_f1: 0.6269\n1021\t      fast_detect_gpt_ci:\n1022\t      - 0.511\n1023\t      - 0.762\n1024\t      fast_detect_gpt_spearman: 0.4325\n1025\t      binoculars_logo_f1: 0.579\n1026\t      binoculars_ci:\n1027\t      - 0.405\n1028\t      - 0.664\n1029\t      binoculars_spearman: 0.1989\n1030\t      binoculars_bug_confirmed: true\n1031\t      binoculars_bug_fix: denominator changed from CE(performer, obs_argmax) to CE(performer,\n1032\t        shifted_ids)\n1033\t      bootstrap_n: 1000\n1034\t      bootstrap_delta_7feat_vs_avglogprob:\n1035\t        delta: 0.039\n1036\t        p: 0\n1037\t        significant: true\n1038\t      bootstrap_delta_7feat_vs_fdgpt:\n1039\t        delta: 0.067\n1040\t        p: 0\n1041\t        significant: true\n1042\t      best_single_detector: Avg-LogProb (0.7653)\n1043\t      seven_feature_advantage_pp: 3.3\n1044\t    completed_at: '2026-05-15T00:26:12.709Z'\n1045\t  plan-004-prep:\n1046\t    status: PREPARING\n1047\t    retry_count: 0\n1048\t    created_at: '2026-05-14T23:58:42.465Z'\n1049\t    updated_at: '2026-05-15T00:19:49.846Z'\n1050\t    hypothesis: Downstream utility 准备：depth-stratified 数据集 + OLMo-1B fine-tuning 脚本（不开跑，等\n1051\t      Director 确认）\n1052\t    conclusion: success\n1053\t    metrics:\n1054\t      model: OLMo-2-0425-1B (1485M)\n1055\t      datasets:\n1056\t        depth0_only:\n1057\t          train: 797\n1058\t          test: 3138\n1059\t        depth01:\n1060\t          train: 3951\n1061\t          test: 3138\n1062\t        all:\n1063\t          train: 12299\n1064\t          test: 3138\n1065\t        size_matched:\n1066\t          train: 3951\n1067\t          test: 3138\n1068\t        binary_filtered:\n1069\t          train: 3951\n1070\t          test: 3138\n1071\t      dry_run_loss: 2.18\n1072\t      script: finetune_downstream.py\n1073\t  plan-003-olmo2ref:\n1074\t    status: DONE\n1075\t    retry_count: 0\n1076\t    created_at: '2026-05-15T00:09:31.145Z'\n1077\t    updated_at: '2026-05-15T00:10:00.971Z'\n1078\t    spec:\n1079\t      command: python extract_features_crossref.py --reference-model /root/autodl-tmp/models/olmo-2-1b-hf/allenai/OLMo-2-0425-1B\n1080\t        --output data/features_ref_olmo.csv --device cuda:0\n1081\t      server: autodl-5090\n1082\t      data_path: /root/gen-depth-fingerprint/data/\n1083\t      data_count: 23032\n1084\t      model_name: OLMo-2-1B (reference)\n1085\t      seed: 42\n1086\t    checkpoint_path: /root/gen-depth-fingerprint/data/features_ref_olmo.csv"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "25160742-3f62-4c33-8bfd-984a66990d9b",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/registry.yaml",
+                "content": "  plan-015:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-14T23:58:41.890Z'\n    updated_at: '2026-05-15T01:25:59.552Z'\n    hypothesis: 现有检测器 ordinal baseline：FastDetectGPT/LD-Score 等检测器的连续分数是否已提供 ordinal\n      depth signal\n    spec:\n      command: python detector_baseline.py (log_likelihood + fast_detect_gpt + entropy_mean)\n      server: autodl-5090\n      data_path: /root/gen-depth-fingerprint/data/features_all_models.csv\n      data_count: 23032\n      model_name: Pythia-410M (log_likelihood, FastDetectGPT, entropy_mean baselines)\n      seed: 42\n      checkpoint_path: /root/gen-depth-fingerprint/data/detector_baseline_results.json\n      log_path: /root/gen-depth-fingerprint/data/\n    conclusion: success\n    metrics:\n      seven_feature_logo_f1: 0.798\n      seven_feature_ci:\n      - 0.786\n      - 0.799\n      avg_logprob_logo_f1: 0.7653\n      avg_logprob_ci:\n      - 0.616\n      - 0.82\n      avg_logprob_spearman: 0.7876\n      ld_score_logo_f1: 0.7212\n      ld_score_ci:\n      - 0.588\n      - 0.77\n      ld_score_spearman: 0.7943\n      ld_score_pre_fix: 0.6854\n      fast_detect_gpt_logo_f1: 0.6269\n      fast_detect_gpt_ci:\n      - 0.511\n      - 0.762\n      fast_detect_gpt_spearman: 0.4325\n      binoculars_logo_f1: 0.579\n      binoculars_ci:\n      - 0.405\n      - 0.664\n      binoculars_spearman: 0.1989\n      binoculars_bug_confirmed: true\n      binoculars_bug_fix: denominator changed from CE(performer, obs_argmax) to CE(performer,\n        shifted_ids)\n      bootstrap_n: 1000\n      bootstrap_delta_7feat_vs_avglogprob:\n        delta: 0.039\n        p: 0\n        significant: true\n      bootstrap_delta_7feat_vs_fdgpt:\n        delta: 0.067\n        p: 0\n        significant: true\n      best_single_detector: Avg-LogProb (0.7653)\n      seven_feature_advantage_pp: 3.3\n    completed_at: '2026-05-15T00:26:12.709Z'\n  plan-004-prep:\n    status: PREPARING\n    retry_count: 0\n    created_at: '2026-05-14T23:58:42.465Z'\n    updated_at: '2026-05-15T00:19:49.846Z'\n    hypothesis: Downstream utility 准备：depth-stratified 数据集 + OLMo-1B fine-tuning 脚本（不开跑，等\n      Director 确认）\n    conclusion: success\n    metrics:\n      model: OLMo-2-0425-1B (1485M)\n      datasets:\n        depth0_only:\n          train: 797\n          test: 3138\n        depth01:\n          train: 3951\n          test: 3138\n        all:\n          train: 12299\n          test: 3138\n        size_matched:\n          train: 3951\n          test: 3138\n        binary_filtered:\n          train: 3951\n          test: 3138\n      dry_run_loss: 2.18\n      script: finetune_downstream.py\n  plan-003-olmo2ref:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-15T00:09:31.145Z'\n    updated_at: '2026-05-15T00:10:00.971Z'\n    spec:\n      command: python extract_features_crossref.py --reference-model /root/autodl-tmp/models/olmo-2-1b-hf/allenai/OLMo-2-0425-1B\n        --output data/features_ref_olmo.csv --device cuda:0\n      server: autodl-5090\n      data_path: /root/gen-depth-fingerprint/data/\n      data_count: 23032\n      model_name: OLMo-2-1B (reference)\n      seed: 42\n    checkpoint_path: /root/gen-depth-fingerprint/data/features_ref_olmo.csv",
+                "numLines": 100,
+                "startLine": 987,
+                "totalLines": 2262
+              }
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AUMC9P9iuE4sfBRDPeYsit",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/registry.yaml",
+                "offset": 1848,
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "62d72600-123d-4b89-982f-b1dbbd05a8ef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011ci6Wf539aWhQKLGMMeMpu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 192,
+                "cache_read_input_tokens": 38549,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 192
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T22:54:06.954Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AUMC9P9iuE4sfBRDPeYsit",
+              "type": "tool_result",
+              "content": "1848\t  review-p1e-ordinal:\n1849\t    status: DONE\n1850\t    retry_count: 0\n1851\t    created_at: '2026-05-15T13:39:14.393Z'\n1852\t    updated_at: '2026-05-15T14:01:13.966Z'\n1853\t    hypothesis: 'P1-E: Ordinal regression (CORAL) vs multiclass XGBoost 对比——验证 ordinal\n1854\t      structure 对 3-class 任务的增益'\n1855\t    spec:\n1856\t      command: python3 scripts/review_p1e_ordinal.py\n1857\t      server: autodl-5090\n1858\t      data_path: /root/gen-depth-fingerprint/data/features_all_models.csv\n1859\t      data_count: 27529\n1860\t      model_name: XGBoost+CORAL+FrankHall\n1861\t      seed: 42\n1862\t      checkpoint_path: /root/gen-depth-fingerprint/results/review_p1e_ordinal.json\n1863\t      log_path: /tmp/review_p1e_ordinal.log\n1864\t    conclusion: success\n1865\t    completed_at: '2026-05-15T13:55:24.654Z'\n1866\t    metrics:\n1867\t      xgboost_3class_f1: 0.7888\n1868\t      coral_3class_f1: 0.7711\n1869\t      frankhall_3class_f1: 0.7931\n1870\t      xgboost_binary_f1: 0.7213\n1871\t      coral_binary_f1: 0.7275\n1872\t      xgboost_concordance: 0.821\n1873\t      coral_concordance: 0.81\n1874\t      frankhall_concordance: 0.825\n1875\t      ordinal_benefit: negligible\n1876\t      ci_overlap: true\n1877\t  review-p2f-cross-ref-bias:\n1878\t    status: DONE\n1879\t    retry_count: 0\n1880\t    created_at: '2026-05-15T13:47:00.408Z'\n1881\t    updated_at: '2026-05-15T16:29:29.410Z'\n1882\t    conclusion: success\n1883\t    metrics:\n1884\t      pythia1b_f1_pythia410m_ref: 0.856\n1885\t      pythia1b_f1_olmo_ref: 0.845\n1886\t      pythia1b_f1_qwen_ref: 0.848\n1887\t      same_to_cross_drop: 0.009\n1888\t      pythia1b_rank_all_refs: 1\n1889\t      same_family_bias: false\n1890\t    spec:\n1891\t      command: python run_cross_ref_bias.py\n1892\t      server: autodl-5090\n1893\t      data_path: data/\n1894\t      data_count: 18000\n1895\t      model_name: Pythia-1B (3 ref models)\n1896\t      seed: 42\n1897\t    checkpoint_path: /root/gen-depth-fingerprint/results/cross_ref_bias.json\n1898\t    log_path: /root/gen-depth-fingerprint/results/cross_ref_bias.json\n1899\t    completed_at: '2026-05-15T16:29:29.410Z'\n1900\t  review-p1c-olmo-instruct:\n1901\t    status: DONE\n1902\t    retry_count: 0\n1903\t    created_at: '2026-05-15T15:20:43.541Z'\n1904\t    updated_at: '2026-05-15T18:12:32.104Z'\n1905\t    hypothesis: 'P1-C OLMo Instruct: OLMo-2-1B-Instruct (或最接近的 instruct 版本) continuation\n1906\t      chains 是否展现 differential depth response'\n1907\t    spec:\n1908\t      command: bash run_p1c_olmo_instruct.sh\n1909\t      server: autodl-5090\n1910\t      data_path: /root/gen-depth-fingerprint/data/olmo-2-0425-1b-instruct/\n1911\t      data_count: 4975\n1912\t      model_name: OLMo-2-0425-1B-Instruct\n1913\t      seed: 42\n1914\t    notes: 'Model: allenai/OLMo-2-0425-1B-Instruct (2.8GB). 3-step pipeline in tmux\n1915\t      p1c_olmo on cuda:0. Step 1 生成 ~2.3h (ETA 17:45 UTC), Step 2+3 ~30min. Worker\n1916\t      已退出，需 spawn 新 Worker 检查完成状态。'\n1917\t    metrics:\n1918\t      instruct_logo_f1: 0.338\n1919\t      base_olmo_logo_f1: 0.763\n1920\t      delta: -0.425\n1921\t      n_records: 4429\n1922\t      binary_logo_f1: 0.3506\n1923\t      length_depth_spearman: -0.3701\n1924\t      length_confound_dominates: false\n1925\t      depth_signal_after_control: partially_survives\n1926\t      original_rho:\n1927\t        entropy_mean: 0.4822\n1928\t        ttr: 0.0057\n1929\t        hapax: 0.0253\n1930\t      partial_rho:\n1931\t        entropy_mean: 0.364\n1932\t        ttr: -0.2407\n1933\t        hapax: -0.1979\n1934\t      entropy_reversal_survives_length_control: true\n1935\t      surface_reversal: false\n1936\t    conclusion: negative\n1937\t    checkpoint_path: /root/gen-depth-fingerprint/results/review_p1c_olmo_instruct.json\n1938\t    log_path: /root/gen-depth-fingerprint/data/olmo-2-0425-1b-instruct/generations_shard0.jsonl\n1939\t    completed_at: '2026-05-15T18:07:26.440Z'\n1940\t  review-p1c-qwen06b-instruct:\n1941\t    status: DONE\n1942\t    retry_count: 0\n1943\t    created_at: '2026-05-15T15:20:44.483Z'\n1944\t    updated_at: '2026-05-15T16:29:26.332Z'\n1945\t    hypothesis: 'P1-C Qwen3-0.6B Instruct: instruct prompt template 生成的 chains 与 raw\n1946\t      continuation 的 depth response 差异'\n1947\t    conclusion: negative"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "d6025c18-7137-460f-b1ef-240978c0619e",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/registry.yaml",
+                "content": "  review-p1e-ordinal:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-15T13:39:14.393Z'\n    updated_at: '2026-05-15T14:01:13.966Z'\n    hypothesis: 'P1-E: Ordinal regression (CORAL) vs multiclass XGBoost 对比——验证 ordinal\n      structure 对 3-class 任务的增益'\n    spec:\n      command: python3 scripts/review_p1e_ordinal.py\n      server: autodl-5090\n      data_path: /root/gen-depth-fingerprint/data/features_all_models.csv\n      data_count: 27529\n      model_name: XGBoost+CORAL+FrankHall\n      seed: 42\n      checkpoint_path: /root/gen-depth-fingerprint/results/review_p1e_ordinal.json\n      log_path: /tmp/review_p1e_ordinal.log\n    conclusion: success\n    completed_at: '2026-05-15T13:55:24.654Z'\n    metrics:\n      xgboost_3class_f1: 0.7888\n      coral_3class_f1: 0.7711\n      frankhall_3class_f1: 0.7931\n      xgboost_binary_f1: 0.7213\n      coral_binary_f1: 0.7275\n      xgboost_concordance: 0.821\n      coral_concordance: 0.81\n      frankhall_concordance: 0.825\n      ordinal_benefit: negligible\n      ci_overlap: true\n  review-p2f-cross-ref-bias:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-15T13:47:00.408Z'\n    updated_at: '2026-05-15T16:29:29.410Z'\n    conclusion: success\n    metrics:\n      pythia1b_f1_pythia410m_ref: 0.856\n      pythia1b_f1_olmo_ref: 0.845\n      pythia1b_f1_qwen_ref: 0.848\n      same_to_cross_drop: 0.009\n      pythia1b_rank_all_refs: 1\n      same_family_bias: false\n    spec:\n      command: python run_cross_ref_bias.py\n      server: autodl-5090\n      data_path: data/\n      data_count: 18000\n      model_name: Pythia-1B (3 ref models)\n      seed: 42\n    checkpoint_path: /root/gen-depth-fingerprint/results/cross_ref_bias.json\n    log_path: /root/gen-depth-fingerprint/results/cross_ref_bias.json\n    completed_at: '2026-05-15T16:29:29.410Z'\n  review-p1c-olmo-instruct:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-15T15:20:43.541Z'\n    updated_at: '2026-05-15T18:12:32.104Z'\n    hypothesis: 'P1-C OLMo Instruct: OLMo-2-1B-Instruct (或最接近的 instruct 版本) continuation\n      chains 是否展现 differential depth response'\n    spec:\n      command: bash run_p1c_olmo_instruct.sh\n      server: autodl-5090\n      data_path: /root/gen-depth-fingerprint/data/olmo-2-0425-1b-instruct/\n      data_count: 4975\n      model_name: OLMo-2-0425-1B-Instruct\n      seed: 42\n    notes: 'Model: allenai/OLMo-2-0425-1B-Instruct (2.8GB). 3-step pipeline in tmux\n      p1c_olmo on cuda:0. Step 1 生成 ~2.3h (ETA 17:45 UTC), Step 2+3 ~30min. Worker\n      已退出，需 spawn 新 Worker 检查完成状态。'\n    metrics:\n      instruct_logo_f1: 0.338\n      base_olmo_logo_f1: 0.763\n      delta: -0.425\n      n_records: 4429\n      binary_logo_f1: 0.3506\n      length_depth_spearman: -0.3701\n      length_confound_dominates: false\n      depth_signal_after_control: partially_survives\n      original_rho:\n        entropy_mean: 0.4822\n        ttr: 0.0057\n        hapax: 0.0253\n      partial_rho:\n        entropy_mean: 0.364\n        ttr: -0.2407\n        hapax: -0.1979\n      entropy_reversal_survives_length_control: true\n      surface_reversal: false\n    conclusion: negative\n    checkpoint_path: /root/gen-depth-fingerprint/results/review_p1c_olmo_instruct.json\n    log_path: /root/gen-depth-fingerprint/data/olmo-2-0425-1b-instruct/generations_shard0.jsonl\n    completed_at: '2026-05-15T18:07:26.440Z'\n  review-p1c-qwen06b-instruct:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-15T15:20:44.483Z'\n    updated_at: '2026-05-15T16:29:26.332Z'\n    hypothesis: 'P1-C Qwen3-0.6B Instruct: instruct prompt template 生成的 chains 与 raw\n      continuation 的 depth response 差异'\n    conclusion: negative",
+                "numLines": 100,
+                "startLine": 1848,
+                "totalLines": 2262
+              }
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also read the plan-015-v2 entry."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "7525a91f-621c-47c8-b5a3-9ff6c4fe326d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V1u4dAXksbaZGk4iqFxkU2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3634,
+                "cache_read_input_tokens": 38741,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3634
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MRg8Nc7d2Wd1Euea6XhKV6",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/registry.yaml",
+                "offset": 1311,
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "31121633-8a1b-4eaa-af7e-3dfa50546812",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V1u4dAXksbaZGk4iqFxkU2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3634,
+                "cache_read_input_tokens": 38741,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3634
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T22:54:11.468Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MRg8Nc7d2Wd1Euea6XhKV6",
+              "type": "tool_result",
+              "content": "1311\t  plan-015-v2:\n1312\t    status: DONE\n1313\t    retry_count: 0\n1314\t    created_at: '2026-05-15T00:56:20.612Z'\n1315\t    updated_at: '2026-05-15T01:26:40.380Z'\n1316\t    spec:\n1317\t      command: PYTHONUNBUFFERED=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 python scripts/ordinal_baseline.py\n1318\t        --device cuda:0\n1319\t      server: autodl-5090\n1320\t      data_path: /root/gen-depth-fingerprint/data/\n1321\t      data_count: 0\n1322\t      model_name: pythia-410m+pythia-160m\n1323\t      seed: 42\n1324\t      checkpoint_path: N/A (analysis task)\n1325\t      log_path: /tmp/ordinal_baseline_v2.log\n1326\t    conclusion: success\n1327\t    hypothesis: 'Ordinal baseline bugfix + bootstrap CI: 修复 Binoculars denominator\n1328\t      bug，验证 7-feature ensemble 显著优于所有单一检测器'\n1329\t    metrics:\n1330\t      seven_feature_logo_f1: 0.798\n1331\t      seven_feature_ci95:\n1332\t      - 0.786\n1333\t      - 0.799\n1334\t      avg_logprob_logo_f1: 0.7653\n1335\t      avg_logprob_ci95:\n1336\t      - 0.616\n1337\t      - 0.82\n1338\t      ld_score_logo_f1: 0.7212\n1339\t      ld_score_ci95:\n1340\t      - 0.588\n1341\t      - 0.77\n1342\t      fastdetectgpt_logo_f1: 0.6269\n1343\t      fastdetectgpt_ci95:\n1344\t      - 0.511\n1345\t      - 0.762\n1346\t      binoculars_logo_f1: 0.579\n1347\t      binoculars_ci95:\n1348\t      - 0.405\n1349\t      - 0.664\n1350\t      binoculars_bug_fixed: true\n1351\t      ld_score_corrected_cv_f1: 0.7925\n1352\t      bootstrap_7feat_vs_avglogprob:\n1353\t        delta: 0.039\n1354\t        p: 0\n1355\t        significant: true\n1356\t      bootstrap_7feat_vs_fastdetectgpt:\n1357\t        delta: 0.067\n1358\t        p: 0\n1359\t        significant: true\n1360\t    completed_at: '2026-05-15T01:26:40.380Z'\n1361\t  plan-005:\n1362\t    status: DONE\n1363\t    retry_count: 0\n1364\t    created_at: '2026-05-15T03:24:02.435Z'\n1365\t    updated_at: '2026-05-15T06:20:59.698Z'\n1366\t    hypothesis: 'Prompt type comparison: continuation vs elaboration vs inspired_rewriting\n1367\t      链的 depth signal 强度差异。Pythia-2.8B, 1000 seeds, 3 prompt types × 5 depths = 15K\n1368\t      texts'\n1369\t    spec:\n1370\t      command: python scripts/analyze_prompt_types.py\n1371\t      server: autodl-5090\n1372\t      gpu: cuda:1,cuda:2,cuda:3\n1373\t      data_path: data/pythia-2.8b-*/features.jsonl\n1374\t      data_count: 14393\n1375\t      model_name: pythia-2.8b\n1376\t      seed: 42\n1377\t      log_path: 'tmux: plan-005-cont, plan-005-elab, plan-005-rewrite'\n1378\t    notes: plan-005 完成。3 种 prompt type 全部成功。关键发现：(1) depth signal 跨 prompt type 存在（CV\n1379\t      F1 0.73-0.78）；(2) LOPTO 泛化良好（avg 0.7525）；(3) surface features (ttr, hapax) 最稳健；(4)\n1380\t      shape features 在非 continuation 中信号消失；(5) continuation 衰减最大（16.9%），elaboration\n1381\t      几乎无衰减（1.4%）。\n1382\t    failure_reason: 'startup recovery: RUNNING with no cron and no server/pid info'\n1383\t    conclusion: success\n1384\t    completed_at: '2026-05-15T05:30:39.849Z'\n1385\t    metrics:\n1386\t      cv_f1:\n1387\t        continuation: 0.7806\n1388\t        inspired_rewriting: 0.7368\n1389\t        elaboration: 0.73\n1390\t      lopto_f1:\n1391\t        held_out_cont: 0.762\n1392\t        held_out_elab: 0.7622\n1393\t        held_out_rewrite: 0.7334\n1394\t        avg: 0.7525\n1395\t      depth_retention_d4_d0:\n1396\t        continuation: 0.831\n1397\t        inspired_rewriting: 0.939\n1398\t        elaboration: 0.986\n1399\t      drift_hapax_ratio:\n1400\t        continuation: -0.74\n1401\t        elaboration: -0.828\n1402\t        rewriting: -0.8\n1403\t      drift_ttr:\n1404\t        continuation: -0.607\n1405\t        elaboration: -0.641\n1406\t        rewriting: -0.618\n1407\t      drift_entropy_mean:\n1408\t        continuation: -0.557\n1409\t        elaboration: -0.471\n1410\t        rewriting: -0.477"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "ba91e10b-158e-4d8d-8535-c04f6e8c54fd",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/registry.yaml",
+                "content": "  plan-015-v2:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-15T00:56:20.612Z'\n    updated_at: '2026-05-15T01:26:40.380Z'\n    spec:\n      command: PYTHONUNBUFFERED=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 python scripts/ordinal_baseline.py\n        --device cuda:0\n      server: autodl-5090\n      data_path: /root/gen-depth-fingerprint/data/\n      data_count: 0\n      model_name: pythia-410m+pythia-160m\n      seed: 42\n      checkpoint_path: N/A (analysis task)\n      log_path: /tmp/ordinal_baseline_v2.log\n    conclusion: success\n    hypothesis: 'Ordinal baseline bugfix + bootstrap CI: 修复 Binoculars denominator\n      bug，验证 7-feature ensemble 显著优于所有单一检测器'\n    metrics:\n      seven_feature_logo_f1: 0.798\n      seven_feature_ci95:\n      - 0.786\n      - 0.799\n      avg_logprob_logo_f1: 0.7653\n      avg_logprob_ci95:\n      - 0.616\n      - 0.82\n      ld_score_logo_f1: 0.7212\n      ld_score_ci95:\n      - 0.588\n      - 0.77\n      fastdetectgpt_logo_f1: 0.6269\n      fastdetectgpt_ci95:\n      - 0.511\n      - 0.762\n      binoculars_logo_f1: 0.579\n      binoculars_ci95:\n      - 0.405\n      - 0.664\n      binoculars_bug_fixed: true\n      ld_score_corrected_cv_f1: 0.7925\n      bootstrap_7feat_vs_avglogprob:\n        delta: 0.039\n        p: 0\n        significant: true\n      bootstrap_7feat_vs_fastdetectgpt:\n        delta: 0.067\n        p: 0\n        significant: true\n    completed_at: '2026-05-15T01:26:40.380Z'\n  plan-005:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-15T03:24:02.435Z'\n    updated_at: '2026-05-15T06:20:59.698Z'\n    hypothesis: 'Prompt type comparison: continuation vs elaboration vs inspired_rewriting\n      链的 depth signal 强度差异。Pythia-2.8B, 1000 seeds, 3 prompt types × 5 depths = 15K\n      texts'\n    spec:\n      command: python scripts/analyze_prompt_types.py\n      server: autodl-5090\n      gpu: cuda:1,cuda:2,cuda:3\n      data_path: data/pythia-2.8b-*/features.jsonl\n      data_count: 14393\n      model_name: pythia-2.8b\n      seed: 42\n      log_path: 'tmux: plan-005-cont, plan-005-elab, plan-005-rewrite'\n    notes: plan-005 完成。3 种 prompt type 全部成功。关键发现：(1) depth signal 跨 prompt type 存在（CV\n      F1 0.73-0.78）；(2) LOPTO 泛化良好（avg 0.7525）；(3) surface features (ttr, hapax) 最稳健；(4)\n      shape features 在非 continuation 中信号消失；(5) continuation 衰减最大（16.9%），elaboration\n      几乎无衰减（1.4%）。\n    failure_reason: 'startup recovery: RUNNING with no cron and no server/pid info'\n    conclusion: success\n    completed_at: '2026-05-15T05:30:39.849Z'\n    metrics:\n      cv_f1:\n        continuation: 0.7806\n        inspired_rewriting: 0.7368\n        elaboration: 0.73\n      lopto_f1:\n        held_out_cont: 0.762\n        held_out_elab: 0.7622\n        held_out_rewrite: 0.7334\n        avg: 0.7525\n      depth_retention_d4_d0:\n        continuation: 0.831\n        inspired_rewriting: 0.939\n        elaboration: 0.986\n      drift_hapax_ratio:\n        continuation: -0.74\n        elaboration: -0.828\n        rewriting: -0.8\n      drift_ttr:\n        continuation: -0.607\n        elaboration: -0.641\n        rewriting: -0.618\n      drift_entropy_mean:\n        continuation: -0.557\n        elaboration: -0.471\n        rewriting: -0.477",
+                "numLines": 100,
+                "startLine": 1311,
+                "totalLines": 2262
+              }
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the data I need. Let me synthesize the findings.\n\n## Task 1: related_work.tex CI width check\n\nI've read the full related_work.tex. Let me check for any CI width references or \"[x, y]\" format confidence intervals:\n\nLooking through the text:\n- Line 14: \"binary F1 from 0.52 to 0.71 across individual baselines; Table~\\ref{tab:baselines}\" — This mentions a range of F1 values, not a CI width in \"[x, y]\" format.\n\nNo \"[x, y]\" confidence interval format found in the file. \n\nThe only numerical range mentioned is \"from 0.52 to 0.71\" on line 14, which describes the spread of binary F1 scores across baselines. Checking against the actual baseline data from results.tex, the values range from 0.524 to 0.712, so the cited range appears to be a rounded representation of this span.\n\nNow I'm looking at the ordinal baseline comparisons from the registry, specifically the 3-class F1 values for each detector under the original ordinal baseline setup.\n\nI see there's a bugfix version that corrected the LD-Score cross-validation F1, and then a separate ordinal regression comparison showing results across different methods like XGBoost, CORAL, and Frank-Hall with both 3-class and binary F1 scores, plus concordance metrics. The ordinal benefit appears minimal with overlapping confidence intervals.\n\nNow I'm checking the baseline comparison table in the results document and noticing a discrepancy—the numbers in the paper's table don't match what's recorded in the registry for plan-015, particularly for methods like Avg-LogProb, LD-Score, FastDetectGPT, and Binoculars.\n\nLooking at the differences more carefully, it appears the plan-015 experiment was evaluated on the older 5-generation dataset with 23,032 samples, while the current results reflect the updated 6-generation LOGO evaluation that includes Qwen3-8B and has 27,529 samples. The seven-feature ensemble F1 score also differs slightly (0.798 vs 0.789), which confirms the results table is using the newer evaluation set. So the 6-gen numbers in the paper supersede the earlier plan-015 results.\n\nNow I'm checking the ordinal regression results against the registry entries to verify the paper's reported numbers match the actual experimental outputs. The XGBoost, CORAL, and Frank-Hall metrics across the 3-class, binary, and concordance settings all align with what's reported in results.tex when accounting for rounding.\n\nFor the baseline comparison, I'm verifying that the range cited in related_work.tex—\"0.52 to 0.71\"—corresponds to the actual baseline F1 scores from the table, which checks out between Binoculars and Avg-LogProb.\n\nNow I'm looking at whether the review-exp-a-baseline-ensemble registry entry has the authoritative 6-gen baseline numbers, since the plan-015 data is from an older 5-gen evaluation.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "1e0959da-78f4-4f09-a5af-a858d88ff2ec",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CGeAkUwE21qsqM63xbhoQe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1744,
+                "cache_read_input_tokens": 42375,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1744
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me also check review-exp-a-baseline-ensemble to see if those are the authoritative 6-gen numbers now in the paper."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "e8efc36a-9df2-46df-8927-f45322b40743",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CGeAkUwE21qsqM63xbhoQe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1744,
+                "cache_read_input_tokens": 42375,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1744
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SMcgskopGyMn2z3VoXJJk1",
+              "name": "Grep",
+              "input": {
+                "pattern": "review-exp-a-baseline-ensemble",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/registry.yaml",
+                "output_mode": "content",
+                "-n": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "6e835c59-1728-4390-88ea-a0ee604b96ef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CGeAkUwE21qsqM63xbhoQe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1744,
+                "cache_read_input_tokens": 42375,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1744
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T22:54:51.036Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SMcgskopGyMn2z3VoXJJk1",
+              "type": "tool_result",
+              "content": "1580:  review-exp-a-baseline-ensemble:"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "0ea10468-33a4-41a9-8c57-0188cfe55089",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "1580:  review-exp-a-baseline-ensemble:",
+              "numLines": 1
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012ZWSDZLDsjigiMj2J8Qnp5",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/registry.yaml",
+                "offset": 1580,
+                "limit": 80
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "d1b3ab08-dd09-4b93-bece-79ffaa6a3d4b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BveuL6ixw5CVn38zpiPbEd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2119,
+                "cache_read_input_tokens": 44119,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2119
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T22:54:53.902Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012ZWSDZLDsjigiMj2J8Qnp5",
+              "type": "tool_result",
+              "content": "1580\t  review-exp-a-baseline-ensemble:\n1581\t    status: DONE\n1582\t    retry_count: 0\n1583\t    created_at: '2026-05-15T12:22:30.747Z'\n1584\t    updated_at: '2026-05-15T13:00:29.617Z'\n1585\t    hypothesis: 审稿回应实验A：4-baseline ensemble + 统一超参对比，验证 7-feature vs 4-baseline vs\n1586\t      6-feature 在公平条件下的性能差异\n1587\t    spec:\n1588\t      command: python scripts/review_baseline_ensemble.py --skip-inference\n1589\t      server: autodl-5090\n1590\t      data_path: /root/gen-depth-fingerprint/data/\n1591\t      data_count: 27529\n1592\t      model_name: XGBoost-ensemble\n1593\t      seed: 789\n1594\t    log_path: /tmp/review_baseline_v2.log\n1595\t    checkpoint_path: /root/gen-depth-fingerprint/results/review_baseline_ensemble_results.json\n1596\t    conclusion: success\n1597\t    completed_at: '2026-05-15T12:54:40.682Z'\n1598\t    metrics:\n1599\t      4_baseline:\n1600\t        avg_f1: 0.7964\n1601\t        ci95:\n1602\t        - 0.7921\n1603\t        - 0.8007\n1604\t      4_baseline_plus_surface:\n1605\t        avg_f1: 0.8049\n1606\t        ci95:\n1607\t        - 0.8003\n1608\t        - 0.8092\n1609\t      7_feature_unified:\n1610\t        avg_f1: 0.7887\n1611\t        ci95:\n1612\t        - 0.7839\n1613\t        - 0.793\n1614\t      7_feature_original:\n1615\t        avg_f1: 0.7887\n1616\t        ci95:\n1617\t        - 0.7839\n1618\t        - 0.793\n1619\t    notes: 4-baseline ensemble (0.796) > 7-feature (0.789); surface features 在 baseline\n1620\t      上有 +0.9pp 互补增量 (0.805). 论文已整合：results.tex multi-detector段落 + discussion tradeoff段落。\n1621\t  review-exp-b-topic-drift:\n1622\t    status: DONE\n1623\t    retry_count: 0\n1624\t    created_at: '2026-05-15T12:22:34.096Z'\n1625\t    updated_at: '2026-05-15T12:28:14.017Z'\n1626\t    hypothesis: 审稿回应实验B：Topic drift 描述性分析——语义漂移与 shape/drifting features 的关系，证明 depth\n1627\t      fingerprint 不仅仅捕捉 topic shift\n1628\t    spec:\n1629\t      command: python scripts/review_topic_drift.py\n1630\t      server: autodl-5090\n1631\t      data_path: /root/gen-depth-fingerprint/data/\n1632\t      data_count: 27529\n1633\t      model_name: all-MiniLM-L6-v2\n1634\t      seed: 0\n1635\t    conclusion: success\n1636\t    log_path: /tmp/topic_drift.log\n1637\t    checkpoint_path: /root/gen-depth-fingerprint/results/review_topic_drift_results.json\n1638\t    completed_at: '2026-05-15T12:28:11.624Z'\n1639\t    metrics:\n1640\t      semantic_similarity_by_transition:\n1641\t        0_to_1:\n1642\t          mean: 0.622\n1643\t          std: 0.1647\n1644\t        1_to_2:\n1645\t          mean: 0.6829\n1646\t          std: 0.1837\n1647\t        2_to_3:\n1648\t          mean: 0.801\n1649\t          std: 0.2012\n1650\t        3_to_4:\n1651\t          mean: 0.8587\n1652\t          std: 0.1895\n1653\t      prompt_type_avg_sim:\n1654\t        continuation: 0.7168\n1655\t        elaboration: 0.8093\n1656\t        inspired_rewriting: 0.808\n1657\t      shape_feature_correlations:\n1658\t        entropy_std_rho: -0.1639\n1659\t        tail_decay_rho: 0.0675"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "10901941-d87d-4161-9ba8-ea8f96bb3338",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/registry.yaml",
+                "content": "  review-exp-a-baseline-ensemble:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-15T12:22:30.747Z'\n    updated_at: '2026-05-15T13:00:29.617Z'\n    hypothesis: 审稿回应实验A：4-baseline ensemble + 统一超参对比，验证 7-feature vs 4-baseline vs\n      6-feature 在公平条件下的性能差异\n    spec:\n      command: python scripts/review_baseline_ensemble.py --skip-inference\n      server: autodl-5090\n      data_path: /root/gen-depth-fingerprint/data/\n      data_count: 27529\n      model_name: XGBoost-ensemble\n      seed: 789\n    log_path: /tmp/review_baseline_v2.log\n    checkpoint_path: /root/gen-depth-fingerprint/results/review_baseline_ensemble_results.json\n    conclusion: success\n    completed_at: '2026-05-15T12:54:40.682Z'\n    metrics:\n      4_baseline:\n        avg_f1: 0.7964\n        ci95:\n        - 0.7921\n        - 0.8007\n      4_baseline_plus_surface:\n        avg_f1: 0.8049\n        ci95:\n        - 0.8003\n        - 0.8092\n      7_feature_unified:\n        avg_f1: 0.7887\n        ci95:\n        - 0.7839\n        - 0.793\n      7_feature_original:\n        avg_f1: 0.7887\n        ci95:\n        - 0.7839\n        - 0.793\n    notes: 4-baseline ensemble (0.796) > 7-feature (0.789); surface features 在 baseline\n      上有 +0.9pp 互补增量 (0.805). 论文已整合：results.tex multi-detector段落 + discussion tradeoff段落。\n  review-exp-b-topic-drift:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-15T12:22:34.096Z'\n    updated_at: '2026-05-15T12:28:14.017Z'\n    hypothesis: 审稿回应实验B：Topic drift 描述性分析——语义漂移与 shape/drifting features 的关系，证明 depth\n      fingerprint 不仅仅捕捉 topic shift\n    spec:\n      command: python scripts/review_topic_drift.py\n      server: autodl-5090\n      data_path: /root/gen-depth-fingerprint/data/\n      data_count: 27529\n      model_name: all-MiniLM-L6-v2\n      seed: 0\n    conclusion: success\n    log_path: /tmp/topic_drift.log\n    checkpoint_path: /root/gen-depth-fingerprint/results/review_topic_drift_results.json\n    completed_at: '2026-05-15T12:28:11.624Z'\n    metrics:\n      semantic_similarity_by_transition:\n        0_to_1:\n          mean: 0.622\n          std: 0.1647\n        1_to_2:\n          mean: 0.6829\n          std: 0.1837\n        2_to_3:\n          mean: 0.801\n          std: 0.2012\n        3_to_4:\n          mean: 0.8587\n          std: 0.1895\n      prompt_type_avg_sim:\n        continuation: 0.7168\n        elaboration: 0.8093\n        inspired_rewriting: 0.808\n      shape_feature_correlations:\n        entropy_std_rho: -0.1639\n        tail_decay_rho: 0.0675",
+                "numLines": 80,
+                "startLine": 1580,
+                "totalLines": 2262
+              }
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have a complete picture. Here's my report:\n\n---\n\n## Task 1: related_work.tex CI width 检查\n\n**无残留问题。** related_work.tex 中不存在任何 `CI width`、`CI` 或 `[x, y]` 格式的置信区间引用。\n\n唯一涉及数值范围的是第 14 行：\n> \"binary F1 from 0.52 to 0.71 across individual baselines\"\n\n验证：对照 results.tex Table 2 (tab:baselines) 中四个 individual baseline 的 binary F1：\n- Binoculars: 0.524 → 0.52 ✓\n- FastDetectGPT: 0.616\n- LD-Score: 0.701\n- Avg-LogProb: 0.712 → 0.71 ✓\n\n范围 0.52–0.71 与表格数据一致。\n\n---\n\n## Task 2: P1-E ordinal baseline 结论\n\n### Registry 数据源\n\n有三个相关实验：\n\n| 实验 | 数据集 | 角色 |\n|------|--------|------|\n| `plan-015` | 5-gen (23032 samples) | 原始 ordinal baseline，**已过时** |\n| `plan-015-v2` | 同上 | bugfix + bootstrap CI，**已过时** |\n| `review-p1e-ordinal` | 6-gen (27529 samples) | **当前权威**，ordinal regression 对比 |\n\n### results.tex 数字一致性检查\n\n**§4.3 Baseline comparison (Table 2)** — 数字来自 `review-exp-a-baseline-ensemble`（6-gen 统一评估）：\n\n| 方法 | results.tex | registry | 状态 |\n|------|------------|----------|------|\n| 7-feature 3-class | 0.789 | 0.7887 | ✓ (四舍五入) |\n| 4-detector ens. 3-class | 0.796 | 0.7964 | ✓ |\n| 4-det + surface 3-class | 0.805 | 0.8049 | ✓ |\n\n**Ordinal regression paragraph (lines 59-64)** — 数字来自 `review-p1e-ordinal`：\n\n| 指标 | results.tex | registry | 状态 |\n|------|------------|----------|------|\n| XGBoost 3-class F1 | 0.789 | 0.7888 | ✓ |\n| CORAL 3-class F1 | 0.771 | 0.7711 | ✓ |\n| Frank-Hall 3-class F1 | 0.793 | 0.7931 | ✓ |\n| XGBoost binary F1 | 0.721 | 0.7213 | ✓ |\n| CORAL binary F1 | 0.728 | 0.7275 | ✓ |\n| XGBoost concordance | 0.821 | 0.821 | ✓ |\n| CORAL concordance | 0.810 | 0.810 | ✓ |\n| Frank-Hall concordance | 0.825 | 0.825 | ✓ |\n\n**所有数字与 registry 一致，无需修改。** Baseline comparison 和 ordinal regression 两个段落都已完整写入 results.tex，数据正确。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "uuid": "09498b33-d258-400c-bb0d-435e57f3c9e8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MmuZeA7rFSs4swDDWeFRtP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1361,
+                "cache_read_input_tokens": 46238,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1361
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have a complete picture. Here's my report:\n\n---\n\n## Task 1: related_work.tex CI width 检查\n\n**无残留问题。** related_work.tex 中不存在任何 `CI width`、`CI` 或 `[x, y]` 格式的置信区间引用。\n\n唯一涉及数值范围的是第 14 行：\n> \"binary F1 from 0.52 to 0.71 across individual baselines\"\n\n验证：对照 results.tex Table 2 (tab:baselines) 中四个 individual baseline 的 binary F1：\n- Binoculars: 0.524 → 0.52 ✓\n- FastDetectGPT: 0.616\n- LD-Score: 0.701\n- Avg-LogProb: 0.712 → 0.71 ✓\n\n范围 0.52–0.71 与表格数据一致。\n\n---\n\n## Task 2: P1-E ordinal baseline 结论\n\n### Registry 数据源\n\n有三个相关实验：\n\n| 实验 | 数据集 | 角色 |\n|------|--------|------|\n| `plan-015` | 5-gen (23032 samples) | 原始 ordinal baseline，**已过时** |\n| `plan-015-v2` | 同上 | bugfix + bootstrap CI，**已过时** |\n| `review-p1e-ordinal` | 6-gen (27529 samples) | **当前权威**，ordinal regression 对比 |\n\n### results.tex 数字一致性检查\n\n**§4.3 Baseline comparison (Table 2)** — 数字来自 `review-exp-a-baseline-ensemble`（6-gen 统一评估）：\n\n| 方法 | results.tex | registry | 状态 |\n|------|------------|----------|------|\n| 7-feature 3-class | 0.789 | 0.7887 | ✓ (四舍五入) |\n| 4-detector ens. 3-class | 0.796 | 0.7964 | ✓ |\n| 4-det + surface 3-class | 0.805 | 0.8049 | ✓ |\n\n**Ordinal regression paragraph (lines 59-64)** — 数字来自 `review-p1e-ordinal`：\n\n| 指标 | results.tex | registry | 状态 |\n|------|------------|----------|------|\n| XGBoost 3-class F1 | 0.789 | 0.7888 | ✓ |\n| CORAL 3-class F1 | 0.771 | 0.7711 | ✓ |\n| Frank-Hall 3-class F1 | 0.793 | 0.7931 | ✓ |\n| XGBoost binary F1 | 0.721 | 0.7213 | ✓ |\n| CORAL binary F1 | 0.728 | 0.7275 | ✓ |\n| XGBoost concordance | 0.821 | 0.821 | ✓ |\n| CORAL concordance | 0.810 | 0.810 | ✓ |\n| Frank-Hall concordance | 0.825 | 0.825 | ✓ |\n\n**所有数字与 registry 一致，无需修改。** Baseline comparison 和 ordinal regression 两个段落都已完整写入 results.tex，数据正确。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 117226,
+            "duration_api_ms": 117665,
+            "num_turns": 17,
+            "stop_reason": "end_turn",
+            "session_id": "5fc3d790-ca4f-4f77-9695-f0a9a9d40b51",
+            "total_cost_usd": 0.555216,
+            "usage": {
+              "input_tokens": 16,
+              "cache_creation_input_tokens": 35758,
+              "cache_read_input_tokens": 410787,
+              "output_tokens": 5002,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 35758,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 929,
+                  "cache_read_input_tokens": 46238,
+                  "cache_creation_input_tokens": 1361,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1361
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1080,
+                "outputTokens": 25,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001205,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 16,
+                "outputTokens": 5002,
+                "cacheReadInputTokens": 410787,
+                "cacheCreationInputTokens": 35758,
+                "webSearchRequests": 0,
+                "costUSD": 0.554011,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "60dc1244-3a2e-43c3-9a52-a33c61cea5e6"
+          },
+          "id": "event-000049"
+        }
+      ],
+      "message_count": 49
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-related-work-ordinal.md"
+}

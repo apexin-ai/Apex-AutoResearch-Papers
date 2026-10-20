@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfc1c0f149ebaf445c7e",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "writing director rewrite primary metric",
+  "task_key": "worker_writing_director-rewrite-primary-metric_20260515T140056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_director-rewrite-primary-metric_20260515T140056_result.json",
+    "occurrence": 1,
+    "bytes": 963,
+    "sha256": "775c674eac2156e6da2c2f882d961d874e0648d28d814e6e15763b8ece196d76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 7 modifications complete:\n\n1. **results.tex §4.3** — Merged Table 3 + binary table into single table with 3-class F1, Binary F1, Per-gen std columns; rewrote all paragraphs with binary F1=0.723 as primary metric\n2. **results.tex §4.1** — Added gen-0 caveat about shared seed text inflation\n3. **abstract.tex** — Headline: \"binary macro-F1 of 0.72 for gen-1 vs. gen-2+ depth discrimination\" with std=0.051\n4. **introduction.tex** — Updated both body text (line 25) and Contribution 2 (line 34) to binary F1=0.72 with per-generator consistency\n5. **conclusion.tex** — \"binary macro-F1 of 0.72 for leak-free depth discrimination, per-generator std of 0.051\"\n6. **discussion.tex** — Multi-detector paragraph: 3-class advantage driven by gen-0; binary shows 7-feature matches best multi-detector (0.723 vs 0.724)\n7. No references to `tab:binary-logo` remain; Table 1 and Table 2 numbers unchanged; §4.2 and §4.4 untouched"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-director-rewrite-primary-metric.md"
+}

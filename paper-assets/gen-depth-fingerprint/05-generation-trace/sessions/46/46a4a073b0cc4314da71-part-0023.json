@@ -1,0 +1,1762 @@
+{
+  "schema_version": "1.0",
+  "session_id": "46a4a073b0cc4314da71",
+  "rounds": [
+    {
+      "number": 388,
+      "messages": [
+        {
+          "source_line": 3961,
+          "timestamp": "2026-05-24T22:49:05.373716+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-003961"
+        },
+        {
+          "source_line": 3962,
+          "timestamp": "2026-05-24T22:49:05.524471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "read_project_file",
+              "max_results": "5"
+            }
+          },
+          "id": "event-003962"
+        },
+        {
+          "source_line": 3963,
+          "timestamp": "2026-05-24T22:49:05.524827+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-003963"
+        },
+        {
+          "source_line": 3964,
+          "timestamp": "2026-05-24T22:49:12.852853+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_get_project_overview"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "mcp__agent-ml-research__director_get_project_overview",
+            "tool_args": {
+              "project": "gen-depth-fingerprint"
+            }
+          },
+          "id": "event-003964"
+        },
+        {
+          "source_line": 3965,
+          "timestamp": "2026-05-24T22:49:13.756510+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"# 项目 gen-depth-fingerprint 概况\\n\\n## 实验状态 (68 个)\\n\\n- **plan-015**: DONE (success) — \\n- **plan-004**: DONE (failed) — \\n- **plan-003**: DONE (success) — \\n- **plan-013**: DONE (success) — \\n- **plan-002**: DONE (success) — \\n- **plan-002-qwen17b-retry-s1**: DONE (failed) — \\n- **plan-002-qwen17b-retry-s0**: DONE (failed) — \\n- **plan-002-qwen06b-s1**: DONE (failed) — \\n- **plan-002-qwen06b-s0**: DONE (failed) — \\n- **plan-002-qwen17b-s1**: DONE (failed) — \\n- **plan-002-qwen17b-s0**: DONE (failed) — \\n- **plan-002-qwen3-1_7b-s0**: DONE (failed) — \\n- **plan-002-qwen3-1_7b-s1**: DONE (killed) — \\n- **plan-001**: DONE (success) — \\n- **mvp-001**: DONE (success) — \\n\\n## 最新报告\\n# Handover — 2026-05-21\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **exp_062_decoding_strategy_shape** (success): DDR shape stability (entropy_max, entropy_min, tail_decay near-stationary with d<0.15) holds under greedy (temperature=0) and top-k (k=50, τ=0.7) decoding, not just nucleus sampling — verifying the DDR decomposition is decoding-strategy-agnostic\\n- **decoding_strategy_shape** (killed): DDR shape stability (entropy_max, entropy_min, tail_decay d<0.15) holds under greedy and top-k decoding, not just nucleus sampling — verifying the claim is decoding-strategy-agnostic\\n- **plan-004-prep** (success): Downstream utility 准备：depth-stratified 数据集 + OLMo-1B fine-tuning 脚本（不开跑，等 Director 确认）\\n\\n## 趋势\\n成功 48 / 负向 2 / 失败 12 / 共 68\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nbjb2-18868: 无 GPU 信息\\n\\n## 告警\\n- mvp-001-gen-s0: 已被终止 — unknown\\n- mvp-001-gen-s1: 训练失败 — unknown\\n- mvp-001-gen-s2: 训练失败 — unknown\\n- mvp-001-gen-s3: 训练失败 — unknown\\n- plan-001-restore: 已被终止 — unknown\\n- plan-002-qwen3-1_7b-s0: 训练失败 — unknown\\n- plan-002-qwen3-1_7b-s1: 已被终止 — unknown\\n- plan-002-qwen17b-s0: 训练失败 — unknown\\n- plan-002-qwen17b-s1: 训练失败 — unknown\\n- plan-002-qwen17b-retry-s0: 训练失败 — unknown\\n- plan-002-qwen17b-retry-s1: 训练失败 — unknown\\n- plan-002-qwen06b-s0\n…[truncated 256 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "mcp__agent-ml-research__director_get_project_overview",
+            "elapsed_ms": 903
+          },
+          "id": "event-003965"
+        },
+        {
+          "source_line": 3966,
+          "timestamp": "2026-05-24T22:49:13.756885+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "EMNLP 2026 ARR call for papers submission deadline author guidelines site:aclweb.org"
+            }
+          },
+          "id": "event-003966"
+        },
+        {
+          "source_line": 3967,
+          "timestamp": "2026-05-24T22:49:15.312416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/main.tex",
+              "limit": "100"
+            }
+          },
+          "id": "event-003967"
+        },
+        {
+          "source_line": 3968,
+          "timestamp": "2026-05-24T22:49:15.312836+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% EMNLP 2026 ARR Submission — ACL 2023 Template\n2\t\\documentclass[11pt]{article}\n3\t\\usepackage[review]{acl}\n4\t\\usepackage{times}\n5\t\\usepackage{latexsym}\n6\t\\usepackage[T1]{fontenc}\n7\t\\usepackage[utf8]{inputenc}\n8\t\\usepackage{microtype}\n9\t\\usepackage{graphicx}\n10\t\\usepackage{booktabs}\n11\t\\usepackage{enumitem}\n12\t\\usepackage{amsmath}\n13\t\\usepackage{amssymb}\n14\t\\usepackage{placeins}\n15\t\\usepackage{multirow}\n16\t\\usepackage{float}\n17\t\\usepackage{stfloats}\n18\t\\usepackage{alphalph}\n19\t\\usepackage{tcolorbox}\n20\t\\tcbuselibrary{breakable}\n21\t\n22\t\\graphicspath{{../chart/}}\n23\t\n24\t\\title{Depth Profiling: Classifying Recursive Generation Depth\\\\in Base-Model LLM Text}\n25\t\n26\t\\author{Anonymous}\n27\t\n28\t\\begin{document}\n29\t\\raggedbottom\n30\t\\maketitle\n31\t\n32\t\\input{abstract}\n33\t\n34\t\\input{introduction}\n35\t\\input{related_work}\n36\t\\input{method}\n37\t\\input{results}\n38\t\n39\t\\input{discussion}\n40\t\\input{conclusion}\n41\t\\input{limitations}\n42\t\\bibliography{references}\n43\t\n44\t\\appendix\n45\t\\renewcommand{\\thesection}{\\alphalph{\\value{section}}}\n46\t\n47\t\\noindent\\textbf{Note:} Unless otherwise stated, appendix experiments use the original six-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-1.7B/0.6B/8B).\n48\tMain paper results (\\S\\ref{sec:results}) use the full eight-generator set (adding Llama-3.2-3B and Mistral-7B-v0.3).\n49\t\n50\t\\input{appendix_dataset_stats}\n51\t\n52\t\\section{Length Confound Analysis}\n53\t\\label{app:length}\n54\t\\input{appendix_length}\n55\t\n56\t\\section{Prompt Type Generalization}\n57\t\\label{app:prompt-type}\n58\t\\input{appendix_prompt_type}\n59\t\\FloatBarrier\n60\t\n61\t\\section{Finer-Grained Depth Classification}\n62\t\\label{app:finer-depth}\n63\t\\input{appendix_finer_depth}\n64\t\\FloatBarrier\n65\t\n66\t\\section{End-to-End Depth Classification (QLoRA)}\n67\t\\label{app:qlora}\n68\t\\input{appendix_qlora}\n69\t\\FloatBarrier\n70\t\n71\t\\section{Leave-One-Feature-Out Analysis}\n72\t\\label{app:lofo}\n73\t\\input{appendix_lofo}\n74\t\\FloatBarrier\n75\t\n76\t\\subsection{Candidate Feature Screening}\n77\t\\label{app:feature-candi\n…[truncated 556 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-003968"
+        },
+        {
+          "source_line": 3969,
+          "timestamp": "2026-05-24T22:49:19.429125+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"EMNLP 2026 ARR call for papers submission deadline author guidelines site:aclweb.org\"\n\nLinks: [{\"title\":\"Joint Call for Tutorial Proposals (EMNLP/AACL-IJCNLP 2026) | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/joint-call-tutorial-proposals-emnlpaacl-ijcnlp-2026\"},{\"title\":\"[EMNLP 2025] First Call for Papers | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/emnlp-2025-first-call-papers\"},{\"title\":\"EACL 2026: First Call for Papers | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/eacl-2026-first-call-papers\"},{\"title\":\"Workshop on Multimodal Interaction in Face-to-Face Dialogue (MINT @ EMNLP 2026) | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/workshop-multimodal-interaction-face-face-dialogue-mint-emnlp-2026\"},{\"title\":\"Joint Call for Tutorial Proposals (EACL/ACL) 2026 | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/joint-call-tutorial-proposals-eaclacl-2026\"},{\"title\":\"5th Workshop on Evaluation and Comparison for NLP systems (Eval4NLP) | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/5th-workshop-evaluation-and-comparison-nlp-systems-eval4nlp\"},{\"title\":\"Call for Papers: The 20th Linguistic Annotation Workshop (LAW XX), co-located with ACL 2026 | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/call-papers-20th-linguistic-annotation-workshop-law-xx-co-located-acl-2026\"},{\"title\":\"EMNLP 2025: Call for System Demonstrations | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/emnlp-2025-call-system-demonstrations\"},{\"title\":\"EACL/ACL 2026 Joint Call for Workshops | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/eaclacl-2026-joint-call-workshops\"},{\"title\":\"Jan. 2025 ACL Standing Committee on Peer Review (COPR) Report 1\",\"url\":\"https://www.aclweb.org/adminwiki/images/9/9e/COPR-5-cycle-report-to-publish.pdf\"}]\n\nI found search results related to EMNLP 2026 and various calls, but the results \n…[truncated 1191 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "WebSearch",
+            "elapsed_ms": 5672
+          },
+          "id": "event-003969"
+        },
+        {
+          "source_line": 3970,
+          "timestamp": "2026-05-24T22:49:25.584049+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/main.tex",
+              "offset": "100",
+              "limit": "50"
+            }
+          },
+          "id": "event-003970"
+        },
+        {
+          "source_line": 3971,
+          "timestamp": "2026-05-24T22:49:26.588465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "100\t\\section{Instruction-Tuned Model Analysis}\n101\t\\label{app:instruct}\n102\t\\input{appendix_instruct}\n103\t\n104\t\\section{Error Analysis of Binary Classification}\n105\t\\label{app:error-analysis}\n106\t\\input{appendix_error_analysis}\n107\t\\FloatBarrier\n108\t\n109\t\n110\t\\section{Downstream Utility}\n111\t\\label{app:downstream}\n112\t\\input{appendix_downstream}\n113\t\\FloatBarrier\n114\t\n115\t\\section{Cross-Model Chain Per-Class Detail}\n116\t\\label{app:cross-model-detail}\n117\t\\input{appendix_cross_model_detail}\n118\t\\FloatBarrier\n119\t\n120\t\\section{Feature Distribution Analysis}\n121\t\\label{app:feature-distributions}\n122\t\\input{appendix_feature_distributions}\n123\t\n124\t\\section{Cross-Temperature Transfer}\n125\t\\label{app:cross-temp}\n126\t\\input{appendix_cross_temp}\n127\t\n128\t\\section{Feature Ablation}\n129\t\\label{app:ablation-table}\n130\t\\input{appendix_ablation}\n131\t\n132\t\\input{appendix_feature_correlation}\n133\t\n134\t\\section{Cross-Family Reference Models}\n135\t\\label{app:cross-ref}\n136\t\\input{table4}\n137\t\n138\t\\input{appendix_seed_control}\n139\t\n140\t\\input{appendix_tost}\n141\t\n142\t\\input{appendix_tost_bootstrap}\n143\t\n144\t\\section{DDR Partition Validation}\n145\t\\label{app:ddr-validation}\n146\t\\input{appendix_ddr_validation}\n147\t\n148\t\\section{Generator Subset Summary}\n149\t\\label{app:gen-subsets-section}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Read",
+            "elapsed_ms": 1004
+          },
+          "id": "event-003971"
+        },
+        {
+          "source_line": 3972,
+          "timestamp": "2026-05-24T22:49:26.739450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ACL Rolling Review 2026 submission deadline June July cycle aclrollingreview.org"
+            }
+          },
+          "id": "event-003972"
+        },
+        {
+          "source_line": 3973,
+          "timestamp": "2026-05-24T22:49:26.890445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-003973"
+        },
+        {
+          "source_line": 3974,
+          "timestamp": "2026-05-24T22:49:26.941019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Abstract — Depth Profiling of Recursive LLM Generation Chains\n2\t\\begin{abstract}\n3\tAs large language model (LLM) outputs re-enter training corpora and seed further generation, understanding how recursive generation reshapes text distributions is critical for data provenance and corpus curation---yet existing detectors answer only the binary human-or-machine question, ignoring \\emph{generation depth}: we introduce \\emph{depth profiling} to address this gap.\n4\tWe decompose distributional drift under recursive generation into location and shape components, revealing an asymmetry we term \\emph{differential depth response} (DDR): across eight base-model generators from five families, negative log-likelihood (NLL) location features drift monotonically with depth (effect size $d{=}0.74$--$1.05$) while three shape features remain near-stationary ($d < 0.10$), with entropy std intermediate ($d{=}0.46$)---a ${\\geq}8{\\times}$ effect-size gap.\n5\tPrior work documents \\emph{what converges}; the central finding here is \\emph{what is approximately preserved}: shape stability complements location drift for ordinal depth grading without per-generator calibration, achieving leak-free binary F1\\,=\\,0.694 (gen-1 vs.\\ gen-2+), cross-model binary F1\\,=\\,0.830, and 3-class F1\\,=\\,0.762 under leave-one-generator-out evaluation (gen-0 seeds shared across generators; \\S\\ref{sec:generation}); an end-to-end classifier reaches 3-class F1\\,=\\,0.905 (Appendix~\\ref{app:qlora}).\n6\tInstruction tuning compresses DDR, bounding current applicability to base models.\n7\t\\end{abstract}\n8\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-003974"
+        },
+        {
+          "source_line": 3975,
+          "timestamp": "2026-05-24T22:49:32.363782+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ACL Rolling Review 2026 submission deadline June July cycle aclrollingreview.org\"\n\nLinks: [{\"title\":\"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/dates\"},{\"title\":\"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/\"},{\"title\":\"Main Conference - ACL 2026\",\"url\":\"https://2026.aclweb.org/calls/main_conference_papers/\"},{\"title\":\"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML\",\"url\":\"https://mlciv.com/ai-deadlines/\"},{\"title\":\"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/cfp\"},{\"title\":\"Call for Main Conference Papers -\",\"url\":\"https://2026.eacl.org/calls/papers/\"},{\"title\":\"Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/incentives2026\"},{\"title\":\"aclrollingreview/dates.md at main · acl-org/aclrollingreview\",\"url\":\"https://github.com/acl-org/aclrollingreview/blob/main/dates.md\"},{\"title\":\"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewing\"}]\n\nBased on the search results from aclrollingreview.org, here's what I found about the ACL Rolling Review 2026 submission deadlines:\n\nACL implemented a switch from 8-week to 10-week review cycles, with the new schedule starting in May 2025. This means there will generally be 5 cycles per year instead of 6.\n\nRegarding the specific June-July cycle you asked about: The search results show information about the January 2026 cycle but don't display the complete schedule table with June and July submission deadlines. Previously, ARR ran submission deadlines on the 15th of every second month, though with the new 10-week\n…[truncated 458 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "WebSearch",
+            "elapsed_ms": 5624
+          },
+          "id": "event-003975"
+        },
+        {
+          "source_line": 3976,
+          "timestamp": "2026-05-24T22:49:36.074062+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebFetch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-003976"
+        },
+        {
+          "source_line": 3977,
+          "timestamp": "2026-05-24T22:49:36.124584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-003977"
+        },
+        {
+          "source_line": 3978,
+          "timestamp": "2026-05-24T22:49:40.544089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/dates",
+              "prompt": "Extract all 2026 ARR submission cycle deadlines (submission deadline dates) and which venues (EMNLP 2026, ACL 2026, etc.) each cycle's reviews can be committed to. I need the full table of dates."
+            }
+          },
+          "id": "event-003978"
+        },
+        {
+          "source_line": 3979,
+          "timestamp": "2026-05-24T22:49:42.101226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/cfp",
+              "prompt": "Extract the full author guidelines for ARR submissions: page limits (long/short paper), template requirements, anonymity rules, appendix rules, citation format, and any other formatting requirements."
+            }
+          },
+          "id": "event-003979"
+        },
+        {
+          "source_line": 3980,
+          "timestamp": "2026-05-24T22:49:44.109656+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# 2026 ARR Submission Cycles and Venue Commitments\n\nBased on the page content, here are the 2026 ARR submission deadlines and corresponding publication venues:\n\n## Submission Cycles and Deadlines\n\n**March 2026 Cycle**\n- \"Submission\" deadline: March 16\n- No venues listed for this cycle's commitment\n\n**May 2026 Cycle**\n- \"Submission\" deadline: May 25\n- Compatible venues:\n  - EMNLP 2026 (commitment by August 2, 2026)\n  - AACL 2026 (commitment by August 2, 2026)\n\n**August 2026 Cycle**\n- \"Submission\" deadline: August 3\n- Compatible venue:\n  - EACL 2027 (commitment by October 11, 2026)\n\n**October 2026 Cycle**\n- \"Submission\" deadline: October 12\n- No venues listed for this cycle's commitment\n\nThe page indicates that \"in addition to submission and author response dates,\" reviewer registration and review submission deadlines are now critical milestones with potential penalties for non-compliance."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "WebFetch",
+            "elapsed_ms": 3565
+          },
+          "id": "event-003980"
+        },
+        {
+          "source_line": 3981,
+          "timestamp": "2026-05-24T22:49:48.826970+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ARR Submission Guidelines Summary\n\n## Page Limits\n\n**Long Papers:**\n- Up to 8 pages of content\n- Unlimited space for limitations (required) and optional ethical considerations section\n- Unlimited reference pages\n\n**Short Papers:**\n- Up to 4 pages of content\n- Unlimited space for limitations (required) and optional ethical considerations section\n- Unlimited reference pages\n\nPapers exceeding length requirements or lacking a limitations section face automatic desk rejection.\n\n## Template & Formatting\n\nSubmissions must follow the official ACL style template available on GitHub. Authors cannot modify style files or use templates from other conferences. Documents must conform to specified requirements for \"paper size, margin width, and font size restrictions,\" or face rejection without review.\n\n## Anonymity Requirements\n\nTwo-way anonymization is mandatory. Papers cannot disclose author names, affiliations, or self-identifying citations (e.g., \"We previously showed...\"). Instead, use third-person construction like \"Smith previously showed...\" Supplementary materials and repository links must also be anonymized. Non-anonymous file hosting services like Dropbox are prohibited. Anonymity violations result in desk rejection.\n\n## Appendices\n\nAppendices follow the main paper after references and don't count toward page limits. They must maintain double-column formatting per ACLPUB guidelines. Reviewers aren't obligated to examine appendix content, so critical technical material belonging in the main paper shouldn't be relegated to appendices. Anonymization requirements apply here too.\n\n## Citation Format for Concurrent Work\n\nFor concurrently submitted related papers with overlapping authorship, use this format:\n\n> \"Anonymous (2026). Paper title. Under review.\"\n\n## Additional Requirements\n\nA dedicated \"Limitations\" section is mandatory and required before references. Responsible NLP Checklist completion is obligatory during submission."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "WebFetch",
+            "elapsed_ms": 6725
+          },
+          "id": "event-003981"
+        },
+        {
+          "source_line": 3982,
+          "timestamp": "2026-05-24T22:50:00.213207+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-003982"
+        },
+        {
+          "source_line": 3983,
+          "timestamp": "2026-05-24T22:50:00.715241+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tAn estimated 7--17\\% of recent scientific publications already contain substantial LLM-modified content \\cite{mapping_llm_science,monitoring_ai_review}. As these outputs re-enter training corpora \\cite{dolma,fineweb} and seed further generation, text accumulates at varying \\emph{generation depths}; each successive cycle reshapes distributional properties in ways that matter for data provenance, corpus auditing, and contamination monitoring in base-model pretraining corpora \\cite{ccnet,dsir} as well as model collapse analysis \\cite{curse_of_recursion,strong_model_collapse}. Understanding \\emph{how} recursive generation alters text distributions---and which properties change versus which are preserved---is therefore a prerequisite for principled corpus curation, yet current methods address only binary human-or-machine detection \\cite{detectgpt,fast_detectgpt,binoculars,ld_score}.\n5\tBase models provide the cleanest substrate to isolate depth effects from alignment-induced changes.\n6\tWe find that recursive generation produces a decomposable depth profile: distributional \\emph{location} drifts with depth while \\emph{shape} remains stable across generators, an asymmetry sufficient for cross-generator depth prediction.\n7\t\n8\tDistributional compression under recursive generation is well-documented \\cite{curious_decline,broken_telephone,markovian_chains}, yet existing analyses characterize \\emph{that} and \\emph{why} convergence occurs without decomposing what drifts from what is preserved.\n9\tWe introduce \\emph{depth profiling} (coarse ordinal classification into gen-0\\,/\\,gen-1\\,/\\,gen-2+), and decompose this compression into structurally distinct components: across eight base-model generators spanning five architectural families (0.6B--8B), the NLL distribution's central tendency (mean entropy (reference-model NLL), lexical diversity) drifts monotonically with depth while its shape (entropy extremes, tail structure) re\n…[truncated 3389 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-003983"
+        },
+        {
+          "source_line": 3984,
+          "timestamp": "2026-05-24T22:50:00.715690+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/method.tex"
+            }
+          },
+          "id": "event-003984"
+        },
+        {
+          "source_line": 3985,
+          "timestamp": "2026-05-24T22:50:01.167537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\vspace{-1mm}\n2\t\\section{Method}\n3\t\\label{sec:method}\n4\t\n5\t\\begin{table}[t!]\n6\t\\centering\n7\t\\footnotesize\n8\t\\caption{Seven distributional features. ``Entropy'' features are computed as per-token NLL under Pythia-410M (see \\S\\ref{sec:features}); surface features require no reference model. DDR analysis (\\S\\ref{sec:results-differential}) reveals that entropy mean and the two surface features (TTR, hapax ratio) drift with depth while entropy max, min, and tail decay remain near-stationary; entropy std is intermediate. All ``entropy'' features are reference-model NLL values (cross-entropy with Pythia-410M), not information-theoretic entropy; see \\S\\ref{sec:features}.}\n9\t\\label{tab:features}\n10\t\\setlength{\\tabcolsep}{4pt}\n11\t\\begin{tabular}{@{}llp{3.0cm}@{}}\n12\t\\toprule\n13\t\\textbf{Feature} & \\textbf{Source} & \\textbf{Measures} \\\\\n14\t\\midrule\n15\t\\texttt{entropy\\_mean} & Ref.\\ NLL & Central tendency of token surprise \\\\\n16\t\\texttt{entropy\\_std}  & Ref.\\ NLL & Spread of token surprise \\\\\n17\t\\texttt{entropy\\_max}  & Ref.\\ NLL & Maximum token surprise \\\\\n18\t\\texttt{entropy\\_min}  & Ref.\\ NLL & Minimum token surprise \\\\\n19\t\\texttt{tail\\_decay}   & Ref.\\ NLL & Log-prob decay slope (ranks 100--1K) \\\\\n20\t\\midrule\n21\t\\texttt{ttr}           & Surface & Type-token ratio \\\\\n22\t\\texttt{hapax\\_ratio}  & Surface & Proportion of hapax legomena \\\\\n23\t\\bottomrule\n24\t\\end{tabular}\n25\t\\end{table}\n26\t\n27\t\\begin{figure*}[t]\n28\t\\centering\n29\t\\includegraphics[width=\\textwidth]{fig2_framework.pdf}\n30\t\\caption{Depth profiling pipeline. (a)~Human seeds are iteratively fed through generator $G$ to produce chains of increasing depth. (b)~Seven features extracted from NLL distributions group into three DDR zones: drifting (red), intermediate (purple), near-stationary (blue). (c)~LOGO evaluation holds out one generator for testing.}\n31\t\\label{fig:framework}\n32\t\\end{figure*}\n33\t\n34\t\\subsection{Task Formulation}\n35\t\\label{sec:task}\n36\t\n37\tGiven a text $x$, we predict its \\emph{generation depth} $d \\in \n…[truncated 6898 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Read",
+            "elapsed_ms": 451
+          },
+          "id": "event-003985"
+        },
+        {
+          "source_line": 3986,
+          "timestamp": "2026-05-24T22:50:01.167920+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex"
+            }
+          },
+          "id": "event-003986"
+        },
+        {
+          "source_line": 3987,
+          "timestamp": "2026-05-24T22:50:01.318751+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\t\\begin{figure}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\columnwidth]{fig_transfer_heatmap.pdf}\n7\t\\caption{Cross-generator depth classification: $8{\\times}8$ transfer matrix (binary F1, gen-1 vs.\\ gen-2+). Each cell shows F1 when training on one generator (row) and testing on another (column). Mean cross-generator F1\\,=\\,0.810 [95\\% CI: 0.796, 0.822]; uniformly high off-diagonal values demonstrate that depth signal transfers robustly across five architectural families without per-generator calibration.}\n8\t\\label{fig:transfer-heatmap}\n9\t\\end{figure}\n10\t\n11\t\\subsection{Depth Classification Performance}\n12\t\\label{sec:results-classification}\n13\t\n14\t\\looseness=-1 The 7-feature ensemble achieves 3-class LOGO F1\\,=\\,0.762 (95\\% CI [0.758, 0.766]; $N$\\,=\\,37{,}058) across eight generators from five families (Table~\\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\\,pp capturing generator selection uncertainty.\n15\tThis 3-class metric is inflated by shared gen-0 seeds (per-class gen-0 F1\\,$\\approx$\\,0.94; \\S\\ref{sec:generation}); we therefore report \\textbf{leak-free binary F1} (gen-1 vs.\\ gen-2+)\\,=\\,0.694 (CI [0.688, 0.700]) throughout, excluding gen-0 entirely.\n16\tPer-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; std.\\ dev.\\ 0.028), with the primary difficulty at the gen-1\\,/\\,gen-2+ boundary (Appendix~\\ref{app:confusion}).\n17\t\n18\t\\paragraph{Cross-model generalization.}\n19\tCross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.830 (95\\% CI [.818, .841]; Appendix~\\ref{app:cross-model-detail}) under 5-generator LOGO.\\footnote{Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B; generator-level LOGO with bootstrap CIs ($n$\\,=\\,1{,}000).}\n20\tSingle-generator transfer confirms the signal is not a mixed-chain artifact (mean transfer F1\\,=\\,0.810, Figure~\\ref{fig:transfer-heatmap}; LOFO\\,=\\,0.686); analysis of variance (ANOVA) confirms generator identity contributes ${<}1$\\% of \n…[truncated 11104 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Read",
+            "elapsed_ms": 150
+          },
+          "id": "event-003987"
+        },
+        {
+          "source_line": 3988,
+          "timestamp": "2026-05-24T22:50:02.773076+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/limitations.tex"
+            }
+          },
+          "id": "event-003988"
+        },
+        {
+          "source_line": 3989,
+          "timestamp": "2026-05-24T22:50:03.024015+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section*{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\tAll eight generators are base (pretrained) models with $\\leq$8.2B parameters; instruction-tuned variants show substantially degraded depth signal (within-model 3-class F1 drops 3.7--19.9\\,pp; Appendix~\\ref{app:instruct}), though QLoRA partially recovers (F1\\,=\\,0.89--0.91), suggesting the signal is compressed rather than eliminated.\n5\t\n6\tThe evaluation assumes English Wikipedia seeds, a fixed decoding regime ($t{=}0.7$, nucleus $p{=}0.9$), and an English-centric reference model (Pythia-410M); cross-temperature transfer is tested (Appendix~\\ref{app:cross-temp}) but cross-lingual generalization remains untested.\n7\t\n8\tDepth resolution is bounded at three classes (gen-0\\,/\\,gen-1\\,/\\,gen-2+); finer-grained 5-class classification yields F1\\,$\\approx$\\,0.50 with deeper depths mutually indistinguishable (Appendix~\\ref{app:finer-depth}).\n9\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Read",
+            "elapsed_ms": 250
+          },
+          "id": "event-003989"
+        },
+        {
+          "source_line": 3990,
+          "timestamp": "2026-05-24T22:50:03.024306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "gen-depth-fingerprint",
+              "file": "decisions.yaml",
+              "max_chars": "3000"
+            }
+          },
+          "id": "event-003990"
+        },
+        {
+          "source_line": 3991,
+          "timestamp": "2026-05-24T22:50:03.074827+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 52\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-14 16:15 UTC\\\\n  summary: MVP 方案：Pythia-2.8B continuation 链 + Pythia-410M 参考模型 + XGBoost 3-class\\\\n    分类\\\\n  rationale: '选择 continuation（最低语义偏离）作为最可能保留 depth 信号的生成类型；单生成器简化变量；Pythia-410M 作为参考模型避免与生成器的规模/架构循环；XGBoost\\\\n    快速验证无需 GPU 训练。Pass: macro-F1≥0.45 且 gen-0 vs gen-2+ F1≥0.65。'\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-14 18:10 UTC\\\\n  summary: MVP PASS → 进入研究阶段。首要任务：特征 ablation + depth signal 增量验证\\\\n  rationale: macro-F1=0.84 远超 0.45 阈值，binary F1=0.87 远超 0.65，7/7 特征显著。核心假设成立。但 Reviewer\\\\n    指出 hapax_ratio（表面特征）贡献最大，需 ablation 验证分布指纹的独立价值；gen-1 vs gen-2+ 混淆率高，需量化 depth\\\\n    信号超越 binary 分类的增量。\\\\n  related_experiments:\\\\n  - exp_id: mvp-001\\\\n    role: primary\\\\n    result: 'PASS: macro-F1=0.8408, binary-F1=0.8653'\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-14 18:15 UTC\\\\n  summary: Claim 2 准备 Plan B framing：若 ablation 显示表面特征足够，叙事从 \\\\\\\"independent signal\\\\\\\"\\\\n    调整为 \\\\\\\"complementary signal\\\\\\\"\\\\n  rationale: Reviewer 指出 Claim 2 是整个叙事的 single point of failure。MVP 中 hapax_ratio\\\\n    importance=0.30，表面特征贡献 47%。Plan B 不 kill 项目，只调 framing 强度——从\\\\\\\"分布指纹独立于表面统计\\\\\\\"降为\\\\\\\"分布指纹提供互补信号\\\\\\\"，核心叙事转为\\\\n    vocabulary impoverishment as primary depth signal。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-14 18:38 UTC\\\\n  summary: Claim 2 framing 调整：从 \\\\\\\"Fingerprint Independence\\\\\\\" 转为 \\\\\\\"Feature Complementarity\\\\n    & Dual Dynamics\\\\\\\"；H1/H2 从二选一转为共存\\\\n  rationale: plan_001 ablation 结果：surface_only (0.76) > reference_only (0.72)，但 full\\\\n    (0.82) 显著优于 surface_only (p=0.0008)。原 Claim 2 \\\\\\\"independent signal\\\\\\\" 被否定，触发 Plan\\\\n    B (D003)。新发现更强：表面特征呈 H2 drift、分布形状特征呈 H1 stationary，dual dynamics 是比原 framing\\\\n    更丰富的科学贡献。\\\\n  related_experiments:\\\\n  - exp_id: p\n…[truncated 1488 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-003991"
+        },
+        {
+          "source_line": 3992,
+          "timestamp": "2026-05-24T22:50:08.215106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-003992"
+        },
+        {
+          "source_line": 3993,
+          "timestamp": "2026-05-24T22:50:08.717799+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\looseness=-1 DDR reflects monotonic compression of the token-level NLL distribution under recursive generation (Appendix~\\ref{app:nll-distribution}): location features shift with each cycle while shape features resist because they are architecturally bounded---entropy max by $\\log|V|$, tail decay by softmax geometry.\n5\tANOVA variance decomposition (Figure~\\ref{fig:variance-decomp}) quantifies this asymmetry: $\\eta^2_{\\text{depth}}{=}0.34$--$0.37$ for location vs.\\ ${<}0.01$ for shape (${>}48{\\times}$ gap), with $\\eta^2_{\\text{gen}}{\\approx}0.02$ across both groups, confirming depth-specificity.\n6\tInteraction terms are uniformly small ($\\eta^2_{\\text{int}} < 0.011$; Appendix~\\ref{app:variance-decomposition}); controlled ablations (Appendices~\\ref{app:decoding-strategy}--\\ref{app:prompt-type}) and Granger causality (Appendix~\\ref{app:ddr-causality}) further corroborate the partition.\n7\t\n8\t\\begin{figure}[t]\n9\t\\centering\n10\t\\includegraphics[width=\\columnwidth]{fig_appendix_variance_decomp.pdf}\n11\t\\caption{ANOVA variance decomposition ($\\eta^2$) by feature. Depth explains 34--37\\% of location-feature variance vs.\\ $<$1\\% for shape features (${>}48\\times$ gap). Generator identity contributes uniformly ${\\approx}2$\\% across both groups, confirming the DDR partition is depth-specific.}\n12\t\\label{fig:variance-decomp}\n13\t\\end{figure}\n14\t\n15\t\\paragraph{Relationship to model collapse.}\n16\t\\looseness=-1 DDR is mechanistically distinct from model collapse \\cite{curse_of_recursion,strong_model_collapse}: retraining erodes tail coverage via weight updates, whereas DDR characterizes fixed-parameter inference chains where shape features remain stable because no weight update alters the generating distribution's support.\n17\tModel collapse is irreversible once weights are contaminated; DDR-detectable depth effects are text properties identifiable post-hoc without training history.\n18\tDDR complements concurrent iterative-generation s\n…[truncated 1868 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-003993"
+        },
+        {
+          "source_line": 3994,
+          "timestamp": "2026-05-24T22:50:08.718235+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-003994"
+        },
+        {
+          "source_line": 3995,
+          "timestamp": "2026-05-24T22:50:09.722029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related}\n3\t\n4\t\\paragraph{AI-generated text detection.}\n5\t\\looseness=-1 Detection methods span zero-shot scoring \\cite{detectgpt,fast_detectgpt,binoculars,dna_gpt}, learned classifiers \\cite{ghostbuster,ld_score,reliable_detection}, and surprisal-based approaches \\cite{diveye,xu_spectrum_detection}; see \\citet{wu_survey_2025} for a survey.\n6\tRecent work moves beyond binary detection---multi-generator attribution \\cite{semeval2024_task8}, collaboration roles \\cite{beyond_binary}, joint detection-attribution \\cite{two_birds}---but all taxonomize by \\emph{source} or \\emph{production mode}, not recursive generation \\emph{depth}.\n7\tWe introduce ordinal depth classification \\cite{gutierrez_ordinal_survey,coral_ordinal} as a complementary task; repurposing existing detection scores as depth predictors reveals high cross-generator variance (binary F1\\,=\\,0.54--0.71; Table~\\ref{tab:baselines}).\n8\t\n9\t\\paragraph{Model collapse and iterative generation.}\n10\t\\looseness=-1 Self-consuming generative models lose distributional coverage \\cite{self_consuming_mad,curse_of_recursion,strong_model_collapse}, with even minimal synthetic contamination altering scaling laws \\cite{dohmatob_tale_of_tails}.\n11\tThese studies address \\emph{training-loop} degradation where parameter updates erode tail coverage \\cite{schaeffer_collapse_position}; we instead examine \\emph{inference chains} where parameters are fixed.\n12\tConcurrent iterative-generation studies document complementary phenomena: paraphrasing chains show factuality degradation \\cite{broken_telephone}, Markovian analysis bounds distinguishable depth to ${\\sim}$3 classes \\cite{markovian_chains}, and attractor cycle evidence emerges \\cite{attractor_cycles}.\n13\tDDR differs in chain type (non-paraphrastic continuation), analysis lens (location/shape decomposition identifying what is \\emph{preserved}), and downstream utility (shape stability enables cross-generator classification without calibration); a d\n…[truncated 908 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Read",
+            "elapsed_ms": 1003
+          },
+          "id": "event-003995"
+        },
+        {
+          "source_line": 3996,
+          "timestamp": "2026-05-24T22:50:09.722361+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-003996"
+        },
+        {
+          "source_line": 3997,
+          "timestamp": "2026-05-24T22:50:10.174372+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\t\\looseness=-1 Recursive generation produces a decomposable depth response---location features drift monotonically while shape features remain approximately preserved---enabling cross-generator depth classification (F1\\,=\\,0.694--0.762) within the base-model scope.\n5\tCross-model chains confirm generalization across five architectural families (F1\\,=\\,0.830; ANOVA: depth explains ${>}48{\\times}$ more location-feature variance than shape-feature variance, while generator identity contributes uniformly ${\\approx}2$\\%).\n6\tThe decomposition is robust across decoding strategies, temperatures, prompt types, and reference models, with the DDR partition independently recovered by every held-out generator.\n7\tQLoRA recovery (F1\\,=\\,0.89--0.91) suggests tractable extension to instruct models; DDR connects depth profiling to corpus auditing (provenance-aware contamination flagging) and model collapse monitoring (tracking location-drift as an early warning signal).\n8\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-003997"
+        },
+        {
+          "source_line": 3998,
+          "timestamp": "2026-05-24T22:50:10.576655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/agent/config.yaml 2>/dev/null | head -80",
+              "description": "Read project config for external review settings"
+            }
+          },
+          "id": "event-003998"
+        },
+        {
+          "source_line": 3999,
+          "timestamp": "2026-05-24T22:50:10.727606+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Bash",
+            "elapsed_ms": 150
+          },
+          "id": "event-003999"
+        },
+        {
+          "source_line": 4000,
+          "timestamp": "2026-05-24T22:50:16.248143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/gen-depth-fingerprint/**/config.yaml",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3"
+            }
+          },
+          "id": "event-004000"
+        },
+        {
+          "source_line": 4001,
+          "timestamp": "2026-05-24T22:50:17.101911+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Glob",
+            "elapsed_ms": 853
+          },
+          "id": "event-004001"
+        },
+        {
+          "source_line": 4002,
+          "timestamp": "2026-05-24T22:50:17.152440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint -name \"config.yaml\" -o -name \"config.yml\" 2>/dev/null",
+              "description": "Find project config file"
+            }
+          },
+          "id": "event-004002"
+        },
+        {
+          "source_line": 4003,
+          "timestamp": "2026-05-24T22:50:17.203094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-004003"
+        },
+        {
+          "source_line": 4004,
+          "timestamp": "2026-05-24T22:50:22.287801+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_3 -maxdepth 3 -name \"*.yaml\" -path \"*/gen-depth*\" 2>/dev/null | head -20",
+              "description": "Find yaml files in project directory"
+            }
+          },
+          "id": "event-004004"
+        },
+        {
+          "source_line": 4005,
+          "timestamp": "2026-05-24T22:50:22.350268+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/dream_registry.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/writing_plan.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/paper_provenance.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/literature_map.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/registry.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/constraints.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/mistakes.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/decisions.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/experiment_plan.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0514_3/config/projects/gen-depth-fingerprint.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Bash",
+            "elapsed_ms": 62
+          },
+          "id": "event-004005"
+        },
+        {
+          "source_line": 4006,
+          "timestamp": "2026-05-24T22:50:25.195315+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0514_3/config/projects/gen-depth-fingerprint.yaml | grep -A 10 \"external_review\"",
+              "description": "Check external review config"
+            }
+          },
+          "id": "event-004006"
+        },
+        {
+          "source_line": 4007,
+          "timestamp": "2026-05-24T22:50:26.349753+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Bash",
+            "elapsed_ms": 1154
+          },
+          "id": "event-004007"
+        },
+        {
+          "source_line": 4008,
+          "timestamp": "2026-05-24T22:50:26.350153+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_issues.yaml 2>/dev/null | head -30 || echo \"NO_FILE\"",
+              "description": "Check existing review issues"
+            }
+          },
+          "id": "event-004008"
+        },
+        {
+          "source_line": 4009,
+          "timestamp": "2026-05-24T22:50:26.400643+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- id: R29-N1\n  summary: Base-model-only scope 未在 Abstract 标注\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 32\n  resolution: Abstract L3 'eight base-model generators'; L7 'restricted to base models'. Title 保持不变(Reviewer 确认). Instruct limitations fully documented.\n  resolution_round: 32\n- id: R29-N2\n  summary: Downstream TOST underpowered (n=3) + Abstract overclaim\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 34\n  resolution: Abstract 完全移除 downstream claim. Appendix M 保留 null result 作为补充材料.\n  resolution_round: 34\n- id: R29-N3\n  summary: DDR 新颖性 incremental — 缺 concurrent work 系统对比表\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 31\n  resolution: related_work.tex concurrent-comparison table added\n  resolution_round: 31\n- id: R29-N4\n  summary: QLoRA gap 削弱方法论贡献 — 需重定位\n  category: framing"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-004009"
+        },
+        {
+          "source_line": 4010,
+          "timestamp": "2026-05-24T22:50:30.766251+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0514_3/config/projects/gen-depth-fingerprint.yaml",
+              "description": "Read full project config"
+            }
+          },
+          "id": "event-004010"
+        },
+        {
+          "source_line": 4011,
+          "timestamp": "2026-05-24T22:50:31.168024+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "execution:\n  gpu_ids:\n  - cuda:0\n  - cuda:1\n  - cuda:2\n  - cuda:3\n  project_path: /root/gen-depth-fingerprint\n  servers:\n  - bjb2-18868\nfeishu:\n  chat_id: oc_dbd68d7879a81efc0c108e9844b15d0b\n  check_references: false\n  operational_chat_id: oc_a189a3add89efad7437b5c9f3e05fbf3\n  review_mode: fresh\n  review_paper_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/main.tex\n  review_paper_pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_round_51/submitted.pdf\n  review_round: 51\n  review_supplementary_paths: ''\n  submission_chat_id: oc_999770e4e57bfc6eabd12fc1f64af1ef\nproject:\n  created_at: '2026-05-14T16:13:51.441Z'\n  description: Provenance Depth Estimation for Risk-Aware Curation of Synthetic Text\n  name: gen-depth-fingerprint\n  phase: research\n  source_idea_id: idea_009\nrules:\n  research: []\n  writing:\n  - created_at: '2026-05-17T17:22:45Z'\n    id: 89ee27\n    text: overall framework参考已发表EMNLP论文的风格，图中的信息密度要高，视觉美观，高度浓缩method部分信息\n  - created_at: '2026-05-20T16:25:45Z'\n    id: '799680'\n    text: 参考已发表同类文章（如本文是empirical）的写作风格，如用词，写作逻辑，架构，语气，改善本篇的写作，要将整个story讲的高级一些，体现技术深度同时有创新性\n  - created_at: '2026-05-20T16:43:51Z'\n    id: c60e8a\n    text: 附录中的可视化图要嵌入在文字中，出现在论文中需要用到图的附近位置，同时注意latex排版，避免大量空白的存在\n  - created_at: '2026-05-21T03:45:29Z'\n    id: dacdf2\n    text: 图表不要默认在页面的居中位置，前面有留白要及时补齐，动态调整文字和配图（全宽/半宽），同时要注意图片和文字位置的匹配程度\n  - created_at: '2026-05-21T16:58:19Z'\n    id: 8ef0ef\n    text: 图片要放在文中出现的地方附近，当文中出现大量留白时，调整后面的文字和图片及时向上补齐\nvenue: emnlp-2026"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Bash",
+            "elapsed_ms": 401
+          },
+          "id": "event-004011"
+        },
+        {
+          "source_line": 4012,
+          "timestamp": "2026-05-24T22:50:31.168511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_issues.yaml",
+              "description": "Count lines in review issues file"
+            }
+          },
+          "id": "event-004012"
+        },
+        {
+          "source_line": 4013,
+          "timestamp": "2026-05-24T22:50:31.219043+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1098 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_issues.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-004013"
+        },
+        {
+          "source_line": 4014,
+          "timestamp": "2026-05-24T22:50:53.243484+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__dispatch_visual_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "mcp__agent-ml-research__dispatch_visual_check",
+            "tool_args": {
+              "project": "gen-depth-fingerprint",
+              "review_chat_id": "oc_999770e4e57bfc6eabd12fc1f64af1ef"
+            }
+          },
+          "id": "event-004014"
+        },
+        {
+          "source_line": 4015,
+          "timestamp": "2026-05-24T22:51:14.112024+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"started\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "mcp__agent-ml-research__dispatch_visual_check",
+            "elapsed_ms": 20868
+          },
+          "id": "event-004015"
+        },
+        {
+          "source_line": 4016,
+          "timestamp": "2026-05-24T22:51:15.667961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_reviewer"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "tool_args": {
+              "reviewer_id": "1",
+              "round_number": "1",
+              "text": "你是 Reviewer 1，负责审查 **方法严谨性 + 实验设计与统计分析**。\n\n## 投稿信息\n- **Venue**: EMNLP 2026（通过 ARR 统一审稿）\n- **Deadline**: ARR May 2026 cycle, 提交截止 2026-05-25\n- **格式**: ACL 模板, Long paper 正文 ≤8 页, 参考文献不限, 附录不计入正文\n- **匿名**: Double-blind (two-way anonymization)\n- **评分标准**: 5=Award, 4.5=Borderline Award, 4=Conference, 3.5=Borderline Conference, 3=Findings, 2.5=Borderline Findings, 2=Resubmit next cycle, 1.5=Resubmit after next cycle, 1=Do not resubmit\n\n## 论文文件\n- LaTeX: `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/main.tex`\n- PDF: `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_round_51/submitted.pdf`\n\n## 论文概述\n标题：Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text\n主题：分析 recursive LLM generation 的 distributional drift，将其分解为 location（漂移）和 shape（稳定）两个组件（称为 DDR），用于 cross-generator depth classification。\n\n## 你的审查侧重\n\n**1. 方法严谨性**：\n- DDR 的定义和量化方法是否严格？location vs shape 的分界标准（Cohen's d 阈值）是否 arbitrary？\n- feature selection 过程（7 个特征的选择、6 个被拒绝特征的标准）是否透明且合理？\n- 参考模型选择（Pythia-410M）是否引入系统偏差？cross-family validation 是否充分？\n- 分类器选择（XGBoost, 固定超参数）是否合理？是否存在过拟合/欠拟合风险？\n\n**2. 实验设计与统计**：\n- LOGO/LOFO 评估协议的严格性——gen-0 共享种子是否构成数据泄露？binary F1 排除 gen-0 是否充分解决？\n- 统计检验的适当性（bootstrap CI, Bonferroni 校正, TOST equivalence, permutation testing）\n- 消融实验的完整性——每个 claim 是否有对应的 ablation 支持？\n- 实验规模（37K texts, 8 generators）是否足够支撑 generalization 声明？\n- Temperature sensitivity（t=0.9 大幅下降）的影响和限制是否被充分讨论？\n- 效果量级：binary F1=0.694 作为主要指标是否足够强？\n\n**3. 格式合规**：\n- 正文是否符合 ≤8 页限制？\n- Limitations section 是否存在且内容充分？\n- 匿名化是否合规？（检查代码链接、作者信息、自引方式）\n\n请逐条给出评审意见，区分 Must-Fix（必须修改）和 Should-Fix（建议修改），并给出你的 Overall Assessment 评分。",
+              "project": "gen-depth-fingerprint",
+              "chat_id": "oc_999770e4e57bfc6eabd12fc1f64af1ef",
+              "director_session_key": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director"
+            }
+          },
+          "id": "event-004016"
+        },
+        {
+          "source_line": 4017,
+          "timestamp": "2026-05-24T22:51:35.216390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:reviewer_1\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "elapsed_ms": 19548
+          },
+          "id": "event-004017"
+        },
+        {
+          "source_line": 4018,
+          "timestamp": "2026-05-24T22:51:35.725120+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_reviewer"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "tool_args": {
+              "reviewer_id": "2",
+              "round_number": "1",
+              "text": "你是 Reviewer 2，负责审查 **新颖性 + 相关工作完整性 + 写作质量**。\n\n## 投稿信息\n- **Venue**: EMNLP 2026（通过 ARR 统一审稿）\n- **Deadline**: ARR May 2026 cycle, 提交截止 2026-05-25\n- **格式**: ACL 模板, Long paper 正文 ≤8 页, 参考文献不限, 附录不计入正文\n- **匿名**: Double-blind (two-way anonymization)\n- **评分标准**: 5=Award, 4.5=Borderline Award, 4=Conference, 3.5=Borderline Conference, 3=Findings, 2.5=Borderline Findings, 2=Resubmit next cycle, 1.5=Resubmit after next cycle, 1=Do not resubmit\n\n## 论文文件\n- LaTeX: `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/main.tex`\n- PDF: `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_round_51/submitted.pdf`\n\n## 论文概述\n标题：Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text\n主题：提出 \"depth profiling\" 任务（ordinal depth classification: gen-0/gen-1/gen-2+），发现 recursive generation 下 NLL 分布的 location 和 shape 呈现不对称响应（DDR），用 7 个特征实现 cross-generator depth classification。\n\n## 你的审查侧重\n\n**1. 新颖性评估**：\n- \"Depth profiling\" 作为新任务的贡献程度——与 binary detection、multi-generator attribution、model collapse 分析的差异化是否足够？\n- DDR（location 漂移 vs shape 稳定）作为实证发现的新颖性——prior work 是否已经 implicitly 或 explicitly 发现了类似现象？\n- 方法层面的创新性——7 个标准 NLL 统计量 + XGBoost 是否缺乏方法论新意？作者将贡献定位为 empirical decomposition 是否合理？\n- 与 concurrent work（broken_telephone, markovian_chains, attractor_cycles）的关系——DDR 的 contribution 是否被这些工作实质性地覆盖？\n\n**2. 相关工作完整性**：\n- 是否遗漏重要的 related work？特别关注：\n  - AI text detection 领域的最新方法（2025-2026）\n  - Model collapse / iterative generation 领域\n  - Data provenance / corpus auditing 领域\n  - OOD detection 方法论在此任务的适用性\n- 引用的论文是否真实存在？（抽查关键引用）\n- 与 concurrent work 的对比是否公平？\n\n**3. 写作质量**：\n- Abstract 是否控制在 200 words 以内？信息密度是否合理？\n- 论文叙事结构（story）是否清晰连贯？从 problem motivation → method → findings → implications 的逻辑链是否完整？\n- Claim 与 evidence 的对应关系——每个 claim 是否有足够的实验支持？是否存在 overclaim？\n- 术语一致性——\"entropy\" 的使用是否可能误导读者（实际是 reference-model NLL）？\n- 写作风格是否符合 EMNLP 水准？语言是否地道？\n- 图表质量和信息密度——Figure 1-3 是否清晰、信息丰富？\n- Limitations section 是否坦诚且完整？\n\n请逐条给出评审意见，区分 Must-Fix（必须修改）和 Should-Fix（建议修改），并给出你的 Overall Assessment 评分。",
+              "project": "gen-depth-fingerprint",
+              "chat_id": "oc_999770e4e57bfc6eabd12fc1f64af1ef",
+              "director_session_key": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director"
+            }
+          },
+          "id": "event-004018"
+        },
+        {
+          "source_line": 4019,
+          "timestamp": "2026-05-24T22:51:37.402012+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:reviewer_2\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "elapsed_ms": 1676
+          },
+          "id": "event-004019"
+        },
+        {
+          "source_line": 4020,
+          "timestamp": "2026-05-24T22:51:48.116041+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Round 51 审稿已启动，三线并行：\n\n| 任务 | 状态 |\n|------|------|\n| Reviewer 1（方法严谨性 + 实验统计） | ✅ 已派发 |\n| Reviewer 2（新颖性 + 相关工作 + 写作） | ✅ 已派发 |\n| 视觉审查 Agent | ✅ 已启动 |\n\n等待 Reviewer 返回初审意见。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director"
+          },
+          "id": "event-004020"
+        }
+      ]
+    },
+    {
+      "number": 389,
+      "messages": [
+        {
+          "source_line": 4021,
+          "timestamp": "2026-05-24T22:57:51.516193+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿意见]:\n\n## 总体评分\n**Overall**: 3.5 / 5（Borderline Conference）\n**一句话总结**: 论文定义了一个新颖的生成深度分类任务，提出 DDR 分解框架并辅以严谨的统计验证，但中等水平的分类性能（binary F1=0.694）和温度敏感性限制了其实际影响力，处于主会议接收的边界位置。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.5/5 | 方法论整体严谨，统计检验全面（bootstrap CI, Bonferroni, TOST, permutation, Granger, ANOVA），但 DDR 分区阈值选择偏 conventional，location/shape 分解与分类任务的形式化连接不够紧密 |\n| Excitement | 3/5 | 研究问题新颖（从 binary detection 扩展到 depth classification），DDR 是有意义的实证发现，但绝对性能中等、实际应用场景未得到验证，作为纯描述性框架创新幅度有限 |\n| Reproducibility | 4/5 | 提供了匿名代码仓库，实验细节充分（超参数、数据规模、生成配置均明确），附录覆盖面极广；扣分点在于参考模型的具体 tokenization 细节和 NLL 计算管线未完整描述 |\n| Reviewer Confidence | 4/5 | 熟悉 AI text detection、distributional analysis 和 model collapse 领域的相关工作，仔细阅读了全文及 26 页附录 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] 温度敏感性对泛化声明的削弱——主文讨论不充分\n- 具体位置：§4.3（第 7 页），Table 13，Limitations（第 9 页），Appendix p\n- 问题：Table 13 显示 t=0.9 时 3-class F1 从 0.762 降至 0.647（−15%），95% CI 不重叠。Appendix p 的 cross-temperature 迁移实验进一步表明，在 t=0.7 上训练、t=1.0 上测试时性能严重退化。然而，主文 §4.3 仅用约 3 行简要提及，Limitations 也只说\"single decoding regime (t=0.7)\"。这与 Section 6 (Conclusion) 中 \"DDR is an empirical regularity of base-model autoregressive generation\" 的强声明存在矛盾——如果该 regularity 在 t=0.9 时显著减弱，则 claim 的适用范围被严重限制。\n- 为什么影响接收：这是方法泛化性的核心缺陷。Reviewer 会质疑：如果不知道生成时的温度，该方法是否仍然可靠？当前论文回避了这个问题。\n- 建议修改方向：(1) 在主文 §4.3 或 Section 5 中用至少一段专门讨论温度敏感性的机制（高温导致分布更平坦，DDR 信号被稀释）和实际影响；(2) 在 Limitations 中明确将温度敏感性列为主要限制，而非仅提 \"single decoding regime\"；(3) 考虑将 Appendix p 的 cross-temperature 迁移关键结果（如 Table 14 的 matched vs. mismatched 条件对比）提升到主文。\n\n**N2** [critical] Binary F1=0.694 的实际意义未被充分论证\n- 具体位置：§4.1（第 5 页），Abstract，Section 6\n- 问题：论文将 binary F1=0.694 作为主要报告指标（\"leak-free binary F1\"），但未充分讨论这一性能水平是否足以支撑论文声称的应用场景（data provenance、corpus auditing、contamination monitoring）。Abstract 称 \"an asymmetry sufficient for cross-generator depth prediction\"——但 0.694 意味着约 30% 的样本被错分。错误分析（Appendix i）显示 gen-1/gen-2+ 边界错误率高达 48.4%，这恰恰是实际应用中最关键的区分点。\n- 为什么影响接收：论文在 framing 上暗示该方法具有实用价值，但性能数据不支持这一暗示。如果这只是 proof of concept，应明确标注。\n- 建议修改方向：(1) 在 §4.1 中明确讨论 0.694 的实际含义——什么样的下游应用能容忍这个错误率？(2) 将 gen-1/gen-2+ 边界的高错误率从 Appendix i 提升到主文讨论；(3) 建议在 Abstract/Introduction 中将论文定位为 \"feasibility study\" 或 \"proof of concept\" 而非暗示已解决了 depth profiling 问题。\n\n**N3** [critical] DDR 分解的形式化不足——描述性框架与分类任务之间的逻辑断层\n- 具体位置：§4.2（第 6 页），§3.3（第 4 页），Section 5\n- 问题：DDR 被定义为 location（drifting）vs. shape（stationary）的分解，用 Cohen's d ≥ 0.20 做分区标准。这一分解的核心价值在于\"location drift 足以做分类，shape stability 保证 cross-generator 迁移\"。但实际分类器使用的是全部 7 个原始特征（包括 drifting 和 non-drifting 特征），而非 DDR 分解后的某种 derived representation。也就是说，DDR 是一个 post-hoc 解释性框架，而非分类方法的构成部分。论文的叙事暗示 DDR 驱动了分类，但实际上分类器对 DDR 分区无感知。\n- 为什么影响接收：如果 DDR 只是描述性的，其作为 \"核心贡献\" 的权重会降低。审稿人会追问：DDR 分解提供了什么 actionable insight，是单纯使用 7 个特征做分类无法提供的？\n- 建议修改方向：(1) 更明确地区分 DDR 作为分析工具 vs. 作为分类方法的角色；(2) 讨论是否可以利用 DDR 分区信息改进分类（如对 drifting/non-drifting 特征分别建模）；(3) 或者调整论文 framing，将 DDR 定位为 empirical finding 而非方法论贡献。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] Cohen's d = 0.20 阈值的选择缺乏 task-specific 论证\n- 具体位置：§4.2（第 6 页），Appendix u（第 26 页），Appendix v（Table 37）\n- 问题：使用 Cohen (1988) 的 \"small effect\" 惯例阈值 d=0.20 作为 DDR 分区边界。虽然 Appendix v 的敏感性分析显示分区在 ε ∈ [0.10, 0.75] 范围内稳定（Table 37），且 TOST 等价性检验（Appendix u）支持 near-stationary 特征确实 |d| < 0.20，但主文未解释为什么 Cohen 的 behavioral science 标准适用于 NLL 分布的深度分类场景。d=0.20 在此处的统计功效是什么？\n- 建议：在 §4.2 中增加 1-2 句话，论证 d=0.20 在本任务中的适当性（如基于 Appendix v 的 silhouette score peak），或明确声明这是一个 working threshold 而非经过优化的选择。\n\n**W2** [warning] XGBoost 固定超参数——未进行调优\n- 具体位置：§3.4（第 5 页），Table 3（第 7 页），Appendix g（Table 11）\n- 问题：XGBoost 使用 n_estimators=200, max_depth=6, learning rate 0.1，这些接近默认值，且\"fixed without tuning\"。虽然 Appendix g 的 Table 11 表明多种分类器（LR, RF, Frank-Hall）都能达到合理性能（说明判别力在特征而非分类器），Table 12 的 max_depth 敏感性显示性能变化仅 ±2pp，但完全不做超参调优在方法论上不够严格——尤其论文报告了较窄的 CI（如 [0.688, 0.700]），如果存在 systematic undertuning，CI 不能弥补。\n- 建议：运行一次简单的 grid search 或 random search（至少在一个 fold 上），报告调优后的性能是否有显著变化。如果确认性能增益 <1pp，则当前做法可被接受，但需要这个实验结果作为支撑。\n\n**W3** [warning] 参考模型选择（Pythia-410M）的论证不完整\n- 具体位置：§3.3（第 4 页），Appendix s（Table 31）\n- 问题：论文选择 Pythia-410M 作为参考模型，理由是\"chosen to be smaller than all generators\"。但为什么\"更小\"是理想的？更小的参考模型意味着更大的 cross-entropy，这可能放大或掩盖某些深度差异。Appendix s 的 cross-family 验证（3 个参考模型，F1 spread = 0.013）显示选择不敏感，但 Table 31 只测试了 3 个模型——OLMo-2-1B、Qwen3-0.6B/1.7B。\n- 建议：(1) 增加对\"小参考模型\"直觉的简要解释（如避免参考模型与生成器重叠、确保 NLL 值有足够区分度）；(2) 如果可能，增加一个与生成器同规模或更大的参考模型（如 Pythia-1.4B）的测试。\n\n**W4** [warning] 跨域实验规模过小\n- 具体位置：Appendix j（第 19-20 页），Table 18\n- 问题：cross-domain generalization 实验（Wikipedia → News, Academic, Code）每个域仅 200 seeds × depth 3，总样本量非常小。Table 18 报告 binary F1 = 0.73-0.75（News, Academic）和 0.63（Code），但如此小的样本量下 CI 必然很宽（论文报告了 95% CI 但范围如 [0.717, 0.770]）。代码域（Code）的显著性能下降值得更多讨论。\n- 建议：(1) 扩大跨域实验规模（至少 1000+ seeds per domain）；(2) 如果资源有限，明确将跨域实验标注为 preliminary/exploratory；(3) 讨论 Code 域性能下降的可能原因。\n\n**W5** [warning] 5-class 深度分类性能较弱但缺乏主文讨论\n- 具体位置：Table 5（Appendix c，第 13 页），Table 7（Appendix e，第 14 页）\n- 问题：5-class LOGO 分类 F1 ≈ 0.50（Table 5），QLoRA 在 5-class 上达到 0.583（Table 7）。这表明在当前特征体系下，精细的深度区分（gen-0/1/2/3/4）困难很大。但主文几乎没有讨论这一结果——仅在 Section 5 简要提到\"adjacent depths 2-4 become indistinguishable\"。作为一个标题包含 \"Classifying Recursive Generation Depth\" 的论文，应在主文明确讨论深度分辨率的上限。\n- 建议：在 §4 或 Section 5 中增加对 5-class 结果的讨论，解释 3-class 折叠（depths 2-4 → 2+）的合理性和 finer-grained 分类的瓶颈。\n\n**W6** [warning] 实验范围的泛化声明可能过度\n- 具体位置：Abstract, Section 6 (Conclusion)\n- 问题：论文在 Abstract 和 Conclusion 中使用了较强的语言（\"empirical regularity of base-model autoregressive generation\", \"DDR complements concurrent iterative-generation studies\"），但实验仅覆盖 8 个生成器（≤5.28B 参数），英文 Wikipedia 种子，单一温度（t=0.7 为主），单一 prompt type（continuation）。虽然 Limitations 承认了这些限制，但 Abstract/Conclusion 的 framing 给人的印象是 DDR 是一个普适的 regularity。\n- 建议：在 Abstract 和 Conclusion 中加入适当的 hedging（如 \"within our experimental scope\" 或 \"for small-to-mid-scale base models\"），使 claim 强度与证据范围匹配。\n\n---\n\n## 小问题（不影响接收）\n\n1. **Abstract 信息密度高但略显拥挤**：当前 Abstract 将 DDR 定义、分类结果、统计检验、特征分解等全部压缩在约 200 words 内，读者首次阅读时可能难以吸收。建议精简 CI 和效果量的具体数字。\n2. **Figure 2 (p.4) 中 (c) LOGO 示意图**：图中 \"evaluation folds on one generator\" 的表述不够清晰——建议改为 \"held-out generator\" 以更直接。\n3. **Appendix aa (p.36) AI Assistants 声明**：提到使用 Claude 进行 \"drafting and revising paper sections\" ——这是合规的 ARR 披露，但披露范围较广（writing assistance 涵盖了 drafting），可能引起部分 reviewer 的关注。\n4. **术语一致性**：\"entropy\" 在 §3.3 定义为 reference-model NLL（非信息论熵），但后文多处使用 \"entropy\" 而不加限定，可能造成误解。建议在首次使用后持续标注 \"reference-model entropy\" 或简写为 \"ref-NLL\"。\n5. **Table 2 (p.5) 排版**：8 个生成器的 per-generator binary F1 列在同一张表中，已经很紧凑但可读性尚可。建议考虑按 family 分组排列以增强可读性。\n\n---\n\n## 格式合规检查\n\n| 检查项 | 结果 | 说明 |\n|--------|------|------|\n| 正文 ≤8 页 | ✅ 合规 | Sections 1-6（Introduction 至 Conclusion）在第 1-8 页内完成 |\n| Limitations section | ✅ 存在 | 第 8-9 页，覆盖 3 个要点（base models only, English Wikipedia, single reference model），内容适当 |\n| 匿名化 | ✅ 合规 | 标题页为 \"Anonymous ACL submission\"，代码链接使用匿名仓库（footnote 1），未发现自引泄露 |\n| References 不限页数 | ✅ 合规 | 参考文献在第 9-11 页 |\n| Appendix 不计入正文 | ✅ 合规 | 附录从第 11 页开始，共约 25 页 |\n| AI Assistants 披露 | ✅ 已披露 | Appendix aa (p.36) |\n\n---\n\n## 主要优势\n\n1. **研究问题新颖且有意义**：从 binary AI detection 扩展到 generation depth classification，这是一个自然且重要的研究方向，与 data provenance、model collapse 等热点问题直接相关。\n2. **统计方法论严谨程度远超 ACL 平均水平**：Bootstrap CI、Bonferroni 校正、TOST 等价性检验、permutation testing、Granger 因果分析、ANOVA 方差分解——这种多层次统计验证体系在 NLP 实证论文中罕见。\n3. **消融实验极其全面**：26 页附录覆盖了几乎所有可预见的审稿疑问（长度混淆、种子独立性、分类器选择、参考模型选择、温度敏感性、跨域迁移、指令微调模型、解码策略鲁棒性等），显示了扎实的实验设计功底。\n4. **DDR 分解提供了有用的分析视角**：将深度差异分解为 location drift + shape stability 是一个直观且可验证的框架，ANOVA 方差分解（Table 48, depth 解释 34-37% 的 location variance 但 <1% 的 shape variance）提供了有力支持。\n5. **LOGO/LOFO 交叉验证协议设计合理**：Leave-One-Generator-Out 和 Leave-One-Family-Out 提供了多层次的泛化性测试，gen-0 共享种子问题通过 independent-seed 实验（Appendix t, F1=0.695 vs. 0.694）得到妥善处理。\n6. **与现有检测方法的公平对比**（Table 3, §4.3）：将 4 个已有检测器分数重新用作 depth predictor，提供了有意义的 baseline 比较。\n\n---\n\n**总结**：这是一篇实验功底扎实、统计方法严谨的实证研究论文。核心问题在于：(1) 中等性能水平下的实际价值论证不足；(2) 温度敏感性削弱了 \"empirical regularity\" 的泛化声明；(3) DDR 作为描述性框架与分类任务之间的逻辑连接需要加强。建议接收为 Findings，或在解决 N1-N3 后考虑主会议。\n"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-004021"
+        },
+        {
+          "source_line": 4022,
+          "timestamp": "2026-05-24T22:58:06.453795+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reviewer 1 审稿意见已收到。评分 3.5/5（Borderline Conference），提出 3 个 Must-Fix（温度敏感性讨论不足、binary F1=0.694 实际意义未论证、DDR 形式化与分类任务的逻辑断层）和 6 个 Should-Fix。\n\n等待 Reviewer 2 返回后进入交叉分享阶段。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director"
+          },
+          "id": "event-004022"
+        }
+      ]
+    },
+    {
+      "number": 390,
+      "messages": [
+        {
+          "source_line": 4023,
+          "timestamp": "2026-05-24T22:58:08.990889+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿结果]:\n审稿意见已提交给 Review Director。\n\n**审查结论**：Overall 3.5（Borderline Conference），建议 Findings 接收。\n\n三个 Must-Fix 问题：\n1. 温度敏感性（t=0.9 时 F1 降 15%）在主文中讨论不足，与 \"empirical regularity\" 的泛化声明矛盾\n2. Binary F1=0.694 的实际应用意义未被充分论证，gen-1/gen-2+ 边界错误率 48.4% 是核心瓶颈\n3. DDR 分解是 post-hoc 描述性框架，与分类任务之间存在逻辑断层——分类器并未使用 DDR 分区信息\n\n六个 Should-Fix 问题涵盖 Cohen's d 阈值论证、XGBoost 未调参、参考模型选择、跨域实验规模、5-class 性能讨论、泛化声明过度。\n\n主要优势：研究问题新颖、统计方法论严谨（远超 ACL 平均）、消融覆盖全面、LOGO/LOFO 评估协议设计合理。格式完全合规。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-004023"
+        },
+        {
+          "source_line": 4024,
+          "timestamp": "2026-05-24T22:58:13.985753+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "收到 Reviewer 1 的审稿意见。等待 Reviewer 2 完成初审后进入交叉分享阶段。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director"
+          },
+          "id": "event-004024"
+        }
+      ]
+    },
+    {
+      "number": 391,
+      "messages": [
+        {
+          "source_line": 4025,
+          "timestamp": "2026-05-24T22:59:36.194028+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿意见]:\n## 总体评分\n**Overall**: 3.5 / 5（Borderline Conference）\n**一句话总结**: 提出了genuinely novel的depth profiling任务和clean的DDR经验分解，实验设计thorough，但方法缺乏创新（标准NLL统计量+XGBoost），且仅限base model的适用范围削弱了实际影响力。\n\n## 官方维度打分（来自 ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 4 / 5 | 实验设计扎实：LOGO交叉验证、LOFO特征消融、多种鲁棒性检验（温度/prompt/扰动/跨域）、bootstrap CIs、长度混淆分析。统计方法规范。主要扣分点：gen-1 vs. gen-2+ 的binary F1仅0.694，实际区分能力有限。 |\n| Excitement | 3 / 5 | Depth profiling 作为新任务有启发性，DDR 分解（location漂移 vs. shape稳定）是干净的经验发现。但 DDR 的核心观察（NLL均值随depth下降，而分布极值保持稳定）从架构角度看较可预期；方法层面（7个统计量+XGBoost）无创新；仅限 base model 限制了实际价值。 |\n| Reproducibility | 4.5 / 5 | 承诺开源代码和数据（脚注1），使用标准工具（XGBoost、Pythia-410M参考模型），实验细节充分（超参数、种子数、评估协议均明确说明），附录提供了大量补充实验。 |\n| Overall Assessment | 3.5 / 5 | Borderline Conference — 见下方详细分析 |\n| Reviewer Confidence | 4 / 5 | 对 AI 文本检测、model collapse、NLL 分析方法较为熟悉 |\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] DDR 的新颖性可能不足以支撑主会议级别贡献\n- 具体位置：§4.2 Differential Depth Response, §5 Discussion\n- 问题：DDR 的核心发现可拆解为两个已知/可预期的观察：(1) NLL 均值（location）随递归深度单调下降——这与 Shumailov et al. (2024) 的尾部侵蚀和 Dohmatob et al. (2024) 的 scaling law 退化方向一致，只是场景不同（inference chain vs. training loop）；(2) shape 特征（entropy_max, entropy_min, tail_decay）近似不变——论文自己在 §5 解释为 \"architecturally bounded: entropy max by log|V|, tail decay by softmax geometry\"，这意味着shape稳定性是模型架构的固有约束，而非递归生成的独特发现。如果核心发现可从已知架构约束推导，则 DDR 的 contribution 更多是验证性的而非发现性的。\n- 为什么影响接收：Excitement 是 Conference 接收的关键维度。如果 DDR 被视为 \"predictable from first principles\"，则论文的核心贡献（经验分解）价值降低。\n- 建议修改方向：(1) 需要更深入地论证为什么 shape 稳定性不是 trivially predictable——例如，是否存在反例场景下 shape 也会漂移？温度或模型大小的边界条件？(2) 或者强化 DDR 的 downstream utility，展示它在实际 corpus auditing 场景中的不可替代性。\n\n**N2** [critical] 仅限 Base Model 的适用范围严重限制实际价值\n- 具体位置：Limitations (p.9), Appendix k (Table 19-20, p.20)\n- 问题：Instruction-tuned 模型下 DDR 信号大幅压缩（3-class F1 下降 3.7–19.9 pp, Table 19）。虽然 QLoRA 部分恢复（F1=0.89-0.91），但这仅是 within-model 的结果（5-fold CV on same instruct set），不是 cross-generator 评估——而 cross-generator transfer 正是论文的核心卖点。现实中遭遇的递归生成文本几乎全部来自 instruction-tuned 或 RLHF 模型，base model 直接续写的场景极为罕见。\n- 为什么影响接收：如果方法在实际最常见的文本生成场景下失效，则论文的 practical motivation（\"data provenance and corpus curation\"，§1第一段）难以成立。\n- 建议修改方向：(1) 明确讨论为什么 base model 场景本身有独立价值（例如 pretraining data contamination 检测中，base model 生成的合成数据确实被用于扩充语料）；(2) 或补充 instruction-tuned 模型下的 LOGO 评估结果，即使性能下降也应报告。\n\n**N3** [critical] Gen-1 vs. Gen-2+ 区分能力有限，核心 claim 的实验支撑不够强\n- 具体位置：§4.1 (p.5), Table 2 (p.6)\n- 问题：论文的核心新贡献在于区分不同 generation depth（不是简单的 human vs. machine binary detection）。排除 gen-0 后，gen-1 vs. gen-2+ 的 leak-free binary F1 = 0.694（Table 2 平均），且部分 generator 的表现更差。Error analysis (Appendix i, p.17) 显示 gen-1→gen-2+ 边界的错误率高达 48.4%，即近一半的 gen-2+ 文本被错分为 gen-1。这意味着 depth profiling 在最关键的深度区分（\"是否经历了多次递归\"）上接近随机。3-class F1=0.762 看似不错，但被 gen-0 的高可分性（gen-0 近乎完美分类，Table 25 aggregated confusion matrix）拉高——而 gen-0 vs. gen-1+ 的区分本质上就是 binary AI detection。\n- 为什么影响接收：如果 depth profiling 在排除 trivial 的 gen-0 分类后性能大幅下降，则 \"depth profiling\" 相对于 binary detection 的增量价值存疑。\n- 建议修改方向：(1) 更透明地报告 gen-1 vs. gen-2+ 的分类性能作为核心指标，而非强调包含 gen-0 的 3-class F1；(2) 分析 gen-1/gen-2+ 边界的 oracle performance 上限（例如最佳单 generator 内分类性能 vs. 跨 generator），帮助读者判断这是方法瓶颈还是任务固有难度。\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] \"Entropy\" 术语滥用可能误导读者\n- 具体位置：§3.3 Terminology 段落, Table 1, 全文\n- 问题：论文在 §3.3 定义 \"we refer to per-token cross-entropy loss under a fixed reference model as 'entropy' for conciseness\"，但 \"entropy\" 在信息论中有精确含义（分布的自信息期望），与 reference-model cross-entropy 是不同量。全文所有特征名（entropy_mean, entropy_std, entropy_max, entropy_min）都使用这个误导性术语。特别是在 DDR 分析中讨论 \"entropy stability\" 时（§4.2, §5），读者可能误以为是生成分布本身的 entropy 不变，而实际是参考模型下的 cross-entropy 某些统计量不变——这是完全不同的概念。\n- 建议：全文统一使用 \"NLL\" 或 \"cross-entropy\"，或至少在特征命名中使用 \"nll_mean\", \"nll_std\" 等，消除歧义。\n\n**W2** [warning] 与 Concurrent Work 的实证对比缺失\n- 具体位置：§2 Related Work (p.3), Appendix z.8 (p.35, Table 52)\n- 问题：论文在 §2 和 Appendix z.8 中与三项 concurrent work（Broken Telephone, Markovian Chains, Attractor Cycles）做了概念层面的对比（chain type, analysis lens, downstream utility），但缺少实证对比。例如：(1) 在 paraphrasing chain（Broken Telephone 的设置）上，DDR 是否仍然成立？(2) 在 greedy decoding 下（Attractor Cycles 关注的设置），DDR 的 shape 稳定性是否被 convergence 打破？Appendix z.5 的 decoding strategy 分析（greedy/top-k）部分回答了第二个问题，但论文没有 explicitly connect 这些结果到 concurrent work 的对比框架。\n- 建议：在 Appendix z.8 的比较中加入对 DDR 在不同 chain operator 下的实证数据引用（从已有附录实验中提取），使概念对比有数据支撑。\n\n**W3** [warning] 缺少 OOD Detection 方法论的讨论\n- 具体位置：§2 Related Work\n- 问题：论文使用的 NLL 统计特征（均值、方差、极值）与 NLP 中 Out-of-Distribution (OOD) detection 的方法论高度重叠。OOD detection 领域已有大量工作基于 NLL/perplexity/Mahalanobis distance 进行分布外检测，且近期有工作（如 \"Human Texts Are Outliers\"，arXiv 2510.08602）直接将 AI 文本检测重构为 OOD detection 问题。这一方法论连接在 Related Work 中完全缺失。\n- 建议：在 Related Work 中增加对 OOD detection 方法论的简要讨论，说明 depth profiling 与 OOD detection 的区别（ordinal vs. binary, cross-generator transfer requirement）。\n\n**W4** [warning] Abstract 信息密度略有失衡\n- 具体位置：Abstract (p.1)\n- 问题：Abstract 约 171 词（符合 200 词限制），但堆叠了过多具体 F1 数字（0.694, 0.830, 0.762, 0.905）和 effect size（d=0.74–1.05, d<0.10, d=0.46, ≥8×），使可读性下降。部分数字（如 QLoRA 的 F1=0.905）是附录结果，出现在 abstract 中优先级有疑问。\n- 建议：精简为 2-3 个核心数字（如 LOGO 3-class F1 和 ≥8× effect-size gap），将 QLoRA 等次要结果移除。\n\n**W5** [warning] Discussion §5 中的因果/机制解释缺乏充分支撑\n- 具体位置：§5 Discussion 第1段\n- 问题：§5 声称 DDR 反映 \"monotonic compression of the token-level NLL distribution\"，并将 shape 稳定性归因于 \"architecturally bounded—entropy max by log|V|, tail decay by softmax geometry\"。但这些是 post-hoc 的直觉性解释，没有formal proof 或 controlled experiment 支撑。例如，如果 shape 稳定性确实由 log|V| 上界决定，那么不同 vocabulary size 的模型应该展现不同的 shape 稳定性——但论文中 Pythia（50K vocab）和 Qwen（150K+ vocab）展现了类似的 shape 稳定性（Table 33, Appendix u），这可能反驳了 log|V| 解释。\n- 建议：将机制解释明确标注为 hypothesis/conjecture，或补充不同 vocab size 对 shape 稳定性影响的分析。\n\n## 小问题（不影响接收）\n\n- §3.2 (p.4): \"Each seed is iteratively fed through the generator to produce a chain of depth 4\" — 后面又说 \"We generate up to depth 4; by empirically confirmed convergence, 5-class analysis shows adjacent depths 2–4 become indistinguishable\"。建议在方法部分统一说明为什么 depth=4 是合理截断点，避免读者需要跳转到附录。\n- Figure 2 (p.4): Framework 图中 (a) 和 (b) 的区别（generation chain vs. feature extraction）可以更清晰地标注。当前的 \"gen-0 (Human)\" 标签暗示 gen-0 一定是人类文本，但 gen-0 实际上也可以是任何 seed text。\n- Table 3 (p.7): Baseline comparison 中 Binoculars 的 binary F1 = 0.539 远低于其在 binary AI detection 中的 SOTA 表现，说明 Binoculars 不适用于 depth classification——但论文没有 explicitly 分析为什么（是因为 Binoculars 设计用于 human vs. machine，而 gen-1 和 gen-2+ 都是 machine text？）。\n- Appendix aa (p.36): Use of AI Assistants 的披露是诚实透明的，但 \"Writing: drafting and revising paper sections\" 的表述可能过于宽泛，ARR 可能对 AI 用于写作有更具体的政策要求。\n- §1 (p.1): 脚注1提到 \"Code and data are publicly available\" 并指向匿名 GitHub repo——需确认 double-blind 下该链接是否符合 ARR 匿名政策（anonymous repo 通常是允许的）。\n\n## 主要优势\n\n1. **Task formulation 的原创性**: \"Depth profiling\" 作为 ordinal depth classification 任务是genuinely novel的贡献，填补了 binary detection 和 model collapse 分析之间的空白。这个 framing 有独立的学术价值，可能启发后续研究。\n\n2. **实验设计的严谨性**: 论文的实验方法论是其最大优势——LOGO 交叉验证避免 generator leakage，LOFO 特征消融验证每个特征的贡献，多达 20+ 个附录实验覆盖了温度敏感性、prompt 泛化、文本扰动鲁棒性、跨域迁移、解码策略、参考模型选择等。这种实验覆盖度在 empirical study 中是exemplary的。\n\n3. **DDR 分解的清晰性**: Location drift vs. shape stability 的二元分解是干净、可量化的经验发现（≥8× effect-size gap），ANOVA 方差分解（Figure 7）提供了有力的统计支撑。\n\n4. **诚实的局限性讨论**: 论文坦率地报告了 instruction-tuned 模型下的性能退化、gen-1/gen-2+ 边界的高错误率、以及 base-model-only 的适用限制，没有 overclaim。\n\n5. **广泛的 concurrent work 对比**: §2 和 Appendix z.8 与三项 concurrent iterative-generation studies 做了清晰的概念区分，对比框架合理。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-004025"
+        },
+        {
+          "source_line": 4026,
+          "timestamp": "2026-05-24T23:00:21.542140+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_reviewer"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "tool_args": {
+              "reviewer_id": "1",
+              "round_number": "1",
+              "text": "以下是 Reviewer 2 的完整审稿意见。请逐条回应：对每个 Must-Fix 和 Should-Fix 问题，标注 [AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n## Reviewer 2 的审稿意见\n\n**Overall**: 3.5 / 5（Borderline Conference）\n\n### Must-Fix 问题\n\n**N1** [critical] DDR 的新颖性可能不足以支撑主会议级别贡献\n- DDR 的核心发现可拆解为两个已知/可预期的观察：(1) NLL 均值（location）随递归深度单调下降——这与 Shumailov et al. (2024) 的尾部侵蚀和 Dohmatob et al. (2024) 的 scaling law 退化方向一致；(2) shape 特征近似不变——论文自己在 §5 解释为 \"architecturally bounded: entropy max by log|V|, tail decay by softmax geometry\"，这意味着 shape 稳定性是模型架构的固有约束，而非递归生成的独特发现。\n\n**N2** [critical] 仅限 Base Model 的适用范围严重限制实际价值\n- Instruction-tuned 模型下 DDR 信号大幅压缩（3-class F1 下降 3.7–19.9 pp）。QLoRA 恢复仅是 within-model 5-fold CV，不是 cross-generator 评估。现实中递归生成文本几乎全部来自 instruction-tuned 或 RLHF 模型。\n\n**N3** [critical] Gen-1 vs. Gen-2+ 区分能力有限，核心 claim 的实验支撑不够强\n- Binary F1=0.694，error analysis 显示 gen-1→gen-2+ 边界错误率 48.4%。3-class F1=0.762 被 gen-0 的高可分性拉高，而 gen-0 vs. gen-1+ 本质上就是 binary AI detection。\n\n### Should-Fix 问题\n\n**W1** [warning] \"Entropy\" 术语滥用可能误导读者\n- \"entropy\" 在信息论中有精确含义，与 reference-model cross-entropy 不同。全文特征名（entropy_mean 等）使用误导性术语。\n\n**W2** [warning] 与 Concurrent Work 的实证对比缺失\n- 与 Broken Telephone, Markovian Chains, Attractor Cycles 仅做概念对比，缺少实证对比（如 paraphrasing chain 下 DDR 是否成立）。\n\n**W3** [warning] 缺少 OOD Detection 方法论的讨论\n- NLL 统计特征与 OOD detection 方法论高度重叠，但 Related Work 中完全缺失此连接。\n\n**W4** [warning] Abstract 信息密度略有失衡\n- 堆叠过多 F1 数字和 effect size，QLoRA 的 F1=0.905 是附录结果但出现在 abstract。\n\n**W5** [warning] Discussion §5 中的因果/机制解释缺乏充分支撑\n- Shape 稳定性归因于 \"log|V| bound\" 和 \"softmax geometry\" 是 post-hoc 直觉解释。Pythia (50K vocab) 和 Qwen (150K+ vocab) 展现类似 shape 稳定性可能反驳 log|V| 解释。\n\n### 主要优势\n1. Task formulation 的原创性\n2. 实验设计的严谨性\n3. DDR 分解的清晰性\n4. 诚实的局限性讨论\n5. 广泛的 concurrent work 对比",
+              "project": "gen-depth-fingerprint",
+              "chat_id": "oc_999770e4e57bfc6eabd12fc1f64af1ef",
+              "director_session_key": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director"
+            }
+          },
+          "id": "event-004026"
+        },
+        {
+          "source_line": 4027,
+          "timestamp": "2026-05-24T23:00:45.405744+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:reviewer_1\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "elapsed_ms": 23863
+          },
+          "id": "event-004027"
+        },
+        {
+          "source_line": 4028,
+          "timestamp": "2026-05-24T23:00:46.010402+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_reviewer"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "tool_args": {
+              "reviewer_id": "2",
+              "round_number": "1",
+              "text": "以下是 Reviewer 1 的完整审稿意见。请逐条回应：对每个 Must-Fix 和 Should-Fix 问题，标注 [AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n## Reviewer 1 的审稿意见\n\n**Overall**: 3.5 / 5（Borderline Conference）\n\n### Must-Fix 问题\n\n**N1** [critical] 温度敏感性对泛化声明的削弱——主文讨论不充分\n- t=0.9 时 3-class F1 从 0.762 降至 0.647（−15%），95% CI 不重叠。Cross-temperature 迁移实验显示 t=0.7 训练→t=1.0 测试时性能严重退化。但主文 §4.3 仅用约 3 行简要提及，Limitations 也只说 \"single decoding regime\"。与 Conclusion 中 \"DDR is an empirical regularity\" 的强声明矛盾。\n\n**N2** [critical] Binary F1=0.694 的实际意义未被充分论证\n- 0.694 意味着约 30% 样本被错分。Error analysis 显示 gen-1/gen-2+ 边界错误率高达 48.4%。论文 framing 暗示实用价值，但性能数据不支持。应明确定位为 \"feasibility study\" 或 \"proof of concept\"。\n\n**N3** [critical] DDR 分解的形式化不足——描述性框架与分类任务之间的逻辑断层\n- DDR 是 post-hoc 解释性框架，分类器对 DDR 分区无感知（使用全部 7 个原始特征而非 DDR 分解后的 derived representation）。叙事暗示 DDR 驱动了分类，但实际上 DDR 只是描述性的。\n\n### Should-Fix 问题\n\n**W1** [warning] Cohen's d = 0.20 阈值缺乏 task-specific 论证\n\n**W2** [warning] XGBoost 固定超参数——未进行调优\n- n_estimators=200, max_depth=6, lr=0.1 接近默认值，\"fixed without tuning\"。CI 较窄 [0.688, 0.700]，但可能存在 systematic undertuning。\n\n**W3** [warning] 参考模型选择（Pythia-410M）论证不完整\n- 为什么\"更小\"是理想的？Cross-family 仅测试 3 个参考模型。\n\n**W4** [warning] 跨域实验规模过小\n- 每域仅 200 seeds × depth 3，样本量小，Code 域性能下降（F1=0.63）缺乏讨论。\n\n**W5** [warning] 5-class 深度分类性能较弱但缺乏主文讨论\n- 5-class F1 ≈ 0.50，QLoRA 5-class = 0.583。主文几乎没有讨论这一结果。\n\n**W6** [warning] 实验范围的泛化声明可能过度\n- Abstract/Conclusion 使用 \"empirical regularity\" 等较强语言，但实验覆盖有限（≤8B 参数，英文 Wikipedia，单一温度）。\n\n### 主要优势\n1. 研究问题新颖且有意义\n2. 统计方法论严谨程度远超 ACL 平均\n3. 消融实验极其全面（26 页附录）\n4. DDR 分解提供有用分析视角（ANOVA 支持）\n5. LOGO/LOFO 评估协议设计合理\n6. 与检测 baselines 的公平对比",
+              "project": "gen-depth-fingerprint",
+              "chat_id": "oc_999770e4e57bfc6eabd12fc1f64af1ef",
+              "director_session_key": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director"
+            }
+          },
+          "id": "event-004028"
+        },
+        {
+          "source_line": 4029,
+          "timestamp": "2026-05-24T23:00:47.369655+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:reviewer_2\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "elapsed_ms": 1359
+          },
+          "id": "event-004029"
+        },
+        {
+          "source_line": 4030,
+          "timestamp": "2026-05-24T23:00:51.074420+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉分享已派发。两位 Reviewer 正在审阅对方意见并准备逐条回应。等待 [AGREE]/[REBUT] 结果返回。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director"
+          },
+          "id": "event-004030"
+        }
+      ]
+    },
+    {
+      "number": 392,
+      "messages": [
+        {
+          "source_line": 4031,
+          "timestamp": "2026-05-24T23:00:53.632219+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿结果]:\n审稿意见已提交给 Review Director。\n\n**总结**：评分 Overall 3.5（Borderline Conference）。论文提出了genuinely novel的depth profiling任务和clean的DDR经验分解，实验设计在empirical study中属exemplary水准（20+附录实验）。三个Must-Fix问题：(1) DDR的shape稳定性可能从架构约束trivially推导，新颖性需更深论证；(2) 仅限base model，instruction-tuned模型下信号大幅退化，限制实际价值；(3) 排除trivial的gen-0分类后，gen-1 vs. gen-2+的binary F1仅0.694（48.4%错误率），depth profiling相对于binary detection的增量价值存疑。五个Should-Fix问题涉及术语误用（\"entropy\"代指NLL）、缺少OOD detection方法论讨论、concurrent work缺乏实证对比等。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-004031"
+        },
+        {
+          "source_line": 4032,
+          "timestamp": "2026-05-24T23:00:57.330893+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director"
+          },
+          "id": "event-004032"
+        }
+      ]
+    },
+    {
+      "number": 393,
+      "messages": [
+        {
+          "source_line": 4033,
+          "timestamp": "2026-05-24T23:02:28.446392+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿意见]:\n\n## Reviewer 1 对 Reviewer 2 的交叉回应\n\n### Must-Fix 回应\n\n**[AGREE] R2-N1: DDR 新颖性可能不足**\n同意 R2 的分析框架。DDR 的两个组件可回溯到已知现象：location drift 与 Shumailov et al. (2024) 方向一致，shape stability 被论文自身 §5 解释为架构约束。但补充：贡献不在于单独观察 drift 或 stability，而在于将两者组合为可操作的分类框架并通过 LOGO 验证跨生成器迁移。Model collapse 研究 training-time degradation，本文研究 inference-time recursive generation——§5 做了区分但缺乏 empirical 验证两者统计签名的差异。整体而言更适合 Findings 级别贡献。\n\n**[AGREE] R2-N2: Base Model 限制**\n完全同意。Appendix k（Table 19）显示 instruction-tuned 模型下 cross-condition transfer（base→instruct）F1=0.490，信号不可直接迁移。QLoRA F1=0.905 是 within-model 5-fold CV 而非 LOGO，被放在 Abstract 中可能误导。论文标题标注了 \"Base-Model\"，Limitations 也承认了，但对实际应用 gap 讨论不够直接。\n\n**[AGREE] R2-N3: Gen-1 vs. Gen-2+ 区分能力有限**\n强烈同意，与我的 N2 一致。R2 提出了一个关键洞察：3-class F1=0.762 被 gen-0 高可分性拉高（gen-0 F1=0.921, gen-1 仅 0.634, gen-2+ 仅 0.639）。Gen-0 vs. gen-1+ 本质是 binary human-vs-AI detection——论文相对于现有检测方法的 incremental value 应由 gen-1 vs. gen-2+ 区分能力衡量，而非 3-class F1。\n\n### Should-Fix 回应\n\n**[AGREE] R2-W1: \"Entropy\" 术语误导**\n同意，与我的小问题 #4 一致。建议统一使用 \"reference-model NLL\" 或 \"ref-entropy\"。\n\n**[REBUT] R2-W2: Concurrent Work 实证对比缺失**\n部分不同意。Paraphrasing chain 与 base-model continuation chain 机制不同，要求跨设置实证复现标准过高。§5 和 Appendix z.8 已做概念对比。但同意增加一个 paraphrase prompt 测试 DDR mechanism independence 会加强说服力。\n\n**[AGREE] R2-W3: OOD Detection 方法论连接缺失**\n同意。NLL-based distributional shift detection 与 OOD detection 文献高度重叠，Related Work 应补充。\n\n**[AGREE] R2-W4: Abstract 中 QLoRA F1=0.905 位置不当**\n同意。Appendix 结果不应突出在 Abstract 中，尤其是 within-model CV vs. LOGO 的实验设置差异可能引起 cherry-picking 怀疑。\n\n**[REBUT] R2-W5: log|V| 解释被 vocab size 差异反驳**\n部分不同意具体反驳论据：log|V| bound 对所有 vocab size 都成立，实际 entropy max 远低于上界（Figure 8 显示约 4-5 vs. log 50K≈10.8），vocab size 差异不影响 shape stability 的定性表现。但同意核心关切：§5 的机制解释是 post-hoc 直觉，缺乏形式化验证。\n\n### 与 R2 共识\n\nOverall 3.5（Borderline Conference），两位 reviewer 核心共识：(1) 研究问题新颖、实验严谨；(2) 实际影响力受限于 base model + moderate performance + temperature sensitivity；(3) DDR 贡献定位需从 \"方法论贡献\" 调整为 \"empirical finding\"。建议 Findings 接收。\n"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-004033"
+        },
+        {
+          "source_line": 4034,
+          "timestamp": "2026-05-24T23:02:39.219867+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director"
+          },
+          "id": "event-004034"
+        }
+      ]
+    },
+    {
+      "number": 394,
+      "messages": [
+        {
+          "source_line": 4035,
+          "timestamp": "2026-05-24T23:02:40.319694+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿意见]:\n## Reviewer 2 对 Reviewer 1 审稿意见的逐条回应\n\n---\n\n### Must-Fix 问题\n\n**[AGREE] R1-N1: 温度敏感性对泛化声明的削弱**\n\n同意这是一个实质性问题。从 Table 13 (p.16) 可以看到，t=0.9 时 binary F1 (gen-1 vs. gen-2+) 确实显著下降。Appendix p (p.24) 的 cross-temperature transfer 实验进一步显示，t=0.7 训练→t=1.0 测试时性能退化严重。主文 §4.3 仅用约 3 行轻描淡写，Limitations 中也只是泛泛提及 \"fixed decoding regime\"，这与 Conclusion 中 \"DDR is a descriptive empirical regularity\" 的强声明确实存在张力。\n\n补充我的观察：Appendix p (p.24) 实际上提供了一些温度转移的正面证据——t=0.7↔1.0 的部分 generator 保持了合理性能（F1=0.723 reverse transfer），但 Qwen-1.7B 在 cross-temperature 条件下 F1 降至 0.418，显示 generator-specific 的温度脆弱性。这恰恰说明 \"empirical regularity\" 的表述需要加上温度条件限定。\n\n**[AGREE] R1-N2: Binary F1=0.694 的实际意义**\n\n完全同意，这与我在自己审稿中提出的 N3 问题高度一致。gen-1 vs. gen-2+ 的 binary F1=0.694 意味着核心的 depth discrimination 任务（排除 trivial 的 gen-0 分类后）接近随机水平。Error analysis (Appendix i, p.17-18) 明确显示 gen-2+ 被误分为 gen-1 的比例达 48.4%。\n\n我同意 Reviewer 1 的建议：论文应明确定位为 \"feasibility study\" 或 \"proof of concept\"，而非暗示当前已达到实用水平。当前的 framing（§1 第一段 \"data provenance and corpus curation\"）给读者一种工具已经可用的印象。\n\n**[REBUT] R1-N3: DDR 分解的形式化不足——描述性框架与分类任务之间的逻辑断层**\n\n我部分不同意这个问题的严重性。\n\nReviewer 1 指出 DDR 是 post-hoc 描述性框架，分类器使用全部 7 个原始特征而非 DDR-derived representation，因此 DDR 和分类之间存在 \"逻辑断层\"。但我认为这对论文的定位是一个误解：\n\n1. **论文的核心贡献是经验发现，不是方法**。DDR 的价值在于 *解释为什么简单特征能跨 generator 工作*，而非作为分类管线的一个组件。这类似于 \"bias-variance tradeoff\" 解释了为什么某些模型在特定场景下更优，但我们不会要求分类器显式地编码 bias-variance 分解。\n\n2. **LOFO 分析 (Table 8-9, p.15) 实证验证了 DDR 分区的分类功能性**。移除 entropy_max（shape 特征）导致最大 F1 下降（Δ=−0.019），移除 entropy_mean（location 特征）次之（Δ=−0.012）。两类特征独立贡献分类性能，与 DDR 框架一致。Table 9 的 minimal sufficient subset 分析显示，最佳 2 特征组合（1 drifting + 1 stationary）达到全集 88% 的性能，直接支持 DDR 的 \"两组互补\" 叙事。\n\n3. **ANOVA 方差分解 (Figure 7, §5) 进一步支撑 DDR 分区**：η²_depth=0.34–0.37 for location vs. <0.01 for shape（>48× gap），η²_gen≈0.02 across both groups。这不是 post-hoc cherry-picking，而是正式的统计分解。\n\n但我同意 Reviewer 1 的一个隐含建议：论文可以更清晰地表述 DDR 是 *解释性* 框架而非 *处方性* 分类组件。§4.2 和 §5 的叙事确实有时暗示 DDR \"驱动\" 了分类，而更准确的表述是 DDR \"解释\" 了为什么分类有效。这是 writing 问题而非 substance 问题。\n\n---\n\n### Should-Fix 问题\n\n**[AGREE] R1-W1: Cohen's d=0.20 阈值缺乏 task-specific 论证**\n\n同意。d=0.20 来自 Cohen (1988) 的通用 \"small effect\" 标准，但不同任务对 \"negligible\" 的定义不同。Appendix u (p.28) 的 TOST 分析使用了这个阈值，并讨论了 rationale，但缺乏 task-specific 的 sensitivity analysis（例如，d=0.15 或 d=0.25 时结论是否变化）。不过，这不影响核心结论——Table 36 (p.28) 显示 shape 特征即使在更宽松的 ε=0.25 下也 consistently pass TOST，而 drifting 特征在任何合理 ε 下都 reject。\n\n**[AGREE] R1-W2: XGBoost 固定超参数**\n\n同意这是一个有效关切。但我想指出 Table 11 (p.16) 的 classifier sensitivity 分析在一定程度上缓解了这个问题：Logistic Regression (F1=0.71)、Random Forest (F1=0.725)、XGBoost (F1=0.762) 三种分类器性能排序一致，且线性模型也达到 0.71，说明分类性能主要来自特征而非分类器超参数。如果 XGBoost 的默认超参数已经不显著劣于调优版本，那么 \"systematic undertuning\" 的风险较低。当然，补充一个简单的 grid search 结果会更有说服力。\n\n**[AGREE] R1-W3: 参考模型选择论证不完整**\n\n同意。Appendix 的 cross-reference 分析（Table 31, Appendix o, p.26）仅测试 3 个参考模型（Pythia-410M, OLMo-2-1B, Qwen-0.6B），F1 spread=0.013。虽然 spread 很小，但 3 个模型不足以得出 \"reference model agnostic\" 的结论。特别是，所有 3 个参考模型都是 ≤1B 的小模型，没有测试更大的参考模型（如 3B+）是否会改变 DDR pattern。\n\n补充：论文选择 Pythia-410M 的理由是 \"chosen to be smaller than all generators\"（§3.3），这在方法论上是合理的（避免参考模型能力超过生成模型），但 \"更小更好\" 的 claim 缺乏系统验证。\n\n**[AGREE] R1-W4: 跨域实验规模过小**\n\n同意。Appendix j (p.19) 的跨域实验每域仅 200 seeds × depth 3，总量约 2400 samples/domain。且 Code 域 binary F1 降至 0.63，说明 domain shift 是一个真实问题。论文对 Code 域的下降几乎没有分析——是因为代码文本的 NLL 分布本身就不同？还是 Wikipedia-trained 参考模型在代码上的 NLL 不再有区分力？这些问题值得讨论。\n\n**[AGREE] R1-W5: 5-class 深度分类性能较弱但缺乏主文讨论**\n\n同意。Table 5 (p.13) 显示 5-class LOGO F1≈0.50，QLoRA 5-class=0.583。这是一个重要的结果——它表明深度分辨率被 bound 在约 3 classes，更细粒度的分类实质上不可行。但主文仅在 Limitations (p.9) 中用一句话提及 \"finer-grained 5-class classification yields F1≈0.50 with deeper depths mutually indistinguishable\"。考虑到 depth profiling 的 framing 暗示任意深度的分类可能性，主文应该更显著地讨论这一天花板。\n\n**[REBUT] R1-W6: 实验范围的泛化声明可能过度**\n\n部分不同意。Reviewer 1 认为 \"empirical regularity\" 等表述过强，但我认为在论文的实际实验覆盖范围内，这一表述是可以成立的：\n- 8 generators from 5 families（Pythia, OLMo, Qwen, Llama, Mistral）——涵盖了当前主流开源 base model 的大部分 family\n- 附录扩展到 9 generators（加入 Gemma-2-2B），结论一致\n- 3 种 decoding strategies（greedy, top-k, nucleus）保持 DDR pattern（Appendix z.5, p.33-34）\n- 3 种 prompt types 保持一致（Appendix c, p.13）\n- 3 个参考模型 spread=0.013（Appendix o）\n\n\"Empirical regularity\" 不等于 \"universal law\"——它明确标记为经验观察，且论文在 Limitations 中承认了英文、base model、固定温度的限制。我认为在当前覆盖范围内使用这一术语是合理的，但 R1 关于温度条件的 N1 问题确实削弱了这一表述——如果 DDR 在 t=0.9 下显著退化，那么应该加上温度限定条件。\n\n---\n\n### 对 Reviewer 1 优势评价的补充\n\n完全同意 R1 列出的 6 点优势。特别是第 2 点（统计方法论严谨）和第 3 点（消融实验全面），这是论文最大的亮点。我在自己的审稿中也将 \"实验设计的严谨性\" 列为首要优势。\n\n### 综合评判\n\n我和 Reviewer 1 对论文的总体评价一致（3.5 Borderline Conference），核心分歧在 N3（DDR 形式化问题）：\n- R1 认为 DDR 与分类之间存在 \"逻辑断层\"，我认为 DDR 作为解释性框架是合理的，LOFO/ANOVA 提供了充分的经验支撑。\n- 但 R1 的观察有价值——论文的叙事确实在 \"DDR 解释分类\" 和 \"DDR 驱动分类\" 之间摇摆，修正这一 framing 是必要的 writing fix。\n\n两位 Reviewer 共识的核心问题：(1) gen-1/gen-2+ 区分能力有限（F1=0.694）；(2) base-model-only 限制；(3) 温度条件需要限定。这三点建议作者重点回应。\n\n---\n\n[Reviewer 1 审稿结果]:\n交叉回应已提交给 Review Director。\n\n与 R2 高度一致：6 条 [AGREE]、2 条 [REBUT]（均为部分反驳）。核心共识是 Overall 3.5，建议 Findings 接收。两处 REBUT 分别是：(1) concurrent work 实证对比要求标准过高；(2) log|V| 的 vocab size 反驳论据在技术上不成立，但同意机制解释是 post-hoc 猜测。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-004035"
+        },
+        {
+          "source_line": 4036,
+          "timestamp": "2026-05-24T23:03:04.026866+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_visual_check_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "mcp__agent-ml-research__get_visual_check_status",
+            "tool_args": {
+              "project": "gen-depth-fingerprint"
+            }
+          },
+          "id": "event-004036"
+        },
+        {
+          "source_line": 4037,
+          "timestamp": "2026-05-24T23:03:04.529462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-24T22:50:56.506443+00:00\\\", \\\"completed_at\\\": \\\"2026-05-24T22:55:16.204193+00:00\\\", \\\"findings\\\": [{\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 1\\\", \\\"message\\\": \\\"首页无 display item。第一个视觉锚点 Figure 1（feature trajectories）出现在 page 2 顶部，传达核心 DDR 概念，信息清晰。Title/Abstract 排版整洁专业。审稿人需翻到第 2 页才获得视觉锚定，但 Abstract 信息密度高，影响有限。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 2\\\", \\\"message\\\": \\\"Figure 1 四面板线图清晰可读，颜色可区分（每个 generator 独立颜色），caption 自包含（解释了 DDR 定义）。作为首个 display item，有效传达核心 message。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 4\\\", \\\"message\\\": \\\"Figure 2（pipeline 架构图）整体清晰，但部分内部文字框（如分类标签 \\\\\\\"drifting/intermediate/near-stationary\\\\\\\"）字号偏小，建议适当放大以确保打印可读性。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 5\\\", \\\"message\\\": \\\"Figure 3（8×8 transfer matrix heatmap）单元格内数字字号偏小，但在屏幕阅读时仍可辨识。红色渐变色板区分度良好。Caption 自包含。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 6\\\", \\\"message\\\": \\\"Figure 4（DDR drifting features）位于右栏，尺寸偏小。数据点和 axis labels 处于可读性下限（约正文 70%），建议在修改时考虑适当放大或改为跨栏 figure*。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 7\\\", \\\"message\\\": \\\"单页包含 3 个 display items（Figure 5 + Figure 6 + Table 3），信息密度极高。排版合理未溢出，但视觉上略显拥挤。Figure 6 的 scatter plot 中部分 detector 名称标注可能重叠。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 8\\\", \\\"message\\\": \\\"Figure 7（ANOVA bar chart）清晰可读。Discussion 和 Conclusion 在同一页，布局合理。页面利用率 >90%。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 9\\\", \\\"message\\\": \\\"Limitations 段简短（约 3 行），符合 EMNLP 要求。References 从本页中部开始，排版正常。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 12\\\", \\\"message\\\": \\\"Figure 8（violin plots）占据整页，7 个子图。整体分辨率足够，颜色方案区分度好（每个 depth 一种颜色）。个别子图的 y 轴标签字号偏小但仍可读。Caption 位于页底，自包含。\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 16\\\", \\\"message\\\": \\\"Table 11（classifier comparison）和 Table 13（sampling sensitivity）列数较多，字号明显缩小。Table 13 有 7+ 列，部分数字在正常缩放下可读性差，建议检查是否可拆表或使用 \\\\\\\\resizebox 适度调整。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"pag\n…[truncated 1066 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "mcp__agent-ml-research__get_visual_check_status",
+            "elapsed_ms": 502
+          },
+          "id": "event-004037"
+        },
+        {
+          "source_line": 4038,
+          "timestamp": "2026-05-24T23:03:04.529845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_external_review_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "mcp__agent-ml-research__get_external_review_status",
+            "tool_args": {
+              "project": "gen-depth-fingerprint"
+            }
+          },
+          "id": "event-004038"
+        },
+        {
+          "source_line": 4039,
+          "timestamp": "2026-05-24T23:03:04.931700+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"not_requested\\\", \\\"message\\\": \\\"No external review requested.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "mcp__agent-ml-research__get_external_review_status",
+            "elapsed_ms": 401
+          },
+          "id": "event-004039"
+        },
+        {
+          "source_line": 4040,
+          "timestamp": "2026-05-24T23:03:05.082765+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:read_local_file",
+              "max_results": "3"
+            }
+          },
+          "id": "event-004040"
+        },
+        {
+          "source_line": 4041,
+          "timestamp": "2026-05-24T23:03:05.133544+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-004041"
+        },
+        {
+          "source_line": 4042,
+          "timestamp": "2026-05-24T23:03:12.681755+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_issues.yaml"
+            }
+          },
+          "id": "event-004042"
+        },
+        {
+          "source_line": 4043,
+          "timestamp": "2026-05-24T23:03:13.033845+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t- id: R29-N1\n2\t  summary: Base-model-only scope 未在 Abstract 标注\n3\t  category: framing\n4\t  severity: critical\n5\t  status: resolved\n6\t  first_raised_round: 29\n7\t  last_seen_round: 32\n8\t  resolution: Abstract L3 'eight base-model generators'; L7 'restricted to base models'. Title 保持不变(Reviewer 确认). Instruct limitations fully documented.\n9\t  resolution_round: 32\n10\t- id: R29-N2\n11\t  summary: Downstream TOST underpowered (n=3) + Abstract overclaim\n12\t  category: experiment\n13\t  severity: critical\n14\t  status: resolved\n15\t  first_raised_round: 29\n16\t  last_seen_round: 34\n17\t  resolution: Abstract 完全移除 downstream claim. Appendix M 保留 null result 作为补充材料.\n18\t  resolution_round: 34\n19\t- id: R29-N3\n20\t  summary: DDR 新颖性 incremental — 缺 concurrent work 系统对比表\n21\t  category: framing\n22\t  severity: critical\n23\t  status: resolved\n24\t  first_raised_round: 29\n25\t  last_seen_round: 31\n26\t  resolution: related_work.tex concurrent-comparison table added\n27\t  resolution_round: 31\n28\t- id: R29-N4\n29\t  summary: QLoRA gap 削弱方法论贡献 — 需重定位\n30\t  category: framing\n31\t  severity: warning\n32\t  status: resolved\n33\t  first_raised_round: 29\n34\t  last_seen_round: 34\n35\t  resolution: Intro L14 'proof of concept'; Contribution 3 'Proof-of-concept classifier with boundary analysis'.\n36\t  resolution_round: 34\n37\t- id: R29-W1\n38\t  summary: Gemma-2-2B gen-1 F1=0.036 anomaly 解释不充分\n39\t  category: experiment\n40\t  severity: warning\n41\t  status: resolved\n42\t  first_raised_round: 29\n43\t  last_seen_round: 31\n44\t  resolution: appendix_9gen_scale expanded\n45\t  resolution_round: 31\n46\t- id: R29-W2\n47\t  summary: Cross-model chain F1=0.830 可能混淆 depth signal 与 generator identity\n48\t  category: experiment\n49\t  severity: warning\n50\t  status: resolved\n51\t  first_raised_round: 29\n52\t  last_seen_round: 34\n53\t  resolution: results.tex footnote + L15 single-gen transfer. Caveats sufficient.\n54\t  resolution_round: 34\n55\t- id: R29-W3\n56\t  summary: 温度限制(t<0.9)未在 Abstract 标注\n57\t  category: framing\n58\t  severity: warning\n59\t  stat\n…[truncated 37514 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "Read",
+            "elapsed_ms": 352
+          },
+          "id": "event-004043"
+        },
+        {
+          "source_line": 4044,
+          "timestamp": "2026-05-24T23:08:29.578435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_review_issues"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "mcp__agent-ml-research__update_review_issues",
+            "tool_args": {
+              "project": "gen-depth-fingerprint",
+              "issues_yaml": "- id: R29-N1\n  summary: Base-model-only scope 未在 Abstract 标注\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 32\n  resolution: Abstract L3 'eight base-model generators'; L7 'restricted to base models'. Title 保持不变(Reviewer 确认). Instruct limitations fully documented.\n  resolution_round: 32\n- id: R29-N2\n  summary: Downstream TOST underpowered (n=3) + Abstract overclaim\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 34\n  resolution: Abstract 完全移除 downstream claim. Appendix M 保留 null result 作为补充材料.\n  resolution_round: 34\n- id: R29-N3\n  summary: DDR 新颖性 incremental — 缺 concurrent work 系统对比表\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 31\n  resolution: related_work.tex concurrent-comparison table added\n  resolution_round: 31\n- id: R29-N4\n  summary: QLoRA gap 削弱方法论贡献 — 需重定位\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 34\n  resolution: Intro L14 'proof of concept'; Contribution 3 'Proof-of-concept classifier with boundary analysis'.\n  resolution_round: 34\n- id: R29-W1\n  summary: Gemma-2-2B gen-1 F1=0.036 anomaly 解释不充分\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 31\n  resolution: appendix_9gen_scale expanded\n  resolution_round: 31\n- id: R29-W2\n  summary: Cross-model chain F1=0.830 可能混淆 depth signal 与 generator identity\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 34\n  resolution: results.tex footnote + L15 single-gen transfer. Caveats sufficient.\n  resolution_round: 34\n- id: R29-W3\n  summary: 温度限制(t<0.9)未在 Abstract 标注\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 32\n  resolution: Abstract L4 'nucleus sampling (p=0.9, t<=0.7)'\n  resolution_round: 31\n- id: R29-W4\n  summary: DDR partition 3/1/3 intermediate 定义不够 principled\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 34\n  resolution: k=2 binary (sil=0.632); k=3 degradation (0.499); 3/1/3 = domain-informed refinement.\n  resolution_round: 34\n- id: R29-W5\n  summary: Baseline 范围偏窄 + 比较结构性不公平\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 35\n  resolution: 4.3 honestly presents 4-det+surface marginally exceeding.\n  resolution_round: 34\n- id: R29-W6\n  summary: Related work 引用缺失 + orphan bib entries\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 35\n  resolution: 'Round 35 确认: 66条引用, 0 orphan, 0 missing.'\n  resolution_round: 35\n- id: R29-W7\n  summary: Diagnostic not curative 缺具体场景\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 31\n  resolution: discussion.tex 两个诊断场景\n  resolution_round: 31\n- id: R29-W8\n  summary: Per-generator F1 变异大 (0.633-0.724)\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 29\n  last_seen_round: 31\n  resolution: discussion.tex '9.1pp per-generator spread'\n  resolution_round: 31\n- id: R32-N1\n  summary: DDR 增量新颖性不清晰 — 缺形式化定义\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 32\n  last_seen_round: 40\n  resolution: 'Section 4.2 新增: DDR_f=|ρ(depth,f)| formal definition + k-means validation (sil=0.660, p<0.03) + theoretical motivation (autoregressive mixing property). 两位 Reviewer Round 40 均确认 RESOLVED.'\n  resolution_round: 40\n- id: R32-N2\n  summary: Entropy min 分类存在根本性矛盾 (|rho|=0.40 标为 near-stationary)\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 32\n  last_seen_round: 34\n  resolution: results.tex L85 'boundary feature' with full qualification; Figure 2 caption aligned.\n  resolution_round: 34\n- id: R32-N3\n  summary: Tail_decay near-stationary 归类仅 4/8 generator 通过 TOST (epsilon=0.20)\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 32\n  last_seen_round: 40\n  resolution: 主文 Section 4.2 新增 explicit power caveat; Table 29 bootstrap (B=1000) 100% rejection rate 在 ±0.20 margin 内. R1 判定 substantially addressed.\n  resolution_round: 40\n- id: R32-W1\n  summary: 分类性能 F1=0.694 定位为 detecting 但实为 proof-of-concept\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 32\n  last_seen_round: 34\n  resolution: Intro L14, Contribution 3, Discussion L11 — all say 'proof-of-concept'.\n  resolution_round: 34\n- id: R32-W2\n  summary: TOST power analysis 缺失\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 32\n  last_seen_round: 34\n  resolution: SESOI justification + epsilon sensitivity + high-N masking acknowledged.\n  resolution_round: 34\n- id: R32-W3\n  summary: '术语混淆: entropy 指代 NLL 不规范'\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 32\n  last_seen_round: 47\n  resolution: 'v51: Table 1 caption NLL-based 标注 + §4.2 括号说明. 14 轮终于修复.'\n  resolution_round: 51\n- id: R32-W4\n  summary: 附录关键结果应在主文讨论\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 32\n  last_seen_round: 40\n  resolution: 'Section 5 现有: cross-domain binary F1=0.74-0.75, 3-class F1=0.62-0.65; instruct 退化 3.7-19.9pp. R2 Round 40 确认 RESOLVED.'\n  resolution_round: 40\n- id: R32-W5\n  summary: 单一解码策略(nucleus only)\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 32\n  last_seen_round: 39\n  resolution: Discussion L7 reports greedy decoding validation (mean |d|=0.05) + top-k. Fully addressed.\n  resolution_round: 39\n- id: R32-W6\n  summary: 3-class F1=0.762 因 gen-0 共享而 misleading\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 32\n  last_seen_round: 40\n  resolution: 'Section 4.1: ''3-class F1 carries upward bias because gen-0 seeds are shared (§3.2); independent-seed control confirms depth signal (F1=0.68; Appendix T).'' R1 Round 40 确认 RESOLVED.'\n  resolution_round: 40\n- id: R32-W7\n  summary: 特征选取缺乏系统性论证\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 32\n  last_seen_round: 39\n  resolution: method.tex L53-57 详细解释 interpretability rationale + 6 candidate features evaluated and rejected.\n  resolution_round: 39\n- id: R34-W1\n  summary: Base-model-only scope 限制泛化价值 (结构性)\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 34\n  last_seen_round: 47\n  resolution: 'v51: Intro L4 \"in base-model pretraining corpora\" + Discussion \"analytical dimension\" + Conclusion temper.'\n  resolution_round: 51\n- id: R34-W2\n  summary: F1=0.694 性能天花板 (结构性)\n  category: experiment\n  severity: warning\n  status: wont_fix\n  first_raised_round: 34\n  last_seen_round: 51\n  resolution: 结构性限制, proof-of-concept 定位已到位.\n  resolution_round: 34\n  mentions:\n  - round: 51\n    reviewers: [R1, R2]\n    note: 'R51 两位 Reviewer 再次指出 F1=0.694 实际意义不足, gen-1/gen-2+ 错误率 48.4%. 论文已定位为 proof-of-concept, 但建议在主文更显著地讨论实际容忍度.'\n- id: R34-V1\n  summary: Pages 1-2 无 display item + 缺 method overview figure\n  category: format\n  severity: warning\n  status: wont_fix\n  first_raised_round: 34\n  last_seen_round: 47\n  resolution: 页面预算极紧(8页), 加 method figure 风险>收益. 不处理.\n  resolution_round: 40\n- id: R34-W4\n  summary: 14B entropy_mean |rho|=0.39 跨过 drifting boundary 未明确报告\n  category: writing\n  severity: info\n  status: wont_fix\n  first_raised_round: 34\n  last_seen_round: 40\n  resolution: R1 Round 40 确认论文无 14B 实验数据; Limitations 已有 scale caveat.\n  resolution_round: 40\n- id: R39-N1\n  summary: Reference model (Pythia-410M) 混淆变量未消融 — family proximity confound\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 39\n  last_seen_round: 47\n  resolution: 'v51: §3.3 + §4.2 cross-family reference 验证段 (F1 spread=0.013). Round 40 起已修复.'\n  resolution_round: 51\n- id: R39-N2\n  summary: 正文溢出第 9 页 — Conclusion 超过 8 页限制\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 39\n  last_seen_round: 49\n  resolution: 'v55+: Results压缩22行 + enlargethispage移除. Conclusion在p8内.'\n  resolution_round: 55\n- id: R39-N3\n  summary: 3-class 深度分辨率与 title framing 存在 gap\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 39\n  last_seen_round: 47\n  resolution: 'v51: Discussion \"practical resolution limit under available approaches\".'\n  resolution_round: 51\n- id: R39-W1\n  summary: Downstream utility 阴性结果应在主文正面讨论\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 39\n  last_seen_round: 39\n  resolution: 'Discussion L10: ''does not yet improve downstream training (TOST equivalence at ε=±2%)'' + 定位为 provenance tracking.'\n  resolution_round: 39\n- id: R39-W2\n  summary: 与 concurrent work (Geng et al. 2026, Mohamed et al. 2025) 区分不够 sharp\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 39\n  last_seen_round: 48\n  resolution: 'v51: Discussion L14 concurrent work convergence 句.'\n  resolution_round: 51\n- id: R39-W3\n  summary: Figure 1/2 灰度可读性 + 信息密度\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 39\n  last_seen_round: 45\n  resolution: Figure 1 改为 2×2 放大布局, 可读性显著改善. R2 判定 not blocking.\n  resolution_round: 40\n- id: R40-W1\n  summary: Discussion 中 QLoRA F1 引用造成指标混淆\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 40\n  last_seen_round: 40\n  resolution: abstract/intro/results/discussion/conclusion 全部 F1=0.905 统一标注 '3-class F1=0.905'.\n  resolution_round: 40\n- id: R40-W2\n  summary: 理论动机 'mixing property of finite vocabularies' 缺文献引用\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 40\n  last_seen_round: 40\n  resolution: 'results.tex: 软化为假设 + 引用已有 Markov chain 分析.'\n  resolution_round: 40\n- id: R42-N1\n  summary: DDR novelty 主要为 empirical observation, 方法论贡献有限\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 42\n  last_seen_round: 47\n  resolution: 'v51: Discussion L5 \"testable but unproven\"; Intro L18 \"descriptive empirical finding\"; L6 \"both supported\".'\n  resolution_round: 51\n- id: R42-N2\n  summary: Instruction-tuned models 下 DDR 结构性失效 + Introduction scope 前置不足\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 42\n  last_seen_round: 47\n  resolution: 'v51: 与 R34-W1 合并. Intro/Discussion/Abstract/Conclusion 全覆盖.'\n  resolution_round: 51\n- id: R42-N3\n  summary: Claim scope 与 F1=0.694 不匹配 — proof-of-concept 定位摇摆\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 42\n  last_seen_round: 47\n  resolution: 'v51: Discussion \"analytical dimension\" + \"has been proposed\" + Results L147 \"comparable rather than advance\".'\n  resolution_round: 51\n- id: R42-W1\n  summary: '''What is preserved'' 叙事 overselling'\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 42\n  last_seen_round: 47\n  resolution: 'v51: Discussion L6 \"both supported\"; Abstract \"approximately preserved\".'\n  resolution_round: 51\n- id: R42-W2\n  summary: XGBoost-to-QLoRA gap ~11.6pp 未充分分析\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 42\n  last_seen_round: 47\n  resolution: 'v51: Results L17 \"remain undisentangled\". Unsubstantiated claims removed.'\n  resolution_round: 51\n- id: R42-W3\n  summary: Scale ≤8B 泛化性未充分论证\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 42\n  last_seen_round: 47\n  resolution: 'v51: Limitations L4-5 covers scale (<=8.2B) + frontier (70B+) untested.'\n  resolution_round: 51\n- id: R42-W4\n  summary: Downstream TOST n=3 统计功效极低\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 42\n  last_seen_round: 47\n  resolution: 'v51: Discussion \"has been proposed... though no downstream improvement was observed\".'\n  resolution_round: 51\n- id: R42-W5\n  summary: DDR partition thresholds 主文引用 Appendix v 不足\n  category: method\n  severity: info\n  status: resolved\n  first_raised_round: 42\n  last_seen_round: 47\n  resolution: 'v51: §4.2 L84 threshold stability + L93 epsilon invariance + Appendix v referenced.'\n  resolution_round: 51\n- id: R42-W6\n  summary: '''Ordinal classification'' framing 与 3-class 实际分辨率 gap'\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 42\n  last_seen_round: 47\n  resolution: 'v51: Discussion \"practical resolution limit\".'\n  resolution_round: 51\n- id: R43-N1\n  summary: 跨域温度交互效应呈现不足\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 43\n  last_seen_round: 47\n  resolution: 'v51: appendix_domain.tex L25 已有独立 Domain×Temperature Interaction 段落.'\n  resolution_round: 51\n- id: R43-W1\n  summary: Gemma-2-2B 架构敏感性暴露 unknown-architecture 部署风险\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 43\n  last_seen_round: 48\n  resolution: 'v51: Limitations \"(binary F1=0.440; gen-1 nearly undetectable)\".'\n  resolution_round: 51\n- id: R43-W2\n  summary: '6-gen vs 8-gen subset 不一致: QLoRA/LOFO 等关键消融未在完整 set 上更新'\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 43\n  last_seen_round: 47\n  resolution: 'v51: Conclusion \"3-class: 0.762\" + Abstract \"(6-gen LOGO)\". Writing-level fix complete.'\n  resolution_round: 51\n- id: R43-W3\n  summary: DDR partition descriptive vs mechanistic nature 未明确区分\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 43\n  last_seen_round: 47\n  resolution: 'v51: Discussion L5 \"testable but unproven\" + L6 \"both supported\".'\n  resolution_round: 51\n- id: R43-W4\n  summary: Baseline 比较叙事重心偏向单特征 vs 7-feature\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 43\n  last_seen_round: 47\n  resolution: 'v51: Results L147 \"comparable... rather than a performance advance\".'\n  resolution_round: 51\n- id: R43-W5\n  summary: Abstract 信息密度过高 (8+ 数值结果)\n  category: writing\n  severity: warning\n  status: wont_fix\n  first_raised_round: 43\n  last_seen_round: 51\n  resolution: 5 key numbers essential for empirical paper Abstract.\n  resolution_round: 51\n  mentions:\n  - round: 51\n    reviewers: [R1, R2]\n    note: 'R51 两位 Reviewer 再次提出 Abstract 数字堆叠过多, 建议精简为 2-3 核心指标. R2 特别指出 QLoRA F1=0.905 是附录结果不应出现在 Abstract.'\n- id: R43-I1\n  summary: Limitations 缺少 English-only 语言泛化性讨论\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 43\n  last_seen_round: 47\n  resolution: 'v51: Limitations L7 \"non-English applicability is untested\".'\n  resolution_round: 51\n- id: R43-I2\n  summary: 'Missing references: Xu et al. (2024/2025) paraphrase attack'\n  category: writing\n  severity: info\n  status: wont_fix\n  first_raised_round: 43\n  last_seen_round: 43\n  resolution: No Xu paraphrase attack paper in bib. Krishna et al. 2023 covers direction.\n  resolution_round: 51\n- id: R44-N1\n  summary: Cross-model chain F1=0.830 提升未排除 generator diversity accumulation confound\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 44\n  last_seen_round: 48\n  resolution: 'v55: Two-way ANOVA confirms generator η²<1% (mean 0.37%), depth η²=15-30% for drifting features.'\n  resolution_round: 55\n- id: R44-N2\n  summary: Abstract 'shape features d ≤ 0.10' overclaim — entropy_std (d=0.55) 被隐藏\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 44\n  last_seen_round: 47\n  resolution: 'v51: Abstract 三部分 (d<0.10 three shape + d=0.55 intermediate).'\n  resolution_round: 51\n- id: R44-W1\n  summary: Abstract 中 QLoRA 3-class F1=0.905 缺评估协议区分\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 44\n  last_seen_round: 47\n  resolution: 'v51: Abstract \"(6-gen LOGO; Appendix)\" + Conclusion subset label.'\n  resolution_round: 51\n- id: R45-W1\n  summary: Seed-sharing 对 gen-1/gen-2+ 的间接信息泄漏应更显著报告\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 45\n  last_seen_round: 47\n  resolution: 'v51: §4.1 seed-sharing control paragraph has F1=0.680.'\n  resolution_round: 51\n- id: R45-W2\n  summary: Ordinal classification 文献连接薄弱\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 45\n  last_seen_round: 47\n  resolution: 'v51: §4.3 末尾 ordinal methods negative result (CORAL, Frank-Hall).'\n  resolution_round: 51\n- id: R45-W3\n  summary: Perturbation robustness 措辞过于乐观\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 45\n  last_seen_round: 47\n  resolution: 'v51: Discussion \"degrades gracefully under token replacement\".'\n  resolution_round: 51\n- id: R46-W1\n  summary: tail_decay TOST stationarity 不稳健 (48/78=61.5% pass rate)\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 46\n  last_seen_round: 48\n  resolution: 'v53: tail_decay weakly stationary标注.'\n  resolution_round: 53\n- id: R46-W2\n  summary: 'Missing references: FineWeb + Welleck et al. (2020)'\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 46\n  last_seen_round: 48\n  resolution: 'v53: FineWeb + Welleck已补.'\n  resolution_round: 53\n- id: R47-W1\n  summary: DDR 缺 mechanistic grounding\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 47\n  last_seen_round: 48\n  resolution: 'v53: Discussion §5 causal ablation chain + ANOVA η².'\n  resolution_round: 53\n- id: R48-N1\n  summary: Drifting features高度共线性(r≈0.97)\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 48\n  last_seen_round: 48\n  resolution: 'v53: Results §4.2 group ablation + PCA + collinear acknowledgment.'\n  resolution_round: 53\n- id: R48-N2\n  summary: DDR阈值post-hoc验证circularity\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 48\n  last_seen_round: 48\n  resolution: 'v54: per-generator independent replication叙事.'\n  resolution_round: 54\n- id: R48-N3\n  summary: DDR与Geng et al.(2026)新颖性区分不充分\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 48\n  last_seen_round: 48\n  resolution: 'v54: discussion.tex区分DDR vs Geng贡献.'\n  resolution_round: 54\n- id: R48-N4\n  summary: Abstract headline metric定义混淆\n  category: writing\n  severity: critical\n  status: resolved\n  first_raised_round: 48\n  last_seen_round: 48\n  resolution: 'v53: Abstract L5 binary F1标注 + QLoRA条件标注.'\n  resolution_round: 53\n- id: R48-DIV1\n  summary: Base-model-only overclaim\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 48\n  last_seen_round: 48\n  resolution: 'v54: \"empirical regularity of base-model autoregressive generation\".'\n  resolution_round: 54\n- id: R48-W1\n  summary: Qwen过度代表(3/8)\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 48\n  last_seen_round: 48\n  resolution: 'v53: tail_decay weakly stationary标注.'\n  resolution_round: 53\n- id: R48-W2\n  summary: XGBoost超参数固定不调\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 48\n  last_seen_round: 51\n  resolution: 'v53: max_depth sweep, F1变动≤2.0pp.'\n  resolution_round: 53\n  mentions:\n  - round: 51\n    reviewers: [R1, R2]\n    note: 'R51 再次提出应做完整 grid/random search, R2 认为 Table 11 classifier sensitivity 分析部分缓解. 建议补充一次 systematic tuning 结果.'\n- id: R48-W3\n  summary: Binary F1=0.694实际应用价值未grounding\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 48\n  last_seen_round: 48\n  resolution: 'v55: proof-of-concept定位.'\n  resolution_round: 55\n- id: R48-W4\n  summary: tail_decay rank范围(100-1000)缺justification\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 48\n  last_seen_round: 48\n  resolution: 'v55: method.tex rank range justification.'\n  resolution_round: 55\n- id: R48-W5\n  summary: 页面限制可能超标~0.2页\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 48\n  last_seen_round: 49\n  resolution: 'v55+: Results压缩22行 + enlargethispage移除. 主文8页.'\n  resolution_round: 55\n- id: R48-W6\n  summary: 仅英语+3域\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 48\n  last_seen_round: 48\n  resolution: 'v55: Limitations covers English-only + 3 domains.'\n  resolution_round: 55\n- id: R48-W7\n  summary: Perturbation仅测word replacement\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 48\n  last_seen_round: 48\n  resolution: 'v55: acknowledged in Limitations.'\n  resolution_round: 55\n- id: R48-W8\n  summary: Table 3缺concurrent depth methods对比\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 48\n  last_seen_round: 48\n  resolution: 'v55: concurrent studies不可直接纳入baselines.'\n  resolution_round: 55\n- id: R49-MF1\n  summary: LOGO CI bootstrap单位未明确——text-level CI可能低估generator-level泛化不确定性\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 49\n  last_seen_round: 50\n  resolution: 'v55: Table 1 caption加text-level bootstrap说明; §4.1 generator-level mean±SE: 0.694±0.010; cross-generator SD=0.028, IQR=[0.692,0.714].'\n  resolution_round: 55\n- id: R49-MF2\n  summary: 泛化性措辞超出实验范围——Abstract/Conclusion overclaim\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 49\n  last_seen_round: 50\n  resolution: 'v55: Abstract \"important\"+\"complements location drift for ordinal depth grading\"; Conclusion \"within the studied base-model scope\".'\n  resolution_round: 55\n- id: R49-MF3\n  summary: DDR新颖性定位模糊——描述性发现缺mechanistic grounding\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 49\n  last_seen_round: 50\n  resolution: 'v55: Discussion恢复mechanistic rationale句.'\n  resolution_round: 55\n- id: R49-MF4\n  summary: 实际应用动机与受控实验gap——downstream utility近null result\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 49\n  last_seen_round: 49\n  resolution: 'v55: Discussion \"Preliminary batch-level estimates suggest depth constitutes a new analytical dimension\".'\n  resolution_round: 55\n- id: R49-SF1\n  summary: TOST margin |d|≤0.20缺task-specific理据\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 49\n  last_seen_round: 51\n  resolution: 'v55: Appendix ddr-validation TOST margin rationale paragraph added.'\n  resolution_round: 55\n  mentions:\n  - round: 51\n    reviewers: [R1, R2]\n    note: 'R51 再次提出 d=0.20 缺 task-specific 论证. R2 认为实际影响有限(shape features d<0.10). 建议增加 sensitivity analysis 或明确标注为 working threshold.'\n- id: R49-SF2\n  summary: 特征冗余性未充分讨论——entropy_mean与hapax_ratio r=0.81\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 49\n  last_seen_round: 49\n  resolution: 'v55: Results §4.2 \"collinear drifting triplet captures ~1 effective dimension (PCA PC1=92.3%)\".'\n  resolution_round: 55\n- id: R49-SF3\n  summary: 3-to-5 class分辨率天花板——有效粒度为3-class\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 49\n  last_seen_round: 51\n  resolution: 'Existing coverage sufficient: Limitations \"F1≈0.50\" + Discussion \"practical resolution limit\".'\n  resolution_round: 55\n  mentions:\n  - round: 51\n    reviewers: [R1, R2]\n    note: 'R51 两位 Reviewer 认为主文对 5-class 结果讨论仍不足. 标题 \"Depth Profiling\" 暗示任意深度分类, 但有效粒度仅 3 classes.'\n- id: R49-SF4\n  summary: Concurrent works区分度论述过于简略\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 49\n  last_seen_round: 49\n  resolution: 'v55: R50 R2-S6确认Table 48 concurrent work对比清晰.'\n  resolution_round: 55\n- id: R49-SF5\n  summary: QLoRA与XGBoost比较framing——信息粒度不对等\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 49\n  last_seen_round: 50\n  resolution: 'v55: Table 3 caption \"information-asymmetric ceiling, not a fair comparison\".'\n  resolution_round: 55\n- id: R49-SF6\n  summary: Primary metric未明确声明——Abstract多个F1数字混乱\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 49\n  last_seen_round: 50\n  resolution: 'v55: §4.1 \"leak-free binary F1 (gen-1 vs. gen-2+, our primary conservative metric)=0.694\".'\n  resolution_round: 55\n- id: R49-SF7\n  summary: Handcrafted vs end-to-end trade-off讨论不足\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 49\n  last_seen_round: 49\n  resolution: 'v55: Results §4.1 + Table 3 information-asymmetry annotation.'\n  resolution_round: 55\n- id: R49-MR1\n  summary: 'Missing: Schaeffer et al. (2025) model collapse定义多样性'\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 49\n  last_seen_round: 49\n  resolution: 'v55: Camera-ready audit confirmed 73/73 bib entries matched.'\n  resolution_round: 55\n- id: R49-MR2\n  summary: 'Missing: Hans et al. (2024) Binoculars方法论相似性未讨论'\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 49\n  last_seen_round: 49\n  resolution: 'v55: Hans et al. already cited.'\n  resolution_round: 55\n- id: R49-MR3\n  summary: 'Missing: paraphrase/rewriting attack文献'\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 49\n  last_seen_round: 50\n  resolution: 'v55: Krishna et al. cited in robustness discussion.'\n  resolution_round: 55\n- id: R49-MR4\n  summary: 'Missing: fine-grained span-level AI text detection'\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 49\n  last_seen_round: 49\n  resolution: 'v55: Span-level detection references added.'\n  resolution_round: 55\n- id: R50-N1\n  summary: Shape feature causal overclaim — LOFO/PI证据与Abstract因果声称矛盾\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 50\n  last_seen_round: 50\n  resolution: 'v55: Abstract \"shape stability complements location drift for ordinal depth grading\".'\n  resolution_round: 55\n- id: R50-N2\n  summary: Gen-0种子共享导致LOGO 3-class F1=0.762被高估约3pp\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 50\n  last_seen_round: 50\n  resolution: 'v55: Binary F1=0.694 as primary metric; 3-class annotation \"carries upward bias\".'\n  resolution_round: 55\n- id: R50-N3\n  summary: Instruction tuning失效在主文讨论不足——动机与适用范围脱节\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 50\n  last_seen_round: 50\n  resolution: 'v55: Limitations expanded instruct tuning discussion (~150 words).'\n  resolution_round: 55\n- id: R50-W1\n  summary: '\"Depth profiling\"命名暗示超出3-class的精细粒度'\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 50\n  last_seen_round: 50\n  resolution: 'v55: Intro defines \"coarse ordinal classification into gen-0/gen-1/gen-2+\".'\n  resolution_round: 55\n- id: R50-W2\n  summary: Entropy术语全文使用但实际指reference-model NLL (R32-W3复发)\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 50\n  last_seen_round: 51\n  resolution: 'v55: Table 1 caption NLL-based annotation; §4.2 parenthetical clarification.'\n  resolution_round: 55\n  mentions:\n  - round: 51\n    reviewers: [R1, R2]\n    note: 'R51 两位 Reviewer 再次指出 \"entropy\" 术语全文使用仍有误导性, 特征名仍为 entropy_mean/entropy_std 等. R2 建议全文统一使用 NLL 或 ref-entropy. 此问题已跨 14 轮反复出现.'\n- id: R50-W3\n  summary: Entropy_std intermediate (d=0.55)挑战DDR binary partition叙事\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 50\n  last_seen_round: 50\n  resolution: 'v55: Intro Contribution #1 now lists \"three response zones\".'\n  resolution_round: 55\n- id: R50-W4\n  summary: 3-class F1低于最强baseline但主文未充分讨论\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 50\n  last_seen_round: 50\n  resolution: 'v55: §4.3 \"though the latter leads by 2.1pp on 3-class F1 (0.795 vs. 0.774)\".'\n  resolution_round: 55\n- id: R50-W5\n  summary: Stylometry/authorship attribution related work覆盖不足\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 50\n  last_seen_round: 50\n  resolution: 'v55: Stylometry connection addressed.'\n  resolution_round: 55\n# === Round 51 新发现 ===\n- id: R51-N1\n  summary: 温度敏感性在主文讨论严重不足——t=0.9时F1降15%但§4.3仅3行,与\"empirical regularity\"声明矛盾\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 51\n  last_seen_round: 51\n  mentions:\n  - round: 51\n    reviewers: [R1, R2]\n    note: 'R1-N1提出,R2完全AGREE. t=0.9时3-class F1从0.762降至0.647(-15%),CI不重叠. Cross-temperature迁移(t=0.7→t=1.0)严重退化. 主文§4.3仅~3行,Limitations仅说\"single decoding regime\". Conclusion中\"empirical regularity\"需加温度条件限定. 与R29-W3(仅Abstract标注)不同,本轮要求主文§4.3或§5用至少一段讨论温度敏感性机制.'\n  action_items:\n  - round: 51\n    action: '§4.3或§5增加温度敏感性专段(高温使分布更平坦,DDR信号稀释); Limitations将温度列为主要限制; Conclusion \"empirical regularity\"加温度条件限定'\n    assigned_to: PaperAgent\n    status: open\n- id: R51-N2\n  summary: Binary F1=0.694实际意义未论证——gen-1/gen-2+错误率48.4%应在主文讨论,需明确feasibility study定位\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 51\n  last_seen_round: 51\n  mentions:\n  - round: 51\n    reviewers: [R1, R2]\n    note: 'R1-N2+R2-N3共识. 0.694意味着~30%样本被错分,gen-1→gen-2+边界错误率48.4%(Appendix i). 3-class F1=0.762被gen-0高可分性拉高(gen-0 F1=0.921). 论文framing暗示实用价值但性能不支持. 建议: (1)主文讨论什么应用能容忍此错误率; (2)将Appendix i核心发现提升到主文; (3)更显著地标注feasibility study/proof-of-concept. R34-W2标记wont_fix(结构性限制),本轮更聚焦framing gap.'\n  action_items:\n  - round: 51\n    action: '§4.1或§5增加gen-1/gen-2+边界错误分析(从Appendix提取); 讨论应用容忍度; 加强proof-of-concept定位显著性'\n    assigned_to: PaperAgent\n    status: open\n- id: R51-N3\n  summary: DDR新颖性质疑——shape稳定性可能从架构约束(log|V|,softmax geometry)trivially推导\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 51\n  last_seen_round: 51\n  mentions:\n  - round: 51\n    reviewers: [R1, R2]\n    note: 'R2-N1提出,R1 AGREE(但补充组合价值). DDR拆解为:(1)location drift与Shumailov/Dohmatob方向一致; (2)shape stability论文自身§5归因于架构约束. 如果核心发现可从已知约束推导,贡献定位降为验证性. R1认为组合+LOGO验证跨生成器迁移有增量价值,但更适合Findings级别. 与R42-N1/R49-MF3不同,本轮聚焦\"predictable from first principles\"角度.'\n  action_items:\n  - round: 51\n    action: '§5论证shape稳定性并非trivially predictable(提供反例场景/边界条件); 或强化DDR downstream utility的不可替代性'\n    assigned_to: PaperAgent\n    status: open\n- id: R51-N4\n  summary: Base-model-only限制实际价值——instruct模型下cross-generator transfer未验证,QLoRA恢复仅within-model\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 51\n  last_seen_round: 51\n  mentions:\n  - round: 51\n    reviewers: [R1, R2]\n    note: 'R2-N2提出,R1完全AGREE. Instruct模型下DDR信号压缩(3-class F1降3.7-19.9pp). QLoRA F1=0.89-0.91仅是within-model 5-fold CV,非cross-generator LOGO. Base→instruct迁移F1=0.490. 现实递归生成几乎全来自instruct/RLHF模型. 虽然标题已标注\"Base-Model\",Limitations已承认,但应更直接讨论base model场景的独立价值(如pretraining data contamination检测). 与R34-W1/R50-N3(已resolved)相比,本轮新增QLoRA within-model vs LOGO区分的关注.'\n  action_items:\n  - round: 51\n    action: '讨论base model场景独立价值(pretraining corpus auditing); 明确QLoRA恢复是within-model而非cross-generator; 补充或承认instruct LOGO缺失'\n    assigned_to: PaperAgent\n    status: open\n- id: R51-N5\n  summary: DDR描述性框架与分类任务逻辑断层——分类器不使用DDR分区信息(R1提出,R2部分反驳)\n  category: framing\n  severity: warning\n  status: open\n  first_raised_round: 51\n  last_seen_round: 51\n  mentions:\n  - round: 51\n    reviewers: [R1, R2]\n    note: 'R1-N3提出DDR是post-hoc框架,分类器使用全部7个原始特征而非DDR-derived representation. R2 REBUT: DDR是解释性框架不是处方性组件,LOFO/ANOVA提供经验支撑(Table 8-9, Figure 7). 但R2同意论文叙事在\"DDR解释分类\"和\"DDR驱动分类\"间摇摆,修正framing是必要的writing fix. 降级为warning(分歧点,R2论据有力但R1关切合理).'\n  action_items:\n  - round: 51\n    action: '明确DDR定位为解释性框架(explains why)而非分类组件(drives how); 修正§4.2/§5中暗示DDR驱动分类的表述'\n    assigned_to: PaperAgent\n    status: open\n- id: R51-W1\n  summary: '\"Entropy\"术语全文误导(第15次提出)——特征名仍为entropy_*,关键位置NLL说明不足'\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 51\n  last_seen_round: 51\n  mentions:\n  - round: 51\n    reviewers: [R1, R2]\n    note: 'R2-W1提出,R1 AGREE. 特征命名仍为entropy_mean/entropy_std等,§3.3有一次澄清但后续全文回归entropy. R2建议统一使用NLL或ref-entropy. 此问题从R32-W3起跨14轮反复出现,每轮resolution为在关键位置加注释,但未全面改命名. 作为结构性问题,建议Research Director考虑是否值得大规模改命名.'\n  action_items:\n  - round: 51\n    action: '评估全文改名(entropy→NLL/ref-entropy)的可行性和收益; 至少在Introduction首次出现处和Table 1中统一加注'\n    assigned_to: PaperAgent\n    status: open\n- id: R51-W2\n  summary: OOD detection方法论连接在Related Work中完全缺失\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 51\n  last_seen_round: 51\n  mentions:\n  - round: 51\n    reviewers: [R1, R2]\n    note: 'R2-W3提出,R1 AGREE. NLL统计特征(均值/方差/极值)与OOD detection方法论高度重叠. 近期有\"Human Texts Are Outliers\"(arXiv 2510.08602)直接将AI文本检测重构为OOD detection问题. Related Work应补充简要讨论.'\n  action_items:\n  - round: 51\n    action: 'Related Work §2增加OOD detection方法论简要讨论(1-2句), 说明depth profiling与OOD的区别(ordinal vs binary, cross-generator transfer)'\n    assigned_to: PaperAgent\n    status: open\n- id: R51-W3\n  summary: 跨域实验规模过小(每域200seeds)+Code域F1=0.63下降未分析\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 51\n  last_seen_round: 51\n  mentions:\n  - round: 51\n    reviewers: [R1, R2]\n    note: 'R1-W4提出,R2 AGREE. Appendix j每域仅200 seeds×depth 3,样本量小. Code域binary F1降至0.63但无分析(是否因Wikipedia-trained参考模型在Code上NLL失效?). R2补充:应讨论Code域下降原因并标注为preliminary/exploratory.'\n  action_items:\n  - round: 51\n    action: '扩大跨域实验规模或标注为preliminary; 讨论Code域性能下降原因'\n    assigned_to: PaperAgent\n    status: open\n- id: R51-W4\n  summary: Discussion §5 机制解释(log|V| bound, softmax geometry)是post-hoc直觉,vocab size差异可能反驳\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 51\n  last_seen_round: 51\n  mentions:\n  - round: 51\n    reviewers: [R1, R2]\n    note: 'R2-W5提出,R1部分REBUT(vocab size技术上不影响,但同意是post-hoc). §5将shape稳定性归因于log|V|上界和softmax geometry,但Pythia(50K vocab)和Qwen(150K+ vocab)展现类似稳定性. R1指出实际entropy max远低于上界(~4-5 vs log50K≈10.8),vocab size差异不影响定性结论. 共识: 将机制解释标注为hypothesis/conjecture.'\n  action_items:\n  - round: 51\n    action: '§5机制解释标注为hypothesis/conjecture而非definitional claim'\n    assigned_to: PaperAgent\n    status: open"
+            }
+          },
+          "id": "event-004044"
+        },
+        {
+          "source_line": 4045,
+          "timestamp": "2026-05-24T23:08:29.629666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 33574}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "mcp__agent-ml-research__update_review_issues",
+            "elapsed_ms": 51
+          },
+          "id": "event-004045"
+        },
+        {
+          "source_line": 4046,
+          "timestamp": "2026-05-24T23:10:53.781854+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_review_report_to_research_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "mcp__agent-ml-research__submit_review_report_to_research_director",
+            "tool_args": {
+              "report": "# 审稿报告 — Round 51 (Fresh Review)\n\n**论文**: Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text\n**Venue**: EMNLP 2026 (ARR May 2026 cycle)\n**审稿模式**: Fresh (重新审稿，无前轮记忆)\n**Reviewer 编排**: 2 人 (R1: 方法严谨性+实验设计; R2: 新颖性+写作质量)\n**轮次**: 1 轮（交叉回应后关键问题达成共识，无需第 2 轮）\n\n---\n\n## Summary\n\n论文定义了 \"depth profiling\" 任务——将文本分类为 gen-0（人类）/ gen-1（首次生成）/ gen-2+（多次递归生成），提出 Differential Depth Response (DDR) 框架：recursive base-model generation 下，NLL 分布的 location 特征（entropy mean, TTR, hapax ratio）随深度单调漂移（Cohen's d = 0.74–1.05），而 shape 特征（entropy max, min, tail decay）近似稳定（d < 0.10）。利用 7 个特征 + XGBoost，在 8 个 base-model 生成器（5 个 family，0.6B–8B）上实现 LOGO 3-class F1 = 0.762, leak-free binary F1 = 0.694。\n\n---\n\n## Strengths\n\n**S1** [R1+R2 共识] **研究问题的原创性**：从 binary AI detection 扩展到 ordinal depth classification 是 genuinely novel 的任务定义，填补了 binary detection 与 model collapse 分析之间的空白。\n\n**S2** [R1+R2 共识] **统计方法论严谨程度远超 ACL 平均水平**：Bootstrap CI、Bonferroni 校正、TOST 等价性检验、permutation testing、Granger 因果分析、ANOVA 方差分解——多层次统计验证体系在 NLP 实证论文中罕见。\n\n**S3** [R1+R2 共识] **消融实验覆盖面 exemplary**：26 页附录涵盖温度敏感性、prompt 泛化、文本扰动鲁棒性、跨域迁移、解码策略、参考模型选择、指令微调、finer-grained depth、classifier sensitivity 等 20+ 实验，覆盖了几乎所有可预见的审稿疑问。\n\n**S4** [R1+R2 共识] **DDR 分解的清晰性**：Location drift vs. shape stability 的二元分解是干净、可量化的经验发现（≥8× effect-size gap），ANOVA 方差分解（η²_depth = 0.34–0.37 for location vs. <0.01 for shape，>48× gap）提供有力统计支撑。\n\n**S5** [R1] **LOGO/LOFO 评估协议设计合理**：Leave-One-Generator-Out 和 Leave-One-Family-Out 提供多层次泛化测试；gen-0 共享种子问题通过 independent-seed 实验（F1 = 0.680 vs. 0.694）得到妥善处理。\n\n**S6** [R1+R2 共识] **诚实的局限性讨论**：坦率报告 instruction-tuned 模型下的性能退化、gen-1/gen-2+ 边界的高错误率、base-model-only 限制，未 overclaim。\n\n**S7** [R1+R2 共识] **可复现性高**：匿名代码仓库、标准工具（XGBoost、Pythia-410M）、详尽实验参数。\n\n---\n\n## Weaknesses\n\n### Must-Fix（影响接收决定）\n\n**N1** [R1+R2 共识] **温度敏感性在主文讨论严重不足**\nt=0.9 时 3-class F1 从 0.762 降至 0.647（−15%），95% CI 不重叠；cross-temperature 迁移（t=0.7 训练→t=1.0 测试）严重退化，部分 generator（如 Qwen-1.7B）F1 降至 0.418。主文 §4.3 仅约 3 行简述，Limitations 仅提 \"single decoding regime\"，与 Conclusion \"DDR is an empirical regularity\" 的强声明矛盾。需要在主文用至少一段讨论温度敏感性的机制和影响，并在 Conclusion 中加温度条件限定。\n\n**N2** [R1+R2 共识] **Binary F1=0.694 的实际意义未被充分论证**\n排除 trivial 的 gen-0 分类后，gen-1 vs. gen-2+ 的核心区分能力仅 F1=0.694（~30% 错分率），gen-1→gen-2+ 边界错误率高达 48.4%（Appendix i）。3-class F1=0.762 被 gen-0 高可分性（F1≈0.921）拉高，实质上 depth profiling 相对于 binary detection 的增量价值应由 gen-1/gen-2+ 区分衡量。论文 framing 暗示实用价值（§1 \"data provenance and corpus curation\"），但性能数据不支持。应将核心错误分析从 Appendix 提升到主文，并更显著地标注 feasibility study 定位。\n\n**N3** [R2 提出, R1 同意] **DDR 新颖性质疑——shape 稳定性可能从架构约束 trivially 推导**\nDDR 核心发现可拆解为：(1) location drift 与 Shumailov et al. (2024) 尾部侵蚀方向一致（场景不同但机制类似）；(2) shape stability 论文自身 §5 归因于 \"architecturally bounded: entropy max by log|V|, tail decay by softmax geometry\"，暗示这是模型固有约束而非递归生成独特发现。R1 补充：组合价值和 LOGO 跨生成器验证有增量贡献，但更适合 Findings 级别。需要论证 shape 稳定性为何不是 trivially predictable（提供反例/边界条件），或强化 DDR 的 downstream utility 不可替代性。\n\n**N4** [R2 提出, R1 同意] **Base-model-only 限制实际价值**\nInstruction-tuned 模型下 DDR 信号大幅压缩（3-class F1 下降 3.7–19.9 pp）；QLoRA 恢复（F1=0.89–0.91）仅是 within-model 5-fold CV，非 cross-generator LOGO——而 cross-generator transfer 正是论文核心卖点。Base→instruct 迁移 F1=0.490（Table 19），实际场景中递归生成几乎全来自 instruct/RLHF 模型。虽然标题已标注 \"Base-Model\"，但应更直接讨论 base model 场景的独立价值（如 pretraining corpus contamination 检测），并明确 QLoRA 恢复的评估局限性。\n\n### Should-Fix（影响评分但不一票否决）\n\n**W1** [R1 提出, R2 部分反驳] **DDR 描述性框架与分类任务之间的逻辑断层**\nDDR 是 post-hoc 解释性框架，分类器使用全部 7 个原始特征而非 DDR 分解后的 derived representation。R2 提供了有力反驳：LOFO 分析（Table 8-9）验证了两类特征独立贡献，ANOVA（Figure 7）量化了分区的统计显著性，DDR 类似于 bias-variance tradeoff 的解释角色。但两位 Reviewer 同意论文叙事在 \"DDR 解释分类\" 和 \"DDR 驱动分类\" 之间摇摆，需要修正 framing。\n\n**W2** [R1+R2 共识] **\"Entropy\" 术语全文误导性使用**\n§3.3 定义 \"entropy\" 为 reference-model NLL，但特征命名始终使用 entropy_mean、entropy_std 等，DDR 分析中讨论 \"entropy stability\" 可能使读者误解为信息论 entropy 的稳定性。此问题从 Round 32 起跨 14 轮反复出现。建议评估全文统一使用 \"NLL\" 或 \"ref-entropy\" 的可行性，至少在 Introduction 首次出现和 Table 1 中加强标注。\n\n**W3** [R2 提出, R1 同意] **OOD Detection 方法论连接缺失**\nNLL 统计特征与 OOD detection 方法论高度重叠，近期有 \"Human Texts Are Outliers\" 直接将 AI 文本检测重构为 OOD 问题。Related Work §2 应补充简要讨论，说明 depth profiling 与 OOD detection 的区别。\n\n**W4** [R1+R2 共识] **跨域实验规模过小 + Code 域性能下降未分析**\nAppendix j 每域仅 200 seeds × depth 3，Code 域 binary F1 降至 0.63 但缺乏原因分析。建议扩大规模或明确标注为 preliminary/exploratory，并讨论 Code 域下降原因。\n\n**W5** [R1+R2 共识] **Discussion §5 机制解释是 post-hoc 直觉**\nShape 稳定性归因于 \"log|V| bound\" 和 \"softmax geometry\" 是直觉性解释，非 formal verification。R1 指出 Pythia (50K vocab) 和 Qwen (150K+ vocab) 类似稳定性并不反驳（实际值远低于上界），但同意应标注为 hypothesis/conjecture。\n\n**W6** [R1 提出, R2 认同] **XGBoost 固定超参数未调优**\nn_estimators=200, max_depth=6, lr=0.1 接近默认值。Table 11 的 classifier sensitivity 分析部分缓解（LR 0.71, RF 0.725, XGBoost 0.762），但应补充一次 systematic tuning 结果。\n\n**W7** [R1+R2 共识] **5-class 深度分类性能主文讨论不足**\n5-class F1≈0.50（Table 5），表明深度分辨率被 bound 在约 3 classes。标题 \"Depth Profiling\" 暗示任意深度分类可能性，但主文几乎未讨论这一天花板。\n\n**W8** [R1 提出, R2 部分反驳] **泛化声明可能过度**\nAbstract/Conclusion 使用 \"empirical regularity\" 等强语言，但实验覆盖有限（≤8B 参数、英文 Wikipedia、主要 t=0.7）。R2 认为在当前覆盖范围内术语合理，但同意应加温度条件限定。\n\n---\n\n## Reviewer Consensus [AGREE]\n\n1. **研究问题新颖、实验设计严谨**——两位 Reviewer 一致认可任务定义的原创性和统计方法论的高水准\n2. **F1=0.694 实际意义有限**——gen-1/gen-2+ 核心区分接近 coin-flip，3-class F1 被 gen-0 拉高\n3. **Base-model-only 限制严重**——instruct 模型下信号退化，QLoRA 恢复非 cross-generator\n4. **温度敏感性削弱泛化声明**——t=0.9 F1 降 15%，主文讨论不足\n5. **DDR 更适合定位为 empirical finding 而非方法论贡献**\n6. **\"Entropy\" 术语需全文修正**\n7. **OOD detection 方法论连接缺失**\n8. **格式完全合规**（正文 ≤8 页、Limitations 存在、匿名化合规、AI 披露完整）\n9. **建议 Findings 接收**\n\n---\n\n## Reviewer Divergence [REBUT]\n\n1. **DDR 形式化断层的严重性**：R1 认为 DDR 与分类之间存在逻辑断层（critical），R2 反驳认为 DDR 作为解释性框架合理且有 LOFO/ANOVA 支撑（降级为 writing fix）。**Director 判断**：R2 论据更有力（LOFO Table 8-9 确实验证了两组特征的独立贡献），但 R1 的关切合理——论文叙事确实在 \"explains\" 和 \"drives\" 之间摇摆。降级为 Should-Fix (W1)。\n\n2. **泛化声明的合理性**：R1 认为 \"empirical regularity\" 过强，R2 认为在实验覆盖范围内合理但需加温度限定。**Director 判断**：温度限定是关键——加上条件后表述可接受。纳入 N1 的 action item。\n\n---\n\n## Questions\n\n1. 如果论文能展示至少一个 instruction-tuned 模型的 LOGO 评估结果（即使性能下降），是否足以回应 base-model-only 的关切？\n2. DDR 的 shape stability 是否有反例——是否存在某种生成条件（如极高温度 t≥1.2、或特定架构如 MoE）下 shape 也会漂移？\n3. Gen-1/gen-2+ 区分的 oracle 上限是多少？最佳单 generator 内分类性能 vs. 跨 generator 的 gap 有多大？\n\n---\n\n## Missing References\n\n1. **OOD detection 方法论文献**：NLL/perplexity-based OOD detection（如 \"Human Texts Are Outliers\", arXiv 2510.08602）——R2-W3, R1 同意\n2. **注**：R2-W2 建议补充与 concurrent work（Broken Telephone, Markovian Chains）的实证对比，R1 REBUT 认为标准过高。Director 判断：概念对比（Appendix z.8 Table 52）已充分，实证对比为 nice-to-have 而非 must-fix。\n\n---\n\n## External Review (Stanford Agentic Reviewer)\n\n外部审稿：未请求（项目配置未启用 external_review.paperreview_ai）。\n\n---\n\n## Visual Layout Check（非评分项）\n\n**状态**: done (完成于 2026-05-24 22:55 UTC)\n**总计**: 0 critical, 1 warning, 15 info\n\n**Warning:**\n- Page 16: Table 11（classifier comparison）和 Table 13（sampling sensitivity）列数较多，字号明显缩小。Table 13 有 7+ 列，部分数字在正常缩放下可读性差，建议检查 `\\resizebox` 调整。\n\n**Info highlights:**\n- Page 1: 首页无 display item，Figure 1 在 page 2 顶部。Abstract 信息密度高，影响有限。\n- Page 4: Figure 2 pipeline 图部分内部文字框字号偏小。\n- Page 6: Figure 4 单栏尺寸偏小，数据点和 axis labels 处于可读性下限，建议改为 figure*。\n- Page 7: 单页 3 个 display items（Figure 5 + Figure 6 + Table 3），信息密度极高但未溢出。\n- Page 36: 末页底部约 1/4 空白，作为附录最后一页可接受。\n\n整体排版质量良好，无 critical 问题。\n\n---\n\n## Overall Assessment\n\n**评分**: 3.5 / 5 — Borderline Conference\n**建议**: Findings 接收\n\n**置信度**: 4/5（两位 Reviewer 均对 AI text detection、distributional analysis 和 model collapse 领域熟悉）\n\n**理由**:\n论文定义了一个 genuinely novel 的任务（depth profiling），提供了 clean 的经验分解（DDR），实验设计和统计方法论的严谨程度在 ACL 社区中属 top-tier。这些优势使其适合 ACL 出版物。\n\n然而，四个核心问题限制了其主会议级别的影响力：(1) 中等性能（binary F1=0.694）下的实际价值论证不足；(2) 仅限 base model，instruct 模型下信号退化且缺 cross-generator 验证；(3) DDR shape stability 的新颖性可能从架构约束 trivially 推导；(4) 温度敏感性（t=0.9 降 15%）与 \"empirical regularity\" 泛化声明矛盾。\n\n综合来看，论文的 task formulation 和 empirical rigor 具有独立学术价值，适合 Findings 接收。若能充分回应 N1-N4（温度讨论、性能定位、新颖性论证、instruct scope），可重新考虑主会议。\n\n---\n\n## Detailed Comments\n\n### §1 Introduction\n- \"data provenance and corpus curation\" 动机偏强，与当前性能不匹配。建议加 \"feasibility\" 或 \"exploratory\" 限定。\n- 脚注 1 匿名 GitHub repo 合规，无泄露。\n\n### §3 Method\n- Table 1 特征命名建议从 entropy_* 改为 nll_* 或加注。\n- Figure 2 (c) LOGO 示意图中 \"evaluation folds on one generator\" 可改为 \"held-out generator\"。\n- §3.3 \"entropy\" 术语定义后续未一致执行。\n\n### §4 Results\n- §4.1: Binary F1=0.694 作为 primary metric 标注清晰，但应在此处讨论 gen-1/gen-2+ 错误率而非仅引用 Appendix。\n- §4.2: DDR 形式化定义清晰，k-means validation (sil=0.660) 有效。但 Cohen's d=0.20 阈值应注明来源或敏感性。\n- §4.3: 温度敏感性讨论不足，是最需要加强的段落。\n- Table 3: Binoculars binary F1=0.539 远低于其 binary detection SOTA，值得简要分析原因（设计目标不同）。\n\n### §5 Discussion\n- 机制解释（log|V|, softmax geometry）应标注为 hypothesis。\n- 与 model collapse 的区分（fixed parameters vs. weight updates）清晰有效。\n- ANOVA 方差分解（Figure 7）是论文最有力的统计证据之一。\n\n### §6 Conclusion\n- \"empirical regularity\" 需加温度和 base-model 条件限定。\n\n### Limitations\n- 内容充分（3 点：base models, English Wikipedia, depth resolution），但温度敏感性应作为第 4 点显著列出。\n\n### Appendix\n- 覆盖面极广，是论文最大优势之一。\n- Table 13 (p.16) 排版需优化（字号过小）。\n- Appendix i (error analysis) 核心发现应提升到主文。",
+              "project": "gen-depth-fingerprint",
+              "reviewer_ids_acknowledged": "[1, 2]",
+              "cross_response_reviewer_ids": "[1, 2]",
+              "overall_score": "3.5 - Borderline Conference (建议 Findings 接收)",
+              "review_chat_id": "oc_999770e4e57bfc6eabd12fc1f64af1ef"
+            }
+          },
+          "id": "event-004046"
+        },
+        {
+          "source_line": 4047,
+          "timestamp": "2026-05-24T23:10:57.594560+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_dbd68d7879a81efc0c108e9844b15d0b:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "tool": "mcp__agent-ml-research__submit_review_report_to_research_director",
+            "elapsed_ms": 3812
+          },
+          "id": "event-004047"
+        },
+        {
+          "source_line": 4048,
+          "timestamp": "2026-05-24T23:11:08.877882+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿报告已投递至 Research Director。\n\n**Round 51 审稿完成总结**：\n\n- **评分**: 3.5 / 5 (Borderline Conference)，建议 **Findings 接收**\n- **两位 Reviewer 评分一致**（均 3.5），交叉回应后高度共识（12 AGREE / 2 partial REBUT）\n- **4 个 Must-Fix**：温度敏感性讨论不足、F1=0.694 实际意义未论证、DDR 新颖性可能不足（shape stability trivially predictable）、base-model-only 限制实际价值\n- **8 个 Should-Fix**：DDR 框架定位、entropy 术语、OOD 方法论连接、跨域实验规模、机制解释标注、XGBoost 调参、5-class 讨论、泛化声明\n- **Issue Tracker 已同步**：新增 9 个 open issues（R51-N1~N5, R51-W1~W4）\n- **视觉审查**：已完成，0 critical / 1 warning（Table 13 字号）/ 15 info\n- **格式合规**：全部通过"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director"
+          },
+          "id": "event-004048"
+        }
+      ]
+    },
+    {
+      "number": 395,
+      "messages": [
+        {
+          "source_line": 4049,
+          "timestamp": "2026-05-24T23:11:11.460297+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿结果]:\n已完成对 Reviewer 1 审稿意见的逐条回应，已提交给 Review Director。\n\n总结：\n- **3 个 Must-Fix**：N1（温度敏感性）和 N2（F1=0.694 实际意义）[AGREE]；N3（DDR 形式化断层）[REBUT]——DDR 作为解释性框架有 LOFO/ANOVA 支撑，但同意叙事需要更精准区分\"解释\"和\"驱动\"。\n- **6 个 Should-Fix**：W1-W5 [AGREE]；W6（泛化声明过度）[REBUT]——在当前实验覆盖范围内 \"empirical regularity\" 可接受，但应加温度限定条件。\n- 两位 Reviewer 共识焦点：gen-1/gen-2+ 区分能力有限、base-model-only 限制、温度条件需限定。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-004049"
+        },
+        {
+          "source_line": 4050,
+          "timestamp": "2026-05-24T23:11:22.457793+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿报告已投递至 Research Director。\n\n**Round 51 审稿完成**。两位 Reviewer 均给出 3.5（Borderline Conference），经交叉回应后关键问题高度收敛（12 AGREE / 2 partial REBUT），1 轮即达成共识。\n\n**综合评分**：3.5 / 5 — Borderline Conference，建议 Findings 接收。\n\n**核心发现**：\n- 4 个 Must-Fix：温度敏感性主文讨论不足、F1=0.694 实际意义未论证、DDR 新颖性质疑（shape stability 可能 trivially predictable）、base-model-only 限制\n- 5 个 Should-Fix：DDR 框架 framing 修正、entropy 术语、OOD detection 缺失、跨域规模、机制解释标注\n- Issue Tracker 已同步（9 个 open issues: R51-N1~N5, R51-W1~W4）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_999770e4e57bfc6eabd12fc1f64af1ef:director"
+          },
+          "id": "event-004050"
+        }
+      ]
+    }
+  ]
+}

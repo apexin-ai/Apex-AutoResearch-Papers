@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "id": "2e534bb4f3d0d62fb107",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "writing related work",
+  "task_key": "worker_writing_related-work_20260515T043503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_related-work_20260515T043503_result.json",
+    "occurrence": 1,
+    "bytes": 2806,
+    "sha256": "cac1d189cc3e8d2485f6c26830ced2ff946de61f059cba231112e09218dda7e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入。报告：\n\n```json\n{\n  \"section\": \"related_work\",\n  \"word_count\": 716,\n  \"citations_needed\": [\n    \"detectgpt\", \"gltr\", \"dna_gpt\", \"binoculars\", \"fast_detectgpt\",\n    \"ld_score\", \"intrinsic_dimension\", \"diveye\", \"generator_barrier\",\n    \"feat_aug_transformer\", \"reliable_detection\", \"paraphrase_evades\",\n    \"detection_possibilities\", \"grover\", \"release_strategies\", \"jawahar_survey\",\n    \"self_consuming_mad\", \"curse_of_recursion\", \"strong_model_collapse\",\n    \"model_collapse_avoidable\", \"broken_telephone\", \"markovian_chains\",\n    \"curious_decline\", \"writing_diversity\", \"nucleus_sampling\",\n    \"mapping_llm_science\", \"monitoring_ai_review\",\n    \"stamatatos_survey\", \"koppel_authorship\", \"uchendu_attribution\",\n    \"dsir\", \"qurating\", \"ccnet\",\n    \"watermark_llm\", \"synthid_text\", \"aaronson_watermark\", \"chainwash\",\n    \"min_k_percent\", \"ood_baseline\"\n  ],\n  \"notes\": \"39 citations across 4 subsections. RC8 (OOD connection) addressed in §2.1 closing paragraph — explicitly states features are NLL-based OOD scores and positions contribution as formulation+empirics, not methodology. Broken Telephone / Markovian Chains / Curious Decline given detailed comparison as requested. ~716 words fits ~1 page in ACL two-column format.\"\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "section": "related_work",
+              "word_count": 716,
+              "citations_needed": [
+                "detectgpt",
+                "gltr",
+                "dna_gpt",
+                "binoculars",
+                "fast_detectgpt",
+                "ld_score",
+                "intrinsic_dimension",
+                "diveye",
+                "generator_barrier",
+                "feat_aug_transformer",
+                "reliable_detection",
+                "paraphrase_evades",
+                "detection_possibilities",
+                "grover",
+                "release_strategies",
+                "jawahar_survey",
+                "self_consuming_mad",
+                "curse_of_recursion",
+                "strong_model_collapse",
+                "model_collapse_avoidable",
+                "broken_telephone",
+                "markovian_chains",
+                "curious_decline",
+                "writing_diversity",
+                "nucleus_sampling",
+                "mapping_llm_science",
+                "monitoring_ai_review",
+                "stamatatos_survey",
+                "koppel_authorship",
+                "uchendu_attribution",
+                "dsir",
+                "qurating",
+                "ccnet",
+                "watermark_llm",
+                "synthid_text",
+                "aaronson_watermark",
+                "chainwash",
+                "min_k_percent",
+                "ood_baseline"
+              ],
+              "notes": "39 citations across 4 subsections. RC8 (OOD connection) addressed in §2.1 closing paragraph — explicitly states features are NLL-based OOD scores and positions contribution as formulation+empirics, not methodology. Broken Telephone / Markovian Chains / Curious Decline given detailed comparison as requested. ~716 words fits ~1 page in ACL two-column format."
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-related-work.md"
+}

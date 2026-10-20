@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e250251834e1b05ffe4e",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "compile check remote tex",
+  "task_key": "worker_compile_check-remote-tex_20260519T160839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compile_check-remote-tex_20260519T160839_result.json",
+    "occurrence": 1,
+    "bytes": 2386,
+    "sha256": "b8667ef0ae71e282a5e97af2c2d81719cf72b147a1a8c60c5d05791e7b1c388c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 远程 vs 本地 .tex 文件对比\n\n### 远程有的 .tex 文件（27个）\n\n| 文件 | 大小 | 本地有? |\n|------|------|---------|\n| `abstract.tex` | 1,250B | ✓ |\n| `appendix_ablation.tex` | 530B | ✓ |\n| `appendix_classifier.tex` | **0B (空)** | ✓ |\n| `appendix_confusion_matrix.tex` | 1,033B | ✓ |\n| `appendix_dataset_stats.tex` | 1,385B | ✓ |\n| `appendix_domain.tex` | 3,021B | ✓ |\n| `appendix_downstream.tex` | 2,178B | ✓ |\n| `appendix_error_analysis.tex` | 3,046B | ✓ |\n| `appendix_finer_depth.tex` | 3,562B | ✓ |\n| `appendix_human_edit.tex` | 6,520B | ✓ |\n| `appendix_length.tex` | 2,341B | ✓ |\n| `appendix_lofo.tex` | 1,580B | ✓ |\n| `appendix_prompt_type.tex` | 1,084B | ✓ |\n| `appendix_qlora.tex` | 2,722B | ✓ |\n| `conclusion.tex` | 765B | ✓ |\n| `discussion.tex` | 2,435B | ✓ |\n| `ethics.tex` | 802B | ✓ |\n| `introduction.tex` | 4,375B | ✓ |\n| `limitations.tex` | 3,860B | ✓ |\n| `main.tex` | 1,952B | ✓ |\n| `method.tex` | 10,729B | ✓ |\n| `related_work.tex` | 4,214B | ✓ |\n| `results.tex` | 8,823B | ✓ |\n| `table1.tex` | 968B | ✓ |\n| `table2.tex` | 721B | ✓ |\n| `table3.tex` | 800B | **远程有，本地无** |\n| `table4.tex` | 622B | ✓ |\n\n### 本地有但远程没有的 .tex 文件（14个）\n\n这些是本地新增的 appendix 文件，尚未同步到远程：\n\n- `appendix_cross_model_detail.tex`\n- `appendix_qualitative_examples.tex`\n- `appendix_generator_subsets.tex`\n- `appendix_tost.tex`\n- `appendix_feature_distributions.tex`\n- `appendix_cross_temp.tex`\n- `appendix_ddr_validation.tex`\n- `appendix_feature_correlation.tex`\n- `appendix_instruct.tex`\n- `appendix_seed_control.tex`\n- `appendix_transfer.tex`\n- `appendix_convergence.tex`\n- `appendix_temperature_stability.tex`\n\n### 辅助文件（远程）\n\n- `references.bib` (20,581B)、`acl_natbib.bst` (45,186B)、`acl.sty` (11,615B) — 本地均有\n\n### Figures 目录（远程，10个文件）\n\n`fig1_differential_response` (.pdf/.png)、`fig2_framework` (.pdf/.png)、`fig2_logo_performance` (.pdf/.png)、`fig3_baseline_comparison` (.pdf/.png)、`fig4_downstream_negative` (.pdf/.png)\n\n### 关键发现\n\n1. **远程 `appendix_classifier.tex` 为空文件**（0 字节）\n2. **`table3.tex` 远程有但本地缺失**\n3. **14 个本地新增 appendix 文件未同步到远程**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/compile-check-remote-tex.md"
+}

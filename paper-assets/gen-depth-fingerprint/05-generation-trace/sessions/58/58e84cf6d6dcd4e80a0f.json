@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "58e84cf6d6dcd4e80a0f",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "fix tail decay consistency",
+  "task_key": "worker_fix_tail_decay_consistency_20260520T073726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_tail_decay_consistency_20260520T073726.log",
+    "occurrence": 1,
+    "bytes": 593577,
+    "sha256": "35f2accb45d067216d38839bf2d90883e12db63cbd453831a3633cf7e076c446"
+  },
+  "statistics": {
+    "messages": 196,
+    "user_turns": 0,
+    "tool_calls": 73,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 44,
+      "tool_call": 73,
+      "tool_result": 73,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 196,
+      "chunks": [
+        {
+          "path": "58e84cf6d6dcd4e80a0f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "58e84cf6d6dcd4e80a0f-part-0002.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-tail-decay-consistency.md"
+}

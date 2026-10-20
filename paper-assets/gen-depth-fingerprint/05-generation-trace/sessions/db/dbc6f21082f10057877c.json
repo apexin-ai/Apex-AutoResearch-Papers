@@ -1,0 +1,706 @@
+{
+  "schema_version": "1.0",
+  "id": "dbc6f21082f10057877c",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "analysis plan 014 revalidation",
+  "task_key": "worker_analysis_plan-014-revalidation_20260515T035515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-014-revalidation_20260515T035515.log",
+    "occurrence": 1,
+    "bytes": 12713,
+    "sha256": "4ae632cda6f19547e375f669b1122e527c395ae37f02b87710fbce229b551374"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 3,
+      "tool_result": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+                "session_id": "ca02ae93-d84a-4818-9b45-bb03f80d9af1",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "9ceb2936-8361-45f2-86ed-294541da9418",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778824800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "9d3f402e-598c-4a3f-be8a-8a0d6cb448d1",
+                "session_id": "ca02ae93-d84a-4818-9b45-bb03f80d9af1"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by checking if PID 134823 is still running on the server.",
+              "signature": "EoECClkIDRgCKkB7yJBQrCzr8wbsfF5MyREL1HGR7ZiPo98YCfGOB6nA/82+jikhfC8UYNEbfWxUryKHgNCj4GJiv+aZj38Ry8J4Mg9jbGF1ZGUtb3B1cy00LTY4ABIMMZ+DgJKFom6loD4bGgzD9APAfmJixYoxtT8iMGsWQlhNjJqLlA4CJuB12ezKbHZ82wDUFMGfnzsmDvR1TwrE5ETzwN5KWIG6gX2voipWxtf3hWKcR3YbF/SONP+vgwmguT6X5tG0rs8ff5F7lJlQa2HyBdh2qVEZqWbIWbhVDnn6o2FC+asJVWsu7xSUVUpJ0WwUHQIGvBYsZl3IWizawaFeHV0YAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ca02ae93-d84a-4818-9b45-bb03f80d9af1",
+            "uuid": "0d1267c7-1f33-4a9f-ac6e-fd20b94f7e0c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D4PuHKseEGeR93Ew7Rmb64",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12388,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12388
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查 PID 134823 是否还在运行。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ca02ae93-d84a-4818-9b45-bb03f80d9af1",
+            "uuid": "2d92d3d0-b248-4d30-90e2-3cb9a2185295",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D4PuHKseEGeR93Ew7Rmb64",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12388,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12388
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XdPDWcGEeoeekntxmLuBao",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ca02ae93-d84a-4818-9b45-bb03f80d9af1",
+            "uuid": "f7b6c9c2-469c-45cc-b2cc-558688387f53",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D4PuHKseEGeR93Ew7Rmb64",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12388,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12388
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T03:55:27.737Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01XdPDWcGEeoeekntxmLuBao",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ca02ae93-d84a-4818-9b45-bb03f80d9af1",
+            "uuid": "61d9de84-5eaf-4a5c-b138-5733d004ec2a",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E9kJVAxf1QuiALohuEaG1S",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "ps -p 134823 -o pid,etime",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ca02ae93-d84a-4818-9b45-bb03f80d9af1",
+            "uuid": "eb2e6d12-9991-4788-beb8-6922020c12bd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QtZfLbdEeLryDut8yc9TET",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 477,
+                "cache_read_input_tokens": 24229,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 477
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T03:55:31.492Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E9kJVAxf1QuiALohuEaG1S",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED\\\\n134823    03:36:22\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ca02ae93-d84a-4818-9b45-bb03f80d9af1",
+            "uuid": "5087839c-0ddc-4037-916f-ff7ec8ed9225",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED\\\\n134823    03:36:22\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED\\n134823    03:36:22\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "PID 134823 is still running, elapsed time is 3:36:22 (3 hours 36 minutes). I need to wait for it to finish. Let me set up a loop to check every 60 seconds.",
+              "signature": "EtcCClkIDRgCKkD7GwRGYuINy0TzcYl3cKPhNfGPjYAR8aBWkWbwFY1AeAkDrn+VRbzOKp4Ov1r3BAq2HKMLgu7PPBgUpoHkwDqNMg9jbGF1ZGUtb3B1cy00LTY4ABIMaVvi/XiZOLDhjwGCGgyAUpDOGhVW+42Ooq4iMA0OnLTp1chkOfNAb7jaedhqodsJxTOwB1FZSj7PBbwzuZ4ZpuzJ5sop/o5GtUTIOyqrAdcUR554F1IAcqdgBzSS4BL431WBsbZgCa6nnJagtOuu20RQ1gMCrQJbX0euQ52/VSm9rL9TRmlAdwqLIxBaJJl4tmaNPlEuq4rmIXqN+q0oODR+F06o1N1dlNlL5VPIvZ0v1/66RrgUFFsjISdIqlm3Fg3t3rSonyiT9A/tixiT5+N0QopRq7mV7IG77FMwfsqjuY0F8/N0LB7fUZT//L1S9lUmdsEY4yWxQBgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ca02ae93-d84a-4818-9b45-bb03f80d9af1",
+            "uuid": "5e557017-51d8-4631-b388-2e4a28f3e867",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HB9WVscFB9PdChruUTN3Fx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 208,
+                "cache_read_input_tokens": 24706,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 208
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 134823 仍在运行（已运行 3h36m）。开始轮询等待完成。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ca02ae93-d84a-4818-9b45-bb03f80d9af1",
+            "uuid": "473b27a0-afbe-4126-bf85-d20cb1669765",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HB9WVscFB9PdChruUTN3Fx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 208,
+                "cache_read_input_tokens": 24706,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 208
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QVfPncVwLazRVs6ZGWU8Pk",
+              "name": "ScheduleWakeup",
+              "input": {
+                "delaySeconds": 60,
+                "reason": "polling PID 134823 on autodl-5090, check 1/40",
+                "prompt": "等 plan-014 完成 → 完整数据重算特征提取 + 6-gen LOGO — 继续轮询 PID 134823"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ca02ae93-d84a-4818-9b45-bb03f80d9af1",
+            "uuid": "0278d748-a134-4fde-91cc-b39f774f8956",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HB9WVscFB9PdChruUTN3Fx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 208,
+                "cache_read_input_tokens": 24706,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 208
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T03:55:38.328Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QVfPncVwLazRVs6ZGWU8Pk",
+              "type": "tool_result",
+              "content": "Next wakeup scheduled for 03:57:00 (in 82s)."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ca02ae93-d84a-4818-9b45-bb03f80d9af1",
+            "uuid": "a5f3f82d-d774-4403-867b-a906f2c3edc5",
+            "tool_use_result": {
+              "scheduledFor": 1778817420000,
+              "clampedDelaySeconds": 60,
+              "wasClamped": false
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程仍在运行，60 秒后再次检查。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ca02ae93-d84a-4818-9b45-bb03f80d9af1",
+            "uuid": "de5fd591-f2da-4b58-9de3-4275289b31b4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DWTBPuoM1kW4YvJY11eVAp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 282,
+                "cache_read_input_tokens": 24914,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 282
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程仍在运行，60 秒后再次检查。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 17217,
+            "duration_api_ms": 18043,
+            "num_turns": 4,
+            "stop_reason": "end_turn",
+            "session_id": "ca02ae93-d84a-4818-9b45-bb03f80d9af1",
+            "total_cost_usd": 0.14181375000000002,
+            "usage": {
+              "input_tokens": 8,
+              "cache_creation_input_tokens": 13355,
+              "cache_read_input_tokens": 85690,
+              "output_tokens": 526,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 13355,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 21,
+                  "cache_read_input_tokens": 24914,
+                  "cache_creation_input_tokens": 282,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 282
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2210,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00231,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 8,
+                "outputTokens": 526,
+                "cacheReadInputTokens": 85690,
+                "cacheCreationInputTokens": 13355,
+                "webSearchRequests": 0,
+                "costUSD": 0.13950374999999998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "1f7272e6-8ec3-435f-b870-6ae854445d59"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-plan-014-revalidation.md"
+}

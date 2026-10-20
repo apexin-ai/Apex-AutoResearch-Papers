@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "470de17f60bf99d2f80f",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "paper update crossmodel logo",
+  "task_key": "worker_paper_update-crossmodel-logo_20260520T032938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_update-crossmodel-logo_20260520T032938.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/paper-update-crossmodel-logo.md"
+}

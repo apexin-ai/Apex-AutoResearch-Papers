@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b73154fb6eb07de4303",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper figure fig3",
+  "task_key": "worker_paper_figure_fig3_20260515T043543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig3_20260515T043543_result.json",
+    "occurrence": 1,
+    "bytes": 378,
+    "sha256": "82fa29391848c89feab2b572ad8687e42f5f9b781afc6fcaef3386411266d10e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 3 已生成并注册：\n\n- **PDF**: `figures/paper/fig3_baseline_comparison.pdf`\n- **PNG**: `figures/paper/fig3_baseline_comparison.png` (300 dpi)\n- **Artifact ID**: `art_20260515_9591c4`\n\n图表要点：7-Feature Ensemble（实心蓝点）CI 仅 0.013 宽，其余 4 个单检测器 CI 宽度 0.18–0.26，ensemble 的一致性优势一目了然。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig3.md"
+}

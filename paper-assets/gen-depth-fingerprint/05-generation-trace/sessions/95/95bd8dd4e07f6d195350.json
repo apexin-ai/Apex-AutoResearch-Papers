@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95bd8dd4e07f6d195350",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "diagnose plan 002 qwen3 1 7b",
+  "task_key": "worker_diagnose_plan-002-qwen3-1_7b_20260514T211526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan-002-qwen3-1_7b_20260514T211526_result.json",
+    "occurrence": 1,
+    "bytes": 653,
+    "sha256": "643f487f310beb756308ae3c6192dec2fda0ad2023cacb0ba55b4e8c08c164a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断报告已写入 `artifacts/diag-qwen3-1_7b-sighup.md`。\n\n**总结**：\n\n| 项目 | 结论 |\n|------|------|\n| **直接原因** | 两个进程同时收到 SIGHUP (exit 129)，无任何 Python/CUDA/OOM 错误 |\n| **根因** | SSH 会话断开 → 内核向前台进程组广播 SIGHUP → 两个 shard 同时被杀 |\n| **数据损失** | ~100 seeds 的生成结果因 Python 缓冲区未 flush 全部丢失 |\n| **附带问题** | 两个 shard 都在 cuda:0 上运行（未指定 `--device cuda:1`） |\n| **修复** | ① tmux/nohup 隔离进程 ② s1 指定 `--device cuda:1` ③ 脚本加 `f.flush()` 防崩溃丢数据 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan-002-qwen3-1-7b.md"
+}

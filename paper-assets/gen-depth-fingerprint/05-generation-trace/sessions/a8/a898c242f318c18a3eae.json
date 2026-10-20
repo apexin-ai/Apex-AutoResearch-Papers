@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a898c242f318c18a3eae",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan 003 cross family ref",
+  "task_key": "worker_code_plan-003-cross-family-ref_20260515T000733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-003-cross-family-ref_20260515T000733_result.json",
+    "occurrence": 1,
+    "bytes": 843,
+    "sha256": "019e194aa580c55722fa42daed55898d4f8c0154e079f744de36837a43e4a262"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "plan-003 全部完成，已补注册实验和产出物。\n\n**总结：**\n\n| 项目 | 状态 |\n|------|------|\n| `extract_features_crossref.py` | 已存在，支持 `--reference-model` / `--device` 参数 |\n| `features_ref_olmo.csv` (OLMo-2-1B ref) | 23032 行，5 生成器 |\n| `features_ref_qwen.csv` (Qwen3-0.6B ref) | 23032 行，5 生成器 |\n| `cross_ref_analysis.py` + `cross_ref_results.json` | 完整分析（Spearman ρ + entropy drift + LOGO 3-class） |\n| 实验注册 | `plan-003-olmo2ref` / `plan-003-qwen06bref` → DONE/success |\n\n**核心发现：** entropy_mean drift 在 3 个参考模型（Pythia-410M / OLMo-2-1B / Qwen3-0.6B）下均为负漂移，所有 5 个生成器方向一致。LOGO macro-F1 ≈ 0.82。假设成立——dual dynamics 是生成链内在属性，非参考模型 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-003-cross-family-ref.md"
+}

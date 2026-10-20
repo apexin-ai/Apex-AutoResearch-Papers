@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "472e6fc6feb19dd40b4d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper sampling ablation appendix",
+  "task_key": "worker_paper_sampling-ablation-appendix_20260515T203008",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_sampling-ablation-appendix_20260515T203008_result.json",
+    "occurrence": 1,
+    "bytes": 686,
+    "sha256": "a49e8c4881d3a4f95d39ceec22d28dda65e62cd6d359c6d44c4983dfe406ce8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。三处修改，两份副本已同步：\n\n1. **appendix_classifier.tex** — 末尾新增 `Sampling Sensitivity Analysis` 段落，含 3 行 table 和 ~130 words 分析（low/default 差异 <0.3pp，high temp 退化 ~6pp，entropy 相关性从 -0.69 塌缩到 ~0，解释为高温随机性压平深度漂移信号）\n\n2. **discussion.tex** — \"Why are shape features stationary?\" 段落末尾（hypothesis flag 前）插入一句 sampling ablation 总结，引用 appendix\n\n3. **limitations.tex** — 原来的 \"fixed decoding parameters...open question\" 句子替换为引用 ablation 结果的定量描述，将 open question 转为已有初步答案"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-sampling-ablation-appendix.md"
+}

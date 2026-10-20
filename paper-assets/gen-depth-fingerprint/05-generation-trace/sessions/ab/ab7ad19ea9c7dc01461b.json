@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab7ad19ea9c7dc01461b",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code seed stratification",
+  "task_key": "worker_code_seed-stratification_20260517T001255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_seed-stratification_20260517T001255_result.json",
+    "occurrence": 1,
+    "bytes": 583,
+    "sha256": "ec6993d9242d1db85fc838c5c7878cd7ef613b7bf2e6977a3e1652e6be7dd683"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已保存到 `/root/gen-depth-fingerprint/experiments/seed_stratification/seed_stratification_results.json`。\n\n**结论：`seed_independent`**\n\n各组 F1 差异极小：\n| Group | Binary F1 | Multiclass F1 |\n|-------|-----------|---------------|\n| low_complexity | 0.6847 | 0.7724 |\n| medium | 0.6950 | 0.7779 |\n| high_complexity | 0.6953 | 0.7792 |\n\n- 最大组间差异 (binary): **1.06pp** (远低于 5pp 阈值)\n- 最大组间差异 (multiclass): **0.68pp**\n\nDepth fingerprint 的判别能力不依赖 seed 文本的词汇复杂度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-seed-stratification.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a21fe0c44b28fb2ee8c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper n2a bootstrap ci",
+  "task_key": "worker_paper_n2a-bootstrap-ci_20260516T054107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_n2a-bootstrap-ci_20260516T054107_result.json",
+    "occurrence": 1,
+    "bytes": 945,
+    "sha256": "78219d1e2307ca8b425bc9a7ae86ee864ece933ee7533e30f182a776b4eb5296"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Here's a summary of what was computed and added:\n\n**Key numbers:**\n- **Paired bootstrap 95% CI** (size-matched − depth 0-1): **[−0.0203, −0.0193]** — excludes zero, all 3 seeds consistently favor size-matched\n- **Paired bootstrap 95% CI** (all − size-matched): **[−0.0326, −0.0316]** — data quantity effect\n- **Cohen's d = −34.8**, **Hedges' g = −19.9** for size-matched vs depth 0-1\n\n**Changes to `appendix_downstream.tex`:**\n1. Added **Boot 95% CI column** to Table 5 (10,000 seed-level resamples)\n2. Added **paired bootstrap CI** for the two key comparisons in the text\n3. Added **Hedges' g** alongside Cohen's d\n4. Added **Statistical caveats paragraph** explaining the n=3 limitation: bootstrap with 3 observations produces only 10 distinct means; narrow CIs reflect low seed variance, not high statistical confidence; document-level bootstrap not possible (no per-sample losses retained)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-n2a-bootstrap-ci.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e86abbf91d98a3449388",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "research reference search",
+  "task_key": "worker_research_reference-search_20260517T170729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_reference-search_20260517T170729_result.json",
+    "occurrence": 1,
+    "bytes": 846,
+    "sha256": "89da545bfe30b7ce075c32da88cfecd05d5fe69d1e3eaf806d374d65c0011f7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两篇论文均已验证为真实存在：\n\n1. **Hammoudeh & Lowd 2024** — \"Training Data Influence Analysis and Estimation: A Survey\"，发表于 Machine Learning (Springer), Vol. 113, pp. 2351-2403, DOI: 10.1007/s10994-023-06495-7。与 depth fingerprinting 相关性中等（训练数据影响分析的综述，概念相关但非直接相关工作）。\n\n2. **Kumarage et al. 2023** — \"Stylometric Detection of AI-Generated Text in Twitter Timelines\"，arXiv:2303.03697，作者6人（Kumarage, Garland, Bhattacharjee, Trapeznikov, Ruston, Liu）。与 depth fingerprinting 相关性高（直接使用 stylometric 特征检测 AI 生成文本）。\n\n两篇论文目前均未在我们的 bib 文件中引用。验证报告和建议的 BibTeX 条目已写入 `artifacts/_project/results/reference_verification.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-reference-search.md"
+}

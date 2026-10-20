@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "1d5b8b9795e254fa95e3",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "figure ddr trajectory main",
+  "task_key": "worker_figure_ddr_trajectory_main_20260520T133127",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_ddr_trajectory_main_20260520T133127_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "e3f9f6a06e8d7364487c2aa6868b386006c4584ec63643b7681dc262bb345450"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Could not process image\"},\"request_id\":\"req_011CbDvWyJr2bSqmgjKrCyx6\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "type": "invalid_request_error",
+                "message": "Could not process image"
+              },
+              "request_id": "req_011CbDvWyJr2bSqmgjKrCyx6"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-ddr-trajectory-main.md"
+}

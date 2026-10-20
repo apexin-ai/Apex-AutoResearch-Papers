@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2cef72566f435061b6ee",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops instruct numbers confirm",
+  "task_key": "worker_ops_instruct-numbers-confirm_20260516T170917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_instruct-numbers-confirm_20260516T170917_result.json",
+    "occurrence": 1,
+    "bytes": 1932,
+    "sha256": "5aa1067a6d01bbde5b6032dfc4c00bf797853fd49a16fc5bf3e7fc3a4087da0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Instruct 实验精确数字摘要\n\n### OLMo-2-0425-1B-Instruct\n```\nLOGO 3-class macro F1:  0.3379  [95% CI: 0.325 – 0.351]\nBinary F1:              0.4255  [95% CI: 0.413 – 0.439]\n对应 base (OLMo-2-1B):  0.7633  [95% CI: 0.752 – 0.774]  (3-class)\n                         0.7944  [95% CI: 0.782 – 0.805]  (binary)\nDelta (instruct−base):  −0.4254 (3-class)\nEvaluation scope:       7-gen LOGO (instruct 作为 held-out generator)\n训练集包含 instruct 数据: 否 (LOGO held-out)\n```\n\n### Qwen3-0.6B-Instruct\n```\nLOGO 3-class macro F1:  0.6674  [95% CI: 0.656 – 0.679]\nBinary F1 (gen0 vs 1+): 0.9883\n对应 base (Qwen3-0.6B): 0.8158  [95% CI: 0.805 – 0.827]  (3-class)\n                         0.9876  (binary)\nDelta (instruct−base):  −0.1484 (3-class)\nEvaluation scope:       7-gen LOGO (instruct 作为 held-out generator)\n训练集包含 instruct 数据: 否\n```\n\n### Qwen3-1.7B-Instruct\n```\nLOGO 3-class macro F1:  0.5434\nBinary F1:              0.6582\n对应 base (Qwen3-1.7B): 0.8023 (3-class)\n                         0.8208 (binary)\nDelta (instruct−base):  −0.2589 (3-class)\nEvaluation scope:       7-gen LOGO (instruct 作为 held-out generator)\n训练集包含 instruct 数据: 否\n```\n\n### 共同特征\n- 三个 instruct 模型均为 **7-gen LOGO** 评估（6 个 base + 1 个 instruct，instruct 作为 held-out）\n- instruct tuning 一致降低 depth signal，delta 范围 −0.15 ~ −0.43\n- OLMo-Instruct 退化最严重（F1 仅 0.34），Qwen3-0.6B-Instruct 相对最好（0.67）\n- `review_p1c_instruct.json` 是 Qwen3-1.7B-Instruct 的 Spearman 相关分析（无 LOGO F1），`p1c_instruct_logo_f1.json` 包含其 LOGO F1\n- `instruct_length_confound.json` 确认三个 instruct 模型均存在 length confound（depth 与 length 的 |ρ| = 0.37–0.58），但 partial correlation 控制 length 后 entropy reversal 仍然存活"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-instruct-numbers-confirm.md"
+}

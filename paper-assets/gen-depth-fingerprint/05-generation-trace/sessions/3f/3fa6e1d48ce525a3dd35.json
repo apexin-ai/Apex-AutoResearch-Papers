@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fa6e1d48ce525a3dd35",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "check plan 016 status and extract",
+  "task_key": "worker_check_plan-016-status-and-extract_20260516T100202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_plan-016-status-and-extract_20260516T100202_result.json",
+    "occurrence": 1,
+    "bytes": 1770,
+    "sha256": "919ed3a003269235bc58ac8acb953a6dc2b09ff3e1dfefe1ead7c2227750ad69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the summary:\n\n```\n=== STATUS SUMMARY ===\n| Generator       | Status      | Seeds    | Records | Degenerate Rate | Depth Retention |\n|-----------------|-------------|----------|---------|-----------------|-----------------|\n| Llama rp=1.0    | RUNNING 55% | 547/995  |   2523  |           2.9%  |          86.8%  |\n| Llama rp=1.1    | RUNNING 31% | 304/995  |   1291  |           0.0%  |          73.5%  |\n| Gemma rp=1.0    | RUNNING 56% | 552/994  |   2724  |          10.0%  |          99.6%  |\n| Mistral rp=1.0  | RUNNING 59% | 588/996  |   2807  |           1.2%  |          92.6%  |\n\nGPU assignment: cuda:0=Llama, cuda:1=Gemma, cuda:2=Mistral, cuda:3=Llama-rp11\nExpected completion: all ~1.5-2h from now\n\n=== rp-LOFO RESULT ===\nBLOCKED — Llama rp=1.1 generation only 31% complete\n\n=== ACTIONS TAKEN ===\n- Feature extraction: BLOCKED (no generation complete)\n- rp-LOFO: BLOCKED (depends on feature extraction)\n- Gemma rp=1.1: NEEDED (10.0% > 5%) — will start when Gemma rp=1.0 finishes, pending GPU availability\n- Mistral rp=1.1: NOT NEEDED (1.2% < 5%)\n```\n\n**Key observations:**\n- Gemma rp=1.0 has **10% degenerate rate** — highest of all, rp=1.1 will be needed\n- Llama rp=1.1 has **0% degenerate rate** — rp=1.1 fully fixes Llama's 2.9% degeneracy\n- Llama rp=1.1 depth retention drops to **73.5%** (vs 86.8% at rp=1.0) — expected tradeoff\n- Mistral is clean at 1.2% degenerate — no intervention needed\n\n**Next actions when generations complete:**\n1. Gemma rp=1.1 generation (cuda:1, after Gemma rp=1.0 finishes)\n2. Feature extraction for Llama rp=1.1 with 3 reference models (Pythia-410M, OLMo-2-1B, Qwen3-0.6B — all cached at `/root/autodl-tmp/models/`)\n3. rp-LOFO evaluation"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-plan-016-status-and-extract.md"
+}

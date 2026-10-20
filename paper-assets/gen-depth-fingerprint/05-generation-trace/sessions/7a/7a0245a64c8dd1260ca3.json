@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a0245a64c8dd1260ca3",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis skewness kurtosis ablation",
+  "task_key": "worker_analysis_skewness_kurtosis_ablation_20260521T062423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_skewness_kurtosis_ablation_20260521T062423_result.json",
+    "occurrence": 1,
+    "bytes": 958,
+    "sha256": "05bfaac89bea80b9f48b3703075a7ff8799f5a9226810feb2aac83e4b149b5fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**Phase A（全量 37K 数据）**：加 cv 到 7-feature set 仅提升 +0.001 F1，可忽略。\n\n**Phase B（1000 样本 token-NLL 子集）**：\n\n| 证据维度 | 结果 |\n|---------|------|\n| **LOGO** | 加全部 6 个候选特征反而降低 3-class F1（0.733→0.722），无一对候选组合在两个任务上同时提升 |\n| **LOFO** | 从 12 特征集中去掉 skewness/median/IQR 反而提升 F1（正 delta），说明它们引入噪声 |\n| **DDR** | 全部 6 个候选特征都落在 drifting 区（\\|ρ\\|>0.63, d>0.77），与现有 entropy_mean/std 完全重叠 |\n| **相关性** | median↔entropy_mean r=0.96, IQR↔entropy_std r=0.91, p90↔entropy_mean r=0.94 — 近乎完美线性冗余 |\n\n排除理由清晰：候选特征与现有 7 features 高度冗余，不提供新的判别维度。\n\n报告已保存到 `artifacts/_project/analysis/skewness_kurtosis_ablation.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-skewness-kurtosis-ablation.md"
+}

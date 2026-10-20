@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b303c9fc2920ffd47371",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "research literature scan pre paper",
+  "task_key": "worker_research_literature-scan-pre-paper_20260515T024552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-scan-pre-paper_20260515T024552_result.json",
+    "occurrence": 1,
+    "bytes": 1964,
+    "sha256": "4cc0688f8e36989d80ab602b606117e412268364d60419ef1095a4294e546c4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "literature_map.yaml 已更新（35 → 39 篇）。总结如下：\n\n## paper_framing 必引论文覆盖检查\n\n9 篇全部已在 map 中，无缺失：\n- Guo et al. 2024 (`curious_decline`) ✓\n- Padmakumar & He 2024 (`writing_diversity`) ✓\n- Holtzman et al. 2020 (`nucleus_sampling`) ✓\n- Stamatatos 2009 (`stamatatos_survey`) ✓\n- Koppel et al. 2009 (`koppel_authorship`) ✓\n- LLM as Broken Telephone ACL 2025 (`broken_telephone`) ✓\n- Shi et al. 2024 (`min_k_percent`) ✓\n- Kirchenbauer et al. 2023 (`watermark_llm`) ✓\n- CCNet / Wenzek et al. 2020 (`ccnet`) ✓\n\n## 新增 4 篇论文\n\n| ID | 论文 | 类型 | 与项目关联 |\n|---|---|---|---|\n| `diveye` | Basani & Chen, **\"Diversity Boosts AI-Generated Text Detection\"**, TMLR 2026 (arxiv 2509.18880) | **新发现** | 用 surprisal diversity 做检测，人类文本离散度/尾部更重——与本项目 shape 特征（entropy_std, tail_decay）直接可比，zero-shot 超 SOTA 33.2% |\n| `generator_barrier` | Pu et al., **\"Breaking the Generator Barrier\"**, arXiv 2604.13692 | **新发现** | 解耦表征做跨生成器泛化检测（20 LLM），与本项目 LOGO 评估目标一致，方法论互补（表征学习 vs 特征工程） |\n| `feat_aug_transformer` | Mady et al., **\"Feature-Augmented Transformers for Robust AI-Text Detection\"**, arXiv 2605.03969 | **新发现** | 语言特征增强 Transformer 跨域迁移，验证了语言特征对泛化性的价值，支撑本项目特征工程路线 |\n| `chainwash` | Ameen et al., **\"Chainwash: Multi-Step Rewriting Attacks on Watermarks\"**, arXiv 2605.05503 | **新发现** | 5-hop 重写链将水印检测率从 87.9% 降到 4.86%，直接证明生成链深度影响检测信号，支撑 depth fingerprint 的非水印被动检测定位 |\n\n近 2 周搜索未发现直接做 **generation depth estimation** 的竞争论文——本项目的 ordinal depth estimation 任务仍属独创。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-scan-pre-paper.md"
+}

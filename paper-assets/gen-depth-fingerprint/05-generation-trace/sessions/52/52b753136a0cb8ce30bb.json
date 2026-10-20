@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52b753136a0cb8ce30bb",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops check eta 007 008",
+  "task_key": "worker_ops_check-eta-007-008_20260515T212342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-eta-007-008_20260515T212342_result.json",
+    "occurrence": 1,
+    "bytes": 1856,
+    "sha256": "76f02609ebd051f4788cbeb1547a0db4a895f362619175546f52813b4b7668de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度报告\n\n### Plan-007: Cross-Model Chains (cuda:2 + cuda:3)\n\n| 指标 | 值 |\n|------|-----|\n| **Phase** | generate |\n| **当前位置** | Depth 3/5, generator 1/5 (olmo-2-1b) |\n| **Shard 0 进度** | d3/olmo-2-1b: 42/104 seeds (40%), ~2.33s/it |\n| **Shard 1 进度** | d3/olmo-2-1b: 64/109 seeds (59%), ~2.27s/it |\n| **产出** | 1514 + 1541 = 3055 lines |\n| **总体完成** | ~42% (d1+d2 done, d3 刚开始) |\n| **运行时间** | 45 min |\n| **GPU** | cuda:2 47%, cuda:3 47%, 各占 ~6.4GB VRAM |\n| **预估 ETA** | **~60 min 后完成** (~06:25 UTC) |\n\n每个 depth 约 21 min（5 个 generator × ~4 min each + model loading），剩余 d3 大部分 + d4 + d5。\n\n---\n\n### Plan-008: Multi-Domain Seeds (cuda:0)\n\n| 指标 | 值 |\n|------|-----|\n| **Phase** | generate（--phase all，generate 完后还有 extract + evaluate） |\n| **运行时间** | 2h 55m |\n| **Domain 进度** | |\n| — news | 3115 lines ✓ 完成 |\n| — scientific | 2316 lines ✓ 完成 |\n| — creative | 948 lines 🔄 生成中 |\n| **Generate 阶段完成** | ~70%（2/3 domain 完成） |\n| **GPU** | cuda:0 63%, ~6.1GB VRAM |\n| **预估 ETA** | generate 还需 **~45-70 min**，之后 extract+evaluate **~30-60 min** |\n\nCreative domain 产出速度约 30 lines/min，如果目标与 scientific 类似（~2300 lines），generation 约 06:10 UTC 完成；如果与 news 类似（~3100 lines），约 06:30 UTC。整个 plan-008 pipeline（含 extract+evaluate）预计 **07:00-07:30 UTC** 全部完成。\n\n---\n\n### GPU 总览\n\n| GPU | 利用率 | 显存占用 | 任务 |\n|-----|--------|----------|------|\n| cuda:0 | 63% | 6.1/32.6 GB | plan-008 multi-domain |\n| cuda:1 | 0% | 0.6/32.6 GB | 空闲 |\n| cuda:2 | 47% | 6.4/32.6 GB | plan-007 shard 0 |\n| cuda:3 | 47% | 6.4/32.6 GB | plan-007 shard 1 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eta-007-008.md"
+}

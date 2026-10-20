@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73d8cbf423e1b9b0f5a1",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis fig regen",
+  "task_key": "worker_analysis_fig-regen_20260515T073125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fig-regen_20260515T073125_result.json",
+    "occurrence": 1,
+    "bytes": 1160,
+    "sha256": "91480cfde08e33ff3da273b18cf9aa8189edbaeca4c76bfdb950f7b386768d78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两张图已生成并下载到本地。\n\n**Fig1 — Differential Depth Response (Spearman bar chart)**:\n从完整数据 (n=27529) 重新计算的 Spearman ρ：\n\n| Feature | 100% 数据 ρ | 论文 82% 值 |\n|---------|------------|------------|\n| hapax_ratio | **-0.647** | -0.558 |\n| TTR | **-0.630** | -0.542 |\n| entropy_mean | **-0.610** | -0.475 |\n| entropy_std | **-0.200** | 0.076 |\n| tail_decay | **-0.040** | 0.089 |\n| entropy_min | -0.406 | — |\n| entropy_max | 0.050 | — |\n\n注意：entropy_std 在完整数据中 |ρ|=0.200，远大于论文中的 0.076，分类为 \"near-stationary\" 可能需要重新讨论。\n\n**Fig3 — Baseline Comparison (forest plot)**:\n目前只包含 3 个有数据的方法（6-gen LOGO）：\n- 7-Feature Ensemble: 0.789 CI=[0.744, 0.828]\n- Avg Log-Prob: 0.759 CI=[0.738, 0.785]\n- FastDetectGPT: 0.717 CI=[0.691, 0.748]\n\n任务中提到的 LD-Score (0.721) 和 Binoculars (0.579) 在服务器上没有计算数据（detector_baseline_results.json 标记为 skipped）。是否需要将这两个 baseline 用任务提供的固定值加入图中（无 CI/per-generator range）？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fig-regen.md"
+}

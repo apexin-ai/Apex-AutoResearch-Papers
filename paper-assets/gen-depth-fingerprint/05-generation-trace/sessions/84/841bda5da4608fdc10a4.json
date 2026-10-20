@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "841bda5da4608fdc10a4",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper minor fixes server",
+  "task_key": "worker_paper_minor-fixes-server_20260517T175018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_minor-fixes-server_20260517T175018_result.json",
+    "occurrence": 1,
+    "bytes": 1148,
+    "sha256": "40db88a572ab5aca6655eef41155a2d54f6161d0da2d2984f0b647dea22a0c7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both fixes applied. Summary:\n\n---\n\n**Fix 6 (R11-M7): Figure 3 PNG→PDF**\n- `results.tex` line 112: changed `fig3_baseline_comparison.png` → `fig3_baseline_comparison.pdf`\n- The PDF already existed both on the server and locally; no file copy needed.\n\n**Fix 10 (R12-M3): Generation failure rate causes**\n- `method.tex` line 33: replaced vague \"after removing generation failures, exact duplicates, and passages shorter than 50 tokens\" with exact numbers.\n- Server investigation results:\n  - Theoretical total: 39,815 (not ~40,000)\n  - **Chain breaks: 2,746** — caused by empty/degenerate outputs at intermediate depths (`len(output) == 0` or `len(input) < 10`), which halted the chain and lost all remaining depths for that seed\n  - **Feature extraction filter: 11** — texts too short for NLL computation\n  - **Exact duplicates: 0** — none found in the current 8-gen dataset\n  - Final: 37,058\n- The original wording listed three causes (failures, duplicates, short passages), but the actual data shows almost entirely chain breaks (99.6% of the loss), with no duplicates and negligible short-text filtering."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-minor-fixes-server.md"
+}

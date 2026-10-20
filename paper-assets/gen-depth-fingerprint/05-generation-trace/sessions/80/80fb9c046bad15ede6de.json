@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80fb9c046bad15ede6de",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "knowledge update paper framing headline",
+  "task_key": "worker_knowledge_update-paper-framing-headline_20260515T034151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_update-paper-framing-headline_20260515T034151_result.json",
+    "occurrence": 1,
+    "bytes": 548,
+    "sha256": "ff79f29e009c23ac660530f0b5e1c69ae36d546c029669c70b91314f979374dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Headline template 已更新。变更内容：\n\n- `X` → `0.82`（within-generator macro-F1）\n- `Y` → `0.80`（LOGO generalization）\n- 删除了 `\"Depth-aware filtering preserves Z% more downstream task performance compared to binary filtering baselines.\"` \n- 替换为 negative finding 表述：`\"Depth-aware data curation does not outperform random subsampling for downstream CLM quality, establishing depth fingerprinting as a diagnostic tool for provenance characterization, not a curative tool for data selection.\"`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-update-paper-framing-headline.md"
+}

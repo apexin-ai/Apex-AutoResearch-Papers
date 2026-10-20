@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f704a134d795369f845a",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "figure baseline comparison v2",
+  "task_key": "worker_figure_baseline_comparison_v2_20260520T144802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_baseline_comparison_v2_20260520T144802_result.json",
+    "occurrence": 1,
+    "bytes": 527,
+    "sha256": "b5a2c33b0de0bf7bc3e532958bd9b838add4c67028221798c859ccc5294ade94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "生成完成。\n\n- **脚本**：`/root/gen-depth-fingerprint/scripts/plot_fig3_baseline_v2.py`\n- **输出**：`fig3_baseline_comparison.pdf` (19KB) + `.png` (74KB)\n- **数据源**：`8gen_table3_v6_unified.json`（pooled LOGO 8-fold binary F1）+ `efficiency_comparison.json`（推理耗时）\n- **7 个方法**：4-Det+Surface / DDR 7-Feature (ours, 红色菱形+浅红背景) / 4-Det Ensemble / LM-D Score / Avg Log-Prob / Fast-DetectGPT / Binoculars，按 F1 降序排列，右侧灰色标注推理耗时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-baseline-comparison-v2.md"
+}

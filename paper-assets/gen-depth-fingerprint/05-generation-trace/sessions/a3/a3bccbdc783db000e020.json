@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "id": "a3bccbdc783db000e020",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "writing introduction",
+  "task_key": "worker_writing_introduction_20260515T044002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_introduction_20260515T044002_result.json",
+    "occurrence": 1,
+    "bytes": 4401,
+    "sha256": "406eb08cca6b45a938650a165482fe5c40f0a2fc4505879e401c0b945f6473f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"section\": \"introduction\",\n  \"file\": \"artifacts/_project/paper/introduction.tex\",\n  \"artifact_id\": \"art_20260515_4bbcfd\",\n  \"estimated_length\": \"~1.5 pages (ACL two-column)\",\n  \"structure\": [\n    \"Motivation & Context — web data contamination, recursive chains\",\n    \"Problem Definition — ordinal depth estimation vs binary detection\",\n    \"Limitations of Prior Work — binary detectors high variance when repurposed\",\n    \"Core Finding — differential depth response → 7-feature ensemble → LOGO F1=0.79\",\n    \"Negative Finding — diagnostic not curative\",\n    \"Contributions (3 items)\",\n    \"Organization roadmap\"\n  ],\n  \"claims_mapped\": {\n    \"C1 (Depth Discriminability)\": \"Contribution 2 — LOGO F1=0.79 [0.786,0.799], per-gen 0.69-0.85, plan-014\",\n    \"C2 (Differential Depth Response)\": \"Contribution 2 — drifting vs stationary features, complementarity, plan-014/plan-015\",\n    \"C3 (Downstream Negative)\": \"Contribution 3 — size_matched 2.367 vs depth01 2.387, plan-004-v2\"\n  },\n  \"framing_constraints_satisfied\": {\n    \"differential_depth_response\": true,\n    \"no_dual_dynamics_or_H1H2\": true,\n    \"empirical_conceptual_positioning\": true,\n    \"no_feature_novelty_overclaim\": true,\n    \"OOD_connection\": \"reference-model entropy linked to NLL-based OOD scores via \\\\cite{ood_baseline}\",\n    \"realistic_performance_range\": \"0.69-0.85 per-gen, 0.79 LOGO avg\",\n    \"negative_claim_honest\": true,\n    \"no_first_claim\": true,\n    \"no_AI_trace\": true\n  },\n  \"consistency_checks\": {\n    \"terminology_matches_method\": \"gen-0/gen-1/gen-2+, 7-feature ensemble, LOGO, differential depth response\",\n    \"terminology_matches_related_work\": \"binary limitation framing, broken_telephone/markovian_chains refs, OOD connection\",\n    \"cite_keys_reused\": [\"fast_detectgpt\", \"binoculars\", \"ld_score\", \"detectgpt\", \"broken_telephone\", \"markovian_chains\", \"ood_baseline\", \"mapping_llm_science\", \"monitoring_ai_review\"],\n    \"section_labels\": \"\\\\ref{sec:related}, \\\\ref{sec:method}, \\\\ref{sec:results}, \\\\ref{sec:discussion}\"\n  }\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "section": "introduction",
+              "file": "artifacts/_project/paper/introduction.tex",
+              "artifact_id": "art_20260515_4bbcfd",
+              "estimated_length": "~1.5 pages (ACL two-column)",
+              "structure": [
+                "Motivation & Context — web data contamination, recursive chains",
+                "Problem Definition — ordinal depth estimation vs binary detection",
+                "Limitations of Prior Work — binary detectors high variance when repurposed",
+                "Core Finding — differential depth response → 7-feature ensemble → LOGO F1=0.79",
+                "Negative Finding — diagnostic not curative",
+                "Contributions (3 items)",
+                "Organization roadmap"
+              ],
+              "claims_mapped": {
+                "C1 (Depth Discriminability)": "Contribution 2 — LOGO F1=0.79 [0.786,0.799], per-gen 0.69-0.85, plan-014",
+                "C2 (Differential Depth Response)": "Contribution 2 — drifting vs stationary features, complementarity, plan-014/plan-015",
+                "C3 (Downstream Negative)": "Contribution 3 — size_matched 2.367 vs depth01 2.387, plan-004-v2"
+              },
+              "framing_constraints_satisfied": {
+                "differential_depth_response": true,
+                "no_dual_dynamics_or_H1H2": true,
+                "empirical_conceptual_positioning": true,
+                "no_feature_novelty_overclaim": true,
+                "OOD_connection": "reference-model entropy linked to NLL-based OOD scores via \\cite{ood_baseline}",
+                "realistic_performance_range": "0.69-0.85 per-gen, 0.79 LOGO avg",
+                "negative_claim_honest": true,
+                "no_first_claim": true,
+                "no_AI_trace": true
+              },
+              "consistency_checks": {
+                "terminology_matches_method": "gen-0/gen-1/gen-2+, 7-feature ensemble, LOGO, differential depth response",
+                "terminology_matches_related_work": "binary limitation framing, broken_telephone/markovian_chains refs, OOD connection",
+                "cite_keys_reused": [
+                  "fast_detectgpt",
+                  "binoculars",
+                  "ld_score",
+                  "detectgpt",
+                  "broken_telephone",
+                  "markovian_chains",
+                  "ood_baseline",
+                  "mapping_llm_science",
+                  "monitoring_ai_review"
+                ],
+                "section_labels": "\\ref{sec:related}, \\ref{sec:method}, \\ref{sec:results}, \\ref{sec:discussion}"
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-introduction.md"
+}

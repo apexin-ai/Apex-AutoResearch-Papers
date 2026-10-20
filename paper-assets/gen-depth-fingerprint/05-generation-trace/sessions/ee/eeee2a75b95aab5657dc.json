@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eeee2a75b95aab5657dc",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper research bib sync",
+  "task_key": "worker_paper_research_bib_sync_20260515T041855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_bib_sync_20260515T041855_result.json",
+    "occurrence": 1,
+    "bytes": 175,
+    "sha256": "7bb28ab1e9453108ebc967ead2c06300e04ea81d6c69a05ac7821bd68bbbebb5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "39 个 BibTeX 条目已生成，写入 `docs/paper/references.bib`。按 10 个 category 分组，所有条目的 key 与 `literature_map.yaml` 的 id 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-bib-sync.md"
+}

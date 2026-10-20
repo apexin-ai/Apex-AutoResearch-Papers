@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "828130237c596c935f3b",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "paper trace 5 unconfirmed",
+  "task_key": "worker_paper_trace-5-unconfirmed_20260523T193833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_trace-5-unconfirmed_20260523T193833.log",
+    "occurrence": 1,
+    "bytes": 851307,
+    "sha256": "1b98961fc4ac86b33f8763c8a8e651a44c016e30ce328a9c41c18c62b60a4d7d"
+  },
+  "statistics": {
+    "messages": 167,
+    "user_turns": 1,
+    "tool_calls": 63,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 1,
+      "assistant": 27,
+      "tool_call": 63,
+      "tool_result": 63,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 101,
+      "chunks": [
+        {
+          "path": "828130237c596c935f3b-part-0001.json",
+          "message_count": 101
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 66,
+      "chunks": [
+        {
+          "path": "828130237c596c935f3b-part-0001.json",
+          "message_count": 30
+        },
+        {
+          "path": "828130237c596c935f3b-part-0002.json",
+          "message_count": 36
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-trace-5-unconfirmed.md"
+}

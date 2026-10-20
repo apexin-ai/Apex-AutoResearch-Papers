@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1822f916d05445f0778",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper appendix layout fix",
+  "task_key": "worker_paper_appendix-layout-fix_20260522T024818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix-layout-fix_20260522T024818_result.json",
+    "occurrence": 1,
+    "bytes": 966,
+    "sha256": "fc7fa6f47a7ca5e9ed78bd110b6d225b2bdb913ae28a69eb44e40e363756cec6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three pages fixed:\n\n| Page | Before | After | What changed |\n|------|--------|-------|-------------|\n| **13** | 117 lines — only Dataset Stats table + footnote, violin figure pushed to p14 | 216 lines — Length Confound section text fills gap; `app:length` now starts on p13 | Removed `\\FloatBarrier` between dataset_stats and Length section |\n| **26** | 163 lines — 3 short sections (Ablation/Correlation/Cross-Family) with dead space | 226 lines — Seed Control text fills gap; `app:seed-control` now starts on p26 | Removed `\\FloatBarrier` between table4 and seed_control |\n| **31** | 122 lines — only Generator Subsets + partial Qualitative | 412 lines — both qualitative tables now on p31 + Transfer section flows in; `tab:qualitative-features` moved from p32→p31 | Removed `\\FloatBarrier` between gen-subsets/qualitative/transfer |\n\nTotal page count unchanged at 36. All labels and floats remain near their references."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-appendix-layout-fix.md"
+}

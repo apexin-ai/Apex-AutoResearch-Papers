@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b70d368a3f1d5eca36b6",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "diagnose plan 012 qwen06b v2",
+  "task_key": "worker_diagnose_plan-012-qwen06b-v2_20260516T015306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan-012-qwen06b-v2_20260516T015306_result.json",
+    "occurrence": 1,
+    "bytes": 1272,
+    "sha256": "8fc76e15ca0a4ba9db35289331b7b887c106747d22935d39c7f77ab31ca4bbfe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n**结论：实验未失败，已成功完成。Cron 误报。**\n\n### 实际状态\n\n| 项目 | 详情 |\n|------|------|\n| 状态 | **正常完成** |\n| 运行时长 | 116.7 min (~7000s)，5-fold 全部跑完 |\n| 结果文件 | `/root/gen-depth-fingerprint/results/plan012_qwen06b_seed123_r32_results.json` (6903B, 09:44 写入) |\n| GPU | 4x RTX 5090 全部空闲，进程已正常退出 |\n| 错误 | 无 traceback、无 OOM、无 kill 信号 |\n\n### 实验结果\n\n| 指标 | v2 (seed=123, r=32) | 对照 (seed=42, r=16) | XGBoost baseline |\n|------|---------------------|----------------------|-----------------|\n| 5-class macro F1 | **0.5873 ± 0.0047** | 0.583 | 0.5028 |\n| 3-class macro F1 | **0.9054 ± 0.0037** | — | 0.7815 |\n| Δ vs XGBoost (5-class) | +0.0845 | — | — |\n\n两组超参数结果高度一致（F1 差异 < 0.005），说明模型对 seed 和 LoRA rank 不敏感。\n\n### 误报原因\n\n脚本没有集成 W&B logging（只存 JSON），Cron 检测到\"进程不存在 + 无 W&B metrics\"后将正常退出误判为失败。\n\n### 建议\n\n1. 将该实验标记为 **succeeded**，结果有效可用\n2. Cron 监控逻辑应增加对 result JSON 文件存在性的检查，避免类似误报"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan-012-qwen06b-v2.md"
+}

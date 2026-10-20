@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6933a55330b3c4a29dc3",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "research ref audit worker 1",
+  "task_key": "worker_research_ref-audit-worker-1_20260526T102052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-worker-1_20260526T102052_result.json",
+    "occurrence": 1,
+    "bytes": 761,
+    "sha256": "3db0665c3c0b258b0ae6f703fd1514375987898ddcb036bdc8763bc1fa3d9bcd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。结果写入 `ref_audit_worker1.md`。\n\n**核心发现：**\n\n| 严重级别 | 条目 | 问题 |\n|---------|------|------|\n| **CRITICAL** | `human_texts_outliers` | arXiv:2510.08602 的真实作者是 Cong Zeng 等人，标题副标题也不同，bib 中的作者和标题是幻觉生成的 |\n| **ERROR** | `diveye` | 会议写的 ICLR 2026，实际发表在 TMLR 2026 |\n| **WARNING** | `xu_spectrum_detection` | 已发表于 EMNLP 2024，但仍标为 arXiv preprint |\n| **WARNING** | `beyond_final_actor` | ACL 2026 未能从官方接收列表独立确认 |\n\n另外发现 **25 条 bib entry 在所有 tex 文件中未被引用**（详见报告末尾列表），编译时会产生 warning，建议清理或补充引用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ref-audit-worker-1.md"
+}

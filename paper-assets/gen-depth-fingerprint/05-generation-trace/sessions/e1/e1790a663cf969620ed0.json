@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1790a663cf969620ed0",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops fix buggy artifacts",
+  "task_key": "worker_ops_fix-buggy-artifacts_20260516T125950",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-buggy-artifacts_20260516T125950_result.json",
+    "occurrence": 1,
+    "bytes": 2099,
+    "sha256": "63aa4eec921bdb737e040cf79a1df77ec285eb4af0439a6bd6102a4754c47757"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. Buggy 文件重命名 ✓\n\n`8gen_logo_results.json` → `8gen_logo_results_BUGGY_DO_NOT_USE.json`\n\n### 2. Spearman artifacts 未被污染 ✓\n\nMistral `features_pythia410m.jsonl` 中 tail_decay 值为 **负数，量级 -0.002**（如 -0.00232, -0.00206, -0.00217），这是修复后的 log-prob slope 公式。Spearman 文件创建于今天 20:51，使用的是正确特征，**无需重算**。\n\nPooled Spearman ρ（tail_decay）= **-0.0413**（极弱相关，符合预期——tail_decay 本身对 depth 区分力弱）。\n\n### 3. `8gen_logo_unfiltered.json` 完整数字表\n\n**Binary F1** (overall = **0.6944**, CI [0.6883, 0.7004], N=29,095):\n\n| Generator | F1 | CI |\n|-----------|----|----|\n| pythia-2.8b | 0.7243 | [0.7068, 0.7417] |\n| pythia-1b | 0.7175 | [0.6998, 0.7350] |\n| qwen3-1.7b | 0.7093 | [0.6925, 0.7259] |\n| llama-3.2-3b | 0.6968 | [0.6798, 0.7129] |\n| olmo-2-1b | 0.6954 | [0.6788, 0.7114] |\n| qwen3-8b | 0.6918 | [0.6738, 0.7077] |\n| qwen3-0.6b | 0.6911 | [0.6733, 0.7086] |\n| mistral-7b-v0.3 | **0.6327** | [0.6172, 0.6482] |\n\n**3-class F1** (overall = **0.762**, CI [0.7577, 0.7664], N=37,058):\n\n| Generator | F1 | CI |\n|-----------|----|----|\n| pythia-1b | 0.8064 | [0.7946, 0.8177] |\n| pythia-2.8b | 0.7983 | [0.7865, 0.8097] |\n| qwen3-0.6b | 0.7795 | [0.7677, 0.7925] |\n| olmo-2-1b | 0.7810 | [0.7695, 0.7931] |\n| llama-3.2-3b | 0.7753 | [0.7634, 0.7880] |\n| qwen3-1.7b | 0.7717 | [0.7585, 0.7844] |\n| qwen3-8b | 0.7143 | [0.7007, 0.7286] |\n| mistral-7b-v0.3 | **0.6815** | [0.6694, 0.6950] |\n\n### 4. Pooled Spearman ρ（参考）\n\n| Feature | ρ (pooled) | ρ (balanced) |\n|---------|-----------|-------------|\n| hapax_ratio | -0.6405 | -0.6288 |\n| ttr | -0.6249 | -0.6130 |\n| entropy_mean | -0.5978 | -0.5954 |\n| entropy_min | -0.4037 | -0.3992 |\n| entropy_std | -0.1567 | -0.1692 |\n| entropy_max | +0.0608 | +0.0595 |\n| **tail_decay** | **-0.0413** | **-0.0422** |\n\n结论：所有 artifacts 一致，唯一的污染源是已重命名的 `8gen_logo_results_BUGGY_DO_NOT_USE.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-buggy-artifacts.md"
+}

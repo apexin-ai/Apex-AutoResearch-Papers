@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce2929444000dd1411d9",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code tost multi margin",
+  "task_key": "worker_code_tost-multi-margin_20260517T144211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_tost-multi-margin_20260517T144211_result.json",
+    "occurrence": 1,
+    "bytes": 672,
+    "sha256": "412e7d33b93a6eeff409169052fb34a1e5cf924595ada430d1b2beb57bc3ff16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**all_vs_size_matched** (diff = -0.032, Cohen's d = -86.0):\n| Margin | Equivalent? |\n|--------|------------|\n| 1% (0.023) | NO (p=1.00) |\n| 2% (0.047) | YES (p<0.001) |\n| 3% (0.070) | YES (p<0.001) |\n| 5% (0.117) | YES (p<0.001) |\n\n**all_vs_depth01** (diff = -0.052, Cohen's d = -119.7):\n| Margin | Equivalent? |\n|--------|------------|\n| 1% (0.023) | NO (p=1.00) |\n| 2% (0.047) | NO (p=1.00) |\n| 3% (0.070) | YES (p<0.001) |\n| 5% (0.117) | YES (p<0.001) |\n\nsize_matched 在 2% margin 即达等价；depth01 需要 3% margin。脚本写入 `tost_multi_margin.py`，结果写入 `results/tost_multi_margin.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-tost-multi-margin.md"
+}

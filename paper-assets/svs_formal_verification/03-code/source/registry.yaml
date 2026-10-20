@@ -1,0 +1,102 @@
+baseline: null
+experiments:
+  mvp_001:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T05:16:06.756Z'
+    updated_at: '2026-05-14T08:49:35.666Z'
+    hypothesis: Z3 形式验证能区分正确和错误推理链——正确链的 internal consistency (IC) 显著高于错误链
+    spec:
+      command: bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/svs_pipeline && HF_DATASETS_OFFLINE=1 python -m svs_pipeline.run_mvp
+        --config config_local.yaml --output-dir outputs'
+      server: autodl-5090
+      data_path: proofwriter/depth-5 (HF local cache)
+      data_count: 50
+      model_name: DeepSeek-R1-Distill-Qwen-14B (chain gen) + deepseek/deepseek-v3.2
+        (formalization)
+      seed: 42
+    conclusion: killed
+    completed_at: '2026-05-14T08:49:33.777Z'
+    note: 停掉重跑：加并发+量词修复+PCV。旧 PID 24681 已 kill。
+  mvp_002:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T09:08:19.727Z'
+    updated_at: '2026-05-14T09:18:08.862Z'
+    hypothesis: 量词修复 + PCV 后，Z3 IC 能区分正确和错误推理链（正确链 IC 显著高于错误链）
+    parent: ''
+    spec:
+      command: cd /root && source /root/miniconda3/etc/profile.d/conda.sh && conda
+        activate base && python -m svs_pipeline.run_mvp --config config_local.yaml
+        --output-dir outputs
+      server: autodl-5090
+      data_path: proofwriter/depth-5 (HF local cache)
+      data_count: 50
+      model_name: DeepSeek-R1-Distill-Qwen-14B (chain gen) + deepseek/deepseek-v3.2
+        (formalization, quantifier-fixed)
+      seed: 42
+      gpu: cuda:0+1 (vLLM TP=2)
+      pid: '31169'
+    note: Z3 内部崩溃 (segfault)。validate_z3_syntax 遇到 Z3 'unreachable' assertion 后进程被信号杀死。0/50
+      problem 完成。需要在 Z3 validation 处加 crash 保护（subprocess 隔离或 signal timeout）。
+    conclusion: failed
+    completed_at: '2026-05-14T09:18:06.287Z'
+  mvp_003:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T09:53:24.001Z'
+    updated_at: '2026-05-14T14:21:10.964Z'
+    hypothesis: Z3 subprocess 隔离 + 量词修复 + PCV 后，IC 能区分正确和错误推理链
+    spec:
+      command: cd /root && source /root/miniconda3/etc/profile.d/conda.sh && conda
+        activate base && HF_DATASETS_OFFLINE=1 python -m svs_pipeline.run_mvp --config
+        config_local.yaml --output-dir outputs
+      server: autodl-5090
+      data_path: proofwriter/depth-5 (HF local cache)
+      data_count: 50
+      model_name: DeepSeek-R1-Distill-Qwen-14B (chain gen) + deepseek/deepseek-v3.2
+        (formalization)
+      seed: 42
+      gpu: cuda:0+1 (vLLM TP=2)
+      pid: '37622'
+      checkpoint_path: /root/outputs/mvp_003_final.json
+      log_path: /root/mvp_run.log
+    note: 'Z3 subprocess sandbox 隔离（crash test PASSED: os.abort → parent survived
+      → worker restarted）。Dry-run: formalization 84.95%, P1+P2 PASS。量词修复 ForAll 93%。'
+    conclusion: negative
+    completed_at: '2026-05-14T14:21:08.243Z'
+    metrics:
+      svs_accuracy: 0.6
+      sc_accuracy: 0.58
+      delta: 0.02
+      cohens_d: -0.3736
+      p_value: 0.999879
+      p1_formalization: PASS
+      p2_ic_discrimination: FAIL
+      api_cost_usd: 2.5
+      api_calls: 12140
+      total_tokens: 9200000
+  entail_001:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T13:15:52.049Z'
+    updated_at: '2026-05-15T05:30:43.497Z'
+    hypothesis: Claim-level entailment check（premises + prior claims ⊢ claim）能区分正确和错误推理链（Cohen's
+      d > 0.15）
+    spec:
+      command: cd /root/autodl-tmp/svs_formal_verification && nohup python entailment_rescore_v3.py
+        > /root/outputs/entail_001_v3.log 2>&1 &
+      server: autodl-5090
+      data_path: ProofWriter cache (50 problems matched)
+      data_count: 50
+      model_name: DeepSeek-V3.2 (remote API)
+      seed: default
+      log_path: /root/outputs/entail_001_v3.log
+      output_path: /root/outputs/entailment_rescore_v3_results.json
+      pid: 76901
+      note: Uses remote DeepSeek V3.2 API, no local GPU consumption. Checkpoint every
+        2 problems.
+    failure_reason: 'startup recovery: process dead, no active cron monitor'
+    conclusion: failed
+    completed_at: '2026-05-15T05:30:43.497Z'

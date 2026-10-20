@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "286ddf8483ffdc676799",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis exp062 final 16of16",
+  "task_key": "worker_analysis_exp062-final-16of16_20260521T212031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp062-final-16of16_20260521T212031_result.json",
+    "occurrence": 1,
+    "bytes": 1146,
+    "sha256": "96ebd482acd55efba954861a2bdc70c468b048df6c5e9908b5782b27dd5615ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "残留的 XX 全部在 `\\iffalse` 包裹的 VERSION A 和 VERSION B 中（不活跃的备选方案），不影响编译输出。Version C（活跃版本）已无 XX。\n\n---\n\n**汇报：**\n\n1. **Chain 完整性**：4539 行（>4500 阈值）✓\n2. **Features 记录数**：4539 条（完整重新提取）✓\n3. **Cohen's d + DDR 判定**：\n\n| Feature | d | 分类 |\n|---------|---:|------|\n| entropy_max | 0.05 | shape (✓) |\n| entropy_min | 0.07 | shape (✓) |\n| tail_decay | 0.17 | shape (✓) |\n| entropy_mean | 0.76 | drift |\n| ttr | 0.68 | drift |\n| hapax_ratio | 0.64 | drift |\n| entropy_std | 0.27 | boundary |\n\n**DDR = YES**（shape features 全部 d < 0.20）\n\n4. **Appendix 更新**：\n   - Shape table Qwen3-8B topk: 0.05 / 0.07 / 0.17\n   - Drift table Qwen3-8B topk: 0.76 / 0.68 / 0.64 / 0.27\n   - Mean 行：7/8 → 8/8，数值更新（ttr 0.62→0.63, entropy_std 0.22→0.23）\n   - Version C conclusion：greedy shape mean |d|=0.05, max 0.14; drift mean 0.91; topk 4/8 elevated; shape 0.10 vs 0.08; drift 0.56 vs 0.79\n\n5. **双向同步**：`diff` 确认两份文件完全一致 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp062-final-16of16.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1849adbaba396fb7af38",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "audit reference verification",
+  "task_key": "worker_audit_reference_verification_20260521T031451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_reference_verification_20260521T031451_result.json",
+    "occurrence": 1,
+    "bytes": 712,
+    "sha256": "67624f638daa8701b09eec028176c1a15370b96807db58f7c5066629765161ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。66 条 bib 条目全部已覆盖（43 条旧审计 + 26 条新增验证，3 条旧条目已删除）。\n\n**发现并修正 4 处错误：**\n\n| 条目 | 问题 | 严重程度 |\n|------|------|---------|\n| `attractor_cycles` | 9 个作者全部是 LLM 幻觉生成，标题被截断，缺 arXiv ID | **CRITICAL** |\n| `ghostbuster` | 末位作者 Jurafsky→Klein，venue ACL→NAACL | HIGH |\n| `qlora` | 标题 \"Language Models\"→\"LLMs\"（NeurIPS 官方标题） | LOW |\n| `aaronson_watermark` | Hendrik Kirchner→Jan Hendrik Kirchner | LOW |\n\n其余 22 条新增条目验证通过，无错误。\n\n报告已写入 `artifacts/_project/analysis/reference_audit.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-reference-verification.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52a88c90805a6d3a9e64",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis review p1c instruct",
+  "task_key": "worker_analysis_review-p1c-instruct_20260515T152812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_review-p1c-instruct_20260515T152812_result.json",
+    "occurrence": 1,
+    "bytes": 1043,
+    "sha256": "535c312a7366cbd1175a355c0b4cafb38c47231fd69ba75b24d88ea6c6568933"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n---\n\n## 总结\n\n**review-p1c-instruct 实验完成，结论：success（有强 depth signal，方向相反）。**\n\n关键发现：\n1. **Instruct 模型有极显著的 depth signal**（所有 7 个特征 p < 1e-38），证实 instruction tuning 不会消除深度响应\n2. **方向完全反转**：base model 多样性随深度递减（坍缩），instruct model 多样性随深度递增（发散），三个核心 drift 特征 Δρ 均超过 +1.0\n3. **形式 DDR = false**：因为 shape 特征（entropy_std, tail_decay）也在漂移（|ρ| = 0.30, 0.18），不满足\"shape 稳态\"条件\n4. **无分类器 F1**：analyze_instruct.py 仅做相关性分析，未训练分类器。如需与 base model binary F1=0.723 直接对比，需额外跑分类评估\n\n对论文的意义：instruction tuning 从根本上改变了递归生成的深度响应特性——不是消除了 depth fingerprint，而是翻转了它。这是比简单的\"有/无\"更有故事性的结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-review-p1c-instruct.md"
+}

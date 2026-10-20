@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "acc2502487ad0da966bb",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis plan 014 revalidation",
+  "task_key": "worker_analysis_plan-014-revalidation_20260515T035515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-014-revalidation_20260515T035515_result.json",
+    "occurrence": 1,
+    "bytes": 60,
+    "sha256": "6fa1fc915e497dad8c984caebd21e0e881ea46ad8384853c069f1d1b0a5ea9fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程仍在运行，60 秒后再次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-014-revalidation.md"
+}

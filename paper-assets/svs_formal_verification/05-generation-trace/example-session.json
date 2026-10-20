@@ -1,0 +1,1129 @@
+{
+  "schema_version": "1.0",
+  "id": "633718773b5305e33366",
+  "project": "svs_formal_verification",
+  "kind": "conversation",
+  "title": "Reviewer coordination",
+  "task_key": "feishu_group_oc_3e71ea5150960863ad3ff375ba46058c_reviewer",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/feishu_group_oc_3e71ea5150960863ad3ff375ba46058c_reviewer.jsonl",
+    "occurrence": 1,
+    "bytes": 466602,
+    "sha256": "9c1f63600edf175b0d9740febe8784c06963b45c855d864b0aef2c82bbb1711e"
+  },
+  "readable_path": "readable/conversations/reviewer-coordination.md",
+  "paper_title": "svs formal verification",
+  "preview_selection": {
+    "round": 2,
+    "total_source_events": 613,
+    "policy": "First bounded recorded conversation round with user, assistant, tool call, and tool result; 5–70 events and under 160 KB. Not a scientific-quality ranking."
+  },
+  "statistics": {
+    "messages": 56,
+    "user_turns": 1,
+    "tool_calls": 27,
+    "roles": {
+      "user": 1,
+      "tool_call": 27,
+      "tool_result": 27,
+      "assistant": 1
+    }
+  },
+  "rounds": [
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-14T13:10:03.572425+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_check_z3audit_and_mvp003_progress_20260514T130918]:\nWorker worker_check_z3audit_and_mvp003_progress_20260514T130918 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "source": "worker_done:worker_check_z3audit_and_mvp003_progress_20260514t130918"
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-14T13:10:12.419847+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__reviewer_post_to_director,mcp__agent-ml-research__read_project_file",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-14T13:10:12.520494+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-14T13:10:15.983160+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "svs_formal_verification",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-14T13:10:16.435745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"mvp_003\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T09:53:24.001Z\\\", \\\"updated_at\\\": \\\"2026-05-14T09:53:52.606Z\\\", \\\"hypothesis\\\": \\\"Z3 subprocess 隔离 + 量词修复 + PCV 后，IC 能区分正确和错误推理链\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_DATASETS_OFFLINE=1 python -m svs_pipeline.run_mvp --config config_local.yaml --output-dir outputs\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"proofwriter/depth-5 (HF local cache)\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-14B (chain gen) + deepseek/deepseek-v3.2 (formalization)\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:0+1 (vLLM TP=2)\\\", \\\"pid\\\": \\\"37622\\\"}, \\\"note\\\": \\\"Z3 subprocess sandbox 隔离（crash test PASSED: os.abort → parent survived → worker restarted）。Dry-run: formalization 84.95%, P1+P2 PASS。量词修复 ForAll 93%。\\\"}, \\\"mvp_002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T09:08:19.727Z\\\", \\\"updated_at\\\": \\\"2026-05-14T09:18:08.862Z\\\", \\\"hypothesis\\\": \\\"量词修复 + PCV 后，Z3 IC 能区分正确和错误推理链（正确链 IC 显著高于错误链）\\\", \\\"parent\\\": \\\"\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -m svs_pipeline.run_mvp --config config_local.yaml --output-dir outputs\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"proofwriter/depth-5 (HF local cache)\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-14B (chain gen) + deepseek/deepseek-v3.2 (formalization, quantifier-fixed)\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:0+1 (vLLM TP=2)\\\", \\\"pid\\\": \\\"31169\\\"}, \\\"note\\\": \\\"Z3 内部崩溃 (segfault)。validate_z3_syntax 遇到 Z3 'unreachable' assertion 后进程被信号杀死。0/50 problem 完成。需要在 Z3 validation 处加 crash 保护（subprocess 隔离或 signal timeout）。\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-14T09:18:06.287Z\\\"}, \\\"mvp_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:16\n…[truncated 843 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-14T13:10:16.436213+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "svs_formal_verification"
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-14T13:10:16.486854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/svs_formal_verification/ROADMAP.md\\\", \\\"content\\\": \\\"# svs_formal_verification — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 11:41 UTC | 更新原因: grep 核实 mvp_003=19/50, cross-model validation 完成(94.49%), LogicReward=LoRA adapter, gpu-5090-4x-4 显存全满\\\\n\\\\n## 核心方向\\\\n用 Z3 形式验证作为 graded verifier 替代 self-consistency 多数投票，进行 LLM 逻辑推理的 test-time chain selection。\\\\n\\\\n**核心 pivot（D006）**: IC 升级为 **Premise-Conditioned Verification (PCV)**——验证 chain claims 与题目 premises 的一致性（soundness）。\\\\n\\\\n## 当前进展\\\\n- **阶段**: MVP 验证（mvp_003 RUNNING）\\\\n- **实验**: mvp_003 RUNNING（**23/50 完成**，`grep -c gold_label`=23，~10.7/hr，ETA ~2.5h）\\\\n- **早期信号**: SVS=SC=40%（n 太小）；IC 分布有方差 [0.33–0.75]，非全 SAT\\\\n- **⚠️ Vacuous quantification 实例**：ground fact \\\\\\\"the cat eats the bald eagle\\\\\\\" → `ForAll([x], Implies(And(Red(x), Round(x)), Eat(cat, bald_eagle)))`，简单事实被包装成 vacuously SAT 的条件全称量化\\\\n- **基础设施**: autodl-5090 4×RTX 5090 32G，cuda:0+1 vLLM TP=2，cuda:2+3 Qwen vLLM\\\\n- **Z3 sandbox**: 稳定运行\\\\n- **Dry-run 信号**: formalization rate 84.95%, ForAll 93%\\\\n- **Baselines**: SC / Binary Filter / Self-Certainty 框架验证通过\\\\n- **Qwen2.5-14B-Instruct**: 下载完成，cross-model mini validation 进行中\\\\n- **文献调研完成**（D009）: novelty 中等偏上，核心风险 autoformalization unfaithfulness\\\\n- **竞品注意**: VeriCoT 可能已被 ICLR 2026 接收（两份调研标注不一致），需引用审计确认\\\\n\\\\n## MVP 验证方案\\\\n\\\\n**核心假设**: PCV-IC 能区分正确和错误链\\\\n\\\\n**Pass 标准**: P1 formalization > 50%, P2 correct-chain IC > wrong-chain IC (Cohen's d > 0.15, 95% CI excludes 0)\\\\n\\\\n## 近期任务\\\\n- [x] Z3 subprocess 隔离（D008）\\\\n- [x] Baselines 框架验证通过\\\\n- [x] Qwen2.5-14B-Instruct 下载完成\\\\n- [x] 文献调研完成（D009）\\\\n- [ ] **mvp_003 运行中（19/50, ~10.7/hr, ETA ~2.9h）**\\\\n- [x] ~~Cross-model mini validation~~ **INVALID**：Qwen 被用于全部模块，非 Qwen+DeepSeek 分离架构。post-MVP 需重做\\\\n- [x] ORM baseline 可行性调研（完成：推荐 LogicReward + FoVer + GenRM，2-3 天）\\\\n- [x] Autoformalization faithfulness 预研（完成：premise mistranslation 高风险，IC 相对度量有鲁棒性）\\\\n- [x] LogicRewar\n…[truncated 2145 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 50
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-14T13:10:16.637742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "svs_formal_verification",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-14T13:10:16.738378+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/svs_formal_verification/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| mvp_003 | Z3 subprocess 隔离 + 量词修复 + PCV 后，IC 能区分正确和错误推理链 | — | — | — |\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **mvp_002** (failed): 量词修复 + PCV 后，Z3 IC 能区分正确和错误推理链（正确链 IC 显著高于错误链）\\\\n- **mvp_001** (killed): Z3 形式验证能区分正确和错误推理链——正确链的 internal consistency (IC) 显著高于错误链\\\\n\\\\n## 趋势\\\\n成功 0 / 负向 0 / 失败 1 / 共 2\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nautodl-5090: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\\\ngpu-5090-4x-4: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- mvp_001: 已被终止 — unknown\\\\n- mvp_002: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 597, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 100
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-14T13:10:27.022346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ps aux --no-headers -o pid,etime,args -p 37622 2>/dev/null"
+            }
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-14T13:10:27.524852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-14T13:10:27.525198+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,utilization.memory,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-14T13:10:28.478426+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 99 %, 77 %, 31459 MiB, 32607 MiB\\\\n1, 99 %, 80 %, 31459 MiB, 32607 MiB\\\\n2, 0 %, 0 %, 3 MiB, 32607 MiB\\\\n3, 0 %, 0 %, 3 MiB, 32607 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 953
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-14T13:10:28.478730+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/svs_formal_verification/outputs/ 2>/dev/null"
+            }
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-14T13:10:28.579191+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 100
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-14T13:10:29.181552+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "svs_formal_verification",
+              "file": "decisions.yaml",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-14T13:10:29.232429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/svs_formal_verification/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 13\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-14 04:26 UTC\\\\n  summary: MVP 设计：ProofWriter 30 题 API-based pilot 验证 Z3 形式验证的区分能力\\\\n  rationale: MVP 阶段用 API 替代本地模型推理，消除 GPU 依赖加速验证。ProofWriter 近形式化输入，autoformalization\\\\n    成功率最高，是验证 pipeline 可行性的最佳起点。Pass 标准：formalization 成功率 >50% + 正确链 IC 显著高于错误链。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-14 04:30 UTC\\\\n  summary: MVP 参数更新：50 题 × N=8，P2 收紧为 d>0.15 且 CI 不含 0，补全三级 fail 路径\\\\n  rationale: Reviewer 指出原 30×5 样本量统计检验力不足（d 的 CI 约 ±0.5），且缺 kill criteria。提升至 50×8（400\\\\n    chains）收窄 CI，补全 P1 fail / P2 fail / CCLC fail 三级 fallback 路径。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-14 05:51 UTC\\\\n  summary: MVP 推理从 API 切换到本地 14B GPU 推理（vLLM on autodl-5090）\\\\n  rationale: API 充值处理中无法使用，Manager 指示优先用卡。本地 14B 与正式实验模型一致，消除 API 依赖和模型不一致问题。风险：14B\\\\n    formalization 质量可能低于 frontier API，P1 pass 概率降低；需用 INT8 量化避免 FP16 显存不足。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-14 07:51 UTC\\\\n  summary: Formalization 从本地 14B 切换到外部 DeepSeek V3.2 API（chain gen 保持本地 14B）\\\\n  rationale: 混合策略：chain gen 用本地 14B（实验模型一致性），formalization 用 frontier API（V3.2 结构化输出能力更强）。dry-run\\\\n    显示 14B formalization 质量边际（69.3%），frontier 模型应提升 P1 安全边际。API 已恢复可用。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D003\\\\n- id: D005\\\\n  date: 2026-05-14 07:56 UTC\\\\n  summary: 预下载 Qwen2.5-14B-Instruct 作为正式实验第二模型（cross-model validation）\\\\n  rationale: IDEA_BRIEF 要求多模型验证。趁 MVP 运行（5-6h）并行下载，不占 GPU。MVP 通过后可立即启动 cross-model\\\\n    实验。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D003\\\\n- id: D006\\\\n  date: 2026-05-14 08:35 UTC\\\\n  summary: Reviewer 深度审查后确认 IC 全 SAT 退化风险，采纳方向 (b) PCV 作为主方向 pivot\\\\n  rationale: Dry-run 4/4 chains 全 SAT，IC 退化为 formalization rate。根因：IC 只检查 internal\\\\n    coh\n…[truncated 4191 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-14T13:10:43.680669+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/svs_formal_verification/outputs/"
+            }
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-14T13:10:44.233694+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/svs_formal_verification/outputs/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 553
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-14T13:10:44.284192+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ps aux --no-header -w -w -p 37622"
+            }
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-14T13:10:44.836199+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root          1  0.0  0.0   4476  3392 ?        Ss   12:37   0:00 bash /init/boot/boot.sh\\\\nroot        917  1.2  0.0 717984 22384 ?        Sl   12:37   6:33 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        930  0.0  0.0 3237144 17360 ?       Sl   12:37   0:07 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        936  0.0  0.0  15444  9352 ?        S    12:37   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        937  0.0  0.0 191528 106112 ?       S    12:37   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        939  0.0  0.0 4147880 79848 ?       Sl   12:37   0:16 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        940  0.0  0.0 3164436 19156 ?       Sl   12:37   0:22 proxy -c /init/proxy/proxy.ini\\\\nroot        942  0.1  0.0 4826468 96644 ?       Sl   12:37   0:47 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot       1054  0.0  0.0 17524960 10504 ?      Sl   12:37   0:12 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_pfi2k1rd/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_pfi2k1rd/startup_error\\\\nroot       1676  0.0  0.0  16692 10904 ?        Ss   12:49   0:01 sshd: root@notty\\\\nroot       4503  0.0  0.0  16692 10960 ?        Ss   13:52   0:01 sshd: root@notty\\\\nroot      33086  0.0  0.0   4364  2052 ?        S    17:25   0:00 bash -c cd /root && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B --tensor-parallel-size 2 --port 8001 --dtype float16 --gpu-memory-utilization 0.90 > /root/\n…[truncated 4190 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-14T13:10:45.137162+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-14T13:10:45.538227+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33642, GPU-d96f3c64-9b12-37a7-012c-d043dd6e7d1c, 31450 MiB\\\\n33643, GPU-7f682328-647e-ea8b-331c-c00ac5cb2d27, 31450 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-14T13:10:56.329862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -80 /root/mvp_run.log"
+            }
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-14T13:10:56.330147+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/outputs/"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-14T13:10:56.630997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"21:09:59 [DEBUG] httpcore.connection: close.started\\\\n21:09:59 [DEBUG] httpcore.connection: close.complete\\\\n21:09:59 [DEBUG] httpcore.connection: close.started\\\\n21:09:59 [DEBUG] httpcore.connection: close.complete\\\\n21:09:59 [DEBUG] openai._base_client: HTTP Response: POST http://47.94.22.126/v1/chat/completions \\\\\\\"200 OK\\\\\\\" Headers({'server': 'nginx/1.26.2', 'date': 'Thu, 14 May 2026 13:09:59 GMT', 'content-type': 'application/json', 'content-length': '842', 'connection': 'keep-alive'})\\\\n21:09:59 [DEBUG] openai._base_client: request_id: None\\\\n21:09:59 [DEBUG] svs_pipeline.cost_tracker: API call [autoformalize/deepseek/deepseek-v3.2]: 637+20 tokens\\\\n21:09:59 [WARNING] svs_pipeline.z3_sandbox: Z3 sandbox error: NameError: name 'Quiet' is not defined\\\\n21:09:59 [DEBUG] svs_pipeline.formalization.autoformalize: Z3 validation failed (attempt 3) for 'Green, smart things are quiet.': Z3 subprocess error or crash\\\\n21:09:59 [WARNING] svs_pipeline.formalization.autoformalize: Failed to formalize claim 9 of chain 7 after 3 attempts: Green, smart things are quiet.\\\\n21:09:59 [DEBUG] httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.26.2'), (b'Date', b'Thu, 14 May 2026 13:09:59 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'828'), (b'Connection', b'keep-alive')])\\\\n21:09:59 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n21:09:59 [DEBUG] httpcore.http11: receive_response_body.started request=<Request [b'POST']>\\\\n21:09:59 [DEBUG] httpcore.http11: receive_response_body.complete\\\\n21:09:59 [DEBUG] httpcore.http11: response_closed.started\\\\n21:09:59 [DEBUG] httpcore.http11: response_closed.complete\\\\n21:09:59 [DEBUG] openai._base_client: HTTP Response: POST http://47.94.22.126/v1/chat/completions \\\\\\\"200 OK\\\\\\\" Headers({'server': 'nginx/1.26.2', 'date': 'Thu, 14 May 2026 13:09:59 GMT'\n…[truncated 6447 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 301
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-14T13:10:56.631283+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/entailment_rescorer.py"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-14T13:10:57.032448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 452\\\\ndrwxr-xr-x 2 root root    158 May 14 21:06 .\\\\ndrwx------ 1 root root   4096 May 14 20:43 ..\\\\n-rw-r--r-- 1 root root  90000 May 14 21:07 entailment_rescore_results.json\\\\n-rw-r--r-- 1 root root 210118 May 14 21:10 entailment_rescorer.log\\\\n-rw-r--r-- 1 root root   4569 May 14 20:00 mvp_diagnostic_report.json\\\\n-rw-r--r-- 1 root root  94550 May 14 21:10 results_partial.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 702
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-14T13:10:57.433841+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"D012 Phase 1: Claim-level entailment rescoring.\\\\n\\\\nHybrid: local vLLM for chain gen + decomposition, DeepSeek API for formalization.\\\\nCompares entailment-based IC vs old SAT-based IC.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport logging\\\\nimport random\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root\\\\\\\")\\\\n\\\\nimport yaml\\\\nfrom svs_pipeline.config import PipelineConfig\\\\nfrom svs_pipeline.types import AtomicClaim\\\\nfrom svs_pipeline.data import load_proofwriter\\\\nfrom svs_pipeline.generation import ChainSampler\\\\nfrom svs_pipeline.formalization import ClaimDecomposer, AutoFormalizer, VocabNormalizer\\\\nfrom svs_pipeline.z3_sandbox import get_sandbox\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\nOUTPUT_PATH = Path(\\\\\\\"/root/outputs/entailment_rescore_results.json\\\\\\\")\\\\nMAX_PROBLEMS = 16  # cap for time feasibility\\\\n\\\\n\\\\ndef load_config():\\\\n    cfg = PipelineConfig()\\\\n    with open(\\\\\\\"/root/config_local.yaml\\\\\\\") as f:\\\\n        raw = yaml.safe_load(f)\\\\n    for section_name in (\\\\\\\"api\\\\\\\", \\\\\\\"sampling\\\\\\\", \\\\\\\"verification\\\\\\\", \\\\\\\"mvp\\\\\\\"):\\\\n        section_obj = getattr(cfg, section_name)\\\\n        for k, v in raw.get(section_name, {}).items():\\\\n            if hasattr(section_obj, k):\\\\n                setattr(section_obj, k, v)\\\\n    return cfg\\\\n\\\\n\\\\ndef get_target_problem_ids():\\\\n    with open(\\\\\\\"/root/outputs/results_partial.json\\\\\\\") as f:\\\\n        return {item[\\\\\\\"problem_id\\\\\\\"] for item in json.load(f)}\\\\n\\\\n\\\\ndef formalize_premises(premises, vocab, formalizer, problem_id):\\\\n    fake_claims = [\\\\n        AtomicClaim(chain_id=-1, problem_id=problem_id, claim_index=i, text=p)\\\\n        for i, p in enumerate(premises)\\\\n    ]\\\\n    formalized = formalizer.formalize_batch(fake_claims, vocab)\\\\n    return [\\\\n        {\\\\\\\"text\\\\\\\": c.text, \\\\\\\"fol\\\\\\\": c.fol, \\\\\\\"z3_pars\n…[truncated 7193 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 802
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-14T13:11:12.241391+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/outputs/mvp_diagnostic_report.json"
+            }
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-14T13:11:12.692839+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"date\\\\\\\": \\\\\\\"2026-05-14T20:00:49.139211\\\\\\\",\\\\n  \\\\\\\"input_path\\\\\\\": \\\\\\\"/root/outputs/results_partial.json\\\\\\\",\\\\n  \\\\\\\"n_problems\\\\\\\": 24,\\\\n  \\\\\\\"n_chains\\\\\\\": 192,\\\\n  \\\\\\\"section1_per_label_ic\\\\\\\": {\\\\n    \\\\\\\"True\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 119,\\\\n      \\\\\\\"mean\\\\\\\": 0.8546083033003894,\\\\n      \\\\\\\"std\\\\\\\": 0.14637434825146883,\\\\n      \\\\\\\"median\\\\\\\": 0.8846153846153846,\\\\n      \\\\\\\"min\\\\\\\": 0.3333333333333333,\\\\n      \\\\\\\"max\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"False\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 45,\\\\n      \\\\\\\"mean\\\\\\\": 0.7532311688395822,\\\\n      \\\\\\\"std\\\\\\\": 0.2264936079939519,\\\\n      \\\\\\\"median\\\\\\\": 0.8095238095238095,\\\\n      \\\\\\\"min\\\\\\\": 0.16666666666666666,\\\\n      \\\\\\\"max\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"Unknown\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 28,\\\\n      \\\\\\\"mean\\\\\\\": 0.8722896273204622,\\\\n      \\\\\\\"std\\\\\\\": 0.1176290552131924,\\\\n      \\\\\\\"median\\\\\\\": 0.8983333333333333,\\\\n      \\\\\\\"min\\\\\\\": 0.625,\\\\n      \\\\\\\"max\\\\\\\": 1.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"section2_frate_by_label\\\\\\\": {\\\\n    \\\\\\\"True\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 119,\\\\n      \\\\\\\"mean\\\\\\\": 0.8860665896375212,\\\\n      \\\\\\\"std\\\\\\\": 0.13471368901974137\\\\n    },\\\\n    \\\\\\\"False\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 45,\\\\n      \\\\\\\"mean\\\\\\\": 0.887087284874766,\\\\n      \\\\\\\"std\\\\\\\": 0.128355634922908\\\\n    },\\\\n    \\\\\\\"Unknown\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 28,\\\\n      \\\\\\\"mean\\\\\\\": 0.9271110887145042,\\\\n      \\\\\\\"std\\\\\\\": 0.10067963172332593\\\\n    }\\\\n  },\\\\n  \\\\\\\"section3_p2\\\\\\\": {\\\\n    \\\\\\\"correct_ic\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 104,\\\\n      \\\\\\\"mean\\\\\\\": 0.8300075434829247,\\\\n      \\\\\\\"std\\\\\\\": 0.17596424182281312,\\\\n      \\\\\\\"median\\\\\\\": 0.8823076923076922,\\\\n      \\\\\\\"min\\\\\\\": 0.2,\\\\n      \\\\\\\"max\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"wrong_ic\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 88,\\\\n      \\\\\\\"mean\\\\\\\": 0.8374672242417762,\\\\n      \\\\\\\"std\\\\\\\": 0.16442752763426605,\\\\n      \\\\\\\"median\\\\\\\": 0.8571428571428571,\\\\n      \\\\\\\"min\\\\\\\": 0.16666666666666666,\\\\n      \\\\\\\n…[truncated 4179 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-14T13:11:13.194364+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -150 /root/outputs/entailment_rescore_results.json"
+            }
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-14T13:11:13.345076+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -80 /root/outputs/entailment_rescorer.log"
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-14T13:11:13.497915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"chains\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"pw_20952\\\\\\\",\\\\n      \\\\\\\"chain_id\\\\\\\": 0,\\\\n      \\\\\\\"answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"gold_label\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"is_correct\\\\\\\": true,\\\\n      \\\\\\\"total_claims\\\\\\\": 27,\\\\n      \\\\\\\"formalized_claims\\\\\\\": 14,\\\\n      \\\\\\\"ic_score_old\\\\\\\": 0.5185185185185185,\\\\n      \\\\\\\"ic_sat\\\\\\\": true,\\\\n      \\\\\\\"mcs_size\\\\\\\": 14,\\\\n      \\\\\\\"ic_entail\\\\\\\": 0.48148148148148145,\\\\n      \\\\\\\"ic_consist\\\\\\\": 0.5185185185185185,\\\\n      \\\\\\\"entailed_count\\\\\\\": 13,\\\\n      \\\\\\\"consistent_count\\\\\\\": 14,\\\\n      \\\\\\\"n_premises_fol\\\\\\\": 11,\\\\n      \\\\\\\"claim_details\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"claim_index\\\\\\\": 0,\\\\n          \\\\\\\"text\\\\\\\": \\\\\\\"The bear does not eat the lion.\\\\\\\",\\\\n          \\\\\\\"fol\\\\\\\": \\\\\\\"Not(Eat(bear, lion))\\\\\\\",\\\\n          \\\\\\\"entailed\\\\\\\": true,\\\\n          \\\\\\\"entail_status\\\\\\\": \\\\\\\"entails\\\\\\\",\\\\n          \\\\\\\"consistent\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"claim_index\\\\\\\": 1,\\\\n          \\\\\\\"text\\\\\\\": \\\\\\\"The bear likes the lion.\\\\\\\",\\\\n          \\\\\\\"fol\\\\\\\": \\\\\\\"Like(bear, lion)\\\\\\\",\\\\n          \\\\\\\"entailed\\\\\\\": true,\\\\n          \\\\\\\"entail_status\\\\\\\": \\\\\\\"entails\\\\\\\",\\\\n          \\\\\\\"consistent\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"claim_index\\\\\\\": 2,\\\\n          \\\\\\\"text\\\\\\\": \\\\\\\"The lion is big.\\\\\\\",\\\\n          \\\\\\\"fol\\\\\\\": \\\\\\\"Big(lion)\\\\\\\",\\\\n          \\\\\\\"entailed\\\\\\\": true,\\\\n          \\\\\\\"entail_status\\\\\\\": \\\\\\\"entails\\\\\\\",\\\\n          \\\\\\\"consistent\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"claim_index\\\\\\\": 3,\\\\n          \\\\\\\"text\\\\\\\": \\\\\\\"The lion visits the mouse.\\\\\\\",\\\\n          \\\\\\\"fol\\\\\\\": \\\\\\\"Visit(lion, mouse)\\\\\\\",\\\\n          \\\\\\\"entailed\\\\\\\": true,\\\\n          \\\\\\\"entail_status\\\\\\\": \\\\\\\"entails\\\\\\\",\\\\n          \\\\\\\"consistent\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"claim_index\\\\\\\": 4,\\\\n          \\\\\\\"text\\\\\\\": \\\\\\\"The lion visits the squirrel.\\\\\\\",\\\n…[truncated 3653 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 303
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-14T13:11:13.905368+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"21:06:49 [WARNING] svs_pipeline.formalization.autoformalize: Failed to formalize claim 30 of chain 7 after 3 attempts: Fiona is nice but not kind.\\\\n21:06:52 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n21:06:52 [WARNING] svs_pipeline.z3_sandbox: Z3 sandbox error: SyntaxError: invalid syntax (<string>, line 1)\\\\n21:06:54 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n21:06:54 [WARNING] svs_pipeline.z3_sandbox: Z3 sandbox error: SyntaxError: invalid syntax (<string>, line 1)\\\\n21:06:54 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n21:06:54 [WARNING] svs_pipeline.z3_sandbox: Z3 sandbox error: SyntaxError: invalid syntax (<string>, line 1)\\\\n21:06:54 [WARNING] svs_pipeline.formalization.autoformalize: Failed to formalize claim 32 of chain 7 after 3 attempts: Being nice does not imply being blue.\\\\n21:06:55 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n21:06:59 [INFO] httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n21:06:59 [WARNING] svs_pipeline.z3_sandbox: Z3 sandbox error: SyntaxError: invalid syntax (<string>, line 1)\\\\n21:06:59 [WARNING] svs_pipeline.formalization.autoformalize: Failed to formalize claim 31 of chain 7 after 3 attempts: Being nice does not imply being kind.\\\\n21:06:59 [INFO] svs_pipeline.formalization.autoformalize: Batch formalization: 24/38 claims successfully formalized\\\\n21:06:59 [INFO] __main__: Problem pw_3648 done in 710.8s\\\\n21:07:00 [INFO] __main__: Checkpoint: 2 problems, elapsed 1271s\\\\n21:07:00 [INFO] __main__: === Problem 3/16: pw_819 (gold=Unknown) ===\\\\n21:07:26 [INFO] httpx: HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n21:07:52 [INFO] httpx: HTTP Request: POST http://localhost:8001/v1/c\n…[truncated 6654 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 560
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-14T13:11:19.723251+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -60 /root/outputs/entailment_rescore_results.json"
+            }
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-14T13:11:20.225144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"          \\\\\\\"mean\\\\\\\": 0.4925938879460193,\\\\n          \\\\\\\"std\\\\\\\": 0.053421905053989735,\\\\n          \\\\\\\"median\\\\\\\": 0.5,\\\\n          \\\\\\\"min\\\\\\\": 0.42105263157894735,\\\\n          \\\\\\\"max\\\\\\\": 0.5555555555555556\\\\n        },\\\\n        \\\\\\\"cohens_d\\\\\\\": -0.7629379596453626,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          -1.7912950581481322,\\\\n          0.23650922741663624\\\\n        ],\\\\n        \\\\\\\"ttest_t\\\\\\\": -1.362726834350811,\\\\n        \\\\\\\"ttest_p\\\\\\\": 0.1944878408491398\\\\n      },\\\\n      \\\\\\\"ic_consist\\\\\\\": {\\\\n        \\\\\\\"correct\\\\\\\": {\\\\n          \\\\\\\"count\\\\\\\": 9,\\\\n          \\\\\\\"mean\\\\\\\": 0.6310721772036813,\\\\n          \\\\\\\"std\\\\\\\": 0.07184630571444652,\\\\n          \\\\\\\"median\\\\\\\": 0.6666666666666666,\\\\n          \\\\\\\"min\\\\\\\": 0.5,\\\\n          \\\\\\\"max\\\\\\\": 0.6944444444444444\\\\n        },\\\\n        \\\\\\\"wrong\\\\\\\": {\\\\n          \\\\\\\"count\\\\\\\": 7,\\\\n          \\\\\\\"mean\\\\\\\": 0.6317742124390789,\\\\n          \\\\\\\"std\\\\\\\": 0.06982821706839772,\\\\n          \\\\\\\"median\\\\\\\": 0.6333333333333333,\\\\n          \\\\\\\"min\\\\\\\": 0.4878048780487805,\\\\n          \\\\\\\"max\\\\\\\": 0.7222222222222222\\\\n        },\\\\n        \\\\\\\"cohens_d\\\\\\\": -0.009909530782612055,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          -1.0777679005270893,\\\\n          1.226280193897053\\\\n        ],\\\\n        \\\\\\\"ttest_t\\\\\\\": -0.018360970811779814,\\\\n        \\\\\\\"ttest_p\\\\\\\": 0.9856099980159475\\\\n      }\\\\n    },\\\\n    \\\\\\\"entailment_rate\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 16,\\\\n      \\\\\\\"mean\\\\\\\": 0.7264268308231157,\\\\n      \\\\\\\"std\\\\\\\": 0.17642434996246661,\\\\n      \\\\\\\"median\\\\\\\": 0.7893772893772895,\\\\n      \\\\\\\"min\\\\\\\": 0.375,\\\\n      \\\\\\\"max\\\\\\\": 0.9285714285714286\\\\n    },\\\\n    \\\\\\\"consistency_rate\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 16,\\\\n      \\\\\\\"mean\\\\\\\": 0.9943181818181819,\\\\n      \\\\\\\"std\\\\\\\": 0.02200558719436033,\\\\n      \\\\\\\"median\\\\\\\": 1.0,\\\\n      \\\\\\\"min\\\\\\\": 0.9090909090909091,\\\\n      \\\\\\\"max\\\\\\\": 1.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"status\\\\\\\": \\\\\\\"partial\\\\\\\",\\\\n  \\\\\\\"problems_d\n…[truncated 118 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 501
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-14T13:11:20.225625+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -c gold_label /root/outputs/results_partial.json"
+            }
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-14T13:11:20.576998+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"38\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 351
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-14T13:12:06.624149+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"check_entailment\" /root/svs_pipeline/z3_sandbox.py"
+            }
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-14T13:12:06.624423+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"check_entailment\\|check_sat_set\\|def check_ic\" /root/svs_pipeline/verification/z3_checker.py"
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-14T13:12:06.975486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"187:            elif task_type == \\\\\\\"check_entailment\\\\\\\":\\\\n318:    def check_entailment(self, claim_fol_strs, vocab,\\\\n322:            (\\\\\\\"check_entailment\\\\\\\", claim_fol_strs, vocab,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 351
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-14T13:12:06.975889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 351
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-14T13:12:10.386554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"check_entailment\" /root/svs_pipeline/verification/z3_checker.py"
+            }
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-14T13:12:10.587443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "sed -n '180,230p' /root/svs_pipeline/z3_sandbox.py"
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-14T13:12:10.688113+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"54:    def check_entailment(\\\\n67:        entails, status = sandbox.check_entailment(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 301
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-14T13:12:10.688478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 101
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-14T13:12:13.699709+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -250 /root/svs_pipeline/z3_sandbox.py"
+            }
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-14T13:12:14.051503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Z3 subprocess sandbox — isolates Z3 C library in a child process.\\\\n\\\\nZ3's C++ layer can crash with SIGABRT on malformed expressions ('unreachable'\\\\nassertion). This kills the entire Python process without triggering any\\\\nexception handler. Solution: run all Z3 eval() calls in a persistent child\\\\nprocess. If it crashes, the parent survives and restarts the worker.\\\\n\\\\nUsage:\\\\n    from .z3_sandbox import get_sandbox\\\\n    sandbox = get_sandbox()\\\\n    valid, err = sandbox.validate(fol_str, vocab)\\\\n    is_sat, ic_score, mcs_size = sandbox.check_ic(fol_strs, vocab, ...)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport logging\\\\nimport multiprocessing as mp\\\\nimport queue\\\\nimport threading\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef _build_z3_env(vocab):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build Z3 namespace from vocab dict. Runs inside child process.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    import z3\\\\n    env = {\\\\n        \\\\\\\"ForAll\\\\\\\": z3.ForAll, \\\\\\\"Exists\\\\\\\": z3.Exists,\\\\n        \\\\\\\"And\\\\\\\": z3.And, \\\\\\\"Or\\\\\\\": z3.Or, \\\\\\\"Not\\\\\\\": z3.Not,\\\\n        \\\\\\\"Implies\\\\\\\": z3.Implies,\\\\n        \\\\\\\"BoolSort\\\\\\\": z3.BoolSort, \\\\\\\"IntSort\\\\\\\": z3.IntSort,\\\\n        \\\\\\\"Int\\\\\\\": z3.Int, \\\\\\\"Bool\\\\\\\": z3.Bool,\\\\n        \\\\\\\"Function\\\\\\\": z3.Function, \\\\\\\"Const\\\\\\\": z3.Const,\\\\n        \\\\\\\"True\\\\\\\": z3.BoolVal(True), \\\\\\\"False\\\\\\\": z3.BoolVal(False),\\\\n    }\\\\n    for v in (\\\\\\\"x\\\\\\\", \\\\\\\"y\\\\\\\", \\\\\\\"z\\\\\\\", \\\\\\\"w\\\\\\\", \\\\\\\"u\\\\\\\", \\\\\\\"v\\\\\\\"):\\\\n        env[v] = z3.Int(v)\\\\n    for name, info in vocab.get(\\\\\\\"predicates\\\\\\\", {}).items():\\\\n        arity = info.get(\\\\\\\"arity\\\\\\\", 1)\\\\n        sorts = [z3.IntSort()] * arity + [z3.BoolSort()]\\\\n        env[name] = z3.Function(name, *sorts)\\\\n    for name in vocab.get(\\\\\\\"constants\\\\\\\", {}):\\\\n        env[name] = z3.Const(name, z3.IntSort())\\\\n    return env\\\\n\\\\n\\\\ndef _parse_fol(fol_str, env):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Parse FOL string to Z3 expression. Runs inside child process.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    import z3\\\\n    r\n…[truncated 7126 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 351
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-14T13:13:26.834530+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — Worker worker_check_z3audit_and_mvp003_progress\n\n**结论**: WARNING\n\n### 发现\n\n- [severity: info] **GPU 边界合规**：nvidia-smi 确认 cuda:0+1 由 vLLM (PID 33642/33643) 使用，31459/32607 MiB。cuda:2+3 空闲(3 MiB)。与 spec `cuda:0+1 (vLLM TP=2)` 一致，无越界。\n\n- [severity: info] **mvp_003 进度**：实际 38/50（`grep -c gold_label` = 38），当前正在处理 pw_212 (problem 39)。ROADMAP 显示 23/50 已过时。PID 37622 存活，vLLM 正常服务。\n\n- [severity: info] **D010-D012 诊断链方法论正确**：独立代码审查确认：\n  - `check_entailment` 实现正确（标准 Γ∪{¬φ} UNSAT 判定）\n  - `check_ic` 中 SAT 分支确实返回 `n_formalized/denom`，即 IC≡formalization_rate，D011 结论成立\n  - PCV 的 premises 确实只在 `check_ic` 的 premise_exprs 中出现（SAT 检查前加入 solver），但 SAT 链中 premises 无法产生 UNSAT，D012 的\"PCV 未真正生效\"结论成立\n\n- [severity: warning] **entailment_rescorer 未注册 registry**：PID 54002 (`python /root/entailment_rescorer.py`) 运行中，是 D012 的 claim-level entailment 修复测试，但 registry 中无对应实验条目。违反实验追溯规范——结论将无法溯源。建议补注册。\n\n- [severity: warning] **entailment_rescorer 资源竞争**：该进程与 mvp_003 共用同一 vLLM server (localhost:8001 on cuda:0+1)，需要重新采样 chains。当前 2/16 problems 完成（710s/problem），极慢。两进程争抢推理资源，可能互相拖慢。建议：要么等 mvp_003 完成后再跑，要么用 cuda:2+3 起独立 vLLM。\n\n- [severity: warning] **entailment 早期信号不乐观（n=2，不可靠但需关注）**：\n  - `ic_entail`: correct=0.515 vs wrong=0.493，d=-0.763（方向与数值矛盾，可能是 problem-level 聚合伪影），CI=[-1.79, 0.24] 跨 0，p=0.194\n  - `ic_consist`: d≈0 (0.010)，consistency_rate mean=0.994——**consistency 检查仍几乎全 SAT，与旧 IC 同样的退化**\n  - 只有 entailment 检查有方差（rate=0.726），但 n=2 无统计意义\n  - **关键观察**：consistency check 失效是预期的（D011 已确认），entailment check 的区分力才是 D012 的赌注。n=2 太小，但方向不明朗。\n\n- [severity: warning] **formalization 质量持续问题**：日志显示 `NameError: name 'Quiet' is not defined`、`SyntaxError: invalid syntax` 频繁出现（problem pw_28485: 7/13 claims formalized, pw_3648: 24/38）。DeepSeek V3.2 生成的 FOL 引用了 vocab 外的谓词。formalization rate ~50-65% 在部分问题上显著低于 dry-run 的 85%。这直接影响 entailment check 的覆盖率——未 formalize 的 claim 无法参与 entailment 验证。\n\n### 建议\n\n1. entailment_rescorer 应补注册 registry（exp_id 建议 `entail_001` 或类似）\n2. mvp_003 预计 ~1-1.5h 完成（剩 12 题）。完成后 entailment_rescorer 独占 vLLM 可加速。或直接用闲置的 cuda:2+3 起第二个 vLLM 实例\n3. 关注 entailment_rescorer 完成后的 d 值和 CI——如果 16 题后 ic_entail 仍 d<0.1 且 CI 跨 0，需考虑 autoformalization faithfulness 是根本瓶颈（D009 已预警）",
+              "project": "svs_formal_verification"
+            }
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-14T13:13:30.394078+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a07f743b69e4de231d0d30a115d3be52:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3559
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-14T13:13:35.769828+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-svs-formal-verification--claude-sessions-reviewer-1a898bc0/memory/project_svs_init.md"
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": "2026-05-14T13:13:35.770314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: SVS project state\n3\tdescription: SVS formal verification project — mvp_003 running 11/50, SVS=SC=45.5% at interim, formalization fidelity concern\n4\ttype: project\n5\toriginSessionId: 659023cd-7c09-4a07-a257-c6a5f46ae792\n6\t---\n7\tSVS (Solver-Verified Selection) 项目于 2026-05-14 立项，处于 MVP 验证阶段。\n8\t\n9\t**核心方法**: 用 Z3 形式验证替代 self-consistency majority voting，对 LLM 推理链做 graded score-based selection。PCV (Premise-Conditioned Verification) 是当前主方向 (D006)。\n10\t\n11\t**MVP 运行（mvp_003, PID 37622）**: 50 题 × 8 chains，Z3 subprocess sandbox 稳定。\n12\t- **实际进度**：11/50 完成（截至 2026-05-14 10:57 UTC），~10 题/小时，ETA ~4h\n13\t- **ROADMAP 曾错报 28/50**（前一轮 Reviewer 计数错误），已提交修正报告\n14\t- GPU 0+1 = vLLM DeepSeek-R1-14B (chain gen)，GPU 2+3 = Qwen vLLM (cross-model validation)\n15\t\n16\t**中期结果（n=11，不足以下结论）**：\n17\t- SVS accuracy: 5/11 = 45.5%，SC accuracy: 5/11 = 45.5%（完全一样）\n18\t- SVS 在 gold=Unknown 的题上更好（3/7 vs 1/7），SC 在 True/False 题上更好\n19\t- 需全部 50 题 + Cohen's d 才能评估 P2\n20\t\n21\t**Formalization fidelity concern**: 发现 ground fact 被 formalize 为带条件全称量化（vacuously SAT），属 D009 识别的 autoformalization unfaithfulness 风险。需 post-MVP 抽查。\n22\t\n23\t**Why:** SVS 与 SC 在 n=11 时表现一致，最终结论取决于剩余 39 题是否拉开差距。Formalization 不忠实可能系统性削弱 IC 区分力。\n24\t**How to apply:** (1) 等 50 题完成后做完整统计分析，(2) 关注 formalization faithfulness 抽查结果，(3) 如果最终 SVS ≈ SC，需区分\"方法论局限\"和\"formalization 质量局限\"。\n25\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-14T13:13:53.938933+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-svs-formal-verification--claude-sessions-reviewer-1a898bc0/memory/project_svs_init.md",
+              "content": "---\nname: SVS project state\ndescription: SVS project — mvp_003 at 38/50, IC confirmed no discrimination (d=-0.04), PCV never implemented, D012 entailment fix being tested\ntype: project\n---\nSVS (Solver-Verified Selection) 项目于 2026-05-14 立项，MVP 验证阶段。\n\n**核心方法**: Z3 形式验证替代 self-consistency，对 LLM 推理链做 graded score-based chain selection。\n\n**关键诊断链 (D010→D011→D012)**:\n- D010: n=24 诊断确认 IC 无区分力，Cohen's d=-0.04，P2 FAIL\n- D011: 根因——SAT 链 IC≡formalization_rate，Z3 贡献为零；UNSAT 链噪声淹没信号\n- D012: **PCV 从未实现**（premises 从未进入 Z3 entailment 检查，只做了 SAT 一致性检查太弱）。假设从未被公平测试。采用方向 3：claim-level entailment check\n\n**mvp_003 (PID 37622)**: 38/50 完成（截至 2026-05-14 21:10 UTC），vLLM on cuda:0+1。\n\n**entailment_rescorer (PID 54002)**: D012 修复测试，16 题上比较 entailment-based IC vs old SAT-based IC。当前仅 2/16 完成，极慢（710s/题，与 mvp_003 争 vLLM）。早期信号：ic_consist≈1.0（老问题），ic_entail 有方差但 n 太小。**未注册 registry**。\n\n**GPU**: autodl-5090 = gpu-5090-4x-4（同一台），4×RTX 5090 32G。cuda:0+1 vLLM 满载，cuda:2+3 空闲。\n\n**formalization 质量问题持续**: DeepSeek V3.2 生成 vocab 外谓词（NameError），部分题 formalization rate 低至 50-65%。\n\n**Why:** IC 的核心问题已定位（Z3 做的是 SAT 一致性检查而非 entailment），D012 的 entailment 修复是最后一次尝试。如果 entailment 也无区分力，需判断是 autoformalization faithfulness 瓶颈还是方法论局限。\n**How to apply:** (1) 跟踪 entailment_rescorer 完成后的 d 值，(2) 关注 formalization 质量对 entailment 覆盖率的影响，(3) 16 题后 d<0.1 且 CI 跨 0 → 方法可能需要根本性 pivot。\n"
+            }
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-14T13:13:53.989565+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-svs-formal-verification--claude-sessions-reviewer-1a898bc0/memory/project_svs_init.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer",
+            "tool": "Write",
+            "elapsed_ms": 50
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-14T13:14:00.962478+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查完成。核心发现：\n\n1. **mvp_003 实际 38/50**，运行正常，GPU 合规\n2. **D010-D012 诊断链正确**——IC≡formalization_rate 已确认，PCV 从未真正实现，check_entailment 代码实现正确\n3. **entailment_rescorer 未注册 registry**（tracking gap），且与 mvp_003 争抢 vLLM 资源导致极慢（2/16）\n4. **早期 entailment 信号不明朗**：consistency 仍退化，entailment 有方差但 n=2 无意义\n5. formalization 质量持续问题（vocab 外谓词频繁出现）\n\n报告已发 Director，建议补注册 + 解决资源竞争 + 等 16 题数据再判断 entailment 修复效果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_3e71ea5150960863ad3ff375ba46058c:reviewer"
+          },
+          "id": "event-000136"
+        }
+      ],
+      "message_count": 56
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c82efc0c8a44ff3a5fb",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "diagnose plan 006 confound fix",
+  "task_key": "worker_diagnose_plan-006-confound-fix_20260516T015314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan-006-confound-fix_20260516T015314_result.json",
+    "occurrence": 1,
+    "bytes": 1225,
+    "sha256": "1cc081b45c0bcb55c4f6d79d3d82ff52f190462cbf2218fb26ea09b2420e2df5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告：plan-006-confound-fix\n\n### 进程状态：已正常退出（非异常死亡）\n\n**根因：实验已成功完成，进程自然退出。** 不是 crash / OOM / 被 kill。\n\n### 证据\n\n| 项目 | 详情 |\n|------|------|\n| PID 256127 | 不存在，ps 返回空 |\n| 日志结尾 | `\"All phases complete.\"` — 三个 phase (generate → extract → evaluate) 全部正常跑完 |\n| 运行时间 | 07:25 启动 → 09:43 结束，约 **2 小时 18 分钟** |\n| GPU 状态 | 4× RTX 5090 全部空闲，0MiB 显存占用，无进程 — 与实验完成一致 |\n| 结果文件 | `results/plan006_paraphrastic_comparison.json` (4913B, 09:43 写入) — 内容完整 |\n\n### 实验结果摘要\n\n- **Paraphrase 3-class F1**: 0.727 ± 0.010\n- **Continuation 3-class F1**: 0.788 ± 0.006\n- **F1 delta (para - cont)**: −0.061\n- **Depth retention**: para 0.995 vs cont 0.826\n- **Cross-transfer**: para→cont 0.769, cont→para 0.606\n- **结论**: confirmed — paraphrastic chains lose depth signal faster\n\n### 下一步\n\nRegistry 中状态仍为 RUNNING，需要更新为 **COMPLETED**。实验结果完整，无需重跑。cron 监控可以停止对该实验的跟踪。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan-006-confound-fix.md"
+}

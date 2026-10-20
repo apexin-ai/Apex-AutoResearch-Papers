@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3006846276c44c718808",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops restart llama rp10",
+  "task_key": "worker_ops_restart-llama-rp10_20260516T103729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-llama-rp10_20260516T103729_result.json",
+    "occurrence": 1,
+    "bytes": 573,
+    "sha256": "d05dcbae5ac9b86927018e32b0da78fcfccdbd1297e685732732d2ca95460255"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "恢复成功，正在生成中。\n\n**状态汇总：**\n- **PID**: 299448 (cuda:0)\n- **已完成**: 720/995 seeds (脚本 resume 检测到)，对应 3366 条记录（实际已跳过部分 seed 的 depth 中断）\n- **剩余**: 275 seeds\n- **总预期**: 995 seeds × 5 depths = 4975 条\n- **repetition_penalty**: 1.0（默认值，未修改）\n- **当前进度**: 72%，已跳过已完成 seed，正在从 seed 721 继续生成\n- **预估剩余时间**: 275 seeds，按当前生成速度（每个新 seed 需要 4 次 generation），约 15-25 分钟"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-llama-rp10.md"
+}

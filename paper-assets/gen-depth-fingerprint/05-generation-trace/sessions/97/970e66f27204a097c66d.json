@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "970e66f27204a097c66d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "infra qwen duplicate fix",
+  "task_key": "worker_infra_qwen-duplicate-fix_20260514T211316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_qwen-duplicate-fix_20260514T211316_result.json",
+    "occurrence": 1,
+    "bytes": 1298,
+    "sha256": "3d4fc96a33373453a08baf573d166eddab6ddc053c4e58a2c09924d001301611"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成，汇报如下：\n\n### 汇报\n\n1. **被 kill 的进程**：\n   - PID 111538 — `generate_chain.py --model-name qwen3-1.7b` shard0 (cuda:0)\n   - PID 111651 — `generate_chain.py --model-name qwen3-1.7b` shard1 (cuda:1)\n   - tmux sessions `plan-002-qwen3-1_7b-s0` 和 `plan-002-qwen3-1_7b-s1` 已 kill\n   - 晚提交组（PID 112184/112269）在执行时已不存在，可能之前已自行退出\n\n2. **删除的文件**：\n   - `/root/gen-depth-fingerprint/data/qwen3-1.7b/generations_shard0.jsonl`\n   - `/root/gen-depth-fingerprint/data/qwen3-1.7b/generations_shard1.jsonl`\n   - 目录现在为空\n\n3. **qwen3-0.6b 重复情况**：无任何 qwen3-0.6b 进程在运行，无重复问题\n\n4. **GPU 状态**：\n   - cuda:0 — 0% 利用率，0 MiB 显存 ✓ 已释放\n   - cuda:1 — 0% 利用率，0 MiB 显存 ✓ 已释放\n   - cuda:2 — 49% 利用率，3623 MiB（olmo-2 shard0）\n   - cuda:3 — 45% 利用率，3623 MiB（olmo-2 shard1）\n\n5. **olmo-2 进程正常**：\n   - PID 108247 — olmo-2-1b shard0 (cuda:2)，运行 64 分钟\n   - PID 108457 — olmo-2-1b shard1 (cuda:3)，运行 64 分钟\n   - tmux sessions `plan-002-olmo2-s0` 和 `plan-002-olmo2-s1` 正常\n\ncuda:0/1 已完全释放，可重新提交 Qwen3-1.7B 任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-qwen-duplicate-fix.md"
+}

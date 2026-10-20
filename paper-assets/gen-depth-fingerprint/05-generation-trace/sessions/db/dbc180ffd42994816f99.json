@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "dbc180ffd42994816f99",
+  "project": "gen-depth-fingerprint",
+  "kind": "conversation",
+  "title": "code plan 004 train",
+  "task_key": "worker_code_plan-004-train_20260515T002427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_plan-004-train_20260515T002427.jsonl",
+    "occurrence": 1,
+    "bytes": 278,
+    "sha256": "590b02a2f6d97e26b48a9c0c5fc05d43c772d928aaf0c88f47fca169e00f8e5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T00:24:39.297484+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 500 Internal server error. This is a server-side issue, usually temporary — try again in a moment. If it persists, check status.claude.com."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan-004-train_20260515T002427"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/code-plan-004-train.md"
+}

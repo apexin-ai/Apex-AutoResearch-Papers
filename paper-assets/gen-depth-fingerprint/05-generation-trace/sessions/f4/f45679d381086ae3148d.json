@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f45679d381086ae3148d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "research feature extraction code",
+  "task_key": "worker_research_feature-extraction-code_20260514T232106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_feature-extraction-code_20260514T232106_result.json",
+    "occurrence": 1,
+    "bytes": 3023,
+    "sha256": "4c7e8d14800798efbe25af632440de2718d1ba23686101809ca22688966d232d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完毕。汇总如下：\n\n---\n\n## 调研结果\n\n### 1. 特征提取脚本\n\n| 脚本 | 用途 | 关键参数 |\n|------|------|----------|\n| `extract_features.py` | MVP 单模型（pythia-2.8b）特征提取 | `--input`, `--output`, `--batch-size`, `--device`, `--dry-run` |\n| `extract_features_multi.py` | **多生成器批量提取（已就绪）** | `--model-name`（增量单模型）, `--output`, `--batch-size`, `--device`, `--dry-run` |\n\n**计算的特征（7 维）**：\n- 参考模型特征（5）：`entropy_mean`, `entropy_std`, `entropy_min`, `entropy_max`, `tail_decay`\n- 表面特征（2）：`ttr`（type-token ratio）, `hapax_ratio`\n\n输出列：`model_name, seed_id, depth, entropy_mean, entropy_std, entropy_min, entropy_max, tail_decay, ttr, hapax_ratio`\n\n### 2. 参考模型 Pythia-410M\n\n- 路径：`/root/autodl-tmp/models/pythia-410m/models--EleutherAI--pythia-410m/snapshots/9879c9b5f8bea9051dcb0e68dff21493d67e9d4f/`\n- 状态：**可用**，含 `model.safetensors`, `config.json`, `tokenizer.json` 等完整文件\n\n### 3. 已有 features 输出\n\n| 文件 | 行数 | 内容 |\n|------|------|------|\n| `data/features.csv` | 4609 条 | MVP 阶段 pythia-2.8b 的完整特征（id/depth/seed_id 索引） |\n| `data/features_all.csv` | 20 条 | 多模型格式，仅含 pythia-2.8b（10 条）+ pythia-1b（10 条），**dry-run 测试产物** |\n\n### 4. 是否需要修改脚本\n\n**`extract_features_multi.py` 已经支持多模型批量提取**，无需修改。它：\n- 硬编码了生成器列表：`[\"pythia-2.8b\", \"pythia-1b\", \"olmo-2-1b\", \"qwen3-1.7b\", \"qwen3-0.6b\"]`\n- 支持增量模式（`--model-name` 单独跑某个生成器）\n- 支持去重、合并已有数据\n- 但**只使用单张 GPU**（`--device cuda:0`），不支持原生 4 卡并行\n\n若需 4 卡并行，方案是**手动分拆 4 个进程，每个指定不同 `--device` + `--model-name`**：\n\n### 5. 建议启动命令模板（4 卡并行）\n\n```bash\ncd /root/gen-depth-fingerprint\n\n# 方案：5 个生成器分配到 4 张卡（qwen3 两个小模型合一张）\nnohup python extract_features_multi.py --model-name pythia-2.8b --device cuda:0 --batch-size 16 > /tmp/feat_pythia28.log 2>&1 &\nnohup python extract_features_multi.py --model-name pythia-1b --device cuda:1 --batch-size 16 > /tmp/feat_pythia1b.log 2>&1 &\nnohup python extract_features_multi.py --model-name olmo-2-1b --device cuda:2 --batch-size 16 > /tmp/feat_olmo.log 2>&1 &\nnohup python extract_features_multi.py --model-name qwen3-1.7b --device cuda:3 --batch-size 16 > /tmp/feat_qwen17.log 2>&1 &\n# qwen3-0.6b 等第一轮空出的卡再跑，或串行追加\n```\n\n注意：每个进程都会独立加载一份 Pythia-410M 参考模型（~800MB fp16），4 卡各自加载一份，显存无压力。增量模式会自动合并到 `data/features_all.csv`，但**并发写同一个 CSV 会冲突**——需要先各自写独立文件再 merge，或者串行执行合并步骤。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-feature-extraction-code.md"
+}

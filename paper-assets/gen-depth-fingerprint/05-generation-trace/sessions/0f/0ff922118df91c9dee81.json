@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "0ff922118df91c9dee81",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper critical fig1 pagefit",
+  "task_key": "worker_paper_critical-fig1-pagefit_20260522T194526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_critical-fig1-pagefit_20260522T194526_result.json",
+    "occurrence": 1,
+    "bytes": 2113823,
+    "sha256": "fbe3dad65bdc3c9d0a285b89e6eabb4fcf2f68eb7fae571ec23c09e389589f96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2113843,
+                "serialized_sha256": "ad3b1df215089f9d9f20f173d99fc919db9cd3005f58d64f5187e23035c96e07",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-critical-fig1-pagefit.md"
+}

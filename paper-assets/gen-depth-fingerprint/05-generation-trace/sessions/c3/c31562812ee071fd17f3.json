@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c31562812ee071fd17f3",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "fix monitor zombie and trigger",
+  "task_key": "worker_fix_monitor-zombie-and-trigger_20260518T181355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_monitor-zombie-and-trigger_20260518T181355_result.json",
+    "occurrence": 1,
+    "bytes": 1186,
+    "sha256": "3582dd142be125e923af709dc7c7869224dc802d50be31008b1ef7be9c0d1e3d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## 1. OLMo t=0.5 Pipeline 结果\n\n| 指标 | OLMo-2-1B t=0.5 | Qwen3-0.6B t=0.5 (bonus) |\n|------|-----------------|--------------------------|\n| Binary F1 | **0.7826** [0.7675, 0.7981] | 0.7111 [0.6943, 0.7285] |\n| 3-class F1 | **0.8425** [0.8321, 0.8526] | 0.8019 [0.7896, 0.8145] |\n| entropy_mean ρ | **-0.7189** | -0.669 |\n\n结果保存在：\n- `/root/gen-depth-fingerprint/results/temp_olmo-2-1b_t05_eval.json`\n- `/root/gen-depth-fingerprint/results/temp_qwen3-0.6b_t05_eval.json`（monitor 自动触发的，qwen t=0.5 也达标了）\n\n## 2. Monitor 修复\n\n两个 bug 已修：\n- `sys.executable`（系统 python 无 torch）→ `/root/miniconda3/bin/python`\n- `can_start()` failed 状态死锁 → 允许最多 3 次重试\n\n## 3. 4 卡状态\n\n| GPU | 任务 | 进度 |\n|-----|------|------|\n| 0 | olmo t=0.5 pipeline ✅ 完成 | 995 seeds |\n| 1 | qwen t=0.5 pipeline ✅ 完成 + qwen t=0.5 generation 运行中 | 993 seeds |\n| 2 | olmo t=0.9 generation 运行中 | 657 seeds |\n| 3 | qwen t=0.9 generation 运行中 | 456 seeds |\n\nMonitor 已重启，正在等 t=0.9 数据达标后自动触发 pipeline。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-monitor-zombie-and-trigger.md"
+}

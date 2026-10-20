@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad4c5a8083c900754834",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops exp062 launch qwen8b topk",
+  "task_key": "worker_ops_exp062_launch_qwen8b_topk_20260521T171443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp062_launch_qwen8b_topk_20260521T171443_result.json",
+    "occurrence": 1,
+    "bytes": 338,
+    "sha256": "5c5f94e4610c7da13896d657248a79096dc45923e958434d923febf6529d7bde"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **Qwen3-8B topk** 已在 **GPU 0** 启动，PID 375795，预计 ~4.7h\n- **防重复 watcher** PID 376120 已部署：监控 GPU 1 greedy 完成后自动 kill 该进程，阻止其进入 topk 阶段，greedy 数据不受影响\n- 产出记录写入 `artifacts/_project/analysis/exp062_qwen8b_topk_launch.txt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp062-launch-qwen8b-topk.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "33164a96a35d4c62e4e5",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "gen plan 016 llama32 3b continue",
+  "task_key": "worker_gen_plan-016-llama32-3b-continue_20260516T074828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gen_plan-016-llama32-3b-continue_20260516T074828.log",
+    "occurrence": 1,
+    "bytes": 498439,
+    "sha256": "000d9bb48a748f773be4f43bdf8a12ef15cf396d7e7ff485eba5ebd4d99badec"
+  },
+  "statistics": {
+    "messages": 317,
+    "user_turns": 0,
+    "tool_calls": 105,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 103,
+      "tool_call": 105,
+      "tool_result": 105,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 317,
+      "chunks": [
+        {
+          "path": "33164a96a35d4c62e4e5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "33164a96a35d4c62e4e5-part-0002.json",
+          "message_count": 137
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gen-plan-016-llama32-3b-continue.md"
+}

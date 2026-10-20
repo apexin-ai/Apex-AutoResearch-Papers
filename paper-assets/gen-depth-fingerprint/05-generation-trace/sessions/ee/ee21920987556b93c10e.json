@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee21920987556b93c10e",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper research bib complete",
+  "task_key": "worker_paper_research_bib_complete_20260515T043737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_bib_complete_20260515T043737_result.json",
+    "occurrence": 1,
+    "bytes": 222,
+    "sha256": "a969a25813ecbacded6e34df838096c6918626f510e967bb5e4a401b631cec09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "34 条 \"and others\" 全部替换为完整作者列表，无残留。所有作者信息均通过 WebSearch 从 arXiv/ACL Anthology/NeurIPS Proceedings/Nature 等权威来源验证，未编造任何名字。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-bib-complete.md"
+}

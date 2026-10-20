@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9be5c75d26f0c36f8188",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_2_1778805236.md",
+  "task_key": "loop_2_1778805236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778805236.md",
+    "occurrence": 1,
+    "bytes": 4392,
+    "sha256": "ab917b40f2c26f4d3e2acbe89b0155907ffe2aec90fbc64560d0f6a626e4eb5e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-15T00:29:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（autodl-5090），不可用其他卡\n- submit_training_job 注入 CUDA_VISIBLE_DEVICES 后脚本只能看到 cuda:0（逻辑设备），--device 参数必须写 cuda:0，不能写物理卡号\n- 生成脚本 generate_chain.py 的 --model-name 参数值必须与脚本内 MODEL_MAP 匹配（pythia-1b, olmo-2-1b, qwen3-1.7b, qwen3-0.6b），不要用 HF repo 名\n- 大文件必须放 /root/autodl-tmp/，根分区只有 ~30GB\n- pip install / git clone 前必须 `source /etc/network_turbo`\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090 (4× RTX 5090 32GB)，账号 root\n- 工作目录：/root/gen-depth-fingerprint\n- Python：/root/miniconda3/bin/python（conda base 环境，不用 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 数据集：/root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl（996 seeds）\n- HF cache：/root/autodl-tmp/.hf_cache\n- 模型路径（全在 /root/autodl-tmp/models/ 下）：\n  - pythia-2.8b: /root/autodl-tmp/.hf_cache/EleutherAI/pythia-2___8b\n  - pythia-1b: /root/autodl-tmp/models/pythia-1b/EleutherAI/pythia-1b\n  - pythia-410m (ref): /root/autodl-tmp/models/pythia-410m 或 .hf_cache\n  - olmo-2-1b: /root/autodl-tmp/models/olmo-2-1b-hf/allenai/OLMo-2-0425-1B\n  - qwen3-1.7b: /root/autodl-tmp/models/Qwen/Qwen3-1___7B-Base\n  - qwen3-0.6b: /root/autodl-tmp/models/Qwen/Qwen3-0___6B-Base\n- 活跃进程：plan-002-olmo2-s0 (PID 108242, cuda:2) + plan-002-olmo2-s1 (PID 108452, cuda:3)，cron 监控中\n- cuda:0/1 空闲（Qwen3 实验刚失败）\n\n### 3. 📊 当前状态\n收到 cron 回调：plan-002-qwen3-1_7b-s0 和 s1 均 EXIT_CODE=129 (SIGHUP) 失败。两个实验正常运行 ~21min 后同时被外部终止，日志无任何 Python/CUDA 错误。已更新 registry notes。\n\n**RUNNING**: plan-002-olmo2-s0 (cuda:2), plan-002-olmo2-s1 (cuda:3) — OLMo-2-1B 跨模型生成，正常运行中\n**RUNNING**: plan-002 — 父实验（跨模型泛化方案）\n**PREPARING**: plan-001-restore, mvp-001-gen-s0/s1/s2/s3 — 历史残留，可忽略\n\n**等待中**:\n- Worker `worker_diagnose_plan-002-qwen3-1_7b_20260514T211526` 正在 SSH 诊断 SIGHUP 根因 → 回调后决定重跑策略\n- OLMo-2 cron 回调（预计还需 ~1h）\n- **cuda:0/1 空闲 = 失职状态**，诊断完成后必须立即重提交 Qwen3 或安排其他实验\n\n### 4. 📋 待办\n- 诊断 Worker 回调 → 读根因 → 更新 registry notes → 如果是 tmux/infra 问题则直接重提交 plan-002-qwen3-1_7b-s0/s1（新 exp_id 如 plan-002-qwen3-1_7b-s0-r1）→ 向 Director 汇报失败原因+重跑决定\n- OLMo-2 cron 回调(success) → 按 on-experiment-done 流程：记录 metrics → 更新 report.md → 检查部分数据完整性 → 如果 Qwen3 也完成则启动 Round 2（qwen3-0.6b cuda:0/1 + 另一个模型 cuda:2/3）\n- OLMo-2 cron 回调(failed) → 按 on-experiment-failed 流程诊断\n- 所有 plan-002 生成完成 → 合并各模型 shard → 提取特征 → 跨模型分类实验\n- memory.md 补充 SIGHUP 失败模式记录（诊断 Worker 确认根因后）\n\n### 5. 🎯 战略上下文\n- **核心方向**：估计文本\"生成深度\"（gen-0/gen-1/gen-2+），分布指纹实现风险分层数据治理\n- **MVP 已通过**（macro-F1=0.84），当前在 Research 阶段，验证 3 个 Core Claims\n- **Claim 1** (Depth Discriminability) 单生成器已验证，plan-002 正在验证跨生成器泛化\n- **Claim 2** (Feature Complementarity) plan-001-fix 已确认：full(0.82) > surface(0.76) > reference(0.72)\n- **Claim 3** (Downstream Utility) 待 plan-004\n- **Venue**: AAAI 2027 (DDL Aug 2) primary / EMNLP 2026 ARR (May 25) stretch\n- **plan-002 执行计划**：Round 1 = pythia-1b (✅done) + olmo-2-1b (🏃running)；Round 2 = qwen3-1.7b (❌failed, 待重跑) + qwen3-0.6b (待提交)\n- **易错点**：Pythia-1b 生成数据已完成（shard0: 2286 records, shard1: 2269 records），不要重跑\n- **易错点**：之前有重复提交事故（plan-002-qwen17b 和 plan-002-qwen3-1_7b 争抢同一 GPU），提交前务必检查 tmux ls 确认无冲突 session\n- **决策链**：D001(MVP方案) → D002(MVP PASS→Research) → D003(Claim2 Plan B) → D004(Claim2 framing调整) → D005(H1/H2 dual dynamics)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778805236.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58f442836cc62d9c5783",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "exp pythia temp eval",
+  "task_key": "worker_exp_pythia-temp-eval_20260518T060602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_pythia-temp-eval_20260518T060602_result.json",
+    "occurrence": 1,
+    "bytes": 1602,
+    "sha256": "eb5c2dff259ded0d15f82081713a66540fe6b6e656f58a0774a5a5a2cfd0e88b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All results are in. Here's the summary:\n\n---\n\n## Pythia 温度敏感性结果\n\n### 5-fold Stratified CV (within-model)\n\n| 温度 | Binary F1 | 95% CI | entropy_mean ρ |\n|------|-----------|--------|----------------|\n| 0.5  | **0.8432** | [0.8301, 0.8558] | -0.5844 |\n| 0.7  | 0.7389 | [0.7231, 0.7542] | -0.5753 |\n| 0.9  | 0.5821 | [0.5655, 0.5985] | -0.3016 |\n| 1.0  | — | — | — |\n\n### LOGO (train on other generators, test on Pythia)\n\n| 温度 | Binary F1 | 95% CI |\n|------|-----------|--------|\n| 0.5  | **0.8136** | [0.7984, 0.8282] |\n| 0.7  | 0.7395 | [0.7254, 0.7548] |\n| 0.9  | 0.4804 | [0.4645, 0.4976] |\n\n### Qwen LOGO (含新 t=0.9)\n\n| 温度 | Binary F1 | 95% CI | n_test |\n|------|-----------|--------|--------|\n| 0.5  | 0.7506 | [0.7348, 0.7656] | 3814 |\n| 0.7  | 0.7505 | [0.7345, 0.7664] | 3621 |\n| 0.9  | 0.5708 | [0.5496, 0.5941] | 1884 ⚠️ |\n| 1.0  | 0.3670 | [0.3525, 0.3813] | 3706 |\n\n---\n\n## 关键判断\n\n**t=0.9 vs t=0.7 F1 差值：**\n- Pythia 5-CV: **-15.7pp**，LOGO: **-25.9pp**\n- Qwen LOGO: **-18.0pp**（但基于部分数据）\n\n**远超 3pp 阈值，不能扩展 claim 到 [0.5, 0.9]。** 深度信号在 t=0.9 显著退化，entropy_mean ρ 从 -0.58 骤降到 -0.30。\n\n## Task B 状态\n\n- **tc_phase3**：55% (545/996)，Qwen t=0.9 生成仍在跑，预计还需约 1 小时\n- **feat_qwen_t09**：已完成，但基于部分生成数据 (2413 rows)。tc_phase3 跑完后需要**重新提取特征**\n- **Pythia t=1.0**：**不存在生成数据**，需要单独启动生成任务才能填充该行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-pythia-temp-eval.md"
+}

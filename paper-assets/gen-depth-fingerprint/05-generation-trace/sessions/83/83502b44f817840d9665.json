@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "83502b44f817840d9665",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "gen plan 016 mistral 7b",
+  "task_key": "worker_gen_plan-016-mistral-7b_20260516T071857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gen_plan-016-mistral-7b_20260516T071857.log",
+    "occurrence": 1,
+    "bytes": 1532386,
+    "sha256": "68d74427d885154f61e0d57ea90f66fc727e5e2d98db657153d17473fc46dc50"
+  },
+  "statistics": {
+    "messages": 964,
+    "user_turns": 1,
+    "tool_calls": 369,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 216,
+      "tool_call": 369,
+      "tool_result": 369,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 591,
+      "chunks": [
+        {
+          "path": "83502b44f817840d9665-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "83502b44f817840d9665-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "83502b44f817840d9665-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "83502b44f817840d9665-part-0004.json",
+          "message_count": 51
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 373,
+      "chunks": [
+        {
+          "path": "83502b44f817840d9665-part-0004.json",
+          "message_count": 129
+        },
+        {
+          "path": "83502b44f817840d9665-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "83502b44f817840d9665-part-0006.json",
+          "message_count": 64
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gen-plan-016-mistral-7b.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6838de5926a16c0203d0",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper fix r51 regressions",
+  "task_key": "worker_paper_fix-r51-regressions_20260525T070500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-r51-regressions_20260525T070500_result.json",
+    "occurrence": 1,
+    "bytes": 615,
+    "sha256": "d257840cc759c8c17996f8cd2cdec8dbc0385c0abb2577ac5eab7cd35c6380ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three fixes are already applied in the current files:\n\n1. **N2 (48.4% attribution)** — No stale \"depth-2+ misclassified\" text found. Both results.tex:25 and discussion.tex:21 correctly attribute 48.4% to depth-2 specifically.\n2. **N3 (tail_decay range)** — No `d=0.07--0.15` found. discussion.tex:5 already has `|d|=0.10--0.22`.\n3. **N4 (QLoRA within-model)** — All 5 occurrences across introduction, results, discussion, conclusion, and limitations already carry `within-model` annotations.\n\nNo edits needed — all 3 R51 issues have already been fixed in the current working tree."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-r51-regressions.md"
+}

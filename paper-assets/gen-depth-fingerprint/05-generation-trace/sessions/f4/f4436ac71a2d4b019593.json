@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4436ac71a2d4b019593",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code llama rp11 filter and extract",
+  "task_key": "worker_code_llama-rp11-filter-and-extract_20260516T114701",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-rp11-filter-and-extract_20260516T114701_result.json",
+    "occurrence": 1,
+    "bytes": 648,
+    "sha256": "da35f95d878b742b3d7ef78a0df5c26c94b17cbadfe70d1d0570fa644f5eecfd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n**Phase 1 — Soft Filter**\n- 输入: 4416 条 → 过滤后: 4386 条\n- 仅过滤 30 条 (0.68%)，符合 rp=1.1 低退化预期\n\n**Phase 2 — 3-ref Feature Extraction**\n\n| 文件 | 行数 |\n|------|------|\n| `features_pythia410m.jsonl` | 4386 |\n| `features_olmo2-1b.jsonl` | 4386 |\n| `features_qwen3-06b.jsonl` | 4386 |\n\n每条包含: `seed_id`, `depth`, `entropy_mean/std/min/max`, `tail_decay`, `ttr`, `hapax_ratio`。tail_decay 的 90th percentile 阈值基于 depth-0 样本计算。\n\n脚本已参数化（新增 `--data-dir` 参数），后续其他 rp 设置可直接复用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-rp11-filter-and-extract.md"
+}

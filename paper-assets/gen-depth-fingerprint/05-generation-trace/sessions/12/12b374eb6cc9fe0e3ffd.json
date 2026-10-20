@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12b374eb6cc9fe0e3ffd",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "infra cleanup and download",
+  "task_key": "worker_infra_cleanup-and-download_20260520T110928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_cleanup-and-download_20260520T110928_result.json",
+    "occurrence": 1,
+    "bytes": 870,
+    "sha256": "f768b86f03fbc95c46d7c55ad50b77a8c2289a5387a585f054517df6b43e4446"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载正在顺利进行。从日志可见：\n\n- Shard 1/8 正在下载：20MiB/3.5GiB，速度 **8.2 MiB/s**，ETA 7m20s\n- 已下载 3.6G（20秒内从小文件阶段进入第一个大 shard）\n- 磁盘剩余 72G，充足\n\n## 报告\n\n| 项目 | 详情 |\n|------|------|\n| **已删除模型** | `Qwen/Qwen2.5-14B-Instruct`(28G)、`Qwen/Qwen2___5-14B-Instruct`(同上硬链)、`Qwen2.5-14B`(12G) |\n| **释放空间** | ~70G（9.2G → 80G） |\n| **当前可用** | 72G（已有 3.6G 下载写入） |\n| **DeepSeek** | 未删除（空间充足，无需删除） |\n| **下载 PID** | `191718` |\n| **下载速度** | ~8.2 MiB/s |\n| **预估完成时间** | 每 shard ~7 分钟 × 8 = ~56 分钟，约 **20:10** 完成 |\n\n监控命令：\n```bash\ntail -5 /tmp/download_qwen3_14b_aria2.log\ndu -sh /root/autodl-tmp/models/Qwen3-14B-Base/\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-cleanup-and-download.md"
+}

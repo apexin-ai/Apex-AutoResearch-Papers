@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48c51a8452a2edccf0e6",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code tost equivalence test",
+  "task_key": "worker_code_tost-equivalence-test_20260517T115207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_tost-equivalence-test_20260517T115207_result.json",
+    "occurrence": 1,
+    "bytes": 918,
+    "sha256": "3190a5513b4d6e72e0798983a45c711fbde900441de9e3fa3235a0dbb4725f71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results saved to `/root/gen-depth-fingerprint/results/tost_equivalence.json`.\n\n### TOST Equivalence Test Results\n\n| Comparison | Mean diff | Δ=0.05 p_TOST | Equiv? | Δ=2% p_TOST | Equiv? | Min margin |\n|---|---|---|---|---|---|---|\n| all_data vs size_matched | -0.0321 | 0.000144 | **Yes** | 0.000217 | **Yes** | 0.0330 (1.41%) |\n| all_data vs depth01 | -0.0520 | 0.985 | **No** | 0.998 | **No** | 0.0531 (2.27%) |\n| size_matched vs depth01 | -0.0200 | 0.000095 | **Yes** | 0.000114 | **Yes** | 0.0212 (0.89%) |\n\nKey findings:\n- **all_data vs size_matched**: Equivalent at both margins (diff ~0.032, well within Δ=0.05)\n- **all_data vs depth01**: **Not equivalent** at either margin. The diff (~0.052) slightly exceeds Δ=0.05. Minimum margin for equivalence is 0.053 (2.27% of baseline)\n- **size_matched vs depth01**: Equivalent at both margins (diff ~0.020, comfortably within Δ=0.05)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-tost-equivalence-test.md"
+}

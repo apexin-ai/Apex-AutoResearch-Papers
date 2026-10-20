@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa545bb600e52caf6e6a",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "research emnlp2026 submission prep",
+  "task_key": "worker_research_emnlp2026-submission-prep_20260519T061325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_emnlp2026-submission-prep_20260519T061325_result.json",
+    "occurrence": 1,
+    "bytes": 1025,
+    "sha256": "d6485b0f75e9e6eba22cc010eadf9d01157322640bcd339d74701668b9064512"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已生成：\n\n**任务 1 — 投稿材料清单** → `artifacts/_project/paper/submission_requirements.md`\n- 7 项材料逐项列出，标注状态（✅/⚠️/❌）\n- OpenReview 表单 12 个必填字段\n- 关键：**提交时必须声明 EMNLP 2026**（binding），所有作者需在 05-27 前注册 reviewer\n- Desk reject 高风险项 9 项逐项检查\n\n**任务 2 — Responsible NLP Checklist** → `artifacts/_project/paper/responsible_nlp_checklist.md`\n- 严格按照官方 PDF（A1-A3, B1-B6, C1-C4, D, E1）逐题回答\n- 每题标注 Yes/No/N/A + 具体 section 引用\n- 底部附 OpenReview 表单快速映射表\n\n**需要行动的项**：\n1. ⚠️ Anonymous GitHub 代码仓库\n2. ⚠️ 数据包打包（.tgz/.zip）\n3. ⚠️ Track/Area 关键词选择\n4. ❌ 提交时选择 EMNLP 2026 conference declaration\n5. ❌ 所有作者 reviewer registration（截止 05-27）\n6. ⚠️ E1 的 AI assistant disclosure 需在 Acknowledgements 或正文中添加段落"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-emnlp2026-submission-prep.md"
+}

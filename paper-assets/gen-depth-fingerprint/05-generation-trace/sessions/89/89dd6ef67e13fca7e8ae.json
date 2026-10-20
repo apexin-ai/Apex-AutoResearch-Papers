@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89dd6ef67e13fca7e8ae",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code supplementary anonymize",
+  "task_key": "worker_code_supplementary-anonymize_20260517T211543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_supplementary-anonymize_20260517T211543_result.json",
+    "occurrence": 1,
+    "bytes": 1313,
+    "sha256": "2d70f9198fb5d1ae45cd290ce2df5adb1f7dbfb02f7f064ff7eac4ebd5ff44c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Here's a summary:\n\n**Anonymization**: All 26 `.py` files and README are clean. No `/root/`, `/home/ubuntu/`, wandb, autodl, API keys, or author info found in the zip.\n\n**New scripts added** (6 files from server, anonymized):\n| File | Anonymization fix |\n|------|------------------|\n| `prepare_downstream_data.py` | Default paths changed to `../data/`; removed duplicate buggy `save_jsonl` |\n| `finetune_downstream.py` | Removed `/root/autodl-tmp/...` from docstring usage example |\n| `bootstrap_downstream_ci.py` | `BASE` path changed from `/root/autodl-tmp/...` to `experiments/downstream` |\n| `end_to_end_classifier.py` | Removed internal experiment name from output dir; generalized output path |\n| `cross_temp_transfer.py` | Already clean (uses `__file__`-relative paths); adjusted DATA_DIR to `../data` |\n| `distributional_tests.py` | `DATA_PATH` and `OUT_PATH` changed from `/root/gen-depth-fingerprint/...` to relative |\n| `scripts/tost_equivalence.py` | Output path changed from `/root/gen-depth-fingerprint/...` to `results/` |\n\n**README updated**: Added data format docs, full script reference with appendix mappings, downstream utility section, requirements section.\n\n**Package**: `supplementary.zip` = **76 KB**, 32 files (26 `.py` + 1 `.md` + 1 `.txt` + 4 dirs)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-supplementary-anonymize.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8fca81e886340b187dfe",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "research ref audit worker 2",
+  "task_key": "worker_research_ref-audit-worker-2_20260526T103724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-worker-2_20260526T103724.log",
+    "occurrence": 1,
+    "bytes": 547555,
+    "sha256": "44e8f8057f9dc8bffbe9d4f7aae38048fa9f09b98d963469c61a855ec40d12a3"
+  },
+  "statistics": {
+    "messages": 321,
+    "user_turns": 0,
+    "tool_calls": 35,
+    "roles": {
+      "log": 1,
+      "system": 207,
+      "record": 10,
+      "assistant": 32,
+      "tool_call": 35,
+      "tool_result": 35,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 321,
+      "chunks": [
+        {
+          "path": "8fca81e886340b187dfe-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8fca81e886340b187dfe-part-0002.json",
+          "message_count": 141
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-ref-audit-worker-2.md"
+}

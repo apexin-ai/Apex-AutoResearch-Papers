@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36b2b97a58acfa65f4bd",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper add 3 citations",
+  "task_key": "worker_paper_add_3_citations_20260520T193850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_add_3_citations_20260520T193850_result.json",
+    "occurrence": 1,
+    "bytes": 1744,
+    "sha256": "c78e0352197ccbf4bed9b5a275ebbc3550c0d874f553b22fbab6a62558acfc32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. 完整作者列表（WebSearch 验证）\n\n| 论文 | 完整作者列表 |\n|------|-------------|\n| Koike et al. (2025) | Ryuto Koike, Liam Dugan, Masahiro Kaneko, Chris Callison-Burch, Naoaki Okazaki |\n| Seddik et al. (2024) | Mohamed El Amine Seddik, Suei-Wen Chen, Soufiane Hayou, Pierre Youssef, Merouane Debbah |\n| Kasa et al. (2024) | Siva Rajesh Kasa, Aniket Goel, Karan Gupta, Sumegh Roychowdhury, Pattisapu Priyatam, Anish Bhanushali, Prasanna Srinivasa Murthy |\n\n### 2. references.bib 添加的 3 条 BibTeX\n\n- `koike_mia_detection` — arXiv preprint, Membership Inference 分区（原 line 308 后）\n- `seddik_synthetic_data` — arXiv preprint, Model Collapse 分区（原 line 147 后）\n- `kasa_ordinality_nlp` — Findings ACL 2024, Machine Learning 分区（corn_ordinal 后）\n\n### 3. tex 修改\n\n| 文件 | 行号 | 修改 |\n|------|------|------|\n| `related_work.tex` | L10 | `\\cite{gutierrez_ordinal_survey,coral_ordinal}` → `\\cite{gutierrez_ordinal_survey,coral_ordinal,kasa_ordinality_nlp}` |\n| `related_work.tex` | L15 | `\\cite{self_consuming_mad,curse_of_recursion}` → `\\cite{self_consuming_mad,curse_of_recursion,seddik_synthetic_data}` |\n| `related_work.tex` | L33（新增行） | `\\citet{koike_mia_detection} formalize this connection from the opposite direction, showing that detection scores implicitly perform membership inference, underscoring the shared statistical basis of detection and provenance.` |\n\nSources:\n- [arXiv:2510.19492 — Koike et al.](https://arxiv.org/abs/2510.19492)\n- [arXiv:2404.05090 — Seddik et al.](https://arxiv.org/abs/2404.05090)\n- [ACL Anthology — Kasa et al.](https://aclanthology.org/2024.findings-acl.320/)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-add-3-citations.md"
+}

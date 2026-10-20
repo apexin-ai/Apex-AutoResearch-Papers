@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d3c46373b3fcc0371b7",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper figure fig4",
+  "task_key": "worker_paper_figure_fig4_20260515T043720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig4_20260515T043720_result.json",
+    "occurrence": 1,
+    "bytes": 504,
+    "sha256": "57301434d03c5ee6a6bbdd490e932f6b7d4a1a09dab47c07d6b11b113442e049"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fig 4 已生成并注册。\n\n输出文件：\n- PNG: `figures/paper/fig4_downstream_negative.png` (300dpi)\n- PDF: `figures/paper/fig4_downstream_negative.pdf` (矢量)\n\n图表要素：5 个 curation strategy 按 PPL 升序排列，Okabe-Ito 配色，serif 字体，bracket 标注 3 个 size-matched 条件（n=3,951），\"n.s.\" 标注 depth-aware 策略未优于随机采样。Depth 0 only (n=797) 明显最差，核心信息清晰：数据量是决定因素，不是深度组成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig4.md"
+}

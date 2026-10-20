@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "d8066d48defdaa3d8e54",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "gen plan 016 llama32 3b",
+  "task_key": "worker_gen_plan-016-llama32-3b_20260516T071838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gen_plan-016-llama32-3b_20260516T071838.log",
+    "occurrence": 1,
+    "bytes": 1159953,
+    "sha256": "af681aa8ab4b2f77a7080cf6c4e1b7e9bc4c693eb4110ef3f91b162ebc53eb38"
+  },
+  "statistics": {
+    "messages": 833,
+    "user_turns": 1,
+    "tool_calls": 372,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 81,
+      "tool_call": 372,
+      "tool_result": 372,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 817,
+      "chunks": [
+        {
+          "path": "d8066d48defdaa3d8e54-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d8066d48defdaa3d8e54-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d8066d48defdaa3d8e54-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d8066d48defdaa3d8e54-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "d8066d48defdaa3d8e54-part-0005.json",
+          "message_count": 97
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "d8066d48defdaa3d8e54-part-0005.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gen-plan-016-llama32-3b.md"
+}

@@ -1,0 +1,250 @@
+{
+  "schema_version": "1.0",
+  "id": "b6c963d18bc26f7fa426",
+  "project": "gen-depth-fingerprint",
+  "kind": "conversation",
+  "title": "paper appendix tost bootstrap",
+  "task_key": "worker_paper_appendix_tost_bootstrap_20260520T082345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_appendix_tost_bootstrap_20260520T082345.jsonl",
+    "occurrence": 1,
+    "bytes": 9935,
+    "sha256": "24e13c4808d5519304ba1f87a8d139e5cc0a9f7b50aa1aea0574ac13094915a1"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "tool_call": 5,
+      "tool_result": 5,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T08:24:23.743914+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix_tost_bootstrap_20260520T082345",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+              "offset": "70",
+              "limit": "20"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T08:24:23.744237+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "70\tThe six-fold magnitude gap between drifting ($|\\rho| > 0.60$) and near-stationary features ($|\\rho| < 0.10$) defines the DDR partition, with entropy std ($|\\rho| = 0.16$, $d{=}0.55$) as the sole intermediate member.\n71\tThe 3/1/3 partition is stable across $d$ thresholds in $[0.56, 0.75]$; data-driven clustering confirms the primary drifting/non-drifting split ($k{=}2$, silhouette\\,=\\,0.632; Appendix~\\ref{app:ddr-validation}).\n72\t\n73\t\\paragraph{Distributional shift quantification.}\n74\tTwo-sample KS tests confirm the split: drifting-feature statistics (0.516--0.537) are ${\\sim}10\\times$ larger than shape-feature statistics (0.043--0.052; all $p \\approx 0$ after Bonferroni correction).\n75\tCohen's $d$ \\cite{cohen1988statistical} (pooled, class-balanced) converges with $\\rho$: drifting features show large effects (entropy mean $d{=}1.17$, TTR $d{=}0.88$, hapax ratio $d{=}0.76$), while shape features are near zero (entropy max $d{=}0.08$, tail decay $d{=}0.08$).\n76\tLevene tests reject strict equal-variance ($p < 10^{-10}$); Glass's $\\Delta$ (using gen-1 SD) amplifies drifting effects (entropy mean $\\Delta{=}1.41$, hapax $\\Delta{=}0.94$) while near-stationary features remain negligible ($\\Delta \\leq 0.10$), yielding a ${\\geq}9.5\\times$ gap. Cliff's $\\delta$ corroborates the partition (Appendix~\\ref{app:ddr-validation}).\n77\tShape-feature CV shift ($<$3\\% vs.\\ $>$15\\% for drifting features) supports ``near-stationary'' as a practical characterization.\n78\tFive features fall cleanly into the drifting or near-stationary groups under both $\\rho$ and $d$; the remaining two require qualification: entropy min's pooled $|\\rho|$ (0.40) reflects change concentrated at the gen-0/gen-1 boundary, but for gen-1 vs.\\ gen-2+ it is near-stationary ($d{=}0.03$), placing it in the near-stationary group; entropy std shows a substantial level shift ($d{=}0.55$) despite low monotonicity ($|\\rho|{=}0.16$), making it the sole intermediate feature.\n79\tEntropy min exhibits a discrepancy between lo\n…[truncated 1931 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix_tost_bootstrap_20260520T082345",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T08:24:23.744420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix_tost_bootstrap_20260520T082345",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "artifacts/_project/paper/appendix_tost*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T08:24:23.744556+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/appendix_tost.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix_tost_bootstrap_20260520T082345",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T08:24:23.744701+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix_tost_bootstrap_20260520T082345",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T08:24:23.744861+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Per-Generator Equivalence Testing}\n2\t\\label{app:tost}\n3\t\n4\tTo confirm that the near-stationary classification is not a pooling artifact, we apply two one-sided $t$-tests (TOST) \\cite{lakens_equivalence} for each feature within each generator separately (gen-1 vs.\\ gen-2+, equivalence bound $|d| < 0.20$).\n5\tWe adopt Cohen's conventional small effect size ($d{=}0.20$) \\cite{cohen1988statistical} as the smallest effect of practical significance (SESOI): effects below this threshold are unlikely to be practically meaningful for depth discrimination.\n6\tLOFO analysis independently supports this choice: removing any near-stationary feature changes classification F1 by $\\leq$1.5\\,pp (Appendix~\\ref{app:lofo}), linking the statistical threshold to classification irrelevance.\n7\tSensitivity analysis at $\\varepsilon \\in \\{0.15, 0.20, 0.25\\}$ confirms the partition is robust to the bound choice (see DDR Validation appendix).\n8\tTable~\\ref{tab:tost-per-gen} reports observed $|d|$; \\checkmark{} marks features for which the TOST null hypothesis (non-equivalence) is rejected at $\\alpha = 0.05$.\n9\t\n10\tEntropy min passes equivalence for all eight generators; entropy max passes for six of eight (exceeding $\\varepsilon$ only for Pythia-1B and Pythia-2.8B, where $|d| \\approx 0.21$--$0.25$); tail decay passes for four of eight.\n11\tAll drifting and intermediate features fail equivalence uniformly, with $|d|$ ranging from 0.23 (entropy std, Mistral) to 1.40 (entropy mean, Pythia-1B).\n12\tThe partition is robust at the individual-generator level, with entropy min as the most consistently stationary feature.\n13\tFigure~\\ref{fig:ddr-scatter} visualizes the DDR partition in ($|\\rho|$, $d$) space, showing a clear gap between the three groups.\n14\t\n15\t\\begin{table}[h]\n16\t\\centering\n17\t\\footnotesize\n18\t\\caption{Per-generator TOST equivalence ($\\varepsilon{=}|d|{<}0.20$, gen-1 vs.\\ gen-2+). Observed $|d|$; \\checkmark{} = equivalent ($p_{\\mathrm{TOST}} < 0.05$). Features grouped by DDR partiti\n…[truncated 1919 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix_tost_bootstrap_20260520T082345",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T08:24:23.745032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix_tost_bootstrap_20260520T082345",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost_bootstrap.tex",
+              "content": "\\section{TOST Bootstrap Stability}\\label{app:tost-bootstrap}\n\nTo verify that the equivalence conclusions in \\S\\ref{app:tost} are not sensitive to sample composition, we assess their stability under bootstrap resampling.\nFor each of four representative features, we run 1{,}000 bootstrap iterations (base seed\\,=\\,42): each iteration independently resamples with replacement from the gen-1 and gen-2+ pools, recomputes Cohen's $d$ and the TOST $p$-value (equivalence margin $|d| < 0.20$).\n\n\\begin{table}[h]\n\\centering\n\\footnotesize\n\\caption{Bootstrap stability of TOST equivalence ($B{=}1{,}000$, margin $|d|{<}0.20$). Rejection rate = fraction of bootstrap iterations where TOST rejects non-equivalence at $\\alpha{=}0.05$.}\n\\label{tab:tost-bootstrap}\n\\begin{tabular}{l c c c}\n\\toprule\n\\textbf{Feature} & \\textbf{Rejection rate} & \\textbf{Median $d$} & \\textbf{$d$ 95\\% CI} \\\\\n\\midrule\nentropy\\_max  & 100\\% (1000/1000) & 0.062  & [0.037, 0.088] \\\\\nentropy\\_min  & 100\\% (1000/1000) & $-$0.016 & [$-$0.042, 0.011] \\\\\ntail\\_decay   & 100\\% (1000/1000) & 0.088  & [0.065, 0.111] \\\\\n\\midrule\nentropy\\_std  & 0\\% (0/1000)      & 0.458  & [0.435, 0.479] \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAll three near-stationary features achieve a 100\\% rejection rate across 1{,}000 bootstrap iterations, and their effect-size 95\\% CIs fall entirely within the $\\pm 0.20$ equivalence margin.\nEntropy std, included as an intermediate control, is never rejected (0\\%), with its CI $[0.435, 0.479]$ lying entirely outside the margin.\nNo feature exhibits boundary-crossing---the classification of each feature is unanimous across all bootstrap samples, confirming that the equivalence conclusions are robust to resampling variability.\n"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T08:24:23.745177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_tost_bootstrap.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix_tost_bootstrap_20260520T082345",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T08:24:23.745302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix_tost_bootstrap_20260520T082345",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+              "old_string": "Per-generator TOST equivalence testing confirms the partition is not a pooling artifact; holdout generator validation confirms stability across two 4/4 splits (Appendix~\\ref{app:tost}).",
+              "new_string": "Per-generator TOST equivalence testing confirms the partition is not a pooling artifact; holdout generator validation confirms stability across two 4/4 splits (Appendix~\\ref{app:tost}).\nBootstrap resampling (1{,}000 iterations) confirms these equivalence conclusions are robust: all three near-stationary features achieve 100\\% rejection rate, with effect-size CIs well within the $d{=}0.20$ margin (Appendix~\\ref{app:tost-bootstrap})."
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T08:24:23.745476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix_tost_bootstrap_20260520T082345",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T08:24:23.745651+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n1. **新建 `appendix_tost_bootstrap.tex`** — 包含 section 标题、bootstrap 方法说明、booktabs 风格表格（4 features × rejection rate / median d / d 95% CI）、总结段落。\n2. **`results.tex` 第 81 行** — 在 `(Appendix~\\ref{app:tost}).` 后添加了 bootstrap 引用句。\n\n你需要在 `main.tex` 中添加 `\\input{appendix_tost_bootstrap}` 行。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_appendix_tost_bootstrap_20260520T082345"
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/paper-appendix-tost-bootstrap.md"
+}

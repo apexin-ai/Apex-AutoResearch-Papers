@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "853280cf721d8a57cd3c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis plan 005 elab",
+  "task_key": "worker_analysis_plan-005-elab_20260515T060053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-005-elab_20260515T060053_result.json",
+    "occurrence": 1,
+    "bytes": 1529,
+    "sha256": "e0ab7e05f27b3db9de8cf19d82001b67bc8747024bda0c30335130ecbb4405d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 和项目知识已更新。以下是三种 prompt type 的完整对比：\n\n---\n\n## Plan-005 三种 Prompt Type 对比\n\n### Chain Retention (d4/d0)\n\n| Prompt Type | Records | d0 | d1 | d2 | d3 | d4 | Retention |\n|---|---|---|---|---|---|---|---|\n| continuation | 4620 | 995 | 992 | 932 | 874 | 827 | **83.1%** |\n| elaboration | 4946 | 995 | 995 | 989 | 986 | 981 | **98.6%** |\n| inspired_rewriting | 4827 | 995 | 995 | 959 | 944 | 934 | **93.9%** |\n\n### Depth Discriminability (XGBoost 3-class)\n\n| Prompt Type | Within-type CV F1 | LOPTO F1 (cross-type) |\n|---|---|---|\n| continuation | **0.781** ± 0.012 | 0.762 |\n| elaboration | 0.730 ± 0.011 | 0.762 |\n| inspired_rewriting | 0.737 ± 0.011 | 0.733 |\n\n### Feature Drift (d0→d4 relative change)\n\n| Feature | continuation | elaboration | rewriting |\n|---|---|---|---|\n| entropy_mean | **−55.7%** | −47.1% | −47.7% |\n| ttr | −60.7% | −64.1% | −61.8% |\n| hapax_ratio | −74.0% | **−82.8%** | −80.0% |\n\n### 核心发现\n\n1. **Retention-discriminability tradeoff**: Elaboration 链最稳定 (98.6%) 但 depth signal 最弱 (F1=0.730)；continuation 丢链最多但存活样本的 depth fingerprint 最强 (F1=0.781)。\n2. **跨 prompt type 信号可迁移**: LOPTO F1 ≈ 0.75，说明 depth signal 不是 prompt-type-specific 的，classifier 能跨类型迁移。\n3. **词汇多样性特征主导**: ttr 和 hapax_ratio 在三种类型中都有 60–83% 的 collapse，是最可靠的 depth indicator。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-005-elab.md"
+}

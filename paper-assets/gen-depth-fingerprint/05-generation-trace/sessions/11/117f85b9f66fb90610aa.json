@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "117f85b9f66fb90610aa",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops plan006 harvest results",
+  "task_key": "worker_ops_plan006-harvest-results_20260515T232524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan006-harvest-results_20260515T232524_result.json",
+    "occurrence": 1,
+    "bytes": 651,
+    "sha256": "5b829812dc1920e5ed14a1aac585afd90aba70bb83e2ae28ece33a738449fe15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完成。\n\n**plan-006-paraphrastic** → `conclusion=success`, `status=DONE`\n\n核心数据：\n\n| 指标 | Paraphrastic | Continuation | Delta |\n|------|-------------|-------------|-------|\n| 3-class F1 | 0.680 ± 0.009 | 0.788 ± 0.006 | **-0.108** |\n| Binary F1 | 0.539 ± 0.017 | 0.749 ± 0.011 | -0.210 |\n| Cross-transfer | para→cont: 0.155 | cont→para: 0.431 | — |\n\nSpearman 相关方向全面反转（para 正，cont 负），且 cross-transfer 严重不对称。验证了 attractor convergence hypothesis：paraphrastic 链打断了 continuation 链的收敛轨迹，深度信号显著减弱。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan006-harvest-results.md"
+}

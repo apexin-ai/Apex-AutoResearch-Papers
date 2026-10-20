@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "641240a045708ac2701b",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "fix monitor dedup t09",
+  "task_key": "worker_fix_monitor-dedup-t09_20260518T170204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_monitor-dedup-t09_20260518T170204_result.json",
+    "occurrence": 1,
+    "bytes": 1578,
+    "sha256": "e63e0e0c3b77fde014ee28c142dfda55e5371ab761fffc2e09d046b105dfaa57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就位。汇报：\n\n## 结果\n\n### 1. 原脚本中是否存在 t=0.9 自动启动逻辑\n\n**存在，在 tmux shell 脚本中。** `run_temp_olmo.sh` 和 `run_temp_qwen06.sh` 是串行脚本（`[1/2]` t=0.5 → `[2/2]` t=0.9 → feature extraction），t=0.5 完成后会自动在 GPU 0/1 上启动 t=0.9 generation，和 GPU 2/3 上已有的 `temp_olmo_t09`/`temp_qwen06_t09` 写同一输出文件。\n\n**Monitor 脚本本身不启动 generation**，只做 feature extraction + LOGO classification。但 GPU 分配有误（olmo→GPU 2, qwen→GPU 3），会和 t=0.9 generation 抢 GPU。\n\n### 2. 做了什么修改\n\n| 文件 | 修改 |\n|------|------|\n| `run_temp_olmo.sh` | 删除 t=0.9 generation 和 feature extraction 部分，只保留 t=0.5 generation |\n| `run_temp_qwen06.sh` | 同上 |\n| `monitor_temp_pipeline.py` | GPU 分配改为 olmo→0, qwen→1（两个温度共享），更新 docstring |\n| 运行中的 bash 进程 | `kill -STOP 27209/27221` 暂停 bash 脚本，python generation 不受影响 |\n\n### 3. Monitor 重启状态\n\n正常运行，正在监控 4 个 target 的 seed 数量（olmo_t05: 957, qwen06_t05: 643, olmo_t09: 83, qwen06_t09: 64）。\n\n### 4. 确认不会重复启动 t=0.9\n\n- Bash 脚本已 STOP（`T+` 状态），t=0.5 完成后不会继续执行 t=0.9\n- Shell 脚本已改写，即使重新运行也不含 t=0.9\n- Monitor 不含 generation 逻辑，只在数据就绪后触发 feature extraction\n- t=0.9 generation 仅在 `temp_olmo_t09`（GPU 2）和 `temp_qwen06_t09`（GPU 3）上运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-monitor-dedup-t09.md"
+}

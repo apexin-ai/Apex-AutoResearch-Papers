@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75118fb0238cf39073b4",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops gemma progress gpu status",
+  "task_key": "worker_ops_gemma-progress-gpu-status_20260516T155816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gemma-progress-gpu-status_20260516T155816_result.json",
+    "occurrence": 1,
+    "bytes": 565,
+    "sha256": "a49f60d99ca148b7b4bceed223c82289675f19b7548525ab8e483cd6226e8770"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Gemma rp=1.1\n进程: **alive** (PID 305925, 运行 3h47m)\n进度: **97%** (965/994 seeds)\nRecords: **4725** / ~4970\nETA: ~7 分钟\n\n## GPU 状态\n| GPU | 型号 | 利用率 | 显存 |\n|-----|------|--------|------|\n| cuda:0 | RTX 5090 | 0% | 0 MiB / 32607 MiB |\n| cuda:1 | RTX 5090 | 51% | 5865 MiB / 32607 MiB |\n| cuda:2 | RTX 5090 | 0% | 0 MiB / 32607 MiB |\n| cuda:3 | RTX 5090 | 0% | 0 MiB / 32607 MiB |\n\n注：实际运行在 cuda:1（CUDA_VISIBLE_DEVICES=1 映射为进程内 cuda:0）。约 7 分钟后完成全部 994 seeds。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gemma-progress-gpu-status.md"
+}

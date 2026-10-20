@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "028ddf56c19fe53c6c43",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "data olmo2 merge cleanup",
+  "task_key": "worker_data_olmo2-merge-cleanup_20260514T215426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_olmo2-merge-cleanup_20260514T215426_result.json",
+    "occurrence": 1,
+    "bytes": 469,
+    "sha256": "e272336dfa65e65477f218b2b706ece24855508a3391053c49c1f13103f706ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n**OLMo-2-1B 合并结果：**\n- 总记录数：4713（shard0: 2379 + shard1: 2334）\n- Depth 分布：`{0: 995, 1: 988, 2: 947, 3: 905, 4: 878}`\n- Unique seeds：995\n\n**Pythia-1B 合并状态：**\n- 已就绪，总记录数：4555\n- Depth 分布：`{0: 995, 1: 993, 2: 912, 3: 851, 4: 804}`\n- Unique seeds：995\n\n**清理文件：**\n- 已删除 `results/cross_generator_results.json`（dry_run 数据，support=2）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-olmo2-merge-cleanup.md"
+}

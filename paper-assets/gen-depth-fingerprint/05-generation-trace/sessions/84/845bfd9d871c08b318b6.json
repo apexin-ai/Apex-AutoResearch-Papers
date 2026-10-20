@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "845bfd9d871c08b318b6",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "infra gpu reclaim",
+  "task_key": "worker_infra_gpu-reclaim_20260514T170038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-reclaim_20260514T170038_result.json",
+    "occurrence": 1,
+    "bytes": 299,
+    "sha256": "99a93bb77e0dd7da0a68bbe7b7c92f5be6624dc635e8ab518de083293a0ee70d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已清理，4 张卡显存状态：\n\n| GPU | 已用 | 总量 |\n|-----|------|------|\n| 0 | 0 MiB | 32607 MiB |\n| 1 | 0 MiB | 32607 MiB |\n| 2 | 6193 MiB | 32607 MiB |\n| 3 | 0 MiB | 32607 MiB |\n\ncuda:0/1 已完全释放。cuda:2 有 ~6GB 占用，应是本项目进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-reclaim.md"
+}

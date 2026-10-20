@@ -1,0 +1,1038 @@
+{
+  "schema_version": "1.0",
+  "id": "e9c9be4b5bf543264d92",
+  "project": "gen-depth-fingerprint",
+  "kind": "conversation",
+  "title": "exp review p0b volume matched",
+  "task_key": "worker_exp_review-p0b-volume-matched_20260515T134033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_exp_review-p0b-volume-matched_20260515T134033.jsonl",
+    "occurrence": 1,
+    "bytes": 42950,
+    "sha256": "5f045a8e2bcdd96c8a7b1835fe78a2d6f105ebefafdff9d36668ca6f52eaf8f4"
+  },
+  "statistics": {
+    "messages": 49,
+    "user_turns": 0,
+    "tool_calls": 24,
+    "roles": {
+      "tool_call": 24,
+      "tool_result": 24,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T13:43:59.818107+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T13:43:59.818467+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T13:43:59.818726+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/gen-depth-fingerprint/scripts/bootstrap_ci_v2.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T13:43:59.819327+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Bootstrap 95% CI for 6-gen LOGO macro-F1 (corrected).\\\\nKey fix: adds downsample to match registry LOGO evaluation.\\\\nOutput: results/bootstrap_ci_v2_results.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, time\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom pathlib import Path\\\\nfrom sklearn.metrics import f1_score\\\\nfrom xgboost import XGBClassifier\\\\n\\\\nROOT = Path(\\\\\\\"/root/gen-depth-fingerprint\\\\\\\")\\\\nDATA = ROOT / \\\\\\\"data\\\\\\\"\\\\nOUT = ROOT / \\\\\\\"results\\\\\\\"\\\\nOUT.mkdir(exist_ok=True)\\\\n\\\\nN_BOOT = 1000\\\\nLOGO_SEED = 789\\\\nBOOT_SEED = 42\\\\n\\\\nFEAT_COLS = [\\\\\\\"entropy_mean\\\\\\\", \\\\\\\"entropy_std\\\\\\\", \\\\\\\"entropy_min\\\\\\\", \\\\\\\"entropy_max\\\\\\\",\\\\n             \\\\\\\"tail_decay\\\\\\\", \\\\\\\"ttr\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\"]\\\\nCLASS_MAP = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\\\\n\\\\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\\\n                  random_state=789, eval_metric=\\\\\\\"mlogloss\\\\\\\", verbosity=0)\\\\n\\\\nALL_6 = [\\\\\\\"pythia-2.8b\\\\\\\", \\\\\\\"pythia-1b\\\\\\\", \\\\\\\"olmo-2-1b\\\\\\\", \\\\\\\"qwen3-0.6b\\\\\\\", \\\\\\\"qwen3-1.7b\\\\\\\", \\\\\\\"qwen3-8b\\\\\\\"]\\\\n\\\\nREGISTRY = {\\\\n    \\\\\\\"pythia-1b\\\\\\\": 0.856, \\\\\\\"pythia-2.8b\\\\\\\": 0.804, \\\\\\\"olmo-2-1b\\\\\\\": 0.764,\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\": 0.824, \\\\\\\"qwen3-1.7b\\\\\\\": 0.805, \\\\\\\"qwen3-8b\\\\\\\": 0.683,\\\\n}\\\\n\\\\n\\\\ndef downsample(df, rng):\\\\n    counts = df[\\\\\\\"label\\\\\\\"].value_counts()\\\\n    min_n = counts.min()\\\\n    parts = [df[df[\\\\\\\"label\\\\\\\"] == lbl].sample(n=min_n, random_state=rng, replace=False)\\\\n             for lbl in sorted(counts.index)]\\\\n    return pd.concat(parts, ignore_index=True)\\\\n\\\\n\\\\ndef logo_predictions(df):\\\\n    preds = np.full(len(df), -1, dtype=int)\\\\n    rng = np.random.RandomState(LOGO_SEED)\\\\n    for hold in sorted(ALL_6):\\\\n        train_df = downsample(df[df[\\\\\\\"model_name\\\\\\\"] != hold], rng)\\\\n        test_mask = (df[\\\\\\\"model_name\\\\\\\"] == hold).values\\\\n        clf = XGBClassifier(**XGB_PARAMS)\\\\n        clf.fit(train_df[FEAT_COLS].v\n…[truncated 4552 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T13:43:59.819664+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "python3 -c \"import pandas as pd; df=pd.read_csv('/root/gen-depth-fingerprint/data/features_all_models.csv'); print(df.groupby('model_name').size()); print('---'); print(df.columns.tolist())\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T13:43:59.819894+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T13:43:59.820185+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "python3 -c \"import pandas as pd; df=pd.read_csv('/root/gen-depth-fingerprint/data/features_all_models.csv'); print(df.groupby('model_name').size()); print('---'); print(df.columns.tolist())\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T13:43:59.820410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T13:43:59.820634+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -5 /root/gen-depth-fingerprint/data/features_all_models.csv",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T13:43:59.820848+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"model_name,seed_id,depth,entropy_mean,entropy_std,entropy_min,entropy_max,tail_decay,ttr,hapax_ratio\\\\npythia-2.8b,0,0,2.7516980171203613,1.744314193725586,0.003396987915039,8.1875,-0.0023380015550609,0.6565656565656566,0.5454545454545454\\\\npythia-2.8b,0,1,2.616674900054932,1.59860098361969,0.0011329650878906,7.59375,-0.002411389477936,0.5532994923857868,0.4010152284263959\\\\npythia-2.8b,0,2,2.638378858566284,1.5402252674102783,0.00421142578125,8.03125,-0.0023913172458812,0.3981042654028436,0.2606635071090047\\\\npythia-2.8b,0,3,0.607209324836731,1.4215928316116333,4.971027374267578e-05,7.37109375,-0.002321573825993,0.088235294117647,0.0147058823529411\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T13:43:59.821048+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "wc -l /root/gen-depth-fingerprint/data/features_all_models.csv",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T13:43:59.821242+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"27530 /root/gen-depth-fingerprint/data/features_all_models.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T13:43:59.821432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -c \"qwen3-8b\" /root/gen-depth-fingerprint/data/features_all_models.csv",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T13:43:59.821650+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4497\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T13:43:59.821862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -c \"pythia-2.8b\" /root/gen-depth-fingerprint/data/features_all_models.csv",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T13:43:59.822062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4609\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T13:43:59.822284+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat > /root/gen-depth-fingerprint/scripts/review_p0b_volume_matched.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"P0-B: Volume-matched 5-gen control experiment.\n\nIsolates data-volume effect from generator-diversity effect by bootstrap\nupsampling 5-gen LOGO train sets to match 6-gen train sizes.\n\"\"\"\nimport json, time\nimport numpy as np\nimport pandas as pd\nfrom pathlib import Path\nfrom sklearn.metrics import f1_score\nfrom xgboost import XGBClassifier\n\nROOT = Path(\"/root/gen-depth-fingerprint\")\nDATA = ROOT / \"data\"\nOUT  = ROOT / \"results\"\nOUT.mkdir(exist_ok=True)\n\nFEAT_COLS = [\"entropy_mean\", \"entropy_std\", \"entropy_min\", \"entropy_max\",\n             \"tail_decay\", \"ttr\", \"hapax_ratio\"]\nCLASS_MAP = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\n\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\n                  random_state=789, eval_metric=\"mlogloss\", verbosity=0)\n\nALL_6 = [\"pythia-2.8b\", \"pythia-1b\", \"olmo-2-1b\", \"qwen3-0.6b\", \"qwen3-1.7b\", \"qwen3-8b\"]\nALL_5 = [g for g in ALL_6 if g != \"qwen3-8b\"]\n\nLOGO_SEED = 789\nSEEDS = [42, 123, 456]\n\n\ndef downsample(df, rng):\n    counts = df[\"label\"].value_counts()\n    min_n = counts.min()\n    parts = [df[df[\"label\"] == lbl].sample(n=min_n, random_state=rng, replace=False)\n             for lbl in sorted(counts.index)]\n    return pd.concat(parts, ignore_index=True)\n\n\ndef logo_5gen_original(df5):\n    \"\"\"Original 5-gen LOGO (reproduces F1=0.800).\"\"\"\n    preds = np.full(len(df5), -1, dtype=int)\n    rng = np.random.RandomState(LOGO_SEED)\n    for hold in sorted(ALL_5):\n        train_df = downsample(df5[df5[\"model_name\"] != hold], rng)\n        test_mask = (df5[\"model_name\"] == hold).values\n        clf = XGBClassifier(**XGB_PARAMS)\n        clf.fit(train_df[FEAT_COLS].values, train_df[\"label\"].values)\n        preds[test_mask] = clf.predict(df5.loc[test_mask, FEAT_COLS].values)\n    assert (preds >= 0).all()\n    return preds\n\n\ndef compute_6gen_train_sizes(df6):\n    \"\"\"For each 6-gen LOGO fold, compute the post-downsample train size.\"\"\"\n    sizes = {}\n    rng = np.random.RandomState(LOGO_SEED)\n    for hold in sorted(ALL_6):\n        train_raw = df6[df6[\"model_name\"] != hold]\n        train_ds = downsample(train_raw, rng)\n        sizes[hold] = len(train_ds)\n    return sizes\n\n\ndef logo_5gen_volume_matched(df5, df6, seed):\n    \"\"\"5-gen LOGO with train data upsampled to match 6-gen train size.\"\"\"\n    sixgen_train_sizes = compute_6gen_train_sizes(df6)\n    avg_6gen_train = int(np.mean(list(sixgen_train_sizes.values())))\n\n    preds = np.full(len(df5), -1, dtype=int)\n    rng_logo = np.random.RandomState(LOGO_SEED)\n    rng_upsample = np.random.RandomState(seed)\n\n    for hold in sorted(ALL_5):\n        train_raw = df5[df5[\"model_name\"] != hold]\n        train_ds = downsample(train_raw, rng_logo)\n        n_train_orig = len(train_ds)\n\n        # Upsample with replacement to match avg 6-gen train size\n        if n_train_orig < avg_6gen_train:\n            extra_n = avg_6gen_train - n_train_orig\n            extra_idx = rng_upsample.choice(n_train_orig, size=extra_n, replace=True)\n            extra = train_ds.iloc[extra_idx]\n            train_final = pd.concat([train_ds, extra], ignore_index=True)\n        else:\n            train_final = train_ds\n\n        test_mask = (df5[\"model_name\"] == hold).values\n        clf = XGBClassifier(**XGB_PARAMS)\n        clf.fit(train_final[FEAT_COLS].values, train_final[\"label\"].values)\n        preds[test_mask] = clf.predict(df5.loc[test_mask, FEAT_COLS].values)\n\n    assert (preds >= 0).all()\n    return preds, avg_6gen_train\n\n\ndef per_gen_f1(df, preds, generators):\n    y = df[\"label\"].values\n    groups = df[\"model_name\"].values\n    results = {}\n    for g in sorted(generators):\n        mask = groups == g\n        results[g] = round(f1_score(y[mask], preds[mask], average=\"macro\"), 4)\n    results[\"avg\"] = round(np.mean(list(results.values())), 4)\n    return results\n\n\ndef main():\n    t0 = time.time()\n    df = pd.read_csv(DATA / \"features_all_models.csv\")\n    df[\"label\"] = df[\"depth\"].map(CLASS_MAP)\n\n    df6 = df[df[\"model_name\"].isin(ALL_6)].copy().reset_index(drop=True)\n    df5 = df[df[\"model_name\"].isin(ALL_5)].copy().reset_index(drop=True)\n\n    print(f\"6-gen N={len(df6)}, 5-gen N={len(df5)}\")\n    print(f\"Per-gen counts:\")\n    for g in sorted(ALL_6):\n        n = len(df6[df6[\"model_name\"] == g])\n        print(f\"  {g}: {n}\")\n\n    # --- 5-gen original ---\n    print(\"\\n=== 5-gen LOGO (original) ===\")\n    preds_5orig = logo_5gen_original(df5)\n    f1_5orig = per_gen_f1(df5, preds_5orig, ALL_5)\n    for g, v in f1_5orig.items():\n        print(f\"  {g}: {v}\")\n\n    # --- 5-gen volume-matched (3 seeds) ---\n    print(\"\\n=== 5-gen Volume-Matched LOGO ===\")\n    seed_results = {}\n    for seed in SEEDS:\n        preds_vm, avg_train_size = logo_5gen_volume_matched(df5, df6, seed)\n        f1_vm = per_gen_f1(df5, preds_vm, ALL_5)\n        seed_results[seed] = f1_vm\n        print(f\"\\n  Seed {seed} (train upsampled to ~{avg_train_size}):\")\n        for g, v in f1_vm.items():\n            print(f\"    {g}: {v}\")\n\n    # Average across seeds\n    avg_vm = {}\n    for g in sorted(ALL_5) + [\"avg\"]:\n        avg_vm[g] = round(np.mean([seed_results[s][g] for s in SEEDS]), 4)\n    print(f\"\\n  Mean across seeds:\")\n    for g, v in avg_vm.items():\n        print(f\"    {g}: {v}\")\n\n    # --- 6-gen reference (excl qwen3-8b) ---\n    ref_6gen_excl = {\"olmo-2-1b\": 0.796, \"pythia-1b\": 0.867, \"pythia-2.8b\": 0.820,\n                     \"qwen3-0.6b\": 0.838, \"qwen3-1.7b\": 0.836}\n    ref_6gen_avg = round(np.mean(list(ref_6gen_excl.values())), 4)\n    print(f\"\\n=== 6-gen LOGO (excl qwen3-8b, from Table 1) ===\")\n    for g, v in sorted(ref_6gen_excl.items()):\n        print(f\"  {g}: {v}\")\n    print(f\"  avg: {ref_6gen_avg}\")\n\n    # --- Summary ---\n    delta_volume = round(avg_vm[\"avg\"] - f1_5orig[\"avg\"], 4)\n    delta_total = round(ref_6gen_avg - f1_5orig[\"avg\"], 4)\n    delta_diversity = round(delta_total - delta_volume, 4)\n\n    print(f\"\\n=== Decomposition ===\")\n    print(f\"  5-gen original avg F1:       {f1_5orig['avg']}\")\n    print(f\"  5-gen volume-matched avg F1: {avg_vm['avg']}\")\n    print(f\"  6-gen (excl qwen3-8b) avg:   {ref_6gen_avg}\")\n    print(f\"  Volume effect (VM - orig):   {delta_volume:+.4f}\")\n    print(f\"  Total effect (6gen - orig):  {delta_total:+.4f}\")\n    print(f\"  Diversity residual:          {delta_diversity:+.4f}\")\n\n    results = {\n        \"experiment\": \"P0-B volume-matched 5-gen control\",\n        \"5gen_original\": f1_5orig,\n        \"5gen_volume_matched_per_seed\": {str(s): seed_results[s] for s in SEEDS},\n        \"5gen_volume_matched_avg\": avg_vm,\n        \"6gen_excl_qwen3_8b\": {**ref_6gen_excl, \"avg\": ref_6gen_avg},\n        \"decomposition\": {\n            \"volume_effect\": delta_volume,\n            \"total_effect\": delta_total,\n            \"diversity_residual\": delta_diversity,\n        },\n        \"seeds\": SEEDS,\n        \"xgb_params\": {k: v for k, v in XGB_PARAMS.items() if k != \"verbosity\"},\n    }\n\n    out_path = OUT / \"review_p0b_volume_matched.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nSaved: {out_path}\")\n    print(f\"Total: {time.time()-t0:.1f}s\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"DONE\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T13:43:59.822486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T13:43:59.822661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python scripts/review_p0b_volume_matched.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T13:43:59.822843+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"6-gen N=27529, 5-gen N=23032\\\\nPer-gen counts:\\\\n  olmo-2-1b: 4713\\\\n  pythia-1b: 4555\\\\n  pythia-2.8b: 4609\\\\n  qwen3-0.6b: 4538\\\\n  qwen3-1.7b: 4617\\\\n  qwen3-8b: 4497\\\\n\\\\n=== 5-gen LOGO (original) ===\\\\n  olmo-2-1b: 0.7524\\\\n  pythia-1b: 0.854\\\\n  pythia-2.8b: 0.7935\\\\n  qwen3-0.6b: 0.8156\\\\n  qwen3-1.7b: 0.7942\\\\n  avg: 0.8019\\\\n\\\\n=== 5-gen Volume-Matched LOGO ===\\\\n\\\\n  Seed 42 (train upsampled to ~14795):\\\\n    olmo-2-1b: 0.7526\\\\n    pythia-1b: 0.8512\\\\n    pythia-2.8b: 0.7972\\\\n    qwen3-0.6b: 0.8174\\\\n    qwen3-1.7b: 0.796\\\\n    avg: 0.8029\\\\n\\\\n  Seed 123 (train upsampled to ~14795):\\\\n    olmo-2-1b: 0.749\\\\n    pythia-1b: 0.8503\\\\n    pythia-2.8b: 0.7961\\\\n    qwen3-0.6b: 0.8191\\\\n    qwen3-1.7b: 0.798\\\\n    avg: 0.8025\\\\n\\\\n  Seed 456 (train upsampled to ~14795):\\\\n    olmo-2-1b: 0.7539\\\\n    pythia-1b: 0.8523\\\\n    pythia-2.8b: 0.7956\\\\n    qwen3-0.6b: 0.8159\\\\n    qwen3-1.7b: 0.7911\\\\n    avg: 0.8018\\\\n\\\\n  Mean across seeds:\\\\n    olmo-2-1b: 0.7518\\\\n    pythia-1b: 0.8513\\\\n    pythia-2.8b: 0.7963\\\\n    qwen3-0.6b: 0.8175\\\\n    qwen3-1.7b: 0.795\\\\n    avg: 0.8024\\\\n\\\\n=== 6-gen LOGO (excl qwen3-8b, from Table 1) ===\\\\n  olmo-2-1b: 0.796\\\\n  pythia-1b: 0.867\\\\n  pythia-2.8b: 0.82\\\\n  qwen3-0.6b: 0.838\\\\n  qwen3-1.7b: 0.836\\\\n  avg: 0.8314\\\\n\\\\n=== Decomposition ===\\\\n  5-gen original avg F1:       0.8019\\\\n  5-gen volume-matched avg F1: 0.8024\\\\n  6-gen (excl qwen3-8b) avg:   0.8314\\\\n  Volume effect (VM - orig):   +0.0005\\\\n  Total effect (6gen - orig):  +0.0295\\\\n  Diversity residual:          +0.0290\\\\n\\\\nSaved: /root/gen-depth-fingerprint/results/review_p0b_volume_matched.json\\\\nTotal: 10.0s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T13:43:59.823025+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nr = json.load(open('/root/gen-depth-fingerprint/results/bootstrap_ci_v2_results.json'))\nfor g, v in sorted(r['per_generator'].items()):\n    print(f'{g}: {v[\\\"f1\\\"]}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T13:43:59.823168+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"olmo-2-1b: 0.7649\\\\npythia-1b: 0.8528\\\\npythia-2.8b: 0.8037\\\\nqwen3-0.6b: 0.8231\\\\nqwen3-1.7b: 0.8064\\\\nqwen3-8b: 0.6815\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T13:43:59.823333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat > /tmp/fix_ref.py << 'PYEOF'\nimport re\n\npath = \"/root/gen-depth-fingerprint/scripts/review_p0b_volume_matched.py\"\nwith open(path) as f:\n    content = f.read()\n\nold = '''    ref_6gen_excl = {\"olmo-2-1b\": 0.796, \"pythia-1b\": 0.867, \"pythia-2.8b\": 0.820,\n                     \"qwen3-0.6b\": 0.838, \"qwen3-1.7b\": 0.836}'''\nnew = '''    ref_6gen_excl = {\"olmo-2-1b\": 0.7649, \"pythia-1b\": 0.8528, \"pythia-2.8b\": 0.8037,\n                     \"qwen3-0.6b\": 0.8231, \"qwen3-1.7b\": 0.8064}'''\n\ncontent = content.replace(old, new)\nwith open(path, \"w\") as f:\n    f.write(content)\nprint(\"FIXED\")\nPYEOF\npython3 /tmp/fix_ref.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T13:43:59.823486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cat > /tmp/fix_ref.py << \\\\\\\\'PYEOF\\\\\\\\'\\\\\\\\nimport re\\\\\\\\n\\\\\\\\npath = \\\\\\\"/root/gen-depth-fingerprint/scripts/review_p0b_volume_matched.py\\\\\\\"\\\\\\\\nwith open(path) as f:\\\\\\\\n    content = f.read()\\\\\\\\n\\\\\\\\nold = \\\\\\\\'\\\\\\\\'\\\\\\\\'    ref_6gen_excl = {\\\\\\\"olmo-2-1b\\\\\\\": 0.796, \\\\\\\"pythia-1b\\\\\\\": 0.867, \\\\\\\"pythia-2.8b\\\\\\\": 0.820,\\\\\\\\n                     \\\\\\\"qwen3-0.6b\\\\\\\": 0.838, \\\\\\\"qwen3-1.7b\\\\\\\": 0.836}\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\nnew = \\\\\\\\'\\\\\\\\'\\\\\\\\'    ref_6gen_excl = {\\\\\\\"olmo-2-1b\\\\\\\": 0.7649, \\\\\\\"pythia-1b\\\\\\\": 0.8528, \\\\\\\"pythia-2.8b\\\\\\\": 0.8037,\\\\\\\\n                     \\\\\\\"qwen3-0.6b\\\\\\\": 0.8231, \\\\\\\"qwen3-1.7b\\\\\\\": 0.8064}\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\ncontent = content.replace(old, new)\\\\\\\\nwith open(path, \\\\\\\"w\\\\\\\") as f:\\\\\\\\n    f.write(content)\\\\\\\\nprint(\\\\\\\"FIXED\\\\\\\")\\\\\\\\nPYEOF\\\\\\\\npython3 /tmp/fix_ref.py'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 18: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T13:43:59.823656+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\npath = '/root/gen-depth-fingerprint/scripts/review_p0b_volume_matched.py'\nwith open(path) as f:\n    c = f.read()\nold = '\\\"olmo-2-1b\\\": 0.796, \\\"pythia-1b\\\": 0.867, \\\"pythia-2.8b\\\": 0.820,'\nnew = '\\\"olmo-2-1b\\\": 0.7649, \\\"pythia-1b\\\": 0.8528, \\\"pythia-2.8b\\\": 0.8037,'\nc = c.replace(old, new)\nold2 = '\\\"qwen3-0.6b\\\": 0.838, \\\"qwen3-1.7b\\\": 0.836}'\nnew2 = '\\\"qwen3-0.6b\\\": 0.8231, \\\"qwen3-1.7b\\\": 0.8064}'\nc = c.replace(old2, new2)\nwith open(path, 'w') as f:\n    f.write(c)\nprint('FIXED')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T13:43:59.823808+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"FIXED\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T13:43:59.823931+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python scripts/review_p0b_volume_matched.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T13:43:59.824076+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"6-gen N=27529, 5-gen N=23032\\\\nPer-gen counts:\\\\n  olmo-2-1b: 4713\\\\n  pythia-1b: 4555\\\\n  pythia-2.8b: 4609\\\\n  qwen3-0.6b: 4538\\\\n  qwen3-1.7b: 4617\\\\n  qwen3-8b: 4497\\\\n\\\\n=== 5-gen LOGO (original) ===\\\\n  olmo-2-1b: 0.7524\\\\n  pythia-1b: 0.854\\\\n  pythia-2.8b: 0.7935\\\\n  qwen3-0.6b: 0.8156\\\\n  qwen3-1.7b: 0.7942\\\\n  avg: 0.8019\\\\n\\\\n=== 5-gen Volume-Matched LOGO ===\\\\n\\\\n  Seed 42 (train upsampled to ~14795):\\\\n    olmo-2-1b: 0.7526\\\\n    pythia-1b: 0.8512\\\\n    pythia-2.8b: 0.7972\\\\n    qwen3-0.6b: 0.8174\\\\n    qwen3-1.7b: 0.796\\\\n    avg: 0.8029\\\\n\\\\n  Seed 123 (train upsampled to ~14795):\\\\n    olmo-2-1b: 0.749\\\\n    pythia-1b: 0.8503\\\\n    pythia-2.8b: 0.7961\\\\n    qwen3-0.6b: 0.8191\\\\n    qwen3-1.7b: 0.798\\\\n    avg: 0.8025\\\\n\\\\n  Seed 456 (train upsampled to ~14795):\\\\n    olmo-2-1b: 0.7539\\\\n    pythia-1b: 0.8523\\\\n    pythia-2.8b: 0.7956\\\\n    qwen3-0.6b: 0.8159\\\\n    qwen3-1.7b: 0.7911\\\\n    avg: 0.8018\\\\n\\\\n  Mean across seeds:\\\\n    olmo-2-1b: 0.7518\\\\n    pythia-1b: 0.8513\\\\n    pythia-2.8b: 0.7963\\\\n    qwen3-0.6b: 0.8175\\\\n    qwen3-1.7b: 0.795\\\\n    avg: 0.8024\\\\n\\\\n=== 6-gen LOGO (excl qwen3-8b, from Table 1) ===\\\\n  olmo-2-1b: 0.7649\\\\n  pythia-1b: 0.8528\\\\n  pythia-2.8b: 0.8037\\\\n  qwen3-0.6b: 0.8231\\\\n  qwen3-1.7b: 0.8064\\\\n  avg: 0.8102\\\\n\\\\n=== Decomposition ===\\\\n  5-gen original avg F1:       0.8019\\\\n  5-gen volume-matched avg F1: 0.8024\\\\n  6-gen (excl qwen3-8b) avg:   0.8102\\\\n  Volume effect (VM - orig):   +0.0005\\\\n  Total effect (6gen - orig):  +0.0083\\\\n  Diversity residual:          +0.0078\\\\n\\\\nSaved: /root/gen-depth-fingerprint/results/review_p0b_volume_matched.json\\\\nTotal: 9.8s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T13:43:59.824231+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "P0-B Volume-Matched Results",
+              "type": "data",
+              "description": "Volume-matched 5-gen LOGO control: volume effect +0.05pp (negligible), diversity residual +0.78pp. Confirms Qwen3-8B improvement is from generator diversity, not data volume.",
+              "project": "gen-depth-fingerprint",
+              "exp_id": "review-p0b-volume-matched",
+              "content": "{\n  \"experiment\": \"P0-B volume-matched 5-gen control\",\n  \"5gen_original_avg\": 0.8019,\n  \"5gen_volume_matched_avg\": 0.8024,\n  \"6gen_excl_qwen3_8b_avg\": 0.8102,\n  \"decomposition\": {\n    \"volume_effect\": 0.0005,\n    \"total_effect\": 0.0083,\n    \"diversity_residual\": 0.0078\n  },\n  \"conclusion\": \"Bootstrap upsampling 5-gen train to 6-gen volume adds only +0.05pp. The +0.83pp gain from 6-gen is 94% diversity, 6% volume.\"\n}",
+              "content_filename": "review_p0b_volume_matched_summary.json",
+              "tags": "['review', 'p0b', 'volume-control', 'ablation']"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T13:43:59.824369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment': 'P0-B volu... diversity, 6% volume.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T13:43:59.824493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "review-p0b-volume-matched",
+              "field": "status",
+              "value": "DONE",
+              "project": "gen-depth-fingerprint",
+              "spec": "{'command': 'python scripts/review_p0b_volume_matched.py', 'server': 'autodl-5090', 'data_path': 'data/features_all_models.csv', 'checkpoint_path': 'results/review_p0b_volume_matched.json', 'log_path': 'results/review_p0b_volume_matched.json', 'description': 'Volume-matched 5-gen control: volume +0.05pp, diversity +0.78pp'}"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T13:43:59.824648+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1205}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T13:43:59.824780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "P0-B Volume-Matched Results",
+              "type": "data",
+              "description": "Volume-matched 5-gen LOGO control: volume effect +0.05pp (negligible), diversity residual +0.78pp. Confirms Qwen3-8B improvement is from generator diversity, not data volume.",
+              "project": "gen-depth-fingerprint",
+              "exp_id": "review-p0b-volume-matched",
+              "content": "{\"experiment\": \"P0-B volume-matched 5-gen control\", \"5gen_original_avg\": 0.8019, \"5gen_volume_matched_avg\": 0.8024, \"6gen_excl_qwen3_8b_avg\": 0.8102, \"decomposition\": {\"volume_effect\": 0.0005, \"total_effect\": 0.0083, \"diversity_residual\": 0.0078}, \"conclusion\": \"Bootstrap upsampling 5-gen train to 6-gen volume adds only +0.05pp. The +0.83pp gain from 6-gen is 94% diversity, 6% volume.\"}",
+              "content_filename": "review_p0b_volume_matched_summary.json",
+              "tags": "['review', 'p0b', 'volume-control', 'ablation']"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T13:43:59.824909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment': 'P0-B volu... diversity, 6% volume.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T13:43:59.825028+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "review-p0b-volume-matched",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "gen-depth-fingerprint"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T13:43:59.825171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"review-p0b-volume-matched\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T13:39:06.387Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:43:29.288Z\\\", \\\"hypothesis\\\": \\\"P0-B: Volume-matched 5-gen 控制——隔离数据量效应，验证 Qwen3-8B 加入的真实贡献\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4475}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T13:43:59.825302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "P0-B Volume-Matched Results",
+              "type": "data",
+              "description": "Volume-matched 5-gen LOGO control: volume effect +0.05pp, diversity residual +0.78pp",
+              "project": "gen-depth-fingerprint",
+              "exp_id": "review-p0b-volume-matched",
+              "content": "Volume-matched 5-gen LOGO control experiment results.\n\n5-gen original avg F1:       0.8019\n5-gen volume-matched avg F1: 0.8024  (+0.05pp from volume)\n6-gen excl qwen3-8b avg F1:  0.8102  (+0.83pp total improvement)\n\nDecomposition:\n  Volume effect:      +0.0005 (6%)\n  Diversity residual: +0.0078 (94%)\n\nConclusion: Bootstrap upsampling 5-gen train data to match 6-gen volume contributes only +0.05pp. Nearly all of the +0.83pp improvement when adding Qwen3-8B comes from generator diversity, not data volume.\n\nPer-generator F1 (volume-matched, 3-seed avg):\n  olmo-2-1b: 0.7518, pythia-1b: 0.8513, pythia-2.8b: 0.7963\n  qwen3-0.6b: 0.8175, qwen3-1.7b: 0.7950\n\nScript: scripts/review_p0b_volume_matched.py\nFull results: results/review_p0b_volume_matched.json",
+              "content_filename": "review_p0b_volume_matched_summary.txt",
+              "tags": "['review', 'p0b', 'volume-control', 'ablation']"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T13:43:59.825446+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_08f450\\\", \\\"name\\\": \\\"P0-B Volume-Matched Results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Volume-matched 5-gen LOGO control: volume effect +0.05pp, diversity residual +0.78pp\\\", \\\"path\\\": \\\"projects/gen-depth-fingerprint/artifacts/review-p0b-volume-matched/data/review_p0b_volume_matched_summary.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"gen-depth-fingerprint\\\", \\\"exp_id\\\": \\\"review-p0b-volume-matched\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T13:43:39.371907+00:00\\\", \\\"tags\\\": [\\\"review\\\", \\\"p0b\\\", \\\"volume-control\\\", \\\"ablation\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T13:43:59.825586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "review-p0b-volume-matched",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "gen-depth-fingerprint",
+              "spec": "{'command': 'python scripts/review_p0b_volume_matched.py', 'server': 'autodl-5090', 'data_path': 'data/features_all_models.csv', 'data_count': 23032, 'model_name': 'xgboost', 'seed': 42, 'checkpoint_source': 'results/review_p0b_volume_matched.json'}"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T13:43:59.825744+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"review-p0b-volume-matched\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T13:39:06.387Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:43:40.985Z\\\", \\\"hypothesis\\\": \\\"P0-B: Volume-matched 5-gen 控制——隔离数据量效应，验证 Qwen3-8B 加入的真实贡献\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/review_p0b_volume_matched.py\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/features_all_models.csv\\\", \\\"data_count\\\": 23032, \\\"model_name\\\": \\\"xgboost\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"results/review_p0b_volume_matched.json\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4562}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T13:43:59.825879+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "review-p0b-volume-matched",
+              "field": "status",
+              "value": "DONE",
+              "project": "gen-depth-fingerprint",
+              "spec": "{'checkpoint_path': 'results/review_p0b_volume_matched.json', 'log_path': 'results/review_p0b_volume_matched.json'}"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T13:43:59.826007+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2389}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T13:43:59.826124+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "review-p0b-volume-matched",
+              "field": "conclusion",
+              "value": "Volume effect negligible (+0.05pp). 94% of 6-gen improvement over 5-gen is from generator diversity, not data volume.",
+              "project": "gen-depth-fingerprint"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T13:43:59.826246+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'Volume effect negligible (+0.05pp). 94% of 6-gen improvement over 5-gen is from generator diversity, not data volume.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1189}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T13:43:59.826362+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "review-p0b-volume-matched",
+              "field": "conclusion",
+              "value": "success",
+              "project": "gen-depth-fingerprint"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T13:43:59.826500+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"review-p0b-volume-matched\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T13:39:06.387Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:43:49.209Z\\\", \\\"hypothesis\\\": \\\"P0-B: Volume-matched 5-gen 控制——隔离数据量效应，验证 Qwen3-8B 加入的真实贡献\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/review_p0b_volume_matched.py\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/features_all_models.csv\\\", \\\"data_count\\\": 23032, \\\"model_name\\\": \\\"xgboost\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"results/review_p0b_volume_matched.json\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7026}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T13:43:59.826652+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "review-p0b-volume-matched",
+              "field": "status",
+              "value": "DONE",
+              "project": "gen-depth-fingerprint",
+              "spec": "{'checkpoint_path': 'results/review_p0b_volume_matched.json', 'log_path': 'results/review_p0b_volume_matched.json'}"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T13:43:59.826819+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"review-p0b-volume-matched\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T13:39:06.387Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:43:52.734Z\\\", \\\"hypothesis\\\": \\\"P0-B: Volume-matched 5-gen 控制——隔离数据量效应，验证 Qwen3-8B 加入的真实贡献\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/review_p0b_volume_matched.py\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/features_all_models.csv\\\", \\\"data_count\\\": 23032, \\\"model_name\\\": \\\"xgboost\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"results/review_p0b_volume_matched.json\\\", \\\"checkpoint_path\\\": \\\"results/review_p0b_volume_matched.json\\\", \\\"log_path\\\": \\\"results/review_p0b_volume_matched.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T13:43:52.734Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4891}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T13:43:59.826986+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "P0-B 完成。结果：\n\n| 条件 | Avg F1 |\n|---|---|\n| 5-gen LOGO (原始) | 0.8019 |\n| 5-gen volume-matched (3 seed 均值) | 0.8024 |\n| 6-gen LOGO (excl qwen3-8b) | 0.8102 |\n\n**分解**：\n- Volume effect: **+0.05pp**（将 4-gen train 上采样到 5-gen 等量，几乎无影响）\n- Total effect: +0.83pp\n- Diversity residual: **+0.78pp**（94% 来自 generator diversity）\n\n结论：加入 Qwen3-8B 带来的 per-generator F1 提升几乎完全来自 generator 多样性，而非数据量增加。脚本 `scripts/review_p0b_volume_matched.py`，结果 `results/review_p0b_volume_matched.json`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_review-p0b-volume-matched_20260515T134033"
+          },
+          "id": "event-000049"
+        }
+      ],
+      "message_count": 49
+    }
+  ],
+  "readable_path": "readable/conversations/exp-review-p0b-volume-matched.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab8af0802df254a872c8",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_3_1778816161.md",
+  "task_key": "loop_3_1778816161",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778816161.md",
+    "occurrence": 1,
+    "bytes": 4683,
+    "sha256": "88b7929cceb7eeec8f8c24cf8b278f47694240a89e29139fee964f90ba3cd3da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-15T03:34:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单严格 `cuda:0,1,2,3`（autodl-5090），无例外\n- `submit_training_job` 注入 `CUDA_VISIBLE_DEVICES` 后脚本内只能用 `--device cuda:0`，用物理卡号会报 invalid device ordinal\n- 根分区仅 30GB——所有 checkpoint/大文件必须写 `/root/autodl-tmp/`，设 `HF_HOME=/root/autodl-tmp/.hf_cache`\n- plan-014 的 Qwen3-8B 是 nohup 启动（非 submit_training_job），recovered 文件在 `/root/gen-depth-fingerprint/data/qwen3-8b/generations_shard0.jsonl.recovered`，完成后必须用 recovered 覆盖 shard0 再做后处理\n- generate_chain.py 已加 SIGHUP ignore（防框架 tmux bug 误杀），orphan 进程存活时先 `ps -p <PID>` 确认再下结论\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: autodl-5090, 工作目录 `/root/gen-depth-fingerprint`\n- **Python**: `/root/miniconda3/bin/python`（conda base），激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **GPU**: 4× RTX 5090（cuda:0-3）\n- **模型路径**: `/root/autodl-tmp/models/`（pythia-2.8b 在 `/root/autodl-tmp/.hf_cache/EleutherAI/pythia-2___8b`）\n- **数据**: `/root/gen-depth-fingerprint/data/`（features_all_models.csv 23032 条，各生成器子目录）\n- **Qwen3-8B 路径**: `/root/autodl-tmp/models/Qwen/Qwen3-8B-Base/Qwen/Qwen3-8B-Base/`\n- **活跃进程**: plan-014 PID 134817（cuda:0, nohup），plan-005-cont PID 164658（cuda:1, tmux），plan-005-elab PID 164737（cuda:2, tmux），plan-005-rewrite PID 164881（cuda:3, tmux）\n- **活跃 cron**: plan-014（reconcile 确认 still running）\n- **网络**: pip/git 前需 `source /etc/network_turbo`；HF 下载设 `HF_HUB_DISABLE_XET=1`\n\n### 3. 📊 当前状态\n**刚做完**: plan-004-v2（downstream utility, 15/15 runs, negative → D009 reframe 为 diagnostic-not-curative），D010（放弃 EMNLP，锁定 AAAI 2027）。\n\n**RUNNING**:\n- `plan-014` — Qwen3-8B-Base continuation 链生成，767/996 seeds (77%)，~13s/seed，预计已接近完成或刚完成。cuda:0。这是 RC9（scale generalization）的关键证据。\n- `plan-005` — Prompt type comparison（cont/elab/rewrite），Pythia-2.8B × 1000 seeds × 3 prompt types，刚提交到 cuda:1/2/3。子实验 plan-005-cont / plan-005-elab / plan-005-rewrite 状态为 PREPARING（已有 PID）。\n\n**等待中**:\n- plan-014 cron 回调（进程退出 → ANALYZING）\n- plan-005 三个子实验的 cron 回调\n- 无等待 Director 决策的事项\n- Worker 池 = 0（上一轮全部完成）\n\n### 4. 📋 待办（条件触发式）\n- **plan-014 cron 回调到达** → spawn Worker: (1) 用 recovered 文件覆盖 shard0, (2) 合并数据到 features_all_models.csv（6 generators）, (3) 跑 6-gen LOGO + cross-generator eval, (4) 更新 registry metrics → 汇报 Director RC9 结论\n- **plan-014 RC9 结论出来 + plan-005 完成** → 全部 P0 完成 → 向 Director 汇报启动 Paper Agent 写初稿\n- **plan-005-cont/elab/rewrite 任一完成** → spawn Worker 提取特征 + prompt type 间 depth signal 对比分析\n- **plan-014 如果 depth signal 在 8B 显著弱于小模型** → 走 red-section 产 Framing 调整提案（limitation 分析），不默默继续\n- **paper_framing.md headline template** 还需更新（去除 downstream 占位符，D009 已 reframe 但 template 里 \"Depth-aware filtering preserves Z%...\" 仍在）\n\n### 5. 🎯 战略上下文\n- **核心结论**: 递归 LLM 生成链展现 differential depth response（central-tendency drift + shape stationarity），7-feature ensemble LOGO F1=0.80 显著优于所有单检测器，跨 5 generators / 3 families 稳定\n- **Claim 3 已翻转**: downstream utility 是 negative finding（D009），reframe 为 \"diagnostic-not-curative\"——depth fingerprinting 是诊断工具不是数据清洗工具。paper_framing.md 已更新但 headline template 还有残留占位符\n- **投稿路径**: AAAI 2027 DDL 2026-08-02（D010），~2.5 个月，GPU 预算 158h/200h 充裕\n- **决策链**: D001(MVP方案) → D002(MVP PASS) → D005(dual dynamics) → D006(empirical贡献定位) → D007(re-dream framing) → D008(ensemble叙事) → D009(Claim3 negative reframe) → D010(放弃EMNLP锁AAAI)\n- **易踩坑**: (1) plan-014 是 nohup 不是 submit_training_job，recovered 文件处理流程特殊; (2) plan-005 的三个子实验在 registry 里是 PREPARING 但实际已有 PID 在跑，可能需要手动转 RUNNING; (3) Qwen3.5 系列不存在，OLMo-2-1B-hf 不存在——用 Qwen3-Base 和 OLMo-2-0425-1B; (4) 不要把 GC4-par 和 GC4-seq 直接对比（不同生成链类型）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778816161.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0284007b17716fb34e2",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "check running experiments",
+  "task_key": "worker_check_running-experiments_20260515T183313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_running-experiments_20260515T183313_result.json",
+    "occurrence": 1,
+    "bytes": 1791,
+    "sha256": "571dc152f3ecf8c133eae08fa8a1d1e835be0b59ead718d14b4bc15c17ea3a9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 1. plan-010-human-edit (cuda:1)\n\n| 进程 | 状态 | 运行时间 |\n|------|------|---------|\n| PID 223500 (`human_edit_robustness.py --device cuda:1`) | **RUNNING** (State: R, 258 threads) | 2h30m |\n| PID 228872 (`wait_and_rerun.sh`) | RUNNING，当前子进程 `sleep 30` | 1h23m |\n\n**进度**: Phase 4 LOGO evaluation，正在跑 `random_20pct` 条件。已完成的部分结果：\n\n| 条件 | 3-class LOGO F1 | Binary LOGO F1 |\n|------|----------------|----------------|\n| baseline | **0.7889** [0.7867, 0.7979] | **0.7241** [0.7187, 0.7343] |\n| random_5pct | 0.7538 [0.7496, 0.7641] | 0.7182 [0.7125, 0.7285] |\n| random_10pct | 0.7425 [0.7349, 0.7517] | 0.7168 [0.7114, 0.7286] |\n| random_20pct | 进行中... | — |\n| llm_rephrase | 待评估 | — |\n\n结果文件尚未写出。Log 在 `/tmp/human_edit_robustness.log`（306 行）。GPU 1 显示 0% 利用率，可能在 LOGO 交叉验证的 CPU 阶段。\n\n### 2. review-sampling-ablation\n\n| 进程 | 状态 | 运行时间 | 进度 |\n|------|------|---------|------|\n| PID 222783 (`sampling_ablation.py --device cuda:3 --phase all`) | **RUNNING** | 2h32m | 无 log 文件，无法判断进度 |\n| PID 226113 (`run_high_only.py`, cuda:2) | **RUNNING** | 1h45m | **52% (516/996)** `high_t10_p095` |\n\ncuda:2 实验速度 ~0.08 seeds/s（~12-14s/it），偶有 empty output 警告。预计还需 **~1h50m**。tmux session `high_temp` 存活。\n\n### 3. GPU 状态\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 89% | 18.6 / 32.6 GB |\n| 1 | 0% | 0.6 / 32.6 GB |\n| 2 | 38% | 3.9 / 32.6 GB |\n| 3 | 40% | 3.9 / 32.6 GB |\n\nGPU 0 被其他任务占用。GPU 1 利用率为 0 但 human_edit 进程活着（可能在 CPU-bound 的分类器训练阶段）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-running-experiments.md"
+}

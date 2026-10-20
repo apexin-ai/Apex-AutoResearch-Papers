@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "addec01d4b01e829316d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper batch b results",
+  "task_key": "worker_paper_batch-b-results_20260518T003209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_batch-b-results_20260518T003209_result.json",
+    "occurrence": 1,
+    "bytes": 715,
+    "sha256": "b5ba354c883850be236449fb73a63a75ff663007331c877be4f1bbda2b33b343"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All five edits are in place and verified:\n\n- **B3** (line 16): Causal claim replaced with factual cross-model/LOGO comparison including the 0.734 reference number\n- **B6** (lines 85-86): Prompt-type sensitivity paragraph added after temperature sensitivity\n- **B7** (line 76): TTR/hapax correlation sentence added in feature complementarity paragraph\n- **B8** (line 11 in discussion.tex): Scale degradation trend added after cross-temperature transfer\n- **B9** (line 92): Baseline framing sentence prepended\n\nChecks pass: zero em-dashes, no problematic -ing phrases in new text, all three appendix labels (`app:prompt-type`, `sec:appendix-feature-correlation`, `app:lofo`) confirmed to exist."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-batch-b-results.md"
+}

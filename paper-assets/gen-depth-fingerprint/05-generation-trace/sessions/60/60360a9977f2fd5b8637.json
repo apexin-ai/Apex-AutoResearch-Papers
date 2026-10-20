@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60360a9977f2fd5b8637",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code gemma rp11 held out logo",
+  "task_key": "worker_code_gemma-rp11-held-out-logo_20260516T160859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gemma-rp11-held-out-logo_20260516T160859_result.json",
+    "occurrence": 1,
+    "bytes": 781,
+    "sha256": "51be5bb7e3c26ee30ae05756ebf04a74f625f2fa5663abdbb06675d9ff1cedb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `results/gemma_rp11_held_out_logo.json`。\n\n**结果摘要：**\n\n| Task | Macro F1 | Per-class F1 |\n|------|----------|-------------|\n| **3-class** | **0.6319** | gen0=0.995, gen1=0.048, gen2+=0.853 |\n| **Binary** (gen1 vs gen2+) | **0.4553** | gen1=0.059, gen2+=0.852 |\n\n**关键发现：**\n- 3-class macro F1 = 0.632，在预期范围 (0.5–0.7) 内\n- 分类器几乎无法区分 gen-1 和 gen-2+：990 中有 964 个 gen-1 被错分为 gen-2+，说明 rp=1.1 使 gen-1 的特征已经非常接近 gen-2+\n- Binary F1 = 0.455，远低于 0.70 gate 阈值，**rp-LOFO gate 未通过**（比 Llama proxy 的 0.582 更差）\n- 混淆矩阵显示 gen-0 完美分离，但模型在 rp=1.1 条件下无法有效区分浅层和深层生成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gemma-rp11-held-out-logo.md"
+}

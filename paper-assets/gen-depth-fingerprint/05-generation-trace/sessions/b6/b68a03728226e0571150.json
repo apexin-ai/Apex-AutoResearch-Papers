@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "b68a03728226e0571150",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper p24 p26 whitespace spacing",
+  "task_key": "worker_paper_p24-p26-whitespace-spacing_20260522T053557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_p24-p26-whitespace-spacing_20260522T053557_result.json",
+    "occurrence": 1,
+    "bytes": 2126472,
+    "sha256": "65108b64dba315b9f3518a8bbbe80039dc72c2dbaafa7ba00d1dcf231655131d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2126492,
+                "serialized_sha256": "591489de58b0cb40470e467217b818e1e6d5982197844f81cc5e663a13352890",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-p24-p26-whitespace-spacing.md"
+}

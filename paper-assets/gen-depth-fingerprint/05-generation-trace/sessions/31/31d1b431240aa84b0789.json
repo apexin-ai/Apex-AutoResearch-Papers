@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31d1b431240aa84b0789",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper appendix whitespace p24 26 35",
+  "task_key": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix-whitespace-p24-26-35_20260522T041552_result.json",
+    "occurrence": 1,
+    "bytes": 1211,
+    "sha256": "3541a7680a7c0142f0677a1efa2728ee0ed10e934f7d5452003ad80d68f4cf57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results look good. Page 34 now has the iterative comparison text + NLL distribution section with figure (90 lines, well-filled). Page 35 is the last page with just the comparison table, which is acceptable.\n\n**Summary of fixes:**\n\n| Original Page | Issue | Fix | Result |\n|---|---|---|---|\n| **p.24** (123 lines) | `figure*[t]` in feature_distributions floated to next page; `\\FloatBarrier` blocked cross-temp content from flowing up | Removed `\\FloatBarrier` after `appendix_feature_distributions` | **276 lines** |\n| **p.26** (179 lines) | `\\FloatBarrier` between small ablation and correlation sections created artificial gaps | Removed `\\FloatBarrier` after `appendix_ablation` | **252 lines** |\n| **p.35** (30 lines) | `table*[t]` in iterative_comparison floated away; `\\FloatBarrier` blocked NLL content from filling gap | (1) Moved text before `table*[t]` in `appendix_iterative_comparison.tex`; (2) Removed `\\FloatBarrier` after `appendix_9gen_scale` and after `appendix_iterative_comparison` | Content absorbed into **p.34 (90 lines)** + table on last page |\n\n**Total pages**: 37 → 35 (net reduction of 2 pages). All three local copies (artifacts, docs, remote) synced."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-appendix-whitespace-p24-26-35.md"
+}

@@ -1,0 +1,67 @@
+# analysis ic vs formalization rate
+
+**svs formal verification** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_analysis_ic_vs_formalization_rate_20260514T120457_result.json`
+- **Structured JSON:** [`7477fdf096e18c44ef9a.json`](../../sessions/74/7477fdf096e18c44ef9a.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+## 分析结果
+
+### 数据概况
+- 总 chains: 200（非任务描述的 192，可能有些 problem 的 chain 数不一致）
+- `ic_sat=True`（Z3 判定全部一致）: 122 条 (61%)
+- `ic_sat=False`（Z3 发现矛盾）: 78 条 (39%)
+
+### 核心发现
+
+**确认的恒等关系：**
+- `ic_score ≡ mcs_size / total_claims`（精确相等）
+- `fc_score ≡ formalization_rate`（Pearson r = 1.0000，fc_score 就是 formalization rate）
+- 当 `ic_sat=True` 时，`ic_score ≡ formalization_rate`（max diff = 0，精确相等）
+
+**Pearson 相关性：**
+
+| 对比 | r | p |
+|------|---|---|
+| ic_score vs formalization_rate | **0.7218** | 1.78e-33 |
+| ic_sat=True 子集 (n=122) | 1.0000 | — (恒等) |
+| ic_sat=False 子集 (n=78) | 0.5808 | — |
+
+### Z3 的实际贡献
+
+| | mean delta (form_rate − ic_score) |
+|---|---|
+| ic_sat=True (61%) | 0.000000 (Z3 完全是 no-op) |
+| ic_sat=False (39%) | 0.1467 (Z3 平均降低 ~15%) |
+| 全体 | 0.0572 |
+
+UNSAT 情况下 delta 分布：median=0.09, max=0.67，57/78 的 delta > 0.05。
+
+### 结论
+
+**r = 0.72 → IC 不是 formalization rate 的完全代理，但严重受其支配。** 具体机制：
+
+1. **61% 的 chains Z3 checking 是字面意义上的 no-op**：所有 formalized claims 都通过 SAT 检查，`ic_score = formalization_rate` 精确成立。对这些 chains，Z3 没有提供任何额外信息。
+
+2. **39% 的 chains Z3 确实发现了矛盾**，平均将分数压低 15%。这部分 IC 有独立信息（r = 0.58 with form_rate）。
+
+3. **fc_score 就是 formalization_rate**（r = 1.0），说明 fc_score 完全没有做任何超出"成功翻译率"的事情。
+
+Director 的怀疑部分成立：IC 不是完全退化的代理（r < 0.9），但在 61% 的 chains 上 Z3 checking 确实是 no-op。Cohen's d ≈ 0 的根因可能是：Z3 在多数 chains 上无法区分正确/错误推理，因为 SAT 太容易通过了。
+
+---

@@ -1,0 +1,1276 @@
+{
+  "schema_version": "1.0",
+  "id": "c456e780ea9d20bd16ee",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "analysis per generator silhouette",
+  "task_key": "worker_analysis_per_generator_silhouette_20260521T075851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_per_generator_silhouette_20260521T075851.log",
+    "occurrence": 1,
+    "bytes": 88161,
+    "sha256": "f217099737391bae48f4bebc631124bd64a0621ae9c2dd3e052d34afefbe83b4"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 8,
+      "tool_result": 8,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+                "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "1d86b52c-c9cc-4f76-a5da-c3a846b77753",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779363000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "d5d7def2-09d7-49a0-936c-4843582c4010",
+                "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by checking if the local data file exists and reading it.",
+              "signature": "EosCCmMIDRgCKkApQ0lLBe5hL6AtvW3T1eLxJlWPgMWjpX7z7NKsanp+ZyQIqpt8/daEOkKGaPP0QUF/21XusYvO2MnXqy8OoIqQMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDGlnt0ahO2MjkNZPeBoMCAyYvDxZf7ordQtHIjCL31cQSyYaRmt8BSMAkDW6Xm68imsUMytsPmRYd595mosgt1/IS+EInHvBKANPu6sqVqWCmD7OqTjrD4NvjWkq3kOmzR+ScEFJY4GuOoQKcNTfeUT1uCEsvMiScvpOQ5Kz4A6M1YyML/vC1N5x67CilNHYXeqlv0wF8FyN4nIuwfIHfKGSMGRQGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "90023ca9-fdb0-4d8c-bd35-15aaa0fe5717",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UGbafykt3ZYQFL6Mv4NZAG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13758,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13758
+                },
+                "output_tokens": 32,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先检查本地数据文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "bac49394-a6ae-4ce7-967e-e2f825491eb1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UGbafykt3ZYQFL6Mv4NZAG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13758,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13758
+                },
+                "output_tokens": 32,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013TidK6cFka8CLDwffo6o4j",
+              "name": "Bash",
+              "input": {
+                "command": "head -5 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/supplement/data/features_all_models.csv 2>/dev/null && echo \"---\" && wc -l /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/supplement/data/features_all_models.csv",
+                "description": "Check local features CSV existence and structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "f41b221a-695d-4fa0-9373-cad6aab9c1c9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UGbafykt3ZYQFL6Mv4NZAG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13758,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13758
+                },
+                "output_tokens": 32,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T07:59:05.426Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013TidK6cFka8CLDwffo6o4j",
+              "type": "tool_result",
+              "content": "model_name,seed_id,depth,entropy_mean,entropy_std,entropy_min,entropy_max,tail_decay,ttr,hapax_ratio\npythia-2.8b,0,0,2.7516980171203613,1.744314193725586,0.003396987915039,8.1875,-0.0023380015550609,0.6565656565656566,0.5454545454545454\npythia-2.8b,0,1,2.616674900054932,1.59860098361969,0.0011329650878906,7.59375,-0.002411389477936,0.5532994923857868,0.4010152284263959\npythia-2.8b,0,2,2.638378858566284,1.5402252674102783,0.00421142578125,8.03125,-0.0023913172458812,0.3981042654028436,0.2606635071090047\npythia-2.8b,0,3,0.607209324836731,1.4215928316116333,4.971027374267578e-05,7.37109375,-0.002321573825993,0.088235294117647,0.0147058823529411\n---\n37059 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/supplement/data/features_all_models.csv",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "63aeb152-3ea8-455c-9023-48e690022c6a",
+            "tool_use_result": {
+              "stdout": "model_name,seed_id,depth,entropy_mean,entropy_std,entropy_min,entropy_max,tail_decay,ttr,hapax_ratio\npythia-2.8b,0,0,2.7516980171203613,1.744314193725586,0.003396987915039,8.1875,-0.0023380015550609,0.6565656565656566,0.5454545454545454\npythia-2.8b,0,1,2.616674900054932,1.59860098361969,0.0011329650878906,7.59375,-0.002411389477936,0.5532994923857868,0.4010152284263959\npythia-2.8b,0,2,2.638378858566284,1.5402252674102783,0.00421142578125,8.03125,-0.0023913172458812,0.3981042654028436,0.2606635071090047\npythia-2.8b,0,3,0.607209324836731,1.4215928316116333,4.971027374267578e-05,7.37109375,-0.002321573825993,0.088235294117647,0.0147058823529411\n---\n37059 /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/supplement/data/features_all_models.csv",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016qvmH7g7X9yoVMc8K8hbS6",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/analysis/ 2>/dev/null || echo \"DIR_NOT_EXISTS\"",
+                "description": "Check if analysis output directory exists"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "ead422fc-4ad6-4f2a-8bf9-d59eb4cbc0b6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UGbafykt3ZYQFL6Mv4NZAG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13758,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13758
+                },
+                "output_tokens": 32,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T07:59:06.277Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016qvmH7g7X9yoVMc8K8hbS6",
+              "type": "tool_result",
+              "content": "5gen_logo_average.md\nbootstrap_seed_variance.md\ncorpus_prevalence_demo.md\ndecoding_strategy_diagnosis.txt\ndiscussion_decoding_versions.txt\nexhaustive_35_enumeration.txt\nfeature_importance_stability.md\ngen1_subclass_analysis.md\ngpu_diagnosis_v2.txt\ninstruct_silhouette_recompute.txt\nmarkovian_chains_comparison.tex\npareto_throughput.md\npartition_322_ablation_results.txt\npermutation_test_ddr_results.txt\nqualitative_example_best_seed.md\nqualitative_example_seed5.md\nreference_audit.md\nroc_auc_baselines.md\nseed_demeaning_logo.md\nsilhouette_audit_results.txt\nsilhouette_final_determination.txt\nskewness_kurtosis_ablation.txt\nthreshold_sweep_paragraph.tex\nthreshold_sweep_results.txt",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "7234a044-ea11-447c-bb4b-ac96b2fe0ac9",
+            "tool_use_result": {
+              "stdout": "5gen_logo_average.md\nbootstrap_seed_variance.md\ncorpus_prevalence_demo.md\ndecoding_strategy_diagnosis.txt\ndiscussion_decoding_versions.txt\nexhaustive_35_enumeration.txt\nfeature_importance_stability.md\ngen1_subclass_analysis.md\ngpu_diagnosis_v2.txt\ninstruct_silhouette_recompute.txt\nmarkovian_chains_comparison.tex\npareto_throughput.md\npartition_322_ablation_results.txt\npermutation_test_ddr_results.txt\nqualitative_example_best_seed.md\nqualitative_example_seed5.md\nreference_audit.md\nroc_auc_baselines.md\nseed_demeaning_logo.md\nsilhouette_audit_results.txt\nsilhouette_final_determination.txt\nskewness_kurtosis_ablation.txt\nthreshold_sweep_paragraph.tex\nthreshold_sweep_results.txt",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据文件存在（37K行）。检查一下包含哪些 generator 和 depth 范围。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "fab80ee8-8ae7-467e-8549-a9820b3a43f9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RQoQgCgWH9UyQJUgBTK6j8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 988,
+                "cache_read_input_tokens": 25599,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 988
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016U7dQryDJkgweB5h8tatAU",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport pandas as pd\ndf = pd.read_csv('artifacts/_project/supplement/data/features_all_models.csv')\nprint('Models:', sorted(df['model_name'].unique()))\nprint('Depth range:', df['depth'].min(), '-', df['depth'].max())\nprint('Rows per model:')\nprint(df.groupby('model_name').size())\n\"",
+                "description": "Check generators and depth coverage in CSV"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "1c05749a-91bf-41fc-8437-f51b85f68f25",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RQoQgCgWH9UyQJUgBTK6j8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 988,
+                "cache_read_input_tokens": 25599,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 988
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T07:59:11.238Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016U7dQryDJkgweB5h8tatAU",
+              "type": "tool_result",
+              "content": "Models: ['llama-3.2-3b', 'mistral-7b-v0.3', 'olmo-2-1b', 'pythia-1b', 'pythia-2.8b', 'qwen3-0.6b', 'qwen3-1.7b', 'qwen3-8b']\nDepth range: 0 - 4\nRows per model:\nmodel_name\nllama-3.2-3b       4680\nmistral-7b-v0.3    4849\nolmo-2-1b          4713\npythia-1b          4555\npythia-2.8b        4609\nqwen3-0.6b         4538\nqwen3-1.7b         4617\nqwen3-8b           4497\ndtype: int64",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "a0a0172e-766c-498e-a5b6-138ed72f46e5",
+            "tool_use_result": {
+              "stdout": "Models: ['llama-3.2-3b', 'mistral-7b-v0.3', 'olmo-2-1b', 'pythia-1b', 'pythia-2.8b', 'qwen3-0.6b', 'qwen3-1.7b', 'qwen3-8b']\nDepth range: 0 - 4\nRows per model:\nmodel_name\nllama-3.2-3b       4680\nmistral-7b-v0.3    4849\nolmo-2-1b          4713\npythia-1b          4555\npythia-2.8b        4609\nqwen3-0.6b         4538\nqwen3-1.7b         4617\nqwen3-8b           4497\ndtype: int64",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整，8 个 generator 全部存在。执行 per-generator silhouette 分析。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "106a9b03-d2c9-44d5-a649-639a488f2dcf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Lmb4QR1tjX6qALnsuzo3uM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 418,
+                "cache_read_input_tokens": 26587,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 418
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Bwer6n4tt4smfYPbhdkPum",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport pandas as pd\nimport numpy as np\nfrom sklearn.cluster import KMeans\nfrom sklearn.metrics import silhouette_score\nfrom sklearn.preprocessing import StandardScaler\nfrom scipy.stats import spearmanr\n\ndf = pd.read_csv('artifacts/_project/supplement/data/features_all_models.csv')\n\nfeatures = ['entropy_mean', 'entropy_std', 'entropy_max', 'entropy_min', 'tail_decay', 'ttr', 'hapax_ratio']\ngenerators = sorted(df['model_name'].unique())\n\n# --- Pooled silhouette (for reference) ---\nrho_list_pooled, d_list_pooled = [], []\nfor feat in features:\n    vals = df[feat].values\n    depths = df['depth'].values\n    rho, _ = spearmanr(vals, depths)\n    rho_list_pooled.append(abs(rho))\n    g1 = df[df['depth'] == 1][feat].values\n    g2p = df[df['depth'] >= 2][feat].values\n    pooled_std = np.sqrt(((len(g1)-1)*np.std(g1,ddof=1)**2 + (len(g2p)-1)*np.std(g2p,ddof=1)**2) / (len(g1)+len(g2p)-2))\n    d = (np.mean(g1) - np.mean(g2p)) / pooled_std if pooled_std > 0 else 0\n    d_list_pooled.append(abs(d))\n\nX_pooled = np.column_stack([rho_list_pooled, d_list_pooled])\nX_pooled_sc = StandardScaler().fit_transform(X_pooled)\nkm_pooled = KMeans(n_clusters=2, n_init=50, random_state=42).fit(X_pooled_sc)\nsil_pooled = silhouette_score(X_pooled_sc, km_pooled.labels_)\npooled_labels = km_pooled.labels_\n\n# Determine which cluster is \"depth-responsive\" vs \"depth-invariant\" in pooled\ncluster_means = []\nfor c in [0, 1]:\n    mask = km_pooled.labels_ == c\n    cluster_means.append(np.mean(X_pooled[mask], axis=0))  # mean (|rho|, |d|)\n# The cluster with higher mean |rho|+|d| is \"responsive\"\nresponsive_cluster_pooled = 0 if sum(cluster_means[0]) > sum(cluster_means[1]) else 1\npooled_partition = set()\nfor i, feat in enumerate(features):\n    if pooled_labels[i] == responsive_cluster_pooled:\n        pooled_partition.add(feat)\n\nprint(f\"Pooled silhouette: {sil_pooled:.3f}\")\nprint(f\"Pooled DDR partition (responsive): {sorted(pooled_partition)}\")\nprint(f\"Pooled DDI partition (invariant):  {sorted(set(features) - pooled_partition)}\")\nprint()\n\n# --- Per-generator ---\nresults = []\nfor gen in generators:\n    sub = df[df['model_name'] == gen]\n    rho_list, d_list = [], []\n    for feat in features:\n        vals = sub[feat].values\n        depths = sub['depth'].values\n        rho, _ = spearmanr(vals, depths)\n        rho_list.append(abs(rho))\n        g1 = sub[sub['depth'] == 1][feat].values\n        g2p = sub[sub['depth'] >= 2][feat].values\n        pooled_std = np.sqrt(((len(g1)-1)*np.std(g1,ddof=1)**2 + (len(g2p)-1)*np.std(g2p,ddof=1)**2) / (len(g1)+len(g2p)-2))\n        d = (np.mean(g1) - np.mean(g2p)) / pooled_std if pooled_std > 0 else 0\n        d_list.append(abs(d))\n    \n    X = np.column_stack([rho_list, d_list])\n    X_sc = StandardScaler().fit_transform(X)\n    km = KMeans(n_clusters=2, n_init=50, random_state=42).fit(X_sc)\n    sil = silhouette_score(X_sc, km.labels_)\n    \n    # Determine responsive cluster\n    cm = []\n    for c in [0, 1]:\n        mask = km.labels_ == c\n        cm.append(np.mean(X[mask], axis=0))\n    resp_cluster = 0 if sum(cm[0]) > sum(cm[1]) else 1\n    \n    gen_partition = set()\n    for i, feat in enumerate(features):\n        if km.labels_[i] == resp_cluster:\n            gen_partition.add(feat)\n    \n    consistent = gen_partition == pooled_partition\n    results.append({\n        'generator': gen,\n        'silhouette': sil,\n        'consistent': consistent,\n        'ddr': sorted(gen_partition),\n        'ddi': sorted(set(features) - gen_partition),\n        'rho': {f: r for f, r in zip(features, rho_list)},\n        'd': {f: d for f, d in zip(features, d_list)},\n    })\n\n# Print results\nprint(f\"{'Generator':<20} {'Silhouette':>10} {'Consistent':>10}  DDR Partition\")\nprint(\"-\" * 90)\nfor r in results:\n    print(f\"{r['generator']:<20} {r['silhouette']:>10.3f} {'Yes' if r['consistent'] else 'NO':>10}  {r['ddr']}\")\n\nprint()\nsils = [r['silhouette'] for r in results]\nprint(f\"Min silhouette: {min(sils):.3f}, Max: {max(sils):.3f}, Mean: {np.mean(sils):.3f}\")\nprint(f\"All >= 0.5: {all(s >= 0.5 for s in sils)}\")\nprint(f\"All consistent: {all(r['consistent'] for r in results)}\")\n\n# Check what happens with inconsistent ones\nfor r in results:\n    if not r['consistent']:\n        print(f\"\\n  {r['generator']} differs:\")\n        print(f\"    Pooled DDR: {sorted(pooled_partition)}\")\n        print(f\"    This DDR:   {r['ddr']}\")\n        diff_in = set(r['ddr']) - pooled_partition\n        diff_out = pooled_partition - set(r['ddr'])\n        if diff_in:\n            print(f\"    Extra in DDR: {sorted(diff_in)}\")\n        if diff_out:\n            print(f\"    Missing from DDR: {sorted(diff_out)}\")\n\n# Detailed per-feature table\nprint(\"\\n\\nPer-feature |rho| and |d| by generator:\")\nprint(f\"{'Generator':<20} {'Feature':<15} {'|rho|':>8} {'|d|':>8} {'Cluster':>8}\")\nprint(\"-\" * 65)\nfor r in results:\n    for feat in features:\n        cluster = 'DDR' if feat in r['ddr'] else 'DDI'\n        print(f\"{r['generator']:<20} {feat:<15} {r['rho'][feat]:>8.3f} {r['d'][feat]:>8.3f} {cluster:>8}\")\n    print()\n\nPYEOF",
+                "description": "Run per-generator silhouette analysis",
+                "timeout": 60000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "be0949d7-89b1-4a2b-9dfd-763b9b8984be",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Lmb4QR1tjX6qALnsuzo3uM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 418,
+                "cache_read_input_tokens": 26587,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 418
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T07:59:41.546Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Bwer6n4tt4smfYPbhdkPum",
+              "type": "tool_result",
+              "content": "Pooled silhouette: 0.663\nPooled DDR partition (responsive): ['entropy_mean', 'hapax_ratio', 'ttr']\nPooled DDI partition (invariant):  ['entropy_max', 'entropy_min', 'entropy_std', 'tail_decay']\n\nGenerator            Silhouette Consistent  DDR Partition\n------------------------------------------------------------------------------------------\nllama-3.2-3b              0.731        Yes  ['entropy_mean', 'hapax_ratio', 'ttr']\nmistral-7b-v0.3           0.760        Yes  ['entropy_mean', 'hapax_ratio', 'ttr']\nolmo-2-1b                 0.694        Yes  ['entropy_mean', 'hapax_ratio', 'ttr']\npythia-1b                 0.505        Yes  ['entropy_mean', 'hapax_ratio', 'ttr']\npythia-2.8b               0.596        Yes  ['entropy_mean', 'hapax_ratio', 'ttr']\nqwen3-0.6b                0.532        Yes  ['entropy_mean', 'hapax_ratio', 'ttr']\nqwen3-1.7b                0.675        Yes  ['entropy_mean', 'hapax_ratio', 'ttr']\nqwen3-8b                  0.714        Yes  ['entropy_mean', 'hapax_ratio', 'ttr']\n\nMin silhouette: 0.505, Max: 0.760, Mean: 0.651\nAll >= 0.5: True\nAll consistent: True\n\n\nPer-feature |rho| and |d| by generator:\nGenerator            Feature            |rho|      |d|  Cluster\n-----------------------------------------------------------------\nllama-3.2-3b         entropy_mean       0.627    1.148      DDR\nllama-3.2-3b         entropy_std        0.160    0.498      DDI\nllama-3.2-3b         entropy_max        0.086    0.008      DDI\nllama-3.2-3b         entropy_min        0.398    0.007      DDI\nllama-3.2-3b         tail_decay         0.063    0.188      DDI\nllama-3.2-3b         ttr                0.686    1.037      DDR\nllama-3.2-3b         hapax_ratio        0.698    0.983      DDR\n\nmistral-7b-v0.3      entropy_mean       0.539    0.892      DDR\nmistral-7b-v0.3      entropy_std        0.062    0.229      DDI\nmistral-7b-v0.3      entropy_max        0.094    0.004      DDI\nmistral-7b-v0.3      entropy_min        0.398    0.038      DDI\nmistral-7b-v0.3      tail_decay         0.029    0.160      DDI\nmistral-7b-v0.3      ttr                0.599    0.820      DDR\nmistral-7b-v0.3      hapax_ratio        0.606    0.821      DDR\n\nolmo-2-1b            entropy_mean       0.639    1.189      DDR\nolmo-2-1b            entropy_std        0.296    0.609      DDI\nolmo-2-1b            entropy_max        0.067    0.060      DDI\nolmo-2-1b            entropy_min        0.387    0.068      DDI\nolmo-2-1b            tail_decay         0.141    0.223      DDI\nolmo-2-1b            ttr                0.700    1.077      DDR\nolmo-2-1b            hapax_ratio        0.712    1.003      DDR\n\npythia-1b            entropy_mean       0.712    1.404      DDR\npythia-1b            entropy_std        0.241    0.532      DDI\npythia-1b            entropy_max        0.005    0.206      DDI\npythia-1b            entropy_min        0.505    0.024      DDI\npythia-1b            tail_decay         0.090    0.084      DDI\npythia-1b            ttr                0.657    0.798      DDR\npythia-1b            hapax_ratio        0.674    0.649      DDR\n\npythia-2.8b          entropy_mean       0.675    1.197      DDR\npythia-2.8b          entropy_std        0.153    0.389      DDI\npythia-2.8b          entropy_max        0.035    0.253      DDI\npythia-2.8b          entropy_min        0.480    0.032      DDI\npythia-2.8b          tail_decay         0.063    0.067      DDI\npythia-2.8b          ttr                0.633    0.769      DDR\npythia-2.8b          hapax_ratio        0.655    0.668      DDR\n\nqwen3-0.6b           entropy_mean       0.566    0.917      DDR\nqwen3-0.6b           entropy_std        0.229    0.557      DDI\nqwen3-0.6b           entropy_max        0.086    0.013      DDI\nqwen3-0.6b           entropy_min        0.359    0.100      DDI\nqwen3-0.6b           tail_decay         0.090    0.084      DDI\nqwen3-0.6b           ttr                0.611    0.628      DDR\nqwen3-0.6b           hapax_ratio        0.627    0.503      DDR\n\nqwen3-1.7b           entropy_mean       0.602    1.115      DDR\nqwen3-1.7b           entropy_std        0.188    0.516      DDI\nqwen3-1.7b           entropy_max        0.088    0.020      DDI\nqwen3-1.7b           entropy_min        0.406    0.049      DDI\nqwen3-1.7b           tail_decay         0.070    0.088      DDI\nqwen3-1.7b           ttr                0.652    0.928      DDR\nqwen3-1.7b           hapax_ratio        0.670    0.830      DDR\n\nqwen3-8b             entropy_mean       0.475    0.864      DDR\nqwen3-8b             entropy_std        0.075    0.372      DDI\nqwen3-8b             entropy_max        0.095    0.040      DDI\nqwen3-8b             entropy_min        0.303    0.006      DDI\nqwen3-8b             tail_decay         0.089    0.154      DDI\nqwen3-8b             ttr                0.542    0.708      DDR\nqwen3-8b             hapax_ratio        0.558    0.658      DDR",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "9e197cc2-6c18-41cb-ba65-ec1808e1447f",
+            "tool_use_result": {
+              "stdout": "Pooled silhouette: 0.663\nPooled DDR partition (responsive): ['entropy_mean', 'hapax_ratio', 'ttr']\nPooled DDI partition (invariant):  ['entropy_max', 'entropy_min', 'entropy_std', 'tail_decay']\n\nGenerator            Silhouette Consistent  DDR Partition\n------------------------------------------------------------------------------------------\nllama-3.2-3b              0.731        Yes  ['entropy_mean', 'hapax_ratio', 'ttr']\nmistral-7b-v0.3           0.760        Yes  ['entropy_mean', 'hapax_ratio', 'ttr']\nolmo-2-1b                 0.694        Yes  ['entropy_mean', 'hapax_ratio', 'ttr']\npythia-1b                 0.505        Yes  ['entropy_mean', 'hapax_ratio', 'ttr']\npythia-2.8b               0.596        Yes  ['entropy_mean', 'hapax_ratio', 'ttr']\nqwen3-0.6b                0.532        Yes  ['entropy_mean', 'hapax_ratio', 'ttr']\nqwen3-1.7b                0.675        Yes  ['entropy_mean', 'hapax_ratio', 'ttr']\nqwen3-8b                  0.714        Yes  ['entropy_mean', 'hapax_ratio', 'ttr']\n\nMin silhouette: 0.505, Max: 0.760, Mean: 0.651\nAll >= 0.5: True\nAll consistent: True\n\n\nPer-feature |rho| and |d| by generator:\nGenerator            Feature            |rho|      |d|  Cluster\n-----------------------------------------------------------------\nllama-3.2-3b         entropy_mean       0.627    1.148      DDR\nllama-3.2-3b         entropy_std        0.160    0.498      DDI\nllama-3.2-3b         entropy_max        0.086    0.008      DDI\nllama-3.2-3b         entropy_min        0.398    0.007      DDI\nllama-3.2-3b         tail_decay         0.063    0.188      DDI\nllama-3.2-3b         ttr                0.686    1.037      DDR\nllama-3.2-3b         hapax_ratio        0.698    0.983      DDR\n\nmistral-7b-v0.3      entropy_mean       0.539    0.892      DDR\nmistral-7b-v0.3      entropy_std        0.062    0.229      DDI\nmistral-7b-v0.3      entropy_max        0.094    0.004      DDI\nmistral-7b-v0.3      entropy_min        0.398    0.038      DDI\nmistral-7b-v0.3      tail_decay         0.029    0.160      DDI\nmistral-7b-v0.3      ttr                0.599    0.820      DDR\nmistral-7b-v0.3      hapax_ratio        0.606    0.821      DDR\n\nolmo-2-1b            entropy_mean       0.639    1.189      DDR\nolmo-2-1b            entropy_std        0.296    0.609      DDI\nolmo-2-1b            entropy_max        0.067    0.060      DDI\nolmo-2-1b            entropy_min        0.387    0.068      DDI\nolmo-2-1b            tail_decay         0.141    0.223      DDI\nolmo-2-1b            ttr                0.700    1.077      DDR\nolmo-2-1b            hapax_ratio        0.712    1.003      DDR\n\npythia-1b            entropy_mean       0.712    1.404      DDR\npythia-1b            entropy_std        0.241    0.532      DDI\npythia-1b            entropy_max        0.005    0.206      DDI\npythia-1b            entropy_min        0.505    0.024      DDI\npythia-1b            tail_decay         0.090    0.084      DDI\npythia-1b            ttr                0.657    0.798      DDR\npythia-1b            hapax_ratio        0.674    0.649      DDR\n\npythia-2.8b          entropy_mean       0.675    1.197      DDR\npythia-2.8b          entropy_std        0.153    0.389      DDI\npythia-2.8b          entropy_max        0.035    0.253      DDI\npythia-2.8b          entropy_min        0.480    0.032      DDI\npythia-2.8b          tail_decay         0.063    0.067      DDI\npythia-2.8b          ttr                0.633    0.769      DDR\npythia-2.8b          hapax_ratio        0.655    0.668      DDR\n\nqwen3-0.6b           entropy_mean       0.566    0.917      DDR\nqwen3-0.6b           entropy_std        0.229    0.557      DDI\nqwen3-0.6b           entropy_max        0.086    0.013      DDI\nqwen3-0.6b           entropy_min        0.359    0.100      DDI\nqwen3-0.6b           tail_decay         0.090    0.084      DDI\nqwen3-0.6b           ttr                0.611    0.628      DDR\nqwen3-0.6b           hapax_ratio        0.627    0.503      DDR\n\nqwen3-1.7b           entropy_mean       0.602    1.115      DDR\nqwen3-1.7b           entropy_std        0.188    0.516      DDI\nqwen3-1.7b           entropy_max        0.088    0.020      DDI\nqwen3-1.7b           entropy_min        0.406    0.049      DDI\nqwen3-1.7b           tail_decay         0.070    0.088      DDI\nqwen3-1.7b           ttr                0.652    0.928      DDR\nqwen3-1.7b           hapax_ratio        0.670    0.830      DDR\n\nqwen3-8b             entropy_mean       0.475    0.864      DDR\nqwen3-8b             entropy_std        0.075    0.372      DDI\nqwen3-8b             entropy_max        0.095    0.040      DDI\nqwen3-8b             entropy_min        0.303    0.006      DDI\nqwen3-8b             tail_decay         0.089    0.154      DDI\nqwen3-8b             ttr                0.542    0.708      DDR\nqwen3-8b             hapax_ratio        0.558    0.658      DDR",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 8 个 generator 的 silhouette ≥ 0.5 且分区完全一致。保存结果和 LaTeX 文本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "6cd65eb9-0827-46ba-8780-f95a7fd37e20",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019rend8qogZWHnoWh2zKXMj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3817,
+                "cache_read_input_tokens": 27005,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3817
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QRVcVhfZEZvNAEYi95T1hY",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\noutput = \"\"\"Per-Generator Silhouette Analysis for DDR/DDI Partition Validation\n==================================================================\n\nPooled silhouette: 0.663\nPooled DDR (depth-responsive):  {entropy_mean, ttr, hapax_ratio}\nPooled DDI (depth-invariant):   {entropy_std, entropy_max, entropy_min, tail_decay}\n\nPer-Generator Results\n---------------------\nGenerator            Silhouette  Partition Consistent?\n------------------------------------------------------\nllama-3.2-3b              0.731  Yes\nmistral-7b-v0.3           0.760  Yes\nolmo-2-1b                 0.694  Yes\npythia-1b                 0.505  Yes\npythia-2.8b               0.596  Yes\nqwen3-0.6b                0.532  Yes\nqwen3-1.7b                0.675  Yes\nqwen3-8b                  0.714  Yes\n\nSummary: Min=0.505, Max=0.760, Mean=0.651\nAll silhouette >= 0.5: YES\nAll partitions match pooled: YES (8/8)\n\nConclusion: The DDR/DDI partition is not a pooled artifact.\nEvery generator individually recovers the same {entropy_mean, ttr, hapax_ratio}\nvs {entropy_std, entropy_max, entropy_min, tail_decay} split with silhouette >= 0.5.\n\"\"\"\n\nwith open('artifacts/_project/analysis/per_generator_silhouette.txt', 'w') as f:\n    f.write(output)\nprint(\"Written to per_generator_silhouette.txt\")\nPYEOF",
+                "description": "Save per-generator silhouette results"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "0f53d111-f666-4bd9-81c9-57493d9ee56a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019rend8qogZWHnoWh2zKXMj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3817,
+                "cache_read_input_tokens": 27005,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3817
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T07:59:57.351Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QRVcVhfZEZvNAEYi95T1hY",
+              "type": "tool_result",
+              "content": "Written to per_generator_silhouette.txt",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "c50c8cef-ccb6-4fcf-866a-ab1ad7e1a5e8",
+            "tool_use_result": {
+              "stdout": "Written to per_generator_silhouette.txt",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the existing appendix_ddr_validation.tex to see where to insert the LaTeX paragraph."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "16a122cb-819b-46a9-8d91-60601e1c9ef8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Vj9uoidNFDLojPMhyfwPDt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 558,
+                "cache_read_input_tokens": 30822,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 558
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016LfN7ZQdBSWievehcuJHZj",
+              "name": "Glob",
+              "input": {
+                "pattern": "artifacts/_project/paper/appendix_ddr*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "411be1eb-f841-4b2c-8e38-d40569e85f04",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Vj9uoidNFDLojPMhyfwPDt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 558,
+                "cache_read_input_tokens": 30822,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 558
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T08:00:00.736Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016LfN7ZQdBSWievehcuJHZj",
+              "type": "tool_result",
+              "content": "artifacts/_project/paper/appendix_ddr_causality.tex\nartifacts/_project/paper/appendix_ddr_validation.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "74578284-ce9a-4295-a4bb-c04e7e0d88e1",
+            "tool_use_result": {
+              "filenames": [
+                "artifacts/_project/paper/appendix_ddr_causality.tex",
+                "artifacts/_project/paper/appendix_ddr_validation.tex"
+              ],
+              "durationMs": 19,
+              "numFiles": 2,
+              "truncated": false
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TyAVpkwEzBdmfmFGc3xSuC",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "b28d80e1-8d13-4a6c-8b31-caa8a2414873",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HNDGEbFCesJJuHSeg5c3Mw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 237,
+                "cache_read_input_tokens": 31380,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 237
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T08:00:05.252Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TyAVpkwEzBdmfmFGc3xSuC",
+              "type": "tool_result",
+              "content": "1\t\\subsection*{Data-Driven Clustering}\n2\t\n3\tTo assess the DDR partition structure and determine whether the drifting/non-drifting split is data-driven, we apply $k$-means clustering ($k \\in \\{2,3,4,5\\}$) to the seven features in standardized $(|\\rho|, d)$ space (Table~\\ref{tab:clustering}).\n4\t\n5\t\\begin{table}[ht]\n6\t\\centering\n7\t\\small\n8\t\\caption{$k$-means clustering of 7 features in $(|\\rho|, d)$ space.}\n9\t\\label{tab:clustering}\n10\t\\resizebox{\\linewidth}{!}{%\n11\t\\begin{tabular}{ccp{5.5cm}}\n12\t\\toprule\n13\t$k$ & Silhouette & Clusters \\\\\n14\t\\midrule\n15\t2 & \\textbf{0.660} & \\{$\\bar{H}$, TTR, hapax\\} $\\mid$ \\{$\\sigma_H$, $H_{\\min}$, $H_{\\max}$, tail\\} \\\\\n16\t3 & 0.532 & \\{$\\bar{H}$, TTR, hapax\\} $\\mid$ \\{$\\sigma_H$, $H_{\\max}$, tail\\} $\\mid$ \\{$H_{\\min}$\\} \\\\\n17\t4 & 0.527 & \\{$\\bar{H}$, TTR, hapax\\} $\\mid$ \\{$H_{\\max}$, tail\\} $\\mid$ \\{$\\sigma_H$\\} $\\mid$ \\{$H_{\\min}$\\} \\\\\n18\t\\bottomrule\n19\t\\end{tabular}}\n20\t\\end{table}\n21\t\n22\tThe primary drifting/non-drifting split ($k{=}2$, silhouette\\,=\\,0.660) is the strongest cluster structure.\n23\tAt $k{=}3$, entropy min forms its own cluster rather than joining the near-stationary group because its pooled $|\\rho|{=}0.40$ (driven by the gen-0/gen-1 boundary) places it far from other near-stationary features in $\\rho$ space.\n24\tThe 3/1/3 DDR partition resolves this by using the gen-1 vs.\\ gen-2+ Cohen's $d$ ($d{=}0.03$) to place entropy min in the near-stationary group, a domain-informed refinement that unsupervised clustering cannot recover from pooled statistics alone.\n25\tAt $k{=}4$ (silhouette\\,=\\,0.571), entropy std separates from the near-stationary group, consistent with its intermediate DDR classification.\n26\t\n27\t\\paragraph{Exhaustive partition enumeration.}\n28\tTo confirm that the three-vs-four split is optimal rather than incidental, we enumerate all $\\binom{7}{3}{=}35$ possible ways to assign three features to a ``drifting'' group and the remaining four to ``non-drifting,'' computing the silhouette score for each partition in standardized $(|\\rho|, d)$ space.\n29\tThe observed DDR partition (\\{entropy mean, TTR, hapax ratio\\}) achieves the highest silhouette (0.660), with a gap of 0.18 to the second-ranked split; 20 of 35 partitions produce negative silhouette scores.\n30\t\n31\t\\subsection*{TOST Equivalence Bound Sensitivity}\n32\t\\label{app:tost-sensitivity}\n33\t\n34\tTable~\\ref{tab:tost-sensitivity} shows the fraction of generators for which each feature passes the TOST equivalence test (gen-1 vs.\\ gen-2+, $\\alpha{=}0.05$) at three equivalence bounds $\\varepsilon$.\n35\t\n36\t\\begin{table}[ht]\n37\t\\centering\n38\t\\small\n39\t\\caption{TOST equivalence pass rate across 8 generators at varying $\\varepsilon$.}\n40\t\\label{tab:tost-sensitivity}\n41\t\\resizebox{\\linewidth}{!}{%\n42\t\\begin{tabular}{llccc}\n43\t\\toprule\n44\t\\textbf{DDR Zone} & \\textbf{Feature} & $\\boldsymbol{\\varepsilon{=}0.15}$ & $\\boldsymbol{\\varepsilon{=}0.20}$ & $\\boldsymbol{\\varepsilon{=}0.25}$ \\\\\n45\t\\midrule\n46\t\\multirow{3}{*}{Drifting} & $\\bar{H}$ (ent.\\ mean) & 0/8 & 0/8 & 0/8 \\\\\n47\t & TTR & 0/8 & 0/8 & 0/8 \\\\\n48\t & hapax ratio & 0/8 & 0/8 & 0/8 \\\\\n49\t\\midrule\n50\tIntermediate & $\\sigma_H$ (ent.\\ std) & 0/8 & 0/8 & 0/8 \\\\\n51\t\\midrule\n52\t\\multirow{3}{*}{Near-stat.} & $H_{\\min}$ (ent.\\ min) & 7/8 & 8/8 & 8/8 \\\\\n53\t & $H_{\\max}$ (ent.\\ max) & 6/8 & 6/8 & 6/8 \\\\\n54\t & tail decay & 4/8 & 4/8 & 7/8 \\\\\n55\t\\bottomrule\n56\t\\end{tabular}}\n57\t\\end{table}\n58\t\n59\tThe partition is robust to the equivalence bound: drifting features reject equivalence at all $\\varepsilon$ for all generators, while entropy min passes even at the stricter bound $\\varepsilon{=}0.15$ (7/8 generators).\n60\tTail decay is the most $\\varepsilon$-sensitive near-stationary feature, passing 4/8 at $\\varepsilon{=}0.20$ but 7/8 at $\\varepsilon{=}0.25$; the four non-passing generators show $|d|{=}0.15$--$0.22$, still well below the drifting threshold ($d > 0.50$).\n61\tEntropy max is stable across all three bounds (6/8), with the two failures (Pythia-1B $d{=}0.21$, Pythia-2.8B $d{=}0.25$) reflecting same-family reference affinity with the Pythia-410M reference model.\n62\t\n63\t\\paragraph{Threshold sensitivity.}\n64\tTo address concerns about the sensitivity of the drifting-boundary threshold,\n65\twe sweep $|d|$ from $0.10$ to $0.80$ in increments of $0.05$ and record the\n66\tresulting binary partition (drifting vs.\\ stationary) along with the silhouette\n67\tscore in standardized $(|\\rho|, d)$ space.\n68\tAcross the entire range, only \\emph{three} distinct partitions emerge,\n69\treflecting natural gaps between feature clusters rather than threshold artifacts.\n70\tThe three-feature drifting set (entropy mean, TTR, hapax ratio)\n71\tis stable across $|d| \\in [0.50,\\, 0.75]$ with a silhouette of $0.660$---the\n72\tpeak value in the sweep.\n73\tIncluding the intermediate feature entropy std ($d{=}0.49$) yields a\n74\t4/3 partition stable across $|d| \\in [0.10,\\, 0.45]$ (silhouette\\,=\\,0.451).\n75\tThe partition used in our analysis corresponds to the peak-silhouette region,\n76\tconfirming that the drifting/stationary boundary reflects a natural gap in the\n77\t$(|\\rho|, d)$ landscape rather than an artifact of a particular\n78\tthreshold choice.\n79\t\n80\t\\paragraph{Partition stability across $\\varepsilon$ thresholds.}\n81\t\\label{app:epsilon-sweep}\n82\t\n83\tThe DDR partition classifies features as non-stationary ($d \\geq \\varepsilon$) or stationary ($d < \\varepsilon$) based on pooled Cohen's $d$ (\\S\\ref{sec:results-differential}).\n84\tTable~\\ref{tab:epsilon-sweep} reports the critical $\\varepsilon$ at which each feature's classification changes; the three drifting and three near-stationary features maintain their classification for all $\\varepsilon \\in [0.10, 0.75]$.\n85\t\n86\t\\begin{table}[ht]\n87\t\\centering\n88\t\\small\n89\t\\caption{Partition stability under varying $\\varepsilon$. Critical threshold: the $\\varepsilon$ above which a feature is reclassified as stationary. The drifting/near-stationary split is invariant for $\\varepsilon \\in [0.10, 0.75]$; only entropy std ($d{=}0.55$) changes at $\\varepsilon > 0.55$.}\n90\t\\label{tab:epsilon-sweep}\n91\t\\resizebox{\\linewidth}{!}{%\n92\t\\begin{tabular}{llcc}\n93\t\\toprule\n94\t\\textbf{DDR Zone} & \\textbf{Feature} & \\textbf{Pooled $d$} & \\textbf{Stationary at $\\varepsilon >$} \\\\\n95\t\\midrule\n96\t\\multirow{3}{*}{Drifting} & $\\bar{H}$ (ent.\\ mean) & 1.17 & 1.17 \\\\\n97\t & TTR & 0.88 & 0.88 \\\\\n98\t & hapax ratio & 0.76 & 0.76 \\\\\n99\t\\midrule\n100\tIntermediate & $\\sigma_H$ (ent.\\ std) & 0.55 & 0.55 \\\\\n101\t\\midrule\n102\t\\multirow{3}{*}{Near-stat.} & $H_{\\max}$ (ent.\\ max) & 0.08 & 0.08 \\\\\n103\t & tail decay & 0.08 & 0.08 \\\\\n104\t & $H_{\\min}$ (ent.\\ min) & 0.016 & 0.016 \\\\\n105\t\\bottomrule\n106\t\\end{tabular}}\n107\t\\end{table}\n108\t\n109\t\\noindent The 3/1/3 partition is stable across $\\varepsilon \\in [0.10, 0.75]$: the three drifting features remain non-stationary at all $\\varepsilon < 0.76$, the three near-stationary features remain stationary at all $\\varepsilon > 0.08$, and only entropy std changes classification (becoming stationary at $\\varepsilon > 0.55$), confirming it as the sole threshold-sensitive feature.\n110\tThe minimum gap between adjacent zone boundaries ($d_{\\text{hapax}} - d_{\\sigma_H} = 0.21$) exceeds typical effect-size estimation uncertainty, providing a margin against sampling noise.\n111\t\n112\t\\subsection*{Holdout Generator Split Validation}\n113\t\\label{app:holdout-split}\n114\t\n115\tTo confirm the DDR partition is not an artifact of the specific generator pool, we split the eight generators into disjoint selection (4) and validation (4) sets, compute per-subset pooled $(|\\rho|, d)$, and check whether all seven features receive the same zone assignment in both subsets.\n116\tWe evaluate two complementary splits to avoid dependence on a single partition:\n117\tSplit~A selects \\{Pythia-2.8B, Qwen3-1.7B, OLMo, Mistral\\} (validation: Pythia-1B, Qwen3-0.6B, Qwen3-8B, Llama);\n118\tSplit~B selects \\{Pythia-1B, Qwen3-0.6B, OLMo, Mistral\\} (validation: Pythia-2.8B, Qwen3-1.7B, Qwen3-8B, Llama).\n119\t\n120\t\\begin{table}[ht]\n121\t\\centering\n122\t\\small\n123\t\\caption{Holdout split validation of the DDR partition. Selection (sel) and validation (val) $|\\rho|$ and $d$ for two disjoint 4/4 generator splits. Zone assignment is identical across all four subsets for every feature.}\n124\t\\label{tab:holdout-split}\n125\t\\resizebox{\\linewidth}{!}{%\n126\t\\begin{tabular}{llcccccc}\n127\t\\toprule\n128\t& & \\multicolumn{3}{c}{\\textbf{Split A}} & \\multicolumn{3}{c}{\\textbf{Split B}} \\\\\n129\t\\cmidrule(lr){3-5} \\cmidrule(lr){6-8}\n130\t\\textbf{Zone} & \\textbf{Feature} & sel $|\\rho|$ & val $|\\rho|$ & $\\Delta|\\rho|$ & sel $|\\rho|$ & val $|\\rho|$ & $\\Delta|\\rho|$ \\\\\n131\t\\midrule\n132\t\\multirow{3}{*}{Drifting} & $\\bar{H}$ (ent.\\ mean) & 0.60 & 0.58 & 0.02 & 0.60 & 0.58 & 0.02 \\\\\n133\t & TTR & 0.61 & 0.59 & 0.02 & 0.60 & 0.59 & 0.01 \\\\\n134\t & hapax ratio & 0.62 & 0.60 & 0.02 & 0.62 & 0.61 & 0.01 \\\\\n135\t\\midrule\n136\tIntermediate & $\\sigma_H$ (ent.\\ std) & 0.19 & 0.21 & 0.02 & 0.22 & 0.17 & 0.05 \\\\\n137\t\\midrule\n138\t\\multirow{3}{*}{Near-stat.} & $H_{\\min}$ (ent.\\ min) & 0.39 & 0.36 & 0.03 & 0.38 & 0.37 & 0.01 \\\\\n139\t & $H_{\\max}$ (ent.\\ max) & 0.05 & 0.05 & 0.00 & 0.04 & 0.06 & 0.02 \\\\\n140\t & tail decay & 0.10 & 0.08 & 0.02 & 0.11 & 0.07 & 0.04 \\\\\n141\t\\bottomrule\n142\t\\end{tabular}}\n143\t\\end{table}\n144\t\n145\tUnder simple joint $(|\\rho|, d)$ thresholds, both splits produce a 3/2/2 partition: entropy min is classified as a second intermediate feature due to its elevated pooled $|\\rho|$ (0.36--0.39).\n146\tHowever, entropy min's binary (gen-1 vs.\\ gen-2+) $d$ values are uniformly below 0.06 across all four split${\\times}$subset combinations, consistent with near-stationarity on the task-relevant metric; its pooled $|\\rho|$ reflects change concentrated at the gen-0/gen-1 boundary rather than sustained drift.\n147\tFive of seven features are unambiguously classified under any reasonable criterion; entropy min's boundary status is resolved by the binary-task $d$ criterion.\n148\t\n149\tSelection and validation subsets produce identical partitions in both splits (Table~\\ref{tab:holdout-split}; Figure~\\ref{fig:holdout-scatter}).\n150\tThe maximum $\\Delta|\\rho|$ between selection and validation is 0.05 (entropy std, Split~B), and the minimum gap between adjacent zones remains $>$0.15 in all subsets.\n151\t\n152\t\\begin{figure}[H]\n153\t\\centering\n154\t\\includegraphics[width=\\linewidth]{fig_ddr_holdout_split.pdf}\n155\t\\caption{Holdout split validation in $(|\\rho|, d)$ space. Filled markers: selection set; hollow: validation set. Zone assignments are identical across subsets; selection/validation pairs cluster tightly for all features.}\n156\t\\label{fig:holdout-scatter}\n157\t\\end{figure}\n158\t\n159\t\\subsection*{Heteroscedasticity Sensitivity}\n160\t\\label{app:heteroscedasticity}\n161\t\n162\tLevene tests reject equal variance between gen-1 and gen-2+ for drifting features ($p < 10^{-10}$; variance ratios 1.86--2.21).\n163\tTo verify that the DDR partition is robust to this heteroscedasticity, we supplement pooled Cohen's $d$ with Glass's $\\Delta$ (using the gen-1 standard deviation as denominator) and Cliff's $\\delta$ (a non-parametric ordinal effect size; Table~\\ref{tab:effect-sizes}).\n164\t\n165\t\\begin{table}[ht]\n166\t\\centering\n167\t\\small\n168\t\\caption{Effect size comparison (gen-1 vs.\\ gen-2+, $N$\\,=\\,29{,}095). Glass's $\\Delta$ uses the gen-1 SD as denominator; Cliff's $\\delta$ thresholds follow Romano et al.\\ (2006): $|\\delta| < 0.147$ negligible, $< 0.33$ small, $< 0.474$ medium, otherwise large.}\n169\t\\label{tab:effect-sizes}\n170\t\\begin{tabular}{llrrr}\n171\t\\toprule\n172\t\\textbf{Zone} & \\textbf{Feature} & \\textbf{$|d|$} & \\textbf{$|\\Delta|$} & \\textbf{$|\\delta|$} \\\\\n173\t\\midrule\n174\t\\multirow{3}{*}{Drifting} & ent.\\ mean & 1.054 & 1.410 & 0.587 \\\\\n175\t & TTR & 0.814 & 1.116 & 0.510 \\\\\n176\t & hapax ratio & 0.735 & 0.936 & 0.528 \\\\\n177\t\\midrule\n178\tIntermediate & ent.\\ std & 0.457 & 0.605 & 0.295 \\\\\n179\t\\midrule\n180\t\\multirow{3}{*}{Near-stat.} & tail decay & 0.087 & 0.099 & 0.072 \\\\\n181\t & ent.\\ max & 0.062 & 0.065 & 0.021 \\\\\n182\t & ent.\\ min & 0.016 & 0.015 & 0.354$^{\\dagger}$ \\\\\n183\t\\bottomrule\n184\t\\end{tabular}\n185\t\\end{table}\n186\t\n187\t\\noindent Effect sizes in Table~\\ref{tab:effect-sizes} are computed on the binary task (gen-1 vs.\\ gen-2+); the main text (\\S\\ref{sec:results-differential}) reports 3-class pooled $d$ values (e.g., hapax ratio $d{=}0.76$), which are slightly larger because the gen-0/gen-1 contrast contributes additional separation.\n188\tGlass's $\\Delta$ amplifies drifting effects (1.41 vs.\\ 1.05 for entropy mean) because gen-2+ variance exceeds gen-1 variance (ratio 2.08), making the pooled Cohen's $d$ conservative.\n189\tNear-stationary features remain negligible under both parametric metrics ($|\\Delta| \\leq 0.099$).\n190\tThe minimum drifting-to-maximum-near-stationary gap is $9.5\\times$ under Glass's $\\Delta$ (0.936\\,/\\,0.099); heteroscedasticity does not erode the partition.\n191\tCliff's $\\delta$ classifies all drifting features as ``large'' ($|\\delta| > 0.474$) and entropy std as ``small'' ($|\\delta|{=}0.295$), consistent with the parametric partition.\n192\t\n193\t\\noindent $^{\\dagger}$Entropy min's elevated Cliff's $\\delta$ (0.354, ``medium'') reflects distributional shape asymmetry between gen-1 and gen-2+ that rank-based statistics detect but location measures do not (Cohen's $d{=}0.016$, Glass's $\\Delta{=}0.015$).\n194\tThis is consistent with its documented boundary status (\\S\\ref{sec:results-differential}): the gen-0/gen-1 transition produces rank-order shifts that persist into deeper generations without affecting the mean.\n195\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "ec108d70-c042-4f35-91ce-55fb0beea79b",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex",
+                "content": "\\subsection*{Data-Driven Clustering}\n\nTo assess the DDR partition structure and determine whether the drifting/non-drifting split is data-driven, we apply $k$-means clustering ($k \\in \\{2,3,4,5\\}$) to the seven features in standardized $(|\\rho|, d)$ space (Table~\\ref{tab:clustering}).\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{$k$-means clustering of 7 features in $(|\\rho|, d)$ space.}\n\\label{tab:clustering}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{ccp{5.5cm}}\n\\toprule\n$k$ & Silhouette & Clusters \\\\\n\\midrule\n2 & \\textbf{0.660} & \\{$\\bar{H}$, TTR, hapax\\} $\\mid$ \\{$\\sigma_H$, $H_{\\min}$, $H_{\\max}$, tail\\} \\\\\n3 & 0.532 & \\{$\\bar{H}$, TTR, hapax\\} $\\mid$ \\{$\\sigma_H$, $H_{\\max}$, tail\\} $\\mid$ \\{$H_{\\min}$\\} \\\\\n4 & 0.527 & \\{$\\bar{H}$, TTR, hapax\\} $\\mid$ \\{$H_{\\max}$, tail\\} $\\mid$ \\{$\\sigma_H$\\} $\\mid$ \\{$H_{\\min}$\\} \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nThe primary drifting/non-drifting split ($k{=}2$, silhouette\\,=\\,0.660) is the strongest cluster structure.\nAt $k{=}3$, entropy min forms its own cluster rather than joining the near-stationary group because its pooled $|\\rho|{=}0.40$ (driven by the gen-0/gen-1 boundary) places it far from other near-stationary features in $\\rho$ space.\nThe 3/1/3 DDR partition resolves this by using the gen-1 vs.\\ gen-2+ Cohen's $d$ ($d{=}0.03$) to place entropy min in the near-stationary group, a domain-informed refinement that unsupervised clustering cannot recover from pooled statistics alone.\nAt $k{=}4$ (silhouette\\,=\\,0.571), entropy std separates from the near-stationary group, consistent with its intermediate DDR classification.\n\n\\paragraph{Exhaustive partition enumeration.}\nTo confirm that the three-vs-four split is optimal rather than incidental, we enumerate all $\\binom{7}{3}{=}35$ possible ways to assign three features to a ``drifting'' group and the remaining four to ``non-drifting,'' computing the silhouette score for each partition in standardized $(|\\rho|, d)$ space.\nThe observed DDR partition (\\{entropy mean, TTR, hapax ratio\\}) achieves the highest silhouette (0.660), with a gap of 0.18 to the second-ranked split; 20 of 35 partitions produce negative silhouette scores.\n\n\\subsection*{TOST Equivalence Bound Sensitivity}\n\\label{app:tost-sensitivity}\n\nTable~\\ref{tab:tost-sensitivity} shows the fraction of generators for which each feature passes the TOST equivalence test (gen-1 vs.\\ gen-2+, $\\alpha{=}0.05$) at three equivalence bounds $\\varepsilon$.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{TOST equivalence pass rate across 8 generators at varying $\\varepsilon$.}\n\\label{tab:tost-sensitivity}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{DDR Zone} & \\textbf{Feature} & $\\boldsymbol{\\varepsilon{=}0.15}$ & $\\boldsymbol{\\varepsilon{=}0.20}$ & $\\boldsymbol{\\varepsilon{=}0.25}$ \\\\\n\\midrule\n\\multirow{3}{*}{Drifting} & $\\bar{H}$ (ent.\\ mean) & 0/8 & 0/8 & 0/8 \\\\\n & TTR & 0/8 & 0/8 & 0/8 \\\\\n & hapax ratio & 0/8 & 0/8 & 0/8 \\\\\n\\midrule\nIntermediate & $\\sigma_H$ (ent.\\ std) & 0/8 & 0/8 & 0/8 \\\\\n\\midrule\n\\multirow{3}{*}{Near-stat.} & $H_{\\min}$ (ent.\\ min) & 7/8 & 8/8 & 8/8 \\\\\n & $H_{\\max}$ (ent.\\ max) & 6/8 & 6/8 & 6/8 \\\\\n & tail decay & 4/8 & 4/8 & 7/8 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nThe partition is robust to the equivalence bound: drifting features reject equivalence at all $\\varepsilon$ for all generators, while entropy min passes even at the stricter bound $\\varepsilon{=}0.15$ (7/8 generators).\nTail decay is the most $\\varepsilon$-sensitive near-stationary feature, passing 4/8 at $\\varepsilon{=}0.20$ but 7/8 at $\\varepsilon{=}0.25$; the four non-passing generators show $|d|{=}0.15$--$0.22$, still well below the drifting threshold ($d > 0.50$).\nEntropy max is stable across all three bounds (6/8), with the two failures (Pythia-1B $d{=}0.21$, Pythia-2.8B $d{=}0.25$) reflecting same-family reference affinity with the Pythia-410M reference model.\n\n\\paragraph{Threshold sensitivity.}\nTo address concerns about the sensitivity of the drifting-boundary threshold,\nwe sweep $|d|$ from $0.10$ to $0.80$ in increments of $0.05$ and record the\nresulting binary partition (drifting vs.\\ stationary) along with the silhouette\nscore in standardized $(|\\rho|, d)$ space.\nAcross the entire range, only \\emph{three} distinct partitions emerge,\nreflecting natural gaps between feature clusters rather than threshold artifacts.\nThe three-feature drifting set (entropy mean, TTR, hapax ratio)\nis stable across $|d| \\in [0.50,\\, 0.75]$ with a silhouette of $0.660$---the\npeak value in the sweep.\nIncluding the intermediate feature entropy std ($d{=}0.49$) yields a\n4/3 partition stable across $|d| \\in [0.10,\\, 0.45]$ (silhouette\\,=\\,0.451).\nThe partition used in our analysis corresponds to the peak-silhouette region,\nconfirming that the drifting/stationary boundary reflects a natural gap in the\n$(|\\rho|, d)$ landscape rather than an artifact of a particular\nthreshold choice.\n\n\\paragraph{Partition stability across $\\varepsilon$ thresholds.}\n\\label{app:epsilon-sweep}\n\nThe DDR partition classifies features as non-stationary ($d \\geq \\varepsilon$) or stationary ($d < \\varepsilon$) based on pooled Cohen's $d$ (\\S\\ref{sec:results-differential}).\nTable~\\ref{tab:epsilon-sweep} reports the critical $\\varepsilon$ at which each feature's classification changes; the three drifting and three near-stationary features maintain their classification for all $\\varepsilon \\in [0.10, 0.75]$.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Partition stability under varying $\\varepsilon$. Critical threshold: the $\\varepsilon$ above which a feature is reclassified as stationary. The drifting/near-stationary split is invariant for $\\varepsilon \\in [0.10, 0.75]$; only entropy std ($d{=}0.55$) changes at $\\varepsilon > 0.55$.}\n\\label{tab:epsilon-sweep}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{llcc}\n\\toprule\n\\textbf{DDR Zone} & \\textbf{Feature} & \\textbf{Pooled $d$} & \\textbf{Stationary at $\\varepsilon >$} \\\\\n\\midrule\n\\multirow{3}{*}{Drifting} & $\\bar{H}$ (ent.\\ mean) & 1.17 & 1.17 \\\\\n & TTR & 0.88 & 0.88 \\\\\n & hapax ratio & 0.76 & 0.76 \\\\\n\\midrule\nIntermediate & $\\sigma_H$ (ent.\\ std) & 0.55 & 0.55 \\\\\n\\midrule\n\\multirow{3}{*}{Near-stat.} & $H_{\\max}$ (ent.\\ max) & 0.08 & 0.08 \\\\\n & tail decay & 0.08 & 0.08 \\\\\n & $H_{\\min}$ (ent.\\ min) & 0.016 & 0.016 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\noindent The 3/1/3 partition is stable across $\\varepsilon \\in [0.10, 0.75]$: the three drifting features remain non-stationary at all $\\varepsilon < 0.76$, the three near-stationary features remain stationary at all $\\varepsilon > 0.08$, and only entropy std changes classification (becoming stationary at $\\varepsilon > 0.55$), confirming it as the sole threshold-sensitive feature.\nThe minimum gap between adjacent zone boundaries ($d_{\\text{hapax}} - d_{\\sigma_H} = 0.21$) exceeds typical effect-size estimation uncertainty, providing a margin against sampling noise.\n\n\\subsection*{Holdout Generator Split Validation}\n\\label{app:holdout-split}\n\nTo confirm the DDR partition is not an artifact of the specific generator pool, we split the eight generators into disjoint selection (4) and validation (4) sets, compute per-subset pooled $(|\\rho|, d)$, and check whether all seven features receive the same zone assignment in both subsets.\nWe evaluate two complementary splits to avoid dependence on a single partition:\nSplit~A selects \\{Pythia-2.8B, Qwen3-1.7B, OLMo, Mistral\\} (validation: Pythia-1B, Qwen3-0.6B, Qwen3-8B, Llama);\nSplit~B selects \\{Pythia-1B, Qwen3-0.6B, OLMo, Mistral\\} (validation: Pythia-2.8B, Qwen3-1.7B, Qwen3-8B, Llama).\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Holdout split validation of the DDR partition. Selection (sel) and validation (val) $|\\rho|$ and $d$ for two disjoint 4/4 generator splits. Zone assignment is identical across all four subsets for every feature.}\n\\label{tab:holdout-split}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{llcccccc}\n\\toprule\n& & \\multicolumn{3}{c}{\\textbf{Split A}} & \\multicolumn{3}{c}{\\textbf{Split B}} \\\\\n\\cmidrule(lr){3-5} \\cmidrule(lr){6-8}\n\\textbf{Zone} & \\textbf{Feature} & sel $|\\rho|$ & val $|\\rho|$ & $\\Delta|\\rho|$ & sel $|\\rho|$ & val $|\\rho|$ & $\\Delta|\\rho|$ \\\\\n\\midrule\n\\multirow{3}{*}{Drifting} & $\\bar{H}$ (ent.\\ mean) & 0.60 & 0.58 & 0.02 & 0.60 & 0.58 & 0.02 \\\\\n & TTR & 0.61 & 0.59 & 0.02 & 0.60 & 0.59 & 0.01 \\\\\n & hapax ratio & 0.62 & 0.60 & 0.02 & 0.62 & 0.61 & 0.01 \\\\\n\\midrule\nIntermediate & $\\sigma_H$ (ent.\\ std) & 0.19 & 0.21 & 0.02 & 0.22 & 0.17 & 0.05 \\\\\n\\midrule\n\\multirow{3}{*}{Near-stat.} & $H_{\\min}$ (ent.\\ min) & 0.39 & 0.36 & 0.03 & 0.38 & 0.37 & 0.01 \\\\\n & $H_{\\max}$ (ent.\\ max) & 0.05 & 0.05 & 0.00 & 0.04 & 0.06 & 0.02 \\\\\n & tail decay & 0.10 & 0.08 & 0.02 & 0.11 & 0.07 & 0.04 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nUnder simple joint $(|\\rho|, d)$ thresholds, both splits produce a 3/2/2 partition: entropy min is classified as a second intermediate feature due to its elevated pooled $|\\rho|$ (0.36--0.39).\nHowever, entropy min's binary (gen-1 vs.\\ gen-2+) $d$ values are uniformly below 0.06 across all four split${\\times}$subset combinations, consistent with near-stationarity on the task-relevant metric; its pooled $|\\rho|$ reflects change concentrated at the gen-0/gen-1 boundary rather than sustained drift.\nFive of seven features are unambiguously classified under any reasonable criterion; entropy min's boundary status is resolved by the binary-task $d$ criterion.\n\nSelection and validation subsets produce identical partitions in both splits (Table~\\ref{tab:holdout-split}; Figure~\\ref{fig:holdout-scatter}).\nThe maximum $\\Delta|\\rho|$ between selection and validation is 0.05 (entropy std, Split~B), and the minimum gap between adjacent zones remains $>$0.15 in all subsets.\n\n\\begin{figure}[H]\n\\centering\n\\includegraphics[width=\\linewidth]{fig_ddr_holdout_split.pdf}\n\\caption{Holdout split validation in $(|\\rho|, d)$ space. Filled markers: selection set; hollow: validation set. Zone assignments are identical across subsets; selection/validation pairs cluster tightly for all features.}\n\\label{fig:holdout-scatter}\n\\end{figure}\n\n\\subsection*{Heteroscedasticity Sensitivity}\n\\label{app:heteroscedasticity}\n\nLevene tests reject equal variance between gen-1 and gen-2+ for drifting features ($p < 10^{-10}$; variance ratios 1.86--2.21).\nTo verify that the DDR partition is robust to this heteroscedasticity, we supplement pooled Cohen's $d$ with Glass's $\\Delta$ (using the gen-1 standard deviation as denominator) and Cliff's $\\delta$ (a non-parametric ordinal effect size; Table~\\ref{tab:effect-sizes}).\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Effect size comparison (gen-1 vs.\\ gen-2+, $N$\\,=\\,29{,}095). Glass's $\\Delta$ uses the gen-1 SD as denominator; Cliff's $\\delta$ thresholds follow Romano et al.\\ (2006): $|\\delta| < 0.147$ negligible, $< 0.33$ small, $< 0.474$ medium, otherwise large.}\n\\label{tab:effect-sizes}\n\\begin{tabular}{llrrr}\n\\toprule\n\\textbf{Zone} & \\textbf{Feature} & \\textbf{$|d|$} & \\textbf{$|\\Delta|$} & \\textbf{$|\\delta|$} \\\\\n\\midrule\n\\multirow{3}{*}{Drifting} & ent.\\ mean & 1.054 & 1.410 & 0.587 \\\\\n & TTR & 0.814 & 1.116 & 0.510 \\\\\n & hapax ratio & 0.735 & 0.936 & 0.528 \\\\\n\\midrule\nIntermediate & ent.\\ std & 0.457 & 0.605 & 0.295 \\\\\n\\midrule\n\\multirow{3}{*}{Near-stat.} & tail decay & 0.087 & 0.099 & 0.072 \\\\\n & ent.\\ max & 0.062 & 0.065 & 0.021 \\\\\n & ent.\\ min & 0.016 & 0.015 & 0.354$^{\\dagger}$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\noindent Effect sizes in Table~\\ref{tab:effect-sizes} are computed on the binary task (gen-1 vs.\\ gen-2+); the main text (\\S\\ref{sec:results-differential}) reports 3-class pooled $d$ values (e.g., hapax ratio $d{=}0.76$), which are slightly larger because the gen-0/gen-1 contrast contributes additional separation.\nGlass's $\\Delta$ amplifies drifting effects (1.41 vs.\\ 1.05 for entropy mean) because gen-2+ variance exceeds gen-1 variance (ratio 2.08), making the pooled Cohen's $d$ conservative.\nNear-stationary features remain negligible under both parametric metrics ($|\\Delta| \\leq 0.099$).\nThe minimum drifting-to-maximum-near-stationary gap is $9.5\\times$ under Glass's $\\Delta$ (0.936\\,/\\,0.099); heteroscedasticity does not erode the partition.\nCliff's $\\delta$ classifies all drifting features as ``large'' ($|\\delta| > 0.474$) and entropy std as ``small'' ($|\\delta|{=}0.295$), consistent with the parametric partition.\n\n\\noindent $^{\\dagger}$Entropy min's elevated Cliff's $\\delta$ (0.354, ``medium'') reflects distributional shape asymmetry between gen-1 and gen-2+ that rank-based statistics detect but location measures do not (Cohen's $d{=}0.016$, Glass's $\\Delta{=}0.015$).\nThis is consistent with its documented boundary status (\\S\\ref{sec:results-differential}): the gen-0/gen-1 transition produces rank-order shifts that persist into deeper generations without affecting the mean.\n",
+                "numLines": 195,
+                "startLine": 1,
+                "totalLines": 195
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I need to add a paragraph about per-generator silhouette analysis. The best place to insert it is after the \"Exhaustive partition enumeration\" paragraph (line 29) and before the \"TOST Equivalence Bound Sensitivity\" section (line 31), since it directly validates the pooled silhouette result.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "6f0cfcc1-d434-4208-851e-7fa0e304c6b6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YGELGWNRSt1EpyCb9YxRDY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5486,
+                "cache_read_input_tokens": 31617,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5486
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll insert the per-generator validation paragraph after the exhaustive partition enumeration paragraph (line 29), before the TOST section."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "1ea6b0d9-e419-4ce2-bb17-f434c3c78555",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YGELGWNRSt1EpyCb9YxRDY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5486,
+                "cache_read_input_tokens": 31617,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5486
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017NKTUDnU9835iD4Fxhxi4K",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex",
+                "old_string": "The observed DDR partition (\\{entropy mean, TTR, hapax ratio\\}) achieves the highest silhouette (0.660), with a gap of 0.18 to the second-ranked split; 20 of 35 partitions produce negative silhouette scores.\n\n\\subsection*{TOST Equivalence Bound Sensitivity}",
+                "new_string": "The observed DDR partition (\\{entropy mean, TTR, hapax ratio\\}) achieves the highest silhouette (0.660), with a gap of 0.18 to the second-ranked split; 20 of 35 partitions produce negative silhouette scores.\n\n\\paragraph{Per-generator replication.}\nTo rule out the possibility that the pooled silhouette is an artifact of mixing heterogeneous generators, we repeat the $(|\\rho|, d)$ clustering independently for each of the eight generators.\nEvery generator recovers the identical \\{$\\bar{H}$, TTR, hapax\\} vs.\\ \\{$\\sigma_H$, $H_{\\min}$, $H_{\\max}$, tail\\} partition, with silhouette scores ranging from 0.505 (Pythia-1B) to 0.760 (Mistral-7B-v0.3; mean\\,=\\,0.651).\nNo generator falls below the 0.50 moderate-structure threshold, confirming that the two-cluster structure is a per-generator property rather than a pooling artifact.\n\n\\subsection*{TOST Equivalence Bound Sensitivity}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "c19be5d1-4f4c-4201-862f-427a234ef126",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YGELGWNRSt1EpyCb9YxRDY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5486,
+                "cache_read_input_tokens": 31617,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5486
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T08:00:21.083Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017NKTUDnU9835iD4Fxhxi4K",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "a1724143-f9fa-4ba3-ab10-5a673589caec",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex",
+              "oldString": "The observed DDR partition (\\{entropy mean, TTR, hapax ratio\\}) achieves the highest silhouette (0.660), with a gap of 0.18 to the second-ranked split; 20 of 35 partitions produce negative silhouette scores.\n\n\\subsection*{TOST Equivalence Bound Sensitivity}",
+              "newString": "The observed DDR partition (\\{entropy mean, TTR, hapax ratio\\}) achieves the highest silhouette (0.660), with a gap of 0.18 to the second-ranked split; 20 of 35 partitions produce negative silhouette scores.\n\n\\paragraph{Per-generator replication.}\nTo rule out the possibility that the pooled silhouette is an artifact of mixing heterogeneous generators, we repeat the $(|\\rho|, d)$ clustering independently for each of the eight generators.\nEvery generator recovers the identical \\{$\\bar{H}$, TTR, hapax\\} vs.\\ \\{$\\sigma_H$, $H_{\\min}$, $H_{\\max}$, tail\\} partition, with silhouette scores ranging from 0.505 (Pythia-1B) to 0.760 (Mistral-7B-v0.3; mean\\,=\\,0.651).\nNo generator falls below the 0.50 moderate-structure threshold, confirming that the two-cluster structure is a per-generator property rather than a pooling artifact.\n\n\\subsection*{TOST Equivalence Bound Sensitivity}",
+              "originalFile": "\\subsection*{Data-Driven Clustering}\n\nTo assess the DDR partition structure and determine whether the drifting/non-drifting split is data-driven, we apply $k$-means clustering ($k \\in \\{2,3,4,5\\}$) to the seven features in standardized $(|\\rho|, d)$ space (Table~\\ref{tab:clustering}).\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{$k$-means clustering of 7 features in $(|\\rho|, d)$ space.}\n\\label{tab:clustering}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{ccp{5.5cm}}\n\\toprule\n$k$ & Silhouette & Clusters \\\\\n\\midrule\n2 & \\textbf{0.660} & \\{$\\bar{H}$, TTR, hapax\\} $\\mid$ \\{$\\sigma_H$, $H_{\\min}$, $H_{\\max}$, tail\\} \\\\\n3 & 0.532 & \\{$\\bar{H}$, TTR, hapax\\} $\\mid$ \\{$\\sigma_H$, $H_{\\max}$, tail\\} $\\mid$ \\{$H_{\\min}$\\} \\\\\n4 & 0.527 & \\{$\\bar{H}$, TTR, hapax\\} $\\mid$ \\{$H_{\\max}$, tail\\} $\\mid$ \\{$\\sigma_H$\\} $\\mid$ \\{$H_{\\min}$\\} \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nThe primary drifting/non-drifting split ($k{=}2$, silhouette\\,=\\,0.660) is the strongest cluster structure.\nAt $k{=}3$, entropy min forms its own cluster rather than joining the near-stationary group because its pooled $|\\rho|{=}0.40$ (driven by the gen-0/gen-1 boundary) places it far from other near-stationary features in $\\rho$ space.\nThe 3/1/3 DDR partition resolves this by using the gen-1 vs.\\ gen-2+ Cohen's $d$ ($d{=}0.03$) to place entropy min in the near-stationary group, a domain-informed refinement that unsupervised clustering cannot recover from pooled statistics alone.\nAt $k{=}4$ (silhouette\\,=\\,0.571), entropy std separates from the near-stationary group, consistent with its intermediate DDR classification.\n\n\\paragraph{Exhaustive partition enumeration.}\nTo confirm that the three-vs-four split is optimal rather than incidental, we enumerate all $\\binom{7}{3}{=}35$ possible ways to assign three features to a ``drifting'' group and the remaining four to ``non-drifting,'' computing the silhouette score for each partition in standardized $(|\\rho|, d)$ space.\nThe observed DDR partition (\\{entropy mean, TTR, hapax ratio\\}) achieves the highest silhouette (0.660), with a gap of 0.18 to the second-ranked split; 20 of 35 partitions produce negative silhouette scores.\n\n\\subsection*{TOST Equivalence Bound Sensitivity}\n\\label{app:tost-sensitivity}\n\nTable~\\ref{tab:tost-sensitivity} shows the fraction of generators for which each feature passes the TOST equivalence test (gen-1 vs.\\ gen-2+, $\\alpha{=}0.05$) at three equivalence bounds $\\varepsilon$.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{TOST equivalence pass rate across 8 generators at varying $\\varepsilon$.}\n\\label{tab:tost-sensitivity}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{DDR Zone} & \\textbf{Feature} & $\\boldsymbol{\\varepsilon{=}0.15}$ & $\\boldsymbol{\\varepsilon{=}0.20}$ & $\\boldsymbol{\\varepsilon{=}0.25}$ \\\\\n\\midrule\n\\multirow{3}{*}{Drifting} & $\\bar{H}$ (ent.\\ mean) & 0/8 & 0/8 & 0/8 \\\\\n & TTR & 0/8 & 0/8 & 0/8 \\\\\n & hapax ratio & 0/8 & 0/8 & 0/8 \\\\\n\\midrule\nIntermediate & $\\sigma_H$ (ent.\\ std) & 0/8 & 0/8 & 0/8 \\\\\n\\midrule\n\\multirow{3}{*}{Near-stat.} & $H_{\\min}$ (ent.\\ min) & 7/8 & 8/8 & 8/8 \\\\\n & $H_{\\max}$ (ent.\\ max) & 6/8 & 6/8 & 6/8 \\\\\n & tail decay & 4/8 & 4/8 & 7/8 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nThe partition is robust to the equivalence bound: drifting features reject equivalence at all $\\varepsilon$ for all generators, while entropy min passes even at the stricter bound $\\varepsilon{=}0.15$ (7/8 generators).\nTail decay is the most $\\varepsilon$-sensitive near-stationary feature, passing 4/8 at $\\varepsilon{=}0.20$ but 7/8 at $\\varepsilon{=}0.25$; the four non-passing generators show $|d|{=}0.15$--$0.22$, still well below the drifting threshold ($d > 0.50$).\nEntropy max is stable across all three bounds (6/8), with the two failures (Pythia-1B $d{=}0.21$, Pythia-2.8B $d{=}0.25$) reflecting same-family reference affinity with the Pythia-410M reference model.\n\n\\paragraph{Threshold sensitivity.}\nTo address concerns about the sensitivity of the drifting-boundary threshold,\nwe sweep $|d|$ from $0.10$ to $0.80$ in increments of $0.05$ and record the\nresulting binary partition (drifting vs.\\ stationary) along with the silhouette\nscore in standardized $(|\\rho|, d)$ space.\nAcross the entire range, only \\emph{three} distinct partitions emerge,\nreflecting natural gaps between feature clusters rather than threshold artifacts.\nThe three-feature drifting set (entropy mean, TTR, hapax ratio)\nis stable across $|d| \\in [0.50,\\, 0.75]$ with a silhouette of $0.660$---the\npeak value in the sweep.\nIncluding the intermediate feature entropy std ($d{=}0.49$) yields a\n4/3 partition stable across $|d| \\in [0.10,\\, 0.45]$ (silhouette\\,=\\,0.451).\nThe partition used in our analysis corresponds to the peak-silhouette region,\nconfirming that the drifting/stationary boundary reflects a natural gap in the\n$(|\\rho|, d)$ landscape rather than an artifact of a particular\nthreshold choice.\n\n\\paragraph{Partition stability across $\\varepsilon$ thresholds.}\n\\label{app:epsilon-sweep}\n\nThe DDR partition classifies features as non-stationary ($d \\geq \\varepsilon$) or stationary ($d < \\varepsilon$) based on pooled Cohen's $d$ (\\S\\ref{sec:results-differential}).\nTable~\\ref{tab:epsilon-sweep} reports the critical $\\varepsilon$ at which each feature's classification changes; the three drifting and three near-stationary features maintain their classification for all $\\varepsilon \\in [0.10, 0.75]$.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Partition stability under varying $\\varepsilon$. Critical threshold: the $\\varepsilon$ above which a feature is reclassified as stationary. The drifting/near-stationary split is invariant for $\\varepsilon \\in [0.10, 0.75]$; only entropy std ($d{=}0.55$) changes at $\\varepsilon > 0.55$.}\n\\label{tab:epsilon-sweep}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{llcc}\n\\toprule\n\\textbf{DDR Zone} & \\textbf{Feature} & \\textbf{Pooled $d$} & \\textbf{Stationary at $\\varepsilon >$} \\\\\n\\midrule\n\\multirow{3}{*}{Drifting} & $\\bar{H}$ (ent.\\ mean) & 1.17 & 1.17 \\\\\n & TTR & 0.88 & 0.88 \\\\\n & hapax ratio & 0.76 & 0.76 \\\\\n\\midrule\nIntermediate & $\\sigma_H$ (ent.\\ std) & 0.55 & 0.55 \\\\\n\\midrule\n\\multirow{3}{*}{Near-stat.} & $H_{\\max}$ (ent.\\ max) & 0.08 & 0.08 \\\\\n & tail decay & 0.08 & 0.08 \\\\\n & $H_{\\min}$ (ent.\\ min) & 0.016 & 0.016 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\noindent The 3/1/3 partition is stable across $\\varepsilon \\in [0.10, 0.75]$: the three drifting features remain non-stationary at all $\\varepsilon < 0.76$, the three near-stationary features remain stationary at all $\\varepsilon > 0.08$, and only entropy std changes classification (becoming stationary at $\\varepsilon > 0.55$), confirming it as the sole threshold-sensitive feature.\nThe minimum gap between adjacent zone boundaries ($d_{\\text{hapax}} - d_{\\sigma_H} = 0.21$) exceeds typical effect-size estimation uncertainty, providing a margin against sampling noise.\n\n\\subsection*{Holdout Generator Split Validation}\n\\label{app:holdout-split}\n\nTo confirm the DDR partition is not an artifact of the specific generator pool, we split the eight generators into disjoint selection (4) and validation (4) sets, compute per-subset pooled $(|\\rho|, d)$, and check whether all seven features receive the same zone assignment in both subsets.\nWe evaluate two complementary splits to avoid dependence on a single partition:\nSplit~A selects \\{Pythia-2.8B, Qwen3-1.7B, OLMo, Mistral\\} (validation: Pythia-1B, Qwen3-0.6B, Qwen3-8B, Llama);\nSplit~B selects \\{Pythia-1B, Qwen3-0.6B, OLMo, Mistral\\} (validation: Pythia-2.8B, Qwen3-1.7B, Qwen3-8B, Llama).\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Holdout split validation of the DDR partition. Selection (sel) and validation (val) $|\\rho|$ and $d$ for two disjoint 4/4 generator splits. Zone assignment is identical across all four subsets for every feature.}\n\\label{tab:holdout-split}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{llcccccc}\n\\toprule\n& & \\multicolumn{3}{c}{\\textbf{Split A}} & \\multicolumn{3}{c}{\\textbf{Split B}} \\\\\n\\cmidrule(lr){3-5} \\cmidrule(lr){6-8}\n\\textbf{Zone} & \\textbf{Feature} & sel $|\\rho|$ & val $|\\rho|$ & $\\Delta|\\rho|$ & sel $|\\rho|$ & val $|\\rho|$ & $\\Delta|\\rho|$ \\\\\n\\midrule\n\\multirow{3}{*}{Drifting} & $\\bar{H}$ (ent.\\ mean) & 0.60 & 0.58 & 0.02 & 0.60 & 0.58 & 0.02 \\\\\n & TTR & 0.61 & 0.59 & 0.02 & 0.60 & 0.59 & 0.01 \\\\\n & hapax ratio & 0.62 & 0.60 & 0.02 & 0.62 & 0.61 & 0.01 \\\\\n\\midrule\nIntermediate & $\\sigma_H$ (ent.\\ std) & 0.19 & 0.21 & 0.02 & 0.22 & 0.17 & 0.05 \\\\\n\\midrule\n\\multirow{3}{*}{Near-stat.} & $H_{\\min}$ (ent.\\ min) & 0.39 & 0.36 & 0.03 & 0.38 & 0.37 & 0.01 \\\\\n & $H_{\\max}$ (ent.\\ max) & 0.05 & 0.05 & 0.00 & 0.04 & 0.06 & 0.02 \\\\\n & tail decay & 0.10 & 0.08 & 0.02 & 0.11 & 0.07 & 0.04 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nUnder simple joint $(|\\rho|, d)$ thresholds, both splits produce a 3/2/2 partition: entropy min is classified as a second intermediate feature due to its elevated pooled $|\\rho|$ (0.36--0.39).\nHowever, entropy min's binary (gen-1 vs.\\ gen-2+) $d$ values are uniformly below 0.06 across all four split${\\times}$subset combinations, consistent with near-stationarity on the task-relevant metric; its pooled $|\\rho|$ reflects change concentrated at the gen-0/gen-1 boundary rather than sustained drift.\nFive of seven features are unambiguously classified under any reasonable criterion; entropy min's boundary status is resolved by the binary-task $d$ criterion.\n\nSelection and validation subsets produce identical partitions in both splits (Table~\\ref{tab:holdout-split}; Figure~\\ref{fig:holdout-scatter}).\nThe maximum $\\Delta|\\rho|$ between selection and validation is 0.05 (entropy std, Split~B), and the minimum gap between adjacent zones remains $>$0.15 in all subsets.\n\n\\begin{figure}[H]\n\\centering\n\\includegraphics[width=\\linewidth]{fig_ddr_holdout_split.pdf}\n\\caption{Holdout split validation in $(|\\rho|, d)$ space. Filled markers: selection set; hollow: validation set. Zone assignments are identical across subsets; selection/validation pairs cluster tightly for all features.}\n\\label{fig:holdout-scatter}\n\\end{figure}\n\n\\subsection*{Heteroscedasticity Sensitivity}\n\\label{app:heteroscedasticity}\n\nLevene tests reject equal variance between gen-1 and gen-2+ for drifting features ($p < 10^{-10}$; variance ratios 1.86--2.21).\nTo verify that the DDR partition is robust to this heteroscedasticity, we supplement pooled Cohen's $d$ with Glass's $\\Delta$ (using the gen-1 standard deviation as denominator) and Cliff's $\\delta$ (a non-parametric ordinal effect size; Table~\\ref{tab:effect-sizes}).\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Effect size comparison (gen-1 vs.\\ gen-2+, $N$\\,=\\,29{,}095). Glass's $\\Delta$ uses the gen-1 SD as denominator; Cliff's $\\delta$ thresholds follow Romano et al.\\ (2006): $|\\delta| < 0.147$ negligible, $< 0.33$ small, $< 0.474$ medium, otherwise large.}\n\\label{tab:effect-sizes}\n\\begin{tabular}{llrrr}\n\\toprule\n\\textbf{Zone} & \\textbf{Feature} & \\textbf{$|d|$} & \\textbf{$|\\Delta|$} & \\textbf{$|\\delta|$} \\\\\n\\midrule\n\\multirow{3}{*}{Drifting} & ent.\\ mean & 1.054 & 1.410 & 0.587 \\\\\n & TTR & 0.814 & 1.116 & 0.510 \\\\\n & hapax ratio & 0.735 & 0.936 & 0.528 \\\\\n\\midrule\nIntermediate & ent.\\ std & 0.457 & 0.605 & 0.295 \\\\\n\\midrule\n\\multirow{3}{*}{Near-stat.} & tail decay & 0.087 & 0.099 & 0.072 \\\\\n & ent.\\ max & 0.062 & 0.065 & 0.021 \\\\\n & ent.\\ min & 0.016 & 0.015 & 0.354$^{\\dagger}$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\noindent Effect sizes in Table~\\ref{tab:effect-sizes} are computed on the binary task (gen-1 vs.\\ gen-2+); the main text (\\S\\ref{sec:results-differential}) reports 3-class pooled $d$ values (e.g., hapax ratio $d{=}0.76$), which are slightly larger because the gen-0/gen-1 contrast contributes additional separation.\nGlass's $\\Delta$ amplifies drifting effects (1.41 vs.\\ 1.05 for entropy mean) because gen-2+ variance exceeds gen-1 variance (ratio 2.08), making the pooled Cohen's $d$ conservative.\nNear-stationary features remain negligible under both parametric metrics ($|\\Delta| \\leq 0.099$).\nThe minimum drifting-to-maximum-near-stationary gap is $9.5\\times$ under Glass's $\\Delta$ (0.936\\,/\\,0.099); heteroscedasticity does not erode the partition.\nCliff's $\\delta$ classifies all drifting features as ``large'' ($|\\delta| > 0.474$) and entropy std as ``small'' ($|\\delta|{=}0.295$), consistent with the parametric partition.\n\n\\noindent $^{\\dagger}$Entropy min's elevated Cliff's $\\delta$ (0.354, ``medium'') reflects distributional shape asymmetry between gen-1 and gen-2+ that rank-based statistics detect but location measures do not (Cohen's $d{=}0.016$, Glass's $\\Delta{=}0.015$).\nThis is consistent with its documented boundary status (\\S\\ref{sec:results-differential}): the gen-0/gen-1 transition produces rank-order shifts that persist into deeper generations without affecting the mean.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 28,
+                  "oldLines": 6,
+                  "newStart": 28,
+                  "newLines": 11,
+                  "lines": [
+                    " To confirm that the three-vs-four split is optimal rather than incidental, we enumerate all $\\binom{7}{3}{=}35$ possible ways to assign three features to a ``drifting'' group and the remaining four to ``non-drifting,'' computing the silhouette score for each partition in standardized $(|\\rho|, d)$ space.",
+                    " The observed DDR partition (\\{entropy mean, TTR, hapax ratio\\}) achieves the highest silhouette (0.660), with a gap of 0.18 to the second-ranked split; 20 of 35 partitions produce negative silhouette scores.",
+                    " ",
+                    "+\\paragraph{Per-generator replication.}",
+                    "+To rule out the possibility that the pooled silhouette is an artifact of mixing heterogeneous generators, we repeat the $(|\\rho|, d)$ clustering independently for each of the eight generators.",
+                    "+Every generator recovers the identical \\{$\\bar{H}$, TTR, hapax\\} vs.\\ \\{$\\sigma_H$, $H_{\\min}$, $H_{\\max}$, tail\\} partition, with silhouette scores ranging from 0.505 (Pythia-1B) to 0.760 (Mistral-7B-v0.3; mean\\,=\\,0.651).",
+                    "+No generator falls below the 0.50 moderate-structure threshold, confirming that the two-cluster structure is a per-generator property rather than a pooling artifact.",
+                    "+",
+                    " \\subsection*{TOST Equivalence Bound Sensitivity}",
+                    " \\label{app:tost-sensitivity}",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **8/8 generator 分区完全一致**：全部恢复 {entropy_mean, ttr, hapax_ratio} vs {entropy_std, entropy_max, entropy_min, tail_decay}\n- **Silhouette 范围**：0.505 (Pythia-1B) ~ 0.760 (Mistral-7B-v0.3)，均值 0.651，全部 ≥ 0.5\n- **结论**：pooled silhouette=0.660 不是 pooling artifact，每个 generator 独立复现相同分区\n\n结果已保存到 `per_generator_silhouette.txt`，LaTeX 段落已插入 `appendix_ddr_validation.tex` 的 exhaustive enumeration 之后。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "uuid": "3417cbf9-3638-4d4f-aa2d-2b13c6b537ac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015YY5aBV5cCFZoDScp3WsUM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 685,
+                "cache_read_input_tokens": 37103,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 685
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **8/8 generator 分区完全一致**：全部恢复 {entropy_mean, ttr, hapax_ratio} vs {entropy_std, entropy_max, entropy_min, tail_decay}\n- **Silhouette 范围**：0.505 (Pythia-1B) ~ 0.760 (Mistral-7B-v0.3)，均值 0.651，全部 ≥ 0.5\n- **结论**：pooled silhouette=0.660 不是 pooling artifact，每个 generator 独立复现相同分区\n\n结果已保存到 `per_generator_silhouette.txt`，LaTeX 段落已插入 `appendix_ddr_validation.tex` 的 exhaustive enumeration 之后。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 88651,
+            "duration_api_ms": 87260,
+            "num_turns": 9,
+            "stop_reason": "end_turn",
+            "session_id": "ff00f3c4-8e99-433c-a51b-3b1ad3928c69",
+            "total_cost_usd": 0.37881675000000004,
+            "usage": {
+              "input_tokens": 10,
+              "cache_creation_input_tokens": 25947,
+              "cache_read_input_tokens": 221954,
+              "output_tokens": 4162,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 25947,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 210,
+                  "cache_read_input_tokens": 37103,
+                  "cache_creation_input_tokens": 685,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 685
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1476,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0015710000000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 10,
+                "outputTokens": 4162,
+                "cacheReadInputTokens": 221954,
+                "cacheCreationInputTokens": 25947,
+                "webSearchRequests": 0,
+                "costUSD": 0.37724575000000005,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "9a1b416e-5bed-4e31-814c-836152d23fca"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-per-generator-silhouette.md"
+}

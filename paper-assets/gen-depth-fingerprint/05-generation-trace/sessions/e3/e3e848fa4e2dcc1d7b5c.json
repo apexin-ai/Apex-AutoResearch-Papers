@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3e848fa4e2dcc1d7b5c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis plan 005 feature extraction",
+  "task_key": "worker_analysis_plan-005-feature-extraction_20260515T054435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-005-feature-extraction_20260515T054435_result.json",
+    "occurrence": 1,
+    "bytes": 949,
+    "sha256": "f030f9ca236f0576074fa8ebafade3551ce70c51c6eebf1e951ed27af12be8be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "特征提取完成。汇总结果：\n\n---\n\n**产出文件**: `autodl-5090:/root/gen-depth-fingerprint/data/pythia-2.8b-continuation/features.jsonl` (4620 行)\n\n**Spearman ρ (feature vs depth)**:\n\n| Feature | ρ | p-value |\n|---|---|---|\n| entropy_mean | **-0.6650** | < 1e-300 |\n| entropy_std | -0.1508 | 6.5e-25 |\n| entropy_max | -0.0227 | 0.12 (ns) |\n| entropy_min | **-0.4619** | 6e-243 |\n| tail_decay | +0.0815 | 2.9e-8 |\n| ttr | **-0.6292** | < 1e-300 |\n| hapax_ratio | **-0.6507** | < 1e-300 |\n\n**Depth 0 vs 4 均值对比** (主要特征):\n- entropy_mean: 2.637 → 1.167 (**-55.7%**)\n- ttr: 0.643 → 0.253 (**-60.7%**)\n- hapax_ratio: 0.516 → 0.134 (**-74.0%**)\n\n**与原有数据一致性**: 所有特征的 Spearman ρ 方向一致，绝对值差异均 < 0.02。`entropy_mean`, `ttr`, `hapax_ratio` 仍是三个最强 drift 指标。`entropy_max` 在两个数据集中都不显著。高度一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-005-feature-extraction.md"
+}

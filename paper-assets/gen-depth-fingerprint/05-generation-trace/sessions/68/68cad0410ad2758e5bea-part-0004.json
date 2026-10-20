@@ -1,0 +1,807 @@
+{
+  "schema_version": "1.0",
+  "session_id": "68cad0410ad2758e5bea",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": "2026-05-15T14:31:08.050Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H7NuZxSSniiwivwc4GdJTC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  delta = 0.1994\\\\n  p-value = 0.000000 ***\\\\n  95% CI of delta = [0.1918, 0.2068]\\\\n\\\\n--- 7feat_vs_4det_ensemble ---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0d7187ac-6cb0-43e5-bfd3-3c1d427d8407",
+            "uuid": "731f1fef-c560-4c25-a9c2-1f4f126ce4fc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  delta = 0.1994\\\\n  p-value = 0.000000 ***\\\\n  95% CI of delta = [0.1918, 0.2068]\\\\n\\\\n--- 7feat_vs_4det_ensemble ---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  delta = 0.1994\\n  p-value = 0.000000 ***\\n  95% CI of delta = [0.1918, 0.2068]\\n\\n--- 7feat_vs_4det_ensemble ---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000541"
+        },
+        {
+          "source_line": 542,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S6HZvdGkfeymgbZrVyPiw8",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "tail -5 /tmp/bootstrap_pvalue.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0d7187ac-6cb0-43e5-bfd3-3c1d427d8407",
+            "uuid": "3aa411f1-ed0b-467e-b4eb-89d5ecfccda8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Buju34NUxKGH1b5DgwzjcL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 248,
+                "cache_read_input_tokens": 111839,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 248
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000542"
+        },
+        {
+          "source_line": 543,
+          "timestamp": "2026-05-15T14:31:13.707Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S6HZvdGkfeymgbZrVyPiw8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  delta = 0.1994\\\\n  p-value = 0.000000 ***\\\\n  95% CI of delta = [0.1918, 0.2068]\\\\n\\\\n--- 7feat_vs_4det_ensemble ---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0d7187ac-6cb0-43e5-bfd3-3c1d427d8407",
+            "uuid": "61db8c02-3ab5-48de-9edf-fa58b1df6bab",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  delta = 0.1994\\\\n  p-value = 0.000000 ***\\\\n  95% CI of delta = [0.1918, 0.2068]\\\\n\\\\n--- 7feat_vs_4det_ensemble ---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  delta = 0.1994\\n  p-value = 0.000000 ***\\n  95% CI of delta = [0.1918, 0.2068]\\n\\n--- 7feat_vs_4det_ensemble ---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000543"
+        },
+        {
+          "source_line": 544,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012qfp5q8KywfLuLg8Fjt2ap",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "tail -5 /tmp/bootstrap_pvalue.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0d7187ac-6cb0-43e5-bfd3-3c1d427d8407",
+            "uuid": "7f7303d5-8cef-42b8-82d8-308daa4907e3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QWnjaACfjAC5hSCTUmu44L",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 248,
+                "cache_read_input_tokens": 112087,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 248
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000544"
+        },
+        {
+          "source_line": 545,
+          "timestamp": "2026-05-15T14:31:16.466Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012qfp5q8KywfLuLg8Fjt2ap",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  delta = 0.1994\\\\n  p-value = 0.000000 ***\\\\n  95% CI of delta = [0.1918, 0.2068]\\\\n\\\\n--- 7feat_vs_4det_ensemble ---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0d7187ac-6cb0-43e5-bfd3-3c1d427d8407",
+            "uuid": "aa02987c-10a7-4210-b4a4-4416fd7a4029",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  delta = 0.1994\\\\n  p-value = 0.000000 ***\\\\n  95% CI of delta = [0.1918, 0.2068]\\\\n\\\\n--- 7feat_vs_4det_ensemble ---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  delta = 0.1994\\n  p-value = 0.000000 ***\\n  95% CI of delta = [0.1918, 0.2068]\\n\\n--- 7feat_vs_4det_ensemble ---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000545"
+        },
+        {
+          "source_line": 546,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019fBD7LpKC9eFK7H58oVWhY",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "tail -5 /tmp/bootstrap_pvalue.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0d7187ac-6cb0-43e5-bfd3-3c1d427d8407",
+            "uuid": "355b8f97-5aa5-48f4-9a9b-59aa6991454e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GARqe6wv7wtqiu7B2SPrYQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 248,
+                "cache_read_input_tokens": 112335,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 248
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000546"
+        },
+        {
+          "source_line": 547,
+          "timestamp": "2026-05-15T14:31:19.454Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019fBD7LpKC9eFK7H58oVWhY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  delta = 0.1994\\\\n  p-value = 0.000000 ***\\\\n  95% CI of delta = [0.1918, 0.2068]\\\\n\\\\n--- 7feat_vs_4det_ensemble ---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0d7187ac-6cb0-43e5-bfd3-3c1d427d8407",
+            "uuid": "615b69dd-3bd1-4114-a262-12de4547cf9e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  delta = 0.1994\\\\n  p-value = 0.000000 ***\\\\n  95% CI of delta = [0.1918, 0.2068]\\\\n\\\\n--- 7feat_vs_4det_ensemble ---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  delta = 0.1994\\n  p-value = 0.000000 ***\\n  95% CI of delta = [0.1918, 0.2068]\\n\\n--- 7feat_vs_4det_ensemble ---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000547"
+        },
+        {
+          "source_line": 548,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013xajYWad2d9EqCyV4NSvA7",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "tail -5 /tmp/bootstrap_pvalue.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0d7187ac-6cb0-43e5-bfd3-3c1d427d8407",
+            "uuid": "7d1eaaaa-8c41-4ec3-8075-dba0e7efc45f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013tVFN8xvC1sx2SJak1BtEv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 248,
+                "cache_read_input_tokens": 112583,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 248
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000548"
+        },
+        {
+          "source_line": 549,
+          "timestamp": "2026-05-15T14:31:21.881Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013xajYWad2d9EqCyV4NSvA7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  delta = 0.1994\\\\n  p-value = 0.000000 ***\\\\n  95% CI of delta = [0.1918, 0.2068]\\\\n\\\\n--- 7feat_vs_4det_ensemble ---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0d7187ac-6cb0-43e5-bfd3-3c1d427d8407",
+            "uuid": "cf8d2205-5fc8-45da-b339-de45b76c2b65",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  delta = 0.1994\\\\n  p-value = 0.000000 ***\\\\n  95% CI of delta = [0.1918, 0.2068]\\\\n\\\\n--- 7feat_vs_4det_ensemble ---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  delta = 0.1994\\n  p-value = 0.000000 ***\\n  95% CI of delta = [0.1918, 0.2068]\\n\\n--- 7feat_vs_4det_ensemble ---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000549"
+        },
+        {
+          "source_line": 550,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Knv1N3xnF6uqP6eUiuUpA6",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "ps -p 214077 -o pid,etime",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0d7187ac-6cb0-43e5-bfd3-3c1d427d8407",
+            "uuid": "5415a336-8f78-4ad9-a0b3-d9b40a12712d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DzQMVbNdAsLXCg6Gdytnnn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 248,
+                "cache_read_input_tokens": 112831,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 248
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000550"
+        },
+        {
+          "source_line": 551,
+          "timestamp": "2026-05-15T14:31:25.010Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Knv1N3xnF6uqP6eUiuUpA6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED\\\\n214077       11:23\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0d7187ac-6cb0-43e5-bfd3-3c1d427d8407",
+            "uuid": "acffb0bb-16f1-4062-ab9d-d8de600c70aa",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED\\\\n214077       11:23\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED\\n214077       11:23\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000551"
+        },
+        {
+          "source_line": 552,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CTLsMeZEEkPoMKNvrCXEep",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "tail -5 /tmp/bootstrap_pvalue.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0d7187ac-6cb0-43e5-bfd3-3c1d427d8407",
+            "uuid": "4c120d3a-a213-485a-89c6-fbe88490d771",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014pJtU6PJMN7pvuuRjg4L8E",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 203,
+                "cache_read_input_tokens": 113079,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 203
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000552"
+        },
+        {
+          "source_line": 553,
+          "timestamp": "2026-05-15T14:31:29.348Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CTLsMeZEEkPoMKNvrCXEep",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"7feat_vs_binoculars          +0.1994   0.000000 [+0.1918, +0.2068]    ***\\\\n7feat_vs_4det_ensemble       +0.0116   0.000000 [+0.0065, +0.0167]    ***\\\\n\\\\nSaved: /root/gen-depth-fingerprint/results/binary_bootstrap_pvalue.json\\\\nTotal: 685.0s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0d7187ac-6cb0-43e5-bfd3-3c1d427d8407",
+            "uuid": "7f8bc419-aaf5-4a18-8ba8-639669576856",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"7feat_vs_binoculars          +0.1994   0.000000 [+0.1918, +0.2068]    ***\\\\n7feat_vs_4det_ensemble       +0.0116   0.000000 [+0.0065, +0.0167]    ***\\\\n\\\\nSaved: /root/gen-depth-fingerprint/results/binary_bootstrap_pvalue.json\\\\nTotal: 685.0s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"7feat_vs_binoculars          +0.1994   0.000000 [+0.1918, +0.2068]    ***\\n7feat_vs_4det_ensemble       +0.0116   0.000000 [+0.0065, +0.0167]    ***\\n\\nSaved: /root/gen-depth-fingerprint/results/binary_bootstrap_pvalue.json\\nTotal: 685.0s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000553"
+        },
+        {
+          "source_line": 554,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Let me read the full output and JSON result."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0d7187ac-6cb0-43e5-bfd3-3c1d427d8407",
+            "uuid": "15540152-5be6-4208-a843-d761d35eb50c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0121qbMYqRW8KGLTRjMvY8Bk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 402,
+                "cache_read_input_tokens": 113282,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 402
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000554"
+        },
+        {
+          "source_line": 555,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VE8uEsJT5n47ViLpK3sPEV",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cat /tmp/bootstrap_pvalue.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0d7187ac-6cb0-43e5-bfd3-3c1d427d8407",
+            "uuid": "c514116e-61dc-4e28-9a01-d772eda7ce5a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0121qbMYqRW8KGLTRjMvY8Bk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 402,
+                "cache_read_input_tokens": 113282,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 402
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000555"
+        },
+        {
+          "source_line": 556,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FXSZJxve2vmDUr99YhyXQ5",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-5090",
+                "command": "cat /root/gen-depth-fingerprint/results/binary_bootstrap_pvalue.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0d7187ac-6cb0-43e5-bfd3-3c1d427d8407",
+            "uuid": "81f12011-2138-4f50-a14e-51dfa20ff1c3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0121qbMYqRW8KGLTRjMvY8Bk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 402,
+                "cache_read_input_tokens": 113282,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 402
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000556"
+        },
+        {
+          "source_line": 557,
+          "timestamp": "2026-05-15T14:31:33.997Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VE8uEsJT5n47ViLpK3sPEV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data...\\\\nData: 21557 samples, 6 generators\\\\nLabel dist: {1: 15639, 0: 5918}\\\\n\\\\nBuilding trigrams...\\\\nVocab size: 40450\\\\n\\\\n--- 7_feature LOGO ---\\\\n  F1 = 0.7233\\\\n--- avg_logprob LOGO ---\\\\n  F1 = 0.7124\\\\n--- ld_score LOGO ---\\\\n  F1 = 0.7009\\\\n--- fastdetectgpt LOGO ---\\\\n  F1 = 0.6155\\\\n--- binoculars LOGO ---\\\\n  F1 = 0.5240\\\\n--- 4_baseline (4-detector ensemble) LOGO ---\\\\n  F1 = 0.7117\\\\n\\\\nLOGO complete in 168.6s\\\\n\\\\n======================================================================\\\\nPAIRED BOOTSTRAP SIGNIFICANCE TESTS (n=10000)\\\\n======================================================================\\\\n\\\\n--- 7feat_vs_avglogprob ---\\\\n  delta = 0.0109\\\\n  p-value = 0.000000 ***\\\\n  95% CI of delta = [0.0061, 0.0157]\\\\n\\\\n--- 7feat_vs_ldscore ---\\\\n  delta = 0.0224\\\\n  p-value = 0.000000 ***\\\\n  95% CI of delta = [0.0167, 0.0281]\\\\n\\\\n--- 7feat_vs_fastdetectgpt ---\\\\n  delta = 0.1079\\\\n  p-value = 0.000000 ***\\\\n  95% CI of delta = [0.1005, 0.1151]\\\\n\\\\n--- 7feat_vs_binoculars ---\\\\n  delta = 0.1994\\\\n  p-value = 0.000000 ***\\\\n  95% CI of delta = [0.1918, 0.2068]\\\\n\\\\n--- 7feat_vs_4det_ensemble ---\\\\n  delta = 0.0116\\\\n  p-value = 0.000000 ***\\\\n  95% CI of delta = [0.0065, 0.0167]\\\\n\\\\n==========================================================================================\\\\nComparison                     Delta    p-value                 95% CI    Sig\\\\n------------------------------------------------------------------------------------------\\\\n7feat_vs_avglogprob          +0.0109   0.000000 [+0.0061, +0.0157]    ***\\\\n7feat_vs_ldscore             +0.0224   0.000000 [+0.0167, +0.0281]    ***\\\\n7feat_vs_fastdetectgpt       +0.1079   0.000000 [+0.1005, +0.1151]    ***\\\\n7feat_vs_binoculars          +0.1994   0.000000 [+0.1918, +0.2068]    ***\\\\n7feat_vs_4det_ensemble       +0.0116   0.000000 [+0.0065, +0.0167]    ***\\\\n\\\\nSaved: /root/gen-depth-fingerprint/results/binary_bootstrap_pvalue.json\\\\nTotal: 685.0s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0d7187ac-6cb0-43e5-bfd3-3c1d427d8407",
+            "uuid": "1a34e1c7-3ea2-41d5-8cdc-d416e78729ee",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data...\\\\nData: 21557 samples, 6 generators\\\\nLabel dist: {1: 15639, 0: 5918}\\\\n\\\\nBuilding trigrams...\\\\nVocab size: 40450\\\\n\\\\n--- 7_feature LOGO ---\\\\n  F1 = 0.7233\\\\n--- avg_logprob LOGO ---\\\\n  F1 = 0.7124\\\\n--- ld_score LOGO ---\\\\n  F1 = 0.7009\\\\n--- fastdetectgpt LOGO ---\\\\n  F1 = 0.6155\\\\n--- binoculars LOGO ---\\\\n  F1 = 0.5240\\\\n--- 4_baseline (4-detector ensemble) LOGO ---\\\\n  F1 = 0.7117\\\\n\\\\nLOGO complete in 168.6s\\\\n\\\\n======================================================================\\\\nPAIRED BOOTSTRAP SIGNIFICANCE TESTS (n=10000)\\\\n======================================================================\\\\n\\\\n--- 7feat_vs_avglogprob ---\\\\n  delta = 0.0109\\\\n  p-value = 0.000000 ***\\\\n  95% CI of delta = [0.0061, 0.0157]\\\\n\\\\n--- 7feat_vs_ldscore ---\\\\n  delta = 0.0224\\\\n  p-value = 0.000000 ***\\\\n  95% CI of delta = [0.0167, 0.0281]\\\\n\\\\n--- 7feat_vs_fastdetectgpt ---\\\\n  delta = 0.1079\\\\n  p-value = 0.000000 ***\\\\n  95% CI of delta = [0.1005, 0.1151]\\\\n\\\\n--- 7feat_vs_binoculars ---\\\\n  delta = 0.1994\\\\n  p-value = 0.000000 ***\\\\n  95% CI of delta = [0.1918, 0.2068]\\\\n\\\\n--- 7feat_vs_4det_ensemble ---\\\\n  delta = 0.0116\\\\n  p-value = 0.000000 ***\\\\n  95% CI of delta = [0.0065, 0.0167]\\\\n\\\\n==========================================================================================\\\\nComparison                     Delta    p-value                 95% CI    Sig\\\\n------------------------------------------------------------------------------------------\\\\n7feat_vs_avglogprob          +0.0109   0.000000 [+0.0061, +0.0157]    ***\\\\n7feat_vs_ldscore             +0.0224   0.000000 [+0.0167, +0.0281]    ***\\\\n7feat_vs_fastdetectgpt       +0.1079   0.000000 [+0.1005, +0.1151]    ***\\\\n7feat_vs_binoculars          +0.1994   0.000000 [+0.1918, +0.2068]    ***\\\\n7feat_vs_4det_ensemble       +0.0116   0.000000 [+0.0065, +0.0167]    ***\\\\n\\\\nSaved: /root/gen-depth-fingerprint/results/binary_bootstrap_pvalue.json\\\\nTotal: 685.0s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading data...\\nData: 21557 samples, 6 generators\\nLabel dist: {1: 15639, 0: 5918}\\n\\nBuilding trigrams...\\nVocab size: 40450\\n\\n--- 7_feature LOGO ---\\n  F1 = 0.7233\\n--- avg_logprob LOGO ---\\n  F1 = 0.7124\\n--- ld_score LOGO ---\\n  F1 = 0.7009\\n--- fastdetectgpt LOGO ---\\n  F1 = 0.6155\\n--- binoculars LOGO ---\\n  F1 = 0.5240\\n--- 4_baseline (4-detector ensemble) LOGO ---\\n  F1 = 0.7117\\n\\nLOGO complete in 168.6s\\n\\n======================================================================\\nPAIRED BOOTSTRAP SIGNIFICANCE TESTS (n=10000)\\n======================================================================\\n\\n--- 7feat_vs_avglogprob ---\\n  delta = 0.0109\\n  p-value = 0.000000 ***\\n  95% CI of delta = [0.0061, 0.0157]\\n\\n--- 7feat_vs_ldscore ---\\n  delta = 0.0224\\n  p-value = 0.000000 ***\\n  95% CI of delta = [0.0167, 0.0281]\\n\\n--- 7feat_vs_fastdetectgpt ---\\n  delta = 0.1079\\n  p-value = 0.000000 ***\\n  95% CI of delta = [0.1005, 0.1151]\\n\\n--- 7feat_vs_binoculars ---\\n  delta = 0.1994\\n  p-value = 0.000000 ***\\n  95% CI of delta = [0.1918, 0.2068]\\n\\n--- 7feat_vs_4det_ensemble ---\\n  delta = 0.0116\\n  p-value = 0.000000 ***\\n  95% CI of delta = [0.0065, 0.0167]\\n\\n==========================================================================================\\nComparison                     Delta    p-value                 95% CI    Sig\\n------------------------------------------------------------------------------------------\\n7feat_vs_avglogprob          +0.0109   0.000000 [+0.0061, +0.0157]    ***\\n7feat_vs_ldscore             +0.0224   0.000000 [+0.0167, +0.0281]    ***\\n7feat_vs_fastdetectgpt       +0.1079   0.000000 [+0.1005, +0.1151]    ***\\n7feat_vs_binoculars          +0.1994   0.000000 [+0.1918, +0.2068]    ***\\n7feat_vs_4det_ensemble       +0.0116   0.000000 [+0.0065, +0.0167]    ***\\n\\nSaved: /root/gen-depth-fingerprint/results/binary_bootstrap_pvalue.json\\nTotal: 685.0s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000557"
+        },
+        {
+          "source_line": 558,
+          "timestamp": "2026-05-15T14:31:34.377Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FXSZJxve2vmDUr99YhyXQ5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"7feat_vs_avglogprob\\\\\\\": {\\\\n    \\\\\\\"delta\\\\\\\": 0.0109,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0,\\\\n    \\\\\\\"ci95\\\\\\\": [\\\\n      0.0061,\\\\n      0.0157\\\\n    ],\\\\n    \\\\\\\"bootstrap_mean_delta\\\\\\\": 0.0109\\\\n  },\\\\n  \\\\\\\"7feat_vs_ldscore\\\\\\\": {\\\\n    \\\\\\\"delta\\\\\\\": 0.0224,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0,\\\\n    \\\\\\\"ci95\\\\\\\": [\\\\n      0.0167,\\\\n      0.0281\\\\n    ],\\\\n    \\\\\\\"bootstrap_mean_delta\\\\\\\": 0.0224\\\\n  },\\\\n  \\\\\\\"7feat_vs_fastdetectgpt\\\\\\\": {\\\\n    \\\\\\\"delta\\\\\\\": 0.1079,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0,\\\\n    \\\\\\\"ci95\\\\\\\": [\\\\n      0.1005,\\\\n      0.1151\\\\n    ],\\\\n    \\\\\\\"bootstrap_mean_delta\\\\\\\": 0.1079\\\\n  },\\\\n  \\\\\\\"7feat_vs_binoculars\\\\\\\": {\\\\n    \\\\\\\"delta\\\\\\\": 0.1994,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0,\\\\n    \\\\\\\"ci95\\\\\\\": [\\\\n      0.1918,\\\\n      0.2068\\\\n    ],\\\\n    \\\\\\\"bootstrap_mean_delta\\\\\\\": 0.1994\\\\n  },\\\\n  \\\\\\\"7feat_vs_4det_ensemble\\\\\\\": {\\\\n    \\\\\\\"delta\\\\\\\": 0.0116,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0,\\\\n    \\\\\\\"ci95\\\\\\\": [\\\\n      0.0065,\\\\n      0.0167\\\\n    ],\\\\n    \\\\\\\"bootstrap_mean_delta\\\\\\\": 0.0116\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0d7187ac-6cb0-43e5-bfd3-3c1d427d8407",
+            "uuid": "4fc8a433-65e9-4528-9122-bfb9a84bd75f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"7feat_vs_avglogprob\\\\\\\": {\\\\n    \\\\\\\"delta\\\\\\\": 0.0109,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0,\\\\n    \\\\\\\"ci95\\\\\\\": [\\\\n      0.0061,\\\\n      0.0157\\\\n    ],\\\\n    \\\\\\\"bootstrap_mean_delta\\\\\\\": 0.0109\\\\n  },\\\\n  \\\\\\\"7feat_vs_ldscore\\\\\\\": {\\\\n    \\\\\\\"delta\\\\\\\": 0.0224,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0,\\\\n    \\\\\\\"ci95\\\\\\\": [\\\\n      0.0167,\\\\n      0.0281\\\\n    ],\\\\n    \\\\\\\"bootstrap_mean_delta\\\\\\\": 0.0224\\\\n  },\\\\n  \\\\\\\"7feat_vs_fastdetectgpt\\\\\\\": {\\\\n    \\\\\\\"delta\\\\\\\": 0.1079,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0,\\\\n    \\\\\\\"ci95\\\\\\\": [\\\\n      0.1005,\\\\n      0.1151\\\\n    ],\\\\n    \\\\\\\"bootstrap_mean_delta\\\\\\\": 0.1079\\\\n  },\\\\n  \\\\\\\"7feat_vs_binoculars\\\\\\\": {\\\\n    \\\\\\\"delta\\\\\\\": 0.1994,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0,\\\\n    \\\\\\\"ci95\\\\\\\": [\\\\n      0.1918,\\\\n      0.2068\\\\n    ],\\\\n    \\\\\\\"bootstrap_mean_delta\\\\\\\": 0.1994\\\\n  },\\\\n  \\\\\\\"7feat_vs_4det_ensemble\\\\\\\": {\\\\n    \\\\\\\"delta\\\\\\\": 0.0116,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0,\\\\n    \\\\\\\"ci95\\\\\\\": [\\\\n      0.0065,\\\\n      0.0167\\\\n    ],\\\\n    \\\\\\\"bootstrap_mean_delta\\\\\\\": 0.0116\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"7feat_vs_avglogprob\\\": {\\n    \\\"delta\\\": 0.0109,\\n    \\\"p_value\\\": 0.0,\\n    \\\"ci95\\\": [\\n      0.0061,\\n      0.0157\\n    ],\\n    \\\"bootstrap_mean_delta\\\": 0.0109\\n  },\\n  \\\"7feat_vs_ldscore\\\": {\\n    \\\"delta\\\": 0.0224,\\n    \\\"p_value\\\": 0.0,\\n    \\\"ci95\\\": [\\n      0.0167,\\n      0.0281\\n    ],\\n    \\\"bootstrap_mean_delta\\\": 0.0224\\n  },\\n  \\\"7feat_vs_fastdetectgpt\\\": {\\n    \\\"delta\\\": 0.1079,\\n    \\\"p_value\\\": 0.0,\\n    \\\"ci95\\\": [\\n      0.1005,\\n      0.1151\\n    ],\\n    \\\"bootstrap_mean_delta\\\": 0.1079\\n  },\\n  \\\"7feat_vs_binoculars\\\": {\\n    \\\"delta\\\": 0.1994,\\n    \\\"p_value\\\": 0.0,\\n    \\\"ci95\\\": [\\n      0.1918,\\n      0.2068\\n    ],\\n    \\\"bootstrap_mean_delta\\\": 0.1994\\n  },\\n  \\\"7feat_vs_4det_ensemble\\\": {\\n    \\\"delta\\\": 0.0116,\\n    \\\"p_value\\\": 0.0,\\n    \\\"ci95\\\": [\\n      0.0065,\\n      0.0167\\n    ],\\n    \\\"bootstrap_mean_delta\\\": 0.0116\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+              }
+            }
+          },
+          "id": "event-000558"
+        },
+        {
+          "source_line": 559,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 5 comparisons complete. Results:\n\n## Binary F1 Paired Bootstrap Significance Test Results\n\n| Comparison | Delta F1 | p-value | 95% CI | Sig |\n|---|---|---|---|---|\n| 7-feat vs Avg-LogProb | +0.0109 | < 0.0001 | [+0.0061, +0.0157] | *** |\n| 7-feat vs LD-Score | +0.0224 | < 0.0001 | [+0.0167, +0.0281] | *** |\n| 7-feat vs FastDetectGPT | +0.1079 | < 0.0001 | [+0.1005, +0.1151] | *** |\n| 7-feat vs Binoculars | +0.1994 | < 0.0001 | [+0.1918, +0.2068] | *** |\n| 7-feat vs 4-det ensemble | +0.0116 | < 0.0001 | [+0.0065, +0.0167] | *** |\n\n**All 5 comparisons are significant at p < 0.0001** (0 out of 10,000 bootstrap samples had delta ≤ 0).\n\n### Key findings:\n- The **p < 0.001 claim holds** for all binary comparisons, including the tightest ones (vs Avg-LogProb at +1.1pp and vs 4-det ensemble at +1.2pp).\n- Even the smallest gap — 7-feat vs Avg-LogProb (delta = +0.0109, CI: [+0.0061, +0.0157]) — has the CI entirely above zero.\n- The 7-feat vs 4-det ensemble gap (delta = +0.0116, CI: [+0.0065, +0.0167]) is also clearly significant.\n- **No claim downgrade needed.** The binary-specific p-values independently confirm p < 0.001.\n\n### JSON output\n\n```json\n{\n  \"7feat_vs_avglogprob\": {\"delta\": 0.0109, \"p_value\": 0.0, \"ci95\": [0.0061, 0.0157]},\n  \"7feat_vs_ldscore\": {\"delta\": 0.0224, \"p_value\": 0.0, \"ci95\": [0.0167, 0.0281]},\n  \"7feat_vs_fastdetectgpt\": {\"delta\": 0.1079, \"p_value\": 0.0, \"ci95\": [0.1005, 0.1151]},\n  \"7feat_vs_binoculars\": {\"delta\": 0.1994, \"p_value\": 0.0, \"ci95\": [0.1918, 0.2068]},\n  \"7feat_vs_4det_ensemble\": {\"delta\": 0.0116, \"p_value\": 0.0, \"ci95\": [0.0065, 0.0167]}\n}\n```\n\nMethod: stratified paired bootstrap (n=10,000), resampling within each generator independently, computing per-generator macro F1 and averaging — matching the LOGO evaluation protocol. Saved to `results/binary_bootstrap_pvalue.json` on autodl-5090."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0d7187ac-6cb0-43e5-bfd3-3c1d427d8407",
+            "uuid": "aa98feb1-e3ec-4d44-ba85-79b36466b5ed",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DkFq2MhDhctPFsZ775s4jq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1775,
+                "cache_read_input_tokens": 113684,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1775
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000559"
+        },
+        {
+          "source_line": 560,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 5 comparisons complete. Results:\n\n## Binary F1 Paired Bootstrap Significance Test Results\n\n| Comparison | Delta F1 | p-value | 95% CI | Sig |\n|---|---|---|---|---|\n| 7-feat vs Avg-LogProb | +0.0109 | < 0.0001 | [+0.0061, +0.0157] | *** |\n| 7-feat vs LD-Score | +0.0224 | < 0.0001 | [+0.0167, +0.0281] | *** |\n| 7-feat vs FastDetectGPT | +0.1079 | < 0.0001 | [+0.1005, +0.1151] | *** |\n| 7-feat vs Binoculars | +0.1994 | < 0.0001 | [+0.1918, +0.2068] | *** |\n| 7-feat vs 4-det ensemble | +0.0116 | < 0.0001 | [+0.0065, +0.0167] | *** |\n\n**All 5 comparisons are significant at p < 0.0001** (0 out of 10,000 bootstrap samples had delta ≤ 0).\n\n### Key findings:\n- The **p < 0.001 claim holds** for all binary comparisons, including the tightest ones (vs Avg-LogProb at +1.1pp and vs 4-det ensemble at +1.2pp).\n- Even the smallest gap — 7-feat vs Avg-LogProb (delta = +0.0109, CI: [+0.0061, +0.0157]) — has the CI entirely above zero.\n- The 7-feat vs 4-det ensemble gap (delta = +0.0116, CI: [+0.0065, +0.0167]) is also clearly significant.\n- **No claim downgrade needed.** The binary-specific p-values independently confirm p < 0.001.\n\n### JSON output\n\n```json\n{\n  \"7feat_vs_avglogprob\": {\"delta\": 0.0109, \"p_value\": 0.0, \"ci95\": [0.0061, 0.0157]},\n  \"7feat_vs_ldscore\": {\"delta\": 0.0224, \"p_value\": 0.0, \"ci95\": [0.0167, 0.0281]},\n  \"7feat_vs_fastdetectgpt\": {\"delta\": 0.1079, \"p_value\": 0.0, \"ci95\": [0.1005, 0.1151]},\n  \"7feat_vs_binoculars\": {\"delta\": 0.1994, \"p_value\": 0.0, \"ci95\": [0.1918, 0.2068]},\n  \"7feat_vs_4det_ensemble\": {\"delta\": 0.0116, \"p_value\": 0.0, \"ci95\": [0.0065, 0.0167]}\n}\n```\n\nMethod: stratified paired bootstrap (n=10,000), resampling within each generator independently, computing per-generator macro F1 and averaging — matching the LOGO evaluation protocol. Saved to `results/binary_bootstrap_pvalue.json` on autodl-5090."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 984315,
+            "duration_api_ms": 829147,
+            "num_turns": 251,
+            "stop_reason": "end_turn",
+            "session_id": "0d7187ac-6cb0-43e5-bfd3-3c1d427d8407",
+            "total_cost_usd": 11.410687499999995,
+            "usage": {
+              "input_tokens": 240,
+              "cache_creation_input_tokens": 103618,
+              "cache_read_input_tokens": 19573594,
+              "output_tokens": 38934,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 103618,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 818,
+                  "cache_read_input_tokens": 113684,
+                  "cache_creation_input_tokens": 1775,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1775
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1648,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001728,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 240,
+                "outputTokens": 38934,
+                "cacheReadInputTokens": 19573594,
+                "cacheCreationInputTokens": 103618,
+                "webSearchRequests": 0,
+                "costUSD": 11.408959499999995,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "038c73de-bdb8-4b34-a1b9-57c631ba1550"
+          },
+          "id": "event-000560"
+        }
+      ]
+    }
+  ]
+}

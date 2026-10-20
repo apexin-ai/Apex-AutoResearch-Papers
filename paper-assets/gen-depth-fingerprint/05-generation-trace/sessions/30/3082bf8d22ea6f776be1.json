@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3082bf8d22ea6f776be1",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis qlora instruct prep A",
+  "task_key": "worker_analysis_qlora_instruct_prep_A_20260519T074532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qlora_instruct_prep_A_20260519T074532_result.json",
+    "occurrence": 1,
+    "bytes": 2796,
+    "sha256": "7172b93a70e7045ebd326fc63d05af39c49706b83ba2083568cbb7729b0c4811"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 汇总报告\n\n### 1. Instruct Generation 数据\n\n| 模型 | 目录 | 文件 | 行数 | Depth 分布 |\n|---|---|---|---|---|\n| qwen3-1.7b-instruct | ✅ | `generations_shard0.jsonl` | 4,963 | {0:996, 1:996, 2:991, 3:990, 4:990} |\n| **olmo-2-1b-instruct** | **❌ 不存在** | — | — | — |\n| olmo-2-0425-1b-instruct | ✅ (不同模型) | `generations_shard0.jsonl` | 4,429 | {0:995, 1:965, 2:884, 3:817, 4:768} |\n\n`olmo-2-1b-instruct` 目录不存在。服务器上有的 instruct 版本是 `olmo-2-0425-1b-instruct`（OLMo-2 April 2025 checkpoint，不同模型）。\n\n### 2. Base Model 数据（对比基线）\n\n| 模型 | 行数 | Depth 分布 |\n|---|---|---|\n| olmo-2-1b | 4,713 | {0:995, 1:988, 2:947, 3:905, 4:878} |\n| qwen3-1.7b | 4,617 | {0:996, 1:983, 2:941, 3:875, 4:822} |\n\n两个 base model 数据齐全。注意高 depth 有衰减（生成失败），qwen3-1.7b-instruct 反而几乎不衰减。\n\n### 3. QLoRA 脚本\n\n- `end_to_end_classifier.py` ✅ 存在（11.5KB）\n- 硬编码加载 4 个 base 模型：`pythia-1b, olmo-2-1b, qwen3-0.6b, qwen3-1.7b`\n- backbone 是 Qwen3-0.6B-Base\n- **不支持 instruct 数据**，需修改 `load_generation_data()` 中的 generator 列表\n- `v2` 和 `pythia` 版本结构相同\n\n### 4. 环境（conda base）\n\n| 包 | 版本 |\n|---|---|\n| torch | 2.10.0+cu128 |\n| transformers | 4.57.6 |\n| peft | 0.19.0 |\n| bitsandbytes | 0.49.2 |\n\n**GPU**: 4× RTX 5090 (32GB each)，全部空闲。需 `source /root/miniconda3/bin/activate` 激活环境。\n\n### 5. 模型权重\n\n| 模型 | 状态 | 路径 |\n|---|---|---|\n| olmo-2-1b (base) | ✅ | `/root/autodl-tmp/models/olmo-2-1b-hf` |\n| olmo-2-0425-1b-instruct | ✅ 完整 (2.9GB) | `/root/autodl-tmp/models/olmo-2-0425-1b-instruct` |\n| qwen3-0.6b | ✅ | `/root/autodl-tmp/models/qwen3-0.6b` |\n| **Qwen3-1.7B** | **❌ 空目录** | `._____temp/Qwen/Qwen3-1.7B` (下载中断) |\n| **Qwen3-1.7B-Instruct** | **❌ 不存在** | — |\n\n### Blocking Issues\n\n1. **OLMo-2-1B-Instruct 数据缺失** — 只有 `olmo-2-0425-1b-instruct` 的数据，需确认是否可替代\n2. **Qwen3-1.7B / Qwen3-1.7B-Instruct 权重缺失** — temp 目录为空（下载失败），需重新下载\n3. **脚本需改造** — 当前只加载 base 模型数据，需扩展支持 instruct 数据路径\n\n### 建议\n\n**不能直接开始 QLoRA 训练。** 需先：\n1. 确认 `olmo-2-0425-1b-instruct` 是否可替代 `olmo-2-1b-instruct`（若不可，需先生成 OLMo-2-1B-Instruct 数据，但该模型权重也不在服务器上）\n2. 下载 Qwen3-1.7B（或 Qwen3-1.7B-Instruct）权重作为 QLoRA backbone（如果实验设计需要）\n3. 修改 `end_to_end_classifier.py` 的数据加载逻辑以包含 instruct 生成数据"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qlora-instruct-prep-a.md"
+}

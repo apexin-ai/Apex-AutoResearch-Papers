@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c9395609e657a68dea3",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "infra accelerate download",
+  "task_key": "worker_infra_accelerate-download_20260520T105656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_accelerate-download_20260520T105656_result.json",
+    "occurrence": 1,
+    "bytes": 933,
+    "sha256": "9fceb0ecd5144a3a8d1c5bfc09d2bb3f7c8770febcaf81408f9bc1d1801c2f91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**磁盘空间不足以下载 Qwen3-14B-Base（~29G），当前只剩 18G。**\n\n可能可以清理的模型（需要你确认）：\n| 模型 | 大小 | 备注 |\n|------|------|------|\n| `mistral-7b-v0.3` + `Mistral-7B-Instruct-v0.3` | 28G | 两个 Mistral 版本 |\n| `Qwen/Qwen2___5-14B-Instruct` (ModelScope格式) | 28G | 可能与 `Qwen2.5-14B` (8.1G) 重复 |\n| `deepseek-ai/DeepSeek-R1-Distill-Qwen-14B` | 28G | |\n| `Llama-3.2-3B-Instruct-ms` | 12G | |\n\n删除任意 ~11G 的模型即可释放足够空间。请告知哪些模型可以删除？\n\n同时报告下载方案对比：\n- **ModelScope SDK**: ~450 kB/s，预计 17h\n- **aria2c + 代理 → xethub CDN**: 初始 8-10 MB/s，但连接不稳定，衰减到 ~376 kB/s\n- **aria2c + hf-mirror（无代理）**: xethub CDN 重定向卡死，无法工作\n- **推荐方案**: aria2c + 代理，一次下一个文件（集中带宽），预计 1-2h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-accelerate-download.md"
+}

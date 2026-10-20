@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65d17bb4fbcc228cd68f",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper push latest to anon",
+  "task_key": "worker_paper_push-latest-to-anon_20260524T044510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_push-latest-to-anon_20260524T044510_result.json",
+    "occurrence": 1,
+    "bytes": 377,
+    "sha256": "c9490860461dd0856b5c9fa4f703277ad5fc7e0d2deafe26115d32fffb551c78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。汇报：\n\n| 项目 | 结果 |\n|------|------|\n| Push | 成功 |\n| Commit hash | `2a637af` |\n| 分支 | `main` |\n| Silhouette 值 | `0.527`（已确认，非 0.571） |\n| 作者信息 | `Anonymous <anonymous@example.com>` |\n| 敏感信息检查 | CLEAN |\n| 变更文件 | 10 files（+142 −80），含新增 `per_family_ddr_table.tex` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-push-latest-to-anon.md"
+}

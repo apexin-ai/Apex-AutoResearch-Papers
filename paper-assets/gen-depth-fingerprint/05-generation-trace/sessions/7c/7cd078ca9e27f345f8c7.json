@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "7cd078ca9e27f345f8c7",
+  "project": "gen-depth-fingerprint",
+  "kind": "worker",
+  "title": "code multi domain seeds",
+  "task_key": "worker_code_multi-domain-seeds_20260517T033944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_multi-domain-seeds_20260517T033944.log",
+    "occurrence": 1,
+    "bytes": 921296,
+    "sha256": "5b59bb2b59271f5e1efc9d446e7aeb213cf3d7d6b9c81e5be184a0e6ab39b01d"
+  },
+  "statistics": {
+    "messages": 474,
+    "user_turns": 0,
+    "tool_calls": 196,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 78,
+      "tool_call": 196,
+      "tool_result": 196,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 474,
+      "chunks": [
+        {
+          "path": "7cd078ca9e27f345f8c7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7cd078ca9e27f345f8c7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7cd078ca9e27f345f8c7-part-0003.json",
+          "message_count": 114
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-multi-domain-seeds.md"
+}

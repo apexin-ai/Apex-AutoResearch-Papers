@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "152b6e2f758000b439d6",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper fig1 paperbanana framework",
+  "task_key": "worker_paper_fig1-paperbanana-framework_20260523T052906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig1-paperbanana-framework_20260523T052906_result.json",
+    "occurrence": 1,
+    "bytes": 575,
+    "sha256": "1a3bf353aac9b08d789c43c4988fa64300bfe22ae97ec4000cf93b6f652fa734"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成，三面板框架图配色统一，fonttype=42 已设置。\n\n**方案**: matplotlib fallback（PaperBanana 的 Gemini provider 不支持自定义 base URL，提供的 API key 非 Google API key）\n\n**配色更新**:\n- 蓝 #2471A3 → NLL statistics 框 + reference model\n- 琥珀 #D4A017 → surface features 框\n- 酒红 #8B4557 → 合并后的 7 DDR features 框\n\n**输出文件**:\n- `artifacts/_project/chart/fig2_framework.pdf`\n- `artifacts/_project/chart/fig2_framework.png`\n- `docs/chart/fig2_framework.pdf` / `.png`（副本）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig1-paperbanana-framework.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e90d02266b7dedfe035d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper fig3 colorfix",
+  "task_key": "worker_paper_fig3-colorfix_20260522T053542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig3-colorfix_20260522T053542_result.json",
+    "occurrence": 1,
+    "bytes": 311,
+    "sha256": "de172108a7fa4cc6d653aa18e7450ca4d4b6760eed78a977e00c1b95f2b0e112"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。每个 baseline 现在有独立配色：ours 蓝色、ensemble 绿色、LD-Score 橙色、Avg-LogProb 紫色、FastDetectGPT vermilion、Binoculars 深灰。annotation 文字颜色与 marker 一致。所有本地副本（artifacts、docs、figures）和远程 paper 目录均已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig3-colorfix.md"
+}

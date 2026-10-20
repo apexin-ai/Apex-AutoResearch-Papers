@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "029569a405576dc875c7",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ssh plan 014 alive",
+  "task_key": "worker_ssh_plan-014-alive_20260515T003035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan-014-alive_20260515T003035_result.json",
+    "occurrence": 1,
+    "bytes": 512,
+    "sha256": "71411716583845c171b4b605f406a0b19d8fba903e90d6de4704895f49bc4eed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程状态: ALIVE** (PID 134817, 运行 11 分 51 秒)\n\n**进度:** 44/996 seeds (4.4%), 已写入 205 行到 `generations_shard0.jsonl`。平均 ~15s/seed，预计剩余约 **3.9 小时**。\n\n**GPU 利用率:**\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 78% | 16.5/32.6 GB |\n| 1 | 92% | 19.9/32.6 GB |\n| 2 | 0% | 0/32.6 GB (空闲) |\n| 3 | 93% | 19.9/32.6 GB |\n\nGPU 0/1/3 正常工作，GPU 2 空闲（该任务使用 3 卡）。进程运行正常，无报错。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-plan-014-alive.md"
+}

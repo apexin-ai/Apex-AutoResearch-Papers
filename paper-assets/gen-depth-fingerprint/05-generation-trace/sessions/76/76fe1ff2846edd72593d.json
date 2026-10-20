@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76fe1ff2846edd72593d",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code package code supplement",
+  "task_key": "worker_code_package-code-supplement_20260517T125034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_package-code-supplement_20260517T125034_result.json",
+    "occurrence": 1,
+    "bytes": 1502,
+    "sha256": "568c871be7b4c43f732bcbbf7ee516672484f44005db85d227ac69c5d1168b91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。打包结果：\n\n**21 个文件，总结构：**\n\n| 文件 | 大小 | 说明 |\n|------|------|------|\n| `generate_chain.py` | 8.2K | 多深度文本续写 pipeline |\n| `extract_features.py` | 7.8K | 特征提取 (CSV) |\n| `extract_features_jsonl.py` | 4.6K | 特征提取 (JSONL) |\n| `classify_and_eval.py` | 9.5K | 3-class 分类 + 统计检验 |\n| `eval_8gen_logo.py` | 8.4K | 8-gen LOGO 评估 |\n| `eval_8gen_finer_depth.py` | 7.2K | 5-class vs 3-class |\n| `eval_8gen_sampling_ablation.py` | 18.4K | 采样量消融 |\n| `eval_8gen_cross_model_chains.py` | 25.7K | 跨模型链延伸 |\n| `eval_8gen_baselines_pooled.py` | 11.6K | Pooled LOGO + 4 baselines |\n| `benchmark_efficiency.py` | 14.9K | 效率对比 |\n| `8gen_length_confound.py` | 9.1K | 长度混淆控制 |\n| `compute_dataset_stats.py` | 2.3K | 数据集统计 |\n| `experiments/human_edit_robustness/run_robustness.py` | 13.8K | 词替换鲁棒性 |\n| `scripts/lofo_ablation.py` | 2.8K | LOFO 消融 |\n| `scripts/alt_classifier_eval.py` | 4.2K | 分类器对比 |\n| `scripts/bootstrap_ci_v2.py` | 4.8K | Bootstrap CI |\n| `scripts/plot_fig1_strip.py` | 4.8K | Figure 1 |\n| `scripts/plot_fig2.py` | 4.4K | Figure 2 |\n| `scripts/plot_fig3.py` | 4.5K | Figure 3 |\n| `requirements.txt` | 142B | 依赖列表 |\n| `README.md` | 3.5K | 复现说明 |\n\n**验证通过：** `grep -r \"/root/\"`, `grep -r \"/home/ubuntu\"`, `grep -r \"autodl\"` 均为零匹配，无残留硬编码路径。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-package-code-supplement.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c855a70c82d2cb7f9cfd",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_4.md",
+  "task_key": "loop_4",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4.md",
+    "occurrence": 1,
+    "bytes": 3799,
+    "sha256": "90e575ecbcd53d429bed8483519ad77f979f5faadcfba3502aa9cd6b84d6acd7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-15T08:48:53+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 cuda:0/1/2/3，不可用其他设备\n- submit_training_job 命令里 `--device` 始终写 `cuda:0`（框架自动注入 CUDA_VISIBLE_DEVICES 映射物理 GPU）\n- plan-005 的三个子任务（cont/elab/rewrite）共享同一个 hypothesis，最终分析必须等三个都完成后再做对比，不能单独出结论\n- Claim 3 (Downstream Utility) 已判定 negative (D009)，reframe 为 diagnostic-not-curative，不要再跑 downstream fine-tuning 实验\n- 论文数字必须来自 registry，plan-014 最终确认数字：6-gen LOGO F1=0.7893，held-out (qwen3-8b) F1=0.6832\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090，工作目录 `/root/gen-depth-fingerprint`\n- Python：`/root/miniconda3/bin/python`，环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型路径：`/root/autodl-tmp/models/`（Qwen3-8B-Base, Qwen3-1.7B-Base, Qwen3-0.6B-Base, OLMo-2-1B 等）\n- 数据路径：`/root/gen-depth-fingerprint/data/`（各生成器子目录 + features_all_models.csv）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程：plan-005-elab (PID 164737, tmux, cuda:2), plan-005-rewrite (PID 164881, tmux, cuda:3)\n- Cron 活跃：plan-005-elab, plan-005-rewrite（自动监控进程存活）\n\n### 3. 📊 当前状态\n收到 plan-005-cont 完成回调（ANALYZING），已派 2 个 Worker：\n1. `worker_analysis_plan-005-cont`：SSH 分析 cont 输出数据完整性 + 更新 registry\n2. `worker_code_plan-005-analysis-prep`：预写 prompt type 对比分析脚本\n\n这两个 Worker 可能已完成也可能还在跑——**下一个我需要先检查这两个 Worker 的回调结果**。如果没收到回调，查 worker status。\n\nRegistry 状态：\n- plan-005-cont: ANALYZING（等 Worker 分析后转 DONE）\n- plan-005-elab: RUNNING (cuda:2)\n- plan-005-rewrite: RUNNING (cuda:3)\n- cuda:0, cuda:1 空闲，无排队实验\n\nPaper Agent Step 2 在进行中（写作），未见活跃写作 Worker。\n\n### 4. 📋 待办（条件触发式）\n- Worker analysis_plan-005-cont 回调 → 确认 registry 已更新到 DONE，检查数据完整性\n- Worker code_plan-005-analysis-prep 回调 → 确认分析脚本就绪\n- plan-005-elab cron 回调 → spawn Worker 分析 elab 数据，更新 registry\n- plan-005-rewrite cron 回调 → spawn Worker 分析 rewrite 数据，更新 registry\n- 三个子任务全部 DONE → 立即在 cuda:0 跑 `analyze_prompt_types.py` 做对比分析 → 结果 patch 入论文\n- prompt type 分析完成 → 向 Director 汇报完整 plan-005 结论 + 更新 ROADMAP\n- 论文初稿完成 → Review cycle → 5/25 EMNLP ARR 提交（剩 10 天）\n\n### 5. 🎯 战略上下文\n- 核心发现：递归 LLM 生成链展现 differential depth response，7-feature ensemble 跨 6 generators/3 families LOGO F1=0.79\n- 所有 P0 实验已完成确认（plan-001 ✅, plan-002 ✅, plan-003 ✅, plan-013 ✅, plan-014 ✅, plan-015 ✅），plan-004-v2 negative 已 reframe (D009)\n- plan-005 是最后一个 P1 实验在跑，完成后进入纯论文写作冲刺\n- 决策链：D005 dual dynamics → D006 re-dream → D007 re-dream 达标 → D009 Claim3 negative reframe → D011 RC9 scale 验证 → D012 恢复 EMNLP 主投\n- 易错点：plan-005 的初步观察（continuation depth 衰减 15% vs elaboration 仅 1.5%）是 35% 数据时的快照，最终数字可能不同，**必须用完整数据重算**\n- 易错点：paper_framing.md 中 Claim 3 已调整为 \"diagnostic-not-curative\"，写论文时不能用旧 framing\n- GPU 效率：cuda:0/1 空闲是因为 plan-005 只需要 3 张卡，当前没有排队实验可填充，不算失职但应在汇报中说明\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-copy-2.md"
+}

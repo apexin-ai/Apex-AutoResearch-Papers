@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad760632ff9101672baa",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper fta w1 soften d010",
+  "task_key": "worker_paper_fta-w1-soften-d010_20260521T183350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fta-w1-soften-d010_20260521T183350_result.json",
+    "occurrence": 1,
+    "bytes": 931,
+    "sha256": "b9b93f054735929307b8c0ecbfb8d8b8cb2c07e5f54d50837e9e33af5ea41a46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits verified. Summary of changes across both `artifacts/_project/paper/` and `docs/paper/`:\n\n| File | Change |\n|---|---|\n| **abstract.tex** L5 | `remain near-stationary ($d < 0.10$)` → `remain largely near-stationary ($d \\leq 0.10$ for core shape features)` |\n| **introduction.tex** L10 | `vs.\\ $d < 0.10$;` → `vs.\\ $d < 0.10$ for near-stationary features; boundary features show intermediate stability;` |\n| **introduction.tex** L18 | `($d < 0.10$)` → `($d < 0.10$ for near-stationary features)` |\n| **results.tex** L70 (caption) | `non-drifting features (amber; $d < 0.10$)` → `near-stationary features (amber; $d \\leq 0.10$)` |\n\nResults.tex body text (L64, L78) already qualified as \"three near-stationary features\" and L82 already uses `$d \\leq 0.08$`, so no changes needed there. The boundary features paragraph (L83-84) with entropy_min and tail_decay details was already precise."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fta-w1-soften-d010.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "022cb0f505fbaa683d9e",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analyze plan 002 pythia1b",
+  "task_key": "worker_analyze_plan-002-pythia1b_20260514T205112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_plan-002-pythia1b_20260514T205112_result.json",
+    "occurrence": 1,
+    "bytes": 1864,
+    "sha256": "06ea96ea1003e1926e2577a0555dc1ce2fddefb11926ec91b7426a8572ae29c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Plan-002 Pythia-1B 生成结果汇总\n\n### 总览\n\n| | Shard 0 | Shard 1 | 合计 |\n|---|---|---|---|\n| Seeds | 497 (id 0-496) | 498 (id 497-994) | 995 |\n| 写入记录数 | 2,286 | 2,269 | **4,555** |\n| 理想记录数 (seeds×5) | 2,485 | 2,490 | 4,975 |\n| 丢失记录 | 199 | 221 | 420 |\n| WARNING 事件数 | 91 | 100 | 191 |\n| 耗时 | 2,296.7s (38.3min) | 2,247.6s (37.5min) | ~75.8min |\n| 吞吐 | 0.21 seeds/s | 0.22 seeds/s | — |\n| EXIT_CODE | 0 | 0 | — |\n\n> 注意：`wiki_seed_1000.jsonl` 实际只有 995 条 seed，非 1000 条。\n\n### Depth 分布\n\n| Depth | Shard 0 | Shard 1 | 合计 | 缺失率 |\n|---|---|---|---|---|\n| 0 | 497 | 498 | 995 | 0% |\n| 1 | 497 | 496 | 993 | 0.2% |\n| 2 | 457 | 455 | 912 | 8.3% |\n| 3 | 429 | 422 | 851 | 14.5% |\n| 4 | 406 | 398 | 804 | 19.2% |\n\n跳过原因几乎全部是 `empty output`（少数 `empty input`），即链式续写中某一步生成了空文本导致链断裂。depth 越深缺失越多，符合预期——链式退化的累积效应。\n\n### 输出文件\n\n| 文件 | 大小 | 行数 |\n|---|---|---|\n| `data/pythia-1b/generations_shard0.jsonl` | 2.4M | 2,286 |\n| `data/pythia-1b/generations_shard1.jsonl` | 2.4M | 2,269 |\n\n### 数据格式\n\n每条记录包含字段：`id`, `depth`, `text`, `seed_id`, `token_count`, `model`。`token_count` 均为 256，`model` 为 `pythia-1b`。格式正确。\n\n高 depth 文本出现明显退化（重复循环），这是预期行为——正是 gen-depth fingerprint 实验要捕捉的信号。\n\n### 结论\n\n**生成成功完成。** 两个 shard 均正常退出，4,555 条记录已写入，完成率 91.6%（4,555/4,975）。缺失的 8.4% 来自链式续写中的空输出断链，集中在 depth 2-4，属于 Pythia-1B 模型在特定 seed 上的正常退化现象，不影响实验分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-plan-002-pythia1b.md"
+}

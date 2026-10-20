@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45a45806ba319e9b3d3b",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code exp 047 multi domain t07",
+  "task_key": "worker_code_exp_047-multi-domain-t07_20260517T055212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_047-multi-domain-t07_20260517T055212_result.json",
+    "occurrence": 1,
+    "bytes": 823,
+    "sha256": "2e667ebd8050bb8760fe7c05e8d186a33d07097e3cbe8af09ac2925ae928a453"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Generation is underway. Pythia-1b is fastest (87 lines already = ~21 seeds done), Qwen3 and Mistral are generating too. Each domain needs 200 seeds × 4 lines (depth 0-3) = 800 lines. \n\nThe job is running successfully with temperature=0.7, top_p=0.9 on 3 GPUs in parallel. Expected completion: ~2-4 hours for generation + ~30 min for feature extraction + evaluation.\n\nI'll check back on progress. The job is tracked as `multi_domain_t07` in tmux on autodl-5090. You can check status anytime with:\n- `tail -50 /root/gen-depth-fingerprint/experiments/multi_domain/run_t07.log`\n- `wc -l /root/gen-depth-fingerprint/experiments/multi_domain/generations_t07/*.jsonl`\n\nTarget: 9 files × 800 lines each = 7200 total lines, then feature extraction + LOGO evaluation produces `multi_domain_results_t07.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-047-multi-domain-t07.md"
+}

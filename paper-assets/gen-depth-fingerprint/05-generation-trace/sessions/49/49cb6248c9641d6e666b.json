@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49cb6248c9641d6e666b",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper backup server data",
+  "task_key": "worker_paper_backup-server-data_20260523T195125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_backup-server-data_20260523T195125_result.json",
+    "occurrence": 1,
+    "bytes": 270,
+    "sha256": "6d450449040813f93d171a3fde38f955385e9d315e49733006abc06162b12b8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "备份完成。\n\n| 项目 | 数值 |\n|------|------|\n| JSON | 209 |\n| CSV | 64 |\n| PY | 189 |\n| SH | 23 |\n| 压缩包 | 24MB |\n| 解压后 | 92MB |\n| 本地路径 | `artifacts/server_backup/` |\n| 关键审计源文件 | 14/14 ✅ 全部完整 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-backup-server-data.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aeaf7f86bc546b16c2c8",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis p1c base rho verify",
+  "task_key": "worker_analysis_p1c-base-rho-verify_20260515T153415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_p1c-base-rho-verify_20260515T153415_result.json",
+    "occurrence": 1,
+    "bytes": 1140,
+    "sha256": "f3c87036fb9de93573f002405d9caf791a985017319b89dceaa8e69588b79fe5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 7 个特征完全匹配。\n\n## 验证结果\n\n### BASE_MODEL_RHO 硬编码值（analyze_instruct.py）\n\n| 特征 | 硬编码值 | 计算值 | 匹配 |\n|------|---------|--------|------|\n| hapax_ratio | -0.6696 | -0.6696 | ✓ |\n| ttr | -0.6523 | -0.6523 | ✓ |\n| entropy_mean | -0.6022 | -0.6022 | ✓ |\n| entropy_std | -0.1882 | -0.1882 | ✓ |\n| entropy_max | 0.0884 | 0.0884 | ✓ |\n| entropy_min | -0.4062 | -0.4062 | ✓ |\n| tail_decay | -0.0698 | -0.0698 | ✓ |\n\n### 结论\n\n- **是否匹配：是**，所有 7 个值精确匹配（diff < 0.001）\n- **数据来源：** `/root/gen-depth-fingerprint/data/features_qwen3-1.7b.csv`（4617 条记录，Qwen3-1.7B-Base，pooled across all seeds，depths 0-4）\n- **确认是同架构对比：** BASE_MODEL_RHO 确实来自 Qwen3-1.7B-Base，与 Qwen3-1.7B-Instruct 构成同架构 base/instruct 对比\n- **与论文 pooled 6-gen 值不同的原因：** 论文报告的 hapax=-0.558 是跨 6 个生成器（model families）的 pooled 值；此处 -0.6696 是 Qwen3-1.7B-Base 单模型的 pooled Spearman ρ，两者统计口径不同，不矛盾"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-p1c-base-rho-verify.md"
+}

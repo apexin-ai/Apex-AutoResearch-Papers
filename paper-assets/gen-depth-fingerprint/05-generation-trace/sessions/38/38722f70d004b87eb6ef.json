@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38722f70d004b87eb6ef",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code error analysis",
+  "task_key": "worker_code_error-analysis_20260517T032948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_error-analysis_20260517T032948_result.json",
+    "occurrence": 1,
+    "bytes": 1043,
+    "sha256": "decc548a65ad020b675e0c816c5b67135be0d5f01b0750ce7e9972bc97c49309"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `/root/gen-depth-fingerprint/experiments/error_analysis/error_analysis_results.json`。\n\n核心发现：\n\n1. **Overall**: 28.08% error rate (8170/29095 misclassified)\n\n2. **Error asymmetry严重**: 86.2% 的错误是 FN (gen-2+ 被误判为 gen-1)，仅 13.8% 是 FP。分类器倾向于把 gen-2+ 判为 gen-1。\n\n3. **Depth-2 是主要失败点**: depth-2 的 error rate 高达 48.42%，远高于 depth-3 (29.17%) 和 depth-4 (20.32%)。说明 gen-1→gen-2 的特征变化最难捕捉，fingerprint 在浅层重写时失效。\n\n4. **Generator 差异大**: Mistral-7B 最难 (45% error)，Pythia-1B 最易 (18.2%)。大模型/指令对齐模型产生的文本更难与 gen-1 区分。\n\n5. **关键特征差异**: 误分样本的 entropy_mean 和 ttr/hapax_ratio 系统性偏高（更接近 gen-1 水平），意味着它们在词汇多样性上没有表现出深层重写的\"收敛\"特征。entropy_max 和 tail_decay 无显著差异 (p>0.58)，这两个 feature 对错误判断无区分力。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-error-analysis.md"
+}

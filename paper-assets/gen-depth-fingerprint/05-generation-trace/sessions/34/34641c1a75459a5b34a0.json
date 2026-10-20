@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34641c1a75459a5b34a0",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops check human edit status",
+  "task_key": "worker_ops_check-human-edit-status_20260515T211920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-human-edit-status_20260515T211920_result.json",
+    "occurrence": 1,
+    "bytes": 1502,
+    "sha256": "6e83d67dcd0e350b14a6cd14c8fd9cf61558a4c43e21dec4391fd591372b9287"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已完成。汇总：\n\n## plan-010 human-edit 实验结果\n\n**状态：已完成** (总耗时 167 分钟，结果写入于 2026-05-16 02:51)\n\n| Condition | 3-class LOGO F1 | Binary F1 | Δ LOGO F1 | Δ Binary F1 |\n|-----------|:-:|:-:|:-:|:-:|\n| baseline | **0.7889** [.787, .798] | **0.7241** [.719, .734] | — | — |\n| random_5pct | 0.7538 [.750, .764] | 0.7182 [.713, .729] | −0.0351 | −0.0059 |\n| random_10pct | 0.7425 [.735, .752] | 0.7168 [.711, .729] | −0.0464 | −0.0073 |\n| random_20pct | 0.7292 [.722, .739] | 0.7165 [.711, .727] | −0.0597 | −0.0076 |\n| llm_rephrase | 0.7549 [.750, .762] | 0.6615 [.655, .672] | −0.0340 | −0.0626 |\n\n**结论：**\n- **degradation_curve = robust** — 随机替换 5%→20% token，3-class F1 从 0.789 graceful 降到 0.729（−7.6%），没有断崖式下跌\n- **llm_rephrase_robust = True** — LLM 改写后 3-class F1 仅降 0.034，depth fingerprint 在表面文本改写下保持鲁棒\n- Binary F1 在 random 条件下几乎不受影响（−0.006~−0.008），但 llm_rephrase 下降较多（−0.063），说明 LLM 改写对 human-vs-machine 二分类的影响大于对 generator attribution 的影响\n\n**进程状态：**\n- PID 223500 (human_edit_robustness.py) — 已退出\n- PID 228872 (wait_and_rerun.sh) — 仍在运行（已跑 4h8m），可能在等待某个条件或已完成主任务在空转\n\n**cuda:1 状态：空闲** — 利用率 0%，显存占用仅 627 MiB / 32607 MiB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-human-edit-status.md"
+}

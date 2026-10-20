@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5da226d9e2833b2d91cd",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "analysis confusion matrix",
+  "task_key": "worker_analysis_confusion-matrix_20260515T083703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_confusion-matrix_20260515T083703_result.json",
+    "occurrence": 1,
+    "bytes": 821,
+    "sha256": "6313224dfe1bc91cde4c030430042867ed7128465392d319590bfe892fb2f1ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有任务已完成，全部产物已就位：\n\n**混淆矩阵结果 (N=27,529)**：\n\n| | Pred gen-0 | Pred gen-1 | Pred gen-2+ |\n|---|---|---|---|\n| **True gen-0** | 5,937 (99.4%) | 35 (0.6%) | 0 (0.0%) |\n| **True gen-1** | 368 (6.2%) | 4,437 (75.0%) | 1,113 (18.8%) |\n| **True gen-2+** | 464 (3.0%) | 3,646 (23.3%) | 11,529 (73.7%) |\n\n**Gen-1 错误分析**：误分主要偏向 gen-2+（18.8%），是误分为 gen-0（6.2%）的 3 倍。说明 gen-1 文本已携带可检测的递归失真特征。\n\n**产物**：\n- LaTeX：`artifacts/_project/paper/appendix_confusion_matrix.tex` — 已存在，内容正确\n- main.tex：`\\input{appendix_confusion_matrix}` 已在 finer-depth 之后\n- 服务器 JSON：`/root/gen-depth-fingerprint/results/confusion_matrix_3class.json` — 已创建"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-confusion-matrix.md"
+}

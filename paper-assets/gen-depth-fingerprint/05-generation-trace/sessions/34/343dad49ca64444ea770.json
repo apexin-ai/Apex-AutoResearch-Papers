@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "343dad49ca64444ea770",
+  "project": "gen-depth-fingerprint",
+  "kind": "history",
+  "title": "agent / loop_10.md",
+  "task_key": "loop_10",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10.md",
+    "occurrence": 1,
+    "bytes": 3873,
+    "sha256": "3ca9c1743dc8a3fc86f8dbc6aabd1dee0a67db5f8d736b70f2ddf8618c288208"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-16T04:40:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 cuda:0-3（4× RTX 5090）。禁止使用任何其他设备\n- Primary metric 是 **binary LOGO F1=0.723**（gen-1 vs gen-2+，排除 gen-0 leakage），不是 3-class F1\n- Scope 限定 **base models only**——instruct 模型 depth signal 被长度伪影主导（D019 已撤回 instruct narrative）\n- plan-004 downstream 是 **negative 结果**（D023/D029），Contribution #3 已降级为 supplementary analysis，不要把它当正面证据写\n- paraphrastic 数据中 rp=1.3 会制造 feature reversal artifact，任何涉及 plan-006 数据的分析必须先按 rp 值过滤\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**autodl-5090**，账号 root，工作目录 `/root/gen-depth-fingerprint`\n- Python：预置镜像 `aml-train`，用 conda（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），**不是 venv**\n- 数据：`/root/gen-depth-fingerprint/data/features_all_models.csv`（27529 条，6 generators × 5 depths）\n- 活跃进程：**无**。0 个 running worker，0 个 active cron，4/4 GPU 空闲\n- W&B / HF cache：按 AutoDL 规范在 `/root/autodl-tmp/` 下\n\n### 3. 📊 当前状态\n**Round 3 审稿处理中**，Overall 3.0 / Findings acceptance。DDL: **2026-05-25**（剩 9 天）。\n\n刚完成的事：\n- D029/D030 决策已落地：framing 大幅重写为 \"base-model recursive generation controlled study\"\n- review-exp-a-baseline-ensemble (DONE/success)：4-det+surface ensemble F1=0.805，7-feature F1=0.789，baseline 对比完成\n- 论文已 fit 到 8 页（downstream table 移入 appendix，related work 压缩）\n\nRegistry 状态：所有实验 DONE（成功 44 / 负向 4 / 失败 8）。**无 RUNNING/PREPARING 实验**。\n\n等待中：\n- **Paper Agent 应在执行 ROADMAP 中的 Day 1-2 Critical 任务**（N1 framing 重写、N2a bootstrap CI、N2b downstream 移除、N3 Table 1 改造）——但当前 0 worker running，需要确认 Paper Agent 是否已完成或需要重新派发\n- report.md 列出 plan-004-prep / plan-001-restore / mvp-001 系列为\"准备中\"，这些是历史残留，Round 3 不需要新实验\n\n### 4. 📋 待办（条件触发式）\n- **立即**：确认 Paper Agent 进度——N1/N2a/N2b/N3 是否已完成。若未完成 → spawn worker 执行 ROADMAP Day 1-2 Critical 任务\n- N1+N2b 完成 → spawn worker 执行 Day 2-3 Warning 任务（W1-W6, D1b）\n- Day 2-3 完成 → spawn worker 执行 Day 4-5 Minor+Polish（M1-M6, MR, M7）\n- 全部修改完成 → spawn review_reviewer worker 做内部审查（Day 6-7）\n- N2a bootstrap CI 需要 GPU（<1h）→ submit_on_allocated 跑 bootstrap 脚本\n- 所有论文修改完成 → reference-audit + paper-visual-review → 最终编译提交\n\n### 5. 🎯 战略上下文\n- **核心结论链**：递归 LLM 生成链展现 differential depth response（central-tendency 漂移 + shape 稳态）。7-feature ensemble 跨 6 generators / 3 families / 3 prompt types 验证。binary LOGO F1=0.723（leak-free）\n- **D029 是转折点**：Round 3 审稿要求把 framing 从 \"web-crawled provenance\" 收窄到 \"base-model controlled study\"。这意味着 abstract/intro/discussion 全部需要重写，不是小修\n- **最容易判断错的事**：plan-004 downstream 是 negative，但论文中仍保留为 supplementary analysis（不是 contribution）。不要试图\"救\"它或重新跑——D023/D029 已决定降级处理\n- **Claim 证据状态**：Claim 1 (depth discriminability) ✅ | Claim 2 (differential depth response) ✅ | Claim 3 (downstream) ⬇️降级为 supplementary\n- **时间风险**：9 天内完成 framing 重写 + 全部 minor fixes + 内部审查 + 提交。论文已 8 页，改动空间有限。优先级：N1 framing > N2/N3 统计 > W 系列 > M 系列\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf214422cae206c0f36c",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "ops extract p0 paper data",
+  "task_key": "worker_ops_extract-p0-paper-data_20260516T131044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_extract-p0-paper-data_20260516T131044_result.json",
+    "occurrence": 1,
+    "bytes": 3667,
+    "sha256": "81109cbb7e187e8e9601eb8a0e0be0d52cf84ac6f45a23d5f4cb833ea594170c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## P0 数据提取报告\n\n---\n\n### 1. Sample Count N\n\n**8-gen LOGO (unfiltered) — `8gen_logo_unfiltered.json`:**\n| Task | N |\n|------|---|\n| 3-class (gen-0/gen-1/gen-2+) | 37,058 |\n| binary (gen-0 vs gen-1+) | 29,095 |\n\n8 generators: llama-3.2-3b, mistral-7b-v0.3, olmo-2-1b, pythia-1b, pythia-2.8b, qwen3-0.6b, qwen3-1.7b, qwen3-8b\n\n**6-gen dataset_stats.json per-generator totals (depth 0–4):**\n| Generator | N |\n|-----------|---|\n| pythia-1b | 4,555 |\n| pythia-2.8b | 4,609 |\n| olmo-2-1b | 4,713 |\n| qwen3-0.6b | 4,538 |\n| qwen3-1.7b | 4,617 |\n| qwen3-8b | 4,497 |\n| **6-gen total** | **27,529** |\n\n**New generators (features_pythia410m.jsonl):**\n- llama-3.2-3b: 4,680 lines\n- mistral-7b-v0.3: 4,849 lines\n\n**(a)** 存在且可直接用。**(b)** 8-gen scope (LOGO 结果)；6-gen scope (dataset_stats)。\n\n---\n\n### 2. LOFO — Leave-One-Family-Out\n\n**Family-level holdout (`family_holdout_3class.json`) — 6-gen scope:**\n\n| Held-out Family | Macro F1 | Per-generator |\n|-----------------|----------|---------------|\n| Pythia | 0.7717 | pythia-1b: 0.7932, pythia-2.8b: 0.7506 |\n| OLMo | 0.7616 | olmo-2-1b: 0.7616 |\n| Qwen | 0.7544 | qwen3-0.6b: 0.8033, qwen3-1.7b: 0.7885, qwen3-8b: 0.6730 |\n\n**Feature-level LOFO (`lofo_ablation_results.json`) — 6-gen scope:**\n- Full baseline F1: 0.7904\n- Most impactful feature dropped: `entropy_max` (Δ = −0.015)\n- Least impactful: `entropy_min` (Δ ≈ 0)\n\n**(a)** 存在且可用。**(b)** 仅 6-gen scope（不含 llama-3.2-3b、mistral-7b-v0.3）。**(c)** 数值如上。没有 8-gen family holdout（新增的 llama 和 mistral 各自独立成 family，需要重跑才能得到 5-family LOFO）。\n\n---\n\n### 3. Baselines\n\n**`review_p1d_6gen_baselines.json` — 6-gen scope, 3-class LOGO:**\n\n| Method | F1 | 95% CI |\n|--------|-----|--------|\n| Avg-LogProb | 0.7368 | [0.7318, 0.7419] |\n| FastDetectGPT | 0.6883 | [0.6833, 0.6931] |\n| LD-Score | 0.6546 | [0.6489, 0.6602] |\n| Binoculars | 0.4164 | [0.4106, 0.4217] |\n\n**Ensemble (`review_baseline_ensemble_results.json`) — 6-gen scope:**\n\n| Feature Set | F1 | 95% CI |\n|-------------|-----|--------|\n| 4-baseline ensemble | 0.7964 | [0.7921, 0.8007] |\n| 4-baseline + surface (ttr, hapax) | 0.8049 | [0.8003, 0.8092] |\n| 7-feature (ours, no baselines) | 0.7887 | [0.7839, 0.793] |\n\n**(a)** 存在且可用。**(b)** 仅 6-gen scope。**(c)** 数值如上。8-gen LOGO 主结果（F1=0.762）用的是 our features，但 baselines 没有 8-gen 版本。\n\n---\n\n### 4. Feature Ablation (surface-only / reference-only)\n\n**`ablation_results.json` — 6-gen scope, 10-fold CV, N=2,967:**\n\n| Feature Group | Macro F1 | Std |\n|---------------|----------|-----|\n| Full (all 7 features) | 0.8202 | 0.0102 |\n| Surface-only (ttr, hapax) | 0.7611 | 0.0184 |\n| Reference-only (entropy×4, tail_decay) | 0.7162 | 0.0174 |\n\n**Bootstrap pairwise comparisons (all Bonferroni-significant, p=0.0):**\n- Full vs reference-only: Δ = +0.104 [0.091, 0.118]\n- Full vs surface-only: Δ = +0.059 [0.053, 0.065]\n- Surface vs reference: Δ = +0.045 [0.027, 0.063]\n\n**(a)** 存在且可用。**(b)** 6-gen scope only。**(c)** 数值如上。\n\n---\n\n### 总结：需 Director 决策\n\n| 数据项 | 8-gen 版本? | 备注 |\n|--------|-------------|------|\n| LOGO 主结果 | ✅ 有 | F1=0.762 (3-class), 0.694 (binary) |\n| Family holdout | ❌ 仅 6-gen | 新增 llama/mistral 需重跑 |\n| Baselines | ❌ 仅 6-gen | 需在 8-gen 数据上重跑 4 个 baseline |\n| Feature ablation | ❌ 仅 6-gen | 需在 8-gen 数据上重跑 |\n| Feature LOFO | ❌ 仅 6-gen | 同上 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-extract-p0-paper-data.md"
+}

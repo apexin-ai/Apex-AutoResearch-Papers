@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "942bf0660f98defd1669",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code plan008 dedup script",
+  "task_key": "worker_code_plan008-dedup-script_20260515T185818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan008-dedup-script_20260515T185818_result.json",
+    "occurrence": 1,
+    "bytes": 725,
+    "sha256": "6f408094ea5ac71dd6611ecfe901d8c2bc995f8bbb3cec4d57d6b9b8e0a6ddcf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "dry-run 结果：\n\n| 域 | 原始行数 | 去重后 | 删除 | 状态 |\n|---|---|---|---|---|\n| news | 1514 | 713 | 801 | 还在生成中，out of range 正常 |\n| scientific | — | — | — | 文件不存在（未开始） |\n| creative | — | — | — | 文件不存在（未开始） |\n\n脚本正确识别了 news 域的重复：1514 行中有 801 行是重复的（三进程竞争导致），去重后保留 713 行。当前 `--phase all` 仍在跑 generate 阶段，所以行数还没到 2500，out of range 警告是预期的。\n\n等 PID 234066 完成 generate 阶段后，执行 `python dedup_generations.py`（不带 `--dry-run`）即可去重并备份，然后重跑 extract + evaluate。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan008-dedup-script.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f59a0c5e9fc7d303a0b",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "paper figure fig1 differential response",
+  "task_key": "worker_paper_figure_fig1_differential_response_20260515T035822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1_differential_response_20260515T035822_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "bd00eb2d68290383999c447d4f28b83f181053f71deb66ef6ac5f20c583568d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fig 1 生成完毕。\n\n**输出文件**：\n- PDF: `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/figures/paper/fig1_differential_response.pdf` (38K)\n- PNG: 同路径 `.png` (651K, 300 DPI)\n- 服务器副本: `/root/gen-depth-fingerprint/figures/paper/fig1_differential_response.{pdf,png}`\n\n**图表内容**：\n- 6 个生成器（含 Qwen3-8B）全部包含，26760 条记录\n- Panel A/B: entropy_mean 和 hapax_ratio 展现清晰的单调递减漂移（Drifting）\n- Panel C/D: entropy_std 和 tail_decay 保持近稳态（Stationary）\n- 95% CI error bands，Okabe-Ito 色盲友好配色，底部共享图例"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-differential-response.md"
+}

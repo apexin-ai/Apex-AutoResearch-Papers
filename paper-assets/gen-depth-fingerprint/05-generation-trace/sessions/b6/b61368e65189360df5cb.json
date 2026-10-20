@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b61368e65189360df5cb",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "compute feature correlation",
+  "task_key": "worker_compute_feature-correlation_20260517T211035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compute_feature-correlation_20260517T211035_result.json",
+    "occurrence": 1,
+    "bytes": 503,
+    "sha256": "e4648d466c5c60fee34f1744713e478a29dc3c3676757f39bb3c19664795de61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果摘要** (N=27,529, 6 generators):\n- **高相关簇**: TTR 与 Hapax (r=0.97)，两者与 $\\bar{H}$ 也高度相关 (0.86, 0.81)\n- **独立特征**: $H_{\\max}$, $\\tau$, $H_{\\min}$ 与其他特征的 |r| 均 < 0.27\n\n**产出**:\n- `appendix_feature_correlation.tex` 已创建，含 `\\section` 标题、table、说明文字\n- `main.tex` 已在 Feature Ablation 之后插入 `\\input{appendix_feature_correlation}`\n- artifact 已注册 (`art_20260517_9346e5`)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/compute-feature-correlation.md"
+}

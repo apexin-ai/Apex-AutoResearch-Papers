@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b128004166745f66d2eb",
+  "project": "gen-depth-fingerprint",
+  "kind": "result",
+  "title": "code fig1 bracket fix",
+  "task_key": "worker_code_fig1-bracket-fix_20260516T172605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig1-bracket-fix_20260516T172605_result.json",
+    "occurrence": 1,
+    "bytes": 281,
+    "sha256": "ff42d59eb8c96b8024d213b75ba12434dc930f675e170f85b2e26a26d50a91d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。三个 bracket 标签已更新：\n- **Strong drift**: `|ρ| ≳ 0.6`\n- **Moderate**: `|ρ| ≈ 0.16–0.40`\n- **Near-stationary**: `|ρ| < 0.07`\n\n其他视觉元素均未变化。PDF (43KB) 和 PNG (100KB) 已写入本地 `artifacts/_project/paper/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig1-bracket-fix.md"
+}
